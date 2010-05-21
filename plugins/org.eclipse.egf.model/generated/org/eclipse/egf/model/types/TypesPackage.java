@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.types.TypesFactory
  * @model kind="package"
  * @generated
@@ -37,6 +38,7 @@ public interface TypesPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   String eNAME = "types"; //$NON-NLS-1$
@@ -45,6 +47,7 @@ public interface TypesPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/types"; //$NON-NLS-1$
@@ -53,6 +56,7 @@ public interface TypesPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   String eNS_PREFIX = "types"; //$NON-NLS-1$
@@ -61,6 +65,7 @@ public interface TypesPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   TypesPackage eINSTANCE = org.eclipse.egf.model.types.impl.TypesPackageImpl.init();
@@ -69,6 +74,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeElementImpl <em>Type Element</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeElementImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeElement()
    * @generated
@@ -79,6 +85,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -88,6 +95,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -97,6 +105,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -106,6 +115,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeImpl <em>Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getType()
    * @generated
@@ -116,6 +126,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -125,6 +136,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -134,6 +146,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -143,6 +156,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeObjectImpl <em>Type Object</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeObjectImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeObject()
    * @generated
@@ -153,6 +167,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -162,6 +177,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -171,6 +187,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Object</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -180,6 +197,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeAbstractClassImpl <em>Type Abstract Class</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeAbstractClassImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeAbstractClass()
    * @generated
@@ -190,6 +208,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -199,6 +218,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -208,6 +228,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -217,6 +238,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Abstract Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -226,6 +248,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeCollectionImpl <em>Type Collection</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeCollectionImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCollection()
    * @generated
@@ -236,6 +259,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeListImpl <em>Type List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeListImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeList()
    * @generated
@@ -246,6 +270,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeSetImpl <em>Type Set</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeSetImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeSet()
    * @generated
@@ -256,6 +281,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeClassImpl <em>Type Class</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeClassImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeClass()
    * @generated
@@ -266,6 +292,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -275,6 +302,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -284,6 +312,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -293,6 +322,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Class</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -302,6 +332,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -311,6 +342,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -320,6 +352,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -329,6 +362,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Collection</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -338,6 +372,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -347,6 +382,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -356,6 +392,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -365,6 +402,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -374,6 +412,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -383,6 +422,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -392,6 +432,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -401,6 +442,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Set</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -410,6 +452,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeMapImpl <em>Type Map</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeMapImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeMap()
    * @generated
@@ -420,6 +463,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -429,6 +473,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -438,6 +483,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -447,6 +493,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Map</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -456,6 +503,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeBigDecimalImpl <em>Type Big Decimal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeBigDecimalImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBigDecimal()
    * @generated
@@ -466,6 +514,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -475,6 +524,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -484,6 +534,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -493,6 +544,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Big Decimal</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -502,6 +554,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeBigIntegerImpl <em>Type Big Integer</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeBigIntegerImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBigInteger()
    * @generated
@@ -512,6 +565,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -521,6 +575,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -530,6 +585,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -539,6 +595,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Big Integer</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -548,6 +605,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeBooleanImpl <em>Type Boolean</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeBooleanImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBoolean()
    * @generated
@@ -558,6 +616,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -567,6 +626,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -576,6 +636,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -585,6 +646,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Boolean</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -594,6 +656,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeByteImpl <em>Type Byte</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeByteImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeByte()
    * @generated
@@ -604,6 +667,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -613,6 +677,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -622,6 +687,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -631,6 +697,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Byte</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -640,6 +707,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeCharacterImpl <em>Type Character</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeCharacterImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCharacter()
    * @generated
@@ -650,6 +718,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -659,6 +728,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -668,6 +738,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -677,6 +748,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Character</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -686,6 +758,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeDateImpl <em>Type Date</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeDateImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeDate()
    * @generated
@@ -696,6 +769,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -705,6 +779,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -714,6 +789,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -723,6 +799,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Date</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -732,6 +809,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeDoubleImpl <em>Type Double</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeDoubleImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeDouble()
    * @generated
@@ -742,6 +820,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -751,6 +830,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -760,6 +840,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -769,6 +850,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Double</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -778,6 +860,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeFloatImpl <em>Type Float</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeFloatImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeFloat()
    * @generated
@@ -788,6 +871,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -797,6 +881,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -806,6 +891,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -815,6 +901,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Float</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -824,6 +911,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeIntegerImpl <em>Type Integer</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeIntegerImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeInteger()
    * @generated
@@ -834,6 +922,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -843,6 +932,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -852,6 +942,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -861,6 +952,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Integer</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -870,6 +962,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeLongImpl <em>Type Long</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeLongImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeLong()
    * @generated
@@ -880,6 +973,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -889,6 +983,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -898,6 +993,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -907,6 +1003,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Long</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -916,6 +1013,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeShortImpl <em>Type Short</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeShortImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeShort()
    * @generated
@@ -926,6 +1024,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -935,6 +1034,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -944,6 +1044,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -953,6 +1054,7 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type Short</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -962,6 +1064,7 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeStringImpl <em>Type String</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.egf.model.types.impl.TypeStringImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeString()
    * @generated
@@ -972,6 +1075,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -981,6 +1085,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -990,6 +1095,7 @@ public interface TypesPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -999,25 +1105,79 @@ public interface TypesPackage extends EPackage {
    * The number of structural features of the '<em>Type String</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   int TYPE_STRING_FEATURE_COUNT = TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeURIImpl <em>Type URI</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see org.eclipse.egf.model.types.impl.TypeURIImpl
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeURI()
+   * @generated
+   */
+  int TYPE_URI = 21;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   * @ordered
+   */
+  int TYPE_URI__ID = TYPE_OBJECT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   * @ordered
+   */
+  int TYPE_URI__DESCRIPTION = TYPE_OBJECT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   * @ordered
+   */
+  int TYPE_URI__VALUE = TYPE_OBJECT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Type URI</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   * @ordered
+   */
+  int TYPE_URI_FEATURE_COUNT = TYPE_OBJECT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '<em>URI</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.common.util.URI
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getURI()
    * @generated
    */
-  int URI = 24;
+  int URI = 25;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Element</em>'.
    * @see org.eclipse.egf.model.types.TypeElement
    * @generated
@@ -1028,6 +1188,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeElement#getID <em>ID</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>ID</em>'.
    * @see org.eclipse.egf.model.types.TypeElement#getID()
    * @see #getTypeElement()
@@ -1039,6 +1200,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeElement#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Description</em>'.
    * @see org.eclipse.egf.model.types.TypeElement#getDescription()
    * @see #getTypeElement()
@@ -1050,6 +1212,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type</em>'.
    * @see org.eclipse.egf.model.types.Type
    * @generated
@@ -1060,36 +1223,40 @@ public interface TypesPackage extends EPackage {
    * The meta object id for the '<em>Collection</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see java.util.Collection
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getCollection()
    * @generated
    */
-  int COLLECTION = 23;
+  int COLLECTION = 24;
 
   /**
    * The meta object id for the '<em>List</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see java.util.List
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getList()
    * @generated
    */
-  int LIST = 22;
+  int LIST = 23;
 
   /**
    * The meta object id for the '<em>Set</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see java.util.Set
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getSet()
    * @generated
    */
-  int SET = 21;
+  int SET = 22;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeObject <em>Type Object</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Object</em>'.
    * @see org.eclipse.egf.model.types.TypeObject
    * @generated
@@ -1100,6 +1267,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeAbstractClass <em>Type Abstract Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Abstract Class</em>'.
    * @see org.eclipse.egf.model.types.TypeAbstractClass
    * @generated
@@ -1110,6 +1278,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeAbstractClass#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeAbstractClass#getValue()
    * @see #getTypeAbstractClass()
@@ -1121,6 +1290,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeCollection <em>Type Collection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Collection</em>'.
    * @see org.eclipse.egf.model.types.TypeCollection
    * @generated
@@ -1131,6 +1301,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeList <em>Type List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type List</em>'.
    * @see org.eclipse.egf.model.types.TypeList
    * @generated
@@ -1141,6 +1312,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeSet <em>Type Set</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Set</em>'.
    * @see org.eclipse.egf.model.types.TypeSet
    * @generated
@@ -1151,6 +1323,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeClass <em>Type Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Class</em>'.
    * @see org.eclipse.egf.model.types.TypeClass
    * @generated
@@ -1161,6 +1334,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeMap <em>Type Map</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Map</em>'.
    * @see org.eclipse.egf.model.types.TypeMap
    * @generated
@@ -1171,6 +1345,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeBigDecimal <em>Type Big Decimal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Big Decimal</em>'.
    * @see org.eclipse.egf.model.types.TypeBigDecimal
    * @generated
@@ -1181,6 +1356,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeBigDecimal#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeBigDecimal#getValue()
    * @see #getTypeBigDecimal()
@@ -1192,6 +1368,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeBigInteger <em>Type Big Integer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Big Integer</em>'.
    * @see org.eclipse.egf.model.types.TypeBigInteger
    * @generated
@@ -1202,6 +1379,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeBigInteger#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeBigInteger#getValue()
    * @see #getTypeBigInteger()
@@ -1213,6 +1391,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeBoolean <em>Type Boolean</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Boolean</em>'.
    * @see org.eclipse.egf.model.types.TypeBoolean
    * @generated
@@ -1223,6 +1402,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeBoolean#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeBoolean#getValue()
    * @see #getTypeBoolean()
@@ -1234,6 +1414,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeByte <em>Type Byte</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Byte</em>'.
    * @see org.eclipse.egf.model.types.TypeByte
    * @generated
@@ -1244,6 +1425,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeByte#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeByte#getValue()
    * @see #getTypeByte()
@@ -1255,6 +1437,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeCharacter <em>Type Character</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Character</em>'.
    * @see org.eclipse.egf.model.types.TypeCharacter
    * @generated
@@ -1265,6 +1448,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeCharacter#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeCharacter#getValue()
    * @see #getTypeCharacter()
@@ -1276,6 +1460,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeDate <em>Type Date</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Date</em>'.
    * @see org.eclipse.egf.model.types.TypeDate
    * @generated
@@ -1286,6 +1471,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeDate#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeDate#getValue()
    * @see #getTypeDate()
@@ -1297,6 +1483,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeDouble <em>Type Double</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Double</em>'.
    * @see org.eclipse.egf.model.types.TypeDouble
    * @generated
@@ -1307,6 +1494,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeDouble#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeDouble#getValue()
    * @see #getTypeDouble()
@@ -1318,6 +1506,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeFloat <em>Type Float</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Float</em>'.
    * @see org.eclipse.egf.model.types.TypeFloat
    * @generated
@@ -1328,6 +1517,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeFloat#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeFloat#getValue()
    * @see #getTypeFloat()
@@ -1339,6 +1529,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeInteger <em>Type Integer</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Integer</em>'.
    * @see org.eclipse.egf.model.types.TypeInteger
    * @generated
@@ -1349,6 +1540,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeInteger#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeInteger#getValue()
    * @see #getTypeInteger()
@@ -1360,6 +1552,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeLong <em>Type Long</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Long</em>'.
    * @see org.eclipse.egf.model.types.TypeLong
    * @generated
@@ -1370,6 +1563,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeLong#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeLong#getValue()
    * @see #getTypeLong()
@@ -1381,6 +1575,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeShort <em>Type Short</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type Short</em>'.
    * @see org.eclipse.egf.model.types.TypeShort
    * @generated
@@ -1391,6 +1586,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeShort#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeShort#getValue()
    * @see #getTypeShort()
@@ -1402,6 +1598,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeString <em>Type String</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for class '<em>Type String</em>'.
    * @see org.eclipse.egf.model.types.TypeString
    * @generated
@@ -1412,6 +1609,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeString#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see org.eclipse.egf.model.types.TypeString#getValue()
    * @see #getTypeString()
@@ -1420,9 +1618,33 @@ public interface TypesPackage extends EPackage {
   EAttribute getTypeString_Value();
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeURI <em>Type URI</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the meta object for class '<em>Type URI</em>'.
+   * @see org.eclipse.egf.model.types.TypeURI
+   * @generated
+   */
+  EClass getTypeURI();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeURI#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.egf.model.types.TypeURI#getValue()
+   * @see #getTypeURI()
+   * @generated
+   */
+  EAttribute getTypeURI_Value();
+
+  /**
    * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>URI</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for data type '<em>URI</em>'.
    * @see org.eclipse.emf.common.util.URI
    * @model instanceClass="org.eclipse.emf.common.util.URI"
@@ -1434,6 +1656,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for data type '{@link java.util.Collection <em>Collection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for data type '<em>Collection</em>'.
    * @see java.util.Collection
    * @model instanceClass="java.util.Collection" typeParameters="E"
@@ -1445,6 +1668,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for data type '{@link java.util.List <em>List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for data type '<em>List</em>'.
    * @see java.util.List
    * @model instanceClass="java.util.List" typeParameters="E"
@@ -1456,6 +1680,7 @@ public interface TypesPackage extends EPackage {
    * Returns the meta object for data type '{@link java.util.Set <em>Set</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the meta object for data type '<em>Set</em>'.
    * @see java.util.Set
    * @model instanceClass="java.util.Set" typeParameters="E"
@@ -1467,6 +1692,7 @@ public interface TypesPackage extends EPackage {
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -1482,6 +1708,7 @@ public interface TypesPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   interface Literals {
@@ -1489,6 +1716,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeElementImpl <em>Type Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeElementImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeElement()
      * @generated
@@ -1500,6 +1728,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1509,6 +1738,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1518,6 +1748,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeImpl <em>Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getType()
      * @generated
@@ -1529,6 +1760,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeObjectImpl <em>Type Object</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeObjectImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeObject()
      * @generated
@@ -1540,6 +1772,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeAbstractClassImpl <em>Type Abstract Class</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeAbstractClassImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeAbstractClass()
      * @generated
@@ -1551,6 +1784,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1560,6 +1794,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeCollectionImpl <em>Type Collection</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeCollectionImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCollection()
      * @generated
@@ -1571,6 +1806,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeListImpl <em>Type List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeListImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeList()
      * @generated
@@ -1582,6 +1818,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeSetImpl <em>Type Set</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeSetImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeSet()
      * @generated
@@ -1593,6 +1830,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeClassImpl <em>Type Class</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeClassImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeClass()
      * @generated
@@ -1604,6 +1842,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeMapImpl <em>Type Map</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeMapImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeMap()
      * @generated
@@ -1615,6 +1854,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeBigDecimalImpl <em>Type Big Decimal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeBigDecimalImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBigDecimal()
      * @generated
@@ -1626,6 +1866,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1635,6 +1876,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeBigIntegerImpl <em>Type Big Integer</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeBigIntegerImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBigInteger()
      * @generated
@@ -1646,6 +1888,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1655,6 +1898,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeBooleanImpl <em>Type Boolean</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeBooleanImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBoolean()
      * @generated
@@ -1666,6 +1910,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1675,6 +1920,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeByteImpl <em>Type Byte</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeByteImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeByte()
      * @generated
@@ -1686,6 +1932,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1695,6 +1942,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeCharacterImpl <em>Type Character</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeCharacterImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCharacter()
      * @generated
@@ -1706,6 +1954,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1715,6 +1964,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeDateImpl <em>Type Date</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeDateImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeDate()
      * @generated
@@ -1726,6 +1976,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1735,6 +1986,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeDoubleImpl <em>Type Double</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeDoubleImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeDouble()
      * @generated
@@ -1746,6 +1998,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1755,6 +2008,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeFloatImpl <em>Type Float</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeFloatImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeFloat()
      * @generated
@@ -1766,6 +2020,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1775,6 +2030,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeIntegerImpl <em>Type Integer</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeIntegerImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeInteger()
      * @generated
@@ -1786,6 +2042,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1795,6 +2052,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeLongImpl <em>Type Long</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeLongImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeLong()
      * @generated
@@ -1806,6 +2064,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1815,6 +2074,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeShortImpl <em>Type Short</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeShortImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeShort()
      * @generated
@@ -1826,6 +2086,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -1835,6 +2096,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeStringImpl <em>Type String</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.egf.model.types.impl.TypeStringImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeString()
      * @generated
@@ -1846,15 +2108,39 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
     EAttribute TYPE_STRING__VALUE = eINSTANCE.getTypeString_Value();
 
     /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeURIImpl <em>Type URI</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.types.impl.TypeURIImpl
+     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeURI()
+     * @generated
+     */
+    @SuppressWarnings("hiding")
+    EClass TYPE_URI = eINSTANCE.getTypeURI();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @SuppressWarnings("hiding")
+    EAttribute TYPE_URI__VALUE = eINSTANCE.getTypeURI_Value();
+
+    /**
      * The meta object literal for the '<em>URI</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.emf.common.util.URI
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getURI()
      * @generated
@@ -1866,6 +2152,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em>Collection</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see java.util.Collection
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getCollection()
      * @generated
@@ -1877,6 +2164,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em>List</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see java.util.List
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getList()
      * @generated
@@ -1888,6 +2176,7 @@ public interface TypesPackage extends EPackage {
      * The meta object literal for the '<em>Set</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see java.util.Set
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getSet()
      * @generated
