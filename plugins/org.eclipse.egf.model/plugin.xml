@@ -28,15 +28,6 @@
     />
   </extension>  
   
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="types"
-      class="org.eclipse.egf.model.types.util.TypesResourceFactoryImpl"
-    />
-  </extension>
-
   <!-- ================================================================================= -->
   <!-- Fcore Model                                                                       -->
   <!-- ================================================================================= -->
@@ -73,16 +64,7 @@
       genModel="model/Domain.genmodel"
     />
   </extension>
-  
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="domain"
-      class="org.eclipse.egf.model.domain.util.DomainResourceFactoryImpl"
-    />
-  </extension>
-  
+    
   <!-- ================================================================================= -->
   <!-- Mapping Model                                                                     -->
   <!-- ================================================================================= -->
@@ -96,16 +78,7 @@
       genModel="model/Mapping.genmodel"
     />
   </extension> 
-  
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="mapping"
-      class="org.eclipse.egf.model.mapping.util.MappingResourceFactoryImpl"
-    />
-  </extension>
-    
+      
   <!-- ================================================================================= -->
   <!-- Pattern Model                                                                     -->
   <!-- ================================================================================= --> 
@@ -119,14 +92,5 @@
       genModel="model/Pattern.genmodel"
     />
   </extension>
-  
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="pattern"
-      class="org.eclipse.egf.model.pattern.util.PatternResourceFactoryImpl"
-    />
-  </extension>
-  
+    
 </plugin>
