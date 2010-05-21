@@ -31,14 +31,12 @@ public class TypeDomainURIHelper {
 
   public static Collection<DomainURI> getAvailableDomainURI(TypeDomainURI typeDomainURI) {
     Collection<DomainURI> result = new UniqueEList<DomainURI>();
-    // Resource analysis
-    if (typeDomainURI.eResource() == null) {
-      return result;
-    }
-    for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(typeDomainURI.eResource(), false); iterator.hasNext();) {
-      EObject eObject = iterator.next();
-      if (eObject instanceof DomainURI) {
-        result.add((DomainURI) eObject);
+    if (typeDomainURI != null) {
+      for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainURI, true), true); iterator.hasNext();) {
+        EObject eObject = iterator.next();
+        if (eObject instanceof DomainURI) {
+          result.add((DomainURI) eObject);
+        }
       }
     }
     return result;
