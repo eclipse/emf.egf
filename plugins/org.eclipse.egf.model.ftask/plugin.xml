@@ -40,13 +40,4 @@
     />
   </extension>  
   
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="ftask"
-      class="org.eclipse.egf.model.ftask.util.FtaskResourceFactoryImpl"
-    />
-  </extension>
-
 </plugin>
