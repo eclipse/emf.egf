@@ -14,7 +14,6 @@ package org.eclipse.egf.model.domain.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -29,6 +28,7 @@ import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
 import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.helper.TypeDomainURIHelper;
 import org.eclipse.egf.model.types.util.TypesValidator;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
@@ -321,7 +320,7 @@ public class DomainValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateDomainURI_ValidURI(DomainURI domainURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (domainURI.eResource() == null || domainURI.getUri() == null) {
+    if (domainURI.getUri() == null) {
       return true;
     }
     URI uri = domainURI.getUri();
@@ -335,7 +334,7 @@ public class DomainValidator extends EObjectValidator {
     if (valid == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidURI", getObjectLabel(domainURI, context), NLS.bind("Unable to load such URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "ValidURI", getObjectLabel(domainURI, context), NLS.bind("Unable to load URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { domainURI }, context));
       }
       return false;
@@ -378,21 +377,17 @@ public class DomainValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateTypeDomainURI_ValidDomainURI(TypeDomainURI typeDomainURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (typeDomainURI.eResource() == null || typeDomainURI.getDomain() == null) {
+    if (typeDomainURI.getDomain() == null) {
       return true;
     }
-    boolean found = false;
-    for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(typeDomainURI.eResource(), false); iterator.hasNext();) {
-      EObject eObject = iterator.next();
-      if (eObject instanceof DomainURI && eObject == typeDomainURI.getDomain()) {
-        found = true;
-        break;
-      }
+    boolean valid = false;
+    if (TypeDomainURIHelper.getAvailableDomainURI(typeDomainURI).contains(typeDomainURI.getDomain())) {
+      valid = true;
     }
-    if (found == false) {
+    if (valid == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidDomainURI", getObjectLabel(typeDomainURI, context), "Unknown Domain URI in this resource" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "ValidDomainURI", getObjectLabel(typeDomainURI, context), "Invalid DomainURI" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeDomainURI }, context));
       }
       return false;
