@@ -60,18 +60,26 @@ public class EMFHelper {
     // Prevent instantiation
   }
 
-  // Method copied from org.eclipse.emf.codegen.jet.JETCompiler.openStream(java.lang.String)
-  public static InputStream openStream(String locationURI) throws IOException {
-    URI uri = URI.createURI(locationURI);
+  public static InputStream openStream(URI uri) throws IOException {
+    if (uri == null) {
+      return null;
+    }
     URL url;
     try {
       uri = CommonPlugin.resolve(uri);
       url = new URL(uri.toString());
     } catch (MalformedURLException exception) {
-      url = new URL("file:" + locationURI); //$NON-NLS-1$
+      url = new URL("file:" + uri); //$NON-NLS-1$
     }
     BufferedInputStream bufferedInputStream = new BufferedInputStream(url.openStream());
     return bufferedInputStream;
+  }
+
+  public static InputStream openStream(String locationURI) throws IOException {
+    if (locationURI == null || locationURI.trim().length() == 0) {
+      return null;
+    }
+    return openStream(URI.createURI(locationURI));
   }
 
   public static IResource getWorkspaceResource(Resource resource) {
