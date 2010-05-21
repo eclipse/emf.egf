@@ -12,12 +12,15 @@
  */
 package org.eclipse.egf.model.domain.util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainEPackage;
@@ -31,6 +34,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -41,6 +45,7 @@ import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -316,27 +321,21 @@ public class DomainValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateDomainURI_ValidURI(DomainURI domainURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // if (domainURI.eResource() == null || domainURI.getUri() == null) {
-    // return true;
-    // }
-    // URI contentURI = domainURI.getUri();
-    // if (contentURI.isRelative()) {
-    // contentURI = contentURI.resolve(domainURI.eResource().getURI());
-    // }
-    // contentURI = CommonPlugin.asLocalURI(contentURI);
+    if (domainURI.eResource() == null || domainURI.getUri() == null) {
+      return true;
+    }
+    URI uri = domainURI.getUri();
     boolean valid = true;
-    // Try to load this URI
-    // String location = contentURI.toFileString();
-    // if (location != null) {
-    // File file = new File(location);
-    // if (file.canRead()) {
-    // valid = true;
-    // }
-    // }
+    try {
+      InputStream inputStream = EMFHelper.openStream(uri);
+      inputStream.close();
+    } catch (IOException exception) {
+      valid = false;
+    }
     if (valid == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidURI", getObjectLabel(domainURI, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidURI", getObjectLabel(domainURI, context), NLS.bind("Unable to load such URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { domainURI }, context));
       }
       return false;
