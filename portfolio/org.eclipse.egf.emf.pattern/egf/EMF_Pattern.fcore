@@ -12,7 +12,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sluXsVLLEd-ZSLMRjxSbVQ"
           description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_3W8CEFLMEd-ZSLMRjxSbVQ">
-        <type xmi:type="types:TypeString" xmi:id="_-9uCsFLLEd-ZSLMRjxSbVQ"/>
+        <type xmi:type="types:TypeURI" xmi:id="_QA1OAVa0Ed-1Rc_VvSLxRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_OVsagFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_Fy-LgVHVEd-dr9AWwNwIMQ">
@@ -435,6 +435,10 @@
           description="EMF Edit Pattern" name="genModelURI" mandatory="true" invocationContracts="#_1vlAQD1jEd-7UeUeP-vIzw">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_1vlAQz1jEd-7UeUeP-vIzw"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9wHxsFLMEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_8zLBQFLMEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeURI" xmi:id="_Utr-sFa0Ed-1Rc_VvSLxRA"/>
+      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_UCnhEFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_S4Hc0FHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_VF0qgFHVEd-dr9AWwNwIMQ"/>
@@ -442,10 +446,6 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_jzYi8FIIEd-eGOdO3WtsxA"
           name="pattern.execution.reporter" invocationContracts="#_1vlARD1jEd-7UeUeP-vIzw">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_mlTQ8FIIEd-eGOdO3WtsxA"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9wHxsFLMEd-ZSLMRjxSbVQ"
-          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_8zLBQFLMEd-ZSLMRjxSbVQ">
-        <type xmi:type="types:TypeString" xmi:id="_BWfbcFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PiIW4TG0Ed-kc8dEZsdm2w">
@@ -692,6 +692,10 @@
           description="EMF Editor Pattern" name="genModelURI" mandatory="true" invocationContracts="#_1vlASz1jEd-7UeUeP-vIzw">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_1vlATj1jEd-7UeUeP-vIzw"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FqdyEFLNEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_ISjOoFLNEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeURI" xmi:id="_ZvQbIFa0Ed-1Rc_VvSLxRA"/>
+      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Y3EukFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_XkOmoFHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aE2wUFHVEd-dr9AWwNwIMQ"/>
@@ -699,10 +703,6 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_pCqEMFIIEd-eGOdO3WtsxA"
           name="pattern.execution.reporter" invocationContracts="#_1vlATz1jEd-7UeUeP-vIzw">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_qL-csFIIEd-eGOdO3WtsxA"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FqdyEFLNEd-ZSLMRjxSbVQ"
-          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_ISjOoFLNEd-ZSLMRjxSbVQ">
-        <type xmi:type="types:TypeString" xmi:id="_HmlggFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PkqGcTG0Ed-kc8dEZsdm2w">
@@ -970,6 +970,10 @@
           description="EMF Tests Pattern" name="genModelURI" mandatory="true" invocationContracts="#_1vlAVj1jEd-7UeUeP-vIzw">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_1vlAWT1jEd-7UeUeP-vIzw"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_LnCeMFLNEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_OI3hwFLNEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeURI" xmi:id="_c-YCgFa0Ed-1Rc_VvSLxRA"/>
+      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_eYFgEFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_dYwKAFHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_fKTAIFHVEd-dr9AWwNwIMQ"/>
@@ -977,10 +981,6 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tvg04FIIEd-eGOdO3WtsxA"
           name="pattern.execution.reporter" invocationContracts="#_1vlAWj1jEd-7UeUeP-vIzw">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_u6xHEFIIEd-eGOdO3WtsxA"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_LnCeMFLNEd-ZSLMRjxSbVQ"
-          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_OI3hwFLNEd-ZSLMRjxSbVQ">
-        <type xmi:type="types:TypeString" xmi:id="_NfcKQFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PoO-4DG0Ed-kc8dEZsdm2w">
@@ -1187,7 +1187,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_TK4DEFLNEd-ZSLMRjxSbVQ"
           description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_V50VkFLNEd-ZSLMRjxSbVQ #_ZX17oFLNEd-ZSLMRjxSbVQ #_bcxAwFLNEd-ZSLMRjxSbVQ #_dUkP4FLNEd-ZSLMRjxSbVQ">
-        <type xmi:type="types:TypeString" xmi:id="_VVA_YFLNEd-ZSLMRjxSbVQ"/>
+        <type xmi:type="types:TypeURI" xmi:id="_itsVwFa0Ed-1Rc_VvSLxRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_G1BB4FHWEd-dr9AWwNwIMQ"
           name="model.pattern.substitutions" invocationContracts="#_CvDSEFHWEd-dr9AWwNwIMQ">
