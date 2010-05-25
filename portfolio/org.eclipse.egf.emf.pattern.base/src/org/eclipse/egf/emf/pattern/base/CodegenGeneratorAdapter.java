@@ -34,7 +34,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
   protected GenModel _genModel;
 
-  protected String _mergeRulesURI;
+  protected URI _mergeRulesURI;
 
   public CodegenGeneratorAdapter(GenBase generatingObject) {
     super(null);
@@ -42,7 +42,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
     _genModel = generatingObject.getGenModel();
   }
 
-  public void setMergeRulesURI(String mergeRulesURI) {
+  public void setMergeRulesURI(URI mergeRulesURI) {
     _mergeRulesURI = mergeRulesURI;
   }
 
@@ -52,7 +52,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
       _generator = GenModelUtil.createGenerator(_genModel);
     }
     if (_mergeRulesURI != null) {
-      _generator.getOptions().mergeRulesURI = _mergeRulesURI;
+      _generator.getOptions().mergeRulesURI = _mergeRulesURI.toString();
     }
     return _generator;
   }

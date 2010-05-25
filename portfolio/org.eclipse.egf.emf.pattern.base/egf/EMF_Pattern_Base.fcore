@@ -279,7 +279,7 @@
     <contractContainer xmi:id="_vNsDAFLMEd-ZSLMRjxSbVQ">
       <contracts xmi:id="_vtlEAFLMEd-ZSLMRjxSbVQ" description="The URI of the JMerge rules file."
           name="mergeRulesURI">
-        <type xmi:type="types:TypeString" xmi:id="_wb6wsFLMEd-ZSLMRjxSbVQ"/>
+        <type xmi:type="types:TypeURI" xmi:id="_k0RkkVawEd-VyOVCcaefaA"/>
       </contracts>
     </contractContainer>
   </ftask:Task>

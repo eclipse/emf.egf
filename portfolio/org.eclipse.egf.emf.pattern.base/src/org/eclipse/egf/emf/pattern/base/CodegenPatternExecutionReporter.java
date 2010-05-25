@@ -23,6 +23,7 @@ import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -86,15 +87,15 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
       throw new IllegalStateException("Variable className must be set."); //$NON-NLS-1$
 
     CodegenGeneratorAdapter generator = new CodegenGeneratorAdapter(genModel);
-    generator.setMergeRulesURI(normalizeAndCheckURI((String) context.getValue("mergeRulesURI"))); //$NON-NLS-1$
+    generator.setMergeRulesURI(normalizeAndCheckURI((URI) context.getValue("mergeRulesURI"))); //$NON-NLS-1$
     generator.generateJava(targetPath, packageName, className, output);
   }
 
   /*
    * Computes the bundle uri
    */
-  protected String normalizeAndCheckURI(String uri) {
-    if (uri == null || uri.trim().length() == 0) {
+  protected URI normalizeAndCheckURI(URI uri) {
+    if (uri == null) {
       return null;
     }
     // TODO: We should handle relative path to its fcore resource
@@ -102,7 +103,7 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
       InputStream inputStream = EMFHelper.openStream(uri);
       inputStream.close();
     } catch (IOException ioe) {
-      Activator.getDefault().logError(NLS.bind("Unable to locate uri ''{0}''", uri), ioe); //$NON-NLS-1$
+      Activator.getDefault().logError(NLS.bind("Unable to locate URI ''{0}''", uri), ioe); //$NON-NLS-1$
       return null;
     }
     return uri;
