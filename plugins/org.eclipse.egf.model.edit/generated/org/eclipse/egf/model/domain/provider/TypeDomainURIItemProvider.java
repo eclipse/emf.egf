@@ -24,7 +24,6 @@ import org.eclipse.egf.model.types.provider.TypeObjectItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -93,9 +92,8 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
         TypeDomainURI typeDomainURI = (TypeDomainURI) current;
-        Collection<DomainURI> result = new UniqueEList<DomainURI>();
+        Collection<DomainURI> result = TypeDomainURIHelper.getAvailableDomainURI(typeDomainURI);
         result.add(null);
-        result.addAll(TypeDomainURIHelper.getAvailableDomainURI(typeDomainURI));
         return result;
       }
     });
