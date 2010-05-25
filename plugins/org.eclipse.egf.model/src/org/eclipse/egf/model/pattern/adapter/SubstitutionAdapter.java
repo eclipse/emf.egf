@@ -71,6 +71,17 @@ public class SubstitutionAdapter extends AdapterImpl {
         }
         _root = newValue;
         break;
+      case Notification.SET:
+        newValue = EcoreUtil.getRootContainer((Pattern) notification.getNewValue());
+        oldValue = EcoreUtil.getRootContainer((Pattern) notification.getOldValue());
+        if (oldValue != null && oldValue != notification.getOldValue()) {
+          oldValue.eAdapters().remove(_nameAdapter);
+        }
+        if (newValue != null && newValue != notification.getNewValue() && newValue.eAdapters().contains(_nameAdapter) == false) {
+          newValue.eAdapters().add(_nameAdapter);
+        }
+        _root = newValue;
+        break;
       case Notification.REMOVING_ADAPTER:
         if (_root != null) {
           _root.eAdapters().remove(_nameAdapter);

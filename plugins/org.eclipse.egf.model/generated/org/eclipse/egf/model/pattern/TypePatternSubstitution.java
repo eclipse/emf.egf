@@ -19,14 +19,14 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Pattern Substitution</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.TypePatternSubstitution#getSubstitutions <em>Substitutions</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.TypePatternSubstitution#getSubstitutions <em>Substitutions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getTypePatternSubstitution()
  * @model
  * @generated
@@ -41,7 +41,6 @@ public interface TypePatternSubstitution extends Type {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Substitutions</em>' containment reference list.
    * @see org.eclipse.egf.model.pattern.PatternPackage#getTypePatternSubstitution_Substitutions()
    * @model containment="true"
@@ -52,7 +51,6 @@ public interface TypePatternSubstitution extends Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model kind="operation" required="true"
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.pattern.TypePatternSubstitution.class;'"
    * @generated
@@ -63,7 +61,6 @@ public interface TypePatternSubstitution extends Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model patternRequired="true"
    * @generated
    */

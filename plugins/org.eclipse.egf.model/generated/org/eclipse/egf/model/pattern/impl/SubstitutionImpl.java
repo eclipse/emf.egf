@@ -33,11 +33,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutcoming <em>Outcoming</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutcoming <em>Outcoming</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class SubstitutionImpl extends Container implements Substitution {
@@ -45,7 +45,6 @@ public class SubstitutionImpl extends Container implements Substitution {
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -55,7 +54,6 @@ public class SubstitutionImpl extends Container implements Substitution {
    * The cached value of the '{@link #getOutcoming() <em>Outcoming</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getOutcoming()
    * @generated
    * @ordered
@@ -66,7 +64,6 @@ public class SubstitutionImpl extends Container implements Substitution {
    * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getIncoming()
    * @generated
    * @ordered
@@ -87,7 +84,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -98,7 +94,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Pattern getOutcoming() {
@@ -116,7 +111,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Pattern basicGetOutcoming() {
@@ -126,7 +120,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setOutcoming(Pattern newOutcoming) {
@@ -139,7 +132,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<Pattern> getIncoming() {
@@ -152,7 +144,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -171,7 +162,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -192,7 +182,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -211,7 +200,6 @@ public class SubstitutionImpl extends Container implements Substitution {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

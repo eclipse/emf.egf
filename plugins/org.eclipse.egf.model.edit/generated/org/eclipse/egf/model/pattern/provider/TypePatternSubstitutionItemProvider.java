@@ -46,7 +46,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.TypePatternSubstitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypePatternSubstitutionItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -55,7 +54,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypePatternSubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -66,7 +64,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -83,7 +80,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * This adds a property descriptor for the Substitutions feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addSubstitutionsPropertyDescriptor(Object object) {
@@ -93,10 +89,11 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -111,7 +108,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -146,7 +142,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * This returns TypePatternSubstitution.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -171,7 +166,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -191,7 +185,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -205,7 +198,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
