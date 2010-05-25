@@ -26,7 +26,6 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.common.java.AbstractJavaAssemblyContentProvider;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 
 /**
@@ -63,11 +62,6 @@ public class JetAssemblyContentProvider extends AbstractJavaAssemblyContentProvi
 
     @Override
     protected void call(PatternInjectedCall call) throws PatternException {
-        Pattern pattern = call.getCalled();
-        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
-        if (templateClassName == null)
-            throw new PatternException(Messages.assembly_error1);
-
         content.append("<%");
         super.call(call);
         content.append("%>").append(EGFCommonConstants.LINE_SEPARATOR);

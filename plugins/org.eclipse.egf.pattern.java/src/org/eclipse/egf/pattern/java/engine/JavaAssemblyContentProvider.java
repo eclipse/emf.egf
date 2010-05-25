@@ -19,11 +19,9 @@ import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.common.java.AbstractJavaAssemblyContentProvider;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.java.Messages;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 
 /**
@@ -40,16 +38,6 @@ public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProv
     protected void call(MethodCall object) throws PatternException {
         javaMethodHelper.addCallStatement(object.getCalled());
         content.append(EGFCommonConstants.LINE_SEPARATOR);
-    }
-
-    @Override
-    protected void call(PatternInjectedCall call) throws PatternException {
-        Pattern pattern = call.getCalled();
-        String className = JavaNatureHelper.getClassName(pattern);
-        if (className == null)
-            throw new PatternException(Messages.assembly_error1);
-
-        super.call(call);
     }
 
     @Override
