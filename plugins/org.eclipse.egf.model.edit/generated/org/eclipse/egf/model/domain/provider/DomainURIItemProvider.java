@@ -38,6 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainURI} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainURIItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
@@ -46,6 +47,7 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainURIItemProvider(AdapterFactory adapterFactory) {
@@ -56,6 +58,7 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -72,6 +75,7 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
    * This adds a property descriptor for the Uri feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addUriPropertyDescriptor(Object object) {
@@ -85,6 +89,7 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
    * This returns DomainURI.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -102,13 +107,13 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
   @Override
   public String getText(Object object) {
     DomainURI domainURI = (DomainURI) object;
-    String nsuri = null;
+    String uri = null;
     if (domainURI.getUri() != null) {
-      nsuri = "[" + domainURI.getUri() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+      uri = "[" + domainURI.getUri() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
     String label = "[" + getString("_UI_DomainURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    if (nsuri != null) {
-      label = nsuri + " " + label; //$NON-NLS-1$
+    if (uri != null) {
+      label = uri + " " + label; //$NON-NLS-1$
     }
     return label;
   }
@@ -118,6 +123,7 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -137,6 +143,7 @@ public class DomainURIItemProvider extends DomainItemProvider implements IEditin
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
