@@ -54,6 +54,7 @@ import org.eclipse.egf.model.editor.provider.FcorePropertySheetPage;
 import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodCustomItemProviderAdapterFactory;
+import org.eclipse.egf.model.pattern.provider.PatternCustomItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -822,6 +823,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     propertyAdapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     propertyAdapterFactory.addAdapterFactory(new FprodCustomItemProviderAdapterFactory());
     propertyAdapterFactory.addAdapterFactory(new FcoreCustomItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new PatternCustomItemProviderAdapterFactory());
     propertyAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     // Get the registered TransactionalEditingDomain
     editingDomain = (AdapterFactoryEditingDomain) TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
