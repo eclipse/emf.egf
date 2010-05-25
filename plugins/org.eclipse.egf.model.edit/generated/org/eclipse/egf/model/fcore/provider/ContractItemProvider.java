@@ -147,7 +147,7 @@ public class ContractItemProvider extends NamedModelElementItemProvider implemen
     List<Object> images = new ArrayList<Object>(2);
     images.add(getResourceLocator().getImage("full/obj16/Contract")); //$NON-NLS-1$
     if (contract.isMandatory()) {
-      images.add(getResourceLocator().getImage("full/ovr/Mandatory")); //$NON-NLS-1$
+      images.add(getResourceLocator().getImage("full/ovr16/Mandatory")); //$NON-NLS-1$
     }
     return new ComposedImage(images);
   }

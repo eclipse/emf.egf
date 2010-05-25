@@ -12,11 +12,17 @@
  */
 package org.eclipse.egf.model.types.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -63,6 +69,26 @@ public class TypeItemProvider extends TypeElementItemProvider implements IEditin
 
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds an overlay to the given image if the object is controlled.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected Object overlayImage(Object object, Object image) {
+    Type type = (Type) object;
+    List<Object> images = new ArrayList<Object>(3);
+    images.add(image);
+    if (type.getValue() != null) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
+    } else if (AdapterFactoryEditingDomain.isControlled(object)) {
+      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    }
+    return new ComposedImage(images);
   }
 
   /**

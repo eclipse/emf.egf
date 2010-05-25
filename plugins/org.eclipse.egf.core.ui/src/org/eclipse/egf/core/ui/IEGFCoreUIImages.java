@@ -24,6 +24,6 @@ public interface IEGFCoreUIImages {
   /**
    * Identifies a mandatory field.
    */
-  public final String IMG_MANDATORY = "ovr/Mandatory.gif"; //$NON-NLS-1$    
+  public final String IMG_MANDATORY = "ovr16/Mandatory.gif"; //$NON-NLS-1$    
 
 }
