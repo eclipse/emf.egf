@@ -124,6 +124,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeString" eSuperTypes="#//TypeObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeURI" eSuperTypes="#//TypeObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidURI"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//URI"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Set" instanceClassName="java.util.Set">
     <eTypeParameters name="E"/>
   </eClassifiers>

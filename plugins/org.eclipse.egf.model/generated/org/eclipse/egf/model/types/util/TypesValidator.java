@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.types.util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.helper.ValidationHelper;
@@ -44,6 +47,7 @@ import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
+import org.eclipse.egf.model.types.TypeURI;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -225,6 +229,8 @@ public class TypesValidator extends EObjectValidator {
       return validateTypeShort((TypeShort) value, diagnostics, context);
     case TypesPackage.TYPE_STRING:
       return validateTypeString((TypeString) value, diagnostics, context);
+    case TypesPackage.TYPE_URI:
+      return validateTypeURI((TypeURI) value, diagnostics, context);
     case TypesPackage.SET:
       return validateSet((Set<?>) value, diagnostics, context);
     case TypesPackage.LIST:
@@ -836,6 +842,63 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeString, diagnostics, context);
     return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateTypeURI(TypeURI typeURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeObject_ValidValue(typeURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeURI_ValidURI(typeURI, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the ValidURI constraint of '<em>Type URI</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateTypeURI_ValidURI(TypeURI typeURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (typeURI.getValue() == null) {
+      return true;
+    }
+    URI uri = typeURI.getValue();
+    boolean valid = true;
+    try {
+      InputStream inputStream = EMFHelper.openStream(uri);
+      inputStream.close();
+    } catch (IOException exception) {
+      valid = false;
+    }
+    if (valid == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidURI", getObjectLabel(typeURI, context), NLS.bind("Unable to load URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { typeURI }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**

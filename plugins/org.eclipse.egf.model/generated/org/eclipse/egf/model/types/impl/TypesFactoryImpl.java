@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.egf.model.types.*;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
@@ -47,7 +48,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
@@ -55,7 +55,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static TypesFactory init() {
@@ -74,7 +73,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesFactoryImpl() {
@@ -84,7 +82,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -124,6 +121,8 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
       return createTypeShort();
     case TypesPackage.TYPE_STRING:
       return createTypeString();
+    case TypesPackage.TYPE_URI:
+      return createTypeURI();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -132,7 +131,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -154,7 +152,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -176,7 +173,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeCollection createTypeCollection() {
@@ -187,7 +183,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeList createTypeList() {
@@ -198,7 +193,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeSet createTypeSet() {
@@ -209,7 +203,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeClass createTypeClass() {
@@ -220,7 +213,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeMap createTypeMap() {
@@ -231,7 +223,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeBigDecimal createTypeBigDecimal() {
@@ -242,7 +233,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeBigInteger createTypeBigInteger() {
@@ -253,7 +243,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeBoolean createTypeBoolean() {
@@ -264,7 +253,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeByte createTypeByte() {
@@ -275,7 +263,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeCharacter createTypeCharacter() {
@@ -286,7 +273,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeDate createTypeDate() {
@@ -297,7 +283,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeDouble createTypeDouble() {
@@ -308,7 +293,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeFloat createTypeFloat() {
@@ -319,7 +303,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeInteger createTypeInteger() {
@@ -330,7 +313,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeLong createTypeLong() {
@@ -341,7 +323,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeShort createTypeShort() {
@@ -352,7 +333,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeString createTypeString() {
@@ -363,7 +343,16 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
+   * @generated
+   */
+  public TypeURI createTypeURI() {
+    TypeURIImpl typeURI = new TypeURIImpl();
+    return typeURI;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public Set<?> createSet(String literal) {
@@ -373,7 +362,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Collection<?> createCollectionFromString(EDataType eDataType, String initialValue) {
@@ -383,7 +371,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertCollection(Collection<?> instanceValue) {
@@ -393,7 +380,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertCollectionToString(EDataType eDataType, Object instanceValue) {
@@ -403,7 +389,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public URI createURI(String literal) {
@@ -413,7 +398,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public List<?> createListFromString(EDataType eDataType, String initialValue) {
@@ -423,7 +407,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertList(List<?> instanceValue) {
@@ -433,7 +416,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertListToString(EDataType eDataType, Object instanceValue) {
@@ -443,7 +425,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Collection<?> createCollection(String literal) {
@@ -453,7 +434,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Set<?> createSetFromString(EDataType eDataType, String initialValue) {
@@ -463,7 +443,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertSet(Set<?> instanceValue) {
@@ -473,7 +452,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertSetToString(EDataType eDataType, Object instanceValue) {
@@ -483,7 +461,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public List<?> createList(String literal) {
@@ -503,7 +480,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertURI(URI instanceValue) {
@@ -513,7 +489,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String convertURIToString(EDataType eDataType, Object instanceValue) {
@@ -523,7 +498,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesPackage getTypesPackage() {
@@ -533,7 +507,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @deprecated
    * @generated
    */

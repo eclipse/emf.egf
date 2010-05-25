@@ -496,6 +496,29 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.TypeURI} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected TypeURIItemProvider typeURIItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeURI}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createTypeURIAdapter() {
+    if (typeURIItemProvider == null) {
+      typeURIItemProvider = new TypeURIItemProvider(this);
+    }
+
+    return typeURIItemProvider;
+  }
+
+  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -655,6 +678,8 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
       typeShortItemProvider.dispose();
     if (typeStringItemProvider != null)
       typeStringItemProvider.dispose();
+    if (typeURIItemProvider != null)
+      typeURIItemProvider.dispose();
   }
 
 }

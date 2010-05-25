@@ -96,5 +96,8 @@
     <genClasses ecoreClass="Types.ecore#//TypeString" labelFeature="#//types/TypeElement/iD">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeString/value"/>
     </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeURI">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeURI/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

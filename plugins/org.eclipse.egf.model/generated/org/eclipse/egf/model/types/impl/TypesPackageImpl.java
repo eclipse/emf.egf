@@ -37,6 +37,7 @@ import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
+import org.eclipse.egf.model.types.TypeURI;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.egf.model.types.util.TypesValidator;
@@ -204,6 +205,13 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * @generated
    */
   private EClass typeStringEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeURIEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -633,6 +641,24 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTypeURI() {
+    return typeURIEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypeURI_Value() {
+    return (EAttribute) typeURIEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EDataType getURI() {
     return uriEDataType;
   }
@@ -750,6 +776,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     typeStringEClass = createEClass(TYPE_STRING);
     createEAttribute(typeStringEClass, TYPE_STRING__VALUE);
 
+    typeURIEClass = createEClass(TYPE_URI);
+    createEAttribute(typeURIEClass, TYPE_URI__VALUE);
+
     // Create data types
     setEDataType = createEDataType(SET);
     listEDataType = createEDataType(LIST);
@@ -812,6 +841,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     typeLongEClass.getESuperTypes().add(this.getTypeObject());
     typeShortEClass.getESuperTypes().add(this.getTypeObject());
     typeStringEClass.getESuperTypes().add(this.getTypeObject());
+    typeURIEClass.getESuperTypes().add(this.getTypeObject());
 
     // Initialize classes and features; add operations and parameters
     initEClass(typeElementEClass, TypeElement.class, "TypeElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -921,6 +951,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     initEClass(typeStringEClass, TypeString.class, "TypeString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeString_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+    initEClass(typeURIEClass, TypeURI.class, "TypeURI", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTypeURI_Value(), this.getURI(), "value", null, 0, 1, TypeURI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
     // Initialize data types
     initEDataType(setEDataType, Set.class, "Set", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -948,6 +981,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     addAnnotation(typeAbstractClassEClass, source, new String[] { "constraints", "LoadableType ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
     });
     addAnnotation(typeClassEClass, source, new String[] { "constraints", "MandatoryValue" //$NON-NLS-1$ //$NON-NLS-2$
+    });
+    addAnnotation(typeURIEClass, source, new String[] { "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 

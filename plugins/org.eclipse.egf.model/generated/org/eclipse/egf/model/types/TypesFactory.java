@@ -189,6 +189,15 @@ public interface TypesFactory extends EFactory {
   TypeString createTypeString();
 
   /**
+   * Returns a new object of class '<em>Type URI</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type URI</em>'.
+   * @generated
+   */
+  TypeURI createTypeURI();
+
+  /**
    * Returns an instance of data type '<em>Set</em>' corresponding the given literal.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
