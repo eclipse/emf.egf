@@ -12,16 +12,21 @@
  */
 package org.eclipse.egf.model.pattern.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.pattern.PatternPackage;
+import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.model.types.provider.TypeItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -82,6 +87,26 @@ public class TypePatternListItemProvider extends TypeItemProvider implements IEd
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypePatternList_elements_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_TypePatternList_elements_feature", "_UI_TypePatternList_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         PatternPackage.Literals.TYPE_PATTERN_LIST__ELEMENTS, true, false, true, null, null, null));
+  }
+
+  /**
+   * This adds an overlay to the given image if the object is controlled.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected Object overlayImage(Object object, Object image) {
+    TypePatternList type = (TypePatternList) object;
+    List<Object> images = new ArrayList<Object>(3);
+    images.add(image);
+    if (type.getElements() != null && type.getElements().size() > 0) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
+    } else if (AdapterFactoryEditingDomain.isControlled(object)) {
+      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    }
+    return new ComposedImage(images);
   }
 
   /**
