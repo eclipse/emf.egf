@@ -19,11 +19,12 @@ import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
-import org.eclipse.egf.model.fcore.helper.TypeDomainURIHelper;
+import org.eclipse.egf.model.helper.TypeDomainURIHelper;
 import org.eclipse.egf.model.types.provider.TypeObjectItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -43,6 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -51,6 +53,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypeDomainURIItemProvider(AdapterFactory adapterFactory) {
@@ -61,6 +64,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -88,11 +92,11 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        TypeDomainURI domain = (TypeDomainURI) current;
-        Collection<DomainURI> available = TypeDomainURIHelper.getAvailableDomainURI(domain);
-        available.add(null);
-        available.add(domain.getDomain());
-        return available;
+        TypeDomainURI typeDomainURI = (TypeDomainURI) current;
+        Collection<DomainURI> result = new UniqueEList<DomainURI>();
+        result.add(null);
+        result.addAll(TypeDomainURIHelper.getAvailableDomainURI(typeDomainURI));
+        return result;
       }
     });
   }
@@ -101,6 +105,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This adds a property descriptor for the Value feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addValuePropertyDescriptor(Object object) {
@@ -114,6 +119,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This returns TypeDomainURI.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -147,6 +153,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -167,6 +174,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -178,6 +186,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
