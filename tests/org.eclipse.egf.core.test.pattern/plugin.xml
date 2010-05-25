@@ -46,6 +46,9 @@
       <fcore
             id="fc/substitution_extension_2.fcore">
       </fcore>
+      <fcore
+            id="fc/jet_tags.fcore">
+      </fcore>
    </extension>
    
    <extension

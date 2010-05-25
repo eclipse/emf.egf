@@ -21,7 +21,6 @@ import java.io.InputStream;
 import java.util.Map;
 
 import org.eclipse.emf.codegen.CodeGenPlugin;
-import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.codegen.jet.JETMark;
 import org.eclipse.emf.codegen.jet.JETSkeleton;
@@ -32,7 +31,7 @@ import org.eclipse.jdt.core.jdom.IDOMType;
  * @author Thomas Guiu
  * 
  */
-public class SkeletonJETCompiler extends JETCompiler {
+public class SkeletonJETCompiler extends ExtendedJetCompiler {
     private static final String GENERATOR_SKELETON = "platform:/plugin/org.eclipse.egf.pattern.jet/templates/generator.skeleton";
 
     public static class CustomJETSkeleton extends JETSkeleton {

@@ -68,4 +68,10 @@
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_extension_2.fcore#_vxrhQElSEd-TSsH7K-_bxQ"/>
     </tests>
   </tests>
+  <tests xsi:type="test:TestSuite" name="Jet Tags Library">
+    <tests xsi:type="test:EGFTestCase" name="Jet tags test">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xD;&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xD;&#xA;loop finished:&#xD;&#xA;Callee : className=MyClassName"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
+    </tests>
+  </tests>
 </test:TestSuite>
