@@ -1,4 +1,4 @@
-package callback_1.strategy;
+package substitution.another.base;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,25 +7,24 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class PackagePattern 
-{
+public class ClassPattern extends substitution.another.base.BasePattern {
   protected static String nl;
-  public static synchronized PackagePattern create(String lineSeparator)
+  public static synchronized ClassPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    PackagePattern result = new PackagePattern();
+    ClassPattern result = new ClassPattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "[Package ";
-  protected final String TEXT_2 = "]" + NL;
-  protected final String TEXT_3 = "[End Package]" + NL + NL + NL;
+  protected final String TEXT_1 = "[Class ";
+  protected final String TEXT_2 = "]";
+  protected final String TEXT_3 = "[end Class]";
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL;
 
-	public PackagePattern()
+	public ClassPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -49,7 +48,7 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
-this.parameter = (org.eclipse.emf.ecore.EPackage)parameterParameter;
+this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
 
 
     orchestration(ctx);
@@ -69,7 +68,7 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 int executionIndex = ictx.getExecutionBuffer().length();
 
     
-method_before(ictx.getBuffer(), ictx);
+method_start(ictx.getBuffer(), ictx);
     {
 ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
 ictx.getExecutionBuffer().append(ictx.getBuffer());
@@ -78,8 +77,20 @@ CallbackContext ctx_callback = new CallbackContext(ictx);
 CallHelper.callBack(ctx_callback, parameters);
 }
 
+    {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+parameters.put("parameter", this.parameter);
+ExecutionContext ctx__rvtOMFbHEdM75ydqojLA = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_4ahL8Eh5Ed-A7KV9v5yLhw", ctx__rvtOMFbHEdM75ydqojLA, parameters);
+}
+
+    ExecutionContext ctx__rvtOMVbHEdM75ydqojLA = new ExecutionContext(ictx);
+ctx__rvtOMVbHEdM75ydqojLA.setValue(PatternContext.INJECTED_CONTEXT, parameter);
+CallHelper.execute("_7RsNYEh5Ed-A7KV9v5yLhw", ctx__rvtOMVbHEdM75ydqojLA);
+
+
     
-method_after(ictx.getBuffer(), ictx);
+method_end(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -93,8 +104,8 @@ if (ictx.useReporter()){
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EPackage parameter = null;
-public void set_parameter(org.eclipse.emf.ecore.EPackage object) {
+protected org.eclipse.emf.ecore.EClass parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EClass object) {
 this.parameter = object;
 }
 public Map<String, Object> getParameters() {
@@ -102,16 +113,13 @@ final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
 return parameters; }
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    }
-    protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_start(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(TEXT_2);
     }
-    protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_3);
     }

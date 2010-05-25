@@ -1,4 +1,4 @@
-package jet_tags;
+package substitution.another.base;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,25 +7,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class Caller 
+public class BasePattern 
 {
   protected static String nl;
-  public static synchronized Caller create(String lineSeparator)
+  public static synchronized BasePattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    Caller result = new Caller();
+    BasePattern result = new BasePattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "";
+  protected final String TEXT_1 = "//default content";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL;
-  protected final String TEXT_5 = NL;
 
-	public Caller()
+	public BasePattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -47,8 +45,8 @@ IQuery.ParameterDescription paramDesc = null;
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
     ctx.clearBuffer();}
     
-    stringBuffer.append(TEXT_4);
-    stringBuffer.append(TEXT_5);
+    stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -56,49 +54,34 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 int executionIndex = ictx.getExecutionBuffer().length();
 
     
-method_body(ictx.getBuffer(), ictx);
+method_start(ictx.getBuffer(), ictx);
+    {
+ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
+ictx.getExecutionBuffer().append(ictx.getBuffer());
+final Map<String, Object> parameters = getParameters();
+CallbackContext ctx_callback = new CallbackContext(ictx);
+CallHelper.callBack(ctx_callback, parameters);
+}
+
+    
+method_end(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 return loop;
 } 
 
-protected java.lang.Object variable = null;
-public void set_variable(java.lang.Object object) {
-this.variable = object;
-}
-protected java.lang.Object variable2 = null;
-public void set_variable2(java.lang.Object object) {
-this.variable2 = object;
-}
-protected org.eclipse.emf.ecore.EClass toInject = null;
-public void set_toInject(org.eclipse.emf.ecore.EClass object) {
-this.toInject = object;
-}
 public Map<String, Object> getParameters() {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    
-variable="CallValue";
-variable2="CallValue2";
-
-    final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("parameter", variable);
-parameters.put("parameter2",  variable2);
-CallHelper.executeWithInjection("_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(TEXT_2);
-     
-toInject = EcoreFactory.eINSTANCE.createEClass();
-toInject.setName("MyClassName");
+    }
+    protected void method_start(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    ExecutionContext ctx__ryFz0FbHEdM75ydqojLA = new ExecutionContext((InternalPatternContext) ctx);
-ctx__ryFz0FbHEdM75ydqojLA.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.execute("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__ryFz0FbHEdM75ydqojLA);
+    }
+    protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    stringBuffer.append(TEXT_3);
     }
     }

@@ -1,4 +1,4 @@
-package callback_1.strategy;
+package base;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -19,9 +19,9 @@ public class PackagePattern
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "[Package ";
-  protected final String TEXT_2 = "]" + NL;
-  protected final String TEXT_3 = "[End Package]" + NL + NL + NL;
+  protected final String TEXT_1 = "[package ";
+  protected final String TEXT_2 = "]";
+  protected final String TEXT_3 = "[end package]";
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL;
 
@@ -69,7 +69,7 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 int executionIndex = ictx.getExecutionBuffer().length();
 
     
-method_before(ictx.getBuffer(), ictx);
+method_start(ictx.getBuffer(), ictx);
     {
 ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
 ictx.getExecutionBuffer().append(ictx.getBuffer());
@@ -79,7 +79,7 @@ CallHelper.callBack(ctx_callback, parameters);
 }
 
     
-method_after(ictx.getBuffer(), ictx);
+method_end(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -102,16 +102,13 @@ final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
 return parameters; }
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    }
-    protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_start(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(TEXT_2);
     }
-    protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_3);
     }
