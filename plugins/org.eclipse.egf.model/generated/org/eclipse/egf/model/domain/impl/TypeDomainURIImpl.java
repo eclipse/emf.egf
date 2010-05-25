@@ -20,6 +20,7 @@ import org.eclipse.egf.model.types.impl.TypeObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -112,6 +113,22 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
     domain = newDomain;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_URI__DOMAIN, oldDomain, domain));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  public <T extends Object> Class<T> getType() {
+    EStructuralFeature feature = eClass().getEStructuralFeature("domain"); //$NON-NLS-1$
+    if (feature == null) {
+      throw new UnsupportedOperationException();
+    }
+    return (Class<T>) feature.getEType().getInstanceClass();
   }
 
   /**
