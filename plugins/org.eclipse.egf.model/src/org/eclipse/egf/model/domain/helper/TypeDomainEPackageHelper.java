@@ -8,13 +8,13 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.model.helper;
+package org.eclipse.egf.model.domain.helper;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.DomainEPackage;
+import org.eclipse.egf.model.domain.TypeDomainEPackage;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -23,19 +23,19 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @author Xavier Maysonnave
  * 
  */
-public class TypeDomainURIHelper {
+public class TypeDomainEPackageHelper {
 
-  private TypeDomainURIHelper() {
+  private TypeDomainEPackageHelper() {
     // Prevent Instantiation
   }
 
-  public static Collection<DomainURI> getAvailableDomainURI(TypeDomainURI typeDomainURI) {
-    Collection<DomainURI> result = new UniqueEList<DomainURI>();
-    if (typeDomainURI != null) {
-      for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainURI, true), true); iterator.hasNext();) {
+  public static Collection<DomainEPackage> getAvailableDomainEPackage(TypeDomainEPackage typeDomainEPackage) {
+    Collection<DomainEPackage> result = new UniqueEList<DomainEPackage>();
+    if (typeDomainEPackage != null) {
+      for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainEPackage, true), true); iterator.hasNext();) {
         EObject eObject = iterator.next();
-        if (eObject instanceof DomainURI) {
-          result.add((DomainURI) eObject);
+        if (eObject instanceof DomainEPackage) {
+          result.add((DomainEPackage) eObject);
         }
       }
     }

@@ -27,10 +27,7 @@
           ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackage/ePackage"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//TypeDomainEPackage">
-      <genFeatures createChild="false" propertyCategory="Domain" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/domain"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Data"
-          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/value"/>
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/value"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainURI">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURI/uri"/>

@@ -33,8 +33,6 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
 
   private EStructuralFeature _typeDomainEPackageFeature = DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__VALUE;
 
-  private EStructuralFeature _domainFeature = DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__DOMAIN;
-
   private AdapterImpl _domainEPackageAdapter = new AdapterImpl() {
     @Override
     public void notifyChanged(Notification msg) {
@@ -57,7 +55,7 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
 
   @Override
   public void notifyChanged(Notification notification) {
-    if (notification.getFeature() == null || notification.getFeature().equals(_domainFeature)) {
+    if (notification.getFeature() == null || notification.getFeature().equals(_typeDomainEPackageFeature)) {
       switch (notification.getEventType()) {
       case Notification.SET:
         DomainEPackage newValue = (DomainEPackage) notification.getNewValue();

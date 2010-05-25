@@ -211,17 +211,8 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTypeDomainEPackage_Domain() {
-    return (EReference) typeDomainEPackageEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getTypeDomainEPackage_Value() {
-    return (EReference) typeDomainEPackageEClass.getEStructuralFeatures().get(1);
+    return (EReference) typeDomainEPackageEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -307,7 +298,6 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     createEReference(domainEPackageEClass, DOMAIN_EPACKAGE__EPACKAGE);
 
     typeDomainEPackageEClass = createEClass(TYPE_DOMAIN_EPACKAGE);
-    createEReference(typeDomainEPackageEClass, TYPE_DOMAIN_EPACKAGE__DOMAIN);
     createEReference(typeDomainEPackageEClass, TYPE_DOMAIN_EPACKAGE__VALUE);
 
     domainURIEClass = createEClass(DOMAIN_URI);
@@ -369,8 +359,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     initEReference(getDomainEPackage_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 1, 1, DomainEPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(typeDomainEPackageEClass, TypeDomainEPackage.class, "TypeDomainEPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTypeDomainEPackage_Domain(), this.getDomainEPackage(), null, "domain", null, 0, 1, TypeDomainEPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getTypeDomainEPackage_Value(), theEcorePackage.getEPackage(), null, "value", null, 0, 1, TypeDomainEPackage.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getTypeDomainEPackage_Value(), this.getDomainEPackage(), null, "value", null, 0, 1, TypeDomainEPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(domainURIEClass, DomainURI.class, "DomainURI", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getDomainURI_Uri(), theTypesPackage.getURI(), "uri", null, 1, 1, DomainURI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

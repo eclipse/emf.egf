@@ -234,22 +234,13 @@ public interface DomainPackage extends EPackage {
   int TYPE_DOMAIN_EPACKAGE__DESCRIPTION = TypesPackage.TYPE_OBJECT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Domain</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DOMAIN_EPACKAGE__DOMAIN = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Value</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE__VALUE = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 1;
+  int TYPE_DOMAIN_EPACKAGE__VALUE = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Type Domain EPackage</em>' class.
@@ -258,7 +249,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE_FEATURE_COUNT = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 2;
+  int TYPE_DOMAIN_EPACKAGE_FEATURE_COUNT = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainURIImpl <em>URI</em>}' class.
@@ -424,17 +415,6 @@ public interface DomainPackage extends EPackage {
   EClass getTypeDomainEPackage();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.domain.TypeDomainEPackage#getDomain <em>Domain</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Domain</em>'.
-   * @see org.eclipse.egf.model.domain.TypeDomainEPackage#getDomain()
-   * @see #getTypeDomainEPackage()
-   * @generated
-   */
-  EReference getTypeDomainEPackage_Domain();
-
-  /**
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.domain.TypeDomainEPackage#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -581,15 +561,6 @@ public interface DomainPackage extends EPackage {
      */
     @SuppressWarnings("hiding")
     EClass TYPE_DOMAIN_EPACKAGE = eINSTANCE.getTypeDomainEPackage();
-
-    /**
-     * The meta object literal for the '<em><b>Domain</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("hiding")
-    EReference TYPE_DOMAIN_EPACKAGE__DOMAIN = eINSTANCE.getTypeDomainEPackage_Domain();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' reference feature.

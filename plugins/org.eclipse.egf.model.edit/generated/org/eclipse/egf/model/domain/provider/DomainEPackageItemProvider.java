@@ -84,13 +84,15 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
         null) {
       @Override
       public Collection<EPackage> getChoiceOfValues(Object current) {
-        DomainEPackage domainEPackage = (DomainEPackage) current;
         Collection<EPackage> result = new UniqueEList<EPackage>();
-        for (Object ePackage : EPackage.Registry.INSTANCE.values()) {
-          result.add((EPackage) ePackage);
+        for (Object innerObject : EPackage.Registry.INSTANCE.values().toArray(new Object[EPackage.Registry.INSTANCE.size()])) {
+          if (innerObject instanceof EPackage) {
+            result.add((EPackage) innerObject);
+          } else if (innerObject instanceof EPackage.Descriptor) {
+            result.add(((EPackage.Descriptor) innerObject).getEPackage());
+          }
         }
         result.add(null);
-        result.add(domainEPackage.getEPackage());
         return result;
       }
     });

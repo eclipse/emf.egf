@@ -28,7 +28,7 @@ import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
 import org.eclipse.egf.model.domain.TypeDomainURI;
-import org.eclipse.egf.model.helper.TypeDomainURIHelper;
+import org.eclipse.egf.model.domain.helper.TypeDomainURIHelper;
 import org.eclipse.egf.model.types.util.TypesValidator;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
