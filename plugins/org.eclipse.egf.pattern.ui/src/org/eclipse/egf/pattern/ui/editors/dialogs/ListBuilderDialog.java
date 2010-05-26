@@ -27,8 +27,10 @@ import org.eclipse.jface.viewers.AbstractTreeViewer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -64,6 +66,12 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
     private List<S> possibleValues;
     private final List<E> currentValues = new ArrayList<E>();
+    private Button addButton;
+    private Button removeButton;
+    private Button upButton;
+    private Button downButton;
+    private TreeViewer initialTreeViewer;
+    private TreeViewer currentTreeViewer;
 
     public ListBuilderDialog(Shell parent, IStructuredContentProvider contentProvider, IBaseLabelProvider labelProvider, List<S> possibleValues, List<E> initialValues) {
         super(parent);
@@ -80,6 +88,26 @@ public class ListBuilderDialog<E, S> extends Dialog {
         this.currentValues.addAll(initialValues);
         this.possibleValues = possibleValues;
 
+    }
+
+    protected void refreshButtons() {
+        IStructuredSelection initialSelection = (IStructuredSelection) initialTreeViewer.getSelection();
+        IStructuredSelection currentSelection = (IStructuredSelection) currentTreeViewer.getSelection();
+        addButton.setEnabled(!initialSelection.isEmpty());
+        removeButton.setEnabled(!currentSelection.isEmpty());
+        if (currentSelection.isEmpty()) {
+            upButton.setEnabled(false);
+            downButton.setEnabled(false);
+        } else {
+            int min = currentValues.size();
+            int max = 0;
+            for (Object value : currentSelection.toArray()) {
+                min = Math.min(min, currentValues.indexOf(value));
+                max = Math.max(max, currentValues.indexOf(value));
+            }
+            upButton.setEnabled(min > 0);
+            downButton.setEnabled(max < currentValues.size() - 1);
+        }
     }
 
     @Override
@@ -138,7 +166,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
         initialTreeGridData.grabExcessVerticalSpace = true;
         initialTree.setLayoutData(initialTreeGridData);
 
-        final TreeViewer initialTreeViewer = new TreeViewer(initialTree);
+        initialTreeViewer = new TreeViewer(initialTree);
         initialTreeViewer.setContentProvider(contentProvider);
         initialTreeViewer.setLabelProvider(labelProvider);
         final PatternFilter filter = new PatternFilter() {
@@ -169,7 +197,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
         new Label(controlButtons, SWT.NONE);
 
-        final Button addButton = new Button(controlButtons, SWT.PUSH);
+        addButton = new Button(controlButtons, SWT.PUSH);
         addButton.setText(Messages.SpecificationPage_button_add);
         addButton.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
         GridData addButtonGridData = new GridData();
@@ -177,7 +205,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
         addButtonGridData.horizontalAlignment = SWT.FILL;
         addButton.setLayoutData(addButtonGridData);
 
-        final Button removeButton = new Button(controlButtons, SWT.PUSH);
+        removeButton = new Button(controlButtons, SWT.PUSH);
         removeButton.setText(Messages.SpecificationPage_button_remove);
         removeButton.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
         GridData removeButtonGridData = new GridData();
@@ -190,7 +218,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
         spaceLabelGridData.verticalSpan = 2;
         spaceLabel.setLayoutData(spaceLabelGridData);
 
-        final Button upButton = new Button(controlButtons, SWT.PUSH);
+        upButton = new Button(controlButtons, SWT.PUSH);
         upButton.setText(Messages.SpecificationPage_button_up);
         upButton.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
         GridData upButtonGridData = new GridData();
@@ -198,7 +226,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
         upButtonGridData.horizontalAlignment = SWT.FILL;
         upButton.setLayoutData(upButtonGridData);
 
-        final Button downButton = new Button(controlButtons, SWT.PUSH);
+        downButton = new Button(controlButtons, SWT.PUSH);
         downButton.setText(Messages.SpecificationPage_button_down);
         downButton.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
         GridData downButtonGridData = new GridData();
@@ -238,7 +266,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
         currentTableGridData.grabExcessVerticalSpace = true;
         currentTree.setLayoutData(currentTableGridData);
 
-        final TreeViewer currentTreeViewer = new TreeViewer(currentTree);
+        currentTreeViewer = new TreeViewer(currentTree);
         currentTreeViewer.setContentProvider(contentProvider);
         currentTreeViewer.setLabelProvider(labelProvider);
         currentTreeViewer.setInput(currentValues);
@@ -246,51 +274,55 @@ public class ListBuilderDialog<E, S> extends Dialog {
             currentTreeViewer.setSelection(new StructuredSelection(currentValues.get(0)));
         }
 
-        if (initialTreeViewer != null) {
-            initialTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
-                public void doubleClick(DoubleClickEvent event) {
-                    if (addButton.isEnabled()) {
-                        addButton.notifyListeners(SWT.Selection, null);
-                    }
+        ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
+            public void selectionChanged(SelectionChangedEvent event) {
+                refreshButtons();
+            }
+        };
+        initialTreeViewer.addPostSelectionChangedListener(selectionListener);
+        initialTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
+            public void doubleClick(DoubleClickEvent event) {
+                if (addButton.isEnabled()) {
+                    addButton.notifyListeners(SWT.Selection, null);
                 }
-            });
+            }
+        });
 
-            currentTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
-                public void doubleClick(DoubleClickEvent event) {
-                    if (removeButton.isEnabled()) {
-                        removeButton.notifyListeners(SWT.Selection, null);
-                    }
+        currentTreeViewer.addPostSelectionChangedListener(selectionListener);
+        currentTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
+            public void doubleClick(DoubleClickEvent event) {
+                if (removeButton.isEnabled()) {
+                    removeButton.notifyListeners(SWT.Selection, null);
                 }
-            });
-        }
+            }
+        });
 
         upButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                // IStructuredSelection selection = (IStructuredSelection)
-                // featureTableViewer.getSelection();
-                // int minIndex = 0;
-                // for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-                // Object value = i.next();
-                // int index = initialValues.indexOf(value);
-                // initialValues.move(Math.max(index - 1, minIndex++), value);
-                // }
+                IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
+                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+                    Object value = i.next();
+                    int index = currentValues.indexOf(value);
+                    currentValues.remove(index);
+                    currentValues.add(Math.max(index - 1, 0), (E) value);
+                }
+                currentTreeViewer.refresh();
             }
         });
 
         downButton.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent event) {
-                // IStructuredSelection selection = (IStructuredSelection)
-                // featureTableViewer.getSelection();
-                // int maxIndex = values.getChildren().size() -
-                // selection.size();
-                // for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-                // Object value = i.next();
-                // int index = values.getChildren().indexOf(value);
-                // values.getChildren().move(Math.min(index + 1, maxIndex++),
-                // value);
-                // }
+                IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
+                int maxIndex = currentValues.size() - 1;
+                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+                    Object value = i.next();
+                    int index = currentValues.indexOf(value);
+                    currentValues.remove(index);
+                    currentValues.add(Math.min(index + 1, maxIndex), (E) value);
+                }
+                currentTreeViewer.refresh();
             }
         });
 
@@ -304,18 +336,6 @@ public class ListBuilderDialog<E, S> extends Dialog {
                 }
                 currentTreeViewer.setSelection(selection);
                 currentTreeViewer.refresh();
-                // if (choiceText != null) {
-                // try {
-                // Object value = EcoreUtil.createFromString((EDataType)
-                // eClassifier, choiceText.getText());
-                // values.getChildren().add(value);
-                // choiceText.setText("");
-                // featureTableViewer.setSelection(new
-                // StructuredSelection(value));
-                // } catch (RuntimeException exception) {
-                // // Ignore
-                // }
-                // }
             }
         });
 
@@ -339,15 +359,10 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
                 initialTreeViewer.setSelection(selection);
                 currentTreeViewer.refresh();
-                // } else if (choiceText != null) {
-                // if (firstValue != null) {
-                // String value = EcoreUtil.convertToString((EDataType)
-                // eClassifier, firstValue);
-                // choiceText.setText(value);
-                // }
             }
         });
 
+        refreshButtons();
         return contents;
     }
 
