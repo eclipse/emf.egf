@@ -68,10 +68,9 @@ public class EGFJMerger extends JMerger {
               String stringValue = (String) value;
               stringValue = getControlModel().getFacadeHelper().applyFormatRules(stringValue);
               Pattern sourceTransfer = pullRule.getSourceTransfer();
-              if (sourceTransfer != null) {
+              if (sourceTransfer != null && targetPutMethod.getName().equals("setSuperclass") == false) { //$NON-NLS-1$
                 String oldStringValue = (String) sourceGetMethod.invoke(targetNode, NO_ARGUMENTS);
                 if (oldStringValue != null) {
-                  oldStringValue = getControlModel().getFacadeHelper().applyFormatRules(oldStringValue);
                   Matcher sourceMatcher = sourceTransfer.matcher(stringValue);
                   Matcher targetMatcher = sourceTransfer.matcher(oldStringValue);
                   if (sourceMatcher.groupCount() >= 1 && targetMatcher.groupCount() >= 1) {
