@@ -31,6 +31,8 @@
           <methods xmi:id="_F9NFk1a3Ed-upsLSxDR5IA" name="body" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFk1a3Ed-upsLSxDR5IA.pt"/>
           <methods xmi:id="_F9NFlFa3Ed-upsLSxDR5IA" name="footer" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFlFa3Ed-upsLSxDR5IA.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_F9NFlVa3Ed-upsLSxDR5IA"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_b-gVQFhGEd-7_ZgNDDfr_g"
+              called="#_F9NFk1a3Ed-upsLSxDR5IA"/>
           <nature xmi:type="javapattern:JavaNature" xmi:id="_F9NFlla3Ed-upsLSxDR5IA"
               name="Java"/>
         </elements>

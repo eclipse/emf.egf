@@ -116,11 +116,12 @@ public class JetEngine extends AbstractJavaEngine {
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
-        if (!getPattern().getAllParameters().isEmpty()) {
-            builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        boolean hasParameter = !getPattern().getAllParameters().isEmpty();
+        builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR);
 
+        if (hasParameter) {
             builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 String name = parameter.getName();
@@ -131,8 +132,8 @@ public class JetEngine extends AbstractJavaEngine {
             }
             builder.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
+        builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);

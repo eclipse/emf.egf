@@ -56,14 +56,13 @@ return loop;
 
 protected void method_body(final StringBuffer out, final PatternContext ctx)throws Exception 
 {
-out.append("Callee : ");
+out.append("CalleeInjected : ");
 
 out.append("className=");
 if (parameter != null)
 	out.append(parameter.getName());
 
 out.append("\n");
-System.out.println("loop finished:" + out.toString());
 
 }
 

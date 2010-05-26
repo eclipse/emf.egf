@@ -55,13 +55,17 @@ int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_body(ictx.getBuffer(), ictx);
-    ExecutionContext ctx___NgYgFdoEdjeJd22Z8nuA = new ExecutionContext(ictx);
-ctx___NgYgFdoEdjeJd22Z8nuA.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.execute("_F9NFkFa3Ed-upsLSxDR5IA", ctx___NgYgFdoEdjeJd22Z8nuA);
+    ExecutionContext ctx__FAS3oFhHEd7_ZgNDDfr_g = new ExecutionContext(ictx);
+ctx__FAS3oFhHEd7_ZgNDDfr_g.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.execute("_F9NFkFa3Ed-upsLSxDR5IA", ctx__FAS3oFhHEd7_ZgNDDfr_g);
 
 
     
 String loop = ictx.getBuffer().toString();
+if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+    ictx.setExecutionCurrentIndex(0);
+    ictx.clearBuffer();}
 return loop;
 } 
 

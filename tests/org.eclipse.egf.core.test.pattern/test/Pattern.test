@@ -73,12 +73,15 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="Caller on Employee&#xA;callee on Employee&#xA;&#xA;Caller on Company&#xA;callee on Company&#xA;&#xA;Caller on Test&#xA;callee on Test&#xA;&#xA;Caller on Employee&#xA;callee on Employee&#xA;Caller on Company&#xA;callee on Company&#xA;Caller on Test&#xA;callee on Test&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_2.fcore#_8eIOsVdIEd-TZKuCZ4UIfg"/>
     </tests>
+    <tests xsi:type="test:EGFTestCase" name="call without parameter">
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xA;Message from callerMessage from Callee"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_1.fcore#_aEI0EVa2Ed-upsLSxDR5IA"/>
+    </tests>
   </tests>
   <tests xsi:type="test:TestSuite" name="Jet Tags Library">
     <tests xsi:type="test:EGFTestCase" name="Jet tags test">
-      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xD;&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xD;&#xA;loop finished:&#xD;&#xA;Callee : className=MyClassName"/>
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xA;&#xA;CalleeInjected : className=MyClassName&#xA;&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
     </tests>
   </tests>
-  
 </test:TestSuite>

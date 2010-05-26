@@ -23,8 +23,8 @@
           <variables xmi:id="_fWqh0FavEd-_dcUlU_GyPA" name="variable2" type="java.lang.Object"/>
           <variables xmi:id="_YzCiIFbCEd-8M5d7emTXBQ" name="toInject" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_0FqG8FaPEd-xDMudhFTQKg" name="Callee"
-            headerMethod="#_0FqG8VaPEd-xDMudhFTQKg" footerMethod="#_0FqG9FaPEd-xDMudhFTQKg"
+        <elements xmi:type="pattern:Pattern" xmi:id="_0FqG8FaPEd-xDMudhFTQKg" description=" "
+            name="Callee" headerMethod="#_0FqG8VaPEd-xDMudhFTQKg" footerMethod="#_0FqG9FaPEd-xDMudhFTQKg"
             initMethod="#_0FqG8laPEd-xDMudhFTQKg">
           <methods xmi:id="_0FqG8VaPEd-xDMudhFTQKg" name="header" patternFilePath="templates/pattern._0FqG8FaPEd-xDMudhFTQKg/method._0FqG8VaPEd-xDMudhFTQKg.pt"/>
           <methods xmi:id="_0FqG8laPEd-xDMudhFTQKg" name="init" patternFilePath="templates/pattern._0FqG8FaPEd-xDMudhFTQKg/method._0FqG8laPEd-xDMudhFTQKg.pt"/>

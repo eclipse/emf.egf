@@ -72,7 +72,6 @@ if (parameter2 != null)
 	out.append(parameter2.toString());
 
 out.append("\n");
-System.out.println("loop finished:" + out.toString());
 
 }
 

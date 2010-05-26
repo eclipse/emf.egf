@@ -59,6 +59,10 @@ int executionIndex = ictx.getExecutionBuffer().length();
 method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
+if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+    ictx.setExecutionCurrentIndex(0);
+    ictx.clearBuffer();}
 return loop;
 } 
 
@@ -95,9 +99,9 @@ CallHelper.executeWithInjection("_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext(
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");
 
-    ExecutionContext ctx__ryFz0FbHEdM75ydqojLA = new ExecutionContext((InternalPatternContext) ctx);
-ctx__ryFz0FbHEdM75ydqojLA.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.execute("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__ryFz0FbHEdM75ydqojLA);
+    ExecutionContext ctx__xgb98VhMEd_joEVpvUj5g = new ExecutionContext((InternalPatternContext) ctx);
+ctx__xgb98VhMEd_joEVpvUj5g.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.execute("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__xgb98VhMEd_joEVpvUj5g);
 
     stringBuffer.append(TEXT_3);
     }

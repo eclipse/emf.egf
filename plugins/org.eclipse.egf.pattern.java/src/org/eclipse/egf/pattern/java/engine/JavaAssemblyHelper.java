@@ -103,18 +103,20 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     protected void endOrchestration() throws PatternException {
 
         content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
-        if (!pattern.getAllParameters().isEmpty()) {
-            content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        boolean hasParameter = !pattern.getAllParameters().isEmpty();
+        content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        if (hasParameter) {
             content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
             }
             content.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
+
+        content.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
