@@ -563,7 +563,7 @@ public class FcoreValidator extends EObjectValidator {
     if (orchestrationParameter.getInvocationContracts().size() > 0 && orchestrationParameter.getInvocationContracts().size() == 1) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), "This OrchestrationParameter could be defined in its related InvocationContract" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), NLS.bind("This OrchestrationParameter could be defined in ''{0}''", getObjectLabel(orchestrationParameter.getInvocationContracts().get(0), context)) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { orchestrationParameter }, context));
         return false;
       }
