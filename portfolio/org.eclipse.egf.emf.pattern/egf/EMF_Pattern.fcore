@@ -7,20 +7,24 @@
   <fcore:FactoryComponent xmi:id="_Pcm9sDG0Ed-kc8dEZsdm2w" name="EMF Model Pattern">
     <contractContainer xmi:id="_Prg8ZDG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8ZTG0Ed-kc8dEZsdm2w"
-          description="EMF Model Pattern" name="genModelURI" mandatory="true" invocationContracts="#_JBH1k1eTEd-ExtSXfVloug">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_JBH1lleTEd-ExtSXfVloug"/>
+          description="EMF Model Pattern" name="genModelURI" mandatory="true" invocationContracts="#_ezUH3VhdEd-5FJ833LkcRA">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_ezUH4FhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_WRxYEFIIEd-eGOdO3WtsxA"
-          description="EMF Model Pattern" name="pattern.execution.reporter" invocationContracts="#_JBH1l1eTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH1mleTEd-ExtSXfVloug"/>
+          description="EMF Model Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUH4VhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH5FhdEd-5FJ833LkcRA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqTVhcEd-5FJ833LkcRA"
+          description="EMF Model Pattern" name="pattern.ids" invocationContracts="#_ezUH5VhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH6FhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_OVsagFHVEd-dr9AWwNwIMQ"
-          description="EMF Model Pattern" name="pattern.substitutions" invocationContracts="#_JBH1nVeTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_JBH1n1eTEd-ExtSXfVloug"/>
+          description="EMF Model Pattern" name="pattern.substitutions" invocationContracts="#_ezUH6VhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ezUH61hdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sluXsVLLEd-ZSLMRjxSbVQ"
-          description="EMF Model Pattern" name="mergeRulesURI" invocationContracts="#_JBH1oFeTEd-ExtSXfVloug">
-        <type xmi:type="types:TypeURI" xmi:id="_JBH1oleTEd-ExtSXfVloug"/>
+          description="EMF Model Pattern" name="mergeRulesURI" invocationContracts="#_ezUH7FhdEd-5FJ833LkcRA">
+        <type xmi:type="types:TypeURI" xmi:id="_ezUH7lhdEd-5FJ833LkcRA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_Pcm9sTG0Ed-kc8dEZsdm2w">
@@ -36,15 +40,15 @@
             <methods xmi:id="_PcwusDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pcm9tDG0Ed-kc8dEZsdm2w/method._PcwusDG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PcwusjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pcm9tDG0Ed-kc8dEZsdm2w/method._PcwusjG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I5YO1leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5YO2FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exOdNFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdNlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5YO2leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdOFhdEd-5FJ833LkcRA"
                 called="#_PcwusjG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I5YO21eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5YO3FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exOdOVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdOlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I5YO0VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exOdL1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PdDpoDG0Ed-kc8dEZsdm2w" name="ManifestMF"
@@ -57,15 +61,15 @@
             <methods xmi:id="_PdDppzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PdDpoDG0Ed-kc8dEZsdm2w/method._PdDppzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PdDpqTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PdDpoDG0Ed-kc8dEZsdm2w/method._PdDpqTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I5Od1leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5Od2FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exOdGlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdHFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5Od2leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdHlhdEd-5FJ833LkcRA"
                 called="#_PdDpqTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I5Od21eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5Od3FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exOdH1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdIFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I5Od0VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exOdFVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PdNaoDG0Ed-kc8dEZsdm2w" name="PluginXML"
@@ -78,15 +82,15 @@
             <methods xmi:id="_PdXLozG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PdNaoDG0Ed-kc8dEZsdm2w/method._PdXLozG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PdXLpTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PdNaoDG0Ed-kc8dEZsdm2w/method._PdXLpTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I47i6leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I47i7FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exOdJ1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdKVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I47i7leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdK1hdEd-5FJ833LkcRA"
                 called="#_PdXLpTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I47i71eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I47i8FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exOdLFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exOdLVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I47i5VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exOdIlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PdgVkDG0Ed-kc8dEZsdm2w" name="PluginProperties"
@@ -99,15 +103,15 @@
             <methods xmi:id="_PdgVlzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PdgVkDG0Ed-kc8dEZsdm2w/method._PdgVlzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PdgVmTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PdgVkDG0Ed-kc8dEZsdm2w/method._PdgVmTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I5hYxleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5hYyFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exXnBlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnCFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_pQ16sChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5hYyleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnClhdEd-5FJ833LkcRA"
                 called="#_PdgVmTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I5hYy1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5hYzFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exXnC1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnDFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I5hYwVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exXnAVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PdzQgDG0Ed-kc8dEZsdm2w" name="PackageClass"
@@ -120,15 +124,15 @@
             <methods xmi:id="_PdzQhzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PdzQgDG0Ed-kc8dEZsdm2w/method._PdzQhzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PdzQiTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PdzQgDG0Ed-kc8dEZsdm2w/method._PdzQiTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I7nDdleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7nDeFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exhYLVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYL1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7nDeleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYMVhdEd-5FJ833LkcRA"
                 called="#_PdzQiTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I7nDe1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7nDfFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exhYMlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYM1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I7nDcVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exhYKFhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PeP8cDG0Ed-kc8dEZsdm2w" name="XMLProcessorClass"
@@ -141,15 +145,15 @@
             <methods xmi:id="_PeP8dzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PeP8cDG0Ed-kc8dEZsdm2w/method._PeP8dzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PeP8eTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PeP8cDG0Ed-kc8dEZsdm2w/method._PeP8eTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I7BNlleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7BNmFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exhYE1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYFVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7BNmleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYF1hdEd-5FJ833LkcRA"
                 called="#_PeP8eTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I7BNm1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7BNnFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exhYGFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYGVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I7BNkVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exhYDlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PejecDG0Ed-kc8dEZsdm2w" name="Plugin"
@@ -162,15 +166,15 @@
             <methods xmi:id="_PejedzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PejecDG0Ed-kc8dEZsdm2w/method._PejedzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PejeeTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PejecDG0Ed-kc8dEZsdm2w/method._PejeeTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I7dSdleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7dSeFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exrJIFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJIlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_cjQNwChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7dSeleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJJFhdEd-5FJ833LkcRA"
                 called="#_PejeeTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I7dSe1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7dSfFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exrJJVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJJlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I7dScVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exrJG1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PesoYDG0Ed-kc8dEZsdm2w" name="ResourceFactoryClass"
@@ -183,15 +187,15 @@
             <methods xmi:id="_PesoZzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PesoYDG0Ed-kc8dEZsdm2w/method._PesoZzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PesoaTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PesoYDG0Ed-kc8dEZsdm2w/method._PesoaTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I506xleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I506yFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exrJBlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJCFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I506yleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJClhdEd-5FJ833LkcRA"
                 called="#_PesoaTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I506y1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I506zFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exrJC1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJDFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I506wVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exrJAVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pe_jUDG0Ed-kc8dEZsdm2w" name="Class"
@@ -204,15 +208,15 @@
             <methods xmi:id="_Pe_jVzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pe_jUDG0Ed-kc8dEZsdm2w/method._Pe_jVzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pe_jWTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pe_jUDG0Ed-kc8dEZsdm2w/method._Pe_jWTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I7KXhleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7UIgVeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exXnLVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnL1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7UIg1eTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnMVhdEd-5FJ833LkcRA"
                 called="#_Pe_jWTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I7UIhFeTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7UIhVeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exXnMlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnM1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I7KXgVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exXnKFhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PfcPQDG0Ed-kc8dEZsdm2w" name="FactoryClass"
@@ -225,15 +229,15 @@
             <methods xmi:id="_PfcPRzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PfcPQDG0Ed-kc8dEZsdm2w/method._PfcPRzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PfmAQTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PfcPQDG0Ed-kc8dEZsdm2w/method._PfmAQTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I8DvZleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8DvaFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exXnIFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnIlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8DvaleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnJFhdEd-5FJ833LkcRA"
                 called="#_PfmAQTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I8Dva1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8DvbFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exXnJVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnJlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I8DvYVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exXnG1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pf47MDG0Ed-kc8dEZsdm2w" name="EnumClass"
@@ -246,15 +250,15 @@
             <methods xmi:id="_Pf47NzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pf47MDG0Ed-kc8dEZsdm2w/method._Pf47NzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pf47OTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pf47MDG0Ed-kc8dEZsdm2w/method._Pf47OTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I63clleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I63cmFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exhYBlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYCFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I63cmleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYClhdEd-5FJ833LkcRA"
                 called="#_Pf47OTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I63cm1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I63cnFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exhYC1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYDFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I63ckVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exhYAVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PgCsMDG0Ed-kc8dEZsdm2w" name="PackageInterface"
@@ -267,15 +271,15 @@
             <methods xmi:id="_PgL2IDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PgCsMDG0Ed-kc8dEZsdm2w/method._PgL2IDG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PgL2IjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PgCsMDG0Ed-kc8dEZsdm2w/method._PgL2IjG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I5-EtleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5-EuFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ex-D9lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex-D-FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5-EuleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex-D-lhdEd-5FJ833LkcRA"
                 called="#_PgL2IjG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I5-Eu1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5-EvFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ex-D-1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex-D_FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I5-EsVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ex-D8VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PgVnIDG0Ed-kc8dEZsdm2w" name="FactoryInterface"
@@ -288,15 +292,15 @@
             <methods xmi:id="_PgVnJzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PgVnIDG0Ed-kc8dEZsdm2w/method._PgVnJzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PgVnKTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PgVnIDG0Ed-kc8dEZsdm2w/method._PgVnKTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I6trlleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6trmFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exrJLVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJL1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6trmleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJMVhdEd-5FJ833LkcRA"
                 called="#_PgVnKTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I6trm1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6trnFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exrJMlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJM1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I6trkVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exrJKFhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PgoiEDG0Ed-kc8dEZsdm2w" name="ResourceClass"
@@ -309,15 +313,15 @@
             <methods xmi:id="_PgoiFzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PgoiEDG0Ed-kc8dEZsdm2w/method._PgoiFzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PgoiGTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PgoiEDG0Ed-kc8dEZsdm2w/method._PgoiGTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I7w0dleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7w0eFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exXnE1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnFVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7w0eleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnF1hdEd-5FJ833LkcRA"
                 called="#_PgoiGTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I7w0e1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I7w0fFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exXnGFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exXnGVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I7w0cVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exXnDlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pg8EEDG0Ed-kc8dEZsdm2w" name="Interface"
@@ -330,15 +334,15 @@
             <methods xmi:id="_Pg8EFzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pg8EEDG0Ed-kc8dEZsdm2w/method._Pg8EFzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pg8EGTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pg8EEDG0Ed-kc8dEZsdm2w/method._Pg8EGTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I6khpleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6khqFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ex0S9lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex0S-FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6khqleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex0S-lhdEd-5FJ833LkcRA"
                 called="#_Pg8EGTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I6khq1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6khrFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ex0S-1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex0S_FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I6khoVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ex0S8VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PhO_ADG0Ed-kc8dEZsdm2w" name="AdapterFactoryClass"
@@ -351,15 +355,15 @@
             <methods xmi:id="_PhO_BzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PhO_ADG0Ed-kc8dEZsdm2w/method._PhO_BzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PhO_CTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PhO_ADG0Ed-kc8dEZsdm2w/method._PhO_CTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I6H1tleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6H1uFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exhYIFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYIlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6H1uleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYJFhdEd-5FJ833LkcRA"
                 called="#_PhO_CTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I6H1u1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6H1vFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exhYJVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exhYJlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I6H1sVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exhYG1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Phh58DG0Ed-kc8dEZsdm2w" name="SwitchClass"
@@ -372,15 +376,15 @@
             <methods xmi:id="_Phh59zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Phh58DG0Ed-kc8dEZsdm2w/method._Phh59zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Phh5-TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Phh58DG0Ed-kc8dEZsdm2w/method._Phh5-TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I6awpleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6awqFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_exrJE1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJFVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6awqleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJF1hdEd-5FJ833LkcRA"
                 called="#_Phh5-TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I6awq1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I6awrFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_exrJGFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_exrJGVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I6awoVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_exrJDlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Ph004DG0Ed-kc8dEZsdm2w" name="ValidatorClass"
@@ -393,37 +397,38 @@
             <methods xmi:id="_Ph005zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Ph004DG0Ed-kc8dEZsdm2w/method._Ph005zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Ph006TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Ph004DG0Ed-kc8dEZsdm2w/method._Ph006TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I5rJxleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5rJyFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ex0TA1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex0TBVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5rJyleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex0TB1hdEd-5FJ833LkcRA"
                 called="#_Ph006TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I5rJy1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I5rJzFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ex0TCFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex0TCVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I5rJwVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ex0S_lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Prg8YDG0Ed-kc8dEZsdm2w">
-      <invocations xmi:id="_JBH1kVeTEd-ExtSXfVloug" name="EMF Model Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
-        <invocationContractContainer xmi:id="_JBH1kleTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH1k1eTEd-ExtSXfVloug" factoryComponentContract="#_Prg8ZTG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUH21hdEd-5FJ833LkcRA" name="EMF Model Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
+        <invocationContractContainer xmi:id="_ezUH3FhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUH3VhdEd-5FJ833LkcRA" factoryComponentContract="#_Prg8ZTG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_JBH1l1eTEd-ExtSXfVloug" factoryComponentContract="#_WRxYEFIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUH4VhdEd-5FJ833LkcRA" factoryComponentContract="#_WRxYEFIIEd-eGOdO3WtsxA"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
-            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH1mFeTEd-ExtSXfVloug"
+            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH4lhdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH1m1eTEd-ExtSXfVloug" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
-            <type xmi:type="pattern:TypePatternList" xmi:id="_JBH1nFeTEd-ExtSXfVloug"
+          <invocationContracts xmi:id="_ezUH5VhdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqTVhcEd-5FJ833LkcRA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH5lhdEd-5FJ833LkcRA"
                 elements="#_Pcm9szG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH1nVeTEd-ExtSXfVloug" factoryComponentContract="#_OVsagFHVEd-dr9AWwNwIMQ"
+          <invocationContracts xmi:id="_ezUH6VhdEd-5FJ833LkcRA" factoryComponentContract="#_OVsagFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_JBH1oFeTEd-ExtSXfVloug" factoryComponentContract="#_sluXsVLLEd-ZSLMRjxSbVQ"
+          <invocationContracts xmi:id="_ezUH7FhdEd-5FJ833LkcRA" factoryComponentContract="#_sluXsVLLEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
@@ -432,20 +437,24 @@
   <fcore:FactoryComponent xmi:id="_PiIW4DG0Ed-kc8dEZsdm2w" name="EMF Edit Pattern">
     <contractContainer xmi:id="_Prg8bzG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8cDG0Ed-kc8dEZsdm2w"
-          description="EMF Edit Pattern" name="genModelURI" mandatory="true" invocationContracts="#_JBH1pleTEd-ExtSXfVloug">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_JBH1qVeTEd-ExtSXfVloug"/>
+          description="EMF Edit Pattern" name="genModelURI" mandatory="true" invocationContracts="#_ezUH8lhdEd-5FJ833LkcRA">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_ezUH9VhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_jzYi8FIIEd-eGOdO3WtsxA"
-          description="EMF Edit Pattern" name="pattern.execution.reporter" invocationContracts="#_JBH1qleTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH1rVeTEd-ExtSXfVloug"/>
+          description="EMF Edit Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUH9lhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH-VhdEd-5FJ833LkcRA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqYlhcEd-5FJ833LkcRA"
+          description="EMF Edit Pattern" name="pattern.ids" invocationContracts="#_ezUH-lhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH_VhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_UCnhEFHVEd-dr9AWwNwIMQ"
-          description="EMF Edit Pattern" name="pattern.substitutions" invocationContracts="#_JBH1sFeTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_JBH1sleTEd-ExtSXfVloug"/>
+          description="EMF Edit Pattern" name="pattern.substitutions" invocationContracts="#_ezUH_lhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ezUIAFhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9wHxsFLMEd-ZSLMRjxSbVQ"
-          description="EMF Edit Pattern" name="mergeRulesURI" invocationContracts="#_JBH1s1eTEd-ExtSXfVloug">
-        <type xmi:type="types:TypeURI" xmi:id="_JBH1tVeTEd-ExtSXfVloug"/>
+          description="EMF Edit Pattern" name="mergeRulesURI" invocationContracts="#_ezUIAVhdEd-5FJ833LkcRA">
+        <type xmi:type="types:TypeURI" xmi:id="_ezUIA1hdEd-5FJ833LkcRA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PiIW4TG0Ed-kc8dEZsdm2w">
@@ -461,15 +470,15 @@
             <methods xmi:id="_PiIW6zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW6zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PiIW7TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW7TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I8gbVleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8gbWFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyH1A1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH1BVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8gbWleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH1B1hdEd-5FJ833LkcRA"
                 called="#_PiIW7TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I8gbW1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8gbXFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyH1CFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH1CVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I8gbUVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyH0_lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PibR0DG0Ed-kc8dEZsdm2w" name="BuildProperties"
@@ -482,15 +491,15 @@
             <methods xmi:id="_PibR1zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PibR0DG0Ed-kc8dEZsdm2w/method._PibR1zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PibR2TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PibR0DG0Ed-kc8dEZsdm2w/method._PibR2TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I8NgaleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8NgbFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ex-EB1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex-ECVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8NgbleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex-EC1hdEd-5FJ833LkcRA"
                 called="#_PibR2TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I8Ngb1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8NgcFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ex-EDFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ex-EDVhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I8NgZVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ex-EAlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PiuMwDG0Ed-kc8dEZsdm2w" name="ManifestMF"
@@ -503,15 +512,15 @@
             <methods xmi:id="_PiuMxzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PiuMwDG0Ed-kc8dEZsdm2w/method._PiuMxzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PiuMyTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PiuMwDG0Ed-kc8dEZsdm2w/method._PiuMyTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I8WqVleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8WqWFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyH09lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH0-FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8WqWleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH0-lhdEd-5FJ833LkcRA"
                 called="#_PiuMyTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I8WqW1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8WqXFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyH0-1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH0_FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I8WqUVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyH08VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pi39wDG0Ed-kc8dEZsdm2w" name="PluginProperties"
@@ -524,15 +533,15 @@
             <methods xmi:id="_Pi39xzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pi39wDG0Ed-kc8dEZsdm2w/method._Pi39xzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pi39yTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pi39wDG0Ed-kc8dEZsdm2w/method._Pi39yTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I8plRleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8plSFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyH1EFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH1ElhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_pQ16sChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8plSleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH1FFhdEd-5FJ833LkcRA"
                 called="#_Pi39yTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I8plS1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8plTFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyH1FVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyH1FlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I8plQVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyH1C1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PjK4sDG0Ed-kc8dEZsdm2w" name="ItemProvider"
@@ -545,15 +554,15 @@
             <methods xmi:id="_PjK4tzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PjK4sDG0Ed-kc8dEZsdm2w/method._PjK4tzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PjK4uTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PjK4sDG0Ed-kc8dEZsdm2w/method._PjK4uTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I8zWRleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8zWSFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyQ-81hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ-9VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8zWSleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ-91hdEd-5FJ833LkcRA"
                 called="#_PjK4uTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I8zWS1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I8zWTFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyQ--FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ--VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I8zWQVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyQ-7lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PjdzoDG0Ed-kc8dEZsdm2w" name="ItemProviderAdapterFactory"
@@ -566,15 +575,15 @@
             <methods xmi:id="_PjdzpzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PjdzoDG0Ed-kc8dEZsdm2w/method._PjdzpzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PjdzqTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PjdzoDG0Ed-kc8dEZsdm2w/method._PjdzqTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I9GRMFeTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9GRMleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyQ-5lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ-6FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9GRNFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ-6lhdEd-5FJ833LkcRA"
                 called="#_PjdzqTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I9GRNVeTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9GRNleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyQ-61hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ-7FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I89HQVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyQ-4VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PjwukDG0Ed-kc8dEZsdm2w" name="Plugin"
@@ -587,15 +596,15 @@
             <methods xmi:id="_PjwulzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PjwukDG0Ed-kc8dEZsdm2w/method._PjwulzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PjwumTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PjwukDG0Ed-kc8dEZsdm2w/method._PjwumTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I9QCNleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9QCOFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyQ_AFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ_AlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_cjQNwChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9QCOleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ_BFhdEd-5FJ833LkcRA"
                 called="#_PjwumTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I9QCO1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9QCPFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyQ_BVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ_BlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I9QCMVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyQ--1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pj6fkDG0Ed-kc8dEZsdm2w" name="CreateChildIconsForGenPackage"
@@ -608,15 +617,15 @@
             <methods xmi:id="_PkEQlTG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pj6fkDG0Ed-kc8dEZsdm2w/method._PkEQlTG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PkEQlzG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pj6fkDG0Ed-kc8dEZsdm2w/method._PkEQlzG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I9ZzNleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9ZzOFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyav5lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyav6FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_yLcWwCt-Ed-D6YqMf1n1Bg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9ZzOleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyav6lhdEd-5FJ833LkcRA"
                 called="#_PkEQlzG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I9ZzO1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9ZzPFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyav61hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyav7FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_0yyMcCt-Ed-D6YqMf1n1Bg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I9ZzMVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyav4VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PkNagDG0Ed-kc8dEZsdm2w" name="ItemIcon"
@@ -629,15 +638,15 @@
             <methods xmi:id="_PkNahzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PkNagDG0Ed-kc8dEZsdm2w/method._PkNahzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PkNaiTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PkNagDG0Ed-kc8dEZsdm2w/method._PkNaiTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I9suJleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9suKFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyQ_DVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ_D1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9suKleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ_EVhdEd-5FJ833LkcRA"
                 called="#_PkNaiTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I9suK1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9suLFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyQ_ElhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyQ_E1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I9suIVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyQ_CFhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pkg8gDG0Ed-kc8dEZsdm2w" name="CreateChildIconsForGenClass"
@@ -650,37 +659,38 @@
             <methods xmi:id="_Pkg8hzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pkg8gDG0Ed-kc8dEZsdm2w/method._Pkg8hzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pkg8iTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pkg8gDG0Ed-kc8dEZsdm2w/method._Pkg8iTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I9i9JleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9i9KFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyav81hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyav9VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9i9KleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyav91hdEd-5FJ833LkcRA"
                 called="#_Pkg8iTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I9i9K1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9i9LFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyav-FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyav-VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I9i9IVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyav7lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Prg8azG0Ed-kc8dEZsdm2w">
-      <invocations xmi:id="_JBH1pFeTEd-ExtSXfVloug" name="EMF Edit Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
-        <invocationContractContainer xmi:id="_JBH1pVeTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH1pleTEd-ExtSXfVloug" factoryComponentContract="#_Prg8cDG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUH8FhdEd-5FJ833LkcRA" name="EMF Edit Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
+        <invocationContractContainer xmi:id="_ezUH8VhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUH8lhdEd-5FJ833LkcRA" factoryComponentContract="#_Prg8cDG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_JBH1qleTEd-ExtSXfVloug" factoryComponentContract="#_jzYi8FIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUH9lhdEd-5FJ833LkcRA" factoryComponentContract="#_jzYi8FIIEd-eGOdO3WtsxA"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
-            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH1q1eTEd-ExtSXfVloug"
+            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH91hdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH1rleTEd-ExtSXfVloug" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
-            <type xmi:type="pattern:TypePatternList" xmi:id="_JBH1r1eTEd-ExtSXfVloug"
+          <invocationContracts xmi:id="_ezUH-lhdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqYlhcEd-5FJ833LkcRA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH-1hdEd-5FJ833LkcRA"
                 elements="#_PiIW4zG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH1sFeTEd-ExtSXfVloug" factoryComponentContract="#_UCnhEFHVEd-dr9AWwNwIMQ"
+          <invocationContracts xmi:id="_ezUH_lhdEd-5FJ833LkcRA" factoryComponentContract="#_UCnhEFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_JBH1s1eTEd-ExtSXfVloug" factoryComponentContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"
+          <invocationContracts xmi:id="_ezUIAVhdEd-5FJ833LkcRA" factoryComponentContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
@@ -689,20 +699,24 @@
   <fcore:FactoryComponent xmi:id="_PkqGcDG0Ed-kc8dEZsdm2w" name="EMF Editor Pattern">
     <contractContainer xmi:id="_Prg8ejG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8ezG0Ed-kc8dEZsdm2w"
-          description="EMF Editor Pattern" name="genModelURI" mandatory="true" invocationContracts="#_JBH1uVeTEd-ExtSXfVloug">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_JBH1vFeTEd-ExtSXfVloug"/>
+          description="EMF Editor Pattern" name="genModelURI" mandatory="true" invocationContracts="#_ezUIB1hdEd-5FJ833LkcRA">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_ezUIClhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_pCqEMFIIEd-eGOdO3WtsxA"
-          description="EMF Editor Pattern" name="pattern.execution.reporter" invocationContracts="#_JBH1vVeTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH1wFeTEd-ExtSXfVloug"/>
+          description="EMF Editor Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUIC1hdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIDlhdEd-5FJ833LkcRA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqd1hcEd-5FJ833LkcRA"
+          description="EMF Editor Pattern" name="pattern.ids" invocationContracts="#_ezUID1hdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIElhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Y3EukFHVEd-dr9AWwNwIMQ"
-          description="EMF Editor Pattern" name="pattern.substitutions" invocationContracts="#_JBH1w1eTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_JBH1xVeTEd-ExtSXfVloug"/>
+          description="EMF Editor Pattern" name="pattern.substitutions" invocationContracts="#_ezUIE1hdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ezUIFVhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FqdyEFLNEd-ZSLMRjxSbVQ"
-          description="EMF Editor Pattern" name="mergeRulesURI" invocationContracts="#_JBH1xleTEd-ExtSXfVloug">
-        <type xmi:type="types:TypeURI" xmi:id="_JBH1yFeTEd-ExtSXfVloug"/>
+          description="EMF Editor Pattern" name="mergeRulesURI" invocationContracts="#_ezUIFlhdEd-5FJ833LkcRA">
+        <type xmi:type="types:TypeURI" xmi:id="_ezUIGFhdEd-5FJ833LkcRA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PkqGcTG0Ed-kc8dEZsdm2w">
@@ -718,15 +732,15 @@
             <methods xmi:id="_Pkz3cDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._Pkz3cDG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pkz3cjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._Pkz3cjG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I914GleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I914HFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyj51lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj52FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I914HleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj52lhdEd-5FJ833LkcRA"
                 called="#_Pkz3cjG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I914H1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I914IFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyj521hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj53FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I914FVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyj50VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pk9BYDG0Ed-kc8dEZsdm2w" name="ManifestMF"
@@ -739,15 +753,15 @@
             <methods xmi:id="_Pk9BZzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pk9BYDG0Ed-kc8dEZsdm2w/method._Pk9BZzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pk9BaTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pk9BYDG0Ed-kc8dEZsdm2w/method._Pk9BaTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I-JaFleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-JaGFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyawBFhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyawBlhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-JaGleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyawCFhdEd-5FJ833LkcRA"
                 called="#_Pk9BaTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I-JaG1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-JaHFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyawCVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyawClhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I-JaEVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyav_1hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PlQjYDG0Ed-kc8dEZsdm2w" name="BuildProperties"
@@ -760,15 +774,15 @@
             <methods xmi:id="_PlQjZzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjZzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PlQjaTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjaTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I9_pFleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9_pGFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyawEVhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyawE1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9_pGleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyawFVhdEd-5FJ833LkcRA"
                 called="#_PlQjaTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I9_pG1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I9_pHFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyawFlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyawF1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I9_pEVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyawDFhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PljeUDG0Ed-kc8dEZsdm2w" name="PluginProperties"
@@ -781,15 +795,15 @@
             <methods xmi:id="_PljeVzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PljeUDG0Ed-kc8dEZsdm2w/method._PljeVzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PljeWTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PljeUDG0Ed-kc8dEZsdm2w/method._PljeWTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I-SkBleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-SkCFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyj541hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj55VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_pQ16sChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-SkCleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj551hdEd-5FJ833LkcRA"
                 called="#_PljeWTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I-SkC1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-SkDFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyj56FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj56VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I-SkAVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyj53lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PltPUDG0Ed-kc8dEZsdm2w" name="ActionBarContributor"
@@ -802,15 +816,15 @@
             <methods xmi:id="_Pl2ZQDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PltPUDG0Ed-kc8dEZsdm2w/method._Pl2ZQDG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pl2ZQjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PltPUDG0Ed-kc8dEZsdm2w/method._Pl2ZQjG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I_L75leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_L76FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyj58FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj58lhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_L76leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj59FhdEd-5FJ833LkcRA"
                 called="#_Pl2ZQjG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I_L761eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_L77FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyj59VhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj59lhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I_L74VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyj561hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pmc2MDG0Ed-kc8dEZsdm2w" name="Editor"
@@ -823,15 +837,15 @@
             <methods xmi:id="_PmmAJTG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pmc2MDG0Ed-kc8dEZsdm2w/method._PmmAJTG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PmmAJzG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pmc2MDG0Ed-kc8dEZsdm2w/method._PmmAJzG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I-vP9leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-vP-FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eytq8FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq8lhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-vP-leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq9FhdEd-5FJ833LkcRA"
                 called="#_PmmAJzG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I-vP-1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-vP_FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eytq9VhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq9lhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I-vP8VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eytq61hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PmvxIDG0Ed-kc8dEZsdm2w" name="ModelWizard"
@@ -844,15 +858,15 @@
             <methods xmi:id="_Pm5iIDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PmvxIDG0Ed-kc8dEZsdm2w/method._Pm5iIDG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pm5iIjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PmvxIDG0Ed-kc8dEZsdm2w/method._Pm5iIjG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I_CK5leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_CK6FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eyj5_VhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj5_1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_CK6leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj6AVhdEd-5FJ833LkcRA"
                 called="#_Pm5iIjG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I_CK61eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_CK7FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eyj6AlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eyj6A1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I_CK4VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eyj5-FhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PnCsEDG0Ed-kc8dEZsdm2w" name="Plugin"
@@ -865,15 +879,15 @@
             <methods xmi:id="_PnCsFzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PnCsEDG0Ed-kc8dEZsdm2w/method._PnCsFzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PnCsGTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PnCsEDG0Ed-kc8dEZsdm2w/method._PnCsGTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I-cVBleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-cVCFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eytq41hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq5VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_cjQNwChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-cVCleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq51hdEd-5FJ833LkcRA"
                 called="#_PnCsGTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I-cVC1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-cVDFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eytq6FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq6VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I-cVAVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eytq3lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PnVnADG0Ed-kc8dEZsdm2w" name="Advisor"
@@ -886,15 +900,15 @@
             <methods xmi:id="_PnVnBzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PnVnADG0Ed-kc8dEZsdm2w/method._PnVnBzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PnVnCTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PnVnADG0Ed-kc8dEZsdm2w/method._PnVnCTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I-mGBleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-mGCFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eytq1lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq2FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_cjQNwChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-mGCleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq2lhdEd-5FJ833LkcRA"
                 called="#_PnVnCTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I-mGC1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I-mGDFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eytq21hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq3FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I-mGAVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eytq0VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PnpJADG0Ed-kc8dEZsdm2w" name="ModelWizardIcon"
@@ -907,15 +921,15 @@
             <methods xmi:id="_PnpJBzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PnpJADG0Ed-kc8dEZsdm2w/method._PnpJBzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PnpJCTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PnpJADG0Ed-kc8dEZsdm2w/method._PnpJCTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I_Vs5leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_Vs6FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ey3b1lhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b2FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_yLcWwCt-Ed-D6YqMf1n1Bg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_Vs6leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b2lhdEd-5FJ833LkcRA"
                 called="#_PnpJCTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I_Vs61eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_Vs7FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ey3b21hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b3FhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_0yyMcCt-Ed-D6YqMf1n1Bg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I_Vs4VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ey3b0VhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pn8D8DG0Ed-kc8dEZsdm2w" name="ModelIcon"
@@ -928,37 +942,38 @@
             <methods xmi:id="_Pn8D9zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pn8D8DG0Ed-kc8dEZsdm2w/method._Pn8D9zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pn8D-TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pn8D8DG0Ed-kc8dEZsdm2w/method._Pn8D-TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I_e21leTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_e22FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_eytq_VhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytq_1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_yLcWwCt-Ed-D6YqMf1n1Bg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_e22leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytrAVhdEd-5FJ833LkcRA"
                 called="#_Pn8D-TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I_e221eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_e23FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_eytrAlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_eytrA1hdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_0yyMcCt-Ed-D6YqMf1n1Bg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I_e20VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_eytq-FhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Prg8djG0Ed-kc8dEZsdm2w">
-      <invocations xmi:id="_JBH1t1eTEd-ExtSXfVloug" name="EMF Editor Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
-        <invocationContractContainer xmi:id="_JBH1uFeTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH1uVeTEd-ExtSXfVloug" factoryComponentContract="#_Prg8ezG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUIBVhdEd-5FJ833LkcRA" name="EMF Editor Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
+        <invocationContractContainer xmi:id="_ezUIBlhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUIB1hdEd-5FJ833LkcRA" factoryComponentContract="#_Prg8ezG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_JBH1vVeTEd-ExtSXfVloug" factoryComponentContract="#_pCqEMFIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUIC1hdEd-5FJ833LkcRA" factoryComponentContract="#_pCqEMFIIEd-eGOdO3WtsxA"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
-            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH1vleTEd-ExtSXfVloug"
+            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIDFhdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH1wVeTEd-ExtSXfVloug" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
-            <type xmi:type="pattern:TypePatternList" xmi:id="_JBH1wleTEd-ExtSXfVloug"
+          <invocationContracts xmi:id="_ezUID1hdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqd1hcEd-5FJ833LkcRA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIEFhdEd-5FJ833LkcRA"
                 elements="#_PkqGczG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH1w1eTEd-ExtSXfVloug" factoryComponentContract="#_Y3EukFHVEd-dr9AWwNwIMQ"
+          <invocationContracts xmi:id="_ezUIE1hdEd-5FJ833LkcRA" factoryComponentContract="#_Y3EukFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_JBH1xleTEd-ExtSXfVloug" factoryComponentContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"
+          <invocationContracts xmi:id="_ezUIFlhdEd-5FJ833LkcRA" factoryComponentContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
@@ -967,20 +982,24 @@
   <fcore:FactoryComponent xmi:id="_PoF08DG0Ed-kc8dEZsdm2w" name="EMF Tests Pattern">
     <contractContainer xmi:id="_Prg8hTG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8hjG0Ed-kc8dEZsdm2w"
-          description="EMF Tests Pattern" name="genModelURI" mandatory="true" invocationContracts="#_JBH1zFeTEd-ExtSXfVloug">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_JBH1z1eTEd-ExtSXfVloug"/>
+          description="EMF Tests Pattern" name="genModelURI" mandatory="true" invocationContracts="#_ezUIHFhdEd-5FJ833LkcRA">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_ezUIH1hdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tvg04FIIEd-eGOdO3WtsxA"
-          description="EMF Tests Pattern" name="pattern.execution.reporter" invocationContracts="#_JBH10FeTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH101eTEd-ExtSXfVloug"/>
+          description="EMF Tests Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUIIFhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUII1hdEd-5FJ833LkcRA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqjFhcEd-5FJ833LkcRA"
+          description="EMF Tests Pattern" name="pattern.ids" invocationContracts="#_ezUIJFhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIJ1hdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_eYFgEFHVEd-dr9AWwNwIMQ"
-          description="EMF Tests Pattern" name="pattern.substitutions" invocationContracts="#_JBH11leTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_JBH12FeTEd-ExtSXfVloug"/>
+          description="EMF Tests Pattern" name="pattern.substitutions" invocationContracts="#_ezUIKFhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ezUIKlhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_LnCeMFLNEd-ZSLMRjxSbVQ"
-          description="EMF Tests Pattern" name="mergeRulesURI" invocationContracts="#_JBH12VeTEd-ExtSXfVloug">
-        <type xmi:type="types:TypeURI" xmi:id="_JBH121eTEd-ExtSXfVloug"/>
+          description="EMF Tests Pattern" name="mergeRulesURI" invocationContracts="#_ezUIK1hdEd-5FJ833LkcRA">
+        <type xmi:type="types:TypeURI" xmi:id="_ezUILVhdEd-5FJ833LkcRA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PoO-4DG0Ed-kc8dEZsdm2w">
@@ -996,15 +1015,15 @@
             <methods xmi:id="_PoO-6jG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-6jG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PoO-7DG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-7DG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I_yY0FeTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_yY0leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ey3b51hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b6VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_yY1FeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b61hdEd-5FJ833LkcRA"
                 called="#_PoO-7DG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I_yY1VeTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_yY1leTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ey3b7FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b7VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I_on1VeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ey3b4lhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PoYv4DG0Ed-kc8dEZsdm2w" name="BuildProperties"
@@ -1017,15 +1036,15 @@
             <methods xmi:id="_PoYv5zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PoYv4DG0Ed-kc8dEZsdm2w/method._PoYv5zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PoYv6TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PoYv4DG0Ed-kc8dEZsdm2w/method._PoYv6TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_JAFTxleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAFTyFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ey3b9FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b9lhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAFTyleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b-FhdEd-5FJ833LkcRA"
                 called="#_PoYv6TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_JAFTy1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAFTzFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ey3b-VhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ey3b-lhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_JAFTwVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ey3b71hdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Po1b0DG0Ed-kc8dEZsdm2w" name="ManifestMF"
@@ -1038,15 +1057,15 @@
             <methods xmi:id="_Po1b1zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Po1b0DG0Ed-kc8dEZsdm2w/method._Po1b1zG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Po1b2TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Po1b0DG0Ed-kc8dEZsdm2w/method._Po1b2TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_I_7ixleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_7iyFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ezAlxlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezAlyFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_7iyleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezAlylhdEd-5FJ833LkcRA"
                 called="#_Po1b2TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_I_7iy1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_I_7izFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ezAly1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezAlzFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_I_7iwVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ezAlwVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PplCsDG0Ed-kc8dEZsdm2w" name="PluginProperties"
@@ -1059,15 +1078,15 @@
             <methods xmi:id="_PplCtzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PplCsDG0Ed-kc8dEZsdm2w/method._PplCtzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PplCuTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PplCsDG0Ed-kc8dEZsdm2w/method._PplCuTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_JAOdtleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAOduFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ezAl01hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezAl1VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_pQ16sChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAOduleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezAl11hdEd-5FJ833LkcRA"
                 called="#_PplCuTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_JAOdu1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAOdvFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ezAl2FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezAl2VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_JAOdsVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ezAlzlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pp39oDG0Ed-kc8dEZsdm2w" name="TestCase"
@@ -1080,15 +1099,15 @@
             <methods xmi:id="_PqBuoDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pp39oDG0Ed-kc8dEZsdm2w/method._PqBuoDG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PqBuojG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pp39oDG0Ed-kc8dEZsdm2w/method._PqBuojG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_JAh_tleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAh_uFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ezUHxlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezUHyFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_Chxo4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAh_uleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezUHylhdEd-5FJ833LkcRA"
                 called="#_PqBuojG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_JAh_u1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAh_vFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ezUHy1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezUHzFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_JAh_sVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ezUHwVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PqeakDG0Ed-kc8dEZsdm2w" name="PackageExample"
@@ -1101,15 +1120,15 @@
             <methods xmi:id="_PqealzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PqeakDG0Ed-kc8dEZsdm2w/method._PqealzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PqeamTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PqeakDG0Ed-kc8dEZsdm2w/method._PqeamTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_JArJpleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JArJqFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ezKWxlhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezKWyFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JArJqleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezKWylhdEd-5FJ833LkcRA"
                 called="#_PqeamTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_JArJq1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JArJrFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ezKWy1hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezKWzFhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_JArJoVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ezKWwVhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pq6fcDG0Ed-kc8dEZsdm2w" name="ModelTestSuite"
@@ -1122,15 +1141,15 @@
             <methods xmi:id="_Pq6fdzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._Pq6fcDG0Ed-kc8dEZsdm2w/method._Pq6fdzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_Pq6feTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._Pq6fcDG0Ed-kc8dEZsdm2w/method._Pq6feTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_JA-rpleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JA-rqFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ezUH01hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezUH1VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_cjQNwChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JA-rqleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezUH11hdEd-5FJ833LkcRA"
                 called="#_Pq6feTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_JA-rq1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JA-rrFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ezUH2FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezUH2VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_JA-roVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ezUHzlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PrOBcDG0Ed-kc8dEZsdm2w" name="PackageTestSuite"
@@ -1143,37 +1162,38 @@
             <methods xmi:id="_PrOBdzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
                 patternFilePath="templates/pattern._PrOBcDG0Ed-kc8dEZsdm2w/method._PrOBdzG0Ed-kc8dEZsdm2w.pt"/>
             <methods xmi:id="_PrOBeTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PrOBcDG0Ed-kc8dEZsdm2w/method._PrOBeTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_JAYOtleTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAYOuFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ezKW01hdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezKW1VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_QRYMcChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAYOuleTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezKW11hdEd-5FJ833LkcRA"
                 called="#_PrOBeTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_JAYOu1eTEd-ExtSXfVloug"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_JAYOvFeTEd-ExtSXfVloug"
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ezKW2FhdEd-5FJ833LkcRA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ezKW2VhdEd-5FJ833LkcRA"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_MeyroChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_JAYOsVeTEd-ExtSXfVloug"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ezKWzlhdEd-5FJ833LkcRA"
                 name="JET"/>
           </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Prg8gTG0Ed-kc8dEZsdm2w">
-      <invocations xmi:id="_JBH1yleTEd-ExtSXfVloug" name="EMF Tests Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
-        <invocationContractContainer xmi:id="_JBH1y1eTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH1zFeTEd-ExtSXfVloug" factoryComponentContract="#_Prg8hjG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUIGlhdEd-5FJ833LkcRA" name="EMF Tests Pattern" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_jT-SgD1hEd-m5uHrCQ1Jew">
+        <invocationContractContainer xmi:id="_ezUIG1hdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUIHFhdEd-5FJ833LkcRA" factoryComponentContract="#_Prg8hjG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_JBH10FeTEd-ExtSXfVloug" factoryComponentContract="#_tvg04FIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUIIFhdEd-5FJ833LkcRA" factoryComponentContract="#_tvg04FIIEd-eGOdO3WtsxA"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
-            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH10VeTEd-ExtSXfVloug"
+            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIIVhdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH11FeTEd-ExtSXfVloug" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
-            <type xmi:type="pattern:TypePatternList" xmi:id="_JBH11VeTEd-ExtSXfVloug"
+          <invocationContracts xmi:id="_ezUIJFhdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqjFhcEd-5FJ833LkcRA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIJVhdEd-5FJ833LkcRA"
                 elements="#_PoO-4jG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_JBH11leTEd-ExtSXfVloug" factoryComponentContract="#_eYFgEFHVEd-dr9AWwNwIMQ"
+          <invocationContracts xmi:id="_ezUIKFhdEd-5FJ833LkcRA" factoryComponentContract="#_eYFgEFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_JBH12VeTEd-ExtSXfVloug" factoryComponentContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"
+          <invocationContracts xmi:id="_ezUIK1hdEd-5FJ833LkcRA" factoryComponentContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
@@ -1182,69 +1202,69 @@
   <fcore:FactoryComponent xmi:id="_Prz3UDG0Ed-kc8dEZsdm2w" name="EMF Pattern">
     <contractContainer xmi:id="_Prz3UTG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prz3UjG0Ed-kc8dEZsdm2w"
-          description="EMF Pattern" name="genModelURI" mandatory="true" invocationContracts="#_JBH141eTEd-ExtSXfVloug #_JBH171eTEd-ExtSXfVloug #_JBH19VeTEd-ExtSXfVloug #_JBH1-1eTEd-ExtSXfVloug">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_JBH14leTEd-ExtSXfVloug"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_TK4DEFLNEd-ZSLMRjxSbVQ"
-          description="EMF Pattern" name="mergeRulesURI" invocationContracts="#_JBH15leTEd-ExtSXfVloug #_JBH18FeTEd-ExtSXfVloug #_JBH19leTEd-ExtSXfVloug #_JBH1_FeTEd-ExtSXfVloug">
-        <type xmi:type="types:TypeURI" xmi:id="_JBH15VeTEd-ExtSXfVloug"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_JBH151eTEd-ExtSXfVloug"
-          description="EMF Pattern" name="pattern.substitutions" invocationContracts="#_JBH16VeTEd-ExtSXfVloug #_JBH18VeTEd-ExtSXfVloug #_JBH191eTEd-ExtSXfVloug #_JBH1_VeTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_JBH16FeTEd-ExtSXfVloug"/>
+          description="EMF Pattern" name="genModelURI" mandatory="true" invocationContracts="#_ezUINVhdEd-5FJ833LkcRA #_ezUIQVhdEd-5FJ833LkcRA #_ezUIR1hdEd-5FJ833LkcRA #_ezUITVhdEd-5FJ833LkcRA">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_ezUINFhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_yqrHUFIIEd-eGOdO3WtsxA"
-          description="EMF Pattern" name="pattern.execution.reporter" invocationContracts="#_JBH17FeTEd-ExtSXfVloug #_JBH18leTEd-ExtSXfVloug #_JBH1-FeTEd-ExtSXfVloug #_JBH1_leTEd-ExtSXfVloug">
-        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_JBH161eTEd-ExtSXfVloug"/>
+          description="EMF Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUIOFhdEd-5FJ833LkcRA #_ezUIQlhdEd-5FJ833LkcRA #_ezUISFhdEd-5FJ833LkcRA #_ezUITlhdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIN1hdEd-5FJ833LkcRA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_JBH151eTEd-ExtSXfVloug"
+          description="EMF Pattern" name="pattern.substitutions" invocationContracts="#_ezUIO1hdEd-5FJ833LkcRA #_ezUIQ1hdEd-5FJ833LkcRA #_ezUISVhdEd-5FJ833LkcRA #_ezUIT1hdEd-5FJ833LkcRA">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ezUIOlhdEd-5FJ833LkcRA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_TK4DEFLNEd-ZSLMRjxSbVQ"
+          description="EMF Pattern" name="mergeRulesURI" invocationContracts="#_ezUIPlhdEd-5FJ833LkcRA #_ezUIRFhdEd-5FJ833LkcRA #_ezUISlhdEd-5FJ833LkcRA #_ezUIUFhdEd-5FJ833LkcRA">
+        <type xmi:type="types:TypeURI" xmi:id="_ezUIPVhdEd-5FJ833LkcRA"/>
       </contracts>
     </contractContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Prz3VDG0Ed-kc8dEZsdm2w">
-      <invocations xmi:id="_JBH13leTEd-ExtSXfVloug" invokedActivity="#_Pcm9sDG0Ed-kc8dEZsdm2w">
-        <invocationContractContainer xmi:id="_JBH131eTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH141eTEd-ExtSXfVloug" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUIMFhdEd-5FJ833LkcRA" invokedActivity="#_Pcm9sDG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_ezUIMVhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUINVhdEd-5FJ833LkcRA" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8ZTG0Ed-kc8dEZsdm2w"/>
-          <invocationContracts xmi:id="_JBH15leTEd-ExtSXfVloug" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
-              invokedContract="#_sluXsVLLEd-ZSLMRjxSbVQ"/>
-          <invocationContracts xmi:id="_JBH16VeTEd-ExtSXfVloug" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
-              invokedContract="#_OVsagFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_JBH17FeTEd-ExtSXfVloug" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUIOFhdEd-5FJ833LkcRA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_WRxYEFIIEd-eGOdO3WtsxA"/>
+          <invocationContracts xmi:id="_ezUIO1hdEd-5FJ833LkcRA" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
+              invokedContract="#_OVsagFHVEd-dr9AWwNwIMQ"/>
+          <invocationContracts xmi:id="_ezUIPlhdEd-5FJ833LkcRA" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_sluXsVLLEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
-      <invocations xmi:id="_JBH17VeTEd-ExtSXfVloug" invokedActivity="#_PiIW4DG0Ed-kc8dEZsdm2w">
-        <invocationContractContainer xmi:id="_JBH17leTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH171eTEd-ExtSXfVloug" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUIP1hdEd-5FJ833LkcRA" invokedActivity="#_PiIW4DG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_ezUIQFhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUIQVhdEd-5FJ833LkcRA" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8cDG0Ed-kc8dEZsdm2w"/>
-          <invocationContracts xmi:id="_JBH18FeTEd-ExtSXfVloug" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
-              invokedContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"/>
-          <invocationContracts xmi:id="_JBH18VeTEd-ExtSXfVloug" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
-              invokedContract="#_UCnhEFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_JBH18leTEd-ExtSXfVloug" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUIQlhdEd-5FJ833LkcRA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_jzYi8FIIEd-eGOdO3WtsxA"/>
+          <invocationContracts xmi:id="_ezUIQ1hdEd-5FJ833LkcRA" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
+              invokedContract="#_UCnhEFHVEd-dr9AWwNwIMQ"/>
+          <invocationContracts xmi:id="_ezUIRFhdEd-5FJ833LkcRA" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
-      <invocations xmi:id="_JBH181eTEd-ExtSXfVloug" invokedActivity="#_PkqGcDG0Ed-kc8dEZsdm2w">
-        <invocationContractContainer xmi:id="_JBH19FeTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH19VeTEd-ExtSXfVloug" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUIRVhdEd-5FJ833LkcRA" invokedActivity="#_PkqGcDG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_ezUIRlhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUIR1hdEd-5FJ833LkcRA" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8ezG0Ed-kc8dEZsdm2w"/>
-          <invocationContracts xmi:id="_JBH19leTEd-ExtSXfVloug" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
-              invokedContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"/>
-          <invocationContracts xmi:id="_JBH191eTEd-ExtSXfVloug" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
-              invokedContract="#_Y3EukFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_JBH1-FeTEd-ExtSXfVloug" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUISFhdEd-5FJ833LkcRA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_pCqEMFIIEd-eGOdO3WtsxA"/>
+          <invocationContracts xmi:id="_ezUISVhdEd-5FJ833LkcRA" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
+              invokedContract="#_Y3EukFHVEd-dr9AWwNwIMQ"/>
+          <invocationContracts xmi:id="_ezUISlhdEd-5FJ833LkcRA" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
-      <invocations xmi:id="_JBH1-VeTEd-ExtSXfVloug" invokedActivity="#_PoF08DG0Ed-kc8dEZsdm2w">
-        <invocationContractContainer xmi:id="_JBH1-leTEd-ExtSXfVloug">
-          <invocationContracts xmi:id="_JBH1-1eTEd-ExtSXfVloug" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
+      <invocations xmi:id="_ezUIS1hdEd-5FJ833LkcRA" invokedActivity="#_PoF08DG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_ezUITFhdEd-5FJ833LkcRA">
+          <invocationContracts xmi:id="_ezUITVhdEd-5FJ833LkcRA" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8hjG0Ed-kc8dEZsdm2w"/>
-          <invocationContracts xmi:id="_JBH1_FeTEd-ExtSXfVloug" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
-              invokedContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"/>
-          <invocationContracts xmi:id="_JBH1_VeTEd-ExtSXfVloug" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
-              invokedContract="#_eYFgEFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_JBH1_leTEd-ExtSXfVloug" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+          <invocationContracts xmi:id="_ezUITlhdEd-5FJ833LkcRA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_tvg04FIIEd-eGOdO3WtsxA"/>
+          <invocationContracts xmi:id="_ezUIT1hdEd-5FJ833LkcRA" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
+              invokedContract="#_eYFgEFHVEd-dr9AWwNwIMQ"/>
+          <invocationContracts xmi:id="_ezUIUFhdEd-5FJ833LkcRA" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
