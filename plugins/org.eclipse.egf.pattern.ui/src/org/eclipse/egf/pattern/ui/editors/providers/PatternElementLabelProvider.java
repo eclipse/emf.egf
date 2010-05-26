@@ -80,7 +80,7 @@ public class PatternElementLabelProvider implements ILabelProvider {
         @Override
         public String casePattern(Pattern object) {
 
-            return object.getName();
+            return object.getName() + Messages.common_mark1 + object.getContainer().getName() + Messages.common_mark2;
         }
 
         @Override
