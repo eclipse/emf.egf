@@ -19,7 +19,6 @@ import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
-import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
@@ -49,10 +48,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
   @Override
   public Generator getGenerator() {
     if (_generator == null) {
-      _generator = GenModelUtil.createGenerator(_genModel);
-    }
-    if (_mergeRulesURI != null) {
-      _generator.getOptions().mergeRulesURI = _mergeRulesURI.toString();
+      _generator = GenModelUtil.createGenerator(_genModel, _mergeRulesURI);
     }
     return _generator;
   }
