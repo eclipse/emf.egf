@@ -12,10 +12,12 @@
  */
 package org.eclipse.egf.model.fcore.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
@@ -43,7 +45,10 @@ import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -238,6 +243,30 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     // adding (see {@link AddCommand}) it as a child.
 
     return super.getChildFeature(object, child);
+  }
+
+  /**
+   * This adds an overlay to the given image if the object is controlled.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected Object overlayImage(Object object, Object image) {
+    InvocationContract invocationContract = (InvocationContract) object;
+    List<Object> images = new ArrayList<Object>(4);
+    images.add(image);
+    if (invocationContract.getFactoryComponentContract() != null) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/HasContract")); //$NON-NLS-1$
+    }
+    if (invocationContract.getOrchestrationParameter() != null) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/HasParameter")); //$NON-NLS-1$
+    }
+    if (AdapterFactoryEditingDomain.isControlled(object)) {
+      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    }
+    return new ComposedImage(images);
   }
 
   /**
