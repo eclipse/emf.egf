@@ -60,7 +60,7 @@ public class PatternSubstitutionPropertyEditorContributor extends DefaultPropert
                 EObject eObject = value.eResource().getEObject("_QXb_oEO6Ed-eQLst0bhiHw");
 
                 substitutions.add(newSubstitution);
-                newSubstitution.setOutcoming((Pattern) toSubstitute);
+                newSubstitution.setOutgoing((Pattern) toSubstitute);
                 newSubstitution.getIncoming().add((Pattern) eObject);
                 MessageDialog.openInformation(composite.getShell(), "Substitution", "done!");
                 return substitutions;

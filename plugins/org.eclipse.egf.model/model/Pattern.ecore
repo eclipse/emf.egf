@@ -192,7 +192,7 @@
         eType="#//Substitution" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Substitution">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outcoming" eType="#//Pattern"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" eType="#//Pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
         eType="#//Pattern"/>
   </eClassifiers>

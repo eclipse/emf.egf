@@ -41,126 +41,125 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-    IItemColorProvider, IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Paramerter2ParameterMapItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
-
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
-      addValuePropertyDescriptor(object);
-      addKeyPropertyDescriptor(object);
+public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Paramerter2ParameterMapItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds a property descriptor for the Value feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Paramerter2ParameterMap_value_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Paramerter2ParameterMap_value_feature", "_UI_Paramerter2ParameterMap_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__VALUE, true, false, true, null, null, null));
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This adds a property descriptor for the Key feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addKeyPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Paramerter2ParameterMap_key_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Paramerter2ParameterMap_key_feature", "_UI_Paramerter2ParameterMap_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__KEY, true, false, true, null, null, null));
-  }
+            addValuePropertyDescriptor(object);
+            addKeyPropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean hasChildren(Object object) {
-    return hasChildren(object, true);
-  }
+    /**
+     * This adds a property descriptor for the Value feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addValuePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Paramerter2ParameterMap_value_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Paramerter2ParameterMap_value_feature", "_UI_Paramerter2ParameterMap_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__VALUE, true, false, true, null, null, null));
+    }
 
-  /**
-   * This returns Paramerter2ParameterMap.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Paramerter2ParameterMap")); //$NON-NLS-1$
-  }
+    /**
+     * This adds a property descriptor for the Key feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addKeyPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Paramerter2ParameterMap_key_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Paramerter2ParameterMap_key_feature", "_UI_Paramerter2ParameterMap_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__KEY, true, false, true, null, null, null));
+    }
 
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getText(Object object) {
-    Map.Entry<?, ?> paramerter2ParameterMap = (Map.Entry<?, ?>) object;
-    return "" + paramerter2ParameterMap.getKey() + " -> " + paramerter2ParameterMap.getValue(); //$NON-NLS-1$ //$NON-NLS-2$
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean hasChildren(Object object) {
+        return hasChildren(object, true);
+    }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-    super.notifyChanged(notification);
-  }
+    /**
+     * This returns Paramerter2ParameterMap.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/Paramerter2ParameterMap")); //$NON-NLS-1$
+    }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getText(Object object) {
+        Map.Entry<?, ?> paramerter2ParameterMap = (Map.Entry<?, ?>) object;
+        return "" + paramerter2ParameterMap.getKey() + " -> " + paramerter2ParameterMap.getValue(); //$NON-NLS-1$ //$NON-NLS-2$
+    }
 
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return EGFModelEditPlugin.INSTANCE;
-  }
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+        super.notifyChanged(notification);
+    }
+
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
+
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return EGFModelEditPlugin.INSTANCE;
+    }
 
 }

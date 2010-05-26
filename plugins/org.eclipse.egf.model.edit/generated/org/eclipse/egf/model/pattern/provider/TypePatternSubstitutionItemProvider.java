@@ -48,161 +48,160 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypePatternSubstitutionItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-    IItemColorProvider, IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypePatternSubstitutionItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
-
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
-      addSubstitutionsPropertyDescriptor(object);
+public class TypePatternSubstitutionItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypePatternSubstitutionItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds a property descriptor for the Substitutions feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addSubstitutionsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypePatternSubstitution_substitutions_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypePatternSubstitution_substitutions_feature", "_UI_TypePatternSubstitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS, false, false, false, null, null, null));
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-    if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
-      childrenFeatures.add(PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS);
+            addSubstitutionsPropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
     }
-    return childrenFeatures;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EStructuralFeature getChildFeature(Object object, Object child) {
-    // Check the type of the specified child object and return the proper feature to use for
-    // adding (see {@link AddCommand}) it as a child.
-
-    return super.getChildFeature(object, child);
-  }
-
-  /**
-   * This adds an overlay to the given image if the object is controlled.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  protected Object overlayImage(Object object, Object image) {
-    TypePatternSubstitution type = (TypePatternSubstitution) object;
-    List<Object> images = new ArrayList<Object>(3);
-    images.add(image);
-    if (type.getSubstitutions() != null && type.getSubstitutions().size() > 0) {
-      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
-    } else if (AdapterFactoryEditingDomain.isControlled(object)) {
-      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    /**
+     * This adds a property descriptor for the Substitutions feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSubstitutionsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypePatternSubstitution_substitutions_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_TypePatternSubstitution_substitutions_feature", "_UI_TypePatternSubstitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS, false, false, false, null, null, null));
     }
-    return new ComposedImage(images);
-  }
 
-  /**
-   * This returns TypePatternSubstitution.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/TypePatternSubstitution")); //$NON-NLS-1$
-  }
-
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    return "[" + getString("_UI_TypePatternSubstitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-  }
-
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-
-    switch (notification.getFeatureID(TypePatternSubstitution.class)) {
-    case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-      return;
+    /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS);
+        }
+        return childrenFeatures;
     }
-    super.notifyChanged(notification);
-  }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
 
-    newChildDescriptors.add(createChildParameter(PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS, PatternFactory.eINSTANCE.createSubstitution()));
-  }
+        return super.getChildFeature(object, child);
+    }
 
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return EGFModelEditPlugin.INSTANCE;
-  }
+    /**
+     * This adds an overlay to the given image if the object is controlled.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Object overlayImage(Object object, Object image) {
+        TypePatternSubstitution type = (TypePatternSubstitution) object;
+        List<Object> images = new ArrayList<Object>(3);
+        images.add(image);
+        if (type.getSubstitutions() != null && type.getSubstitutions().size() > 0) {
+            images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
+        } else if (AdapterFactoryEditingDomain.isControlled(object)) {
+            images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+        }
+        return new ComposedImage(images);
+    }
+
+    /**
+     * This returns TypePatternSubstitution.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/TypePatternSubstitution")); //$NON-NLS-1$
+    }
+
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        return "[" + getString("_UI_TypePatternSubstitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
+
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+
+        switch (notification.getFeatureID(TypePatternSubstitution.class)) {
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
+        }
+        super.notifyChanged(notification);
+    }
+
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+
+        newChildDescriptors.add(createChildParameter(PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS, PatternFactory.eINSTANCE.createSubstitution()));
+    }
+
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return EGFModelEditPlugin.INSTANCE;
+    }
 
 }

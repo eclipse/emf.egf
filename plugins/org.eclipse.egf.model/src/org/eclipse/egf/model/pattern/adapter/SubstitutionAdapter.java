@@ -28,58 +28,58 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class SubstitutionAdapter extends AdapterImpl {
 
-  private EObject _root;
+    private EObject _root;
 
-  private Substitution _substitution;
+    private Substitution _substitution;
 
-  private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
+    private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
-  private EStructuralFeature _substitutionOutcomingFeature = PatternPackage.Literals.SUBSTITUTION__OUTCOMING;
+    private EStructuralFeature _substitutionOutgoingFeature = PatternPackage.Literals.SUBSTITUTION__OUTGOING;
 
-  private AdapterImpl _nameAdapter = new AdapterImpl() {
+    private AdapterImpl _nameAdapter = new AdapterImpl() {
+        @Override
+        public void notifyChanged(Notification msg) {
+            if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
+                _substitution.eNotify(new ENotificationImpl((InternalEObject) _substitution, -1, _substitutionOutgoingFeature, null, null) {
+                    @Override
+                    public boolean isTouch() {
+                        return true;
+                    }
+                });
+            }
+        }
+    };
+
+    public SubstitutionAdapter(Substitution substitution) {
+        super();
+        _substitution = substitution;
+        _substitution.eAdapters().add(this);
+    }
+
     @Override
-    public void notifyChanged(Notification msg) {
-      if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
-        _substitution.eNotify(new ENotificationImpl((InternalEObject) _substitution, -1, _substitutionOutcomingFeature, null, null) {
-          @Override
-          public boolean isTouch() {
-            return true;
-          }
-        });
-      }
+    public void notifyChanged(Notification notification) {
+        if (notification.getFeature() == null || notification.getFeature().equals(_substitutionOutgoingFeature)) {
+            switch (notification.getEventType()) {
+            case Notification.SET:
+            case Notification.RESOLVE:
+                EObject newValue = EcoreUtil.getRootContainer((Pattern) notification.getNewValue(), true);
+                EObject oldValue = EcoreUtil.getRootContainer((Pattern) notification.getOldValue(), true);
+                if (oldValue != null && oldValue != notification.getOldValue()) {
+                    oldValue.eAdapters().remove(_nameAdapter);
+                }
+                if (newValue != null && newValue != notification.getNewValue() && newValue.eAdapters().contains(_nameAdapter) == false) {
+                    newValue.eAdapters().add(_nameAdapter);
+                    _root = newValue;
+                }
+                break;
+            case Notification.REMOVING_ADAPTER:
+                if (_root != null) {
+                    _root.eAdapters().remove(_nameAdapter);
+                }
+                break;
+            default:
+                return; // No notification
+            }
+        }
     }
-  };
-
-  public SubstitutionAdapter(Substitution substitution) {
-    super();
-    _substitution = substitution;
-    _substitution.eAdapters().add(this);
-  }
-
-  @Override
-  public void notifyChanged(Notification notification) {
-    if (notification.getFeature() == null || notification.getFeature().equals(_substitutionOutcomingFeature)) {
-      switch (notification.getEventType()) {
-      case Notification.SET:
-      case Notification.RESOLVE:
-        EObject newValue = EcoreUtil.getRootContainer((Pattern) notification.getNewValue(), true);
-        EObject oldValue = EcoreUtil.getRootContainer((Pattern) notification.getOldValue(), true);
-        if (oldValue != null && oldValue != notification.getOldValue()) {
-          oldValue.eAdapters().remove(_nameAdapter);
-        }
-        if (newValue != null && newValue != notification.getNewValue() && newValue.eAdapters().contains(_nameAdapter) == false) {
-          newValue.eAdapters().add(_nameAdapter);
-          _root = newValue;
-        }
-        break;
-      case Notification.REMOVING_ADAPTER:
-        if (_root != null) {
-          _root.eAdapters().remove(_nameAdapter);
-        }
-        break;
-      default:
-        return; // No notification
-      }
-    }
-  }
 }

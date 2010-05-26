@@ -51,9 +51,9 @@
         <invocationContractContainer xmi:id="_p6x78EuaEd-TSsH7K-_bxQ">
           <invocationContracts xmi:id="_qNp0oEuaEd-TSsH7K-_bxQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_UVURwEldEd-TSsH7K-_bxQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_79U7YEuaEd-TSsH7K-_bxQ">
-              <substitutions xmi:id="_79U7YUuaEd-TSsH7K-_bxQ" outcoming="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_another_base.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw"
+              <substitutions xmi:id="_79U7YUuaEd-TSsH7K-_bxQ" outgoing="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_another_base.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw"
                   incoming="#_zNVv4EiOEd-TSsH7K-_bxQ"/>
-              <substitutions xmi:id="_79U7YkuaEd-TSsH7K-_bxQ" outcoming="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_another_base.fcore#_7RsNYEh5Ed-A7KV9v5yLhw"
+              <substitutions xmi:id="_79U7YkuaEd-TSsH7K-_bxQ" outgoing="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_another_base.fcore#_7RsNYEh5Ed-A7KV9v5yLhw"
                   incoming="#_2YxxIEiOEd-TSsH7K-_bxQ"/>
             </type>
           </invocationContracts>
@@ -99,7 +99,7 @@
         <invocationContractContainer xmi:id="_dZYDUUu6Ed-1V_-yzWj1kQ">
           <invocationContracts xmi:id="_dZYDUku6Ed-1V_-yzWj1kQ" invokedContract="#_mzy84EuaEd-TSsH7K-_bxQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ncXyQEu6Ed-1V_-yzWj1kQ">
-              <substitutions xmi:id="_oYk70Eu6Ed-1V_-yzWj1kQ" outcoming="#_zNVv4EiOEd-TSsH7K-_bxQ"
+              <substitutions xmi:id="_oYk70Eu6Ed-1V_-yzWj1kQ" outgoing="#_zNVv4EiOEd-TSsH7K-_bxQ"
                   incoming="#_9yvBMElSEd-TSsH7K-_bxQ"/>
             </type>
           </invocationContracts>

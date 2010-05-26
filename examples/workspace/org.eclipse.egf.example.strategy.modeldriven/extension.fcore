@@ -29,7 +29,7 @@
       <invocationContractContainer xmi:id="_UFZlwEMjEd-ps_ZddESRow">
         <invocationContracts xmi:id="_UWn4oEMjEd-ps_ZddESRow" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_qOHbQEMhEd-NaeKfyTTTsQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_WSiywEMjEd-ps_ZddESRow">
-            <substitutions xmi:id="_vBgY4UO9Ed-qgs4e_5yqgQ" outcoming="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_RzMnwPuUEd6-V5xjQsdIkw"
+            <substitutions xmi:id="_vBgY4UO9Ed-qgs4e_5yqgQ" outgoing="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_RzMnwPuUEd6-V5xjQsdIkw"
                 incoming="#_QXb_oEO6Ed-eQLst0bhiHw"/>
           </type>
         </invocationContracts>

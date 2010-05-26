@@ -32,10 +32,10 @@ import org.eclipse.swt.widgets.Shell;
  * @author Thomas Guiu
  * 
  */
-public class PatternSubstitutionOutcommingPropertyEditorContributor extends DefaultPropertyEditorContributor {
+public class PatternSubstitutionOutgoingPropertyEditorContributor extends DefaultPropertyEditorContributor {
 
     public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__OUTCOMING) && object instanceof Substitution;
+        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__OUTGOING) && object instanceof Substitution;
     }
 
     public CellEditor createPropertyEditor(final Composite composite, Object object, IItemPropertyDescriptor descriptor) {
@@ -44,7 +44,7 @@ public class PatternSubstitutionOutcommingPropertyEditorContributor extends Defa
         return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
             protected Object openDialogBox(Control cellEditorWindow) {
 
-                PatternSelectionDialog dialog = new PatternSelectionDialog(new Shell(), value.getOutcoming());
+                PatternSelectionDialog dialog = new PatternSelectionDialog(new Shell(), value.getOutgoing());
                 dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
                 if (dialog.open() == Window.OK) {
                     return dialog.getCurrentPattern();

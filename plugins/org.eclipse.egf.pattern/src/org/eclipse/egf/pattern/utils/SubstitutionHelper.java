@@ -46,7 +46,7 @@ public class SubstitutionHelper {
         for (Substitution substitution : substitutions.getSubstitutions()) {
             Pattern[] array = patterns.toArray(new Pattern[patterns.size()]);
             for (Pattern pattern : array) {
-                Pattern target = substitution.getOutcoming();
+                Pattern target = substitution.getOutgoing();
                 if (target != null && pattern.getID().equals(target.getID())) {
                     int index = patterns.indexOf(pattern);
                     patterns.remove(index);
