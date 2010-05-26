@@ -28,16 +28,12 @@
       <type xmi:type="domain:TypeDomainURI" xmi:id="_HB5igdggEd6uy82Dcq20PA" domain="#_J1bPgdgfEd6na6OAqTVobQ"
           name="fc1"/>
     </contracts>
-    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_NjOPkTJ3Ed-j_vZT1LHkyw"
-        name="jmerger" mode="In_Out" invocationContracts="#_1tu5wDJ5Ed-JWMmof-srJA">
-      <type xmi:type="types:TypeClass" xmi:id="_PGTy8DJ3Ed-j_vZT1LHkyw" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
-    </contracts>
   </contractContainer>
   <viewpointContainer xmi:id="_iBhWMdgWEd6Q4-VfEsR1iA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_iiANENgWEd6Q4-VfEsR1iA">
       <domains xmi:type="domain:DomainEPackage" xmi:id="_IlmgAdgXEd6eJbYEYJAYWw" ePackage="http://www.eclipse.org/egf/1.0.0/fcore#/"
           name="fcore"/>
-      <domains xmi:type="domain:DomainURI" xmi:id="_J1bPgdgfEd6na6OAqTVobQ" uri="platform:/resource/org.eclipse.egf.examples.fcs/fc/fc1.fcore"
+      <domains xmi:type="domain:DomainURI" xmi:id="_J1bPgdgfEd6na6OAqTVobQ" uri="platform:/resource/org.eclipse.egf.example.fcs/egf/fc1.fcore"
           name="fc1"/>
     </viewpoints>
   </viewpointContainer>
@@ -63,8 +59,6 @@
             invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_M2YOIdqHEd6xR_hM8cx7GA"/>
         <invocationContracts xmi:id="_WXZRYNqHEd6xR_hM8cx7GA" factoryComponentContract="#_zb0TwNgfEd6na6OAqTVobQ"
             invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_TwNMsNqHEd6xR_hM8cx7GA"/>
-        <invocationContracts xmi:id="_1tu5wDJ5Ed-JWMmof-srJA" factoryComponentContract="#_NjOPkTJ3Ed-j_vZT1LHkyw"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_yEOccTJ5Ed-JWMmof-srJA"/>
       </invocationContractContainer>
     </invocations>
   </orchestration>
