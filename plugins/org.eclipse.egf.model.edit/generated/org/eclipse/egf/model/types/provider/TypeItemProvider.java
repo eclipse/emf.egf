@@ -85,7 +85,8 @@ public class TypeItemProvider extends TypeElementItemProvider implements IEditin
     images.add(image);
     if (type.getValue() != null) {
       images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
-    } else if (AdapterFactoryEditingDomain.isControlled(object)) {
+    }
+    if (AdapterFactoryEditingDomain.isControlled(object)) {
       images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
     }
     return new ComposedImage(images);
