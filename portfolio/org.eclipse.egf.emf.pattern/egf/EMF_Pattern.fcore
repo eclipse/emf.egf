@@ -14,10 +14,6 @@
           description="EMF Model Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUH4VhdEd-5FJ833LkcRA">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH5FhdEd-5FJ833LkcRA"/>
       </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqTVhcEd-5FJ833LkcRA"
-          description="EMF Model Pattern" name="pattern.ids" invocationContracts="#_ezUH5VhdEd-5FJ833LkcRA">
-        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH6FhdEd-5FJ833LkcRA"/>
-      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_OVsagFHVEd-dr9AWwNwIMQ"
           description="EMF Model Pattern" name="pattern.substitutions" invocationContracts="#_ezUH6VhdEd-5FJ833LkcRA">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ezUH61hdEd-5FJ833LkcRA"/>
@@ -421,8 +417,7 @@
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH4lhdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_ezUH5VhdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqTVhcEd-5FJ833LkcRA"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <invocationContracts xmi:id="_ezUH5VhdEd-5FJ833LkcRA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH5lhdEd-5FJ833LkcRA"
                 elements="#_Pcm9szG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
@@ -443,10 +438,6 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_jzYi8FIIEd-eGOdO3WtsxA"
           description="EMF Edit Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUH9lhdEd-5FJ833LkcRA">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH-VhdEd-5FJ833LkcRA"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqYlhcEd-5FJ833LkcRA"
-          description="EMF Edit Pattern" name="pattern.ids" invocationContracts="#_ezUH-lhdEd-5FJ833LkcRA">
-        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH_VhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_UCnhEFHVEd-dr9AWwNwIMQ"
           description="EMF Edit Pattern" name="pattern.substitutions" invocationContracts="#_ezUH_lhdEd-5FJ833LkcRA">
@@ -683,8 +674,7 @@
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUH91hdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_ezUH-lhdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqYlhcEd-5FJ833LkcRA"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <invocationContracts xmi:id="_ezUH-lhdEd-5FJ833LkcRA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_ezUH-1hdEd-5FJ833LkcRA"
                 elements="#_PiIW4zG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
@@ -705,10 +695,6 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_pCqEMFIIEd-eGOdO3WtsxA"
           description="EMF Editor Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUIC1hdEd-5FJ833LkcRA">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIDlhdEd-5FJ833LkcRA"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqd1hcEd-5FJ833LkcRA"
-          description="EMF Editor Pattern" name="pattern.ids" invocationContracts="#_ezUID1hdEd-5FJ833LkcRA">
-        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIElhdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Y3EukFHVEd-dr9AWwNwIMQ"
           description="EMF Editor Pattern" name="pattern.substitutions" invocationContracts="#_ezUIE1hdEd-5FJ833LkcRA">
@@ -966,8 +952,7 @@
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIDFhdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_ezUID1hdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqd1hcEd-5FJ833LkcRA"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <invocationContracts xmi:id="_ezUID1hdEd-5FJ833LkcRA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIEFhdEd-5FJ833LkcRA"
                 elements="#_PkqGczG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
@@ -988,10 +973,6 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tvg04FIIEd-eGOdO3WtsxA"
           description="EMF Tests Pattern" name="pattern.execution.reporter" invocationContracts="#_ezUIIFhdEd-5FJ833LkcRA">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUII1hdEd-5FJ833LkcRA"/>
-      </contracts>
-      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sxyqjFhcEd-5FJ833LkcRA"
-          description="EMF Tests Pattern" name="pattern.ids" invocationContracts="#_ezUIJFhdEd-5FJ833LkcRA">
-        <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIJ1hdEd-5FJ833LkcRA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_eYFgEFHVEd-dr9AWwNwIMQ"
           description="EMF Tests Pattern" name="pattern.substitutions" invocationContracts="#_ezUIKFhdEd-5FJ833LkcRA">
@@ -1186,8 +1167,7 @@
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ezUIIVhdEd-5FJ833LkcRA"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_ezUIJFhdEd-5FJ833LkcRA" factoryComponentContract="#_sxyqjFhcEd-5FJ833LkcRA"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <invocationContracts xmi:id="_ezUIJFhdEd-5FJ833LkcRA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_ezUIJVhdEd-5FJ833LkcRA"
                 elements="#_PoO-4jG0Ed-kc8dEZsdm2w"/>
           </invocationContracts>
