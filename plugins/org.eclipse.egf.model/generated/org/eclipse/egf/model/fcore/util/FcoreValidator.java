@@ -704,6 +704,8 @@ public class FcoreValidator extends EObjectValidator {
       result &= validateInvocationContract_ValidSourceInvocationContractType(invocationContract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateInvocationContract_UselessTypeValue(invocationContract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContract_UselessInvocationContract(invocationContract, diagnostics, context);
     return result;
   }
 
@@ -980,6 +982,28 @@ public class FcoreValidator extends EObjectValidator {
             return false;
           }
         }
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Validates the UselessInvocationContract constraint of '<em>Invocation Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContract_UselessInvocationContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContract.getInvokedMode() == ContractMode.OUT) {
+      return true;
+    }
+    if (invocationContract.getOrchestrationParameter() == null || invocationContract.getFactoryComponentContract() == null || invocationContract.getSourceInvocationContract() == null) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "UselessInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract has no input" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { invocationContract }, context));
+        return false;
       }
     }
     return true;
