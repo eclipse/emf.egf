@@ -108,7 +108,7 @@ public class TypeURIItemProvider extends TypeObjectItemProvider implements IEdit
   public String getText(Object object) {
     TypeURI typeURI = (TypeURI) object;
     String uri = null;
-    if (typeURI.getValue() != null) {
+    if (typeURI.getValue() != null && typeURI.getValue().isEmpty() == false) {
       uri = "[" + typeURI.getValue() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
     String label = "[" + getString("_UI_TypeURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
