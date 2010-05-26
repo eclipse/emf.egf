@@ -72,7 +72,7 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
         String ctxName = "ctx_" + PatternHelper.generateID();
         content.append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append(ctxName).append(".setValue(").append("PatternContext.INJECTED_CONTEXT, ").append(call.getContext().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("CallHelper.execute(\"").append(pattern.getID()).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("CallHelper.executeWithContextInjection(\"").append(pattern.getID()).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     @Override
@@ -97,7 +97,7 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
         String ctxName = "ctx_" + PatternHelper.generateID();
         content.append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
 
-        content.append("CallHelper.executeWithInjection(\"").append(pattern.getID()).append("\", ").append(ctxName).append(", parameters);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("CallHelper.executeWithParameterInjection(\"").append(pattern.getID()).append("\", ").append(ctxName).append(", parameters);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
