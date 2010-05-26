@@ -379,7 +379,7 @@ if (arguments != null)
     
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("argument", parameter);
-CallHelper.executeWithInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
 
     stringBuffer.append(TEXT_2);
     String _ListOfString = "List" + (genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.String") + ">" : "");

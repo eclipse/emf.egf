@@ -198,7 +198,7 @@ if (arguments != null)
     
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("argument", parameter);
-CallHelper.executeWithInjection("__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+CallHelper.executeWithParameterInjection("__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
 
     stringBuffer.append(TEXT_2);
     if (genModel.isBundleManifest()) {

@@ -168,7 +168,7 @@ if (arguments != null)
     
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("argument", parameter);
-CallHelper.executeWithInjection("_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+CallHelper.executeWithParameterInjection("_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelName());
