@@ -43,6 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -51,6 +52,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypeDomainURIItemProvider(AdapterFactory adapterFactory) {
@@ -61,6 +63,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -100,6 +103,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This adds a property descriptor for the Value feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addValuePropertyDescriptor(Object object) {
@@ -113,6 +117,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * This returns TypeDomainURI.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -131,7 +136,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
   public String getText(Object object) {
     TypeDomainURI typeDomainEPackage = (TypeDomainURI) object;
     String nsuri = null;
-    if (typeDomainEPackage.getValue() != null) {
+    if (typeDomainEPackage.getValue() != null && typeDomainEPackage.getValue().isEmpty() == false) {
       nsuri = "[" + typeDomainEPackage.getValue() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
     String label = "[" + getString("_UI_TypeDomainURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -146,6 +151,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -166,6 +172,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -177,6 +184,7 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
