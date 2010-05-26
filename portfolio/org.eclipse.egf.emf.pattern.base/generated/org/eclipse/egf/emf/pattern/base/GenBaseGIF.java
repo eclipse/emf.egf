@@ -55,6 +55,10 @@ int executionIndex = ictx.getExecutionBuffer().length();
 
     
 String loop = ictx.getBuffer().toString();
+if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+    ictx.setExecutionCurrentIndex(0);
+    ictx.clearBuffer();}
 return loop;
 } 
 

@@ -74,8 +74,8 @@ method_body(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__Ez_QEFgEd7_ZgNDDfr_g = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_VA72IFdJEd-TZKuCZ4UIfg", ctx__Ez_QEFgEd7_ZgNDDfr_g, parameters);
+ExecutionContext ctx__1CrVYFjrEdkve86Js2iPQ = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("_VA72IFdJEd-TZKuCZ4UIfg", ctx__1CrVYFjrEdkve86Js2iPQ, parameters);
 }
 
     

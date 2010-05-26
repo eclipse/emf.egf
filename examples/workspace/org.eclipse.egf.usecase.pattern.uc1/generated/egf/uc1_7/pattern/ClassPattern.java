@@ -71,9 +71,9 @@ int executionIndex = ictx.getExecutionBuffer().length();
 method_body(ictx.getBuffer(), ictx);
     
 method_setupVariable(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__ePJt0EPwEdPqL2cWqhi6Q = new ExecutionContext(ictx);
-ctx__ePJt0EPwEdPqL2cWqhi6Q.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__ePJt0EPwEdPqL2cWqhi6Q);
+    ExecutionContext ctx__4S7lMFjrEdkve86Js2iPQ = new ExecutionContext(ictx);
+ctx__4S7lMFjrEdkve86Js2iPQ.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.executeWithContextInjection("_RdSMYBViEd-JoY-b5_Vpcw", ctx__4S7lMFjrEdkve86Js2iPQ);
 
 
     

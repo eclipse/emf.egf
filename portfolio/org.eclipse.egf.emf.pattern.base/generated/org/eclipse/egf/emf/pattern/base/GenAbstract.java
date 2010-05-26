@@ -69,6 +69,10 @@ method_putCanGenerateInContext(ictx.getBuffer(), ictx);
 method_putContentTypeInContext(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
+if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+    ictx.setExecutionCurrentIndex(0);
+    ictx.clearBuffer();}
 return loop;
 } 
 

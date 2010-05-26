@@ -80,13 +80,13 @@ CallHelper.callBack(ctx_callback, parameters);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__EyxIEVgEd7_ZgNDDfr_g = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_4ahL8Eh5Ed-A7KV9v5yLhw", ctx__EyxIEVgEd7_ZgNDDfr_g, parameters);
+ExecutionContext ctx__1AUk8FjrEdkve86Js2iPQ = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("_4ahL8Eh5Ed-A7KV9v5yLhw", ctx__1AUk8FjrEdkve86Js2iPQ, parameters);
 }
 
-    ExecutionContext ctx__EyxIElgEd7_ZgNDDfr_g = new ExecutionContext(ictx);
-ctx__EyxIElgEd7_ZgNDDfr_g.setValue(PatternContext.INJECTED_CONTEXT, parameter);
-CallHelper.execute("_7RsNYEh5Ed-A7KV9v5yLhw", ctx__EyxIElgEd7_ZgNDDfr_g);
+    ExecutionContext ctx__1AUk8VjrEdkve86Js2iPQ = new ExecutionContext(ictx);
+ctx__1AUk8VjrEdkve86Js2iPQ.setValue(PatternContext.INJECTED_CONTEXT, parameter);
+CallHelper.executeWithContextInjection("_7RsNYEh5Ed-A7KV9v5yLhw", ctx__1AUk8VjrEdkve86Js2iPQ);
 
 
     

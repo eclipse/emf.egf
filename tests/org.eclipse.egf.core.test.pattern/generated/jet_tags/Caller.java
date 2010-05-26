@@ -91,7 +91,7 @@ variable2="CallValue2";
     final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", variable);
 parameters.put("parameter2",  variable2);
-CallHelper.executeWithInjection("_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+CallHelper.executeWithParameterInjection("_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters);
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
@@ -99,9 +99,9 @@ CallHelper.executeWithInjection("_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext(
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");
 
-    ExecutionContext ctx__xgb98VhMEd_joEVpvUj5g = new ExecutionContext((InternalPatternContext) ctx);
-ctx__xgb98VhMEd_joEVpvUj5g.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.execute("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__xgb98VhMEd_joEVpvUj5g);
+    ExecutionContext ctx__2UPq8FjrEdkve86Js2iPQ = new ExecutionContext((InternalPatternContext) ctx);
+ctx__2UPq8FjrEdkve86Js2iPQ.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.executeWithContextInjection("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__2UPq8FjrEdkve86Js2iPQ);
 
     stringBuffer.append(TEXT_3);
     }
