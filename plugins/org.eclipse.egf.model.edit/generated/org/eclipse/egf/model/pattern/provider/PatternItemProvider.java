@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -181,7 +182,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
   @Override
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
-      super.getChildrenFeatures(object);
+      childrenFeatures = new ArrayList<EStructuralFeature>();
     }
     return childrenFeatures;
   }
@@ -264,16 +265,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
    */
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    // super.collectNewChildDescriptors(newChildDescriptors, object);
-    //
-    // newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__METHODS,
-    // PatternFactory.eINSTANCE.createPatternMethod()));
-    //
-    // newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__PARAMETERS,
-    // PatternFactory.eINSTANCE.createPatternParameter()));
-    //
-    // newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__VARIABLES,
-    // PatternFactory.eINSTANCE.createPatternVariable()));
+    // Nothing to do
   }
 
 }
