@@ -998,7 +998,7 @@ public class FcoreValidator extends EObjectValidator {
     if (invocationContract.getInvokedMode() == ContractMode.OUT) {
       return true;
     }
-    if (invocationContract.getOrchestrationParameter() == null || invocationContract.getFactoryComponentContract() == null || invocationContract.getSourceInvocationContract() == null) {
+    if (invocationContract.getOrchestrationParameter() == null && invocationContract.getFactoryComponentContract() == null && invocationContract.getSourceInvocationContract() == null) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
             new Object[] { "UselessInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract has no input" }, //$NON-NLS-1$ //$NON-NLS-2$
