@@ -21,7 +21,7 @@
     	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternListPropertyEditorContributor"/>
     	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionPropertyEditorContributor"/>
     	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionIncommingPropertyEditorContributor"/>
-    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionOutcommingPropertyEditorContributor"/>
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionOutgoingPropertyEditorContributor"/>
   	</extension>  
 
 
