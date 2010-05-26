@@ -62,18 +62,12 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
    * This returns the property descriptors for the adapted class. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   @Override
   public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
-
-      addHeaderMethodPropertyDescriptor(object);
-      addFooterMethodPropertyDescriptor(object);
-      addSuperPatternPropertyDescriptor(object);
-      addOrchestrationPropertyDescriptor(object);
-      addInitMethodPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
