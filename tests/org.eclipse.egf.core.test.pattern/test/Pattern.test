@@ -68,10 +68,17 @@
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_extension_2.fcore#_vxrhQElSEd-TSsH7K-_bxQ"/>
     </tests>
   </tests>
+  <tests xsi:type="test:TestSuite" name="PatternCalls">
+    <tests xsi:type="test:EGFTestCase" name="call with parameter">
+      <result xsi:type="test:ConsoleOutputTestResult" text="Caller on Employee&#xA;callee on Employee&#xA;&#xA;Caller on Company&#xA;callee on Company&#xA;&#xA;Caller on Test&#xA;callee on Test&#xA;&#xA;Caller on Employee&#xA;callee on Employee&#xA;Caller on Company&#xA;callee on Company&#xA;Caller on Test&#xA;callee on Test&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_2.fcore#_8eIOsVdIEd-TZKuCZ4UIfg"/>
+    </tests>
+  </tests>
   <tests xsi:type="test:TestSuite" name="Jet Tags Library">
     <tests xsi:type="test:EGFTestCase" name="Jet tags test">
       <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xD;&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xD;&#xA;loop finished:&#xD;&#xA;Callee : className=MyClassName"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
     </tests>
   </tests>
+  
 </test:TestSuite>

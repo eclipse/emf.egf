@@ -4,7 +4,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Pattern
 Bundle-SymbolicName: org.eclipse.egf.core.test.pattern;singleton:=true
 Export-Package: base,
- base.substitution,
  callbackAndReporter,
  callbackAndReporter2,
  callbackAndReporter3,
@@ -19,7 +18,7 @@ Export-Package: base,
  jet_tags,
  no_callback.strategy,
  org.eclipse.egf.core.test.pattern,
- substitution.another.base,
- substitution.another.call
+ pattern.call1,
+ substitution.another.base
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.1.1.qualifier

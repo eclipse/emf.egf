@@ -7,13 +7,13 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class BasePattern 
+public class myPattern 
 {
   protected static String nl;
-  public static synchronized BasePattern create(String lineSeparator)
+  public static synchronized myPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    BasePattern result = new BasePattern();
+    myPattern result = new myPattern();
     nl = null;
     return result;
   }
@@ -23,7 +23,7 @@ public class BasePattern
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
 
-	public BasePattern()
+	public myPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_aEI0EVa2Ed-upsLSxDR5IA"
+    name="patternCall_1">
+  <viewpointContainer xmi:id="_bx6kgFa2Ed-upsLSxDR5IA">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_ekxGoFa2Ed-upsLSxDR5IA">
+      <libraries xmi:id="_fCKNQFa2Ed-upsLSxDR5IA" name="pattern.call1">
+        <elements xmi:type="pattern:Pattern" xmi:id="_h21UUFa2Ed-upsLSxDR5IA" name="Caller"
+            headerMethod="#_h21UUVa2Ed-upsLSxDR5IA" footerMethod="#_h21UVFa2Ed-upsLSxDR5IA"
+            initMethod="#_h21UUla2Ed-upsLSxDR5IA">
+          <methods xmi:id="_h21UUVa2Ed-upsLSxDR5IA" name="header" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UUVa2Ed-upsLSxDR5IA.pt"/>
+          <methods xmi:id="_h21UUla2Ed-upsLSxDR5IA" name="init" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UUla2Ed-upsLSxDR5IA.pt"/>
+          <methods xmi:id="_h21UU1a2Ed-upsLSxDR5IA" name="body" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UU1a2Ed-upsLSxDR5IA.pt"/>
+          <methods xmi:id="_h21UVFa2Ed-upsLSxDR5IA" name="footer" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UVFa2Ed-upsLSxDR5IA.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_L-lbYFbGEd-MSLcycw9zzA"
+              called="#_h21UU1a2Ed-upsLSxDR5IA"/>
+          <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_jI57AFbIEd-MSLcycw9zzA"
+              called="#_F9NFkFa3Ed-upsLSxDR5IA" context="#_iP-u8FbIEd-MSLcycw9zzA"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_h21UVla2Ed-upsLSxDR5IA"
+              name="JET"/>
+          <variables xmi:id="_iP-u8FbIEd-MSLcycw9zzA" name="variable" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_F9NFkFa3Ed-upsLSxDR5IA" description=" "
+            name="Callee" headerMethod="#_F9NFkVa3Ed-upsLSxDR5IA" footerMethod="#_F9NFlFa3Ed-upsLSxDR5IA"
+            initMethod="#_F9NFkla3Ed-upsLSxDR5IA">
+          <methods xmi:id="_F9NFkVa3Ed-upsLSxDR5IA" name="header" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFkVa3Ed-upsLSxDR5IA.pt"/>
+          <methods xmi:id="_F9NFkla3Ed-upsLSxDR5IA" name="init" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFkla3Ed-upsLSxDR5IA.pt"/>
+          <methods xmi:id="_F9NFk1a3Ed-upsLSxDR5IA" name="body" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFk1a3Ed-upsLSxDR5IA.pt"/>
+          <methods xmi:id="_F9NFlFa3Ed-upsLSxDR5IA" name="footer" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFlFa3Ed-upsLSxDR5IA.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_F9NFlVa3Ed-upsLSxDR5IA"/>
+          <nature xmi:type="javapattern:JavaNature" xmi:id="_F9NFlla3Ed-upsLSxDR5IA"
+              name="Java"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_gE0tsFbCEd-MSLcycw9zzA">
+    <invocations xmi:id="_Az8H4FbGEd-MSLcycw9zzA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+      <invocationContractContainer xmi:id="_Az8H4VbGEd-MSLcycw9zzA">
+        <invocationContracts xmi:id="_Az8H4lbGEd-MSLcycw9zzA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_FAdLoFbGEd-MSLcycw9zzA"
+              elements="#_h21UUFa2Ed-upsLSxDR5IA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_Az8H5FbGEd-MSLcycw9zzA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_Ib-3UFbGEd-MSLcycw9zzA"
+              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter2"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>
