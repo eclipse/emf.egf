@@ -257,9 +257,8 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     InvocationContract invocationContract = (InvocationContract) object;
     List<Object> images = new ArrayList<Object>(3);
     images.add(image);
-    if (invocationContract.getFactoryComponentContract() == null && invocationContract.getOrchestrationParameter() == null && invocationContract.getSourceInvocationContract() == null
-        && (invocationContract.getTargetInvocationContract() == null || invocationContract.getTargetInvocationContract().size() == 0)) {
-      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/IsNotUsed")); //$NON-NLS-1$
+    if (invocationContract.getFactoryComponentContract() != null || invocationContract.getOrchestrationParameter() != null || invocationContract.getSourceInvocationContract() != null) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/HasAnInput")); //$NON-NLS-1$
     }
     if (AdapterFactoryEditingDomain.isControlled(object)) {
       images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
