@@ -12,9 +12,11 @@
  */
 package org.eclipse.egf.model.fcore.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.helper.OrchestrationParameterHelper;
@@ -22,7 +24,10 @@ import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -133,6 +138,27 @@ public class OrchestrationParameterItemProvider extends NamedModelElementItemPro
   @Override
   public Object getImage(Object object) {
     return overlayImage(object, getResourceLocator().getImage("full/obj16/OrchestrationParameter")); //$NON-NLS-1$
+  }
+
+  /**
+   * This adds an overlay to the given image if the object is controlled.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected Object overlayImage(Object object, Object image) {
+    OrchestrationParameter orchestrationParameter = (OrchestrationParameter) object;
+    List<Object> images = new ArrayList<Object>(3);
+    images.add(image);
+    if (orchestrationParameter.getInvocationContracts() == null || orchestrationParameter.getInvocationContracts().size() == 0) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/IsNotUsed")); //$NON-NLS-1$
+    }
+    if (AdapterFactoryEditingDomain.isControlled(object)) {
+      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    }
+    return new ComposedImage(images);
   }
 
   /**

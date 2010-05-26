@@ -16,11 +16,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.helper.FactoryComponentContractHelper;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -93,21 +96,39 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
   }
 
   /**
-   * This returns FactoryComponentContract.gif.
+   * This adds an overlay to the given image if the object is controlled.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
   @Override
-  public Object getImage(Object object) {
-    FactoryComponentContract contract = (FactoryComponentContract) object;
-    List<Object> images = new ArrayList<Object>(2);
-    images.add(getResourceLocator().getImage("full/obj16/FactoryComponentContract")); //$NON-NLS-1$
-    if (contract.isMandatory()) {
+  protected Object overlayImage(Object object, Object image) {
+    FactoryComponentContract factoryComponentContract = (FactoryComponentContract) object;
+    List<Object> images = new ArrayList<Object>(3);
+    images.add(image);
+    if (factoryComponentContract.getInvocationContracts() == null || factoryComponentContract.getInvocationContracts().size() == 0) {
+      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/IsNotUsed")); //$NON-NLS-1$
+    }
+    if (factoryComponentContract.isMandatory()) {
       images.add(getResourceLocator().getImage("full/ovr16/Mandatory")); //$NON-NLS-1$
     }
+    if (AdapterFactoryEditingDomain.isControlled(object)) {
+      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    }
     return new ComposedImage(images);
+  }
+
+  /**
+   * This returns FactoryComponentContract.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/FactoryComponentContract")); //$NON-NLS-1$    
   }
 
   /**

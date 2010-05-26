@@ -22,6 +22,8 @@ import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -135,21 +137,36 @@ public class ContractItemProvider extends NamedModelElementItemProvider implemen
   }
 
   /**
-   * This returns Contract.gif.
+   * This adds an overlay to the given image if the object is controlled.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
   @Override
-  public Object getImage(Object object) {
+  protected Object overlayImage(Object object, Object image) {
     Contract contract = (Contract) object;
     List<Object> images = new ArrayList<Object>(2);
-    images.add(getResourceLocator().getImage("full/obj16/Contract")); //$NON-NLS-1$
+    images.add(image);
     if (contract.isMandatory()) {
       images.add(getResourceLocator().getImage("full/ovr16/Mandatory")); //$NON-NLS-1$
     }
+    if (AdapterFactoryEditingDomain.isControlled(object)) {
+      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+    }
     return new ComposedImage(images);
+  }
+
+  /**
+   * This returns Contract.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Contract")); //$NON-NLS-1$    
   }
 
   /**
