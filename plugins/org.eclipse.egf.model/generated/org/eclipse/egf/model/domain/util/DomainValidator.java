@@ -19,7 +19,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainEPackage;
@@ -326,7 +326,7 @@ public class DomainValidator extends EObjectValidator {
     URI uri = domainURI.getUri();
     boolean valid = true;
     try {
-      InputStream inputStream = EMFHelper.openStream(uri);
+      InputStream inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
       inputStream.close();
     } catch (IOException exception) {
       valid = false;

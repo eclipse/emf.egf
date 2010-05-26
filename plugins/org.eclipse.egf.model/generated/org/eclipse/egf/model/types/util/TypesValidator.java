@@ -22,7 +22,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.helper.ValidationHelper;
@@ -885,7 +885,7 @@ public class TypesValidator extends EObjectValidator {
     URI uri = typeURI.getValue();
     boolean valid = true;
     try {
-      InputStream inputStream = EMFHelper.openStream(uri);
+      InputStream inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
       inputStream.close();
     } catch (IOException exception) {
       valid = false;

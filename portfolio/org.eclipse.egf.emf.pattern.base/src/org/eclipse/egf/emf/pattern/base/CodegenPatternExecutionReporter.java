@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
-import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -100,7 +100,7 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
     }
     // TODO: We should handle relative path to its fcore resource
     try {
-      InputStream inputStream = EMFHelper.openStream(uri);
+      InputStream inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
       inputStream.close();
     } catch (IOException ioe) {
       Activator.getDefault().logError(NLS.bind("Unable to locate URI ''{0}''", uri), ioe); //$NON-NLS-1$
