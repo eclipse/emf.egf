@@ -2,7 +2,7 @@
 <feature
   id="org.eclipse.egf.examples"
   label="%featureName"
-  version="0.2.3.qualifier"
+  version="0.2.4.qualifier"
   provider-name="%providerName"
   plugin="org.eclipse.egf.examples.uc1"
   image="eclipse_update_120.jpg"
@@ -49,14 +49,54 @@ http://www.eclipse.org/legal/epl-v10.html
   <includes
     id="org.eclipse.egf.examples.source"
     version="0.0.0"
-  />     
-
+  />
+  
   <plugin
-    id="org.eclipse.egf.examples.uc1"
+    id="org.eclipse.egf.example.emf.docgen.html"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />   
+  
+  <plugin
+    id="org.eclipse.egf.example.fcs"
     download-size="0"
     install-size="0"
     version="0.0.0"
     unpack="false"
   />
+  
+  <plugin
+    id="org.eclipse.egf.example.strategy.modeldriven"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+
+  <plugin
+    id="org.eclipse.egf.example.task.h1"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />      
+
+  <plugin
+    id="org.eclipse.egf.usecase.fc.uc1"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+  
+  <plugin
+    id="org.eclipse.egf.usecase.pattern.uc1"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />  
 
 </feature>
