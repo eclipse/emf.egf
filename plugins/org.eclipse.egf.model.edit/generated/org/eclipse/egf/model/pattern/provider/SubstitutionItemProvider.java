@@ -43,6 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Substitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SubstitutionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
@@ -51,6 +52,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public SubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -61,6 +63,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -78,6 +81,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * This adds a property descriptor for the Outcoming feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addOutcomingPropertyDescriptor(Object object) {
@@ -90,6 +94,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * This adds a property descriptor for the Incoming feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addIncomingPropertyDescriptor(Object object) {
@@ -101,6 +106,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -112,6 +118,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * This returns Substitution.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -159,13 +166,17 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-    if (notification.getFeature() == null) {
+
+    switch (notification.getFeatureID(Substitution.class)) {
+    case PatternPackage.SUBSTITUTION__OUTCOMING:
+    case PatternPackage.SUBSTITUTION__INCOMING:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
     }
     super.notifyChanged(notification);
   }
@@ -175,6 +186,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -186,6 +198,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

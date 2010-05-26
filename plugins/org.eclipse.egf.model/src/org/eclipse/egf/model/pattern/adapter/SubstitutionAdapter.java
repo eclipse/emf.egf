@@ -40,7 +40,7 @@ public class SubstitutionAdapter extends AdapterImpl {
     @Override
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
-        _substitution.eNotify(new ENotificationImpl((InternalEObject) _substitution, -1, null, null, null) {
+        _substitution.eNotify(new ENotificationImpl((InternalEObject) _substitution, -1, _substitutionOutcomingFeature, null, null) {
           @Override
           public boolean isTouch() {
             return true;
@@ -60,27 +60,17 @@ public class SubstitutionAdapter extends AdapterImpl {
   public void notifyChanged(Notification notification) {
     if (notification.getFeature() == null || notification.getFeature().equals(_substitutionOutcomingFeature)) {
       switch (notification.getEventType()) {
-      case Notification.RESOLVE:
-        EObject newValue = EcoreUtil.getRootContainer((Pattern) notification.getNewValue());
-        EObject oldValue = EcoreUtil.getRootContainer((Pattern) notification.getOldValue());
-        if (oldValue != null) {
-          oldValue.eAdapters().remove(_nameAdapter);
-        }
-        if (newValue != null && newValue.eAdapters().contains(_nameAdapter) == false) {
-          newValue.eAdapters().add(_nameAdapter);
-        }
-        _root = newValue;
-        break;
       case Notification.SET:
-        newValue = EcoreUtil.getRootContainer((Pattern) notification.getNewValue());
-        oldValue = EcoreUtil.getRootContainer((Pattern) notification.getOldValue());
+      case Notification.RESOLVE:
+        EObject newValue = EcoreUtil.getRootContainer((Pattern) notification.getNewValue(), true);
+        EObject oldValue = EcoreUtil.getRootContainer((Pattern) notification.getOldValue(), true);
         if (oldValue != null && oldValue != notification.getOldValue()) {
           oldValue.eAdapters().remove(_nameAdapter);
         }
         if (newValue != null && newValue != notification.getNewValue() && newValue.eAdapters().contains(_nameAdapter) == false) {
           newValue.eAdapters().add(_nameAdapter);
+          _root = newValue;
         }
-        _root = newValue;
         break;
       case Notification.REMOVING_ADAPTER:
         if (_root != null) {
@@ -92,5 +82,4 @@ public class SubstitutionAdapter extends AdapterImpl {
       }
     }
   }
-
 }
