@@ -58,6 +58,30 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
     }
   }
 
+  @Override
+  public URI normalize(URI uri) {
+    // Lock PlatformURIConverter
+    synchronized (__lock) {
+      return super.normalize(uri);
+    }
+  }
+
+  /**
+   * Returns the internal version of the URI map.
+   * This version do not delegate to the emf global registry
+   * 
+   * @return the internal version of the URI map.
+   */
+  @Override
+  protected URIMap getInternalURIMap() {
+    if (uriMap == null) {
+      URIMappingRegistryImpl mappingRegistryImpl = new URIMappingRegistryImpl();
+      uriMap = (URIMap) mappingRegistryImpl.map();
+    }
+
+    return uriMap;
+  }
+
   /**
    * Dispose.
    */
@@ -118,21 +142,6 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
     result.putAll(pluginToResource);
     result.putAll(resourceToPlugin);
     return result;
-  }
-
-  /**
-   * Returns the internal version of the URI map.
-   * 
-   * @return the internal version of the URI map.
-   */
-  @Override
-  protected URIMap getInternalURIMap() {
-    if (uriMap == null) {
-      URIMappingRegistryImpl mappingRegistryImpl = new URIMappingRegistryImpl();
-      uriMap = (URIMap) mappingRegistryImpl.map();
-    }
-
-    return uriMap;
   }
 
 }
