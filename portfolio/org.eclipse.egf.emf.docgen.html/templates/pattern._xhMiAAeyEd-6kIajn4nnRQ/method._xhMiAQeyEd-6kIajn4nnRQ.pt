@@ -1,0 +1,1 @@
+<%@ jet package="emf.docgen.html.forStrategy" class="EnumerationReport" imports="java.util.* org.eclipse.emf.ecore.* org.eclipse.emf.common.util.EList org.eclipse.egf.model.pattern.* org.eclipse.egf.pattern.execution.* org.eclipse.egf.pattern.query.* org.eclipse.egf.emf.docgen.html.util.*"  %>

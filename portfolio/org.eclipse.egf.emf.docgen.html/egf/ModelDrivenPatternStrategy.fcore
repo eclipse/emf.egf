@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_h96TwAUUEd-UW6M01HV7DA"
+    name="Model driven pattern strategy task - Doc Gen" superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+  <contractContainer xmi:id="_sbuWcAUUEd-UW6M01HV7DA">
+    <contracts xmi:id="_Fi1fAApeEd-pyqf4uNW3tw" name="projectName" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_H9gxsApeEd-pyqf4uNW3tw"/>
+    </contracts>
+    <contracts xmi:id="_K7Wb0ApeEd-pyqf4uNW3tw" name="outputFolder" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_PnKqsApeEd-pyqf4uNW3tw"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

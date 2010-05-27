@@ -1,0 +1,9 @@
+<%
+GenPackage genPackage = parameter;
+targetPath = genModel.getModelDirectory();
+packageName = genPackage.getReflectionClassPackageName();
+className = genPackage.getFactoryClassName();
+arguments = new Object[]{new Object[]{genPackage,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+canGenerate = canGenerate && (genPackage.hasClassifiers());
+%>

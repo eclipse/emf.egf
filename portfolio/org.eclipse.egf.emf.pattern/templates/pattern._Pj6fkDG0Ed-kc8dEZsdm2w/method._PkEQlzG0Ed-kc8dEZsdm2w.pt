@@ -1,0 +1,21 @@
+<%
+if (!canGenerate)
+    return;
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+GenPackage genPackage = parameter;
+GenModel genModel=genPackage.getGenModel();
+if (genModel.isCreationCommands() && genModel.isCreationIcons() && genPackage.isChildCreationExtenders()) {
+  for (  Map.Entry<GenPackage,Map<GenClass,List<GenClass.ChildCreationData>>> packageEntry : genPackage.getExtendedChildCreationData().entrySet()) {
+    for (    Map.Entry<GenClass,List<GenClass.ChildCreationData>> classEntry : packageEntry.getValue().entrySet()) {
+      GenClass genClass=classEntry.getKey();
+      for (      GenClass.ChildCreationData childCreationData : classEntry.getValue()) {
+        if (childCreationData.createClassifier instanceof GenClass && (childCreationData.delegatedFeature == null || classEntry.getKey().getAllGenFeatures().contains(childCreationData.delegatedFeature))) {
+          GenClass childClass=(GenClass)childCreationData.createClassifier;
+          GenFeature feature=childCreationData.createFeature;
+new CodegenGeneratorAdapter(parameter).generateGIF("edit/CreateChild.gif", genClass.getCreateChildIconFileName(genModel,feature,childClass), genClass.getName(), childClass.getName(), false);
+        }
+      }
+    }
+  }
+}
+%>

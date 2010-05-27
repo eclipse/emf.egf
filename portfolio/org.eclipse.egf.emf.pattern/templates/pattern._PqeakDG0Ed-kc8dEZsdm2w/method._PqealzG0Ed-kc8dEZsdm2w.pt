@@ -1,0 +1,9 @@
+<%
+GenPackage genPackage = parameter;
+targetPath = genPackage.getGenModel().getTestsDirectory();
+packageName = genPackage.getTestsPackageName();
+className = genPackage.getExampleClassName();
+arguments = null;
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
+canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.isGenerateExampleClass());
+%>

@@ -1,0 +1,41 @@
+<% EList<EOperation> operations = ((EClass) _element).getEAllOperations();%>
+
+<% if (operations.size() > 0) { %>
+	<h2>Operations</h2>
+		<table border=1 cellspacing="0" width="100%">
+		<tr>
+			<th align=left>Name</th>
+			<th>Bounds</th>
+			<th>Return</th>
+			<th>Parameter(s)</th>
+			<th>Required</th>
+			<th>Ordered</th>
+			<th>Unique</th>
+		</tr>
+	<% for (EOperation _EOperation : operations) { %>
+		<tr>
+   			<td align=left><b><%= EmfHtmlDocGen.getName(_EOperation) %></b></td>
+   			<td align=center><%= EmfHtmlDocGen.getBounds(_EOperation) %></td>
+   			<td align=center>
+   				<% if (_EOperation.getEType() != null) {%>
+   				<%= _EOperation.getEType().getName() %>
+   				<% }
+   				   else {%>
+   				<%= "-"%>
+   				<%}%>
+   			</td>
+			<td align=left>
+				<% for (EParameter _EParameter : _EOperation.getEParameters()) { %>
+					<p><%= EmfHtmlDocGen.getName(_EParameter) %> - <%= EmfHtmlDocGen.getName(_EParameter.getEType()) %></p>
+				<%} // end for%>
+			</td>
+   			<td align=center><%= _EOperation.isRequired() %></td>
+   			<td align=center><%= _EOperation.isOrdered() %></td>
+   			<td align=center><%= _EOperation.isUnique() %></td>
+
+   		</tr>
+
+
+	<%} // end for%>
+	</table>
+<% } // end if %>

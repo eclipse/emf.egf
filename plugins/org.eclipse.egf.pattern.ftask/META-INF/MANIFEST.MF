@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-SymbolicName: org.eclipse.egf.pattern.ftask;singleton:=true
+Bundle-Version: 0.2.4.qualifier
+Bundle-Activator: org.eclipse.egf.pattern.ftask.Activator
+Bundle-Localization: plugin
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.egf.pattern,
+ org.eclipse.egf.core.producer,
+ org.eclipse.egf.model.ftask
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Export-Package: 
+ org.eclipse.egf.pattern.ftask,
+ org.eclipse.egf.pattern.ftask.tasks

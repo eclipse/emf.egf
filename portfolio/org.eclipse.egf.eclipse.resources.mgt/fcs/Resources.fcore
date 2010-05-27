@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <ftask:Task xmi:id="_d5v1IAqCEd-JA8Js2pdQ0g" description="Create an eclipse project. Does nothing if the project already exists. Open it if it exists but is closed."
+      name="CreateProject" kind="java" implementation="org.eclipse.egf.eclipse.resources.mgt.CreateProjectTask">
+    <contractContainer xmi:id="_1v2SIAqDEd-JA8Js2pdQ0g">
+      <contracts xmi:id="_1_fQoAqDEd-JA8Js2pdQ0g" description="Name of the project to be created."
+          name="name" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_2wOKAAqDEd-JA8Js2pdQ0g"/>
+      </contracts>
+      <contracts xmi:id="_1YyAgAqEEd-JA8Js2pdQ0g" description="Path of the project. Returns a string representation of this path which uses the platform-dependent path separator defined by java.io.File."
+          name="path" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_2c5I4AqEEd-JA8Js2pdQ0g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_bLHVECakEd-RhP-A_BvFzw" name="CreateJavaProject" kind="java"
+      implementation="org.eclipse.egf.eclipse.resources.mgt.CreateJavaProjectTask">
+    <contractContainer xmi:id="_FbHXACalEd-RhP-A_BvFzw">
+      <contracts xmi:id="_Fs2AMCalEd-RhP-A_BvFzw" name="name" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_H7ELQCalEd-RhP-A_BvFzw"/>
+      </contracts>
+      <contracts xmi:id="_VDCuICalEd-RhP-A_BvFzw" name="execution.environment">
+        <type xmi:type="types:TypeString" xmi:id="_V4FfwCalEd-RhP-A_BvFzw" value="J2SE-1.5"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+</xmi:XMI>

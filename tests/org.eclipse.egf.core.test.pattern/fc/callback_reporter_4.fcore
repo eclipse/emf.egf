@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_LFOwQEPoEd-mKPwasigGsA"
+    name="callback_reporter_4">
+  <viewpointContainer xmi:id="_MBTW8EPoEd-mKPwasigGsA">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_MmThcEPoEd-mKPwasigGsA">
+      <libraries xmi:id="_M6r2AEPoEd-mKPwasigGsA" name="callbackAndReporter4">
+        <elements xmi:type="pattern:Pattern" xmi:id="_P10xcEPoEd-mKPwasigGsA" name="ClassPattern"
+            headerMethod="#_P10xcUPoEd-mKPwasigGsA" footerMethod="#_P11YgUPoEd-mKPwasigGsA"
+            initMethod="#_P10xckPoEd-mKPwasigGsA">
+          <methods xmi:id="_P10xcUPoEd-mKPwasigGsA" name="header" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P10xcUPoEd-mKPwasigGsA.pt"/>
+          <methods xmi:id="_P10xckPoEd-mKPwasigGsA" name="init" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P10xckPoEd-mKPwasigGsA.pt"/>
+          <methods xmi:id="_P11YgEPoEd-mKPwasigGsA" name="body" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P11YgEPoEd-mKPwasigGsA.pt"/>
+          <methods xmi:id="_P11YgUPoEd-mKPwasigGsA" name="footer" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P11YgUPoEd-mKPwasigGsA.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_P11YgkPoEd-mKPwasigGsA"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_UFeBsEPoEd-mKPwasigGsA"
+              called="#_P11YgEPoEd-mKPwasigGsA"/>
+          <parameters xmi:id="_SbelEEPoEd-mKPwasigGsA" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_P11Yg0PoEd-mKPwasigGsA"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_fRq0YEPoEd-mKPwasigGsA">
+      <domains xmi:type="domain:DomainURI" xmi:id="_fomGoEPoEd-mKPwasigGsA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_aLdvkEPoEd-mKPwasigGsA">
+    <invocations xmi:id="_azOTIEPoEd-mKPwasigGsA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      <invocationContractContainer xmi:id="_chUMoEPoEd-mKPwasigGsA">
+        <invocationContracts xmi:id="_c-7VsEPoEd-mKPwasigGsA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_hRglMEPoEd-mKPwasigGsA" domain="#_fomGoEPoEd-mKPwasigGsA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_j2MIcEPoEd-mKPwasigGsA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_lqHkMEPoEd-mKPwasigGsA"
+              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter2"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_ir7UwEPoEd-mKPwasigGsA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_Sj9O0EPsEd-mKPwasigGsA"
+              elements="pattern:Pattern platform:/plugin/org.eclipse.egf.core.test.pattern/fc/callback_reporter_1.fcore#_6xCtsC26Ed-CRPSkD_BdCg pattern:Pattern platform:/plugin/org.eclipse.egf.core.test.pattern/fc/callback_reporter_1.fcore#_lRifMC26Ed-CRPSkD_BdCg #_P10xcEPoEd-mKPwasigGsA"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

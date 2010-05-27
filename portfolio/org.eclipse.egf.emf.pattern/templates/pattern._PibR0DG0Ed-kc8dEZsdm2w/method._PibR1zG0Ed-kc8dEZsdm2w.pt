@@ -1,0 +1,9 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getEditProjectDirectory() + "/build.properties";
+arguments = null;
+overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditProjectDirectory()).appendSegment("plugin.xml"));
+encoding = "ISO-8859-1";
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
+canGenerate = canGenerate && true;
+%>

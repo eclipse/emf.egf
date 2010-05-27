@@ -1,0 +1,11 @@
+<%
+variable="CallValue";
+variable2="CallValue2";
+%>
+<%@ egf:patternCall patternId="_0FqG8FaPEd-xDMudhFTQKg" args="variable:parameter, variable2:parameter2" %>
+
+<% 
+toInject = EcoreFactory.eINSTANCE.createEClass();
+toInject.setName("MyClassName");
+%>
+<%@ egf:patternInjectedCall patternId="_-d1XsFa7Ed-_dcUlU_GyPA" toInject="toInject" %>

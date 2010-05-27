@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_N9g3oElcEd-TSsH7K-_bxQ"
+    name="Merge Pattern Substitutions Task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.MergePatternSubstitutionTask">
+  <contractContainer xmi:id="_YhzVwElcEd-TSsH7K-_bxQ">
+    <contracts xmi:id="_UVURwEldEd-TSsH7K-_bxQ" name="substitution A" mandatory="true">
+      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aC11QEldEd-TSsH7K-_bxQ"/>
+    </contracts>
+    <contracts xmi:id="_ahgHMEldEd-TSsH7K-_bxQ" name="substitution B" mandatory="true">
+      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_c10TMEldEd-TSsH7K-_bxQ"/>
+    </contracts>
+    <contracts xmi:id="_gBdIwEldEd-TSsH7K-_bxQ" name="merged substitution" mandatory="true"
+        mode="Out">
+      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_yMveMEuyEd-1V_-yzWj1kQ"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>

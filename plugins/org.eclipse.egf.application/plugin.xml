@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+  <!-- ================================================================================= -->
+  <!-- Applications                                                                      -->
+  <!-- ================================================================================= -->
+
+  <extension
+    id="org.eclipse.egf.application.activity"
+    point="org.eclipse.core.runtime.applications"
+  >
+    <application>
+      <run
+        class="org.eclipse.egf.application.activity.ActivityApplication"
+      />
+    </application>
+  </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Ant ExtraClasspathEntries                                                         -->
+  <!-- ================================================================================= -->  
+  
+  <extension 
+    point="org.eclipse.ant.core.extraClasspathEntries"
+  >
+    <extraClasspathEntry 
+      library="ant_tasks/egf.ant.tasks.jar" 
+    />
+  </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Ant Taks                                                                          -->
+  <!-- ================================================================================= -->  
+
+  <extension 
+    point="org.eclipse.ant.core.antTasks"
+  >
+    <antTask 
+      library="ant_tasks/egf.ant.tasks.jar" 
+      name="egf.activities" 
+      headless="true" 
+      class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask" 
+    />
+  </extension>
+  
+</plugin>

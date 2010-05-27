@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="templateEditor" name="templateEditor" schema="schema/templateEditor.exsd"/>
+
+   	<extension 
+    	point="org.eclipse.egf.core.ui.editor.menu.contributor">
+        <contribution
+               class="org.eclipse.egf.pattern.ui.contributions.PatternMenuContributor">
+        </contribution>
+   	</extension>
+
+   	<extension
+        point="org.eclipse.egf.core.ui.editor.listener.contributor">
+        <contribution
+               class="org.eclipse.egf.pattern.ui.contributions.PatternListenerContributor">
+        </contribution>
+   	</extension>
+
+  	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternListPropertyEditorContributor"/>
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionPropertyEditorContributor"/>
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionIncommingPropertyEditorContributor"/>
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionOutgoingPropertyEditorContributor"/>
+  	</extension>  
+
+
+
+	<extension
+         point="org.eclipse.ui.editors">
+    	<editor
+            name="%patternEditorLabel"
+            extensions="fcore"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.egf.pattern.ui.editors.PatternEditorContributor"
+            class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
+            id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
+      	</editor>
+      	
+   	</extension>
+
+	<extension point="org.eclipse.ui.editors.documentProviders"> 
+	    <provider 
+	        inputTypes="org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput" 
+	        class="org.eclipse.ui.editors.text.FileDocumentProvider" 
+	        id="org.eclipse.egf.pattern.ui.editors.PatternMethodDocumentProvider"> 
+	    </provider> 
+	</extension>
+
+   	<extension point="org.eclipse.ui.elementFactories">
+   		<factory id="org.eclipse.egf.pattern.ui.pattern.factory.id" class="org.eclipse.egf.pattern.ui.editors.PatternElementFactory" /> 
+ 	</extension>
+   
+    <extension
+          id="PatternBuilder"
+          point="org.eclipse.core.resources.builders"
+          name="%EGFPatternBuilder">
+       <builder>
+       		<run
+               class="org.eclipse.egf.pattern.ui.builder.PatternBuilder">
+       		</run>
+       </builder>
+    </extension>
+    <extension
+          point="org.eclipse.emf.validation.constraintProviders">
+       <category
+             id="org.eclipse.egf.model.pattern"
+             name="pattern">
+       </category>
+       <category
+             id="org.eclipse.egf.model.patternParameter"
+             name="patternParameter">
+       </category>
+       <category
+             id="org.eclipse.egf.model.patternVariable"
+             name="patternVariable">
+       </category>
+       <constraintProvider
+             cache="true">
+          <package
+                namespaceUri="http://www.eclipse.org/egf/1.0.0/pattern">
+          </package>
+          <constraints
+                categories="org.eclipse.egf.model.pattern">
+             <constraint
+                   class="org.eclipse.egf.pattern.ui.editors.validation.PatternNonEmptyNamesConstraint"
+                   id="org.eclipse.egf.pattern.ui.PatternNameNotEmpty"
+                   lang="Java"
+                   mode="Live"
+                   name="PATTERN NON EMPTY NAME"
+                   severity="ERROR"
+                   statusCode="1">
+                <message>
+                   The pattern has been found to have no name.
+                </message>
+                <description>
+                   All patterns should have some unique identifier or name.
+                </description>
+                <target
+                      class="Pattern">
+                   <event
+                         name="Set">
+                      <feature
+                            name="name">
+                      </feature>
+                   </event>
+                   <event
+                         name="Unset">
+                      <feature
+                            name="name">
+                      </feature>
+                   </event>
+                </target>
+             </constraint>
+          </constraints>
+          <constraints
+                categories="org.eclipse.egf.model.patternParameter">
+             <constraint
+                   class="org.eclipse.egf.pattern.ui.editors.validation.ParameterNonEmptyNamesConstraint"
+                   id="org.eclipse.egf.pattern.ui.PatternParameterNameNotEmpty"
+                   lang="Java"
+                   mode="Live"
+                   name="PATTERN PARAMETER NON EMPTY NAME"
+                   severity="ERROR"
+                   statusCode="2">
+                <message>
+                   One or more parameters have been found to have no name in this table.
+                </message>
+                <description>
+                   All parameters should have some unique identifier or name.
+                </description>
+                <target
+                      class="PatternParameter">
+                   <event
+                         name="Set">
+                      <feature
+                            name="name">
+                      </feature>
+                   </event>
+                   <event
+                         name="Unset">
+                      <feature
+                            name="name">
+                      </feature>
+                   </event>
+                </target>
+             </constraint>
+          </constraints>
+          <constraints
+                categories="org.eclipse.egf.model.patternVariable">
+             <constraint
+                   class="org.eclipse.egf.pattern.ui.editors.validation.VariableNonEmptyNamesConstraint"
+                   id="org.eclipse.egf.pattern.ui.PatternVariableNameNotEmpty"
+                   lang="Java"
+                   mode="Live"
+                   name="PATTERN VARIABLE NON EMPTY NAME"
+                   severity="ERROR"
+                   statusCode="3">
+                <message>
+                   One or more variables have been found to have no name in this table.
+                </message>
+                <description>
+                   All variables should have some unique identifier or name.
+                </description>
+                <target
+                      class="PatternVariable">
+                   <event
+                         name="Set">
+                      <feature
+                            name="name">
+                      </feature>
+                   </event>
+                   <event
+                         name="Unset">
+                      <feature
+                            name="name">
+                      </feature>
+                   </event>
+                </target>
+             </constraint>
+          </constraints>
+       </constraintProvider>
+    </extension>
+    <extension
+          point="org.eclipse.emf.validation.constraintBindings">
+       <clientContext
+             default="false"
+             id="org.eclipse.egf.pattern.ui.patternContext">
+          <selector
+                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
+          </selector>
+       </clientContext>
+       <binding
+             category="org.eclipse.egf.model.pattern"
+             constraint="org.eclipse.egf.pattern.ui.PatternNameNotEmpty"
+             context="org.eclipse.egf.pattern.ui.patternContext">
+       </binding>
+       <clientContext
+             default="false"
+             id="org.eclipse.egf.pattern.ui.patternParameterContext">
+          <selector
+                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
+          </selector>
+       </clientContext>
+       <binding
+             category="org.eclipse.egf.model.patternParameter"
+             constraint="org.eclipse.egf.pattern.ui.PatternParameterNameNotEmpty"
+             context="org.eclipse.egf.pattern.ui.patternParameterContext">
+       </binding>
+       <clientContext
+             default="false"
+             id="org.eclipse.egf.pattern.ui.patternVariableContext">
+          <selector
+                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
+          </selector>
+       </clientContext>
+       <binding
+             category="org.eclipse.egf.model.patternVariable"
+             constraint="org.eclipse.egf.pattern.ui.PatternVariableNameNotEmpty"
+             context="org.eclipse.egf.pattern.ui.patternVariableContext">
+       </binding>
+    </extension>
+  	
+  
+  	
+   
+</plugin>

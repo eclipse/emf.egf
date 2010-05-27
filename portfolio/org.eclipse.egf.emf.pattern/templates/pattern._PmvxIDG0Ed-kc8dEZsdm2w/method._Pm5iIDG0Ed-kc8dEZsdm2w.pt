@@ -1,0 +1,9 @@
+<%
+GenPackage genPackage = parameter;
+targetPath = genPackage.getGenModel().getEditorDirectory();
+packageName = genPackage.getPresentationPackageName();
+className = genPackage.getModelWizardClassName();
+arguments = null;
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
+canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard());
+%>

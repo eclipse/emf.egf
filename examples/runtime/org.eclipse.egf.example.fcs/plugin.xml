@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/fc2.fcore">
+      </fcore>
+      <fcore
+            id="egf/fc1.fcore">
+      </fcore>
+   </extension>  
+      
+</plugin>

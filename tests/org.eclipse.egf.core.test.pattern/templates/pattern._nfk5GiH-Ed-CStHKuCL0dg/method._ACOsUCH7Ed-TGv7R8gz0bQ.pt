@@ -1,0 +1,1 @@
+<%targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();%>

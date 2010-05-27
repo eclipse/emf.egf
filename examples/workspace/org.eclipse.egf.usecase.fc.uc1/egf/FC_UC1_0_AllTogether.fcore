@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_UaP9kBvVEd-W6L66jY5sHw"
+    name="UseCase - Factory Component - UC1 - All Together">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_aMiFQBvVEd-W6L66jY5sHw">
+    <invocations xmi:id="_azHkIBvVEd-W6L66jY5sHw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_1_FCAndTask.fcore#_NTILsRuaEd-ffO4YhZA0ZQ"/>
+    <invocations xmi:id="_e4LVABvVEd-W6L66jY5sHw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_2_FCWithContracts.fcore#_NHi_EBugEd-ffO4YhZA0ZQ"/>
+    <invocations xmi:id="_nl_xABvmEd-W6L66jY5sHw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_3_FCPricer.fcore#_rPuYIBvjEd-W6L66jY5sHw"/>
+  </orchestration>
+</fcore:FactoryComponent>

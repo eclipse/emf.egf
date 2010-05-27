@@ -1,0 +1,15 @@
+<% EList<EClassifier> dclassifiers = ((EPackage) _element).getEClassifiers();%>
+
+<% if (dclassifiers.size() > 0) { %>
+	<h2>Data Type</h2>
+	<ul>
+	<% for (EClassifier _EClassifier : dclassifiers) {
+		if (_EClassifier instanceof EDataType && ! (_EClassifier instanceof EEnum)) { %>
+		
+		<li>
+			<a href="<%= EmfHtmlDocGen.getHtmlFileName(_EClassifier)%>"><%= EmfHtmlDocGen.getName(_EClassifier)%></a>
+		</li>
+	<%	}
+	} // end for%>
+	</ul>
+<% } // end if %>

@@ -1,0 +1,15 @@
+<% EList<EClassifier> cclassifiers = ((EPackage) _element).getEClassifiers();%>
+
+<% if (cclassifiers.size() > 0) { %>
+	<h2>Classes</h2>
+	<ul>
+	<% for (EClassifier _EClassifier : cclassifiers) {
+		if (_EClassifier instanceof EClass) { %>
+		
+		<li>
+			<a href="<%= EmfHtmlDocGen.getHtmlFileName(_EClassifier)%>"><%= EmfHtmlDocGen.getName(_EClassifier)%></a>
+		</li>
+	<%	}
+	} // end for%>
+	</ul>
+<% } // end if %>
