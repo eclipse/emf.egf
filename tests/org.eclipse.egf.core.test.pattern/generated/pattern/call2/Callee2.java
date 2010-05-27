@@ -62,7 +62,7 @@ out.append("callee on "+parameter.getName()+"\n");
 protected org.eclipse.emf.ecore.EClass parameter;
 
 public void set_parameter(org.eclipse.emf.ecore.EClass parameter) {
-	this.parameter = parameter;
+  this.parameter = parameter;
 }
 
 }
