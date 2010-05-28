@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -58,326 +58,351 @@ import org.eclipse.ui.dialogs.PatternFilter;
  * 
  */
 public class ListBuilderDialog<E, S> extends Dialog {
-    protected final IBaseLabelProvider labelProvider;
-    protected final IStructuredContentProvider contentProvider;
-    protected String displayName;
-    protected EList<E> result;
-    protected boolean multiLine;
 
-    private List<S> possibleValues;
-    private final List<E> currentValues = new ArrayList<E>();
-    private Button addButton;
-    private Button removeButton;
-    private Button upButton;
-    private Button downButton;
-    private TreeViewer initialTreeViewer;
-    private TreeViewer currentTreeViewer;
+  protected final IBaseLabelProvider labelProvider;
 
-    public ListBuilderDialog(Shell parent, IStructuredContentProvider contentProvider, IBaseLabelProvider labelProvider, List<S> possibleValues, List<E> initialValues) {
-        super(parent);
-        this.contentProvider = contentProvider;
-        this.labelProvider = labelProvider;
-        if (possibleValues == null)
-            throw new IllegalArgumentException();
-        if (labelProvider == null)
-            throw new IllegalArgumentException();
-        if (contentProvider == null)
-            throw new IllegalArgumentException();
-        if (initialValues == null)
-            throw new IllegalArgumentException();
-        this.currentValues.addAll(initialValues);
-        this.possibleValues = possibleValues;
+  protected final IStructuredContentProvider contentProvider;
 
+  protected String displayName;
+
+  protected EList<E> result;
+
+  protected boolean multiLine;
+
+  private List<S> possibleValues;
+
+  private final List<E> currentValues = new ArrayList<E>();
+
+  private Button addButton;
+
+  private Button removeButton;
+
+  private Button upButton;
+
+  private Button downButton;
+
+  private TreeViewer initialTreeViewer;
+
+  private TreeViewer currentTreeViewer;
+
+  public ListBuilderDialog(Shell parent, IStructuredContentProvider contentProvider, IBaseLabelProvider labelProvider, List<S> possibleValues, List<E> initialValues) {
+    super(parent);
+    this.contentProvider = contentProvider;
+    this.labelProvider = labelProvider;
+    if (possibleValues == null)
+      throw new IllegalArgumentException();
+    if (labelProvider == null)
+      throw new IllegalArgumentException();
+    if (contentProvider == null)
+      throw new IllegalArgumentException();
+    if (initialValues == null)
+      throw new IllegalArgumentException();
+    this.currentValues.addAll(initialValues);
+    this.possibleValues = possibleValues;
+
+  }
+
+  protected void refreshButtons() {
+    IStructuredSelection initialSelection = (IStructuredSelection) initialTreeViewer.getSelection();
+    IStructuredSelection currentSelection = (IStructuredSelection) currentTreeViewer.getSelection();
+    addButton.setEnabled(!initialSelection.isEmpty());
+    removeButton.setEnabled(!currentSelection.isEmpty());
+    if (currentSelection.isEmpty()) {
+      upButton.setEnabled(false);
+      downButton.setEnabled(false);
+    } else {
+      int min = currentValues.size();
+      int max = 0;
+      for (Object value : currentSelection.toArray()) {
+        min = Math.min(min, currentValues.indexOf(value));
+        max = Math.max(max, currentValues.indexOf(value));
+      }
+      upButton.setEnabled(min > 0);
+      downButton.setEnabled(max < currentValues.size() - 1);
+    }
+  }
+
+  @Override
+  protected Control createDialogArea(Composite parent) {
+    Composite contents = (Composite) super.createDialogArea(parent);
+
+    GridLayout contentsGridLayout = (GridLayout) contents.getLayout();
+    contentsGridLayout.numColumns = 3;
+
+    GridData contentsGridData = (GridData) contents.getLayoutData();
+    contentsGridData.horizontalAlignment = SWT.FILL;
+    contentsGridData.verticalAlignment = SWT.FILL;
+
+    Text patternText = null;
+
+    {
+      Group filterGroupComposite = new Group(contents, SWT.NONE);
+      filterGroupComposite.setLayout(new GridLayout(2, false));
+      filterGroupComposite.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, true, false, 3, 1));
+
+      Label label = new Label(filterGroupComposite, SWT.NONE);
+      label.setText(Messages.ListBuilderDialog_searchPatternValue_label);
+
+      patternText = new Text(filterGroupComposite, SWT.BORDER);
+      patternText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     }
 
-    protected void refreshButtons() {
-        IStructuredSelection initialSelection = (IStructuredSelection) initialTreeViewer.getSelection();
-        IStructuredSelection currentSelection = (IStructuredSelection) currentTreeViewer.getSelection();
-        addButton.setEnabled(!initialSelection.isEmpty());
-        removeButton.setEnabled(!currentSelection.isEmpty());
-        if (currentSelection.isEmpty()) {
-            upButton.setEnabled(false);
-            downButton.setEnabled(false);
-        } else {
-            int min = currentValues.size();
-            int max = 0;
-            for (Object value : currentSelection.toArray()) {
-                min = Math.min(min, currentValues.indexOf(value));
-                max = Math.max(max, currentValues.indexOf(value));
-            }
-            upButton.setEnabled(min > 0);
-            downButton.setEnabled(max < currentValues.size() - 1);
-        }
+    Composite initialComposite = new Composite(contents, SWT.NONE);
+    {
+      GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+      data.horizontalAlignment = SWT.END;
+      initialComposite.setLayoutData(data);
+
+      GridLayout layout = new GridLayout();
+      data.horizontalAlignment = SWT.FILL;
+      layout.marginHeight = 0;
+      layout.marginWidth = 0;
+      layout.numColumns = 1;
+      initialComposite.setLayout(layout);
     }
 
-    @Override
-    protected Control createDialogArea(Composite parent) {
-        Composite contents = (Composite) super.createDialogArea(parent);
+    Label initialLabel = new Label(initialComposite, SWT.NONE);
+    initialLabel.setText(Messages.ListBuilderDialog_initialvalue_label);
+    GridData initialLabelGridData = new GridData();
+    initialLabelGridData.verticalAlignment = SWT.FILL;
+    initialLabelGridData.horizontalAlignment = SWT.FILL;
+    initialLabel.setLayoutData(initialLabelGridData);
 
-        GridLayout contentsGridLayout = (GridLayout) contents.getLayout();
-        contentsGridLayout.numColumns = 3;
+    final Tree initialTree = new Tree(initialComposite, SWT.MULTI | SWT.BORDER);
+    GridData initialTreeGridData = new GridData();
+    initialTreeGridData.widthHint = Display.getCurrent().getBounds().width / 5;
+    initialTreeGridData.heightHint = Display.getCurrent().getBounds().height / 3;
+    initialTreeGridData.verticalAlignment = SWT.FILL;
+    initialTreeGridData.horizontalAlignment = SWT.FILL;
+    initialTreeGridData.grabExcessHorizontalSpace = true;
+    initialTreeGridData.grabExcessVerticalSpace = true;
+    initialTree.setLayoutData(initialTreeGridData);
 
-        GridData contentsGridData = (GridData) contents.getLayoutData();
-        contentsGridData.horizontalAlignment = SWT.FILL;
-        contentsGridData.verticalAlignment = SWT.FILL;
+    initialTreeViewer = new TreeViewer(initialTree);
+    initialTreeViewer.setContentProvider(contentProvider);
+    initialTreeViewer.setLabelProvider(labelProvider);
+    final PatternFilter filter = new PatternFilter() {
 
-        Text patternText = null;
+      @Override
+      protected boolean isParentMatch(Viewer viewer, Object element) {
+        return viewer instanceof AbstractTreeViewer && super.isParentMatch(viewer, element);
+      }
+    };
+    initialTreeViewer.addFilter(filter);
+    initialTreeViewer.setSorter(new ViewerSorter());
+    assert patternText != null;
+    patternText.addModifyListener(new ModifyListener() {
 
-        {
-            Group filterGroupComposite = new Group(contents, SWT.NONE);
-            filterGroupComposite.setLayout(new GridLayout(2, false));
-            filterGroupComposite.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, true, false, 3, 1));
+      public void modifyText(ModifyEvent e) {
+        filter.setPattern(((Text) e.widget).getText());
+        initialTreeViewer.refresh();
+      }
+    });
+    initialTreeViewer.setInput(possibleValues);
 
-            Label label = new Label(filterGroupComposite, SWT.NONE);
-            label.setText(Messages.ListBuilderDialog_searchPatternValue_label);
+    Composite controlButtons = new Composite(contents, SWT.NONE);
+    GridData controlButtonsGridData = new GridData();
+    controlButtonsGridData.verticalAlignment = SWT.FILL;
+    controlButtonsGridData.horizontalAlignment = SWT.FILL;
+    controlButtons.setLayoutData(controlButtonsGridData);
 
-            patternText = new Text(filterGroupComposite, SWT.BORDER);
-            patternText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-        }
+    GridLayout controlsButtonGridLayout = new GridLayout();
+    controlButtons.setLayout(controlsButtonGridLayout);
 
-        Composite initialComposite = new Composite(contents, SWT.NONE);
-        {
-            GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-            data.horizontalAlignment = SWT.END;
-            initialComposite.setLayoutData(data);
+    new Label(controlButtons, SWT.NONE);
 
-            GridLayout layout = new GridLayout();
-            data.horizontalAlignment = SWT.FILL;
-            layout.marginHeight = 0;
-            layout.marginWidth = 0;
-            layout.numColumns = 1;
-            initialComposite.setLayout(layout);
-        }
+    addButton = new Button(controlButtons, SWT.PUSH);
+    addButton.setToolTipText(Messages.SpecificationPage_button_add);
+    addButton.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+    GridData addButtonGridData = new GridData();
+    addButtonGridData.widthHint = 65;
+    addButtonGridData.verticalAlignment = SWT.FILL;
+    addButtonGridData.horizontalAlignment = SWT.FILL;
+    addButton.setLayoutData(addButtonGridData);
 
-        Label initialLabel = new Label(initialComposite, SWT.NONE);
-        initialLabel.setText(Messages.ListBuilderDialog_initialvalue_label);
-        GridData initialLabelGridData = new GridData();
-        initialLabelGridData.verticalAlignment = SWT.FILL;
-        initialLabelGridData.horizontalAlignment = SWT.FILL;
-        initialLabel.setLayoutData(initialLabelGridData);
+    removeButton = new Button(controlButtons, SWT.PUSH);
+    removeButton.setToolTipText(Messages.SpecificationPage_button_remove);
+    removeButton.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+    GridData removeButtonGridData = new GridData();
+    removeButtonGridData.widthHint = 65;
+    removeButtonGridData.verticalAlignment = SWT.FILL;
+    removeButtonGridData.horizontalAlignment = SWT.FILL;
+    removeButton.setLayoutData(removeButtonGridData);
 
-        final Tree initialTree = new Tree(initialComposite, SWT.MULTI | SWT.BORDER);
-        GridData initialTreeGridData = new GridData();
-        initialTreeGridData.widthHint = Display.getCurrent().getBounds().width / 5;
-        initialTreeGridData.heightHint = Display.getCurrent().getBounds().height / 3;
-        initialTreeGridData.verticalAlignment = SWT.FILL;
-        initialTreeGridData.horizontalAlignment = SWT.FILL;
-        initialTreeGridData.grabExcessHorizontalSpace = true;
-        initialTreeGridData.grabExcessVerticalSpace = true;
-        initialTree.setLayoutData(initialTreeGridData);
+    Label spaceLabel = new Label(controlButtons, SWT.NONE);
+    GridData spaceLabelGridData = new GridData();
+    spaceLabelGridData.verticalSpan = 2;
+    spaceLabel.setLayoutData(spaceLabelGridData);
 
-        initialTreeViewer = new TreeViewer(initialTree);
-        initialTreeViewer.setContentProvider(contentProvider);
-        initialTreeViewer.setLabelProvider(labelProvider);
-        final PatternFilter filter = new PatternFilter() {
-            @Override
-            protected boolean isParentMatch(Viewer viewer, Object element) {
-                return viewer instanceof AbstractTreeViewer && super.isParentMatch(viewer, element);
-            }
-        };
-        initialTreeViewer.addFilter(filter);
-        initialTreeViewer.setSorter(new ViewerSorter());
-        assert patternText != null;
-        patternText.addModifyListener(new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                filter.setPattern(((Text) e.widget).getText());
-                initialTreeViewer.refresh();
-            }
-        });
-        initialTreeViewer.setInput(possibleValues);
+    upButton = new Button(controlButtons, SWT.PUSH);
+    upButton.setToolTipText(Messages.SpecificationPage_button_up);
+    upButton.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+    GridData upButtonGridData = new GridData();
+    upButtonGridData.widthHint = 65;
+    upButtonGridData.verticalAlignment = SWT.FILL;
+    upButtonGridData.horizontalAlignment = SWT.FILL;
+    upButton.setLayoutData(upButtonGridData);
 
-        Composite controlButtons = new Composite(contents, SWT.NONE);
-        GridData controlButtonsGridData = new GridData();
-        controlButtonsGridData.verticalAlignment = SWT.FILL;
-        controlButtonsGridData.horizontalAlignment = SWT.FILL;
-        controlButtons.setLayoutData(controlButtonsGridData);
+    downButton = new Button(controlButtons, SWT.PUSH);
+    downButton.setToolTipText(Messages.SpecificationPage_button_down);
+    downButton.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+    GridData downButtonGridData = new GridData();
+    downButtonGridData.widthHint = 65;
+    downButtonGridData.verticalAlignment = SWT.FILL;
+    downButtonGridData.horizontalAlignment = SWT.FILL;
+    downButton.setLayoutData(downButtonGridData);
 
-        GridLayout controlsButtonGridLayout = new GridLayout();
-        controlButtons.setLayout(controlsButtonGridLayout);
+    Composite currentComposite = new Composite(contents, SWT.NONE);
+    {
+      GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+      data.horizontalAlignment = SWT.END;
+      currentComposite.setLayoutData(data);
 
-        new Label(controlButtons, SWT.NONE);
+      GridLayout layout = new GridLayout();
+      data.horizontalAlignment = SWT.FILL;
+      layout.marginHeight = 0;
+      layout.marginWidth = 0;
+      layout.numColumns = 1;
+      currentComposite.setLayout(layout);
+    }
 
-        addButton = new Button(controlButtons, SWT.PUSH);
-        addButton.setText(Messages.SpecificationPage_button_add);
-        addButton.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
-        GridData addButtonGridData = new GridData();
-        addButtonGridData.verticalAlignment = SWT.FILL;
-        addButtonGridData.horizontalAlignment = SWT.FILL;
-        addButton.setLayoutData(addButtonGridData);
+    Label currentLabel = new Label(currentComposite, SWT.NONE);
+    currentLabel.setText(Messages.ListBuilderDialog_currentValue_label);
+    GridData currentLabelGridData = new GridData();
+    currentLabelGridData.horizontalSpan = 2;
+    currentLabelGridData.horizontalAlignment = SWT.FILL;
+    currentLabelGridData.verticalAlignment = SWT.FILL;
+    currentLabel.setLayoutData(currentLabelGridData);
 
-        removeButton = new Button(controlButtons, SWT.PUSH);
-        removeButton.setText(Messages.SpecificationPage_button_remove);
-        removeButton.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
-        GridData removeButtonGridData = new GridData();
-        removeButtonGridData.verticalAlignment = SWT.FILL;
-        removeButtonGridData.horizontalAlignment = SWT.FILL;
-        removeButton.setLayoutData(removeButtonGridData);
+    final Tree currentTree = new Tree(currentComposite, SWT.MULTI | SWT.BORDER);
+    GridData currentTableGridData = new GridData();
+    currentTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
+    currentTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
+    currentTableGridData.verticalAlignment = SWT.FILL;
+    currentTableGridData.horizontalAlignment = SWT.FILL;
+    currentTableGridData.grabExcessHorizontalSpace = true;
+    currentTableGridData.grabExcessVerticalSpace = true;
+    currentTree.setLayoutData(currentTableGridData);
 
-        Label spaceLabel = new Label(controlButtons, SWT.NONE);
-        GridData spaceLabelGridData = new GridData();
-        spaceLabelGridData.verticalSpan = 2;
-        spaceLabel.setLayoutData(spaceLabelGridData);
+    currentTreeViewer = new TreeViewer(currentTree);
+    currentTreeViewer.setContentProvider(contentProvider);
+    currentTreeViewer.setLabelProvider(labelProvider);
+    currentTreeViewer.setInput(currentValues);
+    if (!currentValues.isEmpty()) {
+      currentTreeViewer.setSelection(new StructuredSelection(currentValues.get(0)));
+    }
 
-        upButton = new Button(controlButtons, SWT.PUSH);
-        upButton.setText(Messages.SpecificationPage_button_up);
-        upButton.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
-        GridData upButtonGridData = new GridData();
-        upButtonGridData.verticalAlignment = SWT.FILL;
-        upButtonGridData.horizontalAlignment = SWT.FILL;
-        upButton.setLayoutData(upButtonGridData);
+    ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
 
-        downButton = new Button(controlButtons, SWT.PUSH);
-        downButton.setText(Messages.SpecificationPage_button_down);
-        downButton.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
-        GridData downButtonGridData = new GridData();
-        downButtonGridData.verticalAlignment = SWT.FILL;
-        downButtonGridData.horizontalAlignment = SWT.FILL;
-        downButton.setLayoutData(downButtonGridData);
-
-        Composite currentComposite = new Composite(contents, SWT.NONE);
-        {
-            GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-            data.horizontalAlignment = SWT.END;
-            currentComposite.setLayoutData(data);
-
-            GridLayout layout = new GridLayout();
-            data.horizontalAlignment = SWT.FILL;
-            layout.marginHeight = 0;
-            layout.marginWidth = 0;
-            layout.numColumns = 1;
-            currentComposite.setLayout(layout);
-        }
-
-        Label currentLabel = new Label(currentComposite, SWT.NONE);
-        currentLabel.setText(Messages.ListBuilderDialog_currentValue_label);
-        GridData currentLabelGridData = new GridData();
-        currentLabelGridData.horizontalSpan = 2;
-        currentLabelGridData.horizontalAlignment = SWT.FILL;
-        currentLabelGridData.verticalAlignment = SWT.FILL;
-        currentLabel.setLayoutData(currentLabelGridData);
-
-        final Tree currentTree = new Tree(currentComposite, SWT.MULTI | SWT.BORDER);
-        GridData currentTableGridData = new GridData();
-        currentTableGridData.widthHint = Display.getCurrent().getBounds().width / 5;
-        currentTableGridData.heightHint = Display.getCurrent().getBounds().height / 3;
-        currentTableGridData.verticalAlignment = SWT.FILL;
-        currentTableGridData.horizontalAlignment = SWT.FILL;
-        currentTableGridData.grabExcessHorizontalSpace = true;
-        currentTableGridData.grabExcessVerticalSpace = true;
-        currentTree.setLayoutData(currentTableGridData);
-
-        currentTreeViewer = new TreeViewer(currentTree);
-        currentTreeViewer.setContentProvider(contentProvider);
-        currentTreeViewer.setLabelProvider(labelProvider);
-        currentTreeViewer.setInput(currentValues);
-        if (!currentValues.isEmpty()) {
-            currentTreeViewer.setSelection(new StructuredSelection(currentValues.get(0)));
-        }
-
-        ISelectionChangedListener selectionListener = new ISelectionChangedListener() {
-            public void selectionChanged(SelectionChangedEvent event) {
-                refreshButtons();
-            }
-        };
-        initialTreeViewer.addPostSelectionChangedListener(selectionListener);
-        initialTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
-            public void doubleClick(DoubleClickEvent event) {
-                if (addButton.isEnabled()) {
-                    addButton.notifyListeners(SWT.Selection, null);
-                }
-            }
-        });
-
-        currentTreeViewer.addPostSelectionChangedListener(selectionListener);
-        currentTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
-            public void doubleClick(DoubleClickEvent event) {
-                if (removeButton.isEnabled()) {
-                    removeButton.notifyListeners(SWT.Selection, null);
-                }
-            }
-        });
-
-        upButton.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
-                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-                    Object value = i.next();
-                    int index = currentValues.indexOf(value);
-                    currentValues.remove(index);
-                    currentValues.add(Math.max(index - 1, 0), (E) value);
-                }
-                currentTreeViewer.refresh();
-            }
-        });
-
-        downButton.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
-                int maxIndex = currentValues.size() - 1;
-                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-                    Object value = i.next();
-                    int index = currentValues.indexOf(value);
-                    currentValues.remove(index);
-                    currentValues.add(Math.min(index + 1, maxIndex), (E) value);
-                }
-                currentTreeViewer.refresh();
-            }
-        });
-
-        addButton.addSelectionListener(new SelectionAdapter() {
-            // event is null when choiceTableViewer is double clicked
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                IStructuredSelection selection = (IStructuredSelection) initialTreeViewer.getSelection();
-                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-                    currentValues.add((E) i.next());
-                }
-                currentTreeViewer.setSelection(selection);
-                currentTreeViewer.refresh();
-            }
-        });
-
-        removeButton.addSelectionListener(new SelectionAdapter() {
-            // event is null when featureTableViewer is double clicked
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
-                Object firstValue = null;
-                for (Iterator<?> i = selection.iterator(); i.hasNext();) {
-                    Object value = i.next();
-                    if (firstValue == null) {
-                        firstValue = value;
-                    }
-                    currentValues.remove(value);
-                }
-
-                if (!currentValues.isEmpty()) {
-                    currentTreeViewer.setSelection(new StructuredSelection(currentValues.get(0)));
-                }
-
-                initialTreeViewer.setSelection(selection);
-                currentTreeViewer.refresh();
-            }
-        });
-
+      public void selectionChanged(SelectionChangedEvent event) {
         refreshButtons();
-        return contents;
-    }
+      }
+    };
+    initialTreeViewer.addPostSelectionChangedListener(selectionListener);
+    initialTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
-    @Override
-    protected void okPressed() {
-        super.okPressed();
-    }
+      public void doubleClick(DoubleClickEvent event) {
+        if (addButton.isEnabled()) {
+          addButton.notifyListeners(SWT.Selection, null);
+        }
+      }
+    });
 
-    @Override
-    public boolean close() {
-        contentProvider.dispose();
-        return super.close();
-    }
+    currentTreeViewer.addPostSelectionChangedListener(selectionListener);
+    currentTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
 
-    public List<E> getResult() {
-        return currentValues;
-    }
+      public void doubleClick(DoubleClickEvent event) {
+        if (removeButton.isEnabled()) {
+          removeButton.notifyListeners(SWT.Selection, null);
+        }
+      }
+    });
+
+    upButton.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
+        for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+          Object value = i.next();
+          int index = currentValues.indexOf(value);
+          currentValues.remove(index);
+          currentValues.add(Math.max(index - 1, 0), (E) value);
+        }
+        currentTreeViewer.refresh();
+      }
+    });
+
+    downButton.addSelectionListener(new SelectionAdapter() {
+
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
+        int maxIndex = currentValues.size() - 1;
+        for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+          Object value = i.next();
+          int index = currentValues.indexOf(value);
+          currentValues.remove(index);
+          currentValues.add(Math.min(index + 1, maxIndex), (E) value);
+        }
+        currentTreeViewer.refresh();
+      }
+    });
+
+    addButton.addSelectionListener(new SelectionAdapter() {
+
+      // event is null when choiceTableViewer is double clicked
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        IStructuredSelection selection = (IStructuredSelection) initialTreeViewer.getSelection();
+        for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+          currentValues.add((E) i.next());
+        }
+        currentTreeViewer.setSelection(selection);
+        currentTreeViewer.refresh();
+      }
+    });
+
+    removeButton.addSelectionListener(new SelectionAdapter() {
+
+      // event is null when featureTableViewer is double clicked
+      @Override
+      public void widgetSelected(SelectionEvent event) {
+        IStructuredSelection selection = (IStructuredSelection) currentTreeViewer.getSelection();
+        Object firstValue = null;
+        for (Iterator<?> i = selection.iterator(); i.hasNext();) {
+          Object value = i.next();
+          if (firstValue == null) {
+            firstValue = value;
+          }
+          currentValues.remove(value);
+        }
+
+        if (!currentValues.isEmpty()) {
+          currentTreeViewer.setSelection(new StructuredSelection(currentValues.get(0)));
+        }
+
+        initialTreeViewer.setSelection(selection);
+        currentTreeViewer.refresh();
+      }
+    });
+
+    refreshButtons();
+    return contents;
+  }
+
+  @Override
+  protected void okPressed() {
+    super.okPressed();
+  }
+
+  @Override
+  public boolean close() {
+    contentProvider.dispose();
+    return super.close();
+  }
+
+  public List<E> getResult() {
+    return currentValues;
+  }
 }
