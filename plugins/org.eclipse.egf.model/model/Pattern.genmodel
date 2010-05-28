@@ -118,14 +118,14 @@
       <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getPattern"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//TypePatternSubstitution">
-      <genFeatures property="Readonly" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType"/>
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getSubstitutions">
         <genParameters ecoreParameter="Pattern.ecore#//TypePatternSubstitution/getSubstitutions/pattern"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//Substitution">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/outcoming"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/outgoing"/>
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/incoming"/>
     </genClasses>
   </genPackages>

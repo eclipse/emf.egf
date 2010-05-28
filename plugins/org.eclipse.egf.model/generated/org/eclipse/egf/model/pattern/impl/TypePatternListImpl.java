@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl#getElements <em>Elements</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypePatternListImpl extends TypeImpl implements TypePatternList {
@@ -40,7 +40,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -50,7 +49,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
    * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getElements()
    * @generated
    * @ordered
@@ -60,7 +58,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypePatternListImpl() {
@@ -70,7 +67,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -92,7 +88,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<PatternElement> getElements() {
@@ -105,7 +100,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -117,7 +111,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -132,7 +125,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -150,7 +142,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -166,7 +157,6 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

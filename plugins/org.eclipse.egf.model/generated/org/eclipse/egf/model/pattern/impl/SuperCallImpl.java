@@ -27,23 +27,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class SuperCallImpl extends CallImpl implements SuperCall {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected SuperCallImpl() {
-        super();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected SuperCallImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return PatternPackage.Literals.SUPER_CALL;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return PatternPackage.Literals.SUPER_CALL;
+  }
 
 } //SuperCallImpl

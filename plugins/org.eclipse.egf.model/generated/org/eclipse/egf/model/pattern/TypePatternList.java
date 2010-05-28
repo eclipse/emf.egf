@@ -32,30 +32,30 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface TypePatternList extends Type {
-    /**
-     * Returns the value of the '<em><b>Elements</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternElement}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Elements</em>' reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Elements</em>' reference list.
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getTypePatternList_Elements()
-     * @model
-     * @generated
-     */
-    EList<PatternElement> getElements();
+  /**
+   * Returns the value of the '<em><b>Elements</b></em>' reference list.
+   * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternElement}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Elements</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Elements</em>' reference list.
+   * @see org.eclipse.egf.model.pattern.PatternPackage#getTypePatternList_Elements()
+   * @model
+   * @generated
+   */
+  EList<PatternElement> getElements();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.pattern.TypePatternList.class;'"
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    Class<?> getType();
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.pattern.TypePatternList.class;'"
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  Class<?> getType();
 
 } // TypePatternList

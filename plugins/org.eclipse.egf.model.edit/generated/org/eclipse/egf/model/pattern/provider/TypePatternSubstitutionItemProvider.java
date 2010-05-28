@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.EMFEditPlugin;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -74,22 +73,8 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addSubstitutionsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Substitutions feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected void addSubstitutionsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypePatternSubstitution_substitutions_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypePatternSubstitution_substitutions_feature", "_UI_TypePatternSubstitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS, false, false, false, null, null, null));
   }
 
   /**

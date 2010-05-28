@@ -13,7 +13,9 @@
 package org.eclipse.egf.model.pattern.util;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 /**
@@ -46,4 +48,4 @@ public class PatternResourceFactoryImpl extends ResourceFactoryImpl {
     return result;
   }
 
-} // PatternResourceFactoryImpl
+} //PatternResourceFactoryImpl

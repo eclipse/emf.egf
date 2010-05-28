@@ -39,6 +39,7 @@ public class PatternCustomItemProvider extends PatternItemProvider {
   public String getText(Object object) {
     Pattern pattern = (Pattern) object;
     EObject root = EcoreUtil.getRootContainer(pattern, true);
+    // Activity
     String activity = null;
     if (root != null) {
       IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(root, IItemLabelProvider.class);
@@ -48,10 +49,25 @@ public class PatternCustomItemProvider extends PatternItemProvider {
         activity = provider.getText(root);
       }
     }
+    // Library
+    String container = null;
+    if (pattern.getContainer() != null) {
+      IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(pattern.getContainer(), IItemLabelProvider.class);
+      if (provider == null) {
+        container = EMFHelper.getText(pattern.getContainer());
+      } else {
+        container = provider.getText(pattern.getContainer());
+      }
+    }
+    // Name
     String name = pattern.getName();
+    // Build label
     String label = "[" + getString("_UI_Pattern_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     if (name != null && name.trim().length() != 0) {
       label = name + " " + label; //$NON-NLS-1$
+    }
+    if (container != null && container.trim().length() != 0) {
+      label = container + " -> " + label; //$NON-NLS-1$
     }
     if (activity != null && activity.trim().length() != 0) {
       label = activity + " -> " + label; //$NON-NLS-1$
