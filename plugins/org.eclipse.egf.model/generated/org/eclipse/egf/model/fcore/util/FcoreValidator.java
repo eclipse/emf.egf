@@ -73,7 +73,8 @@ public class FcoreValidator extends EObjectValidator {
   public static final FcoreValidator INSTANCE = new FcoreValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
+   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -85,7 +86,8 @@ public class FcoreValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.fcore"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written
+   * constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -94,7 +96,8 @@ public class FcoreValidator extends EObjectValidator {
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written
+   * constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -438,7 +441,8 @@ public class FcoreValidator extends EObjectValidator {
   }
 
   /**
-   * Validates the UselessFactoryComponentContract constraint of '<em>Factory Component Contract</em>'.
+   * Validates the UselessFactoryComponentContract constraint of '<em>Factory Component
+   * Contract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -995,7 +999,7 @@ public class FcoreValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateInvocationContract_UselessInvocationContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (invocationContract.getInvokedMode() == ContractMode.OUT) {
+    if (invocationContract.getInvokedMode() == ContractMode.OUT || (invocationContract.getType() != null && invocationContract.getType().getValue() != null)) {
       return true;
     }
     if (invocationContract.getOrchestrationParameter() == null && invocationContract.getFactoryComponentContract() == null && invocationContract.getSourceInvocationContract() == null) {
@@ -1100,7 +1104,8 @@ public class FcoreValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's
+   * diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
