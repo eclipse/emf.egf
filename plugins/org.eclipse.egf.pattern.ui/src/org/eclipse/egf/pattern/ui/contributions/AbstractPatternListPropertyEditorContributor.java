@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -40,23 +40,24 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class AbstractPatternListPropertyEditorContributor<E> extends DefaultPropertyEditorContributor {
 
-    protected abstract EList<E> getElements(Object object);
+  protected abstract EList<E> getElements(Object object);
 
-    public final CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
-        return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
-            @Override
-            protected Object openDialogBox(Control cellEditorWindow) {
-                IStructuredContentProvider contentProvider = new PatternElementcontentProvider();
-                IBaseLabelProvider labelProvider = new PatternElementLabelProvider();
+  public final CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
+    return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
 
-                List<PatternLibrary> possibleValues = new ArrayList<PatternLibrary>(PatternHelper.createCollector().getAllLibraries());
-                List<E> initialValues = new ArrayList<E>(getElements(object));
-                ListBuilderDialog<E, PatternLibrary> dialog = new ListBuilderDialog<E, PatternLibrary>(composite.getShell(), contentProvider, labelProvider, possibleValues, initialValues);
-                if (dialog.open() == Window.OK) {
-                    return dialog.getResult();
-                }
-                return null;
-            }
-        };
-    }
+      @Override
+      protected Object openDialogBox(Control cellEditorWindow) {
+        IStructuredContentProvider contentProvider = new PatternElementcontentProvider();
+        IBaseLabelProvider labelProvider = new PatternElementLabelProvider();
+
+        List<PatternLibrary> possibleValues = new ArrayList<PatternLibrary>(PatternHelper.createCollector().getAllLibraries());
+        List<E> initialValues = new ArrayList<E>(getElements(object));
+        ListBuilderDialog<E, PatternLibrary> dialog = new ListBuilderDialog<E, PatternLibrary>(composite.getShell(), contentProvider, labelProvider, possibleValues, initialValues);
+        if (dialog.open() == Window.OK) {
+          return dialog.getResult();
+        }
+        return null;
+      }
+    };
+  }
 }
