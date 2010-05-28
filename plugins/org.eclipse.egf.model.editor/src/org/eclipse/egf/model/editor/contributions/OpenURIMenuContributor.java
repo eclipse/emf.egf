@@ -18,6 +18,7 @@ package org.eclipse.egf.model.editor.contributions;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
+import org.eclipse.egf.model.types.TypeURI;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -50,6 +51,8 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
         return (DomainURI) object;
       } else if (object instanceof TypeDomainURI) {
         return (TypeDomainURI) object;
+      } else if (object instanceof TypeURI) {
+        return (TypeURI) object;
       }
       return null;
     }
@@ -65,6 +68,8 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
         uri = ((DomainURI) eObject).getUri();
       } else if (eObject instanceof TypeDomainURI) {
         uri = ((TypeDomainURI) eObject).getValue();
+      } else if (eObject instanceof TypeURI) {
+        uri = ((TypeURI) eObject).getValue();
       }
       return uri;
     }

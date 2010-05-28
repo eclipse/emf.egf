@@ -15,7 +15,7 @@
 
 package org.eclipse.egf.model.editor.dialogs;
 
-import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.emf.ecore.EObject;
@@ -30,8 +30,8 @@ public class FactoryComponentSelectionDialog extends ActivitySelectionDialog {
 
   public FactoryComponentSelectionDialog(Shell parentShell, Activity activity, boolean multipleSelection) {
     super(parentShell, activity, multipleSelection);
-    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, FactoryComponent.class.getSimpleName()));
-    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, FactoryComponent.class.getSimpleName()));
+    setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, FactoryComponent.class.getSimpleName()));
+    setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, FactoryComponent.class.getSimpleName()));
   }
 
   @Override

@@ -76,6 +76,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * @generated NOT
  */
 public class FcoreModelWizard extends Wizard implements INewWizard {
+
   /**
    * The supported extensions for created files.
    * <!-- begin-user-doc -->
@@ -220,6 +221,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
 
     // Convert and Process current Project
     WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
+
       @Override
       public List<String> addDependencies() {
         List<String> dependencies = new ArrayList<String>(1);
@@ -243,6 +245,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     // Save resource
     if (throwable[0] == null) {
       WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+
         @Override
         protected void execute(IProgressMonitor monitor) {
           SubMonitor.convert(monitor, EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
@@ -251,13 +254,15 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
           try {
             // Feed our URIConverter
             URI platformPluginURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), false);
+            URI encodedPlatformPluginURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), true);
             URI platformResourceURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
             editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
             // Create a resource for this file.
-            final Resource resource = editingDomain.getResourceSet().createResource(platformPluginURI);
+            final Resource resource = editingDomain.getResourceSet().createResource(encodedPlatformPluginURI);
             // Add the initial model object to the contents.
             if (rootObject != null) {
               editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+
                 @Override
                 protected void doExecute() {
                   resource.getContents().add(rootObject);
@@ -265,6 +270,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
               });
             }
             editingDomain.runExclusive(new Runnable() {
+
               public void run() {
                 try {
                   resource.save(Collections.EMPTY_MAP);
@@ -293,6 +299,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
       if (activePart instanceof ISetSelectionTarget) {
         final ISelection targetSelection = new StructuredSelection(modelFile);
         getShell().getDisplay().asyncExec(new Runnable() {
+
           public void run() {
             ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
           }
@@ -322,6 +329,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * @generated NOT
    */
   public static class FcoreModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+
     /**
      * Pass in the selection.
      * <!-- begin-user-doc -->
@@ -346,7 +354,9 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
         String extension = new Path(getFileName()).getFileExtension();
         if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
           String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
-          setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+          setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] {
+            FORMATTED_FILE_EXTENSIONS
+          }));
           return false;
         }
         return true;
@@ -373,6 +383,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * @generated
    */
   public class FcoreModelWizardInitialObjectCreationPage extends WizardPage {
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -448,6 +459,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
      * @generated
      */
     protected ModifyListener validator = new ModifyListener() {
+
       public void modifyText(ModifyEvent e) {
         setPageComplete(validatePage());
       }

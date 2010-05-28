@@ -24,7 +24,6 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
-import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
@@ -188,28 +187,26 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
    * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog#getLabelProvider()
    */
   protected ILabelProvider getLabelProvider() {
-    return new LabelProvider() {
-      ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
-
-      @Override
-      public String getText(Object object) {
-        return _labelProvider.getText(object);
-      }
-
-      @Override
-      public Image getImage(Object object) {
-        return _labelProvider.getImage(object);
-      }
-    };
+    return new AdapterFactoryLabelProvider(_adapterFactory);
   }
 
   protected ILabelProvider getDetailsLabelProvider() {
     return new LabelProvider() {
-      ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
+
+      ILabelProvider _adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
 
       @Override
-      public Image getImage(Object object) {
-        return _labelProvider.getImage(object);
+      public Image getImage(Object element) {
+        // This shouldn't happen
+        if (element instanceof Activity == false) {
+          return super.getImage(element);
+        }
+        // In memory activity, in case of...
+        Activity activity = (Activity) element;
+        if (activity.eResource() == null) {
+          return super.getImage(activity);
+        }
+        return _adapterFactoryLabelProvider.getImage(activity.eResource());
       }
 
       @Override
@@ -221,12 +218,12 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         // In memory activity, in case of...
         Activity activity = (Activity) element;
         if (activity.eResource() == null) {
-          return super.getText(element);
+          return super.getText(activity);
         }
         // Retrieve Fcore
         IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(activity.eResource());
         if (fc == null) {
-          return super.getText(element);
+          return super.getText(activity);
         }
         StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
         if (fc.getPlatformBundle().isTarget()) {
@@ -240,24 +237,6 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         return buffer.toString();
       }
     };
-  }
-
-  public ActivitySelectionDialog(Shell parentShell, boolean multipleSelection) {
-    super(parentShell, multipleSelection);
-    // Retrieve our EditingDomain
-    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-    // Create an adapter factory that yields item providers.
-    _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Activity.class.getSimpleName()));
-    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
-    setListLabelProvider(getLabelProvider());
-    setDetailsLabelProvider(getDetailsLabelProvider());
-    setSelectionHistory(new ActivitySelectionHistory());
-    setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
   }
 
   public ActivitySelectionDialog(Shell parentShell, IPlatformFcore fcore, boolean multipleSelection) {
@@ -281,8 +260,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Activity.class.getSimpleName()));
-    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
+    setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Activity.class.getSimpleName()));
+    setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Activity.class.getSimpleName()));
     setListLabelProvider(getLabelProvider());
     setDetailsLabelProvider(getDetailsLabelProvider());
     setSelectionHistory(new ActivitySelectionHistory());
@@ -292,6 +271,10 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     } else {
       setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
     }
+  }
+
+  public ActivitySelectionDialog(Shell parentShell, boolean multipleSelection) {
+    this(parentShell, (Activity) null, multipleSelection);
   }
 
   @Override
