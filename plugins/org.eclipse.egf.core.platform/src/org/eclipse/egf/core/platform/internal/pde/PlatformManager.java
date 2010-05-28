@@ -363,7 +363,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    * Process extension delta event This method is called when listeners are
    * initialized.
    * 
-   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()} for initialization. If someone call dispose() this method is no longer
+   * @see org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles() for initialization. If someone call dispose() this method is no longer
    *      called. No need to initialize the PlatformManager
    * 
    * @param event
@@ -419,7 +419,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    * Process model delta event This method is called when listeners are
    * initialized.
    * 
-   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()} for initialization. If someone call dispose() this method is no longer
+   * @see org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles() for initialization. If someone call dispose() this method is no longer
    *      called. No need to initialize the PlatformManager
    * 
    * @param event
