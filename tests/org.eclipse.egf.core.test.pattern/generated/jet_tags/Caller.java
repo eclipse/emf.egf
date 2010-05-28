@@ -99,9 +99,9 @@ CallHelper.executeWithParameterInjection("_0FqG8FaPEd-xDMudhFTQKg", new Executio
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");
 
-    ExecutionContext ctx__2UPq8FjrEdkve86Js2iPQ = new ExecutionContext((InternalPatternContext) ctx);
-ctx__2UPq8FjrEdkve86Js2iPQ.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.executeWithContextInjection("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__2UPq8FjrEdkve86Js2iPQ);
+    ExecutionContext ctx__irymUVnrEdg_9XHCA2edA = new ExecutionContext((InternalPatternContext) ctx);
+ctx__irymUVnrEdg_9XHCA2edA.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.executeWithContextInjection("_-d1XsFa7Ed-_dcUlU_GyPA", ctx__irymUVnrEdg_9XHCA2edA);
 
     stringBuffer.append(TEXT_3);
     }

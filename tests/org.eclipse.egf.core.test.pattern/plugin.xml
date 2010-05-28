@@ -55,6 +55,9 @@
       <fcore
             id="fc/jet_tags.fcore">
       </fcore>
+      <fcore
+            id="model/mypackage.fcore">
+      </fcore>
       
    </extension>
    
