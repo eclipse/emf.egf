@@ -995,7 +995,7 @@ public class FcoreValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateInvocationContract_UselessInvocationContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (invocationContract.getInvokedMode() == ContractMode.OUT) {
+    if (invocationContract.getInvokedMode() == ContractMode.OUT || (invocationContract.getType() != null && invocationContract.getType().getValue() != null)) {
       return true;
     }
     if (invocationContract.getOrchestrationParameter() == null && invocationContract.getFactoryComponentContract() == null && invocationContract.getSourceInvocationContract() == null) {
