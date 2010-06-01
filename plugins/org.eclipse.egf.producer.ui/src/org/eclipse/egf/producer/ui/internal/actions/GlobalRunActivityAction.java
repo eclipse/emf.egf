@@ -92,8 +92,10 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       return;
     }
 
-    final Activity[] activity = new Activity[] { (Activity) selection[0] };
-    Throwable throwable = null;
+    final Activity[] activity = new Activity[] {
+      (Activity) selection[0]
+    };
+    List<Throwable> throwables = new ArrayList<Throwable>();
     final IActivityManager<?>[] activityManager = new IActivityManager[1];
     final int[] ticks = new int[1];
 
@@ -108,11 +110,11 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       // Create a Manager
       activityManager[0] = producer.createActivityManager(activity[0]);
     } catch (Throwable t) {
-      throwable = t;
+      throwables.add(t);
     }
 
     // 3 - Validation
-    if (throwable == null) {
+    if (throwables.size() == 0) {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
         String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
@@ -130,12 +132,12 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           }
         }
       } catch (InvocationException ie) {
-        throwable = ie;
+        throwables.add(ie);
       }
     }
 
     // 4 - PreInvoke Validation
-    if (throwable == null) {
+    if (throwables.size() == 0) {
       try {
         // Initialize Context
         activityManager[0].initializeContext();
@@ -144,6 +146,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
             EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
               public void run() {
                 EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
               }
@@ -154,21 +157,21 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           }
         }
       } catch (InvocationException ie) {
-        throwable = ie;
+        throwables.add(ie);
       }
     }
 
     // 5 - Count Ticks
-    if (throwable == null) {
+    if (throwables.size() == 0) {
       try {
         ticks[0] = activityManager[0].getSteps();
       } catch (Throwable t) {
-        throwable = t;
+        throwables.add(t);
       }
     }
 
     // 6 - Run activity
-    if (throwable == null) {
+    if (throwables.size() == 0) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
 
@@ -198,6 +201,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
                 if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
                   EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
                     public void run() {
                       EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PostInvokeProblems_message, diagnostic);
                     }
@@ -238,8 +242,21 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
     }
 
-    if (throwable != null && throwable instanceof InterruptedException == false) {
-      ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
+    if (throwables.size() != 0) {
+      // In trouble case, try to dispose the manager
+      if (activityManager[0] != null) {
+        try {
+          activityManager[0].dispose();
+        } catch (Throwable t) {
+          throwables.add(t);
+        }
+      }
+      // Display Throwable
+      for (Throwable throwable : throwables) {
+        if (throwable instanceof InterruptedException == false) {
+          ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
+        }
+      }
     }
 
     return;

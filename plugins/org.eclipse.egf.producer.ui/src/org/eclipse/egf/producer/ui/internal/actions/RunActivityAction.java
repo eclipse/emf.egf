@@ -95,7 +95,7 @@ public class RunActivityAction implements IObjectActionDelegate {
     }
 
     final IActivityManager<?>[] activityManager = new IActivityManager[1];
-    Throwable throwable = null;
+    List<Throwable> throwables = new ArrayList<Throwable>();
     final int[] ticks = new int[1];
 
     // 2 - Locate a Manager Producer
@@ -109,11 +109,11 @@ public class RunActivityAction implements IObjectActionDelegate {
       // Create a Manager
       activityManager[0] = producer.createActivityManager(_activity);
     } catch (Throwable t) {
-      throwable = t;
+      throwables.add(t);
     }
 
     // 3 - Validation
-    if (throwable == null) {
+    if (throwables.size() == 0) {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
         String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
@@ -131,12 +131,12 @@ public class RunActivityAction implements IObjectActionDelegate {
           }
         }
       } catch (InvocationException ie) {
-        throwable = ie;
+        throwables.add(ie);
       }
     }
 
     // 4 - PreInvoke Validation
-    if (throwable == null) {
+    if (throwables.size() == 0) {
       try {
         // Initialize Context
         activityManager[0].initializeContext();
@@ -145,6 +145,7 @@ public class RunActivityAction implements IObjectActionDelegate {
         if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
             EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
               public void run() {
                 EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
               }
@@ -155,21 +156,21 @@ public class RunActivityAction implements IObjectActionDelegate {
           }
         }
       } catch (InvocationException ie) {
-        throwable = ie;
+        throwables.add(ie);
       }
     }
 
     // 5 - Count Ticks
-    if (throwable == null) {
+    if (throwables.size() == 0) {
       try {
         ticks[0] = activityManager[0].getSteps();
       } catch (Throwable t) {
-        throwable = t;
+        throwables.add(t);
       }
     }
 
     // 6 - Run activity
-    if (throwable == null) {
+    if (throwables.size() == 0) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
 
@@ -198,6 +199,7 @@ public class RunActivityAction implements IObjectActionDelegate {
               if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
                 if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
                   EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
                     public void run() {
                       EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, diagnostic);
                     }
@@ -238,8 +240,21 @@ public class RunActivityAction implements IObjectActionDelegate {
 
     }
 
-    if (throwable != null && throwable instanceof InterruptedException == false) {
-      ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
+    if (throwables.size() != 0) {
+      // In trouble case, try to dispose the manager
+      if (activityManager[0] != null) {
+        try {
+          activityManager[0].dispose();
+        } catch (Throwable t) {
+          throwables.add(t);
+        }
+      }
+      // Display Throwable
+      for (Throwable throwable : throwables) {
+        if (throwable instanceof InterruptedException == false) {
+          ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
+        }
+      }
     }
 
     return;
