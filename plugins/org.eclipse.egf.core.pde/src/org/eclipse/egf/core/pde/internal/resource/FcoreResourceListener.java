@@ -34,6 +34,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.MultiRule;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
@@ -129,31 +130,48 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
         public boolean visit(IResourceDelta delta) throws CoreException {
           try {
-            // only interested with file with an fcore extension
-            if (delta.getResource().getType() == IResource.FILE && IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(delta.getResource().getFileExtension())) {
-              URI uri = URIHelper.getPlatformURI(delta.getResource());
-              // Locate the bundleId, resource should be located in a bundle project
-              String bundleId = BundleHelper.getBundleId(delta.getResource());
-              if (uri != null && bundleId != null) {
-                if (delta.getKind() == IResourceDelta.CHANGED) {
-                  if (delta.getFlags() != IResourceDelta.MARKERS && (delta.getFlags() & IResourceDelta.CONTENT) != 0) {
-                    _deltaFcores.addUpdatedFcore(uri);
-                  }
-                } else if (delta.getKind() == IResourceDelta.ADDED) {
-                  if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
-                    _deltaFcores.addNewFcore(uri);
-                    _newFcores.add(delta.getResource().getFullPath());
-                    _affectedProjects.add(delta.getResource().getProject());
-                  }
-                } else if (delta.getKind() == IResourceDelta.REMOVED) {
-                  if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
-                    _deltaFcores.addMovedFcore(uri, URIHelper.getPlatformURI(delta.getMovedToPath()));
-                    _movedFcores.put(delta.getResource().getFullPath(), delta.getMovedToPath());
-                  } else {
-                    _deltaFcores.addRemovedFcore(uri);
-                    _removedFcores.add(delta.getResource().getFullPath());
-                    _affectedProjects.add(delta.getResource().getProject());
-                  }
+            // Process file
+            if (delta.getResource().getType() != IResource.FILE) {
+              return true;
+            }
+            // check whether or not we are processing an fcore
+            boolean isFcore = IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(delta.getResource().getFileExtension());
+            URI uri = URIHelper.getPlatformURI(delta.getResource());
+            // Locate the bundleId, resource should be located in a bundle project
+            String bundleId = BundleHelper.getBundleId(delta.getResource());
+            if (uri != null && bundleId != null) {
+              if (delta.getKind() == IResourceDelta.CHANGED && isFcore) {
+                if (delta.getFlags() != IResourceDelta.MARKERS && (delta.getFlags() & IResourceDelta.CONTENT) != 0) {
+                  _deltaFcores.addUpdatedFcore(uri);
+                }
+              } else if (delta.getKind() == IResourceDelta.ADDED && isFcore) {
+                if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
+                  _deltaFcores.addNewFcore(uri);
+                  _newFcores.add(delta.getResource().getFullPath());
+                  _affectedProjects.add(delta.getResource().getProject());
+                }
+              } else if (delta.getKind() == IResourceDelta.REMOVED) {
+                boolean isMovedToFcore = false;
+                if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
+                  isMovedToFcore = IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(delta.getMovedToPath().getFileExtension());
+                }
+                // Check whether or not we are moving an fcore to an fcore
+                if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0 && isFcore && isMovedToFcore) {
+                  _deltaFcores.addMovedFcore(uri, URIHelper.getPlatformURI(delta.getMovedToPath()));
+                  _movedFcores.put(delta.getResource().getFullPath(), delta.getMovedToPath());
+                  _affectedProjects.add(delta.getResource().getProject());
+                  _affectedProjects.add(ProjectHelper.getProject(delta.getMovedToPath()));
+                  // Check whether or not we are moving a non fcore to an fcore
+                } else if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0 && isFcore == false && isMovedToFcore) {
+                  _deltaFcores.addNewFcore(URIHelper.getPlatformURI(delta.getMovedToPath()));
+                  _newFcores.add(delta.getMovedToPath());
+                  _affectedProjects.add(delta.getResource().getProject());
+                  _affectedProjects.add(ProjectHelper.getProject(delta.getMovedToPath()));
+                  // Check whether or not we are deleting an fcore
+                } else if (isFcore) {
+                  _deltaFcores.addRemovedFcore(uri);
+                  _removedFcores.add(delta.getResource().getFullPath());
+                  _affectedProjects.add(delta.getResource().getProject());
                 }
               }
             }
@@ -187,24 +205,24 @@ public class FcoreResourceListener implements IResourceChangeListener {
       }
 
       switch (eventType) {
-      case IResourceChangeEvent.POST_CHANGE:
-        final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-        event.getDelta().accept(visitor);
-        // Process added, moved and removed resources
-        if (visitor.getMovedFcores().isEmpty() == false || visitor.getRemovedFcores().isEmpty() == false || visitor.getNewFcores().isEmpty() == false) {
-          WorkspaceJob job = new FcoreSynchJob(visitor.getAffectedProjects(), visitor.getMovedFcores(), visitor.getRemovedFcores(), visitor.getNewFcores());
-          job.setUser(true);
-          job.schedule();
-        }
-        // Broadcast events if any
-        if (visitor.getFcoresDelta().isEmpty() == false) {
-          // Debug
-          if (EGFPDEPlugin.getDefault().isDebugging()) {
-            trace(visitor.getFcoresDelta());
+        case IResourceChangeEvent.POST_CHANGE:
+          final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+          event.getDelta().accept(visitor);
+          // Process added, moved and removed resources
+          if (visitor.getMovedFcores().isEmpty() == false || visitor.getRemovedFcores().isEmpty() == false || visitor.getNewFcores().isEmpty() == false) {
+            WorkspaceJob job = new FcoreSynchJob(visitor.getAffectedProjects(), visitor.getMovedFcores(), visitor.getRemovedFcores(), visitor.getNewFcores());
+            job.setUser(true);
+            job.schedule();
           }
-          // Notify all interested listeners in the changes made to models
-          fireResourceFcore(visitor.getFcoresDelta());
-        }
+          // Broadcast events if any
+          if (visitor.getFcoresDelta().isEmpty() == false) {
+            // Debug
+            if (EGFPDEPlugin.getDefault().isDebugging()) {
+              trace(visitor.getFcoresDelta());
+            }
+            // Notify all interested listeners in the changes made to models
+            fireResourceFcore(visitor.getFcoresDelta());
+          }
       }
 
     } catch (CoreException ce) {
@@ -220,10 +238,21 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
   protected IRunnableWithProgress createFcoreOperation(final IStatus[] errorStatus, final List<IResource> removedFcores, final List<IResource> newFcores) {
     return new IRunnableWithProgress() {
+
       public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
       }
     };
+  }
+
+  private static String toString(URI uri) {
+    String fragment = uri.fragment();
+    String pathName = uri.trimFragment().toString().substring(URIHelper.PLATFORM_PLUGIN_URI.toString().length(), uri.trimFragment().toString().length());
+    URI encodedURI = URI.createPlatformPluginURI(pathName, true);
+    if (fragment != null) {
+      encodedURI = encodedURI.appendFragment(fragment);
+    }
+    return encodedURI.toString();
   }
 
   private void trace(IResourceFcoreDelta delta) {
@@ -232,7 +261,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           delta.getNewFcores().size(), delta.getNewFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getNewFcores()) {
-        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(toString(uri), 1);
       }
     }
     if (delta.getRemovedFcores().size() > 0) {
@@ -240,7 +269,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           delta.getRemovedFcores().size(), delta.getRemovedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getRemovedFcores()) {
-        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(toString(uri), 1);
       }
     }
     if (delta.getUpdatedFcores().size() > 0) {
@@ -248,7 +277,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           delta.getUpdatedFcores().size(), delta.getUpdatedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getUpdatedFcores()) {
-        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(toString(uri), 1);
       }
     }
     if (delta.getMovedFcores().size() > 0) {
@@ -257,7 +286,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
       ));
       for (URI uri : delta.getMovedFcores().keySet()) {
         EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
-        EGFPDEPlugin.getDefault().logInfo("To: " + URI.decode(delta.getMovedFcores().get(uri).toString()), 2); //$NON-NLS-1$
+        EGFPDEPlugin.getDefault().logInfo("To: " + toString(delta.getMovedFcores().get(uri)), 2); //$NON-NLS-1$
       }
     }
   }
