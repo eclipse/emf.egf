@@ -84,6 +84,24 @@ public class ProjectHelper {
   }
 
   /**
+   * Get the IProject from an IPath
+   * 
+   * @param path
+   * @return null if not applicable
+   */
+  public static IProject getProject(IPath path) {
+    // Precondition.
+    if (path == null) {
+      return null;
+    }
+    IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+    if (file == null) {
+      return null;
+    }
+    return file.getProject();
+  }
+
+  /**
    * Get the IProject for specified plug-in model.
    * 
    * @param model
