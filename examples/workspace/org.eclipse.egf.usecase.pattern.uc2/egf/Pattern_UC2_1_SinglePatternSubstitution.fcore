@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
+  <fcore:FactoryComponent xmi:id="_9tinYVklEd-JQcaBMLZCWg" name="Pattern_UC2_1_Main">
+    <contractContainer xmi:id="_9rXyQVknEd-nZ9GSBuVMNQ">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9rXyQlknEd-nZ9GSBuVMNQ"
+          name="domain" mandatory="true" invocationContracts="#_oREaklksEd-nZ9GSBuVMNQ">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_9rXyQ1knEd-nZ9GSBuVMNQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9rXyRFknEd-nZ9GSBuVMNQ"
+          name="pattern.substitutions" invocationContracts="#_oREal1ksEd-nZ9GSBuVMNQ">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_9rXyRVknEd-nZ9GSBuVMNQ"/>
+      </contracts>
+    </contractContainer>
+    <viewpointContainer xmi:id="_MqjuYFkoEd-nZ9GSBuVMNQ">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_NXj-UFkoEd-nZ9GSBuVMNQ">
+        <libraries xmi:id="_YZR_UFkoEd-nZ9GSBuVMNQ" name="egf.uc2_1.main">
+          <elements xmi:type="pattern:Pattern" xmi:id="_gA2NoFkoEd-nZ9GSBuVMNQ" name="uc2_1_ClassPattern"
+              headerMethod="#_gA2NoVkoEd-nZ9GSBuVMNQ" footerMethod="#_gA2NpFkoEd-nZ9GSBuVMNQ"
+              initMethod="#_gA2NolkoEd-nZ9GSBuVMNQ">
+            <methods xmi:id="_gA2NoVkoEd-nZ9GSBuVMNQ" name="header" patternFilePath="templates/pattern._gA2NoFkoEd-nZ9GSBuVMNQ/method._gA2NoVkoEd-nZ9GSBuVMNQ.pt"/>
+            <methods xmi:id="_gA2NolkoEd-nZ9GSBuVMNQ" name="init" patternFilePath="templates/pattern._gA2NoFkoEd-nZ9GSBuVMNQ/method._gA2NolkoEd-nZ9GSBuVMNQ.pt"/>
+            <methods xmi:id="_gA2NpFkoEd-nZ9GSBuVMNQ" name="footer" patternFilePath="templates/pattern._gA2NoFkoEd-nZ9GSBuVMNQ/method._gA2NpFkoEd-nZ9GSBuVMNQ.pt"/>
+            <methods xmi:id="_K_KHEFkpEd-nZ9GSBuVMNQ" name="body" patternFilePath="templates/pattern._gA2NoFkoEd-nZ9GSBuVMNQ/method._K_KHEFkpEd-nZ9GSBuVMNQ.pt"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_dnJhYFnjEd-nZ9GSBuVMNQ"
+                called="#_K_KHEFkpEd-nZ9GSBuVMNQ"/>
+            <parameters xmi:id="_2xSfkFkoEd-nZ9GSBuVMNQ" name="aClass" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_gA2NplkoEd-nZ9GSBuVMNQ"
+                name="JET"/>
+          </elements>
+          <elements xmi:type="pattern:Pattern" xmi:id="_KAoXYFkrEd-nZ9GSBuVMNQ" name="uc2_1_AttributePattern"
+              headerMethod="#_KAoXYVkrEd-nZ9GSBuVMNQ" footerMethod="#_KAoXZFkrEd-nZ9GSBuVMNQ"
+              initMethod="#_KAoXYlkrEd-nZ9GSBuVMNQ">
+            <methods xmi:id="_KAoXYVkrEd-nZ9GSBuVMNQ" name="header" patternFilePath="templates/pattern._KAoXYFkrEd-nZ9GSBuVMNQ/method._KAoXYVkrEd-nZ9GSBuVMNQ.pt"/>
+            <methods xmi:id="_KAoXYlkrEd-nZ9GSBuVMNQ" name="init" patternFilePath="templates/pattern._KAoXYFkrEd-nZ9GSBuVMNQ/method._KAoXYlkrEd-nZ9GSBuVMNQ.pt"/>
+            <methods xmi:id="_KAoXY1krEd-nZ9GSBuVMNQ" name="body" patternFilePath="templates/pattern._KAoXYFkrEd-nZ9GSBuVMNQ/method._KAoXY1krEd-nZ9GSBuVMNQ.pt"/>
+            <methods xmi:id="_KAoXZFkrEd-nZ9GSBuVMNQ" name="footer" patternFilePath="templates/pattern._KAoXYFkrEd-nZ9GSBuVMNQ/method._KAoXZFkrEd-nZ9GSBuVMNQ.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_KAoXZVkrEd-nZ9GSBuVMNQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Y3VF4FkrEd-nZ9GSBuVMNQ"
+                called="#_KAoXY1krEd-nZ9GSBuVMNQ"/>
+            <parameters xmi:id="_N6OfIFkrEd-nZ9GSBuVMNQ" name="anAttribute" type="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_KAoXZlkrEd-nZ9GSBuVMNQ"
+                name="JET"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_l-SfoFksEd-nZ9GSBuVMNQ">
+      <invocations xmi:id="_oREakFksEd-nZ9GSBuVMNQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+        <invocationContractContainer xmi:id="_oREakVksEd-nZ9GSBuVMNQ">
+          <invocationContracts xmi:id="_oREaklksEd-nZ9GSBuVMNQ" factoryComponentContract="#_9rXyQlknEd-nZ9GSBuVMNQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
+          <invocationContracts xmi:id="_oREallksEd-nZ9GSBuVMNQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_9B9PkFksEd-nZ9GSBuVMNQ"
+                elements="#_gA2NoFkoEd-nZ9GSBuVMNQ #_KAoXYFkrEd-nZ9GSBuVMNQ"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_oREal1ksEd-nZ9GSBuVMNQ" factoryComponentContract="#_9rXyRFknEd-nZ9GSBuVMNQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_JyrwEFktEd-nZ9GSBuVMNQ" name="Pattern_UC2_1_SimpleCall">
+    <viewpointContainer xmi:id="_jwKlwFktEd-nZ9GSBuVMNQ">
+      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_kc36wFktEd-nZ9GSBuVMNQ">
+        <domains xmi:type="domain:DomainURI" xmi:id="_lXbegFktEd-nZ9GSBuVMNQ" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_FqYBcFkuEd-nZ9GSBuVMNQ">
+      <invocations xmi:id="_KDZ3MFkuEd-nZ9GSBuVMNQ" invokedActivity="#_9tinYVklEd-JQcaBMLZCWg">
+        <invocationContractContainer xmi:id="_KDZ3MVkuEd-nZ9GSBuVMNQ">
+          <invocationContracts xmi:id="_KDZ3MlkuEd-nZ9GSBuVMNQ" invokedContract="#_9rXyQlknEd-nZ9GSBuVMNQ">
+            <type xmi:type="domain:TypeDomainURI" xmi:id="_L2lsEFkuEd-nZ9GSBuVMNQ"
+                domain="#_lXbegFktEd-nZ9GSBuVMNQ"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_ujei0FnnEd-nCN8bxVd2Rg" name="Pattern_UC2_1_SinglePatternSubstitution">
+    <viewpointContainer xmi:id="_GjMrUFnoEd-nCN8bxVd2Rg">
+      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_OtVbMFnoEd-nCN8bxVd2Rg">
+        <domains xmi:type="domain:DomainURI" xmi:id="_OtVbMVnoEd-nCN8bxVd2Rg" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+      </viewpoints>
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_RvVzoFnoEd-nCN8bxVd2Rg">
+        <libraries xmi:id="_9EAXkFnoEd-nCN8bxVd2Rg" name="egf.uc2_1.substitution.single">
+          <elements xmi:type="pattern:Pattern" xmi:id="_BhzYkFnpEd-nCN8bxVd2Rg" name="uc2_1_AttributePatternSubstitution1"
+              headerMethod="#_BhzYkVnpEd-nCN8bxVd2Rg" footerMethod="#_BhzYlFnpEd-nCN8bxVd2Rg"
+              initMethod="#_BhzYklnpEd-nCN8bxVd2Rg">
+            <methods xmi:id="_BhzYkVnpEd-nCN8bxVd2Rg" name="header" patternFilePath="templates/pattern._BhzYkFnpEd-nCN8bxVd2Rg/method._BhzYkVnpEd-nCN8bxVd2Rg.pt"/>
+            <methods xmi:id="_BhzYklnpEd-nCN8bxVd2Rg" name="init" patternFilePath="templates/pattern._BhzYkFnpEd-nCN8bxVd2Rg/method._BhzYklnpEd-nCN8bxVd2Rg.pt"/>
+            <methods xmi:id="_BhzYk1npEd-nCN8bxVd2Rg" name="body" patternFilePath="templates/pattern._BhzYkFnpEd-nCN8bxVd2Rg/method._BhzYk1npEd-nCN8bxVd2Rg.pt"/>
+            <methods xmi:id="_BhzYlFnpEd-nCN8bxVd2Rg" name="footer" patternFilePath="templates/pattern._BhzYkFnpEd-nCN8bxVd2Rg/method._BhzYlFnpEd-nCN8bxVd2Rg.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_BhzYlVnpEd-nCN8bxVd2Rg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_InlTAFnqEd-nCN8bxVd2Rg"
+                called="#_BhzYk1npEd-nCN8bxVd2Rg"/>
+            <parameters xmi:id="_eDWGcFnpEd-nCN8bxVd2Rg" name="anAttribute" type="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_BhzYllnpEd-nCN8bxVd2Rg"
+                name="JET"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_rJ1bkFnpEd-nCN8bxVd2Rg">
+      <invocations xmi:id="_vik9cFnpEd-nCN8bxVd2Rg" invokedActivity="#_9tinYVklEd-JQcaBMLZCWg">
+        <invocationContractContainer xmi:id="_vik9cVnpEd-nCN8bxVd2Rg">
+          <invocationContracts xmi:id="_vik9clnpEd-nCN8bxVd2Rg" invokedContract="#_9rXyQlknEd-nZ9GSBuVMNQ">
+            <type xmi:type="domain:TypeDomainURI" xmi:id="_zjU2EFnpEd-nCN8bxVd2Rg"
+                domain="#_OtVbMVnoEd-nCN8bxVd2Rg"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_vik9c1npEd-nCN8bxVd2Rg" invokedContract="#_9rXyRFknEd-nZ9GSBuVMNQ">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_3CY98FnpEd-nCN8bxVd2Rg">
+              <substitutions xmi:id="_4LQqgFnpEd-nCN8bxVd2Rg" outgoing="#_KAoXYFkrEd-nZ9GSBuVMNQ"
+                  incoming="#_BhzYkFnpEd-nCN8bxVd2Rg"/>
+            </type>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>
