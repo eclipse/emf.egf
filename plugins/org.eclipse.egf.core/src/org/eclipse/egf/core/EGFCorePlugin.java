@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.platform.pde.PlatformURIConverter;
+import org.eclipse.egf.core.uri.PlatformURIConverter;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.BundleContext;
 
@@ -52,7 +52,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   /**
    * Get activator shared instance.
    * 
-   * @return
+   * @return __plugin
    */
   public static EGFCorePlugin getDefault() {
     return __plugin;
@@ -64,7 +64,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * @return an array of IPlatformFcore
    */
   public static PlatformURIConverter getPlatformURIConverter() {
-    return EGFPlatformPlugin.getPlatformURIConverter();
+    return PlatformURIConverter.getInstance();
   }
 
   /**
@@ -139,6 +139,9 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   public void start(BundleContext context) throws Exception {
     super.start(context);
     __plugin = this;
+    // The platform URI Converter should be initialized after the platform manager
+    EGFPlatformPlugin.getPlatformManager();
+    PlatformURIConverter.getInstance();
   }
 
   /**
@@ -146,6 +149,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    */
   @Override
   public void stop(BundleContext context) throws Exception {
+    PlatformURIConverter.getInstance().dispose();
     __plugin = null;
     super.stop(context);
   }
