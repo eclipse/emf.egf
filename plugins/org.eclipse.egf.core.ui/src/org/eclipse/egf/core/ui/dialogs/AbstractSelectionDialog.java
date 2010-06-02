@@ -33,8 +33,8 @@ import org.eclipse.ui.dialogs.SelectionDialog;
 /**
  * This class provides the framework for a general selection dialog class.
  * 
- * @see AbstractDebugListSelectionDialog
- * @see AbstractDebugCheckboxSelectionDialog
+ * @see org.eclipse.debug.internal.ui.AbstractDebugListSelectionDialog
+ * @see org.eclipse.debug.internal.ui.AbstractDebugCheckboxSelectionDialog
  * 
  * @since 3.3
  */
