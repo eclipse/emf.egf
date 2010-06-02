@@ -42,7 +42,7 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
   /**
    * Get shared instance.
    * 
-   * @return
+   * @return __plugin
    */
   public static EGFCommonPlugin getDefault() {
     return __plugin;
