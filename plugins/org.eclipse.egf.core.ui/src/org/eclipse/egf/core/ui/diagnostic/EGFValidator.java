@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
@@ -58,8 +59,23 @@ public class EGFValidator {
 
   private List<? extends EObject> _eObjects = new ArrayList<EObject>();
 
+  private ProjectBundleSession _session;
+
+  /**
+   * Standalone validator, a BundleSession will be initialized and disposed
+   */
   public EGFValidator(List<? extends EObject> eObjects) {
     _eObjects = eObjects;
+  }
+
+  /**
+   * It's the responsability of the caller to manage a BundleSession
+   * In such case this validator will not initialized and dispose a BundleSession
+   */
+  public EGFValidator(List<? extends EObject> eObjects, ProjectBundleSession session) {
+    Assert.isNotNull(session);
+    _eObjects = eObjects;
+    _session = session;
   }
 
   public Diagnostic validate() {
@@ -73,11 +89,13 @@ public class EGFValidator {
     final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
     IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress() {
+
       public void run(final IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         try {
           // Validate
           diagnostic[0] = validate(monitor);
           shell.getDisplay().asyncExec(new Runnable() {
+
             public void run() {
               if (monitor.isCanceled()) {
                 return;
@@ -154,16 +172,21 @@ public class EGFValidator {
       context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.FALSE);
     }
     // Bundle Session
-    ProjectBundleSession session = new ProjectBundleSession(EGFCoreUIPlugin.getDefault().getBundle().getBundleContext());
+    ProjectBundleSession session = _session;
+    if (_session == null) {
+      session = new ProjectBundleSession(EGFCoreUIPlugin.getDefault().getBundle().getBundleContext());
+    }
     context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
     // Validation
     for (EObject eObject : _eObjects) {
-      monitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject) })); //$NON-NLS-1$
+      monitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject)})); //$NON-NLS-1$
       diagnostician.validate(eObject, diagnostic, context);
     }
     // Dispose Session
     try {
-      session.dispose();
+      if (_session == null) {
+        session.dispose();
+      }
     } catch (CoreException ce) {
       EGFCoreUIPlugin.getDefault().logError(ce);
     }
@@ -186,6 +209,7 @@ public class EGFValidator {
 
   protected Diagnostician createDiagnostician(final IProgressMonitor progressMonitor) {
     return new Diagnostician() {
+
       @Override
       public String getObjectLabel(EObject eObject) {
         return EMFHelper.getText(eObject);
