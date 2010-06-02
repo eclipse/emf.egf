@@ -55,10 +55,13 @@ public class EditorHelper {
     }
     // Select
     try {
-      Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
+      Class<?>[] types = new Class[] {
+        Class.forName("java.util.Collection")}; //$NON-NLS-1$              
       Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
       if (method != null) {
-        Object[] params = new Object[] { eObjects };
+        Object[] params = new Object[] {
+          eObjects
+        };
         method.invoke(part, params);
       }
     } catch (Throwable t) {
@@ -83,10 +86,13 @@ public class EditorHelper {
     }
     // Select
     try {
-      Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
+      Class<?>[] types = new Class[] {
+        Class.forName("java.util.Collection")}; //$NON-NLS-1$              
       Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
       if (method != null) {
-        Object[] params = new Object[] { Collections.singletonList(eObject) };
+        Object[] params = new Object[] {
+          Collections.singletonList(eObject)
+        };
         method.invoke(part, params);
       }
     } catch (Throwable t) {
@@ -239,6 +245,7 @@ public class EditorHelper {
     }
 
     static final Class<?> FILE_REVISION_CLASS;
+
     static final Method FILE_REVISION_GET_URI_METHOD;
     static {
       Class<?> fileRevisionClass = null;
@@ -271,7 +278,7 @@ public class EditorHelper {
       if (FILE_CLASS != null) {
         IFile file = getIFile(editorInput);
         if (file != null) {
-          return URI.createPlatformPluginURI(file.getFullPath().toString(), true);
+          return URI.createPlatformPluginURI(file.getFullPath().toString(), false);
         }
       }
       if (FILE_REVISION_CLASS != null) {
