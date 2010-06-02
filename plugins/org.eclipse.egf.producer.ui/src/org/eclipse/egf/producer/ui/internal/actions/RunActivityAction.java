@@ -123,7 +123,7 @@ public class RunActivityAction implements IObjectActionDelegate {
           return;
         }
         if (_validates != null && _validates.size() != 0) {
-          EGFValidator validator = new EGFValidator(_validates);
+          EGFValidator validator = new EGFValidator(_validates, activityManager[0].getProjectBundleSession());
           Diagnostic validationDiag = validator.validate();
           // Stop when an error is found
           if (validationDiag.getSeverity() == Diagnostic.ERROR) {
