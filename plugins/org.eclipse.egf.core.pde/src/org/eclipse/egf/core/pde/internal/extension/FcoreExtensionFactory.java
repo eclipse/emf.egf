@@ -37,7 +37,7 @@ public class FcoreExtensionFactory implements IFcoreExtensionFactory {
   /**
    * Get the unique instance.
    * 
-   * @return
+   * @return __instance
    */
   public static FcoreExtensionFactory getInstance() {
     if (__instance == null) {

@@ -71,7 +71,7 @@ public class FcoreGeneratorHelper {
    * Get the build model for given project.
    * 
    * @param project
-   * @return
+   * @return WorkspaceBuildModel
    */
   public static WorkspaceBuildModel getBuildModel(IProject project) {
     // Precondition.

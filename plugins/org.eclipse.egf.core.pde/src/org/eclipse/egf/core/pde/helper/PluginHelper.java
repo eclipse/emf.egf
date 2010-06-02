@@ -73,10 +73,6 @@ public class PluginHelper {
    * Create plug-in model object
    * 
    * @param model
-   * @param bundleRelativeFileName
-   *          the searched bundle file name.<br>
-   * @param bundleId
-   *          The bundle id.
    * @return a {@link WorkspacePluginModelBase} instance or null if
    *         instantiation fails.
    */
@@ -101,9 +97,9 @@ public class PluginHelper {
    * Test whether or not given bundle model object exists.
    * 
    * @param model
-   * @param bundleRelativeFileName
+   * @param file
    *          the searched bundle file name.<br>
-   * @return
+   * @return boolean
    */
   public static boolean bundleFileExists(IPluginModelBase model, String file) {
     IFile result = getFile(model, file);
@@ -118,7 +114,7 @@ public class PluginHelper {
    * file.
    * 
    * @param file
-   * @return
+   * @return IPluginModelBase
    */
   public static IPluginModelBase getModel(IFile file) {
     if (file == null) {

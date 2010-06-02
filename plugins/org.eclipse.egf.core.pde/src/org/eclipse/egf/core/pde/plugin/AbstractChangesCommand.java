@@ -71,7 +71,7 @@ public abstract class AbstractChangesCommand implements IPluginChangesCommand {
   }
 
   /**
-   * @see org.eclipse.egf.core.pde.plugin.IPluginChangesCommand#execute()
+   * @see org.eclipse.egf.core.pde.plugin.IPluginChangesCommand#execute(org.eclipse.core.runtime.IProgressMonitor)
    */
   public void execute(IProgressMonitor monitor) throws CoreException {
     if (_project.getFile(PDEModelUtility.F_PLUGIN).exists()) {
@@ -98,9 +98,11 @@ public abstract class AbstractChangesCommand implements IPluginChangesCommand {
 
   private void modifyExistingPlugin(final IProgressMonitor monitor) {
     EGFPDEPlugin.getDisplay().syncExec(new Runnable() {
+
       public void run() {
         // Create an update operation that deals with modifying extensions.
         ModelModification updateOperation = new ModelModification(_project.getFile(PDEModelUtility.F_PLUGIN)) {
+
           @Override
           protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
             if (model == null) {

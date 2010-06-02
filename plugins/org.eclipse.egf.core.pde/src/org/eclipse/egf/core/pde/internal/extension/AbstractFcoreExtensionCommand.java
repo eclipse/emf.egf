@@ -69,7 +69,7 @@ public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionCha
     if (value == null || value.trim().length() == 0) {
       return false;
     }
-    URI uri = URIHelper.getPlatformURI(getBundleId(), value, true);
+    URI uri = URIHelper.getPlatformURI(getBundleId(), URI.decode(value), false);
     if (uri.equals(getURI())) {
       return true;
     }

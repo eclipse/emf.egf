@@ -30,9 +30,6 @@ public class UnsetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
     super(path);
   }
 
-  /**
-   * @see org.eclipse.egf.pde.plugin.command.AbstractUnsetExtensionCommand#execute()
-   */
   @Override
   public void doExecute(IProgressMonitor monitor) throws CoreException {
     removeExtensionElement();

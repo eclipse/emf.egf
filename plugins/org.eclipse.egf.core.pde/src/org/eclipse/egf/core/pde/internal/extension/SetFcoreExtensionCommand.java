@@ -32,7 +32,7 @@ public class SetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
   }
 
   /**
-   * @see org.eclipse.egf.core.pde.plugin.AbstractChangesCommand#doExecute()
+   * @see org.eclipse.egf.core.pde.plugin.AbstractChangesCommand#doExecute(org.eclipse.core.runtime.IProgressMonitor)
    */
   @Override
   public void doExecute(IProgressMonitor monitor) throws CoreException {

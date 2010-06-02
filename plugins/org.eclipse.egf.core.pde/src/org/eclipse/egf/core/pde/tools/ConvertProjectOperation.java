@@ -110,8 +110,12 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
    * Workspace operation to convert the specified project into a plug-in
    * project.
    * 
-   * @param theProjectsToConvert
-   *          The project to be converted.
+   * @param project
+   *          The project to be converted in a Bundle
+   * @param createJavaProject
+   *          The project should be converted to a JavaProject
+   * @param createEGFNature
+   *          The project should have en EGF Nature.
    */
   public ConvertProjectOperation(IProject project, boolean createJavaProject, boolean createEGFNature) {
     _project = project;
@@ -218,9 +222,13 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     String[] natureIds = projectDescription.getNatureIds();
     if (natureIds == null) {
       if (_createJavaProject) {
-        natureIds = new String[] { JavaCore.NATURE_ID, PDE.PLUGIN_NATURE, EGFNatures.EGF_NATURE };
+        natureIds = new String[] {
+            JavaCore.NATURE_ID, PDE.PLUGIN_NATURE, EGFNatures.EGF_NATURE
+        };
       } else {
-        natureIds = new String[] { PDE.PLUGIN_NATURE };
+        natureIds = new String[] {
+          PDE.PLUGIN_NATURE
+        };
       }
       projectDescription.setNatureIds(natureIds);
       subMonitor.worked(200);
@@ -431,6 +439,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private void organizeExports(IProgressMonitor monitor) {
     PDEModelUtility.modifyModel(new ModelModification(_project.getFile(PDEModelUtility.F_MANIFEST_FP)) {
+
       @Override
       protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
         SubMonitor.convert(innerMonitor, EGFCoreMessages.ConvertProjectOperation_organizeExport, 100);
@@ -463,6 +472,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private void updateBuildFile(IProgressMonitor monitor) {
     PDEModelUtility.modifyModel(new ModelModification(_project.getFile(PDEModelUtility.F_BUILD)) {
+
       @Override
       protected void modifyModel(IBaseModel base, IProgressMonitor innerMonitor) throws CoreException {
         SubMonitor.convert(innerMonitor, EGFCoreMessages.ConvertProjectOperation_setupBuildfile, 100);
@@ -602,6 +612,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private void updateManifestFile(IProgressMonitor monitor) {
     PDEModelUtility.modifyModel(new ModelModification(_project.getFile(PDEModelUtility.F_MANIFEST_FP)) {
+
       @Override
       protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
         SubMonitor subMonitor = SubMonitor.convert(innerMonitor, EGFCoreMessages.ConvertProjectOperation_setupManifestfile, 200);

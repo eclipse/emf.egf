@@ -36,7 +36,7 @@ public interface IPluginChangesCommand {
   /**
    * get the plug-in model id
    * 
-   * @param pluginModel
+   * @return String
    */
   public String getBundleId();
 

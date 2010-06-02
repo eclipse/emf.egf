@@ -80,10 +80,12 @@ public class PDEModelUtility {
 
   // bundle / xml various Object[] indices
   private static final int F_Bi = 0; // the manifest.mf-related object will
-                                     // always be 1st
+
+  // always be 1st
 
   private static final int F_Xi = 1; // the xml-related object will always be
-                                     // 2nd
+
+  // 2nd
 
   @SuppressWarnings("unchecked")
   private static Hashtable fOpenPDEEditors = new Hashtable();
@@ -261,11 +263,11 @@ public class PDEModelUtility {
   }
 
   /**
-   * @param doc
-   * @return
+   * @param document
+   * @return IEditingModel
    */
   @SuppressWarnings("unchecked")
-  public static IEditingModel getOpenModel(IDocument doc) {
+  public static IEditingModel getOpenModel(IDocument document) {
     Iterator it = fOpenPDEEditors.values().iterator();
     while (it.hasNext()) {
       ArrayList list = (ArrayList) it.next();
@@ -274,11 +276,11 @@ public class PDEModelUtility {
         IPluginModelBase model = (IPluginModelBase) e.getAggregateModel();
         if (model instanceof IBundlePluginModelBase) {
           IBundleModel bModel = ((IBundlePluginModelBase) model).getBundleModel();
-          if (bModel instanceof IEditingModel && doc == ((IEditingModel) bModel).getDocument()) {
+          if (bModel instanceof IEditingModel && document == ((IEditingModel) bModel).getDocument()) {
             return (IEditingModel) bModel;
           }
           ISharedExtensionsModel eModel = ((IBundlePluginModelBase) model).getExtensionsModel();
-          if (eModel instanceof IEditingModel && doc == ((IEditingModel) eModel).getDocument()) {
+          if (eModel instanceof IEditingModel && document == ((IEditingModel) eModel).getDocument()) {
             return (IEditingModel) eModel;
           }
         }
@@ -286,7 +288,7 @@ public class PDEModelUtility {
         // if (bModel instanceof IEditingModel &&
         // doc == ((IEditingModel)bModel).getDocument())
         // return (IEditingModel)bModel;
-        if (model instanceof IEditingModel && doc == ((IEditingModel) model).getDocument()) {
+        if (model instanceof IEditingModel && document == ((IEditingModel) model).getDocument()) {
           return (IEditingModel) model;
         }
       }
@@ -308,7 +310,6 @@ public class PDEModelUtility {
    * 
    * @param modification
    * @param monitor
-   * @throws CoreException
    */
   @SuppressWarnings("deprecation")
   public static void modifyModel(final ModelModification modification, final IProgressMonitor monitor) {
@@ -332,7 +333,9 @@ public class PDEModelUtility {
         files[F_Bi] = modification.getManifestFile();
         files[F_Xi] = modification.getXMLFile();
       } else {
-        files = new IFile[] { modification.getFile() };
+        files = new IFile[] {
+          modification.getFile()
+        };
       }
       // need to monitor number of successfull buffer connections for
       // disconnection purposes
@@ -404,10 +407,13 @@ public class PDEModelUtility {
 
   private static void modifyEditorModel(final ModelModification mod, final PDEFormEditor editor, final IBaseModel model, final IProgressMonitor monitor) {
     getDisplay().syncExec(new Runnable() {
+
       public void run() {
         try {
           mod.modifyModel(model, monitor);
-          IFile[] files = new IFile[] { mod.getManifestFile(), mod.getXMLFile(), mod.getPropertiesFile() };
+          IFile[] files = new IFile[] {
+              mod.getManifestFile(), mod.getXMLFile(), mod.getPropertiesFile()
+          };
           for (int i = 0; i < files.length; i++) {
             if (files[i] == null) {
               continue;
@@ -534,7 +540,9 @@ public class PDEModelUtility {
   private static IModelTextChangeListener[] gatherListeners(IBaseModel editModel) {
     IModelTextChangeListener[] listeners = new IModelTextChangeListener[0];
     if (editModel instanceof AbstractEditingModel) {
-      listeners = new IModelTextChangeListener[] { ((AbstractEditingModel) editModel).getLastTextChangeListener() };
+      listeners = new IModelTextChangeListener[] {
+        ((AbstractEditingModel) editModel).getLastTextChangeListener()
+      };
     }
     if (editModel instanceof IBundlePluginModelBase) {
       IBundlePluginModelBase modelBase = (IBundlePluginModelBase) editModel;
