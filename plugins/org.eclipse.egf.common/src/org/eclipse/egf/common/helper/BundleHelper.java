@@ -179,9 +179,8 @@ public class BundleHelper {
   /**
    * Get a Bundle from a bundled loaded Class<?>
    * 
-   * @param project
-   * @return an {@link IPluginModelBase} instance or null if the project is not
-   *         a plug-in.
+   * @param clazz
+   * @return a {@link Bundle} instance or null
    */
   public static Bundle getBundle(Class<?> clazz) {
     if (clazz == null) {

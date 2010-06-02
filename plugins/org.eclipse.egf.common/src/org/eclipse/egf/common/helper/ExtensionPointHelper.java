@@ -104,7 +104,7 @@ public class ExtensionPointHelper {
    * 
    * @param configurationElement
    * @param pluginId
-   * @return
+   * @return boolean
    */
   public static boolean isDeclaredBy(IConfigurationElement configurationElement, String pluginId) {
     return configurationElement != null && pluginId != null && pluginId.equals(configurationElement.getContributor().getName());
@@ -160,7 +160,7 @@ public class ExtensionPointHelper {
    * @param configurationElement
    * @param attributeName
    * @param attributeValue
-   * @return
+   * @return boolean
    */
   public static boolean hasValue(IConfigurationElement configurationElement, String attributeName, String attributeValue) {
     boolean result = false;
@@ -219,7 +219,6 @@ public class ExtensionPointHelper {
    *          the value of the attribute used for comparison matching. If null,
    *          matching is not performed.
    * @return an instance of the interface regarding the attribute 'class'
-   * @see ATT_CLASS
    */
   public static Object createExecutableExtension(String pluginId, String extensionPointId, String attributeId, String attributeValue) throws CoreException {
     IConfigurationElement[] configElements = getConfigurationElements(pluginId, extensionPointId);

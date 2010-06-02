@@ -73,7 +73,7 @@ public class ProjectHelper {
    * 
    * @param bundleId
    *          A project name that points to a plug-in in the workspace.
-   * @return
+   * @return IProject
    */
   public static IProject getProject(String bundleId) {
     // Precondition.
@@ -117,7 +117,6 @@ public class ProjectHelper {
    * @param project
    * @param depth
    * @param monitor
-   * @see {@link IResource#refreshLocal(int, IProgressMonitor)}
    */
   public static void refreshProject(IProject project, int depth, IProgressMonitor monitor) throws CoreException {
     project.refreshLocal(depth, monitor);
@@ -132,7 +131,6 @@ public class ProjectHelper {
    *          the hosting project.
    * @param monitor
    *          progress monitor.
-   * @return <code>true</code> means the creation is successful.
    */
   public static void createSourceFolder(String folder, IProject project, IProgressMonitor monitor) throws CoreException {
     // Preconditions
@@ -246,7 +244,9 @@ public class ProjectHelper {
       return;
     }
     // Restore Java nature only.
-    String natureIds[] = new String[] { JavaCore.NATURE_ID };
+    String natureIds[] = new String[] {
+      JavaCore.NATURE_ID
+    };
     IProjectDescription description = project.getDescription();
     description.setNatureIds(natureIds);
     project.setDescription(description, monitor);
@@ -286,7 +286,7 @@ public class ProjectHelper {
    * 
    * @param projectName
    *          The expected project name.
-   * @return
+   * @return ProjectExistenceStatus
    */
   public static ProjectExistenceStatus ensurePluginProjectExists(String projectName, IProgressMonitor monitor) throws CoreException {
     return ensureProjectExists(projectName, false, Generator.EMF_PLUGIN_PROJECT_STYLE, monitor);
@@ -298,7 +298,7 @@ public class ProjectHelper {
    * 
    * @param projectName
    *          The expected project name.
-   * @return
+   * @return ProjectExistenceStatus
    */
   public static ProjectExistenceStatus ensureProjectExists(String projectName, IProgressMonitor monitor) throws CoreException {
     return ensureProjectExists(projectName, true, Generator.EMF_EMPTY_PROJECT_STYLE, monitor);

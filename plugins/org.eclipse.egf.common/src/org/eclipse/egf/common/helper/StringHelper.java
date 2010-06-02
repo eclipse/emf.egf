@@ -38,7 +38,7 @@ public class StringHelper {
    * 
    * @param message_p
    * @param arguments_p
-   * @return
+   * @return String
    */
   public static String formatMessage(String message_p, Object[] arguments_p) {
     MessageFormat formatter = new MessageFormat(message_p);
@@ -90,7 +90,9 @@ public class StringHelper {
     }
     // Return source string if no separator was provided.
     if (separators_p == null || separators_p.trim().length() == 0) {
-      result = new String[] { source_p };
+      result = new String[] {
+        source_p
+      };
       return result;
     }
     // Create a new tokenizer.
@@ -103,7 +105,9 @@ public class StringHelper {
         result[i] = tokenizer.nextToken();
       }
     } else { // Could not find any token, return source string.
-      result = new String[] { source_p };
+      result = new String[] {
+        source_p
+      };
     }
     return result;
   }
@@ -232,7 +236,7 @@ public class StringHelper {
    * @param originalString_p
    * @param replacementString_p
    *          each non word character is replaced by given string.
-   * @return
+   * @return String
    */
   public static String replaceNonWordCharacters(String originalString_p, String replacementString_p) {
     return originalString_p.replaceAll(REGEXP_NON_WORD_CHARACTERS, replacementString_p != null ? replacementString_p : EGFCommonConstants.EMPTY_STRING);

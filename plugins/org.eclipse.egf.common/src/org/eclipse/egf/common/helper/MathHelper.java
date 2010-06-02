@@ -93,12 +93,12 @@ public class MathHelper {
   /**
    * Multiply given integer and float value, and return result as an int.
    * 
-   * @param sourceValue_p
-   * @param multiplier_p
-   * @return
+   * @param value
+   * @param multiplier
+   * @return int
    */
-  public static int multiply(int sourceValue_p, float multiplier_p) {
-    return (int) (sourceValue_p * multiplier_p);
+  public static int multiply(int value, float multiplier) {
+    return (int) (value * multiplier);
   }
 
 }

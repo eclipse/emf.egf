@@ -95,7 +95,7 @@ public class EMFHelper {
    * Root package being the eldest parent package.
    * 
    * @param ePackage
-   * @return
+   * @return EPackage
    */
   public static EPackage getRootPackage(EPackage ePackage) {
     if (ePackage == null) {

@@ -61,7 +61,7 @@ public class FileHelper {
    *          absolute one against the workspace root.<br>
    *          It's still referred to as a relative path, since the returned URL
    *          is absolute in the file system.
-   * @return
+   * @return URL
    */
   public static URL getFileFullUrl(String fileRelativePath) {
     // Get the URI for given relative path.
@@ -73,7 +73,7 @@ public class FileHelper {
    * See {@link #getFileFullUri(String)} method.
    * 
    * @param fileFullUri
-   * @return
+   * @return URL
    */
   public static URL getFileFullUrl(URI fileFullUri) {
     URL result = null;
@@ -127,7 +127,7 @@ public class FileHelper {
    * Convert package name to a correct java folder path.
    * 
    * @param packageName
-   * @return
+   * @return String
    */
   public static String convertPackageNameToFolderPath(String packageName) {
     return packageName != null ? packageName.replace(EGFCommonConstants.DOT_CHARACTER, EGFCommonConstants.SLASH_CHARACTER) : null;
@@ -236,7 +236,7 @@ public class FileHelper {
    *          Make sure all parent folders exist by creating all necessary ones.
    * @param contents
    *          Contents that should be written to pointed file.
-   * @return
+   * @return boolean
    */
   public static boolean writeFile(String filePath, boolean ensureFolders, String contents) {
     return writeFile(filePath, ensureFolders, contents.getBytes());
@@ -252,7 +252,7 @@ public class FileHelper {
    *          Make sure all parent folders exist by creating all necessary ones.
    * @param contents
    *          Contents that should be written to pointed file.
-   * @return
+   * @return boolean
    */
   public static boolean writeFile(String filePath, boolean ensureFolders, byte[] contents) {
     FileChannel channel = null;
@@ -292,7 +292,7 @@ public class FileHelper {
    * @param destinationFileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @return
+   * @return boolean
    */
   public static boolean renameFile(String sourceFileRelativePath, String destinationFileRelativePath) {
     // Preconditions.
@@ -314,7 +314,7 @@ public class FileHelper {
    * @param destinationFolderRelativePath
    *          Folder path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @return
+   * @return boolean
    */
   public static boolean renameFolder(String sourceFolderRelativePath, String destinationFolderRelativePath) {
     // Preconditions.
@@ -350,7 +350,7 @@ public class FileHelper {
    * @param fileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @return
+   * @return boolean
    */
   public static boolean exists(String fileRelativePath) {
     IFile file = getPlatformFile(fileRelativePath);
@@ -380,8 +380,9 @@ public class FileHelper {
    * Delete a workspace Resource. Optionally delete its parent folder if they
    * are empty. Root folder is never deleted.
    * 
-   * @param javaProject_p
-   * @param resourcePath_p
+   * @param root
+   * @param resource
+   * @param deleteParent
    */
   public static boolean deleteResource(IFolder root, IResource resource, boolean deleteParent) {
     if (resource == null) {
@@ -429,7 +430,7 @@ public class FileHelper {
   /**
    * Delete given relative folder in the workspace.
    * 
-   * @param workspaceRelativePath_p
+   * @param folderRelativePath
    * @return true if successfully deleted, false otherwise.
    */
   public static boolean deleteFolder(String folderRelativePath) {
@@ -462,7 +463,7 @@ public class FileHelper {
    * 
    * @param path
    *          IPath relative to workspace.<br>
-   * @return
+   * @return IResource
    */
   public static IResource getPlatformResource(IPath path) {
     // Precondition.
@@ -478,7 +479,7 @@ public class FileHelper {
    * @param fileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @return
+   * @return IFile
    */
   public static IFile getPlatformFile(String fileRelativePath) {
     // Precondition.
@@ -494,7 +495,7 @@ public class FileHelper {
    * @param folderRelativePath
    *          Folder path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @return
+   * @return IFolder
    */
   public static IFolder getPlatformFolder(String folderRelativePath) {
     // Precondition.
