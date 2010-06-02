@@ -41,6 +41,7 @@ public interface PatternContext {
      * keys to manage the context injected to a pattern.
      */
     final String INJECTED_CONTEXT = "internal.injected.context"; //$NON-NLS-1$
+    final String PATTERN_RESOURCESET = "internal.pattern.resourceset"; //$NON-NLS-1$
 
     /**
      * key to manage the object collection to perform queries on.

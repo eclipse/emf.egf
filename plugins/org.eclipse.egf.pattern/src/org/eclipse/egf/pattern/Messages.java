@@ -96,6 +96,9 @@ public class Messages extends NLS {
 
     public static String engine_error1;
     public static String call_execution_error1;
+    public static String call_execution_error2;
+    public static String call_execution_error3;
+    public static String call_execution_error4;
     public static String model_driven_strategy_error1;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$

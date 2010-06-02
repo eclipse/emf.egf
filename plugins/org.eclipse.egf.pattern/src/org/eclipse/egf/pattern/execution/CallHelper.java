@@ -25,14 +25,16 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternRuntimeException;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * This is an helper class to ease translation of patterns.
@@ -42,55 +44,79 @@ import org.eclipse.egf.pattern.utils.SubstitutionHelper;
  */
 public class CallHelper {
 
-    public static void executeWithContextInjection(String patternId, PatternContext ctx) throws MissingExtensionException, PatternException {
-        List<Pattern> patterns = getPatterns(patternId, ctx);
-        for (Pattern pattern : patterns) {
-            PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
-            String reason = extension.canExecute(pattern);
-            if (reason != null)
-                throw new PatternException(reason);
-            extension.createEngine(pattern).execute(ctx);
-        }
-    }
+    public static void executeWithContextInjection(String patternURI, PatternContext ctx) {
 
-    public static void executeWithParameterInjection(String patternId, PatternContext ctx, Map<String, Object> name2parameterValue) throws MissingExtensionException, PatternException {
-        List<Pattern> patterns = getPatterns(patternId, ctx);
-
-        for (Pattern pattern : patterns) {
-            PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
-            String reason = extension.canExecute(pattern);
-            if (reason != null)
-                throw new PatternException(reason);
-            Map<PatternParameter, Object> parameters = new HashMap<PatternParameter, Object>();
-            for (Map.Entry<String, Object> entry : name2parameterValue.entrySet()) {
-                PatternParameter parameter = pattern.getParameter(entry.getKey());
-                if (parameter == null)
-                    throw new PatternException(Messages.bind(Messages.call_execution_error1, entry.getKey(), pattern.getName()));
-                parameters.put(parameter, entry.getValue());
+        try {
+            List<Pattern> patterns = getPatterns(patternURI, ctx);
+            for (Pattern pattern : patterns) {
+                PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
+                String reason = extension.canExecute(pattern);
+                if (reason != null)
+                    throw new PatternException(reason);
+                extension.createEngine(pattern).execute(ctx);
             }
-            extension.createEngine(pattern).executeWithInjection(ctx, parameters);
+        } catch (PatternException e) {
+            throw new PatternRuntimeException(e);
+        } catch (MissingExtensionException e) {
+            throw new PatternRuntimeException(e);
         }
     }
 
-    private static List<Pattern> getPatterns(String patternId, PatternContext ctx) throws PatternException {
+    public static void executeWithParameterInjection(String patternURI, PatternContext ctx, Map<String, Object> name2parameterValue) {
+        try {
+            List<Pattern> patterns = getPatterns(patternURI, ctx);
+
+            for (Pattern pattern : patterns) {
+                PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
+                String reason = extension.canExecute(pattern);
+                if (reason != null)
+                    throw new PatternException(reason);
+                Map<PatternParameter, Object> parameters = new HashMap<PatternParameter, Object>();
+                for (Map.Entry<String, Object> entry : name2parameterValue.entrySet()) {
+                    PatternParameter parameter = pattern.getParameter(entry.getKey());
+                    if (parameter == null)
+                        throw new PatternException(Messages.bind(Messages.call_execution_error1, entry.getKey(), pattern.getName()));
+                    parameters.put(parameter, entry.getValue());
+                }
+                extension.createEngine(pattern).executeWithInjection(ctx, parameters);
+            }
+        } catch (PatternException e) {
+            throw new PatternRuntimeException(e);
+        } catch (MissingExtensionException e) {
+            throw new PatternRuntimeException(e);
+        }
+    }
+
+    private static List<Pattern> getPatterns(String patternURI, PatternContext ctx) throws PatternException {
         List<Pattern> patterns = new ArrayList<Pattern>();
 
-        PatternHelper createCollector = PatternHelper.createCollector();
-        Pattern targetPattern = createCollector.getPattern(patternId);
+        if (patternURI == null)
+            throw new PatternException(Messages.call_execution_error3);
+        ResourceSet resourceSet = (ResourceSet) ctx.getValue(PatternContext.PATTERN_RESOURCESET);
+        if (resourceSet == null)
+            throw new PatternException(Messages.call_execution_error2);
+        URI uri = URI.createURI(patternURI, false);
+
+        Pattern targetPattern = (Pattern) resourceSet.getEObject(uri, true);
 
         if (targetPattern == null)
-            throw new PatternException(Messages.engine_error1);
+            throw new PatternException(Messages.bind(Messages.call_execution_error4, patternURI));
         patterns.add(targetPattern);
         TypePatternSubstitution substitutions = (TypePatternSubstitution) ctx.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
         SubstitutionHelper.apply(patterns, substitutions);
         return patterns;
     }
 
-    public static void callBack(PatternContext ctx, Map<String, Object> parameters) throws MissingExtensionException, PatternException {
-        CallBackHandler handler = (CallBackHandler) ctx.getValue(PatternContext.CALL_BACK_HANDLER);
-        if (handler == null)
-            Activator.getDefault().logWarning(Messages.missing_callback_handler);
-        handler.handleCall(ctx, parameters);
+    public static void callBack(PatternContext ctx, Map<String, Object> parameters) {
+        try {
+            CallBackHandler handler = (CallBackHandler) ctx.getValue(PatternContext.CALL_BACK_HANDLER);
+            if (handler == null)
+                Activator.getDefault().logWarning(Messages.missing_callback_handler);
+            else
+                handler.handleCall(ctx, parameters);
+        } catch (PatternException e) {
+            throw new PatternRuntimeException(e);
+        }
     }
 
     private CallHelper() {
