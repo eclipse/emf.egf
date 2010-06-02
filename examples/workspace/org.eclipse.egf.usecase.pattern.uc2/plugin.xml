@@ -20,6 +20,9 @@
       <fcore
             id="egf/Pattern_UC2_2_MergingPatternSubstitution.fcore">
       </fcore>
+      <fcore
+            id="egf/Pattern_UC2_3_PatternSubstitutionLevel2.fcore">
+      </fcore>
    </extension>
 
 </plugin>
