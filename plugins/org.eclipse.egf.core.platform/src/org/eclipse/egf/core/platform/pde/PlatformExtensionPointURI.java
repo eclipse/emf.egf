@@ -21,7 +21,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
 
   public PlatformExtensionPointURI(IPlatformBundle bundle, IPluginElement element, String id) {
     super(bundle, element, id);
-    _previousUri = URIHelper.getPlatformURI(bundle.getBundleId(), getId(), true);
+    _previousUri = URIHelper.getPlatformURI(bundle.getBundleId(), URI.decode(getId()), false);
     Assert.isNotNull(_previousUri);
   }
 
@@ -31,14 +31,21 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
 
   public URI getURI() {
     if (getPlatformBundle().getBundleId().equals(getPlatformBundle().getPreviousBundleId()) == false) {
-      return URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), getId(), true);
+      return URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), URI.decode(getId()), false);
     }
     return getPreviousURI();
   }
 
   @Override
   public String toString() {
-    return URI.decode(getURI().toString());
+    URI uri = getURI();
+    String fragment = uri.fragment();
+    String pathName = uri.trimFragment().toString().substring(URIHelper.PLATFORM_PLUGIN_URI.toString().length(), uri.trimFragment().toString().length());
+    URI encodedURI = URI.createPlatformPluginURI(pathName, true);
+    if (fragment != null) {
+      encodedURI = encodedURI.appendFragment(fragment);
+    }
+    return encodedURI.toString();
   }
 
 }
