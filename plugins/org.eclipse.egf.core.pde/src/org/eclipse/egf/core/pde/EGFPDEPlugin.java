@@ -60,7 +60,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   /**
    * Return the display.
    * 
-   * @return
+   * @return display
    */
   public static Display getDisplay() {
     // Get the display.
@@ -106,7 +106,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   }
 
   /**
-   * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
+   * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
    */
   @Override
   public void start(BundleContext context) throws Exception {
@@ -119,12 +119,14 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=38658
     final IWorkspace workspace = ResourcesPlugin.getWorkspace();
     Job processSavedState = new Job(EGFPDEMessages.savedState_jobName) {
+
       @Override
       protected IStatus run(IProgressMonitor monitor) {
         try {
           // add save participant and process delta atomically
           // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=59937
           workspace.run(new IWorkspaceRunnable() {
+
             public void run(IProgressMonitor progress) throws CoreException {
               ISavedState savedState = workspace.addSaveParticipant(EGFPDEPlugin.getDefault(), EGFPDEPlugin.this);
               if (savedState != null) {
@@ -188,7 +190,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   /**
    * Get a factory component extension helper.
    * 
-   * @return
+   * @return IFcoreExtensionFactory
    */
   public static IFcoreExtensionFactory getFcoreExtensionHelper() {
     return FcoreExtensionFactory.getInstance();
@@ -217,7 +219,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   /**
    * Get the plug-in file from an {@link IPluginModelBase} element.
    * 
-   * @param pluginModelBase_p
+   * @param pluginModelBase
    * @return null if file does not exist.
    */
   public IFile getFile(IPluginModelBase pluginModelBase) {
