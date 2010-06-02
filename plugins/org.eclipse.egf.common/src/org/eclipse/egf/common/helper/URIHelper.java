@@ -29,31 +29,7 @@ public class URIHelper {
 
   public static final URI PLATFORM_PLUGIN_URI = URI.createURI("platform:/plugin/"); //$NON-NLS-1$
 
-  public static final URI PLATFORM_RESOURCE_URI = URI.createURI("platform:/resource/"); //$NON-NLS-1$
-
-  public static URI getPlatformPluginURI(URI uri) {
-    if (uri == null) {
-      return null;
-    }
-    if (uri.isRelative()) {
-      return URI.createPlatformPluginURI(URI.decode(uri.toString()), true);
-    } else if (uri.isPlatformResource()) {
-      return uri.replacePrefix(PLATFORM_RESOURCE_URI, PLATFORM_PLUGIN_URI);
-    }
-    return uri;
-  }
-
-  public static URI getPlatformResourceURI(URI uri) {
-    if (uri == null) {
-      return null;
-    }
-    if (uri.isRelative()) {
-      return URI.createPlatformResourceURI(URI.decode(uri.toString()), true);
-    } else if (uri.isPlatformPlugin()) {
-      return uri.replacePrefix(PLATFORM_PLUGIN_URI, PLATFORM_RESOURCE_URI);
-    }
-    return uri;
-  }
+  public static final URI PLATFORM_RESOURCE_URI = URI.createURI("platform:/resource/"); //$NON-NLS-1$  
 
   public static URI getPlatformURI(IPluginModelBase model, String value) {
     if (model == null || value == null || value.trim().length() == 0) {
@@ -63,7 +39,7 @@ public class URIHelper {
     if (bundleId == null) {
       return null;
     }
-    return getPlatformURI(bundleId, value.trim(), true);
+    return getPlatformURI(bundleId, URI.decode(value.trim()), false);
   }
 
   public static URI getPlatformURI(IPath path) {
@@ -78,7 +54,7 @@ public class URIHelper {
     if (bundleId == null) {
       return null;
     }
-    return getPlatformURI(bundleId, path.removeFirstSegments(1).toString(), true);
+    return getPlatformURI(bundleId, path.removeFirstSegments(1).toString(), false);
   }
 
   public static URI getPlatformURI(IResource resource) {
@@ -89,7 +65,7 @@ public class URIHelper {
     if (bundleId == null) {
       return null;
     }
-    return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), true);
+    return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), false);
   }
 
   public static URI getPlatformURI(String bundleId, String value, boolean encode) {
