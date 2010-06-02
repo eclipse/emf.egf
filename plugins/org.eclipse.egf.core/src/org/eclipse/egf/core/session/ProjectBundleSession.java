@@ -97,6 +97,10 @@ public final class ProjectBundleSession {
     // Install workspace bundle
     List<Bundle> bundles = new UniqueEList<Bundle>();
     for (IPluginModelBase workspaceModel : workspaceModels) {
+      // Ignore already installed bundle
+      if (_projectBundles.get(getLocation(workspaceModel)) != null) {
+        continue;
+      }
       // Retrieve base location
       String location = getLocation(workspaceModel);
       // Install the bundle
@@ -123,6 +127,11 @@ public final class ProjectBundleSession {
     List<Bundle> bundles = new UniqueEList<Bundle>();
     // Uninstall Target Bundle
     for (IPluginModelBase workspaceModel : workspaceModels) {
+      // Ignore already uninstalled bundle
+      if (_projectBundles.get(getLocation(workspaceModel)) != null) {
+        continue;
+      }
+      // Uninstall
       Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(workspaceModel));
       if (bundle == null) {
         continue;
@@ -235,7 +244,7 @@ public final class ProjectBundleSession {
   /**
    * Returns the bundle corresponding to the IProject if any.
    * 
-   * @param project
+   * @param id
    *          The plug-in ID of the bundle we seek.
    * @return The bundle corresponding to the given location if any,
    *         <code>null</code> otherwise.
@@ -280,7 +289,7 @@ public final class ProjectBundleSession {
     }
     Bundle bundle = _projectBundles.get(location);
     if (bundle == null) {
-      return installBundle(model);
+      bundle = installBundle(model);
     }
     return bundle;
   }
@@ -299,9 +308,12 @@ public final class ProjectBundleSession {
       packageAdmin = (PackageAdmin) _context.getService(packageAdminReference);
     }
     if (packageAdmin != null) {
-      final boolean[] flag = new boolean[] { false };
+      final boolean[] flag = new boolean[] {
+        false
+      };
       final Throwable[] throwable = new Throwable[1];
       FrameworkListener listener = new FrameworkListener() {
+
         public void frameworkEvent(FrameworkEvent event) {
           if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED || event.getType() == FrameworkEvent.ERROR) {
             if (event.getType() == FrameworkEvent.ERROR) {
@@ -349,13 +361,20 @@ public final class ProjectBundleSession {
    */
   public void dispose() throws CoreException {
     // Reinstall bundle collector
-    final List<Bundle> bundles = new UniqueEList<Bundle>(_uninstalled.size());
+    final List<Bundle> bundlesToBeRefreshed = new UniqueEList<Bundle>(_uninstalled.size());
+    // Tracing
+    if (EGFCorePlugin.getDefault().isDebugging()) {
+      if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
+        EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession."); //$NON-NLS-1$        
+      }
+    }
     // Uninstall workspace bundle
     if (_projectBundles.isEmpty() == false) {
       for (Bundle bundle : _projectBundles.values()) {
         uninstallBundle(bundle);
+        // Tracing
         if (EGFCorePlugin.getDefault().isDebugging()) {
-          EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
+          EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
         }
       }
       refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
@@ -364,12 +383,13 @@ public final class ProjectBundleSession {
     if (_uninstalled.isEmpty() == false) {
       for (String location : _uninstalled) {
         Bundle bundle = installBundle(location);
-        bundles.add(bundle);
+        bundlesToBeRefreshed.add(bundle);
+        // Tracing
         if (EGFCorePlugin.getDefault().isDebugging()) {
-          EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
+          EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
         }
       }
-      refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+      refreshPackages(bundlesToBeRefreshed.toArray(new Bundle[bundlesToBeRefreshed.size()]));
     }
     // Final
     _projectBundles.clear();
