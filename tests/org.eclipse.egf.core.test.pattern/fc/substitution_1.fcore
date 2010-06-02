@@ -4,7 +4,7 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
-  <fcore:FactoryComponent xmi:id="_lMRBAEPcEd-mKPwasigGsA" name="substitution_base">
+  <fcore:FactoryComponent xmi:id="_lMRBAEPcEd-mKPwasigGsA" name="substitution 1">
     <contractContainer xmi:id="_mWW1kEPcEd-mKPwasigGsA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_nJPEAEPcEd-mKPwasigGsA"
           name="domain" mandatory="true" invocationContracts="#_2nh-AEPcEd-mKPwasigGsA">
