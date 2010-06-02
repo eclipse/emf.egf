@@ -52,6 +52,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 
 /**
  * A utility object that listens to workspace resource changes to synchronize
@@ -64,9 +65,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * or rename), in which case it is simply unloaded.
  * </p>
  * <p>
- * To customize the behaviour of the synchronizer, initialize it with a {@link WorkspaceSynchronizer.Delegate delegate} that provides the required
- * behaviour. For example, it might be more user-friendly to prompt the user
- * before taking drastic measures.
+ * To customize the behaviour of the synchronizer, initialize it with a {@link org.eclipse.emf.workspace.util.WorkspaceSynchronizer.Delegate delegate} that provides the required behaviour. For example, it might be more
+ * user-friendly to prompt the user before taking drastic measures.
  * </p>
  * <p>
  * Whether implemented by a delegate or not, the synchronization algorithm is
@@ -202,51 +202,59 @@ public final class EGFWorkspaceSynchronizer {
     // try the unencoded URI first, in case the client doesn't encode
     Resource resource = rset.getResource(uri, false);
     if (resource == null) {
+      // the URI needs to be encoded. Try it, then
       URI encodedURI = URI.createPlatformPluginURI(fullPath, true);
       if (encodedURI.equals(uri) == false) {
-        // the URI needs to be encoded. Try it, then
-        uri = encodedURI;
-        resource = rset.getResource(uri, false);
+        resource = rset.getResource(encodedURI, false);
+        if (resource != null) {
+          // got it, client use encoded uri
+          uri = encodedURI;
+        }
       }
     }
 
-    if ((resource != null) && resource.isLoaded()) {
+    if (resource != null && resource.isLoaded()) {
       IProject project = ((IFile) delta.getResource()).getProject();
       switch (delta.getKind()) {
-      case IResourceDelta.ADDED:
-        if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
-          affectedProjects.add(project);
-        } else {
-          synchRequests.add(new EGFPersistedSynchRequest(this, resource));
-          affectedProjects.add(project);
-        }
-        break;
-      case IResourceDelta.REMOVED:
-        if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
-          // first, see whether a resource with the new URI already
-          // exists. If so, then we will use the same URI (whether
-          // encoded or not) because that seems to be what the
-          // client prefers. Otherwise, always encode
-          String newPath = delta.getMovedToPath().toString();
-          URI newURI = URI.createPlatformPluginURI(newPath, false);
-          if (rset.getResource(newURI, false) == null) {
-            // this may be the same, depending on absence of
-            // special characters
-            newURI = URI.createPlatformPluginURI(newPath, true);
+        case IResourceDelta.ADDED:
+          if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
+            affectedProjects.add(project);
+          } else {
+            synchRequests.add(new EGFPersistedSynchRequest(this, resource));
+            affectedProjects.add(project);
           }
-          synchRequests.add(new EGFMovedSynchRequest(this, resource, newURI));
-        } else {
-          synchRequests.add(new EGFDeletedSynchRequest(this, resource));
-        }
+          break;
+        case IResourceDelta.REMOVED:
+          if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
+            // first, see whether a resource with the new URI already
+            // exists. If so, then we will use the same URI (whether
+            // encoded or not) because that seems to be what the
+            // client prefers. Otherwise, always encode
+            String newPath = delta.getMovedToPath().toString();
+            URI newURI = URI.createPlatformPluginURI(newPath, false);
+            if (rset.getResource(newURI, false) == null) {
+              // the URI needs to be encoded. Try it, then
+              URI newEncodedURI = URI.createPlatformPluginURI(newPath, true);
+              if (newEncodedURI.equals(newURI) == false) {
+                if (rset.getResource(newURI, false) != null) {
+                  // got it, client use encoded uri
+                  newURI = newEncodedURI;
+                }
+              }
+            }
+            synchRequests.add(new EGFMovedSynchRequest(this, resource, newURI));
+          } else {
+            synchRequests.add(new EGFDeletedSynchRequest(this, resource));
+          }
 
-        break;
-      case IResourceDelta.CHANGED:
-        // This prevent excessive notifications
-        if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
-          synchRequests.add(new EGFChangedSynchRequest(this, resource));
-          affectedProjects.add(project);
-        }
-        break;
+          break;
+        case IResourceDelta.CHANGED:
+          // This prevent excessive notifications
+          if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
+            synchRequests.add(new EGFChangedSynchRequest(this, resource));
+            affectedProjects.add(project);
+          }
+          break;
       }
     }
   }
@@ -319,6 +327,7 @@ public final class EGFWorkspaceSynchronizer {
 
     if (considerArchives && uri.isArchive()) {
       class MyArchiveURLConnection extends ArchiveURLConnection {
+
         public MyArchiveURLConnection(String url) {
           super(url);
         }
@@ -510,17 +519,18 @@ public final class EGFWorkspaceSynchronizer {
         final List<IProject> affectedProjects = new UniqueEList<IProject>();
 
         delta.accept(new IResourceDeltaVisitor() {
+
           public boolean visit(IResourceDelta innerDelta) {
             if (innerDelta.getResource().getType() == IResource.FILE) {
               switch (innerDelta.getKind()) {
-              case IResourceDelta.CHANGED:
-                if (innerDelta.getFlags() == IResourceDelta.MARKERS) {
+                case IResourceDelta.CHANGED:
+                  if (innerDelta.getFlags() == IResourceDelta.MARKERS) {
+                    break;
+                  }
+                case IResourceDelta.ADDED:
+                case IResourceDelta.REMOVED:
+                  processDelta(innerDelta, synchRequests, affectedProjects);
                   break;
-                }
-              case IResourceDelta.ADDED:
-              case IResourceDelta.REMOVED:
-                processDelta(innerDelta, synchRequests, affectedProjects);
-                break;
               }
             }
 
