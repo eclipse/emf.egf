@@ -78,13 +78,13 @@ out.append("\n");
 protected java.lang.Object parameter;
 
 public void set_parameter(java.lang.Object parameter) {
-  this.parameter = parameter;
+	this.parameter = parameter;
 }
 
 protected java.lang.Object parameter2;
 
 public void set_parameter2(java.lang.Object parameter2) {
-  this.parameter2 = parameter2;
+	this.parameter2 = parameter2;
 }
 
 }

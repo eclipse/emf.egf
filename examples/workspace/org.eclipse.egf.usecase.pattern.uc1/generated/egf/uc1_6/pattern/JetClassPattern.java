@@ -71,8 +71,8 @@ method_body(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("aClass", this.aClass);
-ExecutionContext ctx__4Se5QFjrEdkve86Js2iPQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("_iXOsIBrgEd-cXtp4jDfJVg", ctx__4Se5QFjrEdkve86Js2iPQ, parameters);
+ExecutionContext ctx__b0TawF0EEdMh4zEdjOogQ = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_6_JetPatternCallsJavaPattern.fcore#_iXOsIBrgEd-cXtp4jDfJVg", ctx__b0TawF0EEdMh4zEdjOogQ, parameters);
 }
 
     
