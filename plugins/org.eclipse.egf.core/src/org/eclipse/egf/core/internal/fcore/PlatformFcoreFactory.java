@@ -27,9 +27,11 @@ public final class PlatformFcoreFactory implements IPlatformExtensionPointFactor
         if (pluginElement == null) {
             return null;
         }
+        // platform:/plugin/org.eclipse.egf.core/schema/fcore.exsd
         if (IPlatformFcoreConstants.FCORE_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
             return null;
         }
+        // attribute 'id' is mandatory
         IPluginAttribute id = pluginElement.getAttribute(IPlatformFcoreConstants.FCORE_ATT_ID);
         if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
             return null;
