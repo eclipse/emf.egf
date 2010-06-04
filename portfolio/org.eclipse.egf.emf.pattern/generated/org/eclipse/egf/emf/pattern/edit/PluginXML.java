@@ -164,6 +164,12 @@ targetPathName = genModel.getEditProjectDirectory() + "/plugin.xml";
 arguments = null;
 overwrite = false;
 encoding = "UTF-8";
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
 canGenerate = canGenerate && (!genModel.sameEditEditorProject());
 
@@ -197,9 +203,9 @@ if (arguments != null)
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
-    final Map<String, Object> parameters__zqATEGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__zqATEGJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__zqATEGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__SQ7NgGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__SQ7NgGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__SQ7NgGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_3);
     if (genModel.isBundleManifest()) {

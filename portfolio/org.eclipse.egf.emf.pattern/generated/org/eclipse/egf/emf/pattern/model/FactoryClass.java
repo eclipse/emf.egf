@@ -544,6 +544,12 @@ targetPath = genModel.getModelDirectory();
 packageName = genPackage.getReflectionClassPackageName();
 className = genPackage.getFactoryClassName();
 arguments = new Object[]{new Object[]{genPackage,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genPackage.hasClassifiers());
 
@@ -578,9 +584,9 @@ if (arguments != null)
     boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]);
     String publicStaticFinalFlag = isImplementation ? "public static final " : "";
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__ypxlIGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__ypxlIGJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ypxlIGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__RsRBQGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__RsRBQGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__RsRBQGKKEdvV655ccA3JQ);
 
     if (isInterface || genModel.isSuppressInterfaces()) {
     stringBuffer.append(TEXT_2);

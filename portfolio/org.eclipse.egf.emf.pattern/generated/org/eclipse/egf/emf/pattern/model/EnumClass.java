@@ -225,6 +225,12 @@ targetPath = genEnum.getGenModel().getModelDirectory();
 packageName = genEnum.getGenPackage().getInterfacePackageName();
 className = genEnum.getName();
 arguments = null;
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenEnum genEnum = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && true;
 
@@ -257,9 +263,9 @@ if (arguments != null)
 
     GenEnum genEnum = (GenEnum)argument; GenPackage genPackage = genEnum.getGenPackage(); GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__yr3P0GJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__yr3P0GJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__yr3P0GJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__Ruf14GKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__Ruf14GKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__Ruf14GKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getInterfacePackageName());

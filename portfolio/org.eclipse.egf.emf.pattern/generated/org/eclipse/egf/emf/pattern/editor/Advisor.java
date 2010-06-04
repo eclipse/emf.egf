@@ -180,6 +180,12 @@ targetPath = genModel.getEditorPluginDirectory();
 packageName = genModel.getEditorPluginPackageName();
 className = genModel.getEditorAdvisorClassName();
 arguments = null;
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 canGenerate = canGenerate && (genModel.isRichClientPlatform());
 
@@ -215,9 +221,9 @@ if (arguments != null)
     String _UniqueEListOfString = "UniqueEList" + (genModel.useGenerics() ? "<String>" : "");
     String _StringBuilder = genModel.getImportedName(genModel.useGenerics() ? "java.lang.StringBuilder" : "java.lang.StringBuffer");
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__z3kN8GJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__z3kN8GJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__z3kN8GJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__SdvhgGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__SdvhgGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__SdvhgGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getEditorPluginPackageName());

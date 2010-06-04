@@ -214,17 +214,17 @@ return parameters; }
     stringBuffer.append(TEXT_8);
     }
     stringBuffer.append(TEXT_9);
-    final Map<String, Object> parameters__zwtYAGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("createClass", createClass);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("createFeature", createFeature);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("delegatedFeature", delegatedFeature);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("createClassifier", createClassifier);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("childCreationData", childCreationData);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("genClass", genClass);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("genPackage", genPackage);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("genModel", genModel);
-parameters__zwtYAGJ_EdFqczH3ESmRw.put("_List", _List);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__zwtYAGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__SXVXgGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__SXVXgGKKEdvV655ccA3JQ.put("createClass", createClass);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("createFeature", createFeature);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("delegatedFeature", delegatedFeature);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("createClassifier", createClassifier);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("childCreationData", childCreationData);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("genClass", genClass);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("genPackage", genPackage);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("genModel", genModel);
+parameters__SXVXgGKKEdvV655ccA3JQ.put("_List", _List);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__SXVXgGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_10);
     }

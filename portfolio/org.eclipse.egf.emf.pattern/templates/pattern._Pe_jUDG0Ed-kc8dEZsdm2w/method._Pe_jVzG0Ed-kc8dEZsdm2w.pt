@@ -4,6 +4,4 @@ targetPath = genModel.getModelDirectory();
 packageName = genPackage.getClassPackageName();
 className = genClass.getClassName();
 arguments = new Object[]{new Object[]{genClass,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && (!genClass.isInterface());
 %>

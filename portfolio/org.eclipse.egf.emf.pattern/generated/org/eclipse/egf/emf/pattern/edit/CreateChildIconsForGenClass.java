@@ -105,9 +105,10 @@ final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
 return parameters; }
 
-    protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
+GenClass genClass = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
 
     }

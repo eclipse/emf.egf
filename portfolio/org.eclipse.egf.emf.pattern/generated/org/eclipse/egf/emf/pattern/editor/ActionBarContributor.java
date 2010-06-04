@@ -357,6 +357,12 @@ targetPath = genPackage.getGenModel().getEditorDirectory();
 packageName = genPackage.getPresentationPackageName();
 className = genPackage.getActionBarContributorClassName();
 arguments = null;
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 canGenerate = canGenerate && (genPackage.hasConcreteClasses());
 
@@ -413,9 +419,9 @@ if (genModel.isCreationCommands())
 }
 
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__zzPuoGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__zzPuoGJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__zzPuoGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__SZabIGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__SZabIGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__SZabIGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getPresentationPackageName());

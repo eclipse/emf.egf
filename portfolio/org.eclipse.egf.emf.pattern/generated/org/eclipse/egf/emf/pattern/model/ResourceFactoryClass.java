@@ -144,6 +144,12 @@ targetPath = genPackage.getGenModel().getModelDirectory();
 packageName = genPackage.getUtilitiesPackageName();
 className = genPackage.getResourceFactoryClassName();
 arguments = null;
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genPackage.getResource() != GenResourceKind.NONE_LITERAL);
 
@@ -176,9 +182,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__ykkVAGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__ykkVAGJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ykkVAGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__RpI0wGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__RpI0wGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__RpI0wGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -237,10 +243,10 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     }
     stringBuffer.append(TEXT_28);
     stringBuffer.append(TEXT_29);
-    final Map<String, Object> parameters__ynY_gGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__ynY_gGJ_EdFqczH3ESmRw.put("genPackage", genPackage);
-parameters__ynY_gGJ_EdFqczH3ESmRw.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__ynY_gGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__RpSlwGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__RpSlwGKKEdvV655ccA3JQ.put("genPackage", genPackage);
+parameters__RpSlwGKKEdvV655ccA3JQ.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__RpSlwGKKEdvV655ccA3JQ);
 
     //ResourceFactoryClass/createResource.override.javajetinc
     stringBuffer.append(TEXT_30);

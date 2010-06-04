@@ -4,6 +4,4 @@ targetPath = genModel.getModelDirectory();
 packageName = genModel.getModelPluginPackageName();
 className = genModel.getModelPluginClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && (genModel.hasModelPluginClass());
 %>

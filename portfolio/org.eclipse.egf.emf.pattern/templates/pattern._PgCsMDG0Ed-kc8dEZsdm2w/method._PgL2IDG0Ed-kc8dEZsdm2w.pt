@@ -4,6 +4,4 @@ targetPath = genModel.getModelDirectory();
 packageName = genPackage.getReflectionPackageName();
 className = genPackage.getPackageInterfaceName();
 arguments = new Object[]{new Object[]{genPackage,Boolean.TRUE,Boolean.FALSE}};
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && (genPackage.hasClassifiers() && !genModel.isSuppressEMFMetaData() && !genModel.isSuppressInterfaces());
 %>

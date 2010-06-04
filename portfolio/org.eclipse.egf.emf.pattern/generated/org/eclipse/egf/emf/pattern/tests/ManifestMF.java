@@ -130,6 +130,12 @@ targetPathName = genModel.getTestsProjectDirectory() + "/META-INF/MANIFEST.MF";
 arguments = null;
 overwrite = false;
 encoding = "UTF-8";
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
 canGenerate = canGenerate && (genModel.isBundleManifest()) && (!genModel.sameModelTestsProject());
 

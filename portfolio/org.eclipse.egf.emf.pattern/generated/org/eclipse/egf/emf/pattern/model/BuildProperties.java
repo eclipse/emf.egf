@@ -123,6 +123,12 @@ targetPathName = genModel.getModelProjectDirectory() + "/build.properties";
 arguments = null;
 overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getModelProjectDirectory()).appendSegment("plugin.xml"));
 encoding = "ISO-8859-1";
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genModel.hasPluginSupport());
 
@@ -157,9 +163,9 @@ if (arguments != null)
     String pluginClassesLocation = genModel.isRuntimeJar() ? genModel.getModelPluginID()+".jar" : ".";
     List<String> sourceFolders = genModel.getModelSourceFolders();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__ye5x4GJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__ye5x4GJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ye5x4GJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__RjeRoGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__RjeRoGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__RjeRoGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(pluginClassesLocation);

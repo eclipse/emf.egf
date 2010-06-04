@@ -4,6 +4,4 @@ targetPath = genModel.getEditPluginDirectory();
 packageName = genModel.getEditPluginPackageName();
 className = genModel.getEditPluginClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
-canGenerate = canGenerate && (!genModel.sameEditEditorProject());
 %>

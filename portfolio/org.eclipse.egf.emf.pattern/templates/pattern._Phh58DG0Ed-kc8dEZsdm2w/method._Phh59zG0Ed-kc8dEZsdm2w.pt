@@ -4,6 +4,4 @@ targetPath = genPackage.getGenModel().getModelDirectory();
 packageName = genPackage.getUtilitiesPackageName();
 className = genPackage.getSwitchClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.isAdapterFactory() && !genPackage.getGenClasses().isEmpty());
 %>

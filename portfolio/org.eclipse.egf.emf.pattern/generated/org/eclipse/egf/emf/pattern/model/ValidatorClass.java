@@ -668,6 +668,12 @@ targetPath = genPackage.getGenModel().getModelDirectory();
 packageName = genPackage.getUtilitiesPackageName();
 className = genPackage.getValidatorClassName();
 arguments = null;
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.hasConstraints());
 
@@ -701,9 +707,9 @@ if (arguments != null)
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     final String singleWildcard = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<?>" : "";
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__y5RZsGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__y5RZsGJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__y5RZsGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__R2Z0sGKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__R2Z0sGKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__R2Z0sGKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());

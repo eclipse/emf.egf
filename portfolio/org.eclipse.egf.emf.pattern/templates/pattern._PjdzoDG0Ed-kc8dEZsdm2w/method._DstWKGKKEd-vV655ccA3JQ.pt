@@ -1,0 +1,5 @@
+<%
+GenPackage genPackage = parameter;
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
+canGenerate = canGenerate && (!genPackage.getGenClasses().isEmpty());
+%>

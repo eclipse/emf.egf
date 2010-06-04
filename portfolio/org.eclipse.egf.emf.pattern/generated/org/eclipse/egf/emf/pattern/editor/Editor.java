@@ -443,6 +443,12 @@ targetPath = genPackage.getGenModel().getEditorDirectory();
 packageName = genPackage.getPresentationPackageName();
 className = genPackage.getEditorClassName();
 arguments = null;
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
 canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 canGenerate = canGenerate && (genPackage.hasConcreteClasses());
 
@@ -493,9 +499,9 @@ if (arguments != null)
     String _ArrayListOfString = "ArrayList" + (genModel.useGenerics() ? "<String>" : "");
     String _ListOfString = "List" + (genModel.useGenerics() ? "<String>" : "");
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__z0SQcGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__z0SQcGJ_EdFqczH3ESmRw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__z0SQcGJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__Samt8GKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__Samt8GKKEdvV655ccA3JQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__Samt8GKKEdvV655ccA3JQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getPresentationPackageName());
@@ -749,28 +755,28 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     stringBuffer.append(genPackage.getEditorClassName());
     stringBuffer.append(TEXT_124);
     stringBuffer.append(TEXT_125);
-    final Map<String, Object> parameters__z0SQcWJ_EdFqczH3ESmRw = new HashMap<String, Object>();
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("genPackage", genPackage);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("genModel", genModel);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("importedOperationClassName", importedOperationClassName);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("operationMethodName", operationMethodName);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_ArrayListOfObject", _ArrayListOfObject);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_ArrayListOfSelectionChangedListener", _ArrayListOfSelectionChangedListener);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_CollectionOfSelectionChangedListener", _CollectionOfSelectionChangedListener);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_ArrayListOfResource", _ArrayListOfResource);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_CollectionOfResource", _CollectionOfResource);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_MapOfResourceToDiagnostic", _MapOfResourceToDiagnostic);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_HashMapOfResourceToBoolean", _HashMapOfResourceToBoolean);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_MapOfObjectToObject", _MapOfObjectToObject);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_HashMapOfObjectToObject", _HashMapOfObjectToObject);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_LinkedHashMapOfResourceToDiagnostic", _LinkedHashMapOfResourceToDiagnostic);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_CollectionOfAnything", _CollectionOfAnything);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_ListOfAnything", _ListOfAnything);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("useExtendedLabelProvider", useExtendedLabelProvider);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_AdapterFactoryLabelProvider", _AdapterFactoryLabelProvider);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_ArrayListOfString", _ArrayListOfString);
-parameters__z0SQcWJ_EdFqczH3ESmRw.put("_ListOfString", _ListOfString);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08-MQWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__z0SQcWJ_EdFqczH3ESmRw);
+    final Map<String, Object> parameters__Samt8WKKEdvV655ccA3JQ = new HashMap<String, Object>();
+parameters__Samt8WKKEdvV655ccA3JQ.put("genPackage", genPackage);
+parameters__Samt8WKKEdvV655ccA3JQ.put("genModel", genModel);
+parameters__Samt8WKKEdvV655ccA3JQ.put("importedOperationClassName", importedOperationClassName);
+parameters__Samt8WKKEdvV655ccA3JQ.put("operationMethodName", operationMethodName);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_ArrayListOfObject", _ArrayListOfObject);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_ArrayListOfSelectionChangedListener", _ArrayListOfSelectionChangedListener);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_CollectionOfSelectionChangedListener", _CollectionOfSelectionChangedListener);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_ArrayListOfResource", _ArrayListOfResource);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_CollectionOfResource", _CollectionOfResource);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_MapOfResourceToDiagnostic", _MapOfResourceToDiagnostic);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_HashMapOfResourceToBoolean", _HashMapOfResourceToBoolean);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_MapOfObjectToObject", _MapOfObjectToObject);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_HashMapOfObjectToObject", _HashMapOfObjectToObject);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_LinkedHashMapOfResourceToDiagnostic", _LinkedHashMapOfResourceToDiagnostic);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_CollectionOfAnything", _CollectionOfAnything);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_ListOfAnything", _ListOfAnything);
+parameters__Samt8WKKEdvV655ccA3JQ.put("useExtendedLabelProvider", useExtendedLabelProvider);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_AdapterFactoryLabelProvider", _AdapterFactoryLabelProvider);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_ArrayListOfString", _ArrayListOfString);
+parameters__Samt8WKKEdvV655ccA3JQ.put("_ListOfString", _ListOfString);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08-MQWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__Samt8WKKEdvV655ccA3JQ);
 
     //Editor/addItemproviderFactories.override.javajetinc"
     stringBuffer.append(TEXT_126);

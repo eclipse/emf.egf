@@ -4,6 +4,4 @@ targetPath = genPackage.getGenModel().getEditDirectory();
 packageName = genPackage.getProviderPackageName();
 className = genPackage.getItemProviderAdapterFactoryClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
-canGenerate = canGenerate && (!genPackage.getGenClasses().isEmpty());
 %>

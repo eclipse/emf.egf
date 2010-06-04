@@ -4,6 +4,4 @@ targetPathName = genModel.getModelProjectDirectory() + "/plugin.xml";
 arguments = null;
 overwrite = false;
 encoding = "UTF-8";
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && (genModel.hasPluginSupport() && !genModel.sameModelEditProject() && !genModel.sameModelEditorProject());
 %>
