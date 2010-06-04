@@ -74,6 +74,7 @@ import org.eclipse.ui.texteditor.MarkerAnnotation;
  * 
  */
 public class JetEditorHelper extends JETEditorHelper {
+
     private static final class JETJavaContentProblemRequestor implements IProblemRequestor {
 
         /**
@@ -214,7 +215,7 @@ public class JetEditorHelper extends JETEditorHelper {
             ICompilationUnit copy = compilationUnit.getWorkingCopy(owner, problemRequestor, null);
             copy.reconcile(0, true, owner, null);
         } catch (JavaModelException e) {
-            Activator.getDefault().log(e);
+            Activator.getDefault().logError(e);
         }
         return problems;
     }
@@ -248,13 +249,13 @@ public class JetEditorHelper extends JETEditorHelper {
                 }
                 visitMethod(footerEditor, templateFile, false);
             } catch (Exception e) {
-                Activator.getDefault().log(e);
+                Activator.getDefault().logError(e);
             }
         } else {
             try {
                 templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
-                Activator.getDefault().log(e);
+                Activator.getDefault().logError(e);
             }
             refreshPublicTemplateEditor(pattern, templateFile, editor);
         }
@@ -303,7 +304,7 @@ public class JetEditorHelper extends JETEditorHelper {
                 fEditor = (JETTextEditor) IDE.openEditor(templateActivePage, templateFile, false);
                 templateActivePage.setEditorAreaVisible(false);
             } catch (Exception e) {
-                Activator.getDefault().log(e);
+                Activator.getDefault().logError(e);
             }
             fDocumentProvider = fEditor.getDocumentProvider();
         }
@@ -452,7 +453,7 @@ public class JetEditorHelper extends JETEditorHelper {
             return;
         IEditorPart templateEditorPart = ((JetTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
         Pattern pattern = editor.getPattern();
-        if(templateEditorPart == null)
+        if (templateEditorPart == null)
             return;
         IEditorInput editorInput = templateEditorPart.getEditorInput();
         if (editorInput instanceof IFileEditorInput) {

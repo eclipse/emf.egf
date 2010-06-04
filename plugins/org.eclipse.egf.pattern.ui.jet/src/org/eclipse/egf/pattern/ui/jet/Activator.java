@@ -10,8 +10,6 @@
  */
 package org.eclipse.egf.pattern.ui.jet;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -22,8 +20,6 @@ import org.osgi.framework.BundleContext;
  * 
  */
 public class Activator extends EGFAbstractUIPlugin {
-    
-    public static final String PLUGIN_ID = "org.eclipse.egf.pattern.ui.jet";
 
     // The shared instance
     private static Activator _plugin;
@@ -62,8 +58,7 @@ public class Activator extends EGFAbstractUIPlugin {
     /**
      * (non-Javadoc)
      * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-     *      )
+     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext )
      */
     @Override
     public void start(BundleContext context) throws Exception {
@@ -74,8 +69,7 @@ public class Activator extends EGFAbstractUIPlugin {
     /**
      * (non-Javadoc)
      * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-     *      )
+     * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext )
      */
     @Override
     public void stop(BundleContext context) throws Exception {
@@ -91,13 +85,5 @@ public class Activator extends EGFAbstractUIPlugin {
     public static Activator getDefault() {
         return _plugin;
     }
-    
-    /**
-     * Log an exception in Eclipse's logger with this plugin ID
-     * @param e
-     */
-    public static void log(Exception e) {
-      IStatus status = new Status(IStatus.ERROR, "", e.getMessage(), e);
-      getDefault().getLog().log(status);
-    }
+
 }
