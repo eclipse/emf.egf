@@ -31,8 +31,6 @@ public interface ITaskNature {
     // TODO pas sur que le ctx en ITaskProductionContext soit une bonne idee
     public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException;
 
-    public String getKind();
-
     public boolean isLoadableImplementation(Task task, Map<Object, Object> context);
 
     public boolean isValidImplementation(Task task, Map<Object, Object> context);

@@ -93,25 +93,21 @@ public class TaskNatureProxy {
     /**
      * @return the _taskNature
      */
-    public ITaskNature getTaskNature() {
+    public ITaskNature getTaskNature() throws CoreException {
         if (_taskNature == null) {
-            try {
-                Object object = _element.createExecutableExtension(TaskNatureRegistry.INVOKER_ATT_CLASS);
-                if (object == null) {
-                    return null;
-                }
-                if (object instanceof ITaskNature == false) {
-                    EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", ITaskNature.class.getName()), 1); //$NON-NLS-1$
-                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(_element)), 1); //$NON-NLS-1$
-                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
-                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$
-                    return null;
-                }
-                _taskNature = (ITaskNature) object;
-            } catch (CoreException e) {
-                EGFFtaskPlugin.getPlugin().logError(e);
+            Object object = _element.createExecutableExtension(TaskNatureRegistry.INVOKER_ATT_CLASS);
+            if (object == null) {
+                return null;
             }
+            if (object instanceof ITaskNature == false) {
+                EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", ITaskNature.class.getName()), 1); //$NON-NLS-1$
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(_element)), 1); //$NON-NLS-1$
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$
+                return null;
+            }
+            _taskNature = (ITaskNature) object;
         }
         return _taskNature;
     }

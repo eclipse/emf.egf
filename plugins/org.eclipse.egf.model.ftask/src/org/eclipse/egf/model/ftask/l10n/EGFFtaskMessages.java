@@ -33,6 +33,8 @@ public class EGFFtaskMessages extends NLS {
 
     public static String missing_kind_message;
 
+    public static String unable_to_create_nature_message;
+
     public static String missing_nature_message;
 
 }

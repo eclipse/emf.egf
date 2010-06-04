@@ -42,60 +42,56 @@ import org.osgi.framework.Bundle;
  */
 public class TaskNatureJava implements ITaskNature {
 
-  public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException {
-    ITaskProduction taskImpl = null;
-    if (task == null || task.getImplementationValue() == null) {
-      return;
+    public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException {
+        ITaskProduction taskImpl = null;
+        if (task == null || task.getImplementationValue() == null) {
+            return;
+        }
+        String value = task.getImplementationValue().trim();
+        try {
+            taskImpl = (ITaskProduction) BundleHelper.instantiate(value, bundle);
+        } catch (Exception e) {
+            throw new InvocationException(new CoreException(EGFTaskPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), e)));
+        }
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFTaskMessages.Production_TaskJava_Invoke, value), 300);
+        taskImpl.preExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        subMonitor.worked(100);
+        if (subMonitor.isCanceled()) {
+            throw new OperationCanceledException();
+        }
+        taskImpl.doExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        subMonitor.worked(100);
+        if (subMonitor.isCanceled()) {
+            throw new OperationCanceledException();
+        }
+        taskImpl.postExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        subMonitor.worked(100);
+        if (subMonitor.isCanceled()) {
+            throw new OperationCanceledException();
+        }
     }
-    String value = task.getImplementationValue().trim();
-    try {
-      taskImpl = (ITaskProduction) BundleHelper.instantiate(value, bundle);
-    } catch (Exception e) {
-      throw new InvocationException(new CoreException(EGFTaskPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), e)));
-    }
-    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFTaskMessages.Production_TaskJava_Invoke, value), 300);
-    taskImpl.preExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-    subMonitor.worked(100);
-    if (subMonitor.isCanceled()) {
-      throw new OperationCanceledException();
-    }
-    taskImpl.doExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-    subMonitor.worked(100);
-    if (subMonitor.isCanceled()) {
-      throw new OperationCanceledException();
-    }
-    taskImpl.postExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-    subMonitor.worked(100);
-    if (subMonitor.isCanceled()) {
-      throw new OperationCanceledException();
-    }
-  }
 
-  public String getKind() {
-    return EGFTaskPlugin.KIND_JAVA;
-  }
+    public boolean isLoadableImplementation(Task task, Map<Object, Object> context) {
+        if (task == null) {
+            return false;
+        }
+        if (ValidationHelper.isLoadableClass(task, task.getImplementationValue(), context)) {
+            return true;
+        }
+        return false;
+    }
 
-  public boolean isLoadableImplementation(Task task, Map<Object, Object> context) {
-    if (task == null) {
-      return false;
+    public boolean isValidImplementation(Task task, Map<Object, Object> context) {
+        if (task == null) {
+            return false;
+        }
+        if (context == null || context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
+            return true;
+        }
+        if (ValidationHelper.isValidClass(task, ITaskProduction.class, task.getImplementationValue(), context)) {
+            return true;
+        }
+        return false;
     }
-    if (ValidationHelper.isLoadableClass(task, task.getImplementationValue(), context)) {
-      return true;
-    }
-    return false;
-  }
-
-  public boolean isValidImplementation(Task task, Map<Object, Object> context) {
-    if (task == null) {
-      return false;
-    }
-    if (context == null || context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
-      return true;
-    }
-    if (ValidationHelper.isValidClass(task, ITaskProduction.class, task.getImplementationValue(), context)) {
-      return true;
-    }
-    return false;
-  }
 
 }

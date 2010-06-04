@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -69,7 +70,11 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
         TaskNatureProxy taskNatureProxy = _natures.get(kind);
         ITaskNature taskNature = null;
         if (taskNatureProxy != null) {
-            taskNature = taskNatureProxy.getTaskNature();
+            try {
+                taskNature = taskNatureProxy.getTaskNature();
+            } catch (CoreException ce) {
+                throw new InvocationException(NLS.bind(EGFFtaskMessages.unable_to_create_nature_message, kind), ce);
+            }
         }
         if (taskNature == null) {
             throw new InvocationException(NLS.bind(EGFFtaskMessages.missing_nature_message, kind));
