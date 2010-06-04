@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.egf.common.EGFCommonPlugin;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.eclipse.egf.common.log.IEGFLoggerFactory;
 import org.eclipse.osgi.util.NLS;
@@ -60,11 +61,11 @@ public class EGFLoggerProxy {
                     return null;
                 }
                 if (object instanceof IEGFLoggerFactory == false) {
-                    EGFCommonPlugin.getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-                    EGFCommonPlugin.getDefault().logInfo(NLS.bind("This Class should be a sub-type of ''{0}''.", IEGFLoggerFactory.class.getName()), 1); //$NON-NLS-1$
-                    EGFCommonPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", _element.getContributor().getName()), 1); //$NON-NLS-1$
-                    EGFCommonPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
-                    EGFCommonPlugin.getDefault().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$                    
+                    EGFCommonPlugin.getDefault().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, object.getClass().getName()));
+                    EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Wrong_Class_Sub_Type_Message, IEGFLoggerFactory.class.getName()), 1);
+                    EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, _element.getContributor().getName()), 1);
+                    EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, _element.getName()), 1);
+                    EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                     return null;
                 }
                 _logger = ((IEGFLoggerFactory) object).getLogger();
@@ -102,10 +103,10 @@ public class EGFLoggerProxy {
                 return null;
             }
             if (object instanceof IEGFLoggerFactory == false) {
-                EGFCommonPlugin.getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind("This Class should be a sub-type of ''{0}''.", IEGFLoggerFactory.class.getName()), 1); //$NON-NLS-1$
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", element.getName()), 1); //$NON-NLS-1$
+                EGFCommonPlugin.getDefault().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, object.getClass().getName()));
+                EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Wrong_Class_Sub_Type_Message, IEGFLoggerFactory.class.getName()), 1);
+                EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
+                EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                 return null;
             }
             IEGFLogger logger = ((IEGFLoggerFactory) object).getLogger();
