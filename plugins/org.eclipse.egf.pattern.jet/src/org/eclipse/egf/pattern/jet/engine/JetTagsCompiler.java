@@ -125,7 +125,7 @@ public class JetTagsCompiler extends JETCompiler {
             URI uri = URI.createURI(id);
             String fragment = uri.fragment().substring(LOGICAL_NAME.length() + 1);
             TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-            Resource resource = editingDomain.getResourceSet().getResource(uri, true);
+            Resource resource = editingDomain.getResourceSet().getResource(uri.trimFragment(), true);
             TreeIterator<EObject> treeIterator = resource.getAllContents();
             while (treeIterator.hasNext()) {
                 EObject eObject = treeIterator.next();
