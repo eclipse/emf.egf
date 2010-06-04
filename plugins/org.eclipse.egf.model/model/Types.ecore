@@ -9,6 +9,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//TypeElement">
+    <eOperations name="isCompatible" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="type" eType="#//Type"/>
+    </eOperations>
     <eOperations name="getType" lowerBound="1">
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
         <eTypeArguments eTypeParameter="#//Type/getType/T"/>

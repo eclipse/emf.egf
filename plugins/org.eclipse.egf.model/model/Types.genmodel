@@ -32,6 +32,9 @@
       <genFeatures createChild="false" propertyCategory="Documentation" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Types.ecore#//Type">
+      <genOperations ecoreOperation="Types.ecore#//Type/isCompatible">
+        <genParameters ecoreParameter="Types.ecore#//Type/isCompatible/type"/>
+      </genOperations>
       <genOperations ecoreOperation="Types.ecore#//Type/getType">
         <genTypeParameters ecoreTypeParameter="Types.ecore#//Type/getType/T"/>
       </genOperations>
