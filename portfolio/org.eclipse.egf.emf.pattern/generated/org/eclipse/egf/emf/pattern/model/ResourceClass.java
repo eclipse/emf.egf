@@ -26,7 +26,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Resource </b> associated with the package." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
   protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
@@ -222,6 +222,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
   protected final String TEXT_195 = NL + "} //";
   protected final String TEXT_196 = NL;
   protected final String TEXT_197 = NL;
+  protected final String TEXT_198 = NL;
 
 	public ResourceClass()
 	{
@@ -258,8 +259,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_196);
     stringBuffer.append(TEXT_197);
+    stringBuffer.append(TEXT_198);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -340,10 +341,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); ExtendedMetaData extendedMetaData= genModel.getExtendedMetaData();
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__y2SMGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__y2SMGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__y2SMGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -784,5 +784,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     stringBuffer.append(TEXT_195);
     stringBuffer.append(genPackage.getResourceClassName());
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_196);
     }
     }

@@ -26,7 +26,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + NL + "bin.includes = ";
+  protected final String TEXT_2 = NL + NL + "bin.includes = ";
   protected final String TEXT_3 = ",\\";
   protected final String TEXT_4 = NL + "               META-INF/,\\";
   protected final String TEXT_5 = NL + "               plugin.xml,\\";
@@ -34,7 +34,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
   protected final String TEXT_7 = NL + "source.";
   protected final String TEXT_8 = " = ";
   protected final String TEXT_9 = NL + "output.";
-  protected final String TEXT_10 = " = bin/";
+  protected final String TEXT_10 = " = bin/" + NL;
   protected final String TEXT_11 = NL;
   protected final String TEXT_12 = NL;
 
@@ -157,10 +157,9 @@ if (arguments != null)
     String pluginClassesLocation = genModel.isRuntimeJar() ? genModel.getTestsPluginID()+".jar" : ".";
     List<String> sourceFolders = genModel.getTestsSourceFolders();
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__z45qsGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__z45qsGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__z45qsGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(pluginClassesLocation);

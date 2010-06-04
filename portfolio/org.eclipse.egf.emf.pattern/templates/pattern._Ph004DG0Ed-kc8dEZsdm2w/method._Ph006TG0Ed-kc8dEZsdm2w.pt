@@ -5,8 +5,7 @@ new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDire
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
-%>
-<%
+%><%
 /**
  * <copyright>
  *
@@ -24,13 +23,7 @@ if (arguments != null)
 %>
 <%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();%>
 <%final String singleWildcard = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<?>" : "";%>
-
-<%
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-%>
-
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
 
 <%genModel.addImport("java.util.Map");%>

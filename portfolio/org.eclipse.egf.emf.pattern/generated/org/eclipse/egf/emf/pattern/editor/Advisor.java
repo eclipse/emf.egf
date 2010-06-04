@@ -26,7 +26,7 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL + "" + NL + "import java.io.File;" + NL + "import java.util.Arrays;";
   protected final String TEXT_4 = NL + "import java.util.Iterator;";
   protected final String TEXT_5 = NL + "import java.util.List;";
@@ -93,6 +93,7 @@ public class Advisor extends org.eclipse.egf.emf.pattern.base.GenModelJava {
   protected final String TEXT_66 = NL + "\tpublic WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(IWorkbenchWindowConfigurer configurer)" + NL + "\t{" + NL + "\t\treturn new WindowAdvisor(configurer);" + NL + "\t}" + NL + "}";
   protected final String TEXT_67 = NL;
   protected final String TEXT_68 = NL;
+  protected final String TEXT_69 = NL;
 
 	public Advisor()
 	{
@@ -129,8 +130,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_67);
     stringBuffer.append(TEXT_68);
+    stringBuffer.append(TEXT_69);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -214,10 +215,9 @@ if (arguments != null)
     String _UniqueEListOfString = "UniqueEList" + (genModel.useGenerics() ? "<String>" : "");
     String _StringBuilder = genModel.getImportedName(genModel.useGenerics() ? "java.lang.StringBuilder" : "java.lang.StringBuffer");
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__z3kN8GJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__z3kN8GJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__z3kN8GJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getEditorPluginPackageName());
@@ -353,5 +353,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     }
     stringBuffer.append(TEXT_66);
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_67);
     }
     }

@@ -26,7 +26,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * This is the central singleton for the ";
   protected final String TEXT_5 = " model plugin." + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public final class ";
@@ -49,6 +49,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
   protected final String TEXT_22 = ");" + NL + "" + NL + "\t\t\t// Remember the static instance." + NL + "\t\t\t//" + NL + "\t\t\tplugin = this;" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "}";
   protected final String TEXT_23 = NL;
   protected final String TEXT_24 = NL;
+  protected final String TEXT_25 = NL;
 
 	public Plugin()
 	{
@@ -85,8 +86,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_23);
     stringBuffer.append(TEXT_24);
+    stringBuffer.append(TEXT_25);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -167,10 +168,9 @@ if (arguments != null)
 
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__ykQzAGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__ykQzAGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ykQzAGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelPluginPackageName());
@@ -217,5 +217,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     }
     stringBuffer.append(TEXT_22);
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_23);
     }
     }

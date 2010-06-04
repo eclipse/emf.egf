@@ -5,8 +5,7 @@ new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditorDir
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
-%>
-<%
+%><%
 /**
  * <copyright>
  *
@@ -26,13 +25,7 @@ if (arguments != null)
 <%String _ListOfString = "List" + (genModel.useGenerics() ? "<String>" : "");%>
 <%String _UniqueEListOfString = "UniqueEList" + (genModel.useGenerics() ? "<String>" : "");%>
 <%String _StringBuilder = genModel.getImportedName(genModel.useGenerics() ? "java.lang.StringBuilder" : "java.lang.StringBuffer");%>
-
-<%
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-%>
-
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genModel.getEditorPluginPackageName()%>;
 
 import java.io.File;

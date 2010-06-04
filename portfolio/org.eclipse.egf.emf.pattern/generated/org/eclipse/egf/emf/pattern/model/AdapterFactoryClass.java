@@ -26,7 +26,7 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Adapter Factory</b> for the model." + NL + " * It provides an adapter <code>createXXX</code> method for each class of the model." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
   protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
@@ -65,6 +65,7 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
   protected final String TEXT_38 = "Adapter()" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "} //";
   protected final String TEXT_39 = NL;
   protected final String TEXT_40 = NL;
+  protected final String TEXT_41 = NL;
 
 	public AdapterFactoryClass()
 	{
@@ -101,8 +102,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_39);
     stringBuffer.append(TEXT_40);
+    stringBuffer.append(TEXT_41);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -183,10 +184,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__y4hy0GJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__y4hy0GJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__y4hy0GJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -277,5 +277,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     stringBuffer.append(TEXT_38);
     stringBuffer.append(genPackage.getAdapterFactoryClassName());
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_39);
     }
     }

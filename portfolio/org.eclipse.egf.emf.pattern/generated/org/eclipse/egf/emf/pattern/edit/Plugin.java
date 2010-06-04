@@ -26,7 +26,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * This is the central singleton for the ";
   protected final String TEXT_5 = " edit plugin." + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public final class ";
@@ -52,6 +52,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
   protected final String TEXT_25 = ");" + NL + "" + NL + "\t\t\t// Remember the static instance." + NL + "\t\t\t//" + NL + "\t\t\tplugin = this;" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "}";
   protected final String TEXT_26 = NL;
   protected final String TEXT_27 = NL;
+  protected final String TEXT_28 = NL;
 
 	public Plugin()
 	{
@@ -88,8 +89,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_26);
     stringBuffer.append(TEXT_27);
+    stringBuffer.append(TEXT_28);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -170,10 +171,9 @@ if (arguments != null)
 
     GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__zs1koGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__zs1koGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__zs1koGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getEditPluginPackageName());
@@ -226,5 +226,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     }
     stringBuffer.append(TEXT_25);
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_26);
     }
     }

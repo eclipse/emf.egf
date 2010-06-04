@@ -5,8 +5,7 @@ new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirec
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
-%>
-<%
+%><%
 /**
  * <copyright>
  *
@@ -26,13 +25,7 @@ if (arguments != null)
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 
-
-<%
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-%>
-
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderXml" args="parameter:argument"%>
 
 <%if (genModel.isBundleManifest()) {%>
 <plugin>

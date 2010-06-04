@@ -26,7 +26,7 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Validator</b> for the model." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
   protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
@@ -581,6 +581,7 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
   protected final String TEXT_554 = NL + "} //";
   protected final String TEXT_555 = NL;
   protected final String TEXT_556 = NL;
+  protected final String TEXT_557 = NL;
 
 	public ValidatorClass()
 	{
@@ -617,8 +618,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_555);
     stringBuffer.append(TEXT_556);
+    stringBuffer.append(TEXT_557);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -700,10 +701,9 @@ if (arguments != null)
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     final String singleWildcard = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<?>" : "";
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__y5RZsGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__y5RZsGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__y5RZsGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -1901,5 +1901,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     stringBuffer.append(TEXT_554);
     stringBuffer.append(genPackage.getValidatorClassName());
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_555);
     }
     }

@@ -5,8 +5,7 @@ new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDire
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
-%>
-<%
+%><%
 /**
  * <copyright>
  *
@@ -25,13 +24,7 @@ if (arguments != null)
 <%GenPackage genPackage = (GenPackage)((Object[])argument)[0]; GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
 <%boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]);%>
 <%String publicStaticFinalFlag = isImplementation ? "public static final " : "";%>
-
-<%
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-%>
-
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 <%if (isInterface || genModel.isSuppressInterfaces()) {%>
 package <%=genPackage.getReflectionPackageName()%>;
 <%} else {%>

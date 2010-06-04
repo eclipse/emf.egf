@@ -26,7 +26,7 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A representation of the literals of the enumeration '<em><b>";
   protected final String TEXT_5 = "</b></em>'," + NL + " * and utility methods for working with them." + NL + " * <!-- end-user-doc -->";
@@ -138,6 +138,7 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
   protected final String TEXT_111 = " literal)" + NL + "\t{" + NL + "\t\tsuper(value, name, literal);" + NL + "\t}" + NL + "}";
   protected final String TEXT_112 = NL;
   protected final String TEXT_113 = NL;
+  protected final String TEXT_114 = NL;
 
 	public EnumClass()
 	{
@@ -174,8 +175,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_112);
     stringBuffer.append(TEXT_113);
+    stringBuffer.append(TEXT_114);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -256,10 +257,9 @@ if (arguments != null)
 
     GenEnum genEnum = (GenEnum)argument; GenPackage genPackage = genEnum.getGenPackage(); GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__yr3P0GJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__yr3P0GJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__yr3P0GJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getInterfacePackageName());
@@ -503,5 +503,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     }
     }
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_112);
     }
     }

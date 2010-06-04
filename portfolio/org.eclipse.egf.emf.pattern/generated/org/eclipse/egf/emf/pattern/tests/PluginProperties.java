@@ -26,8 +26,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + NL + "pluginName = ";
-  protected final String TEXT_3 = " Tests" + NL + "providerName = www.example.org";
+  protected final String TEXT_2 = NL + NL + "pluginName = ";
+  protected final String TEXT_3 = " Tests" + NL + "providerName = www.example.org" + NL;
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL;
 
@@ -146,10 +146,9 @@ if (arguments != null)
 
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__z5NMsGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__z5NMsGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__z5NMsGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelName());

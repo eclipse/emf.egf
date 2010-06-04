@@ -26,7 +26,7 @@ public class PackageExample extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + "package ";
+  protected final String TEXT_2 = NL + "package ";
   protected final String TEXT_3 = ";" + NL;
   protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A sample utility for the '<em><b>";
   protected final String TEXT_5 = "</b></em>' package." + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public class ";
@@ -116,6 +116,7 @@ public class PackageExample extends org.eclipse.egf.emf.pattern.base.GenPackageJ
   protected final String TEXT_89 = NL + "\t}" + NL + "" + NL + "} //";
   protected final String TEXT_90 = NL;
   protected final String TEXT_91 = NL;
+  protected final String TEXT_92 = NL;
 
 	public PackageExample()
 	{
@@ -152,8 +153,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_90);
     stringBuffer.append(TEXT_91);
+    stringBuffer.append(TEXT_92);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -251,10 +252,9 @@ String _ResourceSet = genModel.getImportedName("org.eclipse.emf.ecore.resource.R
 String _ResourceSetImpl = genModel.getImportedName("org.eclipse.emf.ecore.resource.impl.ResourceSetImpl");
 
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__z58zkGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__z58zkGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__z58zkGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getTestsPackageName());
@@ -438,5 +438,6 @@ CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new Executio
     stringBuffer.append(TEXT_89);
     stringBuffer.append(genPackage.getExampleClassName());
     genModel.emitSortedImports();
+    stringBuffer.append(TEXT_90);
     }
     }

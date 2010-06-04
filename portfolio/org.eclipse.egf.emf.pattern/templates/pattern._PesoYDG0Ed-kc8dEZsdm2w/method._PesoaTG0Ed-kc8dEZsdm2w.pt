@@ -5,8 +5,7 @@ new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDire
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
-%>
-<%
+%><%
 /**
  * <copyright>
  *
@@ -23,13 +22,7 @@ if (arguments != null)
  */
 %>
 <%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();%>
-
-<%
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-%>
-
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
 
 <%genModel.getImportedName("org.eclipse.emf.common.util.URI");%>
@@ -99,32 +92,7 @@ public class <%=genPackage.getResourceFactoryClassName()%> extends <%=genPackage
   <%}%>
 	public Resource createResource(URI uri)
 	{
-<%@ include file="ResourceFactoryClass/createResource.override.javajetinc" fail="alternative" %>
-<%@ start %>
-<%if (genPackage.hasExtendedMetaData()) {%>
-		<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%> result = new <%=genPackage.getResourceClassName()%>(uri);
-		result.getDefaultSaveOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_EXTENDED_META_DATA, <%if (genPackage.hasTargetNamespace()){%>Boolean.TRUE<%}else{%>extendedMetaData<%}%>);
-		result.getDefaultLoadOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_EXTENDED_META_DATA, <%if (genPackage.hasTargetNamespace()){%>Boolean.TRUE<%}else{%>extendedMetaData<%}%>);
-
-		result.getDefaultSaveOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
-
-		result.getDefaultLoadOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-		result.getDefaultSaveOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-
-		result.getDefaultLoadOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE);
-<%if (genPackage.isDataTypeConverters() && genPackage.hasDocumentRoot()) {%>
-		result.getDefaultLoadOptions().put(<%=genPackage.getResourceClassName()%>.OPTION_USE_DATA_CONVERTER, Boolean.TRUE);
-<%}%>
-<%} else if (genPackage.hasXMLMap()) {%>
-		<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%> result = new <%=genPackage.getResourceClassName()%>(uri);
-		result.getDefaultSaveOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_XML_MAP, xmlMap);
-		result.getDefaultLoadOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_XML_MAP, xmlMap);
-<%} else {%>
-		Resource result = new <%=genPackage.getResourceClassName()%>(uri);
-<%}%>
-		return result;
-<%@ end %><%//ResourceFactoryClass/createResource.override.javajetinc%>
-	}
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.internal.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel"%><%//ResourceFactoryClass/createResource.override.javajetinc%>	}
 
 } //<%=genPackage.getResourceFactoryClassName()%>
 <%genModel.emitSortedImports();%>

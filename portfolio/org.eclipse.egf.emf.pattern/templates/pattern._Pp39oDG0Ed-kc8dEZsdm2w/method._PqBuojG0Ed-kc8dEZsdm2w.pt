@@ -5,8 +5,7 @@ new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDire
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
-%>
-<%
+%><%
 /**
  * <copyright>
  *
@@ -23,13 +22,7 @@ if (arguments != null)
  */
 %>
 <%GenClass genClass = (GenClass)argument; GenPackage genPackage = genClass.getGenPackage(); GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
-
-<%
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
-%>
-
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getTestsPackageName()%>;
 
 <%genModel.markImportLocation(stringBuffer);%>
@@ -192,140 +185,10 @@ public<%if (genClass.isAbstract()) {%> abstract<%}%> class <%=genClass.getTestCa
 	}
 <%}%>
 <%for (GenFeature genFeature : genClass.getImplementedGenFeatures()) {%>
-<%@ include file="TestCase/implementedGenFeature.override.javajetinc" fail="alternative" %>
-<%@ start %>
-  <%if (genFeature.isTested()) {%>
-    <%if (genFeature.isGet() && !genFeature.isSuppressedGetVisibility()) {%>
-<%@ include file="TestCase/getGenFeature.override.javajetinc" fail="alternative" %>
-<%@ start %>
-
-	/**
-	 * Tests the '{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' feature getter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%>()
-	 * @generated
-	 */
-      <%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/getGenFeature.annotations.insert.javajetinc%>
-<%@ include file="TestCase/getGenFeature.annotations.insert.javajetinc" fail="silent" %>
-      <%}%>
-	public void test<%=genModel.capName(genFeature.getGetAccessor())%>()
-	{
-<%@ include file="TestCase/getGenFeature.TODO.override.javajetinc" fail="alternative" %>
-<%@ start %>
-		// TODO: implement this feature getter test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-<%@ end %><%//TestCase/getGenFeature.todo.override.javajetinc%>
-	}
-<%@ end %><%//TestCase/getGenFeature.override.javajetinc%>
-    <%}%>
-    <%if (genFeature.isSet() && !genFeature.isSuppressedSetVisibility()) {%>
-<%@ include file="TestCase/setGenFeature.override.javajetinc" fail="alternative" %>
-<%@ start %>
-
-	/**
-	 * Tests the '{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#set<%=genFeature.getAccessorName()%>(<%=genFeature.getRawBoundType()%>) <em><%=genFeature.getFormattedName()%></em>}' feature setter.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#set<%=genFeature.getAccessorName()%>(<%=genFeature.getRawBoundType()%>)
-	 * @generated
-	 */
-      <%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/setGenFeature.annotations.insert.javajetinc%>
-<%@ include file="TestCase/setGenFeature.annotations.insert.javajetinc" fail="silent" %>
-      <%}%>
-	public void testSet<%=genFeature.getAccessorName()%>()
-	{
-<%@ include file="TestCase/setGenFeature.TODO.override.javajetinc" fail="alternative" %>
-<%@ start %>
-		// TODO: implement this feature setter test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-<%@ end %><%//TestCase/setGenFeature.todo.override.javajetinc%>
-	}
-<%@ end %><%//TestCase/setGenFeature.override.javajetinc%>
-    <%}%>
-    <%if (genFeature.isUnset() && !genFeature.isSuppressedUnsetVisibility()) {%>
-<%@ include file="TestCase/unsetGenFeature.override.javajetinc" fail="alternative" %>
-<%@ start %>
-
-	/**
-	 * Tests the '{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#unset<%=genFeature.getAccessorName()%>() <em>unset<%=genFeature.getAccessorName()%>()</em>}' method.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#unset<%=genFeature.getAccessorName()%>()
-	 * @generated
-	 */
-      <%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/unsetGenFeature.annotations.insert.javajetinc%>
-<%@ include file="TestCase/unsetGenFeature.annotations.insert.javajetinc" fail="silent" %>
-      <%}%>
-	public void testUnset<%=genFeature.getAccessorName()%>()
-	{
-<%@ include file="TestCase/unsetGenFeature.TODO.override.javajetinc" fail="alternative" %>
-<%@ start %>
-		// TODO: implement this test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-<%@ end %><%//TestCase/unsetGenFeature.todo.override.javajetinc%>
-	}
-<%@ end %><%//TestCase/unsetGenFeature.override.javajetinc%>
-    <%}%>
-    <%if (genFeature.isIsSet() && !genFeature.isSuppressedIsSetVisibility()) {%>
-<%@ include file="TestCase/isSetGenFeature.override.javajetinc" fail="alternative" %>
-<%@ start %>
-
-	/**
-	 * Tests the '{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#isSet<%=genFeature.getAccessorName()%>() <em>isSet<%=genFeature.getAccessorName()%>()</em>}' method.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#isSet<%=genFeature.getAccessorName()%>()
-	 * @generated
-	 */
-      <%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/isSetGenFeature.annotations.insert.javajetinc%>
-<%@ include file="TestCase/isSetGenFeature.annotations.insert.javajetinc" fail="silent" %>
-      <%}%>
-	public void testIsSet<%=genFeature.getAccessorName()%>()
-	{
-<%@ include file="TestCase/isSetGenFeature.TODO.override.javajetinc" fail="alternative" %>
-<%@ start %>
-		// TODO: implement this test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-<%@ end %><%//TestCase/isSetGenFeature.todo.override.javajetinc%>
-	}
-<%@ end %><%//TestCase/isSetGenFeature.override.javajetinc%>
-    <%}%>
-  <%}%>
-<%@ include file="TestCase/implementedGenFeature.insert.javajetinc" fail="silent" %>
-<%@ end %><%//TestCase/implementedGenFeature.override.javajetinc%>
-<%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenFeature.override.javajetinc%><%}%>
 <%for (GenOperation genOperation : genClass.getImplementedGenOperations()) {%>
-<%@ include file="TestCase/implementedGenOperation.override.javajetinc" fail="alternative" %>
-<%@ start %>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenOperation.override.javajetinc%><%}%>
 
-	/**
-	 * Tests the '{@link <%=genOperation.getGenClass().getQualifiedInterfaceName()%>#<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>) <em><%=genOperation.getFormattedName()%></em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see <%=genOperation.getGenClass().getQualifiedInterfaceName()%>#<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>)
-	 * @generated
-	 */
-  <%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/genOperation.annotations.insert.javajetinc%>
-<%@ include file="TestCase/genOperation.annotations.insert.javajetinc" fail="silent" %>
-  <%}%>
-	public void test<%=genModel.capName(genOperation.getName())%><%=genOperation.getGenParameters().size() == 0 ? "" : "__" + genOperation.getParameterTypes("_", false)%>()
-	{
-<%@ include file="TestCase/implementedGenOperation.TODO.override.javajetinc" fail="alternative" %>
-<%@ start %>
-		// TODO: implement this operation test method
-		// Ensure that you remove @generated or mark it @generated NOT
-		fail();
-<%@ end %><%//TestCase/implementedGenOperation.todo.override.javajetinc%>
-	}
-<%@ include file="TestCase/implementedGenOperation.insert.javajetinc" fail="silent" %>
-<%@ end %><%//TestCase/implementedGenOperation.override.javajetinc%>
-<%}%>
-
-<%@ include file="TestCase/insert.javajetinc" fail="silent" %>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 } //<%=genClass.getTestCaseClassName()%>
 <%genModel.emitSortedImports();%>

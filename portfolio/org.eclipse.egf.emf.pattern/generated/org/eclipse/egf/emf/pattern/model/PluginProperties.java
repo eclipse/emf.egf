@@ -26,7 +26,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL + NL + NL + "pluginName = ";
+  protected final String TEXT_2 = NL + NL + "pluginName = ";
   protected final String TEXT_3 = " Model" + NL + "providerName = www.example.org";
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL + "_UI_";
@@ -34,6 +34,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
   protected final String TEXT_7 = " File";
   protected final String TEXT_8 = NL;
   protected final String TEXT_9 = NL;
+  protected final String TEXT_10 = NL;
 
 	public PluginProperties()
 	{
@@ -70,8 +71,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_8);
     stringBuffer.append(TEXT_9);
+    stringBuffer.append(TEXT_10);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -150,10 +151,9 @@ if (arguments != null)
 
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
-    
-final Map<String, Object> parameters = new HashMap<String, Object>();
-parameters.put("argument", parameter);
-CallHelper.executeWithParameterInjection("_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters);
+    final Map<String, Object> parameters__ygPOoGJ_EdFqczH3ESmRw = new HashMap<String, Object>();
+parameters__ygPOoGJ_EdFqczH3ESmRw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ygPOoGJ_EdFqczH3ESmRw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelName());
@@ -170,5 +170,6 @@ CallHelper.executeWithParameterInjection("_FEoPwCwuEd-jc5T-XaRJlg", new Executio
     stringBuffer.append(TEXT_7);
     }
     }
+    stringBuffer.append(TEXT_8);
     }
     }
