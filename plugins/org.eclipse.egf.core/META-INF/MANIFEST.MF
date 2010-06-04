@@ -25,6 +25,5 @@ Export-Package:
  org.eclipse.egf.core.natures,
  org.eclipse.egf.core.preferences,
  org.eclipse.egf.core.session,
- org.eclipse.egf.core.workspace,
- org.eclipse.egf.core.uri
+ org.eclipse.egf.core.workspace
 Bundle-ActivationPolicy: lazy

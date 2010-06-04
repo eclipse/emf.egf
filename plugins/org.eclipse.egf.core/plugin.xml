@@ -35,6 +35,15 @@
       class="org.eclipse.egf.core.internal.fcore.PlatformFcoreFactory"
     />       
   </extension>  
+  
+  <extension
+    point="org.eclipse.egf.core.platform.manager"
+  >
+    <manager
+      extension="org.eclipse.emf.ecore.generated_package"    
+      class="org.eclipse.egf.core.internal.genmodel.PlatformGenModelFactory"
+    />       
+  </extension>  
     
   <!-- ================================================================================= -->
   <!-- Natures                                                                           -->
