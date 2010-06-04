@@ -18,8 +18,8 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.platform.internal.pde.IManagerConstants;
 import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
@@ -84,11 +84,11 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
             // Build managers map
             Map<String, IConfigurationElement> platformManagers = new HashMap<String, IConfigurationElement>();
             Map<String, Class<? extends IPlatformExtensionPoint>> interfaces = new HashMap<String, Class<? extends IPlatformExtensionPoint>>();
-            IConfigurationElement[] configurationElements = ExtensionPointHelper.getConfigurationElements(getDefault().getBundle().getSymbolicName(), IManagerConstants.MANAGER_EXTENSION_POINT_ID);
+            IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(getDefault().getBundle().getSymbolicName(), IManagerConstants.MANAGER_EXTENSION_POINT_ID);
             // Get EGF Platform extension points.
-            for (IConfigurationElement configurationElement : configurationElements) {
+            for (IConfigurationElement element : elements) {
                 // Extension retrieval
-                String extension = ExtensionPointHelper.getAttributeValue(configurationElement, IManagerConstants.MANAGER_ATT_EXTENSION);
+                String extension = element.getAttribute(IManagerConstants.MANAGER_ATT_EXTENSION);
                 // Ignore
                 if (extension == null || extension.trim().length() == 0) {
                     continue;
@@ -97,8 +97,8 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 // Check
                 if (platformManagers.containsKey(extension)) {
                     getDefault().logError(NLS.bind("Duplicate Extension {0}", extension)); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
                     continue;
                 }
                 // Time to init Factory
@@ -106,7 +106,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 // Check factory
                 Object factory = null;
                 try {
-                    factory = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_CLASS);
+                    factory = element.createExecutableExtension(IManagerConstants.MANAGER_ATT_CLASS);
                 } catch (Throwable t) {
                     getDefault().logError(t);
                 }
@@ -114,7 +114,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                     long endTime = System.currentTimeMillis();
                     long time = (endTime - startTimeFactory);
                     EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFPlatformPlugin _ create factory ''{0}'' in ''{1}'' ms", //$NON-NLS-1$ 
-                            configurationElement.getAttribute(IManagerConstants.MANAGER_ATT_EXTENSION), time));
+                            element.getAttribute(IManagerConstants.MANAGER_ATT_EXTENSION), time));
                 }
                 if (factory == null) {
                     continue;
@@ -122,8 +122,8 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 if (factory instanceof IPlatformExtensionPointFactory<?> == false) {
                     getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$
                     getDefault().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", IPlatformExtensionPointFactory.class.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
                     getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
                     continue;
                 }
@@ -132,18 +132,18 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 if (clazz == null) {
                     getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$          
                     getDefault().logInfo("Unable to find ''createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement)'' method."); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
                     continue;
                 }
                 if (interfaces.get(factory.getClass().getName()) != null) {
                     getDefault().logError(NLS.bind("Duplicate Factory {0}", factory.getClass().getName())); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
                     continue;
                 }
                 // Register
-                platformManagers.put(extension, configurationElement);
+                platformManagers.put(extension, element);
                 interfaces.put(factory.getClass().getName(), clazz);
             }
             // Assign static map
@@ -161,7 +161,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 // Factory
                 IPlatformExtensionPointFactory<?> clazz = null;
                 try {
-                    clazz = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(entry.getValue(), IManagerConstants.MANAGER_ATT_CLASS);
+                    clazz = (IPlatformExtensionPointFactory<?>) entry.getValue().createExecutableExtension(IManagerConstants.MANAGER_ATT_CLASS);
                 } catch (CoreException ce) {
                     EGFPlatformPlugin.getDefault().logError(ce);
                 }
@@ -194,7 +194,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 // Factory
                 IPlatformExtensionPointFactory<?> clazz = null;
                 try {
-                    clazz = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(entry.getValue(), IManagerConstants.MANAGER_ATT_CLASS);
+                    clazz = (IPlatformExtensionPointFactory<?>) entry.getValue().createExecutableExtension(IManagerConstants.MANAGER_ATT_CLASS);
                 } catch (CoreException ce) {
                     EGFPlatformPlugin.getDefault().logError(ce);
                 }

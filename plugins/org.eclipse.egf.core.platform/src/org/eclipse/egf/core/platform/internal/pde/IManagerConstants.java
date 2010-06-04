@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.core.platform.internal.pde;
 
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 
 /**
@@ -19,30 +19,30 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
  */
 public interface IManagerConstants {
 
-  /**
-   * Define a constant for the Manager extension-point id.
-   */
-  public static final String MANAGER_EXTENSION_POINT_ID = "manager"; //$NON-NLS-1$
+    /**
+     * Define a constant for the Manager extension-point id.
+     */
+    public static final String MANAGER_EXTENSION_POINT_ID = "manager"; //$NON-NLS-1$
 
-  /**
-   * Define a constant for the Manager extension-point id as a fully
-   * qualified id.
-   */
-  public static final String FULLY_QUALIFIED_EXTENSION_POINT_ID = ExtensionPointHelper.getExtensionPointId(EGFPlatformPlugin.getDefault().getPluginID(), MANAGER_EXTENSION_POINT_ID);
+    /**
+     * Define a constant for the Manager extension-point id as a fully
+     * qualified id.
+     */
+    public static final String FULLY_QUALIFIED_EXTENSION_POINT_ID = EGFPlatformPlugin.getDefault().getPluginID() + EGFCommonConstants.DOT_STRING + MANAGER_EXTENSION_POINT_ID;
 
-  /**
-   * Define a constant for the Manager extension-point child.
-   */
-  static final String MANAGER_EXTENSION_CHILD = MANAGER_EXTENSION_POINT_ID;
+    /**
+     * Define a constant for the Manager extension-point child.
+     */
+    static final String MANAGER_EXTENSION_CHILD = MANAGER_EXTENSION_POINT_ID;
 
-  /**
-   * Define a constant for the 'extension' attribute.
-   */
-  public static final String MANAGER_ATT_EXTENSION = "extension"; //$NON-NLS-1$
+    /**
+     * Define a constant for the 'extension' attribute.
+     */
+    public static final String MANAGER_ATT_EXTENSION = "extension"; //$NON-NLS-1$
 
-  /**
-   * Define a constant for the 'class' attribute.
-   */
-  public static final String MANAGER_ATT_CLASS = "class"; //$NON-NLS-1$  
+    /**
+     * Define a constant for the 'class' attribute.
+     */
+    public static final String MANAGER_ATT_CLASS = "class"; //$NON-NLS-1$  
 
 }
