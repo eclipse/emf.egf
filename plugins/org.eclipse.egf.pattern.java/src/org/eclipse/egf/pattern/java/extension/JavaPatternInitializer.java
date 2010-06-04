@@ -1,20 +1,19 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
 
 package org.eclipse.egf.pattern.java.extension;
-
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -35,6 +34,6 @@ public class JavaPatternInitializer extends BaseJavaPatternInitializer {
     }
 
     public JavaPatternInitializer(IProject project, Pattern pattern) {
-        super(project, pattern, new SimpleEngine(Activator.PLUGIN_ID, project, JavaPreferences.getTemplateFileExtension()));
+        super(project, pattern, new SimpleEngine(Activator.getDefault().getPluginID(), project, JavaPreferences.getTemplateFileExtension()));
     }
 }
