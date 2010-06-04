@@ -31,8 +31,8 @@ public class EGFProducerFprodPlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        __plugin = null;
         super.stop(context);
+        __plugin = null;
     }
 
     /**
