@@ -5,8 +5,6 @@
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/osgi/baseadaptor/*"/>
 			<accessrule kind="accessible" pattern="org/eclipse/osgi/framework/internal/core/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/pde/internal/core/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/pde/internal/core/natures/*"/>
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
