@@ -14,6 +14,7 @@ import org.eclipse.core.internal.registry.Handle;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.ftask.task.ITaskNature;
 import org.eclipse.osgi.util.NLS;
@@ -99,11 +100,11 @@ public class TaskNatureProxy {
                 return null;
             }
             if (object instanceof ITaskNature == false) {
-                EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", ITaskNature.class.getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", _element.getContributor().getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$
+                EGFFtaskPlugin.getPlugin().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, object.getClass().getName()));
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Wrong_Class_Sub_Type_Message, ITaskNature.class.getName()), 1);
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, _element.getContributor().getName()), 1);
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, _element.getName()), 1);
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                 return null;
             }
             _taskNature = (ITaskNature) object;

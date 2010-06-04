@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.core.platform.internal.pde.IManagerConstants;
 import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
@@ -96,9 +97,9 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 extension = extension.trim();
                 // Check
                 if (platformManagers.containsKey(extension)) {
-                    getDefault().logError(NLS.bind("Duplicate Extension {0}", extension)); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
+                    getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_element_Message, extension));
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                     continue;
                 }
                 // Time to init Factory
@@ -120,26 +121,26 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                     continue;
                 }
                 if (factory instanceof IPlatformExtensionPointFactory<?> == false) {
-                    getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", IPlatformExtensionPointFactory.class.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
+                    getDefault().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, factory.getClass().getName()));
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Wrong_Class_Sub_Type_Message, IPlatformExtensionPointFactory.class.getName()), 1);
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, extension), 1);
                     continue;
                 }
                 // Fetch Returned Types from Class
                 Class<? extends IPlatformExtensionPoint> clazz = fetchReturnedTypeFromFactory(factory.getClass());
                 if (clazz == null) {
-                    getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$          
+                    getDefault().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, factory.getClass().getName()));
                     getDefault().logInfo("Unable to find ''createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement)'' method."); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                     continue;
                 }
                 if (interfaces.get(factory.getClass().getName()) != null) {
-                    getDefault().logError(NLS.bind("Duplicate Factory {0}", factory.getClass().getName())); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
-                    getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
+                    getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_element_Message, factory.getClass().getName()));
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
+                    getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                     continue;
                 }
                 // Register
