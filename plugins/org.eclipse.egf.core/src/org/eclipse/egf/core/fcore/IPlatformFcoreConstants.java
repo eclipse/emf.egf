@@ -14,35 +14,34 @@ import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 
 /**
- * Defines all constants related to a Fcore into extension point
- * declaration.
+ * Defines all constants related to Fcore extension point declaration.
  */
 public interface IPlatformFcoreConstants {
 
-  /**
-   * Define a constant for the Fcore extension-point id.
-   */
-  public static final String FCORE_EXTENSION_POINT_ID = "fcore"; //$NON-NLS-1$
+    /**
+     * Define a constant for the Fcore extension-point id.
+     */
+    public static final String FCORE_EXTENSION_POINT_ID = "fcore"; //$NON-NLS-1$
 
-  /**
-   * Define a constant for the Fcore extension-point id as a fully
-   * qualified id.
-   */
-  public static final String FULLY_QUALIFIED_EXTENSION_POINT_ID = ExtensionPointHelper.getExtensionPointId(EGFCorePlugin.getDefault().getPluginID(), FCORE_EXTENSION_POINT_ID);
+    /**
+     * Define a constant for the Fcore extension-point id as a fully
+     * qualified id.
+     */
+    public static final String FULLY_QUALIFIED_EXTENSION_POINT_ID = ExtensionPointHelper.getExtensionPointId(EGFCorePlugin.getDefault().getPluginID(), FCORE_EXTENSION_POINT_ID);
 
-  /**
-   * Define a constant for the Fcore extension-point child.
-   */
-  static final String FCORE_EXTENSION_CHILD = FCORE_EXTENSION_POINT_ID;
+    /**
+     * Define a constant for the Fcore extension-point child.
+     */
+    static final String FCORE_EXTENSION_CHILD = FCORE_EXTENSION_POINT_ID;
 
-  /**
-   * Define a constant for the 'id' attribute.
-   */
-  public static final String FCORE_ATT_ID = "id"; //$NON-NLS-1$
+    /**
+     * Define a constant for the 'id' attribute.
+     */
+    public static final String FCORE_ATT_ID = "id"; //$NON-NLS-1$
 
-  /**
-   * Define a constant for the Fcore file extension.
-   */
-  public static final String FCORE_FILE_EXTENSION = "fcore"; //$NON-NLS-1$  
+    /**
+     * Define a constant for the Fcore file extension.
+     */
+    public static final String FCORE_FILE_EXTENSION = "fcore"; //$NON-NLS-1$  
 
 }
