@@ -100,6 +100,9 @@ public final class EGFFtaskPlugin extends EMFPlugin {
      * @generated NOT
      */
     public static ITaskNatureRegistry getTaskNatureRegistry() {
+        if (__taskNatureRegistry == null) {
+            __taskNatureRegistry = new TaskNatureRegistry();
+        }
         return __taskNatureRegistry;
     }
 
@@ -129,13 +132,12 @@ public final class EGFFtaskPlugin extends EMFPlugin {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * 
-         * @generated
+         * @generated NOT
          */
         @Override
         public void start(BundleContext context) throws Exception {
             super.start(context);
             plugin = this;
-            __taskNatureRegistry = new TaskNatureRegistry();
         }
 
         /**
@@ -148,7 +150,9 @@ public final class EGFFtaskPlugin extends EMFPlugin {
         @Override
         public void stop(BundleContext context) throws Exception {
             super.stop(context);
-            __taskNatureRegistry.dispose();
+            if (__taskNatureRegistry != null) {
+                __taskNatureRegistry.dispose();
+            }
             plugin = null;
         }
 

@@ -45,6 +45,11 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
     public static final String EXTENSION_ID = "org.eclipse.egf.model.ftask.task"; //$NON-NLS-1$
 
     /**
+     * Define a constant for the 'kind' attribute.
+     */
+    public static final String INVOKER_ATT_KIND = "kind"; //$NON-NLS-1$        
+
+    /**
      * Define a constant for the 'class' attribute.
      */
     public static final String INVOKER_ATT_CLASS = "class"; //$NON-NLS-1$    

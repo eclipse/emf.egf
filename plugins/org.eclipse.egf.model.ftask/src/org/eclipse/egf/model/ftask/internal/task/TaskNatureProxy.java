@@ -25,25 +25,62 @@ import org.eclipse.osgi.util.NLS;
  */
 public class TaskNatureProxy {
 
+    private IConfigurationElement _element;
+
     private String _uniqueIdentifier;
 
     private int _handleId = -1;
 
+    private String _kind;
+
+    private String _class;
+
     private ITaskNature _taskNature;
+
+    /**
+     * Creates a new TaskNatureProxy proxy based on the given configuration element.
+     * Returns the new proxy, or null if the element could not be created.
+     */
+    public static TaskNatureProxy createProxy(IConfigurationElement element) {
+        if (element == null) {
+            return null;
+        }
+        // Store identifier
+        IExtension declaringExtension = element.getDeclaringExtension();
+        String uniqueIdentifier = declaringExtension.getUniqueIdentifier();
+        int handleId = -1;
+        if (declaringExtension instanceof Handle) {
+            handleId = ((Handle) declaringExtension).getId();
+        }
+        // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
+        String clazz = ExtensionPointHelper.getAttributeValue(element, TaskNatureRegistry.INVOKER_ATT_CLASS);
+        // 'class' attribute is mandatory
+        if (clazz == null || clazz.trim().length() == 0) {
+            return null;
+        }
+        // 'kind' attribute is mandatory
+        String kind = ExtensionPointHelper.getAttributeValue(element, TaskNatureRegistry.INVOKER_ATT_KIND);
+        if (kind == null || kind.trim().length() == 0) {
+            return null;
+        }
+        return new TaskNatureProxy(element, clazz, kind, uniqueIdentifier, handleId);
+    }
+
+    public TaskNatureProxy(IConfigurationElement element, String clazz, String kind, String uniqueIdentifier, int handleId) {
+        _element = element;
+        _class = clazz.trim();
+        _kind = kind.trim();
+        if (uniqueIdentifier != null && uniqueIdentifier.trim().length() != 0) {
+            _uniqueIdentifier = uniqueIdentifier.trim();
+        }
+        _handleId = handleId;
+    }
 
     /**
      * @return the _uniqueIdentifier
      */
     public String getUniqueIdentifier() {
         return _uniqueIdentifier;
-    }
-
-    /**
-     * @param uniqueIdentifier
-     *            the _uniqueIdentifier to set
-     */
-    public void setUniqueIdentifier(String uniqueIdentifier) {
-        _uniqueIdentifier = uniqueIdentifier;
     }
 
     /**
@@ -54,96 +91,42 @@ public class TaskNatureProxy {
     }
 
     /**
-     * @param handleId
-     *            the _handleId to set
-     */
-    public void setHandleId(int handleId) {
-        _handleId = handleId;
-    }
-
-    /**
      * @return the _taskNature
      */
     public ITaskNature getTaskNature() {
+        if (_taskNature == null) {
+            try {
+                Object object = _element.createExecutableExtension(TaskNatureRegistry.INVOKER_ATT_CLASS);
+                if (object == null) {
+                    return null;
+                }
+                if (object instanceof ITaskNature == false) {
+                    EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
+                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", ITaskNature.class.getName()), 1); //$NON-NLS-1$
+                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(_element)), 1); //$NON-NLS-1$
+                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
+                    EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$
+                    return null;
+                }
+                _taskNature = (ITaskNature) object;
+            } catch (CoreException e) {
+                EGFFtaskPlugin.getPlugin().logError(e);
+            }
+        }
         return _taskNature;
     }
 
-    /**
-     * @param taskNature
-     *            the _taskNature to set
-     */
-    public void setTaskNature(ITaskNature taskNature) {
-        _taskNature = taskNature;
-    }
-
     public String getKind() {
-        if (_taskNature != null) {
-            if (_taskNature.getKind() != null) {
-                return _taskNature.getKind().trim();
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Creates a new factory proxy based on the given configuration element.
-     * Returns the new proxy, or null if the element could not be created.
-     */
-    public static TaskNatureProxy createProxy(IConfigurationElement element) {
-        // Store indentifier
-        IExtension declaringExtension = element.getDeclaringExtension();
-        String uniqueIdentifier = declaringExtension.getUniqueIdentifier();
-        int handleId = -1;
-        if (declaringExtension instanceof Handle) {
-            handleId = ((Handle) declaringExtension).getId();
-        }
-        try {
-            // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
-            String extension = ExtensionPointHelper.getAttributeValue(element, TaskNatureRegistry.INVOKER_ATT_CLASS);
-            // Ignore
-            if (extension == null || extension.trim().length() == 0) {
-                return null;
-            }
-            extension = extension.trim();
-            // 'class' attribute is mandatory
-            Object object = element.createExecutableExtension(TaskNatureRegistry.INVOKER_ATT_CLASS);
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof ITaskNature == false) {
-                EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", ITaskNature.class.getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(element)), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
-                return null;
-            }
-            ITaskNature taskNature = (ITaskNature) object;
-            if (taskNature.getKind() == null || taskNature.getKind().trim().length() == 0) {
-                return null;
-            }
-            TaskNatureProxy proxy = new TaskNatureProxy();
-            proxy.setUniqueIdentifier(uniqueIdentifier);
-            proxy.setHandleId(handleId);
-            proxy.setTaskNature(taskNature);
-            return proxy;
-        } catch (CoreException e) {
-            EGFFtaskPlugin.getPlugin().logError(e);
-        }
-        return null;
-    }
-
-    public TaskNatureProxy() {
-        // Nothing to do
+        return _kind;
     }
 
     public boolean originatesFrom(IExtension extension) {
         String id = extension.getUniqueIdentifier();
-        if (id != null) { // match by public ID declared in XML
+        if (id != null) {
             return id.equals(_uniqueIdentifier);
         }
         if (extension instanceof Handle == false) {
-            return false; // should never happen
+            return false;
         }
         return (_handleId == ((Handle) extension).getId());
     }
