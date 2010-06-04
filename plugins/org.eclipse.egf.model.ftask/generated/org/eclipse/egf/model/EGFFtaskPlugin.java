@@ -147,6 +147,7 @@ public final class EGFFtaskPlugin extends EMFPlugin {
          */
         @Override
         public void stop(BundleContext context) throws Exception {
+            super.stop(context);
             __taskNatureRegistry.dispose();
             plugin = null;
         }
