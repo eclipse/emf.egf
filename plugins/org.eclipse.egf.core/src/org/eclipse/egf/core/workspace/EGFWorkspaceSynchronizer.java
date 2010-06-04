@@ -87,7 +87,7 @@ public final class EGFWorkspaceSynchronizer {
     private Delegate delegate;
 
     // we employ a copy-on-write strategy on this collection for thread safety
-    private static Collection<EGFWorkspaceSynchronizer> synchronizers = new java.util.ArrayList<EGFWorkspaceSynchronizer>();
+    private static Collection<EGFWorkspaceSynchronizer> synchronizers = new ArrayList<EGFWorkspaceSynchronizer>();
 
     // we use a single listener to serve all synchronizers.
     private static IResourceChangeListener workspaceListener = new WorkspaceListener();
