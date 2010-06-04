@@ -225,19 +225,19 @@ return parameters; }
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
-    final Map<String, Object> parameters__rb1dIGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("genOperation", genOperation);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("genClass", genClass);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("genModel", genModel);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("isJDK50", isJDK50);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("isInterface", isInterface);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("isImplementation", isImplementation);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("singleWildcard", singleWildcard);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__rb1dIGKSEd8eoMv8ZThYQ.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_02kCQGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rb1dIGKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__5IEowGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__5IEowGNEEdLjd_RFzaClA.put("genOperation", genOperation);
+parameters__5IEowGNEEdLjd_RFzaClA.put("genClass", genClass);
+parameters__5IEowGNEEdLjd_RFzaClA.put("genPackage", genPackage);
+parameters__5IEowGNEEdLjd_RFzaClA.put("genModel", genModel);
+parameters__5IEowGNEEdLjd_RFzaClA.put("isJDK50", isJDK50);
+parameters__5IEowGNEEdLjd_RFzaClA.put("isInterface", isInterface);
+parameters__5IEowGNEEdLjd_RFzaClA.put("isImplementation", isImplementation);
+parameters__5IEowGNEEdLjd_RFzaClA.put("publicStaticFinalFlag", publicStaticFinalFlag);
+parameters__5IEowGNEEdLjd_RFzaClA.put("singleWildcard", singleWildcard);
+parameters__5IEowGNEEdLjd_RFzaClA.put("negativeOffsetCorrection", negativeOffsetCorrection);
+parameters__5IEowGNEEdLjd_RFzaClA.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_02kCQGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5IEowGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_3);
     if (genOperation.hasDocumentation() || genOperation.hasParameterDocumentation()) {

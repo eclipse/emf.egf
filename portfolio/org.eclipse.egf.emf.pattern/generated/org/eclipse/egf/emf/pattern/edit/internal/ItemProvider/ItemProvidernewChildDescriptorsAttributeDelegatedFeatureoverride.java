@@ -233,17 +233,17 @@ return parameters; }
     }
     }
     stringBuffer.append(TEXT_14);
-    final Map<String, Object> parameters__rwZ8GKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("createDataType", createDataType);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("createFeature", createFeature);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("delegatedFeature", delegatedFeature);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("createClassifier", createClassifier);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("childCreationData", childCreationData);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("genClass", genClass);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("genModel", genModel);
-parameters__rwZ8GKSEd8eoMv8ZThYQ.put("_List", _List);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04f78GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rwZ8GKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__5PFPsGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__5PFPsGNEEdLjd_RFzaClA.put("createDataType", createDataType);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("createFeature", createFeature);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("genClass", genClass);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("genPackage", genPackage);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("genModel", genModel);
+parameters__5PFPsGNEEdLjd_RFzaClA.put("_List", _List);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04f78GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5PFPsGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_15);
     }

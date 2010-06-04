@@ -166,9 +166,9 @@ if (!canGenerate)
 
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__q6UEcGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__q6UEcGKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__q6UEcGKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__4jHhkGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__4jHhkGNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4jHhkGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelName());

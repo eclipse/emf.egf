@@ -214,9 +214,9 @@ if (!canGenerate)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__rNrsYGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rNrsYGKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rNrsYGKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__4z9Z8GNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__4z9Z8GNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4z9Z8GNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());

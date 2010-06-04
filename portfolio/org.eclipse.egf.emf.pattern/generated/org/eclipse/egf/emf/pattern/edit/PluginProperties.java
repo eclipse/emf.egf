@@ -181,9 +181,9 @@ if (!canGenerate)
 
     GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__rqcg4GKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rqcg4GKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rqcg4GKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__5KUEcGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__5KUEcGNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5KUEcGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelName());

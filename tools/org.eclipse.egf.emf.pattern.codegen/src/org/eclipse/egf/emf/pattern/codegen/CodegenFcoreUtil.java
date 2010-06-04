@@ -51,6 +51,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 public class CodegenFcoreUtil {
 
     public static final String ORG_ECLIPSE_EMF_CODEGEN_ECORE = "org.eclipse.emf.codegen.ecore"; //$NON-NLS-1$
+    public static final String N = "\n"; //$NON-NLS-1$
 
     protected IProject codegenProject;
     protected IProject fcoreProject;
@@ -64,7 +65,6 @@ public class CodegenFcoreUtil {
     protected CodegenJetPatternHelper codegenJetPatternHelper;
 
     protected List<PatternInfo> patternInfos;
-
 
     protected class CreateCommand extends RecordingCommand {
 
@@ -126,6 +126,7 @@ public class CodegenFcoreUtil {
         computeSubPatternInfo(monitor);
         computePatternInfoNames();
         computeMethodsContent(monitor);
+        computePatternInfoDescription();
 
         // Add factory component to the contents.
         CreateCommand createCommand = new CreateCommand(editingDomain, monitor);
@@ -196,6 +197,10 @@ public class CodegenFcoreUtil {
         new CodegenPatternNameResolver(codegenPatternHelper).computePatternName(patternInfos);
     }
 
+    public void computePatternInfoDescription() throws Exception {
+        new CodegenPatternDescriptionHandler(codegenProject).computeDescription(patternInfos);
+    }
+    
     public void computeMethodsContent(IProgressMonitor monitor) {
         for (PatternInfo patternInfo : patternInfos) {
             CodegenPatternMethodContentResolver codegenPatternMethodContentResolver = new CodegenPatternMethodContentResolver(codegenProject, codegenPatternHelper, emfPatternBaseResource, codegenJetPatternHelper);

@@ -171,9 +171,9 @@ if (!canGenerate)
     String pluginClassesLocation = genModel.isRuntimeJar() ? genModel.getEditPluginID()+".jar" : ".";
     List<String> sourceFolders = genModel.getEditSourceFolders();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__rqI4GKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rqI4GKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rqI4GKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__5JtngGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__5JtngGNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5JtngGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(pluginClassesLocation);

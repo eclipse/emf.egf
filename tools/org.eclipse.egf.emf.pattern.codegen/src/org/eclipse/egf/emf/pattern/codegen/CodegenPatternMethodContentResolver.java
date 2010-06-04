@@ -30,22 +30,24 @@ import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.VariableInfo;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import static org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil.N;
+
 /**
  * @author Matthieu Helleboid
  * 
  */
 public class CodegenPatternMethodContentResolver {
 
+    public static final String DO_GENERATE = "doGenerate"; //$NON-NLS-1$
+
     protected static final String SET_REPORTER_VARIABLES = "setReporterVariables"; //$NON-NLS-1$
     protected static final String SET_CAN_GENERATE = "setCanGenerate"; //$NON-NLS-1$
     protected static final String SET_ARGUMENT = "setArgument"; //$NON-NLS-1$
     protected static final String ENSURE_PROJECT_EXISTS = "ensureProjectExists"; //$NON-NLS-1$
     protected static final String PRE_GENERATE = "preGenerate"; //$NON-NLS-1$
-    protected static final String DO_GENERATE = "doGenerate"; //$NON-NLS-1$
     protected static final String POST_GENERATE = "postGenerate"; //$NON-NLS-1$
     protected static final String ARGUMENTS = "arguments"; //$NON-NLS-1$
-    protected static final String N = "\n"; //$NON-NLS-1$
-
+    
     protected IProject codegenProject;
     protected CodegenPatternHelper codegenPatternHelper;
     protected Resource emfPatternBaseResource;

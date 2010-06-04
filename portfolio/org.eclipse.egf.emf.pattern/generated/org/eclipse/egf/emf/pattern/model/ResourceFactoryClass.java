@@ -191,9 +191,9 @@ if (!canGenerate)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__q9vL4GKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__q9vL4GKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__q9vL4GKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__4m2LAGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__4m2LAGNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4m2LAGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -252,10 +252,10 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     }
     stringBuffer.append(TEXT_28);
     stringBuffer.append(TEXT_29);
-    final Map<String, Object> parameters__rAuOcGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rAuOcGKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
-parameters__rAuOcGKSEd8eoMv8ZThYQ.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rAuOcGKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__4oyEsGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__4oyEsGNEEdLjd_RFzaClA.put("genPackage", genPackage);
+parameters__4oyEsGNEEdLjd_RFzaClA.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__4oyEsGNEEdLjd_RFzaClA);
 
     //ResourceFactoryClass/createResource.override.javajetinc
     stringBuffer.append(TEXT_30);

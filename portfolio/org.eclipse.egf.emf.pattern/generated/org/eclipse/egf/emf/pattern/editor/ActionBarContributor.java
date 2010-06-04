@@ -428,9 +428,9 @@ if (genModel.isCreationCommands())
 }
 
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__rzYacGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rzYacGKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rzYacGKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__5RwwQGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__5RwwQGNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5RwwQGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getPresentationPackageName());

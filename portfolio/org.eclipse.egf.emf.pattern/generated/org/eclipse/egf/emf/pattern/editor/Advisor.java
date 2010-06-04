@@ -230,9 +230,9 @@ if (!canGenerate)
     String _UniqueEListOfString = "UniqueEList" + (genModel.useGenerics() ? "<String>" : "");
     String _StringBuilder = genModel.getImportedName(genModel.useGenerics() ? "java.lang.StringBuilder" : "java.lang.StringBuffer");
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__r20I8GKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__r20I8GKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__r20I8GKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__5VL3sGNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__5VL3sGNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5VL3sGNEEdLjd_RFzaClA);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getEditorPluginPackageName());

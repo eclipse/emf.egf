@@ -57,6 +57,7 @@ public class CodegenPatternFactory {
     public Pattern createPattern() {
         PatternLibrary library = codegenEGFHelper.getPatternLibrary(patternInfo.getPartType(), patternInfo.getLibraryName());
         Pattern pattern = patternFactory.createPattern(library, patternInfo.getName());
+        pattern.setDescription(patternInfo.getDescription());
         codegenEGFHelper.fixXmiId(pattern, patternInfo.getPartType());
 
         removeBodyMethod(pattern);

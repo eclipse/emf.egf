@@ -80,10 +80,17 @@ public class CodegenJetTemplateSection {
         }
     }
 
+    public CodegenJetTemplateSection getRoot() {
+        CodegenJetTemplateSection root = parent;
+        while (root.getParent() != null)
+            root = root.getParent();
+        return root;
+    }
+    
     public CodegenJetTemplateSection getParent() {
         return parent;
     }
-
+    
     public void setParent(CodegenJetTemplateSection parent) {
         this.parent = parent;
     }

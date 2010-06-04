@@ -763,9 +763,9 @@ if (!canGenerate)
     boolean needsAddEOperation = false;
     boolean needsAddEParameter = false;
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__rFojoGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
-parameters__rFojoGKSEd8eoMv8ZThYQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rFojoGKSEd8eoMv8ZThYQ);
+    final Map<String, Object> parameters__4tZe8GNEEdLjd_RFzaClA = new HashMap<String, Object>();
+parameters__4tZe8GNEEdLjd_RFzaClA.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4tZe8GNEEdLjd_RFzaClA);
 
     if (isImplementation && !genModel.isSuppressInterfaces()) {
     stringBuffer.append(TEXT_2);
