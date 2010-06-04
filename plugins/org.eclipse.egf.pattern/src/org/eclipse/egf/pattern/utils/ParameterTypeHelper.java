@@ -26,76 +26,78 @@ import org.eclipse.emf.ecore.EPackage;
  * 
  */
 public class ParameterTypeHelper {
-  public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
+    public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
 
-  /**
-   * Compute the literal value associated to the given type.<br/>
-   * It can be a java classname or an uri to an EObject.
-   * 
-   * 
-   */
-  public String getTypeLiteral(String type) {
-    if (type == null || "".equals(type))
-      throw new IllegalArgumentException();
-    int index = type.indexOf('#');
-    if (index == -1)
-      return type;
-    EPackage ePackage = getEPackage(type, index);
-    // String nsURI = ePackage.getNsURI();
-    String basePackage = EPackageHelper.getBasePackage(ePackage);
-    if (basePackage == null)
-      throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
+    /**
+     * Compute the literal value associated to the given type.<br/>
+     * It can be a java classname or an uri to an EObject.
+     * 
+     * 
+     */
+    public String getTypeLiteral(String type) {
+        if (type == null || "".equals(type))
+            throw new IllegalArgumentException();
+        int index = type.indexOf('#');
+        if (index == -1) {
+            return type.replace('$', '.');
+        }
 
-    if ("".equals(basePackage))
-      return ePackage.getName() + "." + getClassName(type, index);
-    return basePackage + "." + getClassName(type, index);
-  }
+        EPackage ePackage = getEPackage(type, index);
+        // String nsURI = ePackage.getNsURI();
+        String basePackage = EPackageHelper.getBasePackage(ePackage);
+        if (basePackage == null)
+            throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
 
-  /**
-   * load the type described in the string parameter.<br/>
-   * It can be a java classname or an uri to an EObject.
-   */
-  public Object loadClass(String type) {
-    if (type == null || "".equals(type))
-      throw new IllegalArgumentException();
-    int index = type.indexOf('#');
-    if (index > 0) {
-      return loadEClass(type, index);
+        if ("".equals(basePackage))
+            return ePackage.getName() + "." + getClassName(type, index);
+        return basePackage + "." + getClassName(type, index);
     }
-    try {
-      return getClass().getClassLoader().loadClass(type);
-    } catch (ClassNotFoundException e) {
-      throw new IllegalStateException(e);
+
+    /**
+     * load the type described in the string parameter.<br/>
+     * It can be a java classname or an uri to an EObject.
+     */
+    public Object loadClass(String type) {
+        if (type == null || "".equals(type))
+            throw new IllegalArgumentException();
+        int index = type.indexOf('#');
+        if (index > 0) {
+            return loadEClass(type, index);
+        }
+        try {
+            return getClass().getClassLoader().loadClass(type);
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e);
+        }
     }
-  }
 
-  private EClass loadEClass(String type, int index) {
-    String nsuri = getNsURI(type, index);
-    String className = getClassName(type, index);
+    private EClass loadEClass(String type, int index) {
+        String nsuri = getNsURI(type, index);
+        String className = getClassName(type, index);
 
-    EPackage ePackage = getEPackage(type, index);
-    EClass eClassifier = (EClass) ePackage.getEClassifier(className);
-    if (eClassifier == null)
-      throw new IllegalStateException(Messages.bind(Messages.classloader_error3, className, nsuri));
-    return eClassifier;
-  }
+        EPackage ePackage = getEPackage(type, index);
+        EClass eClassifier = (EClass) ePackage.getEClassifier(className);
+        if (eClassifier == null)
+            throw new IllegalStateException(Messages.bind(Messages.classloader_error3, className, nsuri));
+        return eClassifier;
+    }
 
-  private EPackage getEPackage(String type, int index) {
-    return EPackageHelper.REGISTRY.getEPackage(getNsURI(type, index));
-  }
+    private EPackage getEPackage(String type, int index) {
+        return EPackageHelper.REGISTRY.getEPackage(getNsURI(type, index));
+    }
 
-  private String getNsURI(String type, int index) {
-    return type.substring(0, index);
-  }
+    private String getNsURI(String type, int index) {
+        return type.substring(0, index);
+    }
 
-  private String getClassName(String type, int index) {
-    String className = type.substring(index + 1);
-    if (className.startsWith("//"))
-      return className.substring(2);
-    return className;
-  }
+    private String getClassName(String type, int index) {
+        String className = type.substring(index + 1);
+        if (className.startsWith("//"))
+            return className.substring(2);
+        return className;
+    }
 
-  private ParameterTypeHelper() {
-  }
+    private ParameterTypeHelper() {
+    }
 
 }
