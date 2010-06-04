@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
 import org.eclipse.egf.model.domain.TypeDomainURI;
@@ -28,6 +27,7 @@ import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -60,422 +60,459 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainItemProviderAdapterFactory extends DomainAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
-  /**
-   * This keeps track of the root adapter factory that delegates to this adapter factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ComposedAdapterFactory parentAdapterFactory;
 
-  /**
-   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected IChangeNotifier changeNotifier = new ChangeNotifier();
-
-  /**
-   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Collection<Object> supportedTypes = new ArrayList<Object>();
-
-  /**
-   * This constructs an instance.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DomainItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
-    supportedTypes.add(ITableItemLabelProvider.class);
-    supportedTypes.add(ITableItemColorProvider.class);
-    supportedTypes.add(ITableItemFontProvider.class);
-    supportedTypes.add(IItemColorProvider.class);
-    supportedTypes.add(IItemFontProvider.class);
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainViewpoint} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DomainViewpointItemProvider domainViewpointItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainViewpoint}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createDomainViewpointAdapter() {
-    if (domainViewpointItemProvider == null) {
-      domainViewpointItemProvider = new DomainViewpointItemProvider(this);
-    }
-
-    return domainViewpointItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainEPackage} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DomainEPackageItemProvider domainEPackageItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createDomainEPackageAdapter() {
-    if (domainEPackageItemProvider == null) {
-      domainEPackageItemProvider = new DomainEPackageItemProvider(this);
-    }
-
-    return domainEPackageItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainEPackage} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypeDomainEPackageItemProvider typeDomainEPackageItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTypeDomainEPackageAdapter() {
-    if (typeDomainEPackageItemProvider == null) {
-      typeDomainEPackageItemProvider = new TypeDomainEPackageItemProvider(this);
-    }
-
-    return typeDomainEPackageItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DomainURIItemProvider domainURIItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURI}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createDomainURIAdapter() {
-    if (domainURIItemProvider == null) {
-      domainURIItemProvider = new DomainURIItemProvider(this);
-    }
-
-    return domainURIItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainURI} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypeDomainURIItemProvider typeDomainURIItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTypeDomainURIAdapter() {
-    if (typeDomainURIItemProvider == null) {
-      typeDomainURIItemProvider = new TypeDomainURIItemProvider(this);
-    }
-
-    return typeDomainURIItemProvider;
-  }
-
-  /**
-   * This returns the root adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-  }
-
-  /**
-   * This sets the composed adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-    this.parentAdapterFactory = parentAdapterFactory;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
-  }
-
-  /**
-   * This implementation substitutes the factory itself as the key for the adapter.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter adapt(Notifier notifier, Object type) {
-    return super.adapt(notifier, this);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object adapt(Object object, Object type) {
-    if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
-        return adapter;
-      }
-    }
-
-    return null;
-  }
-
-  /**
-   * This adds a listener.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
-  }
-
-  /**
-   * This removes a listener.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
-  }
-
-  /**
-   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
-
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
-    }
-  }
-
-  /**
-   * This disposes all of the item providers created by this factory. 
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void dispose() {
-    if (domainViewpointItemProvider != null)
-      domainViewpointItemProvider.dispose();
-    if (domainEPackageItemProvider != null)
-      domainEPackageItemProvider.dispose();
-    if (typeDomainEPackageItemProvider != null)
-      typeDomainEPackageItemProvider.dispose();
-    if (domainURIItemProvider != null)
-      domainURIItemProvider.dispose();
-    if (typeDomainURIItemProvider != null)
-      typeDomainURIItemProvider.dispose();
-  }
-
-  /**
-   * A child creation extender for the {@link FcorePackage}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static class FcoreChildCreationExtender implements IChildCreationExtender {
     /**
-     * The switch for creating child descriptors specific to each extended class.
+     * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
-    protected static class CreationSwitch extends FcoreSwitch<Object> {
-      /**
-       * The child descriptors being populated.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected List<Object> newChildDescriptors;
+    protected ComposedAdapterFactory parentAdapterFactory;
 
-      /**
-       * The domain in which to create the children.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected EditingDomain editingDomain;
+    /**
+     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
-      /**
-       * Creates the a switch for populating child descriptors in the given domain.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-        this.newChildDescriptors = newChildDescriptors;
-        this.editingDomain = editingDomain;
-      }
+    /**
+     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseContract(Contract object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
+    /**
+     * This constructs an instance.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public DomainItemProviderAdapterFactory() {
+        supportedTypes.add(IEditingDomainItemProvider.class);
+        supportedTypes.add(IStructuredItemContentProvider.class);
+        supportedTypes.add(ITreeItemContentProvider.class);
+        supportedTypes.add(IItemLabelProvider.class);
+        supportedTypes.add(IItemPropertySource.class);
+        supportedTypes.add(ITableItemLabelProvider.class);
+        supportedTypes.add(ITableItemColorProvider.class);
+        supportedTypes.add(ITableItemFontProvider.class);
+        supportedTypes.add(IItemColorProvider.class);
+        supportedTypes.add(IItemFontProvider.class);
+    }
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainViewpoint} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected DomainViewpointItemProvider domainViewpointItemProvider;
 
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseViewpointContainer(ViewpointContainer object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, DomainFactory.eINSTANCE.createDomainViewpoint()));
-
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseOrchestrationParameter(OrchestrationParameter object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
-
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
-
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * 
-       * @generated NOT
-       */
-      @Override
-      public Object caseInvocationContract(InvocationContract object) {
-
-        if (object.getInvokedContract() == null || object.getInvokedContract().getType() == null) {
-          return null;
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainViewpoint}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public Adapter createDomainViewpointAdapter() {
+        if (domainViewpointItemProvider == null) {
+            domainViewpointItemProvider = new DomainViewpointItemProvider(this);
         }
 
-        // This is done once to avoid multiple classloader to be invoked when type is TypeClass
-        Class<?> invokedContractType = object.getInvokedContract().getType().getType();
+        return domainViewpointItemProvider;
+    }
 
-        {
-          TypeDomainEPackage type = DomainFactory.eINSTANCE.createTypeDomainEPackage();
-          if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
-          }
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainEPackage} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected DomainEPackageItemProvider domainEPackageItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public Adapter createDomainEPackageAdapter() {
+        if (domainEPackageItemProvider == null) {
+            domainEPackageItemProvider = new DomainEPackageItemProvider(this);
         }
 
-        {
-          TypeDomainURI type = DomainFactory.eINSTANCE.createTypeDomainURI();
-          if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
-          }
+        return domainEPackageItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainEPackage} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected TypeDomainEPackageItemProvider typeDomainEPackageItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public Adapter createTypeDomainEPackageAdapter() {
+        if (typeDomainEPackageItemProvider == null) {
+            typeDomainEPackageItemProvider = new TypeDomainEPackageItemProvider(this);
         }
 
-        return null;
-      }
+        return typeDomainEPackageItemProvider;
+    }
 
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected CommandParameter createChildParameter(Object feature, Object child) {
-        return new CommandParameter(null, feature, child);
-      }
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected DomainURIItemProvider domainURIItemProvider;
 
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURI}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public Adapter createDomainURIAdapter() {
+        if (domainURIItemProvider == null) {
+            domainURIItemProvider = new DomainURIItemProvider(this);
+        }
+
+        return domainURIItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainURI} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected TypeDomainURIItemProvider typeDomainURIItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public Adapter createTypeDomainURIAdapter() {
+        if (typeDomainURIItemProvider == null) {
+            typeDomainURIItemProvider = new TypeDomainURIItemProvider(this);
+        }
+
+        return typeDomainURIItemProvider;
+    }
+
+    /**
+     * This returns the root adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public ComposeableAdapterFactory getRootAdapterFactory() {
+        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    }
+
+    /**
+     * This sets the composed adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+        this.parentAdapterFactory = parentAdapterFactory;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
-    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-      ArrayList<Object> result = new ArrayList<Object>();
-      new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-      return result;
+    @Override
+    public boolean isFactoryForType(Object type) {
+        return supportedTypes.contains(type) || super.isFactoryForType(type);
+    }
+
+    /**
+     * This implementation substitutes the factory itself as the key for the adapter.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public Adapter adapt(Notifier notifier, Object type) {
+        return super.adapt(notifier, this);
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
-    public ResourceLocator getResourceLocator() {
-      return EGFModelEditPlugin.INSTANCE;
+    @Override
+    public Object adapt(Object object, Object type) {
+        if (isFactoryForType(type)) {
+            Object adapter = super.adapt(object, type);
+            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+                return adapter;
+            }
+        }
+
+        return null;
     }
-  }
+
+    /**
+     * This adds a listener.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public void addListener(INotifyChangedListener notifyChangedListener) {
+        changeNotifier.addListener(notifyChangedListener);
+    }
+
+    /**
+     * This removes a listener.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public void removeListener(INotifyChangedListener notifyChangedListener) {
+        changeNotifier.removeListener(notifyChangedListener);
+    }
+
+    /**
+     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public void fireNotifyChanged(Notification notification) {
+        changeNotifier.fireNotifyChanged(notification);
+
+        if (parentAdapterFactory != null) {
+            parentAdapterFactory.fireNotifyChanged(notification);
+        }
+    }
+
+    /**
+     * This disposes all of the item providers created by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public void dispose() {
+        if (domainViewpointItemProvider != null)
+            domainViewpointItemProvider.dispose();
+        if (domainEPackageItemProvider != null)
+            domainEPackageItemProvider.dispose();
+        if (typeDomainEPackageItemProvider != null)
+            typeDomainEPackageItemProvider.dispose();
+        if (domainURIItemProvider != null)
+            domainURIItemProvider.dispose();
+        if (typeDomainURIItemProvider != null)
+            typeDomainURIItemProvider.dispose();
+    }
+
+    /**
+     * A child creation extender for the {@link FcorePackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public static class FcoreChildCreationExtender implements IChildCreationExtender {
+
+        /**
+         * The switch for creating child descriptors specific to each extended class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * 
+         * @generated
+         */
+        protected static class CreationSwitch extends FcoreSwitch<Object> {
+
+            /**
+             * The child descriptors being populated.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            protected List<Object> newChildDescriptors;
+
+            /**
+             * The domain in which to create the children.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            protected EditingDomain editingDomain;
+
+            /**
+             * Creates the a switch for populating child descriptors in the given domain.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+                this.newChildDescriptors = newChildDescriptors;
+                this.editingDomain = editingDomain;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            @Override
+            public Object caseContract(Contract object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
+
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            @Override
+            public Object caseViewpointContainer(ViewpointContainer object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, DomainFactory.eINSTANCE.createDomainViewpoint()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            @Override
+            public Object caseOrchestrationParameter(OrchestrationParameter object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
+
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated NOT
+             */
+            @Override
+            public Object caseInvocationContract(InvocationContract object) {
+
+                if (object.getInvokedContract() == null || object.getInvokedContract().getType() == null) {
+                    return null;
+                }
+
+                Type invokedContractType = object.getInvokedContract().getType();
+
+                {
+                    TypeDomainEPackage type = DomainFactory.eINSTANCE.createTypeDomainEPackage();
+                    if (invokedContractType.isCompatible(type)) {
+                        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
+                    }
+                }
+
+                {
+                    TypeDomainURI type = DomainFactory.eINSTANCE.createTypeDomainURI();
+                    if (invokedContractType.isCompatible(type)) {
+                        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
+                    }
+                }
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * 
+             * @generated
+             */
+            protected CommandParameter createChildParameter(Object feature, Object child) {
+                return new CommandParameter(null, feature, child);
+            }
+
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * 
+         * @generated
+         */
+        public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+            ArrayList<Object> result = new ArrayList<Object>();
+            new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+            return result;
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * 
+         * @generated
+         */
+        public ResourceLocator getResourceLocator() {
+            return EGFModelEditPlugin.INSTANCE;
+        }
+    }
 
 }

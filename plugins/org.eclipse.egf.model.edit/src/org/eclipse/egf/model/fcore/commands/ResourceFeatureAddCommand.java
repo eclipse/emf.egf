@@ -24,88 +24,88 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  */
 public class ResourceFeatureAddCommand extends ResourceAddCommand implements CommandActionDelegate {
 
-  /**
+    /**
    */
-  private FcoreResourceImpl _fcoreResourceImpl = null;
+    private FcoreResourceImpl _fcoreResourceImpl = null;
 
-  /**
+    /**
    */
-  private ItemProviderAdapter _itemProvider = null;
+    private ItemProviderAdapter _itemProvider = null;
 
-  /**
+    /**
    */
-  private Object _feature = null;
+    private Object _feature = null;
 
-  /**
+    /**
    */
-  private Object _value = null;
+    private Object _value = null;
 
-  /**
-   * Constructor
-   * 
-   * @param domain
-   *          the editing domain
-   * @param resource
-   *          the resource to add to
-   * @param _feature
-   *          the feature to process
-   * @param value
-   *          the value to add
-   */
-  public ResourceFeatureAddCommand(EditingDomain domain, FcoreResourceImpl fcoreResourceImpl, Object feature, Object value) {
-    this(domain, fcoreResourceImpl, feature, value, CommandParameter.NO_INDEX);
-  }
-
-  /**
-   * Constructor
-   * 
-   * @param domain
-   *          the editing domain
-   * @param resource
-   *          the resource to add to
-   * @param _feature
-   *          the feature to process
-   * @param value
-   *          the value to add
-   * @param index
-   *          the index
-   */
-  public ResourceFeatureAddCommand(EditingDomain domain, FcoreResourceImpl fcoreResourceImpl, Object feature, Object value, int index) {
-    super(domain, fcoreResourceImpl, value, index);
-    _fcoreResourceImpl = fcoreResourceImpl;
-    _feature = feature;
-    _value = value;
-    if (getDomain() instanceof AdapterFactoryEditingDomain) {
-      IEditingDomainItemProvider valueItemProvider = (IEditingDomainItemProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(_value, IEditingDomainItemProvider.class);
-      if (valueItemProvider instanceof ItemProviderAdapter) {
-        _itemProvider = (ItemProviderAdapter) valueItemProvider;
-      }
+    /**
+     * Constructor
+     * 
+     * @param domain
+     *            the editing domain
+     * @param fcoreResourceImpl
+     *            the resource to add to
+     * @param feature
+     *            the feature to process
+     * @param value
+     *            the value to add
+     */
+    public ResourceFeatureAddCommand(EditingDomain domain, FcoreResourceImpl fcoreResourceImpl, Object feature, Object value) {
+        this(domain, fcoreResourceImpl, feature, value, CommandParameter.NO_INDEX);
     }
-    if (_itemProvider != null) {
-      setLabel(_itemProvider.getCreateChildText(_fcoreResourceImpl, _feature, _value, null));
-      setDescription(_itemProvider.getCreateChildDescription(_fcoreResourceImpl, _feature, _value, null));
+
+    /**
+     * Constructor
+     * 
+     * @param domain
+     *            the editing domain
+     * @param fcoreResourceImpl
+     *            the resource to add to
+     * @param feature
+     *            the feature to process
+     * @param value
+     *            the value to add
+     * @param index
+     *            the index
+     */
+    public ResourceFeatureAddCommand(EditingDomain domain, FcoreResourceImpl fcoreResourceImpl, Object feature, Object value, int index) {
+        super(domain, fcoreResourceImpl, value, index);
+        _fcoreResourceImpl = fcoreResourceImpl;
+        _feature = feature;
+        _value = value;
+        if (getDomain() instanceof AdapterFactoryEditingDomain) {
+            IEditingDomainItemProvider valueItemProvider = (IEditingDomainItemProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(_value, IEditingDomainItemProvider.class);
+            if (valueItemProvider instanceof ItemProviderAdapter) {
+                _itemProvider = (ItemProviderAdapter) valueItemProvider;
+            }
+        }
+        if (_itemProvider != null) {
+            setLabel(_itemProvider.getCreateChildText(_fcoreResourceImpl, _feature, _value, null));
+            setDescription(_itemProvider.getCreateChildDescription(_fcoreResourceImpl, _feature, _value, null));
+        }
     }
-  }
 
-  /**
-   * @see org.eclipse.emf.edit.command.CommandActionDelegate#getImage()
-   */
-  public Object getImage() {
-    return _itemProvider != null ? _itemProvider.getCreateChildImage(_fcoreResourceImpl, _feature, _value, null) : null;
-  }
+    /**
+     * @see org.eclipse.emf.edit.command.CommandActionDelegate#getImage()
+     */
+    public Object getImage() {
+        return _itemProvider != null ? _itemProvider.getCreateChildImage(_fcoreResourceImpl, _feature, _value, null) : null;
+    }
 
-  /**
-   * @see org.eclipse.emf.edit.command.CommandActionDelegate#getText()
-   */
-  public String getText() {
-    return _itemProvider != null ? _itemProvider.getCreateChildText(_fcoreResourceImpl, _feature, _value, null) : null;
-  }
+    /**
+     * @see org.eclipse.emf.edit.command.CommandActionDelegate#getText()
+     */
+    public String getText() {
+        return _itemProvider != null ? _itemProvider.getCreateChildText(_fcoreResourceImpl, _feature, _value, null) : null;
+    }
 
-  /**
-   * @see org.eclipse.emf.edit.command.CommandActionDelegate#getToolTipText()
-   */
-  public String getToolTipText() {
-    return _itemProvider != null ? _itemProvider.getCreateChildToolTipText(_fcoreResourceImpl, _feature, _value, null) : null;
-  }
+    /**
+     * @see org.eclipse.emf.edit.command.CommandActionDelegate#getToolTipText()
+     */
+    public String getToolTipText() {
+        return _itemProvider != null ? _itemProvider.getCreateChildToolTipText(_fcoreResourceImpl, _feature, _value, null) : null;
+    }
 
 }
