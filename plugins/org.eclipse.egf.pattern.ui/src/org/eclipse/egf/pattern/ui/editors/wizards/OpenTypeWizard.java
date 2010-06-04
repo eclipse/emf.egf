@@ -20,7 +20,7 @@ import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseTypePage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jdt.internal.core.BinaryType;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -63,9 +63,9 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
                 page.computeResult();
             }
             result = page.getResult();
-            if (result[0] instanceof BinaryType) {
-                selectType = (BinaryType) result[0];
-                System.out.println(selectType);
+            if (result[0] instanceof IType) {
+                selectType = (IType) result[0];
+                // System.out.println(selectType);
             }
         }
         return true;
