@@ -25,7 +25,7 @@ public class HeaderXml extends org.eclipse.egf.emf.pattern.base.HeaderAbstract {
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL + " ";
   protected final String TEXT_6 = "Id";
-  protected final String TEXT_7 = NL + "-->";
+  protected final String TEXT_7 = NL + "-->" + NL;
   protected final String TEXT_8 = NL;
   protected final String TEXT_9 = NL;
 

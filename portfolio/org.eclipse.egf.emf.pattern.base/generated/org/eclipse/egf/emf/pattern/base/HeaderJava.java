@@ -24,7 +24,7 @@ public class HeaderJava extends org.eclipse.egf.emf.pattern.base.HeaderAbstract 
   protected final String TEXT_3 = NL + " * <copyright>" + NL + " * </copyright>";
   protected final String TEXT_4 = NL + " *" + NL + " * ";
   protected final String TEXT_5 = "Id";
-  protected final String TEXT_6 = NL + " */";
+  protected final String TEXT_6 = NL + " */" + NL;
   protected final String TEXT_7 = NL;
   protected final String TEXT_8 = NL;
 

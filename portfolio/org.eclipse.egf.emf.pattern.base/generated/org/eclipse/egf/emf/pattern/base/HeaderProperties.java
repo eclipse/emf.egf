@@ -25,6 +25,7 @@ public class HeaderProperties extends org.eclipse.egf.emf.pattern.base.HeaderAbs
   protected final String TEXT_4 = "Id";
   protected final String TEXT_5 = NL;
   protected final String TEXT_6 = NL;
+  protected final String TEXT_7 = NL;
 
 	public HeaderProperties()
 	{
@@ -61,8 +62,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_5);
     stringBuffer.append(TEXT_6);
+    stringBuffer.append(TEXT_7);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -102,5 +103,6 @@ return parameters; }
     stringBuffer.append("$");
     stringBuffer.append(TEXT_4);
     stringBuffer.append("$");
+    stringBuffer.append(TEXT_5);
     }
     }

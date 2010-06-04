@@ -19,9 +19,8 @@ public class GenAbstract
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "//default content";
+  protected final String TEXT_1 = "";
   protected final String TEXT_2 = NL;
-  protected final String TEXT_3 = NL;
 
 	public GenAbstract()
 	{
@@ -45,8 +44,8 @@ IQuery.ParameterDescription paramDesc = null;
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
     ctx.clearBuffer();}
     
+    stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
-    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -63,6 +62,8 @@ method_setChildVariables(ictx.getBuffer(), ictx);
 method_setReporterVariables(ictx.getBuffer(), ictx);
     
 method_putReporterVariablesInContext(ictx.getBuffer(), ictx);
+    
+method_setCanGenerate(ictx.getBuffer(), ictx);
     
 method_putCanGenerateInContext(ictx.getBuffer(), ictx);
     
@@ -106,9 +107,11 @@ ctx.setValue("genModel", genModel);
     }
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    stringBuffer.append(TEXT_1);
     }
     protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    }
+    protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     }
     protected void method_putCanGenerateInContext(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
