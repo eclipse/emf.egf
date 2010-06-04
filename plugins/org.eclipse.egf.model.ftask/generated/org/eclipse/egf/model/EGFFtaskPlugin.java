@@ -120,23 +120,10 @@ public final class EGFFtaskPlugin extends EMFPlugin {
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * 
-         * @generated NOT
+         * @generated
          */
         public Implementation() {
             super();
-
-        }
-
-        /**
-         * Start the bundle
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated NOT
-         */
-        @Override
-        public void start(BundleContext context) throws Exception {
-            super.start(context);
             plugin = this;
         }
 
@@ -149,10 +136,11 @@ public final class EGFFtaskPlugin extends EMFPlugin {
          */
         @Override
         public void stop(BundleContext context) throws Exception {
-            super.stop(context);
             if (__taskNatureRegistry != null) {
                 __taskNatureRegistry.dispose();
+                __taskNatureRegistry = null;
             }
+            super.stop(context);
             plugin = null;
         }
 
