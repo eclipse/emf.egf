@@ -69,10 +69,14 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         if (platformGenModel.getGeneratedPackage().equals(getGeneratedPackage()) == false) {
             return false;
         }
-        if (platformGenModel.getGenModel() != null && getGenModel() != null) {
-            if (platformGenModel.getGenModel().equals(getGenModel()) == false) {
-                return false;
-            }
+        if (platformGenModel.getGenModel() == null && getGenModel() == null) {
+            return true;
+        }
+        if (platformGenModel.getGenModel() == null || getGenModel() == null) {
+            return false;
+        }
+        if (platformGenModel.getGenModel().equals(getGenModel()) == false) {
+            return false;
         }
         return true;
     }
