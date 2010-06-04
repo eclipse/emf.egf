@@ -122,4 +122,5 @@ public interface TaskHook {
     }
 
     Helper HELPER = new Helper();
+
 }
