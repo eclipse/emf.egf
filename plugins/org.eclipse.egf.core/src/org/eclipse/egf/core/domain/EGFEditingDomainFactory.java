@@ -29,81 +29,81 @@ import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
  */
 public class EGFEditingDomainFactory extends WorkspaceEditingDomainFactory {
 
-  @Override
-  public TransactionalEditingDomain createEditingDomain() {
-    TransactionalEditingDomain result = super.createEditingDomain();
-    configure(result);
-    return result;
-  }
+    @Override
+    public TransactionalEditingDomain createEditingDomain() {
+        TransactionalEditingDomain result = super.createEditingDomain();
+        configure(result);
+        return result;
+    }
 
-  @Override
-  public TransactionalEditingDomain createEditingDomain(ResourceSet rset) {
-    TransactionalEditingDomain result = super.createEditingDomain(rset);
-    configure(result);
-    return result;
-  }
+    @Override
+    public TransactionalEditingDomain createEditingDomain(ResourceSet rset) {
+        TransactionalEditingDomain result = super.createEditingDomain(rset);
+        configure(result);
+        return result;
+    }
 
-  /**
-   * Creates a new editing domain on a default resource set implementation and
-   * the specified operation history.
-   * 
-   * @param history
-   *          the operation history to which I delegate the command stack
-   * 
-   * @return the new editing domain
-   */
-  @Override
-  public synchronized TransactionalEditingDomain createEditingDomain(IOperationHistory history) {
-    WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
-    stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
-    TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
-    mapResourceSet(result);
-    return result;
-  }
+    /**
+     * Creates a new editing domain on a default resource set implementation and
+     * the specified operation history.
+     * 
+     * @param history
+     *            the operation history to which I delegate the command stack
+     * 
+     * @return the new editing domain
+     */
+    @Override
+    public synchronized TransactionalEditingDomain createEditingDomain(IOperationHistory history) {
+        WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
+        stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
+        TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
+        mapResourceSet(result);
+        return result;
+    }
 
-  /**
-   * Creates a new editing domain on the given resource set and
-   * the specified operation history.
-   * 
-   * @param rset
-   *          the resource set to use
-   * @param history
-   *          the operation history to which I delegate the command stack
-   * 
-   * @return the new editing domain
-   */
-  @Override
-  public synchronized TransactionalEditingDomain createEditingDomain(ResourceSet rset, IOperationHistory history) {
-    WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
-    stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
-    TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
-    mapResourceSet(result);
-    return result;
-  }
+    /**
+     * Creates a new editing domain on the given resource set and
+     * the specified operation history.
+     * 
+     * @param rset
+     *            the resource set to use
+     * @param history
+     *            the operation history to which I delegate the command stack
+     * 
+     * @return the new editing domain
+     */
+    @Override
+    public synchronized TransactionalEditingDomain createEditingDomain(ResourceSet rset, IOperationHistory history) {
+        WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
+        stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
+        TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
+        mapResourceSet(result);
+        return result;
+    }
 
-  /**
-   * Configures the specified editing domain for correct functioning in the EGF environment.
-   * 
-   * @param domain
-   *          the new editing domain
-   */
-  protected void configure(final TransactionalEditingDomain domain) {
-    // the listener depends on UI to ask the user to solve conflict
-    new EGFWorkspaceSynchronizer(domain, new EGFResourceLoadedListener());
-    // configure domain management
-    configureResourceModificationManagement(domain);
-  }
+    /**
+     * Configures the specified editing domain for correct functioning in the EGF environment.
+     * 
+     * @param domain
+     *            the new editing domain
+     */
+    protected void configure(final TransactionalEditingDomain domain) {
+        // the listener depends on UI to ask the user to solve conflict
+        new EGFWorkspaceSynchronizer(domain, EGFResourceLoadedListener.getResourceLoadedListener());
+        // configure domain management
+        configureResourceModificationManagement(domain);
+    }
 
-  /**
-   * Configures <code>domain</code> so that the modified state
-   * of resources in the <code>domain</code> is managed as operations are
-   * executed, undone and redone on the operation history.
-   * 
-   * @param domain
-   *          the editing domain to be configured
-   */
-  protected void configureResourceModificationManagement(TransactionalEditingDomain domain) {
-    ResourceModificationManager.manage(domain);
-  }
+    /**
+     * Configures <code>domain</code> so that the modified state
+     * of resources in the <code>domain</code> is managed as operations are
+     * executed, undone and redone on the operation history.
+     * 
+     * @param domain
+     *            the editing domain to be configured
+     */
+    protected void configureResourceModificationManagement(TransactionalEditingDomain domain) {
+        ResourceModificationManager.manage(domain);
+    }
 
 }
