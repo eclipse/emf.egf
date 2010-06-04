@@ -69,7 +69,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
             content.append(EGFCommonConstants.LINE_SEPARATOR);
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 String local = PatternHelper.localizeName(parameter);
-                String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+                String type = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(parameter.getType());
                 content.append("this.").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
             }
 

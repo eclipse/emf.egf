@@ -28,18 +28,26 @@ import org.eclipse.emf.ecore.EPackage;
 public class ParameterTypeHelper {
     public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
 
+    public String getSourceTypeLiteral(String type) {
+        return getTypeLiteral(type, true);
+    }
+
+    public String getBinaryTypeLiteral(String type) {
+        return getTypeLiteral(type, false);
+    }
+
     /**
      * Compute the literal value associated to the given type.<br/>
      * It can be a java classname or an uri to an EObject.
      * 
      * 
      */
-    public String getTypeLiteral(String type) {
+    private String getTypeLiteral(String type, boolean handleInnerClass) {
         if (type == null || "".equals(type))
             throw new IllegalArgumentException();
         int index = type.indexOf('#');
         if (index == -1) {
-            return type.replace('$', '.');
+            return handleInnerClass ? type.replace('$', '.') : type;
         }
 
         EPackage ePackage = getEPackage(type, index);

@@ -159,7 +159,7 @@ public class JetEngine extends AbstractJavaEngine {
 
         // handle variable declarations and setters
         for (PatternVariable var : pattern.getVariables()) {
-            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType());
+            String type = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(var.getType());
             builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -168,7 +168,7 @@ public class JetEngine extends AbstractJavaEngine {
 
         // handle parameter declarations and setters
         for (PatternParameter var : pattern.getParameters()) {
-            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType());
+            String type = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(var.getType());
             builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);

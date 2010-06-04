@@ -73,7 +73,7 @@ public abstract class AbstractJavaEngine extends PatternEngine {
                 Object[] setterValues = new Object[1];
                 for (Map.Entry<PatternParameter, Object> entry : parameters.entrySet()) {
                     String setterMethod = JavaMethodGenerationHelper.getSetterMethod(entry.getKey());
-                    String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(entry.getKey().getType());
+                    String type = ParameterTypeHelper.INSTANCE.getBinaryTypeLiteral(entry.getKey().getType());
                     setterClasses[0] = loadTemplateClass(context, type);
                     setterValues[0] = entry.getValue();
                     Method method = templateClass.getMethod(setterMethod, setterClasses);

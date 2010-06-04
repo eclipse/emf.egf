@@ -94,7 +94,7 @@ public class JavaTranslationEnhancer {
 
     protected void addVariableFieldsAndSetter(TypeDeclaration type) {
         for (PatternVariable var : pattern.getVariables()) {
-            String typeValue = ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType());
+            String typeValue = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(var.getType());
 
             // 1 - Add fields
             addField(type, var.getName(), typeValue, Modifier.PRIVATE);
@@ -106,7 +106,7 @@ public class JavaTranslationEnhancer {
 
     protected void addParameterFieldsAndSetter(TypeDeclaration type) {
         for (PatternParameter param : pattern.getParameters()) {
-            String typeValue = ParameterTypeHelper.INSTANCE.getTypeLiteral(param.getType());
+            String typeValue = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(param.getType());
 
             // 1 - Add fields
             addField(type, param.getName(), typeValue, Modifier.PROTECTED);
