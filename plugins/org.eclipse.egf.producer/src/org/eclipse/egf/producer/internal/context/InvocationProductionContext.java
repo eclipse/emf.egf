@@ -183,7 +183,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
       return;
     }
     // null value is a valid value
-    if (value != null && (ClassHelper.asSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
+    if (value != null && (ClassHelper.isSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), __outputMode, EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set output value
