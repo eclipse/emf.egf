@@ -28,19 +28,10 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends EGFAbstractPlugin {
 
-    // The plug-in ID
-    public static final String PLUGIN_ID = "org.eclipse.egf.pattern";
-
     // The shared instance
-    private static Activator plugin;
+    private static Activator __plugin;
 
     private final EPackageListener resourceListener = new EPackageListener();
-
-    /**
-     * The constructor
-     */
-    public Activator() {
-    }
 
     /*
      * (non-Javadoc)
@@ -49,9 +40,10 @@ public class Activator extends EGFAbstractPlugin {
      * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
      * )
      */
+    @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
-        plugin = this;
+        __plugin = this;
         // set up ecore model registry with workspace models
         new RegistryReader().load();
         ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
@@ -64,10 +56,11 @@ public class Activator extends EGFAbstractPlugin {
      * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
      * )
      */
+    @Override
     public void stop(BundleContext context) throws Exception {
         ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
         super.stop(context);
-        plugin = null;
+        __plugin = null;
     }
 
     /**
@@ -76,7 +69,7 @@ public class Activator extends EGFAbstractPlugin {
      * @return the shared instance
      */
     public static Activator getDefault() {
-        return plugin;
+        return __plugin;
     }
 
 }
