@@ -78,10 +78,11 @@ public class Activator extends EGFAbstractUIPlugin {
 
     @Override
     public void stop(BundleContext context_p) throws Exception {
-        __plugin = null;
-        if (EGFPDEPlugin.getDefault() != null)
+        if (EGFPDEPlugin.getDefault() != null) {
             EGFPDEPlugin.getDefault().removeResourceFcoreListener(FcoreListener.INSTANCE);
+        }
         super.stop(context_p);
+        __plugin = null;
     }
 
 }
