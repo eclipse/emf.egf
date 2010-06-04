@@ -26,81 +26,81 @@ import org.osgi.framework.BundleContext;
  */
 public class EGFConsolePlugin extends EGFAbstractUIPlugin {
 
-  private static EGFConsolePlugin __plugin;
+    private static EGFConsolePlugin __plugin;
 
-  /**
-   * @return the EGF console
-   */
-  public static Console getConsole() {
-    return getDefault().getInnerConsole();
-  }
-
-  /**
-   * Returns the standard display to be used. The method first checks, if
-   * the thread calling this method has an associated display. If so, this
-   * display is returned. Otherwise the method returns the default display.
-   */
-  public static Display getStandardDisplay() {
-    Display display = Display.getCurrent();
-    if (display == null) {
-      display = Display.getDefault();
+    /**
+     * @return the EGF console
+     */
+    public static Console getConsole() {
+        return getDefault().getInnerConsole();
     }
-    return display;
-  }
 
-  private Console _console;
-
-  /**
-   * The constructor
-   */
-  public EGFConsolePlugin() {
-    super();
-  }
-
-  public Color getPreferenceColor(String type) {
-    return ColorManager.getDefault().getColor(PreferenceConverter.getColor(getDefault().getPreferenceStore(), type));
-  }
-
-  protected Console getInnerConsole() {
-    return _console;
-  }
-
-  @Override
-  public void start(BundleContext context) throws Exception {
-    super.start(context);
-    __plugin = this;
-    if (PlatformUI.isWorkbenchRunning()) {
-      try {
-        _console = new Console();
-      } catch (RuntimeException re) {
-        // Don't let the console bring down UI
-        logError("Errors occurred starting the EGF console", re); //$NON-NLS-1$
-      }
-    }
-  }
-
-  @Override
-  public void stop(BundleContext context) throws Exception {
-    try {
-      if (PlatformUI.isWorkbenchRunning()) {
-        ColorManager.getDefault().dispose();
-        if (_console != null) {
-          _console.shutdown();
+    /**
+     * Returns the standard display to be used. The method first checks, if
+     * the thread calling this method has an associated display. If so, this
+     * display is returned. Otherwise the method returns the default display.
+     */
+    public static Display getStandardDisplay() {
+        Display display = Display.getCurrent();
+        if (display == null) {
+            display = Display.getDefault();
         }
-      }
-      __plugin = null;
-    } finally {
-      super.stop(context);
+        return display;
     }
-  }
 
-  /**
-   * Returns the shared instance
-   * 
-   * @return the shared instance
-   */
-  public static EGFConsolePlugin getDefault() {
-    return __plugin;
-  }
+    private Console _console;
+
+    /**
+     * The constructor
+     */
+    public EGFConsolePlugin() {
+        super();
+    }
+
+    public Color getPreferenceColor(String type) {
+        return ColorManager.getDefault().getColor(PreferenceConverter.getColor(getDefault().getPreferenceStore(), type));
+    }
+
+    protected Console getInnerConsole() {
+        return _console;
+    }
+
+    @Override
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        __plugin = this;
+        if (PlatformUI.isWorkbenchRunning()) {
+            try {
+                _console = new Console();
+            } catch (RuntimeException re) {
+                // Don't let the console bring down UI
+                logError("Errors occurred starting the EGF console", re); //$NON-NLS-1$
+            }
+        }
+    }
+
+    @Override
+    public void stop(BundleContext context) throws Exception {
+        try {
+            if (PlatformUI.isWorkbenchRunning()) {
+                ColorManager.getDefault().dispose();
+                if (_console != null) {
+                    _console.shutdown();
+                }
+            }
+        } finally {
+            super.stop(context);
+            __plugin = null;
+        }
+    }
+
+    /**
+     * Returns the shared instance
+     * 
+     * @return the shared instance
+     */
+    public static EGFConsolePlugin getDefault() {
+        return __plugin;
+    }
 
 }
