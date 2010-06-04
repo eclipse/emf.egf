@@ -20,6 +20,7 @@ Export-Package:
  org.eclipse.egf.core,
  org.eclipse.egf.core.domain,
  org.eclipse.egf.core.fcore,
+ org.eclipse.egf.core.genmodel,
  org.eclipse.egf.core.helper,
  org.eclipse.egf.core.l10n,
  org.eclipse.egf.core.natures,
