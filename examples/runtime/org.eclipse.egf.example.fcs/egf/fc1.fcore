@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fcore:FactoryComponent xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
-    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
-    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
     name="FC1">
   <contractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ"
@@ -27,11 +27,6 @@
       <type xmi:type="types:TypeList" xmi:id="_ceRjgNW6Ed6dzvinGX1cMA"/>
     </contracts>
   </contractContainer>
-  <viewpointContainer xmi:id="_c_WnISH0Ed-crbAsAdX--Q">
-    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_dZbUACH0Ed-crbAsAdX--Q">
-      <domains xmi:type="domain:DomainURI" xmi:id="_d43pECH0Ed-crbAsAdX--Q" uri="platform:/plugin/org.eclipse.emf.examples.library/model/extlibrary.ecore"/>
-    </viewpoints>
-  </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
     <orchestrationParameterContainer xmi:id="_pwxIoRuoEd-Z3--RgNYIJA">
       <orchestrationParameters xmi:id="_qJNd0BuoEd-Z3--RgNYIJA" name="quantity" invocationContracts="#_bu7G8MVjEd6ngr_25dSdnQ">
