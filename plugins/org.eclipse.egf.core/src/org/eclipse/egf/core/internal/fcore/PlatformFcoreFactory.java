@@ -10,8 +10,8 @@
  */
 package org.eclipse.egf.core.internal.fcore;
 
-import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.pde.core.plugin.IPluginAttribute;
@@ -23,18 +23,18 @@ import org.eclipse.pde.core.plugin.IPluginElement;
  */
 public final class PlatformFcoreFactory implements IPlatformExtensionPointFactory<IPlatformFcore> {
 
-  public IPlatformFcore createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
-    if (pluginElement == null) {
-      return null;
+    public IPlatformFcore createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
+        if (pluginElement == null) {
+            return null;
+        }
+        if (IPlatformFcoreConstants.FCORE_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
+            return null;
+        }
+        IPluginAttribute id = pluginElement.getAttribute(IPlatformFcoreConstants.FCORE_ATT_ID);
+        if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
+            return null;
+        }
+        return new PlatformFcore(platformBundle, id.getValue());
     }
-    if (IPlatformFcoreConstants.FCORE_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
-      return null;
-    }
-    IPluginAttribute id = pluginElement.getAttribute(IPlatformFcoreConstants.FCORE_ATT_ID);
-    if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
-      return null;
-    }
-    return new PlatformFcore(platformBundle, pluginElement, id.getValue());
-  }
 
 }
