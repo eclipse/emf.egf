@@ -19,11 +19,12 @@ public class PackagePattern
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "[Package ";
-  protected final String TEXT_2 = "]" + NL;
-  protected final String TEXT_3 = "[End Package]" + NL + NL + NL;
-  protected final String TEXT_4 = NL;
+  protected final String TEXT_1 = "";
+  protected final String TEXT_2 = "[Package ";
+  protected final String TEXT_3 = "]" + NL + NL;
+  protected final String TEXT_4 = "[End Package]" + NL + NL + NL + NL;
   protected final String TEXT_5 = NL;
+  protected final String TEXT_6 = NL;
 
 	public PackagePattern()
 	{
@@ -60,8 +61,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_4);
     stringBuffer.append(TEXT_5);
+    stringBuffer.append(TEXT_6);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -104,15 +105,16 @@ return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
+    stringBuffer.append(TEXT_1);
     }
     protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    stringBuffer.append(TEXT_1);
-    stringBuffer.append(parameter.getName());
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(parameter.getName());
+    stringBuffer.append(TEXT_3);
     }
     protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
     }
     }

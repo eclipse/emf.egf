@@ -84,7 +84,7 @@
   </tests>
   <tests xsi:type="test:TestSuite" name="Jet Tags Library">
     <tests xsi:type="test:EGFTestCase" name="Jet tags test">
-      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xA;&#xA;CalleeInjected : className=MyClassName&#xA;&#xA;&#xA;"/>
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xD;&#xA;CalleeInjected : className=MyClassName&#xD;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
     </tests>
   </tests>

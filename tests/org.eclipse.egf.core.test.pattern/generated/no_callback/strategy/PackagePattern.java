@@ -20,7 +20,7 @@ public class PackagePattern
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "Package ";
-  protected final String TEXT_2 = NL;
+  protected final String TEXT_2 = NL + NL;
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
 

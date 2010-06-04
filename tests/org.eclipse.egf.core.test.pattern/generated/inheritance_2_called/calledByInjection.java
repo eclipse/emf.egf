@@ -22,6 +22,7 @@ public class calledByInjection
   protected final String TEXT_1 = "  fromInjected : ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
+  protected final String TEXT_4 = NL;
 
 	public calledByInjection()
 	{
@@ -59,8 +60,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -95,5 +96,6 @@ return parameters; }
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
+    stringBuffer.append(TEXT_2);
     }
     }

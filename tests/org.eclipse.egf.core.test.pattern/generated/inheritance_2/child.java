@@ -21,6 +21,7 @@ public class child extends inheritance_2.parent {
   protected final String TEXT_1 = "fromChild : ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
+  protected final String TEXT_4 = NL;
 
 	public child()
 	{
@@ -57,8 +58,8 @@ if (ctx.useReporter()){
     ctx.clearBuffer();
 }
     
-    stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -69,9 +70,9 @@ int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_setToInject(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__51txMV0KEd5J9aRcK6d7w = new ExecutionContext(ictx);
-ctx__51txMV0KEd5J9aRcK6d7w.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_2.fcore#_nfk5LCH-Ed-CStHKuCL0dg", ctx__51txMV0KEd5J9aRcK6d7w);
+    ExecutionContext ctx__XPjDcGJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+ctx__XPjDcGJlEd_VJO7D32Myg.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_2.fcore#_nfk5LCH-Ed-CStHKuCL0dg", ctx__XPjDcGJlEd_VJO7D32Myg);
 
 
     
@@ -104,6 +105,7 @@ return parameters; }
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
+    stringBuffer.append(TEXT_2);
     }
     protected void method_setToInject(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 

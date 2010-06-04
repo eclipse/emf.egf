@@ -3,7 +3,6 @@ variable="CallValue";
 variable2="CallValue2";
 %>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#LogicalName=jet_tags.Callee" args="variable:parameter, variable2:parameter2" %>
-
 <% 
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");

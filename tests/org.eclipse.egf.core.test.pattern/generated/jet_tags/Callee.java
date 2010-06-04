@@ -71,8 +71,6 @@ out.append(", parameter2=");
 if (parameter2 != null)
 	out.append(parameter2.toString());
 
-out.append("\n");
-
 }
 
 protected java.lang.Object parameter;

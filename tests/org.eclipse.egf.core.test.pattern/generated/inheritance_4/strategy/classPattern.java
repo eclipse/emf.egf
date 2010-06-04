@@ -20,7 +20,7 @@ public class classPattern extends inheritance_4.base.BasePattern {
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "//default content";
   protected final String TEXT_2 = "//additional work on ";
-  protected final String TEXT_3 = NL;
+  protected final String TEXT_3 = NL + NL;
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL;
 

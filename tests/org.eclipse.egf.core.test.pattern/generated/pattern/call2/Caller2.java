@@ -20,7 +20,7 @@ public class Caller2
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "Caller on ";
-  protected final String TEXT_2 = NL;
+  protected final String TEXT_2 = NL + NL;
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
 
@@ -74,8 +74,8 @@ method_body(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__6CiFMF0KEd5J9aRcK6d7w = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_2.fcore#_VA72IFdJEd-TZKuCZ4UIfg", ctx__6CiFMF0KEd5J9aRcK6d7w, parameters);
+ExecutionContext ctx__XWGcGJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_2.fcore#_VA72IFdJEd-TZKuCZ4UIfg", ctx__XWGcGJlEd_VJO7D32Myg, parameters);
 }
 
     

@@ -21,6 +21,7 @@ public class a
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "a";
   protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public a()
 	{
@@ -45,6 +46,7 @@ IQuery.ParameterDescription paramDesc = null;
     ctx.clearBuffer();}
     
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {

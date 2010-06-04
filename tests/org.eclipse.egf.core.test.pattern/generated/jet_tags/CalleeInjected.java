@@ -61,9 +61,6 @@ out.append("CalleeInjected : ");
 out.append("className=");
 if (parameter != null)
 	out.append(parameter.getName());
-
-out.append("\n");
-
 }
 
 protected org.eclipse.emf.ecore.EClass parameter;

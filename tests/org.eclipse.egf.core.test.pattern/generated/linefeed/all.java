@@ -21,6 +21,7 @@ public class all
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "-----" + NL;
   protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public all()
 	{
@@ -45,6 +46,7 @@ IQuery.ParameterDescription paramDesc = null;
     ctx.clearBuffer();}
     
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -53,32 +55,32 @@ int executionIndex = ictx.getExecutionBuffer().length();
 
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__jj_AF3LEd1EutVAbEdBQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_fW0RcF3DEd-W5eBkkAoHaA", ctx__jj_AF3LEd1EutVAbEdBQ, parameters);
+ExecutionContext ctx__XUnJoGJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_fW0RcF3DEd-W5eBkkAoHaA", ctx__XUnJoGJlEd_VJO7D32Myg, parameters);
 }
 
     
 method_separator(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__jj_AV3LEd1EutVAbEdBQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_s8JesF3DEd-W5eBkkAoHaA", ctx__jj_AV3LEd1EutVAbEdBQ, parameters);
+ExecutionContext ctx__XUnJoWJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_s8JesF3DEd-W5eBkkAoHaA", ctx__XUnJoWJlEd_VJO7D32Myg, parameters);
 }
 
     
 method_separator(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__jj_Al3LEd1EutVAbEdBQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_5P020F3DEd-W5eBkkAoHaA", ctx__jj_Al3LEd1EutVAbEdBQ, parameters);
+ExecutionContext ctx__XUnJomJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_5P020F3DEd-W5eBkkAoHaA", ctx__XUnJomJlEd_VJO7D32Myg, parameters);
 }
 
     
 method_separator(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__jj_A13LEd1EutVAbEdBQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_DAhtIF3KEd-mZb1ihLU3ug", ctx__jj_A13LEd1EutVAbEdBQ, parameters);
+ExecutionContext ctx__XUnJo2JlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_DAhtIF3KEd-mZb1ihLU3ug", ctx__XUnJo2JlEd_VJO7D32Myg, parameters);
 }
 
     

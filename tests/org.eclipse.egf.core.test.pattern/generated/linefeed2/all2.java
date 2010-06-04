@@ -22,6 +22,7 @@ public class all2
   protected final String TEXT_1 = "c";
   protected final String TEXT_2 = "d";
   protected final String TEXT_3 = NL;
+  protected final String TEXT_4 = NL;
 
 	public all2()
 	{
@@ -46,6 +47,7 @@ IQuery.ParameterDescription paramDesc = null;
     ctx.clearBuffer();}
     
     stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -55,14 +57,14 @@ int executionIndex = ictx.getExecutionBuffer().length();
     
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__j5pCwV3LEd1EutVAbEdBQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx__j5pCwV3LEd1EutVAbEdBQ, parameters);
+ExecutionContext ctx__XVD1kGJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx__XVD1kGJlEd_VJO7D32Myg, parameters);
 }
 
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__j5pCwl3LEd1EutVAbEdBQ = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx__j5pCwl3LEd1EutVAbEdBQ, parameters);
+ExecutionContext ctx__XVD1kWJlEd_VJO7D32Myg = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx__XVD1kWJlEd_VJO7D32Myg, parameters);
 }
 
     
