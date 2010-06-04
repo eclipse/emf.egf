@@ -21,8 +21,8 @@ public class PackagePattern
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
   protected final String TEXT_2 = "[Package ";
-  protected final String TEXT_3 = "]" + NL + NL;
-  protected final String TEXT_4 = "[End Package]" + NL + NL + NL + NL;
+  protected final String TEXT_3 = "]" + NL;
+  protected final String TEXT_4 = "[End Package]" + NL + NL + NL;
   protected final String TEXT_5 = NL;
   protected final String TEXT_6 = NL;
 

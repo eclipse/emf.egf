@@ -19,7 +19,7 @@ public class CalledPattern
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = " - some details - " + NL;
+  protected final String TEXT_1 = " - some details - ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
 

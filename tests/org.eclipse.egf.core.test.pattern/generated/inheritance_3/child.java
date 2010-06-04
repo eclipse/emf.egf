@@ -20,7 +20,7 @@ public class child extends inheritance_3.parent {
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "//default content";
   protected final String TEXT_2 = "// child on ";
-  protected final String TEXT_3 = NL + NL;
+  protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL;
 
@@ -75,8 +75,8 @@ method_hehe(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__XRVzMGJlEd_VJO7D32Myg = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_3.fcore#_AHSpICIUEd-XdOucj2euiQ", ctx__XRVzMGJlEd_VJO7D32Myg, parameters);
+ExecutionContext ctx__Sh0C0GKCEdFqczH3ESmRw = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_3.fcore#_AHSpICIUEd-XdOucj2euiQ", ctx__Sh0C0GKCEdFqczH3ESmRw, parameters);
 }
 
     

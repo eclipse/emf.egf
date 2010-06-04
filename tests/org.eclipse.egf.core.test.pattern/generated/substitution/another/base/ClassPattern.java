@@ -80,13 +80,13 @@ CallHelper.callBack(ctx_callback, parameters);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__XPs0cGJlEd_VJO7D32Myg = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw", ctx__XPs0cGJlEd_VJO7D32Myg, parameters);
+ExecutionContext ctx__xFaoGKAEdFqczH3ESmRw = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw", ctx__xFaoGKAEdFqczH3ESmRw, parameters);
 }
 
-    ExecutionContext ctx__XPs0cWJlEd_VJO7D32Myg = new ExecutionContext(ictx);
-ctx__XPs0cWJlEd_VJO7D32Myg.setValue(PatternContext.INJECTED_CONTEXT, parameter);
-CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_7RsNYEh5Ed-A7KV9v5yLhw", ctx__XPs0cWJlEd_VJO7D32Myg);
+    ExecutionContext ctx__xFaoWKAEdFqczH3ESmRw = new ExecutionContext(ictx);
+ctx__xFaoWKAEdFqczH3ESmRw.setValue(PatternContext.INJECTED_CONTEXT, parameter);
+CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_7RsNYEh5Ed-A7KV9v5yLhw", ctx__xFaoWKAEdFqczH3ESmRw);
 
 
     

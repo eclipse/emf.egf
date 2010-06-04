@@ -21,8 +21,8 @@ public class ClassPattern
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "//default content";
   protected final String TEXT_2 = "  [class ";
-  protected final String TEXT_3 = "]" + NL + NL;
-  protected final String TEXT_4 = "  [end class]" + NL + NL;
+  protected final String TEXT_3 = "]" + NL;
+  protected final String TEXT_4 = "  [end class]" + NL;
   protected final String TEXT_5 = NL;
   protected final String TEXT_6 = NL;
 
