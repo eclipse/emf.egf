@@ -114,12 +114,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
         final private Map<Resource, List<ResourceUser>> _observers = new HashMap<Resource, List<ResourceUser>>();
 
-        // Due to PDE bug notification we need to handle
-        // notification in a weird way
-        // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
-        // See PlatformManager for more informations
-        final Map<Resource, IPlatformFcore> _fcores = new HashMap<Resource, IPlatformFcore>();
-
         public void addObserver(ResourceUser resourceUser) {
             // Lock __resourceEventManager
             synchronized (__lockResourceManager) {
@@ -128,12 +122,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 if (list == null) {
                     list = new ArrayList<ResourceUser>();
                     _observers.put(resource, list);
-                    // Start Workaround PDE Bug 267954
-                    IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
-                    if (fcore != null) {
-                        _fcores.put(resource, fcore);
-                    }
-                    // End Workaround PDE Bug 267954
                 }
                 list.add(resourceUser);
                 _listeners.add(resourceUser.getListener());
@@ -153,9 +141,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                     try {
                         resource.unload();
                         _observers.remove(resource);
-                        // Start Workaround PDE Bug 267954
-                        _fcores.remove(resource);
-                        // End Workaround PDE Bug 267954
                         if (noMoreObserver() == false) {
                             resource.load(Collections.EMPTY_MAP);
                         }
@@ -190,7 +175,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             } catch (InterruptedException e) {
                 EGFCorePlugin.getDefault().logError(e);
             }
-            _fcores.clear();
         }
 
         private boolean noMoreObserver() {
@@ -227,9 +211,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 // Non dirty editors should close themselves while editing a deleted resource if any
                 if (isDirty == false) {
                     resource.unload();
-                    // Start Workaround PDE Bug 267954
-                    _fcores.remove(resource);
-                    // End Workaround PDE Bug 267954
                 }
             }
         }
@@ -269,12 +250,10 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                     if (EGFCorePlugin.getDefault().isDebugging()) {
                         EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.movedResource(...) - discard loaded empty resource with errors ''{0}''", URIHelper.toString(newURI))); //$NON-NLS-1$           
                     }
-                    _fcores.remove(resource);
                     // Load it in our resource set
                     movedResource = editingDomain.getResourceSet().getResource(newURI, true);
                 } else {
                     if (movedResource != null) {
-                        _fcores.remove(movedResource);
                         movedResource.setURI(newURI);
                     }
                 }
@@ -355,7 +334,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
                 Map<Resource, IPlatformFcore> deltaRemovedFcores = new HashMap<Resource, IPlatformFcore>();
 
-                // Check if a removed platform fcore is applicable
+                // Check if removed platform fcores are applicable
                 for (IPlatformFcore fcore : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
                     Resource resource = editingDomain.getResourceSet().getResource(fcore.getURI(), false);
                     if (resource == null) {
@@ -364,7 +343,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                     deltaRemovedFcores.put(resource, fcore);
                 }
 
-                // Check if an added platform fcore is applicable
+                // Check if added platform fcores are applicable
                 // if a removed platform fcore is also detected it means a changed resource
                 // eg: changed means target versus workspace fcore
                 for (IPlatformFcore fcore : delta.getAddedPlatformExtensionPoints(IPlatformFcore.class)) {
@@ -372,8 +351,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                     if (resource == null) {
                         continue;
                     }
-                    // Resource who can't open a physical resource raise exception but are loaded
-                    // in the resource set, its flag is also set to isLoaded
+                    // Resource who can't open a physical resource raise exception but are loaded in the resource set
                     // we need to unload it to get a chance to load it again
                     if (resource.getContents().size() == 0 && resource.getErrors().isEmpty() == false) {
                         // start substitution removed resource if applicable
@@ -381,13 +359,13 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                         if (deletedFcore != null) {
                             deltaRemovedFcores.remove(resource);
                         }
+                        // Remove previous on error resource
                         resource.unload();
                         resource.getResourceSet().getResources().remove(resource);
                         if (EGFCorePlugin.getDefault().isDebugging()) {
                             EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", fcore.toString())); //$NON-NLS-1$           
                         }
-                        __resourceEventManager._fcores.remove(resource);
-                        // Load it in our resource set
+                        // Load it in our resource set, beware the URIConverter should be updated accordingly
                         resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
                         if (resource == null) {
                             continue;
@@ -397,15 +375,9 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                             deltaRemovedFcores.put(resource, deletedFcore);
                         }
                     }
-                    // Start Workaround PDE Bug 267954
-                    IPlatformFcore deletedFcore = deltaRemovedFcores.get(resource);
                     if (deltaRemovedFcores.remove(resource) != null) {
-                        if (deletedFcore.equals(fcore) == false) {
-                            deltaChangedFcores.add(resource); // <- this statement is not a workaround
-                        }
+                        deltaChangedFcores.add(resource);
                     }
-                    __resourceEventManager._fcores.put(resource, fcore);
-                    // End Workaround PDE Bug 267954
                 }
 
                 // Process Removed Fcores
@@ -469,8 +441,8 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                     // Notify moved resource
                     __resourceEventManager.movedResource(getEditingDomain(), resource, newURI);
                 }
-                // an fcore has moved to a non fcore resource, process a remove
             } else {
+                // an fcore has moved to a non fcore resource, process a remove
                 return handleResourceDeleted(movedResource);
             }
             return true;
