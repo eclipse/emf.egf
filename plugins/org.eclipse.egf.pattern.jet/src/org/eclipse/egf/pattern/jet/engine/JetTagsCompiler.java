@@ -69,16 +69,18 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append(blockId);
             buffer.append(" = new HashMap<String, Object>();"); //$NON-NLS-1$
             buffer.append(N);
-            for (String arg : args.split(ARGS_SEPARATOR)) {
-                int indexOf = arg.indexOf(MATCH_SEPARATOR);
-                buffer.append("parameters_"); //$NON-NLS-1$
-                buffer.append(blockId);
-                buffer.append(".put(\""); //$NON-NLS-1$
-                buffer.append(arg.substring(indexOf + 1));
-                buffer.append("\", "); //$NON-NLS-1$
-                buffer.append(arg.substring(0, indexOf));
-                buffer.append(");"); //$NON-NLS-1$
-                buffer.append(N);
+            if (args != null) {
+                for (String arg : args.split(ARGS_SEPARATOR)) {
+                    int indexOf = arg.indexOf(MATCH_SEPARATOR);
+                    buffer.append("parameters_"); //$NON-NLS-1$
+                    buffer.append(blockId);
+                    buffer.append(".put(\""); //$NON-NLS-1$
+                    buffer.append(arg.substring(indexOf + 1));
+                    buffer.append("\", "); //$NON-NLS-1$
+                    buffer.append(arg.substring(0, indexOf));
+                    buffer.append(");"); //$NON-NLS-1$
+                    buffer.append(N);
+                }
             }
             buffer.append("CallHelper.executeWithParameterInjection(\""); //$NON-NLS-1$ 
             buffer.append(patternId);
@@ -87,7 +89,7 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append(");"); //$NON-NLS-1$
             buffer.append(N);
 
-            generators.add(new JETScriptletGenerator(buffer.toString().toCharArray()));
+            addGenerator(new JETScriptletGenerator(buffer.toString().toCharArray()));
         } else if (EGF_PATTERN_INJECTED_CALL.equals(directive)) {
             String patternId = translateId(attributes.get(PATTERN_ID));
             String toInject = attributes.get(TO_INJECT);
@@ -112,9 +114,10 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append(");"); //$NON-NLS-1$
             buffer.append(N);
 
-            generators.add(new JETScriptletGenerator(buffer.toString().toCharArray()));
-        } else
-            super.handleDirective(directive, start, stop, attributes);
+            addGenerator(new JETScriptletGenerator(buffer.toString().toCharArray()));
+        }
+
+        super.handleDirective(directive, start, stop, attributes);
     }
 
     protected String translateId(String id) {
@@ -139,10 +142,6 @@ public class JetTagsCompiler extends JETCompiler {
             }
         }
         return id;
-    }
-
-    public String getPatternId(String uri) {
-        return null;
     }
 
     @Override
