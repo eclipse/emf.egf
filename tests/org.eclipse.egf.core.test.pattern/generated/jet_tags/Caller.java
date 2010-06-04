@@ -88,10 +88,10 @@ return parameters; }
 variable="CallValue";
 variable2="CallValue2";
 
-    final Map<String, Object> parameters__4mzcIF0MEd2GKlYeL_7w = new HashMap<String, Object>();
-parameters__4mzcIF0MEd2GKlYeL_7w.put("parameter", variable);
-parameters__4mzcIF0MEd2GKlYeL_7w.put("parameter2",  variable2);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters__4mzcIF0MEd2GKlYeL_7w);
+    final Map<String, Object> parameters__Qu2xQV29EdfFt0Gxi_S4g = new HashMap<String, Object>();
+parameters__Qu2xQV29EdfFt0Gxi_S4g.put("parameter", variable);
+parameters__Qu2xQV29EdfFt0Gxi_S4g.put("parameter2",  variable2);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters__Qu2xQV29EdfFt0Gxi_S4g);
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
@@ -99,9 +99,9 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");
 
-    ExecutionContext ctx__4mzcIV0MEd2GKlYeL_7w = new ExecutionContext((InternalPatternContext) ctx);
-ctx__4mzcIV0MEd2GKlYeL_7w.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", ctx__4mzcIV0MEd2GKlYeL_7w);
+    ExecutionContext ctx__QvlKAF29EdfFt0Gxi_S4g = new ExecutionContext((InternalPatternContext) ctx);
+ctx__QvlKAF29EdfFt0Gxi_S4g.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", ctx__QvlKAF29EdfFt0Gxi_S4g);
 
     stringBuffer.append(TEXT_3);
     }
