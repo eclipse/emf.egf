@@ -15,40 +15,37 @@
 
 package org.eclipse.egf.core.producer;
 
-
 /**
  * @author Guiu
  * 
  */
 public class InvocationException extends Exception {
 
-  /**
+    /**
    * 
    */
-  private static final long serialVersionUID = -9002049838656655457L;
+    private static final long serialVersionUID = -9002049838656655457L;
 
-  /**
-   * @param severity
-   * @param header
-   * @param message
-   * @param cause
-   */
-  public InvocationException(String message, Throwable cause) {
-    super(message, cause);
-  }
+    /**
+     * @param message
+     * @param cause
+     */
+    public InvocationException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-  /**
-   * @param message
-   */
-  public InvocationException(String message) {
-    this(message, null);
-  }
+    /**
+     * @param message
+     */
+    public InvocationException(String message) {
+        this(message, null);
+    }
 
-  /**
-   * @param cause
-   */
-  public InvocationException(Throwable cause) {
-    this(null, cause);
-  }
+    /**
+     * @param cause
+     */
+    public InvocationException(Throwable cause) {
+        this(null, cause);
+    }
 
 }
