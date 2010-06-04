@@ -30,6 +30,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
@@ -39,7 +40,6 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.CommonPlugin;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -252,13 +252,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
           // Retrieve our editing domain
           final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
           try {
-            // Feed our URIConverter
-            URI platformPluginURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), false);
-            URI encodedPlatformPluginURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), true);
-            URI platformResourceURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-            editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
             // Create a resource for this file.
-            final Resource resource = editingDomain.getResourceSet().createResource(encodedPlatformPluginURI);
+            final Resource resource = editingDomain.getResourceSet().createResource(URIHelper.getPlatformURI(modelFile.getFullPath()));
             // Add the initial model object to the contents.
             if (rootObject != null) {
               editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
