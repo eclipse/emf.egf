@@ -14,7 +14,6 @@ import org.eclipse.core.internal.registry.Handle;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.ftask.task.ITaskNature;
 import org.eclipse.osgi.util.NLS;
@@ -53,13 +52,13 @@ public class TaskNatureProxy {
             handleId = ((Handle) declaringExtension).getId();
         }
         // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
-        String clazz = ExtensionPointHelper.getAttributeValue(element, TaskNatureRegistry.INVOKER_ATT_CLASS);
+        String clazz = element.getAttribute(TaskNatureRegistry.INVOKER_ATT_CLASS);
         // 'class' attribute is mandatory
         if (clazz == null || clazz.trim().length() == 0) {
             return null;
         }
         // 'kind' attribute is mandatory
-        String kind = ExtensionPointHelper.getAttributeValue(element, TaskNatureRegistry.INVOKER_ATT_KIND);
+        String kind = element.getAttribute(TaskNatureRegistry.INVOKER_ATT_KIND);
         if (kind == null || kind.trim().length() == 0) {
             return null;
         }
@@ -102,7 +101,7 @@ public class TaskNatureProxy {
             if (object instanceof ITaskNature == false) {
                 EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", ITaskNature.class.getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(_element)), 1); //$NON-NLS-1$
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", _element.getContributor().getName()), 1); //$NON-NLS-1$
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$
                 return null;

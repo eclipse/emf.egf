@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IRegistryEventListener;
 import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.ftask.Task;
@@ -111,7 +110,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
             if (_natures.get(taskNatureProxy.getKind()) != null) {
                 EGFFtaskPlugin.getPlugin().logError(NLS.bind("Duplicate Kind ''{0}''", taskNatureProxy.getKind())); //$NON-NLS-1$
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
-                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(element)), 1); //$NON-NLS-1$            
+                EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$            
             }
             _natures.put(taskNatureProxy.getKind(), taskNatureProxy);
         }
