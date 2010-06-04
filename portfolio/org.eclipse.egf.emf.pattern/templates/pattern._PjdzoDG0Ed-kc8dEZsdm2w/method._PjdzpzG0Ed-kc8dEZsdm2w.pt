@@ -3,5 +3,4 @@ GenPackage genPackage = parameter;
 targetPath = genPackage.getGenModel().getEditDirectory();
 packageName = genPackage.getProviderPackageName();
 className = genPackage.getItemProviderAdapterFactoryClassName();
-arguments = null;
 %>

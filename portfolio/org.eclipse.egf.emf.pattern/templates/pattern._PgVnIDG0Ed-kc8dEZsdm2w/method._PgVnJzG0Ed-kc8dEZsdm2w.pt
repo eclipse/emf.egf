@@ -3,5 +3,4 @@ GenPackage genPackage = parameter;
 targetPath = genModel.getModelDirectory();
 packageName = genPackage.getReflectionPackageName();
 className = genPackage.getFactoryInterfaceName();
-arguments = new Object[]{new Object[]{genPackage,Boolean.TRUE,Boolean.FALSE}};
 %>

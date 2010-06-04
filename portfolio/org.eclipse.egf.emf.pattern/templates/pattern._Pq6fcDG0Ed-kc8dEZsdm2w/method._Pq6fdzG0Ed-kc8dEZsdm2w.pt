@@ -3,5 +3,4 @@ GenModel genModel = parameter;
 targetPath = genModel.getTestsDirectory();
 packageName = genModel.getTestSuitePackageName();
 className = genModel.getTestSuiteClassName();
-arguments = null;
 %>

@@ -133,7 +133,13 @@ GenPackage genPackage = parameter;
 targetPath = genPackage.getGenModel().getTestsDirectory();
 packageName = genPackage.getTestsPackageName();
 className = genPackage.getTestSuiteClassName();
-arguments = null;
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
+argument = parameter;
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -156,9 +162,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**
@@ -178,9 +181,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel = genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__2_pGQGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__2_pGQGKMEd_wNQtGaQlw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__2_pGQGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__r6FfYGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__r6FfYGKSEd8eoMv8ZThYQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__r6FfYGKSEd8eoMv8ZThYQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getTestsPackageName());

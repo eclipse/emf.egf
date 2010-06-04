@@ -3,5 +3,4 @@ GenClass genClass = parameter;
 targetPath = genModel.getModelDirectory();
 packageName = genPackage.getInterfacePackageName();
 className = genClass.getInterfaceName();
-arguments = new Object[]{new Object[]{genClass,Boolean.TRUE,Boolean.FALSE}};
 %>

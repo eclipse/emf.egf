@@ -711,7 +711,13 @@ GenPackage genPackage = parameter;
 targetPath = genModel.getModelDirectory();
 packageName = genPackage.getReflectionClassPackageName();
 className = genPackage.getPackageClassName();
-arguments = new Object[]{new Object[]{genPackage,genModel.isSuppressEMFMetaData() || genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
+argument = ((Object[]) new Object[]{new Object[]{genPackage,genModel.isSuppressEMFMetaData() || genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}})[0];
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -734,9 +740,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**
@@ -760,9 +763,9 @@ if (arguments != null)
     boolean needsAddEOperation = false;
     boolean needsAddEParameter = false;
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__1lyXYGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__1lyXYGKMEd_wNQtGaQlw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__1lyXYGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__q6dOYGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__q6dOYGKSEd8eoMv8ZThYQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__q6dOYGKSEd8eoMv8ZThYQ);
 
     if (isImplementation && !genModel.isSuppressInterfaces()) {
     stringBuffer.append(TEXT_2);

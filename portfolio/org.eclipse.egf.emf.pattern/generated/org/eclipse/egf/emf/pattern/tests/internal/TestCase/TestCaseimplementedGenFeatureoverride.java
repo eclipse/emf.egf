@@ -147,60 +147,60 @@ return parameters; }
     if (genFeature.isTested()) {
     if (genFeature.isGet() && !genFeature.isSuppressedGetVisibility()) {
     stringBuffer.append(TEXT_2);
-    final Map<String, Object> parameters__3AFyMGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__3AFyMGKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__3AFyMGKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__3AFyMGKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__3AFyMGKMEd_wNQtGaQlw.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_093kIGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3AFyMGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__r6ZBYGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__r6ZBYGKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__r6ZBYGKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__r6ZBYGKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__r6ZBYGKSEd8eoMv8ZThYQ.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_093kIGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__r6ZBYGKSEd8eoMv8ZThYQ);
 
     //TestCase/getGenFeature.override.javajetinc
     stringBuffer.append(TEXT_3);
     }
     if (genFeature.isSet() && !genFeature.isSuppressedSetVisibility()) {
     stringBuffer.append(TEXT_4);
-    final Map<String, Object> parameters__3AFyMWKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__3AFyMWKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__3AFyMWKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__3AFyMWKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__3AFyMWKMEd_wNQtGaQlw.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-daAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3AFyMWKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__r6ZBYWKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__r6ZBYWKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__r6ZBYWKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__r6ZBYWKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__r6ZBYWKSEd8eoMv8ZThYQ.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-daAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__r6ZBYWKSEd8eoMv8ZThYQ);
 
     //TestCase/setGenFeature.override.javajetinc
     stringBuffer.append(TEXT_5);
     }
     if (genFeature.isUnset() && !genFeature.isSuppressedUnsetVisibility()) {
     stringBuffer.append(TEXT_6);
-    final Map<String, Object> parameters__3AFyMmKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__3AFyMmKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__3AFyMmKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__3AFyMmKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__3AFyMmKMEd_wNQtGaQlw.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0_NA4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3AFyMmKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__r6ZBYmKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__r6ZBYmKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__r6ZBYmKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__r6ZBYmKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__r6ZBYmKSEd8eoMv8ZThYQ.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0_NA4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__r6ZBYmKSEd8eoMv8ZThYQ);
 
     //TestCase/unsetGenFeature.override.javajetinc
     stringBuffer.append(TEXT_7);
     }
     if (genFeature.isIsSet() && !genFeature.isSuppressedIsSetVisibility()) {
     stringBuffer.append(TEXT_8);
-    final Map<String, Object> parameters__3AFyM2KMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__3AFyM2KMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__3AFyM2KMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__3AFyM2KMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__3AFyM2KMEd_wNQtGaQlw.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1BvXgGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3AFyM2KMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__r6ZBY2KSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__r6ZBY2KSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__r6ZBY2KSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__r6ZBY2KSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__r6ZBY2KSEd8eoMv8ZThYQ.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1BvXgGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__r6ZBY2KSEd8eoMv8ZThYQ);
 
     //TestCase/isSetGenFeature.override.javajetinc
     stringBuffer.append(TEXT_9);
     }
     }
     stringBuffer.append(TEXT_10);
-    final Map<String, Object> parameters__3AFyNGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__3AFyNGKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__3AFyNGKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__3AFyNGKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__3AFyNGKMEd_wNQtGaQlw.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1CovYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3AFyNGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__r6ZBZGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__r6ZBZGKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__r6ZBZGKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__r6ZBZGKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__r6ZBZGKSEd8eoMv8ZThYQ.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1CovYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__r6ZBZGKSEd8eoMv8ZThYQ);
 
     stringBuffer.append(TEXT_11);
     }

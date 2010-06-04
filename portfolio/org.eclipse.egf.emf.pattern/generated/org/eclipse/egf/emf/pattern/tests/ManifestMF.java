@@ -127,9 +127,15 @@ return parameters; }
     
 GenModel genModel = parameter;
 targetPathName = genModel.getTestsProjectDirectory() + "/META-INF/MANIFEST.MF";
-arguments = null;
 overwrite = false;
 encoding = "UTF-8";
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
+argument = parameter;
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -152,9 +158,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**

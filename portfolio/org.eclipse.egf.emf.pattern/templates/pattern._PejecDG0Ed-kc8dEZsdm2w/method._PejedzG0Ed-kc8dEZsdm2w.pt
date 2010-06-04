@@ -3,5 +3,4 @@ GenModel genModel = parameter;
 targetPath = genModel.getModelDirectory();
 packageName = genModel.getModelPluginPackageName();
 className = genModel.getModelPluginClassName();
-arguments = null;
 %>

@@ -308,7 +308,13 @@ GenPackage genPackage = parameter;
 targetPath = genPackage.getGenModel().getModelDirectory();
 packageName = genPackage.getUtilitiesPackageName();
 className = genPackage.getResourceClassName();
-arguments = null;
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
+argument = parameter;
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -331,9 +337,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**
@@ -353,9 +356,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); ExtendedMetaData extendedMetaData= genModel.getExtendedMetaData();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__10sWEGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__10sWEGKMEd_wNQtGaQlw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__10sWEGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rJ9C8GKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rJ9C8GKSEd8eoMv8ZThYQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rJ9C8GKSEd8eoMv8ZThYQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());

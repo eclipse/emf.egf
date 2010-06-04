@@ -1,9 +1,6 @@
 <%
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 %><%
 /**
  * <copyright>

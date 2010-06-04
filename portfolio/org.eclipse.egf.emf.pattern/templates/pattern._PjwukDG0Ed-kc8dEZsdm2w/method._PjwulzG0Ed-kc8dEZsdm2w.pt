@@ -3,5 +3,4 @@ GenModel genModel = parameter;
 targetPath = genModel.getEditPluginDirectory();
 packageName = genModel.getEditPluginPackageName();
 className = genModel.getEditPluginClassName();
-arguments = null;
 %>

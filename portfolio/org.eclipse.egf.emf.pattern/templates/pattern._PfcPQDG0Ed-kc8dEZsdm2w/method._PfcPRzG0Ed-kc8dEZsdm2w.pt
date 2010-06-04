@@ -3,5 +3,4 @@ GenPackage genPackage = parameter;
 targetPath = genModel.getModelDirectory();
 packageName = genPackage.getReflectionClassPackageName();
 className = genPackage.getFactoryClassName();
-arguments = new Object[]{new Object[]{genPackage,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
 %>

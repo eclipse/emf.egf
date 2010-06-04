@@ -118,7 +118,13 @@ return parameters; }
     
 GenModel genModel = parameter;
 targetPathName = genModel.getModelProjectDirectory() + "/plugin.properties";
-arguments = null;
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
+argument = parameter;
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -141,9 +147,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**
@@ -163,9 +166,9 @@ if (arguments != null)
 
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__1kv1kGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__1kv1kGKMEd_wNQtGaQlw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__1kv1kGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__q6UEcGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__q6UEcGKSEd8eoMv8ZThYQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__q6UEcGKSEd8eoMv8ZThYQ);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genModel.getModelName());

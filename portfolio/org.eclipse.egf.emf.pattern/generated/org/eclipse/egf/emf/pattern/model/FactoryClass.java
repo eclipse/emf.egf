@@ -543,7 +543,13 @@ GenPackage genPackage = parameter;
 targetPath = genModel.getModelDirectory();
 packageName = genPackage.getReflectionClassPackageName();
 className = genPackage.getFactoryClassName();
-arguments = new Object[]{new Object[]{genPackage,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenPackage genPackage = parameter;
+argument = ((Object[]) new Object[]{new Object[]{genPackage,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}})[0];
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -566,9 +572,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**
@@ -590,9 +593,9 @@ if (arguments != null)
     boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]);
     String publicStaticFinalFlag = isImplementation ? "public static final " : "";
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__1tF5QGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__1tF5QGKMEd_wNQtGaQlw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__1tF5QGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rDZvAGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rDZvAGKSEd8eoMv8ZThYQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__rDZvAGKSEd8eoMv8ZThYQ);
 
     if (isInterface || genModel.isSuppressInterfaces()) {
     stringBuffer.append(TEXT_2);

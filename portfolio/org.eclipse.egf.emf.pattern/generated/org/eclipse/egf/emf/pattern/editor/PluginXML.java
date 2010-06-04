@@ -204,9 +204,15 @@ return parameters; }
     
 GenModel genModel = parameter;
 targetPathName = genModel.getEditorProjectDirectory() + "/plugin.xml";
-arguments = null;
 overwrite = false;
 encoding = "UTF-8";
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+GenModel genModel = parameter;
+argument = parameter;
 
     }
     protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -229,9 +235,6 @@ if (canGenerate)
     
 if (!canGenerate)
     return;
-Object argument = parameter;
-if (arguments != null)
-    argument = ((Object[]) arguments)[0];
 
     
 /**
@@ -252,9 +255,9 @@ if (arguments != null)
     GenModel genModel = (GenModel)argument;
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
-    final Map<String, Object> parameters__20xTAGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__20xTAGKMEd_wNQtGaQlw.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__20xTAGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__ryC9sGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__ryC9sGKSEd8eoMv8ZThYQ.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ryC9sGKSEd8eoMv8ZThYQ);
 
     stringBuffer.append(TEXT_3);
     if (genModel.isBundleManifest()) {

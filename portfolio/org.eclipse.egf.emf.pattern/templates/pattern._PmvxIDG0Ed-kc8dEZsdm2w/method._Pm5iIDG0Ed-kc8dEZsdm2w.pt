@@ -3,5 +3,4 @@ GenPackage genPackage = parameter;
 targetPath = genPackage.getGenModel().getEditorDirectory();
 packageName = genPackage.getPresentationPackageName();
 className = genPackage.getModelWizardClassName();
-arguments = null;
 %>

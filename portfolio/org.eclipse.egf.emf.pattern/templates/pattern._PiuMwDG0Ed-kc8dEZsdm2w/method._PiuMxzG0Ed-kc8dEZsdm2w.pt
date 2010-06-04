@@ -1,7 +1,6 @@
 <%
 GenModel genModel = parameter;
 targetPathName = genModel.getEditProjectDirectory() + "/META-INF/MANIFEST.MF";
-arguments = null;
 overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditProjectDirectory()).appendSegment("plugin.xml"));
 encoding = "UTF-8";
 %>

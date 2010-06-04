@@ -1,5 +1,4 @@
 <%
 GenModel genModel = parameter;
 targetPathName = genModel.getEditorProjectDirectory() + "/plugin.properties";
-arguments = null;
 %>

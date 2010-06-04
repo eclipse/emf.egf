@@ -69,6 +69,8 @@ method_putCanGenerateInContext(ictx.getBuffer(), ictx);
     
 method_putContentTypeInContext(ictx.getBuffer(), ictx);
     
+method_setArgument(ictx.getBuffer(), ictx);
+    
 method_ensureProjectExists(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
@@ -83,9 +85,9 @@ protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
 public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
 this.genModel = object;
 }
-protected java.lang.Object arguments = null;
-public void set_arguments(java.lang.Object object) {
-this.arguments = object;
+protected java.lang.Object argument = null;
+public void set_argument(java.lang.Object object) {
+this.argument = object;
 }
 protected java.lang.Boolean canGenerate = null;
 public void set_canGenerate(java.lang.Boolean object) {
@@ -126,6 +128,9 @@ ctx.setValue("canGenerate", canGenerate);
 
     
 ctx.setValue("contentType", ContentType.Undefined);
+
+    }
+    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     }
     protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {

@@ -447,38 +447,38 @@ return parameters; }
 
     if (isInterface) { 
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__2W0LsGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__2W0LsGKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("genModel", genModel);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("isJDK50", isJDK50);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("isInterface", isInterface);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("isImplementation", isImplementation);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("singleWildcard", singleWildcard);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__2W0LsGKMEd_wNQtGaQlw.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0yZT8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__2W0LsGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rWBwEGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("genModel", genModel);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("isJDK50", isJDK50);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("isInterface", isInterface);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("isImplementation", isImplementation);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("publicStaticFinalFlag", publicStaticFinalFlag);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("singleWildcard", singleWildcard);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("negativeOffsetCorrection", negativeOffsetCorrection);
+parameters__rWBwEGKSEd8eoMv8ZThYQ.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0yZT8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rWBwEGKSEd8eoMv8ZThYQ);
 
     //Class/setGenFeature.javadoc.override.javajetinc
     } else {
     stringBuffer.append(TEXT_2);
     if (isJDK50) { //Class/setGenFeature.annotations.insert.javajetinc
     stringBuffer.append(TEXT_3);
-    final Map<String, Object> parameters__2W98sGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__2W98sGKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__2W98sGKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__2W98sGKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__2W98sGKMEd_wNQtGaQlw.put("genModel", genModel);
-parameters__2W98sGKMEd_wNQtGaQlw.put("isJDK50", isJDK50);
-parameters__2W98sGKMEd_wNQtGaQlw.put("isInterface", isInterface);
-parameters__2W98sGKMEd_wNQtGaQlw.put("isImplementation", isImplementation);
-parameters__2W98sGKMEd_wNQtGaQlw.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__2W98sGKMEd_wNQtGaQlw.put("singleWildcard", singleWildcard);
-parameters__2W98sGKMEd_wNQtGaQlw.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__2W98sGKMEd_wNQtGaQlw.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ysO4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__2W98sGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rWBwEWKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("genModel", genModel);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("isJDK50", isJDK50);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("isInterface", isInterface);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("isImplementation", isImplementation);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("publicStaticFinalFlag", publicStaticFinalFlag);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("singleWildcard", singleWildcard);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("negativeOffsetCorrection", negativeOffsetCorrection);
+parameters__rWBwEWKSEd8eoMv8ZThYQ.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0ysO4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rWBwEWKSEd8eoMv8ZThYQ);
 
     }
     }
@@ -500,20 +500,20 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     stringBuffer.append(setAccessorOperation == null ? "new" + genFeature.getCapName() : setAccessorOperation.getGenParameters().get(0).getName());
     stringBuffer.append(TEXT_11);
     stringBuffer.append(TEXT_12);
-    final Map<String, Object> parameters__2W98sWKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__2W98sWKMEd_wNQtGaQlw.put("setAccessorOperation", setAccessorOperation);
-parameters__2W98sWKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__2W98sWKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__2W98sWKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__2W98sWKMEd_wNQtGaQlw.put("genModel", genModel);
-parameters__2W98sWKMEd_wNQtGaQlw.put("isJDK50", isJDK50);
-parameters__2W98sWKMEd_wNQtGaQlw.put("isInterface", isInterface);
-parameters__2W98sWKMEd_wNQtGaQlw.put("isImplementation", isImplementation);
-parameters__2W98sWKMEd_wNQtGaQlw.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__2W98sWKMEd_wNQtGaQlw.put("singleWildcard", singleWildcard);
-parameters__2W98sWKMEd_wNQtGaQlw.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__2W98sWKMEd_wNQtGaQlw.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0y1Y0GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__2W98sWKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rWBwEmKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("setAccessorOperation", setAccessorOperation);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("genModel", genModel);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("isJDK50", isJDK50);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("isInterface", isInterface);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("isImplementation", isImplementation);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("publicStaticFinalFlag", publicStaticFinalFlag);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("singleWildcard", singleWildcard);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("negativeOffsetCorrection", negativeOffsetCorrection);
+parameters__rWBwEmKSEd8eoMv8ZThYQ.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0y1Y0GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rWBwEmKSEd8eoMv8ZThYQ);
 
     if (genModel.isDynamicDelegation()) {
     stringBuffer.append(TEXT_13);
@@ -976,20 +976,20 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     }
     }
     stringBuffer.append(TEXT_212);
-    final Map<String, Object> parameters__2XHGoGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__2XHGoGKMEd_wNQtGaQlw.put("setAccessorOperation", setAccessorOperation);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("genModel", genModel);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("isJDK50", isJDK50);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("isInterface", isInterface);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("isImplementation", isImplementation);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("singleWildcard", singleWildcard);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__2XHGoGKMEd_wNQtGaQlw.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0y_J0GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__2XHGoGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rWLhEGKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("setAccessorOperation", setAccessorOperation);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("genModel", genModel);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("isJDK50", isJDK50);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("isInterface", isInterface);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("isImplementation", isImplementation);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("publicStaticFinalFlag", publicStaticFinalFlag);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("singleWildcard", singleWildcard);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("negativeOffsetCorrection", negativeOffsetCorrection);
+parameters__rWLhEGKSEd8eoMv8ZThYQ.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0y_J0GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rWLhEGKSEd8eoMv8ZThYQ);
 
     } else if (genFeature.hasDelegateFeature()) { GenFeature delegateFeature = genFeature.getDelegateFeature();
     if (delegateFeature.isWrappedFeatureMapType()) {
@@ -1038,20 +1038,20 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     stringBuffer.append(setAccessorOperation.getBody(genModel.getIndentation(stringBuffer)));
     } else {
     stringBuffer.append(TEXT_233);
-    final Map<String, Object> parameters__2XQ3oGKMEd_wNQtGaQlw = new HashMap<String, Object>();
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("setAccessorOperation", setAccessorOperation);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("genFeature", genFeature);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("genClass", genClass);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("genPackage", genPackage);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("genModel", genModel);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("isJDK50", isJDK50);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("isInterface", isInterface);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("isImplementation", isImplementation);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("singleWildcard", singleWildcard);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__2XQ3oGKMEd_wNQtGaQlw.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0y_J5WJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__2XQ3oGKMEd_wNQtGaQlw);
+    final Map<String, Object> parameters__rWLhEWKSEd8eoMv8ZThYQ = new HashMap<String, Object>();
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("setAccessorOperation", setAccessorOperation);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("genFeature", genFeature);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("genClass", genClass);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("genPackage", genPackage);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("genModel", genModel);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("isJDK50", isJDK50);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("isInterface", isInterface);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("isImplementation", isImplementation);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("publicStaticFinalFlag", publicStaticFinalFlag);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("singleWildcard", singleWildcard);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("negativeOffsetCorrection", negativeOffsetCorrection);
+parameters__rWLhEWKSEd8eoMv8ZThYQ.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0y_J5WJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__rWLhEWKSEd8eoMv8ZThYQ);
 
     //Class/setGenFeature.todo.override.javajetinc
     stringBuffer.append(TEXT_234);

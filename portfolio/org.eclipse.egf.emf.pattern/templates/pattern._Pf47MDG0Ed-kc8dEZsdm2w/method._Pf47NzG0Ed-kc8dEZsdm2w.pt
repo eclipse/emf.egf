@@ -3,5 +3,4 @@ GenEnum genEnum = parameter;
 targetPath = genEnum.getGenModel().getModelDirectory();
 packageName = genEnum.getGenPackage().getInterfacePackageName();
 className = genEnum.getName();
-arguments = null;
 %>

@@ -1,7 +1,6 @@
 <%
 GenModel genModel = parameter;
 targetPathName = genModel.getModelProjectDirectory() + "/build.properties";
-arguments = null;
 overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getModelProjectDirectory()).appendSegment("plugin.xml"));
 encoding = "ISO-8859-1";
 %>
