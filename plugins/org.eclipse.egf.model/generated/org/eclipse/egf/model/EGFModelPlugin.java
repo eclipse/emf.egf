@@ -25,6 +25,7 @@ import org.osgi.framework.BundleException;
  * This is the central singleton for the Pattern model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class EGFModelPlugin extends EMFPlugin {
@@ -33,6 +34,7 @@ public final class EGFModelPlugin extends EMFPlugin {
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static final EGFModelPlugin INSTANCE = new EGFModelPlugin();
@@ -41,6 +43,7 @@ public final class EGFModelPlugin extends EMFPlugin {
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static Implementation plugin;
@@ -53,13 +56,16 @@ public final class EGFModelPlugin extends EMFPlugin {
    * @generated NOT
    */
   public EGFModelPlugin() {
-    super(new ResourceLocator[] { EcorePlugin.INSTANCE, });
+    super(new ResourceLocator[] {
+      EcorePlugin.INSTANCE,
+    });
   }
 
   /**
    * Returns the singleton instance of the Eclipse plugin.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the singleton instance.
    * @generated
    */
@@ -72,6 +78,7 @@ public final class EGFModelPlugin extends EMFPlugin {
    * Returns the singleton instance of the Eclipse plugin.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the singleton instance.
    * @generated
    */
@@ -83,13 +90,16 @@ public final class EGFModelPlugin extends EMFPlugin {
    * The actual implementation of the Eclipse <b>Plugin</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static class Implementation extends EGFEclipsePlugin {
+
     /**
      * Creates an instance.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Implementation() {
@@ -103,7 +113,7 @@ public final class EGFModelPlugin extends EMFPlugin {
     /**
      * <!-- begin-user-doc -->
      * 
-     * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
+     * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
      *      <!-- end-user-doc -->
      * @generated NOT
      */

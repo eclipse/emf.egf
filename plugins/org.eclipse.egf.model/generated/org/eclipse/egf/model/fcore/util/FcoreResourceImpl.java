@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.uri.ModelSchemeAware;
+import org.eclipse.egf.core.uri.PlatformURIHandler;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * @generated
  */
 public class FcoreResourceImpl extends XMIResourceImpl {
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -139,6 +140,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
     getDefaultSaveOptions().put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
     getDefaultSaveOptions().put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
+
       public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
         return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
       }
@@ -148,8 +150,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
       }
     });
     getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, Integer.valueOf(80));
-    // Avoid relative paths from workspace resources to plugin resources.
-    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new ModelSchemeAware());
+    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformURIHandler());
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
@@ -161,6 +162,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformURIHandler());
   }
 
 } // FcoreResourceImpl
