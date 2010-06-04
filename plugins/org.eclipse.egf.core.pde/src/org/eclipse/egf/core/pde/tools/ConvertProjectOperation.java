@@ -723,10 +723,10 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     } else {
       Version version = Version.parseVersion(pluginVersion);
       String major = version.getMajor() != 0 ? Integer.toString(version.getMajor()) : "0"; //$NON-NLS-1$
-      String micro = version.getMicro() != 0 ? Integer.toString(version.getMicro()) : "1"; //$NON-NLS-1$      
-      String minor = version.getMinor() != 0 ? Integer.toString(version.getMinor()) : "0"; //$NON-NLS-1$
+      String minor = version.getMinor() != 0 ? Integer.toString(version.getMinor()) : "1"; //$NON-NLS-1$
+      String micro = version.getMicro() != 0 ? Integer.toString(version.getMicro()) : "0"; //$NON-NLS-1$      
       String qualifier = version.getQualifier() != null && version.getQualifier().trim().length() != 0 ? version.getQualifier() : "qualifier"; //$NON-NLS-1$
-      pluginVersion = major + "." + micro + "." + minor + "." + qualifier; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      pluginVersion = major + "." + minor + "." + micro + "." + qualifier; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
     bundle.setHeader(Constants.BUNDLE_VERSION, pluginVersion);
   }
