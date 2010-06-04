@@ -10,7 +10,7 @@
  **/
 package org.eclipse.egf.core.fcore;
 
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 
 /**
@@ -27,7 +27,7 @@ public interface IPlatformFcoreConstants {
      * Define a constant for the Fcore extension-point id as a fully
      * qualified id.
      */
-    public static final String FULLY_QUALIFIED_EXTENSION_POINT_ID = ExtensionPointHelper.getExtensionPointId(EGFCorePlugin.getDefault().getPluginID(), FCORE_EXTENSION_POINT_ID);
+    public static final String FULLY_QUALIFIED_EXTENSION_POINT_ID = EGFCorePlugin.getDefault().getPluginID() + EGFCommonConstants.DOT_STRING + FCORE_EXTENSION_POINT_ID;
 
     /**
      * Define a constant for the Fcore extension-point child.
