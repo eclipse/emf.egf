@@ -191,13 +191,15 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
     private void loadURIMap() {
         // Clear the previous URIMap content
         getURIMap().clear();
-        // Assign a fresh URIMap content
-        getURIMap().putAll(computePlatformResourceToPlatformPluginMap());
-        getURIMap().putAll(computePlatformPluginToPlatformResourceMap());
+        // Compute workspace projects
+        Map<URI, URI> pluginToResource = computePlatformPluginToPlatformResourceMap();
+        getURIMap().putAll(pluginToResource);
+        // Compute bundles
+        getURIMap().putAll(computePlatformResourceToPlatformPluginMap(pluginToResource));
     }
 
     // Looking for workspace projects
-    public static Map<URI, URI> computePlatformPluginToPlatformResourceMap() {
+    private static Map<URI, URI> computePlatformPluginToPlatformResourceMap() {
         // Build maps
         Map<URI, URI> pluginToResource = new HashMap<URI, URI>();
         for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
@@ -213,7 +215,7 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
     }
 
     // Looking for target active models
-    public static Map<URI, URI> computePlatformResourceToPlatformPluginMap() {
+    private static Map<URI, URI> computePlatformResourceToPlatformPluginMap(Map<URI, URI> pluginToResource) {
         // Build maps
         Map<URI, URI> resourceToPlugin = new HashMap<URI, URI>();
         for (IPluginModelBase base : PluginRegistry.getActiveModels(true)) {
@@ -224,7 +226,7 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
             if (bundleId == null) {
                 continue;
             }
-            if (base.getUnderlyingResource() == null) {
+            if (base.getUnderlyingResource() == null && pluginToResource.get(URI.createPlatformPluginURI(bundleId + "/", false)) == null) { //$NON-NLS-1$
                 resourceToPlugin.put(URI.createPlatformResourceURI(bundleId + "/", false), URI.createPlatformPluginURI(bundleId + "/", false)); //$NON-NLS-1$ //$NON-NLS-2$          
             }
         }
