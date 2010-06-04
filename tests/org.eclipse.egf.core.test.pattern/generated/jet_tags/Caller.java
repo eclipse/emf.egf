@@ -24,6 +24,7 @@ public class Caller
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
   protected final String TEXT_5 = NL;
+  protected final String TEXT_6 = NL;
 
 	public Caller()
 	{
@@ -47,8 +48,8 @@ IQuery.ParameterDescription paramDesc = null;
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
     ctx.clearBuffer();}
     
-    stringBuffer.append(TEXT_4);
     stringBuffer.append(TEXT_5);
+    stringBuffer.append(TEXT_6);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -88,21 +89,22 @@ return parameters; }
 variable="CallValue";
 variable2="CallValue2";
 
-    final Map<String, Object> parameters__Qu2xQV29EdfFt0Gxi_S4g = new HashMap<String, Object>();
-parameters__Qu2xQV29EdfFt0Gxi_S4g.put("parameter", variable);
-parameters__Qu2xQV29EdfFt0Gxi_S4g.put("parameter2",  variable2);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters__Qu2xQV29EdfFt0Gxi_S4g);
-
     stringBuffer.append(TEXT_1);
+    final Map<String, Object> parameters__2EFScGHHEdkBJe5uU7CpQ = new HashMap<String, Object>();
+parameters__2EFScGHHEdkBJe5uU7CpQ.put("parameter", variable);
+parameters__2EFScGHHEdkBJe5uU7CpQ.put("parameter2",  variable2);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters__2EFScGHHEdkBJe5uU7CpQ);
+
     stringBuffer.append(TEXT_2);
      
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");
 
-    ExecutionContext ctx__QvlKAF29EdfFt0Gxi_S4g = new ExecutionContext((InternalPatternContext) ctx);
-ctx__QvlKAF29EdfFt0Gxi_S4g.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", ctx__QvlKAF29EdfFt0Gxi_S4g);
-
     stringBuffer.append(TEXT_3);
+    ExecutionContext ctx__2ESGwGHHEdkBJe5uU7CpQ = new ExecutionContext((InternalPatternContext) ctx);
+ctx__2ESGwGHHEdkBJe5uU7CpQ.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", ctx__2ESGwGHHEdkBJe5uU7CpQ);
+
+    stringBuffer.append(TEXT_4);
     }
     }

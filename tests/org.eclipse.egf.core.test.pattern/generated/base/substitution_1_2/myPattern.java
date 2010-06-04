@@ -1,4 +1,4 @@
-package base.substitution;
+package base.substitution_1_2;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,23 +7,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class ClassPatternExtended extends base.ClassPattern {
+public class myPattern extends base.ClassPattern {
   protected static String nl;
-  public static synchronized ClassPatternExtended create(String lineSeparator)
+  public static synchronized myPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    ClassPatternExtended result = new ClassPatternExtended();
+    myPattern result = new myPattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "[extended class ";
-  protected final String TEXT_2 = "]";
+  protected final String TEXT_1 = "[another extension class ";
+  protected final String TEXT_2 = "]" + NL;
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
 
-	public ClassPatternExtended()
+	public myPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();

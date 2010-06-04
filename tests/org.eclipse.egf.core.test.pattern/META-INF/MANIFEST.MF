@@ -25,7 +25,8 @@ Export-Package:
  inheritance_4.strategy,
  jet_tags,
  no_callback.strategy,
- org.eclipse.egf.core.test.pattern,
  pattern.call1,
- substitution.another.base
+ pattern.call2,
+ substitution.another.base,
+ substitution.another.call
 Bundle-ActivationPolicy: lazy
