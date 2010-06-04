@@ -44,21 +44,21 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     private static volatile EGFResourceLoadedListener __resourceLoadedListener;
 
-    private static volatile ResourceManager __resourceEventManager;
+    private static volatile ResourceManager __resourceManager;
 
     // Use a lock object, this will prevent us against
     // a lock against the ResourceEventManager instance
     private static Object __lockResourceManager = new Object();
 
     public static ResourceManager getResourceManager() {
-        if (__resourceEventManager == null) {
+        if (__resourceManager == null) {
             synchronized (__lockResourceManager) {
-                if (__resourceEventManager == null) {
-                    __resourceEventManager = new ResourceManager();
+                if (__resourceManager == null) {
+                    __resourceManager = new ResourceManager();
                 }
             }
         }
-        return __resourceEventManager;
+        return __resourceManager;
     }
 
     // Use a lock object, this will prevent us against
@@ -113,6 +113,11 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
         final private List<ResourceListener> _listeners = new ArrayList<ResourceListener>();
 
         final private Map<Resource, List<ResourceUser>> _observers = new HashMap<Resource, List<ResourceUser>>();
+
+        protected void dispose() {
+            _listeners.clear();
+            _observers.clear();
+        }
 
         public void addObserver(ResourceUser resourceUser) {
             // Lock __resourceEventManager
@@ -383,7 +388,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 // Process Removed Fcores
                 if (deltaRemovedFcores.isEmpty() == false) {
                     for (Resource resource : deltaRemovedFcores.keySet()) {
-                        __resourceEventManager.removeResource(editingDomain, resource);
+                        getResourceManager().removeResource(editingDomain, resource);
                     }
                 }
 
@@ -391,7 +396,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 // This is safe to do it here
                 if (deltaChangedFcores.isEmpty() == false) {
                     for (Resource resource : deltaChangedFcores) {
-                        __resourceEventManager.reloadResource(resource);
+                        getResourceManager().reloadResource(resource);
                     }
                 }
 
@@ -418,7 +423,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     public boolean handleResourcePersisted(Resource resource) {
         synchronized (__lockResourceLoadedListener) {
-            for (Iterator<ResourceListener> iterator = __resourceEventManager._listeners.iterator(); iterator.hasNext();) {
+            for (Iterator<ResourceListener> iterator = getResourceManager()._listeners.iterator(); iterator.hasNext();) {
                 ResourceListener resourceListener = iterator.next();
                 resourceListener.internalUpdate(resource);
             }
@@ -439,7 +444,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 Resource resource = getEditingDomain().getResourceSet().getResource(movedResource.getURI(), false);
                 if (resource != null || getEditingDomain().getResourceSet().getResource(newURI, false) != null) {
                     // Notify moved resource
-                    __resourceEventManager.movedResource(getEditingDomain(), resource, newURI);
+                    getResourceManager().movedResource(getEditingDomain(), resource, newURI);
                 }
             } else {
                 // an fcore has moved to a non fcore resource, process a remove
@@ -455,7 +460,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             // Either a non Fcore resource or an already processed deleted fcore from _platformListener
             if (fcore == null) {
                 // _platformListener has been called first, Process workspace removed fcores detected in _platformListener
-                __resourceEventManager.removeResource(getEditingDomain(), deletedResource);
+                getResourceManager().removeResource(getEditingDomain(), deletedResource);
             }
             return true;
         }
@@ -463,10 +468,10 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     public boolean handleResourceChanged(final Resource changedResource) {
         synchronized (__lockResourceLoadedListener) {
-            List<ResourceUser> users = __resourceEventManager._observers.get(changedResource);
+            List<ResourceUser> users = getResourceManager()._observers.get(changedResource);
             // No one edit this resource, process a standard reload
             if (users == null) {
-                __resourceEventManager.reloadResource(changedResource);
+                getResourceManager().reloadResource(changedResource);
                 return true;
             }
             // Check the state of this edited resource
@@ -480,19 +485,19 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             }
             // Nothing to do, we just reload the resource
             if (hasSavedResource == false && isDirty == false) {
-                __resourceEventManager.reloadResource(changedResource);
+                getResourceManager().reloadResource(changedResource);
                 return true;
             }
             // Dirty resource
             if (hasSavedResource == false && isDirty) { // Give a chance to cancel dirty editors while reloading external changed resource
-                for (Iterator<ResourceListener> iterator = __resourceEventManager._listeners.iterator(); iterator.hasNext();) {
+                for (Iterator<ResourceListener> iterator = getResourceManager()._listeners.iterator(); iterator.hasNext();) {
                     ResourceListener resourceListener = iterator.next();
                     resourceListener.externalUpdate(changedResource);
                 }
                 return true;
             }
             // Non dirty resource
-            for (Iterator<ResourceListener> iterator = __resourceEventManager._listeners.iterator(); iterator.hasNext();) {
+            for (Iterator<ResourceListener> iterator = getResourceManager()._listeners.iterator(); iterator.hasNext();) {
                 ResourceListener resourceListener = iterator.next();
                 resourceListener.internalUpdate(changedResource);
             }
@@ -503,6 +508,8 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
     public void dispose() {
         synchronized (__lockResourceLoadedListener) {
             EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
+            getResourceManager().dispose();
+            __resourceManager = null;
         }
     }
 
