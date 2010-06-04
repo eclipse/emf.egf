@@ -10,16 +10,12 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
-import org.eclipse.pde.core.plugin.IPluginElement;
-
 public interface IPlatformExtensionPoint {
 
-   public String getId();
+    public String getId();
 
-   public IPlatformBundle getPlatformBundle();
+    public IPlatformBundle getPlatformBundle();
 
-   public IPluginElement getPluginElement();
-
-   public void setPluginElement(IPluginElement element);
+    public void setPlatformBundle(IPlatformBundle bundle);
 
 }

@@ -11,77 +11,66 @@
 package org.eclipse.egf.core.platform.pde;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.pde.core.plugin.IPluginElement;
 
 public abstract class PlatformExtensionPoint implements IPlatformExtensionPoint {
 
-   private IPluginElement _element;
+    private IPlatformBundle _bundle;
 
-   private IPlatformBundle _bundle;
+    private String _id;
 
-   private String _id;
+    public PlatformExtensionPoint(IPlatformBundle bundle, String id) {
+        Assert.isNotNull(bundle);
+        Assert.isNotNull(bundle.getPluginModelBase());
+        Assert.isNotNull(id);
+        Assert.isLegal(id.trim().length() > 0);
+        _bundle = bundle;
+        _id = id.trim();
+    }
 
-   public PlatformExtensionPoint(IPlatformBundle bundle, IPluginElement element, String id) {
-      Assert.isNotNull(bundle);
-      Assert.isNotNull(bundle.getPluginModelBase());
-      Assert.isNotNull(element);
-      Assert.isNotNull(element.getPluginModel());
-      Assert.isLegal(bundle.getPluginModelBase().equals(element.getPluginModel()));
-      Assert.isNotNull(id);
-      Assert.isLegal(id.trim().length() > 0);
-      _bundle = bundle;
-      _element = element;
-      _id = id.trim();
-   }
+    public String getId() {
+        return _id;
+    }
 
-   public String getId() {
-      return _id;
-   }
+    public IPlatformBundle getPlatformBundle() {
+        return _bundle;
+    }
 
-   public IPluginElement getPluginElement() {
-      return _element;
-   }
+    public void setPlatformBundle(IPlatformBundle bundle) {
+        Assert.isNotNull(bundle);
+        Assert.isLegal(bundle.getPluginModelBase() == _bundle.getPluginModelBase());
+        _bundle = bundle;
+    }
 
-   public void setPluginElement(IPluginElement element) {
-      Assert.isNotNull(element);
-      Assert.isNotNull(element.getPluginModel());
-      // TODO: a new base could be set if their are equivalent
-      // Assert.isLegal(_element.equals(element));
-      _element = element;
-   }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((_bundle == null) ? 0 : _bundle.hashCode());
+        result = prime * result + ((_id == null) ? 0 : _id.hashCode());
+        return result;
+    }
 
-   public IPlatformBundle getPlatformBundle() {
-      return _bundle;
-   }
+    @Override
+    public boolean equals(Object object) {
+        if (object == null) {
+            return false;
+        }
+        if (this == object) {
+            return true;
+        }
+        if (object instanceof IPlatformExtensionPoint == false) {
+            return false;
+        }
+        IPlatformExtensionPoint platformExtensionPoint = (IPlatformExtensionPoint) object;
+        if (platformExtensionPoint.getPlatformBundle().equals(getPlatformBundle()) == false) {
+            return false;
+        }
+        return getId().compareTo(platformExtensionPoint.getId()) == 0;
+    }
 
-   @Override
-   public int hashCode() {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((_bundle == null) ? 0 : _bundle.hashCode());
-      result = prime * result + ((_element == null) ? 0 : _element.hashCode());
-      result = prime * result + ((_id == null) ? 0 : _id.hashCode());
-      return result;
-   }
-
-   @Override
-   public boolean equals(Object object) {
-      if (this == object) {
-         return true;
-      }
-      if (object instanceof IPlatformExtensionPoint == false) {
-         return false;
-      }
-      IPlatformExtensionPoint platformExtensionPoint = (IPlatformExtensionPoint) object;
-      if (platformExtensionPoint.getPlatformBundle().equals(getPlatformBundle())) {
-         return toString().compareTo(platformExtensionPoint.toString()) == 0;
-      }
-      return false;
-   }
-
-   @Override
-   public String toString() {
-      return getId();
-   }
+    @Override
+    public String toString() {
+        return getId();
+    }
 
 }

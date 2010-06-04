@@ -14,8 +14,6 @@ import org.eclipse.emf.common.util.URI;
 
 public interface IPlatformExtensionPointURI extends IPlatformExtensionPoint {
 
-  public URI getURI();
-
-  public URI getPreviousURI();
+    public URI getURI();
 
 }

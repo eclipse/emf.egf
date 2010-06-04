@@ -10,30 +10,20 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.pde.core.plugin.IPluginElement;
 
 public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint implements IPlatformExtensionPointURI {
 
-    private URI _previousUri;
+    private URI _uri;
 
-    public PlatformExtensionPointURI(IPlatformBundle bundle, IPluginElement element, String id) {
-        super(bundle, element, id);
-        _previousUri = URIHelper.getPlatformURI(bundle.getBundleId(), URI.decode(getId()), false);
-        Assert.isNotNull(_previousUri);
-    }
-
-    public URI getPreviousURI() {
-        return _previousUri;
+    public PlatformExtensionPointURI(IPlatformBundle bundle, String id) {
+        super(bundle, id);
+        _uri = URIHelper.getPlatformURI(bundle.getBundleId(), URI.decode(getId()), false);
     }
 
     public URI getURI() {
-        if (getPlatformBundle().getBundleId().equals(getPlatformBundle().getPreviousBundleId()) == false) {
-            return URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), URI.decode(getId()), false);
-        }
-        return getPreviousURI();
+        return _uri;
     }
 
     @Override
