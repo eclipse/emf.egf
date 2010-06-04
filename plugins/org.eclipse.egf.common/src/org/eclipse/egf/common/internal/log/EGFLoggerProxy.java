@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.egf.common.EGFCommonPlugin;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.eclipse.egf.common.log.IEGFLoggerFactory;
 import org.eclipse.osgi.util.NLS;
@@ -63,7 +62,7 @@ public class EGFLoggerProxy {
                 if (object instanceof IEGFLoggerFactory == false) {
                     EGFCommonPlugin.getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
                     EGFCommonPlugin.getDefault().logInfo(NLS.bind("This Class should be a sub-type of ''{0}''.", IEGFLoggerFactory.class.getName()), 1); //$NON-NLS-1$
-                    EGFCommonPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(_element)), 1); //$NON-NLS-1$
+                    EGFCommonPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", _element.getContributor().getName()), 1); //$NON-NLS-1$
                     EGFCommonPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", _element.getName()), 1); //$NON-NLS-1$
                     EGFCommonPlugin.getDefault().logInfo(NLS.bind("extension ''{0}''", _class), 1); //$NON-NLS-1$                    
                     return null;
@@ -93,7 +92,7 @@ public class EGFLoggerProxy {
         }
         try {
             // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
-            String clazz = ExtensionPointHelper.getAttributeValue(element, EGFLoggerRegistry.INVOKER_ATT_CLASS);
+            String clazz = element.getAttribute(EGFLoggerRegistry.INVOKER_ATT_CLASS);
             // 'class' attribute is mandatory
             if (clazz == null || clazz.trim().length() == 0) {
                 return null;
@@ -105,7 +104,7 @@ public class EGFLoggerProxy {
             if (object instanceof IEGFLoggerFactory == false) {
                 EGFCommonPlugin.getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
                 EGFCommonPlugin.getDefault().logInfo(NLS.bind("This Class should be a sub-type of ''{0}''.", IEGFLoggerFactory.class.getName()), 1); //$NON-NLS-1$
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(element)), 1); //$NON-NLS-1$
+                EGFCommonPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", element.getContributor().getName()), 1); //$NON-NLS-1$
                 EGFCommonPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", element.getName()), 1); //$NON-NLS-1$
                 return null;
             }
