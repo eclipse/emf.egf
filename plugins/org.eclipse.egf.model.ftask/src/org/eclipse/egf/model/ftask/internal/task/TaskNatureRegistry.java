@@ -97,7 +97,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
             return;
         }
         TaskNatureProxy taskNatureProxy = TaskNatureProxy.createProxy(element);
-        if (taskNatureProxy != null && taskNatureProxy.getKind() != null) {
+        if (taskNatureProxy != null) {
             if (_natures.get(taskNatureProxy.getKind()) != null) {
                 EGFFtaskPlugin.getPlugin().logError(NLS.bind("Duplicate Kind ''{0}''", taskNatureProxy.getKind())); //$NON-NLS-1$
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
