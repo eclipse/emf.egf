@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.producer.ftask;singleton:=true
+Bundle-Version: 0.2.4.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.producer.ftask.EGFProducerFtaskPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.egf.producer;visibility:=reexport,
+ org.eclipse.egf.model.ftask;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.producer.ftask,
+ org.eclipse.egf.producer.ftask.invocation,
+ org.eclipse.egf.producer.ftask.manager,
+ org.eclipse.egf.producer.ftask.task
+Bundle-ActivationPolicy: lazy
