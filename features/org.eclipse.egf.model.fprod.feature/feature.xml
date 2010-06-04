@@ -65,7 +65,7 @@ http://www.eclipse.org/legal/epl-v10.html
   />
 
   <plugin
-    id="org.eclipse.egf.fprod.producer"
+    id="org.eclipse.egf.producer.fprod"
     download-size="0"
     install-size="0"
     version="0.0.0"
