@@ -20,7 +20,7 @@ public class ClassHelper {
     // Prevent Instantiation
   }
 
-  public static boolean asSubClass(Class<?> clazz, Class<?> type) {
+  public static boolean isSubClass(Class<?> clazz, Class<?> type) {
     if (clazz == null || type == null) {
       return false;
     }
