@@ -27,39 +27,40 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @generated
  */
 public abstract class TypeObjectImpl extends TypeImpl implements TypeObject {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypeObjectImpl() {
-    super();
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return TypesPackage.Literals.TYPE_OBJECT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public <T extends Object> Class<T> getType() {
-    EStructuralFeature feature = eClass().getEStructuralFeature("value"); //$NON-NLS-1$
-    if (feature == null) {
-      throw new UnsupportedOperationException();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypeObjectImpl() {
+        super();
     }
-    return (Class<T>) feature.getEType().getInstanceClass();
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return TypesPackage.Literals.TYPE_OBJECT;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T extends Object> Class<T> getType() {
+        EStructuralFeature feature = eClass().getEStructuralFeature("value"); //$NON-NLS-1$
+        if (feature == null) {
+            throw new UnsupportedOperationException();
+        }
+        return (Class<T>) feature.getEType().getInstanceClass();
+    }
 
 } // TypeObjectImpl

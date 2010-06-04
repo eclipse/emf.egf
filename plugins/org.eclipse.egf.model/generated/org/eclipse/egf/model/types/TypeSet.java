@@ -24,14 +24,14 @@ package org.eclipse.egf.model.types;
  */
 public interface TypeSet extends TypeAbstractClass {
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.Set.class;'"
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  Class<?> getType();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" required="true"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.Set.class;'"
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    Class<?> getType();
 
 } // TypeSet

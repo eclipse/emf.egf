@@ -29,30 +29,31 @@ package org.eclipse.egf.model.types;
  * @generated
  */
 public interface TypeInteger extends TypeObject {
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(Integer)
-   * @see org.eclipse.egf.model.types.TypesPackage#getTypeInteger_Value()
-   * @model
-   * @generated
-   */
-  Integer getValue();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.types.TypeInteger#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(Integer value);
+    /**
+     * Returns the value of the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Value</em>' attribute.
+     * @see #setValue(Integer)
+     * @see org.eclipse.egf.model.types.TypesPackage#getTypeInteger_Value()
+     * @model
+     * @generated
+     */
+    Integer getValue();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.types.TypeInteger#getValue <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Value</em>' attribute.
+     * @see #getValue()
+     * @generated
+     */
+    void setValue(Integer value);
 
 } // TypeInteger

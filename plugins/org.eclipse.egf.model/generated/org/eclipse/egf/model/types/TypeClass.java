@@ -23,13 +23,14 @@ package org.eclipse.egf.model.types;
  * @generated
  */
 public interface TypeClass extends TypeAbstractClass {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  Class<?> getType();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" required="true"
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    Class<?> getType();
 
 } // TypeClass

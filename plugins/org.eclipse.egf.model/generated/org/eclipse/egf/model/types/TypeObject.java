@@ -25,11 +25,11 @@ package org.eclipse.egf.model.types;
  */
 public interface TypeObject extends Type {
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
-   * @generated
-   */
-  <T extends Object> Class<T> getType();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+     * @generated
+     */
+    <T extends Object> Class<T> getType();
 } // TypeObject

@@ -99,7 +99,7 @@ public class ValidationHelper {
         return true;
       }
       // Valid Value
-      if (ClassHelper.asSubClass(clazz, type) == false) {
+      if (ClassHelper.isSubClass(clazz, type) == false) {
         return false;
       }
     } catch (Throwable t) {

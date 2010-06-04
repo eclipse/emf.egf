@@ -23,20 +23,29 @@ package org.eclipse.egf.model.types;
  * @generated
  */
 public interface Type extends TypeElement {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
-   * @generated
-   */
-  <T extends Object> Class<T> getType();
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  Object getValue();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model
+     * @generated
+     */
+    boolean isCompatible(Type type);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+     * @generated
+     */
+    <T extends Object> Class<T> getType();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     * @generated
+     */
+    Object getValue();
 
 } // Type

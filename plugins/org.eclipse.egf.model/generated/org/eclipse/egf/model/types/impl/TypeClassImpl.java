@@ -31,57 +31,58 @@ import org.eclipse.jdt.core.JavaModelException;
  * @generated
  */
 public class TypeClassImpl extends TypeAbstractClassImpl implements TypeClass {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypeClassImpl() {
-    super();
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return TypesPackage.Literals.TYPE_CLASS;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    if (getValue() != null && getValue().trim().length() != 0) {
-      try {
-        return Class.forName(getValue().trim());
-      } catch (Throwable t) {
-        IJavaProject javaProject = EMFHelper.getJavaProject(eResource());
-        if (javaProject == null) {
-          EGFModelPlugin.getPlugin().logError(t);
-          return null;
-        }
-        try {
-          JavaHelper.getProjectClassLoader(javaProject).loadClass(getValue().trim());
-        } catch (Throwable w) {
-          EGFModelPlugin.getPlugin().logError(w);
-        } finally {
-          try {
-            javaProject.close();
-          } catch (JavaModelException jme) {
-            EGFModelPlugin.getPlugin().logError(jme);
-          }
-        }
-      }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypeClassImpl() {
+        super();
     }
-    return null;
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return TypesPackage.Literals.TYPE_CLASS;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Class<?> getType() {
+        if (getValue() != null && getValue().trim().length() != 0) {
+            try {
+                return Class.forName(getValue().trim());
+            } catch (Throwable t) {
+                IJavaProject javaProject = EMFHelper.getJavaProject(eResource());
+                if (javaProject == null) {
+                    EGFModelPlugin.getPlugin().logError(t);
+                    return null;
+                }
+                try {
+                    return JavaHelper.getProjectClassLoader(javaProject).loadClass(getValue().trim());
+                } catch (Throwable w) {
+                    EGFModelPlugin.getPlugin().logError(w);
+                } finally {
+                    try {
+                        javaProject.close();
+                    } catch (JavaModelException jme) {
+                        EGFModelPlugin.getPlugin().logError(jme);
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
 } // TypeClassImpl

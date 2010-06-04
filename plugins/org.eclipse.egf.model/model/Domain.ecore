@@ -7,31 +7,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="domains" upperBound="-1"
         eType="#//Domain" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainEPackage" eSuperTypes="#//Domain">
+  <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ValidPackage"/>
+      <details key="constraints" value="MandatoryKind ValidKind ValidNamespace ValidURI  LoadableImplementation ValidImplementation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ePackage" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="namespace" lowerBound="1"
+        eType="ecore:EDataType Types.ecore#//URI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType Types.ecore#//URI"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainEPackage" eSuperTypes="Types.ecore#//TypeObject">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//DomainEPackage"
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDomain" abstract="true" eSuperTypes="Types.ecore#//TypeObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="MandatoryKind ValidKind"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Domain"
         resolveProxies="false"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainURI" eSuperTypes="#//Domain">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ValidURI"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType Types.ecore#//URI"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainURI" eSuperTypes="Types.ecore#//TypeObject">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ValidDomainURI"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//DomainURI"
-        resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType Types.ecore#//URI"
-        changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
 </ecore:EPackage>

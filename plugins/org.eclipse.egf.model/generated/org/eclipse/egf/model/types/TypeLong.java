@@ -29,30 +29,31 @@ package org.eclipse.egf.model.types;
  * @generated
  */
 public interface TypeLong extends TypeObject {
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(Long)
-   * @see org.eclipse.egf.model.types.TypesPackage#getTypeLong_Value()
-   * @model
-   * @generated
-   */
-  Long getValue();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.types.TypeLong#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(Long value);
+    /**
+     * Returns the value of the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Value</em>' attribute.
+     * @see #setValue(Long)
+     * @see org.eclipse.egf.model.types.TypesPackage#getTypeLong_Value()
+     * @model
+     * @generated
+     */
+    Long getValue();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.types.TypeLong#getValue <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Value</em>' attribute.
+     * @see #getValue()
+     * @generated
+     */
+    void setValue(Long value);
 
 } // TypeLong

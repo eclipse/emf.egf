@@ -32,56 +32,57 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface TypeElement extends EObject {
-  /**
-   * Returns the value of the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>ID</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>ID</em>' attribute.
-   * @see #isSetID()
-   * @see org.eclipse.egf.model.types.TypesPackage#getTypeElement_ID()
-   * @model unsettable="true" transient="true" changeable="false" volatile="true" derived="true"
-   * @generated
-   */
-  String getID();
 
-  /**
-   * Returns whether the value of the '{@link org.eclipse.egf.model.types.TypeElement#getID <em>ID</em>}' attribute is set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return whether the value of the '<em>ID</em>' attribute is set.
-   * @see #getID()
-   * @generated
-   */
-  boolean isSetID();
+    /**
+     * Returns the value of the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>ID</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>ID</em>' attribute.
+     * @see #isSetID()
+     * @see org.eclipse.egf.model.types.TypesPackage#getTypeElement_ID()
+     * @model unsettable="true" transient="true" changeable="false" volatile="true" derived="true"
+     * @generated
+     */
+    String getID();
 
-  /**
-   * Returns the value of the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Description</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Description</em>' attribute.
-   * @see #setDescription(String)
-   * @see org.eclipse.egf.model.types.TypesPackage#getTypeElement_Description()
-   * @model
-   * @generated
-   */
-  String getDescription();
+    /**
+     * Returns whether the value of the '{@link org.eclipse.egf.model.types.TypeElement#getID <em>ID</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>ID</em>' attribute is set.
+     * @see #getID()
+     * @generated
+     */
+    boolean isSetID();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.types.TypeElement#getDescription <em>Description</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Description</em>' attribute.
-   * @see #getDescription()
-   * @generated
-   */
-  void setDescription(String value);
+    /**
+     * Returns the value of the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Description</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Description</em>' attribute.
+     * @see #setDescription(String)
+     * @see org.eclipse.egf.model.types.TypesPackage#getTypeElement_Description()
+     * @model
+     * @generated
+     */
+    String getDescription();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.types.TypeElement#getDescription <em>Description</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Description</em>' attribute.
+     * @see #getDescription()
+     * @generated
+     */
+    void setDescription(String value);
 
 } // TypeElement
