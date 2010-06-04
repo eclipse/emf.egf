@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_aNgOQF3DEd-W5eBkkAoHaA"
+    name="linefeed">
+  <viewpointContainer xmi:id="_bMPHYF3DEd-W5eBkkAoHaA">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_bhsaAF3DEd-W5eBkkAoHaA">
+      <libraries xmi:id="_b6bqIF3DEd-W5eBkkAoHaA" name="linefeed">
+        <elements xmi:type="pattern:Pattern" xmi:id="_fW0RcF3DEd-W5eBkkAoHaA" name="one"
+            headerMethod="#_fW0RcV3DEd-W5eBkkAoHaA" footerMethod="#_fW0RdF3DEd-W5eBkkAoHaA"
+            initMethod="#_fW0Rcl3DEd-W5eBkkAoHaA">
+          <methods xmi:id="_fW0RcV3DEd-W5eBkkAoHaA" name="header" patternFilePath="templates/pattern._fW0RcF3DEd-W5eBkkAoHaA/method._fW0RcV3DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_fW0Rcl3DEd-W5eBkkAoHaA" name="init" patternFilePath="templates/pattern._fW0RcF3DEd-W5eBkkAoHaA/method._fW0Rcl3DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_fW0Rc13DEd-W5eBkkAoHaA" name="body" patternFilePath="templates/pattern._fW0RcF3DEd-W5eBkkAoHaA/method._fW0Rc13DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_fW0RdF3DEd-W5eBkkAoHaA" name="footer" patternFilePath="templates/pattern._fW0RcF3DEd-W5eBkkAoHaA/method._fW0RdF3DEd-W5eBkkAoHaA.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_1_NaoF3DEd-W5eBkkAoHaA"
+              called="#_fW0Rc13DEd-W5eBkkAoHaA"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_fW0Rdl3DEd-W5eBkkAoHaA"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_s8JesF3DEd-W5eBkkAoHaA" name="two"
+            headerMethod="#_s8JesV3DEd-W5eBkkAoHaA" footerMethod="#_s8JetF3DEd-W5eBkkAoHaA"
+            initMethod="#_s8Jesl3DEd-W5eBkkAoHaA">
+          <methods xmi:id="_s8JesV3DEd-W5eBkkAoHaA" name="header" patternFilePath="templates/pattern._s8JesF3DEd-W5eBkkAoHaA/method._s8JesV3DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_s8Jesl3DEd-W5eBkkAoHaA" name="init" patternFilePath="templates/pattern._s8JesF3DEd-W5eBkkAoHaA/method._s8Jesl3DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_s8Jes13DEd-W5eBkkAoHaA" name="body" patternFilePath="templates/pattern._s8JesF3DEd-W5eBkkAoHaA/method._s8Jes13DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_s8JetF3DEd-W5eBkkAoHaA" name="footer" patternFilePath="templates/pattern._s8JesF3DEd-W5eBkkAoHaA/method._s8JetF3DEd-W5eBkkAoHaA.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_0HjVcF3DEd-W5eBkkAoHaA"
+              called="#_s8Jes13DEd-W5eBkkAoHaA"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_s8Jetl3DEd-W5eBkkAoHaA"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_5P020F3DEd-W5eBkkAoHaA" name="three"
+            headerMethod="#_5P020V3DEd-W5eBkkAoHaA" footerMethod="#_5P021F3DEd-W5eBkkAoHaA"
+            initMethod="#_5P020l3DEd-W5eBkkAoHaA">
+          <methods xmi:id="_5P020V3DEd-W5eBkkAoHaA" name="header" patternFilePath="templates/pattern._5P020F3DEd-W5eBkkAoHaA/method._5P020V3DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_5P020l3DEd-W5eBkkAoHaA" name="init" patternFilePath="templates/pattern._5P020F3DEd-W5eBkkAoHaA/method._5P020l3DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_5P02013DEd-W5eBkkAoHaA" name="body" patternFilePath="templates/pattern._5P020F3DEd-W5eBkkAoHaA/method._5P02013DEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_5P021F3DEd-W5eBkkAoHaA" name="footer" patternFilePath="templates/pattern._5P020F3DEd-W5eBkkAoHaA/method._5P021F3DEd-W5eBkkAoHaA.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_8fi7IF3DEd-W5eBkkAoHaA"
+              called="#_5P02013DEd-W5eBkkAoHaA"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_5P021l3DEd-W5eBkkAoHaA"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_D8RV8F3FEd-W5eBkkAoHaA" name="all"
+            headerMethod="#_D8RV8V3FEd-W5eBkkAoHaA" footerMethod="#_D8RV9F3FEd-W5eBkkAoHaA"
+            initMethod="#_D8RV8l3FEd-W5eBkkAoHaA">
+          <methods xmi:id="_D8RV8V3FEd-W5eBkkAoHaA" name="header" patternFilePath="templates/pattern._D8RV8F3FEd-W5eBkkAoHaA/method._D8RV8V3FEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_D8RV8l3FEd-W5eBkkAoHaA" name="init" patternFilePath="templates/pattern._D8RV8F3FEd-W5eBkkAoHaA/method._D8RV8l3FEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_D8RV9F3FEd-W5eBkkAoHaA" name="footer" patternFilePath="templates/pattern._D8RV8F3FEd-W5eBkkAoHaA/method._D8RV9F3FEd-W5eBkkAoHaA.pt"/>
+          <methods xmi:id="_TB3cEF3FEd-W5eBkkAoHaA" name="separator" patternFilePath="templates/pattern._D8RV8F3FEd-W5eBkkAoHaA/method._TB3cEF3FEd-W5eBkkAoHaA.pt"/>
+          <orchestration xmi:type="pattern:PatternCall" xmi:id="_JJdMgF3FEd-W5eBkkAoHaA"
+              called="#_fW0RcF3DEd-W5eBkkAoHaA"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_VtFFIF3FEd-W5eBkkAoHaA"
+              called="#_TB3cEF3FEd-W5eBkkAoHaA"/>
+          <orchestration xmi:type="pattern:PatternCall" xmi:id="_O7dAUF3FEd-W5eBkkAoHaA"
+              called="#_s8JesF3DEd-W5eBkkAoHaA"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_WCYmwF3FEd-W5eBkkAoHaA"
+              called="#_TB3cEF3FEd-W5eBkkAoHaA"/>
+          <orchestration xmi:type="pattern:PatternCall" xmi:id="_SKu_wF3FEd-W5eBkkAoHaA"
+              called="#_5P020F3DEd-W5eBkkAoHaA"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_7IiSoF3IEd-mZb1ihLU3ug"
+              called="#_TB3cEF3FEd-W5eBkkAoHaA"/>
+          <orchestration xmi:type="pattern:PatternCall" xmi:id="_VO1QoF3KEd-mZb1ihLU3ug"
+              called="#_DAhtIF3KEd-mZb1ihLU3ug"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_D8RV9l3FEd-W5eBkkAoHaA"
+              name="JET"/>
+        </elements>
+      </libraries>
+      <libraries xmi:id="_gmIVgF3JEd-mZb1ihLU3ug" name="linefeed2">
+        <elements xmi:type="pattern:Pattern" xmi:id="_id8LsF3JEd-mZb1ihLU3ug" name="a"
+            headerMethod="#_id8LsV3JEd-mZb1ihLU3ug" footerMethod="#_id8LtF3JEd-mZb1ihLU3ug"
+            initMethod="#_id8Lsl3JEd-mZb1ihLU3ug">
+          <methods xmi:id="_id8LsV3JEd-mZb1ihLU3ug" name="header" patternFilePath="templates/pattern._id8LsF3JEd-mZb1ihLU3ug/method._id8LsV3JEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_id8Lsl3JEd-mZb1ihLU3ug" name="init" patternFilePath="templates/pattern._id8LsF3JEd-mZb1ihLU3ug/method._id8Lsl3JEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_id8Ls13JEd-mZb1ihLU3ug" name="body" patternFilePath="templates/pattern._id8LsF3JEd-mZb1ihLU3ug/method._id8Ls13JEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_id8LtF3JEd-mZb1ihLU3ug" name="footer" patternFilePath="templates/pattern._id8LsF3JEd-mZb1ihLU3ug/method._id8LtF3JEd-mZb1ihLU3ug.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_id8LtV3JEd-mZb1ihLU3ug"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_qFM4AF3JEd-mZb1ihLU3ug"
+              called="#_id8Ls13JEd-mZb1ihLU3ug"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_id8Ltl3JEd-mZb1ihLU3ug"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_sv0rMF3JEd-mZb1ihLU3ug" name="b"
+            headerMethod="#_sv0rMV3JEd-mZb1ihLU3ug" footerMethod="#_sv0rNF3JEd-mZb1ihLU3ug"
+            initMethod="#_sv0rMl3JEd-mZb1ihLU3ug">
+          <methods xmi:id="_sv0rMV3JEd-mZb1ihLU3ug" name="header" patternFilePath="templates/pattern._sv0rMF3JEd-mZb1ihLU3ug/method._sv0rMV3JEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_sv0rMl3JEd-mZb1ihLU3ug" name="init" patternFilePath="templates/pattern._sv0rMF3JEd-mZb1ihLU3ug/method._sv0rMl3JEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_sv0rM13JEd-mZb1ihLU3ug" name="body" patternFilePath="templates/pattern._sv0rMF3JEd-mZb1ihLU3ug/method._sv0rM13JEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_sv0rNF3JEd-mZb1ihLU3ug" name="footer" patternFilePath="templates/pattern._sv0rMF3JEd-mZb1ihLU3ug/method._sv0rNF3JEd-mZb1ihLU3ug.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_sv0rNV3JEd-mZb1ihLU3ug"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_t_PrsF3JEd-mZb1ihLU3ug"
+              called="#_sv0rM13JEd-mZb1ihLU3ug"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_sv0rNl3JEd-mZb1ihLU3ug"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_DAhtIF3KEd-mZb1ihLU3ug" name="all2"
+            headerMethod="#_DAhtIV3KEd-mZb1ihLU3ug" footerMethod="#_DAhtJF3KEd-mZb1ihLU3ug"
+            initMethod="#_DAhtIl3KEd-mZb1ihLU3ug">
+          <methods xmi:id="_DAhtIV3KEd-mZb1ihLU3ug" name="header" patternFilePath="templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._DAhtIV3KEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_DAhtIl3KEd-mZb1ihLU3ug" name="init" patternFilePath="templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._DAhtIl3KEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_DAhtI13KEd-mZb1ihLU3ug" name="c" patternFilePath="templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._DAhtI13KEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_DAhtJF3KEd-mZb1ihLU3ug" name="footer" patternFilePath="templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._DAhtJF3KEd-mZb1ihLU3ug.pt"/>
+          <methods xmi:id="_GjUecF3KEd-mZb1ihLU3ug" name="d" patternFilePath="templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._GjUecF3KEd-mZb1ihLU3ug.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_DAhtJV3KEd-mZb1ihLU3ug"/>
+          <orchestration xmi:type="pattern:PatternCall" xmi:id="_O-JVsF3KEd-mZb1ihLU3ug"
+              called="#_id8LsF3JEd-mZb1ihLU3ug"/>
+          <orchestration xmi:type="pattern:PatternCall" xmi:id="_QrXsgF3KEd-mZb1ihLU3ug"
+              called="#_sv0rMF3JEd-mZb1ihLU3ug"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_I1DQgF3KEd-mZb1ihLU3ug"
+              called="#_GjUecF3KEd-mZb1ihLU3ug"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_Fdk-YF3KEd-mZb1ihLU3ug"
+              called="#_DAhtI13KEd-mZb1ihLU3ug"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_DAhtJl3KEd-mZb1ihLU3ug"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="__6mFsF3DEd-W5eBkkAoHaA">
+    <invocations xmi:id="_K0Q98F3EEd-W5eBkkAoHaA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+      <invocationContractContainer xmi:id="_K0Q98V3EEd-W5eBkkAoHaA">
+        <invocationContracts xmi:id="_K0Q98l3EEd-W5eBkkAoHaA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_LZ-TEF3EEd-W5eBkkAoHaA"
+              elements="#_D8RV8F3FEd-W5eBkkAoHaA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_K0Q99F3EEd-W5eBkkAoHaA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_Oh8JkF3EEd-W5eBkkAoHaA"
+              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

@@ -95,8 +95,8 @@ public class SkeletonJETCompiler extends JetTagsCompiler {
             }
 
             handleNewSkeleton();
-        } else
-            super.handleDirective(directive, start, stop, attributes);
+        }
+        super.handleDirective(directive, start, stop, attributes);
     }
 
 }

@@ -52,6 +52,9 @@
       <fcore
             id="model/mypackage.fcore">
       </fcore>
+      <fcore
+            id="fc/linefeed.fcore">
+      </fcore>
       
    </extension>
    

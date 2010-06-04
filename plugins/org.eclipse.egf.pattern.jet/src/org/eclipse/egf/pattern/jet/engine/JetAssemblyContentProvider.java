@@ -83,6 +83,7 @@ public class JetAssemblyContentProvider extends AbstractJavaAssemblyContentProvi
             content.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("%>");
             content.append(getMethodContent(method));
+            content.append("\n");
             content.append("<%}%>").append(EGFCommonConstants.LINE_SEPARATOR);
         }
         content.append("<%").append(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);

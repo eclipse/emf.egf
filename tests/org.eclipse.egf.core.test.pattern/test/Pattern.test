@@ -84,4 +84,10 @@
       <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
     </tests>
   </tests>
+  <tests xsi:type="test:TestSuite" name="Jet Linefeed">
+    <tests xsi:type="test:EGFTestCase" name="Linefeed">
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;one-----&#xD;&#xA;two&#xD;&#xA;-----&#xD;&#xA;three&#xD;&#xA; -----&#xD;&#xA;abdc"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/linefeed.fcore#_aNgOQF3DEd-W5eBkkAoHaA"/>
+    </tests>
+  </tests>
 </test:TestSuite>
