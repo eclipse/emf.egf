@@ -31,7 +31,7 @@ import org.eclipse.jdt.core.jdom.IDOMType;
  * @author Thomas Guiu
  * 
  */
-public class SkeletonJETCompiler extends ExtendedJetCompiler {
+public class SkeletonJETCompiler extends JetTagsCompiler {
     private static final String GENERATOR_SKELETON = "platform:/plugin/org.eclipse.egf.pattern.jet/templates/generator.skeleton";
 
     public static class CustomJETSkeleton extends JETSkeleton {
