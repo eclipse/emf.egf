@@ -10,7 +10,6 @@
  */
 package org.eclipse.egf.core.pde.internal.resource;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,7 +43,6 @@ import org.eclipse.egf.core.pde.l10n.EGFPDEMessages;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -130,6 +128,10 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
                 public boolean visit(IResourceDelta delta) throws CoreException {
                     try {
+                        // Ignore opening and closing projects, handled by PlatformManager
+                        if (delta.getResource().getType() == IResource.PROJECT && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
+                            return false;
+                        }
                         // Process file
                         if (delta.getResource().getType() != IResource.FILE) {
                             return true;
@@ -236,15 +238,6 @@ public class FcoreResourceListener implements IResourceChangeListener {
         _listeners = null;
     }
 
-    protected IRunnableWithProgress createFcoreOperation(final IStatus[] errorStatus, final List<IResource> removedFcores, final List<IResource> newFcores) {
-        return new IRunnableWithProgress() {
-
-            public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-
-            }
-        };
-    }
-
     private void trace(IResourceFcoreDelta delta) {
         if (delta.getNewFcores().size() > 0) {
             EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Added {0} Fcore{1}.", //$NON-NLS-1$ 
@@ -311,50 +304,46 @@ public class FcoreResourceListener implements IResourceChangeListener {
                 // Moved Fcores
                 for (IPath path : _movedFcores.keySet()) {
                     // Ignore non Bundle project
-                    if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0))) == null) {
-                        continue;
-                    }
-                    // Delete command
-                    IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
-                    unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
-                    if (monitor.isCanceled()) {
-                        throw new InterruptedException();
+                    if (BundleHelper.getPluginModelBase(path) != null) {
+                        // Delete command
+                        IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
+                        unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+                        if (monitor.isCanceled()) {
+                            throw new InterruptedException();
+                        }
                     }
                     // Ignore non Bundle project
-                    if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(_movedFcores.get(path).segment(0))) == null) {
-                        continue;
-                    }
-                    // Create command
-                    IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(_movedFcores.get(path));
-                    createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
-                    if (monitor.isCanceled()) {
-                        throw new InterruptedException();
+                    if (BundleHelper.getPluginModelBase(_movedFcores.get(path)) != null) {
+                        // Create command
+                        IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(_movedFcores.get(path));
+                        createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+                        if (monitor.isCanceled()) {
+                            throw new InterruptedException();
+                        }
                     }
                 }
                 // Removed Fcores
                 for (IPath path : _removedFcores) {
                     // Ignore non Bundle project
-                    if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0))) == null) {
-                        continue;
-                    }
-                    // Delete command
-                    IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
-                    unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
-                    if (monitor.isCanceled()) {
-                        throw new InterruptedException();
+                    if (BundleHelper.getPluginModelBase(path) != null) {
+                        // Delete command
+                        IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
+                        unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+                        if (monitor.isCanceled()) {
+                            throw new InterruptedException();
+                        }
                     }
                 }
                 // Added Fcores
                 for (IPath path : _newFcores) {
                     // Ignore non Bundle project
-                    if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0))) == null) {
-                        continue;
-                    }
-                    // Create command
-                    IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(path);
-                    createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
-                    if (monitor.isCanceled()) {
-                        throw new InterruptedException();
+                    if (BundleHelper.getPluginModelBase(path) != null) {
+                        // Create command
+                        IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(path);
+                        createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+                        if (monitor.isCanceled()) {
+                            throw new InterruptedException();
+                        }
                     }
                 }
             } catch (InterruptedException e) {
