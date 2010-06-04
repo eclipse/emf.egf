@@ -66,7 +66,7 @@ public class FcoreResourceItemProviderAdapterFactory extends ResourceItemProvide
   }
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.ecore.resource.FcoreResourceImpl}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.util.FcoreResourceImpl}.
    */
   public Adapter createFcoreResourceAdapter() {
     if (_fcoreResourceItemProvider == null) {
