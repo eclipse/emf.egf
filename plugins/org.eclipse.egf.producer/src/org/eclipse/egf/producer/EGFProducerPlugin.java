@@ -21,87 +21,87 @@ import org.osgi.framework.BundleContext;
  */
 public class EGFProducerPlugin extends EGFAbstractPlugin {
 
-  // The shared instance
-  private static EGFProducerPlugin __plugin;
+    // The shared instance
+    private static EGFProducerPlugin __plugin;
 
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
-   */
-  @Override
-  public void start(BundleContext context) throws Exception {
-    super.start(context);
-    __plugin = this;
-  }
-
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-   */
-  @Override
-  public void stop(BundleContext context) throws Exception {
-    __plugin = null;
-    super.stop(context);
-  }
-
-  /**
-   * Returns the shared instance
-   * 
-   * @return the shared instance
-   */
-  public static EGFProducerPlugin getDefault() {
-    return __plugin;
-  }
-
-  /**
-   * Returns an ActivityManagerProducer based on an Fcore model Activity.
-   * 
-   * @return an ActivityManagerProducer
-   */
-  @SuppressWarnings("unchecked")
-  public static <P extends Activity> ActivityManagerProducer<P> getActivityManagerProducer(P activity) throws MissingExtensionException {
-    Map<EClass, ActivityManagerProducer<?>> producers = ProducerRegistry.getActivityManagerProducers();
-    ActivityManagerProducer<P> producer = (ActivityManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
-    if (producer == null) {
-      throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityManagerProducer_extension_error, ProducerRegistry.getName(activity)));
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        __plugin = this;
     }
-    return producer;
 
-  }
-
-  /**
-   * Returns an ActivityProductionContextProducer based on a parent
-   * IModelElementProductionContext<?>.
-   * 
-   * @return an ActivityProductionContextProducer
-   */
-  @SuppressWarnings("unchecked")
-  public static <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws MissingExtensionException {
-    Map<EClass, ActivityProductionContextProducer<?>> producers = ProducerRegistry.getActivityProductionContextProducers();
-    ActivityProductionContextProducer<P> producer = (ActivityProductionContextProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
-    if (producer == null) {
-      throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_extension_error, ProducerRegistry.getName(activity)));
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void stop(BundleContext context) throws Exception {
+        __plugin = null;
+        super.stop(context);
     }
-    return producer;
 
-  }
-
-  /**
-   * Returns an OrchestrationProducer based on a Fcore model Orchestration.
-   * 
-   * @return an OrchestrationProducer
-   */
-  @SuppressWarnings("unchecked")
-  public static <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationProducer(P orchestration) throws MissingExtensionException {
-    Map<EClass, OrchestrationManagerProducer<?>> producers = ProducerRegistry.getOrchestrationManagerProducers();
-    OrchestrationManagerProducer<P> producer = (OrchestrationManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(orchestration.eClass()));
-    if (producer == null) {
-      throw new MissingExtensionException(NLS.bind(ProducerMessages.OrchestrationManagerProducer_extension_error, ProducerRegistry.getName(orchestration)));
+    /**
+     * Returns the shared instance
+     * 
+     * @return the shared instance
+     */
+    public static EGFProducerPlugin getDefault() {
+        return __plugin;
     }
-    return producer;
 
-  }
+    /**
+     * Returns an ActivityManagerProducer based on an Fcore model Activity.
+     * 
+     * @return an ActivityManagerProducer
+     */
+    @SuppressWarnings("unchecked")
+    public static <P extends Activity> ActivityManagerProducer<P> getActivityManagerProducer(P activity) throws MissingExtensionException {
+        Map<EClass, ActivityManagerProducer<?>> producers = ProducerRegistry.getActivityManagerProducers();
+        ActivityManagerProducer<P> producer = (ActivityManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
+        if (producer == null) {
+            throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityManagerProducer_extension_error, ProducerRegistry.getName(activity)));
+        }
+        return producer;
+
+    }
+
+    /**
+     * Returns an ActivityProductionContextProducer based on a parent
+     * IModelElementProductionContext<?>.
+     * 
+     * @return an ActivityProductionContextProducer
+     */
+    @SuppressWarnings("unchecked")
+    public static <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws MissingExtensionException {
+        Map<EClass, ActivityProductionContextProducer<?>> producers = ProducerRegistry.getActivityProductionContextProducers();
+        ActivityProductionContextProducer<P> producer = (ActivityProductionContextProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
+        if (producer == null) {
+            throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_extension_error, ProducerRegistry.getName(activity)));
+        }
+        return producer;
+
+    }
+
+    /**
+     * Returns an OrchestrationProducer based on a Fcore model Orchestration.
+     * 
+     * @return an OrchestrationProducer
+     */
+    @SuppressWarnings("unchecked")
+    public static <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationProducer(P orchestration) throws MissingExtensionException {
+        Map<EClass, OrchestrationManagerProducer<?>> producers = ProducerRegistry.getOrchestrationManagerProducers();
+        OrchestrationManagerProducer<P> producer = (OrchestrationManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(orchestration.eClass()));
+        if (producer == null) {
+            throw new MissingExtensionException(NLS.bind(ProducerMessages.OrchestrationManagerProducer_extension_error, ProducerRegistry.getName(orchestration)));
+        }
+        return producer;
+
+    }
 
 }
