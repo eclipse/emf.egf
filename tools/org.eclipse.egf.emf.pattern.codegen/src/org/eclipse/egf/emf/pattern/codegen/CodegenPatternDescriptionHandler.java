@@ -149,7 +149,7 @@ public class CodegenPatternDescriptionHandler {
         if (patternInfo instanceof GIFPatternInfo)
             return;
 
-        builder.append("file \"");
+        builder.append("file \""); //$NON-NLS-1$
 
         if (patternInfo instanceof JetPatternInfo)
             builder.append(((JetPatternInfo) patternInfo).getJetTemplatePath());
@@ -159,7 +159,7 @@ public class CodegenPatternDescriptionHandler {
             addTemplatePath(builder, rootPatternInfo);
         }
 
-        builder.append("\" in ");
+        builder.append("\" in "); //$NON-NLS-1$
     }
 
 }

@@ -241,7 +241,7 @@ public class CodegenFcoreUtil {
     }
 
     public CodegenEngine getCodeEngine(PatternInfo patternInfo) {
-        return new CodegenEngine(org.eclipse.egf.pattern.jet.Activator.PLUGIN_ID, fcoreProject, JetPreferences.getTemplateFileExtension());
+        return new CodegenEngine(org.eclipse.egf.pattern.jet.Activator.getDefault().getPluginID(), fcoreProject, JetPreferences.getTemplateFileExtension());
     }
 
     public CodegenPatternFactory getPatternFactory(PatternInfo patternInfo) {
