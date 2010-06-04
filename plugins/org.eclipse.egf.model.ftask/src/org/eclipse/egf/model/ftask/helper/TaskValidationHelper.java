@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.model.ftask.helper;
 
-import org.eclipse.egf.model.ftask.task.TaskNature;
+import org.eclipse.egf.model.EGFFtaskPlugin;
 
 /**
  * @author Xavier Maysonnave
@@ -18,18 +18,18 @@ import org.eclipse.egf.model.ftask.task.TaskNature;
  */
 public class TaskValidationHelper {
 
-  private TaskValidationHelper() {
-    // Prevent Instantiation
-  }
+    private TaskValidationHelper() {
+        // Prevent Instantiation
+    }
 
-  public static boolean isValidKind(String kind) {
-    if (kind == null || kind.trim().length() == 0) {
-      return false;
+    public static boolean isValidKind(String kind) {
+        if (kind == null || kind.trim().length() == 0) {
+            return false;
+        }
+        if (EGFFtaskPlugin.getTaskNatureRegistry().getKinds().contains(kind.trim()) == false) {
+            return false;
+        }
+        return true;
     }
-    if (TaskNature.REGISTRY.getKinds().contains(kind.trim()) == false) {
-      return false;
-    }
-    return true;
-  }
 
 }

@@ -14,8 +14,8 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.egf.producer.ftask.invocation.ITaskProductionInvocation;
 import org.osgi.framework.Bundle;
 
@@ -26,31 +26,31 @@ import org.osgi.framework.Bundle;
  */
 public class TaskProductionInvocation implements ITaskProductionInvocation {
 
-  /**
-   * Bundle
-   */
-  private Bundle bundle;
+    /**
+     * Bundle
+     */
+    private Bundle bundle;
 
-  /**
-   * ITaskProductionContext
-   */
-  private ITaskProductionContext productionContext;
+    /**
+     * ITaskProductionContext
+     */
+    private ITaskProductionContext productionContext;
 
-  /**
-   * Task
-   */
-  private Task task;
+    /**
+     * Task
+     */
+    private Task task;
 
-  public TaskProductionInvocation(Bundle bundle, ITaskProductionContext productionContext, Task task) {
-    Assert.isNotNull(bundle);
-    Assert.isNotNull(productionContext);
-    this.bundle = bundle;
-    this.productionContext = productionContext;
-    this.task = task;
-  }
+    public TaskProductionInvocation(Bundle bundle, ITaskProductionContext productionContext, Task task) {
+        Assert.isNotNull(bundle);
+        Assert.isNotNull(productionContext);
+        this.bundle = bundle;
+        this.productionContext = productionContext;
+        this.task = task;
+    }
 
-  public void invoke(final IProgressMonitor monitor) throws InvocationException {
-    TaskNature.REGISTRY.getTaskNature(task).invoke(bundle, productionContext, task, monitor);
-  }
+    public void invoke(final IProgressMonitor monitor) throws InvocationException {
+        EGFFtaskPlugin.getTaskNatureRegistry().getTaskNature(task).invoke(bundle, productionContext, task, monitor);
+    }
 
 }

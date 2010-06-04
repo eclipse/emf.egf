@@ -13,13 +13,13 @@ package org.eclipse.egf.model.ftask.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.edit.EGFFtaskEditPlugin;
 import org.eclipse.egf.model.fcore.provider.IResourceChildCreationExtender;
 import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.egf.model.ftask.FtaskFactory;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -35,31 +35,31 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  */
 public class FcoreResourceChildCreationExtender implements IResourceChildCreationExtender {
 
-  protected Collection<EClass> _roots;
+    protected Collection<EClass> _roots;
 
-  public Collection<EClass> getRoots() {
-    if (_roots == null) {
-      _roots = new UniqueEList<EClass>();
-      _roots.add(FtaskPackage.Literals.TASK);
+    public Collection<EClass> getRoots() {
+        if (_roots == null) {
+            _roots = new UniqueEList<EClass>();
+            _roots.add(FtaskPackage.Literals.TASK);
+        }
+        return _roots;
     }
-    return _roots;
-  }
 
-  public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-    ArrayList<Object> newChildDescriptors = new ArrayList<Object>();
-    for (String kind : TaskNature.REGISTRY.getKinds()) {
-      Task task = FtaskFactory.eINSTANCE.createTask();
-      task.setKind(kind);
-      newChildDescriptors.add(createChildParameter(FtaskPackage.Literals.TASK, task));
+    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+        ArrayList<Object> newChildDescriptors = new ArrayList<Object>();
+        for (String kind : EGFFtaskPlugin.getTaskNatureRegistry().getKinds()) {
+            Task task = FtaskFactory.eINSTANCE.createTask();
+            task.setKind(kind);
+            newChildDescriptors.add(createChildParameter(FtaskPackage.Literals.TASK, task));
+        }
+        return newChildDescriptors;
     }
-    return newChildDescriptors;
-  }
 
-  protected CommandParameter createChildParameter(Object feature, Object child) {
-    return new CommandParameter(null, feature, child);
-  }
+    protected CommandParameter createChildParameter(Object feature, Object child) {
+        return new CommandParameter(null, feature, child);
+    }
 
-  public ResourceLocator getResourceLocator() {
-    return EGFFtaskEditPlugin.INSTANCE;
-  }
+    public ResourceLocator getResourceLocator() {
+        return EGFFtaskEditPlugin.INSTANCE;
+    }
 }
