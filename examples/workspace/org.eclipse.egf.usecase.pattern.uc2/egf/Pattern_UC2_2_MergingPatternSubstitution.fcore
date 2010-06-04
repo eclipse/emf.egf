@@ -7,7 +7,7 @@
     name="Pattern_UC2_2_MergingPatternSubstitution">
   <contractContainer xmi:id="_1U-uAFn2Ed-yhOrMHI1JRQ">
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1571MFn2Ed-yhOrMHI1JRQ"
-        name="pattern.substitutions">
+        name="pattern.substitutions" invocationContracts="#_bxxTJFnuEd-yhOrMHI1JRQ">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1571MVn2Ed-yhOrMHI1JRQ"/>
     </contracts>
   </contractContainer>
@@ -55,14 +55,12 @@
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_9BzwcFnuEd-yhOrMHI1JRQ">
             <substitutions xmi:id="_92tYIFnuEd-yhOrMHI1JRQ" outgoing="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_KAoXYFkrEd-nZ9GSBuVMNQ"
                 incoming="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_BhzYkFnpEd-nCN8bxVd2Rg #_ED6MIFntEd-nCN8bxVd2Rg"/>
-          </type>
-        </invocationContracts>
-        <invocationContracts xmi:id="_bxxTJFnuEd-yhOrMHI1JRQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_ahgHMEldEd-TSsH7K-_bxQ">
-          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_mB5psFnvEd-yhOrMHI1JRQ">
             <substitutions xmi:id="_okxPEFnvEd-yhOrMHI1JRQ" outgoing="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_gA2NoFkoEd-nZ9GSBuVMNQ"
                 incoming="#_6KKtkFnxEd-yhOrMHI1JRQ"/>
           </type>
         </invocationContracts>
+        <invocationContracts xmi:id="_bxxTJFnuEd-yhOrMHI1JRQ" factoryComponentContract="#_1571MFn2Ed-yhOrMHI1JRQ"
+            invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
         <invocationContracts xmi:id="_bxxTJVnuEd-yhOrMHI1JRQ" targetInvocationContract="#_QfRZQ1nwEd-yhOrMHI1JRQ"
             invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
       </invocationContractContainer>
