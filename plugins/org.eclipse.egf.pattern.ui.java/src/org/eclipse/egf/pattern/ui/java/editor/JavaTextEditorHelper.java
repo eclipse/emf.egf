@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -61,6 +61,7 @@ import org.eclipse.ui.texteditor.ITextEditor;
  * 
  */
 public class JavaTextEditorHelper {
+
     /**
      * Get the words which will be used in code completion.
      */
@@ -125,7 +126,7 @@ public class JavaTextEditorHelper {
             try {
                 templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
-                Activator.getDefault().log(e);
+                Activator.getDefault().logError(e);
             }
             refreshPublicTemplateEditor(pattern, templateFile, editor);
         }
@@ -175,7 +176,7 @@ public class JavaTextEditorHelper {
                 fEditor = (JavaEditor) IDE.openEditor(templateActivePage, templateFile, false);
                 templateActivePage.setEditorAreaVisible(false);
             } catch (Exception e) {
-                Activator.getDefault().log(e);
+                Activator.getDefault().logError(e);
             }
             p = fEditor.getDocumentProvider();
         }
@@ -290,11 +291,11 @@ public class JavaTextEditorHelper {
         if (multiPageEditorPart == null)
             return;
         IEditorPart templateEditorPart = ((JavaTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
-        
-        if(templateEditorPart == null){
+
+        if (templateEditorPart == null) {
             return;
         }
-        
+
         Pattern pattern = editor.getPattern();
         IEditorInput editorInput = templateEditorPart.getEditorInput();
         if (editorInput instanceof IFileEditorInput) {
@@ -388,7 +389,7 @@ public class JavaTextEditorHelper {
     }
 
     public static IAnnotationModel getAnnotationModel(JavaEditor fEditor) {
-        if(fEditor == null){
+        if (fEditor == null) {
             return null;
         }
         IDocumentProvider p = fEditor.getDocumentProvider();
