@@ -21,67 +21,67 @@ import org.osgi.framework.BundleContext;
  */
 public class EGFCommonUIPlugin extends EGFAbstractUIPlugin {
 
-  /**
-   * The shared instance
-   */
-  private static EGFCommonUIPlugin __plugin;
+    /**
+     * The shared instance
+     */
+    private static EGFCommonUIPlugin __plugin;
 
-  /**
-   * 
-   * Returns the currently active window for this workbench (if any). Returns
-   * <code>null</code> if there is no active workbench window. Returns
-   * <code>null</code> if called from a non-UI thread.
-   * 
-   * @return the active workbench window, or <code>null</code> if there is
-   *         no active workbench window or if called from a non-UI thread
-   */
-  public static IWorkbenchWindow getActiveWorkbenchWindow() {
-    return getDefault().getWorkbench().getActiveWorkbenchWindow();
-  }
-
-  /**
-   * Returns the currently active shell for this workbench (if any).
-   * 
-   * @return the active workbench shell.
-   */
-  public static Shell getActiveWorkbenchShell() {
-    IWorkbenchWindow window = getActiveWorkbenchWindow();
-    if (window == null) {
-      IWorkbenchWindow[] windows = getDefault().getWorkbench().getWorkbenchWindows();
-      if (windows.length > 0) {
-        return windows[0].getShell();
-      }
-    } else {
-      return window.getShell();
+    /**
+     * 
+     * Returns the currently active window for this workbench (if any). Returns
+     * <code>null</code> if there is no active workbench window. Returns
+     * <code>null</code> if called from a non-UI thread.
+     * 
+     * @return the active workbench window, or <code>null</code> if there is
+     *         no active workbench window or if called from a non-UI thread
+     */
+    public static IWorkbenchWindow getActiveWorkbenchWindow() {
+        return getDefault().getWorkbench().getActiveWorkbenchWindow();
     }
-    return null;
-  }
 
-  /**
-   * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
-   */
-  @Override
-  public void start(BundleContext context_p) throws Exception {
-    super.start(context_p);
-    __plugin = this;
-  }
+    /**
+     * Returns the currently active shell for this workbench (if any).
+     * 
+     * @return the active workbench shell.
+     */
+    public static Shell getActiveWorkbenchShell() {
+        IWorkbenchWindow window = getActiveWorkbenchWindow();
+        if (window == null) {
+            IWorkbenchWindow[] windows = getDefault().getWorkbench().getWorkbenchWindows();
+            if (windows.length > 0) {
+                return windows[0].getShell();
+            }
+        } else {
+            return window.getShell();
+        }
+        return null;
+    }
 
-  /**
-   * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-   */
-  @Override
-  public void stop(BundleContext context_p) throws Exception {
-    __plugin = null;
-    super.stop(context_p);
-  }
+    /**
+     * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void start(BundleContext context_p) throws Exception {
+        super.start(context_p);
+        __plugin = this;
+    }
 
-  /**
-   * Returns the shared instance
-   * 
-   * @return the shared instance
-   */
-  public static EGFCommonUIPlugin getDefault() {
-    return __plugin;
-  }
+    /**
+     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void stop(BundleContext context_p) throws Exception {
+        super.stop(context_p);
+        __plugin = null;
+    }
+
+    /**
+     * Returns the shared instance
+     * 
+     * @return the shared instance
+     */
+    public static EGFCommonUIPlugin getDefault() {
+        return __plugin;
+    }
 
 }
