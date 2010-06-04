@@ -18,16 +18,26 @@ package org.eclipse.egf.core.internal.fcore;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
-import org.eclipse.pde.core.plugin.IPluginElement;
 
 public final class PlatformFcore extends PlatformExtensionPointURI implements IPlatformFcore {
 
-  public PlatformFcore(IPlatformBundle bundle, IPluginElement element, String id) {
-    super(bundle, element, id);
-  }
+    public PlatformFcore(IPlatformBundle bundle, String id) {
+        super(bundle, id);
+    }
 
-  public String getName() {
-    return getPreviousURI().toString();
-  }
+    public String getName() {
+        return getURI().toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (super.equals(object) == false) {
+            return false;
+        }
+        if (object instanceof IPlatformFcore == false) {
+            return false;
+        }
+        return true;
+    }
 
 }
