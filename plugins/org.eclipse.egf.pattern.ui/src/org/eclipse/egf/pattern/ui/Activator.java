@@ -24,64 +24,64 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends EGFAbstractUIPlugin {
 
-  /**
-   * Shared instance.
-   */
-  protected static Activator __plugin;
+    /**
+     * Shared instance.
+     */
+    protected static Activator __plugin;
 
-  /**
-   * Get shared instance.
-   * 
-   * @return
-   */
-  public static Activator getDefault() {
-    return __plugin;
-  }
-
-  /**
-   * 
-   * Returns the currently active window for this workbench (if any). Returns
-   * <code>null</code> if there is no active workbench window. Returns
-   * <code>null</code> if called from a non-UI thread.
-   * 
-   * @return the active workbench window, or <code>null</code> if there is
-   *         no active workbench window or if called from a non-UI thread
-   */
-  public static IWorkbenchWindow getActiveWorkbenchWindow() {
-    return getDefault().getWorkbench().getActiveWorkbenchWindow();
-  }
-
-  /**
-   * Returns the currently active shell for this workbench (if any).
-   * 
-   * @return the active workbench shell.
-   */
-  public static Shell getActiveWorkbenchShell() {
-    IWorkbenchWindow window = getActiveWorkbenchWindow();
-    if (window == null) {
-      IWorkbenchWindow[] windows = getDefault().getWorkbench().getWorkbenchWindows();
-      if (windows.length > 0) {
-        return windows[0].getShell();
-      }
-    } else {
-      return window.getShell();
+    /**
+     * Get shared instance.
+     * 
+     * @return Activator
+     */
+    public static Activator getDefault() {
+        return __plugin;
     }
-    return null;
-  }
 
-  @Override
-  public void start(BundleContext context_p) throws Exception {
-    super.start(context_p);
-    __plugin = this;
-    EGFPDEPlugin.getDefault().addResourceFcoreListener(FcoreListener.INSTANCE);
-  }
+    /**
+     * 
+     * Returns the currently active window for this workbench (if any). Returns
+     * <code>null</code> if there is no active workbench window. Returns
+     * <code>null</code> if called from a non-UI thread.
+     * 
+     * @return the active workbench window, or <code>null</code> if there is
+     *         no active workbench window or if called from a non-UI thread
+     */
+    public static IWorkbenchWindow getActiveWorkbenchWindow() {
+        return getDefault().getWorkbench().getActiveWorkbenchWindow();
+    }
 
-  @Override
-  public void stop(BundleContext context_p) throws Exception {
-    __plugin = null;
-    if (EGFPDEPlugin.getDefault() != null)
-      EGFPDEPlugin.getDefault().removeResourceFcoreListener(FcoreListener.INSTANCE);
-    super.stop(context_p);
-  }
+    /**
+     * Returns the currently active shell for this workbench (if any).
+     * 
+     * @return the active workbench shell.
+     */
+    public static Shell getActiveWorkbenchShell() {
+        IWorkbenchWindow window = getActiveWorkbenchWindow();
+        if (window == null) {
+            IWorkbenchWindow[] windows = getDefault().getWorkbench().getWorkbenchWindows();
+            if (windows.length > 0) {
+                return windows[0].getShell();
+            }
+        } else {
+            return window.getShell();
+        }
+        return null;
+    }
+
+    @Override
+    public void start(BundleContext context_p) throws Exception {
+        super.start(context_p);
+        __plugin = this;
+        EGFPDEPlugin.getDefault().addResourceFcoreListener(FcoreListener.INSTANCE);
+    }
+
+    @Override
+    public void stop(BundleContext context_p) throws Exception {
+        __plugin = null;
+        if (EGFPDEPlugin.getDefault() != null)
+            EGFPDEPlugin.getDefault().removeResourceFcoreListener(FcoreListener.INSTANCE);
+        super.stop(context_p);
+    }
 
 }
