@@ -53,6 +53,7 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
     public void stop(BundleContext context) throws Exception {
         if (__loggerRegistry != null) {
             __loggerRegistry.dispose();
+            __loggerRegistry = null;
         }
         super.stop(context);
         __plugin = null;
