@@ -267,13 +267,13 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
     public void stop(BundleContext context) throws Exception {
         __platformManager.dispose();
         __platformURIConverter.dispose();
-        __plugin = null;
         __platformManager = null;
         __platformURIConverter = null;
         __managerExtensionPoints = null;
         __platformExtensionPoints = null;
         __platformExtensionPointClasses = null;
         __platformExtensionPointFactories = null;
+        __plugin = null;
         super.stop(context);
     }
 
