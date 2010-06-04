@@ -66,8 +66,8 @@ public class Activator extends EGFAbstractPlugin {
      */
     public void stop(BundleContext context) throws Exception {
         ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
-        plugin = null;
         super.stop(context);
+        plugin = null;
     }
 
     /**
