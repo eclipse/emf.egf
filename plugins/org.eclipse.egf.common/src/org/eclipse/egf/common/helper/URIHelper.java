@@ -23,60 +23,84 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
  */
 public class URIHelper {
 
-  private URIHelper() {
-    // Prevent Instantiation
-  }
+    private URIHelper() {
+        // Prevent Instantiation
+    }
 
-  public static final URI PLATFORM_PLUGIN_URI = URI.createURI("platform:/plugin/"); //$NON-NLS-1$
+    public static final URI PLATFORM_PLUGIN_URI = URI.createURI("platform:/plugin/"); //$NON-NLS-1$
 
-  public static final URI PLATFORM_RESOURCE_URI = URI.createURI("platform:/resource/"); //$NON-NLS-1$  
+    public static final URI PLATFORM_RESOURCE_URI = URI.createURI("platform:/resource/"); //$NON-NLS-1$  
 
-  public static URI getPlatformURI(IPluginModelBase model, String value) {
-    if (model == null || value == null || value.trim().length() == 0) {
-      return null;
+    public static String toString(URI uri) {
+        if (uri == null) {
+            return null;
+        }
+        if (uri.isPlatformPlugin() || uri.isPlatformResource()) {
+            String fragment = uri.fragment();
+            URI encodedURI = null;
+            if (uri.isPlatformPlugin()) {
+                // Platform
+                String pathName = URI.decode(uri.trimFragment().toString().substring(PLATFORM_PLUGIN_URI.toString().length(), uri.trimFragment().toString().length()));
+                encodedURI = URI.createPlatformPluginURI(pathName, true);
+            } else {
+                // Resource
+                String pathName = URI.decode(uri.trimFragment().toString().substring(PLATFORM_RESOURCE_URI.toString().length(), uri.trimFragment().toString().length()));
+                encodedURI = URI.createPlatformResourceURI(pathName, true);
+            }
+            if (fragment != null) {
+                encodedURI = encodedURI.appendFragment(fragment);
+            }
+            return encodedURI.toString();
+        }
+        return uri.toString();
     }
-    String bundleId = BundleHelper.getBundleId(model);
-    if (bundleId == null) {
-      return null;
-    }
-    return getPlatformURI(bundleId, URI.decode(value.trim()), false);
-  }
 
-  public static URI getPlatformURI(IPath path) {
-    if (path == null || path.segmentCount() < 2) {
-      return null;
+    public static URI getPlatformURI(IPluginModelBase model, String value) {
+        if (model == null || value == null || value.trim().length() == 0) {
+            return null;
+        }
+        String bundleId = BundleHelper.getBundleId(model);
+        if (bundleId == null) {
+            return null;
+        }
+        return getPlatformURI(bundleId, URI.decode(value.trim()), false);
     }
-    IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0));
-    if (project == null) {
-      return null;
-    }
-    String bundleId = BundleHelper.getBundleId(project);
-    if (bundleId == null) {
-      return null;
-    }
-    return getPlatformURI(bundleId, path.removeFirstSegments(1).toString(), false);
-  }
 
-  public static URI getPlatformURI(IResource resource) {
-    if (resource == null || resource.getFullPath() == null || resource.getFullPath().segmentCount() < 2) {
-      return null;
+    public static URI getPlatformURI(IPath path) {
+        if (path == null || path.segmentCount() < 2) {
+            return null;
+        }
+        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0));
+        if (project == null) {
+            return null;
+        }
+        String bundleId = BundleHelper.getBundleId(project);
+        if (bundleId == null) {
+            return null;
+        }
+        return getPlatformURI(bundleId, path.removeFirstSegments(1).toString(), false);
     }
-    String bundleId = BundleHelper.getBundleId(resource);
-    if (bundleId == null) {
-      return null;
-    }
-    return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), false);
-  }
 
-  public static URI getPlatformURI(String bundleId, String value, boolean encode) {
-    if (bundleId == null || bundleId.trim().length() == 0 || value == null || value.trim().length() == 0) {
-      return null;
+    public static URI getPlatformURI(IResource resource) {
+        if (resource == null || resource.getFullPath() == null || resource.getFullPath().segmentCount() < 2) {
+            return null;
+        }
+        String bundleId = BundleHelper.getBundleId(resource);
+        if (bundleId == null) {
+            return null;
+        }
+        return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), false);
     }
-    URI uri = URI.createURI(value.trim());
-    if (uri.isRelative()) {
-      uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
+
+    public static URI getPlatformURI(String bundleId, String value, boolean encode) {
+        if (bundleId == null || bundleId.trim().length() == 0 || value == null || value.trim().length() == 0) {
+            return null;
+        }
+        URI uri = URI.createURI(value.trim());
+        if (uri.isRelative()) {
+            uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
+        }
+        return uri;
     }
-    return uri;
-  }
 
 }
