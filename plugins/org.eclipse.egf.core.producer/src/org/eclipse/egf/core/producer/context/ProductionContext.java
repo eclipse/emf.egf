@@ -200,7 +200,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { __outputMode, EMFHelper.getText(key), getName() }));
     }
     // null value is a valid value
-    if (value != null && (ClassHelper.asSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
+    if (value != null && (ClassHelper.isSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), __outputMode, EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set output value
@@ -304,7 +304,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     if (data == null || data.getValue() == null) {
       return null;
     }
-    if (ClassHelper.asSubClass(data.getValue().getClass(), clazz) == false) {
+    if (ClassHelper.isSubClass(data.getValue().getClass(), clazz) == false) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), mode, EMFHelper.getText(key), clazz.getName(), getName() }));
     }
     try {
