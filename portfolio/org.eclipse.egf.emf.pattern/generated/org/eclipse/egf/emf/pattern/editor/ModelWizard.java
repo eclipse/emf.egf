@@ -354,12 +354,18 @@ canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.em
 canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard());
 
     }
+    protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+if (canGenerate)
+    new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+
+    }
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
@@ -382,9 +388,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__ScPssGKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__ScPssGKKEdvV655ccA3JQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__ScPssGKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__26bPEGKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__26bPEGKMEd_wNQtGaQlw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__26bPEGKMEd_wNQtGaQlw);
 
     String _ListOfString = "List" + (genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.String") + ">" : "");
     String _ArrayListOfString = "ArrayList" + (genModel.useGenerics() ? "<" + genModel.getImportedName("java.lang.String") + ">" : "");

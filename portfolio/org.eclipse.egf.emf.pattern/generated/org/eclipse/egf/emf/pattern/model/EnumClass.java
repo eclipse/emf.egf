@@ -235,12 +235,18 @@ canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.em
 canGenerate = canGenerate && true;
 
     }
+    protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+if (canGenerate)
+    new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+
+    }
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
@@ -263,9 +269,9 @@ if (arguments != null)
 
     GenEnum genEnum = (GenEnum)argument; GenPackage genPackage = genEnum.getGenPackage(); GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__Ruf14GKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__Ruf14GKKEdvV655ccA3JQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__Ruf14GKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__1vUt4GKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__1vUt4GKMEd_wNQtGaQlw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__1vUt4GKMEd_wNQtGaQlw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getInterfacePackageName());

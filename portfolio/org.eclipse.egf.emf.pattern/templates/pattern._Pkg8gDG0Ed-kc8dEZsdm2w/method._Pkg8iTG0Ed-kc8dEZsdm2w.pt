@@ -1,7 +1,6 @@
 <%
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 GenClass genClass = parameter;
 GenModel genModel=genClass.getGenModel();
 if (genModel.isCreationCommands() && genModel.isCreationIcons()) {

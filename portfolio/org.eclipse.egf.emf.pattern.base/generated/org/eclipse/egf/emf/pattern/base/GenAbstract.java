@@ -69,6 +69,8 @@ method_putCanGenerateInContext(ictx.getBuffer(), ictx);
     
 method_putContentTypeInContext(ictx.getBuffer(), ictx);
     
+method_ensureProjectExists(ictx.getBuffer(), ictx);
+    
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
     ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
@@ -124,6 +126,9 @@ ctx.setValue("canGenerate", canGenerate);
 
     
 ctx.setValue("contentType", ContentType.Undefined);
+
+    }
+    protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     }
     protected void method_preGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {

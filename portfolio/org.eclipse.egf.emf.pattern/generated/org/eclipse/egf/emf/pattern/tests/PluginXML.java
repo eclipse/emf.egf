@@ -139,12 +139,18 @@ canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.em
 canGenerate = canGenerate && (!(genModel.isBundleManifest())) && (!genModel.sameModelTestsProject());
 
     }
+    protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+if (canGenerate)
+    new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+
+    }
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
@@ -168,9 +174,9 @@ if (arguments != null)
     GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
-    final Map<String, Object> parameters__SfEQGKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__SfEQGKKEdvV655ccA3JQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__SfEQGKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__29QgoGKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__29QgoGKMEd_wNQtGaQlw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__29QgoGKMEd_wNQtGaQlw);
 
     stringBuffer.append(TEXT_3);
     if (genModel.isBundleManifest()) {

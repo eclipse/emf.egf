@@ -264,21 +264,21 @@ return parameters; }
     stringBuffer.append(TEXT_10);
     }
     stringBuffer.append(TEXT_11);
-    final Map<String, Object> parameters__SUWU8GKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__SUWU8GKKEdvV655ccA3JQ.put("createClass", createClass);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("createFeature", createFeature);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("delegatedFeature", delegatedFeature);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("createClassifier", createClassifier);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("childCreationData", childCreationData);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("genClass", genClass);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("classEntry", classEntry);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("packageEntry", packageEntry);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("genPackage", genPackage);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("genModel", genModel);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("useGenerics", useGenerics);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("_ArrayList", _ArrayList);
-parameters__SUWU8GKKEdvV655ccA3JQ.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06b1oGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__SUWU8GKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__2ugS8GKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__2ugS8GKMEd_wNQtGaQlw.put("createClass", createClass);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("createFeature", createFeature);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("delegatedFeature", delegatedFeature);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("createClassifier", createClassifier);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("childCreationData", childCreationData);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("genClass", genClass);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("classEntry", classEntry);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("packageEntry", packageEntry);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("genPackage", genPackage);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("genModel", genModel);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("useGenerics", useGenerics);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("_ArrayList", _ArrayList);
+parameters__2ugS8GKMEd_wNQtGaQlw.put("_Collection", _Collection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06b1oGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__2ugS8GKMEd_wNQtGaQlw);
 
     stringBuffer.append(TEXT_12);
     }

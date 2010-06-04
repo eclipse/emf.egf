@@ -26,6 +26,7 @@
                 patternFilePath="templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._EIxTUCqgEd-epqYWscz24Q.pt"/>
             <methods xmi:id="_ROCT4Cq1Ed-Id7h7r1RDwA" name="putContentTypeInContext"
                 patternFilePath="templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._ROCT4Cq1Ed-Id7h7r1RDwA.pt"/>
+            <methods xmi:id="_BItdcGKMEd-vV655ccA3JQ" name="ensureProjectExists" patternFilePath="templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._BItdcGKMEd-vV655ccA3JQ.pt"/>
             <methods xmi:id="_Chxo4ChGEd-zj5CV40Ozyg" name="preGenerate" patternFilePath="templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._Chxo4ChGEd-zj5CV40Ozyg.pt"/>
             <methods xmi:id="_C8cLoChGEd-zj5CV40Ozyg" name="doGenerate" patternFilePath="templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._C8cLoChGEd-zj5CV40Ozyg.pt"/>
             <methods xmi:id="_DrPLUChGEd-zj5CV40Ozyg" name="postGenerate" patternFilePath="templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._DrPLUChGEd-zj5CV40Ozyg.pt"/>
@@ -45,6 +46,8 @@
                 called="#_EIxTUCqgEd-epqYWscz24Q"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_TOyDoCq1Ed-Id7h7r1RDwA"
                 called="#_ROCT4Cq1Ed-Id7h7r1RDwA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Fu2iIGKMEd-vV655ccA3JQ"
+                called="#_BItdcGKMEd-vV655ccA3JQ"/>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_TT9flig5Ed-ROrlGa8LEeQ"
                 name="JET"/>
             <variables xmi:id="_a3MngCg5Ed-ROrlGa8LEeQ" name="genModel" type="http://www.eclipse.org/emf/2002/GenModel#//GenModel"/>

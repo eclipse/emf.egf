@@ -164,12 +164,12 @@ return parameters; }
     stringBuffer.append(TEXT_8);
     if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/genOperation.annotations.insert.javajetinc
     stringBuffer.append(TEXT_9);
-    final Map<String, Object> parameters__SlfIQGKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__SlfIQGKKEdvV655ccA3JQ.put("genOperation", genOperation);
-parameters__SlfIQGKKEdvV655ccA3JQ.put("genClass", genClass);
-parameters__SlfIQGKKEdvV655ccA3JQ.put("genPackage", genPackage);
-parameters__SlfIQGKKEdvV655ccA3JQ.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1C7qUGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__SlfIQGKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__3CeX0GKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__3CeX0GKMEd_wNQtGaQlw.put("genOperation", genOperation);
+parameters__3CeX0GKMEd_wNQtGaQlw.put("genClass", genClass);
+parameters__3CeX0GKMEd_wNQtGaQlw.put("genPackage", genPackage);
+parameters__3CeX0GKMEd_wNQtGaQlw.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1C7qUGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3CeX0GKMEd_wNQtGaQlw);
 
     }
     stringBuffer.append(TEXT_10);
@@ -177,22 +177,22 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     stringBuffer.append(genOperation.getGenParameters().size() == 0 ? "" : "__" + genOperation.getParameterTypes("_", false));
     stringBuffer.append(TEXT_11);
     stringBuffer.append(TEXT_12);
-    final Map<String, Object> parameters__Slo5QGKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__Slo5QGKKEdvV655ccA3JQ.put("genOperation", genOperation);
-parameters__Slo5QGKKEdvV655ccA3JQ.put("genClass", genClass);
-parameters__Slo5QGKKEdvV655ccA3JQ.put("genPackage", genPackage);
-parameters__Slo5QGKKEdvV655ccA3JQ.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1DFbUGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__Slo5QGKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__3CeX0WKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__3CeX0WKMEd_wNQtGaQlw.put("genOperation", genOperation);
+parameters__3CeX0WKMEd_wNQtGaQlw.put("genClass", genClass);
+parameters__3CeX0WKMEd_wNQtGaQlw.put("genPackage", genPackage);
+parameters__3CeX0WKMEd_wNQtGaQlw.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1DFbUGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3CeX0WKMEd_wNQtGaQlw);
 
     //TestCase/implementedGenOperation.todo.override.javajetinc
     stringBuffer.append(TEXT_13);
     stringBuffer.append(TEXT_14);
-    final Map<String, Object> parameters__Slo5QWKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__Slo5QWKKEdvV655ccA3JQ.put("genOperation", genOperation);
-parameters__Slo5QWKKEdvV655ccA3JQ.put("genClass", genClass);
-parameters__Slo5QWKKEdvV655ccA3JQ.put("genPackage", genPackage);
-parameters__Slo5QWKKEdvV655ccA3JQ.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1DOlQGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__Slo5QWKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__3CeX0mKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__3CeX0mKMEd_wNQtGaQlw.put("genOperation", genOperation);
+parameters__3CeX0mKMEd_wNQtGaQlw.put("genClass", genClass);
+parameters__3CeX0mKMEd_wNQtGaQlw.put("genPackage", genPackage);
+parameters__3CeX0mKMEd_wNQtGaQlw.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1DOlQGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__3CeX0mKMEd_wNQtGaQlw);
 
     stringBuffer.append(TEXT_15);
     }

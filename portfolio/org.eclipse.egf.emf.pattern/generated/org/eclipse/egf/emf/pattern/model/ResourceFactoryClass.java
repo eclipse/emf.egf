@@ -154,12 +154,18 @@ canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.em
 canGenerate = canGenerate && (genPackage.getResource() != GenResourceKind.NONE_LITERAL);
 
     }
+    protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+if (canGenerate)
+    new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+
+    }
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
@@ -182,9 +188,9 @@ if (arguments != null)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__RpI0wGKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__RpI0wGKKEdvV655ccA3JQ.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__RpI0wGKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__1qG2sGKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__1qG2sGKMEd_wNQtGaQlw.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__1qG2sGKMEd_wNQtGaQlw);
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -243,10 +249,10 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     }
     stringBuffer.append(TEXT_28);
     stringBuffer.append(TEXT_29);
-    final Map<String, Object> parameters__RpSlwGKKEdvV655ccA3JQ = new HashMap<String, Object>();
-parameters__RpSlwGKKEdvV655ccA3JQ.put("genPackage", genPackage);
-parameters__RpSlwGKKEdvV655ccA3JQ.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__RpSlwGKKEdvV655ccA3JQ);
+    final Map<String, Object> parameters__1qQnsGKMEd_wNQtGaQlw = new HashMap<String, Object>();
+parameters__1qQnsGKMEd_wNQtGaQlw.put("genPackage", genPackage);
+parameters__1qQnsGKMEd_wNQtGaQlw.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__1qQnsGKMEd_wNQtGaQlw);
 
     //ResourceFactoryClass/createResource.override.javajetinc
     stringBuffer.append(TEXT_30);
