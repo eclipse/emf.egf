@@ -175,8 +175,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
         // Stop our listeners
         _fcoreResourceListener.dispose();
         _fcoreResourceListener = null;
-        __plugin = null;
         super.stop(context);
+        __plugin = null;
     }
 
     /**
