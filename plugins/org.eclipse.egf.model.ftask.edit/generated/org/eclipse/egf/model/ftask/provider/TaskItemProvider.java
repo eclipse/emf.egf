@@ -19,7 +19,7 @@ import org.eclipse.egf.common.helper.StringHelper;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.task.TaskHook;
+import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -88,7 +88,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
         FtaskPackage.Literals.TASK__KIND, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null) {
       @Override
       public Collection<String> getChoiceOfValues(Object innerObject) {
-        Collection<String> result = TaskHook.HELPER.getKinds();
+        Collection<String> result = TaskNature.REGISTRY.getKinds();
         if (result.contains(null) == false) {
           result.add(null);
         }

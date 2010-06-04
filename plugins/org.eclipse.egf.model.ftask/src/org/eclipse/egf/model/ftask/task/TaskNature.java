@@ -37,7 +37,9 @@ import org.osgi.framework.Bundle;
  * @author Thomas Guiu
  * 
  */
-public interface TaskHook {
+public interface TaskNature {
+
+    public TaskNatureRegistry REGISTRY = new TaskNatureRegistry();
 
     // TODO pas sur que le ctx en ITaskProductionContext soit une bonne idee
     public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException;
@@ -58,59 +60,60 @@ public interface TaskHook {
      */
     public static final String INVOKER_ATT_CLASS = "class"; //$NON-NLS-1$    
 
-    class Helper {
+    class TaskNatureRegistry {
 
         public List<String> getKinds() {
-            return new ArrayList<String>(kind2hooks.keySet());
+            return new ArrayList<String>(natures.keySet());
         }
 
-        public TaskHook getHook(Task task) throws InvocationException {
+        public TaskNature getTaskNature(Task task) throws InvocationException {
             if (task == null) {
                 throw new InvocationException(EGFFtaskMessages.missing_task_message);
             }
             if (task.getKindValue() == null || task.getKindValue().trim().length() == 0) {
                 throw new InvocationException(NLS.bind(EGFFtaskMessages.missing_kind_message, EMFHelper.getText(task)));
             }
-            TaskHook taskHook = kind2hooks.get(task.getKindValue().trim());
-            if (taskHook == null) {
-                throw new InvocationException(NLS.bind(EGFFtaskMessages.missing_hook_message, task.getKindValue().trim()));
+            TaskNature taskNature = natures.get(task.getKindValue().trim());
+            if (taskNature == null) {
+                throw new InvocationException(NLS.bind(EGFFtaskMessages.missing_nature_message, task.getKindValue().trim()));
             }
-            return taskHook;
+            return taskNature;
         }
 
-        private Helper() {
+        private TaskNatureRegistry() {
             for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID)) {
                 try {
-                    // Extension retrieval
+                    // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
                     String extension = ExtensionPointHelper.getAttributeValue(element, INVOKER_ATT_CLASS);
                     // Ignore
                     if (extension == null || extension.trim().length() == 0) {
                         continue;
                     }
                     extension = extension.trim();
+                    // 'class' attribute is mandatory
                     Object object = element.createExecutableExtension(INVOKER_ATT_CLASS);
                     if (object == null) {
                         continue;
                     }
-                    if (object instanceof TaskHook == false) {
+                    if (object instanceof TaskNature == false) {
                         EGFFtaskPlugin.getPlugin().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-                        EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", TaskHook.class.getName()), 1); //$NON-NLS-1$
+                        EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", TaskNature.class.getName()), 1); //$NON-NLS-1$
                         EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(element)), 1); //$NON-NLS-1$
                         EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
                         EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
                         continue;
                     }
-                    TaskHook contributor = (TaskHook) object;
+                    TaskNature contributor = (TaskNature) object;
                     if (contributor.getKind() == null || contributor.getKind().trim().length() == 0) {
                         continue;
                     }
                     String kind = contributor.getKind().trim();
-                    if (kind2hooks.get(kind) != null) {
+                    if (natures.get(kind) != null) {
                         EGFFtaskPlugin.getPlugin().logError(NLS.bind("Duplicate Kind ''{0}''", kind)); //$NON-NLS-1$
                         EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", element.getName()), 1); //$NON-NLS-1$
                         EGFFtaskPlugin.getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(element)), 1); //$NON-NLS-1$            
                     }
-                    kind2hooks.put(contributor.getKind(), contributor);
+                    natures.put(contributor.getKind(), contributor);
                 } catch (CoreException e) {
                     EGFFtaskPlugin.getPlugin().logError(e);
                 }
@@ -118,9 +121,7 @@ public interface TaskHook {
 
         }
 
-        private final Map<String, TaskHook> kind2hooks = new HashMap<String, TaskHook>();
+        private final Map<String, TaskNature> natures = new HashMap<String, TaskNature>();
     }
-
-    Helper HELPER = new Helper();
 
 }

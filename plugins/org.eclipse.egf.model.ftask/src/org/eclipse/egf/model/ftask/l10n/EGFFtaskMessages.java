@@ -23,16 +23,16 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EGFFtaskMessages extends NLS {
 
-  private static final String BUNDLE_NAME = "org.eclipse.egf.model.ftask.l10n.messages"; //$NON-NLS-1$
+    private static final String BUNDLE_NAME = "org.eclipse.egf.model.ftask.l10n.messages"; //$NON-NLS-1$
 
-  static {
-    NLS.initializeMessages(BUNDLE_NAME, EGFFtaskMessages.class);
-  }
+    static {
+        NLS.initializeMessages(BUNDLE_NAME, EGFFtaskMessages.class);
+    }
 
-  public static String missing_task_message;
+    public static String missing_task_message;
 
-  public static String missing_kind_message;
+    public static String missing_kind_message;
 
-  public static String missing_hook_message;
+    public static String missing_nature_message;
 
 }

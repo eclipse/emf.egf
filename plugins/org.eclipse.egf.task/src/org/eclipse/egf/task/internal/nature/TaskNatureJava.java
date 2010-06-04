@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.task.internal.hook;
+package org.eclipse.egf.task.internal.nature;
 
 import java.util.Map;
 
@@ -29,7 +29,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.task.TaskHook;
+import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.task.EGFTaskPlugin;
 import org.eclipse.egf.task.l10n.EGFTaskMessages;
@@ -40,7 +40,7 @@ import org.osgi.framework.Bundle;
  * @author Thomas Guiu
  * 
  */
-public class TaskJavaHook implements TaskHook {
+public class TaskNatureJava implements TaskNature {
 
   public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException {
     ITaskProduction taskImpl = null;

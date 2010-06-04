@@ -23,8 +23,8 @@
   <extension
     point="org.eclipse.egf.model.ftask.task"
   >
-    <hook    
-      class="org.eclipse.egf.task.internal.hook.TaskJavaHook"
+    <nature    
+      class="org.eclipse.egf.task.internal.nature.TaskNatureJava"
     />
   </extension>  
    

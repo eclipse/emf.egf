@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.model.ftask.helper;
 
-import org.eclipse.egf.model.ftask.task.TaskHook;
+import org.eclipse.egf.model.ftask.task.TaskNature;
 
 /**
  * @author Xavier Maysonnave
@@ -26,7 +26,7 @@ public class TaskValidationHelper {
     if (kind == null || kind.trim().length() == 0) {
       return false;
     }
-    if (TaskHook.HELPER.getKinds().contains(kind.trim()) == false) {
+    if (TaskNature.REGISTRY.getKinds().contains(kind.trim()) == false) {
       return false;
     }
     return true;

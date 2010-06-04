@@ -19,7 +19,7 @@ import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.egf.model.ftask.FtaskFactory;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.task.TaskHook;
+import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -47,7 +47,7 @@ public class FcoreResourceChildCreationExtender implements IResourceChildCreatio
 
   public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
     ArrayList<Object> newChildDescriptors = new ArrayList<Object>();
-    for (String kind : TaskHook.HELPER.getKinds()) {
+    for (String kind : TaskNature.REGISTRY.getKinds()) {
       Task task = FtaskFactory.eINSTANCE.createTask();
       task.setKind(kind);
       newChildDescriptors.add(createChildParameter(FtaskPackage.Literals.TASK, task));

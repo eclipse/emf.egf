@@ -24,7 +24,7 @@ import org.eclipse.egf.model.fcore.util.FcoreValidator;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.ftask.helper.TaskValidationHelper;
-import org.eclipse.egf.model.ftask.task.TaskHook;
+import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -287,9 +287,9 @@ public class FtaskValidator extends EObjectValidator {
     if (task.getImplementationValue() == null || task.getImplementationValue().trim().length() == 0 || task.getKindValue() == null || task.getKindValue().trim().length() == 0) {
       return true;
     }
-    TaskHook hook = null;
+    TaskNature hook = null;
     try {
-      hook = TaskHook.HELPER.getHook(task);
+      hook = TaskNature.REGISTRY.getTaskNature(task);
     } catch (InvocationException ie) {
       return true;
     }
@@ -315,9 +315,9 @@ public class FtaskValidator extends EObjectValidator {
     if (task.getImplementationValue() == null || task.getImplementationValue().trim().length() == 0 || task.getKindValue() == null || task.getKindValue().trim().length() == 0) {
       return true;
     }
-    TaskHook hook = null;
+    TaskNature hook = null;
     try {
-      hook = TaskHook.HELPER.getHook(task);
+      hook = TaskNature.REGISTRY.getTaskNature(task);
     } catch (InvocationException ie) {
       return true;
     }

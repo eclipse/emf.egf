@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.task.TaskHook;
+import org.eclipse.egf.model.ftask.task.TaskNature;
 import org.eclipse.egf.producer.ftask.invocation.ITaskProductionInvocation;
 import org.osgi.framework.Bundle;
 
@@ -50,7 +50,7 @@ public class TaskProductionInvocation implements ITaskProductionInvocation {
   }
 
   public void invoke(final IProgressMonitor monitor) throws InvocationException {
-    TaskHook.HELPER.getHook(task).invoke(bundle, productionContext, task, monitor);
+    TaskNature.REGISTRY.getTaskNature(task).invoke(bundle, productionContext, task, monitor);
   }
 
 }
