@@ -37,70 +37,73 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ActivityRunner {
 
-  protected List<Activity> _activities;
+    protected List<Activity> _activities;
 
-  public ActivityRunner(Activity activity) {
-    if (activity != null) {
-      _activities = Collections.singletonList(activity);
-    }
-  }
-
-  public ActivityRunner(List<Activity> activities) {
-    _activities = activities;
-  }
-
-  public void run(IProgressMonitor monitor) throws CoreException {
-    // Nothing to process
-    if (_activities == null || _activities.isEmpty()) {
-      return;
-    }
-    // Process Activities
-    for (Activity activity : _activities) {
-      IActivityManager<Activity> manager = null;
-      try {
-        // Retrieve an ActivityManager
-        manager = EGFProducerPlugin.getActivityManagerProducer(activity).createActivityManager(activity);
-        // Initialize Context
-        manager.initializeContext();
-      } catch (Throwable t) {
-        throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityRunner_ActivityRunner_Exception, EcoreUtil.getURI(activity)), t));
-      }
-      try {
-        // Pre-Invoke validation
-        Diagnostic diagnostic = manager.canInvoke();
-        if (diagnostic.getSeverity() == Diagnostic.ERROR) {
-          throw DiagnosticException.toCoreException(new DiagnosticException(diagnostic));
+    public ActivityRunner(Activity activity) {
+        if (activity != null) {
+            _activities = Collections.singletonList(activity);
         }
-      } catch (CoreException ce) {
-        throw ce;
-      } catch (InvocationException ie) {
-        throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityRunner_PreInvokeProblems_message, EcoreUtil.getURI(activity)), ie));
-      }
-      Diagnostic diagnostic = null;
-      try {
-        // Invoke
-        int ticks = manager.getSteps();
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(manager.getElement())), (1000 * ticks));
-        if (ticks == 1) {
-          EGFApplicationPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity)));
-        } else {
-          EGFApplicationPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity), ticks));
-        }
-        diagnostic = manager.invoke(subMonitor.newChild(1000 * ticks, SubMonitor.SUPPRESS_NONE));
-      } catch (Throwable t) {
-        throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityRunner_ActivityRunner_Exception, EcoreUtil.getURI(activity)), t));
-      }
-      // Post Invoke Validation
-      if (diagnostic.getSeverity() == Diagnostic.ERROR) {
-        throw DiagnosticException.toCoreException(new DiagnosticException(diagnostic));
-      }
-      try {
-        // Dispose
-        manager.dispose();
-      } catch (Throwable t) {
-        throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, ApplicationMessages.ActivityRunner_ActivityRunner_Exception, t));
-      }
     }
-  }
+
+    public ActivityRunner(List<Activity> activities) {
+        _activities = activities;
+    }
+
+    public void run(IProgressMonitor monitor) throws CoreException {
+        // Nothing to process
+        if (_activities == null || _activities.isEmpty()) {
+            return;
+        }
+        // Process Activities
+        for (Activity activity : _activities) {
+            IActivityManager<Activity> manager = null;
+            try {
+                // Retrieve an ActivityManager
+                manager = EGFProducerPlugin.getActivityManagerProducer(activity).createActivityManager(activity);
+                // Initialize Context
+                manager.initializeContext();
+            } catch (Throwable t) {
+                if (t instanceof CoreException) {
+                    throw (CoreException) t;
+                }
+                throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityRunner_ActivityRunner_Exception, EcoreUtil.getURI(activity)), t));
+            }
+            try {
+                // Pre-Invoke validation
+                Diagnostic diagnostic = manager.canInvoke();
+                if (diagnostic.getSeverity() == Diagnostic.ERROR) {
+                    throw DiagnosticException.toCoreException(new DiagnosticException(diagnostic));
+                }
+            } catch (CoreException ce) {
+                throw ce;
+            } catch (InvocationException ie) {
+                throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityRunner_PreInvokeProblems_message, EcoreUtil.getURI(activity)), ie));
+            }
+            Diagnostic diagnostic = null;
+            try {
+                // Invoke
+                int ticks = manager.getSteps();
+                SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(manager.getElement())), (1000 * ticks));
+                if (ticks == 1) {
+                    EGFApplicationPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity)));
+                } else {
+                    EGFApplicationPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity), ticks));
+                }
+                diagnostic = manager.invoke(subMonitor.newChild(1000 * ticks, SubMonitor.SUPPRESS_NONE));
+            } catch (Throwable t) {
+                throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityRunner_ActivityRunner_Exception, EcoreUtil.getURI(activity)), t));
+            }
+            // Post Invoke Validation
+            if (diagnostic.getSeverity() == Diagnostic.ERROR) {
+                throw DiagnosticException.toCoreException(new DiagnosticException(diagnostic));
+            }
+            try {
+                // Dispose
+                manager.dispose();
+            } catch (Throwable t) {
+                throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, ApplicationMessages.ActivityRunner_ActivityRunner_Exception, t));
+            }
+        }
+    }
 
 }
