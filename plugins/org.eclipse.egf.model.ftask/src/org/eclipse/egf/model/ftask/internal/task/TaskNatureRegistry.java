@@ -96,13 +96,13 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
                 for (IConfigurationElement element : extension.getConfigurationElements()) {
-                    registerTaskNature(element);
+                    register(element);
                 }
             }
         }
     }
 
-    private void registerTaskNature(IConfigurationElement element) {
+    private void register(IConfigurationElement element) {
         if (element == null) {
             return;
         }
@@ -123,7 +123,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
         }
         for (IExtension extension : extensions) {
             for (IConfigurationElement element : extension.getConfigurationElements()) {
-                registerTaskNature(element);
+                register(element);
             }
         }
     }
