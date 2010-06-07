@@ -21,6 +21,7 @@
     point="org.eclipse.egf.producer.activityManagerProducer"
   >
     <activityManagerProducer
+      activity="org.eclipse.egf.model.ftask.Task"
       class="org.eclipse.egf.producer.ftask.internal.manager.TaskManagerProducer"
     />
   </extension>
@@ -34,6 +35,7 @@
     point="org.eclipse.egf.producer.activityProductionContextProducer"
   >
     <activityProductionContextProducer
+      activity="org.eclipse.egf.model.ftask.Task"    
       class="org.eclipse.egf.producer.ftask.internal.context.TaskProductionContextProducer"
     />
   </extension>  

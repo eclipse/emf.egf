@@ -43,6 +43,7 @@
     point="org.eclipse.egf.producer.activityManagerProducer"
   >
     <activityManagerProducer
+      activity="org.eclipse.egf.model.fcore.FactoryComponent"
       class="org.eclipse.egf.producer.internal.manager.FactoryComponentManagerProducer"
     />
   </extension>          

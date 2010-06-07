@@ -41,110 +41,110 @@ import org.osgi.framework.Bundle;
  */
 public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
 
-  private IModelElementManager<Orchestration, OrchestrationParameter> _orchestrationManager;
+    private IModelElementManager<Orchestration, OrchestrationParameter> _orchestrationManager;
 
-  public FactoryComponentManager(FactoryComponent factoryComponent) throws InvocationException {
-    super(factoryComponent);
-  }
-
-  public FactoryComponentManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
-    super(bundle, factoryComponent);
-  }
-
-  public <T extends Invocation> FactoryComponentManager(IModelElementManager<T, InvocationContract> parent, FactoryComponent factoryComponent) throws InvocationException {
-    super(parent, factoryComponent);
-  }
-
-  @Override
-  @SuppressWarnings("unchecked")
-  public FactoryComponentProductionContext getInternalProductionContext() throws InvocationException {
-    if (_productionContext == null) {
-      ActivityProductionContextProducer<FactoryComponent> producer = null;
-      try {
-        producer = EGFProducerPlugin.getActivityProductionContextProducer(getElement());
-      } catch (Throwable t) {
-        throw new InvocationException(t);
-      }
-      if (getParent() != null) {
-        _productionContext = producer.createActivityProductionContext((IProductionContext<Invocation, InvocationContract>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
-      } else {
-        _productionContext = producer.createActivityProductionContext(getProjectBundleSession(), getElement());
-      }
+    public FactoryComponentManager(FactoryComponent factoryComponent) throws InvocationException {
+        super(factoryComponent);
     }
-    return (FactoryComponentProductionContext) _productionContext;
-  }
 
-  public IModelElementManager<Orchestration, OrchestrationParameter> getOrchestrationManager() throws InvocationException {
-    if (_orchestrationManager == null && getElement().getOrchestration() != null) {
-      OrchestrationManagerProducer<Orchestration> producer = null;
-      try {
-        producer = EGFProducerPlugin.getOrchestrationProducer(getElement().getOrchestration());
-      } catch (Throwable t) {
-        throw new InvocationException(t);
-      }
-      _orchestrationManager = producer.createOrchestrationManager(this, getElement().getOrchestration());
+    public FactoryComponentManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+        super(bundle, factoryComponent);
     }
-    return _orchestrationManager;
-  }
 
-  public List<Activity> getActivities() throws InvocationException {
-    // Retrieve Activities
-    List<Activity> activities = new UniqueEList<Activity>();
-    activities.add(getElement());
-    if (getOrchestrationManager() != null) {
-      activities.addAll(getOrchestrationManager().getActivities());
+    public <T extends Invocation> FactoryComponentManager(IModelElementManager<T, InvocationContract> parent, FactoryComponent factoryComponent) throws InvocationException {
+        super(parent, factoryComponent);
     }
-    return activities;
-  }
 
-  @Override
-  public void dispose() throws InvocationException {
-    super.dispose();
-    if (getOrchestrationManager() != null) {
-      getOrchestrationManager().dispose();
-    }
-  }
-
-  @Override
-  public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = checkInputElement(false);
-    // Continue
-    if (getOrchestrationManager() != null) {
-      diagnostic.add(getOrchestrationManager().canInvoke());
-    }
-    return diagnostic;
-  }
-
-  @Override
-  public void initializeContext() throws InvocationException {
-    super.initializeContext();
-    if (getOrchestrationManager() != null) {
-      getOrchestrationManager().initializeContext();
-    }
-  }
-
-  public int getSteps() throws InvocationException {
-    if (getOrchestrationManager() != null) {
-      return getOrchestrationManager().getSteps();
-    }
-    return 0;
-  }
-
-  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
-    BasicDiagnostic diagnostic = checkInputElement(true);
-    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
-      IModelElementManager<Orchestration, OrchestrationParameter> orchestrationManager = getOrchestrationManager();
-      if (orchestrationManager != null) {
-        // Invoke
-        diagnostic.add(orchestrationManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
-        if (monitor.isCanceled()) {
-          throw new OperationCanceledException();
+    @Override
+    @SuppressWarnings("unchecked")
+    public FactoryComponentProductionContext getInternalProductionContext() throws InvocationException {
+        if (_productionContext == null) {
+            ActivityProductionContextProducer<FactoryComponent> producer = null;
+            try {
+                producer = EGFProducerPlugin.getActivityProductionContextProducer(getElement());
+            } catch (Throwable t) {
+                throw new InvocationException(t);
+            }
+            if (getParent() != null) {
+                _productionContext = producer.createActivityProductionContext((IProductionContext<Invocation, InvocationContract>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
+            } else {
+                _productionContext = producer.createActivityProductionContext(getProjectBundleSession(), getElement());
+            }
         }
-        checkOutputElement(diagnostic);
-      }
+        return (FactoryComponentProductionContext) _productionContext;
     }
-    return diagnostic;
-  }
+
+    public IModelElementManager<Orchestration, OrchestrationParameter> getOrchestrationManager() throws InvocationException {
+        if (_orchestrationManager == null && getElement().getOrchestration() != null) {
+            OrchestrationManagerProducer<Orchestration> producer = null;
+            try {
+                producer = EGFProducerPlugin.getOrchestrationProducer(getElement().getOrchestration());
+            } catch (Throwable t) {
+                throw new InvocationException(t);
+            }
+            _orchestrationManager = producer.createOrchestrationManager(this, getElement().getOrchestration());
+        }
+        return _orchestrationManager;
+    }
+
+    public List<Activity> getActivities() throws InvocationException {
+        // Retrieve Activities
+        List<Activity> activities = new UniqueEList<Activity>();
+        activities.add(getElement());
+        if (getOrchestrationManager() != null) {
+            activities.addAll(getOrchestrationManager().getActivities());
+        }
+        return activities;
+    }
+
+    @Override
+    public void dispose() throws InvocationException {
+        super.dispose();
+        if (getOrchestrationManager() != null) {
+            getOrchestrationManager().dispose();
+        }
+    }
+
+    @Override
+    public Diagnostic canInvoke() throws InvocationException {
+        BasicDiagnostic diagnostic = checkInputElement(false);
+        // Continue
+        if (getOrchestrationManager() != null) {
+            diagnostic.add(getOrchestrationManager().canInvoke());
+        }
+        return diagnostic;
+    }
+
+    @Override
+    public void initializeContext() throws InvocationException {
+        super.initializeContext();
+        if (getOrchestrationManager() != null) {
+            getOrchestrationManager().initializeContext();
+        }
+    }
+
+    public int getSteps() throws InvocationException {
+        if (getOrchestrationManager() != null) {
+            return getOrchestrationManager().getSteps();
+        }
+        return 0;
+    }
+
+    public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
+        BasicDiagnostic diagnostic = checkInputElement(true);
+        if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+            IModelElementManager<Orchestration, OrchestrationParameter> orchestrationManager = getOrchestrationManager();
+            if (orchestrationManager != null) {
+                // Invoke
+                diagnostic.add(orchestrationManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
+                if (monitor.isCanceled()) {
+                    throw new OperationCanceledException();
+                }
+                checkOutputElement(diagnostic);
+            }
+        }
+        return diagnostic;
+    }
 
 }

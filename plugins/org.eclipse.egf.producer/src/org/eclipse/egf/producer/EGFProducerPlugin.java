@@ -1,25 +1,36 @@
 package org.eclipse.egf.producer;
 
-import java.util.Map;
-
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
-import org.eclipse.egf.producer.internal.registry.ProducerRegistry;
-import org.eclipse.egf.producer.l10n.ProducerMessages;
+import org.eclipse.egf.producer.internal.registry.ActivityManagerProducerRegistry;
+import org.eclipse.egf.producer.internal.registry.ActivityProductionContextProducerRegistry;
+import org.eclipse.egf.producer.internal.registry.OrchestrationManagerProducerRegistry;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.OrchestrationManagerProducer;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class EGFProducerPlugin extends EGFAbstractPlugin {
+
+    /**
+     * Keep track of the ActivityManagerProducerRegistry
+     */
+    private static ActivityManagerProducerRegistry __activityManagerProducerRegistry;
+
+    /**
+     * Keep track of the ActivityProductionContextProducerRegistry
+     */
+    private static ActivityProductionContextProducerRegistry __activityProductionContextProducerRegistry;
+
+    /**
+     * Keep track of the OrchestrationManagerProducerRegistry
+     */
+    private static OrchestrationManagerProducerRegistry __orchestrationManagerProducerRegistry;
 
     // The shared instance
     private static EGFProducerPlugin __plugin;
@@ -42,8 +53,20 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        __plugin = null;
+        if (__activityManagerProducerRegistry != null) {
+            __activityManagerProducerRegistry.dispose();
+            __activityManagerProducerRegistry = null;
+        }
+        if (__activityProductionContextProducerRegistry != null) {
+            __activityProductionContextProducerRegistry.dispose();
+            __activityProductionContextProducerRegistry = null;
+        }
+        if (__orchestrationManagerProducerRegistry != null) {
+            __orchestrationManagerProducerRegistry.dispose();
+            __orchestrationManagerProducerRegistry = null;
+        }
         super.stop(context);
+        __plugin = null;
     }
 
     /**
@@ -60,15 +83,14 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
      * 
      * @return an ActivityManagerProducer
      */
-    @SuppressWarnings("unchecked")
-    public static <P extends Activity> ActivityManagerProducer<P> getActivityManagerProducer(P activity) throws MissingExtensionException {
-        Map<EClass, ActivityManagerProducer<?>> producers = ProducerRegistry.getActivityManagerProducers();
-        ActivityManagerProducer<P> producer = (ActivityManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
-        if (producer == null) {
-            throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityManagerProducer_extension_error, ProducerRegistry.getName(activity)));
+    public static <P extends Activity> ActivityManagerProducer<P> getActivityManagerProducer(P activity) throws CoreException {
+        if (activity == null) {
+            return null;
         }
-        return producer;
-
+        if (__activityManagerProducerRegistry == null) {
+            __activityManagerProducerRegistry = new ActivityManagerProducerRegistry();
+        }
+        return __activityManagerProducerRegistry.getActivityManagerProducer(activity);
     }
 
     /**
@@ -77,15 +99,14 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
      * 
      * @return an ActivityProductionContextProducer
      */
-    @SuppressWarnings("unchecked")
-    public static <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws MissingExtensionException {
-        Map<EClass, ActivityProductionContextProducer<?>> producers = ProducerRegistry.getActivityProductionContextProducers();
-        ActivityProductionContextProducer<P> producer = (ActivityProductionContextProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
-        if (producer == null) {
-            throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_extension_error, ProducerRegistry.getName(activity)));
+    public static <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws CoreException {
+        if (activity == null) {
+            return null;
         }
-        return producer;
-
+        if (__activityProductionContextProducerRegistry == null) {
+            __activityProductionContextProducerRegistry = new ActivityProductionContextProducerRegistry();
+        }
+        return __activityProductionContextProducerRegistry.getActivityProductionContextProducer(activity);
     }
 
     /**
@@ -93,15 +114,14 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
      * 
      * @return an OrchestrationProducer
      */
-    @SuppressWarnings("unchecked")
-    public static <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationProducer(P orchestration) throws MissingExtensionException {
-        Map<EClass, OrchestrationManagerProducer<?>> producers = ProducerRegistry.getOrchestrationManagerProducers();
-        OrchestrationManagerProducer<P> producer = (OrchestrationManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(orchestration.eClass()));
-        if (producer == null) {
-            throw new MissingExtensionException(NLS.bind(ProducerMessages.OrchestrationManagerProducer_extension_error, ProducerRegistry.getName(orchestration)));
+    public static <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationProducer(P orchestration) throws CoreException {
+        if (orchestration == null) {
+            return null;
         }
-        return producer;
-
+        if (__orchestrationManagerProducerRegistry == null) {
+            __orchestrationManagerProducerRegistry = new OrchestrationManagerProducerRegistry();
+        }
+        return __orchestrationManagerProducerRegistry.getOrchestrationManagerProducer(orchestration);
     }
 
 }

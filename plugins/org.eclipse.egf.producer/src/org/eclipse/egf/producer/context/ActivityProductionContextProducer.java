@@ -41,14 +41,14 @@ public abstract class ActivityProductionContextProducer<P extends Activity> {
 
     public IActivityProductionContext<P> createActivityProductionContext(ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
         if (matchNature(activity) == false) {
-            throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+            throw new InvocationException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
         }
         return doCreateActivityProductionContext(projectBundleSession, activity);
     }
 
     public IActivityProductionContext<P> createActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
         if (matchNature(activity) == false) {
-            throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+            throw new InvocationException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
         }
         return doCreateActivityProductionContext(parent, projectBundleSession, activity);
     }

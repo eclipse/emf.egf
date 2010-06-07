@@ -21,6 +21,7 @@
     point="org.eclipse.egf.producer.activityProductionContextProducer"
   >
     <activityProductionContextProducer
+      activity="org.eclipse.egf.model.fcore.FactoryComponent"
       class="org.eclipse.egf.producer.fprod.internal.context.FactoryComponentProductionContextProducer"
     />
   </extension>    
@@ -33,6 +34,7 @@
     point="org.eclipse.egf.producer.orchestrationManagerProducer"
   >
     <orchestrationManagerProducer
+      orchestration="org.eclipse.egf.model.fprod.ProductionPlan"
       class="org.eclipse.egf.producer.fprod.internal.manager.ProductionPlanManagerProducer"
     />
   </extension>       

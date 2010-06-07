@@ -16,35 +16,41 @@ import org.eclipse.osgi.util.NLS;
 
 public class ProducerMessages {
 
-  private static final String BUNDLE_NAME = "org.eclipse.egf.producer.l10n.messages"; //$NON-NLS-1$
+    private static final String BUNDLE_NAME = "org.eclipse.egf.producer.l10n.messages"; //$NON-NLS-1$
 
-  private ProducerMessages() {
-    // Do not instantiate
-  }
+    private ProducerMessages() {
+        // Do not instantiate
+    }
 
-  static {
-    // load message values from bundle file
-    NLS.initializeMessages(BUNDLE_NAME, ProducerMessages.class);
-  }
+    static {
+        // load message values from bundle file
+        NLS.initializeMessages(BUNDLE_NAME, ProducerMessages.class);
+    }
 
-  public static String ModelElementManager_fcore_no_resource;
-  public static String ModelElementManager_no_fcore;
+    public static String ModelElementManager_fcore_no_resource;
 
-  public static String ActivityManager_mandatory_value;
+    public static String ModelElementManager_no_fcore;
 
-  public static String ActivityManagerProducer_extension_error;
-  public static String ActivityManagerProducer_type_error;
+    public static String ActivityManager_mandatory_value;
 
-  public static String ActivityProductionContextProducer_extension_error;
-  public static String ActivityProductionContextProducer_type_error;
+    public static String ActivityManagerProducer_extension_error;
 
-  public static String OrchestrationManagerProducer_extension_error;
-  public static String OrchestrationManagerProducer_type_error;
+    public static String ActivityManagerProducer_type_error;
 
-  public static String CanInvoke_Diagnosis_message;
-  public static String RuntimeCanInvoke_Diagnosis_message;
+    public static String ActivityProductionContextProducer_extension_error;
 
-  public static String Activity_Invocation;
-  public static String Activity_Invocations;
+    public static String ActivityProductionContextProducer_type_error;
+
+    public static String OrchestrationManagerProducer_extension_error;
+
+    public static String OrchestrationManagerProducer_type_error;
+
+    public static String CanInvoke_Diagnosis_message;
+
+    public static String RuntimeCanInvoke_Diagnosis_message;
+
+    public static String Activity_Invocation;
+
+    public static String Activity_Invocations;
 
 }

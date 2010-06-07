@@ -57,259 +57,254 @@ import org.eclipse.ui.progress.IProgressConstants;
 
 public class GlobalRunActivityAction extends Action implements IWorkbenchWindowActionDelegate, IActionDelegate2 {
 
-  /**
-   * Activities to validate (if any)
-   */
-  private List<Activity> _validates = null;
+    /**
+     * Activities to validate (if any)
+     */
+    private List<Activity> _validates = null;
 
-  public GlobalRunActivityAction() {
-    super();
-    setText(ProducerUIMessages.GlobalRunActivityAction_label);
-    setDescription(ProducerUIMessages.GlobalRunActivityAction_description);
-    setToolTipText(ProducerUIMessages.GlobalRunActivityAction_tooltip);
-    setImageDescriptor(ProducerUIImages.EGF_RUN_ACTIVITY);
-  }
-
-  @Override
-  public void run() {
-    runWithEvent(null);
-  }
-
-  @Override
-  public void runWithEvent(Event event) {
-
-    _validates = null;
-
-    // 1 - Activity Selection
-    ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
-    activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
-    int result = activityDialog.open();
-    if (result != IDialogConstants.OK_ID) {
-      return;
-    }
-    final Object[] selection = activityDialog.getResult();
-    if (selection == null || selection.length != 1) {
-      return;
+    public GlobalRunActivityAction() {
+        super();
+        setText(ProducerUIMessages.GlobalRunActivityAction_label);
+        setDescription(ProducerUIMessages.GlobalRunActivityAction_description);
+        setToolTipText(ProducerUIMessages.GlobalRunActivityAction_tooltip);
+        setImageDescriptor(ProducerUIImages.EGF_RUN_ACTIVITY);
     }
 
-    final Activity[] activity = new Activity[] {
-      (Activity) selection[0]
-    };
-    List<Throwable> throwables = new ArrayList<Throwable>();
-    final IActivityManager<?>[] activityManager = new IActivityManager[1];
-    final int[] ticks = new int[1];
-
-    // 2 - Locate a Manager Producer
-    try {
-      ActivityManagerProducer<Activity> producer = null;
-      try {
-        producer = EGFProducerPlugin.getActivityManagerProducer(activity[0]);
-      } catch (Throwable t) {
-        throw new InvocationException(t);
-      }
-      // Create a Manager
-      activityManager[0] = producer.createActivityManager(activity[0]);
-    } catch (Throwable t) {
-      throwables.add(t);
+    @Override
+    public void run() {
+        runWithEvent(null);
     }
 
-    // 3 - Validation
-    if (throwables.size() == 0) {
-      try {
-        IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
-        String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
-        List<Activity> activities = activityManager[0].getActivities();
-        int status = showValidateDialog(activities, validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
-        if (status != IDialogConstants.OK_ID) {
-          return;
-        }
-        if (_validates != null && _validates.size() != 0) {
-          EGFValidator validator = new EGFValidator(_validates, activityManager[0].getProjectBundleSession());
-          Diagnostic validationDiag = validator.validate();
-          // Stop when an error is found
-          if (validationDiag.getSeverity() == Diagnostic.ERROR) {
+    @Override
+    public void runWithEvent(Event event) {
+
+        _validates = null;
+
+        // 1 - Activity Selection
+        ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
+        activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
+        int result = activityDialog.open();
+        if (result != IDialogConstants.OK_ID) {
             return;
-          }
         }
-      } catch (InvocationException ie) {
-        throwables.add(ie);
-      }
-    }
-
-    // 4 - PreInvoke Validation
-    if (throwables.size() == 0) {
-      try {
-        // Initialize Context
-        activityManager[0].initializeContext();
-        // Check if activity could be invoked
-        final Diagnostic preInvokeDiag = activityManager[0].canInvoke();
-        if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
-          if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
-            EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
-
-              public void run() {
-                EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
-              }
-            });
-          }
-          if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
+        final Object[] selection = activityDialog.getResult();
+        if (selection == null || selection.length != 1) {
             return;
-          }
-        }
-      } catch (InvocationException ie) {
-        throwables.add(ie);
-      }
-    }
-
-    // 5 - Count Ticks
-    if (throwables.size() == 0) {
-      try {
-        ticks[0] = activityManager[0].getSteps();
-      } catch (Throwable t) {
-        throwables.add(t);
-      }
-    }
-
-    // 6 - Run activity
-    if (throwables.size() == 0) {
-
-      WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
-
-        @Override
-        public boolean belongsTo(Object family) {
-          return EGFCorePlugin.FAMILY_MANUAL_BUILD.equals(family);
         }
 
-        @Override
-        public IStatus runInWorkspace(IProgressMonitor innerMonitor) throws CoreException {
-          // Invoke
-          SubMonitor subMonitor = SubMonitor.convert(innerMonitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(activityManager[0].getElement())), (1000 * ticks[0]));
-          try {
-            try {
-              if (EGFProducerUIPlugin.getDefault().isDebugging()) {
-                if (ticks[0] == 1) {
-                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity[0])));
-                } else {
-                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity[0]), ticks[0]));
-                }
-              }
-              final Diagnostic diagnostic = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
-              if (subMonitor.isCanceled()) {
-                throw new OperationCanceledException();
-              }
-              // PostInvoke Validation
-              if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
-                if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
-                  EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+        final Activity[] activity = new Activity[] {
+            (Activity) selection[0]
+        };
+        List<Throwable> throwables = new ArrayList<Throwable>();
+        final IActivityManager<?>[] activityManager = new IActivityManager[1];
+        final int[] ticks = new int[1];
 
-                    public void run() {
-                      EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PostInvokeProblems_message, diagnostic);
-                    }
-                  });
-                }
-              }
-            } catch (InvocationException ie) {
-              if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
-                throw (CoreException) ie.getCause();
-              }
-              ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
-            } catch (Throwable t) {
-              throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
-            } finally {
-              try {
-                activityManager[0].dispose();
-              } catch (InvocationException ie) {
-                if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
-                  throw (CoreException) ie.getCause();
-                }
-                ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
-              } catch (Throwable t) {
-                throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
-              }
-            }
-          } finally {
-            innerMonitor.done();
-          }
-          return Status.OK_STATUS;
-        }
-      };
-      activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
-      activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
-      activityJob.setPriority(Job.LONG);
-      activityJob.setUser(true);
-      activityJob.setSystem(false);
-      activityJob.schedule();
-
-    }
-
-    if (throwables.size() != 0) {
-      // In trouble case, try to dispose the manager
-      if (activityManager[0] != null) {
+        // 2 - Locate an ActivityManagerProducer and create an ActivityManager
         try {
-          activityManager[0].dispose();
+            ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity[0]);
+            // Create a Manager
+            activityManager[0] = producer.createActivityManager(activity[0]);
         } catch (Throwable t) {
-          throwables.add(t);
+            throwables.add(t);
         }
-      }
-      // Display Throwable
-      for (Throwable throwable : throwables) {
-        if (throwable instanceof InterruptedException == false) {
-          ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
+
+        // 3 - Validation
+        if (throwables.size() == 0) {
+            try {
+                IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
+                String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
+                List<Activity> activities = activityManager[0].getActivities();
+                int status = showValidateDialog(activities, validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
+                if (status != IDialogConstants.OK_ID) {
+                    return;
+                }
+                if (_validates != null && _validates.size() != 0) {
+                    EGFValidator validator = new EGFValidator(_validates, activityManager[0].getProjectBundleSession());
+                    Diagnostic validationDiag = validator.validate();
+                    // Stop when an error is found
+                    if (validationDiag.getSeverity() == Diagnostic.ERROR) {
+                        return;
+                    }
+                }
+            } catch (InvocationException ie) {
+                throwables.add(ie);
+            }
         }
-      }
+
+        // 4 - PreInvoke Validation
+        if (throwables.size() == 0) {
+            try {
+                // Initialize Context
+                activityManager[0].initializeContext();
+                // Check if activity could be invoked
+                final Diagnostic preInvokeDiag = activityManager[0].canInvoke();
+                if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
+                    if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+                        EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
+                            public void run() {
+                                EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
+                            }
+                        });
+                    }
+                    if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
+                        return;
+                    }
+                }
+            } catch (InvocationException ie) {
+                throwables.add(ie);
+            }
+        }
+
+        // 5 - Count Ticks
+        if (throwables.size() == 0) {
+            try {
+                ticks[0] = activityManager[0].getSteps();
+            } catch (Throwable t) {
+                throwables.add(t);
+            }
+        }
+
+        // 6 - Run activity
+        if (throwables.size() == 0) {
+
+            WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
+
+                @Override
+                public boolean belongsTo(Object family) {
+                    return EGFCorePlugin.FAMILY_MANUAL_BUILD.equals(family);
+                }
+
+                @Override
+                public IStatus runInWorkspace(IProgressMonitor innerMonitor) throws CoreException {
+                    // Invoke
+                    SubMonitor subMonitor = SubMonitor.convert(innerMonitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(activityManager[0].getElement())), (1000 * ticks[0]));
+                    try {
+                        try {
+                            if (EGFProducerUIPlugin.getDefault().isDebugging()) {
+                                if (ticks[0] == 1) {
+                                    EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity[0])));
+                                } else {
+                                    EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity[0]), ticks[0]));
+                                }
+                            }
+                            final Diagnostic diagnostic = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
+                            if (subMonitor.isCanceled()) {
+                                throw new OperationCanceledException();
+                            }
+                            // PostInvoke Validation
+                            if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
+                                if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+                                    EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
+                                        public void run() {
+                                            EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PostInvokeProblems_message, diagnostic);
+                                        }
+                                    });
+                                }
+                            }
+                        } catch (InvocationException ie) {
+                            if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
+                                throw (CoreException) ie.getCause();
+                            }
+                            ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
+                        } catch (Throwable t) {
+                            throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
+                        } finally {
+                            try {
+                                activityManager[0].dispose();
+                            } catch (InvocationException ie) {
+                                if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
+                                    throw (CoreException) ie.getCause();
+                                }
+                                ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
+                            } catch (Throwable t) {
+                                throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
+                            }
+                        }
+                    } finally {
+                        innerMonitor.done();
+                    }
+                    return Status.OK_STATUS;
+                }
+            };
+            activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+            activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
+            activityJob.setPriority(Job.LONG);
+            activityJob.setUser(true);
+            activityJob.setSystem(false);
+            activityJob.schedule();
+
+        }
+
+        if (throwables.size() != 0) {
+            // In trouble case, try to dispose the manager
+            if (activityManager[0] != null) {
+                try {
+                    activityManager[0].dispose();
+                } catch (Throwable t) {
+                    throwables.add(t);
+                }
+            }
+            // Display Throwable
+            for (Throwable throwable : throwables) {
+                if (throwable instanceof InterruptedException == false) {
+                    ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
+                }
+            }
+        }
+
+        return;
+
     }
 
-    return;
-
-  }
-
-  private int showValidateDialog(List<Activity> activities, boolean validate, boolean prompt) {
-    if (validate) {
-      if (prompt && activities != null && activities.size() > 0) {
-        ActivityValidationSelectionDialog dialog = new ActivityValidationSelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
-        if (dialog.open() == IDialogConstants.CANCEL_ID) {
-          return IDialogConstants.CANCEL_ID;
+    private int showValidateDialog(List<Activity> activities, boolean validate, boolean prompt) {
+        if (validate) {
+            if (prompt && activities != null && activities.size() > 0) {
+                ActivityValidationSelectionDialog dialog = new ActivityValidationSelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
+                if (dialog.open() == IDialogConstants.CANCEL_ID) {
+                    return IDialogConstants.CANCEL_ID;
+                }
+                Object[] objects = dialog.getResult();
+                _validates = new ArrayList<Activity>(objects.length);
+                for (int i = 0; i < objects.length; i++) {
+                    _validates.add((Activity) objects[i]);
+                }
+            } else {
+                _validates = activities;
+            }
         }
-        Object[] objects = dialog.getResult();
-        _validates = new ArrayList<Activity>(objects.length);
-        for (int i = 0; i < objects.length; i++) {
-          _validates.add((Activity) objects[i]);
-        }
-      } else {
-        _validates = activities;
-      }
+        return IDialogConstants.OK_ID;
     }
-    return IDialogConstants.OK_ID;
-  }
 
-  // ---- IWorkbenchWindowActionDelegate
-  // ------------------------------------------------
+    // ---- IWorkbenchWindowActionDelegate
+    // ------------------------------------------------
 
-  public void run(IAction action) {
-    run();
-  }
+    public void run(IAction action) {
+        run();
+    }
 
-  public void dispose() {
-    // do nothing.
-  }
+    public void dispose() {
+        // do nothing.
+    }
 
-  public void init(IWorkbenchWindow window) {
-    // do nothing.
-  }
+    public void init(IWorkbenchWindow window) {
+        // do nothing.
+    }
 
-  public void selectionChanged(IAction action, ISelection selection) {
-    // do nothing. Action doesn't depend on selection.
-  }
+    public void selectionChanged(IAction action, ISelection selection) {
+        // do nothing. Action doesn't depend on selection.
+    }
 
-  // ---- IActionDelegate2
-  // ------------------------------------------------
+    // ---- IActionDelegate2
+    // ------------------------------------------------
 
-  public void runWithEvent(IAction action, Event event) {
-    runWithEvent(event);
-  }
+    public void runWithEvent(IAction action, Event event) {
+        runWithEvent(event);
+    }
 
-  public void init(IAction action) {
-    // do nothing.
-  }
+    public void init(IAction action) {
+        // do nothing.
+    }
 
 }
