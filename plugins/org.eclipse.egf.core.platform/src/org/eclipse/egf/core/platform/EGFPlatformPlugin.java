@@ -97,7 +97,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 extension = extension.trim();
                 // Check
                 if (platformManagers.containsKey(extension)) {
-                    getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_element_Message, extension));
+                    getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_Element_Message, extension));
                     getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                     getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                     continue;
@@ -138,7 +138,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                     continue;
                 }
                 if (interfaces.get(factory.getClass().getName()) != null) {
-                    getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_element_Message, factory.getClass().getName()));
+                    getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_Element_Message, factory.getClass().getName()));
                     getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                     getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                     continue;

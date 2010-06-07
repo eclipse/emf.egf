@@ -109,7 +109,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
         TaskNatureProxy taskNatureProxy = TaskNatureProxy.createProxy(element);
         if (taskNatureProxy != null) {
             if (_natures.get(taskNatureProxy.getKind()) != null) {
-                EGFFtaskPlugin.getPlugin().logError(NLS.bind(EGFCommonMessages.Duplicate_element_Message, taskNatureProxy.getKind()));
+                EGFFtaskPlugin.getPlugin().logError(NLS.bind(EGFCommonMessages.Duplicate_Element_Message, taskNatureProxy.getKind()));
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
             }

@@ -45,6 +45,10 @@ public class EGFCommonMessages {
 
     public static String Attribute_Message;
 
-    public static String Duplicate_element_Message;
+    public static String Duplicate_Element_Message;
+
+    public static String Type_mismatch_Message;
+
+    public static String Missing_Element_Message;
 
 }
