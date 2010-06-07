@@ -62,13 +62,13 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
                 for (IConfigurationElement element : extension.getConfigurationElements()) {
-                    registerEGFLogger(element);
+                    register(element);
                 }
             }
         }
     }
 
-    private void registerEGFLogger(IConfigurationElement element) {
+    private void register(IConfigurationElement element) {
         if (element == null) {
             return;
         }
@@ -84,7 +84,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
         }
         for (IExtension extension : extensions) {
             for (IConfigurationElement element : extension.getConfigurationElements()) {
-                registerEGFLogger(element);
+                register(element);
             }
         }
     }
