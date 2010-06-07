@@ -12,159 +12,160 @@
 
 <plugin>
 
-  <!-- ================================================================================= -->
-  <!-- Extension Points                                                                  -->
-  <!-- ================================================================================= -->
+    <!-- ================================================================================= -->
+    <!-- Extension Points                                                                  -->
+    <!-- ================================================================================= -->
 
-  <extension-point 
-    id="org.eclipse.egf.core.ui.editor.menu.contributor" 
-    name="%egf.editor.menu.contributor" 
-    schema="schema/editor.menu.contributor.exsd"
-  />
-
-  <extension-point 
-    id="org.eclipse.egf.core.ui.editor.listener.contributor" 
-    name="%egf.editor.listener.contributor" 
-    schema="schema/editor.listener.contributor.exsd"
-  />
-  
-	<extension-point id="org.eclipse.egf.core.ui.editor.property.contributor" 
-  		name="%editor.property.contributor" 
-  		schema="schema/editor.property.contributor.exsd"/>
-    
-  <!-- ================================================================================= -->
-  <!-- Keywords                                                                          -->
-  <!-- ================================================================================= -->
-  
-  <extension
-    point="org.eclipse.ui.keywords"
-  >
-    <keyword
-      label="%egf.preferences.keyword.general"
-      id="org.eclipse.egf.general"
-    />  
-  </extension>  
-  
-  <!-- ================================================================================= -->
-  <!-- Preference Page                                                                   -->
-  <!-- ================================================================================= -->  
-    
-  <extension
-    point="org.eclipse.ui.preferencePages"
-  >
-    <page
-      name="%egf.preferences.general"    
-      class="org.eclipse.egf.core.ui.internal.preferences.EGFGeneralPreferencePage"
-      id="org.eclipse.egf.preferences"
-    >
-      <keywordReference 
-        id="org.eclipse.egf.general"
-      />
-    </page> 
-    <page
-      name="%egf.preferences.model"
-      class="org.eclipse.egf.core.ui.internal.preferences.EGFModelPreferencePage"
-      category="org.eclipse.egf.preferences"      
-      id="org.eclipse.egf.preferences.model"
-    >
-      <keywordReference 
-        id="org.eclipse.egf.general"
-      />
-    </page>       
-    <page
-      name="%egf.preferences.production"
-      class="org.eclipse.egf.core.ui.internal.preferences.EGFProductionPreferencePage"
-      category="org.eclipse.egf.preferences"      
-      id="org.eclipse.egf.preferences.production"
-    >
-      <keywordReference 
-        id="org.eclipse.egf.general"
-      />
-    </page>    
-  </extension>
-  
-  <!-- ================================================================================= -->
-  <!-- Preferences Initializer                                                           -->
-  <!-- ================================================================================= -->  
-  
-  <extension 
-    point="org.eclipse.core.runtime.preferences"
-  >
-    <initializer 
-      class="org.eclipse.egf.core.ui.internal.preferences.ModelPreferenceInitializer"
+    <extension-point 
+        id="org.eclipse.egf.core.ui.editor.menu.contributor" 
+        name="%egf.editor.menu.contributor" 
+        schema="schema/editor.menu.contributor.exsd"
     />
-  </extension> 
+
+    <extension-point 
+        id="org.eclipse.egf.core.ui.editor.listener.contributor" 
+        name="%egf.editor.listener.contributor" 
+        schema="schema/editor.listener.contributor.exsd"
+    />
   
-  <!-- ================================================================================= -->
-  <!-- ActionSets                                                                        -->
-  <!-- ================================================================================= -->  
+    <extension-point id="org.eclipse.egf.core.ui.editor.property.contributor" 
+        name="%editor.property.contributor" 
+        schema="schema/editor.property.contributor.exsd"
+    />
+    
+    <!-- ================================================================================= -->
+    <!-- Keywords                                                                          -->
+    <!-- ================================================================================= -->
   
-  <extension
-    point="org.eclipse.ui.actionSets"
-  >
-  
-    <actionSet
-      label="%EGFFcoreActionSet_label"
-      description="%EGFFcoreActionSet_description"
-      visible="true"
-      id="org.eclipse.egf.core.ui.fcore.actionSet"
+    <extension
+        point="org.eclipse.ui.keywords"
     >
+        <keyword
+        label="%egf.preferences.keyword.general"
+        id="org.eclipse.egf.general"
+        />  
+    </extension>  
+  
+    <!-- ================================================================================= -->
+    <!-- Preference Page                                                                   -->
+    <!-- ================================================================================= -->  
+    
+    <extension
+        point="org.eclipse.ui.preferencePages"
+    >
+        <page
+            name="%egf.preferences.general"    
+            class="org.eclipse.egf.core.ui.internal.preferences.EGFGeneralPreferencePage"
+            id="org.eclipse.egf.preferences"
+        >
+            <keywordReference 
+                id="org.eclipse.egf.general"
+            />
+        </page> 
+        <page
+            name="%egf.preferences.model"
+            class="org.eclipse.egf.core.ui.internal.preferences.EGFModelPreferencePage"
+            category="org.eclipse.egf.preferences"      
+            id="org.eclipse.egf.preferences.model"
+        >
+            <keywordReference 
+                id="org.eclipse.egf.general"
+            />
+        </page>       
+        <page
+            name="%egf.preferences.production"
+            class="org.eclipse.egf.core.ui.internal.preferences.EGFProductionPreferencePage"
+            category="org.eclipse.egf.preferences"      
+            id="org.eclipse.egf.preferences.production"
+        >
+            <keywordReference 
+                id="org.eclipse.egf.general"
+            />
+        </page>    
+    </extension>
+  
+    <!-- ================================================================================= -->
+    <!-- Preferences Initializer                                                           -->
+    <!-- ================================================================================= -->  
+  
+    <extension 
+        point="org.eclipse.core.runtime.preferences"
+    >
+        <initializer 
+            class="org.eclipse.egf.core.ui.internal.preferences.ModelPreferenceInitializer"
+        />
+    </extension> 
+  
+    <!-- ================================================================================= -->
+    <!-- ActionSets                                                                        -->
+    <!-- ================================================================================= -->  
+  
+    <extension
+        point="org.eclipse.ui.actionSets"
+    >
+  
+        <actionSet
+            label="%EGFFcoreActionSet_label"
+            description="%EGFFcoreActionSet_description"
+            visible="true"
+            id="org.eclipse.egf.core.ui.fcore.actionSet"
+        >
                         
-      <action
-        toolbarPath="org.eclipse.search.searchActionSet/Search"
-        definitionId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
-        icon="$nl$/icons/full/obj16/Fcore.gif"
-        label="%openFcore.label"
-        class="org.eclipse.egf.core.ui.actions.OpenFcoreAction"
-        tooltip="%openFcore.description"
-        menubarPath="navigate/open.ext4"        
-        id="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action"
-      />   
+            <action
+                toolbarPath="org.eclipse.search.searchActionSet/Search"
+                definitionId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
+                icon="$nl$/icons/full/obj16/Fcore.gif"
+                label="%openFcore.label"
+                class="org.eclipse.egf.core.ui.actions.OpenFcoreAction"
+                tooltip="%openFcore.description"
+                menubarPath="navigate/open.ext4"        
+                id="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action"
+            />   
       
-    </actionSet>
+        </actionSet>
     
-  </extension>
+    </extension>
       
-  <!-- ================================================================================= -->
-  <!-- Command Run                                                                       -->
-  <!-- ================================================================================= -->
+    <!-- ================================================================================= -->
+    <!-- Command Run                                                                       -->
+    <!-- ================================================================================= -->
   
-  <extension
-    point="org.eclipse.ui.commands"
-  >  
+    <extension
+        point="org.eclipse.ui.commands"
+    >  
         
-    <command
-      name="%ActionDefinition_openFcore_name"
-      description="%ActionDefinition_openFcore_description"
-      categoryId="org.eclipse.ui.category.file"
-      id="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
-    /> 
+        <command
+            name="%ActionDefinition_openFcore_name"
+            description="%ActionDefinition_openFcore_description"
+            categoryId="org.eclipse.ui.category.file"
+            id="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
+        /> 
           
-  </extension>  
+    </extension>  
   
-  <!-- ================================================================================= -->
-  <!-- Bindings                                                                          -->
-  <!-- ================================================================================= -->  
+    <!-- ================================================================================= -->
+    <!-- Bindings                                                                          -->
+    <!-- ================================================================================= -->  
   
-  <extension
-    point="org.eclipse.ui.bindings"
-  >
+    <extension
+        point="org.eclipse.ui.bindings"
+    >
   
-  <!-- ================================================================================= -->
-  <!-- win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-                                        -->
-  <!-- carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL                                     -->  
-  <!-- ================================================================================= -->  
+    <!-- ================================================================================= -->
+    <!-- win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-                                        -->
+    <!-- carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL                                     -->  
+    <!-- ================================================================================= -->  
   
-  <!-- ================================================================================= -->
-  <!-- Key Run                                                                           -->
-  <!-- ================================================================================= -->
+    <!-- ================================================================================= -->
+    <!-- Key Run                                                                           -->
+    <!-- ================================================================================= -->
          
-    <key
-      sequence="M1+M3+F"
-      commandId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
-      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-    /> 
+        <key
+            sequence="M1+M3+F"
+            commandId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+        /> 
     
-  </extension>          
+    </extension>          
         
 </plugin>
