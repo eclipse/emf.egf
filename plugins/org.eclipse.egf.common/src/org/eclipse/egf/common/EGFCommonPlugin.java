@@ -13,7 +13,7 @@ package org.eclipse.egf.common;
 import java.util.List;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.common.internal.log.EGFLoggerRegistry;
+import org.eclipse.egf.common.internal.registry.EGFLoggerRegistry;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.osgi.framework.BundleContext;
 
