@@ -13,7 +13,7 @@
 package org.eclipse.egf.model;
 
 import org.eclipse.egf.common.activator.EGFEclipsePlugin;
-import org.eclipse.egf.model.ftask.internal.task.TaskNatureRegistry;
+import org.eclipse.egf.model.ftask.internal.registry.TaskNatureRegistry;
 import org.eclipse.egf.model.ftask.task.ITaskNatureRegistry;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
