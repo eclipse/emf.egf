@@ -46,6 +46,7 @@ import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -54,6 +55,7 @@ import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
 import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.model.types.TypesFactory;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -69,13 +71,13 @@ public class CodegenEGFHelper {
 
     private Map<Key, Object> createdObjects = new HashMap<Key, Object>();
     private Map<Key, String> xmiIds = new HashMap<Key, String>();
-    private Map<String, Integer> patternOrder = new LinkedHashMap<String, Integer>();
+    private Map<String, Integer> patternElementOrder = new LinkedHashMap<String, Integer>();
 
     public CodegenEGFHelper(Resource emfPatternResource, CodegenEGFHelper oldCodegenEGFHelper) {
         this.emfPatternResource = emfPatternResource;
         if (oldCodegenEGFHelper != null) {
             this.xmiIds = oldCodegenEGFHelper.getXmiIds();
-            this.patternOrder = oldCodegenEGFHelper.getPatternOrder();
+            this.patternElementOrder = oldCodegenEGFHelper.getPatternElementOrder();
         }
     }
 
@@ -83,8 +85,8 @@ public class CodegenEGFHelper {
         return xmiIds;
     }
 
-    public Map<String, Integer> getPatternOrder() {
-        return patternOrder;
+    public Map<String, Integer> getPatternElementOrder() {
+        return patternElementOrder;
     }
 
     public void createAllFactoryComponent() {
@@ -436,20 +438,31 @@ public class CodegenEGFHelper {
         XMIResource xmiResource = getXMIResource();
         for (Iterator<EObject> i = emfPatternResource.getAllContents(); i.hasNext();) {
             EObject eObject = i.next();
-            if (eObject instanceof Pattern) {
-                Pattern pattern = (Pattern) eObject;
-                patternOrder.put(xmiResource.getID(eObject), pattern.getContainer().getElements().indexOf(pattern));
+            if (eObject instanceof PatternElement) {
+                PatternElement patternElement = (PatternElement) eObject;
+                patternElementOrder.put(xmiResource.getID(eObject), getSiblingCollection(patternElement).indexOf(patternElement));
             }
         }
     }
 
-    public void fixPatternOrder() {
+    public void fixPatternElementOrder() {
         XMIResource xmiResource = getXMIResource();
-        for (String id : patternOrder.keySet()) {
-            Pattern pattern = (Pattern) xmiResource.getEObject(id);
-            if (pattern != null) 
-                pattern.getContainer().getElements().move(patternOrder.get(id), pattern);
+        for (String id : patternElementOrder.keySet()) {
+            PatternElement patternElement = (PatternElement) xmiResource.getEObject(id);
+            if (patternElement != null) 
+                getSiblingCollection(patternElement).move(patternElementOrder.get(id), patternElement);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    protected <E extends PatternElement> EList<E> getSiblingCollection(PatternElement patternElement) {
+        PatternLibrary container = patternElement.getContainer();
+        if (container != null)
+            return (EList<E>) container.getElements();
+        
+        PatternLibrary patternLibrary = (PatternLibrary) patternElement;
+        PatternViewpoint patternViewpoint = (PatternViewpoint) patternLibrary.eContainer();
+        return (EList<E>) patternViewpoint.getLibraries();
     }
 
     protected XMIResource getXMIResource() {

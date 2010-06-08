@@ -82,7 +82,7 @@ public class CodegenFcoreUtil {
                 createPatterns(monitor);
                 codegenEGFHelper.createOrchestration(emfPatternBaseResource, mdpstResource, patternInfos, monitor, codegenPatternHelper);
                 codegenEGFHelper.createAllFactoryComponent();
-                codegenEGFHelper.fixPatternOrder();
+                codegenEGFHelper.fixPatternElementOrder();
             } catch (Exception e) {
                 this.exception = e;
             }
