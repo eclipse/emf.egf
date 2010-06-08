@@ -533,7 +533,7 @@ public final class EGFWorkspaceSynchronizer {
                                     break;
                             }
                         }
-                        return false;
+                        return true;
                     }
                 });
 
