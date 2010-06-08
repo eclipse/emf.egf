@@ -91,33 +91,13 @@ public class EGFLoggerProxy {
         if (declaringExtension instanceof Handle) {
             handleId = ((Handle) declaringExtension).getId();
         }
-        try {
-            // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
-            String clazz = element.getAttribute(EGFLoggerRegistry.INVOKER_ATT_CLASS);
-            // 'class' attribute is mandatory
-            if (clazz == null || clazz.trim().length() == 0) {
-                return null;
-            }
-            Object object = element.createExecutableExtension(EGFLoggerRegistry.INVOKER_ATT_CLASS);
-            if (object == null) {
-                return null;
-            }
-            if (object instanceof IEGFLoggerFactory == false) {
-                EGFCommonPlugin.getDefault().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, object.getClass().getName()));
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Wrong_Class_Sub_Type_Message, IEGFLoggerFactory.class.getName()), 1);
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
-                EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
-                return null;
-            }
-            IEGFLogger logger = ((IEGFLoggerFactory) object).getLogger();
-            if (logger == null) {
-                return null;
-            }
-            return new EGFLoggerProxy(element, clazz, uniqueIdentifier, handleId);
-        } catch (CoreException e) {
-            EGFCommonPlugin.getDefault().logError(e);
+        // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
+        String clazz = element.getAttribute(EGFLoggerRegistry.INVOKER_ATT_CLASS);
+        // 'class' attribute is mandatory
+        if (clazz == null || clazz.trim().length() == 0) {
+            return null;
         }
-        return null;
+        return new EGFLoggerProxy(element, clazz, uniqueIdentifier, handleId);
     }
 
     public EGFLoggerProxy(IConfigurationElement element, String clazz, String uniqueIdentifier, int handleId) {
