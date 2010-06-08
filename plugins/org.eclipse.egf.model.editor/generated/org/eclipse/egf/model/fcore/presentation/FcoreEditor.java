@@ -31,11 +31,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
@@ -44,7 +42,7 @@ import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
-import org.eclipse.egf.core.ui.contributor.ListenerContributor;
+import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
@@ -1180,13 +1178,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);
 
             createContextMenuFor(selectionViewer);
-            for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(ListenerContributor.EXTENSION_ID)) {
-                try {
-                    ListenerContributor contributor = (ListenerContributor) element.createExecutableExtension("class"); //$NON-NLS-1$
-                    contributor.addListeners(getEditorSite().getPage(), selectionViewer);
-                } catch (CoreException e) {
-                    EGFCoreUIPlugin.getDefault().logError(e);
-                }
+            for (EditorListenerContributor contributor : EGFCoreUIPlugin.getEditorListenerContributors()) {
+                contributor.addListener(getEditorSite().getPage(), selectionViewer);
             }
             int pageIndex = addPage(viewerPane.getControl());
             setPageText(pageIndex, getString("_UI_SelectionPage_label")); //$NON-NLS-1$
@@ -1815,6 +1808,11 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
 
         // No more problem feedback
         updateProblemIndication = false;
+
+        // Remove contribution
+        for (EditorListenerContributor contributor : EGFCoreUIPlugin.getEditorListenerContributors()) {
+            contributor.removeListener(selectionViewer);
+        }
 
         // We have operation history stuff to clean up
         getOperationHistory().removeOperationHistoryListener(historyListener);
