@@ -19,22 +19,23 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.common.helper.JavaHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.helper.ResourceHelper;
-import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
+import org.eclipse.egf.pattern.Activator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 
 /**
  * The purpose is to handle ecore models from the workspace as well as runtime
@@ -49,134 +50,165 @@ import org.eclipse.jdt.core.JavaCore;
  */
 public class EPackageHelper {
 
-  public static final String INSTANCE_FIELD_NAME = "eINSTANCE"; //$NON-NLS-1$
+    public static final String INSTANCE_FIELD_NAME = "eINSTANCE"; //$NON-NLS-1$
 
-  public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+    public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
 
-  private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
+    private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
-  private static EPackage getTopEPackage(EPackage ePackage) {
-    if (ePackage.getESuperPackage() != null)
-      return getTopEPackage(ePackage.getESuperPackage());
-    return ePackage;
-  }
+    private static void init() {
 
-  public static String getBasePackage(EPackage ePackage) {
-    String name = nsuri2basePackage.get(ePackage.getNsURI());
-    if (name != null)
-      return name;
-    String nsUri = getTopEPackage(ePackage).getNsURI();
-    URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsUri);
-    Resource res = loadResource(uri);
-    for (EObject obj : res.getContents()) {
-      if (obj instanceof GenModel) {
-        GenModel genModel = (GenModel) obj;
-        for (GenPackage gPack : genModel.getAllGenPackagesWithClassifiers()) {
-          EPackage ecorePackage = gPack.getEcorePackage();
-          if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
-            String basePackageName = gPack.getInterfacePackageName();
-            nsuri2basePackage.put(ePackage.getNsURI(), basePackageName);
-            return basePackageName;
-          }
+        for (IPlatformGenModel genModel : EGFCorePlugin.getPlatformGenModels()) {
+            addEcoreModel(genModel);
         }
-      }
+        EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(new IPlatformExtensionPointListener() {
+
+            public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
+                for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
+                    addEcoreModel(genModel);
+                }
+                for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
+                    removePackageFromRegistry(genModel);
+                }
+            }
+        });
     }
 
-    return null;
-  }
+    private static void addEcoreModel(IPlatformGenModel genModel) {
+        try {
+            try {
+                URI uri = genModel.getGenModelURI();
+                if (uri == null)
+                    handleClassname(genModel);
+                else
+                    handleURI(uri);
+            } catch (Exception e) {
+                // don't care since we will try another way
+            }
+            addPackage2registry(genModel);
+        } catch (Exception e) {
+            Activator.getDefault().logError(e);
+        }
 
-  public static void unregisterPackage(IProject project, String classname) throws RegistrationException {
-    try {
-      IJavaProject javaProject = JavaCore.create(project);
-      if (javaProject.exists()) {
-        Class<?> loadClass = JavaHelper.getProjectClassLoader(javaProject).loadClass(classname);
-        Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
-        EPackage ePackage = (EPackage) declaredField.get(null);
-        String nsURI = ePackage.getNsURI();
-        removePackage2registry(ePackage);
-        nsuri2basePackage.remove(nsURI);
-      }
-    } catch (Exception e) {
-      throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
     }
-  }
 
-  /**
-   * This method will be used by the workspace resource listener
-   */
-  public static void registerPackage(IProject project, String classname) throws RegistrationException {
-    try {
-      IJavaProject javaProject = JavaCore.create(project);
-      if (javaProject.exists()) {
-        Class<?> loadClass = JavaHelper.getProjectClassLoader(javaProject).loadClass(classname);
-        Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
-        EPackage ePackage = (EPackage) declaredField.get(null);
-        String nsURI = ePackage.getNsURI();
-        addPackage2registry(ePackage);
-        // computing basePackage
+    private static void handleClassname(IPlatformGenModel genModel) {
+        String classname = genModel.getGeneratedPackage();
         int index = classname.lastIndexOf("."); //$NON-NLS-1$
         if (index == -1) {
-          throw new IllegalStateException();
+            throw new IllegalStateException();
         }
         if (index == 0) {
-          nsuri2basePackage.put(nsURI, ""); //$NON-NLS-1$
+            nsuri2basePackage.put(genModel.getNamespace(), ""); //$NON-NLS-1$
         } else {
-          // to remove the last dot
-          nsuri2basePackage.put(nsURI, classname.substring(0, index));
+            // to remove the last dot
+            nsuri2basePackage.put(genModel.getNamespace(), classname.substring(0, index));
         }
-      }
-    } catch (Exception e) {
-      throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
-    }
-  }
 
-  private static void addPackage2registry(EPackage ePackage) {
-    String nsURI = ePackage.getNsURI();
-    REGISTRY.put(nsURI, new Descriptor(ePackage));
-    for (EPackage child : ePackage.getESubpackages())
-      addPackage2registry(child);
-  }
-
-  private static void removePackage2registry(EPackage ePackage) {
-    String nsURI = ePackage.getNsURI();
-    REGISTRY.remove(nsURI);
-    for (EPackage child : ePackage.getESubpackages())
-      removePackage2registry(child);
-  }
-
-  public static class RegistrationException extends Exception {
-    private static final long serialVersionUID = 1L;
-
-    private RegistrationException(String message, Throwable cause) {
-      super(message, cause);
-    }
-  }
-
-  private static Resource loadResource(URI uri) {
-    // TODO it may be interesting to keep loaded resources for future
-    // uses ... however, workspace resources may change.
-    ResourceSetImpl set = new ResourceSetImpl();
-    Resource res = ResourceHelper.loadResource(set, uri);
-    return res;
-  }
-
-  private static class Descriptor implements EPackage.Descriptor {
-
-    private EPackage epackage;
-
-    public Descriptor(EPackage ePackage) {
-      super();
-      this.epackage = ePackage;
     }
 
-    public EFactory getEFactory() {
-      return epackage.getEFactoryInstance();
+    private static void handleURI(URI uri) {
+        ResourceSetImpl set = new ResourceSetImpl();
+        Resource res = ResourceHelper.loadResource(set, uri);
+        try {
+            for (EObject obj : res.getContents()) {
+                if (obj instanceof GenModel) {
+                    GenModel genModel2 = (GenModel) obj;
+                    for (GenPackage gPack : genModel2.getAllGenPackagesWithClassifiers()) {
+                        EPackage ecorePackage = gPack.getEcorePackage();
+                        String basePackageName = gPack.getInterfacePackageName();
+                        nsuri2basePackage.put(ecorePackage.getNsURI(), basePackageName);
+
+                    }
+                }
+            }
+        } finally {
+            res.unload();
+        }
     }
 
-    public EPackage getEPackage() {
-      return epackage;
+    public static String getBasePackage(EPackage ePackage) {
+
+        if (nsuri2basePackage.isEmpty())
+            init();
+        String nsURI = ePackage.getNsURI();
+        String name = nsuri2basePackage.get(nsURI);
+        if (name == null)
+            throw new IllegalStateException();
+        return name;
     }
 
-  }
+    private static void addPackage2registry(IPlatformGenModel genModel) {
+        String nsURI = genModel.getNamespace();
+        if (!REGISTRY.containsKey(nsURI))
+            REGISTRY.put(nsURI, new Descriptor2(genModel));
+    }
+
+    private static void removePackageFromRegistry(IPlatformGenModel genModel) {
+        String nsURI = genModel.getNamespace();
+        REGISTRY.remove(nsURI);
+    }
+
+    public static class RegistrationException extends Exception {
+        private static final long serialVersionUID = 1L;
+
+        private RegistrationException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    private static class Descriptor2 implements EPackage.Descriptor {
+
+        private final IPlatformGenModel genModel;
+
+        private Descriptor2(IPlatformGenModel genModel) {
+            super();
+            this.genModel = genModel;
+
+        }
+
+        public EFactory getEFactory() {
+
+            return null;
+        }
+
+        public EPackage getEPackage() {
+            try {
+                Class<?> javaClass = getGenModel().getPlatformBundle().getBundle().loadClass(getGenModel().getGeneratedPackage());
+                Field field = javaClass.getField("eINSTANCE");
+                Object result = field.get(null);
+                return (EPackage) result;
+            } catch (ClassNotFoundException e) {
+                throw new WrappedException(e);
+            } catch (IllegalAccessException e) {
+                throw new WrappedException(e);
+            } catch (NoSuchFieldException e) {
+                throw new WrappedException(e);
+            }
+        }
+
+        public IPlatformGenModel getGenModel() {
+            return genModel;
+        }
+    }
+
+    private static class Descriptor implements EPackage.Descriptor {
+
+        private EPackage epackage;
+
+        public Descriptor(EPackage ePackage) {
+            super();
+            this.epackage = ePackage;
+        }
+
+        public EFactory getEFactory() {
+            return epackage.getEFactoryInstance();
+        }
+
+        public EPackage getEPackage() {
+            return epackage;
+        }
+
+    }
 
 }

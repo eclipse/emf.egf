@@ -15,10 +15,7 @@
 
 package org.eclipse.egf.pattern;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.pattern.ecore.EPackageListener;
-import org.eclipse.egf.pattern.ecore.RegistryReader;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -29,38 +26,46 @@ import org.osgi.framework.BundleContext;
 public class Activator extends EGFAbstractPlugin {
 
     // The shared instance
-    private static Activator __plugin;
+    private static Activator plugin;
 
-    private final EPackageListener resourceListener = new EPackageListener();
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-     * )
+    /**
+     * The constructor
      */
-    @Override
-    public void start(BundleContext context) throws Exception {
-        super.start(context);
-        __plugin = this;
-        // set up ecore model registry with workspace models
-        new RegistryReader().load();
-        ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
+    public Activator() {
     }
 
     /*
      * (non-Javadoc)
      * 
      * @see
+     * 
+     * 
+     * 
+     * 
+     * 
+     * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
+     * )
+     */
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        plugin = this;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * 
+     * 
+     * 
+     * 
+     * 
      * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
      * )
      */
-    @Override
     public void stop(BundleContext context) throws Exception {
-        ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
         super.stop(context);
-        __plugin = null;
+        plugin = null;
     }
 
     /**
@@ -69,7 +74,7 @@ public class Activator extends EGFAbstractPlugin {
      * @return the shared instance
      */
     public static Activator getDefault() {
-        return __plugin;
+        return plugin;
     }
 
 }
