@@ -31,7 +31,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
     private List<EGFLoggerProxy> _loggers;
 
     /**
-     * Define a constant for the Task extension-point id.
+     * Define a constant for the Logger extension-point id.
      */
     public static final String EXTENSION_ID = "org.eclipse.egf.common.logger"; //$NON-NLS-1$
 
