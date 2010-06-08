@@ -533,7 +533,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         }
                         break;
                     }
-                    case Resource.RESOURCE__CONTENTS:
                     case Resource.RESOURCE__URI: {
                         getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
