@@ -96,7 +96,7 @@ public class <%=genClass.getProviderClassName()%>
 	 */
 	protected void add<%=genFeature.getCapName()%>PropertyDescriptor(Object object)
 	{
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.addPropertyDescriptor.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/addPropertyDescriptor.override.javajetinc%>	}
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.addPropertyDescriptor.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/addPropertyDescriptor.override.javajetinc%>	}
 
 <%}%>
 <%if (!genClass.getChildrenFeatures().isEmpty()) {%>
@@ -184,7 +184,7 @@ public class <%=genClass.getProviderClassName()%>
 <%}%>
 	public String getText(Object object)
 	{
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.getText.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/getText.override.javajetinc%>	}
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.getText.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/getText.override.javajetinc%>	}
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -246,11 +246,11 @@ public class <%=genClass.getProviderClassName()%>
     <%for (GenClass.ChildCreationData childCreationData : genClass.getChildCreationData()) { GenFeature createFeature = childCreationData.createFeature; GenFeature delegatedFeature = childCreationData.delegatedFeature; GenClassifier createClassifier = childCreationData.createClassifier;%>
       <%if (createFeature.isFeatureMapType()) {%>
         <%if (delegatedFeature.isReferenceType()) { GenClass createClass = (GenClass)createClassifier;%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc%>        <%} else { GenDataType createDataType = (GenDataType)createClassifier;%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc%>        <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc%>        <%} else { GenDataType createDataType = (GenDataType)createClassifier;%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc%>        <%}%>
       <%} else if (createFeature.isReferenceType()) { GenClass createClass = (GenClass)createClassifier;%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc %>      <%} else { GenDataType createDataType = (GenDataType)createClassifier;%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc%>      <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc %>      <%} else { GenDataType createDataType = (GenDataType)createClassifier;%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%><%//ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc%>      <%}%>
     <%}%>
 	}
 
@@ -314,6 +314,6 @@ public class <%=genClass.getProviderClassName()%>
 	}
 
 <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
 }
 <%genModel.emitSortedImports();%>

@@ -198,7 +198,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4JybkWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_PesoYDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model/ResourceFactoryClass.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.model.internal.ResourceFactoryClass.ResourceFactoryClass.createResource.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_PesoYDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model/ResourceFactoryClass.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override&#xA;"
               name="ResourceFactoryClass" headerMethod="#_PesoYjG0Ed-kc8dEZsdm2w"
               footerMethod="#_PesoZTG0Ed-kc8dEZsdm2w" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_VlOiICg6Ed-ROrlGa8LEeQ"
               initMethod="#_PesoYzG0Ed-kc8dEZsdm2w">
@@ -222,7 +222,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4KPHkWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_Pe_jUDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model/Class.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.declaredFieldGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.reflectiveDelegation.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genOperation.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.eUnset.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.eIsSet.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_Pe_jUDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model/Class.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.reflectiveDelegation.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.eUnset.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.eIsSet.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.insert&#xA;"
               name="Class" headerMethod="#_Pe_jUjG0Ed-kc8dEZsdm2w" footerMethod="#_Pe_jVTG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_hYG6UCg6Ed-ROrlGa8LEeQ"
               initMethod="#_Pe_jUzG0Ed-kc8dEZsdm2w">
@@ -366,7 +366,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4KiCcWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_Pg8EEDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model/Class.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.declaredFieldGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.reflectiveDelegation.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genOperation.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.eUnset.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.eIsSet.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_Pg8EEDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model/Class.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.declaredFieldGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.reflectiveDelegation.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genOperation.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.eUnset.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.eIsSet.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.insert&#xA;"
               name="Interface" headerMethod="#_Pg8EEjG0Ed-kc8dEZsdm2w" footerMethod="#_Pg8EFTG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_hYG6UCg6Ed-ROrlGa8LEeQ"
               initMethod="#_Pg8EEzG0Ed-kc8dEZsdm2w">
@@ -463,7 +463,7 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_0uqqgGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.model.internal.ResourceFactoryClass">
+        <libraries xmi:id="_0uqqgGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass">
           <elements xmi:type="pattern:Pattern" xmi:id="_0uqqgWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/ResourceFactoryClass.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;"
               name="ResourceFactoryClass.createResource.override" headerMethod="#_0uqqg2J-Ed-FqczH3ESmRw"
               footerMethod="#_0uqqhmJ-Ed-FqczH3ESmRw" initMethod="#_0uqqhGJ-Ed-FqczH3ESmRw">
@@ -480,8 +480,8 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_0jpGTWJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.model.internal.Class">
-          <elements xmi:type="pattern:Pattern" xmi:id="_0jpGTmJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.declaredFieldGenFeature.insert&#xA;"
+        <libraries xmi:id="_0jpGTWJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.model.call.Class">
+          <elements xmi:type="pattern:Pattern" xmi:id="_0jpGTmJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.insert&#xA;"
               name="Class.declaredFieldGenFeature.override" headerMethod="#_0jpGUGJ-Ed-FqczH3ESmRw"
               footerMethod="#_0jpGU2J-Ed-FqczH3ESmRw" initMethod="#_0jpGUWJ-Ed-FqczH3ESmRw">
             <methods xmi:id="_0jpGUGJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0jpGTmJ-Ed-FqczH3ESmRw/method._0jpGUGJ-Ed-FqczH3ESmRw.pt"/>
@@ -561,7 +561,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4OZ10WNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0kO8IGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.getGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicGetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicUnsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.unsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.isSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0kO8IGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicUnsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.isSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genFeature.insert&#xA;"
               name="Class.genFeature.override" headerMethod="#_0kO8ImJ-Ed-FqczH3ESmRw"
               footerMethod="#_0kO8JWJ-Ed-FqczH3ESmRw" initMethod="#_0kO8I2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0kO8ImJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0kO8IGJ-Ed-FqczH3ESmRw/method._0kO8ImJ-Ed-FqczH3ESmRw.pt"/>
@@ -588,7 +588,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4OZ15GNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0kh3EGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.getGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.getGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.getGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.getGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0kh3EGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.TODO.override&#xA;"
               name="Class.getGenFeature.override" headerMethod="#_0kh3EmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0kh3FWJ-Ed-FqczH3ESmRw" initMethod="#_0kh3E2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0kh3EmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0kh3EGJ-Ed-FqczH3ESmRw/method._0kh3EmJ-Ed-FqczH3ESmRw.pt"/>
@@ -615,7 +615,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4OZ1-GNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0kroEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.getGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0kroEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.javadoc.insert&#xA;"
               name="Class.getGenFeature.javadoc.override" headerMethod="#_0kroEmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0kroFWJ-Ed-FqczH3ESmRw" initMethod="#_0kroE2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0kroEmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0kroEGJ-Ed-FqczH3ESmRw/method._0kroEmJ-Ed-FqczH3ESmRw.pt"/>
@@ -750,7 +750,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4OtX5WNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0lk_8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicGetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicGetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicGetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0lk_8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.TODO.override&#xA;"
               name="Class.basicGetGenFeature.override" headerMethod="#_0lk_8mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0lk_9WJ-Ed-FqczH3ESmRw" initMethod="#_0lk_82J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0lk_8mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0lk_8GJ-Ed-FqczH3ESmRw/method._0lk_8mJ-Ed-FqczH3ESmRw.pt"/>
@@ -858,7 +858,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4O2h6WNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0mUm0GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicSetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0mUm0GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.TODO.override&#xA;"
               name="Class.basicSetGenFeature.override" headerMethod="#_0mUm0mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0mUm1WJ-Ed-FqczH3ESmRw" initMethod="#_0mUm02J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0mUm0mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0mUm0GJ-Ed-FqczH3ESmRw/method._0mUm0mJ-Ed-FqczH3ESmRw.pt"/>
@@ -993,7 +993,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4PKD1WNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0nN-sGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0nN-sGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.TODO.override&#xA;"
               name="Class.setGenFeature.override" headerMethod="#_0nN-smJ-Ed-FqczH3ESmRw"
               footerMethod="#_0nN-tWJ-Ed-FqczH3ESmRw" initMethod="#_0nN-s2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0nN-smJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0nN-sGJ-Ed-FqczH3ESmRw/method._0nN-smJ-Ed-FqczH3ESmRw.pt"/>
@@ -1020,7 +1020,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4PKD6WNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0nXIoGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.setGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0nXIoGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.javadoc.insert&#xA;"
               name="Class.setGenFeature.javadoc.override" headerMethod="#_0nXIomJ-Ed-FqczH3ESmRw"
               footerMethod="#_0nXIpWJ-Ed-FqczH3ESmRw" initMethod="#_0nXIo2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0nXIomJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0nXIoGJ-Ed-FqczH3ESmRw/method._0nXIomJ-Ed-FqczH3ESmRw.pt"/>
@@ -1188,7 +1188,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4Pc-22NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0qfVIGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicUnsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.basicUnsetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0qfVIGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicUnsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.basicUnsetGenFeature.TODO.override&#xA;"
               name="Class.basicUnsetGenFeature.override" headerMethod="#_0qfVImJ-Ed-FqczH3ESmRw"
               footerMethod="#_0qfVJWJ-Ed-FqczH3ESmRw" initMethod="#_0qfVI2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0qfVImJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0qfVIGJ-Ed-FqczH3ESmRw/method._0qfVImJ-Ed-FqczH3ESmRw.pt"/>
@@ -1269,7 +1269,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4PmIyWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0q8BEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.unsetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.unsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.unsetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0q8BEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.TODO.override&#xA;"
               name="Class.unsetGenFeature.override" headerMethod="#_0q8BEmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0q8BFWJ-Ed-FqczH3ESmRw" initMethod="#_0q8BE2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0q8BEmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0q8BEGJ-Ed-FqczH3ESmRw/method._0q8BEmJ-Ed-FqczH3ESmRw.pt"/>
@@ -1296,7 +1296,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4Pv5oWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0rPjEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.unsetGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0rPjEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.javadoc.insert&#xA;"
               name="Class.unsetGenFeature.javadoc.override" headerMethod="#_0rPjEmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0rPjFWJ-Ed-FqczH3ESmRw" initMethod="#_0rPjE2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0rPjEmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0rPjEGJ-Ed-FqczH3ESmRw/method._0rPjEmJ-Ed-FqczH3ESmRw.pt"/>
@@ -1404,7 +1404,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4P5qtWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0sIT4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.isSetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.isSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.isSetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0sIT4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.isSetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.isSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.isSetGenFeature.TODO.override&#xA;"
               name="Class.isSetGenFeature.override" headerMethod="#_0sIT4mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0sIT5WJ-Ed-FqczH3ESmRw" initMethod="#_0sIT42J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0sIT4mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0sIT4GJ-Ed-FqczH3ESmRw/method._0sIT4mJ-Ed-FqczH3ESmRw.pt"/>
@@ -1431,7 +1431,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4P5qyWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0sSE4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.isSetGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0sSE4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.isSetGenFeature.javadoc.insert&#xA;"
               name="Class.isSetGenFeature.javadoc.override" headerMethod="#_0sSE4mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0sSE5WJ-Ed-FqczH3ESmRw" initMethod="#_0sSE42J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0sSE4mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0sSE4GJ-Ed-FqczH3ESmRw/method._0sSE4mJ-Ed-FqczH3ESmRw.pt"/>
@@ -1566,7 +1566,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4QMlpWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0tBrwGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genOperation.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genOperation.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.implementedGenOperation.TODO.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genOperation.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0tBrwGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.implementedGenOperation.TODO.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.insert&#xA;"
               name="Class.genOperation.override" headerMethod="#_0tLcwGJ-Ed-FqczH3ESmRw"
               footerMethod="#_0tLcw2J-Ed-FqczH3ESmRw" initMethod="#_0tLcwWJ-Ed-FqczH3ESmRw">
             <methods xmi:id="_0tLcwGJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0tBrwGJ-Ed-FqczH3ESmRw/method._0tLcwGJ-Ed-FqczH3ESmRw.pt"/>
@@ -1593,7 +1593,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4QMluWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0tUmsGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Class.Class.genOperation.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0tUmsGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.javadoc.insert&#xA;"
               name="Class.genOperation.javadoc.override" headerMethod="#_0tUmsmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0tUmtWJ-Ed-FqczH3ESmRw" initMethod="#_0tUms2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0tUmsmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0tUmsGJ-Ed-FqczH3ESmRw/method._0tUmsmJ-Ed-FqczH3ESmRw.pt"/>
@@ -1807,8 +1807,8 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_0u0bgGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.model.internal.Interface">
-          <elements xmi:type="pattern:Pattern" xmi:id="_0u0bgWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.declaredFieldGenFeature.insert&#xA;"
+        <libraries xmi:id="_0u0bgGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.model.call.Interface">
+          <elements xmi:type="pattern:Pattern" xmi:id="_0u0bgWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.declaredFieldGenFeature.insert&#xA;"
               name="Interface.declaredFieldGenFeature.override" headerMethod="#_0u0bg2J-Ed-FqczH3ESmRw"
               footerMethod="#_0u0bhmJ-Ed-FqczH3ESmRw" initMethod="#_0u0bhGJ-Ed-FqczH3ESmRw">
             <methods xmi:id="_0u0bg2J-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0u0bgWJ-Ed-FqczH3ESmRw/method._0u0bg2J-Ed-FqczH3ESmRw.pt"/>
@@ -1888,7 +1888,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4QybcWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0vaRYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.getGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicGetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicUnsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.unsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.isSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0vaRYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicGetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicUnsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genFeature.insert&#xA;"
               name="Interface.genFeature.override" headerMethod="#_0vaRYmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0vaRZWJ-Ed-FqczH3ESmRw" initMethod="#_0vaRY2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0vaRYmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0vaRYGJ-Ed-FqczH3ESmRw/method._0vaRYmJ-Ed-FqczH3ESmRw.pt"/>
@@ -1915,7 +1915,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4QybhGNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0vkCYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.getGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.getGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.getGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.getGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0vkCYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.TODO.override&#xA;"
               name="Interface.getGenFeature.override" headerMethod="#_0vkCYmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0vkCZWJ-Ed-FqczH3ESmRw" initMethod="#_0vkCY2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0vkCYmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0vkCYGJ-Ed-FqczH3ESmRw/method._0vkCYmJ-Ed-FqczH3ESmRw.pt"/>
@@ -1942,7 +1942,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4QybmGNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0vtMUGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.getGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0vtMUGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.getGenFeature.javadoc.insert&#xA;"
               name="Interface.getGenFeature.javadoc.override" headerMethod="#_0vtMUmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0vtMVWJ-Ed-FqczH3ESmRw" initMethod="#_0vtMU2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0vtMUmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0vtMUGJ-Ed-FqczH3ESmRw/method._0vtMUmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2077,7 +2077,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4RF9hWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0wwVMGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicGetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicGetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicGetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0wwVMGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicGetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicGetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicGetGenFeature.TODO.override&#xA;"
               name="Interface.basicGetGenFeature.override" headerMethod="#_0wwVMmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0wwVNWJ-Ed-FqczH3ESmRw" initMethod="#_0wwVM2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0wwVMmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0wwVMGJ-Ed-FqczH3ESmRw/method._0wwVMmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2185,7 +2185,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4RPHiWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0xWLEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicSetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0xWLEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicSetGenFeature.TODO.override&#xA;"
               name="Interface.basicSetGenFeature.override" headerMethod="#_0xWLEmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0xWLFWJ-Ed-FqczH3ESmRw" initMethod="#_0xWLE2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0xWLEmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0xWLEGJ-Ed-FqczH3ESmRw/method._0xWLEmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2320,7 +2320,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4RipdWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0yPi8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0yPi8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.pre.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.post.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.TODO.override&#xA;"
               name="Interface.setGenFeature.override" headerMethod="#_0yPi8mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0yPi9WJ-Ed-FqczH3ESmRw" initMethod="#_0yPi82J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0yPi8mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0yPi8GJ-Ed-FqczH3ESmRw/method._0yPi8mJ-Ed-FqczH3ESmRw.pt"/>
@@ -2347,7 +2347,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4RipiWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0yZT8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.setGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0yZT8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.setGenFeature.javadoc.insert&#xA;"
               name="Interface.setGenFeature.javadoc.override" headerMethod="#_0yZT8mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0yZT9WJ-Ed-FqczH3ESmRw" initMethod="#_0yZT82J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0yZT8mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0yZT8GJ-Ed-FqczH3ESmRw/method._0yZT8mJ-Ed-FqczH3ESmRw.pt"/>
@@ -2515,7 +2515,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4R-uQWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0zSEwGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicUnsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.basicUnsetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0zSEwGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicUnsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.basicUnsetGenFeature.TODO.override&#xA;"
               name="Interface.basicUnsetGenFeature.override" headerMethod="#_0zSEwmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0zSExWJ-Ed-FqczH3ESmRw" initMethod="#_0zSEw2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0zSEwmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0zSEwGJ-Ed-FqczH3ESmRw/method._0zSEwmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2596,7 +2596,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4SIfQWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0z4hsGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.unsetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.unsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.unsetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0z4hsGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.TODO.override&#xA;"
               name="Interface.unsetGenFeature.override" headerMethod="#_0z4hsmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0z4htWJ-Ed-FqczH3ESmRw" initMethod="#_0z4hs2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0z4hsmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0z4hsGJ-Ed-FqczH3ESmRw/method._0z4hsmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2623,7 +2623,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4SIfVWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_00BroGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.unsetGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_00BroGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.javadoc.insert&#xA;"
               name="Interface.unsetGenFeature.javadoc.override" headerMethod="#_00BromJ-Ed-FqczH3ESmRw"
               footerMethod="#_00BrpWJ-Ed-FqczH3ESmRw" initMethod="#_00Bro2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_00BromJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._00BroGJ-Ed-FqczH3ESmRw/method._00BromJ-Ed-FqczH3ESmRw.pt"/>
@@ -2731,7 +2731,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4SbaRWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_00oIkGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.isSetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.isSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.isSetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_00oIkGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.TODO.override&#xA;"
               name="Interface.isSetGenFeature.override" headerMethod="#_00oIkmJ-Ed-FqczH3ESmRw"
               footerMethod="#_00oIlWJ-Ed-FqczH3ESmRw" initMethod="#_00oIk2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_00oIkmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._00oIkGJ-Ed-FqczH3ESmRw/method._00oIkmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2758,7 +2758,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4SbaWWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_00x5kGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.isSetGenFeature.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_00x5kGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.isSetGenFeature.javadoc.insert&#xA;"
               name="Interface.isSetGenFeature.javadoc.override" headerMethod="#_00x5kmJ-Ed-FqczH3ESmRw"
               footerMethod="#_00x5lWJ-Ed-FqczH3ESmRw" initMethod="#_00x5k2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_00x5kmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._00x5kGJ-Ed-FqczH3ESmRw/method._00x5kmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2893,7 +2893,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4Su8MWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_01-MYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genOperation.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genOperation.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.implementedGenOperation.TODO.override&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genOperation.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_01-MYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genOperation.javadoc.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genOperation.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.implementedGenOperation.TODO.override&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genOperation.insert&#xA;"
               name="Interface.genOperation.override" headerMethod="#_01-MYmJ-Ed-FqczH3ESmRw"
               footerMethod="#_01-MZWJ-Ed-FqczH3ESmRw" initMethod="#_01-MY2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_01-MYmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._01-MYGJ-Ed-FqczH3ESmRw/method._01-MYmJ-Ed-FqczH3ESmRw.pt"/>
@@ -2920,7 +2920,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4Su8RWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_02HWUGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.internal.Interface.Interface.genOperation.javadoc.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_02HWUGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model/Class.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genOperation.javadoc.insert&#xA;"
               name="Interface.genOperation.javadoc.override" headerMethod="#_02HWUmJ-Ed-FqczH3ESmRw"
               footerMethod="#_02HWVWJ-Ed-FqczH3ESmRw" initMethod="#_02HWU2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_02HWUmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._02HWUGJ-Ed-FqczH3ESmRw/method._02HWUmJ-Ed-FqczH3ESmRw.pt"/>
@@ -3281,7 +3281,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4LlLUWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_PjK4sDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/ItemProvider.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.addPropertyDescriptor.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.getText.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_PjK4sDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/ItemProvider.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.addPropertyDescriptor.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.getText.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert&#xA;"
               name="ItemProvider" headerMethod="#_PjK4sjG0Ed-kc8dEZsdm2w" footerMethod="#_PjK4tTG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_hYG6UCg6Ed-ROrlGa8LEeQ"
               initMethod="#_PjK4szG0Ed-kc8dEZsdm2w">
@@ -3305,7 +3305,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4L4GQWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_PjdzoDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeFeature.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_PjdzoDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeDelegatedFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceFeature.override&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeFeature.override&#xA;"
               name="ItemProviderAdapterFactory" headerMethod="#_PjdzojG0Ed-kc8dEZsdm2w"
               footerMethod="#_PjdzpTG0Ed-kc8dEZsdm2w" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_VlOiICg6Ed-ROrlGa8LEeQ"
               initMethod="#_PjdzozG0Ed-kc8dEZsdm2w">
@@ -3417,8 +3417,8 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_05_JsGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory">
-          <elements xmi:type="pattern:Pattern" xmi:id="_05_JsWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceDelegatedFeature.insert&#xA;"
+        <libraries xmi:id="_05_JsGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory">
+          <elements xmi:type="pattern:Pattern" xmi:id="_05_JsWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceDelegatedFeature.insert&#xA;"
               name="ItemProviderAdapterFactory.newChildDescriptorsReferenceDelegatedFeature.override"
               headerMethod="#_05_Js2J-Ed-FqczH3ESmRw" footerMethod="#_05_JtmJ-Ed-FqczH3ESmRw"
               initMethod="#_05_JtGJ-Ed-FqczH3ESmRw">
@@ -3474,7 +3474,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4TLBO2NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_06lmoGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeDelegatedFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_06lmoGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeDelegatedFeature.insert&#xA;"
               name="ItemProviderAdapterFactory.newChildDescriptorsAttributeDelegatedFeature.override"
               headerMethod="#_06lmomJ-Ed-FqczH3ESmRw" footerMethod="#_06lmpWJ-Ed-FqczH3ESmRw"
               initMethod="#_06lmo2J-Ed-FqczH3ESmRw">
@@ -3530,7 +3530,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4TUyJ2NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_07e-gGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_07e-gGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsReferenceFeature.insert&#xA;"
               name="ItemProviderAdapterFactory.newChildDescriptorsReferenceFeature.override"
               headerMethod="#_07e-gmJ-Ed-FqczH3ESmRw" footerMethod="#_07e-hWJ-Ed-FqczH3ESmRw"
               initMethod="#_07e-g2J-Ed-FqczH3ESmRw">
@@ -3586,7 +3586,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4TejEWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_08OlYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_08OlYGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProviderAdapterFactory.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory.ItemProviderAdapterFactory.newChildDescriptorsAttributeFeature.insert&#xA;"
               name="ItemProviderAdapterFactory.newChildDescriptorsAttributeFeature.override"
               headerMethod="#_08OlYmJ-Ed-FqczH3ESmRw" footerMethod="#_08OlZWJ-Ed-FqczH3ESmRw"
               initMethod="#_08OlY2J-Ed-FqczH3ESmRw">
@@ -3643,7 +3643,7 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_03mkEGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.edit.internal.ItemProvider">
+        <libraries xmi:id="_03mkEGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.edit.call.ItemProvider">
           <elements xmi:type="pattern:Pattern" xmi:id="_03mkEWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;"
               name="ItemProvider.addPropertyDescriptor.override" headerMethod="#_03mkE2J-Ed-FqczH3ESmRw"
               footerMethod="#_03mkFmJ-Ed-FqczH3ESmRw" initMethod="#_03mkFGJ-Ed-FqczH3ESmRw">
@@ -3679,7 +3679,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4TntEGNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_036GEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_036GEGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.insert&#xA;"
               name="ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override"
               headerMethod="#_036GEmJ-Ed-FqczH3ESmRw" footerMethod="#_036GFWJ-Ed-FqczH3ESmRw"
               initMethod="#_036GE2J-Ed-FqczH3ESmRw">
@@ -3727,7 +3727,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4TxeAWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_04WyAGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_04WyAGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.insert&#xA;"
               name="ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override"
               headerMethod="#_04WyAmJ-Ed-FqczH3ESmRw" footerMethod="#_04WyBWJ-Ed-FqczH3ESmRw"
               initMethod="#_04WyA2J-Ed-FqczH3ESmRw">
@@ -3775,7 +3775,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4TxeJWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_04ps8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_04ps8GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert&#xA;"
               name="ItemProvider.newChildDescriptorsReferenceFeature.override" headerMethod="#_04ps8mJ-Ed-FqczH3ESmRw"
               footerMethod="#_04ps9WJ-Ed-FqczH3ESmRw" initMethod="#_04ps82J-Ed-FqczH3ESmRw">
             <methods xmi:id="_04ps8mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._04ps8GJ-Ed-FqczH3ESmRw/method._04ps8mJ-Ed-FqczH3ESmRw.pt"/>
@@ -3821,7 +3821,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4T7PE2NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_048n4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.internal.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_048n4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;edit/ItemProvider.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.insert&#xA;"
               name="ItemProvider.newChildDescriptorsAttributeFeature.override" headerMethod="#_048n4mJ-Ed-FqczH3ESmRw"
               footerMethod="#_048n5WJ-Ed-FqczH3ESmRw" initMethod="#_048n42J-Ed-FqczH3ESmRw">
             <methods xmi:id="_048n4mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._048n4GJ-Ed-FqczH3ESmRw/method._048n4mJ-Ed-FqczH3ESmRw.pt"/>
@@ -4056,7 +4056,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4MxeMWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_Pmc2MDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/Editor.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.editor.internal.Editor.Editor.addItemProviderFactories.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_Pmc2MDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/Editor.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.override&#xA;"
               name="Editor" headerMethod="#_PmmAIDG0Ed-kc8dEZsdm2w" footerMethod="#_PmmAIzG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_VlOiICg6Ed-ROrlGa8LEeQ"
               initMethod="#_PmmAITG0Ed-kc8dEZsdm2w">
@@ -4195,8 +4195,8 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_08-MQGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.editor.internal.Editor">
-          <elements xmi:type="pattern:Pattern" xmi:id="_08-MQWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;editor/Editor.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.editor.internal.Editor.Editor.addItemProviderFactories.insert&#xA;"
+        <libraries xmi:id="_08-MQGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.editor.call.Editor">
+          <elements xmi:type="pattern:Pattern" xmi:id="_08-MQWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;editor/Editor.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.insert&#xA;"
               name="Editor.addItemProviderFactories.override" headerMethod="#_08-MQ2J-Ed-FqczH3ESmRw"
               footerMethod="#_08-MRmJ-Ed-FqczH3ESmRw" initMethod="#_08-MRGJ-Ed-FqczH3ESmRw">
             <methods xmi:id="_08-MQ2J-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._08-MQWJ-Ed-FqczH3ESmRw/method._08-MQ2J-Ed-FqczH3ESmRw.pt"/>
@@ -4442,7 +4442,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4NqO8WNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_Pp39oDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model.tests/TestCase.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenOperation.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_Pp39oDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model.tests/TestCase.javajet&quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderJava&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.insert&#xA;"
               name="TestCase" headerMethod="#_Pp39ojG0Ed-kc8dEZsdm2w" footerMethod="#_Pp39pTG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_hYG6UCg6Ed-ROrlGa8LEeQ"
               initMethod="#_Pp39ozG0Ed-kc8dEZsdm2w">
@@ -4539,8 +4539,8 @@
                 name="JET"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_09kCIGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.tests.internal.TestCase">
-          <elements xmi:type="pattern:Pattern" xmi:id="_09kCIWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.getGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.setGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.unsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.isSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenFeature.insert&#xA;"
+        <libraries xmi:id="_09kCIGJ-Ed-FqczH3ESmRw" name="org.eclipse.egf.emf.pattern.tests.call.TestCase">
+          <elements xmi:type="pattern:Pattern" xmi:id="_09kCIWJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.insert&#xA;"
               name="TestCase.implementedGenFeature.override" headerMethod="#_09kCI2J-Ed-FqczH3ESmRw"
               footerMethod="#_09kCJmJ-Ed-FqczH3ESmRw" initMethod="#_09kCJGJ-Ed-FqczH3ESmRw">
             <methods xmi:id="_09kCI2J-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._09kCIWJ-Ed-FqczH3ESmRw/method._09kCI2J-Ed-FqczH3ESmRw.pt"/>
@@ -4557,7 +4557,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4UOKKWNEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_093kIGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.getGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.getGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_093kIGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.TODO.override&#xA;"
               name="TestCase.getGenFeature.override" headerMethod="#_093kImJ-Ed-FqczH3ESmRw"
               footerMethod="#_093kJWJ-Ed-FqczH3ESmRw" initMethod="#_093kI2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_093kImJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._093kIGJ-Ed-FqczH3ESmRw/method._093kImJ-Ed-FqczH3ESmRw.pt"/>
@@ -4608,7 +4608,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4UXT-2NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0-daAGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.setGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.setGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0-daAGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override&#xA;"
               name="TestCase.setGenFeature.override" headerMethod="#_0-daAmJ-Ed-FqczH3ESmRw"
               footerMethod="#_0-daBWJ-Ed-FqczH3ESmRw" initMethod="#_0-daA2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0-daAmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0-daAGJ-Ed-FqczH3ESmRw/method._0-daAmJ-Ed-FqczH3ESmRw.pt"/>
@@ -4659,7 +4659,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4UhE-2NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_0_NA4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.unsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.unsetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_0_NA4GJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.TODO.override&#xA;"
               name="TestCase.unsetGenFeature.override" headerMethod="#_0_NA4mJ-Ed-FqczH3ESmRw"
               footerMethod="#_0_NA5WJ-Ed-FqczH3ESmRw" initMethod="#_0_NA42J-Ed-FqczH3ESmRw">
             <methods xmi:id="_0_NA4mJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._0_NA4GJ-Ed-FqczH3ESmRw/method._0_NA4mJ-Ed-FqczH3ESmRw.pt"/>
@@ -4710,7 +4710,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4Uq1-2NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_1BvXgGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.isSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.isSetGenFeature.TODO.override&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_1BvXgGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.TODO.override&#xA;"
               name="TestCase.isSetGenFeature.override" headerMethod="#_1BvXgmJ-Ed-FqczH3ESmRw"
               footerMethod="#_1BvXhWJ-Ed-FqczH3ESmRw" initMethod="#_1BvXg2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_1BvXgmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._1BvXgGJ-Ed-FqczH3ESmRw/method._1BvXgmJ-Ed-FqczH3ESmRw.pt"/>
@@ -4778,7 +4778,7 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_4Uz_62NEEd-Ljd_RFzaClA"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_1Cx5UGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.genOperation.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenOperation.TODO.override&#xA;    * org.eclipse.egf.emf.pattern.tests.internal.TestCase.TestCase.implementedGenOperation.insert&#xA;"
+          <elements xmi:type="pattern:Pattern" xmi:id="_1Cx5UGJ-Ed-FqczH3ESmRw" description="This pattern was generated from file &quot;file &quot;model.tests/TestCase.javajet&quot; in &quot; in project org.eclipse.emf.codegen.ecore 2.1.5.v200906151043 from EMF 2.5.0.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.genOperation.annotations.insert&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.TODO.override&#xA;    * org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.insert&#xA;"
               name="TestCase.implementedGenOperation.override" headerMethod="#_1Cx5UmJ-Ed-FqczH3ESmRw"
               footerMethod="#_1Cx5VWJ-Ed-FqczH3ESmRw" initMethod="#_1Cx5U2J-Ed-FqczH3ESmRw">
             <methods xmi:id="_1Cx5UmJ-Ed-FqczH3ESmRw" name="header" patternFilePath="templates/pattern._1Cx5UGJ-Ed-FqczH3ESmRw/method._1Cx5UmJ-Ed-FqczH3ESmRw.pt"/>

@@ -10,9 +10,16 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.eclipse.egf.emf.pattern,
  org.eclipse.egf.emf.pattern.edit,
+ org.eclipse.egf.emf.pattern.edit.call.ItemProvider,
+ org.eclipse.egf.emf.pattern.edit.call.ItemProviderAdapterFactory,
  org.eclipse.egf.emf.pattern.editor,
+ org.eclipse.egf.emf.pattern.editor.call.Editor,
  org.eclipse.egf.emf.pattern.model,
- org.eclipse.egf.emf.pattern.tests
+ org.eclipse.egf.emf.pattern.model.call.Class,
+ org.eclipse.egf.emf.pattern.model.call.Interface,
+ org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass,
+ org.eclipse.egf.emf.pattern.tests,
+ org.eclipse.egf.emf.pattern.tests.call.TestCase
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.jdt.core,
