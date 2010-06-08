@@ -165,7 +165,7 @@ public class CodegenPatternNameResolver {
         public String getLibraryName(PatternInfo patternInfo) {
             JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
             Path path = new Path(jetSubPatternInfo.getSection().getFileAttribute());
-            return super.getLibraryName(jetSubPatternInfo) + ".internal." + path.segment(0); //$NON-NLS-1$
+            return super.getLibraryName(jetSubPatternInfo) + ".call." + path.segment(0); //$NON-NLS-1$
         }
     }
 }
