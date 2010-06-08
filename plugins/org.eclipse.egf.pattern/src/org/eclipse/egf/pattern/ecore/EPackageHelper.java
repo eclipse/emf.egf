@@ -67,7 +67,7 @@ public class EPackageHelper {
                 for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
                     addEcoreModel(genModel);
                 }
-                for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
+                for (IPlatformGenModel genModel : delta.getRemovedPlatformExtensionPoints(IPlatformGenModel.class)) {
                     removePackageFromRegistry(genModel);
                 }
             }
