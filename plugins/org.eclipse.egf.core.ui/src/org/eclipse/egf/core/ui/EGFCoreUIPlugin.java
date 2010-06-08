@@ -11,7 +11,11 @@
 
 package org.eclipse.egf.core.ui;
 
+import java.util.List;
+
 import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
+import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
+import org.eclipse.egf.core.ui.internal.registry.EditorListenerContributorRegistry;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.osgi.framework.BundleContext;
@@ -22,9 +26,23 @@ import org.osgi.framework.BundleContext;
 public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
 
     /**
+     * Keep track of the EditorListenerContributorRegistry
+     */
+    private static EditorListenerContributorRegistry __editorListenerContributorRegistry;
+
+    /**
      * The shared instance
      */
     private static EGFCoreUIPlugin __plugin;
+
+    /**
+     * Returns the shared instance
+     * 
+     * @return the shared instance
+     */
+    public static EGFCoreUIPlugin getDefault() {
+        return __plugin;
+    }
 
     /**
      * 
@@ -58,6 +76,18 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
     }
 
     /**
+     * Get editor listener contributors implementations.
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static List<EditorListenerContributor> getEditorListenerContributors() {
+        if (__editorListenerContributorRegistry == null) {
+            __editorListenerContributorRegistry = new EditorListenerContributorRegistry();
+        }
+        return __editorListenerContributorRegistry.getEditorListenerContributors();
+    }
+
+    /**
      * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
      */
     @Override
@@ -71,17 +101,12 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
+        if (__editorListenerContributorRegistry != null) {
+            __editorListenerContributorRegistry.dispose();
+            __editorListenerContributorRegistry = null;
+        }
         super.stop(context);
         __plugin = null;
-    }
-
-    /**
-     * Returns the shared instance
-     * 
-     * @return the shared instance
-     */
-    public static EGFCoreUIPlugin getDefault() {
-        return __plugin;
     }
 
 }

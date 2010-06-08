@@ -58,7 +58,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.egf.core.ui.contributor.ListenerContributor:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.egf.core.ui.contributor.EditorListenerContributor:"/>
                </appInfo>
             </annotation>
          </attribute>
