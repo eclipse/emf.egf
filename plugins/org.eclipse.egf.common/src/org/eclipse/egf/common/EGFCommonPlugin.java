@@ -43,6 +43,18 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
         return __plugin;
     }
 
+    /**
+     * Get egf loggers implementations.
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static List<IEGFLogger> getEGFLoggers() {
+        if (__loggerRegistry == null) {
+            __loggerRegistry = new EGFLoggerRegistry();
+        }
+        return __loggerRegistry.getEGFLoggers();
+    }
+
     @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
@@ -57,18 +69,6 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
         }
         super.stop(context);
         __plugin = null;
-    }
-
-    /**
-     * Get egf loggers implementations.
-     * 
-     * @return an empty list if none could be found.
-     */
-    public static List<IEGFLogger> getEGFLoggers() {
-        if (__loggerRegistry == null) {
-            __loggerRegistry = new EGFLoggerRegistry();
-        }
-        return __loggerRegistry.getEGFLoggers();
     }
 
 }
