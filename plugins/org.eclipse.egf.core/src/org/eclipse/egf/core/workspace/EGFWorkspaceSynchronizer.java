@@ -529,7 +529,10 @@ public final class EGFWorkspaceSynchronizer {
                                     }
                                 case IResourceDelta.ADDED:
                                 case IResourceDelta.REMOVED:
-                                    processDelta(innerDelta, synchRequests, affectedProjects);
+                                    // Our editing domain exclusively listen fcore resources
+                                    if (EGFCorePlugin.FCORE_FILE_EXTENSION.equals(innerDelta.getResource().getFileExtension())) {
+                                        processDelta(innerDelta, synchRequests, affectedProjects);
+                                    }
                                     break;
                             }
                         }

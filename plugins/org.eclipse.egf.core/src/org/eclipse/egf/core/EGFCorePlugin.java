@@ -33,6 +33,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
 
     public static String FCORE_EDITOR_ID = "org.eclipse.egf.model.fcore.tree.editor"; //$NON-NLS-1$
 
+    public static String FCORE_FILE_EXTENSION = "fcore"; //$NON-NLS-1$
+
     /**
      * Plug-in unique instance.
      */
