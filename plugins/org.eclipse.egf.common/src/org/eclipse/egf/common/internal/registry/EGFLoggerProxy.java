@@ -111,11 +111,11 @@ public class EGFLoggerProxy {
 
     public boolean originatesFrom(IExtension extension) {
         String id = extension.getUniqueIdentifier();
-        if (id != null) { // match by public ID declared in XML
+        if (id != null) {
             return id.equals(_uniqueIdentifier);
         }
         if (extension instanceof Handle == false) {
-            return false; // should never happen
+            return false;
         }
         return (_handleId == ((Handle) extension).getId());
     }
