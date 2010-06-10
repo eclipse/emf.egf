@@ -35,7 +35,7 @@ public class TaskNatureProxy {
 
     private String _class;
 
-    private ITaskNature _taskNature;
+    private ITaskNature _executable;
 
     /**
      * Creates a new TaskNatureProxy proxy based on the given configuration element.
@@ -94,7 +94,7 @@ public class TaskNatureProxy {
      * @return the _taskNature
      */
     public ITaskNature getTaskNature() throws CoreException {
-        if (_taskNature == null) {
+        if (_executable == null) {
             Object object = _element.createExecutableExtension(TaskNatureRegistry.INVOKER_ATT_CLASS);
             if (object == null) {
                 return null;
@@ -107,9 +107,9 @@ public class TaskNatureProxy {
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                 return null;
             }
-            _taskNature = (ITaskNature) object;
+            _executable = (ITaskNature) object;
         }
-        return _taskNature;
+        return _executable;
     }
 
     public String getKind() {

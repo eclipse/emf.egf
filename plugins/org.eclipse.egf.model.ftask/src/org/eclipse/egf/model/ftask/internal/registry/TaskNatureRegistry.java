@@ -38,7 +38,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryEventListener {
 
-    private Map<String, TaskNatureProxy> _natures;
+    private Map<String, TaskNatureProxy> _proxies;
 
     /**
      * Define a constant for the Task extension-point id.
@@ -56,7 +56,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
     public static final String INVOKER_ATT_CLASS = "class"; //$NON-NLS-1$    
 
     public List<String> getKinds() {
-        return new ArrayList<String>(_natures.keySet());
+        return new ArrayList<String>(_proxies.keySet());
     }
 
     public ITaskNature getTaskNature(Task task) throws InvocationException {
@@ -67,7 +67,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
             throw new InvocationException(NLS.bind(EGFFtaskMessages.missing_kind_message, EMFHelper.getText(task)));
         }
         String kind = task.getKindValue().trim();
-        TaskNatureProxy taskNatureProxy = _natures.get(kind);
+        TaskNatureProxy taskNatureProxy = _proxies.get(kind);
         ITaskNature taskNature = null;
         if (taskNatureProxy != null) {
             try {
@@ -88,10 +88,10 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
     }
 
     private void initialize() {
-        if (_natures != null) {
+        if (_proxies != null) {
             return;
         }
-        _natures = new HashMap<String, TaskNatureProxy>();
+        _proxies = new HashMap<String, TaskNatureProxy>();
         IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(EXTENSION_ID);
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
@@ -108,12 +108,12 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
         }
         TaskNatureProxy proxy = TaskNatureProxy.createProxy(element);
         if (proxy != null) {
-            if (_natures.get(proxy.getKind()) != null) {
+            if (_proxies.get(proxy.getKind()) != null) {
                 EGFFtaskPlugin.getPlugin().logError(NLS.bind(EGFCommonMessages.Duplicate_Element_Message, proxy.getKind()));
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                 EGFFtaskPlugin.getPlugin().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
             }
-            _natures.put(proxy.getKind(), proxy);
+            _proxies.put(proxy.getKind(), proxy);
         }
     }
 
@@ -130,7 +130,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
 
     public void removed(IExtension[] extensions) {
         for (int i = 0; i < extensions.length; i++) {
-            for (Iterator<TaskNatureProxy> it = _natures.values().iterator(); it.hasNext();) {
+            for (Iterator<TaskNatureProxy> it = _proxies.values().iterator(); it.hasNext();) {
                 TaskNatureProxy proxy = it.next();
                 if (proxy.originatesFrom(extensions[i])) {
                     it.remove();
@@ -149,7 +149,7 @@ public final class TaskNatureRegistry implements ITaskNatureRegistry, IRegistryE
 
     public void dispose() {
         RegistryFactory.getRegistry().removeListener(this);
-        _natures = null;
+        _proxies = null;
     }
 
 }
