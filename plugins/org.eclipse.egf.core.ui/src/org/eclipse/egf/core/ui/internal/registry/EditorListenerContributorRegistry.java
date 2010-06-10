@@ -27,7 +27,7 @@ import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
  */
 public final class EditorListenerContributorRegistry implements IRegistryEventListener {
 
-    private ArrayList<EditorListenerContributorProxy> _listeners;
+    private List<EditorListenerContributorProxy> _listeners;
 
     /**
      * Define a constant for the Editor Listener Contributor extension-point id.
