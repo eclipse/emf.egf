@@ -22,7 +22,7 @@ import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.task.EGFTaskPlugin;
@@ -56,7 +56,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class OpenTaskImplementationMenuContributor extends MenuContributor {
+public class OpenTaskImplementationMenuContributor extends EditorMenuContributor {
 
   public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$
 
