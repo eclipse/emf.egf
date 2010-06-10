@@ -50,7 +50,7 @@ public class EditorListenerContributorProxy {
     }
 
     /**
-     * @return the _logger
+     * @return the _listener
      */
     public EditorListenerContributor getEditorListenerContributor() {
         if (_listener == null) {
