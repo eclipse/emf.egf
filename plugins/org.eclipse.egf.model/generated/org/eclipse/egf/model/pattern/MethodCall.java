@@ -29,30 +29,31 @@ package org.eclipse.egf.model.pattern;
  * @generated
  */
 public interface MethodCall extends Call {
-  /**
-   * Returns the value of the '<em><b>Called</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Called</em>' reference isn't clear, there really
-   * should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Called</em>' reference.
-   * @see #setCalled(PatternMethod)
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getMethodCall_Called()
-   * @model required="true"
-   * @generated
-   */
-  PatternMethod getCalled();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.MethodCall#getCalled <em>Called</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Called</em>' reference.
-   * @see #getCalled()
-   * @generated
-   */
-  void setCalled(PatternMethod value);
+    /**
+     * Returns the value of the '<em><b>Called</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Called</em>' reference isn't clear, there really
+     * should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Called</em>' reference.
+     * @see #setCalled(PatternMethod)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getMethodCall_Called()
+     * @model required="true"
+     * @generated
+     */
+    PatternMethod getCalled();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.MethodCall#getCalled <em>Called</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Called</em>' reference.
+     * @see #getCalled()
+     * @generated
+     */
+    void setCalled(PatternMethod value);
 
 } // MethodCall

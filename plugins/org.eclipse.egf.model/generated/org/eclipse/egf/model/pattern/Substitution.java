@@ -34,46 +34,47 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Substitution extends EObject {
-  /**
-   * Returns the value of the '<em><b>Outgoing</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Outgoing</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Outgoing</em>' reference.
-   * @see #setOutgoing(Pattern)
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Outgoing()
-   * @model
-   * @generated
-   */
-  Pattern getOutgoing();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Outgoing</em>' reference.
-   * @see #getOutgoing()
-   * @generated
-   */
-  void setOutgoing(Pattern value);
+    /**
+     * Returns the value of the '<em><b>Outgoing</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Outgoing</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Outgoing</em>' reference.
+     * @see #setOutgoing(Pattern)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Outgoing()
+     * @model
+     * @generated
+     */
+    Pattern getOutgoing();
 
-  /**
-   * Returns the value of the '<em><b>Incoming</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.pattern.Pattern}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Incoming</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Incoming</em>' reference list.
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Incoming()
-   * @model
-   * @generated
-   */
-  EList<Pattern> getIncoming();
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Outgoing</em>' reference.
+     * @see #getOutgoing()
+     * @generated
+     */
+    void setOutgoing(Pattern value);
+
+    /**
+     * Returns the value of the '<em><b>Incoming</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.pattern.Pattern}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Incoming</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Incoming</em>' reference list.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Incoming()
+     * @model
+     * @generated
+     */
+    EList<Pattern> getIncoming();
 
 } // Substitution
