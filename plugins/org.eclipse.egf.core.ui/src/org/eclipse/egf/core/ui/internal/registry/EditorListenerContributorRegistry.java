@@ -71,9 +71,9 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
         if (element == null) {
             return;
         }
-        EditorListenerContributorProxy loggerProxy = EditorListenerContributorProxy.createProxy(element);
-        if (loggerProxy != null) {
-            _listeners.add(loggerProxy);
+        EditorListenerContributorProxy proxy = EditorListenerContributorProxy.createProxy(element);
+        if (proxy != null) {
+            _listeners.add(proxy);
         }
     }
 
