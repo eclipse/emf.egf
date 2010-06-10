@@ -4,7 +4,7 @@
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_N9g3oElcEd-TSsH7K-_bxQ"
     name="Merge Pattern Substitutions Task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.MergePatternSubstitutionTask">
   <contractContainer xmi:id="_YhzVwElcEd-TSsH7K-_bxQ">
-    <contracts xmi:id="_UVURwEldEd-TSsH7K-_bxQ" name="substitution A" mandatory="true">
+    <contracts xmi:id="_UVURwEldEd-TSsH7K-_bxQ" name="substitution A">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aC11QEldEd-TSsH7K-_bxQ"/>
     </contracts>
     <contracts xmi:id="_ahgHMEldEd-TSsH7K-_bxQ" name="substitution B" mandatory="true">
