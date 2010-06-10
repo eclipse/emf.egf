@@ -15,7 +15,10 @@ import java.util.List;
 
 import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
+import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
+import org.eclipse.egf.core.ui.contributor.IMenuEditorActionBarContributor;
 import org.eclipse.egf.core.ui.internal.registry.EditorListenerContributorRegistry;
+import org.eclipse.egf.core.ui.internal.registry.EditorMenuContributorRegistry;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.osgi.framework.BundleContext;
@@ -29,6 +32,11 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
      * Keep track of the EditorListenerContributorRegistry
      */
     private static EditorListenerContributorRegistry __editorListenerContributorRegistry;
+
+    /**
+     * Keep track of the EditorMenuContributorRegistry
+     */
+    private static EditorMenuContributorRegistry __editorMenuContributorRegistry;
 
     /**
      * The shared instance
@@ -88,6 +96,29 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
     }
 
     /**
+     * Create editor menu contributors implementations.
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static List<EditorMenuContributor> createEditorMenuContributors(IMenuEditorActionBarContributor parent) {
+        if (__editorMenuContributorRegistry == null) {
+            __editorMenuContributorRegistry = new EditorMenuContributorRegistry();
+        }
+        return __editorMenuContributorRegistry.createEditorMenuContributors(parent);
+    }
+
+    /**
+     * Dispose editor menu contributors implementations.
+     * 
+     */
+    public static void disposeEditorMenuContributors(IMenuEditorActionBarContributor parent) {
+        if (__editorMenuContributorRegistry == null) {
+            return;
+        }
+        __editorMenuContributorRegistry.disposeEditorMenuContributors(parent);
+    }
+
+    /**
      * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
      */
     @Override
@@ -104,6 +135,10 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
         if (__editorListenerContributorRegistry != null) {
             __editorListenerContributorRegistry.dispose();
             __editorListenerContributorRegistry = null;
+        }
+        if (__editorMenuContributorRegistry != null) {
+            __editorMenuContributorRegistry.dispose();
+            __editorMenuContributorRegistry = null;
         }
         super.stop(context);
         __plugin = null;
