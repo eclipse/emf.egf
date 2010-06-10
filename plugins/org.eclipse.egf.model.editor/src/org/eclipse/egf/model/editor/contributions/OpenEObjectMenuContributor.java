@@ -13,7 +13,7 @@ package org.eclipse.egf.model.editor.contributions;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
-import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +31,7 @@ import org.eclipse.ui.PartInitException;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class OpenEObjectMenuContributor extends MenuContributor {
+public abstract class OpenEObjectMenuContributor extends EditorMenuContributor {
 
   protected abstract OpenAction getOpenAction();
 

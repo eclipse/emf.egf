@@ -16,7 +16,7 @@
 package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
-import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.editor.wizards.InvokeActivityWizard;
@@ -32,7 +32,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  * @author Xavier Maysonnave
  * 
  */
-public class InvokeActivityMenuContributor extends MenuContributor {
+public class InvokeActivityMenuContributor extends EditorMenuContributor {
 
   public static final String INVOKE_ACTIVITY_ACTION_ID = "invoke-activity"; //$NON-NLS-1$  
 
