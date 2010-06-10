@@ -25,7 +25,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -64,7 +64,7 @@ import org.eclipse.ui.IEditorPart;
  * @author Thomas Guiu
  * 
  */
-public class PatternMenuContributor extends MenuContributor {
+public class PatternMenuContributor extends EditorMenuContributor {
 
     public static final String EDIT_ACTION_ID = "edit-pattern"; //$NON-NLS-1$
 
