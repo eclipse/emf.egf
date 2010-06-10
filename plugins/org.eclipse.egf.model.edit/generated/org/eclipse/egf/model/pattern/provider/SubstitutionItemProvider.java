@@ -46,168 +46,169 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class SubstitutionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-    IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SubstitutionItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+        IItemFontProvider {
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
-      addOutgoingPropertyDescriptor(object);
-      addIncomingPropertyDescriptor(object);
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SubstitutionItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds a property descriptor for the Outgoing feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addOutgoingPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_outgoing_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Substitution_outgoing_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.SUBSTITUTION__OUTGOING, true, false, true, null, null, null));
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This adds a property descriptor for the Incoming feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addIncomingPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_incoming_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Substitution_incoming_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.SUBSTITUTION__INCOMING, true, false, true, null, null, null));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean hasChildren(Object object) {
-    return hasChildren(object, true);
-  }
-
-  /**
-   * This returns Substitution.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/Substitution")); //$NON-NLS-1$
-  }
-
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    Substitution substitution = (Substitution) object;
-    String activity = null;
-    String container = null;
-    String name = null;
-    if (substitution.getOutgoing() != null) {
-      EObject root = EcoreUtil.getRootContainer(substitution.getOutgoing(), true);
-      // Outgoing Activity
-      if (root != null) {
-        IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(root, IItemLabelProvider.class);
-        if (provider == null) {
-          activity = EMFHelper.getText(root);
-        } else {
-          activity = provider.getText(root);
+            addOutgoingPropertyDescriptor(object);
+            addIncomingPropertyDescriptor(object);
         }
-      }
-      // Outgoing Library
-      if (substitution.getOutgoing().getContainer() != null) {
-        IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(substitution.getOutgoing().getContainer(), IItemLabelProvider.class);
-        if (provider == null) {
-          container = EMFHelper.getText(substitution.getOutgoing().getContainer());
-        } else {
-          container = provider.getText(substitution.getOutgoing().getContainer());
+        return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Outgoing feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addOutgoingPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_outgoing_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Substitution_outgoing_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.SUBSTITUTION__OUTGOING, true, false, true, null, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Incoming feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addIncomingPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_incoming_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Substitution_incoming_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.SUBSTITUTION__INCOMING, true, false, true, null, null, null));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean hasChildren(Object object) {
+        return hasChildren(object, true);
+    }
+
+    /**
+     * This returns Substitution.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/Substitution")); //$NON-NLS-1$
+    }
+
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        Substitution substitution = (Substitution) object;
+        String activity = null;
+        String container = null;
+        String name = null;
+        if (substitution.getOutgoing() != null) {
+            EObject root = EcoreUtil.getRootContainer(substitution.getOutgoing(), true);
+            // Outgoing Activity
+            if (root != null) {
+                IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(root, IItemLabelProvider.class);
+                if (provider == null) {
+                    activity = EMFHelper.getText(root);
+                } else {
+                    activity = provider.getText(root);
+                }
+            }
+            // Outgoing Library
+            if (substitution.getOutgoing().getContainer() != null) {
+                IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(substitution.getOutgoing().getContainer(), IItemLabelProvider.class);
+                if (provider == null) {
+                    container = EMFHelper.getText(substitution.getOutgoing().getContainer());
+                } else {
+                    container = provider.getText(substitution.getOutgoing().getContainer());
+                }
+            }
+            // Outgoing Name
+            name = substitution.getOutgoing().getName();
         }
-      }
-      // Outgoing Name
-      name = substitution.getOutgoing().getName();
+        String label = "[" + getString("_UI_Substitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (name != null && name.trim().length() != 0) {
+            label = name + " " + label; //$NON-NLS-1$
+        }
+        if (container != null && container.trim().length() != 0) {
+            label = container + " -> " + label; //$NON-NLS-1$
+        }
+        if (activity != null && activity.trim().length() != 0) {
+            label = activity + " -> " + label; //$NON-NLS-1$
+        }
+        return label;
     }
-    String label = "[" + getString("_UI_Substitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    if (name != null && name.trim().length() != 0) {
-      label = name + " " + label; //$NON-NLS-1$
-    }
-    if (container != null && container.trim().length() != 0) {
-      label = container + " -> " + label; //$NON-NLS-1$
-    }
-    if (activity != null && activity.trim().length() != 0) {
-      label = activity + " -> " + label; //$NON-NLS-1$
-    }
-    return label;
-  }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
 
-    switch (notification.getFeatureID(Substitution.class)) {
-    case PatternPackage.SUBSTITUTION__INCOMING:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+        switch (notification.getFeatureID(Substitution.class)) {
+            case PatternPackage.SUBSTITUTION__INCOMING:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
+        super.notifyChanged(notification);
     }
-    super.notifyChanged(notification);
-  }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return EGFModelEditPlugin.INSTANCE;
-  }
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return EGFModelEditPlugin.INSTANCE;
+    }
 
 }

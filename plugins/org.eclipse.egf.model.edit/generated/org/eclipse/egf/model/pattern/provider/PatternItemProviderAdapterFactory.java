@@ -63,7 +63,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class PatternItemProviderAdapterFactory extends PatternAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -72,7 +71,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected ComposedAdapterFactory parentAdapterFactory;
@@ -81,7 +79,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -90,7 +87,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -99,7 +95,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This constructs an instance.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternItemProviderAdapterFactory() {
@@ -119,7 +114,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.Pattern} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternItemProvider patternItemProvider;
@@ -128,7 +122,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.Pattern}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -144,7 +137,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternMethod} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternMethodItemProvider patternMethodItemProvider;
@@ -153,7 +145,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternMethod}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -169,7 +160,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternParameter} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternParameterItemProvider patternParameterItemProvider;
@@ -178,7 +168,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternParameter}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -194,7 +183,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternLibrary} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternLibraryItemProvider patternLibraryItemProvider;
@@ -203,7 +191,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternLibrary}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -219,7 +206,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternViewpoint} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternViewpointItemProvider patternViewpointItemProvider;
@@ -228,7 +214,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternViewpoint}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -244,7 +229,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternCall} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternCallItemProvider patternCallItemProvider;
@@ -253,7 +237,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternCall}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -269,7 +252,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.SuperCall} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected SuperCallItemProvider superCallItemProvider;
@@ -278,7 +260,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.SuperCall}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -294,7 +275,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Paramerter2ParameterMapItemProvider paramerter2ParameterMapItemProvider;
@@ -303,7 +283,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link java.util.Map.Entry}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -319,7 +298,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.MethodCall} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected MethodCallItemProvider methodCallItemProvider;
@@ -328,7 +306,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.MethodCall}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -344,7 +321,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternVariable} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternVariableItemProvider patternVariableItemProvider;
@@ -353,7 +329,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternVariable}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -369,7 +344,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternInjectedCall} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternInjectedCallItemProvider patternInjectedCallItemProvider;
@@ -378,7 +352,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternInjectedCall}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -394,7 +367,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.BasicQuery} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected BasicQueryItemProvider basicQueryItemProvider;
@@ -403,7 +375,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.BasicQuery}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -419,7 +390,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.StringQuery} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected StringQueryItemProvider stringQueryItemProvider;
@@ -428,7 +398,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.StringQuery}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -444,7 +413,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.CustomQuery} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected CustomQueryItemProvider customQueryItemProvider;
@@ -453,7 +421,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.CustomQuery}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -469,7 +436,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected String2PatternListItemProvider string2PatternListItemProvider;
@@ -478,7 +444,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link java.util.Map.Entry}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -494,7 +459,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected String2StringItemProvider string2StringItemProvider;
@@ -503,7 +467,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link java.util.Map.Entry}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -519,7 +482,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternExecutionReporterItemProvider typePatternExecutionReporterItemProvider;
@@ -528,7 +490,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -544,7 +505,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.BackCall} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected BackCallItemProvider backCallItemProvider;
@@ -553,7 +513,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.BackCall}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -569,7 +528,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternCallBackHandler} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternCallBackHandlerItemProvider typePatternCallBackHandlerItemProvider;
@@ -578,7 +536,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternCallBackHandler}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -594,7 +551,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternDomainVisitor} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternDomainVisitorItemProvider typePatternDomainVisitorItemProvider;
@@ -603,7 +559,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternDomainVisitor}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -619,7 +574,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternList} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternListItemProvider typePatternListItemProvider;
@@ -628,7 +582,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternList}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -644,7 +597,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternSubstitution} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternSubstitutionItemProvider typePatternSubstitutionItemProvider;
@@ -653,7 +605,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternSubstitution}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -669,7 +620,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.Substitution} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected SubstitutionItemProvider substitutionItemProvider;
@@ -678,7 +628,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This creates an adapter for a {@link org.eclipse.egf.model.pattern.Substitution}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -694,7 +643,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -705,7 +653,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This sets the composed adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -715,7 +662,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -727,7 +673,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This implementation substitutes the factory itself as the key for the adapter.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -738,7 +683,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -757,7 +701,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This adds a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -768,7 +711,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This removes a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -779,7 +721,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void fireNotifyChanged(Notification notification) {
@@ -791,10 +732,9 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
-     * This disposes all of the item providers created by this factory.
+     * This disposes all of the item providers created by this factory. 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void dispose() {
@@ -850,7 +790,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
      * A child creation extender for the {@link FcorePackage}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public static class FcoreChildCreationExtender implements IChildCreationExtender {
@@ -859,7 +798,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
          * The switch for creating child descriptors specific to each extended class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         protected static class CreationSwitch extends FcoreSwitch<Object> {
@@ -868,7 +806,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
              * The child descriptors being populated.
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             protected List<Object> newChildDescriptors;
@@ -877,7 +814,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
              * The domain in which to create the children.
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             protected EditingDomain editingDomain;
@@ -886,7 +822,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
              * Creates the a switch for populating child descriptors in the given domain.
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
@@ -897,7 +832,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             @Override
@@ -918,7 +852,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             @Override
@@ -931,7 +864,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             @Override
@@ -1001,7 +933,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             protected CommandParameter createChildParameter(Object feature, Object child) {
@@ -1013,7 +944,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
         /**
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
@@ -1025,7 +955,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
         /**
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         public ResourceLocator getResourceLocator() {
