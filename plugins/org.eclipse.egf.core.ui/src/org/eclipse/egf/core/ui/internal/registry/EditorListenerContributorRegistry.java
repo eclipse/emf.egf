@@ -27,7 +27,7 @@ import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
  */
 public final class EditorListenerContributorRegistry implements IRegistryEventListener {
 
-    private List<EditorListenerContributorProxy> _listeners;
+    private List<EditorListenerContributorProxy> _proxies;
 
     /**
      * Define a constant for the Editor Listener Contributor extension-point id.
@@ -41,7 +41,7 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
 
     public List<EditorListenerContributor> getEditorListenerContributors() {
         List<EditorListenerContributor> listeners = new ArrayList<EditorListenerContributor>();
-        for (EditorListenerContributorProxy proxy : _listeners) {
+        for (EditorListenerContributorProxy proxy : _proxies) {
             EditorListenerContributor listener = proxy.getEditorListenerContributor();
             if (listener != null) {
                 listeners.add(listener);
@@ -56,10 +56,10 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
     }
 
     private void initialize() {
-        if (_listeners != null) {
+        if (_proxies != null) {
             return;
         }
-        _listeners = new ArrayList<EditorListenerContributorProxy>();
+        _proxies = new ArrayList<EditorListenerContributorProxy>();
         IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(EXTENSION_ID);
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
@@ -76,7 +76,7 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
         }
         EditorListenerContributorProxy proxy = EditorListenerContributorProxy.createProxy(element);
         if (proxy != null) {
-            _listeners.add(proxy);
+            _proxies.add(proxy);
         }
     }
 
@@ -93,7 +93,7 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
 
     public void removed(IExtension[] extensions) {
         for (int i = 0; i < extensions.length; i++) {
-            for (Iterator<EditorListenerContributorProxy> it = _listeners.iterator(); it.hasNext();) {
+            for (Iterator<EditorListenerContributorProxy> it = _proxies.iterator(); it.hasNext();) {
                 EditorListenerContributorProxy proxy = it.next();
                 if (proxy.originatesFrom(extensions[i])) {
                     proxy.dispose();
@@ -113,10 +113,10 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
 
     public void dispose() {
         RegistryFactory.getRegistry().removeListener(this);
-        for (EditorListenerContributorProxy proxy : _listeners) {
+        for (EditorListenerContributorProxy proxy : _proxies) {
             proxy.dispose();
         }
-        _listeners = null;
+        _proxies = null;
     }
 
 }

@@ -33,7 +33,7 @@ public class EditorListenerContributorProxy {
 
     private String _class;
 
-    private EditorListenerContributor _listener;
+    private EditorListenerContributor _executable;
 
     /**
      * @return the _uniqueIdentifier
@@ -53,7 +53,7 @@ public class EditorListenerContributorProxy {
      * @return the _listener
      */
     public EditorListenerContributor getEditorListenerContributor() {
-        if (_listener == null) {
+        if (_executable == null) {
             try {
                 Object object = _element.createExecutableExtension(EditorListenerContributorRegistry.INVOKER_ATT_CLASS);
                 if (object == null) {
@@ -67,12 +67,12 @@ public class EditorListenerContributorProxy {
                     EGFCoreUIPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                     return null;
                 }
-                _listener = (EditorListenerContributor) object;
+                _executable = (EditorListenerContributor) object;
             } catch (CoreException e) {
                 EGFCoreUIPlugin.getDefault().logError(e);
             }
         }
-        return _listener;
+        return _executable;
     }
 
     /**
@@ -120,8 +120,8 @@ public class EditorListenerContributorProxy {
     }
 
     public void dispose() {
-        if (_listener != null) {
-            _listener.dispose();
+        if (_executable != null) {
+            _executable.dispose();
         }
     }
 
