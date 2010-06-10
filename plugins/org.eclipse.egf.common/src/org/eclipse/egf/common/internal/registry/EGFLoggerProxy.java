@@ -34,7 +34,7 @@ public class EGFLoggerProxy {
 
     private String _class;
 
-    private IEGFLogger _proxy;
+    private IEGFLogger _executable;
 
     /**
      * @return the _uniqueIdentifier
@@ -54,7 +54,7 @@ public class EGFLoggerProxy {
      * @return the _logger
      */
     public IEGFLogger getEGFLogger() {
-        if (_proxy == null) {
+        if (_executable == null) {
             try {
                 Object object = _element.createExecutableExtension(EGFLoggerRegistry.INVOKER_ATT_CLASS);
                 if (object == null) {
@@ -68,12 +68,12 @@ public class EGFLoggerProxy {
                     EGFCommonPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                     return null;
                 }
-                _proxy = ((IEGFLoggerFactory) object).getLogger();
+                _executable = ((IEGFLoggerFactory) object).getLogger();
             } catch (CoreException e) {
                 EGFCommonPlugin.getDefault().logError(e);
             }
         }
-        return _proxy;
+        return _executable;
     }
 
     /**
