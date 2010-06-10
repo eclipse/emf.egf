@@ -45,7 +45,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
         for (EGFLoggerProxy proxy : _loggers) {
             IEGFLogger logger = proxy.getEGFLogger();
             if (logger != null) {
-                loggers.add(proxy.getEGFLogger());
+                loggers.add(logger);
             }
         }
         return loggers;
