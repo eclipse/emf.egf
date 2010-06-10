@@ -27,43 +27,44 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class TypePatternDomainVisitorImpl extends TypeAbstractClassImpl implements TypePatternDomainVisitor {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypePatternDomainVisitorImpl() {
-    super();
-  }
+    /**
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.TYPE_PATTERN_DOMAIN_VISITOR;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypePatternDomainVisitorImpl() {
+        super();
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    return org.eclipse.egf.model.pattern.DomainVisitor.class;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.TYPE_PATTERN_DOMAIN_VISITOR;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Class<?> getType() {
+        return org.eclipse.egf.model.pattern.DomainVisitor.class;
+    }
 
 } // TypePatternDomainVisitorImpl

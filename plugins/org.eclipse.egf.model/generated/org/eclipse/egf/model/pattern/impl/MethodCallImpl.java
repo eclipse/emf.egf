@@ -34,131 +34,132 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class MethodCallImpl extends CallImpl implements MethodCall {
-  /**
-   * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCalled()
-   * @generated
-   * @ordered
-   */
-  protected PatternMethod called;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected MethodCallImpl() {
-    super();
-  }
+    /**
+     * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCalled()
+     * @generated
+     * @ordered
+     */
+    protected PatternMethod called;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.METHOD_CALL;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MethodCallImpl() {
+        super();
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatternMethod getCalled() {
-    if (called != null && called.eIsProxy()) {
-      InternalEObject oldCalled = (InternalEObject) called;
-      called = (PatternMethod) eResolveProxy(oldCalled);
-      if (called != oldCalled) {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.METHOD_CALL;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PatternMethod getCalled() {
+        if (called != null && called.eIsProxy()) {
+            InternalEObject oldCalled = (InternalEObject) called;
+            called = (PatternMethod) eResolveProxy(oldCalled);
+            if (called != oldCalled) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.METHOD_CALL__CALLED, oldCalled, called));
+            }
+        }
+        return called;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PatternMethod basicGetCalled() {
+        return called;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setCalled(PatternMethod newCalled) {
+        PatternMethod oldCalled = called;
+        called = newCalled;
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.METHOD_CALL__CALLED, oldCalled, called));
-      }
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.METHOD_CALL__CALLED, oldCalled, called));
     }
-    return called;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatternMethod basicGetCalled() {
-    return called;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setCalled(PatternMethod newCalled) {
-    PatternMethod oldCalled = called;
-    called = newCalled;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.METHOD_CALL__CALLED, oldCalled, called));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case PatternPackage.METHOD_CALL__CALLED:
-      if (resolve)
-        return getCalled();
-      return basicGetCalled();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case PatternPackage.METHOD_CALL__CALLED:
+                if (resolve)
+                    return getCalled();
+                return basicGetCalled();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case PatternPackage.METHOD_CALL__CALLED:
-      setCalled((PatternMethod) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case PatternPackage.METHOD_CALL__CALLED:
+                setCalled((PatternMethod) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case PatternPackage.METHOD_CALL__CALLED:
-      setCalled((PatternMethod) null);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case PatternPackage.METHOD_CALL__CALLED:
+                setCalled((PatternMethod) null);
+                return;
+        }
+        super.eUnset(featureID);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case PatternPackage.METHOD_CALL__CALLED:
-      return called != null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case PatternPackage.METHOD_CALL__CALLED:
+                return called != null;
+        }
+        return super.eIsSet(featureID);
     }
-    return super.eIsSet(featureID);
-  }
 
 } // MethodCallImpl
