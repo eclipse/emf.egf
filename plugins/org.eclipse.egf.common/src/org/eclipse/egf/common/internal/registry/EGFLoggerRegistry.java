@@ -28,7 +28,7 @@ import org.eclipse.egf.common.log.IEGFLoggerRegistry;
  */
 public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEventListener {
 
-    private List<EGFLoggerProxy> _loggers;
+    private List<EGFLoggerProxy> _proxies;
 
     /**
      * Define a constant for the Logger extension-point id.
@@ -42,7 +42,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
 
     public List<IEGFLogger> getEGFLoggers() {
         List<IEGFLogger> loggers = new ArrayList<IEGFLogger>();
-        for (EGFLoggerProxy proxy : _loggers) {
+        for (EGFLoggerProxy proxy : _proxies) {
             IEGFLogger logger = proxy.getEGFLogger();
             if (logger != null) {
                 loggers.add(logger);
@@ -57,10 +57,10 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
     }
 
     private void initialize() {
-        if (_loggers != null) {
+        if (_proxies != null) {
             return;
         }
-        _loggers = new ArrayList<EGFLoggerProxy>();
+        _proxies = new ArrayList<EGFLoggerProxy>();
         IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(EXTENSION_ID);
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
@@ -77,7 +77,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
         }
         EGFLoggerProxy loggerProxy = EGFLoggerProxy.createProxy(element);
         if (loggerProxy != null) {
-            _loggers.add(loggerProxy);
+            _proxies.add(loggerProxy);
         }
     }
 
@@ -94,7 +94,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
 
     public void removed(IExtension[] extensions) {
         for (int i = 0; i < extensions.length; i++) {
-            for (Iterator<EGFLoggerProxy> it = _loggers.iterator(); it.hasNext();) {
+            for (Iterator<EGFLoggerProxy> it = _proxies.iterator(); it.hasNext();) {
                 EGFLoggerProxy proxy = it.next();
                 if (proxy.originatesFrom(extensions[i])) {
                     it.remove();
@@ -113,7 +113,7 @@ public final class EGFLoggerRegistry implements IEGFLoggerRegistry, IRegistryEve
 
     public void dispose() {
         RegistryFactory.getRegistry().removeListener(this);
-        _loggers = null;
+        _proxies = null;
     }
 
 }
