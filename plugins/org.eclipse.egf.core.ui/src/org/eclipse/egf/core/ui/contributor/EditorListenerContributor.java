@@ -24,6 +24,10 @@ import org.eclipse.ui.IWorkbenchPage;
  */
 public abstract class EditorListenerContributor {
 
+    public EditorListenerContributor() {
+        // Nothing to do
+    }
+
     public abstract void addListener(IWorkbenchPage page, StructuredViewer viewer);
 
     public abstract void removeListener(StructuredViewer viewer);
