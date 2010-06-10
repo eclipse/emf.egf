@@ -96,6 +96,7 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
             for (Iterator<EditorListenerContributorProxy> it = _listeners.iterator(); it.hasNext();) {
                 EditorListenerContributorProxy proxy = it.next();
                 if (proxy.originatesFrom(extensions[i])) {
+                    proxy.dispose();
                     it.remove();
                 }
             }
