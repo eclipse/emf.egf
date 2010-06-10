@@ -42,7 +42,10 @@ public final class EditorListenerContributorRegistry implements IRegistryEventLi
     public List<EditorListenerContributor> getEditorListenerContributors() {
         List<EditorListenerContributor> listeners = new ArrayList<EditorListenerContributor>();
         for (EditorListenerContributorProxy proxy : _listeners) {
-            listeners.add(proxy.getEditorListenerContributor());
+            EditorListenerContributor listener = proxy.getEditorListenerContributor();
+            if (listener != null) {
+                listeners.add(listener);
+            }
         }
         return listeners;
     }
