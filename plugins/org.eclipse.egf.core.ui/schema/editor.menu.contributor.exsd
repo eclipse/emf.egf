@@ -58,7 +58,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.egf.core.ui.contributor.MenuContributor:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.egf.core.ui.contributor.EditorMenuContributor:"/>
                </appInfo>
             </annotation>
          </attribute>
