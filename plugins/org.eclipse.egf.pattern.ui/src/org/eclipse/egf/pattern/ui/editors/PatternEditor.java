@@ -105,7 +105,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                     public void run() {
                         getOperationHistory().dispose(undoContext, true, true, true);
                         firePropertyChange(IEditorPart.PROP_DIRTY);
+                        setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
+                        firePropertyChange(PROP_TITLE);
                     }
+
                 });
             }
         }
@@ -119,6 +122,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                         public void run() {
                             getSite().getPage().closeEditor(PatternEditor.this, false);
                         }
+
                     });
                 } else {
                     resourceHasBeenRemoved = true;
@@ -140,7 +144,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                     public void run() {
                         getOperationHistory().dispose(undoContext, true, true, true);
                         firePropertyChange(IEditorPart.PROP_DIRTY);
+                        setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
+                        firePropertyChange(PROP_TITLE);
                     }
+
                 });
             }
         }
@@ -170,6 +177,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                             initialPatternName = name;
                         }
                     }
+
                 });
             }
         }
@@ -224,6 +232,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                             public void run() {
                                 firePropertyChange(IEditorPart.PROP_DIRTY);
                             }
+
                         });
                         break;
                     }
@@ -242,6 +251,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         protected void unsetTarget(Resource innerTarget) {
             basicUnsetTarget(innerTarget);
         }
+
     };
 
     // The adapter is for refreshing the editor title while the name of pattern
@@ -254,6 +264,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                 setPartName((String) msg.getNewValue());
             }
         }
+
     };
 
     public PatternEditor() {
@@ -325,6 +336,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                     ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), t);
                 }
             }
+
         };
 
         try {
@@ -396,7 +408,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         if (key.equals(IUndoContext.class)) {
             return undoContext;
         }
-
         return super.getAdapter(key);
     }
 
@@ -518,6 +529,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                     break;
             }
         }
+
     };
 
     public void addPage(PatternEditorPage page) throws PartInitException {
