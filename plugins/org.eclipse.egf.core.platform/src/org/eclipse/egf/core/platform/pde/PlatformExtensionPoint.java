@@ -11,19 +11,16 @@
 package org.eclipse.egf.core.platform.pde;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.egf.core.platform.internal.pde.AbstractPlatformExtensionPoint;
 
-public abstract class PlatformExtensionPoint implements IPlatformExtensionPoint {
-
-    private IPlatformBundle _bundle;
+public abstract class PlatformExtensionPoint extends AbstractPlatformExtensionPoint implements IPlatformExtensionPoint, Comparable<IPlatformExtensionPoint> {
 
     private String _id;
 
     public PlatformExtensionPoint(IPlatformBundle bundle, String id) {
-        Assert.isNotNull(bundle);
-        Assert.isNotNull(bundle.getPluginModelBase());
+        super(bundle);
         Assert.isNotNull(id);
         Assert.isLegal(id.trim().length() > 0);
-        _bundle = bundle;
         _id = id.trim();
     }
 
@@ -35,18 +32,16 @@ public abstract class PlatformExtensionPoint implements IPlatformExtensionPoint 
         return _bundle;
     }
 
-    public void setPlatformBundle(IPlatformBundle bundle) {
-        Assert.isNotNull(bundle);
-        Assert.isLegal(bundle.getPluginModelBase() == _bundle.getPluginModelBase());
-        _bundle = bundle;
+    public int compareTo(IPlatformExtensionPoint platformExtensionPoint) {
+        return getId().compareTo(platformExtensionPoint.getId());
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((_bundle == null) ? 0 : _bundle.hashCode());
-        result = prime * result + ((_id == null) ? 0 : _id.hashCode());
+        result = prime * result + getPlatformBundle().hashCode();
+        result = prime * result + _id.hashCode();
         return result;
     }
 
