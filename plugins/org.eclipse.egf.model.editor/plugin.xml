@@ -93,7 +93,13 @@
     />
     <contribution
       class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractListenerContributor"
-    />            
+    />
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.OpenURIListenerContributor"
+    />
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.OpenSuperTaskListenerContributor"
+    />
   </extension>  
   
   <!-- ================================================================================= -->

@@ -26,9 +26,15 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
 
-    public static final String OPEN_SUPER_TASK_ACTION_ID = "open-super-task"; //$NON-NLS-1$  
+    public static final String OPEN_SUPER_TASK_ACTION_ID = "open-super-task"; //$NON-NLS-1$
 
-    protected final OpenAction _openAction = new OpenAction(OPEN_SUPER_TASK_ACTION_ID) {
+    private OpenEObjectMenuContributor.OpenAction _openAction;
+
+    protected class SuperTaskOpenAction extends OpenAction {
+
+        public SuperTaskOpenAction() {
+            super(OPEN_SUPER_TASK_ACTION_ID);
+        }
 
         @Override
         protected EObject getEObject() {
@@ -37,13 +43,12 @@ public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
             }
             Object object = ((IStructuredSelection) _selection).getFirstElement();
             if (object instanceof Task) {
-                Task task = (Task) object;
-                return task.getSuperTask();
+                return ((Task) object).getSuperTask();
             }
             return null;
         }
 
-    };
+    }
 
     @Override
     protected String getText() {
@@ -55,6 +60,9 @@ public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
 
     @Override
     protected OpenAction getOpenAction() {
+        if (_openAction == null) {
+            _openAction = new SuperTaskOpenAction();
+        }
         return _openAction;
     }
 

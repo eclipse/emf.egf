@@ -31,7 +31,13 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
 
     public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
 
-    protected final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
+    private OpenEObjectMenuContributor.OpenAction _openAction;
+
+    protected class URIOpenAction extends OpenAction {
+
+        public URIOpenAction() {
+            super(OPEN_URI_ACTION_ID);
+        }
 
         @Override
         public boolean isEnabled() {
@@ -44,12 +50,8 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
                 return null;
             }
             Object object = ((IStructuredSelection) _selection).getFirstElement();
-            if (object instanceof DomainURI) {
-                return (DomainURI) object;
-            } else if (object instanceof TypeDomainURI) {
-                return (TypeDomainURI) object;
-            } else if (object instanceof TypeURI) {
-                return (TypeURI) object;
+            if (object instanceof DomainURI || object instanceof TypeDomainURI || object instanceof TypeURI) {
+                return (EObject) object;
             }
             return null;
         }
@@ -71,7 +73,7 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
             return uri;
         }
 
-    };
+    }
 
     @Override
     protected String getText() {
@@ -83,6 +85,9 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
 
     @Override
     protected OpenAction getOpenAction() {
+        if (_openAction == null) {
+            _openAction = new URIOpenAction();
+        }
         return _openAction;
     }
 
