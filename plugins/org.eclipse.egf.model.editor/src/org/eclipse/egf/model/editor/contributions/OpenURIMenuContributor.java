@@ -29,63 +29,65 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
 
-  public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
+    public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
 
-  private final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
+    private final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
+
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+
+        @Override
+        protected EObject getEObject() {
+            if (_selection == null) {
+                return null;
+            }
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
+            if (sselection.size() != 1) {
+                return null;
+            }
+            Object object = sselection.getFirstElement();
+            if (object instanceof DomainURI) {
+                return (DomainURI) object;
+            } else if (object instanceof TypeDomainURI) {
+                return (TypeDomainURI) object;
+            } else if (object instanceof TypeURI) {
+                return (TypeURI) object;
+            }
+            return null;
+        }
+
+        @Override
+        protected URI getURI() {
+            EObject eObject = getEObject();
+            if (eObject == null) {
+                return null;
+            }
+            URI uri = null;
+            if (eObject instanceof DomainURI) {
+                uri = ((DomainURI) eObject).getUri();
+            } else if (eObject instanceof TypeDomainURI) {
+                uri = ((TypeDomainURI) eObject).getValue();
+            } else if (eObject instanceof TypeURI) {
+                uri = ((TypeURI) eObject).getValue();
+            }
+            return uri;
+        }
+
+    };
+
     @Override
-    public boolean isEnabled() {
-      return true;
+    protected String getText() {
+        if (getOpenAction().isAlreadyOpenedEditor()) {
+            return ModelEditorMessages.URIMenuContributor_selectAction_label;
+        }
+        return ModelEditorMessages.URIMenuContributor_openAction_label;
     }
 
     @Override
-    protected EObject getEObject() {
-      if (_selection == null) {
-        return null;
-      }
-      IStructuredSelection sselection = (IStructuredSelection) _selection;
-      if (sselection.size() != 1) {
-        return null;
-      }
-      Object object = sselection.getFirstElement();
-      if (object instanceof DomainURI) {
-        return (DomainURI) object;
-      } else if (object instanceof TypeDomainURI) {
-        return (TypeDomainURI) object;
-      } else if (object instanceof TypeURI) {
-        return (TypeURI) object;
-      }
-      return null;
+    protected OpenAction getOpenAction() {
+        return _openAction;
     }
-
-    @Override
-    protected URI getURI() {
-      EObject eObject = getEObject();
-      if (eObject == null) {
-        return null;
-      }
-      URI uri = null;
-      if (eObject instanceof DomainURI) {
-        uri = ((DomainURI) eObject).getUri();
-      } else if (eObject instanceof TypeDomainURI) {
-        uri = ((TypeDomainURI) eObject).getValue();
-      } else if (eObject instanceof TypeURI) {
-        uri = ((TypeURI) eObject).getValue();
-      }
-      return uri;
-    }
-  };
-
-  @Override
-  protected String getText() {
-    if (getOpenAction().isAlreadyOpenedEditor()) {
-      return ModelEditorMessages.URIMenuContributor_selectAction_label;
-    }
-    return ModelEditorMessages.URIMenuContributor_openAction_label;
-  }
-
-  @Override
-  protected OpenAction getOpenAction() {
-    return _openAction;
-  }
 
 }

@@ -33,86 +33,86 @@ import org.eclipse.ui.PartInitException;
  */
 public abstract class OpenEObjectMenuContributor extends EditorMenuContributor {
 
-  protected abstract OpenAction getOpenAction();
+    protected abstract OpenAction getOpenAction();
 
-  protected abstract String getText();
+    protected abstract String getText();
 
-  protected abstract class OpenAction extends Action {
+    protected abstract class OpenAction extends Action {
 
-    public OpenAction(String id) {
-      setId(id);
-    }
-
-    @Override
-    public boolean isEnabled() {
-      EObject eObject = getEObject();
-      if (eObject == null) {
-        return false;
-      }
-      if (eObject instanceof InternalEObject) {
-        return ((InternalEObject) eObject).eIsProxy() == false;
-      }
-      return false;
-    }
-
-    public boolean isAlreadyOpenedEditor() {
-      return EditorHelper.isAlreadyOpenedEditor(getURI());
-    }
-
-    protected abstract EObject getEObject();
-
-    protected URI getURI() {
-      EObject eObject = getEObject();
-      if (eObject == null) {
-        return null;
-      }
-      return EcoreUtil.getURI(eObject);
-    }
-
-    protected URIConverter getURIConverter() {
-      EObject eObject = getEObject();
-      if (eObject == null) {
-        return null;
-      }
-      if (eObject.eResource() != null && eObject.eResource().getResourceSet() != null && eObject.eResource().getResourceSet().getURIConverter() != null) {
-        return eObject.eResource().getResourceSet().getURIConverter();
-      }
-      return null;
-    }
-
-    protected URI normalize(URI uri) {
-      if (uri == null || getURIConverter() == null) {
-        return uri;
-      }
-      return getURIConverter().normalize(uri);
-    }
-
-    @Override
-    public void run() {
-      try {
-        URI uri = getURI();
-        // Try to open it if any
-        if (uri != null) {
-          IEditorPart part = EditorHelper.openEditor(normalize(uri));
-          if (part != null && part instanceof IEditingDomainProvider) {
-            EditorHelper.setSelectionToViewer(part, uri);
-          }
+        public OpenAction(String id) {
+            setId(id);
         }
-      } catch (PartInitException pie) {
-        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), pie);
-      }
+
+        @Override
+        public boolean isEnabled() {
+            EObject eObject = getEObject();
+            if (eObject == null) {
+                return false;
+            }
+            if (eObject instanceof InternalEObject) {
+                return ((InternalEObject) eObject).eIsProxy() == false;
+            }
+            return false;
+        }
+
+        public boolean isAlreadyOpenedEditor() {
+            return EditorHelper.isAlreadyOpenedEditor(getURI());
+        }
+
+        protected abstract EObject getEObject();
+
+        protected URI getURI() {
+            EObject eObject = getEObject();
+            if (eObject == null) {
+                return null;
+            }
+            return EcoreUtil.getURI(eObject);
+        }
+
+        protected URIConverter getURIConverter() {
+            EObject eObject = getEObject();
+            if (eObject == null) {
+                return null;
+            }
+            if (eObject.eResource() != null && eObject.eResource().getResourceSet() != null && eObject.eResource().getResourceSet().getURIConverter() != null) {
+                return eObject.eResource().getResourceSet().getURIConverter();
+            }
+            return null;
+        }
+
+        protected URI normalize(URI uri) {
+            if (uri == null || getURIConverter() == null) {
+                return uri;
+            }
+            return getURIConverter().normalize(uri);
+        }
+
+        @Override
+        public void run() {
+            try {
+                URI uri = getURI();
+                // Try to open it if any
+                if (uri != null) {
+                    IEditorPart part = EditorHelper.openEditor(normalize(uri));
+                    if (part != null && part instanceof IEditingDomainProvider) {
+                        EditorHelper.setSelectionToViewer(part, uri);
+                    }
+                }
+            } catch (PartInitException pie) {
+                ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), pie);
+            }
+        }
+
     }
 
-  }
-
-  @Override
-  public void menuAboutToShow(IMenuManager menuManager) {
-    IStructuredSelection innerSelection = (IStructuredSelection) _selection;
-    if (innerSelection.size() == 1 && getOpenAction().getEObject() != null) {
-      getOpenAction().setText(getText());
-      getOpenAction().setEnabled(getOpenAction().isEnabled());
-      menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, getOpenAction());
+    @Override
+    public void menuAboutToShow(IMenuManager menuManager) {
+        IStructuredSelection innerSelection = (IStructuredSelection) _selection;
+        if (innerSelection.size() == 1 && getOpenAction().getEObject() != null) {
+            getOpenAction().setText(getText());
+            getOpenAction().setEnabled(getOpenAction().isEnabled());
+            menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, getOpenAction());
+        }
     }
-  }
 
 }
