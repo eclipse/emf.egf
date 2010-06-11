@@ -36,84 +36,86 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  */
 public class OpenActivityAction extends Action implements IWorkbenchWindowActionDelegate {
 
-  private Shell _shell;
+    private Shell _shell;
 
-  /**
-   * Creates a new action for opening an EGF Fcore
-   */
-  public OpenActivityAction() {
-    setEnabled(true);
-  }
-
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
-   */
-  public void dispose() {
-    _shell = null;
-  }
-
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
-   */
-  public void init(IWorkbenchWindow window) {
-    _shell = window.getShell();
-  }
-
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-   */
-  public void run(IAction action) {
-    run();
-  }
-
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-   */
-  public void selectionChanged(IAction action, ISelection selection) {
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.jface.action.Action#run()
-   */
-  @Override
-  public void run() {
-    ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(_shell, true);
-    int result = activityDialog.open();
-    if (result != IDialogConstants.OK_ID) {
-      return;
+    /**
+     * Creates a new action for opening an EGF Fcore
+     */
+    public OpenActivityAction() {
+        setEnabled(true);
     }
-    final Object[] objects = activityDialog.getResult();
-    if (objects == null) {
-      return;
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
+     */
+    public void dispose() {
+        _shell = null;
     }
-    // Build a map of selected activities per resources
-    Map<Resource, List<EObject>> resources = new HashMap<Resource, List<EObject>>();
-    for (Object object : objects) {
-      if (object instanceof Activity == false) {
-        continue;
-      }
-      Activity activity = (Activity) object;
-      if (activity.eResource() == null) {
-        continue;
-      }
-      List<EObject> activities = resources.get(activity.eResource());
-      if (activities == null) {
-        activities = new ArrayList<EObject>();
-        resources.put(activity.eResource(), activities);
-      }
-      activities.add(activity);
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
+     */
+    public void init(IWorkbenchWindow window) {
+        _shell = window.getShell();
     }
-    // Open and select
-    EditorHelper.openEditorsAndSelect(resources);
-  }
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
+     */
+    public void run(IAction action) {
+        run();
+    }
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
+     */
+    public void selectionChanged(IAction action, ISelection selection) {
+        // Nothing to do
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.action.Action#run()
+     */
+    @Override
+    public void run() {
+        ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(_shell, true);
+        int result = activityDialog.open();
+        if (result != IDialogConstants.OK_ID) {
+            return;
+        }
+        final Object[] objects = activityDialog.getResult();
+        if (objects == null) {
+            return;
+        }
+        // Build a map of selected activities per resources
+        Map<Resource, List<EObject>> resources = new HashMap<Resource, List<EObject>>();
+        for (Object object : objects) {
+            if (object instanceof Activity == false) {
+                continue;
+            }
+            Activity activity = (Activity) object;
+            if (activity.eResource() == null) {
+                continue;
+            }
+            List<EObject> activities = resources.get(activity.eResource());
+            if (activities == null) {
+                activities = new ArrayList<EObject>();
+                resources.put(activity.eResource(), activities);
+            }
+            activities.add(activity);
+        }
+        // Open and select
+        EditorHelper.openEditorsAndSelect(resources);
+    }
+
 }
