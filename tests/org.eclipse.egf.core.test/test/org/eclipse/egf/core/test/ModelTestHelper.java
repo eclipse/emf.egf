@@ -12,10 +12,10 @@ package org.eclipse.egf.core.test;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import test.EGFTestCase;
 import test.TestSuite;
@@ -47,7 +47,7 @@ public class ModelTestHelper {
 
     public static Resource getResource(String contributorName, String modelPath) {
         URI uri = URI.createURI(PLATFORM_PLUGIN + contributorName + "/" + modelPath); //$NON-NLS-1$
-        Resource resource = new ResourceSetImpl().getResource(uri, true);
+        Resource resource = new EGFResourceSet().getResource(uri, true);
         return resource;
     }
 
