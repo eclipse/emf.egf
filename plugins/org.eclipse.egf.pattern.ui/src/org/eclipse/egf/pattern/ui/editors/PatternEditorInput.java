@@ -26,6 +26,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
@@ -100,7 +101,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public Pattern getPattern() {
-        return (Pattern) resource.getEObject(fragment);
+        return (Pattern) getResource().getEObject(fragment);
     }
 
     public Resource getResource() {
@@ -108,6 +109,9 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public URI getURI() {
+        if (getPattern() != null) {
+            return EGFCorePlugin.getPlatformURIConverter().normalize(EcoreUtil.getURI(getPattern()));
+        }
         return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI());
     }
 
@@ -159,7 +163,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public IFile getFile() {
-        return (IFile) EclipseUtil.getAdapter(IFile.class, getURI());
+        return (IFile) EclipseUtil.getAdapter(IFile.class, getResource().getURI());
     }
 
     public IStorage getStorage() {
