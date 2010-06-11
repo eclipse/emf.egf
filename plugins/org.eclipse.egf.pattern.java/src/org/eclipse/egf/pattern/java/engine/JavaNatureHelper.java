@@ -32,6 +32,29 @@ public class JavaNatureHelper {
     private static final java.util.regex.Pattern compile = java.util.regex.Pattern.compile("\\s*package\\s*([\\w\\.]*);.*class\\s*(\\w*).*", java.util.regex.Pattern.DOTALL | java.util.regex.Pattern.MULTILINE); //$NON-NLS-1$
 
     /**
+     * This method parses the template header to know the template package name.
+     * 
+     * @return never returns null or empty string.
+     */
+    public static String getPackageName(Pattern pattern) throws PatternException {
+        try {
+            String content = FileHelper.getContent(PatternHelper.getPlatformFcore(pattern), pattern.getHeaderMethod().getPatternFilePath());
+            Matcher matcher = compile.matcher(content);
+            if (matcher.matches()) {
+                String pack = matcher.group(1);
+                if ("".equals(pack)) //$NON-NLS-1$
+                    throw new PatternException(Messages.bind(Messages.assembly_error8, pattern.getName()));
+                return pack;
+            }
+        } catch (PatternException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new PatternException(e);
+        }
+        throw new PatternException(Messages.bind(Messages.assembly_error6, pattern.getName()));
+    }
+
+    /**
      * This method parses the template header to know the template class name.
      * 
      * @return never returns null or empty string.
