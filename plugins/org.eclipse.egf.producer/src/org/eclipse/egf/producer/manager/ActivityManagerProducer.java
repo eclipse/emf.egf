@@ -32,39 +32,39 @@ import org.osgi.framework.Bundle;
  */
 public abstract class ActivityManagerProducer<P extends Activity> {
 
-  public abstract EClass getActivity();
+    public abstract EClass getActivity();
 
-  protected abstract IActivityManager<P> doCreateActivityManager(Activity activity) throws InvocationException;
+    protected abstract IActivityManager<P> doCreateActivityManager(P activity) throws InvocationException;
 
-  protected abstract IActivityManager<P> doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException;
+    protected abstract IActivityManager<P> doCreateActivityManager(Bundle bundle, P activity) throws InvocationException;
 
-  protected abstract <T extends Invocation> IActivityManager<P> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException;
+    protected abstract <T extends Invocation> IActivityManager<P> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, P activity) throws InvocationException;
 
-  public IActivityManager<P> createActivityManager(P activity) throws InvocationException {
-    if (matchNature(activity) == false) {
-      throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+    public IActivityManager<P> createActivityManager(P activity) throws InvocationException {
+        if (matchNature(activity) == false) {
+            throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+        }
+        return doCreateActivityManager(activity);
     }
-    return doCreateActivityManager(activity);
-  }
 
-  public IActivityManager<P> createActivityManager(Bundle bundle, Activity activity) throws InvocationException {
-    if (matchNature(activity) == false) {
-      throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+    public IActivityManager<P> createActivityManager(Bundle bundle, P activity) throws InvocationException {
+        if (matchNature(activity) == false) {
+            throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+        }
+        return doCreateActivityManager(bundle, activity);
     }
-    return doCreateActivityManager(bundle, activity);
-  }
 
-  public <T extends Invocation> IActivityManager<P> createActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException {
-    if (matchNature(activity) == false) {
-      throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+    public <T extends Invocation> IActivityManager<P> createActivityManager(IModelElementManager<T, InvocationContract> parent, P activity) throws InvocationException {
+        if (matchNature(activity) == false) {
+            throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
+        }
+        return doCreateActivityManager(parent, activity);
     }
-    return doCreateActivityManager(parent, activity);
-  }
 
-  public boolean matchNature(Activity activity) {
-    Assert.isNotNull(activity);
-    Assert.isNotNull(getActivity());
-    return getActivity() == EMFHelper.solveAgainstStaticPackage(activity.eClass());
-  }
+    public boolean matchNature(Activity activity) {
+        Assert.isNotNull(activity);
+        Assert.isNotNull(getActivity());
+        return getActivity() == EMFHelper.solveAgainstStaticPackage(activity.eClass());
+    }
 
 }

@@ -11,7 +11,6 @@
 package org.eclipse.egf.producer.ftask.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.ftask.FtaskPackage;
@@ -35,18 +34,18 @@ public class TaskManagerProducer extends ActivityManagerProducer<Task> {
     }
 
     @Override
-    protected IActivityManager<Task> doCreateActivityManager(Activity activity) throws InvocationException {
-        return TaskManagerFactory.createProductionManager((Task) activity);
+    protected IActivityManager<Task> doCreateActivityManager(Task task) throws InvocationException {
+        return TaskManagerFactory.createProductionManager(task);
     }
 
     @Override
-    protected IActivityManager<Task> doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException {
-        return TaskManagerFactory.createProductionManager(bundle, (Task) activity);
+    protected IActivityManager<Task> doCreateActivityManager(Bundle bundle, Task task) throws InvocationException {
+        return TaskManagerFactory.createProductionManager(bundle, task);
     }
 
     @Override
-    protected <T extends Invocation> IActivityManager<Task> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException {
-        return TaskManagerFactory.createProductionManager(parent, (Task) activity);
+    protected <T extends Invocation> IActivityManager<Task> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Task task) throws InvocationException {
+        return TaskManagerFactory.createProductionManager(parent, task);
     }
 
 }

@@ -11,7 +11,6 @@
 package org.eclipse.egf.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
@@ -29,24 +28,24 @@ import org.osgi.framework.Bundle;
  */
 public class FactoryComponentManagerProducer extends ActivityManagerProducer<FactoryComponent> {
 
-  @Override
-  public EClass getActivity() {
-    return FcorePackage.Literals.FACTORY_COMPONENT;
-  }
+    @Override
+    public EClass getActivity() {
+        return FcorePackage.Literals.FACTORY_COMPONENT;
+    }
 
-  @Override
-  protected IActivityManager<FactoryComponent> doCreateActivityManager(Activity activity) throws InvocationException {
-    return FactoryComponentManagerFactory.createProductionManager((FactoryComponent) activity);
-  }
+    @Override
+    protected IActivityManager<FactoryComponent> doCreateActivityManager(FactoryComponent factoryComponent) throws InvocationException {
+        return FactoryComponentManagerFactory.createProductionManager(factoryComponent);
+    }
 
-  @Override
-  protected IActivityManager<FactoryComponent> doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException {
-    return FactoryComponentManagerFactory.createProductionManager(bundle, (FactoryComponent) activity);
-  }
+    @Override
+    protected IActivityManager<FactoryComponent> doCreateActivityManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+        return FactoryComponentManagerFactory.createProductionManager(bundle, factoryComponent);
+    }
 
-  @Override
-  protected <T extends Invocation> IActivityManager<FactoryComponent> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException {
-    return FactoryComponentManagerFactory.createProductionManager(parent, (FactoryComponent) activity);
-  }
+    @Override
+    protected <T extends Invocation> IActivityManager<FactoryComponent> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, FactoryComponent factoryComponent) throws InvocationException {
+        return FactoryComponentManagerFactory.createProductionManager(parent, factoryComponent);
+    }
 
 }
