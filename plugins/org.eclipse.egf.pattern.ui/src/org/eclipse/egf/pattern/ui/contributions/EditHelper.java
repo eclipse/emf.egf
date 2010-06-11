@@ -56,7 +56,7 @@ public class EditHelper {
     }
 
     public static PatternTemplateEditor openTemplateBasicEditor(IWorkbenchPage page, Pattern pattern) {
-        return openTemplateBasicEditor(page, pattern, IWorkbenchPage.MATCH_ID);
+        return openTemplateBasicEditor(page, pattern, IWorkbenchPage.MATCH_NONE);
     }
 
     public static PatternTemplateEditor openTemplateBasicEditor(IWorkbenchPage page, Pattern pattern, int matchFlags) {
