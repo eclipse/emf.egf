@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -122,6 +122,7 @@ import org.eclipse.ui.ide.IDE;
  */
 @SuppressWarnings("restriction")
 public class ImplementationPage extends PatternEditorPage {
+
     public static final String ID = "ImplementationPage"; //$NON-NLS-1$
 
     private TableViewer methodsTableViewer;
@@ -427,7 +428,9 @@ public class ImplementationPage extends PatternEditorPage {
         if (isReadOnly)
             return;
 
-        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = false;
@@ -448,7 +451,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(methodsTableViewer) {
+        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new ViewerDropAdapter(methodsTableViewer) {
 
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
                 if (isChangMethodsOrder) {
@@ -470,12 +475,16 @@ public class ImplementationPage extends PatternEditorPage {
     private void initMethodsTableEditor() {
         if (isReadOnly)
             return;
-        methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
+        methodsTableViewer.setColumnProperties(new String[] {
+            NAME_COLUMN_ID
+        });
         nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
 
-        methodsTableViewer.setCellEditors(new CellEditor[] { nameEditor });
+        methodsTableViewer.setCellEditors(new CellEditor[] {
+            nameEditor
+        });
         methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer));
     }
 
@@ -615,6 +624,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 methods.move(toIndex, fromIndex);
             }
@@ -699,6 +709,7 @@ public class ImplementationPage extends PatternEditorPage {
                 final Pattern pattern = getPattern();
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                     protected void doExecute() {
                         pattern.getMethods().remove(selectItem);
                     }
@@ -714,6 +725,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void executeMethodsAdd(final String name) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 PatternMethod newMethod = PatternFactory.eINSTANCE.createPatternMethod();
                 newMethod.setName(name);
@@ -734,6 +746,7 @@ public class ImplementationPage extends PatternEditorPage {
         // Execute edit.
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 editPatternMethod.setName(name);
             }
@@ -860,7 +873,9 @@ public class ImplementationPage extends PatternEditorPage {
     private void addDragDropForOrchestrationTable() {
         if (isReadOnly)
             return;
-        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = true;
@@ -880,7 +895,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(orchestrationTableViewer) {
+        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new ViewerDropAdapter(orchestrationTableViewer) {
 
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
                 if (!isChangOrchestrationeOrder) {
@@ -938,6 +955,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void refreshTableContent(final EList<?> list, final int targetIndex, final int sourceIndex) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 list.move(targetIndex, sourceIndex);
             }
@@ -964,6 +982,7 @@ public class ImplementationPage extends PatternEditorPage {
         if (dropEntry != null) {
             TransactionalEditingDomain editingDomain = getEditingDomain();
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                 protected void doExecute() {
                     MethodCall methodCallNew = PatternFactory.eINSTANCE.createMethodCall();
                     methodCallNew.setCalled(dropEntry);
@@ -1123,6 +1142,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void exectuteOrchestrationAddCall(final Call selectCall) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 selectCall.setPattern(getPattern());
                 getPattern().getOrchestration().add(selectCall);
@@ -1135,6 +1155,7 @@ public class ImplementationPage extends PatternEditorPage {
     protected void exectuteOrchestrationEdit(final Call selectCall, final Object selectItem) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 if (selectItem instanceof Call) {
                     int modifyIndex = getPattern().getOrchestration().indexOf(selectItem);
@@ -1156,6 +1177,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 orchestration.move(newIndex, oldIndex);
             }
@@ -1172,6 +1194,7 @@ public class ImplementationPage extends PatternEditorPage {
             final Object selectItem = orchestrationTableViewer.getElementAt(index);
             TransactionalEditingDomain editingDomain = getEditingDomain();
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                 protected void doExecute() {
                     if (selectItem instanceof Call) {
                         getPattern().getOrchestration().remove(selectItem);
@@ -1254,8 +1277,12 @@ public class ImplementationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         variablesTableViewer = new TableViewer(table);
-        String[] colNames = { Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type };
-        int[] colWidths = { 130, 135 };
+        String[] colNames = {
+                Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type
+        };
+        int[] colWidths = {
+                130, 135
+        };
         for (int i = 0; i < colNames.length; i++) {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
             tableColumn.setWidth(colWidths[i]);
@@ -1271,13 +1298,15 @@ public class ImplementationPage extends PatternEditorPage {
     private void initVariablesTableEditor() {
         if (isReadOnly)
             return;
-        variablesTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID });
+        variablesTableViewer.setColumnProperties(new String[] {
+                NAME_COLUMN_ID, TYPE_COLUMN_ID
+        });
         final TextCellEditor nameEditor = new TextCellEditor(variablesTableViewer.getTable());
         final DialogCellEditor typeEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
-                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType());
+                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType(), getPattern());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -1294,7 +1323,9 @@ public class ImplementationPage extends PatternEditorPage {
                 return null;
             }
         };
-        variablesTableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor });
+        variablesTableViewer.setCellEditors(new CellEditor[] {
+                nameEditor, typeEditor
+        });
         variablesTableViewer.setCellModifier(new VariablesTableCellModifier(getEditingDomain(), variablesTableViewer));
 
         variablesTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -1312,6 +1343,7 @@ public class ImplementationPage extends PatternEditorPage {
             if (selectItem instanceof PatternVariable) {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                     protected void doExecute() {
                         ((PatternVariable) selectItem).setType(selectType);
                     }
@@ -1386,6 +1418,7 @@ public class ImplementationPage extends PatternEditorPage {
                 if (dialog.open() == Window.OK) {
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                         protected void doExecute() {
                             executeVariableEdit(dialog, selectItem);
                         }
@@ -1440,6 +1473,7 @@ public class ImplementationPage extends PatternEditorPage {
         final Pattern pattern = getPattern();
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             protected void doExecute() {
                 PatternVariable patternVariableNew = PatternFactory.eINSTANCE.createPatternVariable();
                 patternVariableNew.setName(VARIABLE_NAME_DEFAULT_VALUE);
@@ -1481,6 +1515,7 @@ public class ImplementationPage extends PatternEditorPage {
                 final Pattern pattern = getPattern();
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                     protected void doExecute() {
                         pattern.getVariables().remove(removeit);
                     }
