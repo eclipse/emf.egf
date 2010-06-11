@@ -36,7 +36,7 @@ import org.eclipse.ui.PlatformUI;
 public class EditHelper {
 
     public static IEditorPart openPatternEditor(IWorkbenchPage page, Pattern pattern) {
-        return openPatternEditor(page, pattern, IWorkbenchPage.MATCH_ID);
+        return openPatternEditor(page, pattern, IWorkbenchPage.MATCH_INPUT);
     }
 
     public static IEditorPart openPatternEditor(IWorkbenchPage page, Pattern pattern, int matchFlags) {
@@ -56,7 +56,7 @@ public class EditHelper {
     }
 
     public static PatternTemplateEditor openTemplateBasicEditor(IWorkbenchPage page, Pattern pattern) {
-        return openTemplateBasicEditor(page, pattern, IWorkbenchPage.MATCH_ID);
+        return openTemplateBasicEditor(page, pattern, IWorkbenchPage.MATCH_INPUT);
     }
 
     public static PatternTemplateEditor openTemplateBasicEditor(IWorkbenchPage page, Pattern pattern, int matchFlags) {
