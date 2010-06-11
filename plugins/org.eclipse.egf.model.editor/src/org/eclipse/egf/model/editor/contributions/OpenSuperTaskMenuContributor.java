@@ -32,14 +32,10 @@ public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
 
         @Override
         protected EObject getEObject() {
-            if (_selection == null) {
+            if (_selection == null || _selection.isEmpty()) {
                 return null;
             }
-            IStructuredSelection sselection = (IStructuredSelection) _selection;
-            if (sselection.size() != 1) {
-                return null;
-            }
-            Object object = sselection.getFirstElement();
+            Object object = ((IStructuredSelection) _selection).getFirstElement();
             if (object instanceof Task) {
                 Task task = (Task) object;
                 return task.getSuperTask();
