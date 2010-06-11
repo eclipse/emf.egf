@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.core.ui.wizard.FilteredItemsSelectionWizardPage;
@@ -33,7 +34,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -52,321 +52,322 @@ import org.eclipse.ui.IMemento;
  */
 public class ActivitySelectionWizardPage extends FilteredItemsSelectionWizardPage {
 
-  private static final String PAGE_ID = "org.eclipse.egf.model.editor.wizards.ActivitySelectionWizardPage"; //$NON-NLS-1$
+    private static final String PAGE_ID = "org.eclipse.egf.model.editor.wizards.ActivitySelectionWizardPage"; //$NON-NLS-1$
 
-  private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
+    private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
 
-  private Resource _context;
+    private Resource _context;
 
-  private Activity _activity;
+    private Activity _activity;
 
-  private ResourceSet _resourceSet;
+    private ResourceSet _resourceSet;
 
-  private ComposedAdapterFactory _adapterFactory;
+    private ComposedAdapterFactory _adapterFactory;
 
-  private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
+    private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
 
-  /**
-   * <code>ActivitySelectionHistory</code> provides behavior specific to
-   * Activity - storing and restoring <code>Activity</code>s state
-   * to/from XML (memento).
-   */
-  private class ActivitySelectionHistory extends SelectionHistory {
+    /**
+     * <code>ActivitySelectionHistory</code> provides behavior specific to
+     * Activity - storing and restoring <code>Activity</code>s state
+     * to/from XML (memento).
+     */
+    private class ActivitySelectionHistory extends SelectionHistory {
 
-    private static final String TAG_URI = "path"; //$NON-NLS-1$
+        private static final String TAG_URI = "path"; //$NON-NLS-1$
 
-    public ActivitySelectionHistory() {
-      super();
-    }
+        public ActivitySelectionHistory() {
+            super();
+        }
 
-    @Override
-    protected Object restoreItemFromMemento(IMemento memento) {
-      // Restore
-      String tag = memento.getString(TAG_URI);
-      if (tag == null) {
-        return null;
-      }
-      try {
-        _activity = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
-        // Check whether or not this activity belongs to our fcores
-        IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_activity.eResource());
-        if (fcore != null) {
-          for (IPlatformFcore innerFcore : _fcores) {
-            if (innerFcore.equals(fcore)) {
-              return _activity;
+        @Override
+        protected Object restoreItemFromMemento(IMemento memento) {
+            // Restore
+            String tag = memento.getString(TAG_URI);
+            if (tag == null) {
+                return null;
             }
-          }
+            try {
+                _activity = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
+                // Check whether or not this activity belongs to our fcores
+                IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_activity.eResource());
+                if (fcore != null) {
+                    for (IPlatformFcore innerFcore : _fcores) {
+                        if (innerFcore.equals(fcore)) {
+                            return _activity;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // Just ignore, a retrieved activity could have been deleted,
+            } finally {
+                _activity = null;
+            }
+            return null;
         }
-      } catch (Exception e) {
-        // Just ignore, a retrieved activity could have been deleted,
-      } finally {
-        _activity = null;
-      }
-      return null;
+
+        @Override
+        protected void storeItemToMemento(Object item, IMemento element) {
+            // Save
+            if (((InvokeActivityWizard) getWizard())._isCanceled == false) {
+                Object[] items = getHistoryItems();
+                for (int i = 0; i < items.length; i++) {
+                    element.putString(TAG_URI, EcoreUtil.getURI((Activity) items[i]).toString());
+                }
+            } else if (_activity != null) {
+                element.putString(TAG_URI, EcoreUtil.getURI(_activity).toString());
+            }
+        }
+
+    }
+
+    private class ActivitySearchItemsFilter extends ItemsFilter {
+
+        @Override
+        public boolean matchItem(Object item) {
+            if (item instanceof Activity == false) {
+                return false;
+            }
+            Activity activity = (Activity) item;
+            if (activity.getName() == null) {
+                return true;
+            }
+            return (matches(activity.getName()));
+        }
+
+        @Override
+        public boolean isConsistentItem(Object item) {
+            if (item instanceof Activity) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean isSubFilter(ItemsFilter filter) {
+            if (super.isSubFilter(filter) == false) {
+                return false;
+            }
+            if (filter instanceof ActivitySearchItemsFilter) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean equalsFilter(ItemsFilter filter) {
+            if (super.equalsFilter(filter) == false) {
+                return false;
+            }
+            if (filter instanceof ActivitySearchItemsFilter) {
+                return true;
+            }
+            return false;
+        }
+
+    }
+
+    private static class ActivitySearchComparator implements Comparator<Activity>, Serializable {
+
+        public static final long serialVersionUID = 1L;
+
+        public int compare(Activity a1, Activity a2) {
+            if (a1.getName() == null && a2.getName() == null) {
+                return 0;
+            }
+            if (a1.getName() != null && a2.getName() == null) {
+                return -1;
+            }
+            if (a1.getName() == null && a2.getName() != null) {
+                return 1;
+            }
+            return a1.getName().compareTo(a2.getName());
+        }
+    }
+
+    /**
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog#getLabelProvider()
+     */
+    protected ILabelProvider getLabelProvider() {
+        return new LabelProvider() {
+
+            ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
+
+            @Override
+            public String getText(Object object) {
+                return _labelProvider.getText(object);
+            }
+
+            @Override
+            public Image getImage(Object object) {
+                return _labelProvider.getImage(object);
+            }
+        };
+    }
+
+    protected ILabelProvider getDetailsLabelProvider() {
+        return new LabelProvider() {
+
+            ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
+
+            @Override
+            public Image getImage(Object object) {
+                return _labelProvider.getImage(object);
+            }
+
+            @Override
+            public String getText(Object element) {
+                // This shouldn't happen
+                if (element instanceof Activity == false) {
+                    return super.getText(element);
+                }
+                // In memory activity, in case of...
+                Activity activity = (Activity) element;
+                if (activity.eResource() == null) {
+                    return super.getText(element);
+                }
+                // Retrieve Fcore
+                IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(activity.eResource());
+                if (fc == null) {
+                    return super.getText(element);
+                }
+                StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
+                if (fc.getPlatformBundle().isTarget()) {
+                    buffer.append(" [Target]"); //$NON-NLS-1$
+                } else {
+                    buffer.append(" [Workspace]"); //$NON-NLS-1$
+                }
+                buffer.append(" ["); //$NON-NLS-1$
+                buffer.append(fc.getPlatformBundle().getInstallLocation());
+                buffer.append("]"); //$NON-NLS-1$      
+                return buffer.toString();
+            }
+        };
+    }
+
+    public ActivitySelectionWizardPage() {
+        super(PAGE_ID, false);
+        // Create and init a resourceSet
+        _resourceSet = new EGFResourceSet();
+        // Create an adapter factory that yields item providers.
+        _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+        _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
+        _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
+        _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
+        _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        setListLabelProvider(getLabelProvider());
+        setDetailsLabelProvider(getDetailsLabelProvider());
+        setSelectionHistory(new ActivitySelectionHistory());
+        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
     }
 
     @Override
-    protected void storeItemToMemento(Object item, IMemento element) {
-      // Save
-      if (((InvokeActivityWizard) getWizard())._isCanceled == false) {
-        Object[] items = getHistoryItems();
-        for (int i = 0; i < items.length; i++) {
-          element.putString(TAG_URI, EcoreUtil.getURI((Activity) items[i]).toString());
+    public Object[] getResult() {
+        computeResult();
+        Object[] result = super.getResult();
+        if (result == null) {
+            return null;
         }
-      } else if (_activity != null) {
-        element.putString(TAG_URI, EcoreUtil.getURI(_activity).toString());
-      }
-    }
-
-  }
-
-  private class ActivitySearchItemsFilter extends ItemsFilter {
-
-    @Override
-    public boolean matchItem(Object item) {
-      if (item instanceof Activity == false) {
-        return false;
-      }
-      Activity activity = (Activity) item;
-      if (activity.getName() == null) {
-        return true;
-      }
-      return (matches(activity.getName()));
+        List<Activity> resultToReturn = new ArrayList<Activity>();
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] instanceof Activity) {
+                resultToReturn.add(((Activity) result[i]));
+            }
+        }
+        return resultToReturn.toArray();
     }
 
     @Override
-    public boolean isConsistentItem(Object item) {
-      if (item instanceof Activity) {
-        return true;
-      }
-      return false;
+    protected Control createExtendedContentArea(Composite parent) {
+        return null;
     }
 
     @Override
-    public boolean isSubFilter(ItemsFilter filter) {
-      if (super.isSubFilter(filter) == false) {
-        return false;
-      }
-      if (filter instanceof ActivitySearchItemsFilter) {
-        return true;
-      }
-      return false;
+    protected ItemsFilter createFilter() {
+        return new ActivitySearchItemsFilter();
     }
 
     @Override
-    public boolean equalsFilter(ItemsFilter filter) {
-      if (super.equalsFilter(filter) == false) {
-        return false;
-      }
-      if (filter instanceof ActivitySearchItemsFilter) {
-        return true;
-      }
-      return false;
-    }
-
-  }
-
-  private static class ActivitySearchComparator implements Comparator<Activity>, Serializable {
-    public static final long serialVersionUID = 1L;
-
-    public int compare(Activity a1, Activity a2) {
-      if (a1.getName() == null && a2.getName() == null) {
-        return 0;
-      }
-      if (a1.getName() != null && a2.getName() == null) {
-        return -1;
-      }
-      if (a1.getName() == null && a2.getName() != null) {
-        return 1;
-      }
-      return a1.getName().compareTo(a2.getName());
-    }
-  }
-
-  /**
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog#getLabelProvider()
-   */
-  protected ILabelProvider getLabelProvider() {
-    return new LabelProvider() {
-      ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
-
-      @Override
-      public String getText(Object object) {
-        return _labelProvider.getText(object);
-      }
-
-      @Override
-      public Image getImage(Object object) {
-        return _labelProvider.getImage(object);
-      }
-    };
-  }
-
-  protected ILabelProvider getDetailsLabelProvider() {
-    return new LabelProvider() {
-      ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
-
-      @Override
-      public Image getImage(Object object) {
-        return _labelProvider.getImage(object);
-      }
-
-      @Override
-      public String getText(Object element) {
-        // This shouldn't happen
-        if (element instanceof Activity == false) {
-          return super.getText(element);
-        }
-        // In memory activity, in case of...
-        Activity activity = (Activity) element;
-        if (activity.eResource() == null) {
-          return super.getText(element);
-        }
-        // Retrieve Fcore
-        IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(activity.eResource());
-        if (fc == null) {
-          return super.getText(element);
-        }
-        StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
-        if (fc.getPlatformBundle().isTarget()) {
-          buffer.append(" [Target]"); //$NON-NLS-1$
-        } else {
-          buffer.append(" [Workspace]"); //$NON-NLS-1$
-        }
-        buffer.append(" ["); //$NON-NLS-1$
-        buffer.append(fc.getPlatformBundle().getBundleLocation());
-        buffer.append("]"); //$NON-NLS-1$      
-        return buffer.toString();
-      }
-    };
-  }
-
-  public ActivitySelectionWizardPage() {
-    super(PAGE_ID, false);
-    // Create and init a resourceSet
-    _resourceSet = new ResourceSetImpl();
-    // Assign a platform aware URIConverter
-    _resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
-    // Create an adapter factory that yields item providers.
-    _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    setListLabelProvider(getLabelProvider());
-    setDetailsLabelProvider(getDetailsLabelProvider());
-    setSelectionHistory(new ActivitySelectionHistory());
-    setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
-  }
-
-  @Override
-  public Object[] getResult() {
-    computeResult();
-    Object[] result = super.getResult();
-    if (result == null) {
-      return null;
-    }
-    List<Activity> resultToReturn = new ArrayList<Activity>();
-    for (int i = 0; i < result.length; i++) {
-      if (result[i] instanceof Activity) {
-        resultToReturn.add(((Activity) result[i]));
-      }
-    }
-    return resultToReturn.toArray();
-  }
-
-  @Override
-  protected Control createExtendedContentArea(Composite parent) {
-    return null;
-  }
-
-  @Override
-  protected ItemsFilter createFilter() {
-    return new ActivitySearchItemsFilter();
-  }
-
-  @Override
-  protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
-    try {
-      for (IPlatformFcore fc : _fcores) {
-        // Load Fcore
-        Resource resource = null;
+    protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
         try {
-          // Analyse existing in memory resource if applicable
-          if (_context != null && _context.getResourceSet() != null) {
-            resource = _context.getResourceSet().getResource(fc.getURI(), false);
-          }
-          // If no memory resource are found
-          if (resource == null) {
-            resource = _resourceSet.getResource(fc.getURI(), true);
-          }
+            for (IPlatformFcore fc : _fcores) {
+                // Load Fcore
+                Resource resource = null;
+                try {
+                    // Analyse existing in memory resource if applicable
+                    if (_context != null && _context.getResourceSet() != null) {
+                        resource = _context.getResourceSet().getResource(fc.getURI(), false);
+                    }
+                    // If no memory resource are found
+                    if (resource == null) {
+                        resource = _resourceSet.getResource(fc.getURI(), true);
+                    }
+                } catch (OperationCanceledException e) {
+                    return;
+                } catch (Exception e) {
+                    EGFModelEditorPlugin.getPlugin().logError(e);
+                    continue;
+                }
+                // Analyse top contents for Activities
+                for (EObject eObject : resource.getContents()) {
+                    // Ignore current
+                    if (_activity != null && EcoreUtil.getURI(_activity).equals(EcoreUtil.getURI(eObject))) {
+                        continue;
+                    }
+                    // Process
+                    try {
+                        contentProvider.add(eObject, itemsFilter);
+                    } catch (OperationCanceledException e) {
+                        return;
+                    } catch (ClassCastException cce) {
+                        // Ignore
+                        continue;
+                    }
+                }
+                progressMonitor.worked(1);
+            }
         } catch (OperationCanceledException e) {
-          return;
-        } catch (Exception e) {
-          EGFModelEditorPlugin.getPlugin().logError(e);
-          continue;
-        }
-        // Analyse top contents for Activities
-        for (EObject eObject : resource.getContents()) {
-          // Ignore current
-          if (_activity != null && EcoreUtil.getURI(_activity).equals(EcoreUtil.getURI(eObject))) {
-            continue;
-          }
-          // Process
-          try {
-            contentProvider.add(eObject, itemsFilter);
-          } catch (OperationCanceledException e) {
             return;
-          } catch (ClassCastException cce) {
-            // Ignore
-            continue;
-          }
+        } finally {
+            progressMonitor.done();
         }
-        progressMonitor.worked(1);
-      }
-    } catch (OperationCanceledException e) {
-      return;
-    } finally {
-      progressMonitor.done();
     }
-  }
 
-  @Override
-  protected void handleDoubleClick() {
-    computeResult();
-    if (getWizard().canFinish() && getWizard() instanceof InvokeActivityWizard) {
-      ((InvokeActivityWizard) getWizard()).finishWizardDialog();
+    @Override
+    protected void handleDoubleClick() {
+        computeResult();
+        if (getWizard().canFinish() && getWizard() instanceof InvokeActivityWizard) {
+            ((InvokeActivityWizard) getWizard()).finishWizardDialog();
+        }
     }
-  }
 
-  @Override
-  protected IDialogSettings getDialogSettings() {
-    IDialogSettings settings = EGFModelEditorPlugin.getPlugin().getDialogSettings().getSection(DIALOG_SETTINGS);
-    if (settings == null) {
-      settings = EGFModelEditorPlugin.getPlugin().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+    @Override
+    protected IDialogSettings getDialogSettings() {
+        IDialogSettings settings = EGFModelEditorPlugin.getPlugin().getDialogSettings().getSection(DIALOG_SETTINGS);
+        if (settings == null) {
+            settings = EGFModelEditorPlugin.getPlugin().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+        }
+        return settings;
     }
-    return settings;
-  }
 
-  @Override
-  public String getElementName(Object item) {
-    if (item instanceof IPlatformFcore) {
-      IPlatformFcore fc = (IPlatformFcore) item;
-      return fc.getURI().toString();
+    @Override
+    public String getElementName(Object item) {
+        if (item instanceof IPlatformFcore) {
+            IPlatformFcore fc = (IPlatformFcore) item;
+            return fc.getURI().toString();
+        }
+        return null;
     }
-    return null;
-  }
 
-  @Override
-  protected Comparator<Activity> getItemsComparator() {
-    return new ActivitySearchComparator();
-  }
+    @Override
+    protected Comparator<Activity> getItemsComparator() {
+        return new ActivitySearchComparator();
+    }
 
-  @Override
-  protected IStatus validateItem(Object item) {
-    return new Status(IStatus.OK, EGFModelEditorPlugin.getPlugin().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
-  }
+    @Override
+    protected IStatus validateItem(Object item) {
+        return new Status(IStatus.OK, EGFModelEditorPlugin.getPlugin().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
+    }
 
 }
