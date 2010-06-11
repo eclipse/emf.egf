@@ -259,16 +259,16 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    * Get an image descriptor for given key.<br>
    * Images must be located in 'plug-in folder'/icons
    * 
-   * @param key_p
+   * @param key
    *          the key must be the file name of the related image.
    * @return an {@link ImageDescriptor} or null if not found
    */
-  public ImageDescriptor getImageDescriptor(String key_p) {
+  public ImageDescriptor getImageDescriptor(String key) {
     ImageRegistry imageRegistry = getImageRegistry();
-    ImageDescriptor imageDescriptor = imageRegistry.getDescriptor(key_p);
+    ImageDescriptor imageDescriptor = imageRegistry.getDescriptor(key);
     if (imageDescriptor == null) {
-      imageDescriptor = createImageDescriptor(key_p);
-      imageRegistry.put(key_p, imageDescriptor);
+      imageDescriptor = createImageDescriptor(key);
+      imageRegistry.put(key, imageDescriptor);
     }
     return imageDescriptor;
   }
@@ -277,23 +277,23 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    * Get an image for given key.<br>
    * Images must be located in 'plug-in folder'/icons
    * 
-   * @param key_p
+   * @param key
    *          the key must be the file name of the related image.
    * @return an {@link Image} or null if not found
    */
-  public Image getImage(String key_p) {
+  public Image getImage(String key) {
     ImageRegistry imageRegistry = getImageRegistry();
-    Image image = imageRegistry.get(key_p);
+    Image image = imageRegistry.get(key);
     if (image == null) {
       // Create an image descriptor for given id.
-      ImageDescriptor imageDescriptor = createImageDescriptor(key_p);
+      ImageDescriptor imageDescriptor = createImageDescriptor(key);
       // Store the (id, imageDescriptor) rather than (id,image)
       // because with storing (id,image) the getDescriptor method will
       // return null in later usage
       // this way, everything is correctly initialized.
-      imageRegistry.put(key_p, imageDescriptor);
+      imageRegistry.put(key, imageDescriptor);
       // Everything is all right at this step, let's get the real image
-      image = imageRegistry.get(key_p);
+      image = imageRegistry.get(key);
     }
     return image;
   }
@@ -302,12 +302,12 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    * Create an image descriptor for given key.<br>
    * Images must be located in 'plug-in folder'/icons
    * 
-   * @param key_p
+   * @param key
    *          the key must be the file name of the related image.
    * @return an {@link ImageDescriptor} or null if error occurred
    */
-  protected ImageDescriptor createImageDescriptor(String key_p) {
-    return AbstractUIPlugin.imageDescriptorFromPlugin(getPluginID(), ICONS_PATH + key_p);
+  protected ImageDescriptor createImageDescriptor(String key) {
+    return AbstractUIPlugin.imageDescriptorFromPlugin(getPluginID(), ICONS_PATH + key);
   }
 
   /**
