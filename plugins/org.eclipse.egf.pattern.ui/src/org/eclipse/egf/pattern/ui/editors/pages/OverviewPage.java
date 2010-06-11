@@ -21,6 +21,10 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.ui.helper.EditorHelper;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
+import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
+import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -34,10 +38,13 @@ import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ContainerLibrarySelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
@@ -55,6 +62,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.forms.IManagedForm;
@@ -304,7 +313,6 @@ public class OverviewPage extends PatternEditorPage {
             }
 
         });
-
         Label specLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_spec_label, SWT.WRAP);
         specLabel.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
@@ -327,9 +335,40 @@ public class OverviewPage extends PatternEditorPage {
             }
 
         });
-
         Label implLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_impl_label, SWT.WRAP);
         implLabel.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+
+        ImageHyperlink selectLink = toolkit.createImageHyperlink(containerLink, SWT.NONE);
+        selectLink.setText(Messages.OverviewPage_sectionRight_selectLink_label);
+        selectLink.setImage(EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_FCORE));
+        selectLink.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        selectLink.addHyperlinkListener(new IHyperlinkListener() {
+
+            public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
+            }
+
+            public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
+            }
+
+            public void linkActivated(HyperlinkEvent e) {
+                try {
+                    URI uri = EcoreUtil.getURI(getPattern());
+                    // Try to open it if any
+                    if (uri != null) {
+                        IEditorPart part = EditorHelper.openEditor(uri);
+                        if (part != null && part instanceof IEditingDomainProvider) {
+                            EditorHelper.setSelectionToViewer(part, uri);
+                        }
+                    }
+                } catch (PartInitException pie) {
+                    ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), pie);
+                }
+            }
+        });
+        Label selectLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_select_label, SWT.WRAP);
+        selectLabel.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         section.setClient(container);
 

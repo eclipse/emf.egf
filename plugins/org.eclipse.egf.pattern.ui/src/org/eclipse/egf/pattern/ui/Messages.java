@@ -58,6 +58,10 @@ public class Messages extends NLS {
 
     public static String OverviewPage_sectionRight_specLink_label;
 
+    public static String OverviewPage_sectionRight_select_label;
+
+    public static String OverviewPage_sectionRight_selectLink_label;
+
     public static String OverviewPage_sectionRight_title;
 
     public static String OverviewPage_sectionRight_title_label;
