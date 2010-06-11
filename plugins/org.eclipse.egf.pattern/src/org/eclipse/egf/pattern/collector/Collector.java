@@ -24,25 +24,25 @@ public abstract class Collector<E extends PatternElement> {
     protected final void doCollect(EObject source, final List<E> result, final Set<String> ids) {
         if (FcorePackage.eINSTANCE.equals(source.eClass().getEPackage())) {
             switch (source.eClass().getClassifierID()) {
-            case FcorePackage.FACTORY_COMPONENT:
-                ViewpointContainer viewpointContainer = ((FactoryComponent) source).getViewpointContainer();
-                if (viewpointContainer != null) {
-                    for (Viewpoint viewpoint : viewpointContainer.getViewpoints())
-                        doCollect(viewpoint, result, ids);
-                }
-                return;
+                case FcorePackage.FACTORY_COMPONENT:
+                    ViewpointContainer viewpointContainer = ((FactoryComponent) source).getViewpointContainer();
+                    if (viewpointContainer != null) {
+                        for (Viewpoint viewpoint : viewpointContainer.getViewpoints())
+                            doCollect(viewpoint, result, ids);
+                    }
+                    return;
             }
         } else if (PatternPackage.eINSTANCE.equals(source.eClass().getEPackage())) {
             switch (source.eClass().getClassifierID()) {
-            case PatternPackage.PATTERN_VIEWPOINT:
-                casePatternViewpoint((PatternViewpoint) source, result, ids);
-                return;
-            case PatternPackage.PATTERN_LIBRARY:
-                casePatternLibrary((PatternLibrary) source, result, ids);
-                return;
-            case PatternPackage.PATTERN:
-                casePattern((Pattern) source, result, ids);
-                return;
+                case PatternPackage.PATTERN_VIEWPOINT:
+                    casePatternViewpoint((PatternViewpoint) source, result, ids);
+                    return;
+                case PatternPackage.PATTERN_LIBRARY:
+                    casePatternLibrary((PatternLibrary) source, result, ids);
+                    return;
+                case PatternPackage.PATTERN:
+                    casePattern((Pattern) source, result, ids);
+                    return;
             }
         }
     }
@@ -51,7 +51,7 @@ public abstract class Collector<E extends PatternElement> {
     }
 
     protected void casePatternLibrary(PatternLibrary source, final List<E> result, final Set<String> ids) {
-        for (PatternElement elem : ((PatternLibrary) source).getElements())
+        for (PatternElement elem : source.getElements())
             doCollect(elem, result, ids);
     }
 
