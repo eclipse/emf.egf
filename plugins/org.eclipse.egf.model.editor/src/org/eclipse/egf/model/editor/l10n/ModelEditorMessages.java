@@ -49,6 +49,14 @@ public class ModelEditorMessages {
 
     public static String InvokeActivityWizard_Activity_description;
 
+    public static String InvokeActivityWizard_Contract_title;
+
+    public static String InvokeActivityWizard_Contract_description;
+
+    public static String InvokeActivityWizard_Contract_select;
+
+    public static String TypeURIEditorContributor_title;
+
     public static String _UI_InvokeCommand_label;
 
     public static String _UI_InvokeCommand_description;

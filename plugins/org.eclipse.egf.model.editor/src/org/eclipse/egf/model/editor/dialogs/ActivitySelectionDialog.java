@@ -25,6 +25,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
+import org.eclipse.egf.core.ui.dialogs.AbstractFilteredItemsSelectionDialog;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.fcore.Activity;
@@ -33,6 +34,7 @@ import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFact
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -45,19 +47,19 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IMemento;
-import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
+public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialog {
 
     private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
 
@@ -352,6 +354,26 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     }
 
     /**
+     * Handle selection
+     * 
+     * @param selection
+     *            the new selection
+     */
+    @Override
+    protected void handleSelected(StructuredSelection selection) {
+        super.handleSelected(selection);
+        if (selection.size() != 0) {
+            List<Activity> activities = new UniqueEList<Activity>();
+            for (Object object : selection.toList()) {
+                if (object instanceof Activity) {
+                    activities.add((Activity) object);
+                }
+            }
+            notifySelectionListeners(activities.toArray());
+        }
+    }
+
+    /**
      * Hack to use a dialog in a wizard page
      * 
      * @return the current shell or its parent shell
@@ -382,10 +404,6 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     @Override
     public Object[] getResult() {
         Object[] result = super.getResult();
-        if (result == null) {
-            computeResult();
-        }
-        result = super.getResult();
         if (result == null) {
             return null;
         }

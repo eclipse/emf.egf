@@ -10,12 +10,16 @@
  */
 package org.eclipse.egf.model.editor.wizards;
 
+import java.util.List;
+
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.commands.InvokeActivityCommand;
 import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -45,13 +49,15 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
     protected IWorkbench _workbench;
 
     /**
-     * This is the file creation page.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
+     * This is the activity selection page.
      */
     protected ActivitySelectionPage _activitySelectionPage;
+
+    /**
+     * This is the contract selection page.
+     * 
+     */
+    protected ContractSelectionPage _contractSelectionPage;
 
     public boolean _isCanceled;
 
@@ -80,7 +86,7 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
     /**
      * The <code>Wizard</code> implementation of this <code>IWizard</code>
      * method does nothing and returns <code>true</code>. Subclasses should
-     * reimplement this method if they need to perform any special cancel
+     * re-implement this method if they need to perform any special cancel
      * processing for their wizard.
      */
     @Override
@@ -99,15 +105,13 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
 
     /**
      * The framework calls this to create the contents of the wizard.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
      */
     @Override
     public void addPages() {
         _activitySelectionPage = new ActivitySelectionPage();
         addPage(_activitySelectionPage);
+        _contractSelectionPage = new ContractSelectionPage();
+        addPage(_contractSelectionPage);
     }
 
     /**
@@ -116,11 +120,10 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
     @Override
     public boolean performFinish() {
         // Activity to import
-        Object result = _activitySelectionPage.getActivitySelectionDialog().getFirstResult();
+        Object result = _activitySelectionPage.getFirstSelection();
         if (result instanceof Activity == false) {
             return true;
         }
-        Activity activity = (Activity) result;
         // Target
         ProductionPlan productionPlan = getProductionPlan();
         if (productionPlan == null) {
@@ -131,8 +134,19 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
         if (domain == null) {
             return false;
         }
+        // Solve Activity against this domain
+        Activity activity = (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI((Activity) result), true);
+        // Solve Contracts against this domain
+        List<Contract> contracts = new UniqueEList<Contract>();
+        if (_contractSelectionPage.getResult() != null) {
+            for (Object object : _contractSelectionPage.getResult()) {
+                if (object instanceof Contract) {
+                    contracts.add((Contract) domain.getResourceSet().getEObject(EcoreUtil.getURI((Contract) object), true));
+                }
+            }
+        }
         final Command[] command = new Command[] {
-            new InvokeActivityCommand(domain, productionPlan, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true))
+            new InvokeActivityCommand(domain, productionPlan, activity, contracts)
         };
         // Are we facing a TransactionalEditingDomain ?
         if (domain instanceof TransactionalEditingDomain) {
@@ -142,10 +156,12 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
                 protected void doExecute() {
                     // Nothing to do
                 }
+
             }.chain(command[0]));
         } else {
             domain.getCommandStack().execute(command[0]);
         }
         return true;
     }
+
 }
