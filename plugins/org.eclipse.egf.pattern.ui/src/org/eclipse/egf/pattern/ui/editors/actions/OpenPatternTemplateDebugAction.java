@@ -44,38 +44,37 @@ import org.eclipse.ui.ide.IDE;
 
 public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
 
-  protected IStructuredSelection selection;
+    protected IStructuredSelection _selection;
 
-  private IWorkbenchPart targetPart;
+    private IWorkbenchPart _targetPart;
 
-  public void selectionChanged(IAction action, ISelection selection) {
-    this.selection = (IStructuredSelection) selection;
-  }
-
-  public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-    this.targetPart = targetPart;
-
-  }
-
-  public void run(IAction action) {
-    Object firstElement = selection.getFirstElement();
-    TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-    IFile file = (IFile) firstElement;
-    URI uri = URIHelper.getPlatformURI(file.getFullPath());
-    Resource res = editingDomain.getResourceSet().getResource(uri, true);
-    FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
-    PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
-    PatternLibrary patternLibrary = pvp.getLibraries().get(0);
-    Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
-    String editor = TemplateExtensionRegistry.getEditor(pattern);
-    if (editor != null) {
-      try {
-        PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
-        IDE.openEditor(targetPart.getSite().getPage(), input, editor);
-      } catch (PartInitException e) {
-        Activator.getDefault().logError(e);
-      }
+    public void selectionChanged(IAction action, ISelection selection) {
+        _selection = (IStructuredSelection) selection;
     }
-  }
+
+    public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+        _targetPart = targetPart;
+    }
+
+    public void run(IAction action) {
+        Object firstElement = _selection.getFirstElement();
+        TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+        IFile file = (IFile) firstElement;
+        URI uri = URIHelper.getPlatformURI(file.getFullPath());
+        Resource res = editingDomain.getResourceSet().getResource(uri, true);
+        FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
+        PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
+        PatternLibrary patternLibrary = pvp.getLibraries().get(0);
+        Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
+        String editor = TemplateExtensionRegistry.getEditor(pattern);
+        if (editor != null) {
+            try {
+                PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
+                IDE.openEditor(_targetPart.getSite().getPage(), input, editor);
+            } catch (PartInitException e) {
+                Activator.getDefault().logError(e);
+            }
+        }
+    }
 
 }

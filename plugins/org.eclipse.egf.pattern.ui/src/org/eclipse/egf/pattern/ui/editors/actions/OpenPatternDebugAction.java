@@ -42,22 +42,21 @@ import org.eclipse.ui.PartInitException;
 
 public class OpenPatternDebugAction implements IObjectActionDelegate {
 
-    protected IStructuredSelection selection;
+    protected IStructuredSelection _selection;
 
-    private IWorkbenchPart targetPart;
+    private IWorkbenchPart _targetPart;
 
     public void selectionChanged(IAction action, ISelection selection) {
-        this.selection = (IStructuredSelection) selection;
+        _selection = (IStructuredSelection) selection;
     }
 
     public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-        this.targetPart = targetPart;
-
+        _targetPart = targetPart;
     }
 
     public void run(IAction action) {
         try {
-            IFile file = (IFile) selection.getFirstElement();
+            IFile file = (IFile) _selection.getFirstElement();
             URI uri = URIHelper.getPlatformURI(file.getFullPath());
             TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
 
@@ -71,7 +70,7 @@ public class OpenPatternDebugAction implements IObjectActionDelegate {
             // URI uri2 = EcoreUtil.getURI(pattern);
             PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
 
-            targetPart.getSite().getPage().openEditor(input, PatternEditor.ID);
+            _targetPart.getSite().getPage().openEditor(input, PatternEditor.ID);
         } catch (PartInitException e) {
             e.printStackTrace();
 
