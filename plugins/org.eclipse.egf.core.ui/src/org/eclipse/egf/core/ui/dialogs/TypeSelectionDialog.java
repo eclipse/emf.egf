@@ -21,6 +21,8 @@ import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -75,6 +77,15 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
             settings = EGFCoreUIPlugin.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
         }
         return settings;
+    }
+
+    @Override
+    public void computeResult() {
+        super.computeResult();
+    }
+
+    public Control createPage(Composite parent) {
+        return dialogArea = createDialogArea(parent);
     }
 
 }
