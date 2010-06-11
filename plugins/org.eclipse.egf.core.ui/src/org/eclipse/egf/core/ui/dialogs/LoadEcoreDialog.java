@@ -104,7 +104,7 @@ public class LoadEcoreDialog extends LoadResourceDialog {
                         Resource resource = resourceSet.getResource(location, true);
                         EcoreUtil.resolveAll(resource);
                     }
-                    for (Resource resource : domain.getResourceSet().getResources()) {
+                    for (Resource resource : resourceSet.getResources()) {
                         LOOP: for (EPackage ePackage : EMFHelper.getAllPackages(resource)) {
                             for (int i = 0, length = result.length; i < length; i++) {
                                 if (((IPlatformGenModel) result[i]).getId().compareTo(ePackage.getNsURI()) == 0) {
