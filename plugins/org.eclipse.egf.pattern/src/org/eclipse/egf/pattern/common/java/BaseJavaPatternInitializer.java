@@ -11,8 +11,10 @@ import org.eclipse.egf.pattern.templates.TemplateEngine;
 
 public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
 
-    private static final String CLASS_KEY = "CLASS";
-    private static final String PACKAGE_KEY = "PACKAGE";
+    private static final String CLASS_KEY = "CLASS";//$NON-NLS-1$
+
+    private static final String PACKAGE_KEY = "PACKAGE"; //$NON-NLS-1$
+
     private Map<String, String> ctx;
 
     public BaseJavaPatternInitializer(IProject project, Pattern pattern, TemplateEngine engine) {
@@ -26,8 +28,8 @@ public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
         ctx = new HashMap<String, String>();
         ctx.put(CLASS_KEY, PatternHelper.dropNonWordCharacter(getPattern().getName()));
         String fullLibraryName = PatternHelper.getFullLibraryName(getPattern());
-        if (fullLibraryName == null || "".equals(fullLibraryName))
-            fullLibraryName = "default_package";
+        if (fullLibraryName == null || "".equals(fullLibraryName)) //$NON-NLS-1$
+            fullLibraryName = "default_package"; //$NON-NLS-1$
         ctx.put(PACKAGE_KEY, fullLibraryName);
         return ctx;
     }
