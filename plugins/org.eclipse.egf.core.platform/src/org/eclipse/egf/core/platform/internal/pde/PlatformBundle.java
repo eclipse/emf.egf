@@ -10,8 +10,6 @@
  */
 package org.eclipse.egf.core.platform.internal.pde;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +25,7 @@ import org.eclipse.egf.core.platform.l10n.CorePlatformMessages;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginBase;
@@ -210,7 +209,7 @@ class PlatformBundle implements IPlatformBundle {
                 EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformPlugin.addPlatformExtensionPoint(..) _ Bundle ''{0}'' unable to add Extension Point ''{1}''.", //$NON-NLS-1$
                         getBundleId(), extensionPoint.getId()));
             }
-            extensionPoint.setPlatformBundle(this);
+            ((AbstractPlatformExtensionPoint) extensionPoint).setPlatformBundle(this);
         } catch (Throwable t) {
             EGFPlatformPlugin.getDefault().logError("PlatformPlugin.addPlatformExtensionPoint(..)", t); //$NON-NLS-1$
         }
@@ -235,23 +234,12 @@ class PlatformBundle implements IPlatformBundle {
         return CollectionHelper.toArray(extensionPoints, clazz);
     }
 
-    public boolean removePlatformExtensionPoint(IPlatformExtensionPoint extensionPoint) {
-        if (extensionPoint == null) {
-            return false;
-        }
-        for (Class<? extends IPlatformExtensionPoint> clazz : EGFPlatformPlugin.getPlatformExtensionPointClasses()) {
-            if (removePlatformExtensionPoint(clazz, extensionPoint)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean removePlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint extensionPoint) {
         if (clazz == null || EGFPlatformPlugin.getPlatformExtensionPointClasses().contains(clazz) == false || extensionPoint == null) {
             return false;
         }
         if (_extensions.get(clazz) != null && _extensions.get(clazz).remove(extensionPoint.getId()) != null) {
+            ((AbstractPlatformExtensionPoint) extensionPoint).dispose();
             return true;
         }
         return false;
@@ -288,28 +276,22 @@ class PlatformBundle implements IPlatformBundle {
         return false;
     }
 
-    public String getBundleLocation() {
-        if (getBundleDescription() != null) {
-            return getBundleDescription().getLocation();
-        }
-        return null;
+    public String getInstallLocation() {
+        return getPluginModelBase().getInstallLocation();
     }
 
-    public URL getBundleURL() {
-        // Target Bundle
+    public URI getUnrootedBase() {
         if (isTarget()) {
-            return Platform.getBundle(getBundleId()).getEntry("/"); //$NON-NLS-1$
+            return URI.createURI("platform:/plugin/" + getBundleId()); //$NON-NLS-1$
         }
-        // Workspace Bundle
-        try {
-            StringBuffer buffer = new StringBuffer("platform:/resource/"); //$NON-NLS-1$
-            buffer.append(getBundleId());
-            buffer.append("/"); //$NON-NLS-1$
-            return new URL(buffer.toString());
-        } catch (MalformedURLException mue) {
-            EGFPlatformPlugin.getDefault().logError(mue);
+        return URI.createURI("platform:/resource/" + getBundleId()); //$NON-NLS-1$
+    }
+
+    public URI getRootedBase() {
+        if (isTarget()) {
+            return URI.createURI("platform:/plugin/" + getBundleId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$
         }
-        return null;
+        return URI.createURI("platform:/resource/" + getBundleId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     @Override
@@ -335,8 +317,8 @@ class PlatformBundle implements IPlatformBundle {
         } else {
             text.append(" [Workspace]"); //$NON-NLS-1$
         }
-        if (getBundleLocation() != null) {
-            text.append(" [").append(getBundleLocation()).append("]"); //$NON-NLS-1$  //$NON-NLS-2$
+        if (getInstallLocation() != null) {
+            text.append(" [").append(getInstallLocation()).append("]"); //$NON-NLS-1$  //$NON-NLS-2$
         }
         return text.toString();
     }
