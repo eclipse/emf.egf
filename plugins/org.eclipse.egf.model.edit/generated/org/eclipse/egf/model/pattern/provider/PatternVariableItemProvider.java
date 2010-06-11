@@ -43,7 +43,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternVariableItemProvider extends NamedModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class PatternVariableItemProvider extends NamedModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+        IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -120,9 +121,9 @@ public class PatternVariableItemProvider extends NamedModelElementItemProvider i
         updateChildren(notification);
 
         switch (notification.getFeatureID(PatternVariable.class)) {
-        case PatternPackage.PATTERN_VARIABLE__TYPE:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
+            case PatternPackage.PATTERN_VARIABLE__TYPE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
         }
         super.notifyChanged(notification);
     }

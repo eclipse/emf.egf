@@ -322,6 +322,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         // Register package validator
         EValidator.Registry.INSTANCE.put(thePatternPackage, new EValidator.Descriptor() {
+
             public EValidator getEValidator() {
                 return PatternValidator.INSTANCE;
             }
@@ -1262,17 +1263,23 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(patternEClass, source, new String[] { "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternEClass, source, new String[] {
+                "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternMethodEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternMethodEClass, source, new String[] {
+                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternParameterEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternParameterEClass, source, new String[] {
+                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternElementEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternElementEClass, source, new String[] {
+                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternNatureEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternNatureEClass, source, new String[] {
+                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternVariableEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternVariableEClass, source, new String[] {
+                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
     }
 

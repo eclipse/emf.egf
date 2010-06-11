@@ -159,10 +159,10 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetPattern((Pattern) otherEnd, msgs);
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetPattern((Pattern) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -175,8 +175,8 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            return basicSetPattern(null, msgs);
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                return basicSetPattern(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -189,8 +189,8 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN__METHODS, Pattern.class, msgs);
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN__METHODS, Pattern.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -203,10 +203,10 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            return getPattern();
-        case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
-            return getPatternFilePath();
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                return getPattern();
+            case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
+                return getPatternFilePath();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -219,12 +219,12 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            setPattern((Pattern) newValue);
-            return;
-        case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
-            setPatternFilePath((URI) newValue);
-            return;
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                setPattern((Pattern) newValue);
+                return;
+            case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
+                setPatternFilePath((URI) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -237,12 +237,12 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            setPattern((Pattern) null);
-            return;
-        case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
-            setPatternFilePath(PATTERN_FILE_PATH_EDEFAULT);
-            return;
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                setPattern((Pattern) null);
+                return;
+            case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
+                setPatternFilePath(PATTERN_FILE_PATH_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -255,10 +255,10 @@ public class PatternMethodImpl extends NamedModelElementImpl implements PatternM
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_METHOD__PATTERN:
-            return getPattern() != null;
-        case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
-            return PATTERN_FILE_PATH_EDEFAULT == null ? patternFilePath != null : !PATTERN_FILE_PATH_EDEFAULT.equals(patternFilePath);
+            case PatternPackage.PATTERN_METHOD__PATTERN:
+                return getPattern() != null;
+            case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
+                return PATTERN_FILE_PATH_EDEFAULT == null ? patternFilePath != null : !PATTERN_FILE_PATH_EDEFAULT.equals(patternFilePath);
         }
         return super.eIsSet(featureID);
     }

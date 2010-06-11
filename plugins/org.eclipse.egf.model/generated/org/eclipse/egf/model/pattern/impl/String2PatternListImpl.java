@@ -141,10 +141,10 @@ public class String2PatternListImpl extends ModelElementImpl implements BasicEMa
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.STRING2_PATTERN_LIST__KEY:
-            return getTypedKey();
-        case PatternPackage.STRING2_PATTERN_LIST__VALUE:
-            return getTypedValue();
+            case PatternPackage.STRING2_PATTERN_LIST__KEY:
+                return getTypedKey();
+            case PatternPackage.STRING2_PATTERN_LIST__VALUE:
+                return getTypedValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -158,13 +158,13 @@ public class String2PatternListImpl extends ModelElementImpl implements BasicEMa
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.STRING2_PATTERN_LIST__KEY:
-            setTypedKey((String) newValue);
-            return;
-        case PatternPackage.STRING2_PATTERN_LIST__VALUE:
-            getTypedValue().clear();
-            getTypedValue().addAll((Collection<? extends PatternElement>) newValue);
-            return;
+            case PatternPackage.STRING2_PATTERN_LIST__KEY:
+                setTypedKey((String) newValue);
+                return;
+            case PatternPackage.STRING2_PATTERN_LIST__VALUE:
+                getTypedValue().clear();
+                getTypedValue().addAll((Collection<? extends PatternElement>) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -177,12 +177,12 @@ public class String2PatternListImpl extends ModelElementImpl implements BasicEMa
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.STRING2_PATTERN_LIST__KEY:
-            setTypedKey(KEY_EDEFAULT);
-            return;
-        case PatternPackage.STRING2_PATTERN_LIST__VALUE:
-            getTypedValue().clear();
-            return;
+            case PatternPackage.STRING2_PATTERN_LIST__KEY:
+                setTypedKey(KEY_EDEFAULT);
+                return;
+            case PatternPackage.STRING2_PATTERN_LIST__VALUE:
+                getTypedValue().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -195,10 +195,10 @@ public class String2PatternListImpl extends ModelElementImpl implements BasicEMa
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.STRING2_PATTERN_LIST__KEY:
-            return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-        case PatternPackage.STRING2_PATTERN_LIST__VALUE:
-            return value != null && !value.isEmpty();
+            case PatternPackage.STRING2_PATTERN_LIST__KEY:
+                return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+            case PatternPackage.STRING2_PATTERN_LIST__VALUE:
+                return value != null && !value.isEmpty();
         }
         return super.eIsSet(featureID);
     }

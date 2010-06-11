@@ -38,6 +38,7 @@
           ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/variables"/>
       <genFeatures createChild="false" propertyCategory="Method" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/initMethod"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/conditionMethod"/>
       <genOperations ecoreOperation="Pattern.ecore#//Pattern/getMethod">
         <genParameters ecoreParameter="Pattern.ecore#//Pattern/getMethod/name"/>
       </genOperations>
@@ -75,8 +76,10 @@
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//SuperCall"/>
     <genClasses ecoreClass="Pattern.ecore#//Paramerter2ParameterMap">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/value"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/key"/>
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/value"/>
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/key"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//Call">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Call/pattern"/>
@@ -143,10 +146,10 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//Substitution">
-      <genFeatures createChild="false" propertyCategory="Data" propertyDescription=""
-          propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/outgoing"/>
       <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/incoming"/>
+          ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/replacedElement"/>
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/replacement"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -155,10 +155,10 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.STRING2_STRING__KEY:
-            return getTypedKey();
-        case PatternPackage.STRING2_STRING__VALUE:
-            return getTypedValue();
+            case PatternPackage.STRING2_STRING__KEY:
+                return getTypedKey();
+            case PatternPackage.STRING2_STRING__VALUE:
+                return getTypedValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -171,12 +171,12 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.STRING2_STRING__KEY:
-            setTypedKey((String) newValue);
-            return;
-        case PatternPackage.STRING2_STRING__VALUE:
-            setTypedValue((String) newValue);
-            return;
+            case PatternPackage.STRING2_STRING__KEY:
+                setTypedKey((String) newValue);
+                return;
+            case PatternPackage.STRING2_STRING__VALUE:
+                setTypedValue((String) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -189,12 +189,12 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.STRING2_STRING__KEY:
-            setTypedKey(KEY_EDEFAULT);
-            return;
-        case PatternPackage.STRING2_STRING__VALUE:
-            setTypedValue(VALUE_EDEFAULT);
-            return;
+            case PatternPackage.STRING2_STRING__KEY:
+                setTypedKey(KEY_EDEFAULT);
+                return;
+            case PatternPackage.STRING2_STRING__VALUE:
+                setTypedValue(VALUE_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -207,10 +207,10 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.STRING2_STRING__KEY:
-            return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-        case PatternPackage.STRING2_STRING__VALUE:
-            return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+            case PatternPackage.STRING2_STRING__KEY:
+                return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+            case PatternPackage.STRING2_STRING__VALUE:
+                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
         return super.eIsSet(featureID);
     }

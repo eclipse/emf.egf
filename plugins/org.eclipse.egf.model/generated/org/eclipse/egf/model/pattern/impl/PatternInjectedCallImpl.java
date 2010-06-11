@@ -92,8 +92,8 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            return getContext();
+            case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
+                return getContext();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -106,9 +106,9 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            setContext((InjectedContext) newValue);
-            return;
+            case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
+                setContext((InjectedContext) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -121,9 +121,9 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            setContext((InjectedContext) null);
-            return;
+            case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
+                setContext((InjectedContext) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -136,8 +136,8 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            return context != null;
+            case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
+                return context != null;
         }
         return super.eIsSet(featureID);
     }

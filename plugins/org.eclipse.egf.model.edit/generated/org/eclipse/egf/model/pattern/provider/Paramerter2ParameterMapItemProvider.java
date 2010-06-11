@@ -42,7 +42,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+        IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -80,7 +81,8 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
     protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Paramerter2ParameterMap_value_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Paramerter2ParameterMap_value_feature", "_UI_Paramerter2ParameterMap_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__VALUE, true, false, true, null, null, null));
+                PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__VALUE, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
@@ -92,7 +94,8 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
     protected void addKeyPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Paramerter2ParameterMap_key_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Paramerter2ParameterMap_key_feature", "_UI_Paramerter2ParameterMap_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__KEY, true, false, true, null, null, null));
+                PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP__KEY, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
@@ -130,10 +133,10 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
         updateChildren(notification);
 
         switch (notification.getFeatureID(Map.Entry.class)) {
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
+            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
         }
         super.notifyChanged(notification);
     }

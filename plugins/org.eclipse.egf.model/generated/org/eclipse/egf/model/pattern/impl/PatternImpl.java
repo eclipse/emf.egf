@@ -465,10 +465,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case PatternPackage.PATTERN__METHODS:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods()).basicAdd(otherEnd, msgs);
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrchestration()).basicAdd(otherEnd, msgs);
+            case PatternPackage.PATTERN__METHODS:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getMethods()).basicAdd(otherEnd, msgs);
+            case PatternPackage.PATTERN__ORCHESTRATION:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrchestration()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -480,16 +480,16 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case PatternPackage.PATTERN__METHODS:
-            return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            return ((InternalEList<?>) getOrchestration()).basicRemove(otherEnd, msgs);
-        case PatternPackage.PATTERN__PARAMETERS:
-            return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
-        case PatternPackage.PATTERN__NATURE:
-            return basicSetNature(null, msgs);
-        case PatternPackage.PATTERN__VARIABLES:
-            return ((InternalEList<?>) getVariables()).basicRemove(otherEnd, msgs);
+            case PatternPackage.PATTERN__METHODS:
+                return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
+            case PatternPackage.PATTERN__ORCHESTRATION:
+                return ((InternalEList<?>) getOrchestration()).basicRemove(otherEnd, msgs);
+            case PatternPackage.PATTERN__PARAMETERS:
+                return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
+            case PatternPackage.PATTERN__NATURE:
+                return basicSetNature(null, msgs);
+            case PatternPackage.PATTERN__VARIABLES:
+                return ((InternalEList<?>) getVariables()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -501,28 +501,28 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PATTERN__HEADER_METHOD:
-            return getHeaderMethod();
-        case PatternPackage.PATTERN__METHODS:
-            return getMethods();
-        case PatternPackage.PATTERN__FOOTER_METHOD:
-            return getFooterMethod();
-        case PatternPackage.PATTERN__SUPER_PATTERN:
-            if (resolve)
-                return getSuperPattern();
-            return basicGetSuperPattern();
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            return getOrchestration();
-        case PatternPackage.PATTERN__PARAMETERS:
-            return getParameters();
-        case PatternPackage.PATTERN__NATURE:
-            return getNature();
-        case PatternPackage.PATTERN__VARIABLES:
-            return getVariables();
-        case PatternPackage.PATTERN__INIT_METHOD:
-            return getInitMethod();
-        case PatternPackage.PATTERN__CONDITION_METHOD:
-            return getConditionMethod();
+            case PatternPackage.PATTERN__HEADER_METHOD:
+                return getHeaderMethod();
+            case PatternPackage.PATTERN__METHODS:
+                return getMethods();
+            case PatternPackage.PATTERN__FOOTER_METHOD:
+                return getFooterMethod();
+            case PatternPackage.PATTERN__SUPER_PATTERN:
+                if (resolve)
+                    return getSuperPattern();
+                return basicGetSuperPattern();
+            case PatternPackage.PATTERN__ORCHESTRATION:
+                return getOrchestration();
+            case PatternPackage.PATTERN__PARAMETERS:
+                return getParameters();
+            case PatternPackage.PATTERN__NATURE:
+                return getNature();
+            case PatternPackage.PATTERN__VARIABLES:
+                return getVariables();
+            case PatternPackage.PATTERN__INIT_METHOD:
+                return getInitMethod();
+            case PatternPackage.PATTERN__CONDITION_METHOD:
+                return getConditionMethod();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -535,40 +535,40 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.PATTERN__HEADER_METHOD:
-            setHeaderMethod((PatternMethod) newValue);
-            return;
-        case PatternPackage.PATTERN__METHODS:
-            getMethods().clear();
-            getMethods().addAll((Collection<? extends PatternMethod>) newValue);
-            return;
-        case PatternPackage.PATTERN__FOOTER_METHOD:
-            setFooterMethod((PatternMethod) newValue);
-            return;
-        case PatternPackage.PATTERN__SUPER_PATTERN:
-            setSuperPattern((Pattern) newValue);
-            return;
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            getOrchestration().clear();
-            getOrchestration().addAll((Collection<? extends Call>) newValue);
-            return;
-        case PatternPackage.PATTERN__PARAMETERS:
-            getParameters().clear();
-            getParameters().addAll((Collection<? extends PatternParameter>) newValue);
-            return;
-        case PatternPackage.PATTERN__NATURE:
-            setNature((PatternNature) newValue);
-            return;
-        case PatternPackage.PATTERN__VARIABLES:
-            getVariables().clear();
-            getVariables().addAll((Collection<? extends PatternVariable>) newValue);
-            return;
-        case PatternPackage.PATTERN__INIT_METHOD:
-            setInitMethod((PatternMethod) newValue);
-            return;
-        case PatternPackage.PATTERN__CONDITION_METHOD:
-            setConditionMethod((PatternMethod) newValue);
-            return;
+            case PatternPackage.PATTERN__HEADER_METHOD:
+                setHeaderMethod((PatternMethod) newValue);
+                return;
+            case PatternPackage.PATTERN__METHODS:
+                getMethods().clear();
+                getMethods().addAll((Collection<? extends PatternMethod>) newValue);
+                return;
+            case PatternPackage.PATTERN__FOOTER_METHOD:
+                setFooterMethod((PatternMethod) newValue);
+                return;
+            case PatternPackage.PATTERN__SUPER_PATTERN:
+                setSuperPattern((Pattern) newValue);
+                return;
+            case PatternPackage.PATTERN__ORCHESTRATION:
+                getOrchestration().clear();
+                getOrchestration().addAll((Collection<? extends Call>) newValue);
+                return;
+            case PatternPackage.PATTERN__PARAMETERS:
+                getParameters().clear();
+                getParameters().addAll((Collection<? extends PatternParameter>) newValue);
+                return;
+            case PatternPackage.PATTERN__NATURE:
+                setNature((PatternNature) newValue);
+                return;
+            case PatternPackage.PATTERN__VARIABLES:
+                getVariables().clear();
+                getVariables().addAll((Collection<? extends PatternVariable>) newValue);
+                return;
+            case PatternPackage.PATTERN__INIT_METHOD:
+                setInitMethod((PatternMethod) newValue);
+                return;
+            case PatternPackage.PATTERN__CONDITION_METHOD:
+                setConditionMethod((PatternMethod) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -580,36 +580,36 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN__HEADER_METHOD:
-            setHeaderMethod((PatternMethod) null);
-            return;
-        case PatternPackage.PATTERN__METHODS:
-            getMethods().clear();
-            return;
-        case PatternPackage.PATTERN__FOOTER_METHOD:
-            setFooterMethod((PatternMethod) null);
-            return;
-        case PatternPackage.PATTERN__SUPER_PATTERN:
-            setSuperPattern((Pattern) null);
-            return;
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            getOrchestration().clear();
-            return;
-        case PatternPackage.PATTERN__PARAMETERS:
-            getParameters().clear();
-            return;
-        case PatternPackage.PATTERN__NATURE:
-            setNature((PatternNature) null);
-            return;
-        case PatternPackage.PATTERN__VARIABLES:
-            getVariables().clear();
-            return;
-        case PatternPackage.PATTERN__INIT_METHOD:
-            setInitMethod((PatternMethod) null);
-            return;
-        case PatternPackage.PATTERN__CONDITION_METHOD:
-            setConditionMethod((PatternMethod) null);
-            return;
+            case PatternPackage.PATTERN__HEADER_METHOD:
+                setHeaderMethod((PatternMethod) null);
+                return;
+            case PatternPackage.PATTERN__METHODS:
+                getMethods().clear();
+                return;
+            case PatternPackage.PATTERN__FOOTER_METHOD:
+                setFooterMethod((PatternMethod) null);
+                return;
+            case PatternPackage.PATTERN__SUPER_PATTERN:
+                setSuperPattern((Pattern) null);
+                return;
+            case PatternPackage.PATTERN__ORCHESTRATION:
+                getOrchestration().clear();
+                return;
+            case PatternPackage.PATTERN__PARAMETERS:
+                getParameters().clear();
+                return;
+            case PatternPackage.PATTERN__NATURE:
+                setNature((PatternNature) null);
+                return;
+            case PatternPackage.PATTERN__VARIABLES:
+                getVariables().clear();
+                return;
+            case PatternPackage.PATTERN__INIT_METHOD:
+                setInitMethod((PatternMethod) null);
+                return;
+            case PatternPackage.PATTERN__CONDITION_METHOD:
+                setConditionMethod((PatternMethod) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -621,26 +621,26 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN__HEADER_METHOD:
-            return headerMethod != null;
-        case PatternPackage.PATTERN__METHODS:
-            return methods != null && !methods.isEmpty();
-        case PatternPackage.PATTERN__FOOTER_METHOD:
-            return footerMethod != null;
-        case PatternPackage.PATTERN__SUPER_PATTERN:
-            return superPattern != null;
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            return orchestration != null && !orchestration.isEmpty();
-        case PatternPackage.PATTERN__PARAMETERS:
-            return parameters != null && !parameters.isEmpty();
-        case PatternPackage.PATTERN__NATURE:
-            return nature != null;
-        case PatternPackage.PATTERN__VARIABLES:
-            return variables != null && !variables.isEmpty();
-        case PatternPackage.PATTERN__INIT_METHOD:
-            return initMethod != null;
-        case PatternPackage.PATTERN__CONDITION_METHOD:
-            return conditionMethod != null;
+            case PatternPackage.PATTERN__HEADER_METHOD:
+                return headerMethod != null;
+            case PatternPackage.PATTERN__METHODS:
+                return methods != null && !methods.isEmpty();
+            case PatternPackage.PATTERN__FOOTER_METHOD:
+                return footerMethod != null;
+            case PatternPackage.PATTERN__SUPER_PATTERN:
+                return superPattern != null;
+            case PatternPackage.PATTERN__ORCHESTRATION:
+                return orchestration != null && !orchestration.isEmpty();
+            case PatternPackage.PATTERN__PARAMETERS:
+                return parameters != null && !parameters.isEmpty();
+            case PatternPackage.PATTERN__NATURE:
+                return nature != null;
+            case PatternPackage.PATTERN__VARIABLES:
+                return variables != null && !variables.isEmpty();
+            case PatternPackage.PATTERN__INIT_METHOD:
+                return initMethod != null;
+            case PatternPackage.PATTERN__CONDITION_METHOD:
+                return conditionMethod != null;
         }
         return super.eIsSet(featureID);
     }

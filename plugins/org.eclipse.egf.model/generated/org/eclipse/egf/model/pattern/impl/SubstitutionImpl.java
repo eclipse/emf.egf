@@ -150,12 +150,12 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
-            if (resolve)
-                return getReplacedElement();
-            return basicGetReplacedElement();
-        case PatternPackage.SUBSTITUTION__REPLACEMENT:
-            return getReplacement();
+            case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+                if (resolve)
+                    return getReplacedElement();
+                return basicGetReplacedElement();
+            case PatternPackage.SUBSTITUTION__REPLACEMENT:
+                return getReplacement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -169,13 +169,13 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
-            setReplacedElement((Pattern) newValue);
-            return;
-        case PatternPackage.SUBSTITUTION__REPLACEMENT:
-            getReplacement().clear();
-            getReplacement().addAll((Collection<? extends Pattern>) newValue);
-            return;
+            case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+                setReplacedElement((Pattern) newValue);
+                return;
+            case PatternPackage.SUBSTITUTION__REPLACEMENT:
+                getReplacement().clear();
+                getReplacement().addAll((Collection<? extends Pattern>) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -188,12 +188,12 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
-            setReplacedElement((Pattern) null);
-            return;
-        case PatternPackage.SUBSTITUTION__REPLACEMENT:
-            getReplacement().clear();
-            return;
+            case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+                setReplacedElement((Pattern) null);
+                return;
+            case PatternPackage.SUBSTITUTION__REPLACEMENT:
+                getReplacement().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -206,10 +206,10 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
-            return replacedElement != null;
-        case PatternPackage.SUBSTITUTION__REPLACEMENT:
-            return replacement != null && !replacement.isEmpty();
+            case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+                return replacedElement != null;
+            case PatternPackage.SUBSTITUTION__REPLACEMENT:
+                return replacement != null && !replacement.isEmpty();
         }
         return super.eIsSet(featureID);
     }

@@ -37,22 +37,21 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.pattern.Substitution} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Substitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+        IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public SubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -63,7 +62,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -81,33 +79,32 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This adds a property descriptor for the Replaced Element feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addReplacedElementPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_replacedElement_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Substitution_replacedElement_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.SUBSTITUTION__REPLACED_ELEMENT, true, false, true, null, null, null));
+                PatternPackage.Literals.SUBSTITUTION__REPLACED_ELEMENT, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
      * This adds a property descriptor for the Replacement feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addReplacementPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_replacement_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Substitution_replacement_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.SUBSTITUTION__REPLACEMENT, true, false, true, null, null, null));
+                PatternPackage.Literals.SUBSTITUTION__REPLACEMENT, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
      * This returns Substitution.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -165,28 +162,30 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to
-     * update any cached
-     * children and by creating a viewer notification, which it passes to
-     * {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(Substitution.class)) {
+            case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+            case PatternPackage.SUBSTITUTION__REPLACEMENT:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-     * describing the children
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -198,7 +197,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

@@ -121,334 +121,334 @@ public class PatternSwitch<T> {
      */
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-        case PatternPackage.PATTERN: {
-            Pattern pattern = (Pattern) theEObject;
-            T result = casePattern(pattern);
-            if (result == null)
-                result = casePatternElement(pattern);
-            if (result == null)
-                result = caseNamedModelElement(pattern);
-            if (result == null)
-                result = caseModelElement(pattern);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_METHOD: {
-            PatternMethod patternMethod = (PatternMethod) theEObject;
-            T result = casePatternMethod(patternMethod);
-            if (result == null)
-                result = caseNamedModelElement(patternMethod);
-            if (result == null)
-                result = caseModelElement(patternMethod);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_PARAMETER: {
-            PatternParameter patternParameter = (PatternParameter) theEObject;
-            T result = casePatternParameter(patternParameter);
-            if (result == null)
-                result = caseNamedModelElement(patternParameter);
-            if (result == null)
-                result = caseInjectedContext(patternParameter);
-            if (result == null)
-                result = caseModelElement(patternParameter);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_LIBRARY: {
-            PatternLibrary patternLibrary = (PatternLibrary) theEObject;
-            T result = casePatternLibrary(patternLibrary);
-            if (result == null)
-                result = casePatternElement(patternLibrary);
-            if (result == null)
-                result = caseNamedModelElement(patternLibrary);
-            if (result == null)
-                result = caseModelElement(patternLibrary);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_ELEMENT: {
-            PatternElement patternElement = (PatternElement) theEObject;
-            T result = casePatternElement(patternElement);
-            if (result == null)
-                result = caseNamedModelElement(patternElement);
-            if (result == null)
-                result = caseModelElement(patternElement);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_VIEWPOINT: {
-            PatternViewpoint patternViewpoint = (PatternViewpoint) theEObject;
-            T result = casePatternViewpoint(patternViewpoint);
-            if (result == null)
-                result = caseViewpoint(patternViewpoint);
-            if (result == null)
-                result = caseModelElement(patternViewpoint);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_NATURE: {
-            PatternNature patternNature = (PatternNature) theEObject;
-            T result = casePatternNature(patternNature);
-            if (result == null)
-                result = caseNamedModelElement(patternNature);
-            if (result == null)
-                result = caseModelElement(patternNature);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_CALL: {
-            PatternCall patternCall = (PatternCall) theEObject;
-            T result = casePatternCall(patternCall);
-            if (result == null)
-                result = caseAbstractPatternCall(patternCall);
-            if (result == null)
-                result = caseCall(patternCall);
-            if (result == null)
-                result = caseModelElement(patternCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.SUPER_CALL: {
-            SuperCall superCall = (SuperCall) theEObject;
-            T result = caseSuperCall(superCall);
-            if (result == null)
-                result = caseCall(superCall);
-            if (result == null)
-                result = caseModelElement(superCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP: {
-            @SuppressWarnings("unchecked")
-            Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
-            T result = caseParamerter2ParameterMap(paramerter2ParameterMap);
-            if (result == null)
-                result = caseModelElement((ModelElement) paramerter2ParameterMap);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.CALL: {
-            Call call = (Call) theEObject;
-            T result = caseCall(call);
-            if (result == null)
-                result = caseModelElement(call);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.METHOD_CALL: {
-            MethodCall methodCall = (MethodCall) theEObject;
-            T result = caseMethodCall(methodCall);
-            if (result == null)
-                result = caseCall(methodCall);
-            if (result == null)
-                result = caseModelElement(methodCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_VARIABLE: {
-            PatternVariable patternVariable = (PatternVariable) theEObject;
-            T result = casePatternVariable(patternVariable);
-            if (result == null)
-                result = caseNamedModelElement(patternVariable);
-            if (result == null)
-                result = caseInjectedContext(patternVariable);
-            if (result == null)
-                result = caseModelElement(patternVariable);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.ABSTRACT_PATTERN_CALL: {
-            AbstractPatternCall abstractPatternCall = (AbstractPatternCall) theEObject;
-            T result = caseAbstractPatternCall(abstractPatternCall);
-            if (result == null)
-                result = caseCall(abstractPatternCall);
-            if (result == null)
-                result = caseModelElement(abstractPatternCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_INJECTED_CALL: {
-            PatternInjectedCall patternInjectedCall = (PatternInjectedCall) theEObject;
-            T result = casePatternInjectedCall(patternInjectedCall);
-            if (result == null)
-                result = caseAbstractPatternCall(patternInjectedCall);
-            if (result == null)
-                result = caseCall(patternInjectedCall);
-            if (result == null)
-                result = caseModelElement(patternInjectedCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.QUERY: {
-            Query query = (Query) theEObject;
-            T result = caseQuery(query);
-            if (result == null)
-                result = caseModelElement(query);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.BASIC_QUERY: {
-            BasicQuery basicQuery = (BasicQuery) theEObject;
-            T result = caseBasicQuery(basicQuery);
-            if (result == null)
-                result = caseQuery(basicQuery);
-            if (result == null)
-                result = caseModelElement(basicQuery);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.STRING_QUERY: {
-            StringQuery stringQuery = (StringQuery) theEObject;
-            T result = caseStringQuery(stringQuery);
-            if (result == null)
-                result = caseQuery(stringQuery);
-            if (result == null)
-                result = caseModelElement(stringQuery);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.CUSTOM_QUERY: {
-            CustomQuery customQuery = (CustomQuery) theEObject;
-            T result = caseCustomQuery(customQuery);
-            if (result == null)
-                result = caseQuery(customQuery);
-            if (result == null)
-                result = caseModelElement(customQuery);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.STRING2_PATTERN_LIST: {
-            @SuppressWarnings("unchecked")
-            Map.Entry<String, EList<PatternElement>> string2PatternList = (Map.Entry<String, EList<PatternElement>>) theEObject;
-            T result = caseString2PatternList(string2PatternList);
-            if (result == null)
-                result = caseModelElement((ModelElement) string2PatternList);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.STRING2_STRING: {
-            @SuppressWarnings("unchecked")
-            Map.Entry<String, String> string2String = (Map.Entry<String, String>) theEObject;
-            T result = caseString2String(string2String);
-            if (result == null)
-                result = caseModelElement((ModelElement) string2String);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER: {
-            TypePatternExecutionReporter typePatternExecutionReporter = (TypePatternExecutionReporter) theEObject;
-            T result = caseTypePatternExecutionReporter(typePatternExecutionReporter);
-            if (result == null)
-                result = caseTypeAbstractClass(typePatternExecutionReporter);
-            if (result == null)
-                result = caseType(typePatternExecutionReporter);
-            if (result == null)
-                result = caseTypeElement(typePatternExecutionReporter);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.BACK_CALL: {
-            BackCall backCall = (BackCall) theEObject;
-            T result = caseBackCall(backCall);
-            if (result == null)
-                result = caseCall(backCall);
-            if (result == null)
-                result = caseModelElement(backCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER: {
-            TypePatternCallBackHandler typePatternCallBackHandler = (TypePatternCallBackHandler) theEObject;
-            T result = caseTypePatternCallBackHandler(typePatternCallBackHandler);
-            if (result == null)
-                result = caseTypeAbstractClass(typePatternCallBackHandler);
-            if (result == null)
-                result = caseType(typePatternCallBackHandler);
-            if (result == null)
-                result = caseTypeElement(typePatternCallBackHandler);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR: {
-            TypePatternDomainVisitor typePatternDomainVisitor = (TypePatternDomainVisitor) theEObject;
-            T result = caseTypePatternDomainVisitor(typePatternDomainVisitor);
-            if (result == null)
-                result = caseTypeAbstractClass(typePatternDomainVisitor);
-            if (result == null)
-                result = caseType(typePatternDomainVisitor);
-            if (result == null)
-                result = caseTypeElement(typePatternDomainVisitor);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.TYPE_PATTERN_LIST: {
-            TypePatternList typePatternList = (TypePatternList) theEObject;
-            T result = caseTypePatternList(typePatternList);
-            if (result == null)
-                result = caseType(typePatternList);
-            if (result == null)
-                result = caseTypeElement(typePatternList);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.INJECTED_CONTEXT: {
-            InjectedContext injectedContext = (InjectedContext) theEObject;
-            T result = caseInjectedContext(injectedContext);
-            if (result == null)
-                result = caseModelElement(injectedContext);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.TYPE_PATTERN_SUBSTITUTION: {
-            TypePatternSubstitution typePatternSubstitution = (TypePatternSubstitution) theEObject;
-            T result = caseTypePatternSubstitution(typePatternSubstitution);
-            if (result == null)
-                result = caseType(typePatternSubstitution);
-            if (result == null)
-                result = caseTypeElement(typePatternSubstitution);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.SUBSTITUTION: {
-            Substitution substitution = (Substitution) theEObject;
-            T result = caseSubstitution(substitution);
-            if (result == null)
-                result = caseModelElement(substitution);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        default:
-            return defaultCase(theEObject);
+            case PatternPackage.PATTERN: {
+                Pattern pattern = (Pattern) theEObject;
+                T result = casePattern(pattern);
+                if (result == null)
+                    result = casePatternElement(pattern);
+                if (result == null)
+                    result = caseNamedModelElement(pattern);
+                if (result == null)
+                    result = caseModelElement(pattern);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_METHOD: {
+                PatternMethod patternMethod = (PatternMethod) theEObject;
+                T result = casePatternMethod(patternMethod);
+                if (result == null)
+                    result = caseNamedModelElement(patternMethod);
+                if (result == null)
+                    result = caseModelElement(patternMethod);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_PARAMETER: {
+                PatternParameter patternParameter = (PatternParameter) theEObject;
+                T result = casePatternParameter(patternParameter);
+                if (result == null)
+                    result = caseNamedModelElement(patternParameter);
+                if (result == null)
+                    result = caseInjectedContext(patternParameter);
+                if (result == null)
+                    result = caseModelElement(patternParameter);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_LIBRARY: {
+                PatternLibrary patternLibrary = (PatternLibrary) theEObject;
+                T result = casePatternLibrary(patternLibrary);
+                if (result == null)
+                    result = casePatternElement(patternLibrary);
+                if (result == null)
+                    result = caseNamedModelElement(patternLibrary);
+                if (result == null)
+                    result = caseModelElement(patternLibrary);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_ELEMENT: {
+                PatternElement patternElement = (PatternElement) theEObject;
+                T result = casePatternElement(patternElement);
+                if (result == null)
+                    result = caseNamedModelElement(patternElement);
+                if (result == null)
+                    result = caseModelElement(patternElement);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_VIEWPOINT: {
+                PatternViewpoint patternViewpoint = (PatternViewpoint) theEObject;
+                T result = casePatternViewpoint(patternViewpoint);
+                if (result == null)
+                    result = caseViewpoint(patternViewpoint);
+                if (result == null)
+                    result = caseModelElement(patternViewpoint);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_NATURE: {
+                PatternNature patternNature = (PatternNature) theEObject;
+                T result = casePatternNature(patternNature);
+                if (result == null)
+                    result = caseNamedModelElement(patternNature);
+                if (result == null)
+                    result = caseModelElement(patternNature);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_CALL: {
+                PatternCall patternCall = (PatternCall) theEObject;
+                T result = casePatternCall(patternCall);
+                if (result == null)
+                    result = caseAbstractPatternCall(patternCall);
+                if (result == null)
+                    result = caseCall(patternCall);
+                if (result == null)
+                    result = caseModelElement(patternCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.SUPER_CALL: {
+                SuperCall superCall = (SuperCall) theEObject;
+                T result = caseSuperCall(superCall);
+                if (result == null)
+                    result = caseCall(superCall);
+                if (result == null)
+                    result = caseModelElement(superCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PARAMERTER2_PARAMETER_MAP: {
+                @SuppressWarnings("unchecked")
+                Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
+                T result = caseParamerter2ParameterMap(paramerter2ParameterMap);
+                if (result == null)
+                    result = caseModelElement((ModelElement) paramerter2ParameterMap);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.CALL: {
+                Call call = (Call) theEObject;
+                T result = caseCall(call);
+                if (result == null)
+                    result = caseModelElement(call);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.METHOD_CALL: {
+                MethodCall methodCall = (MethodCall) theEObject;
+                T result = caseMethodCall(methodCall);
+                if (result == null)
+                    result = caseCall(methodCall);
+                if (result == null)
+                    result = caseModelElement(methodCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_VARIABLE: {
+                PatternVariable patternVariable = (PatternVariable) theEObject;
+                T result = casePatternVariable(patternVariable);
+                if (result == null)
+                    result = caseNamedModelElement(patternVariable);
+                if (result == null)
+                    result = caseInjectedContext(patternVariable);
+                if (result == null)
+                    result = caseModelElement(patternVariable);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.ABSTRACT_PATTERN_CALL: {
+                AbstractPatternCall abstractPatternCall = (AbstractPatternCall) theEObject;
+                T result = caseAbstractPatternCall(abstractPatternCall);
+                if (result == null)
+                    result = caseCall(abstractPatternCall);
+                if (result == null)
+                    result = caseModelElement(abstractPatternCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_INJECTED_CALL: {
+                PatternInjectedCall patternInjectedCall = (PatternInjectedCall) theEObject;
+                T result = casePatternInjectedCall(patternInjectedCall);
+                if (result == null)
+                    result = caseAbstractPatternCall(patternInjectedCall);
+                if (result == null)
+                    result = caseCall(patternInjectedCall);
+                if (result == null)
+                    result = caseModelElement(patternInjectedCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.QUERY: {
+                Query query = (Query) theEObject;
+                T result = caseQuery(query);
+                if (result == null)
+                    result = caseModelElement(query);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.BASIC_QUERY: {
+                BasicQuery basicQuery = (BasicQuery) theEObject;
+                T result = caseBasicQuery(basicQuery);
+                if (result == null)
+                    result = caseQuery(basicQuery);
+                if (result == null)
+                    result = caseModelElement(basicQuery);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.STRING_QUERY: {
+                StringQuery stringQuery = (StringQuery) theEObject;
+                T result = caseStringQuery(stringQuery);
+                if (result == null)
+                    result = caseQuery(stringQuery);
+                if (result == null)
+                    result = caseModelElement(stringQuery);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.CUSTOM_QUERY: {
+                CustomQuery customQuery = (CustomQuery) theEObject;
+                T result = caseCustomQuery(customQuery);
+                if (result == null)
+                    result = caseQuery(customQuery);
+                if (result == null)
+                    result = caseModelElement(customQuery);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.STRING2_PATTERN_LIST: {
+                @SuppressWarnings("unchecked")
+                Map.Entry<String, EList<PatternElement>> string2PatternList = (Map.Entry<String, EList<PatternElement>>) theEObject;
+                T result = caseString2PatternList(string2PatternList);
+                if (result == null)
+                    result = caseModelElement((ModelElement) string2PatternList);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.STRING2_STRING: {
+                @SuppressWarnings("unchecked")
+                Map.Entry<String, String> string2String = (Map.Entry<String, String>) theEObject;
+                T result = caseString2String(string2String);
+                if (result == null)
+                    result = caseModelElement((ModelElement) string2String);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER: {
+                TypePatternExecutionReporter typePatternExecutionReporter = (TypePatternExecutionReporter) theEObject;
+                T result = caseTypePatternExecutionReporter(typePatternExecutionReporter);
+                if (result == null)
+                    result = caseTypeAbstractClass(typePatternExecutionReporter);
+                if (result == null)
+                    result = caseType(typePatternExecutionReporter);
+                if (result == null)
+                    result = caseTypeElement(typePatternExecutionReporter);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.BACK_CALL: {
+                BackCall backCall = (BackCall) theEObject;
+                T result = caseBackCall(backCall);
+                if (result == null)
+                    result = caseCall(backCall);
+                if (result == null)
+                    result = caseModelElement(backCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER: {
+                TypePatternCallBackHandler typePatternCallBackHandler = (TypePatternCallBackHandler) theEObject;
+                T result = caseTypePatternCallBackHandler(typePatternCallBackHandler);
+                if (result == null)
+                    result = caseTypeAbstractClass(typePatternCallBackHandler);
+                if (result == null)
+                    result = caseType(typePatternCallBackHandler);
+                if (result == null)
+                    result = caseTypeElement(typePatternCallBackHandler);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR: {
+                TypePatternDomainVisitor typePatternDomainVisitor = (TypePatternDomainVisitor) theEObject;
+                T result = caseTypePatternDomainVisitor(typePatternDomainVisitor);
+                if (result == null)
+                    result = caseTypeAbstractClass(typePatternDomainVisitor);
+                if (result == null)
+                    result = caseType(typePatternDomainVisitor);
+                if (result == null)
+                    result = caseTypeElement(typePatternDomainVisitor);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.TYPE_PATTERN_LIST: {
+                TypePatternList typePatternList = (TypePatternList) theEObject;
+                T result = caseTypePatternList(typePatternList);
+                if (result == null)
+                    result = caseType(typePatternList);
+                if (result == null)
+                    result = caseTypeElement(typePatternList);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.INJECTED_CONTEXT: {
+                InjectedContext injectedContext = (InjectedContext) theEObject;
+                T result = caseInjectedContext(injectedContext);
+                if (result == null)
+                    result = caseModelElement(injectedContext);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.TYPE_PATTERN_SUBSTITUTION: {
+                TypePatternSubstitution typePatternSubstitution = (TypePatternSubstitution) theEObject;
+                T result = caseTypePatternSubstitution(typePatternSubstitution);
+                if (result == null)
+                    result = caseType(typePatternSubstitution);
+                if (result == null)
+                    result = caseTypeElement(typePatternSubstitution);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.SUBSTITUTION: {
+                Substitution substitution = (Substitution) theEObject;
+                T result = caseSubstitution(substitution);
+                if (result == null)
+                    result = caseModelElement(substitution);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            default:
+                return defaultCase(theEObject);
         }
     }
 

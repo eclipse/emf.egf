@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
-import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
 import org.eclipse.egf.model.types.provider.TypeAbstractClassItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -37,14 +36,17 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.TypePatternCallBackHandler} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
+        ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public TypePatternCallBackHandlerItemProvider(AdapterFactory adapterFactory) {
@@ -55,6 +57,7 @@ public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassIte
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -70,6 +73,7 @@ public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassIte
      * This returns TypePatternCallBackHandler.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -94,6 +98,7 @@ public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassIte
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -107,6 +112,7 @@ public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassIte
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -118,6 +124,7 @@ public class TypePatternCallBackHandlerItemProvider extends TypeAbstractClassIte
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
