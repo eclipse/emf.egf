@@ -135,21 +135,36 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                addPatternChangeAdapter();
-                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                // Remove previous adapter
+                removePatternChangeAdapter();
+                // Check whether or not this pattern is still alive
+                if (getPattern() != null) {
+                    addPatternChangeAdapter();
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                    public void run() {
-                        getOperationHistory().dispose(undoContext, true, true, true);
-                        firePropertyChange(IEditorPart.PROP_DIRTY);
-                        setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
-                        firePropertyChange(PROP_TITLE);
-                        for (PatternEditorPage page : pages) {
-                            page.rebind();
+                        public void run() {
+                            getOperationHistory().dispose(undoContext, true, true, true);
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                            setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
+                            firePropertyChange(PROP_TITLE);
+                            for (PatternEditorPage page : pages) {
+                                page.rebind();
+                            }
                         }
-                    }
 
-                });
+                    });
+                } else {
+                    // just close now without prompt
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                        public void run() {
+                            getSite().getPage().closeEditor(PatternEditor.this, false);
+                        }
+
+                    });
+                }
             }
+
         }
 
         public void externalUpdate(Resource changedResource) {
@@ -163,22 +178,34 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                // Check whether or not this pattern is still alive
+                if (getPattern() != null) {
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                    public void run() {
-                        firePropertyChange(IEditorPart.PROP_DIRTY);
-                        String name = getPattern().getName();
-                        if (initialPatternName != null && !initialPatternName.equals(name)) {
-                            try {
-                                ExtensionHelper.getExtension(getPattern().getNature()).getRefactoringManager().renamePattern(getPattern(), initialPatternName, name);
-                            } catch (Exception e) {
-                                Activator.getDefault().logError(e);
+                        public void run() {
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                            String name = getPattern().getName();
+                            if (initialPatternName != null && !initialPatternName.equals(name)) {
+                                try {
+                                    ExtensionHelper.getExtension(getPattern().getNature()).getRefactoringManager().renamePattern(getPattern(), initialPatternName, name);
+                                } catch (Exception e) {
+                                    Activator.getDefault().logError(e);
+                                }
+                                initialPatternName = name;
                             }
-                            initialPatternName = name;
                         }
-                    }
 
-                });
+                    });
+                } else {
+                    // just close now without prompt
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                        public void run() {
+                            getSite().getPage().closeEditor(PatternEditor.this, false);
+                        }
+
+                    });
+                }
             }
         }
 
@@ -331,6 +358,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                                 ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), ioe);
                             }
                         }
+
                     });
                 } catch (Throwable t) {
                     ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), t);
@@ -484,11 +512,11 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     public void dispose() {
         // if init failed, dispose should not called this
         if (getEditorInput() != null && getEditorInput() instanceof PatternEditorInput) {
-            EGFResourceLoadedListener.getResourceManager().removeObserver(this);
             getSite().getPage().removePartListener(partListener);
             removePatternChangeAdapter();
         }
         // Initialized in initializeEditingDomain, if init failed, this must be disposed
+        EGFResourceLoadedListener.getResourceManager().removeObserver(this);
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
         editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
@@ -538,8 +566,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     }
 
     /**
-     * Shows a dialog that asks if conflicting changes should be discarded. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * Shows a dialog that asks if conflicting changes should be discarded.
      */
     protected boolean handleDirtyConflict() {
         return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$

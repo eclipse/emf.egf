@@ -37,7 +37,6 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
 
     public RuntimePatternMethodEditorInput(Resource resource, String fragment) {
         super(resource, fragment);
-
     }
 
     public IStorage getStorage() throws CoreException {
@@ -53,7 +52,6 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
                 return platformFcore.getPlatformBundle().getBundle().getEntry(patternMethod.getPatternFilePath().path()).openStream();
             } catch (IOException e) {
                 Activator.getDefault().logError(e);
-
                 return new ByteArrayInputStream(e.toString().getBytes());
             }
         }

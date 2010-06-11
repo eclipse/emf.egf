@@ -33,9 +33,10 @@ import org.eclipse.ui.IFileEditorInput;
  */
 public class WorkspacePatternMethodEditorInput extends RuntimePatternMethodEditorInput implements IFileEditorInput {
 
+    private IFile _file;
+
     public WorkspacePatternMethodEditorInput(Resource resource, String fragment) {
         super(resource, fragment);
-
     }
 
     @Override
@@ -44,20 +45,25 @@ public class WorkspacePatternMethodEditorInput extends RuntimePatternMethodEdito
     }
 
     public IFile getFile() {
+        if (_file != null) {
+            return _file;
+        }
         IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
         IProject project = platformFcore.getPlatformBundle().getProject();
-        if (project == null)
+        if (project == null) {
             return null;
+        }
         PatternMethod patternMethod = getPatternMethod();
-        IFile file;
-        if (patternMethod == null)
-            return project.getFile(path);
-        file = project.getFile(patternMethod.getPatternFilePath().path());
-        if (file.exists())
-            return file;
+        if (patternMethod == null) {
+            return _file = project.getFile(path);
+        }
+        _file = project.getFile(patternMethod.getPatternFilePath().path());
+        if (_file.exists()) {
+            return _file;
+        }
         // this is a new method so we need to create the template file
         try {
-            file.create(new ByteArrayInputStream(new byte[0]), true, null);
+            _file.create(new ByteArrayInputStream(new byte[0]), true, null);
         } catch (CoreException e) {
             /*
              * all modifications of the recources that subclipse
@@ -67,7 +73,7 @@ public class WorkspacePatternMethodEditorInput extends RuntimePatternMethodEdito
              */
             // Activator.getDefault().logError(e);
         }
-        return file;
+        return _file;
     }
 
 }

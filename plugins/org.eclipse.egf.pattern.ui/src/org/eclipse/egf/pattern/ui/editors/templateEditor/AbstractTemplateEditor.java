@@ -28,7 +28,6 @@ import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -141,14 +140,6 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 
     public void doSaveAs() {
         throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc) Method declared on IEditorPart
-     */
-    public void gotoMarker(IMarker marker) {
-        setActivePage(0);
-        IDE.gotoMarker(getEditor(0), marker);
     }
 
     /**
