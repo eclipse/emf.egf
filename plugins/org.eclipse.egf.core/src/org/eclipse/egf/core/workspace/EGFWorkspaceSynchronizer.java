@@ -521,6 +521,14 @@ public final class EGFWorkspaceSynchronizer {
                 delta.accept(new IResourceDeltaVisitor() {
 
                     public boolean visit(IResourceDelta innerDelta) {
+                        // Ignore opening and closing projects, handled by PlatformManager
+                        if (innerDelta.getResource().getType() == IResource.PROJECT && (innerDelta.getFlags() & IResourceDelta.OPEN) != 0) {
+                            return false;
+                        }
+                        // Process file
+                        if (innerDelta.getResource().getType() != IResource.FILE) {
+                            return true;
+                        }
                         if (innerDelta.getResource().getType() == IResource.FILE) {
                             switch (innerDelta.getKind()) {
                                 case IResourceDelta.CHANGED:
