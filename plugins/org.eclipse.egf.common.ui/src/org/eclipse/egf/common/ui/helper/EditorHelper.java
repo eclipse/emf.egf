@@ -201,7 +201,7 @@ public class EditorHelper {
         }
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-        return page.openEditor(input, editorId != null ? editorId : computeEditorId(uri.trimFragment().lastSegment()), true, IWorkbenchPage.MATCH_INPUT);
+        return page.openEditor(input, editorId != null ? editorId : computeEditorId(uri.trimFragment().lastSegment()), true, IWorkbenchPage.MATCH_NONE);
     }
 
     public static boolean isAlreadyOpenedEditor(URI uri) {
