@@ -188,7 +188,7 @@ public class SpecificationPage extends PatternEditorPage {
     @Override
     protected void checkReadOnlyModel() {
         if (isReadOnly()) {
-            setEnabled(true);
+            setEnabled(false);
         } else {
             setEnabled(true);
         }
