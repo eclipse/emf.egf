@@ -39,6 +39,7 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
     protected boolean isTarget = true;
 
     public PlatformPackageDialog(Shell parent) {
+
         super(parent, new LabelProvider() {
 
             @Override
@@ -60,6 +61,7 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
         setMessage(CoreUIMessages._UI_SelectRegisteredPackageURI);
         setFilter("*"); //$NON-NLS-1$
         setTitle(CoreUIMessages._UI_RegisteredPackageSelection_label);
+
     }
 
     public boolean isTarget() {

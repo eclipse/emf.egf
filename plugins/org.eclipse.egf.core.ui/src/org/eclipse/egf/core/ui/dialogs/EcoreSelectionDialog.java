@@ -605,7 +605,7 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         button.addListener(SWT.Selection, new Listener() {
 
             public void handleEvent(Event event) {
-                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), _editingDomain);
+                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), _editingDomain, true);
                 if (chooseModelDialog.open() == Window.OK) {
                     searchTypeModel(chooseModelDialog.getURIText());
                 }

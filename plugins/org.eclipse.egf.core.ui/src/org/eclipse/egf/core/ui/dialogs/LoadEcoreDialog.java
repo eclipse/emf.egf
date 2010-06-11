@@ -46,8 +46,15 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class LoadEcoreDialog extends LoadResourceDialog {
 
+    private boolean _asEPackageNsURI;
+
     public LoadEcoreDialog(Shell parent, EditingDomain domain) {
+        this(parent, domain, false);
+    }
+
+    public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean asEPackageNsURI) {
         super(parent, domain);
+        _asEPackageNsURI = asEPackageNsURI;
     }
 
     @Override
@@ -81,7 +88,7 @@ public class LoadEcoreDialog extends LoadResourceDialog {
                     return;
                 }
                 StringBuffer uris = new StringBuffer();
-                if (dialog.isTarget()) {
+                if (dialog.isTarget() && _asEPackageNsURI == false) {
                     Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
                     for (int i = 0, length = result.length; i < length; i++) {
                         IPlatformGenModel genmodel = (IPlatformGenModel) result[i];
