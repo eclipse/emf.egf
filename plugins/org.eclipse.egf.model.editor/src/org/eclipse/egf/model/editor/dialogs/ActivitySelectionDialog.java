@@ -381,8 +381,11 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
      */
     @Override
     public Object[] getResult() {
-        computeResult();
         Object[] result = super.getResult();
+        if (result == null) {
+            computeResult();
+        }
+        result = super.getResult();
         if (result == null) {
             return null;
         }
