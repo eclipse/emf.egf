@@ -106,19 +106,25 @@ public class OverviewPage extends PatternEditorPage {
 
         GridLayout gridLayout = new GridLayout();
         body.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        GridData gd = new GridData(GridData.FILL_BOTH);
         body.setLayoutData(gd);
         form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
         form.setText(Messages.OverviewPage_title);
 
         Composite container = toolkit.createComposite(body, SWT.NONE);
-        gridLayout = new GridLayout(2, true);
+        gridLayout = new GridLayout();
         container.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd = new GridData(GridData.FILL_BOTH);
         container.setLayoutData(gd);
 
-        createLeftContainer(toolkit, container);
-        createRightContainer(toolkit, container);
+        Composite top = toolkit.createComposite(container, SWT.NONE);
+        gridLayout = new GridLayout(2, true);
+        top.setLayout(gridLayout);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        top.setLayoutData(gd);
+
+        createLeftContainer(toolkit, top);
+        createRightContainer(toolkit, top);
         createDescriptionContainer(toolkit, container);
 
         checkReadOnlyModel();
@@ -148,7 +154,7 @@ public class OverviewPage extends PatternEditorPage {
 
         GridLayout gridLayout = new GridLayout();
         section.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
         gd.minimumWidth = 300;
         gd.heightHint = 200;
         section.setLayoutData(gd);
@@ -156,7 +162,7 @@ public class OverviewPage extends PatternEditorPage {
         Composite container = toolkit.createComposite(section, SWT.NONE);
         gridLayout = new GridLayout(2, false);
         container.setLayout(gridLayout);
-        gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+        gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
         gd.verticalIndent = 0;
         container.setLayoutData(gd);
 
@@ -259,29 +265,33 @@ public class OverviewPage extends PatternEditorPage {
 
     private void createDescriptionContainer(FormToolkit toolkit, Composite parent) {
 
-        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
-        section.setText(Messages.OverviewPage_sectionLeft_description_label_title);
-
-        GridLayout gridLayout = new GridLayout();
-        section.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        gd.horizontalSpan = 2;
-        section.setLayoutData(gd);
-
         Composite container = toolkit.createComposite(parent, SWT.NONE);
-        gridLayout = new GridLayout();
+        GridLayout gridLayout = new GridLayout();
         container.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_BOTH);
-        gd.horizontalSpan = 2;
+        GridData gd = new GridData(GridData.FILL_BOTH);
         container.setLayoutData(gd);
 
+        Section section = toolkit.createSection(container, Section.TITLE_BAR);
+        section.setText(Messages.OverviewPage_sectionLeft_description_label_title);
+
+        gridLayout = new GridLayout();
+        section.setLayout(gridLayout);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        section.setLayoutData(gd);
+
+        Composite descriptionContainer = toolkit.createComposite(container, SWT.NONE);
+        gridLayout = new GridLayout();
+        descriptionContainer.setLayout(gridLayout);
+        gd = new GridData(GridData.FILL_BOTH);
+        descriptionContainer.setLayoutData(gd);
+
         String titletext = Messages.OverviewPage_sectionLeft_description_label;
-        Label title = toolkit.createLabel(container, titletext, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+        Label title = toolkit.createLabel(descriptionContainer, titletext, SWT.WRAP);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
         title.setLayoutData(gd);
 
         String patternDescription = getPattern() == null ? "" : getPattern().getDescription(); //$NON-NLS-1$
-        description = toolkit.createText(container, patternDescription, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
+        description = toolkit.createText(descriptionContainer, patternDescription, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
         gd = new GridData(GridData.FILL_BOTH);
         gd.heightHint = 280;
         gd.widthHint = 280;
@@ -298,7 +308,7 @@ public class OverviewPage extends PatternEditorPage {
 
         GridLayout gridLayout = new GridLayout();
         section.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
         gd.minimumWidth = 300;
         gd.heightHint = 200;
         section.setLayoutData(gd);
@@ -306,7 +316,7 @@ public class OverviewPage extends PatternEditorPage {
         Composite container = toolkit.createComposite(section, SWT.NONE);
         gridLayout = new GridLayout(2, false);
         container.setLayout(gridLayout);
-        gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+        gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
         gd.verticalIndent = 0;
         container.setLayoutData(gd);
 
