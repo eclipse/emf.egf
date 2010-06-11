@@ -30,18 +30,25 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * The purpose is to handle ecore models from the workspace as well as runtime
  * ones.
  * 
- * TODO Une fois terminée, cette classe devrait pltot se trouver dans core ou
+ * TODO Une fois terminée, cette classe devrait plûtot se trouver dans core ou
  * platform <br>
  * TODO revoir l'utilisation de ProjectClassLoaderHelper <br>
  * 
@@ -152,7 +159,30 @@ public class EPackageHelper {
         REGISTRY.remove(nsURI);
     }
 
+    public static EPackage getEPackage(EObject eObject) {
+        if (eObject == null) {
+            return null;
+        }
+        if (eObject instanceof EPackage) {
+            return (EPackage) eObject;
+        } else if (eObject instanceof EClassifier) {
+            return ((EClassifier) eObject).getEPackage();
+        } else if (eObject instanceof EOperation) {
+            return ((EOperation) eObject).getEContainingClass().getEPackage();
+        } else if (eObject instanceof EStructuralFeature) {
+            return ((EStructuralFeature) eObject).getEContainingClass().getEPackage();
+        } else if (eObject instanceof EFactory) {
+            return ((EFactory) eObject).getEPackage();
+        } else if (eObject instanceof EAnnotation) {
+            return getEPackage(((EAnnotation) eObject).getEModelElement());
+        } else if (eObject instanceof EParameter) {
+            return getEPackage(((EParameter) eObject).getEOperation());
+        }
+        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
+    }
+
     public static class RegistrationException extends Exception {
+
         private static final long serialVersionUID = 1L;
 
         private RegistrationException(String message, Throwable cause) {

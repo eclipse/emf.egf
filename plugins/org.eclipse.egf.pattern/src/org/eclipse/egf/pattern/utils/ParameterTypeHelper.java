@@ -15,10 +15,15 @@
 
 package org.eclipse.egf.pattern.utils;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.ecore.EPackageHelper;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * 
@@ -26,6 +31,7 @@ import org.eclipse.emf.ecore.EPackage;
  * 
  */
 public class ParameterTypeHelper {
+
     public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
 
     public String getSourceTypeLiteral(String type) {
@@ -43,7 +49,7 @@ public class ParameterTypeHelper {
      * 
      */
     private String getTypeLiteral(String type, boolean handleInnerClass) {
-        if (type == null || "".equals(type))
+        if (type == null || "".equals(type)) //$NON-NLS-1$
             throw new IllegalArgumentException();
         int index = type.indexOf('#');
         if (index == -1) {
@@ -56,9 +62,9 @@ public class ParameterTypeHelper {
         if (basePackage == null)
             throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
 
-        if ("".equals(basePackage))
-            return ePackage.getName() + "." + getClassName(type, index);
-        return basePackage + "." + getClassName(type, index);
+        if ("".equals(basePackage)) //$NON-NLS-1$
+            return ePackage.getName() + "." + getClassName(type, index); //$NON-NLS-1$
+        return basePackage + "." + getClassName(type, index); //$NON-NLS-1$
     }
 
     /**
@@ -66,7 +72,7 @@ public class ParameterTypeHelper {
      * It can be a java classname or an uri to an EObject.
      */
     public Object loadClass(String type) {
-        if (type == null || "".equals(type))
+        if (type == null || "".equals(type)) //$NON-NLS-1$
             throw new IllegalArgumentException();
         int index = type.indexOf('#');
         if (index > 0) {
@@ -80,18 +86,22 @@ public class ParameterTypeHelper {
     }
 
     private EClass loadEClass(String type, int index) {
-        String nsuri = getNsURI(type, index);
         String className = getClassName(type, index);
-
         EPackage ePackage = getEPackage(type, index);
         EClass eClassifier = (EClass) ePackage.getEClassifier(className);
         if (eClassifier == null)
-            throw new IllegalStateException(Messages.bind(Messages.classloader_error3, className, nsuri));
+            throw new IllegalStateException(Messages.bind(Messages.classloader_error3, className, getNsURI(type, index)));
         return eClassifier;
     }
 
     private EPackage getEPackage(String type, int index) {
-        return EPackageHelper.REGISTRY.getEPackage(getNsURI(type, index));
+        EditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+        EObject eObject = editingDomain.getResourceSet().getEObject(URI.createURI(type), true);
+        if (eObject == null) {
+            throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
+        }
+        return EPackageHelper.getEPackage(eObject);
+        // return EPackageHelper.REGISTRY.getEPackage(getNsURI(type, index));
     }
 
     private String getNsURI(String type, int index) {
@@ -100,12 +110,13 @@ public class ParameterTypeHelper {
 
     private String getClassName(String type, int index) {
         String className = type.substring(index + 1);
-        if (className.startsWith("//"))
+        if (className.startsWith("//")) //$NON-NLS-1$
             return className.substring(2);
         return className;
     }
 
     private ParameterTypeHelper() {
+        // Prevent instantiation
     }
 
 }
