@@ -353,7 +353,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      * While the name of the pattern has been changed, refresh the editor title.
      */
     private void addPatternChangeAdapter() {
-        Display.getDefault().syncExec(new Runnable() {
+        Display.getDefault().asyncExec(new Runnable() {
 
             public void run() {
                 Pattern pattern = getPattern();
@@ -362,6 +362,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                     setPartName(pattern.getName());
                 }
             }
+
         });
     }
 
