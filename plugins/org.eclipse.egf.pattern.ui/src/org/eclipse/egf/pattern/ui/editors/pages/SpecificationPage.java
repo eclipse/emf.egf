@@ -132,8 +132,6 @@ public class SpecificationPage extends PatternEditorPage {
 
     public static final String ID = "SpecificationPage"; //$NON-NLS-1$
 
-    private ScrolledForm form;
-
     private Link parentLink;
 
     private Button add;
@@ -176,7 +174,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     private LiveValidationContentAdapter parameterNameEmptyValidationAdapter;
 
-    private IMessageManager mmng;
+    private IMessageManager messageManager;
 
     private int comboSelectIndex;
 
@@ -189,14 +187,12 @@ public class SpecificationPage extends PatternEditorPage {
      * Check whether the editor is on a read only pattern.
      */
     private void checkReadOnlyModel() {
-        if (!isReadOnly) {
+        if (isReadOnly == false) {
             return;
         }
         parentLink.setEnabled(false);
-
         browse.setEnabled(false);
         removeParent.setEnabled(false);
-
         add.setEnabled(false);
         edit.setEnabled(false);
         remove.setEnabled(false);
@@ -216,13 +212,13 @@ public class SpecificationPage extends PatternEditorPage {
     protected void doCreateFormContent(IManagedForm managedForm) {
 
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        mmng = managedForm.getMessageManager();
         isReadOnly = editorInput.isReadOnly();
-        Composite body = managedForm.getForm().getBody();
 
         FormToolkit toolkit = managedForm.getToolkit();
-        form = managedForm.getForm();
+        messageManager = managedForm.getMessageManager();
+        ScrolledForm form = managedForm.getForm();
         toolkit.decorateFormHeading(form.getForm());
+        Composite body = form.getBody();
 
         TableWrapLayout twl = new TableWrapLayout();
         twl.numColumns = 2;
@@ -252,8 +248,8 @@ public class SpecificationPage extends PatternEditorPage {
         container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
         container.setLayout(new TableWrapLayout());
 
-        Label discrip = toolkit.createLabel(container, Messages.SpecificationPage_inherSection_discrip_label);
-        discrip.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        Label title = toolkit.createLabel(container, Messages.SpecificationPage_inherSection_discrip_label);
+        title.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         Composite inheritance = toolkit.createComposite(container, SWT.NONE);
         inheritance.setLayout(new GridLayout(3, false));
@@ -355,33 +351,29 @@ public class SpecificationPage extends PatternEditorPage {
 
         Section section = toolkit.createSection(parent, Section.TITLE_BAR);
         section.setText(Messages.SpecificationPage_patternSection_title);
-        TableWrapData td = new TableWrapData(TableWrapData.FILL_GRAB);
-        section.setLayoutData(td);
+        section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
-        Composite pattern = toolkit.createComposite(section, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        pattern.setLayout(layout);
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        TableWrapLayout twl = new TableWrapLayout();
+        twl.numColumns = 2;
+        container.setLayout(twl);
 
-        Label discrip = toolkit.createLabel(pattern, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
-        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        gd.horizontalIndent = 4;
-        gd.widthHint = 100;
-        discrip.setLayoutData(gd);
+        Label discrip = toolkit.createLabel(container, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
+        TableWrapData twd = new TableWrapData(TableWrapData.FILL_GRAB);
+        twd.colspan = 2;
+        discrip.setLayoutData(twd);
 
-        createTypeArea(toolkit, pattern);
+        createTypeArea(toolkit, container);
 
-        section.setClient(pattern);
+        section.setClient(container);
 
     }
 
     private void createTypeArea(FormToolkit toolkit, final Composite composite) {
 
         Label type = toolkit.createLabel(composite, Messages.SpecificationPage_patternSection_type_label);
-        GridData gd = new GridData();
-        gd.verticalIndent = 10;
-        type.setLayoutData(gd);
+        type.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
         type.setForeground(colors.getColor(IFormColors.TITLE));
 
         combo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
@@ -392,10 +384,7 @@ public class SpecificationPage extends PatternEditorPage {
             String currentNatureName = ExtensionHelper.getName(currentNature);
             combo.add(currentNatureName);
         }
-        combo.select(0);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.verticalIndent = 10;
-        combo.setLayoutData(gd);
+        combo.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         combo.addSelectionListener(new SelectionListener() {
 
@@ -408,6 +397,8 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
         });
+
+        combo.select(0);
 
     }
 
@@ -442,21 +433,21 @@ public class SpecificationPage extends PatternEditorPage {
         section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
         section.setLayout(new TableWrapLayout());
 
-        Composite parameters = toolkit.createComposite(section, SWT.NONE);
-        parameters.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
-        parameters.setLayout(new GridLayout(2, false));
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        container.setLayout(new GridLayout(2, false));
 
-        Label discrip = toolkit.createLabel(parameters, Messages.SpecificationPage_paraSection_discrip_label, SWT.WRAP);
+        Label discrip = toolkit.createLabel(container, Messages.SpecificationPage_paraSection_discrip_label, SWT.WRAP);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         gd.horizontalIndent = 4;
         gd.widthHint = 100;
         discrip.setLayoutData(gd);
 
-        createParametersTableArea(toolkit, parameters);
-        createParametersButtons(toolkit, parameters);
+        createParametersTableArea(toolkit, container);
+        createParametersButtons(toolkit, container);
 
-        section.setClient(parameters);
+        section.setClient(container);
 
     }
 
@@ -973,7 +964,7 @@ public class SpecificationPage extends PatternEditorPage {
             bindParent();
             bindNature();
             bindTableViewer();
-            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
+            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapeter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
         }
     }
 

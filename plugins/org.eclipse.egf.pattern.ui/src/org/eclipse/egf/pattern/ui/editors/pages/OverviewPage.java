@@ -66,6 +66,8 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.forms.widgets.TableWrapData;
+import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 /**
  * @author Thomas Guiu
@@ -89,48 +91,11 @@ public class OverviewPage extends PatternEditorPage {
 
     private LiveValidationContentAdapter patternNameEmpetyValidationAdapter;
 
-    private IMessageManager mmng;
+    private IMessageManager messageManager;
 
     public OverviewPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
         this.editor = editor;
-    }
-
-    @Override
-    protected void doCreateFormContent(IManagedForm managedForm) {
-
-        FormToolkit toolkit = managedForm.getToolkit();
-        ScrolledForm form = managedForm.getForm();
-        mmng = managedForm.getMessageManager();
-        Composite body = managedForm.getForm().getBody();
-
-        GridLayout gridLayout = new GridLayout();
-        body.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        body.setLayoutData(gd);
-        form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
-        form.setText(Messages.OverviewPage_title);
-
-        Composite container = toolkit.createComposite(body, SWT.NONE);
-        gridLayout = new GridLayout();
-        container.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_BOTH);
-        container.setLayoutData(gd);
-
-        Composite top = toolkit.createComposite(container, SWT.NONE);
-        gridLayout = new GridLayout(2, true);
-        top.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        top.setLayoutData(gd);
-
-        createLeftContainer(toolkit, top);
-        createRightContainer(toolkit, top);
-        createDescriptionContainer(toolkit, container);
-
-        checkReadOnlyModel();
-
-        form.reflow(true);
-
     }
 
     /**
@@ -138,7 +103,7 @@ public class OverviewPage extends PatternEditorPage {
      */
     private void checkReadOnlyModel() {
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        if (!editorInput.isReadOnly()) {
+        if (editorInput.isReadOnly() == false) {
             return;
         }
         nameText.setEnabled(false);
@@ -147,30 +112,44 @@ public class OverviewPage extends PatternEditorPage {
         browse.setEnabled(false);
     }
 
+    @Override
+    protected void doCreateFormContent(IManagedForm managedForm) {
+
+        FormToolkit toolkit = managedForm.getToolkit();
+        messageManager = managedForm.getMessageManager();
+        ScrolledForm form = managedForm.getForm();
+        toolkit.decorateFormHeading(form.getForm());
+        Composite body = managedForm.getForm().getBody();
+
+        TableWrapLayout twl = new TableWrapLayout();
+        twl.numColumns = 2;
+        body.setLayout(twl);
+        form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
+        form.setText(Messages.OverviewPage_title);
+
+        createLeftContainer(toolkit, body);
+        createRightContainer(toolkit, body);
+        createDescriptionContainer(toolkit, body);
+
+        checkReadOnlyModel();
+
+        form.reflow(true);
+
+    }
+
     private void createLeftContainer(FormToolkit toolkit, Composite parent) {
 
         Section section = toolkit.createSection(parent, Section.TITLE_BAR);
         section.setText(Messages.OverviewPage_sectionLeft_title);
-
-        GridLayout gridLayout = new GridLayout();
-        section.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
-        gd.minimumWidth = 300;
-        gd.heightHint = 200;
-        section.setLayoutData(gd);
+        section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        section.setLayout(new TableWrapLayout());
 
         Composite container = toolkit.createComposite(section, SWT.NONE);
-        gridLayout = new GridLayout(2, false);
-        container.setLayout(gridLayout);
-        gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
-        gd.verticalIndent = 0;
-        container.setLayoutData(gd);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        container.setLayout(new TableWrapLayout());
 
-        String titletext = Messages.OverviewPage_sectionLeft_title_label;
-        Label title = toolkit.createLabel(container, titletext, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        title.setLayoutData(gd);
+        Label title = toolkit.createLabel(container, Messages.OverviewPage_sectionLeft_title_label, SWT.WRAP);
+        title.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         createPatternInfoContainer(toolkit, container);
 
@@ -178,30 +157,26 @@ public class OverviewPage extends PatternEditorPage {
 
     }
 
-    private void createPatternInfoContainer(FormToolkit toolkit, Composite container) {
+    private void createPatternInfoContainer(FormToolkit toolkit, Composite parent) {
 
-        Composite patternInfo = toolkit.createComposite(container, SWT.NONE);
-        GridLayout gridLayout = new GridLayout(3, false);
-        patternInfo.setLayout(gridLayout);
+        Composite container = toolkit.createComposite(parent, SWT.NONE);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        container.setLayout(new GridLayout(3, false));
 
-        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        patternInfo.setLayoutData(gd);
-
-        Label nameLabel = toolkit.createLabel(patternInfo, Messages.OverviewPage_sectionLeft_name_label, SWT.WRAP);
-        gd = new GridData();
+        Label nameLabel = toolkit.createLabel(container, Messages.OverviewPage_sectionLeft_name_label, SWT.WRAP);
+        GridData gd = new GridData();
         gd.widthHint = 80;
         nameLabel.setLayoutData(gd);
         nameLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
-        nameText = toolkit.createText(patternInfo, getPattern() == null ? "" : getPattern().getName(), SWT.BORDER); //$NON-NLS-1$
+        nameText = toolkit.createText(container, getPattern() == null ? "" : getPattern().getName(), SWT.BORDER); //$NON-NLS-1$
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 20;
         gd.horizontalIndent = 5;
         gd.horizontalSpan = 2;
         nameText.setLayoutData(gd);
 
-        Label fullNameLabel = toolkit.createLabel(patternInfo, Messages.OverviewPage_sectionLeft_fullName_label, SWT.WRAP);
+        Label fullNameLabel = toolkit.createLabel(container, Messages.OverviewPage_sectionLeft_fullName_label, SWT.WRAP);
         gd = new GridData();
         gd.widthHint = 80;
         fullNameLabel.setLayoutData(gd);
@@ -210,14 +185,14 @@ public class OverviewPage extends PatternEditorPage {
         Color color = Display.getDefault().getSystemColor(SWT.COLOR_DARK_GRAY);
         String fullName = PatternHelper.getFullLibraryName(getPattern());
 
-        fullNameText = toolkit.createText(patternInfo, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY);
+        fullNameText = toolkit.createText(container, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalIndent = 5;
         fullNameText.setLayoutData(gd);
         fullNameText.setForeground(color);
         fullNameText.setText(fullName == null ? "" : fullName); //$NON-NLS-1$
 
-        browse = toolkit.createButton(patternInfo, Messages.OverviewPage_button_browse, SWT.PUSH);
+        browse = toolkit.createButton(container, Messages.OverviewPage_button_browse, SWT.PUSH);
         gd = new GridData();
         gd.widthHint = 65;
         browse.setLayoutData(gd);
@@ -246,14 +221,15 @@ public class OverviewPage extends PatternEditorPage {
             public void widgetDefaultSelected(SelectionEvent e) {
                 // Nothing to do
             }
+
         });
 
-        Label idLabel = toolkit.createLabel(patternInfo, Messages.OverviewPage_sectionLeft_id_label, SWT.WRAP);
+        Label idLabel = toolkit.createLabel(container, Messages.OverviewPage_sectionLeft_id_label, SWT.WRAP);
         gd = new GridData();
         idLabel.setLayoutData(gd);
         idLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
-        Text idText = toolkit.createText(patternInfo, getPattern() == null ? "" : getPattern().getID(), SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
+        Text idText = toolkit.createText(container, getPattern() == null ? "" : getPattern().getID(), SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         gd.widthHint = 20;
@@ -265,38 +241,27 @@ public class OverviewPage extends PatternEditorPage {
 
     private void createDescriptionContainer(FormToolkit toolkit, Composite parent) {
 
-        Composite container = toolkit.createComposite(parent, SWT.NONE);
-        GridLayout gridLayout = new GridLayout();
-        container.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        container.setLayoutData(gd);
-
-        Section section = toolkit.createSection(container, Section.TITLE_BAR);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
         section.setText(Messages.OverviewPage_sectionLeft_description_label_title);
-        gridLayout = new GridLayout();
-        section.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        section.setLayoutData(gd);
+        TableWrapData twd = new TableWrapData(TableWrapData.FILL);
+        twd.colspan = 2;
+        section.setLayoutData(twd);
+        section.setLayout(new TableWrapLayout());
 
-        Composite descriptionContainer = toolkit.createComposite(container, SWT.NONE);
-        gridLayout = new GridLayout();
-        descriptionContainer.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_BOTH);
-        descriptionContainer.setLayoutData(gd);
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        container.setLayout(new TableWrapLayout());
 
-        String titletext = Messages.OverviewPage_sectionLeft_description_label;
-        Label title = toolkit.createLabel(descriptionContainer, titletext, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        title.setLayoutData(gd);
+        Label title = toolkit.createLabel(container, Messages.OverviewPage_sectionLeft_description_label, SWT.WRAP);
+        title.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         String patternDescription = getPattern() == null ? "" : getPattern().getDescription(); //$NON-NLS-1$
-        description = toolkit.createText(descriptionContainer, patternDescription, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
-        gd = new GridData(GridData.FILL_BOTH);
-        gd.heightHint = 280;
-        gd.widthHint = 280;
-        gd.verticalIndent = 7;
-        gd.horizontalIndent = 3;
-        description.setLayoutData(gd);
+        description = toolkit.createText(container, patternDescription, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
+        twd = new TableWrapData(TableWrapData.FILL_GRAB);
+        twd.heightHint = 280;
+        description.setLayoutData(twd);
+
+        section.setClient(container);
 
     }
 
@@ -304,39 +269,26 @@ public class OverviewPage extends PatternEditorPage {
 
         Section section = toolkit.createSection(parent, Section.TITLE_BAR);
         section.setText(Messages.OverviewPage_sectionRight_title);
-
-        GridLayout gridLayout = new GridLayout();
-        section.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
-        gd.minimumWidth = 300;
-        gd.heightHint = 200;
-        section.setLayoutData(gd);
+        section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        section.setLayout(new TableWrapLayout());
 
         Composite container = toolkit.createComposite(section, SWT.NONE);
-        gridLayout = new GridLayout(2, false);
-        container.setLayout(gridLayout);
-        gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
-        gd.verticalIndent = 0;
-        container.setLayoutData(gd);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        container.setLayout(new TableWrapLayout());
 
-        String titletext = Messages.OverviewPage_sectionRight_title_label;
-        Label title = toolkit.createLabel(container, titletext, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        title.setLayoutData(gd);
+        Label title = toolkit.createLabel(container, Messages.OverviewPage_sectionRight_title_label, SWT.WRAP);
+        title.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         Composite containerLink = toolkit.createComposite(container, SWT.NONE);
-        gridLayout = new GridLayout(2, false);
-        containerLink.setLayout(gridLayout);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        containerLink.setLayoutData(gd);
+        containerLink.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        TableWrapLayout twl = new TableWrapLayout();
+        twl.numColumns = 2;
+        containerLink.setLayout(twl);
 
         ImageHyperlink specLink = toolkit.createImageHyperlink(containerLink, SWT.NONE);
         specLink.setText(Messages.OverviewPage_sectionRight_specLink_label);
         specLink.setImage(Activator.getDefault().getImage(ImageShop.IMG_LOCALVARIABLE_OBJ));
-        gd = new GridData();
-        specLink.setLayoutData(gd);
+        specLink.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
         specLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -354,16 +306,12 @@ public class OverviewPage extends PatternEditorPage {
         });
 
         Label specLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_spec_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.widthHint = 100;
-        specLabel.setLayoutData(gd);
+        specLabel.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         ImageHyperlink implLink = toolkit.createImageHyperlink(containerLink, SWT.NONE);
         implLink.setText(Messages.OverviewPage_sectionRight_implLink_label);
         implLink.setImage(Activator.getDefault().getImage(ImageShop.IMG_METHPUB_OBJ));
-        gd = new GridData();
-        gd.verticalIndent = 20;
-        implLink.setLayoutData(gd);
+        implLink.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
         implLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -381,10 +329,7 @@ public class OverviewPage extends PatternEditorPage {
         });
 
         Label implLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_impl_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.verticalIndent = 18;
-        gd.widthHint = 100;
-        implLabel.setLayoutData(gd);
+        implLabel.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
         section.setClient(container);
 
@@ -463,7 +408,7 @@ public class OverviewPage extends PatternEditorPage {
             bindName();
             bindDescripition();
             bindContainer();
-            patternNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID, nameText);
+            patternNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID, nameText);
         }
     }
 
