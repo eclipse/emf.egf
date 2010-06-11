@@ -36,13 +36,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 import org.eclipse.ui.editors.text.StorageDocumentProvider;
@@ -57,6 +53,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
     public static final String ID = "org.eclipse.egf.pattern.ui.pattern.template.editor.id"; //$NON-NLS-1$
 
+    // method adapter
     private final AdapterImpl methodAdapter = new AdapterImpl() {
 
         @Override
@@ -68,12 +65,32 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
     };
 
-    private final AdapterImpl refresher = new AdapterImpl() {
+    // The current pattern adapter
+    private final AdapterImpl patternAdapter = new AdapterImpl() {
 
         @Override
-        public void notifyChanged(Notification msg) {
+        public void notifyChanged(final Notification msg) {
             if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature()) && msg.getNotifier() instanceof Pattern) {
-                setPartName((String) msg.getNewValue());
+                // Title update
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                    public void run() {
+                        setPartName((String) msg.getNewValue());
+                    }
+
+                });
+
+            } else if (PatternPackage.Literals.PATTERN_ELEMENT__CONTAINER.equals(msg.getFeature()) && msg.getNewValue() == null) {
+                // Removed Pattern
+                // just close now without prompt
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                    public void run() {
+                        getSite().getPage().closeEditor(PatternTemplateEditor.this, false);
+                    }
+
+                });
+
             } else if (PatternPackage.Literals.PATTERN__METHODS.equals(msg.getFeature())) {
                 refreshTemplateEditor(msg);
             }
@@ -82,51 +99,17 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
     };
 
-    /**
-     * This listens for when the outline becomes active
-     */
-    protected IPartListener partListener = new IPartListener() {
-
-        public void partActivated(IWorkbenchPart p) {
-            if (p == PatternTemplateEditor.this) {
-                handleActivate();
-            }
-        }
-
-        public void partBroughtToTop(IWorkbenchPart p) {
-            // Nothing to do
-        }
-
-        public void partClosed(IWorkbenchPart p) {
-            // Nothing to do
-        }
-
-        public void partDeactivated(IWorkbenchPart p) {
-            // Nothing to do
-        }
-
-        public void partOpened(IWorkbenchPart p) {
-            // Nothing to do
-        }
-
-    };
-
     private final Map<String, TextEditor> editors = new HashMap<String, TextEditor>();
 
     /**
-     * Whether or not user saved this resource in this editor
+     * Domain resource listener
      */
-    protected boolean userHasSavedResource;
+    private boolean patternInWorkspace = false;
 
     /**
-     * Whether or not this resource has been externally changed
+     * Current pattern
      */
-    protected boolean resourceHasBeenExternallyChanged;
-
-    /**
-     * Whether or not this resource has been removed
-     */
-    protected boolean resourceHasBeenRemoved;
+    private Pattern pattern;
 
     /**
      * Domain resource listener
@@ -135,58 +118,84 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
         public void resourceMoved(Resource movedResource, final URI oldURI) {
             if (movedResource == getResource()) {
-                resourceHasBeenExternallyChanged = false;
-                resourceHasBeenRemoved = false;
-                userHasSavedResource = false;
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                    public void run() {
+                        setInputWithNotify(new PatternEditorInput(getResource(), ((PatternEditorInput) getEditorInput()).getID()));
+                        firePropertyChange(PROP_TITLE);
+                    }
+
+                });
             }
         }
 
         public void resourceDeleted(Resource deletedResource) {
             if ((deletedResource == getResource())) {
-                if (isDirty() == false) {
-                    // just close now without prompt
-                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                // just close now without prompt
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                        public void run() {
-                            getSite().getPage().closeEditor(PatternTemplateEditor.this, false);
-                        }
+                    public void run() {
+                        getSite().getPage().closeEditor(PatternTemplateEditor.this, false);
+                    }
 
-                    });
-                } else {
-                    resourceHasBeenRemoved = true;
-                }
+                });
             }
         }
 
         public void resourceReloaded(Resource reloadedResource) {
+
             if (reloadedResource == getResource()) {
-                resourceHasBeenExternallyChanged = false;
-                resourceHasBeenRemoved = false;
-                userHasSavedResource = false;
-                // Remove previous adapter
-                removePatternChangeAdapter();
+
+                // Create a new input
+                final PatternEditorInput newEditorInput = new PatternEditorInput(getResource(), ((PatternEditorInput) getEditorInput()).getID());
+
                 // Check whether or not this pattern is still alive
-                if (getPattern() != null) {
-                    addPatternChangeAdapter();
+                if (newEditorInput.getPattern() != null) {
+
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
                         public void run() {
-                            // Remove pages
-                            for (int i = getPageCount() - 1; i != -1; i--) {
-                                removePage(i);
+
+                            // Do we have something to do
+                            if (pattern != newEditorInput.getPattern()) {
+
+                                // Remove previous adapters
+                                removePatternChangeAdapter();
+                                // Store reloaded pattern
+                                pattern = newEditorInput.getPattern();
+                                // Add new adapters
+                                addPatternChangeAdapter();
+
+                                // Should we update this template editor
+                                if ((newEditorInput.getFile() == null && patternInWorkspace) || (newEditorInput.getFile() != null && patternInWorkspace == false)) {
+                                    // Remove pages
+                                    for (int i = getPageCount() - 1; i != -1; i--) {
+                                        removePage(i);
+                                    }
+                                    // Update
+                                    patternInWorkspace = newEditorInput.getFile() != null;
+                                    // Create pages
+                                    createPages();
+                                    // Activate
+                                    if (getPageCount() != 0) {
+                                        setActivePage(0);
+                                    }
+                                    // Update editorInput
+                                    setInputWithNotify(newEditorInput);
+                                } else {
+                                    // Pattern method analysis
+                                }
+
+                                // Update title
+                                firePropertyChange(PROP_TITLE);
+
                             }
-                            setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
-                            // Create pages
-                            createPages();
-                            // Activate
-                            if (getPageCount() != 0) {
-                                setActivePage(0);
-                            }
-                            firePropertyChange(PROP_TITLE);
                         }
 
                     });
+
                 } else {
+
                     // just close now without prompt
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
@@ -195,33 +204,24 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
                         }
 
                     });
+
                 }
+
             }
 
         }
 
         public void externalUpdate(Resource changedResource) {
             if (changedResource == getResource()) {
-                resourceHasBeenExternallyChanged = true;
+                // Wait until we are notified, this couldn't happen though
+                // if we are the latest opened editor in our editing domain
+                // anyway we don't how to deal with this situation yet
             }
         }
 
         public void internalUpdate(Resource changedResource) {
             if (changedResource == getResource()) {
-                resourceHasBeenExternallyChanged = false;
-                resourceHasBeenRemoved = false;
-                userHasSavedResource = false;
-                // Check whether or not this pattern is still alive
-                if (getPattern() == null) {
-                    // just close now without prompt
-                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-
-                        public void run() {
-                            getSite().getPage().closeEditor(PatternTemplateEditor.this, false);
-                        }
-
-                    });
-                }
+                // Nothing to do
             }
         }
 
@@ -259,25 +259,34 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
     private void executeMethodEditorRename(PatternMethod patternMethod) {
         IEditorPart editorPart = getEditorPart(patternMethod.getID());
         if (editorPart != null) {
-            for (int i = 0; i < getPageCount(); i++)
-                if (editorPart.equals(getEditor(i)))
+            for (int i = 0; i < getPageCount(); i++) {
+                if (editorPart.equals(getEditor(i))) {
                     setPageText(i, patternMethod.getName());
-
+                }
+            }
         }
     }
 
     private void executeMethodEditorRemove(PatternMethod deleteMethod) {
-        for (int i = 0; i < getPageCount(); i++) {
-            IEditorPart editor = getEditor(i);
-            AbstractPatternMethodEditorInput input = (AbstractPatternMethodEditorInput) editor.getEditorInput();
-            PatternMethod patternMethod = input.getPatternMethod();
-            if (patternMethod == null)
-                removePage(i);
-        }
+        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+            public void run() {
+                for (int i = 0; i < getPageCount(); i++) {
+                    IEditorPart editor = getEditor(i);
+                    AbstractPatternMethodEditorInput input = (AbstractPatternMethodEditorInput) editor.getEditorInput();
+                    PatternMethod patternMethod = input.getPatternMethod();
+                    if (patternMethod == null) {
+                        removePage(i);
+                    }
+                }
+            }
+
+        });
+
     }
 
     protected void executeMethodEditorAdd(final PatternMethod addMethod) {
-        getActiveEditor().getSite().getShell().getDisplay().asyncExec(new Runnable() {
+        getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
             public void run() {
                 createPage(addMethod);
@@ -288,11 +297,29 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
     }
 
     /**
-     * While pattern has been changed, refresh the editor title.
+     * Add method adapters
      */
-    protected void addPatternChangeAdapter(final Pattern pattern) {
-        if (pattern != null && !pattern.eAdapters().contains(refresher)) {
-            pattern.eAdapters().add(refresher);
+    protected void addMethodChangeAdapter(PatternMethod method) {
+        if (method != null && method.eAdapters().contains(methodAdapter) == false) {
+            method.eAdapters().add(methodAdapter);
+        }
+    }
+
+    /**
+     * Remove method adapters
+     */
+    protected void removeMethodChangeAdapter(PatternMethod method) {
+        if (method != null && method.eAdapters().contains(methodAdapter)) {
+            method.eAdapters().remove(methodAdapter);
+        }
+    }
+
+    /**
+     * Add pattern and methods adapters
+     */
+    private void addPatternChangeAdapter() {
+        if (pattern != null && pattern.eAdapters().contains(patternAdapter) == false) {
+            pattern.eAdapters().add(patternAdapter);
             EList<PatternMethod> methods = pattern.getMethods();
             for (PatternMethod method : methods) {
                 addMethodChangeAdapter(method);
@@ -301,24 +328,11 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
     }
 
     /**
-     * While method has been changed, refresh the editor title.
-     */
-    protected void addMethodChangeAdapter(PatternMethod method) {
-        if (method != null && !method.eAdapters().contains(methodAdapter)) {
-            method.eAdapters().add(methodAdapter);
-        }
-    }
-
-    /**
-     * Remove the Adapter add for refreshing the editor title
+     * Remove pattern and methods adapters
      */
     protected void removePatternChangeAdapter() {
-        Pattern pattern = getPattern();
-        if (pattern == null) {
-            return;
-        }
-        if (pattern.eAdapters().contains(refresher)) {
-            pattern.eAdapters().remove(refresher);
+        if (pattern != null && pattern.eAdapters().contains(patternAdapter)) {
+            pattern.eAdapters().remove(patternAdapter);
         }
         EList<PatternMethod> methods = pattern.getMethods();
         for (PatternMethod method : methods) {
@@ -326,18 +340,8 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
         }
     }
 
-    /**
-     * Remove the Adapter add for refreshing the editor title
-     */
-    protected void removeMethodChangeAdapter(PatternMethod method) {
-        if (method != null && method.eAdapters().contains(methodAdapter)) {
-            method.eAdapters().remove(methodAdapter);
-        }
-    }
-
     void createPage(PatternMethod method) {
         try {
-            final boolean patternInWorkspace = ((PatternEditorInput) getEditorInput()).getFile() != null;
             TextEditor editor = new TextEditor() {
 
                 {
@@ -362,7 +366,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
     @Override
     protected void createPages() {
-        for (PatternMethod method : getPattern().getMethods()) {
+        for (PatternMethod method : pattern.getMethods()) {
             createPage(method);
         }
     }
@@ -376,26 +380,11 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
         for (int i = 0; i < getPageCount(); i++) {
             getEditor(i).doSave(monitor);
         }
-        userHasSavedResource = true;
     }
 
     @Override
     public void doSaveAs() {
         throw new UnsupportedOperationException();
-    }
-
-    private void addPatternChangeAdapter() {
-        Display.getDefault().asyncExec(new Runnable() {
-
-            public void run() {
-                Pattern pattern = getPattern();
-                if (pattern != null) {
-                    addPatternChangeAdapter(pattern);
-                    setPartName(pattern.getName());
-                }
-            }
-
-        });
     }
 
     /**
@@ -408,17 +397,17 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
             throw new PartInitException(Messages.Editor_wrong_input);
         }
         super.init(site, editorInput);
-        site.getPage().addPartListener(partListener);
-        resourceHasBeenExternallyChanged = EGFResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
+        patternInWorkspace = ((PatternEditorInput) getEditorInput()).getFile() != null;
+        pattern = ((PatternEditorInput) getEditorInput()).getPattern();
         EGFResourceLoadedListener.getResourceManager().addObserver(this);
         addPatternChangeAdapter();
+        setPartName(pattern.getName());
     }
 
     @Override
     public void dispose() {
         // if init failed, dispose should not called this
         if (getEditorInput() != null && getEditorInput() instanceof PatternEditorInput) {
-            getSite().getPage().removePartListener(partListener);
             removePatternChangeAdapter();
         }
         EGFResourceLoadedListener.getResourceManager().removeObserver(this);
@@ -441,49 +430,11 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
         return input.getResource();
     }
 
-    private Pattern getPattern() {
-        PatternEditorInput input = (PatternEditorInput) getEditorInput();
-        if (input == null)
-            throw new IllegalStateException();
-        return input.getPattern();
-    }
-
     public void setActiveEditor(String methodId) {
         IEditorPart editorPart = getEditorPart(methodId);
         if (editorPart != null) {
             super.setActiveEditor(editorPart);
         }
-    }
-
-    /**
-     * Handles activation of the editor or it's associated views.
-     */
-    protected void handleActivate() {
-        if (resourceHasBeenRemoved) {
-            if (handleDirtyConflict()) {
-                getSite().getPage().closeEditor(PatternTemplateEditor.this, false);
-            }
-        } else if (resourceHasBeenExternallyChanged) {
-            handleChangedResource();
-        }
-    }
-
-    /**
-     * Handles what to do with changed resource on activation.
-     */
-    protected void handleChangedResource() {
-        if (isDirty() == false || handleDirtyConflict()) {
-            EGFResourceLoadedListener.getResourceManager().reloadResource(getResource());
-        }
-    }
-
-    /**
-     * Shows a dialog that asks if conflicting changes should be discarded. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     */
-    protected boolean handleDirtyConflict() {
-        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
-                "External changes, close the editor ?"); //$NON-NLS-1$
     }
 
     public ResourceListener getListener() {
@@ -499,11 +450,11 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
     }
 
     public boolean userHasSavedResource() {
-        return userHasSavedResource;
+        return false;
     }
 
     public boolean resourceHasBeenExternallyChanged() {
-        return resourceHasBeenExternallyChanged;
+        return false;
     }
 
 }
