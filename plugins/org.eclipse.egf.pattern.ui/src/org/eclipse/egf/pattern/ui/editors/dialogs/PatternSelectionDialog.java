@@ -355,9 +355,12 @@ public class PatternSelectionDialog extends FilteredItemsSelectionDialog {
      */
     @Override
     public Object[] getResult() {
-        computeResult();
         Object[] result = super.getResult();
         if (result == null) {
+            computeResult();
+        }
+        result = super.getResult();
+        if (result == null || result.length == 0) {
             return null;
         }
         List<Pattern> resultToReturn = new ArrayList<Pattern>();
