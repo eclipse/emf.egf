@@ -225,15 +225,22 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
                 int target = targetObjects != null ? targetObjects.size() : 0;
                 int workspace = workspaceObjects != null ? workspaceObjects.size() : 0;
                 int extension = target + workspace;
+                if (extension == 0) {
+                    continue;
+                }
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("{0} Extension{1} ''{2}''", //$NON-NLS-1$ 
                         new Object[] {
                                 extension, extension < 2 ? "" : "s", clazz.getName()}), 1); //$NON-NLS-1$ //$NON-NLS-2$
-                EGFPlatformPlugin.getDefault().logInfo(NLS.bind("{0} Target Extension{1}", //$NON-NLS-1$ 
-                        new Object[] {
-                                target, target < 2 ? "" : "s", clazz.getName()}), 2); //$NON-NLS-1$ //$NON-NLS-2$
-                EGFPlatformPlugin.getDefault().logInfo(NLS.bind("{0} Workspace Extension{1}", //$NON-NLS-1$ 
-                        new Object[] {
-                                workspace, workspace < 2 ? "" : "s", clazz.getName()}), 2); //$NON-NLS-1$ //$NON-NLS-2$
+                if (target != 0) {
+                    EGFPlatformPlugin.getDefault().logInfo(NLS.bind("{0} target Extension{1}", //$NON-NLS-1$ 
+                            new Object[] {
+                                    target, target < 2 ? "" : "s", clazz.getName()}), 2); //$NON-NLS-1$ //$NON-NLS-2$
+                }
+                if (workspace != 0) {
+                    EGFPlatformPlugin.getDefault().logInfo(NLS.bind("{0} workspace Extension{1}", //$NON-NLS-1$ 
+                            new Object[] {
+                                    workspace, workspace < 2 ? "" : "s", clazz.getName()}), 2); //$NON-NLS-1$ //$NON-NLS-2$
+                }
             }
         }
     }
@@ -357,6 +364,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         synchronized (__lockPlatformManager) {
             // Initialize a delta
             PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
+            // Process Removed ModelEntry
             if ((event.getKind() & PluginModelDelta.REMOVED) != 0) {
                 // Process Removed Entries
                 for (ModelEntry entry : event.getRemovedEntries()) {
@@ -370,7 +378,9 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
                         removePlatformBundle(id, existingPlatformBundle, delta);
                     }
                 }
-            } else if ((event.getKind() & PluginModelDelta.ADDED) != 0) {
+            }
+            // Process Added ModelEntry
+            if ((event.getKind() & PluginModelDelta.ADDED) != 0) {
                 // Process Added Entries
                 for (ModelEntry entry : event.getAddedEntries()) {
                     for (IPluginModelBase base : getExtensionPointModels(entry)) {
@@ -386,7 +396,9 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
                         addPlatformBundle(id, createPlatformBundle(base), delta);
                     }
                 }
-            } else if ((event.getKind() & PluginModelDelta.CHANGED) != 0) {
+            }
+            // Process Changed ModelEntry
+            if ((event.getKind() & PluginModelDelta.CHANGED) != 0) {
                 // Process Changed Entries
                 for (ModelEntry entry : event.getChangedEntries()) {
                     for (IPluginModelBase base : getExtensionPointModels(entry)) {
@@ -649,25 +661,41 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     }
 
     private void trace(IPlatformExtensionPointDelta delta) {
-        if (delta.getRemovedPlatformExtensionPoints().length > 0) {
-            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager Removed {0} Extension Point{1}.", //$NON-NLS-1$ 
-                    delta.getRemovedPlatformExtensionPoints().length, delta.getRemovedPlatformExtensionPoints().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+        IPlatformExtensionPoint[] added = delta.getAddedPlatformExtensionPoints();
+        IPlatformExtensionPoint[] removed = delta.getRemovedPlatformExtensionPoints();
+        if (removed.length != 0) {
+            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager removed {0} Extension{1}.", //$NON-NLS-1$ 
+                    removed.length, removed.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
             ));
-            trace(delta.getRemovedPlatformExtensionPoints());
+            IPlatformExtensionPoint[] target = delta.getTargetRemovedPlatformExtensionPoints();
+            if (target.length != 0) {
+                EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager removed {0} target Extension{1}.", //$NON-NLS-1$ 
+                        target.length, target.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+                ), 1);
+            }
+            IPlatformExtensionPoint[] workspace = delta.getWorkspaceRemovedPlatformExtensionPoints();
+            if (workspace.length != 0) {
+                EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager removed {0} workspace Extension{1}.", //$NON-NLS-1$ 
+                        workspace.length, workspace.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+                ), 1);
+            }
         }
-        if (delta.getAddedPlatformExtensionPoints().length > 0) {
-            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager Added {0} Extension Point{1}.", //$NON-NLS-1$ 
-                    delta.getAddedPlatformExtensionPoints().length, delta.getAddedPlatformExtensionPoints().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+        if (added.length != 0) {
+            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager added {0} Extension{1}.", //$NON-NLS-1$ 
+                    added.length, added.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
             ));
-            trace(delta.getAddedPlatformExtensionPoints());
+            IPlatformExtensionPoint[] target = delta.getTargetAddedPlatformExtensionPoints();
+            if (target.length != 0) {
+                EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager added {0} target Extension{1}.", //$NON-NLS-1$ 
+                        target.length, target.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+                ), 1);
+            }
+            IPlatformExtensionPoint[] workspace = delta.getWorkspaceAddedPlatformExtensionPoints();
+            if (workspace.length != 0) {
+                EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager added {0} workspace Extension{1}.", //$NON-NLS-1$ 
+                        workspace.length, workspace.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+                ), 1);
+            }
         }
     }
-
-    private void trace(IPlatformExtensionPoint[] extensionPoints) {
-        for (IPlatformExtensionPoint extensionPoint : extensionPoints) {
-            EGFPlatformPlugin.getDefault().logInfo(extensionPoint.toString(), 1);
-            EGFPlatformPlugin.getDefault().logInfo(extensionPoint.getPlatformBundle().toString(), 2);
-        }
-    }
-
 }

@@ -12,12 +12,20 @@ package org.eclipse.egf.core.platform.pde;
 
 public interface IPlatformExtensionPointDelta {
 
-  public IPlatformExtensionPoint[] getAddedPlatformExtensionPoints();
+    public IPlatformExtensionPoint[] getAddedPlatformExtensionPoints();
 
-  public IPlatformExtensionPoint[] getRemovedPlatformExtensionPoints();
+    public IPlatformExtensionPoint[] getRemovedPlatformExtensionPoints();
 
-  public <T extends IPlatformExtensionPoint> T[] getAddedPlatformExtensionPoints(Class<T> clazz);
+    public IPlatformExtensionPoint[] getTargetAddedPlatformExtensionPoints();
 
-  public <T extends IPlatformExtensionPoint> T[] getRemovedPlatformExtensionPoints(Class<T> clazz);
+    public IPlatformExtensionPoint[] getWorkspaceAddedPlatformExtensionPoints();
+
+    public IPlatformExtensionPoint[] getTargetRemovedPlatformExtensionPoints();
+
+    public IPlatformExtensionPoint[] getWorkspaceRemovedPlatformExtensionPoints();
+
+    public <T extends IPlatformExtensionPoint> T[] getAddedPlatformExtensionPoints(Class<T> clazz);
+
+    public <T extends IPlatformExtensionPoint> T[] getRemovedPlatformExtensionPoints(Class<T> clazz);
 
 }
