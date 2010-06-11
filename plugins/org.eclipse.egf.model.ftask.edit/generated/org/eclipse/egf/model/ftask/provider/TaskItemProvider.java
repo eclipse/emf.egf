@@ -89,17 +89,18 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
     protected void addKindPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_kind_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Task_kind_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                FtaskPackage.Literals.TASK__KIND, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null) {
+                FtaskPackage.Literals.TASK__KIND, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_TaskPropertyCategory"), null) { //$NON-NLS-1$
 
-            @Override
-            public Collection<String> getChoiceOfValues(Object innerObject) {
-                Collection<String> result = EGFFtaskPlugin.getTaskNatureRegistry().getKinds();
-                if (result.contains(null) == false) {
-                    result.add(null);
-                }
-                return result;
-            }
-        });
+                    @Override
+                    public Collection<String> getChoiceOfValues(Object innerObject) {
+                        Collection<String> result = EGFFtaskPlugin.getTaskNatureRegistry().getKinds();
+                        if (result.contains(null) == false) {
+                            result.add(null);
+                        }
+                        return result;
+                    }
+
+                });
     }
 
     /**
@@ -112,7 +113,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
     protected void addImplementationPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_implementation_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Task_implementation_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                FtaskPackage.Literals.TASK__IMPLEMENTATION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                FtaskPackage.Literals.TASK__IMPLEMENTATION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_TaskPropertyCategory"), null)); //$NON-NLS-1$
     }
 
     /**
@@ -125,7 +126,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
     protected void addSuperTaskPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_superTask_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Task_superTask_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                FtaskPackage.Literals.TASK__SUPER_TASK, true, false, true, null, null, null));
+                FtaskPackage.Literals.TASK__SUPER_TASK, true, false, true, null, getString("_UI_TaskPropertyCategory"), null)); //$NON-NLS-1$
     }
 
     /**
