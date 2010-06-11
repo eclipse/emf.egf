@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_PoLl4GlqEd-AhuXDVJhj5w"
+    name="substitution_4">
+  <viewpointContainer xmi:id="_UgW1wGlqEd-AhuXDVJhj5w">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_XMxYsGlqEd-AhuXDVJhj5w">
+      <domains xmi:type="domain:DomainURI" xmi:id="_XMxYsWlqEd-AhuXDVJhj5w" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_Xt_2cGlqEd-AhuXDVJhj5w">
+      <libraries xmi:id="_Y5sNgGlqEd-AhuXDVJhj5w" name="substitution_4">
+        <elements xmi:type="pattern:Pattern" xmi:id="_hQMlcGlqEd-AhuXDVJhj5w" name="a"
+            headerMethod="#_hQMlcWlqEd-AhuXDVJhj5w" footerMethod="#_hQMldGlqEd-AhuXDVJhj5w"
+            initMethod="#_hQMlcmlqEd-AhuXDVJhj5w">
+          <methods xmi:id="_hQMlcWlqEd-AhuXDVJhj5w" name="header" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMlcWlqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_hQMlcmlqEd-AhuXDVJhj5w" name="init" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMlcmlqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_hQMlc2lqEd-AhuXDVJhj5w" name="body" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMlc2lqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_hQMldGlqEd-AhuXDVJhj5w" name="footer" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMldGlqEd-AhuXDVJhj5w.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_hQMldWlqEd-AhuXDVJhj5w"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_vWBQoGlqEd-AhuXDVJhj5w"
+              called="#_hQMlc2lqEd-AhuXDVJhj5w"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_hQMldmlqEd-AhuXDVJhj5w"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_ilb6EGlqEd-AhuXDVJhj5w" name="b"
+            headerMethod="#_ilb6EWlqEd-AhuXDVJhj5w" footerMethod="#_ilb6FGlqEd-AhuXDVJhj5w"
+            initMethod="#_ilb6EmlqEd-AhuXDVJhj5w">
+          <methods xmi:id="_ilb6EWlqEd-AhuXDVJhj5w" name="header" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6EWlqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_ilb6EmlqEd-AhuXDVJhj5w" name="init" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6EmlqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_ilb6E2lqEd-AhuXDVJhj5w" name="body" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6E2lqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_ilb6FGlqEd-AhuXDVJhj5w" name="footer" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6FGlqEd-AhuXDVJhj5w.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_ilb6FWlqEd-AhuXDVJhj5w"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_sxgsgGlqEd-AhuXDVJhj5w"
+              called="#_ilb6E2lqEd-AhuXDVJhj5w"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_ilb6FmlqEd-AhuXDVJhj5w"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_i77ugGlqEd-AhuXDVJhj5w" name="c"
+            headerMethod="#_i77ugWlqEd-AhuXDVJhj5w" footerMethod="#_i77uhGlqEd-AhuXDVJhj5w"
+            initMethod="#_i77ugmlqEd-AhuXDVJhj5w">
+          <methods xmi:id="_i77ugWlqEd-AhuXDVJhj5w" name="header" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77ugWlqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_i77ugmlqEd-AhuXDVJhj5w" name="init" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77ugmlqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_i77ug2lqEd-AhuXDVJhj5w" name="body" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77ug2lqEd-AhuXDVJhj5w.pt"/>
+          <methods xmi:id="_i77uhGlqEd-AhuXDVJhj5w" name="footer" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77uhGlqEd-AhuXDVJhj5w.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_i77uhWlqEd-AhuXDVJhj5w"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_rAjsQGlqEd-AhuXDVJhj5w"
+              called="#_i77ug2lqEd-AhuXDVJhj5w"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_i77uhmlqEd-AhuXDVJhj5w"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_bb99AGlqEd-AhuXDVJhj5w">
+    <invocations xmi:id="_0DBLQGlqEd-AhuXDVJhj5w" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+      <invocationContractContainer xmi:id="_0DK8QGlqEd-AhuXDVJhj5w">
+        <invocationContracts xmi:id="_0DK8QWlqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_04Ej8GlqEd-AhuXDVJhj5w">
+            <substitutions xmi:id="_6MPPcGluEd-b-N1OAJrVfg" outgoing="#_hQMlcGlqEd-AhuXDVJhj5w"
+                incoming="#_ilb6EGlqEd-AhuXDVJhj5w"/>
+          </type>
+        </invocationContracts>
+        <invocationContracts xmi:id="_0DK8QmlqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_ahgHMEldEd-TSsH7K-_bxQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1MyPsGlqEd-AhuXDVJhj5w">
+            <substitutions xmi:id="_5wE34WluEd-b-N1OAJrVfg" outgoing="#_ilb6EGlqEd-AhuXDVJhj5w"
+                incoming="#_i77ugGlqEd-AhuXDVJhj5w"/>
+          </type>
+        </invocationContracts>
+        <invocationContracts xmi:id="_0DK8Q2lqEd-AhuXDVJhj5w" targetInvocationContract="#_4RevxWlqEd-AhuXDVJhj5w"
+            invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_4RevwGlqEd-AhuXDVJhj5w" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_8FZ3of6eeEd64XYPo3s6sPg">
+      <invocationContractContainer xmi:id="_4RevwWlqEd-AhuXDVJhj5w">
+        <invocationContracts xmi:id="_4RevwmlqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_-GBrkP6eEd64XeYPo3s6sPg">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_9rCOYGlqEd-AhuXDVJhj5w"
+              elements="#_hQMlcGlqEd-AhuXDVJhj5w"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_4Revw2lqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_DgB2IP6fEd64XYPo3s6esPg">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_7uBIEGlqEd-AhuXDVJhj5w" domain="#_XMxYsWlqEd-AhuXDVJhj5w"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_4RevxWlqEd-AhuXDVJhj5w" sourceInvocationContract="#_0DK8Q2lqEd-AhuXDVJhj5w"
+            invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_ftnnoEhpEd-A7KV9v5yLhw"/>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_WRowsGlrEd-AhuXDVJhj5w" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+      <invocationContractContainer xmi:id="_WRowsWlrEd-AhuXDVJhj5w">
+        <invocationContracts xmi:id="_WRowsmlrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_YBGjMGlrEd-AhuXDVJhj5w">
+            <substitutions xmi:id="_YBGjMWlrEd-AhuXDVJhj5w" outgoing="#_ilb6EGlqEd-AhuXDVJhj5w"
+                incoming="#_i77ugGlqEd-AhuXDVJhj5w"/>
+          </type>
+        </invocationContracts>
+        <invocationContracts xmi:id="_WRowtWlrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_ahgHMEldEd-TSsH7K-_bxQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_YYDDkGlrEd-AhuXDVJhj5w">
+            <substitutions xmi:id="_YYDDkWlrEd-AhuXDVJhj5w" outgoing="#_hQMlcGlqEd-AhuXDVJhj5w"
+                incoming="#_ilb6EGlqEd-AhuXDVJhj5w"/>
+          </type>
+        </invocationContracts>
+        <invocationContracts xmi:id="_WRowuGlrEd-AhuXDVJhj5w" targetInvocationContract="#_WRowv2lrEd-AhuXDVJhj5w"
+            invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_WRowuWlrEd-AhuXDVJhj5w" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_8FZ3of6eeEd64XYPo3s6sPg">
+      <invocationContractContainer xmi:id="_WRowumlrEd-AhuXDVJhj5w">
+        <invocationContracts xmi:id="_WRowu2lrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_-GBrkP6eEd64XeYPo3s6sPg">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_WRowvGlrEd-AhuXDVJhj5w"
+              elements="#_hQMlcGlqEd-AhuXDVJhj5w"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_WRowvWlrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_DgB2IP6fEd64XYPo3s6esPg">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_WRowvmlrEd-AhuXDVJhj5w" domain="#_XMxYsWlqEd-AhuXDVJhj5w"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_WRowv2lrEd-AhuXDVJhj5w" sourceInvocationContract="#_WRowuGlrEd-AhuXDVJhj5w"
+            invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_ftnnoEhpEd-A7KV9v5yLhw"/>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

@@ -87,6 +87,10 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;B on Employee&#xA;&#xA;loop with callback finished:&#xA;B on Employee&#xA;&#xA;loop finished:&#xA;B on Company&#xA;&#xA;loop with callback finished:&#xA;B on Company&#xA;&#xA;loop finished:&#xA;B on Test&#xA;&#xA;loop with callback finished:&#xA;B on Test&#xA;&#xA;exec finished:&#xA;B on Employee&#xA;B on Company&#xA;B on Test&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_3.fcore#_WjNeYGimEd-c8qu-Vw7xKQ"/>
     </tests>
+    <tests xsi:type="test:EGFTestCase" name="substitution_4">
+      <result xsi:type="test:ConsoleOutputTestResult" text="c&#xD;&#xA;c&#xD;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_4.fcore#_PoLl4GlqEd-AhuXDVJhj5w"/>
+    </tests>
   </tests>
   <tests xsi:type="test:TestSuite" name="PatternCalls">
     <tests xsi:type="test:EGFTestCase" name="call with parameter">
