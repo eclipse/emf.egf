@@ -22,8 +22,9 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jdt.internal.core.BinaryType;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -47,124 +48,127 @@ import org.eclipse.ui.dialogs.SelectionStatusDialog;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-@SuppressWarnings("restriction")
 public class VariablesEditDialog extends SelectionStatusDialog {
 
-  private Text nameText;
+    private Text _nameText;
 
-  private Text typeText;
+    private Text _typeText;
 
-  private String name;
+    private String _name;
 
-  private String typeName;
+    private String _typeName;
 
-  private String type;
+    private String _type;
 
-  private TransactionalEditingDomain editingDomain;
+    private EditingDomain _editingDomain;
 
-  public VariablesEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
-    super(shell);
-    this.editingDomain = editingDomain;
-    setDefaultValue(selectItem);
-  }
+    private EObject _current;
 
-  private void setDefaultValue(Object selectItem) {
-    if (selectItem instanceof PatternVariable) {
-      PatternVariable PatternVariable = (PatternVariable) selectItem;
-      type = PatternVariable.getType();
-      setValue(PatternVariable);
-    } else if (selectItem instanceof PatternParameter) {
-      PatternParameter patternParameter = (PatternParameter) selectItem;
-      type = patternParameter.getType();
-      setValue(patternParameter);
+    public VariablesEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
+        super(shell);
+        _editingDomain = editingDomain;
+        setDefaultValue(selectItem);
     }
-  }
 
-  private void setValue(NamedModelElement selection) {
-    name = selection.getName();
-    typeName = ParametersTableLabelProvider.getType(type);
-  }
-
-  @Override
-  protected Control createDialogArea(Composite parent) {
-    Composite composite = (Composite) super.createDialogArea(parent);
-    GridLayout layout = new GridLayout();
-    layout.numColumns = 3;
-    composite.setLayout(layout);
-
-    createLabel(composite, Messages.ParametersEditDialog_Name);
-    nameText = new Text(composite, SWT.BORDER);
-    GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-    gd.horizontalSpan = 2;
-    nameText.setLayoutData(gd);
-    nameText.setText(name);
-    nameText.addModifyListener(new ModifyListener() {
-
-      public void modifyText(ModifyEvent e) {
-        name = nameText.getText();
-      }
-    });
-
-    createLabel(composite, Messages.ParametersEditDialog_Type);
-    typeText = new Text(composite, SWT.READ_ONLY | SWT.BORDER);
-    gd = new GridData(GridData.FILL_HORIZONTAL);
-    typeText.setLayoutData(gd);
-    typeText.setText(typeName);
-    typeText.addModifyListener(new ModifyListener() {
-
-      public void modifyText(ModifyEvent e) {
-        typeName = typeText.getText();
-      }
-    });
-    Button typeButton = new Button(composite, SWT.PUSH);
-    gd = new GridData();
-    typeButton.setLayoutData(gd);
-    typeButton.setText(Messages.ParametersEditDialog_Browse);
-    typeButton.addSelectionListener(new SelectionListener() {
-      public void widgetSelected(SelectionEvent e) {
-        OpenTypeWizard wizard = new OpenTypeWizard(editingDomain, type);
-        wizard.init(PlatformUI.getWorkbench(), null);
-        WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-        int returnValue = dialog.open();
-        if (Window.OK == returnValue) {
-          Object selectType = wizard.getSelectType();
-          if (selectType instanceof String) {
-            if (selectType != null && !"".equals(selectType)) {
-              type = (String) selectType;
-              typeText.setText(ParametersTableLabelProvider.getType(type));
-            }
-          } else if (selectType instanceof BinaryType) {
-            if (selectType != null) {
-              type = ((BinaryType) selectType).getFullyQualifiedName();
-              typeText.setText(((BinaryType) selectType).getElementName());
-            }
-          }
+    private void setDefaultValue(Object selectItem) {
+        if (selectItem instanceof PatternVariable) {
+            PatternVariable patternVariable = (PatternVariable) selectItem;
+            _type = patternVariable.getType();
+            _current = patternVariable;
+            setValue(patternVariable);
+        } else if (selectItem instanceof PatternParameter) {
+            PatternParameter patternParameter = (PatternParameter) selectItem;
+            _type = patternParameter.getType();
+            _current = patternParameter;
+            setValue(patternParameter);
         }
+    }
 
-      }
+    private void setValue(NamedModelElement selection) {
+        _name = selection.getName();
+        _typeName = ParametersTableLabelProvider.getType(_type);
+    }
 
-      public void widgetDefaultSelected(SelectionEvent e) {
-      }
-    });
-    return composite;
-  }
+    @Override
+    protected Control createDialogArea(Composite parent) {
+        Composite composite = (Composite) super.createDialogArea(parent);
+        GridLayout layout = new GridLayout();
+        layout.numColumns = 3;
+        composite.setLayout(layout);
 
-  public static Label createLabel(Composite parent, String content) {
-    Label label = new Label(parent, SWT.NONE);
-    label.setText(content);
-    return label;
-  }
+        createLabel(composite, Messages.ParametersEditDialog_Name);
+        _nameText = new Text(composite, SWT.BORDER);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd.horizontalSpan = 2;
+        _nameText.setLayoutData(gd);
+        _nameText.setText(_name);
+        _nameText.addModifyListener(new ModifyListener() {
 
-  public String getName() {
-    return name;
-  }
+            public void modifyText(ModifyEvent e) {
+                _name = _nameText.getText();
+            }
 
-  public String getType() {
-    return type;
-  }
+        });
 
-  @Override
-  protected void computeResult() {
-  }
+        createLabel(composite, Messages.ParametersEditDialog_Type);
+        _typeText = new Text(composite, SWT.READ_ONLY | SWT.BORDER);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        _typeText.setLayoutData(gd);
+        _typeText.setText(_typeName);
+        _typeText.addModifyListener(new ModifyListener() {
+
+            public void modifyText(ModifyEvent e) {
+                _typeName = _typeText.getText();
+            }
+
+        });
+        Button typeButton = new Button(composite, SWT.PUSH);
+        gd = new GridData();
+        typeButton.setLayoutData(gd);
+        typeButton.setText(Messages.ParametersEditDialog_Browse);
+        typeButton.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                OpenTypeWizard wizard = new OpenTypeWizard(_editingDomain, _type, _current);
+                wizard.init(PlatformUI.getWorkbench(), null);
+                WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
+                int returnValue = dialog.open();
+                if (Window.OK == returnValue) {
+                    Object selectType = wizard.getSelectType();
+                    if (selectType instanceof String) {
+                        if ("".equals(selectType) == false) { //$NON-NLS-1$
+                            _type = (String) selectType;
+                            _typeText.setText(ParametersTableLabelProvider.getType(_type));
+                        }
+                    }
+                }
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
+            }
+
+        });
+        return composite;
+    }
+
+    public static Label createLabel(Composite parent, String content) {
+        Label label = new Label(parent, SWT.NONE);
+        label.setText(content);
+        return label;
+    }
+
+    public String getName() {
+        return _name;
+    }
+
+    public String getType() {
+        return _type;
+    }
+
+    @Override
+    protected void computeResult() {
+        // Nothing to do
+    }
 
 }

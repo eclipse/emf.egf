@@ -125,8 +125,8 @@ import org.eclipse.ui.forms.widgets.Section;
  * @author Thomas Guiu
  * 
  */
-@SuppressWarnings("restriction")
 public class SpecificationPage extends PatternEditorPage {
+
     public static final String ID = "SpecificationPage"; //$NON-NLS-1$
 
     private Link parentLink;
@@ -302,6 +302,7 @@ public class SpecificationPage extends PatternEditorPage {
         browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
         browse.setLayoutData(gd);
         browse.addSelectionListener(new SelectionListener() {
+
             public void widgetSelected(SelectionEvent e) {
                 PatternSelectionDialog dialog = new PatternSelectionDialog(e.display.getActiveShell(), false);
                 dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
@@ -311,6 +312,7 @@ public class SpecificationPage extends PatternEditorPage {
                     final Pattern parent = (Pattern) result[0];
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                         @Override
                         protected void doExecute() {
                             getPattern().setSuperPattern(parent);
@@ -334,6 +336,7 @@ public class SpecificationPage extends PatternEditorPage {
             public void widgetSelected(SelectionEvent e) {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                     @Override
                     protected void doExecute() {
                         getPattern().setSuperPattern(null);
@@ -474,8 +477,12 @@ public class SpecificationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         tableViewer = new TableViewer(table);
-        String[] colNames = { Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query };
-        int[] colWidths = { 100, 80, 80 };
+        String[] colNames = {
+                Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query
+        };
+        int[] colWidths = {
+                100, 80, 80
+        };
         for (int i = 0; i < colNames.length; i++) {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
             tableColumn.setWidth(colWidths[i]);
@@ -505,7 +512,9 @@ public class SpecificationPage extends PatternEditorPage {
     private void addDragDrop() {
         if (isReadOnly)
             return;
-        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 if (tableViewer.getSelection() == null) {
@@ -523,7 +532,10 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(tableViewer) {
+        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new ViewerDropAdapter(tableViewer) {
+
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
                 return true;
@@ -618,6 +630,7 @@ public class SpecificationPage extends PatternEditorPage {
                     if (dialog.open() == Window.OK) {
                         TransactionalEditingDomain editingDomain = getEditingDomain();
                         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                             @Override
                             protected void doExecute() {
                                 executeParameterEdit(dialog, selectItem);
@@ -771,6 +784,7 @@ public class SpecificationPage extends PatternEditorPage {
         final Object[] removeThem = ((IStructuredSelection) selection).toArray();
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             @Override
             protected void doExecute() {
                 for (Object object : removeThem) {
@@ -798,6 +812,7 @@ public class SpecificationPage extends PatternEditorPage {
         final Pattern pattern = getPattern();
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             @Override
             protected void doExecute() {
                 PatternParameter newPatternParameter = PatternFactory.eINSTANCE.createPatternParameter();
@@ -841,6 +856,7 @@ public class SpecificationPage extends PatternEditorPage {
     private void updateAllParameters(final BasicEList<PatternParameter> allParametersNew) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
             @Override
             protected void doExecute() {
                 getPattern().getParameters().removeAll(getPattern().getParameters());
@@ -853,13 +869,15 @@ public class SpecificationPage extends PatternEditorPage {
     private void initTableEditor() {
         if (isReadOnly)
             return;
-        tableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID });
+        tableViewer.setColumnProperties(new String[] {
+                NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID
+        });
         final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
         final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
-                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType());
+                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType(), getPattern());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -880,7 +898,9 @@ public class SpecificationPage extends PatternEditorPage {
         queryEditor.setLabelProvider(new ComboListLabelProvider());
         queryEditor.setContenProvider(new CommonListContentProvider());
         setComboViewerInput();
-        tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
+        tableViewer.setCellEditors(new CellEditor[] {
+                nameEditor, typeEditor, queryEditor
+        });
         ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
         tableViewer.setCellModifier(modifier);
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -901,6 +921,7 @@ public class SpecificationPage extends PatternEditorPage {
             if (selectItem instanceof PatternParameter) {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
                     @Override
                     protected void doExecute() {
                         ((PatternParameter) selectItem).setType(selectType);
@@ -947,6 +968,7 @@ public class SpecificationPage extends PatternEditorPage {
         IObservableValue mObs = mprop.observe(getPattern());
 
         UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+
             public IStatus validate(Object value) {
 
                 return Status.OK_STATUS;
@@ -955,6 +977,7 @@ public class SpecificationPage extends PatternEditorPage {
         });
         UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
         modelToTarget.setConverter(new IConverter() {
+
             public Object getToType() {
                 return String.class;
             }
@@ -981,6 +1004,7 @@ public class SpecificationPage extends PatternEditorPage {
         IObservableValue mObs = mprop.observe(getPattern());
 
         UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+
             public IStatus validate(Object value) {
 
                 return Status.OK_STATUS;
@@ -988,6 +1012,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         });
         targetToModel.setConverter(new IConverter() {
+
             public Object getToType() {
                 return EReference.class;
             }
@@ -1008,6 +1033,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
         modelToTarget.setConverter(new IConverter() {
+
             public Object getToType() {
                 return String.class;
             }

@@ -1,27 +1,27 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
 
 package org.eclipse.egf.pattern.ui.editors.wizards;
 
+import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseTypePage;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
@@ -32,30 +32,35 @@ import org.eclipse.ui.IWorkbenchWizard;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-@SuppressWarnings("restriction")
 public class OpenTypeWizard extends Wizard implements INewWizard {
 
-    private ChooseTypePage chooseTypePage;
+    private ChooseTypePage _chooseTypePage;
 
-    private ISelection selection;
+    private Object _selectType;
 
-    private Object selectType;
+    private EditingDomain _editingDomain;
 
-    private TransactionalEditingDomain editingDomain;
+    private String _type;
 
-    private String type;
+    private EObject _current;
 
-    public OpenTypeWizard(TransactionalEditingDomain editingDomain, String type) {
-        this.editingDomain = editingDomain;
-        this.type = type;
+    public OpenTypeWizard(EditingDomain editingDomain, String type) {
+        _editingDomain = editingDomain;
+        _type = type;
+    }
+
+    public OpenTypeWizard(EditingDomain editingDomain, String type, EObject current) {
+        _editingDomain = editingDomain;
+        _type = type;
+        _current = current;
     }
 
     @Override
     public boolean performFinish() {
-        JavaTypeSelectionDialog page = chooseTypePage.getJavaTypePage();
-        if (chooseTypePage.isInCoreTab()) {
-            if (chooseTypePage.getType() != null) {
-                selectType = chooseTypePage.getType();
+        TypeSelectionDialog page = _chooseTypePage.getTypeSelectionDialog();
+        if (_chooseTypePage.isInCoreTab()) {
+            if (_chooseTypePage.getType() != null) {
+                _selectType = _chooseTypePage.getType();
             }
         } else {
             Object[] result = page.getResult();
@@ -64,8 +69,7 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
             }
             result = page.getResult();
             if (result[0] instanceof IType) {
-                selectType = (IType) result[0];
-                // System.out.println(selectType);
+                _selectType = result[0];
             }
         }
         return true;
@@ -78,21 +82,21 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
      * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
      */
     public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this.selection = selection;
+        // Nothing to do
     }
 
     /**
      * Adding the page to the wizard.
      */
+    @Override
     public void addPages() {
-        // set the window's title label
         setWindowTitle(Messages.OpenTypeWizard_window_title);
-        chooseTypePage = new ChooseTypePage(selection, editingDomain, type);
-        addPage(chooseTypePage);
+        _chooseTypePage = new ChooseTypePage(_editingDomain, _type, _current);
+        addPage(_chooseTypePage);
     }
 
     public Object getSelectType() {
-        return selectType;
+        return _selectType;
     }
 
 }
