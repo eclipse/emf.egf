@@ -13,7 +13,6 @@ package org.eclipse.egf.model.editor.wizards;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.commands.InvokeActivityCommand;
 import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
-import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.emf.common.command.Command;
@@ -34,123 +33,119 @@ import org.eclipse.ui.IWorkbench;
  */
 public class InvokeActivityWizard extends Wizard implements INewWizard {
 
-  /**
-   * Remember the selection during initialization for populating the default
-   * container.
-   */
-  protected IStructuredSelection _selection;
+    /**
+     * Remember the selection during initialization for populating the default
+     * container.
+     */
+    protected IStructuredSelection _selection;
 
-  /**
-   * Remember the workbench during initialization.
-   */
-  protected IWorkbench _workbench;
+    /**
+     * Remember the workbench during initialization.
+     */
+    protected IWorkbench _workbench;
 
-  /**
-   * This is the file creation page.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected ActivitySelectionWizardPage _activitySelectionWizardPage;
+    /**
+     * This is the file creation page.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected ActivitySelectionPage _activitySelectionPage;
 
-  public boolean _isCanceled;
+    public boolean _isCanceled;
 
-  protected ProductionPlan getProductionPlan() {
-    if (_selection == null || _selection.size() != 1) {
-      return null;
-    }
-    Object object = _selection.getFirstElement();
-    if (object instanceof ProductionPlan) {
-      return (ProductionPlan) object;
-    }
-    return null;
-  }
-
-  /**
-   * This just records the information.
-   */
-  public void init(IWorkbench workbench, IStructuredSelection selection) {
-    _workbench = workbench;
-    _selection = selection;
-    setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_Invoke_Activity_label")); //$NON-NLS-1$
-    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
-    setNeedsProgressMonitor(true);
-  }
-
-  /**
-   * The <code>Wizard</code> implementation of this <code>IWizard</code>
-   * method does nothing and returns <code>true</code>. Subclasses should
-   * reimplement this method if they need to perform any special cancel
-   * processing for their wizard.
-   */
-  @Override
-  public boolean performCancel() {
-    _isCanceled = true;
-    return true;
-  }
-
-  public void finishWizardDialog() {
-    if (getContainer() instanceof EGFWizardDialog) {
-      ((EGFWizardDialog) getContainer()).finishDialog();
-    }
-    // DO nothing
-    return;
-  }
-
-  /**
-   * The framework calls this to create the contents of the wizard.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void addPages() {
-    _activitySelectionWizardPage = new ActivitySelectionWizardPage() {
-      @Override
-      protected String getHeaderMessage() {
-        return ModelEditorMessages.FilteredItemsSelectionDialog_patternLabel;
-      }
-    };
-    _activitySelectionWizardPage.setTitle(ModelEditorMessages.InvokeActivityWizard_Activity_title);
-    _activitySelectionWizardPage.setDescription(ModelEditorMessages.InvokeActivityWizard_Activity_description);
-    addPage(_activitySelectionWizardPage);
-  }
-
-  /**
-   * Do the work after everything is specified.
-   */
-  @Override
-  public boolean performFinish() {
-    // Activity to import
-    Object[] result = _activitySelectionWizardPage.getResult();
-    if (result == null || result.length == 0) {
-      return true;
-    }
-    Activity activity = (Activity) result[0];
-    // Target
-    ProductionPlan productionPlan = getProductionPlan();
-    if (productionPlan == null) {
-      return true;
-    }
-    // Current Editing Domain
-    EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(productionPlan);
-    if (domain == null) {
-      return false;
-    }
-    final Command[] command = new Command[] { new InvokeActivityCommand(domain, productionPlan, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true)) };
-    // Are we facing a TransactionalEditingDomain ?
-    if (domain instanceof TransactionalEditingDomain) {
-      domain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) domain) {
-        @Override
-        protected void doExecute() {
-          // Nothing to do
+    protected ProductionPlan getProductionPlan() {
+        if (_selection == null || _selection.size() != 1) {
+            return null;
         }
-      }.chain(command[0]));
-    } else {
-      domain.getCommandStack().execute(command[0]);
+        Object object = _selection.getFirstElement();
+        if (object instanceof ProductionPlan) {
+            return (ProductionPlan) object;
+        }
+        return null;
     }
-    return true;
-  }
+
+    /**
+     * This just records the information.
+     */
+    public void init(IWorkbench workbench, IStructuredSelection selection) {
+        _workbench = workbench;
+        _selection = selection;
+        setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_Invoke_Activity_label")); //$NON-NLS-1$
+        setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
+        setNeedsProgressMonitor(true);
+    }
+
+    /**
+     * The <code>Wizard</code> implementation of this <code>IWizard</code>
+     * method does nothing and returns <code>true</code>. Subclasses should
+     * reimplement this method if they need to perform any special cancel
+     * processing for their wizard.
+     */
+    @Override
+    public boolean performCancel() {
+        _isCanceled = true;
+        return true;
+    }
+
+    public void finishWizardDialog() {
+        if (getContainer() instanceof EGFWizardDialog) {
+            ((EGFWizardDialog) getContainer()).finishDialog();
+        }
+        // DO nothing
+        return;
+    }
+
+    /**
+     * The framework calls this to create the contents of the wizard.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public void addPages() {
+        _activitySelectionPage = new ActivitySelectionPage();
+        addPage(_activitySelectionPage);
+    }
+
+    /**
+     * Do the work after everything is specified.
+     */
+    @Override
+    public boolean performFinish() {
+        // Activity to import
+        Object result = _activitySelectionPage.getActivitySelectionDialog().getFirstResult();
+        if (result instanceof Activity == false) {
+            return true;
+        }
+        Activity activity = (Activity) result;
+        // Target
+        ProductionPlan productionPlan = getProductionPlan();
+        if (productionPlan == null) {
+            return true;
+        }
+        // Current Editing Domain
+        EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(productionPlan);
+        if (domain == null) {
+            return false;
+        }
+        final Command[] command = new Command[] {
+            new InvokeActivityCommand(domain, productionPlan, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true))
+        };
+        // Are we facing a TransactionalEditingDomain ?
+        if (domain instanceof TransactionalEditingDomain) {
+            domain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) domain) {
+
+                @Override
+                protected void doExecute() {
+                    // Nothing to do
+                }
+            }.chain(command[0]));
+        } else {
+            domain.getCommandStack().execute(command[0]);
+        }
+        return true;
+    }
 }
