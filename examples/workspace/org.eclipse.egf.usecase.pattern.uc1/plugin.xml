@@ -39,7 +39,7 @@
       </fcore>
    </extension>
    <extension
-         point="org.eclipse.egf.query">
+         point="org.eclipse.egf.pattern.query">
       <query
             class="org.eclipse.egf.usecase.pattern.uc1.query.ContentQuery"
             id="org.eclipse.egf.usecase.pattern.uc1.query1"
