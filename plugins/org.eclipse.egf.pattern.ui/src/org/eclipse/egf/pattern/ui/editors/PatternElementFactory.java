@@ -29,21 +29,30 @@ import org.eclipse.ui.IMemento;
  */
 public class PatternElementFactory implements IElementFactory {
 
+    public static final String ID = "org.eclipse.egf.pattern.ui.pattern.factory.id"; //$NON-NLS-1$
+
     public IAdaptable createElement(IMemento memento) {
+
         final String patternId = memento.getString(PatternEditorInput.PATTERN_ID);
+
         final String patternMethodId = memento.getString(PatternMethodEditorInput.PATTERN_METHOD_ID);
+
         final String resourceURI = memento.getString(PatternEditorInput.RESSOURCE_URI);
-        if (patternId == null && patternMethodId == null && resourceURI == null)
+
+        if (patternId == null && patternMethodId == null && resourceURI == null) {
             return null;
+        }
         URI uri = URI.createURI(resourceURI);
         TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-
         Resource res = editingDomain.getResourceSet().getResource(uri, true);
-        if (patternId != null)
+        if (patternId != null) {
             return new PatternEditorInput(res, patternId);
-        if (patternMethodId != null)
+        }
+        if (patternMethodId != null) {
             return new PatternMethodEditorInput(res, patternMethodId);
+        }
         throw new IllegalStateException();
+
     }
 
 }

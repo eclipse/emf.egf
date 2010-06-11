@@ -164,7 +164,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
         }
 
         public String getFactoryId() {
-            return "org.eclipse.egf.pattern.ui.pattern.factory.id"; //$NON-NLS-1$
+            return PatternElementFactory.ID;
         }
 
     }
