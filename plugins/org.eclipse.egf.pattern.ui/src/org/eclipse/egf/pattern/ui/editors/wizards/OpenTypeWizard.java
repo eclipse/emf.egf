@@ -63,13 +63,9 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
                 _selectType = _chooseTypePage.getType();
             }
         } else {
-            Object[] result = page.getResult();
-            if (result == null) {
-                page.computeResult();
-            }
-            result = page.getResult();
-            if (result[0] instanceof IType) {
-                _selectType = result[0];
+            Object result = page.getFirstResult();
+            if (result instanceof IType) {
+                _selectType = result;
             }
         }
         return true;
