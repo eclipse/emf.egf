@@ -45,7 +45,7 @@ public class CoreUIMessages {
 
     public static String _UI_FilteredItemsSelectionDialog_platformSeparatorLabel;
 
-    public static String _UI_FilteredItemsSelectionDialog_projectSeparatorLabel;
+    public static String _UI_FilteredItemsSelectionDialog_workspaceSeparatorLabel;
 
     public static String EGFGeneralPreferencePage_Title;
 
