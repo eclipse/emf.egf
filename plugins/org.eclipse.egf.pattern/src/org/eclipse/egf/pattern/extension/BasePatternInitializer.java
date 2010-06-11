@@ -15,18 +15,12 @@
 
 package org.eclipse.egf.pattern.extension;
 
-import java.io.File;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.common.util.URI;
@@ -57,9 +51,6 @@ public abstract class BasePatternInitializer implements PatternInitializer {
             String methodName = method.getName();
             if (PatternFactory.HEADER_METHOD_NAME.equals(methodName) || PatternFactory.INIT_METHOD_NAME.equals(methodName) || PatternFactory.FOOTER_METHOD_NAME.equals(methodName)) {
                 IFile outputFile = getFile(method);
-                // if (outputFile.exists()) {
-                // copeyToHistoryFolder(outputFile);
-                // }
                 createFileContent(outputFile, method);
             }
         }
@@ -80,41 +71,6 @@ public abstract class BasePatternInitializer implements PatternInitializer {
         } catch (CoreException e) {
             throw new PatternException(e);
 
-        }
-    }
-
-    private void copeyToHistoryFolder(IFile outputFile) {
-        String location = outputFile.getLocation().toString();
-        int locationIndex = location.lastIndexOf("/");
-        String historyLocation = location.substring(0, locationIndex) + "/_bak/";
-
-        // Find the file folder of history files, if not exist, create one,
-        // otherwise, delete all the files in it.
-        File historyFileFolder = new File(historyLocation);
-        String fileName = outputFile.getName();
-        if (!historyFileFolder.exists()) {
-            historyFileFolder.mkdir();
-        } else {
-            deleteFile(historyLocation, fileName);
-        }
-
-        String fullPath = outputFile.getFullPath().toString();
-        int fullPathIndex = fullPath.lastIndexOf("/");
-        String historyFilePath = fullPath.substring(0, fullPathIndex) + "/_bak/" + fileName;
-
-        try {
-            outputFile.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
-            IPath path = new Path(historyFilePath);
-            outputFile.copy(path, true, null);
-        } catch (CoreException e) {
-            Activator.getDefault().logWarning(e);
-        }
-    }
-
-    private void deleteFile(String location, String fileName) {
-        File file = new File(location + fileName);
-        if (file.exists()) {
-            file.delete();
         }
     }
 
