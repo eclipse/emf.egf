@@ -88,6 +88,7 @@ public class PatternMethodEditorInput implements IFileEditorInput {
         return Messages.input_tooltip;
     }
 
+    @SuppressWarnings("unchecked")
     public Object getAdapter(Class adapter) {
         if (IFile.class == adapter) {
             return getFile();

@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -31,6 +31,7 @@ import org.eclipse.ui.texteditor.ITextEditorActionConstants;
  * 
  */
 public class PatternTemplateEditorContributor extends MultiPageEditorActionBarContributor {
+
     private IEditorPart activeEditorPart;
 
     /**
@@ -54,18 +55,15 @@ public class PatternTemplateEditorContributor extends MultiPageEditorActionBarCo
      * (non-JavaDoc)
      * Method declared in AbstractMultiPageEditorActionBarContributor.
      */
-
+    @Override
     public void setActivePage(IEditorPart part) {
-        if (activeEditorPart == part)
+        if (activeEditorPart == part) {
             return;
-
+        }
         activeEditorPart = part;
-
         IActionBars actionBars = getActionBars();
         if (actionBars != null) {
-
             ITextEditor editor = (part instanceof ITextEditor) ? (ITextEditor) part : null;
-
             actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), getAction(editor, ITextEditorActionConstants.DELETE));
             actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), getAction(editor, ITextEditorActionConstants.UNDO));
             actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), getAction(editor, ITextEditorActionConstants.REDO));
@@ -80,11 +78,16 @@ public class PatternTemplateEditorContributor extends MultiPageEditorActionBarCo
     }
 
     private void createActions() {
+        // Do nothing
     }
 
+    @Override
     public void contributeToMenu(IMenuManager manager) {
+        // Do nothing
     }
 
+    @Override
     public void contributeToToolBar(IToolBarManager manager) {
+        // Do nothing
     }
 }

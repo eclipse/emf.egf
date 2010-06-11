@@ -41,7 +41,6 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     }
 
     public boolean exists() {
-
         return true;
     }
 
@@ -54,7 +53,6 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     }
 
     public ImageDescriptor getImageDescriptor() {
-
         return null;
     }
 
@@ -66,15 +64,14 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     }
 
     public String getName() {
-
         return getPatternMethod().getName();
     }
 
     public IPersistableElement getPersistable() {
-
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     public Object getAdapter(Class adapter) {
         return null;
     }

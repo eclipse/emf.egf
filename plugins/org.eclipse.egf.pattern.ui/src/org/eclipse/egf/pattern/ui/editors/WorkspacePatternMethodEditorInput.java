@@ -38,8 +38,8 @@ public class WorkspacePatternMethodEditorInput extends RuntimePatternMethodEdito
 
     }
 
+    @Override
     public IStorage getStorage() throws CoreException {
-
         return getFile();
     }
 

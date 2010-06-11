@@ -41,7 +41,6 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
     }
 
     public IStorage getStorage() throws CoreException {
-
         return new MyStorage();
     }
 
@@ -68,12 +67,11 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
         }
 
         public boolean isReadOnly() {
-
             return true;
         }
 
+        @SuppressWarnings("unchecked")
         public Object getAdapter(Class adapter) {
-
             return null;
         }
 
