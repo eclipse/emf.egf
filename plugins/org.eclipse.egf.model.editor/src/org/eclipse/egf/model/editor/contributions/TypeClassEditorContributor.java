@@ -45,62 +45,65 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  */
 public class TypeClassEditorContributor extends DefaultPropertyEditorContributor {
 
-  public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    // It should be a TypeClass in a non null resource
-    if (object instanceof TypeClass == false || ((TypeClass) object).eResource() == null) {
-      return false;
+    public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
+        // It should be a TypeClass in a non null resource
+        if (object instanceof TypeClass == false || ((TypeClass) object).eResource() == null) {
+            return false;
+        }
+        // Check Current Feature
+        if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && ((TypeClass) object).eContainer() instanceof Contract) {
+            return true;
+        }
+        return false;
     }
-    // Check Current Feature
-    if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && ((TypeClass) object).eContainer() instanceof Contract) {
-      return true;
+
+    public CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
+
+        return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
+
+            @Override
+            protected Object openDialogBox(Control cellEditorWindow) {
+                // Current TypeClass
+                TypeClass typeClass = (TypeClass) object;
+                // IProject lookup
+                IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(typeClass.eResource().getURI().segment(1));
+                if (project == null) {
+                    return null;
+                }
+                // IJavaProject lookup
+                IJavaProject javaProject = null;
+                try {
+                    if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+                        javaProject = JavaCore.create(project);
+                    }
+                } catch (CoreException ce) {
+                    ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), ce);
+                    return null;
+                }
+                if (javaProject == null) {
+                    return null;
+                }
+                // Dialog
+                try {
+                    SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
+                    if (dialog.open() != IDialogConstants.OK_ID) {
+                        return null;
+                    }
+                    Object[] innerResult = dialog.getResult();
+                    if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
+                        return ((IType) innerResult[0]).getFullyQualifiedName();
+                    }
+                } finally {
+                    try {
+                        javaProject.close();
+                    } catch (JavaModelException jme) {
+                        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), jme);
+                    }
+                }
+                return null;
+            }
+
+        };
+
     }
-    return false;
-  }
-
-  public CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
-
-    return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
-      @Override
-      protected Object openDialogBox(Control cellEditorWindow) {
-        // Current TypeClass
-        TypeClass typeClass = (TypeClass) object;
-        // IProject lookup
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(typeClass.eResource().getURI().segment(1));
-        if (project == null) {
-          return null;
-        }
-        // IJavaProject lookup
-        IJavaProject javaProject = null;
-        try {
-          if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
-            javaProject = JavaCore.create(project);
-          }
-        } catch (CoreException ce) {
-          ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), ce);
-          return null;
-        }
-        if (javaProject == null) {
-          return null;
-        }
-        // Dialog
-        try {
-          SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
-          if (dialog.open() != IDialogConstants.OK_ID) {
-            return null;
-          }
-          Object[] innerResult = dialog.getResult();
-          if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
-            return ((IType) innerResult[0]).getFullyQualifiedName();
-          }
-        } finally {
-          try {
-            javaProject.close();
-          } catch (JavaModelException jme) {
-            ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), jme);
-          }
-        }
-        return null;
-      }
-    };
-  }
 }

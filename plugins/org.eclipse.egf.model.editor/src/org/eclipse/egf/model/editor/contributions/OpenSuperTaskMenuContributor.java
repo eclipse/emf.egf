@@ -26,38 +26,40 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
 
-  public static final String OPEN_SUPER_TASK_ACTION_ID = "open-super-task"; //$NON-NLS-1$  
+    public static final String OPEN_SUPER_TASK_ACTION_ID = "open-super-task"; //$NON-NLS-1$  
 
-  private final OpenAction _openAction = new OpenAction(OPEN_SUPER_TASK_ACTION_ID) {
+    protected final OpenAction _openAction = new OpenAction(OPEN_SUPER_TASK_ACTION_ID) {
+
+        @Override
+        protected EObject getEObject() {
+            if (_selection == null) {
+                return null;
+            }
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
+            if (sselection.size() != 1) {
+                return null;
+            }
+            Object object = sselection.getFirstElement();
+            if (object instanceof Task) {
+                Task task = (Task) object;
+                return task.getSuperTask();
+            }
+            return null;
+        }
+
+    };
+
     @Override
-    protected EObject getEObject() {
-      if (_selection == null) {
-        return null;
-      }
-      IStructuredSelection sselection = (IStructuredSelection) _selection;
-      if (sselection.size() != 1) {
-        return null;
-      }
-      Object object = sselection.getFirstElement();
-      if (object instanceof Task) {
-        Task task = (Task) object;
-        return task.getSuperTask();
-      }
-      return null;
+    protected String getText() {
+        if (getOpenAction().isAlreadyOpenedEditor()) {
+            return ModelEditorMessages.TaskMenuContributor_selectAction_label;
+        }
+        return ModelEditorMessages.TaskMenuContributor_openAction_label;
     }
-  };
 
-  @Override
-  protected String getText() {
-    if (getOpenAction().isAlreadyOpenedEditor()) {
-      return ModelEditorMessages.TaskMenuContributor_selectAction_label;
+    @Override
+    protected OpenAction getOpenAction() {
+        return _openAction;
     }
-    return ModelEditorMessages.TaskMenuContributor_openAction_label;
-  }
-
-  @Override
-  protected OpenAction getOpenAction() {
-    return _openAction;
-  }
 
 }

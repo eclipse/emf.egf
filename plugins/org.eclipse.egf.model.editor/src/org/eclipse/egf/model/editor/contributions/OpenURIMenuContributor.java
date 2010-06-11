@@ -31,7 +31,7 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
 
     public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
 
-    private final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
+    protected final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
 
         @Override
         public boolean isEnabled() {

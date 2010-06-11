@@ -26,38 +26,40 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class OpenActivityMenuContributor extends OpenEObjectMenuContributor {
 
-  public static final String OPEN_ACTIVITY_ACTION_ID = "open-activity"; //$NON-NLS-1$  
+    public static final String OPEN_ACTIVITY_ACTION_ID = "open-activity"; //$NON-NLS-1$  
 
-  private final OpenAction _openAction = new OpenAction(OPEN_ACTIVITY_ACTION_ID) {
+    protected final OpenAction _openAction = new OpenAction(OPEN_ACTIVITY_ACTION_ID) {
+
+        @Override
+        protected EObject getEObject() {
+            if (_selection == null) {
+                return null;
+            }
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
+            if (sselection.size() != 1) {
+                return null;
+            }
+            Object object = sselection.getFirstElement();
+            if (object instanceof Invocation) {
+                Invocation invocation = (Invocation) object;
+                return invocation.getInvokedActivity();
+            }
+            return null;
+        }
+
+    };
+
     @Override
-    protected EObject getEObject() {
-      if (_selection == null) {
-        return null;
-      }
-      IStructuredSelection sselection = (IStructuredSelection) _selection;
-      if (sselection.size() != 1) {
-        return null;
-      }
-      Object object = sselection.getFirstElement();
-      if (object instanceof Invocation) {
-        Invocation invocation = (Invocation) object;
-        return invocation.getInvokedActivity();
-      }
-      return null;
+    protected String getText() {
+        if (getOpenAction().isAlreadyOpenedEditor()) {
+            return ModelEditorMessages.ActivityMenuContributor_selectAction_label;
+        }
+        return ModelEditorMessages.ActivityMenuContributor_openAction_label;
     }
-  };
 
-  @Override
-  protected String getText() {
-    if (getOpenAction().isAlreadyOpenedEditor()) {
-      return ModelEditorMessages.ActivityMenuContributor_selectAction_label;
+    @Override
+    protected OpenAction getOpenAction() {
+        return _openAction;
     }
-    return ModelEditorMessages.ActivityMenuContributor_openAction_label;
-  }
-
-  @Override
-  protected OpenAction getOpenAction() {
-    return _openAction;
-  }
 
 }
