@@ -107,7 +107,7 @@ public class CodegenFcoreUtil {
 
         URI emfPatternBaseResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore", true); //$NON-NLS-1$
         emfPatternBaseResource = editingDomain.getResourceSet().getResource(emfPatternBaseResourceURI, true);
-        URI mdpstResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore", true); //$NON-NLS-1$
+        URI mdpstResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore", true); //$NON-NLS-1$
         mdpstResource = editingDomain.getResourceSet().getResource(mdpstResourceURI, true);
 
         fcoreProject = fcore.getProject();
