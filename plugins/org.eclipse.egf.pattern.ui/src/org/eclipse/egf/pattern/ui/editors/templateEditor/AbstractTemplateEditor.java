@@ -56,9 +56,9 @@ import org.eclipse.pde.core.IBaseModel;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.internal.core.ICoreConstants;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
 import org.eclipse.pde.internal.ui.editor.plugin.ManifestEditor;
-import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -419,7 +419,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     }
 
     public void filterUselessExtension(IProject project, NullProgressMonitor monitor) {
-        IFile plugInFile = project.getFile(PDEModelUtility.F_PLUGIN);
+        IFile plugInFile = project.getFile(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR);
         if (plugInFile.exists()) {
             IWorkbench workbench = PlatformUI.getWorkbench();
             IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();

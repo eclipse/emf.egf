@@ -45,12 +45,12 @@ import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginImport;
 import org.eclipse.pde.core.plugin.IPluginLibrary;
 import org.eclipse.pde.core.plugin.IPluginObject;
+import org.eclipse.pde.internal.core.ICoreConstants;
 import org.eclipse.pde.internal.core.ibundle.IBundle;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
 import org.eclipse.pde.internal.core.plugin.WorkspaceExtensionsModel;
 import org.eclipse.pde.internal.core.text.bundle.BundleSymbolicNameHeader;
-import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 import org.osgi.framework.Constants;
 
 /**
@@ -58,163 +58,167 @@ import org.osgi.framework.Constants;
  */
 public class ConvertPluginProjectOperation extends ConvertProjectOperation {
 
-  public static final String JET_NATURE_ID = "org.eclipse.jet.jet2Nature";
+    public static final String JET_NATURE_ID = "org.eclipse.jet.jet2Nature";
 
-  private static final String PLUGIN_ID = "org.eclipse.jet";
-  private static final String EXTENSION_NAME = "transform";
-  private static final String EXTENSION_POINT_ID = PLUGIN_ID + "." + EXTENSION_NAME;
+    private static final String PLUGIN_ID = "org.eclipse.jet";
 
-  private int K_SOURCE = 1;
+    private static final String EXTENSION_NAME = "transform";
 
-  private boolean _hasJetNature;
+    private static final String EXTENSION_POINT_ID = PLUGIN_ID + "." + EXTENSION_NAME;
 
-  private IProject _project;
+    private int K_SOURCE = 1;
 
-  private IPlatformBundle platformBundle;
+    private boolean _hasJetNature;
 
-  public ConvertPluginProjectOperation(IProject project, IPlatformBundle platformBundle) {
-    super(project, false, false);
-    this._project = project;
-    this.platformBundle = platformBundle;
-  }
+    private IProject _project;
 
-  @Override
-  public List<String> addDependencies() {
-    return super.addDependencies();
-  }
+    private IPlatformBundle platformBundle;
 
-  @Override
-  public List<String> addSourceFolders() {
-    return super.addSourceFolders();
-  }
+    public ConvertPluginProjectOperation(IProject project, IPlatformBundle platformBundle) {
+        super(project, false, false);
+        this._project = project;
+        this.platformBundle = platformBundle;
+    }
 
-  @Override
-  public void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
+    @Override
+    public List<String> addDependencies() {
+        return super.addDependencies();
+    }
 
-    IPluginBase pluginBase = platformBundle.getPluginBase();
-    IPluginImport[] imports = pluginBase.getImports();
-    IPluginLibrary[] libraries = pluginBase.getLibraries();
-    IProject project = platformBundle.getProject();
+    @Override
+    public List<String> addSourceFolders() {
+        return super.addSourceFolders();
+    }
 
-    // Copy the original manifest, see manageManifestFile
-    IFile pluginFile = project.getFile(PDEModelUtility.F_MANIFEST_FP);
-    IFile plugin = _project.getFile(PDEModelUtility.F_MANIFEST_FP);
-    if (plugin.exists() == false) {
-      if (pluginFile.exists()) {
-        IFolder folder = _project.getFolder(EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
-        if (folder == null) {
-          throw new IllegalStateException();
+    @Override
+    public void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
+
+        IPluginBase pluginBase = platformBundle.getPluginBase();
+        IPluginImport[] imports = pluginBase.getImports();
+        IPluginLibrary[] libraries = pluginBase.getLibraries();
+        IProject project = platformBundle.getProject();
+
+        // Copy the original manifest, see manageManifestFile
+        IFile pluginFile = project.getFile(ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR);
+        IFile plugin = _project.getFile(ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR);
+        if (plugin.exists() == false) {
+            if (pluginFile.exists()) {
+                IFolder folder = _project.getFolder(EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
+                if (folder == null) {
+                    throw new IllegalStateException();
+                }
+                if (folder.exists() == false) {
+                    folder.create(true, true, monitor);
+                }
+                pluginFile.copy(plugin.getFullPath(), true, monitor);
+            }
         }
-        if (folder.exists() == false) {
-          folder.create(true, true, monitor);
+
+        super.execute(monitor);
+
+        _hasJetNature = false;
+        IProjectDescription description = _project.getDescription();
+        String[] natureIds = description.getNatureIds();
+        for (String natureID : natureIds) {
+            if (natureID.equals(JET_NATURE_ID)) {
+                _hasJetNature = true;
+            }
         }
-        pluginFile.copy(plugin.getFullPath(), true, monitor);
-      }
-    }
 
-    super.execute(monitor);
-
-    _hasJetNature = false;
-    IProjectDescription description = _project.getDescription();
-    String[] natureIds = description.getNatureIds();
-    for (String natureID : natureIds) {
-      if (natureID.equals(JET_NATURE_ID)) {
-        _hasJetNature = true;
-      }
-    }
-
-    if (_hasJetNature == false) {
-      EclipseBuilderHelper.addNature(description, JET_NATURE_ID, monitor);
-      _project.setDescription(description, monitor);
-    }
-
-    addLinkedSource(project, _project, monitor);
-  }
-
-  protected void fireStructureChanged(IPluginObject child, WorkspaceExtensionsModel workspaceExtensionModel, int changeType) {
-    IModel model = workspaceExtensionModel;
-    if (model.isEditable() && model instanceof IModelChangeProvider) {
-      IModelChangedEvent e = new ModelChangedEvent((IModelChangeProvider) model, changeType, new Object[] { child }, null);
-      if (model.isEditable() && model instanceof IModelChangeProvider) {
-        IModelChangeProvider provider = (IModelChangeProvider) model;
-        provider.fireModelChanged(e);
-      }
-    }
-  }
-
-  @Override
-  protected void manageManifestFile(IBundlePluginModelBase model) throws CoreException {
-    IBundle bundle = model.getBundleModel().getBundle();
-    // Patch copied manifest
-    String pluginId = getValidId(_project.getName());
-    String pluginName = createInitialName(pluginId);
-    // Bundle Name
-    bundle.setHeader(Constants.BUNDLE_NAME, pluginName);
-    // Bundle Symbolic Name
-    IManifestHeader header = bundle.getManifestHeader(Constants.BUNDLE_SYMBOLICNAME);
-    if (header != null && header instanceof BundleSymbolicNameHeader) {
-      BundleSymbolicNameHeader symbolic = (BundleSymbolicNameHeader) header;
-      if (symbolic.getId() == null || symbolic.getId().trim().length() == 0) {
-        symbolic.setId(pluginId);
-      }
-      if (symbolic.isSingleton() == false) {
-        symbolic.setSingleton(true);
-      }
-    } else {
-      bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, pluginId + ";singleton:=true"); //$NON-NLS-1$
-    }
-  }
-
-  private void addLinkedSource(IProject userProject, IProject tempProject, IProgressMonitor monitor) throws CoreException {
-    List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();
-    IJavaProject userJavaProject = JavaCore.create(userProject);
-    IJavaProject tempJavaProject = JavaCore.create(tempProject);
-    try {
-      IPackageFragmentRoot[] allPackageFragmentRoots = userJavaProject.getAllPackageFragmentRoots();
-
-      CPListElement[] existing = CPListElement.createFromExisting(tempJavaProject);
-      List<CPListElement> cpListElements = new ArrayList<CPListElement>();
-      for (CPListElement elment : existing) {
-        cpListElements.add(elment);
-      }
-
-      if (allPackageFragmentRoots != null && allPackageFragmentRoots.length > 0) {
-        for (IPackageFragmentRoot packageFragmentRoot : allPackageFragmentRoots) {
-          int kind = packageFragmentRoot.getKind();
-          if (kind == K_SOURCE) {
-
-            IClasspathEntry rawClasspathEntry = packageFragmentRoot.getRawClasspathEntry();
-            IPath fullPath = packageFragmentRoot.getResource().getLocation();
-            IPath path = rawClasspathEntry.getPath();
-            IPath removeLastSegments = path.removeLastSegments(path.segmentCount() - 1);
-            IPath pathFolder = path.removeFirstSegments(path.segmentCount() - 1);
-            pathFolder = createFolder(fullPath, pathFolder.toString(), tempProject, monitor);
-
-            CPListElement newEntrie = new CPListElement(tempJavaProject, IClasspathEntry.CPE_SOURCE);
-            newEntrie.setLinkTarget(fullPath);
-            newEntrie.setPath(pathFolder);
-            newEntrie.setExported(true);
-
-            cpListElements.add(newEntrie);
-          }
+        if (_hasJetNature == false) {
+            EclipseBuilderHelper.addNature(description, JET_NATURE_ID, monitor);
+            _project.setDescription(description, monitor);
         }
-      }
-      BuildPathsBlock.flush(cpListElements, tempJavaProject.getOutputLocation(), tempJavaProject, null, monitor);
-    } finally {
-      userJavaProject.close();
-      tempJavaProject.close();
-    }
-  }
 
-  private IPath createFolder(IPath path, String fName, IProject tempProject, IProgressMonitor monitor) throws CoreException {
-    String folderName = fName;
-    IFolder tempFolder = tempProject.getFolder(folderName);
-    IPath fullPath = tempFolder.getFullPath();
-    if (tempFolder.exists()) {
-      folderName = "temp" + folderName;
-      fullPath = createFolder(path, folderName, tempProject, monitor);
+        addLinkedSource(project, _project, monitor);
     }
-    return fullPath;
-  }
+
+    protected void fireStructureChanged(IPluginObject child, WorkspaceExtensionsModel workspaceExtensionModel, int changeType) {
+        IModel model = workspaceExtensionModel;
+        if (model.isEditable() && model instanceof IModelChangeProvider) {
+            IModelChangedEvent e = new ModelChangedEvent((IModelChangeProvider) model, changeType, new Object[] {
+                child
+            }, null);
+            if (model.isEditable() && model instanceof IModelChangeProvider) {
+                IModelChangeProvider provider = (IModelChangeProvider) model;
+                provider.fireModelChanged(e);
+            }
+        }
+    }
+
+    @Override
+    protected void manageManifestFile(IBundlePluginModelBase model) throws CoreException {
+        IBundle bundle = model.getBundleModel().getBundle();
+        // Patch copied manifest
+        String pluginId = getValidId(_project.getName());
+        String pluginName = createInitialName(pluginId);
+        // Bundle Name
+        bundle.setHeader(Constants.BUNDLE_NAME, pluginName);
+        // Bundle Symbolic Name
+        IManifestHeader header = bundle.getManifestHeader(Constants.BUNDLE_SYMBOLICNAME);
+        if (header != null && header instanceof BundleSymbolicNameHeader) {
+            BundleSymbolicNameHeader symbolic = (BundleSymbolicNameHeader) header;
+            if (symbolic.getId() == null || symbolic.getId().trim().length() == 0) {
+                symbolic.setId(pluginId);
+            }
+            if (symbolic.isSingleton() == false) {
+                symbolic.setSingleton(true);
+            }
+        } else {
+            bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, pluginId + ";singleton:=true"); //$NON-NLS-1$
+        }
+    }
+
+    private void addLinkedSource(IProject userProject, IProject tempProject, IProgressMonitor monitor) throws CoreException {
+        List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();
+        IJavaProject userJavaProject = JavaCore.create(userProject);
+        IJavaProject tempJavaProject = JavaCore.create(tempProject);
+        try {
+            IPackageFragmentRoot[] allPackageFragmentRoots = userJavaProject.getAllPackageFragmentRoots();
+
+            CPListElement[] existing = CPListElement.createFromExisting(tempJavaProject);
+            List<CPListElement> cpListElements = new ArrayList<CPListElement>();
+            for (CPListElement elment : existing) {
+                cpListElements.add(elment);
+            }
+
+            if (allPackageFragmentRoots != null && allPackageFragmentRoots.length > 0) {
+                for (IPackageFragmentRoot packageFragmentRoot : allPackageFragmentRoots) {
+                    int kind = packageFragmentRoot.getKind();
+                    if (kind == K_SOURCE) {
+
+                        IClasspathEntry rawClasspathEntry = packageFragmentRoot.getRawClasspathEntry();
+                        IPath fullPath = packageFragmentRoot.getResource().getLocation();
+                        IPath path = rawClasspathEntry.getPath();
+                        IPath removeLastSegments = path.removeLastSegments(path.segmentCount() - 1);
+                        IPath pathFolder = path.removeFirstSegments(path.segmentCount() - 1);
+                        pathFolder = createFolder(fullPath, pathFolder.toString(), tempProject, monitor);
+
+                        CPListElement newEntrie = new CPListElement(tempJavaProject, IClasspathEntry.CPE_SOURCE);
+                        newEntrie.setLinkTarget(fullPath);
+                        newEntrie.setPath(pathFolder);
+                        newEntrie.setExported(true);
+
+                        cpListElements.add(newEntrie);
+                    }
+                }
+            }
+            BuildPathsBlock.flush(cpListElements, tempJavaProject.getOutputLocation(), tempJavaProject, null, monitor);
+        } finally {
+            userJavaProject.close();
+            tempJavaProject.close();
+        }
+    }
+
+    private IPath createFolder(IPath path, String fName, IProject tempProject, IProgressMonitor monitor) throws CoreException {
+        String folderName = fName;
+        IFolder tempFolder = tempProject.getFolder(folderName);
+        IPath fullPath = tempFolder.getFullPath();
+        if (tempFolder.exists()) {
+            folderName = "temp" + folderName;
+            fullPath = createFolder(path, folderName, tempProject, monitor);
+        }
+        return fullPath;
+    }
 
 }
