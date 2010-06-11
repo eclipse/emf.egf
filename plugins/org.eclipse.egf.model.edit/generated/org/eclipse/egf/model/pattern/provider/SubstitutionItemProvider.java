@@ -37,12 +37,13 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Substitution} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.model.pattern.Substitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -51,6 +52,7 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public SubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -61,6 +63,7 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -68,42 +71,43 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addOutgoingPropertyDescriptor(object);
-            addIncomingPropertyDescriptor(object);
+            addReplacedElementPropertyDescriptor(object);
+            addReplacementPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Outgoing feature.
+     * This adds a property descriptor for the Replaced Element feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
-    protected void addOutgoingPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_outgoing_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_Substitution_outgoing_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.SUBSTITUTION__OUTGOING, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
-                null));
+    protected void addReplacedElementPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_replacedElement_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Substitution_replacedElement_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.SUBSTITUTION__REPLACED_ELEMENT, true, false, true, null, null, null));
     }
 
     /**
-     * This adds a property descriptor for the Incoming feature.
+     * This adds a property descriptor for the Replacement feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
-    protected void addIncomingPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_incoming_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_Substitution_incoming_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.SUBSTITUTION__INCOMING, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
-                null));
+    protected void addReplacementPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_replacement_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Substitution_replacement_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.SUBSTITUTION__REPLACEMENT, true, false, true, null, null, null));
     }
 
     /**
      * This returns Substitution.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -124,8 +128,8 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
         String activity = null;
         String container = null;
         String name = null;
-        if (substitution.getOutgoing() != null) {
-            EObject root = EcoreUtil.getRootContainer(substitution.getOutgoing(), true);
+        if (substitution.getReplacedElement() != null) {
+            EObject root = EcoreUtil.getRootContainer(substitution.getReplacedElement(), true);
             // Outgoing Activity
             if (root != null) {
                 IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(root, IItemLabelProvider.class);
@@ -136,16 +140,16 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
                 }
             }
             // Outgoing Library
-            if (substitution.getOutgoing().getContainer() != null) {
-                IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(substitution.getOutgoing().getContainer(), IItemLabelProvider.class);
+            if (substitution.getReplacedElement().getContainer() != null) {
+                IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(substitution.getReplacedElement().getContainer(), IItemLabelProvider.class);
                 if (provider == null) {
-                    container = EMFHelper.getText(substitution.getOutgoing().getContainer());
+                    container = EMFHelper.getText(substitution.getReplacedElement().getContainer());
                 } else {
-                    container = provider.getText(substitution.getOutgoing().getContainer());
+                    container = provider.getText(substitution.getReplacedElement().getContainer());
                 }
             }
             // Outgoing Name
-            name = substitution.getOutgoing().getName();
+            name = substitution.getReplacedElement().getName();
         }
         String label = "[" + getString("_UI_Substitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         if (name != null && name.trim().length() != 0) {
@@ -161,30 +165,28 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to
+     * update any cached
+     * children and by creating a viewer notification, which it passes to
+     * {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(Substitution.class)) {
-        case PatternPackage.SUBSTITUTION__OUTGOING:
-        case PatternPackage.SUBSTITUTION__INCOMING:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-        }
         super.notifyChanged(notification);
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+     * describing the children
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -196,6 +198,7 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

@@ -53,9 +53,7 @@ public final class EGFModelPlugin extends EMFPlugin {
      * @generated NOT
      */
     public EGFModelPlugin() {
-        super(new ResourceLocator[] {
-            EcorePlugin.INSTANCE,
-        });
+        super(new ResourceLocator[] { EcorePlugin.INSTANCE, });
     }
 
     /**

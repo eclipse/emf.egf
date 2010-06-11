@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getReplacedElement <em>Replaced Element</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getReplacement <em>Replacement</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,24 +52,24 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     protected int flags = 0;
 
     /**
-     * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference.
+     * The cached value of the '{@link #getReplacedElement() <em>Replaced Element</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getOutgoing()
+     * @see #getReplacedElement()
      * @generated
      * @ordered
      */
-    protected Pattern outgoing;
+    protected Pattern replacedElement;
 
     /**
-     * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
+     * The cached value of the '{@link #getReplacement() <em>Replacement</em>}' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIncoming()
+     * @see #getReplacement()
      * @generated
      * @ordered
      */
-    protected EList<Pattern> incoming;
+    protected EList<Pattern> replacement;
 
     /**
      * <!-- begin-user-doc -->
@@ -97,16 +97,16 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Pattern getOutgoing() {
-        if (outgoing != null && outgoing.eIsProxy()) {
-            InternalEObject oldOutgoing = (InternalEObject) outgoing;
-            outgoing = (Pattern) eResolveProxy(oldOutgoing);
-            if (outgoing != oldOutgoing) {
+    public Pattern getReplacedElement() {
+        if (replacedElement != null && replacedElement.eIsProxy()) {
+            InternalEObject oldReplacedElement = (InternalEObject) replacedElement;
+            replacedElement = (Pattern) eResolveProxy(oldReplacedElement);
+            if (replacedElement != oldReplacedElement) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.SUBSTITUTION__OUTGOING, oldOutgoing, outgoing));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.SUBSTITUTION__REPLACED_ELEMENT, oldReplacedElement, replacedElement));
             }
         }
-        return outgoing;
+        return replacedElement;
     }
 
     /**
@@ -114,8 +114,8 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Pattern basicGetOutgoing() {
-        return outgoing;
+    public Pattern basicGetReplacedElement() {
+        return replacedElement;
     }
 
     /**
@@ -123,11 +123,11 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOutgoing(Pattern newOutgoing) {
-        Pattern oldOutgoing = outgoing;
-        outgoing = newOutgoing;
+    public void setReplacedElement(Pattern newReplacedElement) {
+        Pattern oldReplacedElement = replacedElement;
+        replacedElement = newReplacedElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.SUBSTITUTION__OUTGOING, oldOutgoing, outgoing));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.SUBSTITUTION__REPLACED_ELEMENT, oldReplacedElement, replacedElement));
     }
 
     /**
@@ -135,11 +135,11 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<Pattern> getIncoming() {
-        if (incoming == null) {
-            incoming = new EObjectResolvingEList<Pattern>(Pattern.class, this, PatternPackage.SUBSTITUTION__INCOMING);
+    public EList<Pattern> getReplacement() {
+        if (replacement == null) {
+            replacement = new EObjectResolvingEList<Pattern>(Pattern.class, this, PatternPackage.SUBSTITUTION__REPLACEMENT);
         }
-        return incoming;
+        return replacement;
     }
 
     /**
@@ -150,12 +150,12 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__OUTGOING:
+        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
             if (resolve)
-                return getOutgoing();
-            return basicGetOutgoing();
-        case PatternPackage.SUBSTITUTION__INCOMING:
-            return getIncoming();
+                return getReplacedElement();
+            return basicGetReplacedElement();
+        case PatternPackage.SUBSTITUTION__REPLACEMENT:
+            return getReplacement();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -169,12 +169,12 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__OUTGOING:
-            setOutgoing((Pattern) newValue);
+        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+            setReplacedElement((Pattern) newValue);
             return;
-        case PatternPackage.SUBSTITUTION__INCOMING:
-            getIncoming().clear();
-            getIncoming().addAll((Collection<? extends Pattern>) newValue);
+        case PatternPackage.SUBSTITUTION__REPLACEMENT:
+            getReplacement().clear();
+            getReplacement().addAll((Collection<? extends Pattern>) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -188,11 +188,11 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__OUTGOING:
-            setOutgoing((Pattern) null);
+        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+            setReplacedElement((Pattern) null);
             return;
-        case PatternPackage.SUBSTITUTION__INCOMING:
-            getIncoming().clear();
+        case PatternPackage.SUBSTITUTION__REPLACEMENT:
+            getReplacement().clear();
             return;
         }
         super.eUnset(featureID);
@@ -206,10 +206,10 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.SUBSTITUTION__OUTGOING:
-            return outgoing != null;
-        case PatternPackage.SUBSTITUTION__INCOMING:
-            return incoming != null && !incoming.isEmpty();
+        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+            return replacedElement != null;
+        case PatternPackage.SUBSTITUTION__REPLACEMENT:
+            return replacement != null && !replacement.isEmpty();
         }
         return super.eIsSet(featureID);
     }

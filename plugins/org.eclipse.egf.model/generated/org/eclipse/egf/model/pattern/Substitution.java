@@ -23,8 +23,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Substitution#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Substitution#getReplacedElement <em>Replaced Element</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Substitution#getReplacement <em>Replacement</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,45 +35,45 @@ import org.eclipse.emf.common.util.EList;
 public interface Substitution extends ModelElement {
 
     /**
-     * Returns the value of the '<em><b>Outgoing</b></em>' reference.
+     * Returns the value of the '<em><b>Replaced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Outgoing</em>' reference isn't clear,
+     * If the meaning of the '<em>Replaced Element</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Outgoing</em>' reference.
-     * @see #setOutgoing(Pattern)
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Outgoing()
+     * @return the value of the '<em>Replaced Element</em>' reference.
+     * @see #setReplacedElement(Pattern)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_ReplacedElement()
      * @model
      * @generated
      */
-    Pattern getOutgoing();
+    Pattern getReplacedElement();
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Substitution#getReplacedElement <em>Replaced Element</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Outgoing</em>' reference.
-     * @see #getOutgoing()
+     * @param value the new value of the '<em>Replaced Element</em>' reference.
+     * @see #getReplacedElement()
      * @generated
      */
-    void setOutgoing(Pattern value);
+    void setReplacedElement(Pattern value);
 
     /**
-     * Returns the value of the '<em><b>Incoming</b></em>' reference list.
+     * Returns the value of the '<em><b>Replacement</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.egf.model.pattern.Pattern}.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Incoming</em>' reference list isn't clear,
+     * If the meaning of the '<em>Replacement</em>' reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Incoming</em>' reference list.
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Incoming()
+     * @return the value of the '<em>Replacement</em>' reference list.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Replacement()
      * @model
      * @generated
      */
-    EList<Pattern> getIncoming();
+    EList<Pattern> getReplacement();
 
 } // Substitution

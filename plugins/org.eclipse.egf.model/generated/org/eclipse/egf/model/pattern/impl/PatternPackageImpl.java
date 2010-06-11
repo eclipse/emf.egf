@@ -866,7 +866,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getSubstitution_Outgoing() {
+    public EReference getSubstitution_ReplacedElement() {
         return (EReference) substitutionEClass.getEStructuralFeatures().get(0);
     }
 
@@ -875,7 +875,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getSubstitution_Incoming() {
+    public EReference getSubstitution_Replacement() {
         return (EReference) substitutionEClass.getEStructuralFeatures().get(1);
     }
 
@@ -1022,8 +1022,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         createEReference(typePatternSubstitutionEClass, TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS);
 
         substitutionEClass = createEClass(SUBSTITUTION);
-        createEReference(substitutionEClass, SUBSTITUTION__OUTGOING);
-        createEReference(substitutionEClass, SUBSTITUTION__INCOMING);
+        createEReference(substitutionEClass, SUBSTITUTION__REPLACED_ELEMENT);
+        createEReference(substitutionEClass, SUBSTITUTION__REPLACEMENT);
 
         // Create data types
         patternContextEDataType = createEDataType(PATTERN_CONTEXT);
@@ -1239,8 +1239,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         addEParameter(op, this.getPattern(), "pattern", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(substitutionEClass, Substitution.class, "Substitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getSubstitution_Outgoing(), this.getPattern(), null, "outgoing", null, 0, 1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getSubstitution_Incoming(), this.getPattern(), null, "incoming", null, 0, -1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSubstitution_ReplacedElement(), this.getPattern(), null, "replacedElement", null, 0, 1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSubstitution_Replacement(), this.getPattern(), null, "replacement", null, 0, -1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         // Initialize data types
         initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

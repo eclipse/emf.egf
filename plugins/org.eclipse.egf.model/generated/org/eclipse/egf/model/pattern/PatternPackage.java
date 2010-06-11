@@ -1719,22 +1719,22 @@ public interface PatternPackage extends EPackage {
     int SUBSTITUTION__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Outgoing</b></em>' reference.
+     * The feature id for the '<em><b>Replaced Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__OUTGOING = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+    int SUBSTITUTION__REPLACED_ELEMENT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Incoming</b></em>' reference list.
+     * The feature id for the '<em><b>Replacement</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__INCOMING = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+    int SUBSTITUTION__REPLACEMENT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Substitution</em>' class.
@@ -2437,26 +2437,26 @@ public interface PatternPackage extends EPackage {
     EClass getSubstitution();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Substitution#getReplacedElement <em>Replaced Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Outgoing</em>'.
-     * @see org.eclipse.egf.model.pattern.Substitution#getOutgoing()
+     * @return the meta object for the reference '<em>Replaced Element</em>'.
+     * @see org.eclipse.egf.model.pattern.Substitution#getReplacedElement()
      * @see #getSubstitution()
      * @generated
      */
-    EReference getSubstitution_Outgoing();
+    EReference getSubstitution_ReplacedElement();
 
     /**
-     * Returns the meta object for the reference list '{@link org.eclipse.egf.model.pattern.Substitution#getIncoming <em>Incoming</em>}'.
+     * Returns the meta object for the reference list '{@link org.eclipse.egf.model.pattern.Substitution#getReplacement <em>Replacement</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Incoming</em>'.
-     * @see org.eclipse.egf.model.pattern.Substitution#getIncoming()
+     * @return the meta object for the reference list '<em>Replacement</em>'.
+     * @see org.eclipse.egf.model.pattern.Substitution#getReplacement()
      * @see #getSubstitution()
      * @generated
      */
-    EReference getSubstitution_Incoming();
+    EReference getSubstitution_Replacement();
 
     /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -3139,22 +3139,20 @@ public interface PatternPackage extends EPackage {
         EClass SUBSTITUTION = eINSTANCE.getSubstitution();
 
         /**
-         * The meta object literal for the '<em><b>Outgoing</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Replaced Element</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        @SuppressWarnings("hiding")
-        EReference SUBSTITUTION__OUTGOING = eINSTANCE.getSubstitution_Outgoing();
+        EReference SUBSTITUTION__REPLACED_ELEMENT = eINSTANCE.getSubstitution_ReplacedElement();
 
         /**
-         * The meta object literal for the '<em><b>Incoming</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Replacement</b></em>' reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        @SuppressWarnings("hiding")
-        EReference SUBSTITUTION__INCOMING = eINSTANCE.getSubstitution_Incoming();
+        EReference SUBSTITUTION__REPLACEMENT = eINSTANCE.getSubstitution_Replacement();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.

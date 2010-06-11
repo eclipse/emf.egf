@@ -34,13 +34,13 @@ public class SubstitutionAdapter extends AdapterImpl {
 
     private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
-    private EStructuralFeature _substitutionOutgoingFeature = PatternPackage.Literals.SUBSTITUTION__OUTGOING;
+    private EStructuralFeature _substitutionReplacedElementFeature = PatternPackage.Literals.SUBSTITUTION__REPLACED_ELEMENT;
 
     private AdapterImpl _nameAdapter = new AdapterImpl() {
         @Override
         public void notifyChanged(Notification msg) {
             if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
-                _substitution.eNotify(new ENotificationImpl((InternalEObject) _substitution, -1, _substitutionOutgoingFeature, null, null) {
+                _substitution.eNotify(new ENotificationImpl((InternalEObject) _substitution, -1, _substitutionReplacedElementFeature, null, null) {
                     @Override
                     public boolean isTouch() {
                         return true;
@@ -58,7 +58,7 @@ public class SubstitutionAdapter extends AdapterImpl {
 
     @Override
     public void notifyChanged(Notification notification) {
-        if (notification.getFeature() == null || notification.getFeature().equals(_substitutionOutgoingFeature)) {
+        if (notification.getFeature() == null || notification.getFeature().equals(_substitutionReplacedElementFeature)) {
             switch (notification.getEventType()) {
             case Notification.SET:
             case Notification.RESOLVE:

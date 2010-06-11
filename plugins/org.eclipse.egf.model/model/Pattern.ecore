@@ -198,8 +198,8 @@
         eType="#//Substitution" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Substitution" eSuperTypes="Fcore.ecore#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" eType="#//Pattern"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="replacedElement" eType="#//Pattern"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="replacement" upperBound="-1"
         eType="#//Pattern"/>
   </eClassifiers>
 </ecore:EPackage>
