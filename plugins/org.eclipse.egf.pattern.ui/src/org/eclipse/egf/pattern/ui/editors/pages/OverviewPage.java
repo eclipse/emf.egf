@@ -34,7 +34,6 @@ import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
-import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ContainerLibrarySelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
@@ -110,15 +109,20 @@ public class OverviewPage extends PatternEditorPage {
     /**
      * Check whether the editor is on a read only pattern.
      */
-    private void checkReadOnlyModel() {
-        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        if (editorInput.isReadOnly() == false) {
-            return;
+    @Override
+    protected void checkReadOnlyModel() {
+        if (isReadOnly()) {
+            setEnabled(false);
+        } else {
+            setEnabled(true);
         }
-        nameText.setEnabled(false);
-        fullNameText.setEnabled(false);
-        description.setEnabled(false);
-        browse.setEnabled(false);
+    }
+
+    private void setEnabled(boolean enabled) {
+        nameText.setEnabled(enabled);
+        fullNameText.setEnabled(enabled);
+        description.setEnabled(enabled);
+        browse.setEnabled(enabled);
     }
 
     @Override
@@ -139,8 +143,6 @@ public class OverviewPage extends PatternEditorPage {
         createLeftContainer(toolkit, body);
         createRightContainer(toolkit, body);
         createDescriptionContainer(toolkit, body);
-
-        checkReadOnlyModel();
 
         form.reflow(true);
 
@@ -450,6 +452,7 @@ public class OverviewPage extends PatternEditorPage {
             bindContainer();
             patternNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID, nameText);
         }
+        checkReadOnlyModel();
     }
 
     @Override

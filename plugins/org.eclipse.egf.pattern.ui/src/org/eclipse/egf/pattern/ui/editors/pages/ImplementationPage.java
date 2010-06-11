@@ -180,8 +180,6 @@ public class ImplementationPage extends PatternEditorPage {
 
     private boolean isChangOrchestrationeOrder;
 
-    private boolean isReadOnly;
-
     private static final String VARIABLE_NAME_DEFAULT_VALUE = "variable"; //$NON-NLS-1$
 
     private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
@@ -196,8 +194,6 @@ public class ImplementationPage extends PatternEditorPage {
 
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
-        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        isReadOnly = editorInput.isReadOnly();
         mmng = managedForm.getMessageManager();
 
         FormToolkit toolkit = managedForm.getToolkit();
@@ -217,30 +213,34 @@ public class ImplementationPage extends PatternEditorPage {
         Composite containerRight = createComposite(toolkit, form);
         createOrchestrationSection(toolkit, containerRight);
 
-        checkReadOnlyModel();
-
         form.reflow(true);
     }
 
     /**
      * Check whether the editor is on a read only pattern.
      */
-    private void checkReadOnlyModel() {
-        if (!isReadOnly) {
-            return;
+    @Override
+    protected void checkReadOnlyModel() {
+        if (isReadOnly()) {
+            setEnabled(false);
+        } else {
+            setEnabled(true);
         }
-        methodsAdd.setEnabled(false);
-        methodsEdit.setEnabled(false);
-        methodsRemove.setEnabled(false);
+    }
 
-        orchestrationAdd.setEnabled(false);
-        orchestrationEdit.setEnabled(false);
-        orchestrationUp.setEnabled(false);
-        orchestrationDown.setEnabled(false);
+    private void setEnabled(boolean enabled) {
+        methodsAdd.setEnabled(enabled);
+        methodsEdit.setEnabled(enabled);
+        methodsRemove.setEnabled(enabled);
 
-        variablesAdd.setEnabled(false);
-        variablesEdit.setEnabled(false);
-        variablesRemove.setEnabled(false);
+        orchestrationAdd.setEnabled(enabled);
+        orchestrationEdit.setEnabled(enabled);
+        orchestrationUp.setEnabled(enabled);
+        orchestrationDown.setEnabled(enabled);
+
+        variablesAdd.setEnabled(enabled);
+        variablesEdit.setEnabled(enabled);
+        variablesRemove.setEnabled(enabled);
     }
 
     private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
@@ -422,7 +422,7 @@ public class ImplementationPage extends PatternEditorPage {
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                if (isReadOnly)
+                if (isReadOnly())
                     return;
                 setMethodsButtonsStatus();
                 CCombo control = (CCombo) nameEditor.getControl();
@@ -441,7 +441,7 @@ public class ImplementationPage extends PatternEditorPage {
      * Add drag and drop listener to methodsTableViewer.
      */
     private void addDragDropForMethodsTable() {
-        if (isReadOnly)
+        if (isReadOnly())
             return;
 
         methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
@@ -494,7 +494,7 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void initMethodsTableEditor() {
-        if (isReadOnly)
+        if (isReadOnly())
             return;
         methodsTableViewer.setColumnProperties(new String[] {
             NAME_COLUMN_ID
@@ -815,6 +815,7 @@ public class ImplementationPage extends PatternEditorPage {
         }
     }
 
+    @SuppressWarnings("unused")
     private void openMethodTemplate1(String methodId) {
         Pattern pattern = getPattern();
         String editor = TemplateExtensionRegistry.getEditor(pattern);
@@ -888,7 +889,7 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                if (isReadOnly)
+                if (isReadOnly())
                     return;
                 setOrchestrationButtonsStatus();
             }
@@ -897,7 +898,7 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
-                if (isReadOnly)
+                if (isReadOnly())
                     return;
                 openOrchestrationWizard();
             }
@@ -910,7 +911,7 @@ public class ImplementationPage extends PatternEditorPage {
      * Add drag and drop listener to orchTableViewer.
      */
     private void addDragDropForOrchestrationTable() {
-        if (isReadOnly)
+        if (isReadOnly())
             return;
         orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
@@ -1181,7 +1182,7 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     protected void exectuteOrchestrationAdd(OrchestrationWizard wizard) {
-        List selectCallList = new ArrayList();
+        List<Call> selectCallList = new ArrayList<Call>();
         if (wizard.getDefaultKind() == CallTypeEnum.Add && wizard.getSelectCall() instanceof MethodCall) {
             selectCallList = wizard.getSelectMethodCallList();
         } else {
@@ -1367,13 +1368,13 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void initVariablesTableEditor() {
-        if (isReadOnly)
+        if (isReadOnly())
             return;
         variablesTableViewer.setColumnProperties(new String[] {
                 NAME_COLUMN_ID, TYPE_COLUMN_ID
         });
-        final TextCellEditor nameEditor = new TextCellEditor(variablesTableViewer.getTable());
-        final DialogCellEditor typeEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
+        final TextCellEditor textCellEditor = new TextCellEditor(variablesTableViewer.getTable());
+        final DialogCellEditor dialogCellEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
@@ -1393,7 +1394,7 @@ public class ImplementationPage extends PatternEditorPage {
             }
         };
         variablesTableViewer.setCellEditors(new CellEditor[] {
-                nameEditor, typeEditor
+                textCellEditor, dialogCellEditor
         });
         variablesTableViewer.setCellModifier(new VariablesTableCellModifier(getEditingDomain(), variablesTableViewer));
 
@@ -1694,6 +1695,7 @@ public class ImplementationPage extends PatternEditorPage {
             bindVariablesTableViewer(pattern);
             variableNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID, variablesTableViewer.getTable());
         }
+        checkReadOnlyModel();
     }
 
     void bindMethodsTable(Pattern pattern) {

@@ -47,7 +47,6 @@ import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.contributions.EditHelper;
-import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog;
@@ -172,8 +171,6 @@ public class SpecificationPage extends PatternEditorPage {
 
     private ComboBoxViewerCellEditor queryEditor;
 
-    private boolean isReadOnly;
-
     private LiveValidationContentAdapter parameterNameEmptyValidationAdapter;
 
     private IMessageManager messageManager;
@@ -188,18 +185,24 @@ public class SpecificationPage extends PatternEditorPage {
     /**
      * Check whether the editor is on a read only pattern.
      */
-    private void checkReadOnlyModel() {
-        if (isReadOnly == false) {
-            return;
+    @Override
+    protected void checkReadOnlyModel() {
+        if (isReadOnly()) {
+            setEnabled(true);
+        } else {
+            setEnabled(true);
         }
-        browse.setEnabled(false);
-        removeParent.setEnabled(false);
-        add.setEnabled(false);
-        edit.setEnabled(false);
-        remove.setEnabled(false);
-        up.setEnabled(false);
-        down.setEnabled(false);
-        combo.setEnabled(false);
+    }
+
+    private void setEnabled(boolean enabled) {
+        browse.setEnabled(enabled);
+        removeParent.setEnabled(enabled);
+        add.setEnabled(enabled);
+        edit.setEnabled(enabled);
+        remove.setEnabled(enabled);
+        up.setEnabled(enabled);
+        down.setEnabled(enabled);
+        combo.setEnabled(enabled);
     }
 
     protected void openParentPatternEditor() {
@@ -208,9 +211,6 @@ public class SpecificationPage extends PatternEditorPage {
 
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
-
-        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        isReadOnly = editorInput.isReadOnly();
 
         FormToolkit toolkit = managedForm.getToolkit();
         messageManager = managedForm.getMessageManager();
@@ -228,8 +228,6 @@ public class SpecificationPage extends PatternEditorPage {
         createPatternNatureSection(toolkit, body);
 
         createParametersSection(toolkit, body);
-
-        checkReadOnlyModel();
 
         form.reflow(true);
 
@@ -481,7 +479,7 @@ public class SpecificationPage extends PatternEditorPage {
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                if (isReadOnly) {
+                if (isReadOnly()) {
                     return;
                 }
                 setButtonsStatus();
@@ -508,7 +506,7 @@ public class SpecificationPage extends PatternEditorPage {
      * Add drag and drop listener to tableViewer.
      */
     private void addDragDrop() {
-        if (isReadOnly)
+        if (isReadOnly())
             return;
         tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
@@ -878,7 +876,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void initTableEditor() {
-        if (isReadOnly)
+        if (isReadOnly())
             return;
         tableViewer.setColumnProperties(new String[] {
                 NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID
@@ -902,6 +900,7 @@ public class SpecificationPage extends PatternEditorPage {
                 }
                 return null;
             }
+
         };
         queryEditor = new ComboBoxViewerCellEditor(tableViewer.getTable(), SWT.NONE);
         queryEditor.setLabelProvider(new ComboListLabelProvider());
@@ -914,6 +913,7 @@ public class SpecificationPage extends PatternEditorPage {
         tableViewer.setCellModifier(modifier);
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+            @SuppressWarnings("unchecked")
             public void selectionChanged(SelectionChangedEvent event) {
                 List availableQueries = IQuery.INSTANCE.getAvailableQueries();
                 availableQueries.add(0, ""); //$NON-NLS-1$
@@ -943,6 +943,7 @@ public class SpecificationPage extends PatternEditorPage {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void setComboViewerInput() {
         List availableQueries = IQuery.INSTANCE.getAvailableQueries();
         availableQueries.add(0, ""); //$NON-NLS-1$
@@ -969,9 +970,10 @@ public class SpecificationPage extends PatternEditorPage {
             bindTableViewer();
             parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapeter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
         }
+        checkReadOnlyModel();
     }
 
-    void bindParent() {
+    protected void bindParent() {
         IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__SUPER_PATTERN);
         IWidgetValueProperty textProp = WidgetProperties.text();
         IObservableValue uiObs = textProp.observeDelayed(400, parentLink);

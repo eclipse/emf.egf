@@ -67,17 +67,24 @@ public abstract class PatternEditorPage extends FormPage {
         bindings.add(binding);
     }
 
+    protected boolean isReadOnly() {
+        return ((PatternEditorInput) getEditorInput()).isReadOnly();
+    }
+
+    protected abstract void checkReadOnlyModel();
+
     protected abstract void bind();
 
     protected abstract void doCreateFormContent(IManagedForm managedForm);
 
     public final void rebind() {
-        if (!bindings.isEmpty()) {
+        if (bindings.isEmpty() == false) {
             ctx.getValidationRealm().asyncExec(new Runnable() {
 
                 public void run() {
-                    for (Binding binding : bindings)
+                    for (Binding binding : bindings) {
                         ctx.removeBinding(binding);
+                    }
                     bindings.clear();
                     bind();
                 }

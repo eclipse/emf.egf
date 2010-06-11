@@ -96,9 +96,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                for (PatternEditorPage page : pages) {
-                    page.rebind();
-                }
                 addPatternChangeAdapter();
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
@@ -107,6 +104,9 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                         firePropertyChange(IEditorPart.PROP_DIRTY);
                         setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
                         firePropertyChange(PROP_TITLE);
+                        for (PatternEditorPage page : pages) {
+                            page.rebind();
+                        }
                     }
 
                 });
@@ -135,9 +135,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                for (PatternEditorPage page : pages) {
-                    page.rebind();
-                }
                 addPatternChangeAdapter();
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
@@ -146,6 +143,9 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                         firePropertyChange(IEditorPart.PROP_DIRTY);
                         setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
                         firePropertyChange(PROP_TITLE);
+                        for (PatternEditorPage page : pages) {
+                            page.rebind();
+                        }
                     }
 
                 });
