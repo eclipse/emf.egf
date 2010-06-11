@@ -310,8 +310,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
     }
 
-    public ActivitySelectionDialog(Shell parentShell, IPlatformFcore fcore, boolean multipleSelection) {
-        this(parentShell, multipleSelection);
+    public ActivitySelectionDialog(Shell shell, IPlatformFcore fcore, boolean multipleSelection) {
+        this(shell, multipleSelection);
         if (fcore != null) {
             _fcores = new IPlatformFcore[] {
                 fcore
@@ -320,8 +320,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         }
     }
 
-    public ActivitySelectionDialog(Shell parentShell, Activity activity, boolean multipleSelection) {
-        super(parentShell, multipleSelection);
+    public ActivitySelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
+        super(shell, multipleSelection);
         // Retrieve our EditingDomain
         _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
         if (activity != null) {
@@ -347,8 +347,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         }
     }
 
-    public ActivitySelectionDialog(Shell parentShell, boolean multipleSelection) {
-        this(parentShell, (Activity) null, multipleSelection);
+    public ActivitySelectionDialog(Shell shell, boolean multipleSelection) {
+        this(shell, (Activity) null, multipleSelection);
     }
 
     /**

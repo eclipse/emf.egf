@@ -50,12 +50,18 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IActionDelegate2;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.progress.IProgressConstants;
 
 public class GlobalRunActivityAction extends Action implements IWorkbenchWindowActionDelegate, IActionDelegate2 {
+
+    /**
+     * Current shell
+     */
+    private Shell _shell;
 
     /**
      * Activities to validate (if any)
@@ -81,7 +87,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         _validates = null;
 
         // 1 - Activity Selection
-        ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
+        ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(_shell, false);
         activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
         int result = activityDialog.open();
         if (result != IDialogConstants.OK_ID) {
@@ -289,7 +295,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     }
 
     public void init(IWorkbenchWindow window) {
-        // do nothing.
+        _shell = window.getShell();
     }
 
     public void selectionChanged(IAction action, ISelection selection) {

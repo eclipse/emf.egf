@@ -55,11 +55,17 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.progress.IProgressConstants;
 
 public class RunActivityAction implements IObjectActionDelegate {
+
+    /**
+     * Current shell
+     */
+    private Shell _shell;
 
     private IPlatformFcore _fcore;
 
@@ -76,7 +82,7 @@ public class RunActivityAction implements IObjectActionDelegate {
 
         // 1 - Activity Selection
         if (_fcore != null) {
-            ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), _fcore, false);
+            ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(_shell, _fcore, false);
             activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
             int result = activityDialog.open();
             if (result != IDialogConstants.OK_ID) {
@@ -144,6 +150,7 @@ public class RunActivityAction implements IObjectActionDelegate {
                             public void run() {
                                 EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
                             }
+
                         });
                     }
                     if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
@@ -322,7 +329,7 @@ public class RunActivityAction implements IObjectActionDelegate {
     }
 
     public void setActivePart(IAction action, IWorkbenchPart activePart) {
-        // Nothing to do
+        _shell = activePart.getSite().getShell();
     }
 
 }

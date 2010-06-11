@@ -28,8 +28,8 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class FactoryComponentSelectionDialog extends ActivitySelectionDialog {
 
-  public FactoryComponentSelectionDialog(Shell parentShell, Activity activity, boolean multipleSelection) {
-    super(parentShell, activity, multipleSelection);
+  public FactoryComponentSelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
+    super(shell, activity, multipleSelection);
     setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, FactoryComponent.class.getSimpleName()));
     setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, FactoryComponent.class.getSimpleName()));
   }

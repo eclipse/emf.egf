@@ -16,7 +16,6 @@
 package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
-import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -42,8 +41,8 @@ public class InvocationEditorContributor extends DefaultPropertyEditorContributo
         return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
 
             @Override
-            protected Object openDialogBox(Control cellEditorWindow) {
-                ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelEditorPlugin.getActiveWorkbenchShell(), invocation.getInvokedActivity(), false);
+            protected Object openDialogBox(Control control) {
+                ActivitySelectionDialog dialog = new ActivitySelectionDialog(control.getShell(), invocation.getInvokedActivity(), false);
                 dialog.open();
                 Object[] innerResult = dialog.getResult();
                 if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {

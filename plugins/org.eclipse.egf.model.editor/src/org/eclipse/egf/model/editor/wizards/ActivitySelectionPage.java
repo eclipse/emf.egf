@@ -42,7 +42,7 @@ public class ActivitySelectionPage extends WizardPage {
         Composite container = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
-        _dialog = new ActivitySelectionDialog(getShell(), false);
+        _dialog = new ActivitySelectionDialog(parent.getShell(), false);
         _dialog.createPage(container);
         container.addDisposeListener(new DisposeListener() {
 
