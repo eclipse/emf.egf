@@ -116,6 +116,8 @@ public class JavaPatternExtension extends PatternExtension implements Refactorin
             if (newContent == null)
                 throw new PatternException(Messages.refactoring_error1);
             FileHelper.setContent(methodFile, newContent);
+            // Delete previous generated java file
+            PatternExtension.deleteJavaFile(project, JavaNatureHelper.getPackageName(pattern), oldName);
         } catch (java.util.regex.PatternSyntaxException e) {
             throw new PatternException(e);
         } catch (CoreException e) {

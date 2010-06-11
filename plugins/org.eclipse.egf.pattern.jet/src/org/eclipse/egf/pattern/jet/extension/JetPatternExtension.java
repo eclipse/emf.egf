@@ -51,7 +51,6 @@ public class JetPatternExtension extends PatternExtension implements Refactoring
 
     @Override
     public String canTranslate(Pattern pattern) {
-
         String canTranslate = super.canTranslate(pattern);
         if (canTranslate == null) {
             try {
@@ -81,20 +80,17 @@ public class JetPatternExtension extends PatternExtension implements Refactoring
 
     @Override
     protected PatternInitializer doCreateInitializer(IProject project, Pattern pattern) {
-
         return new JetPatternInitializer(project, pattern);
     }
 
     @Override
     protected AdapterFactory getAdapterFactory() {
-
         return new JetPatternItemProviderAdapterFactory();
     }
 
     // ************************** Refactoring stuff *************************
     @Override
     public RefactoringManager getRefactoringManager() {
-
         return this;
     }
 
@@ -115,6 +111,8 @@ public class JetPatternExtension extends PatternExtension implements Refactoring
             if (newContent == null)
                 throw new PatternException(Messages.refactoring_error1);
             FileHelper.setContent(methodFile, newContent);
+            // Delete previous generated java file
+            PatternExtension.deleteJavaFile(project, JetNatureHelper.getTemplatePackageName(pattern), oldName);
         } catch (CoreException e) {
             throw new PatternException(e);
         } catch (IOException e) {
