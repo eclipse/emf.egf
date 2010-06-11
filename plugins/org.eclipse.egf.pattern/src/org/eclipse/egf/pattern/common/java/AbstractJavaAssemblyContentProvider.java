@@ -70,7 +70,7 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
     protected void call(PatternInjectedCall call) throws PatternException {
         Pattern pattern = call.getCalled();
         String ctxName = "ctx_local";// + PatternHelper.generateID();
-        content.append('}').append(EGFCommonConstants.LINE_SEPARATOR).append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append('{').append(EGFCommonConstants.LINE_SEPARATOR).append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append(ctxName).append(".setValue(").append("PatternContext.INJECTED_CONTEXT, ").append(call.getContext().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
         String uri = EcoreUtil.getURI(pattern).toString();
         content.append("CallHelper.executeWithContextInjection(\"").append(uri).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append('}').append(EGFCommonConstants.LINE_SEPARATOR);
