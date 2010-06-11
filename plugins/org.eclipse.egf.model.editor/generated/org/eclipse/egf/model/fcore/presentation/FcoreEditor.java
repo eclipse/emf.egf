@@ -146,6 +146,8 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
  */
 public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, ResourceListener, IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
 
+    public static String ID = "org.eclipse.egf.model.fcore.presentation.fcore.editor.id"; //$NON-NLS-1$    
+
     /**
      * This keeps track of the editing domain that is used to track all changes
      * to the model.
@@ -499,7 +501,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         // Problem
                         final Resource innerResource = (Resource) notification.getNotifier();
                         if (innerResource == getResource() || ResourceHelper.hasURIProxyReferences(getResource(), innerResource.getURI())) {
-                            Diagnostic diagnostic = ResourceHelper.analyzeResourceProblems(innerResource, null, EGFCorePlugin.FCORE_EDITOR_ID);
+                            Diagnostic diagnostic = ResourceHelper.analyzeResourceProblems(innerResource, null, ID);
                             if (diagnostic.getSeverity() != Diagnostic.OK) {
                                 resourceToDiagnosticMap.put(innerResource.getURI(), diagnostic);
                             } else {
@@ -743,7 +745,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      */
     protected void updateProblemIndication() {
         if (updateProblemIndication) {
-            BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, EGFCorePlugin.FCORE_EDITOR_ID, 0, null, new Object[] {
+            BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, ID, 0, null, new Object[] {
                 getResource()
             });
             for (URI uri : resourceToDiagnosticMap.keySet()) {
@@ -1101,7 +1103,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             resource = editingDomain.getResourceSet().getResource(uri, false);
         }
         resourceHasBeenExternallyChanged = EGFResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(resource);
-        Diagnostic diagnostic = ResourceHelper.analyzeResourceProblems(resource, exception, EGFCorePlugin.FCORE_EDITOR_ID);
+        Diagnostic diagnostic = ResourceHelper.analyzeResourceProblems(resource, exception, ID);
         if (diagnostic.getSeverity() != Diagnostic.OK) {
             resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
         }
@@ -1473,7 +1475,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                                     userHasSavedResource = true;
                                 }
                             } catch (Exception exception) {
-                                resourceToDiagnosticMap.put(resource.getURI(), ResourceHelper.analyzeResourceProblems(resource, exception, EGFCorePlugin.FCORE_EDITOR_ID));
+                                resourceToDiagnosticMap.put(resource.getURI(), ResourceHelper.analyzeResourceProblems(resource, exception, ID));
                             }
                         }
                     });
