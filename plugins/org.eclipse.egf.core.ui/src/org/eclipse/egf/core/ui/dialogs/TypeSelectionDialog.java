@@ -29,34 +29,45 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
 
-  private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog"; //$NON-NLS-1$ 
+    private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog"; //$NON-NLS-1$ 
 
-  public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds) {
-    super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] { javaProject }), elementKinds, null);
-    setTitle(CoreUIMessages.TypeSelection_dialogTitle);
-    setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-    setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
-  }
-
-  public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds, TypeSelectionExtension extension) {
-    super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] { javaProject }), elementKinds, extension);
-    setTitle(CoreUIMessages.TypeSelection_dialogTitle);
-    setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-    setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog#getDialogSettings()
-   */
-  @Override
-  protected IDialogSettings getDialogSettings() {
-    IDialogSettings settings = EGFCoreUIPlugin.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
-    if (settings == null) {
-      settings = EGFCoreUIPlugin.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+    public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds) {
+        super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] {
+            javaProject
+        }), elementKinds, null);
+        setTitle(CoreUIMessages.TypeSelection_dialogTitle);
+        setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
+        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
     }
-    return settings;
-  }
+
+    public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds, TypeSelectionExtension extension) {
+        super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] {
+            javaProject
+        }), elementKinds, extension);
+        setTitle(CoreUIMessages.TypeSelection_dialogTitle);
+        setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
+        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
+    }
+
+    public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, int elementKinds, TypeSelectionExtension extension) {
+        super(parent, multi, context, SearchEngine.createWorkspaceScope(), elementKinds, extension);
+        setTitle(CoreUIMessages.TypeSelection_dialogTitle);
+        setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
+        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog#getDialogSettings()
+     */
+    @Override
+    protected IDialogSettings getDialogSettings() {
+        IDialogSettings settings = EGFCoreUIPlugin.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
+        if (settings == null) {
+            settings = EGFCoreUIPlugin.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+        }
+        return settings;
+    }
 
 }
