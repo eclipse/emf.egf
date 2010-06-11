@@ -15,6 +15,10 @@
 
 package org.eclipse.egf.core.ui.contributor;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.ui.IWorkbenchPage;
 
@@ -24,14 +28,32 @@ import org.eclipse.ui.IWorkbenchPage;
  */
 public abstract class EditorListenerContributor {
 
+    protected Map<StructuredViewer, IDoubleClickListener> _listeners = new HashMap<StructuredViewer, IDoubleClickListener>();
+
     public EditorListenerContributor() {
         // Nothing to do
     }
 
-    public abstract void addListener(IWorkbenchPage page, StructuredViewer viewer);
+    public abstract void addListener(final IWorkbenchPage page, StructuredViewer viewer);
 
-    public abstract void removeListener(StructuredViewer viewer);
+    public void removeListener(StructuredViewer viewer) {
+        if (viewer == null) {
+            return;
+        }
+        // Remove listener
+        IDoubleClickListener listener = _listeners.get(viewer);
+        if (listener != null) {
+            viewer.removeDoubleClickListener(listener);
+        }
+        // Remove viewer
+        _listeners.remove(viewer);
+    }
 
-    public abstract void dispose();
+    public void dispose() {
+        for (Map.Entry<StructuredViewer, IDoubleClickListener> entry : _listeners.entrySet()) {
+            entry.getKey().removeDoubleClickListener(entry.getValue());
+        }
+        _listeners.clear();
+    }
 
 }
