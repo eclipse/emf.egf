@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -17,7 +17,6 @@ package org.eclipse.egf.pattern.engine;
 
 import java.io.IOException;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -41,6 +40,7 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
     protected static final String OK = "ok";
 
     protected final Pattern pattern;
+
     protected StringBuilder content;
 
     public AssemblyContentProvider(Pattern pattern) {
@@ -129,8 +129,6 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
         URI uri = object.getPatternFilePath();
         try {
             return FileHelper.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
-        } catch (CoreException e) {
-            throw new PatternException(e);
         } catch (IOException e) {
             throw new PatternException(e);
         }
