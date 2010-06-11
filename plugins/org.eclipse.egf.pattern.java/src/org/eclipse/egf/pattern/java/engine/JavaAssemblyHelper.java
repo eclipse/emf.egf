@@ -72,9 +72,10 @@ public class JavaAssemblyHelper extends AssemblyHelper {
                 String type = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(parameter.getType());
                 content.append("this.").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
             }
-
-            content.append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("if (preCondition())");
+            if (pattern.getConditionMethod() != null) {
+                content.append(EGFCommonConstants.LINE_SEPARATOR);
+                content.append("if (preCondition())");
+            }
             content.append(EGFCommonConstants.LINE_SEPARATOR);
 
             content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
@@ -83,8 +84,10 @@ public class JavaAssemblyHelper extends AssemblyHelper {
             for (int i = 0; i < pattern.getAllParameters().size(); i++)
                 content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         } else {
-            content.append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("if (preCondition())");
+            if (pattern.getConditionMethod() != null) {
+                content.append(EGFCommonConstants.LINE_SEPARATOR);
+                content.append("if (preCondition())");
+            }
             content.append(EGFCommonConstants.LINE_SEPARATOR).append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
         }
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
