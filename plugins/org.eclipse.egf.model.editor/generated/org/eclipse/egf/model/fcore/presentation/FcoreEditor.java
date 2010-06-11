@@ -585,6 +585,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         getSite().getPage().closeEditor(FcoreEditor.this, false);
                     }
                 }
+
             });
         } else if (resourceHasBeenExternallyChanged) {
             handleChangedResource();
@@ -614,7 +615,10 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         currentViewerPane.setTitle(innerResource);
                     }
                     setPartName(innerResource.getURI().lastSegment());
+                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(getResource().getURI())));
+                    firePropertyChange(PROP_TITLE);
                 }
+
             });
         }
     }
@@ -635,6 +639,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     public void run() {
                         getSite().getPage().closeEditor(FcoreEditor.this, false);
                     }
+
                 });
                 return;
             }
@@ -665,7 +670,10 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     selectionViewer.setSelection(new StructuredSelection(getResource()), true);
                     currentViewerPane.setTitle(getResource());
                     updateProblemIndication = true;
+                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(getResource().getURI())));
+                    firePropertyChange(PROP_TITLE);
                 }
+
             });
         }
     }
@@ -719,6 +727,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             public void run() {
                 firePropertyChange(IEditorPart.PROP_DIRTY);
             }
+
         });
     }
 
@@ -896,6 +905,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     currentViewer.setSelection(new StructuredSelection(selection.toArray()), true);
                 }
             }
+
         };
         getSite().getShell().getDisplay().asyncExec(runnable);
     }
@@ -1019,6 +1029,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
                         setSelection(selectionChangedEvent.getSelection());
                     }
+
                 };
             }
 
@@ -1162,6 +1173,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     super.requestActivation();
                     setCurrentViewerPane(this);
                 }
+
             };
             viewerPane.createControl(getContainer());
 
@@ -1198,6 +1210,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     tabFolderGuard = false;
                 }
             }
+
         });
 
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -1205,6 +1218,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             public void run() {
                 updateProblemIndication();
             }
+
         });
 
     }
@@ -1330,6 +1344,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     super.setActionBars(actionBars);
                     getActionBarContributor().shareGlobalActions(this, actionBars);
                 }
+
             }
 
             contentOutlinePage = new MyContentOutlinePage();
@@ -1343,6 +1358,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                 public void selectionChanged(SelectionChangedEvent event) {
                     handleContentOutlineSelection(event.getSelection());
                 }
+
             });
         }
 
@@ -1377,6 +1393,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     super.dispose();
                     propertySheetPage = null;
                 }
+
             };
             propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(getEditingDomain(), propertyAdapterFactory));
         }
@@ -1483,6 +1500,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
                 }
             }
+
         };
 
         updateProblemIndication = false;
@@ -1572,6 +1590,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     setInputWithNotify(editorInput);
                     setPartName(editorInput.getName());
                 }
+
             });
         } catch (InterruptedException ie) {
             // just log it
@@ -1606,6 +1625,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                                     setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
                                 }
                             }
+
                         });
                     } catch (InterruptedException ie) {
                         // just log it
@@ -1710,6 +1730,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * @generated
      */
     public void setStatusLineManager(ISelection selection) {
+
         IStatusLineManager statusLineManager = currentViewer != null && currentViewer == contentOutlineViewer ? contentOutlineStatusLineManager : getActionBars().getStatusLineManager();
 
         if (statusLineManager != null) {
@@ -1734,6 +1755,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                 statusLineManager.setMessage(""); //$NON-NLS-1$
             }
         }
+
     }
 
     /**
