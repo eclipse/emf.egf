@@ -95,10 +95,10 @@
         <invocationContractContainer xmi:id="_QdQmEWihEd-c8qu-Vw7xKQ">
           <invocationContracts xmi:id="_QdQmEmihEd-c8qu-Vw7xKQ" invokedContract="#_-kXR4GigEd-c8qu-Vw7xKQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_VxtiQGihEd-c8qu-Vw7xKQ">
-              <substitutions xmi:id="_WQizUGihEd-c8qu-Vw7xKQ" outgoing="#_NY9EYGidEd-c8qu-Vw7xKQ"
-                  incoming="#_qDDUgGihEd-c8qu-Vw7xKQ"/>
-              <substitutions xmi:id="__cIx8GihEd-c8qu-Vw7xKQ" outgoing="#_NY9EYGidEd-c8qu-Vw7xKQ"
-                  incoming="#_sNlSYGihEd-c8qu-Vw7xKQ"/>
+              <substitutions xmi:id="_WQizUGihEd-c8qu-Vw7xKQ" replacedElement="#_NY9EYGidEd-c8qu-Vw7xKQ"
+                  replacement="#_qDDUgGihEd-c8qu-Vw7xKQ"/>
+              <substitutions xmi:id="__cIx8GihEd-c8qu-Vw7xKQ" replacedElement="#_NY9EYGidEd-c8qu-Vw7xKQ"
+                  replacement="#_sNlSYGihEd-c8qu-Vw7xKQ"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>
@@ -111,10 +111,10 @@
         <invocationContractContainer xmi:id="_7OAdQWikEd-c8qu-Vw7xKQ">
           <invocationContracts xmi:id="_7OAdQmikEd-c8qu-Vw7xKQ" invokedContract="#_-kXR4GigEd-c8qu-Vw7xKQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_8fRQ0GikEd-c8qu-Vw7xKQ">
-              <substitutions xmi:id="_9EKGkGikEd-c8qu-Vw7xKQ" outgoing="#_NY9EYGidEd-c8qu-Vw7xKQ"
-                  incoming="#_qDDUgGihEd-c8qu-Vw7xKQ"/>
-              <substitutions xmi:id="_FZVo0GilEd-c8qu-Vw7xKQ" outgoing="#_qDDUgGihEd-c8qu-Vw7xKQ"
-                  incoming="#_sNlSYGihEd-c8qu-Vw7xKQ"/>
+              <substitutions xmi:id="_9EKGkGikEd-c8qu-Vw7xKQ" replacedElement="#_NY9EYGidEd-c8qu-Vw7xKQ"
+                  replacement="#_qDDUgGihEd-c8qu-Vw7xKQ"/>
+              <substitutions xmi:id="_FZVo0GilEd-c8qu-Vw7xKQ" replacedElement="#_qDDUgGihEd-c8qu-Vw7xKQ"
+                  replacement="#_sNlSYGihEd-c8qu-Vw7xKQ"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>
@@ -127,10 +127,10 @@
         <invocationContractContainer xmi:id="_aDg8YWimEd-c8qu-Vw7xKQ">
           <invocationContracts xmi:id="_aDg8YmimEd-c8qu-Vw7xKQ" invokedContract="#_-kXR4GigEd-c8qu-Vw7xKQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_bB7scGimEd-c8qu-Vw7xKQ">
-              <substitutions xmi:id="_byEv8GimEd-c8qu-Vw7xKQ" outgoing="#_qDDUgGihEd-c8qu-Vw7xKQ"
-                  incoming="#_sNlSYGihEd-c8qu-Vw7xKQ"/>
-              <substitutions xmi:id="_ifb_0GimEd-c8qu-Vw7xKQ" outgoing="#_NY9EYGidEd-c8qu-Vw7xKQ"
-                  incoming="#_qDDUgGihEd-c8qu-Vw7xKQ"/>
+              <substitutions xmi:id="_byEv8GimEd-c8qu-Vw7xKQ" replacedElement="#_qDDUgGihEd-c8qu-Vw7xKQ"
+                  replacement="#_sNlSYGihEd-c8qu-Vw7xKQ"/>
+              <substitutions xmi:id="_ifb_0GimEd-c8qu-Vw7xKQ" replacedElement="#_NY9EYGidEd-c8qu-Vw7xKQ"
+                  replacement="#_qDDUgGihEd-c8qu-Vw7xKQ"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>

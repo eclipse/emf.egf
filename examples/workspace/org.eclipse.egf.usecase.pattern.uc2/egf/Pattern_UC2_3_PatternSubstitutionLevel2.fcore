@@ -29,8 +29,8 @@
       <invocationContractContainer xmi:id="_uagH0Vn5Ed-yhOrMHI1JRQ">
         <invocationContracts xmi:id="_uagH0ln5Ed-yhOrMHI1JRQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_2_MergingPatternSubstitution.fcore#_1571MFn2Ed-yhOrMHI1JRQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_wNr8sFn5Ed-yhOrMHI1JRQ">
-            <substitutions xmi:id="_xiB5cFn5Ed-yhOrMHI1JRQ" outgoing="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_2_MergingPatternSubstitution.fcore#_ED6MIFntEd-nCN8bxVd2Rg"
-                incoming="#_aM8CUFn5Ed-yhOrMHI1JRQ"/>
+            <substitutions xmi:id="_xiB5cFn5Ed-yhOrMHI1JRQ" replacedElement="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_2_MergingPatternSubstitution.fcore#_ED6MIFntEd-nCN8bxVd2Rg"
+                replacement="#_aM8CUFn5Ed-yhOrMHI1JRQ"/>
           </type>
         </invocationContracts>
       </invocationContractContainer>

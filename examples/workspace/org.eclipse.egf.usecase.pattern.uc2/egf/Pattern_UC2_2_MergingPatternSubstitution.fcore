@@ -53,10 +53,10 @@
       <invocationContractContainer xmi:id="_bxxTIlnuEd-yhOrMHI1JRQ">
         <invocationContracts xmi:id="_bxxTI1nuEd-yhOrMHI1JRQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_9BzwcFnuEd-yhOrMHI1JRQ">
-            <substitutions xmi:id="_92tYIFnuEd-yhOrMHI1JRQ" outgoing="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_KAoXYFkrEd-nZ9GSBuVMNQ"
-                incoming="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_BhzYkFnpEd-nCN8bxVd2Rg #_ED6MIFntEd-nCN8bxVd2Rg"/>
-            <substitutions xmi:id="_okxPEFnvEd-yhOrMHI1JRQ" outgoing="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_gA2NoFkoEd-nZ9GSBuVMNQ"
-                incoming="#_6KKtkFnxEd-yhOrMHI1JRQ"/>
+            <substitutions xmi:id="_92tYIFnuEd-yhOrMHI1JRQ" replacedElement="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_KAoXYFkrEd-nZ9GSBuVMNQ"
+                replacement="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_BhzYkFnpEd-nCN8bxVd2Rg #_ED6MIFntEd-nCN8bxVd2Rg"/>
+            <substitutions xmi:id="_okxPEFnvEd-yhOrMHI1JRQ" replacedElement="platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_gA2NoFkoEd-nZ9GSBuVMNQ"
+                replacement="#_6KKtkFnxEd-yhOrMHI1JRQ"/>
           </type>
         </invocationContracts>
         <invocationContracts xmi:id="_bxxTJFnuEd-yhOrMHI1JRQ" factoryComponentContract="#_1571MFn2Ed-yhOrMHI1JRQ"

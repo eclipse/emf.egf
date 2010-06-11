@@ -113,8 +113,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_vik9c1npEd-nCN8bxVd2Rg" invokedContract="#_9rXyRFknEd-nZ9GSBuVMNQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_3CY98FnpEd-nCN8bxVd2Rg">
-              <substitutions xmi:id="_4LQqgFnpEd-nCN8bxVd2Rg" outgoing="#_KAoXYFkrEd-nZ9GSBuVMNQ"
-                  incoming="#_BhzYkFnpEd-nCN8bxVd2Rg"/>
+              <substitutions xmi:id="_4LQqgFnpEd-nCN8bxVd2Rg" replacedElement="#_KAoXYFkrEd-nZ9GSBuVMNQ"
+                  replacement="#_BhzYkFnpEd-nCN8bxVd2Rg"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>

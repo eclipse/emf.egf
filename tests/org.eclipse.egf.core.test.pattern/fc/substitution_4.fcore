@@ -58,14 +58,14 @@
       <invocationContractContainer xmi:id="_0DK8QGlqEd-AhuXDVJhj5w">
         <invocationContracts xmi:id="_0DK8QWlqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_04Ej8GlqEd-AhuXDVJhj5w">
-            <substitutions xmi:id="_6MPPcGluEd-b-N1OAJrVfg" outgoing="#_hQMlcGlqEd-AhuXDVJhj5w"
-                incoming="#_ilb6EGlqEd-AhuXDVJhj5w"/>
+            <substitutions xmi:id="_6MPPcGluEd-b-N1OAJrVfg" replacedElement="#_hQMlcGlqEd-AhuXDVJhj5w"
+                replacement="#_ilb6EGlqEd-AhuXDVJhj5w"/>
           </type>
         </invocationContracts>
         <invocationContracts xmi:id="_0DK8QmlqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1MyPsGlqEd-AhuXDVJhj5w">
-            <substitutions xmi:id="_5wE34WluEd-b-N1OAJrVfg" outgoing="#_ilb6EGlqEd-AhuXDVJhj5w"
-                incoming="#_i77ugGlqEd-AhuXDVJhj5w"/>
+            <substitutions xmi:id="_5wE34WluEd-b-N1OAJrVfg" replacedElement="#_ilb6EGlqEd-AhuXDVJhj5w"
+                replacement="#_i77ugGlqEd-AhuXDVJhj5w"/>
           </type>
         </invocationContracts>
         <invocationContracts xmi:id="_0DK8Q2lqEd-AhuXDVJhj5w" targetInvocationContract="#_4RevxWlqEd-AhuXDVJhj5w"
@@ -89,14 +89,14 @@
       <invocationContractContainer xmi:id="_WRowsWlrEd-AhuXDVJhj5w">
         <invocationContracts xmi:id="_WRowsmlrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_YBGjMGlrEd-AhuXDVJhj5w">
-            <substitutions xmi:id="_YBGjMWlrEd-AhuXDVJhj5w" outgoing="#_ilb6EGlqEd-AhuXDVJhj5w"
-                incoming="#_i77ugGlqEd-AhuXDVJhj5w"/>
+            <substitutions xmi:id="_YBGjMWlrEd-AhuXDVJhj5w" replacedElement="#_ilb6EGlqEd-AhuXDVJhj5w"
+                replacement="#_i77ugGlqEd-AhuXDVJhj5w"/>
           </type>
         </invocationContracts>
         <invocationContracts xmi:id="_WRowtWlrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_YYDDkGlrEd-AhuXDVJhj5w">
-            <substitutions xmi:id="_YYDDkWlrEd-AhuXDVJhj5w" outgoing="#_hQMlcGlqEd-AhuXDVJhj5w"
-                incoming="#_ilb6EGlqEd-AhuXDVJhj5w"/>
+            <substitutions xmi:id="_YYDDkWlrEd-AhuXDVJhj5w" replacedElement="#_hQMlcGlqEd-AhuXDVJhj5w"
+                replacement="#_ilb6EGlqEd-AhuXDVJhj5w"/>
           </type>
         </invocationContracts>
         <invocationContracts xmi:id="_WRowuGlrEd-AhuXDVJhj5w" targetInvocationContract="#_WRowv2lrEd-AhuXDVJhj5w"

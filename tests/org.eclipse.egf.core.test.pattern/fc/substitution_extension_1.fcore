@@ -34,8 +34,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_OxdhMEeoEd-PqL2cWqhi6Q" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_R7MgUEZKEd-PqL2cWqhi6Q">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_QabDEEeoEd-PqL2cWqhi6Q">
-              <substitutions xmi:id="_aIhOIEeqEd-PqL2cWqhi6Q" outgoing="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_p_tlEEPgEd-mKPwasigGsA"
-                  incoming="#_WyA4cEfCEd-PqL2cWqhi6Q"/>
+              <substitutions xmi:id="_aIhOIEeqEd-PqL2cWqhi6Q" replacedElement="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_p_tlEEPgEd-mKPwasigGsA"
+                  replacement="#_WyA4cEfCEd-PqL2cWqhi6Q"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>
@@ -73,8 +73,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_DJrT42HBEd-kBJe5uU7CpQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_R7MgUEZKEd-PqL2cWqhi6Q">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_JumZcGHBEd-kBJe5uU7CpQ">
-              <substitutions xmi:id="_KR3ekGHBEd-kBJe5uU7CpQ" outgoing="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_p_tlEEPgEd-mKPwasigGsA"
-                  incoming="#_lHpqsGHAEd-kBJe5uU7CpQ #_WyA4cEfCEd-PqL2cWqhi6Q"/>
+              <substitutions xmi:id="_KR3ekGHBEd-kBJe5uU7CpQ" replacedElement="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_p_tlEEPgEd-mKPwasigGsA"
+                  replacement="#_lHpqsGHAEd-kBJe5uU7CpQ #_WyA4cEfCEd-PqL2cWqhi6Q"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>
