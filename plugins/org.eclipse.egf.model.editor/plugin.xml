@@ -109,6 +109,12 @@
     <contribution 
       class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"
     />
+    <contribution 
+      class="org.eclipse.egf.model.editor.contributions.TypeURIEditorContributor"
+    />
+    <contribution 
+      class="org.eclipse.egf.model.editor.contributions.DomainURIEditorContributor"
+    />    
     <contribution
       class="org.eclipse.egf.model.editor.contributions.TypeClassEditorContributor"
     />    
