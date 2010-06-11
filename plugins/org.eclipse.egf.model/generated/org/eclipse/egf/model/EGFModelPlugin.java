@@ -113,20 +113,20 @@ public final class EGFModelPlugin extends EMFPlugin {
         @Override
         public void start(BundleContext context_p) throws Exception {
             super.start(context_p);
-            // Force EGF Core Platform Plugin initialization
-            Bundle platformBundle = Platform.getBundle("org.eclipse.egf.core.platform"); //$NON-NLS-1$
-            if (platformBundle != null) {
+            // Force EGF Core Plugin initialization
+            Bundle core = Platform.getBundle("org.eclipse.egf.core"); //$NON-NLS-1$
+            if (core != null) {
                 try {
-                    platformBundle.start(Bundle.START_TRANSIENT);
+                    core.start(Bundle.START_TRANSIENT);
                 } catch (BundleException e) {
                     logError(e);
                 }
             }
             // Force EGF Core PDE Plugin initialization
-            Bundle pdeBundle = Platform.getBundle("org.eclipse.egf.core.pde"); //$NON-NLS-1$
-            if (pdeBundle != null) {
+            Bundle pde = Platform.getBundle("org.eclipse.egf.core.pde"); //$NON-NLS-1$
+            if (pde != null) {
                 try {
-                    pdeBundle.start(Bundle.START_TRANSIENT);
+                    pde.start(Bundle.START_TRANSIENT);
                 } catch (BundleException e) {
                     logError(e);
                 }

@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.core.platform.uri.PlatformURIHandler;
+import org.eclipse.egf.core.platform.uri.PlatformXMLURIHandler;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -150,7 +150,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
       }
     });
     getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, Integer.valueOf(80));
-    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformURIHandler());
+    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformXMLURIHandler());
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
@@ -162,7 +162,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
-    getDefaultLoadOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformURIHandler());
+    getDefaultLoadOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformXMLURIHandler());
   }
 
 } // FcoreResourceImpl
