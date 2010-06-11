@@ -163,7 +163,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public IFile getFile() {
-        return (IFile) EclipseUtil.getAdapter(IFile.class, getResource().getURI());
+        return (IFile) EclipseUtil.getAdapter(IFile.class, getURI());
     }
 
     public IStorage getStorage() {
