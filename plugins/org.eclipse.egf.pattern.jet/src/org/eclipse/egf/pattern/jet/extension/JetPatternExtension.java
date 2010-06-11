@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -46,6 +46,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 public class JetPatternExtension extends PatternExtension implements RefactoringManager {
 
     private static final PatternNature NATURE = org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature();
+
     private final PatternFactory factory = new JetPatternFactory();
 
     @Override
@@ -107,8 +108,8 @@ public class JetPatternExtension extends PatternExtension implements Refactoring
 
             // Update the header if the class has the default name, do nothing
             // the user has changed the class name
-            String regex = "[\\s]*class[\\s]*=*[\\s]*\"" + PatternHelper.dropNonWordCharacter(oldName) + "\"";
-            String replacement = " class=\"" + PatternHelper.dropNonWordCharacter(newName) + "\"";
+            String regex = "[\\s]*class[\\s]*=*[\\s]*\"" + PatternHelper.dropNonWordCharacter(oldName) + "\""; //$NON-NLS-1$ //$NON-NLS-2$
+            String replacement = " class=\"" + PatternHelper.dropNonWordCharacter(newName) + "\""; //$NON-NLS-1$ //$NON-NLS-2$
 
             String newContent = content.replaceAll(regex, replacement);
             if (newContent == null)
