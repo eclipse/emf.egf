@@ -15,15 +15,17 @@
 
 package org.eclipse.egf.pattern.jet;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.common.helper.ProjectHelper;
+
 /**
  * @author Guiu
  * 
  */
 public class JetPreferences {
 
-    // TODO get the encoding value from global preferences
-    public static String getEncoding() {
-        return "UTF8"; //$NON-NLS-1$
+    public static String getEncoding(IProject project) {
+        return ProjectHelper.getEncoding(project);
     }
 
     public static String getTemplateFileExtension() {
