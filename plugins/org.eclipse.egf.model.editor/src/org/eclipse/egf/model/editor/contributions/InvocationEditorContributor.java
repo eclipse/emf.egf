@@ -23,6 +23,7 @@ import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -37,24 +38,28 @@ public class InvocationEditorContributor extends DefaultPropertyEditorContributo
     }
 
     public CellEditor createPropertyEditor(Composite composite, Object object, IItemPropertyDescriptor descriptor) {
+
         final Invocation invocation = (Invocation) object;
+
         return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
 
             @Override
             protected Object openDialogBox(Control control) {
                 ActivitySelectionDialog dialog = new ActivitySelectionDialog(control.getShell(), invocation.getInvokedActivity(), false);
-                dialog.open();
-                Object[] innerResult = dialog.getResult();
-                if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
-                    // Force a load resource on the current ResourceSet
-                    Activity activity = (Activity) innerResult[0];
-                    invocation.eResource().getResourceSet().getResource(activity.eResource().getURI(), true);
-                    // Return selected value
-                    return innerResult[0];
+                if (dialog.open() == Window.OK) {
+                    Object result = dialog.getFirstResult();
+                    if (result != null && result instanceof Activity) {
+                        // solve activity against our current domain
+                        invocation.eResource().getResourceSet().getResource(((Activity) result).eResource().getURI(), true);
+                        // Return selected value
+                        return result;
+                    }
                 }
                 return invocation.getInvokedActivity();
             }
+
         };
+
     }
 
 }
