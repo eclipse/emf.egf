@@ -33,7 +33,7 @@ public class ChooseMethodCallPage extends ChooseCallPage {
 
     @Override
     protected Table createParentTable() {
-        Table listTable = new Table(container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.MULTI);
+        Table listTable = new Table(_container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.MULTI);
         return listTable;
     }
 }

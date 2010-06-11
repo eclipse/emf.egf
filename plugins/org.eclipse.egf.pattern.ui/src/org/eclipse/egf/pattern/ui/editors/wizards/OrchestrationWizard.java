@@ -1,24 +1,24 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
 
 package org.eclipse.egf.pattern.ui.editors.wizards;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.egf.model.pattern.Call;
-import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternFactory;
@@ -44,78 +44,78 @@ import org.eclipse.ui.IWorkbenchWizard;
  */
 public class OrchestrationWizard extends Wizard implements INewWizard {
 
-    private ChooseKindPage chooseKindPage;
+    private ChooseKindPage _chooseKindPage;
 
-    private ChooseCallPage chooseCallPage;
+    private ChooseCallPage _chooseCallPage;
 
-    private ChooseMethodCallPage chooseMethodCallPage;
+    private ChooseMethodCallPage _chooseMethodCallPage;
 
-    private ParameterMatchingPage parameterMatchingPage;
+    private ParameterMatchingPage _parameterMatchingPage;
 
-    private ISelection selection;
+    private ISelection _selection;
 
-    private Pattern pattern;
+    private Pattern _pattern;
 
-    private Call selectCall;
+    private Call _selectCall;
 
-    private List<MethodCall> chooseMethodCallList;
+    private List<Call> _chooseMethodCallList;
 
-    private CallTypeEnum defaultKind;
+    private CallTypeEnum _defaultKind;
 
-    private Object eidtItem;
+    private Object _editItem;
 
-    private TransactionalEditingDomain transactionalEditingDomain;
+    private TransactionalEditingDomain _editingDomain;
 
     /**
      * Constructor for MyWizard.
      */
-    public OrchestrationWizard(Pattern pattern, CallTypeEnum defaultKind, Object eidtItem, TransactionalEditingDomain transactionalEditingDomain) {
+    public OrchestrationWizard(Pattern pattern, CallTypeEnum defaultKind, Object eidtItem, TransactionalEditingDomain editingDomain) {
         super();
         setNeedsProgressMonitor(true);
-        this.pattern = pattern;
-        this.defaultKind = defaultKind;
-        this.eidtItem = eidtItem;
-        this.transactionalEditingDomain = transactionalEditingDomain;
+        _pattern = pattern;
+        _defaultKind = defaultKind;
+        _editItem = eidtItem;
+        _editingDomain = editingDomain;
     }
 
     @Override
     public boolean canFinish() {
-
-        if (chooseKindPage != null && (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL))
+        if (_chooseKindPage != null && (_chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || _chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL)) {
             return true;
-        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL && defaultKind == CallTypeEnum.Add) {
-            return chooseMethodCallPage.canFinish();
-        } else {
-            return chooseCallPage.canFinish();
         }
+        if (_chooseKindPage != null && _chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL && _defaultKind == CallTypeEnum.Add) {
+            return _chooseMethodCallPage.canFinish();
+        }
+        return _chooseCallPage.canFinish();
     }
 
     /**
      * Adding the page to the wizard.
      */
+    @Override
     public void addPages() {
         // Set the window's title label
         setWindowTitle(Messages.OrchestrationWizard_title);
         // Add chooseKindPage.
-        if (defaultKind.equals(CallTypeEnum.Add)) {
-            chooseKindPage = new ChooseKindPage(selection);
-            addPage(chooseKindPage);
+        if (_defaultKind.equals(CallTypeEnum.Add)) {
+            _chooseKindPage = new ChooseKindPage(_selection);
+            addPage(_chooseKindPage);
         }
         // Add chooseCallPage.
-        chooseCallPage = new ChooseCallPage(pattern, selection, eidtItem);
-        addPage(chooseCallPage);
+        _chooseCallPage = new ChooseCallPage(_pattern, _selection, _editItem);
+        addPage(_chooseCallPage);
         // Add chooseMethodCallPage.
-        chooseMethodCallPage = new ChooseMethodCallPage(pattern, selection, eidtItem);
-        addPage(chooseMethodCallPage);
+        _chooseMethodCallPage = new ChooseMethodCallPage(_pattern, _selection, _editItem);
+        addPage(_chooseMethodCallPage);
         // Add parameterMatchingPage.
-        if (defaultKind.equals(CallTypeEnum.PATTERN_CALL) || defaultKind.equals(CallTypeEnum.Add)) {
-            parameterMatchingPage = new ParameterMatchingPage(selection, pattern, transactionalEditingDomain);
+        if (_defaultKind.equals(CallTypeEnum.PATTERN_CALL) || _defaultKind.equals(CallTypeEnum.Add)) {
+            _parameterMatchingPage = new ParameterMatchingPage(_selection, _pattern, _editingDomain);
             Pattern patternCallee = null;
-            if (eidtItem instanceof PatternCall) {
-                patternCallee = ((PatternCall) eidtItem).getCalled();
+            if (_editItem instanceof PatternCall) {
+                patternCallee = ((PatternCall) _editItem).getCalled();
             }
-            parameterMatchingPage.setPatternCallee((patternCallee));
-            addPage(parameterMatchingPage);
+            _parameterMatchingPage.setPatternCallee((patternCallee));
+            addPage(_parameterMatchingPage);
         }
     }
 
@@ -124,15 +124,15 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         IWizardPage nextPage;
         if (page instanceof ChooseKindPage) {
             CallTypeEnum kind = ((ChooseKindPage) page).getKind();
-            if (kind == CallTypeEnum.METHOD_CALL && defaultKind.equals(CallTypeEnum.Add)) {
-                nextPage = chooseMethodCallPage;
-            } else if (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL) {
+            if (kind == CallTypeEnum.METHOD_CALL && _defaultKind.equals(CallTypeEnum.Add)) {
+                nextPage = _chooseMethodCallPage;
+            } else if (_chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || _chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL) {
                 return null;
             } else {
-                nextPage = chooseCallPage;
+                nextPage = _chooseCallPage;
             }
         } else {
-            nextPage = parameterMatchingPage;
+            nextPage = _parameterMatchingPage;
         }
         return nextPage;
     }
@@ -142,17 +142,18 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      * the wizard. We will create an operation and run it
      * using wizard as execution context.
      */
+    @Override
     public boolean performFinish() {
-        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
-            selectCall = PatternFactory.eINSTANCE.createBackCall();
-        else if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL)
-            selectCall = PatternFactory.eINSTANCE.createSuperCall();
+        if (_chooseKindPage != null && _chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
+            _selectCall = PatternFactory.eINSTANCE.createBackCall();
+        else if (_chooseKindPage != null && _chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL)
+            _selectCall = PatternFactory.eINSTANCE.createSuperCall();
         else {
-            if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL) {
-                chooseMethodCallList = chooseMethodCallPage.getChooseMethodCallList();
-                selectCall = chooseMethodCallPage.getChooseCall();
+            if (_chooseKindPage != null && _chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL) {
+                _chooseMethodCallList = _chooseMethodCallPage.getChooseMethodCallList();
+                _selectCall = _chooseMethodCallPage.getChooseCall();
             } else {
-                selectCall = chooseCallPage.getChooseCall();
+                _selectCall = _chooseCallPage.getChooseCall();
             }
         }
         return true;
@@ -164,13 +165,16 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      * reimplement this method if they need to perform any special cancel
      * processing for their wizard.
      */
+    @Override
     public boolean performCancel() {
-        if (parameterMatchingPage != null && eidtItem != null) {
-            List<RecordingCommand> parameterMatchingCommands = parameterMatchingPage.getParameterMatchingCommands();
+        if (_parameterMatchingPage != null && _editItem != null) {
+            List<RecordingCommand> parameterMatchingCommands = _parameterMatchingPage.getParameterMatchingCommands();
             if (parameterMatchingCommands != null) {
-                for (final RecordingCommand parameterMatchingCommand : parameterMatchingCommands) {
-                    if (transactionalEditingDomain.getCommandStack().canUndo())
-                        transactionalEditingDomain.getCommandStack().undo();
+                for (Iterator<RecordingCommand> it = parameterMatchingCommands.iterator(); it.hasNext();) {
+                    if (_editingDomain.getCommandStack().canUndo()) {
+                        _editingDomain.getCommandStack().undo();
+                    }
+                    it.next();
                 }
             }
         }
@@ -184,21 +188,21 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
      */
     public void init(IWorkbench workbench, IStructuredSelection selection) {
-        this.selection = selection;
+        this._selection = selection;
     }
 
     /**
      * Return the selection content.
      */
     public Call getSelectCall() {
-        return selectCall;
+        return _selectCall;
     }
 
-    public List<MethodCall> getSelectMethodCallList() {
-        return chooseMethodCallList;
+    public List<Call> getSelectMethodCallList() {
+        return _chooseMethodCallList;
     }
 
     public CallTypeEnum getDefaultKind() {
-        return defaultKind;
+        return _defaultKind;
     }
 }

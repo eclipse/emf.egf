@@ -55,37 +55,37 @@ import org.eclipse.swt.widgets.TableColumn;
  */
 public class ParameterMatchingPage extends WizardPage {
 
-    private Pattern patternCaller;
+    private Pattern _patternCaller;
 
-    private Pattern patternCallee;
+    private Pattern _patternCallee;
 
-    private Label patternCalleeNameLabel;
+    private Label _patternCalleeNameLabel;
 
-    private TableViewer calleeTableViewer;
+    private TableViewer _calleeTableViewer;
 
-    private TableViewer matchingTableViewer;
+    private TableViewer _matchingTableViewer;
 
-    private TableViewer callerTableViewer;
+    private TableViewer _callerTableViewer;
 
-    private Button createMatch;
+    private Button _createMatch;
 
-    private Button deleteMatch;
+    private Button _deleteMatch;
 
-    private Button editMatch;
+    private Button _editMatch;
 
-    private PatternCall call;
+    private PatternCall patternCall;
 
-    private TransactionalEditingDomain transactionalEditingDomain;
+    private TransactionalEditingDomain _editingDomain;
 
-    private List<RecordingCommand> matchingCommands;
+    private List<RecordingCommand> _matchingCommands;
 
-    public ParameterMatchingPage(ISelection selection, Pattern patternCaller, TransactionalEditingDomain transactionalEditingDomain) {
+    public ParameterMatchingPage(ISelection selection, Pattern patternCaller, TransactionalEditingDomain editingDomain) {
         super(Messages.ParameterMatchingPage_title);
         setTitle(Messages.ParameterMatchingPage_title);
         setDescription(Messages.ParameterMatchingPage_label_text);
 
-        this.patternCaller = patternCaller;
-        this.transactionalEditingDomain = transactionalEditingDomain;
+        this._patternCaller = patternCaller;
+        this._editingDomain = editingDomain;
     }
 
     public void createControl(Composite parent) {
@@ -101,23 +101,22 @@ public class ParameterMatchingPage extends WizardPage {
 
     private void createParameterArea(Composite dialogArea) {
         Composite parameterArea = createArea(dialogArea, true);
-
         createCallerArea(parameterArea);
         createCalleeArea(parameterArea);
         createMatingButton(parameterArea);
     }
 
     private void createMatingButton(Composite parameterArea) {
-        createMatch = new Button(parameterArea, SWT.PUSH);
-        createMatch.setText(Messages.ParameterMatchingPage_button_create);
+        _createMatch = new Button(parameterArea, SWT.PUSH);
+        _createMatch.setText(Messages.ParameterMatchingPage_button_create);
 
         GridData gd = new GridData();
         gd.widthHint = 200;
         gd.horizontalSpan = 2;
         gd.horizontalAlignment = SWT.CENTER;
         gd.verticalIndent = 0;
-        createMatch.setLayoutData(gd);
-        createMatch.addSelectionListener(new SelectionListener() {
+        _createMatch.setLayoutData(gd);
+        _createMatch.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
                 createMatching();
@@ -147,10 +146,10 @@ public class ParameterMatchingPage extends WizardPage {
 
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
         tableColumn.setWidth(420);
-        matchingTableViewer = new TableViewer(table);
-        matchingTableViewer.setLabelProvider(new ParameterMatchingLibraryProvider());
-        matchingTableViewer.setContentProvider(new CommonListContentProvider());
-        matchingTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+        _matchingTableViewer = new TableViewer(table);
+        _matchingTableViewer.setLabelProvider(new ParameterMatchingLibraryProvider());
+        _matchingTableViewer.setContentProvider(new CommonListContentProvider());
+        _matchingTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 checkEidtAndDeleteButtonEnable();
@@ -165,11 +164,11 @@ public class ParameterMatchingPage extends WizardPage {
         GridLayout layout = new GridLayout();
         buttonsArea.setLayout(layout);
 
-        deleteMatch = createButton(buttonsArea);
-        deleteMatch.setToolTipText(Messages.ParameterMatchingPage_button_delete);
-        deleteMatch.setText(""); //$NON-NLS-1$
-        deleteMatch.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
-        deleteMatch.addSelectionListener(new SelectionListener() {
+        _deleteMatch = createButton(buttonsArea);
+        _deleteMatch.setToolTipText(Messages.ParameterMatchingPage_button_delete);
+        _deleteMatch.setText(""); //$NON-NLS-1$
+        _deleteMatch.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
+        _deleteMatch.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
                 deleteMatching();
@@ -179,10 +178,10 @@ public class ParameterMatchingPage extends WizardPage {
             }
         });
 
-        editMatch = createButton(buttonsArea);
-        editMatch.setToolTipText(Messages.ParameterMatchingPage_button_edit);
-        editMatch.setText(""); //$NON-NLS-1$
-        editMatch.setImage(Activator.getDefault().getImage(ImageShop.IMG_EDIT_OBJ));
+        _editMatch = createButton(buttonsArea);
+        _editMatch.setToolTipText(Messages.ParameterMatchingPage_button_edit);
+        _editMatch.setText(""); //$NON-NLS-1$
+        _editMatch.setImage(Activator.getDefault().getImage(ImageShop.IMG_EDIT_OBJ));
     }
 
     private Composite createArea(Composite composite, boolean makeColumnsEqualWidth) {
@@ -198,9 +197,9 @@ public class ParameterMatchingPage extends WizardPage {
 
     private void createCallerArea(Composite dialogArea) {
         Composite callerArea = createCallArea(dialogArea);
-        createPatternNameLabel(callerArea, patternCaller);
-        callerTableViewer = createParameterTableViewer(callerArea, patternCaller);
-        callerTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+        createPatternNameLabel(callerArea, _patternCaller);
+        _callerTableViewer = createParameterTableViewer(callerArea, _patternCaller);
+        _callerTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 checkCreateButtonEnable();
@@ -211,9 +210,9 @@ public class ParameterMatchingPage extends WizardPage {
 
     private void createCalleeArea(Composite dialogArea) {
         Composite calleeArea = createCallArea(dialogArea);
-        patternCalleeNameLabel = createPatternNameLabel(calleeArea, patternCallee);
-        calleeTableViewer = createParameterTableViewer(calleeArea, patternCallee);
-        calleeTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+        _patternCalleeNameLabel = createPatternNameLabel(calleeArea, _patternCallee);
+        _calleeTableViewer = createParameterTableViewer(calleeArea, _patternCallee);
+        _calleeTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 checkCreateButtonEnable();
@@ -226,7 +225,7 @@ public class ParameterMatchingPage extends WizardPage {
         Label patternNameLabel = new Label(container, SWT.NONE);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         patternNameLabel.setLayoutData(gd);
-        setPatternName(pattern, patternNameLabel); //$NON-NLS-1$ //$NON-NLS-2$
+        setPatternName(pattern, patternNameLabel);
         return patternNameLabel;
     }
 
@@ -272,7 +271,7 @@ public class ParameterMatchingPage extends WizardPage {
         }
         EList<PatternParameter> parameters = pattern.getParameters();
         List<PatternParameter> availableParameters = new ArrayList<PatternParameter>();
-        EMap<PatternParameter, PatternParameter> parameterMatching = call.getParameterMatching();
+        EMap<PatternParameter, PatternParameter> parameterMatching = patternCall.getParameterMatching();
         for (PatternParameter parameter : parameters) {
             if (isAvailableParameter(parameter, parameterMatching)) {
                 availableParameters.add(parameter);
@@ -297,20 +296,20 @@ public class ParameterMatchingPage extends WizardPage {
     }
 
     private void checkCreateButtonEnable() {
-        if ((getSelection(callerTableViewer) != null) && (getSelection(calleeTableViewer) != null)) {
-            createMatch.setEnabled(true);
+        if ((getSelection(_callerTableViewer) != null) && (getSelection(_calleeTableViewer) != null)) {
+            _createMatch.setEnabled(true);
         } else {
-            createMatch.setEnabled(false);
+            _createMatch.setEnabled(false);
         }
     }
 
     private void checkEidtAndDeleteButtonEnable() {
-        if ((getSelection(matchingTableViewer) != null)) {
-            deleteMatch.setEnabled(true);
-            editMatch.setEnabled(true);
+        if ((getSelection(_matchingTableViewer) != null)) {
+            _deleteMatch.setEnabled(true);
+            _editMatch.setEnabled(true);
         } else {
-            deleteMatch.setEnabled(false);
-            editMatch.setEnabled(false);
+            _deleteMatch.setEnabled(false);
+            _editMatch.setEnabled(false);
         }
     }
 
@@ -329,42 +328,46 @@ public class ParameterMatchingPage extends WizardPage {
      * Create a new parameter matching.
      */
     private void createMatching() {
-        final PatternParameter callerParameter = (PatternParameter) getSelection(callerTableViewer);
-        final PatternParameter calleeParameter = (PatternParameter) getSelection(calleeTableViewer);
-        int selectIndex = calleeTableViewer.getTable().getSelectionIndex();
-        RecordingCommand cmd = new RecordingCommand(transactionalEditingDomain) {
+        final PatternParameter callerParameter = (PatternParameter) getSelection(_callerTableViewer);
+        final PatternParameter calleeParameter = (PatternParameter) getSelection(_calleeTableViewer);
+        int selectIndex = _calleeTableViewer.getTable().getSelectionIndex();
+        RecordingCommand cmd = new RecordingCommand(_editingDomain) {
 
+            @Override
             protected void doExecute() {
-                call.getParameterMatching().put(calleeParameter, callerParameter);
+                patternCall.getParameterMatching().put(calleeParameter, callerParameter);
             }
+
         };
-        transactionalEditingDomain.getCommandStack().execute(cmd);
-        matchingCommands.add(cmd);
+        _editingDomain.getCommandStack().execute(cmd);
+        _matchingCommands.add(cmd);
         refreshTables();
-        setSelection(calleeTableViewer, selectIndex);
+        setSelection(_calleeTableViewer, selectIndex);
     }
 
     /**
      * Delete a new parameter matching.
      */
     private void deleteMatching() {
-        final Paramerter2ParameterMapImpl deleteItem = (Paramerter2ParameterMapImpl) getSelection(matchingTableViewer);
-        int selectIndex = matchingTableViewer.getTable().getSelectionIndex();
-        RecordingCommand cmd = new RecordingCommand(transactionalEditingDomain) {
+        final Paramerter2ParameterMapImpl deleteItem = (Paramerter2ParameterMapImpl) getSelection(_matchingTableViewer);
+        int selectIndex = _matchingTableViewer.getTable().getSelectionIndex();
+        RecordingCommand cmd = new RecordingCommand(_editingDomain) {
 
+            @Override
             protected void doExecute() {
-                call.getParameterMatching().remove(deleteItem);
+                patternCall.getParameterMatching().remove(deleteItem);
             }
+
         };
-        transactionalEditingDomain.getCommandStack().execute(cmd);
-        matchingCommands.add(cmd);
+        _editingDomain.getCommandStack().execute(cmd);
+        _matchingCommands.add(cmd);
         refreshTables();
-        setSelection(matchingTableViewer, selectIndex);
+        setSelection(_matchingTableViewer, selectIndex);
     }
 
     private void refreshTables() {
-        matchingTableViewer.setInput(getMatchingList());
-        calleeTableViewer.setInput(getCalleeTableInput(patternCallee));
+        _matchingTableViewer.setInput(getMatchingList());
+        _calleeTableViewer.setInput(getCalleeTableInput(_patternCallee));
         setMissingInformation();
     }
 
@@ -373,18 +376,19 @@ public class ParameterMatchingPage extends WizardPage {
      */
     private EMap<PatternParameter, PatternParameter> getMatchingList() {
         EMap<PatternParameter, PatternParameter> parameterMatching = null;
-        parameterMatching = call.getParameterMatching();
+        parameterMatching = patternCall.getParameterMatching();
         return parameterMatching;
     }
 
     /**
      * Update the patterCallee table.
      */
+    @Override
     public void setVisible(boolean visible) {
         if (visible) {
-            matchingCommands = new ArrayList<RecordingCommand>();
+            _matchingCommands = new ArrayList<RecordingCommand>();
             updatePatternCallee();
-            callerTableViewer.setInput(getCallerTableInput(patternCaller));
+            _callerTableViewer.setInput(getCallerTableInput(_patternCaller));
             refreshTables();
             checkCreateButtonEnable();
             checkEidtAndDeleteButtonEnable();
@@ -393,7 +397,7 @@ public class ParameterMatchingPage extends WizardPage {
     }
 
     private String getPatternName(String name) {
-        return name + ((name == null || name.equals("")) ? "" : ":"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        return name + ((name == null || name.equals("")) ? "" : ":"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**
@@ -408,8 +412,8 @@ public class ParameterMatchingPage extends WizardPage {
      * Refresh the patternCallee area.
      */
     private void updatePatternCallee() {
-        setPatternName(patternCallee, patternCalleeNameLabel);
-        calleeTableViewer.setInput(getCallerTableInput(patternCallee));
+        setPatternName(_patternCallee, _patternCalleeNameLabel);
+        _calleeTableViewer.setInput(getCallerTableInput(_patternCallee));
     }
 
     /**
@@ -434,25 +438,25 @@ public class ParameterMatchingPage extends WizardPage {
      */
     private void setMissingInformation() {
         String message = null;
-        if (callerTableViewer.getTable().getItemCount() == 0 || calleeTableViewer.getTable().getItemCount() == 0) {
+        if (_callerTableViewer.getTable().getItemCount() == 0 || _calleeTableViewer.getTable().getItemCount() == 0) {
             message = Messages.ParameterMatchingPage_missing_information;
         }
         setMessage(message, INFORMATION);
     }
 
     public void setPatternCall(PatternCall call) {
-        this.call = call;
+        this.patternCall = call;
     }
 
     public PatternCall getPatternCall() {
-        return call;
+        return patternCall;
     }
 
     public void setPatternCallee(Pattern patternCallee) {
-        this.patternCallee = patternCallee;
+        this._patternCallee = patternCallee;
     }
 
     public List<RecordingCommand> getParameterMatchingCommands() {
-        return matchingCommands;
+        return _matchingCommands;
     }
 }
