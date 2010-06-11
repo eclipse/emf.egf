@@ -58,205 +58,203 @@ import org.osgi.framework.Bundle;
  */
 public class OpenTaskImplementationMenuContributor extends EditorMenuContributor {
 
-  public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$
+    public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$
 
-  public static class FindOperation implements IRunnableWithProgress {
+    public static class FindOperation implements IRunnableWithProgress {
 
-    private String _fqn;
+        private String _fqn;
 
-    private Resource _resource;
+        private Resource _resource;
 
-    private IType _type;
+        private IType _type;
 
-    public FindOperation(Resource resource, String fqn) {
-      _resource = resource;
-      _fqn = fqn;
-    }
-
-    public IType getType() {
-      return _type;
-    }
-
-    public URI getURI() {
-      Resource resource = _resource;
-      if (resource == null) {
-        return null;
-      }
-      URI uri = resource.getURI();
-      if (uri != null && resource.getResourceSet() != null) {
-        URIConverter converter = resource.getResourceSet().getURIConverter();
-        if (converter != null) {
-          uri = converter.normalize(uri);
+        public FindOperation(Resource resource, String fqn) {
+            _resource = resource;
+            _fqn = fqn;
         }
-      }
-      return uri;
-    }
 
-    public void run(IProgressMonitor monitor) throws InvocationTargetException {
-      try {
-        URI uri = getURI();
-        // Workspace
-        if (uri.isPlatformResource()) {
-          String path = uri.toPlatformString(true);
-          IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-          IJavaProject project = JavaCore.create(resource.getProject());
-          _type = project.findType(_fqn, monitor);
-        } else {
-          // Target
-          IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
-          Bundle fcoreBundle = fcore.getPlatformBundle().getBundle();
-          if (fcoreBundle == null) {
-            throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_find_platform_fcore, _resource.getURI()), null)));
-          }
-          // Class
-          Class<?> clazz = fcoreBundle.loadClass(_fqn);
-          if (clazz == null) {
-            throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_load_class, _fqn), null)));
-          }
-          // Is the current bundle part of Java Search
-          String id = fcore.getPlatformBundle().getPluginBase().getId();
-          if (PDECore.getDefault().getSearchablePluginsManager().isInJavaSearch(id) == false) {
-            PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] { fcore.getPlatformBundle().getPluginModelBase() });
-          }
-          // Java Search
-          TypeSearchRequestor requestor = new TypeSearchRequestor();
-          SearchEngine engine = new SearchEngine((WorkingCopyOwner) null);
-          engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor,
-              IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
-          _type = requestor.getMatched();
+        public IType getType() {
+            return _type;
         }
-      } catch (Throwable t) {
-        throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, t)));
-      } finally {
-        monitor.done();
-      }
+
+        public URI getURI() {
+            Resource resource = _resource;
+            if (resource == null) {
+                return null;
+            }
+            URI uri = resource.getURI();
+            if (uri != null && resource.getResourceSet() != null) {
+                URIConverter converter = resource.getResourceSet().getURIConverter();
+                if (converter != null) {
+                    uri = converter.normalize(uri);
+                }
+            }
+            return uri;
+        }
+
+        public void run(IProgressMonitor monitor) throws InvocationTargetException {
+            try {
+                URI uri = getURI();
+                // Workspace
+                if (uri.isPlatformResource()) {
+                    String path = uri.toPlatformString(true);
+                    IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+                    IJavaProject project = JavaCore.create(resource.getProject());
+                    _type = project.findType(_fqn, monitor);
+                } else {
+                    // Target
+                    IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
+                    Bundle fcoreBundle = fcore.getPlatformBundle().getBundle();
+                    if (fcoreBundle == null) {
+                        throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_find_platform_fcore, _resource.getURI()), null)));
+                    }
+                    // Class
+                    Class<?> clazz = fcoreBundle.loadClass(_fqn);
+                    if (clazz == null) {
+                        throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_load_class, _fqn), null)));
+                    }
+                    // Is the current bundle part of Java Search
+                    String id = fcore.getPlatformBundle().getPluginBase().getId();
+                    if (PDECore.getDefault().getSearchablePluginsManager().isInJavaSearch(id) == false) {
+                        PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] {
+                            fcore.getPlatformBundle().getPluginModelBase()
+                        });
+                    }
+                    // Java Search
+                    TypeSearchRequestor requestor = new TypeSearchRequestor();
+                    SearchEngine engine = new SearchEngine((WorkingCopyOwner) null);
+                    engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor,
+                            IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
+                    _type = requestor.getMatched();
+                }
+            } catch (Throwable t) {
+                throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, t)));
+            } finally {
+                monitor.done();
+            }
+        }
     }
-  }
 
-  private static class TypeSearchRequestor extends TypeNameMatchRequestor {
+    private static class TypeSearchRequestor extends TypeNameMatchRequestor {
 
-    private IType _matched;
+        private IType _matched;
 
-    public TypeSearchRequestor() {
-      super();
+        public TypeSearchRequestor() {
+            super();
+        }
+
+        @Override
+        public void acceptTypeNameMatch(TypeNameMatch match) {
+            _matched = match.getType();
+        }
+
+        public IType getMatched() {
+            return _matched;
+        }
+
+    }
+
+    protected class TaskImplementationOpenAction extends Action {
+
+        public TaskImplementationOpenAction() {
+            setId(OPEN_TASK_IMPLEMENTATION_ACTION_ID);
+        }
+
+        protected Task getTask() {
+            if (_selection == null || _selection.isEmpty()) {
+                return null;
+            }
+            Object object = ((IStructuredSelection) _selection).getFirstElement();
+            if (object instanceof Task) {
+                return (Task) object;
+            }
+            return null;
+        }
+
+        protected Resource getResource() {
+            Task task = getTask();
+            if (task == null) {
+                return null;
+            }
+            return task.eResource();
+        }
+
+        protected String getKind() {
+            Task task = getTask();
+            if (task == null) {
+                return null;
+            }
+            if (task.getKindValue() != null && task.getKindValue().trim().length() != 0) {
+                return task.getKindValue().trim();
+            }
+            return null;
+        }
+
+        protected String getImplementation() {
+            Task task = getTask();
+            if (task == null) {
+                return null;
+            }
+            if (task.getImplementationValue() != null && task.getImplementationValue().trim().length() != 0) {
+                return task.getImplementationValue().trim();
+            }
+            return null;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            if (getTask() == null) {
+                return false;
+            }
+            if (getTask().eResource() == null) {
+                return false;
+            }
+            if (getKind() == null) {
+                return false;
+            }
+            if (getImplementation() == null || getImplementation().length() == 0) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public void run() {
+            // Find a suitable IType
+            FindOperation operation = new FindOperation(getResource(), getImplementation());
+            try {
+                PlatformUI.getWorkbench().getProgressService().busyCursorWhile(operation);
+                if (operation.getType() != null) {
+                    JavaUI.openInEditor(operation.getType());
+                } else {
+                    MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
+                }
+            } catch (InterruptedException e) {
+                return;
+            } catch (Throwable t) {
+                ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
+                return;
+            }
+        }
+    }
+
+    private TaskImplementationOpenAction _openAction;
+
+    public OpenTaskImplementationMenuContributor() {
+        _openAction = new TaskImplementationOpenAction();
     }
 
     @Override
-    public void acceptTypeNameMatch(TypeNameMatch match) {
-      _matched = match.getType();
-    }
-
-    public IType getMatched() {
-      return _matched;
-    }
-
-  }
-
-  private class OpenTaskImplementationAction extends Action {
-
-    public OpenTaskImplementationAction() {
-      setId(OPEN_TASK_IMPLEMENTATION_ACTION_ID);
-    }
-
-    protected Task getTask() {
-      if (_selection == null) {
-        return null;
-      }
-      IStructuredSelection sselection = (IStructuredSelection) _selection;
-      if (sselection.size() != 1) {
-        return null;
-      }
-      Object object = sselection.getFirstElement();
-      if (object instanceof Task) {
-        return (Task) object;
-      }
-      return null;
-    }
-
-    protected Resource getResource() {
-      Task task = getTask();
-      if (task == null) {
-        return null;
-      }
-      return task.eResource();
-    }
-
-    protected String getKind() {
-      Task task = getTask();
-      if (task == null) {
-        return null;
-      }
-      if (task.getKindValue() != null && task.getKindValue().trim().length() != 0) {
-        return task.getKindValue().trim();
-      }
-      return null;
-    }
-
-    protected String getImplementation() {
-      Task task = getTask();
-      if (task == null) {
-        return null;
-      }
-      if (task.getImplementationValue() != null && task.getImplementationValue().trim().length() != 0) {
-        return task.getImplementationValue().trim();
-      }
-      return null;
-    }
-
-    @Override
-    public boolean isEnabled() {
-      if (getTask() == null) {
-        return false;
-      }
-      if (getTask().eResource() == null) {
-        return false;
-      }
-      if (getKind() == null) {
-        return false;
-      }
-      if (getImplementation() == null || getImplementation().length() == 0) {
-        return false;
-      }
-      return true;
-    }
-
-    @Override
-    public void run() {
-      // Find a suitable IType
-      FindOperation operation = new FindOperation(getResource(), getImplementation());
-      try {
-        PlatformUI.getWorkbench().getProgressService().busyCursorWhile(operation);
-        if (operation.getType() != null) {
-          JavaUI.openInEditor(operation.getType());
-        } else {
-          MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
+    public void menuAboutToShow(IMenuManager menuManager) {
+        if (((IStructuredSelection) _selection).size() == 1 && _openAction.getTask() != null && EGFTaskPlugin.KIND_JAVA.equals(_openAction.getKind())) {
+            _openAction.setText(getText());
+            _openAction.setEnabled(_openAction.isEnabled());
+            menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _openAction);
         }
-      } catch (InterruptedException e) {
-        return;
-      } catch (Throwable t) {
-        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
-        return;
-      }
     }
-  }
 
-  private OpenTaskImplementationAction _openAction;
-
-  public OpenTaskImplementationMenuContributor() {
-    _openAction = new OpenTaskImplementationAction();
-  }
-
-  @Override
-  public void menuAboutToShow(IMenuManager menuManager) {
-    if (((IStructuredSelection) _selection).size() == 1 && _openAction.getTask() != null && EGFTaskPlugin.KIND_JAVA.equals(_openAction.getKind())) {
-      _openAction.setText(getText());
-      _openAction.setEnabled(_openAction.isEnabled());
-      menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _openAction);
+    protected String getText() {
+        return EGFTaskUIMessages.TaskImplementationMenuContributor_openAction_label;
     }
-  }
-
-  protected String getText() {
-    return EGFTaskUIMessages.TaskImplementationMenuContributor_openAction_label;
-  }
 
 }

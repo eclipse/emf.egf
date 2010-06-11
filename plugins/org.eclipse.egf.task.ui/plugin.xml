@@ -27,6 +27,18 @@
       class="org.eclipse.egf.task.ui.contributions.OpenTaskImplementationMenuContributor"
     />    
   </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Listener Contributor                                                                  -->
+  <!-- ================================================================================= -->  
+  
+  <extension 
+    point="org.eclipse.egf.core.ui.editor.listener.contributor"
+  >
+    <contribution
+      class="org.eclipse.egf.task.ui.contributions.OpenTaskImplementationListenerContributor"
+    />
+  </extension>    
 
   <!-- ================================================================================= -->
   <!-- Property Contributor                                                              -->
