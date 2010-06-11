@@ -441,8 +441,6 @@ public class ImplementationPage extends PatternEditorPage {
      * Add drag and drop listener to methodsTableViewer.
      */
     private void addDragDropForMethodsTable() {
-        if (isReadOnly())
-            return;
 
         methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
@@ -475,6 +473,9 @@ public class ImplementationPage extends PatternEditorPage {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
+                if (isReadOnly()) {
+                    return false;
+                }
                 if (isChangMethodsOrder) {
                     return true;
                 }
@@ -487,26 +488,33 @@ public class ImplementationPage extends PatternEditorPage {
                 EList<PatternMethod> methods = getPattern().getMethods();
                 executeChangeOrder(currentTarget, methodsTableViewer, methods, methodsDragIndex);
                 setMethodsButtonsStatus();
-                return false;
+                return true;
             }
 
         });
     }
 
     private void initMethodsTableEditor() {
-        if (isReadOnly())
-            return;
         methodsTableViewer.setColumnProperties(new String[] {
             NAME_COLUMN_ID
         });
         nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
-
         methodsTableViewer.setCellEditors(new CellEditor[] {
             nameEditor
         });
-        methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer));
+        methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer) {
+
+            @Override
+            public boolean canModify(Object element, String property) {
+                if (isReadOnly()) {
+                    return false;
+                }
+                return super.canModify(element, property);
+            }
+
+        });
     }
 
     /**
