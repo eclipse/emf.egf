@@ -17,8 +17,11 @@ import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
 import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.core.ui.contributor.IMenuEditorActionBarContributor;
+import org.eclipse.egf.core.ui.contributor.PropertyEditorContributor;
 import org.eclipse.egf.core.ui.internal.registry.EditorListenerContributorRegistry;
 import org.eclipse.egf.core.ui.internal.registry.EditorMenuContributorRegistry;
+import org.eclipse.egf.core.ui.internal.registry.PropertyEditorContributorRegistry;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.osgi.framework.BundleContext;
@@ -37,6 +40,11 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
      * Keep track of the EditorMenuContributorRegistry
      */
     private static EditorMenuContributorRegistry __editorMenuContributorRegistry;
+
+    /**
+     * Keep track of the PropertyEditorContributorRegistry
+     */
+    private static PropertyEditorContributorRegistry __propertyEditorContributorRegistry;
 
     /**
      * The shared instance
@@ -109,13 +117,24 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
 
     /**
      * Dispose editor menu contributors implementations.
-     * 
      */
     public static void disposeEditorMenuContributors(IMenuEditorActionBarContributor parent) {
         if (__editorMenuContributorRegistry == null) {
             return;
         }
         __editorMenuContributorRegistry.disposeEditorMenuContributors(parent);
+    }
+
+    /**
+     * Create property editor contributors implementations.
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static PropertyEditorContributor selectPropertyEditor(Object object, IItemPropertyDescriptor descriptor) {
+        if (__propertyEditorContributorRegistry == null) {
+            __propertyEditorContributorRegistry = new PropertyEditorContributorRegistry();
+        }
+        return __propertyEditorContributorRegistry.selectPropertyEditor(object, descriptor);
     }
 
     /**
@@ -139,6 +158,10 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
         if (__editorMenuContributorRegistry != null) {
             __editorMenuContributorRegistry.dispose();
             __editorMenuContributorRegistry = null;
+        }
+        if (__propertyEditorContributorRegistry != null) {
+            __propertyEditorContributorRegistry.dispose();
+            __propertyEditorContributorRegistry = null;
         }
         super.stop(context);
         __plugin = null;
