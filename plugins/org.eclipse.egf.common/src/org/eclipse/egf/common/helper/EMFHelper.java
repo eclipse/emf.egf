@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -21,6 +22,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -52,6 +54,28 @@ public class EMFHelper {
 
     private EMFHelper() {
         // Prevent instantiation
+    }
+
+    public static Collection<EPackage> getAllPackages(Resource resource) {
+        if (resource == null) {
+            return null;
+        }
+        List<EPackage> result = new ArrayList<EPackage>();
+        for (TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected Iterator<? extends EObject> getEObjectChildren(EObject eObject) {
+                return eObject instanceof EPackage ? ((EPackage) eObject).getESubpackages().iterator() : Collections.<EObject> emptyList().iterator();
+            }
+        }; j.hasNext();) {
+            Object content = j.next();
+            if (content instanceof EPackage) {
+                result.add((EPackage) content);
+            }
+        }
+        return result;
     }
 
     public static IResource getWorkspaceResource(Resource resource) {
@@ -153,6 +177,9 @@ public class EMFHelper {
                 return eClassifier;
             }
             EObject eObject = ePackage.eResource().getEObject(uri.fragment());
+            if (eObject == null) {
+                return eClassifier;
+            }
             EClassifier solvedEClassifier = eObject instanceof EClassifier ? (EClassifier) eObject : eObject.eClass();
             if (solvedEClassifier != null) {
                 return solvedEClassifier;
