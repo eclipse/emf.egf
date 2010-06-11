@@ -14,16 +14,17 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.ecore.EPackageHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
-import org.eclipse.egf.pattern.utils.NsURIHelper;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 public abstract class DefaultDomainVisitor implements DomainVisitor {
 
     private final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
+
     private final Set<Object> visited = new HashSet<Object>();
 
     public void setPatterns(List<Pattern> patterns) throws PatternException {
@@ -46,7 +47,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     protected List<Pattern> findPatterns(Object model) {
         List<Pattern> result = null;
         if (model instanceof EObject) {
-            String fullName = NsURIHelper.getFullName((EObject) model);
+            String fullName = EPackageHelper.getFullName((EObject) model);
             result = type2patterns.get(fullName);
         } else
             throw new UnsupportedOperationException();
