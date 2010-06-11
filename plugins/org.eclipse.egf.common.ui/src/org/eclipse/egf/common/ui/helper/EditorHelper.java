@@ -139,6 +139,20 @@ public class EditorHelper {
         return EditorsUI.DEFAULT_TEXT_EDITOR_ID;
     }
 
+    public static IEditorInput getEditorInput(URI uri) {
+        if (uri == null || uri.isEmpty() || "//#".equals(uri)) { //$NON-NLS-1$
+            return null;
+        }
+        if (uri.isPlatformResource()) {
+            String path = uri.toPlatformString(true);
+            IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+            if (resource instanceof IFile) {
+                return EclipseUtil.createFileEditorInput((IFile) resource);
+            }
+        }
+        return new URIEditorInput(uri.trimFragment());
+    }
+
     /**
      * Opens the default editor for the resource that contains the specified
      * EObject.
@@ -157,7 +171,7 @@ public class EditorHelper {
             IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
             if (resource instanceof IFile) {
                 editorInput = EclipseUtil.createFileEditorInput((IFile) resource);
-                return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), true));
+                return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), false));
             }
         }
         return openEditor(new URIEditorInput(uri.trimFragment()), uri);
@@ -181,7 +195,7 @@ public class EditorHelper {
             IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
             if (resource instanceof IFile) {
                 editorInput = EclipseUtil.createFileEditorInput((IFile) resource);
-                return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), true), editorId);
+                return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), false), editorId);
             }
         }
         return openEditor(new URIEditorInput(uri.trimFragment()), uri, editorId);
@@ -343,6 +357,7 @@ public class EditorHelper {
         public static IURIEditorInput createFileEditorInput(IFile file) {
             return new FileEditorInput(file);
         }
+
     }
 
 }
