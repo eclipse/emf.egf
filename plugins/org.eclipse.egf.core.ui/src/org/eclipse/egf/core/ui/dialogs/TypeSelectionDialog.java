@@ -49,6 +49,13 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
         setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
     }
 
+    public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, int elementKinds) {
+        super(parent, multi, context, SearchEngine.createWorkspaceScope(), elementKinds, null);
+        setTitle(CoreUIMessages.TypeSelection_dialogTitle);
+        setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
+        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+    }
+
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, int elementKinds, TypeSelectionExtension extension) {
         super(parent, multi, context, SearchEngine.createWorkspaceScope(), elementKinds, extension);
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
