@@ -17,9 +17,6 @@
             id="egf/Pattern_task.fcore">
       </fcore>
       <fcore
-            id="egf/substitution_composition.fcore">
-      </fcore>
-      <fcore
             id="egf/Substitution_composition.fcore">
       </fcore>
    </extension>
