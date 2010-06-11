@@ -62,7 +62,7 @@ public class PlatformExtensionPointDelta implements IPlatformExtensionPointDelta
         return extensionPoints.add(extensionPoint);
     }
 
-    public static <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> map, Class<T> clazz) {
+    protected static <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> map, Class<T> clazz) {
         List<Object> extensionPoints = new ArrayList<Object>();
         if (clazz != null && EGFPlatformPlugin.getPlatformExtensionPointClasses().contains(clazz)) {
             if (map.get(clazz) != null) {
