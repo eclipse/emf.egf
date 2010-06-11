@@ -10,9 +10,8 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
-import java.net.URL;
-
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginExtension;
@@ -101,22 +100,35 @@ public interface IPlatformBundle {
      */
     public boolean isTarget();
 
+    /**
+     * Whether or not this IPlatformBundle has managed extension points
+     * 
+     * @return true if this IPlatformBundle has managed extension points
+     *         false otherwise.
+     * 
+     */
     public boolean isEmpty();
 
     /**
-     * The location string for this bundle.
+     * The install location string for this IPlatformBundle.
      * 
-     * @return The bundle location or null if the bundle description
-     *         does not have a location
+     * @return the install location
      */
-    public String getBundleLocation();
+    public String getInstallLocation();
 
     /**
-     * The URL for this bundle.
+     * The Rooted URI of this IPlatformBundle.
      * 
-     * @return The bundle URL.
+     * @return URI
      */
-    public URL getBundleURL();
+    public URI getRootedBase();
+
+    /**
+     * The Unrooted URI of this IPlatformBundle.
+     * 
+     * @return URI
+     */
+    public URI getUnrootedBase();
 
     public IPlatformExtensionPoint[] getPlatformExtensionPoints();
 
@@ -129,8 +141,6 @@ public interface IPlatformBundle {
     public void addPlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPluginExtension extension);
 
     public void addPlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint platformExtensionPoint);
-
-    public boolean removePlatformExtensionPoint(IPlatformExtensionPoint platformExtensionPoint);
 
     public boolean removePlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint platformExtensionPoint);
 
