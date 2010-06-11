@@ -28,24 +28,14 @@ public class Activator extends EGFAbstractPlugin {
     // The shared instance
     private static Activator plugin;
 
-    /**
-     * The constructor
-     */
-    public Activator() {
-    }
-
     /*
      * (non-Javadoc)
      * 
      * @see
-     * 
-     * 
-     * 
-     * 
-     * 
      * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
      * )
      */
+    @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
         plugin = this;
@@ -56,13 +46,10 @@ public class Activator extends EGFAbstractPlugin {
      * 
      * @see
      * 
-     * 
-     * 
-     * 
-     * 
      * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
      * )
      */
+    @Override
     public void stop(BundleContext context) throws Exception {
         super.stop(context);
         plugin = null;
