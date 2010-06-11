@@ -127,15 +127,19 @@ public class FcoreResourceListener implements IResourceChangeListener {
                 protected ResourceFcoreDelta _deltaFcores = new ResourceFcoreDelta();
 
                 public boolean visit(IResourceDelta delta) throws CoreException {
+
                     try {
+
                         // Ignore opening and closing projects, handled by PlatformManager
                         if (delta.getResource().getType() == IResource.PROJECT && (delta.getFlags() & IResourceDelta.OPEN) != 0) {
                             return false;
                         }
+
                         // Process file
                         if (delta.getResource().getType() != IResource.FILE) {
                             return true;
                         }
+
                         // check whether or not we are processing an fcore
                         boolean isFcore = IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(delta.getResource().getFileExtension());
                         URI uri = URIHelper.getPlatformURI(delta.getResource());
@@ -176,10 +180,13 @@ public class FcoreResourceListener implements IResourceChangeListener {
                                     _affectedProjects.add(delta.getResource().getProject());
                                 }
                             }
+
                         }
+
                     } catch (Throwable t) {
                         EGFPDEPlugin.getDefault().logError("FcoreResourceListener.resourceChanged(..) _ ", t); //$NON-NLS-1$
                     }
+
                     return true;
 
                 }
