@@ -1425,7 +1425,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         if (getEditorInput() == null) {
             return super.getTitleToolTip();
         }
-        return getResource().getURI().toString();
+        return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI()).toString();
     }
 
     /**
