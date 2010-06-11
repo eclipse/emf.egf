@@ -158,7 +158,7 @@ public class ChooseTypePage extends WizardPage {
         javaTypeTabItem.setImage(Activator.getDefault().getImage(ImageShop.IMG_CLASS_OBJ));
 
         Composite compositeJavaType = new Composite(_tabFolder, SWT.NONE);
-        _dialog = new TypeSelectionDialog(getShell(), false, PlatformUI.getWorkbench().getProgressService(), _javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
+        _dialog = new TypeSelectionDialog(container.getShell(), false, PlatformUI.getWorkbench().getProgressService(), _javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
         compositeJavaType.setLayout(new GridLayout());
         _dialog.createPage(compositeJavaType);
         compositeJavaType.addDisposeListener(new DisposeListener() {
