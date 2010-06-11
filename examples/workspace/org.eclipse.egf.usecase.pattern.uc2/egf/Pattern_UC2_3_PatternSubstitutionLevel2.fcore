@@ -4,12 +4,6 @@
     xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_7-K9oFn4Ed-yhOrMHI1JRQ"
     name="Pattern_UC2_3_PatternSubstitutionLevel2">
-  <contractContainer xmi:id="_CcazcFn5Ed-yhOrMHI1JRQ">
-    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_GTCfsFn5Ed-yhOrMHI1JRQ"
-        name="pattern.substitutions">
-      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_GTCfsVn5Ed-yhOrMHI1JRQ"/>
-    </contracts>
-  </contractContainer>
   <viewpointContainer xmi:id="_InTBUFn5Ed-yhOrMHI1JRQ">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_JcWaAFn5Ed-yhOrMHI1JRQ">
       <libraries xmi:id="_MDsPsFn5Ed-yhOrMHI1JRQ" name="egf.uc2_3.substitution.level2">

@@ -72,7 +72,7 @@
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_extension_2.fcore#_vxrhQElSEd-TSsH7K-_bxQ"/>
     </tests>
     <tests xsi:type="test:EGFTestCase" name="Sanity test 3">
-      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;A on Employee&#xA;&#xA;&#xA;loop with callback finished:&#xA;A on Employee&#xA;&#xA;&#xA;loop finished:&#xA;A on Company&#xA;&#xA;&#xA;loop with callback finished:&#xA;A on Company&#xA;&#xA;&#xA;loop finished:&#xA;A on Test&#xA;&#xA;&#xA;loop with callback finished:&#xA;A on Test&#xA;&#xA;&#xA;exec finished:&#xA;A on Employee&#xA;&#xA;A on Company&#xA;&#xA;A on Test&#xA;&#xA;&#xA;"/>
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;A on Employee&#xA;&#xA;loop with callback finished:&#xA;A on Employee&#xA;&#xA;loop finished:&#xA;A on Company&#xA;&#xA;loop with callback finished:&#xA;A on Company&#xA;&#xA;loop finished:&#xA;A on Test&#xA;&#xA;loop with callback finished:&#xA;A on Test&#xA;&#xA;exec finished:&#xA;A on Employee&#xA;A on Company&#xA;A on Test&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_3.fcore#_C_PekGidEd-c8qu-Vw7xKQ"/>
     </tests>
     <tests xsi:type="test:EGFTestCase" name="extension 3.1">
@@ -88,7 +88,7 @@
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_3.fcore#_WjNeYGimEd-c8qu-Vw7xKQ"/>
     </tests>
     <tests xsi:type="test:EGFTestCase" name="substitution_4">
-      <result xsi:type="test:ConsoleOutputTestResult" text="c&#xD;&#xA;c&#xD;&#xA;"/>
+      <result xsi:type="test:ConsoleOutputTestResult" text="c&#xD;&#xA;b&#xD;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_4.fcore#_PoLl4GlqEd-AhuXDVJhj5w"/>
     </tests>
   </tests>
