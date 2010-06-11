@@ -59,13 +59,17 @@ import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jdt.internal.core.BinaryType;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.CellLabelProvider;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -76,8 +80,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.jface.window.ToolTip;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -120,7 +126,6 @@ import org.eclipse.ui.ide.IDE;
  * @author Thomas Guiu
  * 
  */
-@SuppressWarnings("restriction")
 public class ImplementationPage extends PatternEditorPage {
 
     public static final String ID = "ImplementationPage"; //$NON-NLS-1$
@@ -294,9 +299,11 @@ public class ImplementationPage extends PatternEditorPage {
         headerLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkActivated(HyperlinkEvent e) {
@@ -304,15 +311,18 @@ public class ImplementationPage extends PatternEditorPage {
                 String headerMethodId = headerMethod.getID();
                 openMethodTemplate(headerMethodId);
             }
+
         });
 
         ImageHyperlink initLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.INIT_METHOD_NAME);
         initLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkActivated(HyperlinkEvent e) {
@@ -320,15 +330,18 @@ public class ImplementationPage extends PatternEditorPage {
                 String initMethodId = initMethod.getID();
                 openMethodTemplate(initMethodId);
             }
+
         });
 
         ImageHyperlink preConditionLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.PRECONDITION_METHOD_NAME);
         preConditionLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkActivated(HyperlinkEvent e) {
@@ -336,15 +349,18 @@ public class ImplementationPage extends PatternEditorPage {
                 if (conditionMethod != null)
                     openMethodTemplate(conditionMethod.getID());
             }
+
         });
 
         ImageHyperlink footerLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.FOOTER_METHOD_NAME);
         footerLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkActivated(HyperlinkEvent e) {
@@ -352,6 +368,7 @@ public class ImplementationPage extends PatternEditorPage {
                 String footerMethodId = footerMethod.getID();
                 openMethodTemplate(footerMethodId);
             }
+
         });
 
     }
@@ -403,6 +420,7 @@ public class ImplementationPage extends PatternEditorPage {
                     return;
                 openPatternTemplate();
             }
+
         });
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -416,6 +434,7 @@ public class ImplementationPage extends PatternEditorPage {
                     control.setText(selectItem == null ? "" : selectItem.getName()); //$NON-NLS-1$
                 }
             }
+
         });
 
         addDragDropForMethodsTable();
@@ -448,13 +467,16 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void dragFinished(DragSourceEvent event) {
+                // Nothing to do
             }
+
         });
 
         methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
         }, new ViewerDropAdapter(methodsTableViewer) {
 
+            @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
                 if (isChangMethodsOrder) {
                     return true;
@@ -462,6 +484,7 @@ public class ImplementationPage extends PatternEditorPage {
                 return false;
             }
 
+            @Override
             public boolean performDrop(Object data) {
                 Object currentTarget = getCurrentTarget();
                 EList<PatternMethod> methods = getPattern().getMethods();
@@ -469,6 +492,7 @@ public class ImplementationPage extends PatternEditorPage {
                 setMethodsButtonsStatus();
                 return false;
             }
+
         });
     }
 
@@ -515,8 +539,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
-
+                // Nothing to do
             }
+
         });
 
         methodsEdit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -544,8 +569,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
-
+                // Nothing to do
             }
+
         });
 
         methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -560,7 +586,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         methodsRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -575,7 +603,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         methodsUp = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -590,7 +620,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         methodsDown = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -605,7 +637,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
     }
@@ -625,9 +659,11 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 methods.move(toIndex, fromIndex);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
 
@@ -672,28 +708,26 @@ public class ImplementationPage extends PatternEditorPage {
             methodsDown.setEnabled(false);
             methodsOpenTemplate.setEnabled(false);
             return;
-        } else {
-            PatternMethod selectMethod = (PatternMethod) (methodsTableViewer.getElementAt(selectIndex));
-            if (PatternUIHelper.isRenameDisable(selectMethod)) {
-                methodsEdit.setEnabled(false);
-                methodsRemove.setEnabled(false);
-            } else {
-                methodsEdit.setEnabled(true);
-                methodsRemove.setEnabled(true);
-            }
-
-            if (selectIndex <= 0) {
-                methodsUp.setEnabled(false);
-            } else {
-                methodsUp.setEnabled(true);
-            }
-            if ((selectIndex + 1) == length) {
-                methodsDown.setEnabled(false);
-            } else {
-                methodsDown.setEnabled(true);
-            }
-            methodsOpenTemplate.setEnabled(true);
         }
+        PatternMethod selectMethod = (PatternMethod) (methodsTableViewer.getElementAt(selectIndex));
+        if (PatternUIHelper.isRenameDisable(selectMethod)) {
+            methodsEdit.setEnabled(false);
+            methodsRemove.setEnabled(false);
+        } else {
+            methodsEdit.setEnabled(true);
+            methodsRemove.setEnabled(true);
+        }
+        if (selectIndex <= 0) {
+            methodsUp.setEnabled(false);
+        } else {
+            methodsUp.setEnabled(true);
+        }
+        if ((selectIndex + 1) == length) {
+            methodsDown.setEnabled(false);
+        } else {
+            methodsDown.setEnabled(true);
+        }
+        methodsOpenTemplate.setEnabled(true);
     }
 
     private void executeMethodsRemove(Composite methods) {
@@ -710,9 +744,11 @@ public class ImplementationPage extends PatternEditorPage {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                    @Override
                     protected void doExecute() {
                         pattern.getMethods().remove(selectItem);
                     }
+
                 };
                 editingDomain.getCommandStack().execute(cmd);
                 EList<PatternMethod> allMethods = pattern.getMethods();
@@ -726,6 +762,7 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 PatternMethod newMethod = PatternFactory.eINSTANCE.createPatternMethod();
                 newMethod.setName(name);
@@ -734,6 +771,7 @@ public class ImplementationPage extends PatternEditorPage {
                 newMethod.setPatternFilePath(PatternHelper.Filename.computeFileURI(newMethod));
                 PatternUIHelper.addAdapterForNewItem(methodsTableViewer, newMethod);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
         methodsTableViewer.refresh();
@@ -747,9 +785,11 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 editPatternMethod.setName(name);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
     }
@@ -855,6 +895,7 @@ public class ImplementationPage extends PatternEditorPage {
                     return;
                 setOrchestrationButtonsStatus();
             }
+
         });
         orchestrationTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
@@ -863,6 +904,7 @@ public class ImplementationPage extends PatternEditorPage {
                     return;
                 openOrchestrationWizard();
             }
+
         });
         addDragDropForOrchestrationTable();
     }
@@ -892,13 +934,16 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void dragFinished(DragSourceEvent event) {
+                // Nothing to do
             }
+
         });
 
         orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
         }, new ViewerDropAdapter(orchestrationTableViewer) {
 
+            @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
                 if (!isChangOrchestrationeOrder) {
                     return checkDropSupport();
@@ -906,6 +951,7 @@ public class ImplementationPage extends PatternEditorPage {
                 return true;
             }
 
+            @Override
             public boolean performDrop(Object data) {
                 if (isChangOrchestrationeOrder) {
                     Object currentTarget = getCurrentTarget();
@@ -917,6 +963,7 @@ public class ImplementationPage extends PatternEditorPage {
                 }
                 return false;
             }
+
         });
     }
 
@@ -924,15 +971,16 @@ public class ImplementationPage extends PatternEditorPage {
      * Execute the drag and drop operation to change the order of the table
      * rows.
      */
-    protected void executeChangeOrder(Object currentTarget, TableViewer tableViewer, EList<?> list, int sourceIndex) {
+    @SuppressWarnings("unchecked")
+    protected void executeChangeOrder(Object currentTarget, TableViewer viewer, EList<?> list, int sourceIndex) {
         int targetIndex = 0;
         if (currentTarget == null) {
-            targetIndex = tableViewer.getTable().getItemCount() - 1;
+            targetIndex = viewer.getTable().getItemCount() - 1;
         } else {
-            TableItem[] items = tableViewer.getTable().getItems();
+            TableItem[] items = viewer.getTable().getItems();
             for (TableItem item : items) {
                 if (currentTarget.equals(item.getData())) {
-                    targetIndex = tableViewer.getTable().indexOf(item);
+                    targetIndex = viewer.getTable().indexOf(item);
                     break;
                 }
             }
@@ -945,8 +993,8 @@ public class ImplementationPage extends PatternEditorPage {
         } else {
             refreshTableContent(list, targetIndex, sourceIndex);
         }
-        tableViewer.refresh();
-        tableViewer.getTable().setSelection(targetIndex);
+        viewer.refresh();
+        viewer.getTable().setSelection(targetIndex);
     }
 
     /**
@@ -956,9 +1004,11 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 list.move(targetIndex, sourceIndex);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
     }
@@ -983,6 +1033,7 @@ public class ImplementationPage extends PatternEditorPage {
             TransactionalEditingDomain editingDomain = getEditingDomain();
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                @Override
                 protected void doExecute() {
                     MethodCall methodCallNew = PatternFactory.eINSTANCE.createMethodCall();
                     methodCallNew.setCalled(dropEntry);
@@ -990,6 +1041,7 @@ public class ImplementationPage extends PatternEditorPage {
                     getPattern().getOrchestration().add(methodCallNew);
                     PatternUIHelper.addAdapterForNewItem(orchestrationTableViewer, methodCallNew);
                 }
+
             };
             editingDomain.getCommandStack().execute(cmd);
             setOrchestrationButtonsStatus();
@@ -1024,7 +1076,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         orchestrationEdit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -1039,7 +1093,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         orchestrationRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -1054,7 +1110,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         orchestrationUp = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -1069,7 +1127,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         orchestrationDown = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -1084,7 +1144,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
     }
 
@@ -1143,11 +1205,13 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 selectCall.setPattern(getPattern());
                 getPattern().getOrchestration().add(selectCall);
                 PatternUIHelper.addAdapterForNewItem(orchestrationTableViewer, selectCall);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
     }
@@ -1156,6 +1220,7 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 if (selectItem instanceof Call) {
                     int modifyIndex = getPattern().getOrchestration().indexOf(selectItem);
@@ -1166,6 +1231,7 @@ public class ImplementationPage extends PatternEditorPage {
                     setOrchestrationButtonsStatus();
                 }
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
     }
@@ -1178,9 +1244,11 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 orchestration.move(newIndex, oldIndex);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
 
@@ -1195,11 +1263,13 @@ public class ImplementationPage extends PatternEditorPage {
             TransactionalEditingDomain editingDomain = getEditingDomain();
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                @Override
                 protected void doExecute() {
                     if (selectItem instanceof Call) {
                         getPattern().getOrchestration().remove(selectItem);
                     }
                 }
+
             };
             editingDomain.getCommandStack().execute(cmd);
             EList<Call> orchestration = getPattern().getOrchestration();
@@ -1260,6 +1330,7 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void createVariablesTable(FormToolkit toolkit, Composite variables) {
+
         Composite tableComp = new Composite(variables, SWT.NONE);
         TableColumnLayout layout = new TableColumnLayout();
         tableComp.setLayout(layout);
@@ -1283,16 +1354,19 @@ public class ImplementationPage extends PatternEditorPage {
         int[] colWidths = {
                 130, 135
         };
+        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
+        ColumnViewerToolTipSupport.enableFor(variablesTableViewer, ToolTip.NO_RECREATE);
+        CellLabelProvider cellLabelProvider = new ParametersTableLabelProvider();
         for (int i = 0; i < colNames.length; i++) {
-            TableColumn tableColumn = new TableColumn(table, SWT.NONE);
-            tableColumn.setWidth(colWidths[i]);
-            tableColumn.setText(colNames[i]);
-            layout.setColumnData(tableColumn, new ColumnWeightData(colWidths[i], true));
+            TableViewerColumn column = new TableViewerColumn(variablesTableViewer, SWT.NONE);
+            column.setLabelProvider(cellLabelProvider);
+            column.getColumn().setWidth(colWidths[i]);
+            column.getColumn().setText(colNames[i]);
+            layout.setColumnData(column.getColumn(), new ColumnWeightData(colWidths[i], true));
         }
+
         initVariablesTableEditor();
 
-        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));//
-        variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
     }
 
     private void initVariablesTableEditor() {
@@ -1309,14 +1383,12 @@ public class ImplementationPage extends PatternEditorPage {
                 OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType(), getPattern());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-                int returnValue = dialog.open();
-                if (Window.OK == returnValue) {
-                    if (wizard.getSelectType() instanceof String) {
-                        final String selectType = (String) wizard.getSelectType();
-                        updateType(selectType);
-                    } else if (wizard.getSelectType() instanceof BinaryType) {
-                        final String selectType = ((BinaryType) wizard.getSelectType()).getFullyQualifiedName();
-                        updateType(selectType);
+                if (dialog.open() == Window.OK) {
+                    Object object = wizard.getSelectType();
+                    if (object instanceof EObject) {
+                        updateType(EcoreUtil.getURI((EObject) object).toString());
+                    } else if (object instanceof IType) {
+                        updateType(((IType) object).getFullyQualifiedName());
                     }
 
                 }
@@ -1344,9 +1416,11 @@ public class ImplementationPage extends PatternEditorPage {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                    @Override
                     protected void doExecute() {
                         ((PatternVariable) selectItem).setType(selectType);
                     }
+
                 };
                 editingDomain.getCommandStack().execute(cmd);
                 variablesTableViewer.refresh();
@@ -1375,7 +1449,7 @@ public class ImplementationPage extends PatternEditorPage {
         if (selectItem instanceof PatternMethod) {
             return (PatternMethod) selectItem;
         }
-        return null; //$NON-NLS-1$
+        return null;
     }
 
     /**
@@ -1400,7 +1474,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         variablesEdit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -1419,9 +1495,11 @@ public class ImplementationPage extends PatternEditorPage {
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                        @Override
                         protected void doExecute() {
                             executeVariableEdit(dialog, selectItem);
                         }
+
                     };
                     editingDomain.getCommandStack().execute(cmd);
                     variablesTableViewer.refresh();
@@ -1429,7 +1507,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         variablesRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -1444,7 +1524,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
     }
 
@@ -1474,6 +1556,7 @@ public class ImplementationPage extends PatternEditorPage {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+            @Override
             protected void doExecute() {
                 PatternVariable patternVariableNew = PatternFactory.eINSTANCE.createPatternVariable();
                 patternVariableNew.setName(VARIABLE_NAME_DEFAULT_VALUE);
@@ -1481,6 +1564,7 @@ public class ImplementationPage extends PatternEditorPage {
                 pattern.getVariables().add(patternVariableNew);
                 PatternUIHelper.addAdapterForNewItem(variablesTableViewer, patternVariableNew);
             }
+
         };
         editingDomain.getCommandStack().execute(cmd);
 
@@ -1516,9 +1600,11 @@ public class ImplementationPage extends PatternEditorPage {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
                 RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                    @Override
                     protected void doExecute() {
                         pattern.getVariables().remove(removeit);
                     }
+
                 };
                 editingDomain.getCommandStack().execute(cmd);
                 EList<PatternVariable> allParameters = pattern.getAllVariables();

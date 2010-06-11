@@ -67,7 +67,9 @@ import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IType;
@@ -77,6 +79,8 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.CellLabelProvider;
+import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ComboBoxViewerCellEditor;
 import org.eclipse.jface.viewers.DialogCellEditor;
@@ -85,8 +89,10 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.jface.window.ToolTip;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -108,7 +114,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -260,7 +265,7 @@ public class SpecificationPage extends PatternEditorPage {
         parentLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
         // TODO: should use Hyperlink when it will be supported by databinding
-        parentLink = new Link(container, SWT.NONE);
+        parentLink = new Link(container, SWT.WRAP);
         parentLink.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB, TableWrapData.MIDDLE));
         parentLink.addSelectionListener(new SelectionListener() {
 
@@ -479,25 +484,29 @@ public class SpecificationPage extends PatternEditorPage {
         int[] colWidths = {
                 100, 80, 80
         };
-        for (int i = 0; i < colNames.length; i++) {
-            TableColumn tableColumn = new TableColumn(table, SWT.NONE);
-            tableColumn.setWidth(colWidths[i]);
-            tableColumn.setText(colNames[i]);
-            layout.setColumnData(tableColumn, new ColumnWeightData(colWidths[i], true));
-        }
-        initTableEditor();
-
         tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
-        tableViewer.setLabelProvider(new ParametersTableLabelProvider());
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                if (isReadOnly)
+                if (isReadOnly) {
                     return;
+                }
                 setButtonsStatus();
             }
 
         });
+        ColumnViewerToolTipSupport.enableFor(tableViewer, ToolTip.NO_RECREATE);
+        CellLabelProvider cellLabelProvider = new ParametersTableLabelProvider();
+        for (int i = 0; i < colNames.length; i++) {
+            TableViewerColumn column = new TableViewerColumn(tableViewer, SWT.NONE);
+            column.setLabelProvider(cellLabelProvider);
+            column.getColumn().setWidth(colWidths[i]);
+            column.getColumn().setText(colNames[i]);
+            layout.setColumnData(column.getColumn(), new ColumnWeightData(colWidths[i], true));
+        }
+
+        initTableEditor();
+
         addDragDrop();
 
     }
@@ -890,10 +899,11 @@ public class SpecificationPage extends PatternEditorPage {
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 if (dialog.open() == Window.OK) {
-                    if (wizard.getSelectType() instanceof String) {
-                        updateType((String) wizard.getSelectType());
+                    Object object = wizard.getSelectType();
+                    if (object instanceof EObject) {
+                        updateType(EcoreUtil.getURI((EObject) object).toString());
                     } else if (wizard.getSelectType() instanceof IType) {
-                        updateType(((IType) wizard.getSelectType()).getFullyQualifiedName());
+                        updateType(((IType) object).getFullyQualifiedName());
                     }
 
                 }
