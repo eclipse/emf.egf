@@ -10,17 +10,25 @@
  */
 package org.eclipse.egf.core;
 
+import java.util.Map;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
+import org.eclipse.egf.core.internal.genmodel.PlatformGenModel;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.egf.core.platform.uri.PlatformURIConverter;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -59,6 +67,14 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      */
     public static EGFCorePlugin getDefault() {
         return __plugin;
+    }
+
+    /**
+     * Get the IPlatformManager
+     * 
+     */
+    public static IPlatformManager getPlatformManager() {
+        return EGFPlatformPlugin.getPlatformManager();
     }
 
     /**
@@ -170,6 +186,10 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
         return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformGenModel.class);
     }
 
+    public static Map<String, URI> getEPackageNsURIToGenModelLocationMap() {
+        return PlatformGenModel.getEPackageNsURIToGenModelLocationMap();
+    }
+
     /**
      * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
      */
@@ -177,6 +197,15 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         __plugin = this;
+        // Force EGF Core Platform Plugin initialization
+        Bundle platform = Platform.getBundle("org.eclipse.egf.core.platform"); //$NON-NLS-1$
+        if (platform != null) {
+            try {
+                platform.start(Bundle.START_TRANSIENT);
+            } catch (BundleException e) {
+                logError(e);
+            }
+        }
     }
 
     /**
