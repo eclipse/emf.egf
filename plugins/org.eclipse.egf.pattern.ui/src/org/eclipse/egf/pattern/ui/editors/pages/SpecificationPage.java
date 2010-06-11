@@ -192,7 +192,6 @@ public class SpecificationPage extends PatternEditorPage {
         if (isReadOnly == false) {
             return;
         }
-        parentLink.setEnabled(false);
         browse.setEnabled(false);
         removeParent.setEnabled(false);
         add.setEnabled(false);

@@ -232,7 +232,6 @@ public class ImplementationPage extends PatternEditorPage {
         methodsAdd.setEnabled(false);
         methodsEdit.setEnabled(false);
         methodsRemove.setEnabled(false);
-        methodsOpenTemplate.setEnabled(false);
 
         orchestrationAdd.setEnabled(false);
         orchestrationEdit.setEnabled(false);
@@ -416,8 +415,6 @@ public class ImplementationPage extends PatternEditorPage {
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
-                if (isReadOnly)
-                    return;
                 openPatternTemplate();
             }
 
@@ -576,7 +573,6 @@ public class ImplementationPage extends PatternEditorPage {
 
         methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         methodsOpenTemplate.setLayoutData(gd);
-        methodsOpenTemplate.setEnabled(false);
         methodsOpenTemplate.setImage(Activator.getDefault().getImage(ImageShop.IMG_METHOD_CONTENT_EDIT));
         methodsOpenTemplate.setToolTipText(Messages.ImplementationPage_button_methodsOpenTemplate);
         methodsOpenTemplate.addSelectionListener(new SelectionListener() {
