@@ -99,7 +99,7 @@ public class JetAssemblyContentProvider extends AbstractJavaAssemblyContentProvi
                 if (pattern.getSuperPattern() == null || pattern.getSuperPattern().getConditionMethod() == null)
                     methodContent = "return true;";
                 else
-                    methodContent = "super." + PatternFactory.PRECONDITION_METHOD_NAME + "();";
+                    methodContent = "return super." + PatternFactory.PRECONDITION_METHOD_NAME + "();";
             }
             content.append(methodContent).append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("}%>").append(EGFCommonConstants.LINE_SEPARATOR);
