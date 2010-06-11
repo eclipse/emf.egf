@@ -34,8 +34,8 @@ import org.eclipse.egf.core.pde.internal.extension.FcoreExtensionFactory;
 import org.eclipse.egf.core.pde.internal.resource.FcoreResourceListener;
 import org.eclipse.egf.core.pde.l10n.EGFPDEMessages;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.internal.core.ICoreConstants;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
-import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -238,7 +238,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
         if (project == null) {
             return null;
         }
-        IFile plugin = project.getFile(PDEModelUtility.F_PLUGIN);
+        IFile plugin = project.getFile(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR);
         return plugin.exists() ? plugin : null;
     }
 
@@ -252,7 +252,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     public boolean isPluginFile(IResource resource) {
         // Check if given resource is an IFile and the plug-in file ?
         if (resource != null && resource instanceof IFile) {
-            return ((IFile) resource).getName().equals(PDEModelUtility.F_PLUGIN);
+            return ((IFile) resource).getName().equals(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR);
         }
         return false;
     }
