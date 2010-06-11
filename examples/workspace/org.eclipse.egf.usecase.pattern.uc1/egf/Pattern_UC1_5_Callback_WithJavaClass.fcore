@@ -32,16 +32,16 @@
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_DNfhIBe4Ed-DaY2uHNBaQg">
-    <invocations xmi:id="_DrZlIBe4Ed-DaY2uHNBaQg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+    <invocations xmi:id="_DrZlIBe4Ed-DaY2uHNBaQg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
       <invocationContractContainer xmi:id="_GWMFgBe6Ed-O0P2188kAmA">
-        <invocationContracts xmi:id="_z4HVwBe7Ed-O0P2188kAmA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
+        <invocationContracts xmi:id="_z4HVwBe7Ed-O0P2188kAmA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_1B95wBe7Ed-O0P2188kAmA" domain="#_-qgeIBe3Ed-DaY2uHNBaQg"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_mT1mgBe9Ed-d2_ufnco5uw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_-wgGgBe5Ed-O0P2188kAmA">
+        <invocationContracts xmi:id="_mT1mgBe9Ed-d2_ufnco5uw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_-wgGgBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternCallBackHandler" xmi:id="_nc6HYBe9Ed-d2_ufnco5uw"
               value="org.eclipse.egf.usecase.pattern.uc1.callback.MyCallbackHandler"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_4ObAgCH0Ed-V4KH4GeEy-w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
+        <invocationContracts xmi:id="_4ObAgCH0Ed-V4KH4GeEy-w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternList" xmi:id="_5M3lwCH0Ed-V4KH4GeEy-w"
               elements="#__6QOwBe3Ed-DaY2uHNBaQg"/>
         </invocationContracts>

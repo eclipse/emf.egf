@@ -2,7 +2,7 @@
 <ftask:Task xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_N9g3oElcEd-TSsH7K-_bxQ"
-    name="Merge Pattern Substitutions Task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.MergePatternSubstitutionTask">
+    name="Merge Pattern Substitutions Task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.PatternSubstitutionCompositionTask">
   <contractContainer xmi:id="_YhzVwElcEd-TSsH7K-_bxQ">
     <contracts xmi:id="_UVURwEldEd-TSsH7K-_bxQ" name="substitution A">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aC11QEldEd-TSsH7K-_bxQ"/>

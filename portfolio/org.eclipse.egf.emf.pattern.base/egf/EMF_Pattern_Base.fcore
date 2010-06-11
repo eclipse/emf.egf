@@ -284,7 +284,7 @@
   </fcore:FactoryComponent>
   <ftask:Task xmi:id="_jT-SgD1hEd-m5uHrCQ1Jew" description="Reconcile the genModel before execution"
       name="EMF GenModel Pattern Strategy Task" kind="java" implementation="org.eclipse.egf.emf.pattern.base.ModelDrivenStrategyTaskForGenModel"
-      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
     <contractContainer xmi:id="_vNsDAFLMEd-ZSLMRjxSbVQ">
       <contracts xmi:id="_vtlEAFLMEd-ZSLMRjxSbVQ" description="The URI of the JMerge rules file."
           name="mergeRulesURI">

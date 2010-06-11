@@ -47,9 +47,9 @@
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_dZPxcUiOEd-TSsH7K-_bxQ">
-      <invocations xmi:id="_nR5OIEuaEd-TSsH7K-_bxQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+      <invocations xmi:id="_nR5OIEuaEd-TSsH7K-_bxQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
         <invocationContractContainer xmi:id="_p6x78EuaEd-TSsH7K-_bxQ">
-          <invocationContracts xmi:id="_qNp0oEuaEd-TSsH7K-_bxQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+          <invocationContracts xmi:id="_qNp0oEuaEd-TSsH7K-_bxQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_79U7YEuaEd-TSsH7K-_bxQ">
               <substitutions xmi:id="_79U7YUuaEd-TSsH7K-_bxQ" outgoing="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw"
                   incoming="#_zNVv4EiOEd-TSsH7K-_bxQ"/>
@@ -58,9 +58,9 @@
             </type>
           </invocationContracts>
           <invocationContracts xmi:id="_9cbWoEuaEd-TSsH7K-_bxQ" factoryComponentContract="#_mzy84EuaEd-TSsH7K-_bxQ"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
           <invocationContracts xmi:id="_93xO0EuaEd-TSsH7K-_bxQ" targetInvocationContract="#_t2g1IEiOEd-TSsH7K-_bxQ"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/merge_substitutions.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
         </invocationContractContainer>
       </invocations>
       <invocations xmi:id="_ds9XoEiOEd-TSsH7K-_bxQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_bg3K8Eh3Ed-A7KV9v5yLhw">

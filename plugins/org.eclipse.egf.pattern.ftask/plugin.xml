@@ -5,19 +5,22 @@
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
-            id="Model_driven_pattern_strategy_task.fcore">
+            id="egf/Model_driven_pattern_strategy_task.fcore">
       </fcore>
       <fcore
-            id="Filtered_pattern_strategy_task.fcore">
+            id="egf/Filtered_pattern_strategy_task.fcore">
       </fcore>
       <fcore
-            id="Default_pattern_strategy_task.fcore">
+            id="egf/Default_pattern_strategy_task.fcore">
       </fcore>
       <fcore
-            id="Pattern_task.fcore">
+            id="egf/Pattern_task.fcore">
       </fcore>
       <fcore
-            id="merge_substitutions.fcore">
+            id="egf/substitution_composition.fcore">
+      </fcore>
+      <fcore
+            id="egf/Substitution_composition.fcore">
       </fcore>
    </extension>
 

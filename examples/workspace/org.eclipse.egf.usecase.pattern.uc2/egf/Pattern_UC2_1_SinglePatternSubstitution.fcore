@@ -49,16 +49,16 @@
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_l-SfoFksEd-nZ9GSBuVMNQ">
-      <invocations xmi:id="_oREakFksEd-nZ9GSBuVMNQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      <invocations xmi:id="_oREakFksEd-nZ9GSBuVMNQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
         <invocationContractContainer xmi:id="_oREakVksEd-nZ9GSBuVMNQ">
           <invocationContracts xmi:id="_oREaklksEd-nZ9GSBuVMNQ" factoryComponentContract="#_9rXyQlknEd-nZ9GSBuVMNQ"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_oREallksEd-nZ9GSBuVMNQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
+          <invocationContracts xmi:id="_oREallksEd-nZ9GSBuVMNQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_9B9PkFksEd-nZ9GSBuVMNQ"
                 elements="#_gA2NoFkoEd-nZ9GSBuVMNQ #_KAoXYFkrEd-nZ9GSBuVMNQ"/>
           </invocationContracts>
           <invocationContracts xmi:id="_oREal1ksEd-nZ9GSBuVMNQ" factoryComponentContract="#_9rXyRFknEd-nZ9GSBuVMNQ"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>

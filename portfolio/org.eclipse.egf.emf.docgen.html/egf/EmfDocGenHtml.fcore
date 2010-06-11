@@ -284,12 +284,12 @@
           name="Create the html document" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.emf.docgen.html/egf/ModelDrivenPatternStrategy.fcore#_h96TwAUUEd-UW6M01HV7DA">
         <invocationContractContainer xmi:id="_bHfnoAnMEd-O5f4UVi0CIA">
           <invocationContracts xmi:id="_bk2SAAnMEd-O5f4UVi0CIA" factoryComponentContract="#_Yp4VcAprEd-7fqY_JLtg2w"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_ffoskAnMEd-O5f4UVi0CIA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
+          <invocationContracts xmi:id="_ffoskAnMEd-O5f4UVi0CIA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_9Hd6cCHxEd-V4KH4GeEy-w"
                 elements="#_jKxAIAbPEd-6kIajn4nnRQ"/>
           </invocationContracts>
-          <invocationContracts xmi:id="_GGjH8AnNEd-O5f4UVi0CIA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <invocationContracts xmi:id="_GGjH8AnNEd-O5f4UVi0CIA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_H380IAnNEd-O5f4UVi0CIA"
                 value="org.eclipse.egf.emf.docgen.html.reporter.PatternReporter"/>
           </invocationContracts>

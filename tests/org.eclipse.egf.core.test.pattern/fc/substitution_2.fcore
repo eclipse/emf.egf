@@ -117,17 +117,17 @@
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_19DgcEh4Ed-A7KV9v5yLhw">
-      <invocations xmi:id="_2pdTcEh4Ed-A7KV9v5yLhw" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      <invocations xmi:id="_2pdTcEh4Ed-A7KV9v5yLhw" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
         <invocationContractContainer xmi:id="_6QjV8Eh4Ed-A7KV9v5yLhw">
           <invocationContracts xmi:id="_6nIC4Eh4Ed-A7KV9v5yLhw" factoryComponentContract="#_5TcNcEh4Ed-A7KV9v5yLhw"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_BiKiYEh5Ed-A7KV9v5yLhw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
+          <invocationContracts xmi:id="_BiKiYEh5Ed-A7KV9v5yLhw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_DVcd4Eh5Ed-A7KV9v5yLhw"
                 elements="#_jMNtEEh3Ed-A7KV9v5yLhw #_iNRYkEh3Ed-A7KV9v5yLhw #_jjLbkEh3Ed-A7KV9v5yLhw"/>
           </invocationContracts>
           <invocationContracts xmi:id="_I2_a4Eh5Ed-A7KV9v5yLhw" factoryComponentContract="#_c2KJ8Eh3Ed-A7KV9v5yLhw"
-              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_9VOdgEicEd-TSsH7K-_bxQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+          <invocationContracts xmi:id="_9VOdgEicEd-TSsH7K-_bxQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="__BytAEicEd-TSsH7K-_bxQ"
                 value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter2"/>
           </invocationContracts>

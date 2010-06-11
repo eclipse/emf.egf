@@ -57,13 +57,13 @@
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_3uQlUFaPEd-xDMudhFTQKg">
-    <invocations xmi:id="_9MvAMFaPEd-xDMudhFTQKg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+    <invocations xmi:id="_9MvAMFaPEd-xDMudhFTQKg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
       <invocationContractContainer xmi:id="_9MvAMVaPEd-xDMudhFTQKg">
-        <invocationContracts xmi:id="_9MvAMlaPEd-xDMudhFTQKg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
+        <invocationContracts xmi:id="_9MvAMlaPEd-xDMudhFTQKg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternList" xmi:id="_-mS0IFaPEd-xDMudhFTQKg"
               elements="#_wF8wIFaPEd-xDMudhFTQKg"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_9MvANFaPEd-xDMudhFTQKg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
+        <invocationContracts xmi:id="_9MvANFaPEd-xDMudhFTQKg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_mgXHMVaVEd-_dcUlU_GyPA"
               value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
         </invocationContracts>
