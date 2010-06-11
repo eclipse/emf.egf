@@ -35,6 +35,7 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.execution.InternalPatternContext;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
@@ -63,24 +64,36 @@ public abstract class AbstractJavaEngine extends PatternEngine {
     }
 
     @Override
+    public boolean checkCondition(PatternContext context, Map<PatternParameter, Object> parameters) throws PatternException {
+        Object result = doExecute((InternalPatternContext) context, PatternFactory.PRECONDITION_METHOD_NAME, parameters);
+        return Boolean.TRUE.equals(result);
+    }
+
+    @Override
     public final void execute(PatternContext context) throws PatternException {
 
         setupExecutionReporter((InternalPatternContext) context);
         doExecute((InternalPatternContext) context, AssemblyHelper.GENERATE_METHOD, null);
     }
 
-    private void doExecute(InternalPatternContext context, String methodName, Map<PatternParameter, Object> parameters) throws PatternException {
+    private Object doExecute(InternalPatternContext context, String methodName, Map<PatternParameter, Object> parameters) throws PatternException {
         try {
             Class<?> templateClass = loadTemplateClass(context, getPatternClassname());
             Object template = templateClass.newInstance();
             Class<?>[] parameterClasses = new Class<?>[1];
-            Object[] parameterValues = new Object[] {
-                context
-            };
+            Object[] parameterValues = new Object[] { context };
+
             if (AssemblyHelper.GENERATE_METHOD.equals(methodName)) {
                 parameterClasses[0] = Object.class;
             } else if (AssemblyHelper.ORCHESTRATION_METHOD.equals(methodName)) {
                 parameterClasses[0] = PatternContext.class;
+            } else if (PatternFactory.PRECONDITION_METHOD_NAME.equals(methodName)) {
+                parameterClasses = new Class<?>[0];
+                parameterValues = new Object[0];
+            } else
+                throw new IllegalStateException();
+
+            if (AssemblyHelper.ORCHESTRATION_METHOD.equals(methodName) || PatternFactory.PRECONDITION_METHOD_NAME.equals(methodName)) {
                 // setting up the state of the pattern
                 Class<?>[] setterClasses = new Class<?>[1];
                 Object[] setterValues = new Object[1];
@@ -92,13 +105,19 @@ public abstract class AbstractJavaEngine extends PatternEngine {
                     Method method = templateClass.getMethod(setterMethod, setterClasses);
                     method.invoke(template, setterValues);
                 }
-            } else
-                throw new IllegalStateException();
+            }
 
             // finally execute the pattern call
-            Method method = templateClass.getMethod(methodName, parameterClasses);
+            Method method = null;
+            try {
+                method = templateClass.getMethod(methodName, parameterClasses);
+            } catch (NoSuchMethodException e) {
+                if (PatternFactory.PRECONDITION_METHOD_NAME.equals(methodName))
+                    return Boolean.TRUE;
+                throw e;
+            }
             // the pattern is executed but we don't care about the result.
-            method.invoke(template, parameterValues);
+            return method.invoke(template, parameterValues);
         } catch (InvocationTargetException e) {
             throw new PatternException(e.getCause());
         } catch (PatternException e) {
