@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -28,7 +28,9 @@ import org.eclipse.core.runtime.CoreException;
 public abstract class TemplateEngine {
 
     private final IProject project;
+
     private final String pluginId;
+
     private final String extension;
 
     public TemplateEngine(String pluginId, IProject project, String templateFileExtension) {
@@ -53,7 +55,7 @@ public abstract class TemplateEngine {
 
     public static enum Templates {
 
-        HEADER("header"), FOOTER("footer"), INIT("init"), PRE_CONDITION("condition"), DEFAULT("default");
+        HEADER("header"), FOOTER("footer"), INIT("init"), PRE_CONDITION("condition"), DEFAULT("default"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 
         private final String templateName;
 
@@ -66,4 +68,5 @@ public abstract class TemplateEngine {
         }
 
     }
+
 }
