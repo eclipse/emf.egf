@@ -229,6 +229,14 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void setEnabled(boolean enabled) {
+
+        if (enabled == false) {
+            methodsUp.setEnabled(false);
+            methodsDown.setEnabled(false);
+        } else {
+            setMethodsButtonsStatus();
+        }
+
         methodsAdd.setEnabled(enabled);
         methodsEdit.setEnabled(enabled);
         methodsRemove.setEnabled(enabled);
@@ -241,6 +249,7 @@ public class ImplementationPage extends PatternEditorPage {
         variablesAdd.setEnabled(enabled);
         variablesEdit.setEnabled(enabled);
         variablesRemove.setEnabled(enabled);
+
     }
 
     private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
@@ -422,11 +431,12 @@ public class ImplementationPage extends PatternEditorPage {
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                if (isReadOnly())
+                if (isReadOnly()) {
                     return;
+                }
                 setMethodsButtonsStatus();
                 CCombo control = (CCombo) nameEditor.getControl();
-                if (control != null && !control.isDisposed()) {
+                if (control != null && control.isDisposed() == false) {
                     PatternMethod selectItem = getmethodsSelectItem();
                     control.setText(selectItem == null ? "" : selectItem.getName()); //$NON-NLS-1$
                 }
@@ -703,6 +713,7 @@ public class ImplementationPage extends PatternEditorPage {
      * Set the Methods section's button status.
      */
     private void setMethodsButtonsStatus() {
+
         int selectIndex = methodsTableViewer.getTable().getSelectionIndex();
         int length = methodsTableViewer.getTable().getItemCount();
         if (selectIndex == -1) {
@@ -732,6 +743,7 @@ public class ImplementationPage extends PatternEditorPage {
             methodsDown.setEnabled(true);
         }
         methodsOpenTemplate.setEnabled(true);
+
     }
 
     private void executeMethodsRemove(Composite methods) {
