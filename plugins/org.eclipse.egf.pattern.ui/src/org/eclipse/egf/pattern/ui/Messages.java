@@ -36,9 +36,9 @@ public class Messages extends NLS {
 
     public static String OverviewPage_button_browse;
 
-    public static String OverviewPage_sectionLeft_desci_label;
+    public static String OverviewPage_sectionLeft_description_label_title;
 
-    public static String OverviewPage_sectionLeft_descripition_label;
+    public static String OverviewPage_sectionLeft_description_label;
 
     public static String OverviewPage_sectionLeft_fullName_label;
 
