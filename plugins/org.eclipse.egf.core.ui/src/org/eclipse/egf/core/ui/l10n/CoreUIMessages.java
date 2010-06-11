@@ -87,4 +87,26 @@ public class CoreUIMessages {
 
     public static String TypeSelectionDialog_dialogMessage;
 
+    public static String _UI_BrowseRegisteredPackages_label;
+
+    public static String _UI_PackageSelection_label;
+
+    public static String _UI_RegisteredPackageSelection_label;
+
+    public static String _UI_SelectRegisteredPackageURI;
+
+    public static String _UI_TargetPlatform_label;
+
+    public static String _UI_RuntimeVersion_label;
+
+    public static String EcoreSelectionDialog_choose_model_button_title;
+
+    public static String EcoreSelectionDialog_nItemsSelected;
+
+    public static String EcoreSelectionDialog_toggleStatusAction;
+
+    public static String EcoreSelectionDialog_menu;
+
+    public static String EcoreSelectionDialog_select;
+
 }
