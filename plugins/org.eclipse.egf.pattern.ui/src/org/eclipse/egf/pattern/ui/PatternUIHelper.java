@@ -217,11 +217,7 @@ public class PatternUIHelper {
      * Return whether the method can be rename.
      */
     public static boolean isRenameDisable(PatternMethod element) {
-        Pattern pattern = element.getPattern();
-        if (pattern.getInitMethod().equals(element) || pattern.getConditionMethod().equals(element) || pattern.getHeaderMethod().equals(element) || pattern.getFooterMethod().equals(element)) {
-            return true;
-        }
-        return false;
+        return PatternFactory.isSpecialMethod(element.getName());
     }
 
     /**
