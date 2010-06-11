@@ -62,18 +62,16 @@ public class JetTagsCompiler extends JETCompiler {
             String patternId = translateId(attributes.get(PATTERN_ID));
             String args = attributes.get(ARGS);
 
-            String blockId = PatternHelper.generateID();
-
             StringBuffer buffer = new StringBuffer();
-            buffer.append("final Map<String, Object> parameters_"); //$NON-NLS-1$
-            buffer.append(blockId);
+            buffer.append("{"); //$NON-NLS-1$
+            buffer.append(N);
+            buffer.append("final Map<String, Object> callParameters"); //$NON-NLS-1$
             buffer.append(" = new HashMap<String, Object>();"); //$NON-NLS-1$
             buffer.append(N);
             if (args != null) {
                 for (String arg : args.split(ARGS_SEPARATOR)) {
                     int indexOf = arg.indexOf(MATCH_SEPARATOR);
-                    buffer.append("parameters_"); //$NON-NLS-1$
-                    buffer.append(blockId);
+                    buffer.append("callParameters"); //$NON-NLS-1$
                     buffer.append(".put(\""); //$NON-NLS-1$
                     buffer.append(arg.substring(indexOf + 1));
                     buffer.append("\", "); //$NON-NLS-1$
@@ -84,9 +82,10 @@ public class JetTagsCompiler extends JETCompiler {
             }
             buffer.append("CallHelper.executeWithParameterInjection(\""); //$NON-NLS-1$ 
             buffer.append(patternId);
-            buffer.append("\", new ExecutionContext((InternalPatternContext) ctx), parameters_"); //$NON-NLS-1$ 
-            buffer.append(blockId);
+            buffer.append("\", new ExecutionContext((InternalPatternContext) ctx), callParameters"); //$NON-NLS-1$ 
             buffer.append(");"); //$NON-NLS-1$
+            buffer.append(N);
+            buffer.append("}"); //$NON-NLS-1$
             buffer.append(N);
 
             addGenerator(new JETScriptletGenerator(buffer.toString().toCharArray()));
@@ -94,24 +93,23 @@ public class JetTagsCompiler extends JETCompiler {
             String patternId = translateId(attributes.get(PATTERN_ID));
             String toInject = attributes.get(TO_INJECT);
 
-            String blockId = PatternHelper.generateID();
-
             StringBuffer buffer = new StringBuffer();
-            buffer.append("ExecutionContext ctx_"); //$NON-NLS-1$
-            buffer.append(blockId);
+            buffer.append("{"); //$NON-NLS-1$
+            buffer.append(N);
+            buffer.append("ExecutionContext callCtx"); //$NON-NLS-1$
             buffer.append(" = new ExecutionContext((InternalPatternContext) ctx);"); //$NON-NLS-1$
             buffer.append(N);
-            buffer.append("ctx_"); //$NON-NLS-1$
-            buffer.append(blockId);
+            buffer.append("callCtx"); //$NON-NLS-1$
             buffer.append(".setValue(PatternContext.INJECTED_CONTEXT, "); //$NON-NLS-1$
             buffer.append(toInject);
             buffer.append(");"); //$NON-NLS-1$
             buffer.append(N);
             buffer.append("CallHelper.executeWithContextInjection(\""); //$NON-NLS-1$
             buffer.append(patternId);
-            buffer.append("\", ctx_"); //$NON-NLS-1$
-            buffer.append(blockId);
+            buffer.append("\", callCtx"); //$NON-NLS-1$
             buffer.append(");"); //$NON-NLS-1$
+            buffer.append(N);
+            buffer.append("}"); //$NON-NLS-1$
             buffer.append(N);
 
             addGenerator(new JETScriptletGenerator(buffer.toString().toCharArray()));

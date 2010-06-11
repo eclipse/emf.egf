@@ -88,19 +88,23 @@ variable="CallValue";
 variable2="CallValue2";
 
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__EuWvIGjGEdxeOTl6JQkXg = new HashMap<String, Object>();
-parameters__EuWvIGjGEdxeOTl6JQkXg.put("parameter", variable);
-parameters__EuWvIGjGEdxeOTl6JQkXg.put("parameter2",  variable2);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), parameters__EuWvIGjGEdxeOTl6JQkXg);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("parameter", variable);
+callParameters.put("parameter2",  variable2);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_0FqG8FaPEd-xDMudhFTQKg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
      
 toInject = EcoreFactory.eINSTANCE.createEClass();
 toInject.setName("MyClassName");
 
     stringBuffer.append(TEXT_2);
-    ExecutionContext ctx__EuZycGjGEdxeOTl6JQkXg = new ExecutionContext((InternalPatternContext) ctx);
-ctx__EuZycGjGEdxeOTl6JQkXg.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", ctx__EuZycGjGEdxeOTl6JQkXg);
+    {
+ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
+callCtx.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", callCtx);
+}
 
     }
     }
