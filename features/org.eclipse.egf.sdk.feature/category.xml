@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.egf.sdk_0.2.4.qualifier.jar" id="org.eclipse.egf.sdk" version="0.2.4.qualifier">
+      <category name="org.eclipse.egf.sdk.category"/>
+   </feature>
+   <category-def name="org.eclipse.egf.sdk.category" label="EGF SDK"/>
+</site>
