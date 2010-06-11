@@ -16,8 +16,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
 import org.eclipse.pde.core.build.IBuildModel;
+import org.eclipse.pde.internal.core.ICoreConstants;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
-import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 
 /**
  * Provides services when creating fcore or converting existing
@@ -56,7 +56,7 @@ public class FcoreGeneratorHelper {
             return null;
         }
         WorkspaceBuildModel buildModel = null;
-        IFile buildFile = project.getFile(PDEModelUtility.F_BUILD);
+        IFile buildFile = project.getFile(ICoreConstants.BUILD_FILENAME_DESCRIPTOR);
         buildModel = new WorkspaceBuildModel(buildFile);
         if (buildFile.exists()) {
             buildModel.load();
