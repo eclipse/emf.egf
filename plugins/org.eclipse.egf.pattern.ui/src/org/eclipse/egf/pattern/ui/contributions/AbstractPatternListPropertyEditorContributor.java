@@ -26,10 +26,12 @@ import org.eclipse.egf.pattern.ui.editors.providers.PatternElementLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.PatternElementcontentProvider;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -40,24 +42,28 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class AbstractPatternListPropertyEditorContributor<E> extends DefaultPropertyEditorContributor {
 
-  protected abstract EList<E> getElements(Object object);
+    protected abstract EList<E> getElements(Object object);
 
-  public final CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
-    return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
+    public final CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
+        return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
 
-      @Override
-      protected Object openDialogBox(Control cellEditorWindow) {
-        IStructuredContentProvider contentProvider = new PatternElementcontentProvider();
-        IBaseLabelProvider labelProvider = new PatternElementLabelProvider();
+            @Override
+            protected Object openDialogBox(Control cellEditorWindow) {
+                List<PatternLibrary> possibleValues = new ArrayList<PatternLibrary>(PatternHelper.createCollector().getAllLibraries());
+                List<E> initialValues = new ArrayList<E>(getElements(object));
+                ListBuilderDialog<E, PatternLibrary> dialog = new ListBuilderDialog<E, PatternLibrary>(composite.getShell(), new PatternElementcontentProvider(), new PatternElementLabelProvider(), possibleValues, initialValues);
+                if (dialog.open() == Window.OK) {
+                    // Solve the result against our current resourceSet
+                    ResourceSet set = ((EObject) object).eResource().getResourceSet();
+                    List<EObject> eObjects = new UniqueEList<EObject>();
+                    for (Object result : dialog.getResult()) {
+                        eObjects.add(set.getEObject(EcoreUtil.getURI((EObject) result), true));
 
-        List<PatternLibrary> possibleValues = new ArrayList<PatternLibrary>(PatternHelper.createCollector().getAllLibraries());
-        List<E> initialValues = new ArrayList<E>(getElements(object));
-        ListBuilderDialog<E, PatternLibrary> dialog = new ListBuilderDialog<E, PatternLibrary>(composite.getShell(), contentProvider, labelProvider, possibleValues, initialValues);
-        if (dialog.open() == Window.OK) {
-          return dialog.getResult();
-        }
-        return null;
-      }
-    };
-  }
+                    }
+                    return eObjects;
+                }
+                return null;
+            }
+        };
+    }
 }
