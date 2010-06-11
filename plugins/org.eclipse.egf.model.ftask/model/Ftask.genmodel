@@ -20,7 +20,7 @@
       fileExtensions="ftask" ecorePackage="Ftask.ecore#/">
     <genClasses ecoreClass="Ftask.ecore#//Task">
       <genFeatures createChild="false" propertyCategory="Task" ecoreFeature="ecore:EAttribute Ftask.ecore#//Task/kind"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Task" propertySortChoices="true"
+      <genFeatures notify="false" createChild="false" propertyCategory="Parent" propertySortChoices="true"
           ecoreFeature="ecore:EReference Ftask.ecore#//Task/superTask"/>
       <genFeatures createChild="false" propertyCategory="Task" ecoreFeature="ecore:EAttribute Ftask.ecore#//Task/implementation"/>
       <genOperations ecoreOperation="Ftask.ecore#//Task/getKindValue"/>

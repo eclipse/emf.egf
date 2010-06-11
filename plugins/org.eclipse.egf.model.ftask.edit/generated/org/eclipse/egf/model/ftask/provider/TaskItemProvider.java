@@ -126,7 +126,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
     protected void addSuperTaskPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_superTask_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Task_superTask_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                FtaskPackage.Literals.TASK__SUPER_TASK, true, false, true, null, getString("_UI_TaskPropertyCategory"), null)); //$NON-NLS-1$
+                FtaskPackage.Literals.TASK__SUPER_TASK, true, false, true, null, getString("_UI_ParentPropertyCategory"), null)); //$NON-NLS-1$
     }
 
     /**
