@@ -114,7 +114,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.IFormColors;
@@ -205,7 +204,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     protected void openParentPatternEditor() {
-        EditHelper.openPatternEditor(getSite().getPage(), getPattern().getSuperPattern(), IWorkbenchPage.MATCH_NONE);
+        EditHelper.openPatternEditor(getSite().getPage(), getPattern().getSuperPattern());
     }
 
     @Override
