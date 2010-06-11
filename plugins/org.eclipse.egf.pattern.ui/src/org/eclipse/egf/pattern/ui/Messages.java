@@ -148,7 +148,7 @@ public class Messages extends NLS {
 
     public static String SpecificationPage_inherSection_title;
 
-    public static String SpecificationPage_No_patent;
+    public static String SpecificationPage_No_parent;
 
     public static String SpecificationPage_parametersEditDialog_title;
 
