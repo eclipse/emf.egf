@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Control;
 public class PatternSubstitutionOutgoingPropertyEditorContributor extends DefaultPropertyEditorContributor {
 
     public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__OUTGOING) && object instanceof Substitution;
+        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__REPLACED_ELEMENT) && object instanceof Substitution;
     }
 
     public CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {

@@ -28,12 +28,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 public class PatternSubstitutionIncommingPropertyEditorContributor extends AbstractPatternListPropertyEditorContributor<Pattern> {
 
     public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__INCOMING) && object instanceof Substitution;
+        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__REPLACEMENT) && object instanceof Substitution;
     }
 
     @Override
     protected EList<Pattern> getElements(Object object) {
-        return ((Substitution) object).getIncoming();
+        return ((Substitution) object).getReplacement();
     }
 
 }

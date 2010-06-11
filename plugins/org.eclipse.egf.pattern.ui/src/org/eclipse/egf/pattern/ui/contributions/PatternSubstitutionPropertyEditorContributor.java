@@ -38,26 +38,26 @@ import org.eclipse.swt.widgets.Control;
  */
 public class PatternSubstitutionPropertyEditorContributor extends DefaultPropertyEditorContributor {
 
-  public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    return checkFeature(object, descriptor, PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS) && object instanceof TypePatternSubstitution;
-  }
+    public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
+        return checkFeature(object, descriptor, PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS) && object instanceof TypePatternSubstitution;
+    }
 
-  public CellEditor createPropertyEditor(final Composite composite, Object object, IItemPropertyDescriptor descriptor) {
-    final TypePatternSubstitution value = (TypePatternSubstitution) object;
-    return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
-      @Override
-      protected Object openDialogBox(Control cellEditorWindow) {
-        EList<Substitution> substitutions = new BasicEList<Substitution>();
-        Substitution newSubstitution = PatternFactory.eINSTANCE.createSubstitution();
-        URI uri = URI.createPlatformPluginURI("org.eclipse.egf.example.strategy.modeldriven/default.fcore#_RzMnwPuUEd6-V5xjQsdIkw", false); //$NON-NLS-1$
-        EObject toSubstitute = value.eResource().getResourceSet().getEObject(uri, true);
-        EObject eObject = value.eResource().getEObject("_QXb_oEO6Ed-eQLst0bhiHw"); //$NON-NLS-1$
-        substitutions.add(newSubstitution);
-        newSubstitution.setOutgoing((Pattern) toSubstitute);
-        newSubstitution.getIncoming().add((Pattern) eObject);
-        MessageDialog.openInformation(composite.getShell(), "Substitution", "done!"); //$NON-NLS-1$ //$NON-NLS-2$
-        return substitutions;
-      }
-    };
-  }
+    public CellEditor createPropertyEditor(final Composite composite, Object object, IItemPropertyDescriptor descriptor) {
+        final TypePatternSubstitution value = (TypePatternSubstitution) object;
+        return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
+            @Override
+            protected Object openDialogBox(Control cellEditorWindow) {
+                EList<Substitution> substitutions = new BasicEList<Substitution>();
+                Substitution newSubstitution = PatternFactory.eINSTANCE.createSubstitution();
+                URI uri = URI.createPlatformPluginURI("org.eclipse.egf.example.strategy.modeldriven/default.fcore#_RzMnwPuUEd6-V5xjQsdIkw", false); //$NON-NLS-1$
+                EObject toSubstitute = value.eResource().getResourceSet().getEObject(uri, true);
+                EObject eObject = value.eResource().getEObject("_QXb_oEO6Ed-eQLst0bhiHw"); //$NON-NLS-1$
+                substitutions.add(newSubstitution);
+                newSubstitution.setReplacedElement((Pattern) toSubstitute);
+                newSubstitution.getReplacement().add((Pattern) eObject);
+                MessageDialog.openInformation(composite.getShell(), "Substitution", "done!"); //$NON-NLS-1$ //$NON-NLS-2$
+                return substitutions;
+            }
+        };
+    }
 }
