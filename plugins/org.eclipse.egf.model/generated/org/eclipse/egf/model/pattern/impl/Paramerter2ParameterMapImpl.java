@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.emf.common.notify.Notification;
@@ -21,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,19 +31,20 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedKey <em>Key</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedKey <em>Key</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.Entry<PatternParameter, PatternParameter> {
+public class Paramerter2ParameterMapImpl extends ModelElementImpl implements BasicEMap.Entry<PatternParameter, PatternParameter> {
 
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
@@ -53,6 +54,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getTypedValue()
      * @generated
      * @ordered
@@ -63,6 +65,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getTypedKey()
      * @generated
      * @ordered
@@ -72,6 +75,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected Paramerter2ParameterMapImpl() {
@@ -81,6 +85,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -91,6 +96,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternParameter getTypedKey() {
@@ -100,6 +106,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setTypedKey(PatternParameter newKey) {
@@ -112,6 +119,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternParameter getTypedValue() {
@@ -129,6 +137,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternParameter basicGetTypedValue() {
@@ -138,6 +147,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setTypedValue(PatternParameter newValue) {
@@ -150,6 +160,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -168,6 +179,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -186,6 +198,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -204,6 +217,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -220,6 +234,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected int hash = -1;
@@ -227,6 +242,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public int getHash() {
@@ -240,6 +256,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setHash(int hash) {
@@ -249,6 +266,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternParameter getKey() {
@@ -258,6 +276,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setKey(PatternParameter key) {
@@ -267,6 +286,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternParameter getValue() {
@@ -276,6 +296,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternParameter setValue(PatternParameter value) {
@@ -287,6 +308,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("unchecked")

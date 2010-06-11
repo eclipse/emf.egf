@@ -34,10 +34,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.TypePatternSubstitutionImpl#getSubstitutions <em>Substitutions</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.TypePatternSubstitutionImpl#getSubstitutions <em>Substitutions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypePatternSubstitutionImpl extends TypeImpl implements TypePatternSubstitution {
@@ -46,7 +46,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -56,7 +55,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
      * The cached value of the '{@link #getSubstitutions() <em>Substitutions</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getSubstitutions()
      * @generated
      * @ordered
@@ -66,7 +64,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternSubstitutionImpl() {
@@ -76,7 +73,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -87,7 +83,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<Substitution> getSubstitutions() {
@@ -100,7 +95,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -128,7 +122,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -143,7 +136,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -158,7 +150,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -176,7 +167,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -192,7 +182,6 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

@@ -1064,6 +1064,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         patternNatureEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
         superCallEClass.getESuperTypes().add(this.getCall());
+        paramerter2ParameterMapEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         callEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         methodCallEClass.getESuperTypes().add(this.getCall());
         patternVariableEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
@@ -1074,12 +1075,16 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         basicQueryEClass.getESuperTypes().add(this.getQuery());
         stringQueryEClass.getESuperTypes().add(this.getQuery());
         customQueryEClass.getESuperTypes().add(this.getQuery());
+        string2PatternListEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+        string2StringEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         typePatternExecutionReporterEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         backCallEClass.getESuperTypes().add(this.getCall());
         typePatternCallBackHandlerEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternDomainVisitorEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternListEClass.getESuperTypes().add(theTypesPackage.getType());
+        injectedContextEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         typePatternSubstitutionEClass.getESuperTypes().add(theTypesPackage.getType());
+        substitutionEClass.getESuperTypes().add(theFcorePackage.getModelElement());
 
         // Initialize classes and features; add operations and parameters
         initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

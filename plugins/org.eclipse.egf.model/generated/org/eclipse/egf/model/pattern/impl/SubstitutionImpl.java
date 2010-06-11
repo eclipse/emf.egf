@@ -14,6 +14,7 @@ package org.eclipse.egf.model.pattern.impl;
 
 import java.util.Collection;
 
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.Substitution;
@@ -23,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -33,19 +33,20 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutgoing <em>Outgoing</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class SubstitutionImpl extends Container implements Substitution {
+public class SubstitutionImpl extends ModelElementImpl implements Substitution {
 
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
@@ -55,6 +56,7 @@ public class SubstitutionImpl extends Container implements Substitution {
      * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getOutgoing()
      * @generated
      * @ordered
@@ -65,6 +67,7 @@ public class SubstitutionImpl extends Container implements Substitution {
      * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getIncoming()
      * @generated
      * @ordered
@@ -85,6 +88,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -95,6 +99,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Pattern getOutgoing() {
@@ -112,6 +117,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Pattern basicGetOutgoing() {
@@ -121,6 +127,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setOutgoing(Pattern newOutgoing) {
@@ -133,6 +140,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EList<Pattern> getIncoming() {
@@ -145,6 +153,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -163,6 +172,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -183,6 +193,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -201,6 +212,7 @@ public class SubstitutionImpl extends Container implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

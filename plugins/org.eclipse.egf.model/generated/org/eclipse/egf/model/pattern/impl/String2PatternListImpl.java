@@ -14,6 +14,7 @@ package org.eclipse.egf.model.pattern.impl;
 
 import java.util.Collection;
 
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.common.notify.Notification;
@@ -23,7 +24,6 @@ import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
@@ -33,19 +33,20 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.String2PatternListImpl#getTypedKey <em>Key</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.String2PatternListImpl#getTypedValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.String2PatternListImpl#getTypedKey <em>Key</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.String2PatternListImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public class String2PatternListImpl extends Container implements BasicEMap.Entry<String, EList<PatternElement>> {
+public class String2PatternListImpl extends ModelElementImpl implements BasicEMap.Entry<String, EList<PatternElement>> {
 
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
@@ -55,6 +56,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
      * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getTypedKey()
      * @generated
      * @ordered
@@ -65,6 +67,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
      * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getTypedKey()
      * @generated
      * @ordered
@@ -75,6 +78,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
      * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getTypedValue()
      * @generated
      * @ordered
@@ -84,6 +88,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected String2PatternListImpl() {
@@ -93,6 +98,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -103,6 +109,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getTypedKey() {
@@ -112,6 +119,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setTypedKey(String newKey) {
@@ -124,6 +132,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EList<PatternElement> getTypedValue() {
@@ -136,6 +145,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -152,6 +162,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -172,6 +183,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -190,6 +202,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -206,6 +219,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -223,6 +237,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected int hash = -1;
@@ -230,6 +245,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public int getHash() {
@@ -243,6 +259,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setHash(int hash) {
@@ -252,6 +269,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getKey() {
@@ -261,6 +279,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setKey(String key) {
@@ -270,6 +289,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EList<PatternElement> getValue() {
@@ -279,6 +299,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EList<PatternElement> setValue(EList<PatternElement> value) {
@@ -291,6 +312,7 @@ public class String2PatternListImpl extends Container implements BasicEMap.Entry
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
