@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -37,6 +37,7 @@ import org.eclipse.ui.forms.editor.FormPage;
 public abstract class PatternEditorPage extends FormPage {
 
     protected final DataBindingContext ctx = new EMFDataBindingContext();
+
     private final List<Binding> bindings = new ArrayList<Binding>();
 
     public PatternEditorPage(FormEditor editor, String id, String title) {
@@ -56,6 +57,7 @@ public abstract class PatternEditorPage extends FormPage {
         return ((PatternEditor) getEditor()).getEditingDomain();
     }
 
+    @Override
     protected final void createFormContent(IManagedForm managedForm) {
         doCreateFormContent(managedForm);
         bind();
@@ -79,6 +81,7 @@ public abstract class PatternEditorPage extends FormPage {
                     bindings.clear();
                     bind();
                 }
+
             });
         }
     }

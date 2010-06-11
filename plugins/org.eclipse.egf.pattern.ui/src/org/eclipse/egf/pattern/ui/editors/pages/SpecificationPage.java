@@ -121,6 +121,8 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.forms.widgets.TableWrapData;
+import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 /**
  * @author Thomas Guiu
@@ -129,6 +131,8 @@ import org.eclipse.ui.forms.widgets.Section;
 public class SpecificationPage extends PatternEditorPage {
 
     public static final String ID = "SpecificationPage"; //$NON-NLS-1$
+
+    private ScrolledForm form;
 
     private Link parentLink;
 
@@ -170,7 +174,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     private boolean isReadOnly;
 
-    private LiveValidationContentAdapter parameterNameEmpetyValidationAdapter;
+    private LiveValidationContentAdapter parameterNameEmptyValidationAdapter;
 
     private IMessageManager mmng;
 
@@ -179,42 +183,6 @@ public class SpecificationPage extends PatternEditorPage {
     public SpecificationPage(FormEditor editor) {
         super(editor, ID, Messages.SpecificationPage_title);
 
-    }
-
-    @Override
-    protected void doCreateFormContent(IManagedForm managedForm) {
-        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        mmng = managedForm.getMessageManager();
-        isReadOnly = editorInput.isReadOnly();
-
-        FormToolkit toolkit = managedForm.getToolkit();
-        ScrolledForm form = managedForm.getForm();
-
-        toolkit.decorateFormHeading(form.getForm());
-        GridLayout layout = new GridLayout(2, true);
-        form.getBody().setLayout(layout);
-        form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
-        form.setText(Messages.SpecificationPage_title);
-
-        Composite containerLeft = createComposite(toolkit, form);
-        createInheritanceSection(toolkit, containerLeft);
-        createParametersSection(toolkit, containerLeft);
-
-        Composite containerRight = createComposite(toolkit, form);
-        createPatternNatureSection(toolkit, containerRight);
-
-        checkReadOnlyModel();
-
-        form.reflow(true);
-    }
-
-    private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
-        Composite composite = toolkit.createComposite(form.getBody(), SWT.NONE);
-        GridLayout layout = new GridLayout(1, true);
-        composite.setLayout(layout);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
-        composite.setLayoutData(gd);
-        return composite;
     }
 
     /**
@@ -237,52 +205,6 @@ public class SpecificationPage extends PatternEditorPage {
         combo.setEnabled(false);
     }
 
-    private void createInheritanceSection(FormToolkit toolkit, Composite form) {
-        Section inherSection = toolkit.createSection(form, Section.TITLE_BAR);
-        inherSection.setText(Messages.SpecificationPage_inherSection_title);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
-        inherSection.setLayoutData(gd);
-
-        Composite inheritance = toolkit.createComposite(inherSection, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 3;
-        inheritance.setLayout(layout);
-
-        gd = new GridData(GridData.FILL_BOTH);
-        inheritance.setLayoutData(gd);
-
-        Label discrip = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_discrip_label);
-        gd = new GridData();
-        gd.horizontalSpan = 3;
-        gd.horizontalIndent = 4;
-        discrip.setLayoutData(gd);
-
-        Label parentLabel = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_parent_label);
-        gd = new GridData();
-        gd.verticalIndent = 10;
-        parentLabel.setLayoutData(gd);
-        parentLabel.setForeground(colors.getColor(IFormColors.TITLE));
-
-        parentLink = new Link(inheritance, SWT.NONE);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.HORIZONTAL_ALIGN_CENTER);
-        gd.verticalIndent = 10;
-        gd.widthHint = 20;
-        parentLink.setLayoutData(gd);
-        parentLink.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                openParentPatternEditor();
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-        createInheritanceButtons(toolkit, inheritance);
-
-        inherSection.setClient(inheritance);
-    }
-
     protected void openParentPatternEditor() {
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
@@ -290,14 +212,84 @@ public class SpecificationPage extends PatternEditorPage {
         EditHelper.openPatternEditor(activePage, getPattern().getSuperPattern().getID());
     }
 
-    private void createInheritanceButtons(FormToolkit toolkit, Composite Inheritance) {
-        Composite buttons = toolkit.createComposite(Inheritance, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        buttons.setLayout(layout);
+    @Override
+    protected void doCreateFormContent(IManagedForm managedForm) {
+
+        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+        mmng = managedForm.getMessageManager();
+        isReadOnly = editorInput.isReadOnly();
+        Composite body = managedForm.getForm().getBody();
+
+        FormToolkit toolkit = managedForm.getToolkit();
+        form = managedForm.getForm();
+        toolkit.decorateFormHeading(form.getForm());
+
+        TableWrapLayout twl = new TableWrapLayout();
+        twl.numColumns = 2;
+        body.setLayout(twl);
+        form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
+        form.setText(Messages.SpecificationPage_title);
+
+        createInheritanceSection(toolkit, body);
+        createPatternNatureSection(toolkit, body);
+
+        createParametersSection(toolkit, body);
+
+        checkReadOnlyModel();
+
+        form.reflow(true);
+
+    }
+
+    private void createInheritanceSection(FormToolkit toolkit, Composite parent) {
+
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
+        section.setText(Messages.SpecificationPage_inherSection_title);
+        section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        section.setLayout(new TableWrapLayout());
+
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        container.setLayout(new TableWrapLayout());
+
+        Label discrip = toolkit.createLabel(container, Messages.SpecificationPage_inherSection_discrip_label);
+        discrip.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+
+        Composite inheritance = toolkit.createComposite(container, SWT.NONE);
+        inheritance.setLayout(new GridLayout(3, false));
+        inheritance.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+
+        Label parentLabel = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_parent_label);
+        parentLabel.setLayoutData(new GridData());
+        parentLabel.setForeground(colors.getColor(IFormColors.TITLE));
+
+        parentLink = new Link(inheritance, SWT.NONE);
+        parentLink.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        parentLink.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                openParentPatternEditor();
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
+            }
+
+        });
+
+        createInheritanceButtons(toolkit, inheritance);
+
+        section.setClient(container);
+
+    }
+
+    private void createInheritanceButtons(FormToolkit toolkit, final Composite parent) {
+
+        Composite buttons = toolkit.createComposite(parent, SWT.NONE);
+        buttons.setLayout(new GridLayout());
+        buttons.setLayoutData(new GridData(GridData.CENTER));
 
         GridData gd = new GridData();
-        gd.verticalIndent = 10;
         gd.widthHint = 65;
 
         browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
@@ -307,17 +299,20 @@ public class SpecificationPage extends PatternEditorPage {
             public void widgetSelected(SelectionEvent e) {
                 PatternSelectionDialog dialog = new PatternSelectionDialog(e.display.getActiveShell(), false);
                 dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
-                dialog.open();
-                Object[] result = dialog.getResult();
-                if (result != null && result.length > 0 && result[0] instanceof Pattern) {
-                    final Pattern parent = (Pattern) result[0];
+                if (dialog.open() != Window.OK) {
+                    return;
+                }
+                Object result = dialog.getFirstResult();
+                if (result instanceof Pattern) {
+                    final Pattern pattern = (Pattern) result;
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
                         @Override
                         protected void doExecute() {
-                            getPattern().setSuperPattern(parent);
+                            getPattern().setSuperPattern(pattern);
                         }
+
                     };
                     editingDomain.getCommandStack().execute(cmd);
                 }
@@ -326,6 +321,7 @@ public class SpecificationPage extends PatternEditorPage {
             public void widgetDefaultSelected(SelectionEvent e) {
                 // Nothing to do
             }
+
         });
 
         removeParent = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -342,28 +338,33 @@ public class SpecificationPage extends PatternEditorPage {
                     protected void doExecute() {
                         getPattern().setSuperPattern(null);
                     }
+
                 };
                 editingDomain.getCommandStack().execute(cmd);
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
+
     }
 
-    private void createPatternNatureSection(FormToolkit toolkit, Composite form) {
-        Section patternSection = toolkit.createSection(form, Section.TITLE_BAR);
-        patternSection.setText(Messages.SpecificationPage_patternSection_title);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        patternSection.setLayoutData(gd);
+    private void createPatternNatureSection(FormToolkit toolkit, Composite parent) {
 
-        Composite pattern = toolkit.createComposite(patternSection, SWT.NONE);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
+        section.setText(Messages.SpecificationPage_patternSection_title);
+        TableWrapData td = new TableWrapData(TableWrapData.FILL_GRAB);
+        section.setLayoutData(td);
+
+        Composite pattern = toolkit.createComposite(section, SWT.NONE);
         GridLayout layout = new GridLayout();
         layout.numColumns = 2;
         pattern.setLayout(layout);
 
         Label discrip = toolkit.createLabel(pattern, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         gd.horizontalIndent = 4;
         gd.widthHint = 100;
@@ -371,10 +372,12 @@ public class SpecificationPage extends PatternEditorPage {
 
         createTypeArea(toolkit, pattern);
 
-        patternSection.setClient(pattern);
+        section.setClient(pattern);
+
     }
 
     private void createTypeArea(FormToolkit toolkit, final Composite composite) {
+
         Label type = toolkit.createLabel(composite, Messages.SpecificationPage_patternSection_type_label);
         GridData gd = new GridData();
         gd.verticalIndent = 10;
@@ -392,7 +395,6 @@ public class SpecificationPage extends PatternEditorPage {
         combo.select(0);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.verticalIndent = 10;
-        gd.widthHint = 50;
         combo.setLayoutData(gd);
 
         combo.addSelectionListener(new SelectionListener() {
@@ -402,8 +404,11 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
+
     }
 
     private void executeNatureChange(Composite composite) {
@@ -430,25 +435,19 @@ public class SpecificationPage extends PatternEditorPage {
         getEditor().doSave(null);
     }
 
-    private void createParametersSection(FormToolkit toolkit, Composite form) {
-        Composite composite = toolkit.createComposite(form, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        composite.setLayout(layout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        composite.setLayoutData(gd);
+    private void createParametersSection(FormToolkit toolkit, Composite parent) {
 
-        Section paraSection = toolkit.createSection(composite, Section.TITLE_BAR);
-        paraSection.setText(Messages.SpecificationPage_paraSection_title);
-        gd = new GridData(GridData.FILL_BOTH);
-        paraSection.setLayoutData(gd);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
+        section.setText(Messages.SpecificationPage_paraSection_title);
+        section.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        section.setLayout(new TableWrapLayout());
 
-        Composite parameters = toolkit.createComposite(paraSection, SWT.NONE);
-        layout = new GridLayout();
-        layout.numColumns = 2;
-        parameters.setLayout(layout);
+        Composite parameters = toolkit.createComposite(section, SWT.NONE);
+        parameters.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        parameters.setLayout(new GridLayout(2, false));
 
         Label discrip = toolkit.createLabel(parameters, Messages.SpecificationPage_paraSection_discrip_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         gd.horizontalIndent = 4;
         gd.widthHint = 100;
@@ -456,7 +455,9 @@ public class SpecificationPage extends PatternEditorPage {
 
         createParametersTableArea(toolkit, parameters);
         createParametersButtons(toolkit, parameters);
-        paraSection.setClient(parameters);
+
+        section.setClient(parameters);
+
     }
 
     private void createParametersTableArea(FormToolkit toolkit, Composite parameters) {
@@ -493,9 +494,7 @@ public class SpecificationPage extends PatternEditorPage {
         initTableEditor();
 
         tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
-
         tableViewer.setLabelProvider(new ParametersTableLabelProvider());
-
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -503,8 +502,10 @@ public class SpecificationPage extends PatternEditorPage {
                     return;
                 setButtonsStatus();
             }
+
         });
         addDragDrop();
+
     }
 
     /**
@@ -593,6 +594,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void createParametersButtons(FormToolkit toolkit, Composite parameters) {
+
         Composite buttons = toolkit.createComposite(parameters, SWT.NONE);
         GridLayout layout = new GridLayout();
         buttons.setLayout(layout);
@@ -611,7 +613,9 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         edit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -636,6 +640,7 @@ public class SpecificationPage extends PatternEditorPage {
                             protected void doExecute() {
                                 executeParameterEdit(dialog, selectItem);
                             }
+
                         };
                         editingDomain.getCommandStack().execute(cmd);
                     }
@@ -644,7 +649,9 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         remove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -655,11 +662,13 @@ public class SpecificationPage extends PatternEditorPage {
         remove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                exectueRemove();
+                executeRemove();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         up = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -674,7 +683,9 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         down = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
@@ -689,8 +700,11 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
+
     }
 
     protected void executeParameterEdit(ParametersEditDialog dialog, Object selectItem) {
@@ -778,7 +792,7 @@ public class SpecificationPage extends PatternEditorPage {
         return result;
     }
 
-    protected void exectueRemove() {
+    protected void executeRemove() {
         int index = tableViewer.getTable().getSelectionIndex();
         final Pattern pattern = getPattern();
         ISelection selection = tableViewer.getSelection();
@@ -911,6 +925,7 @@ public class SpecificationPage extends PatternEditorPage {
                 availableQueries.add(0, ""); //$NON-NLS-1$
                 queryEditor.setInput(availableQueries);
             }
+
         });
 
     }
@@ -958,7 +973,7 @@ public class SpecificationPage extends PatternEditorPage {
             bindParent();
             bindNature();
             bindTableViewer();
-            parameterNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
+            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
         }
     }
 
@@ -971,7 +986,6 @@ public class SpecificationPage extends PatternEditorPage {
         UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
-
                 return Status.OK_STATUS;
             }
 
@@ -989,10 +1003,11 @@ public class SpecificationPage extends PatternEditorPage {
 
             public Object convert(Object fromObject) {
                 if (fromObject == null || !(fromObject instanceof Pattern)) {
-                    return Messages.SpecificationPage_No_patent;
+                    return Messages.SpecificationPage_No_parent;
                 }
-                return "<a> " + ((Pattern) fromObject).getName() + " </a>"; //$NON-NLS-1$ //$NON-NLS-2$
+                return "<a>" + ((Pattern) fromObject).getName() + "</a>"; //$NON-NLS-1$ //$NON-NLS-2$
             }
+
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
@@ -1007,7 +1022,6 @@ public class SpecificationPage extends PatternEditorPage {
         UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
-
                 return Status.OK_STATUS;
             }
 
@@ -1049,6 +1063,7 @@ public class SpecificationPage extends PatternEditorPage {
                 }
                 return ExtensionHelper.getName((PatternNature) fromObject);
             }
+
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
@@ -1071,7 +1086,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     @Override
     public void dispose() {
-        PatternUIHelper.removeAdapterForPattern(getPattern(), parameterNameEmpetyValidationAdapter);
+        PatternUIHelper.removeAdapterForPattern(getPattern(), parameterNameEmptyValidationAdapter);
         super.dispose();
     }
 

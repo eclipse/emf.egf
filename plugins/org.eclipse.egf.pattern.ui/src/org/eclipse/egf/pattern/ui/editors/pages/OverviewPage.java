@@ -273,7 +273,6 @@ public class OverviewPage extends PatternEditorPage {
 
         Section section = toolkit.createSection(container, Section.TITLE_BAR);
         section.setText(Messages.OverviewPage_sectionLeft_description_label_title);
-
         gridLayout = new GridLayout();
         section.setLayout(gridLayout);
         gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -333,7 +332,7 @@ public class OverviewPage extends PatternEditorPage {
         gd.horizontalSpan = 2;
         containerLink.setLayoutData(gd);
 
-        ImageHyperlink specLink = toolkit.createImageHyperlink(containerLink, SWT.NULL);
+        ImageHyperlink specLink = toolkit.createImageHyperlink(containerLink, SWT.NONE);
         specLink.setText(Messages.OverviewPage_sectionRight_specLink_label);
         specLink.setImage(Activator.getDefault().getImage(ImageShop.IMG_LOCALVARIABLE_OBJ));
         gd = new GridData();
@@ -359,7 +358,7 @@ public class OverviewPage extends PatternEditorPage {
         gd.widthHint = 100;
         specLabel.setLayoutData(gd);
 
-        ImageHyperlink implLink = toolkit.createImageHyperlink(containerLink, SWT.NULL);
+        ImageHyperlink implLink = toolkit.createImageHyperlink(containerLink, SWT.NONE);
         implLink.setText(Messages.OverviewPage_sectionRight_implLink_label);
         implLink.setImage(Activator.getDefault().getImage(ImageShop.IMG_METHPUB_OBJ));
         gd = new GridData();
