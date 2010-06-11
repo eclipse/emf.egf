@@ -125,7 +125,7 @@ class PlatformBundle implements IPlatformBundle {
      */
     public Bundle getBundle() {
         if (isTarget()) {
-            // Retrieve bundle from the registry
+            // TODO: finaly we load the bundle from the runtime, this is wrong
             return Platform.getBundle(getBundleId());
         }
         return null;
