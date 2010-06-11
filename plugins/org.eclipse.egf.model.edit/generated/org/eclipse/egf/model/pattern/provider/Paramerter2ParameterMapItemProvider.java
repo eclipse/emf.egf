@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
+import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -33,21 +34,23 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link java.util.Map.Entry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
         IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Paramerter2ParameterMapItemProvider(AdapterFactory adapterFactory) {
@@ -58,6 +61,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -75,6 +79,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * This adds a property descriptor for the Value feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addValuePropertyDescriptor(Object object) {
@@ -87,6 +92,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * This adds a property descriptor for the Key feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addKeyPropertyDescriptor(Object object) {
@@ -96,19 +102,10 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean hasChildren(Object object) {
-        return hasChildren(object, true);
-    }
-
-    /**
      * This returns Paramerter2ParameterMap.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -120,6 +117,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -133,11 +131,19 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(Map.Entry.class)) {
+            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 
@@ -146,6 +152,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -157,6 +164,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

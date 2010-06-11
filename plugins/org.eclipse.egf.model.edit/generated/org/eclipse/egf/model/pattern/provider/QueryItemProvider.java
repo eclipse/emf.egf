@@ -83,7 +83,8 @@ public class QueryItemProvider extends ModelElementItemProvider implements IEdit
     protected void addExtensionIdPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Query_extensionId_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Query_extensionId_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.QUERY__EXTENSION_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                PatternPackage.Literals.QUERY__EXTENSION_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**

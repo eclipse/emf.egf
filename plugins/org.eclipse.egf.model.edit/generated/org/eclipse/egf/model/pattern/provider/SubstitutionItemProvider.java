@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
+import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -36,22 +37,23 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Substitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class SubstitutionItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+        IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public SubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -62,6 +64,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -79,40 +82,35 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
      * This adds a property descriptor for the Outgoing feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addOutgoingPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_outgoing_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Substitution_outgoing_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.SUBSTITUTION__OUTGOING, true, false, true, null, null, null));
+                PatternPackage.Literals.SUBSTITUTION__OUTGOING, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
      * This adds a property descriptor for the Incoming feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addIncomingPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Substitution_incoming_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Substitution_incoming_feature", "_UI_Substitution_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.SUBSTITUTION__INCOMING, true, false, true, null, null, null));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean hasChildren(Object object) {
-        return hasChildren(object, true);
+                PatternPackage.Literals.SUBSTITUTION__INCOMING, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
      * This returns Substitution.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -174,6 +172,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -181,6 +180,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
         updateChildren(notification);
 
         switch (notification.getFeatureID(Substitution.class)) {
+            case PatternPackage.SUBSTITUTION__OUTGOING:
             case PatternPackage.SUBSTITUTION__INCOMING:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
@@ -193,6 +193,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -204,6 +205,7 @@ public class SubstitutionItemProvider extends ItemProviderAdapter implements IEd
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

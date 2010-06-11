@@ -83,7 +83,8 @@ public class PatternParameterItemProvider extends NamedModelElementItemProvider 
     protected void addTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternParameter_type_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_PatternParameter_type_feature", "_UI_PatternParameter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN_PARAMETER__TYPE, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                PatternPackage.Literals.PATTERN_PARAMETER__TYPE, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
@@ -152,6 +153,9 @@ public class PatternParameterItemProvider extends NamedModelElementItemProvider 
         updateChildren(notification);
 
         switch (notification.getFeatureID(PatternParameter.class)) {
+            case PatternPackage.PATTERN_PARAMETER__TYPE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
             case PatternPackage.PATTERN_PARAMETER__QUERY:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;

@@ -81,7 +81,8 @@ public class PatternVariableItemProvider extends NamedModelElementItemProvider i
     protected void addTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternVariable_type_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_PatternVariable_type_feature", "_UI_PatternVariable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN_VARIABLE__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                PatternPackage.Literals.PATTERN_VARIABLE__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**

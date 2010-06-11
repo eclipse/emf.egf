@@ -41,14 +41,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.pattern.Pattern} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Pattern} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
+        IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier. <!--
@@ -154,19 +154,22 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     protected void addSuperPatternPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_superPattern_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Pattern_superPattern_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN__SUPER_PATTERN, true, false, true, null, null, null));
+                PatternPackage.Literals.PATTERN__SUPER_PATTERN, true, false, true, null, getString("_UI_ParentPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
-     * This adds a property descriptor for the Orchestration feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Nature feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
-    protected void addOrchestrationPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_orchestration_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_Pattern_orchestration_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN__ORCHESTRATION, true, false, false, null, null, null));
+    protected void addNaturePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_nature_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Pattern_nature_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN__NATURE, true, false, true, null, getString("_UI_PatternPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
@@ -179,16 +182,13 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     protected void addInitMethodPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_initMethod_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Pattern_initMethod_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN__INIT_METHOD, true, false, true, null, null, null));
+                PatternPackage.Literals.PATTERN__INIT_METHOD, true, false, true, null, getString("_UI_MethodPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
      * This specifies how to implement {@link #getChildren} and is used to
-     * deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand},
-     * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in
-     * {@link #createCommand}.
+     * deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
@@ -208,8 +208,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
      */
     @Override
     protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper
-        // feature to use for
+        // Check the type of the specified child object and return the proper feature to use for
         // adding (see {@link AddCommand}) it as a child.
 
         return super.getChildFeature(object, child);
@@ -241,10 +240,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to
-     * update any cached
-     * children and by creating a viewer notification, which it passes to
-     * {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
      * 
@@ -255,18 +252,19 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(Pattern.class)) {
-        case PatternPackage.PATTERN__HEADER_METHOD:
-        case PatternPackage.PATTERN__FOOTER_METHOD:
-        case PatternPackage.PATTERN__SUPER_PATTERN:
-        case PatternPackage.PATTERN__ORCHESTRATION:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-        case PatternPackage.PATTERN__METHODS:
-        case PatternPackage.PATTERN__PARAMETERS:
-        case PatternPackage.PATTERN__NATURE:
-        case PatternPackage.PATTERN__VARIABLES:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-            return;
+            case PatternPackage.PATTERN__HEADER_METHOD:
+            case PatternPackage.PATTERN__FOOTER_METHOD:
+            case PatternPackage.PATTERN__SUPER_PATTERN:
+            case PatternPackage.PATTERN__NATURE:
+            case PatternPackage.PATTERN__INIT_METHOD:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case PatternPackage.PATTERN__METHODS:
+            case PatternPackage.PATTERN__ORCHESTRATION:
+            case PatternPackage.PATTERN__PARAMETERS:
+            case PatternPackage.PATTERN__VARIABLES:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+                return;
         }
         super.notifyChanged(notification);
     }

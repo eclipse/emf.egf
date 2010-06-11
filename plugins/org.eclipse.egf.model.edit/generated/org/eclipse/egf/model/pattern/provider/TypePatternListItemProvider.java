@@ -84,7 +84,8 @@ public class TypePatternListItemProvider extends TypeItemProvider implements IEd
     protected void addElementsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypePatternList_elements_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_TypePatternList_elements_feature", "_UI_TypePatternList_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.TYPE_PATTERN_LIST__ELEMENTS, true, false, true, null, null, null));
+                PatternPackage.Literals.TYPE_PATTERN_LIST__ELEMENTS, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
