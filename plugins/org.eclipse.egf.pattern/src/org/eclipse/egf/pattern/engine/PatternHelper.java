@@ -192,19 +192,19 @@ public class PatternHelper {
     }
 
     public static String generateID() {
-        return EcoreUtil.generateUUID().replaceAll("\\W", "");
+        return EcoreUtil.generateUUID().replaceAll("\\W", ""); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     public static String dropNonWordCharacter(String value) {
-        return value.replaceAll("\\W", "");
+        return value.replaceAll("\\W", ""); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     public static String uniqueName(NamedModelElement parameter) {
-        return parameter.getName().replaceAll("\\W", "") + "_" + parameter.getID().replaceAll("\\W", "");
+        return parameter.getName().replaceAll("\\W", "") + "_" + parameter.getID().replaceAll("\\W", ""); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
     }
 
     public static String localizeName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
-        return parameter.getName() + "Parameter";
+        return parameter.getName() + "Parameter"; //$NON-NLS-1$
     }
 
     public static List<PatternMethod> getUserMethods(Pattern pattern) {
@@ -258,11 +258,14 @@ public class PatternHelper {
      */
 
     public static class Filename {
-        private static final String PATTERN_TOKEN = "pattern.";
-        private static final String METHOD_TOKEN = "method.";
+
+        private static final String PATTERN_TOKEN = "pattern."; //$NON-NLS-1$
+
+        private static final String METHOD_TOKEN = "method."; //$NON-NLS-1$
 
         public static URI computeFileURI(PatternMethod method) {
-            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
+            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER
+                    + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
         }
 
         public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {
@@ -273,13 +276,15 @@ public class PatternHelper {
             if (segmentCount < 3)
                 throw new FilenameFormatException(Messages.bind(Messages.PatternFilename_error2, patternMethodPath));
             String segment = patternMethodPath.segment(segmentCount - 2);
-            if (segment == null || "".equals(segment) || !segment.startsWith(PATTERN_TOKEN) || PATTERN_TOKEN.length() == segment.length())
+            if (segment == null || "".equals(segment) || !segment.startsWith(PATTERN_TOKEN) || PATTERN_TOKEN.length() == segment.length()) //$NON-NLS-1$
                 throw new FilenameFormatException(Messages.bind(Messages.PatternFilename_error3, segment, PATTERN_TOKEN));
             return segment.substring(PATTERN_TOKEN.length());
         }
 
         private Filename() {
+            // Nothing to do
         }
+
     }
 
 }
