@@ -20,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -52,7 +53,7 @@ public class JetEngine extends AbstractJavaEngine {
         // 2 - compile the result
         String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         try {
-            SkeletonJETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
+            SkeletonJETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding(EMFHelper.getProject(getPattern().eResource())));
             compiler.parse();
             if (pattern.getSuperPattern() != null) {
                 Pattern parentPattern = pattern.getSuperPattern();
