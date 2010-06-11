@@ -203,9 +203,11 @@ if (!canGenerate)
     GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
-    final Map<String, Object> parameters__4iq1oGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__4iq1oGNEEdLjd_RFzaClA.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4iq1oGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_3);
     if (genModel.isBundleManifest()) {

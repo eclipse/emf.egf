@@ -267,9 +267,11 @@ String _ResourceSet = genModel.getImportedName("org.eclipse.emf.ecore.resource.R
 String _ResourceSetImpl = genModel.getImportedName("org.eclipse.emf.ecore.resource.impl.ResourceSetImpl");
 
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__5XuOUGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5XuOUGNEEdLjd_RFzaClA.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5XuOUGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getTestsPackageName());

@@ -500,19 +500,21 @@ return parameters; }
     }
     }
     stringBuffer.append(TEXT_89);
-    final Map<String, Object> parameters__4_lbIGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__4_lbIGNEEdLjd_RFzaClA.put("genFeature", genFeature);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("isJDK50", isJDK50);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("isInterface", isInterface);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("isImplementation", isImplementation);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("singleWildcard", singleWildcard);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__4_lbIGNEEdLjd_RFzaClA.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0vHWcGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__4_lbIGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("genFeature", genFeature);
+callParameters.put("genClass", genClass);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("isJDK50", isJDK50);
+callParameters.put("isInterface", isInterface);
+callParameters.put("isImplementation", isImplementation);
+callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
+callParameters.put("singleWildcard", singleWildcard);
+callParameters.put("negativeOffsetCorrection", negativeOffsetCorrection);
+callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0vHWcGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_90);
     }

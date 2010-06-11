@@ -322,19 +322,21 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
     }
     }
     stringBuffer.append(TEXT_26);
-    final Map<String, Object> parameters__43sDYGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__43sDYGNEEdLjd_RFzaClA.put("genFeature", genFeature);
-parameters__43sDYGNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__43sDYGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__43sDYGNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__43sDYGNEEdLjd_RFzaClA.put("isJDK50", isJDK50);
-parameters__43sDYGNEEdLjd_RFzaClA.put("isInterface", isInterface);
-parameters__43sDYGNEEdLjd_RFzaClA.put("isImplementation", isImplementation);
-parameters__43sDYGNEEdLjd_RFzaClA.put("publicStaticFinalFlag", publicStaticFinalFlag);
-parameters__43sDYGNEEdLjd_RFzaClA.put("singleWildcard", singleWildcard);
-parameters__43sDYGNEEdLjd_RFzaClA.put("negativeOffsetCorrection", negativeOffsetCorrection);
-parameters__43sDYGNEEdLjd_RFzaClA.put("positiveOffsetCorrection", positiveOffsetCorrection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lIUAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__43sDYGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("genFeature", genFeature);
+callParameters.put("genClass", genClass);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("isJDK50", isJDK50);
+callParameters.put("isInterface", isInterface);
+callParameters.put("isImplementation", isImplementation);
+callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
+callParameters.put("singleWildcard", singleWildcard);
+callParameters.put("negativeOffsetCorrection", negativeOffsetCorrection);
+callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lIUAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_27);
     if (!genFeature.hasDocumentation()) {

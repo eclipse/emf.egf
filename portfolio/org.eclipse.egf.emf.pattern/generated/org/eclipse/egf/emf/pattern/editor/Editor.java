@@ -508,9 +508,11 @@ if (!canGenerate)
     String _ArrayListOfString = "ArrayList" + (genModel.useGenerics() ? "<String>" : "");
     String _ListOfString = "List" + (genModel.useGenerics() ? "<String>" : "");
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__5SqIIGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5SqIIGNEEdLjd_RFzaClA.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5SqIIGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getPresentationPackageName());
@@ -764,28 +766,30 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     stringBuffer.append(genPackage.getEditorClassName());
     stringBuffer.append(TEXT_124);
     stringBuffer.append(TEXT_125);
-    final Map<String, Object> parameters__5SzSEGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5SzSEGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("importedOperationClassName", importedOperationClassName);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("operationMethodName", operationMethodName);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_ArrayListOfObject", _ArrayListOfObject);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_ArrayListOfSelectionChangedListener", _ArrayListOfSelectionChangedListener);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_CollectionOfSelectionChangedListener", _CollectionOfSelectionChangedListener);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_ArrayListOfResource", _ArrayListOfResource);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_CollectionOfResource", _CollectionOfResource);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_MapOfResourceToDiagnostic", _MapOfResourceToDiagnostic);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_HashMapOfResourceToBoolean", _HashMapOfResourceToBoolean);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_MapOfObjectToObject", _MapOfObjectToObject);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_HashMapOfObjectToObject", _HashMapOfObjectToObject);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_LinkedHashMapOfResourceToDiagnostic", _LinkedHashMapOfResourceToDiagnostic);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_CollectionOfAnything", _CollectionOfAnything);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_ListOfAnything", _ListOfAnything);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("useExtendedLabelProvider", useExtendedLabelProvider);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_AdapterFactoryLabelProvider", _AdapterFactoryLabelProvider);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_ArrayListOfString", _ArrayListOfString);
-parameters__5SzSEGNEEdLjd_RFzaClA.put("_ListOfString", _ListOfString);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08-MQWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5SzSEGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("importedOperationClassName", importedOperationClassName);
+callParameters.put("operationMethodName", operationMethodName);
+callParameters.put("_ArrayListOfObject", _ArrayListOfObject);
+callParameters.put("_ArrayListOfSelectionChangedListener", _ArrayListOfSelectionChangedListener);
+callParameters.put("_CollectionOfSelectionChangedListener", _CollectionOfSelectionChangedListener);
+callParameters.put("_ArrayListOfResource", _ArrayListOfResource);
+callParameters.put("_CollectionOfResource", _CollectionOfResource);
+callParameters.put("_MapOfResourceToDiagnostic", _MapOfResourceToDiagnostic);
+callParameters.put("_HashMapOfResourceToBoolean", _HashMapOfResourceToBoolean);
+callParameters.put("_MapOfObjectToObject", _MapOfObjectToObject);
+callParameters.put("_HashMapOfObjectToObject", _HashMapOfObjectToObject);
+callParameters.put("_LinkedHashMapOfResourceToDiagnostic", _LinkedHashMapOfResourceToDiagnostic);
+callParameters.put("_CollectionOfAnything", _CollectionOfAnything);
+callParameters.put("_ListOfAnything", _ListOfAnything);
+callParameters.put("useExtendedLabelProvider", useExtendedLabelProvider);
+callParameters.put("_AdapterFactoryLabelProvider", _AdapterFactoryLabelProvider);
+callParameters.put("_ArrayListOfString", _ArrayListOfString);
+callParameters.put("_ListOfString", _ListOfString);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08-MQWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //Editor/addItemproviderFactories.override.javajetinc"
     stringBuffer.append(TEXT_126);

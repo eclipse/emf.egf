@@ -264,21 +264,23 @@ return parameters; }
     stringBuffer.append(TEXT_10);
     }
     stringBuffer.append(TEXT_11);
-    final Map<String, Object> parameters__5MPIGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5MPIGNEEdLjd_RFzaClA.put("createClass", createClass);
-parameters__5MPIGNEEdLjd_RFzaClA.put("createFeature", createFeature);
-parameters__5MPIGNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
-parameters__5MPIGNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
-parameters__5MPIGNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
-parameters__5MPIGNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5MPIGNEEdLjd_RFzaClA.put("classEntry", classEntry);
-parameters__5MPIGNEEdLjd_RFzaClA.put("packageEntry", packageEntry);
-parameters__5MPIGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5MPIGNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5MPIGNEEdLjd_RFzaClA.put("useGenerics", useGenerics);
-parameters__5MPIGNEEdLjd_RFzaClA.put("_ArrayList", _ArrayList);
-parameters__5MPIGNEEdLjd_RFzaClA.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06b1oGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5MPIGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("createClass", createClass);
+callParameters.put("createFeature", createFeature);
+callParameters.put("delegatedFeature", delegatedFeature);
+callParameters.put("createClassifier", createClassifier);
+callParameters.put("childCreationData", childCreationData);
+callParameters.put("genClass", genClass);
+callParameters.put("classEntry", classEntry);
+callParameters.put("packageEntry", packageEntry);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("useGenerics", useGenerics);
+callParameters.put("_ArrayList", _ArrayList);
+callParameters.put("_Collection", _Collection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06b1oGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_12);
     }

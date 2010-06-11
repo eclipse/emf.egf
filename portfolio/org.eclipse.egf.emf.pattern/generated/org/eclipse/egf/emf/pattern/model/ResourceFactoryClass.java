@@ -191,9 +191,11 @@ if (!canGenerate)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__4m2LAGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__4m2LAGNEEdLjd_RFzaClA.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4m2LAGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getUtilitiesPackageName());
@@ -252,10 +254,12 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     }
     stringBuffer.append(TEXT_28);
     stringBuffer.append(TEXT_29);
-    final Map<String, Object> parameters__4oyEsGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__4oyEsGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__4oyEsGNEEdLjd_RFzaClA.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__4oyEsGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0uqqgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //ResourceFactoryClass/createResource.override.javajetinc
     stringBuffer.append(TEXT_30);

@@ -593,9 +593,11 @@ if (!canGenerate)
     boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]);
     String publicStaticFinalFlag = isImplementation ? "public static final " : "";
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__4rUbUGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__4rUbUGNEEdLjd_RFzaClA.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__4rUbUGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     if (isInterface || genModel.isSuppressInterfaces()) {
     stringBuffer.append(TEXT_2);

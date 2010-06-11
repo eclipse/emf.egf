@@ -214,17 +214,19 @@ return parameters; }
     stringBuffer.append(TEXT_8);
     }
     stringBuffer.append(TEXT_9);
-    final Map<String, Object> parameters__5PYKoGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5PYKoGNEEdLjd_RFzaClA.put("createClass", createClass);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("createFeature", createFeature);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5PYKoGNEEdLjd_RFzaClA.put("_List", _List);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5PYKoGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("createClass", createClass);
+callParameters.put("createFeature", createFeature);
+callParameters.put("delegatedFeature", delegatedFeature);
+callParameters.put("createClassifier", createClassifier);
+callParameters.put("childCreationData", childCreationData);
+callParameters.put("genClass", genClass);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("_List", _List);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04y24GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_10);
     }

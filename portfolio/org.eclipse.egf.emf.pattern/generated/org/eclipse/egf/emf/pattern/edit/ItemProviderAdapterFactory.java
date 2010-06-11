@@ -289,9 +289,11 @@ if (!canGenerate)
 
     GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();
     stringBuffer.append(TEXT_1);
-    final Map<String, Object> parameters__5K56UGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5K56UGNEEdLjd_RFzaClA.put("argument", parameter);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), parameters__5K56UGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("argument", parameter);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     stringBuffer.append(TEXT_2);
     stringBuffer.append(genPackage.getProviderPackageName());
@@ -543,82 +545,90 @@ CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.p
     if (createFeature.isFeatureMapType()) {
     if (delegatedFeature.isReferenceType()) { GenClass createClass = (GenClass)createClassifier;
     stringBuffer.append(TEXT_108);
-    final Map<String, Object> parameters__5K56UWNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5K56UWNEEdLjd_RFzaClA.put("createClass", createClass);
-parameters__5K56UWNEEdLjd_RFzaClA.put("createFeature", createFeature);
-parameters__5K56UWNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
-parameters__5K56UWNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
-parameters__5K56UWNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
-parameters__5K56UWNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5K56UWNEEdLjd_RFzaClA.put("classEntry", classEntry);
-parameters__5K56UWNEEdLjd_RFzaClA.put("packageEntry", packageEntry);
-parameters__5K56UWNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5K56UWNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5K56UWNEEdLjd_RFzaClA.put("useGenerics", useGenerics);
-parameters__5K56UWNEEdLjd_RFzaClA.put("_ArrayList", _ArrayList);
-parameters__5K56UWNEEdLjd_RFzaClA.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_05_JsWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5K56UWNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("createClass", createClass);
+callParameters.put("createFeature", createFeature);
+callParameters.put("delegatedFeature", delegatedFeature);
+callParameters.put("createClassifier", createClassifier);
+callParameters.put("childCreationData", childCreationData);
+callParameters.put("genClass", genClass);
+callParameters.put("classEntry", classEntry);
+callParameters.put("packageEntry", packageEntry);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("useGenerics", useGenerics);
+callParameters.put("_ArrayList", _ArrayList);
+callParameters.put("_Collection", _Collection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_05_JsWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc
     stringBuffer.append(TEXT_109);
     } else { GenDataType createDataType = (GenDataType)createClassifier;
     stringBuffer.append(TEXT_110);
-    final Map<String, Object> parameters__5LDrUGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5LDrUGNEEdLjd_RFzaClA.put("createDataType", createDataType);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("createFeature", createFeature);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("classEntry", classEntry);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("packageEntry", packageEntry);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("useGenerics", useGenerics);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("_ArrayList", _ArrayList);
-parameters__5LDrUGNEEdLjd_RFzaClA.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06lmoGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5LDrUGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("createDataType", createDataType);
+callParameters.put("createFeature", createFeature);
+callParameters.put("delegatedFeature", delegatedFeature);
+callParameters.put("createClassifier", createClassifier);
+callParameters.put("childCreationData", childCreationData);
+callParameters.put("genClass", genClass);
+callParameters.put("classEntry", classEntry);
+callParameters.put("packageEntry", packageEntry);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("useGenerics", useGenerics);
+callParameters.put("_ArrayList", _ArrayList);
+callParameters.put("_Collection", _Collection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06lmoGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc
     stringBuffer.append(TEXT_111);
     }
     } else if (createFeature.isReferenceType()) { GenClass createClass = (GenClass)createClassifier;
     stringBuffer.append(TEXT_112);
-    final Map<String, Object> parameters__5LDrUWNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5LDrUWNEEdLjd_RFzaClA.put("createClass", createClass);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("createFeature", createFeature);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("classEntry", classEntry);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("packageEntry", packageEntry);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("useGenerics", useGenerics);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("_ArrayList", _ArrayList);
-parameters__5LDrUWNEEdLjd_RFzaClA.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_07e-gGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5LDrUWNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("createClass", createClass);
+callParameters.put("createFeature", createFeature);
+callParameters.put("delegatedFeature", delegatedFeature);
+callParameters.put("createClassifier", createClassifier);
+callParameters.put("childCreationData", childCreationData);
+callParameters.put("genClass", genClass);
+callParameters.put("classEntry", classEntry);
+callParameters.put("packageEntry", packageEntry);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("useGenerics", useGenerics);
+callParameters.put("_ArrayList", _ArrayList);
+callParameters.put("_Collection", _Collection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_07e-gGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc 
     stringBuffer.append(TEXT_113);
     } else { GenDataType createDataType = (GenDataType)createClassifier;
     stringBuffer.append(TEXT_114);
-    final Map<String, Object> parameters__5LDrUmNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5LDrUmNEEdLjd_RFzaClA.put("createDataType", createDataType);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("createFeature", createFeature);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("delegatedFeature", delegatedFeature);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("createClassifier", createClassifier);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("childCreationData", childCreationData);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("classEntry", classEntry);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("packageEntry", packageEntry);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("genModel", genModel);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("useGenerics", useGenerics);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("_ArrayList", _ArrayList);
-parameters__5LDrUmNEEdLjd_RFzaClA.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08OlYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5LDrUmNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("createDataType", createDataType);
+callParameters.put("createFeature", createFeature);
+callParameters.put("delegatedFeature", delegatedFeature);
+callParameters.put("createClassifier", createClassifier);
+callParameters.put("childCreationData", childCreationData);
+callParameters.put("genClass", genClass);
+callParameters.put("classEntry", classEntry);
+callParameters.put("packageEntry", packageEntry);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+callParameters.put("useGenerics", useGenerics);
+callParameters.put("_ArrayList", _ArrayList);
+callParameters.put("_Collection", _Collection);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08OlYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc
     stringBuffer.append(TEXT_115);

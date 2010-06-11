@@ -162,24 +162,28 @@ return parameters; }
     stringBuffer.append(TEXT_8);
     if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/setGenFeature.annotations.insert.javajetinc
     stringBuffer.append(TEXT_9);
-    final Map<String, Object> parameters__5ZqIAGNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5ZqIAGNEEdLjd_RFzaClA.put("genFeature", genFeature);
-parameters__5ZqIAGNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5ZqIAGNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5ZqIAGNEEdLjd_RFzaClA.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-wU8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5ZqIAGNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("genFeature", genFeature);
+callParameters.put("genClass", genClass);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-wU8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     }
     stringBuffer.append(TEXT_10);
     stringBuffer.append(genFeature.getAccessorName());
     stringBuffer.append(TEXT_11);
     stringBuffer.append(TEXT_12);
-    final Map<String, Object> parameters__5ZqIAWNEEdLjd_RFzaClA = new HashMap<String, Object>();
-parameters__5ZqIAWNEEdLjd_RFzaClA.put("genFeature", genFeature);
-parameters__5ZqIAWNEEdLjd_RFzaClA.put("genClass", genClass);
-parameters__5ZqIAWNEEdLjd_RFzaClA.put("genPackage", genPackage);
-parameters__5ZqIAWNEEdLjd_RFzaClA.put("genModel", genModel);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-6F8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), parameters__5ZqIAWNEEdLjd_RFzaClA);
+    {
+final Map<String, Object> callParameters = new HashMap<String, Object>();
+callParameters.put("genFeature", genFeature);
+callParameters.put("genClass", genClass);
+callParameters.put("genPackage", genPackage);
+callParameters.put("genModel", genModel);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-6F8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+}
 
     //TestCase/setGenFeature.todo.override.javajetinc
     stringBuffer.append(TEXT_13);
