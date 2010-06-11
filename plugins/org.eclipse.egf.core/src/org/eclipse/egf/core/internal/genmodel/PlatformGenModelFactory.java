@@ -46,4 +46,5 @@ public final class PlatformGenModelFactory implements IPlatformExtensionPointFac
         // Create an IPlatformGenModel
         return new PlatformGenModel(platformBundle, uri.getValue(), className.getValue(), genModel != null ? genModel.getValue() : null);
     }
+
 }
