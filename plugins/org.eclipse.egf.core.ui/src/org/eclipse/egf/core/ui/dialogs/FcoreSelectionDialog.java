@@ -26,22 +26,23 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IMemento;
-import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
+public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
 
     private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog"; //$NON-NLS-1$
 
@@ -250,6 +251,26 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
         setSelectionHistory(new FcoreSelectionHistory());
     }
 
+    /**
+     * Handle selection
+     * 
+     * @param selection
+     *            the new selection
+     */
+    @Override
+    protected void handleSelected(StructuredSelection selection) {
+        super.handleSelected(selection);
+        if (selection.size() != 0) {
+            List<IPlatformFcore> fcores = new UniqueEList<IPlatformFcore>();
+            for (Object object : selection.toList()) {
+                if (object instanceof IPlatformFcore) {
+                    fcores.add((IPlatformFcore) object);
+                }
+            }
+            notifySelectionListeners(fcores.toArray());
+        }
+    }
+
     protected ILabelProvider getLabelProvider() {
         return _labelProvider;
     }
@@ -293,10 +314,6 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
     @Override
     public Object[] getResult() {
         Object[] result = super.getResult();
-        if (result == null) {
-            computeResult();
-        }
-        result = super.getResult();
         if (result == null) {
             return null;
         }

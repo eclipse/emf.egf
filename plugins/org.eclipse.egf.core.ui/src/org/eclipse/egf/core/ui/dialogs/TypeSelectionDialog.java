@@ -10,15 +10,21 @@
  */
 package org.eclipse.egf.core.ui.dialogs;
 
+import java.util.List;
+
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.core.search.TypeNameMatch;
 import org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog;
 import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.operation.IRunnableContext;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -31,6 +37,8 @@ import org.eclipse.swt.widgets.Shell;
 public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
 
     private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog"; //$NON-NLS-1$ 
+
+    private List<ISelectionDialogListener> _selectionListeners = new UniqueEList<ISelectionDialogListener>();
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds) {
         super(parent, multi, context, javaProject != null ? SearchEngine.createJavaSearchScope(new IJavaElement[] {
@@ -87,6 +95,26 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
         return settings;
     }
 
+    public boolean addSelectionListeners(ISelectionDialogListener listener) {
+        if (listener == null) {
+            return false;
+        }
+        return _selectionListeners.add(listener);
+    }
+
+    public boolean removeSelectionListeners(ISelectionDialogListener listener) {
+        if (listener == null) {
+            return false;
+        }
+        return _selectionListeners.remove(listener);
+    }
+
+    public void notifySelectionListeners(Object[] selected) {
+        for (ISelectionDialogListener listener : _selectionListeners) {
+            listener.handleSelected(selected);
+        }
+    }
+
     @Override
     public void setTitle(String title) {
         super.setTitle(title);
@@ -114,20 +142,23 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
     }
 
     /**
-     * Returns the list of selections made by the user, or <code>null</code>
-     * if the selection was canceled. A computeResult is done when this dialog
-     * is used in a wizard page
+     * Handle selection
      * 
-     * @return the array of selected elements, or <code>null</code> if Cancel
-     *         was pressed
+     * @param selection
+     *            the new selection
      */
     @Override
-    public Object[] getResult() {
-        Object[] result = getResult();
-        if (result == null) {
-            computeResult();
+    protected void handleSelected(StructuredSelection selection) {
+        super.handleSelected(selection);
+        if (selection.size() != 0) {
+            List<IType> types = new UniqueEList<IType>();
+            for (Object object : selection.toList()) {
+                if (object instanceof TypeNameMatch) {
+                    types.add(((TypeNameMatch) object).getType());
+                }
+            }
+            notifySelectionListeners(types.toArray());
         }
-        return super.getResult();
     }
 
     /**
