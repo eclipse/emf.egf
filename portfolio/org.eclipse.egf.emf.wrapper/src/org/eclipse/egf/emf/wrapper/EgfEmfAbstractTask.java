@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -24,42 +25,41 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 public abstract class EgfEmfAbstractTask implements ITaskProduction {
 
-  private Resource _resource;
+    private Resource _resource;
 
-  private GenModel _genModel;
+    private GenModel _genModel;
 
-  public EgfEmfAbstractTask() {
-    super();
-  }
-
-  public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    _resource = new ResourceSetImpl().getResource(productionContext.getInputValue("genModelURI", URI.class), true); //$NON-NLS-1$
-  }
-
-  public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    // TODO have a look at GeneratorUIUtil
-    // TODO handle diagnostics and status
-    _genModel = (GenModel) _resource.getContents().get(0);
-    _genModel.reconcile();
-    _genModel.setCanGenerate(true);
-    _genModel.setValidateModel(true);
-    _genModel.diagnose();
-    _genModel.validate();
-    Generator generator = GenModelUtil.createGenerator(_genModel);
-    for (String projectType : getProjectTypeList()) {
-      Monitor emfMonitor = BasicMonitor.toMonitor(new SubProgressMonitor(monitor, 100));
-      generator.generate(_genModel, projectType, emfMonitor);
+    public EgfEmfAbstractTask() {
+        super();
     }
-  }
 
-  public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    _resource.unload();
-  }
+    public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+        _resource = new EGFResourceSet().getResource(productionContext.getInputValue("genModelURI", URI.class), true); //$NON-NLS-1$
+    }
 
-  protected abstract ArrayList<String> getProjectTypeList();
+    public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+        // TODO have a look at GeneratorUIUtil
+        // TODO handle diagnostics and status
+        _genModel = (GenModel) _resource.getContents().get(0);
+        _genModel.reconcile();
+        _genModel.setCanGenerate(true);
+        _genModel.setValidateModel(true);
+        _genModel.diagnose();
+        _genModel.validate();
+        Generator generator = GenModelUtil.createGenerator(_genModel);
+        for (String projectType : getProjectTypeList()) {
+            Monitor emfMonitor = BasicMonitor.toMonitor(new SubProgressMonitor(monitor, 100));
+            generator.generate(_genModel, projectType, emfMonitor);
+        }
+    }
+
+    public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+        _resource.unload();
+    }
+
+    protected abstract ArrayList<String> getProjectTypeList();
 
 }
