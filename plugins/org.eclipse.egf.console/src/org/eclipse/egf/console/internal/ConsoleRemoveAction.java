@@ -17,18 +17,18 @@ import org.eclipse.jface.action.Action;
 
 public class ConsoleRemoveAction extends Action {
 
-  public static final String _id = "org.eclipse.egf.console.internal.ConsoleRemoveAction"; //$NON-NLS-1$  
+    public static final String _id = "org.eclipse.egf.console.internal.ConsoleRemoveAction"; //$NON-NLS-1$  
 
-  ConsoleRemoveAction() {
-    super(ConsoleMessages.Console_close);
-    setDisabledImageDescriptor(EGFConsolePlugin.getDefault().getImageDescriptor(IEGFConsoleConstants.IMG_DISABLED_CLOSE_CONSOLE));
-    setImageDescriptor(EGFConsolePlugin.getDefault().getImageDescriptor(IEGFConsoleConstants.IMG_ENABLED_CLOSE_CONSOLE));
-    setId(_id);
-  }
+    ConsoleRemoveAction() {
+        super(ConsoleMessages.Console_close);
+        setId(_id);
+        setImageDescriptor(EGFConsolePlugin.getDefault().getImageDescriptor(IEGFConsoleConstants.IMG_ENABLED_CLOSE_CONSOLE));
+        setDisabledImageDescriptor(EGFConsolePlugin.getDefault().getImageDescriptor(IEGFConsoleConstants.IMG_DISABLED_CLOSE_CONSOLE));
+    }
 
-  @Override
-  public void run() {
-    ConsoleFactory.closeConsole();
-  }
+    @Override
+    public void run() {
+        ConsoleFactory.closeConsole();
+    }
 
 }
