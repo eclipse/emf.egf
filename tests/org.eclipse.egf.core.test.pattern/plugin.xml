@@ -53,6 +53,12 @@
             id="model/mypackage.fcore">
       </fcore>
       <fcore
+            id="fc/substitution_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/substitution_2.fcore">
+      </fcore>
+      <fcore
             id="fc/linefeed.fcore">
       </fcore>
       
