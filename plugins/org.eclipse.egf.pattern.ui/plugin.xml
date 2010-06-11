@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="templateEditor" name="templateEditor" schema="schema/templateEditor.exsd"/>
 
-   	<extension 
-    	point="org.eclipse.egf.core.ui.editor.menu.contributor">
+    <extension-point 
+        id="templateEditor" 
+        name="templateEditor" 
+        schema="schema/templateEditor.exsd"
+    />
+
+    <extension 
+        point="org.eclipse.egf.core.ui.editor.menu.contributor"
+    >
         <contribution
-               class="org.eclipse.egf.pattern.ui.contributions.PatternMenuContributor">
-        </contribution>
-   	</extension>
+            class="org.eclipse.egf.pattern.ui.contributions.PatternMenuContributor"
+        />
+    </extension>
 
    	<extension
-        point="org.eclipse.egf.core.ui.editor.listener.contributor">
+        point="org.eclipse.egf.core.ui.editor.listener.contributor"
+    >
         <contribution
-               class="org.eclipse.egf.pattern.ui.contributions.PatternListenerContributor">
-        </contribution>
-   	</extension>
+            class="org.eclipse.egf.pattern.ui.contributions.PatternListenerContributor"
+        />
+    </extension>
 
   	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
     	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternListPropertyEditorContributor"/>
@@ -34,7 +41,7 @@
             icon="icons/full/obj16/sample.gif"
             contributorClass="org.eclipse.egf.pattern.ui.editors.PatternEditorContributor"
             class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
-            id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
+            id="org.eclipse.egf.pattern.ui.pattern.editor.id">
       	</editor>
       	<editor
             name="%patternTemplateEditorLabel"
@@ -42,7 +49,7 @@
             icon="icons/full/obj16/template.gif"
             contributorClass="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditorContributor"
             class="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor"
-            id="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor">
+            id="org.eclipse.egf.pattern.ui.pattern.template.editor.id">
       	</editor>
       	
    	</extension>

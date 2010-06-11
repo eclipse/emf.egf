@@ -38,11 +38,15 @@ import org.eclipse.ui.IPersistableElement;
  */
 
 public class PatternMethodEditorInput implements IFileEditorInput {
-    public static final String PATTERN_METHOD_ID = "methodId";
-    public static final String RESSOURCE_URI = "uri";
+
+    public static final String PATTERN_METHOD_ID = "methodId"; //$NON-NLS-1$
+
+    public static final String RESSOURCE_URI = "uri"; //$NON-NLS-1$
 
     private final PatternPersistableElement persistable = new PatternPersistableElement();
+
     private final String fragment;
+
     private final Resource resource;
 
     private String path;
@@ -54,7 +58,6 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public boolean exists() {
-
         return true;
     }
 
@@ -67,26 +70,22 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public ImageDescriptor getImageDescriptor() {
-
         return null;
     }
 
     public String getName() {
-
         return getPatternMethod().getName();
     }
 
     public IPersistableElement getPersistable() {
-
         return persistable;
     }
 
     public String getToolTipText() {
         if (getPatternMethod() != null) {
             return getPatternMethod().getName();
-        } else {
-            return Messages.input_tooltip;
         }
+        return Messages.input_tooltip;
     }
 
     public Object getAdapter(Class adapter) {
@@ -97,14 +96,14 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     private class PatternPersistableElement implements IPersistableElement {
+
         public void saveState(IMemento memento) {
             memento.putString(PATTERN_METHOD_ID, getPatternMethod().getID());
             memento.putString(RESSOURCE_URI, resource.getURI().toString());
         }
 
         public String getFactoryId() {
-
-            return "org.eclipse.egf.pattern.ui.pattern.factory.id";
+            return "org.eclipse.egf.pattern.ui.pattern.factory.id"; //$NON-NLS-1$
         }
 
     }
@@ -139,4 +138,5 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     public IStorage getStorage() throws CoreException {
         return getFile();
     }
+
 }

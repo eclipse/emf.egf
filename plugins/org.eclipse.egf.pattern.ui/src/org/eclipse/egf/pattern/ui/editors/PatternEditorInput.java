@@ -15,10 +15,20 @@
 
 package org.eclipse.egf.pattern.ui.editors;
 
+import java.io.File;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPersistableElement;
 
@@ -28,83 +38,132 @@ import org.eclipse.ui.IPersistableElement;
  * 
  */
 
-public class PatternEditorInput implements IEditorInput {
+public class PatternEditorInput implements IEditorInput, IFileEditorInput {
 
-  public static final String PATTERN_ID = "patternId"; //$NON-NLS-1$
+    public static final String PATTERN_ID = "patternId"; //$NON-NLS-1$
 
-  public static final String RESSOURCE_URI = "uri"; //$NON-NLS-1$
+    public static final String RESSOURCE_URI = "uri"; //$NON-NLS-1$
 
-  private final PatternPersistableElement persistable = new PatternPersistableElement();
+    protected static class EclipseUtil {
 
-  private final String fragment;
+        public static Object getAdapter(Class<?> adapter, URI uri) {
+            if ((adapter == IFile.class || adapter == IResource.class) && uri.isPlatformResource()) {
+                return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
+            }
+            return null;
+        }
 
-  private final Resource resource;
-
-  // Add for test read only mode --start;
-  private boolean isReadOnly = false;
-
-  public void setReadOnly(boolean isReadOnly) {
-    this.isReadOnly = isReadOnly;
-  }
-
-  // Add for test read only mode --end;
-
-  public PatternEditorInput(Resource resource, String fragment) {
-    if (fragment == null || resource == null)
-      throw new IllegalArgumentException();
-    this.resource = resource;
-    this.fragment = fragment;
-  }
-
-  public boolean exists() {
-    return true;
-  }
-
-  public boolean isReadOnly() {
-    return isReadOnly;
-  }
-
-  public Pattern getPattern() {
-    return (Pattern) resource.getEObject(fragment);
-  }
-
-  public Resource getResource() {
-    return resource;
-  }
-
-  public ImageDescriptor getImageDescriptor() {
-    return null;
-  }
-
-  public String getName() {
-    if (getPattern() == null)
-      return ""; //$NON-NLS-1$
-    return getPattern().getName();
-  }
-
-  public IPersistableElement getPersistable() {
-    return persistable;
-  }
-
-  public String getToolTipText() {
-    return resource.getURI().toPlatformString(false);
-  }
-
-  public Object getAdapter(Class adapter) {
-    return null;
-  }
-
-  private class PatternPersistableElement implements IPersistableElement {
-    public void saveState(IMemento memento) {
-      if (getPattern() != null) {
-        memento.putString(PATTERN_ID, getPattern().getID());
-        memento.putString(RESSOURCE_URI, resource.getURI().toString());
-      }
+        public static boolean exists(URI uri) {
+            if (uri.isPlatformResource()) {
+                return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true))).exists();
+            }
+            return false;
+        }
     }
 
-    public String getFactoryId() {
-      return "org.eclipse.egf.pattern.ui.pattern.factory.id"; //$NON-NLS-1$
+    private final PatternPersistableElement persistable = new PatternPersistableElement();
+
+    private final String fragment;
+
+    private final Resource resource;
+
+    // Add for test read only mode --start;
+    private boolean isReadOnly = false;
+
+    public void setReadOnly(boolean isReadOnly) {
+        this.isReadOnly = isReadOnly;
     }
 
-  }
+    // Add for test read only mode --end;
+
+    public PatternEditorInput(Resource resource, String fragment) {
+        if (fragment == null || resource == null)
+            throw new IllegalArgumentException();
+        this.resource = resource;
+        this.fragment = fragment;
+    }
+
+    /**
+     * Returns <b>true</b> only if the URI represents a file and if this file exists.
+     * 
+     * @see org.eclipse.ui.IEditorInput#exists()
+     */
+    public boolean exists() {
+        if (getURI().isFile()) {
+            return new File(getURI().toFileString()).exists();
+        }
+        return EclipseUtil.exists(getURI());
+    }
+
+    public boolean isReadOnly() {
+        return isReadOnly;
+    }
+
+    public Pattern getPattern() {
+        return (Pattern) resource.getEObject(fragment);
+    }
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public URI getURI() {
+        return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI());
+    }
+
+    public ImageDescriptor getImageDescriptor() {
+        return null;
+    }
+
+    public String getName() {
+        if (getPattern() == null)
+            return ""; //$NON-NLS-1$
+        return getPattern().getName();
+    }
+
+    public IPersistableElement getPersistable() {
+        return persistable;
+    }
+
+    public String getToolTipText() {
+        return getURI().toString();
+    }
+
+    @SuppressWarnings("unchecked")
+    public Object getAdapter(Class adapter) {
+        Object result = EclipseUtil.getAdapter(adapter, getURI());
+        if (result != null) {
+            return result;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return this == object || object instanceof PatternEditorInput && getURI().equals(((PatternEditorInput) object).getURI());
+    }
+
+    private class PatternPersistableElement implements IPersistableElement {
+
+        public void saveState(IMemento memento) {
+            if (getPattern() != null) {
+                memento.putString(PATTERN_ID, getPattern().getID());
+                memento.putString(RESSOURCE_URI, resource.getURI().toString());
+            }
+        }
+
+        public String getFactoryId() {
+            return "org.eclipse.egf.pattern.ui.pattern.factory.id"; //$NON-NLS-1$
+        }
+
+    }
+
+    public IFile getFile() {
+        return (IFile) EclipseUtil.getAdapter(IFile.class, getURI());
+    }
+
+    public IStorage getStorage() {
+        return getFile();
+    }
+
 }

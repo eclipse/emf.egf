@@ -262,7 +262,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
 
         @Override
         public void run() {
-            EditHelper.openPatternEditor(_parent.getPage(), getPattern().getID());
+            EditHelper.openPatternEditor(_parent.getPage(), getPattern());
         }
     }
 

@@ -27,7 +27,9 @@ import org.eclipse.ui.IPersistableElement;
  * 
  */
 public class AbstractPatternMethodEditorInput implements IEditorInput {
+
     protected final String fragment;
+
     protected final Resource resource;
 
     protected String path;
@@ -59,9 +61,8 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     public String getToolTipText() {
         if (getPatternMethod() != null) {
             return getPatternMethod().getName();
-        } else {
-            return Messages.input_tooltip;
         }
+        return Messages.input_tooltip;
     }
 
     public String getName() {
@@ -75,7 +76,6 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     }
 
     public Object getAdapter(Class adapter) {
-
         return null;
     }
 

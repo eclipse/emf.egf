@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -17,8 +17,6 @@ package org.eclipse.egf.pattern.ui.editors;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -51,14 +49,19 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  */
 public class PatternTemplateEditor extends MultiPageEditorPart {
 
+    public static final String ID = "org.eclipse.egf.pattern.ui.pattern.template.editor.id"; //$NON-NLS-1$
+
     private boolean patternInWorkspace;
 
     private final AdapterImpl methodAdapter = new AdapterImpl() {
+
+        @Override
         public void notifyChanged(Notification msg) {
             if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature()) && msg.getNotifier() instanceof PatternMethod) {
                 executeMethodEditorRename((PatternMethod) msg.getNotifier());
             }
         }
+
     };
 
     private final AdapterImpl refresher = new AdapterImpl() {
@@ -72,6 +75,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
             }
 
         }
+
     };
 
     private final Map<String, TextEditor> editors = new HashMap<String, TextEditor>();
@@ -90,17 +94,17 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
         int eventType = msg.getEventType();
         if ((newValue != null && newValue instanceof PatternMethod) || (newValue == null && oldValue instanceof PatternMethod)) {
             switch (eventType) {
-            case Notification.ADD:
-                executeMethodEditorAdd((PatternMethod) newValue);
-                break;
-            case Notification.REMOVE:
-                executeMethodEditorRemove((PatternMethod) oldValue);
-                break;
-            // case Notification.MOVE:
-            // executeMethodEditorsReorder((PatternMethod) newValue, oldValue);
-            // break;
-            default:
-                return;
+                case Notification.ADD:
+                    executeMethodEditorAdd((PatternMethod) newValue);
+                    break;
+                case Notification.REMOVE:
+                    executeMethodEditorRemove((PatternMethod) oldValue);
+                    break;
+                // case Notification.MOVE:
+                // executeMethodEditorsReorder((PatternMethod) newValue, oldValue);
+                // break;
+                default:
+                    return;
             }
         }
     }
@@ -131,6 +135,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
             public void run() {
                 createPage(addMethod);
             }
+
         });
         addMethodChangeAdapter(addMethod);
     }
@@ -186,9 +191,11 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
         try {
 
             TextEditor editor = new TextEditor() {
+
                 {
                     setDocumentProvider(patternInWorkspace ? new FileDocumentProvider() : new StorageDocumentProvider());
                 }
+
             };
             AbstractPatternMethodEditorInput input = null;
             if (patternInWorkspace)
@@ -200,11 +207,12 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
             setPageText(index, method.getName());
             editors.put(method.getID(), editor);
         } catch (PartInitException e) {
-            ErrorDialog.openError(getSite().getShell(), "Error creating nested text editor", null, e.getStatus());
+            ErrorDialog.openError(getSite().getShell(), "Error creating nested text editor", null, e.getStatus()); //$NON-NLS-1$
             Activator.getDefault().logError(e);
         }
     }
 
+    @Override
     protected void createPages() {
         for (PatternMethod method : getPattern().getMethods())
             createPage(method);
@@ -214,11 +222,13 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
         return editors.get(methodId);
     }
 
+    @Override
     public void doSave(IProgressMonitor monitor) {
         for (int i = 0; i < getPageCount(); i++)
             getEditor(i).doSave(monitor);
     }
 
+    @Override
     public void doSaveAs() {
         throw new UnsupportedOperationException();
     }
@@ -242,6 +252,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
                     setPartName(pattern.getName());
                 }
             }
+
         });
     }
 
@@ -249,6 +260,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
      * The <code>MultiPageEditorExample</code> implementation of this method
      * checks that the input is an instance of <code>IFileEditorInput</code>.
      */
+    @Override
     public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
         if (!(editorInput instanceof PatternEditorInput))
             throw new PartInitException(Messages.Editor_wrong_input);
@@ -258,6 +270,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
         patternInWorkspace = platformFcore.getPlatformBundle().getProject() != null;
     }
 
+    @Override
     public void dispose() {
         // if init failed, dispose should not called this
         if (getEditorInput() != null && getEditorInput() instanceof PatternEditorInput) {
@@ -270,6 +283,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
      * (non-Javadoc)
      * Method declared on IEditorPart.
      */
+    @Override
     public boolean isSaveAsAllowed() {
         return false;
     }

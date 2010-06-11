@@ -114,9 +114,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.IFormColors;
@@ -135,7 +133,7 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
  */
 public class SpecificationPage extends PatternEditorPage {
 
-    public static final String ID = "SpecificationPage"; //$NON-NLS-1$
+    public static final String ID = "org.eclipse.egf.pattern.ui.editors.pages.specification.page.id"; //$NON-NLS-1$
 
     private Link parentLink;
 
@@ -207,10 +205,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     protected void openParentPatternEditor() {
-        IWorkbench workbench = PlatformUI.getWorkbench();
-        IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-        IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-        EditHelper.openPatternEditor(activePage, getPattern().getSuperPattern().getID());
+        EditHelper.openPatternEditor(getSite().getPage(), getPattern().getSuperPattern(), IWorkbenchPage.MATCH_NONE);
     }
 
     @Override
@@ -1088,6 +1083,7 @@ public class SpecificationPage extends PatternEditorPage {
     @Override
     public void dispose() {
         PatternUIHelper.removeAdapterForPattern(getPattern(), parameterNameEmptyValidationAdapter);
+        colors.dispose();
         super.dispose();
     }
 

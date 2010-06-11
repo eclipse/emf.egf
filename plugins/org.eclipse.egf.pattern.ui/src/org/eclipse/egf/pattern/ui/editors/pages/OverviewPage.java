@@ -84,7 +84,7 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
  */
 public class OverviewPage extends PatternEditorPage {
 
-    public static final String ID = "OverviewPage"; //$NON-NLS-1$
+    public static final String ID = "org.eclipse.egf.pattern.ui.editors.pages.overview.page.id"; //$NON-NLS-1$
 
     private FormEditor editor;
 
@@ -454,6 +454,7 @@ public class OverviewPage extends PatternEditorPage {
     @Override
     public void dispose() {
         PatternUIHelper.removeAdapterForPattern(getPattern(), patternNameEmpetyValidationAdapter);
+        colors.dispose();
         super.dispose();
     }
 

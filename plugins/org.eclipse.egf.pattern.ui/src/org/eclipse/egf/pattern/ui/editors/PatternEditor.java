@@ -53,13 +53,11 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.IFormPage;
-import org.eclipse.ui.ide.IDE;
 
 /**
  * 
@@ -67,6 +65,8 @@ import org.eclipse.ui.ide.IDE;
  * 
  */
 public class PatternEditor extends FormEditor implements ResourceUser, IEditingDomainProvider {
+
+    public static final String ID = "org.eclipse.egf.pattern.ui.pattern.editor.id"; //$NON-NLS-1$
 
     private String initialPatternName;
 
@@ -375,6 +375,20 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         }
     }
 
+    /**
+     * Gets the title tool tip text of this part.
+     * 
+     * @return the tool tip text
+     * 
+     */
+    @Override
+    public String getTitleToolTip() {
+        if (getEditorInput() == null) {
+            return super.getTitleToolTip();
+        }
+        return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI()).toString();
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class key) {
@@ -436,9 +450,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         if (editorInput instanceof PatternEditorInput == false) {
             throw new PartInitException(Messages.Editor_wrong_input);
         }
-        super.init(site, editorInput);
-        initialPatternName = getPattern().getName();
+        setSite(site);
+        setInputWithNotify(editorInput);
         site.getPage().addPartListener(partListener);
+        initialPatternName = getPattern().getName();
         resourceHasBeenExternallyChanged = EGFResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
         EGFResourceLoadedListener.getResourceManager().addObserver(this);
         // populate operation history if applicable
@@ -520,17 +535,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
     public ResourceListener getListener() {
         return resourceListener;
-    }
-
-    public static void openEditor(IWorkbenchPage page, Pattern pattern) {
-        if (page == null || pattern == null)
-            throw new IllegalArgumentException();
-        Resource resource = pattern.eResource();
-        try {
-            IDE.openEditor(page, new PatternEditorInput(resource, pattern.getID()), "org.eclipse.egf.pattern.ui.editors.PatternEditor"); //$NON-NLS-1$
-        } catch (PartInitException e) {
-            Activator.getDefault().logError(e);
-        }
     }
 
 }

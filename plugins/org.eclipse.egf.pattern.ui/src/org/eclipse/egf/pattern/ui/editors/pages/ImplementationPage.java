@@ -128,7 +128,7 @@ import org.eclipse.ui.ide.IDE;
  */
 public class ImplementationPage extends PatternEditorPage {
 
-    public static final String ID = "ImplementationPage"; //$NON-NLS-1$
+    public static final String ID = "org.eclipse.egf.pattern.ui.editors.pages.implementation.page.id"; //$NON-NLS-1$
 
     private TableViewer methodsTableViewer;
 
@@ -814,8 +814,9 @@ public class ImplementationPage extends PatternEditorPage {
         IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
         Pattern pattern = getPattern();
         PatternTemplateEditor editorPart = EditHelper.openTemplateBasicEditor(activePage, pattern);
-        if (editorPart != null)
+        if (editorPart != null) {
             editorPart.setActiveEditor(methodId);
+        }
     }
 
     private void openMethodTemplate1(String methodId) {
