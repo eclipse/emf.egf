@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -27,6 +27,7 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
@@ -158,8 +159,12 @@ public class ParametersEditDialog extends VariablesEditDialog {
         table.setLayoutData(gd);
 
         tableViewer = new TableViewer(table);
-        int[] colWidths = { 110, 200 };
-        String[] colNames = { Messages.ParametersEditDialog_Key_title, Messages.ParametersEditDialog_Value_title };
+        int[] colWidths = {
+                110, 200
+        };
+        String[] colNames = {
+                Messages.ParametersEditDialog_Key_title, Messages.ParametersEditDialog_Value_title
+        };
         for (int i = 0; i < colWidths.length; i++) {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
             tableColumn.setWidth(colWidths[i]);
@@ -182,9 +187,13 @@ public class ParametersEditDialog extends VariablesEditDialog {
     }
 
     private void initTableEditor() {
-        tableViewer.setColumnProperties(new String[] { KEY_ID, VALUE_ID });
+        tableViewer.setColumnProperties(new String[] {
+                KEY_ID, VALUE_ID
+        });
         final TextCellEditor stringEditor = new TextCellEditor(tableViewer.getTable());
-        tableViewer.setCellEditors(new CellEditor[] { stringEditor, stringEditor });
+        tableViewer.setCellEditors(new CellEditor[] {
+                stringEditor, stringEditor
+        });
 
         QueryContentTableCellModifier modifier = new QueryContentTableCellModifier(tableViewer);
         tableViewer.setCellModifier(modifier);
@@ -209,7 +218,7 @@ public class ParametersEditDialog extends VariablesEditDialog {
         gd.widthHint = 40;
 
         add = new Button(buttons, SWT.PUSH);
-        add.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        add.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
         add.setToolTipText(Messages.SpecificationPage_button_add);
         add.setLayoutData(gd);
         add.addSelectionListener(new SelectionListener() {
@@ -223,7 +232,7 @@ public class ParametersEditDialog extends VariablesEditDialog {
         });
 
         remove = new Button(buttons, SWT.PUSH);
-        remove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        remove.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
         remove.setToolTipText(Messages.SpecificationPage_button_remove);
         remove.setLayoutData(gd);
         remove.addSelectionListener(new SelectionListener() {
@@ -241,8 +250,8 @@ public class ParametersEditDialog extends VariablesEditDialog {
      * Add a new entry for the content of a Map<String,String>.
      */
     private void executeAdd() {
-        String key = KEY_ID; //$NON-NLS-1$
-        String value = VALUE_ID; //$NON-NLS-1$
+        String key = KEY_ID;
+        String value = VALUE_ID;
         QueryContent newContent = new QueryContent(key, value);
         if (queryContents == null) {
             queryContents = new ArrayList<QueryContent>();

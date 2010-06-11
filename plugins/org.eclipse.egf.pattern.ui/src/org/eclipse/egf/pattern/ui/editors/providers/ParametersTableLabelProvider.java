@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -21,6 +21,7 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -40,7 +41,7 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
             if (query != null) {
                 EMap<String, String> queryContext = query.getQueryContext();
                 if (queryContext != null && !queryContext.isEmpty()) {
-                    return ImageShop.get(ImageShop.IMG_QUERY_SET);
+                    return Activator.getDefault().getImage(ImageShop.IMG_QUERY_SET);
                 }
             }
         }
@@ -52,30 +53,30 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
         if (element instanceof PatternParameter) {
             PatternParameter patternParameter = (PatternParameter) element;
             switch (columnIndex) {
-            case 0:
-                return patternParameter.getName();
-            case 1:
-                return getType(patternParameter.getType());
-            case 2:
-                Query query = patternParameter.getQuery();
-                if (query != null) {
-                    String extensionId = query.getExtensionId();
-                    QueryKind queryKind = IQuery.INSTANCE.getQueryKind(extensionId);
-                    String queryKindName = queryKind == null ? null : queryKind.getName();
-                    if (queryKindName != null) {
-                        return queryKindName;
+                case 0:
+                    return patternParameter.getName();
+                case 1:
+                    return getType(patternParameter.getType());
+                case 2:
+                    Query query = patternParameter.getQuery();
+                    if (query != null) {
+                        String extensionId = query.getExtensionId();
+                        QueryKind queryKind = IQuery.INSTANCE.getQueryKind(extensionId);
+                        String queryKindName = queryKind == null ? null : queryKind.getName();
+                        if (queryKindName != null) {
+                            return queryKindName;
+                        }
+                        return extensionId == null ? "" : extensionId;
                     }
-                    return extensionId == null ? "" : extensionId;
-                }
-                return "";
+                    return "";
             }
         } else if (element instanceof PatternVariable) {
             PatternVariable patternVariable = (PatternVariable) element;
             switch (columnIndex) {
-            case 0:
-                return patternVariable.getName();
-            case 1:
-                return getType(patternVariable.getType());
+                case 0:
+                    return patternVariable.getName();
+                case 1:
+                    return getType(patternVariable.getType());
             }
         }
         return "";

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.common.util.EList;
@@ -216,7 +217,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
         addButton = new Button(controlButtons, SWT.PUSH);
         addButton.setToolTipText(Messages.SpecificationPage_button_add);
-        addButton.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        addButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
         GridData addButtonGridData = new GridData();
         addButtonGridData.widthHint = 65;
         addButtonGridData.verticalAlignment = SWT.FILL;
@@ -225,7 +226,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
         removeButton = new Button(controlButtons, SWT.PUSH);
         removeButton.setToolTipText(Messages.SpecificationPage_button_remove);
-        removeButton.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        removeButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
         GridData removeButtonGridData = new GridData();
         removeButtonGridData.widthHint = 65;
         removeButtonGridData.verticalAlignment = SWT.FILL;
@@ -239,7 +240,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
         upButton = new Button(controlButtons, SWT.PUSH);
         upButton.setToolTipText(Messages.SpecificationPage_button_up);
-        upButton.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+        upButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
         GridData upButtonGridData = new GridData();
         upButtonGridData.widthHint = 65;
         upButtonGridData.verticalAlignment = SWT.FILL;
@@ -248,7 +249,7 @@ public class ListBuilderDialog<E, S> extends Dialog {
 
         downButton = new Button(controlButtons, SWT.PUSH);
         downButton.setToolTipText(Messages.SpecificationPage_button_down);
-        downButton.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+        downButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
         GridData downButtonGridData = new GridData();
         downButtonGridData.widthHint = 65;
         downButtonGridData.verticalAlignment = SWT.FILL;

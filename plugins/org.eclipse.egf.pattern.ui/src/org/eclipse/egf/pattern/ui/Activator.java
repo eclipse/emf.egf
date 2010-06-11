@@ -81,7 +81,6 @@ public class Activator extends EGFAbstractUIPlugin {
         if (EGFPDEPlugin.getDefault() != null) {
             EGFPDEPlugin.getDefault().removeResourceFcoreListener(FcoreListener.INSTANCE);
         }
-        ImageShop.dispose();
         super.stop(context_p);
         __plugin = null;
     }

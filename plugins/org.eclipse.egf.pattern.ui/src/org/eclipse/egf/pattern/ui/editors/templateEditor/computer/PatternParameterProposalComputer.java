@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateEditorUtility;
 import org.eclipse.emf.common.util.EList;
@@ -33,8 +34,11 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
  * 
  */
 public class PatternParameterProposalComputer extends AbstractProposalComputer {
+
     private ITextViewer viewer;
+
     private int offset;
+
     private Pattern pattern;
 
     public PatternParameterProposalComputer(ITextViewer viewer, int offset, Pattern pattern) {
@@ -56,7 +60,7 @@ public class PatternParameterProposalComputer extends AbstractProposalComputer {
                 String parameterName = parameter.getName();
                 String displayName = parameterName + " - " + getType(parameter.getType());
                 if (!"".equals(replacedWord) && parameterName.indexOf(replacedWord) == 0) {
-                    JavaCompletionProposal propsal = new JavaCompletionProposal(parameterName, replacementOffset, replacedWord.length(), ImageShop.get(ImageShop.IMG_PARAMETER_OBJ), displayName, parameterName.length());
+                    JavaCompletionProposal propsal = new JavaCompletionProposal(parameterName, replacementOffset, replacedWord.length(), Activator.getDefault().getImage(ImageShop.IMG_PARAMETER_OBJ), displayName, parameterName.length());
                     parameterProposals.add(propsal);
                 }
             }

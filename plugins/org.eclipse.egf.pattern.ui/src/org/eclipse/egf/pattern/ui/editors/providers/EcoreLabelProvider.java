@@ -16,6 +16,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -33,9 +34,9 @@ public class EcoreLabelProvider implements ITableLabelProvider, ILabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
         if (element instanceof EPackage)
-            return ImageShop.get(ImageShop.IMG_TREE_MODE);
+            return Activator.getDefault().getImage(ImageShop.IMG_TREE_MODE);
         if (element instanceof EObject)
-            return ImageShop.get(ImageShop.IMG_CATEGORY_OBJ);
+            return Activator.getDefault().getImage(ImageShop.IMG_CATEGORY_OBJ);
 
         return null;
     }

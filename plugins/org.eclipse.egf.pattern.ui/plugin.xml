@@ -31,7 +31,7 @@
     	<editor
             name="%patternEditorLabel"
             extensions="fcore"
-            icon="icons/sample.gif"
+            icon="icons/full/obj16/sample.gif"
             contributorClass="org.eclipse.egf.pattern.ui.editors.PatternEditorContributor"
             class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
             id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
@@ -39,7 +39,7 @@
       	<editor
             name="%patternTemplateEditorLabel"
             extensions="fcore"
-            icon="icons/template.gif"
+            icon="icons/full/obj16/template.gif"
             contributorClass="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditorContributor"
             class="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor"
             id="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor">

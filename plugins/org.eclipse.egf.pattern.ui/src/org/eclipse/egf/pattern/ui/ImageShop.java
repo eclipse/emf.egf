@@ -16,88 +16,61 @@
 
 package org.eclipse.egf.pattern.ui;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-
 /**
  * @author XiaoRu Chen - Soyatec
  */
-public class ImageShop {
+public interface ImageShop {
 
-    // The plug-in ID
-    public static final String PLUGIN_ID = "org.eclipse.egf.pattern.ui"; //$NON-NLS-1$
+    public static final String IMG_PLUGIN_MF_OBJ = "obj16/plugin_mf_obj.gif"; //$NON-NLS-1$
 
-    private static final String ICON_PATH = "/icons/"; //$NON-NLS-1$
+    public static final String IMG_LOCALVARIABLE_OBJ = "obj16/localvariable_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_PLUGIN_MF_OBJ = ICON_PATH + "plugin_mf_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_METHPUB_OBJ = "obj16/methpub_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_LOCALVARIABLE_OBJ = ICON_PATH + "localvariable_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_HELP = "obj16/help.gif"; //$NON-NLS-1$
 
-    public static final String IMG_METHPUB_OBJ = ICON_PATH + "methpub_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_INNERCLASS_PUBLIC_OBJ = "obj16/innerclass_public_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_HELP = ICON_PATH + "help.gif"; //$NON-NLS-1$
+    public static final String IMG_METHOD_OVERRIDE = "obj16/method_override.png"; //$NON-NLS-1$
 
-    public static final String IMG_INNERCLASS_PUBLIC_OBJ = ICON_PATH + "innerclass_public_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_KIND_METHODCALL = "obj16/kind_methodCall.gif"; //$NON-NLS-1$
 
-    public static final String IMG_METHOD_OVERRIDE = ICON_PATH + "method_override.png"; //$NON-NLS-1$
+    public static final String IMG_KIND_PATTERNCALL = "obj16/kind_patternCall.gif"; //$NON-NLS-1$
 
-    public static final String IMG_KIND_METHODCALL = ICON_PATH + "kind_methodCall.gif"; //$NON-NLS-1$
+    public static final String IMG_KIND_PATTERNINJECTEDCALL = "obj16/kind_patternInjectedCall.gif"; //$NON-NLS-1$
 
-    public static final String IMG_KIND_PATTERNCALL = ICON_PATH + "kind_patternCall.gif"; //$NON-NLS-1$
+    public static final String IMG_KIND_BACKCALL = "obj16/kind_backCall.gif"; //$NON-NLS-1$
 
-    public static final String IMG_KIND_PATTERNINJECTEDCALL = ICON_PATH + "kind_patternInjectedCall.gif"; //$NON-NLS-1$
+    public static final String IMG_KIND_SUPERPATTERNCALL = "obj16/kind_superPatternCall.gif"; //$NON-NLS-1$
 
-    public static final String IMG_KIND_BACKCALL = ICON_PATH + "kind_backCall.gif"; //$NON-NLS-1$
+    public static final String IMG_OVER_OBJ = "obj16/over_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_KIND_SUPERPATTERNCALL = ICON_PATH + "kind_superPatternCall.gif"; //$NON-NLS-1$
+    public static final String IMG_CATEGORY_OBJ = "obj16/category_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_OVER_OBJ = ICON_PATH + "over_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_TREE_MODE = "obj16/tree_mode.gif"; //$NON-NLS-1$
 
-    public static final String IMG_CATEGORY_OBJ = ICON_PATH + "category_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_CLASS_OBJ = "obj16/class_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_TREE_MODE = ICON_PATH + "tree_mode.gif"; //$NON-NLS-1$
+    public static final String IMG_ADD_OBJ = "obj16/add.gif"; //$NON-NLS-1$
 
-    public static final String IMG_CLASS_OBJ = ICON_PATH + "class_obj.gif"; //$NON-NLS-1$
+    public static final String IMG_EDIT_OBJ = "obj16/edit.gif"; //$NON-NLS-1$
 
-    public static final String IMG_ADD_OBJ = ICON_PATH + "add.gif"; //$NON-NLS-1$
+    public static final String IMG_DELETE_OBJ = "obj16/delete.gif"; //$NON-NLS-1$
 
-    public static final String IMG_EDIT_OBJ = ICON_PATH + "edit.gif"; //$NON-NLS-1$
+    public static final String IMG_DOWNWARD_OBJ = "obj16/downward.gif"; //$NON-NLS-1$
 
-    public static final String IMG_DELETE_OBJ = ICON_PATH + "delete.gif"; //$NON-NLS-1$
+    public static final String IMG_UPWARD_OBJ = "obj16/upward.gif"; //$NON-NLS-1$
 
-    public static final String IMG_DOWNWARD_OBJ = ICON_PATH + "downward.gif"; //$NON-NLS-1$
+    public static final String IMG_METHOD = "obj16/method.gif"; //$NON-NLS-1$
 
-    public static final String IMG_UPWARD_OBJ = ICON_PATH + "upward.gif"; //$NON-NLS-1$
+    public static final String IMG_METHOD_CONTENT_EDIT = "obj16/method_content_edit.gif"; //$NON-NLS-1$
 
-    public static final String IMG_METHOD = ICON_PATH + "method.gif"; //$NON-NLS-1$
+    public static final String IMG_VARIABLE = "obj16/variable.gif"; //$NON-NLS-1$
 
-    public static final String IMG_METHOD_CONTENT_EDIT = ICON_PATH + "method_content_edit.gif"; //$NON-NLS-1$
+    public static final String IMG_QUERY_SET = "obj16/query_set.gif"; //$NON-NLS-1$
 
-    public static final String IMG_VARIABLE = ICON_PATH + "variable.gif"; //$NON-NLS-1$
+    public static final String IMG_PARAMETER_OBJ = "obj16/parameter_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_QUERY_SET = ICON_PATH + "query_set.gif"; //$NON-NLS-1$
-
-    public static final String IMG_PARAMETER_OBJ = ICON_PATH + "parameter_obj.gif"; //$NON-NLS-1$
-
-    public static final String IMG_VARIABLE_OBJ = ICON_PATH + "variable_obj.gif"; //$NON-NLS-1$
-
-    private static final ImageRegistry REGISTRY = new ImageRegistry();
-
-    public static Image get(String imageFilePath) {
-        Image image = REGISTRY.get(imageFilePath);
-        if (image != null) {
-            return image;
-        }
-        ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, imageFilePath);
-        image = descriptor.createImage();
-        REGISTRY.put(imageFilePath, image);
-        return image;
-    }
-
-    public static void dispose() {
-        REGISTRY.dispose();
-    }
+    public static final String IMG_VARIABLE_OBJ = "obj16/variable_obj.gif"; //$NON-NLS-1$
 
 }

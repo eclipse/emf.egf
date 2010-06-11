@@ -21,6 +21,8 @@ import java.util.List;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
+import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
@@ -145,7 +147,7 @@ public class ChooseTypePage extends WizardPage {
 
         TabItem coreTypeTabItem = new TabItem(_tabFolder, SWT.NONE);
         coreTypeTabItem.setText(Messages.ChooseTypePage_coreTypeTabItem_title);
-        coreTypeTabItem.setImage(ImageShop.get(ImageShop.IMG_CATEGORY_OBJ));
+        coreTypeTabItem.setImage(EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_ECORE_MODEL));
 
         Composite compositeCoreType = new Composite(_tabFolder, SWT.NONE);
         createEcoreType(compositeCoreType);
@@ -153,7 +155,7 @@ public class ChooseTypePage extends WizardPage {
 
         TabItem javaTypeTabItem = new TabItem(_tabFolder, SWT.NONE);
         javaTypeTabItem.setText(Messages.ChooseTypePage_javaTypeTabItem_title);
-        javaTypeTabItem.setImage(ImageShop.get(ImageShop.IMG_CLASS_OBJ));
+        javaTypeTabItem.setImage(Activator.getDefault().getImage(ImageShop.IMG_CLASS_OBJ));
 
         Composite compositeJavaType = new Composite(_tabFolder, SWT.NONE);
         _dialog = new TypeSelectionDialog(getShell(), false, PlatformUI.getWorkbench().getProgressService(), _javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);

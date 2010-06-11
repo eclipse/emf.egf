@@ -42,6 +42,7 @@ import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
@@ -192,7 +193,7 @@ public class SpecificationPage extends PatternEditorPage {
         toolkit.decorateFormHeading(form.getForm());
         GridLayout layout = new GridLayout(2, true);
         form.getBody().setLayout(layout);
-        form.setImage(ImageShop.get(ImageShop.IMG_PLUGIN_MF_OBJ));
+        form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
         form.setText(Messages.SpecificationPage_title);
 
         Composite containerLeft = createComposite(toolkit, form);
@@ -329,7 +330,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         removeParent = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         removeParent.setLayoutData(gd);
-        removeParent.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        removeParent.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
         removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
         removeParent.addSelectionListener(new SelectionListener() {
 
@@ -601,7 +602,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         add = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         add.setLayoutData(gd);
-        add.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        add.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
         add.setToolTipText(Messages.SpecificationPage_button_add);
         add.addSelectionListener(new SelectionListener() {
 
@@ -616,7 +617,7 @@ public class SpecificationPage extends PatternEditorPage {
         edit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         edit.setLayoutData(gd);
         edit.setEnabled(false);
-        edit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+        edit.setImage(Activator.getDefault().getImage(ImageShop.IMG_EDIT_OBJ));
         edit.setToolTipText(Messages.SpecificationPage_button_edit);
         edit.addSelectionListener(new SelectionListener() {
 
@@ -649,7 +650,7 @@ public class SpecificationPage extends PatternEditorPage {
         remove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         remove.setLayoutData(gd);
         remove.setEnabled(false);
-        remove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        remove.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
         remove.setToolTipText(Messages.SpecificationPage_button_remove);
         remove.addSelectionListener(new SelectionListener() {
 
@@ -664,7 +665,7 @@ public class SpecificationPage extends PatternEditorPage {
         up = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         up.setLayoutData(gd);
         up.setEnabled(false);
-        up.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+        up.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
         up.setToolTipText(Messages.SpecificationPage_button_up);
         up.addSelectionListener(new SelectionListener() {
 
@@ -679,7 +680,7 @@ public class SpecificationPage extends PatternEditorPage {
         down = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         down.setLayoutData(gd);
         down.setEnabled(false);
-        down.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+        down.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
         down.setToolTipText(Messages.SpecificationPage_button_down);
         down.addSelectionListener(new SelectionListener() {
 

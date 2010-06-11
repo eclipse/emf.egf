@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -23,6 +23,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
@@ -167,7 +168,7 @@ public class ParameterMatchingPage extends WizardPage {
         deleteMatch = createButton(buttonsArea);
         deleteMatch.setToolTipText(Messages.ParameterMatchingPage_button_delete);
         deleteMatch.setText(""); //$NON-NLS-1$
-        deleteMatch.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        deleteMatch.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
         deleteMatch.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -181,7 +182,7 @@ public class ParameterMatchingPage extends WizardPage {
         editMatch = createButton(buttonsArea);
         editMatch.setToolTipText(Messages.ParameterMatchingPage_button_edit);
         editMatch.setText(""); //$NON-NLS-1$
-        editMatch.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+        editMatch.setImage(Activator.getDefault().getImage(ImageShop.IMG_EDIT_OBJ));
     }
 
     private Composite createArea(Composite composite, boolean makeColumnsEqualWidth) {
@@ -332,6 +333,7 @@ public class ParameterMatchingPage extends WizardPage {
         final PatternParameter calleeParameter = (PatternParameter) getSelection(calleeTableViewer);
         int selectIndex = calleeTableViewer.getTable().getSelectionIndex();
         RecordingCommand cmd = new RecordingCommand(transactionalEditingDomain) {
+
             protected void doExecute() {
                 call.getParameterMatching().put(calleeParameter, callerParameter);
             }
@@ -349,6 +351,7 @@ public class ParameterMatchingPage extends WizardPage {
         final Paramerter2ParameterMapImpl deleteItem = (Paramerter2ParameterMapImpl) getSelection(matchingTableViewer);
         int selectIndex = matchingTableViewer.getTable().getSelectionIndex();
         RecordingCommand cmd = new RecordingCommand(transactionalEditingDomain) {
+
             protected void doExecute() {
                 call.getParameterMatching().remove(deleteItem);
             }

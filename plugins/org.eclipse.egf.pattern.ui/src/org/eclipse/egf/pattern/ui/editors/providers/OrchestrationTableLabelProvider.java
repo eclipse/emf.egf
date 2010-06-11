@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -24,6 +24,7 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.SuperCall;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -39,15 +40,15 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
 
     public Image getColumnImage(Object element, int columnIndex) {
         if (element instanceof MethodCall)
-            return ImageShop.get(ImageShop.IMG_KIND_METHODCALL);
+            return Activator.getDefault().getImage(ImageShop.IMG_KIND_METHODCALL);
         else if (element instanceof PatternCall)
-            return ImageShop.get(ImageShop.IMG_KIND_PATTERNCALL);
+            return Activator.getDefault().getImage(ImageShop.IMG_KIND_PATTERNCALL);
         else if (element instanceof PatternInjectedCall)
-            return ImageShop.get(ImageShop.IMG_KIND_PATTERNINJECTEDCALL);
+            return Activator.getDefault().getImage(ImageShop.IMG_KIND_PATTERNINJECTEDCALL);
         else if (element instanceof SuperCall)
-            return ImageShop.get(ImageShop.IMG_KIND_SUPERPATTERNCALL);
+            return Activator.getDefault().getImage(ImageShop.IMG_KIND_SUPERPATTERNCALL);
         else if (element instanceof BackCall)
-            return ImageShop.get(ImageShop.IMG_KIND_BACKCALL);
+            return Activator.getDefault().getImage(ImageShop.IMG_KIND_BACKCALL);
         return null;
     }
 
