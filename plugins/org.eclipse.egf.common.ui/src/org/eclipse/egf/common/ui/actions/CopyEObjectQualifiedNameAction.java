@@ -11,8 +11,8 @@
 package org.eclipse.egf.common.ui.actions;
 
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
+import org.eclipse.egf.common.ui.ICommonUIImages;
 import org.eclipse.egf.common.ui.l10n.EGFCommonUIMessages;
-import org.eclipse.egf.common.ui.utils.IModelSearchImages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,8 +31,8 @@ public class CopyEObjectQualifiedNameAction extends CopyQualifiedNameAction {
     private EObject _eObject;
 
     public CopyEObjectQualifiedNameAction() {
-        super(EGFCommonUIMessages.CopyEObjectQualifiedName_name, EGFCommonUIPlugin.getDefault().getImageDescriptor(IModelSearchImages.ENABLED_COPY_QUALIFIED_IMAGE_PATH));
-        setDisabledImageDescriptor(EGFCommonUIPlugin.getDefault().getImageDescriptor(IModelSearchImages.DISABLED_COPY_QUALIFIED_IMAGE_PATH));
+        super(EGFCommonUIMessages.CopyEObjectQualifiedName_name, EGFCommonUIPlugin.getDefault().getImageDescriptor(ICommonUIImages.ENABLED_COPY_QUALIFIED_IMAGE_PATH));
+        setDisabledImageDescriptor(EGFCommonUIPlugin.getDefault().getImageDescriptor(ICommonUIImages.DISABLED_COPY_QUALIFIED_IMAGE_PATH));
     }
 
     @Override

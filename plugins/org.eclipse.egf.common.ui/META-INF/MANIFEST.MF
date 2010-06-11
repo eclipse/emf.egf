@@ -16,9 +16,9 @@ Require-Bundle:
  org.eclipse.emf.edit.ui;visibility:=reexport, 
  org.eclipse.egf.common;visibility:=reexport
 Export-Package: 
+ org.eclipse.egf.common.ui,
  org.eclipse.egf.common.ui.activator,
  org.eclipse.egf.common.ui.constant,
  org.eclipse.egf.common.ui.fields,
- org.eclipse.egf.common.ui.helper,
- org.eclipse.egf.common.ui.utils
+ org.eclipse.egf.common.ui.helper
 Bundle-ActivationPolicy: lazy

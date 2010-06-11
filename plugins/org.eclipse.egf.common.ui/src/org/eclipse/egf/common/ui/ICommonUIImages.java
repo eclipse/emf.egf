@@ -8,30 +8,35 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.common.ui.utils;
-
+package org.eclipse.egf.common.ui;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IModelSearchImages {
-
-    public final static String ECORE_IMAGE_PATH = "elcl16/Ecore.gif"; //$NON-NLS-1$
-
-    public final static String ECLASS_HIERARCHY_IMAGE_PATH = "elcl16/EClassHierarchy.gif"; //$NON-NLS-1$
+public interface ICommonUIImages {
 
     public final static String ASCENDANT_HIERARCHY_IMAGE_PATH = "elcl16/AscendantHierarchy.gif"; //$NON-NLS-1$
 
+    public final static String ENABLED_COPY_QUALIFIED_IMAGE_PATH = "elcl16/cpyqual_menu.gif"; //$NON-NLS-1$
+
     public final static String DESCENDANT_HIERARCHY_IMAGE_PATH = "elcl16/DescendantHierarchy.gif"; //$NON-NLS-1$
+
+    public final static String ECLASS_IMAGE_PATH = "elcl16/EClass.gif"; //$NON-NLS-1$
+
+    public final static String ECLASS_HIERARCHY_IMAGE_PATH = "elcl16/EClassHierarchy.gif"; //$NON-NLS-1$
+
+    public final static String ECORE_IMAGE_PATH = "elcl16/Ecore.gif"; //$NON-NLS-1$
+
+    public final static String EPACKAGE_IMAGE_PATH = "elcl16/EPackage.gif"; //$NON-NLS-1$    
 
     public final static String EREFERENCE_IMAGE_PATH = "elcl16/EReference.gif"; //$NON-NLS-1$
 
-    public final static String SYNCHRONIZE_IMAGE_PATH = "elcl16/Synchronize.gif"; //$NON-NLS-1$
+    public final static String ESEARCH_IMAGE_PATH = "elcl16/Esearch.gif"; //$NON-NLS-1$
 
     public final static String REFRESH_IMAGE_PATH = "elcl16/Refresh.gif"; //$NON-NLS-1$
 
-    public final static String ENABLED_COPY_QUALIFIED_IMAGE_PATH = "elcl16/cpyqual_menu.gif"; //$NON-NLS-1$
+    public final static String SYNCHRONIZE_IMAGE_PATH = "elcl16/Synchronize.gif"; //$NON-NLS-1$
 
     public final static String DISABLED_COPY_QUALIFIED_IMAGE_PATH = "dlcl16/cpyqual_menu.gif"; //$NON-NLS-1$
 

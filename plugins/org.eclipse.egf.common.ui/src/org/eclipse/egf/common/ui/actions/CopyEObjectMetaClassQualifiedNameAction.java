@@ -11,8 +11,8 @@
 package org.eclipse.egf.common.ui.actions;
 
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
+import org.eclipse.egf.common.ui.ICommonUIImages;
 import org.eclipse.egf.common.ui.l10n.EGFCommonUIMessages;
-import org.eclipse.egf.common.ui.utils.IModelSearchImages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,7 +31,7 @@ public class CopyEObjectMetaClassQualifiedNameAction extends CopyQualifiedNameAc
     private EObject _eObject;
 
     public CopyEObjectMetaClassQualifiedNameAction() {
-        super(EGFCommonUIMessages.CopyEObjectMetaClassQualifiedName_name, EGFCommonUIPlugin.getDefault().getImageDescriptor(IModelSearchImages.ECORE_IMAGE_PATH));
+        super(EGFCommonUIMessages.CopyEObjectMetaClassQualifiedName_name, EGFCommonUIPlugin.getDefault().getImageDescriptor(ICommonUIImages.ECORE_IMAGE_PATH));
     }
 
     @Override
