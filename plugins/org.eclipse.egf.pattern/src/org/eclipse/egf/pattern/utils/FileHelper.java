@@ -18,19 +18,17 @@ package org.eclipse.egf.pattern.utils;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.constant.EGFCommonConstants;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.emf.common.util.URI;
-import org.osgi.framework.Bundle;
 
 /**
  * 
@@ -79,16 +77,10 @@ public class FileHelper {
             throw new IllegalStateException();
         if (file.exists())
             return getFileContent(file);
-
-        Bundle bundle = Platform.getBundle(pluginId);
-        if (bundle == null)
+        IPlatformBundle platformBundle = EGFCorePlugin.getPlatformManager().getPlatformBundle(pluginId);
+        if (platformBundle == null)
             throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, pluginId));
-
-        URL entry = bundle.getEntry(templatePath.toPortableString());
-        if (entry == null)
-            throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, templatePath.toPortableString(), pluginId));
-
-        return getContent(entry.openStream());
+        return getContent(EGFCorePlugin.getPlatformURIConverter().createInputStream(URI.createURI(platformBundle.getRootedBase() + templatePath.toPortableString())));
     }
 
     /**
@@ -96,27 +88,14 @@ public class FileHelper {
      * doesn't exist an empty string is returned.
      * 
      */
-    public static String getContent(IPlatformFcore component, URI uri) throws CoreException, IOException {
-        if (component == null)
+    public static String getContent(IPlatformFcore component, URI uri) throws IOException {
+        if (component == null) {
             throw new IllegalArgumentException(Messages.fileHelper_error3);
-        IProject project = component.getPlatformBundle().getProject();
-        if (project != null) {
-            IFile file = project.getFile(uri.path());
-            if (file == null)
-                throw new IllegalStateException();
-            if (!file.exists())
-                return EGFCommonConstants.EMPTY_STRING;
-            return getFileContent(file);
         }
-
-        Bundle bundle = component.getPlatformBundle().getBundle();
-        if (bundle == null)
-            throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, component.getPlatformBundle().getBundleId()));
-        URL entry = bundle.getEntry(uri.path());
-        if (entry == null)
-            throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, uri.toString(), component.getPlatformBundle().getBundleId()));
-
-        return getContent(entry.openStream());
+        if (uri.isRelative()) {
+            uri = URI.createURI(component.getPlatformBundle().getUnrootedBase().toString() + "/" + uri.toString()); //$NON-NLS-1$
+        }
+        return getContent(EGFCorePlugin.getPlatformURIConverter().createInputStream(uri));
 
     }
 
@@ -124,7 +103,7 @@ public class FileHelper {
         return getContent(file.getContents());
     }
 
-    private static String getContent(InputStream contents) throws CoreException, IOException {
+    private static String getContent(InputStream contents) throws IOException {
         byte[] buf = null;
         try {
             buf = new byte[contents.available()];
