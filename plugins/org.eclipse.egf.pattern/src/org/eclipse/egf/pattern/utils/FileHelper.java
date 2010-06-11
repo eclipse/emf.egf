@@ -24,9 +24,9 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.emf.common.util.URI;
 
@@ -77,10 +77,8 @@ public class FileHelper {
             throw new IllegalStateException();
         if (file.exists())
             return getFileContent(file);
-        IPlatformBundle platformBundle = EGFCorePlugin.getPlatformManager().getPlatformBundle(pluginId);
-        if (platformBundle == null)
-            throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, pluginId));
-        return getContent(EGFCorePlugin.getPlatformURIConverter().createInputStream(URI.createURI(platformBundle.getRootedBase() + templatePath.toPortableString())));
+        URI uri = URIHelper.getPlatformURI(pluginId, templatePath.toPortableString(), false);
+        return getContent(EGFCorePlugin.getPlatformURIConverter().createInputStream(uri));
     }
 
     /**
