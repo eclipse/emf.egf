@@ -123,7 +123,10 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
      */
     @Override
     public Object[] getResult() {
-        computeResult();
+        Object[] result = getResult();
+        if (result == null) {
+            computeResult();
+        }
         return super.getResult();
     }
 
