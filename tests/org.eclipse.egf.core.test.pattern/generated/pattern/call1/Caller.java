@@ -41,6 +41,7 @@ Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     orchestration(ctx);
+
     if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
     ctx.clearBuffer();}
@@ -55,10 +56,11 @@ int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_body(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__E1WvAGjGEdxeOTl6JQkXg = new ExecutionContext(ictx);
-ctx__E1WvAGjGEdxeOTl6JQkXg.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_1.fcore#_F9NFkFa3Ed-upsLSxDR5IA", ctx__E1WvAGjGEdxeOTl6JQkXg);
-
+    {
+ExecutionContext ctx_local = new ExecutionContext(ictx);
+ctx_local.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_1.fcore#_F9NFkFa3Ed-upsLSxDR5IA", ctx_local);
+}
 
     
 String loop = ictx.getBuffer().toString();

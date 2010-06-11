@@ -42,6 +42,7 @@ Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     orchestration(ctx);
+
     if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
     ctx.clearBuffer();}
@@ -57,14 +58,14 @@ int executionIndex = ictx.getExecutionBuffer().length();
     
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__EzmbgGjGEdxeOTl6JQkXg = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx__EzmbgGjGEdxeOTl6JQkXg, parameters);
+ExecutionContext ctx_local = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx_local, parameters);
 }
 
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
-ExecutionContext ctx__EzmbgWjGEdxeOTl6JQkXg = new ExecutionContext(ictx);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx__EzmbgWjGEdxeOTl6JQkXg, parameters);
+ExecutionContext ctx_local = new ExecutionContext(ictx);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx_local, parameters);
 }
 
     
