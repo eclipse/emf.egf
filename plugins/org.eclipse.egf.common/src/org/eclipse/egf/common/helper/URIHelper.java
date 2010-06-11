@@ -14,6 +14,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 
@@ -98,7 +99,11 @@ public class URIHelper {
         }
         URI uri = URI.createURI(value.trim());
         if (uri.isRelative()) {
-            uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
+            if (value.trim().charAt(0) == EGFCommonConstants.SLASH_CHARACTER) {
+                uri = URI.createPlatformPluginURI(bundleId.trim() + uri.toString(), encode);
+            } else {
+                uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
+            }
         }
         return uri;
     }
