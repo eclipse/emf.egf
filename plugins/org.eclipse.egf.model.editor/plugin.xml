@@ -32,7 +32,7 @@
       name="%_UI_FcoreModelWizard_label"
       class="org.eclipse.egf.model.fcore.presentation.FcoreModelWizard"
       category="org.eclipse.egf.category.wizards"
-      icon="$nl$/icons/full/obj16/Fcore.gif"
+      icon="$nl$/icons/full/ctool16/Fcore.gif"
     >
       <description>%_UI_FcoreModelWizard_description</description>
       <selection class="org.eclipse.core.resources.IResource"/>
