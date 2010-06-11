@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -28,7 +28,8 @@ import org.eclipse.egf.pattern.utils.FileHelper;
  */
 
 public class JavaNatureHelper {
-    private static final java.util.regex.Pattern compile = java.util.regex.Pattern.compile("\\s*package\\s*([\\w\\.]*);.*class\\s*(\\w*).*", java.util.regex.Pattern.DOTALL | java.util.regex.Pattern.MULTILINE);
+
+    private static final java.util.regex.Pattern compile = java.util.regex.Pattern.compile("\\s*package\\s*([\\w\\.]*);.*class\\s*(\\w*).*", java.util.regex.Pattern.DOTALL | java.util.regex.Pattern.MULTILINE); //$NON-NLS-1$
 
     /**
      * This method parses the template header to know the template class name.
@@ -42,9 +43,9 @@ public class JavaNatureHelper {
             if (matcher.matches()) {
                 String pack = matcher.group(1);
                 String cls = matcher.group(2);
-                if ("".equals(pack) || "".equals(cls))
+                if ("".equals(pack) || "".equals(cls)) //$NON-NLS-1$ //$NON-NLS-2$
                     throw new PatternException(Messages.bind(Messages.assembly_error8, pattern.getName()));
-                return pack + "." + cls;
+                return pack + "." + cls; //$NON-NLS-1$
             }
         } catch (PatternException e) {
             throw e;
@@ -55,5 +56,7 @@ public class JavaNatureHelper {
     }
 
     private JavaNatureHelper() {
+        // Nothing to do
     }
+
 }

@@ -31,6 +31,7 @@ public class JavaEngine extends AbstractJavaEngine {
         super(pattern);
     }
 
+    @Override
     public void translate() throws PatternException {
         Pattern pattern = getPattern();
         if (pattern == null)
@@ -61,7 +62,6 @@ public class JavaEngine extends AbstractJavaEngine {
 
     @Override
     protected String getPatternClassname() throws PatternException {
-
         return JavaNatureHelper.getClassName(getPattern());
     }
 

@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -45,6 +45,7 @@ import org.eclipse.text.edits.TextEdit;
  * 
  */
 public class JavaTranslationEnhancer {
+
     private final Pattern pattern;
 
     public JavaTranslationEnhancer(Pattern pattern) {
@@ -60,7 +61,7 @@ public class JavaTranslationEnhancer {
             CompilationUnit cu = (CompilationUnit) parser.createAST(null);
             cu.recordModifications();
             if ((cu.getFlags() & ASTNode.MALFORMED) != 0)
-                throw new PatternException("Translated class is malformed ");
+                throw new PatternException("Translated class is malformed "); //$NON-NLS-1$
             TypeDeclaration type = (TypeDeclaration) cu.types().get(0);
 
             performEnhancement(type);
@@ -77,6 +78,7 @@ public class JavaTranslationEnhancer {
         return source;
     }
 
+    @SuppressWarnings("unused")
     protected boolean canEnhance(String source) throws PatternException {
         return pattern.getSuperPattern() != null || !pattern.getParameters().isEmpty() || !pattern.getVariables().isEmpty();
     }
@@ -116,6 +118,7 @@ public class JavaTranslationEnhancer {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void addSetter(TypeDeclaration typeDeclaration, NamedModelElement paramOrVariable, String type) {
         AST ast = typeDeclaration.getAST();
         MethodDeclaration setter = ast.newMethodDeclaration();
@@ -145,6 +148,7 @@ public class JavaTranslationEnhancer {
         typeDeclaration.bodyDeclarations().add(setter);
     }
 
+    @SuppressWarnings("unchecked")
     private void addField(TypeDeclaration typeDeclaration, String name, String type, int modifiers) {
         AST ast = typeDeclaration.getAST();
         VariableDeclarationFragment fragment = ast.newVariableDeclarationFragment();
@@ -163,4 +167,5 @@ public class JavaTranslationEnhancer {
             type.setSuperclassType(newSimpleType);
         }
     }
+
 }
