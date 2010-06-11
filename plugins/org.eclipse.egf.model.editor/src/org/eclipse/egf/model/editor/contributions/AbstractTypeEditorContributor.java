@@ -38,7 +38,6 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
  * @author Thomas Guiu
@@ -76,14 +75,14 @@ public abstract class AbstractTypeEditorContributor extends DefaultPropertyEdito
                 }
                 // Dialog
                 try {
-                    SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE, new SubTypeSelectionExtension(type));
+                    TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE, new SubTypeSelectionExtension(type));
                     dialog.setTitle(NLS.bind(CoreUIMessages._UI_SelectType, filteredType));
                     if (dialog.open() != IDialogConstants.OK_ID) {
                         return value;
                     }
-                    Object[] innerResult = dialog.getResult();
-                    if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
-                        return ((IType) innerResult[0]).getFullyQualifiedName();
+                    Object innerResult = dialog.getFirstResult();
+                    if (innerResult instanceof IType) {
+                        return ((IType) innerResult).getFullyQualifiedName();
                     }
                 } catch (Throwable t) {
                     ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);

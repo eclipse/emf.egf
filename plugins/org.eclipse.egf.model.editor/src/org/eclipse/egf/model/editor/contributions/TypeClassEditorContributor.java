@@ -37,7 +37,6 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
  * @author Xavier Maysonnave
@@ -85,13 +84,13 @@ public class TypeClassEditorContributor extends DefaultPropertyEditorContributor
                 }
                 // Dialog
                 try {
-                    SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
+                    TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
                     if (dialog.open() != IDialogConstants.OK_ID) {
                         return null;
                     }
-                    Object[] innerResult = dialog.getResult();
-                    if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
-                        return ((IType) innerResult[0]).getFullyQualifiedName();
+                    Object innerResult = dialog.getFirstResult();
+                    if (innerResult instanceof IType) {
+                        return ((IType) innerResult).getFullyQualifiedName();
                     }
                 } finally {
                     try {
