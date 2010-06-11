@@ -31,6 +31,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -171,14 +172,25 @@ public class EPackageHelper {
             return ((EOperation) eObject).getEContainingClass().getEPackage();
         } else if (eObject instanceof EStructuralFeature) {
             return ((EStructuralFeature) eObject).getEContainingClass().getEPackage();
-        } else if (eObject instanceof EFactory) {
-            return ((EFactory) eObject).getEPackage();
         } else if (eObject instanceof EAnnotation) {
             return getEPackage(((EAnnotation) eObject).getEModelElement());
         } else if (eObject instanceof EParameter) {
             return getEPackage(((EParameter) eObject).getEOperation());
         }
-        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
+        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
+    }
+
+    public static String getFullName(EObject obj) {
+        URI resourceURI = obj.eClass().getEPackage().eResource().getURI();
+        String nsURI = null;
+        String typeName = null;
+        EClass eClass = obj.eClass();
+        nsURI = eClass.getEPackage().getNsURI();
+        typeName = eClass.getName();
+        if (nsURI == null || typeName == null) {
+            return null;
+        }
+        return nsURI + "#//" + typeName; //$NON-NLS-1$
     }
 
     public static class RegistrationException extends Exception {
@@ -225,23 +237,25 @@ public class EPackageHelper {
         }
     }
 
-    private static class Descriptor implements EPackage.Descriptor {
-
-        private EPackage epackage;
-
-        public Descriptor(EPackage ePackage) {
-            super();
-            this.epackage = ePackage;
-        }
-
-        public EFactory getEFactory() {
-            return epackage.getEFactoryInstance();
-        }
-
-        public EPackage getEPackage() {
-            return epackage;
-        }
-
-    }
+    /*
+     * private static class Descriptor implements EPackage.Descriptor {
+     * 
+     * private EPackage epackage;
+     * 
+     * public Descriptor(EPackage ePackage) {
+     * super();
+     * this.epackage = ePackage;
+     * }
+     * 
+     * public EFactory getEFactory() {
+     * return epackage.getEFactoryInstance();
+     * }
+     * 
+     * public EPackage getEPackage() {
+     * return epackage;
+     * }
+     * 
+     * }
+     */
 
 }
