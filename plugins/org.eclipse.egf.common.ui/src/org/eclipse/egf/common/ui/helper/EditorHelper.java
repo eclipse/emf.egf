@@ -96,7 +96,7 @@ public class EditorHelper {
                 method.invoke(part, params);
             }
         } catch (Throwable t) {
-            ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
+            // Nothing to do
         }
     }
 
@@ -147,7 +147,7 @@ public class EditorHelper {
         if (uri == null) {
             return null;
         }
-        IEditorPart part = restoreAlreadyOpenedEditor(uri, true);
+        IEditorPart part = restoreAlreadyOpenedEditor(uri, null, true);
         if (part != null) {
             return part;
         }
@@ -163,27 +163,55 @@ public class EditorHelper {
         return openEditor(new URIEditorInput(uri.trimFragment()), uri);
     }
 
+    /**
+     * Opens the default editor for the resource that contains the specified
+     * EObject.
+     */
+    public static IEditorPart openEditor(URI uri, String editorId) throws PartInitException {
+        if (uri == null) {
+            return null;
+        }
+        IEditorPart part = restoreAlreadyOpenedEditor(uri, editorId, true);
+        if (part != null) {
+            return part;
+        }
+        IEditorInput editorInput = null;
+        if (uri.isPlatformResource()) {
+            String path = uri.toPlatformString(true);
+            IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+            if (resource instanceof IFile) {
+                editorInput = EclipseUtil.createFileEditorInput((IFile) resource);
+                return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), true), editorId);
+            }
+        }
+        return openEditor(new URIEditorInput(uri.trimFragment()), uri, editorId);
+    }
+
     public static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
+        return openEditor(input, uri, null);
+    }
+
+    public static IEditorPart openEditor(IEditorInput input, URI uri, String editorId) throws PartInitException {
         if (input == null || uri == null) {
             return null;
         }
-        IEditorPart part = restoreAlreadyOpenedEditor(uri, true);
+        IEditorPart part = restoreAlreadyOpenedEditor(uri, editorId, true);
         if (part != null) {
             return part;
         }
         IWorkbench workbench = PlatformUI.getWorkbench();
         IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-        return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
+        return page.openEditor(input, editorId != null ? editorId : computeEditorId(uri.trimFragment().lastSegment()), true, IWorkbenchPage.MATCH_INPUT);
     }
 
     public static boolean isAlreadyOpenedEditor(URI uri) {
         if (uri == null) {
             return false;
         }
-        return restoreAlreadyOpenedEditor(uri, false) != null ? true : false;
+        return restoreAlreadyOpenedEditor(uri, null, false) != null ? true : false;
     }
 
-    private static IEditorPart restoreAlreadyOpenedEditor(URI uri, boolean activate) {
+    private static IEditorPart restoreAlreadyOpenedEditor(URI uri, String editorId, boolean activate) {
         if (uri == null) {
             return null;
         }
@@ -201,6 +229,9 @@ public class EditorHelper {
                             URI editorInputURI = EditorHelper.getURI(editorInput);
                             if (editorInputURI != null && editorInputURI.equals(uriToCheck)) {
                                 IEditorPart part = reference.getEditor(false);
+                                if (editorId != null && editorId.equals(part.getEditorSite().getId()) == false) {
+                                    continue;
+                                }
                                 if (activate) {
                                     window.setActivePage(innerPage);
                                     innerPage.activate(part);
