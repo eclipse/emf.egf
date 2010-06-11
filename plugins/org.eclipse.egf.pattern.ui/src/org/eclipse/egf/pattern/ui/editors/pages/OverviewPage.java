@@ -81,7 +81,7 @@ public class OverviewPage extends PatternEditorPage {
 
     private Text fullNameText;
 
-    private Text descripition;
+    private Text description;
 
     private Button browse;
 
@@ -96,30 +96,35 @@ public class OverviewPage extends PatternEditorPage {
         this.editor = editor;
     }
 
+    @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
+
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
         mmng = managedForm.getMessageManager();
+        Composite body = managedForm.getForm().getBody();
 
         GridLayout gridLayout = new GridLayout();
-        form.getBody().setLayout(gridLayout);
+        body.setLayout(gridLayout);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        body.setLayoutData(gd);
         form.setImage(Activator.getDefault().getImage(ImageShop.IMG_PLUGIN_MF_OBJ));
         form.setText(Messages.OverviewPage_title);
 
-        Composite container = toolkit.createComposite(form.getBody(), SWT.NONE);
+        Composite container = toolkit.createComposite(body, SWT.NONE);
         gridLayout = new GridLayout(2, true);
         container.setLayout(gridLayout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
         container.setLayoutData(gd);
-        container.setFocus();
 
         createLeftContainer(toolkit, container);
         createRightContainer(toolkit, container);
-        createDescriContainer(toolkit, container);
+        createDescriptionContainer(toolkit, container);
 
         checkReadOnlyModel();
 
         form.reflow(true);
+
     }
 
     /**
@@ -132,39 +137,44 @@ public class OverviewPage extends PatternEditorPage {
         }
         nameText.setEnabled(false);
         fullNameText.setEnabled(false);
-        descripition.setEnabled(false);
+        description.setEnabled(false);
         browse.setEnabled(false);
     }
 
-    private void createLeftContainer(FormToolkit toolkit, Composite container) {
-        Section sectionLeft = toolkit.createSection(container, Section.TITLE_BAR);
-        sectionLeft.setText(Messages.OverviewPage_sectionLeft_title);
+    private void createLeftContainer(FormToolkit toolkit, Composite parent) {
 
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
+        section.setText(Messages.OverviewPage_sectionLeft_title);
+
+        GridLayout gridLayout = new GridLayout();
+        section.setLayout(gridLayout);
+        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         gd.minimumWidth = 300;
         gd.heightHint = 200;
-        sectionLeft.setLayoutData(gd);
+        section.setLayoutData(gd);
 
-        Composite containerLeft = toolkit.createComposite(sectionLeft, SWT.NONE);
-        GridLayout gridLayout = new GridLayout(2, false);
-        containerLeft.setLayout(gridLayout);
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        gridLayout = new GridLayout(2, false);
+        container.setLayout(gridLayout);
         gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
-        containerLeft.setLayoutData(gd);
+        gd.verticalIndent = 0;
+        container.setLayoutData(gd);
 
         String titletext = Messages.OverviewPage_sectionLeft_title_label;
-        Label title = toolkit.createLabel(containerLeft, titletext, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
-        gd.widthHint = 20;
+        Label title = toolkit.createLabel(container, titletext, SWT.WRAP);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         title.setLayoutData(gd);
 
-        createPatternInfoContainer(toolkit, containerLeft);
+        createPatternInfoContainer(toolkit, container);
 
-        sectionLeft.setClient(containerLeft);
+        section.setClient(container);
+
     }
 
-    private void createPatternInfoContainer(FormToolkit toolkit, Composite containerLeft) {
-        Composite patternInfo = toolkit.createComposite(containerLeft, SWT.NONE);
+    private void createPatternInfoContainer(FormToolkit toolkit, Composite container) {
+
+        Composite patternInfo = toolkit.createComposite(container, SWT.NONE);
         GridLayout gridLayout = new GridLayout(3, false);
         patternInfo.setLayout(gridLayout);
 
@@ -194,7 +204,7 @@ public class OverviewPage extends PatternEditorPage {
         Color color = Display.getDefault().getSystemColor(SWT.COLOR_DARK_GRAY);
         String fullName = PatternHelper.getFullLibraryName(getPattern());
 
-        fullNameText = toolkit.createText(patternInfo, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
+        fullNameText = toolkit.createText(patternInfo, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalIndent = 5;
         fullNameText.setLayoutData(gd);
@@ -216,16 +226,19 @@ public class OverviewPage extends PatternEditorPage {
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
 
+                        @Override
                         protected void doExecute() {
                             Pattern pattern = getPattern();
                             pattern.setContainer(patternLibrary);
                         }
+
                     };
                     editingDomain.getCommandStack().execute(cmd);
                 }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
         });
 
@@ -241,60 +254,69 @@ public class OverviewPage extends PatternEditorPage {
         gd.horizontalIndent = 5;
         idText.setLayoutData(gd);
         idText.setForeground(color);
+
     }
 
-    private void createDescriContainer(FormToolkit toolkit, Composite container) {
+    private void createDescriptionContainer(FormToolkit toolkit, Composite parent) {
 
-        Composite containerDesci = toolkit.createComposite(container, SWT.NONE);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
+        section.setText(Messages.OverviewPage_sectionLeft_description_label_title);
+
         GridLayout gridLayout = new GridLayout();
-        containerDesci.setLayout(gridLayout);
+        section.setLayout(gridLayout);
         GridData gd = new GridData(GridData.FILL_BOTH);
         gd.horizontalSpan = 2;
-        containerDesci.setLayoutData(gd);
+        section.setLayoutData(gd);
 
-        Label title = toolkit.createLabel(containerDesci, Messages.OverviewPage_sectionLeft_descripition_label, SWT.WRAP);
-        gd = new GridData();
-        gd.verticalIndent = 0;
+        Composite container = toolkit.createComposite(parent, SWT.NONE);
+        gridLayout = new GridLayout();
+        container.setLayout(gridLayout);
+        gd = new GridData(GridData.FILL_BOTH);
+        gd.horizontalSpan = 2;
+        container.setLayoutData(gd);
+
+        String titletext = Messages.OverviewPage_sectionLeft_description_label;
+        Label title = toolkit.createLabel(container, titletext, SWT.WRAP);
+        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
         title.setLayoutData(gd);
-        title.setForeground(colors.getColor(IFormColors.TITLE));
 
-        Label desciLabel = toolkit.createLabel(containerDesci, Messages.OverviewPage_sectionLeft_desci_label, SWT.WRAP);
-        desciLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
-
-        String patternDescripition = getPattern() == null ? "" : getPattern().getDescription(); //$NON-NLS-1$
-        descripition = toolkit.createText(containerDesci, patternDescripition, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
+        String patternDescription = getPattern() == null ? "" : getPattern().getDescription(); //$NON-NLS-1$
+        description = toolkit.createText(container, patternDescription, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
         gd = new GridData(GridData.FILL_BOTH);
         gd.heightHint = 280;
         gd.widthHint = 280;
         gd.verticalIndent = 7;
         gd.horizontalIndent = 3;
-        descripition.setLayoutData(gd);
+        description.setLayoutData(gd);
+
     }
 
-    private void createRightContainer(FormToolkit toolkit, Composite container) {
-        Section sectionRight = toolkit.createSection(container, Section.TITLE_BAR);
-        sectionRight.setText(Messages.OverviewPage_sectionRight_title);
+    private void createRightContainer(FormToolkit toolkit, Composite parent) {
 
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_HORIZONTAL);
+        Section section = toolkit.createSection(parent, Section.TITLE_BAR);
+        section.setText(Messages.OverviewPage_sectionRight_title);
+
+        GridLayout gridLayout = new GridLayout();
+        section.setLayout(gridLayout);
+        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         gd.minimumWidth = 300;
         gd.heightHint = 200;
-        sectionRight.setLayoutData(gd);
+        section.setLayoutData(gd);
 
-        Composite containerRight = toolkit.createComposite(sectionRight, SWT.NONE);
-        GridLayout gridLayout = new GridLayout(2, false);
-        containerRight.setLayout(gridLayout);
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        gridLayout = new GridLayout(2, false);
+        container.setLayout(gridLayout);
         gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         gd.verticalIndent = 0;
-        containerRight.setLayoutData(gd);
+        container.setLayoutData(gd);
 
         String titletext = Messages.OverviewPage_sectionRight_title_label;
-        Label title = toolkit.createLabel(containerRight, titletext, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
-        gd.widthHint = 100;
+        Label title = toolkit.createLabel(container, titletext, SWT.WRAP);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         title.setLayoutData(gd);
 
-        Composite containerLink = toolkit.createComposite(containerRight, SWT.NONE);
+        Composite containerLink = toolkit.createComposite(container, SWT.NONE);
         gridLayout = new GridLayout(2, false);
         containerLink.setLayout(gridLayout);
         gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -309,18 +331,21 @@ public class OverviewPage extends PatternEditorPage {
         specLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkActivated(HyperlinkEvent e) {
                 editor.setActivePage(SpecificationPage.ID);
             }
+
         });
 
         Label specLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_spec_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 100;
         specLabel.setLayoutData(gd);
 
@@ -333,23 +358,27 @@ public class OverviewPage extends PatternEditorPage {
         implLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkEntered(HyperlinkEvent e) {
+                // Nothing to do
             }
 
             public void linkActivated(HyperlinkEvent e) {
                 editor.setActivePage(ImplementationPage.ID);
             }
+
         });
 
         Label implLabel = toolkit.createLabel(containerLink, Messages.OverviewPage_sectionRight_impl_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.verticalIndent = 18;
         gd.widthHint = 100;
         implLabel.setLayoutData(gd);
 
-        sectionRight.setClient(containerRight);
+        section.setClient(container);
+
     }
 
     void bindName() {
@@ -362,24 +391,24 @@ public class OverviewPage extends PatternEditorPage {
         addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
-
                 return Status.OK_STATUS;
             }
+
         }), null));
     }
 
     void bindDescripition() {
         IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__DESCRIPTION);
         IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, descripition);
+        IObservableValue uiObs = textProp.observeDelayed(400, description);
         IObservableValue mObs = mprop.observe(getPattern());
 
         addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
-
                 return Status.OK_STATUS;
             }
+
         }), null));
     }
 
@@ -392,7 +421,6 @@ public class OverviewPage extends PatternEditorPage {
         UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
-
                 return Status.OK_STATUS;
             }
 
@@ -414,6 +442,7 @@ public class OverviewPage extends PatternEditorPage {
                 }
                 return ((PatternLibrary) fromObject).getName();
             }
+
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
