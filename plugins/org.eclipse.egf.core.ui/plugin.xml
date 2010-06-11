@@ -114,7 +114,7 @@
             <action
                 toolbarPath="org.eclipse.search.searchActionSet/Search"
                 definitionId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
-                icon="$nl$/icons/full/obj16/Fcore.gif"
+                icon="$nl$/icons/full/obj16/fcore.gif"
                 label="%openFcore.label"
                 class="org.eclipse.egf.core.ui.actions.OpenFcoreAction"
                 tooltip="%openFcore.description"
