@@ -82,6 +82,18 @@
   </extension>
   
   <!-- ================================================================================= -->
+  <!-- Listener Contributor                                                                  -->
+  <!-- ================================================================================= -->  
+  
+  <extension 
+    point="org.eclipse.egf.core.ui.editor.listener.contributor"
+  >
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.OpenActivityListenerContributor"
+    />    
+  </extension>  
+  
+  <!-- ================================================================================= -->
   <!-- Property Contributor                                                              -->
   <!-- ================================================================================= -->    
   
