@@ -97,7 +97,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public boolean isReadOnly() {
-        return isReadOnly;
+        return isReadOnly || getFile() == null;
     }
 
     public Pattern getPattern() {
