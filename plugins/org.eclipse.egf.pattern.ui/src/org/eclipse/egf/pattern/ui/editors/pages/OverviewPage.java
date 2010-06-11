@@ -357,7 +357,8 @@ public class OverviewPage extends PatternEditorPage {
                     URI uri = EcoreUtil.getURI(getPattern());
                     // Try to open it if any
                     if (uri != null) {
-                        IEditorPart part = EditorHelper.openEditor(uri);
+                        // Create or activate an fcore editor
+                        IEditorPart part = EditorHelper.openEditor(getPattern().eResource().getResourceSet().getURIConverter().normalize(uri), EGFCoreUIPlugin.FCORE_EDITOR_ID);
                         if (part != null && part instanceof IEditingDomainProvider) {
                             EditorHelper.setSelectionToViewer(part, uri);
                         }
