@@ -1,22 +1,21 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
 package org.eclipse.egf.pattern.ftask.tasks;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -29,7 +28,6 @@ import org.eclipse.egf.pattern.execution.ExecutionContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.osgi.framework.Bundle;
 
 /**
@@ -60,7 +58,7 @@ public abstract class AbstractPatternTask implements ITaskProduction {
             domainResource.unload();
             domainResource = null;
         }
-        ResourceSet resourceSet = (ResourceSet)ctx.getValue(PatternContext.PATTERN_RESOURCESET);
+        ResourceSet resourceSet = (ResourceSet) ctx.getValue(PatternContext.PATTERN_RESOURCESET);
         for (Resource res : resourceSet.getResources())
             res.unload();
         resourceSet.getResources().clear();
@@ -75,20 +73,19 @@ public abstract class AbstractPatternTask implements ITaskProduction {
                 if (uri == null)
                     continue; // Weird behavior: unfilled contracts are
                 // available ...
-                ResourceSetImpl set = new ResourceSetImpl();
-                domainResource = ResourceHelper.loadResource(set, uri);
+                ResourceSet set = new EGFResourceSet();
+                domainResource = set.getResource(uri, true);
                 ctx.setValue(PatternContext.DOMAIN_OBJECTS, domainResource.getContents());
             } else
                 ctx.setValue(name, context.getInputValue(name, contract.getType().getType()));
         }
         // add a resourcet to load pattern to be called
-        ResourceSetImpl resourceSet = new ResourceSetImpl();
-        resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
-        ctx.setValue(PatternContext.PATTERN_RESOURCESET, resourceSet);
+        ctx.setValue(PatternContext.PATTERN_RESOURCESET, new EGFResourceSet());
     }
 
     protected PatternContext createPatternContext(final ITaskProductionContext prodCtx) {
         return new ExecutionContext(new BundleAccessor() {
+
             public Bundle getBundle(String id) throws PatternException {
 
                 try {
