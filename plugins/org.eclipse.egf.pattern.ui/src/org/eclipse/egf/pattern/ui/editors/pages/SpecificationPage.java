@@ -246,21 +246,22 @@ public class SpecificationPage extends PatternEditorPage {
 
         Composite container = toolkit.createComposite(section, SWT.NONE);
         container.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
-        container.setLayout(new TableWrapLayout());
+        TableWrapLayout twl = new TableWrapLayout();
+        twl.numColumns = 2;
+        container.setLayout(twl);
 
         Label title = toolkit.createLabel(container, Messages.SpecificationPage_inherSection_discrip_label);
-        title.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        TableWrapData twd = new TableWrapData(TableWrapData.FILL_GRAB);
+        twd.colspan = 2;
+        title.setLayoutData(twd);
 
-        Composite inheritance = toolkit.createComposite(container, SWT.NONE);
-        inheritance.setLayout(new GridLayout(3, false));
-        inheritance.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
-
-        Label parentLabel = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_parent_label);
-        parentLabel.setLayoutData(new GridData());
+        Label parentLabel = toolkit.createLabel(container, Messages.SpecificationPage_inherSection_parent_label);
+        parentLabel.setLayoutData(new TableWrapData(TableWrapData.LEFT, TableWrapData.MIDDLE));
         parentLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
-        parentLink = new Link(inheritance, SWT.NONE);
-        parentLink.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        // TODO: should use Hyperlink when it will be supported by databinding
+        parentLink = new Link(container, SWT.NONE);
+        parentLink.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB, TableWrapData.MIDDLE));
         parentLink.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -273,7 +274,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         });
 
-        createInheritanceButtons(toolkit, inheritance);
+        createInheritanceButtons(toolkit, container);
 
         section.setClient(container);
 
@@ -281,14 +282,16 @@ public class SpecificationPage extends PatternEditorPage {
 
     private void createInheritanceButtons(FormToolkit toolkit, final Composite parent) {
 
-        Composite buttons = toolkit.createComposite(parent, SWT.NONE);
-        buttons.setLayout(new GridLayout());
-        buttons.setLayoutData(new GridData(GridData.CENTER));
+        Composite container = toolkit.createComposite(parent, SWT.NONE);
+        TableWrapData twd = new TableWrapData(TableWrapData.CENTER, TableWrapData.MIDDLE);
+        twd.colspan = 2;
+        container.setLayoutData(twd);
+        container.setLayout(new GridLayout(2, true));
 
-        GridData gd = new GridData();
+        GridData gd = new GridData(GridData.FILL_BOTH);
         gd.widthHint = 65;
 
-        browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
+        browse = toolkit.createButton(container, Messages.SpecificationPage_button_browse, SWT.PUSH);
         browse.setLayoutData(gd);
         browse.addSelectionListener(new SelectionListener() {
 
@@ -320,7 +323,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         });
 
-        removeParent = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        removeParent = toolkit.createButton(container, "", SWT.PUSH); //$NON-NLS-1$
         removeParent.setLayoutData(gd);
         removeParent.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
         removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
@@ -359,10 +362,10 @@ public class SpecificationPage extends PatternEditorPage {
         twl.numColumns = 2;
         container.setLayout(twl);
 
-        Label discrip = toolkit.createLabel(container, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
+        Label label = toolkit.createLabel(container, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
         TableWrapData twd = new TableWrapData(TableWrapData.FILL_GRAB);
         twd.colspan = 2;
-        discrip.setLayoutData(twd);
+        label.setLayoutData(twd);
 
         createTypeArea(toolkit, container);
 
