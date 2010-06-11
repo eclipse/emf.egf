@@ -15,18 +15,22 @@
  */
 package org.eclipse.egf.core.internal.fcore;
 
+import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 
 public final class PlatformFcore extends PlatformExtensionPointURI implements IPlatformFcore {
 
+    private String _name;
+
     public PlatformFcore(IPlatformBundle bundle, String id) {
         super(bundle, id);
+        _name = new Path(getURI().lastSegment()).removeFileExtension().toString();
     }
 
     public String getName() {
-        return getURI().toString();
+        return _name;
     }
 
     @Override
