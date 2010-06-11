@@ -32,6 +32,11 @@ import org.osgi.framework.BundleContext;
 public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
 
     /**
+     * Duplicate id for decoupling reason
+     */
+    public static final String FCORE_EDITOR_ID = "org.eclipse.egf.model.fcore.presentation.fcore.editor.id"; //$NON-NLS-1$
+
+    /**
      * Keep track of the EditorListenerContributorRegistry
      */
     private static EditorListenerContributorRegistry __editorListenerContributorRegistry;
