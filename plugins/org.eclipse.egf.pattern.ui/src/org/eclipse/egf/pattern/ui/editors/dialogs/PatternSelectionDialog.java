@@ -30,6 +30,7 @@ import org.eclipse.egf.model.pattern.provider.PatternCustomItemProviderAdapterFa
 import org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Activator;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -55,317 +56,349 @@ import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
  */
 public class PatternSelectionDialog extends FilteredItemsSelectionDialog {
 
-  private static final String DIALOG_SETTINGS = "org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog"; //$NON-NLS-1$
+    private static final String DIALOG_SETTINGS = "org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog"; //$NON-NLS-1$
 
-  private Pattern _pattern;
+    private Pattern _pattern;
 
-  private EditingDomain _editingDomain;
+    private EditingDomain _editingDomain;
 
-  private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
+    private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
 
-  protected ComposedAdapterFactory _adapterFactory;
+    protected ComposedAdapterFactory _adapterFactory;
 
-  protected ComposedAdapterFactory _selectionAdapterFactory;
+    protected ComposedAdapterFactory _selectionAdapterFactory;
 
-  private class PatternSelectionLabelProvider extends AdapterFactoryLabelProvider implements ILabelDecorator {
+    private class PatternLabelProvider extends AdapterFactoryLabelProvider implements ILabelDecorator {
 
-    public PatternSelectionLabelProvider() {
-      super(_selectionAdapterFactory);
-    }
+        public PatternLabelProvider(AdapterFactory adapterFactory) {
+            super(adapterFactory);
+        }
 
-    public String decorateText(String text, Object element) {
-      return getText(element);
-    }
-
-    public Image decorateImage(Image image, Object element) {
-      return image;
-    }
-  }
-
-  /**
-   * <code>PatternSelectionHistory</code> provides behavior specific to
-   * Pattern - storing and restoring <code>Pattern</code>s state
-   * to/from XML (memento).
-   */
-  private class PatternSelectionHistory extends SelectionHistory {
-
-    private static final String TAG_URI = "path"; //$NON-NLS-1$
-
-    public PatternSelectionHistory() {
-      super();
-    }
-
-    @Override
-    protected Object restoreItemFromMemento(IMemento memento) {
-      // Restore
-      String tag = memento.getString(TAG_URI);
-      if (tag == null) {
-        return null;
-      }
-      try {
-        _pattern = (Pattern) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
-        // Check whether or not this activity belongs to our fcores
-        IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_pattern.eResource());
-        if (fcore != null) {
-          for (IPlatformFcore innerFcore : _fcores) {
-            if (innerFcore.equals(fcore)) {
-              return _pattern;
+        @Override
+        public String getText(Object element) {
+            if (element instanceof Pattern == false) {
+                return super.getText(element);
             }
-          }
+            return ((Pattern) element).getName();
         }
-      } catch (Exception e) {
-        // Just ignore, a retrieved activity could have been deleted,
-      } finally {
-        _pattern = null;
-      }
-      return null;
+
+        public String decorateText(String text, Object element) {
+            return getText(element);
+        }
+
+        public Image decorateImage(Image image, Object element) {
+            return getImage(element);
+        }
+
     }
 
-    @Override
-    protected void storeItemToMemento(Object item, IMemento element) {
-      // Save
-      if (getReturnCode() == OK) {
-        Object[] items = getHistoryItems();
-        for (int i = 0; i < items.length; i++) {
-          element.putString(TAG_URI, EcoreUtil.getURI((Pattern) items[i]).toString());
+    private class PatternSelectionLabelProvider extends AdapterFactoryLabelProvider implements ILabelDecorator {
+
+        public PatternSelectionLabelProvider(AdapterFactory adapterFactory) {
+            super(adapterFactory);
         }
-      } else if (_pattern != null) {
-        element.putString(TAG_URI, EcoreUtil.getURI(_pattern).toString());
-      }
+
+        public String decorateText(String text, Object element) {
+            return getText(element);
+        }
+
+        public Image decorateImage(Image image, Object element) {
+            return getImage(element);
+        }
     }
 
-  }
+    /**
+     * <code>PatternSelectionHistory</code> provides behavior specific to
+     * Pattern - storing and restoring <code>Pattern</code>s state
+     * to/from XML (memento).
+     */
+    private class PatternSelectionHistory extends SelectionHistory {
 
-  private class PatternSearchItemsFilter extends ItemsFilter {
+        private static final String TAG_URI = "path"; //$NON-NLS-1$
 
-    @Override
-    public boolean matchItem(Object item) {
-      if (item instanceof Pattern == false) {
-        return false;
-      }
-      Pattern pattern = (Pattern) item;
-      if (pattern.getName() == null) {
-        return true;
-      }
-      return (matches(pattern.getName()));
+        public PatternSelectionHistory() {
+            super();
+        }
+
+        @Override
+        protected Object restoreItemFromMemento(IMemento memento) {
+            // Restore
+            String tag = memento.getString(TAG_URI);
+            if (tag == null) {
+                return null;
+            }
+            try {
+                _pattern = (Pattern) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
+                // Check whether or not this activity belongs to our fcores
+                IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_pattern.eResource());
+                if (fcore != null) {
+                    for (IPlatformFcore innerFcore : _fcores) {
+                        if (innerFcore.equals(fcore)) {
+                            return _pattern;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // Just ignore, a retrieved activity could have been deleted,
+            } finally {
+                _pattern = null;
+            }
+            return null;
+        }
+
+        @Override
+        protected void storeItemToMemento(Object item, IMemento element) {
+            // Save
+            if (getReturnCode() == OK) {
+                Object[] items = getHistoryItems();
+                for (int i = 0; i < items.length; i++) {
+                    element.putString(TAG_URI, EcoreUtil.getURI((Pattern) items[i]).toString());
+                }
+            } else if (_pattern != null) {
+                element.putString(TAG_URI, EcoreUtil.getURI(_pattern).toString());
+            }
+        }
+
     }
 
-    @Override
-    public boolean isConsistentItem(Object item) {
-      if (item instanceof Pattern) {
-        return true;
-      }
-      return false;
+    private class PatternSearchItemsFilter extends ItemsFilter {
+
+        @Override
+        public boolean matchItem(Object item) {
+            if (item instanceof Pattern == false) {
+                return false;
+            }
+            Pattern pattern = (Pattern) item;
+            if (pattern.getName() == null) {
+                return true;
+            }
+            return (matches(pattern.getName()));
+        }
+
+        @Override
+        public boolean isConsistentItem(Object item) {
+            if (item instanceof Pattern) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean isSubFilter(ItemsFilter filter) {
+            if (super.isSubFilter(filter) == false) {
+                return false;
+            }
+            if (filter instanceof PatternSearchItemsFilter) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean equalsFilter(ItemsFilter filter) {
+            if (super.equalsFilter(filter) == false) {
+                return false;
+            }
+            if (filter instanceof PatternSearchItemsFilter) {
+                return true;
+            }
+            return false;
+        }
+
     }
 
-    @Override
-    public boolean isSubFilter(ItemsFilter filter) {
-      if (super.isSubFilter(filter) == false) {
-        return false;
-      }
-      if (filter instanceof PatternSearchItemsFilter) {
-        return true;
-      }
-      return false;
+    private static class PatternSearchComparator implements Comparator<Pattern>, Serializable {
+
+        public static final long serialVersionUID = 1L;
+
+        public int compare(Pattern p1, Pattern p2) {
+            if (p1.getName() == null && p2.getName() == null) {
+                return 0;
+            }
+            if (p1.getName() != null && p2.getName() == null) {
+                return -1;
+            }
+            if (p1.getName() == null && p2.getName() != null) {
+                return 1;
+            }
+            return p1.getName().compareTo(p2.getName());
+        }
     }
 
-    @Override
-    public boolean equalsFilter(ItemsFilter filter) {
-      if (super.equalsFilter(filter) == false) {
-        return false;
-      }
-      if (filter instanceof PatternSearchItemsFilter) {
-        return true;
-      }
-      return false;
+    protected ILabelProvider getLabelProvider() {
+        return new PatternLabelProvider(_adapterFactory);
     }
 
-  }
-
-  private static class PatternSearchComparator implements Comparator<Pattern>, Serializable {
-    public static final long serialVersionUID = 1L;
-
-    public int compare(Pattern p1, Pattern p2) {
-      if (p1.getName() == null && p2.getName() == null) {
-        return 0;
-      }
-      if (p1.getName() != null && p2.getName() == null) {
-        return -1;
-      }
-      if (p1.getName() == null && p2.getName() != null) {
-        return 1;
-      }
-      return p1.getName().compareTo(p2.getName());
+    protected ILabelDecorator getSelectionLabelProvider() {
+        return new PatternSelectionLabelProvider(_selectionAdapterFactory);
     }
-  }
 
-  protected ILabelProvider getLabelProvider() {
-    return new AdapterFactoryLabelProvider(_adapterFactory);
-  }
+    protected ILabelProvider getDetailsLabelProvider() {
+        return new PatternDetailsLabelProvider(_adapterFactory);
+    }
 
-  protected ILabelDecorator getSelectionLabelProvider() {
-    return new PatternSelectionLabelProvider();
-  }
+    private class PatternDetailsLabelProvider extends LabelProvider {
 
-  protected ILabelProvider getDetailsLabelProvider() {
-    return new LabelProvider() {
-      ILabelProvider _labelProvider = new AdapterFactoryLabelProvider(_adapterFactory);
+        ILabelProvider _adapterFactoryLabelProvider;
 
-      @Override
-      public Image getImage(Object element) {
-        // This shouldn't happen
-        if (element instanceof Pattern == false) {
-          return super.getImage(element);
+        public PatternDetailsLabelProvider(AdapterFactory adapterFactory) {
+            _adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(adapterFactory);
         }
-        // In memory pattern, in case of...
-        Pattern pattern = (Pattern) element;
-        if (pattern.eResource() == null) {
-          return super.getImage(pattern);
-        }
-        return _labelProvider.getImage(pattern.eResource());
-      }
 
-      @Override
-      public String getText(Object element) {
-        // This shouldn't happen
-        if (element instanceof Pattern == false) {
-          return super.getText(element);
+        @Override
+        public Image getImage(Object element) {
+            // This shouldn't happen
+            if (element instanceof Pattern == false) {
+                return _adapterFactoryLabelProvider.getImage(element);
+            }
+            // In memory pattern, in case of...
+            Pattern pattern = (Pattern) element;
+            if (pattern.eResource() == null) {
+                return _adapterFactoryLabelProvider.getImage(pattern);
+            }
+            return _adapterFactoryLabelProvider.getImage(pattern.eResource());
         }
-        // In memory pattern, in case of...
-        Pattern pattern = (Pattern) element;
-        if (pattern.eResource() == null) {
-          return super.getText(pattern);
+
+        @Override
+        public String getText(Object element) {
+            // This shouldn't happen
+            if (element instanceof Pattern == false) {
+                return _adapterFactoryLabelProvider.getText(element);
+            }
+            // In memory pattern, in case of...
+            Pattern pattern = (Pattern) element;
+            if (pattern.eResource() == null) {
+                return _adapterFactoryLabelProvider.getText(pattern);
+            }
+            // Retrieve Fcore
+            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(pattern.eResource());
+            if (fc == null) {
+                return _adapterFactoryLabelProvider.getText(pattern);
+            }
+            StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
+            if (fc.getPlatformBundle().isTarget()) {
+                buffer.append(" [Target]"); //$NON-NLS-1$
+            } else {
+                buffer.append(" [Workspace]"); //$NON-NLS-1$
+            }
+            buffer.append(" ["); //$NON-NLS-1$
+            buffer.append(fc.getPlatformBundle().getInstallLocation());
+            buffer.append("]"); //$NON-NLS-1$      
+            return buffer.toString();
         }
-        // Retrieve Fcore
-        IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(pattern.eResource());
-        if (fc == null) {
-          return super.getText(pattern);
-        }
-        StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
-        if (fc.getPlatformBundle().isTarget()) {
-          buffer.append(" [Target]"); //$NON-NLS-1$
-        } else {
-          buffer.append(" [Workspace]"); //$NON-NLS-1$
-        }
-        buffer.append(" ["); //$NON-NLS-1$
-        buffer.append(fc.getPlatformBundle().getBundleLocation());
-        buffer.append("]"); //$NON-NLS-1$      
-        return buffer.toString();
-      }
     };
-  }
 
-  public PatternSelectionDialog(Shell parentShell, boolean multipleSelection) {
-    this(parentShell, (Pattern) null, multipleSelection);
-  }
-
-  public PatternSelectionDialog(Shell parentShell, Pattern pattern, boolean multipleSelection) {
-    super(parentShell, multipleSelection);
-    // Retrieve our EditingDomain
-    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-    if (pattern != null) {
-      _pattern = (Pattern) _editingDomain.getResourceSet().getEObject(EcoreUtil.getURI(pattern), true);
+    public PatternSelectionDialog(Shell parentShell, boolean multipleSelection) {
+        this(parentShell, (Pattern) null, multipleSelection);
     }
-    // Create an adapter factory that yields label providers.
-    _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
-    _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    // Create an adapter factory that yields selection label providers.
-    _selectionAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _selectionAdapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
-    _selectionAdapterFactory.addAdapterFactory(new PatternCustomItemProviderAdapterFactory());
-    _selectionAdapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
-    _selectionAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Pattern.class.getSimpleName()));
-    setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Pattern.class.getSimpleName()));
-    setListLabelProvider(getLabelProvider());
-    setListSelectionLabelDecorator(getSelectionLabelProvider());
-    setDetailsLabelProvider(getDetailsLabelProvider());
-    setSelectionHistory(new PatternSelectionHistory());
-    if (_pattern != null && _pattern.eResource() != null) {
-      IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(_pattern.eResource());
-      setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
-    } else {
-      setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
-    }
-  }
 
-  @Override
-  public Object[] getResult() {
-    Object[] result = super.getResult();
-    if (result == null) {
-      return null;
-    }
-    List<Pattern> resultToReturn = new ArrayList<Pattern>();
-    for (int i = 0; i < result.length; i++) {
-      if (result[i] instanceof Pattern) {
-        resultToReturn.add(((Pattern) result[i]));
-      }
-    }
-    return resultToReturn.toArray();
-  }
-
-  @Override
-  protected Control createExtendedContentArea(Composite parent) {
-    return null;
-  }
-
-  @Override
-  protected ItemsFilter createFilter() {
-    return new PatternSearchItemsFilter();
-  }
-
-  @Override
-  protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
-    try {
-      for (Pattern pattern : PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns()) {
-        // Ignore current
-        if (_pattern != null && EcoreUtil.getURI(_pattern).equals(EcoreUtil.getURI(pattern))) {
-          continue;
+    public PatternSelectionDialog(Shell parentShell, Pattern pattern, boolean multipleSelection) {
+        super(parentShell, multipleSelection);
+        // Retrieve our EditingDomain
+        _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+        if (pattern != null) {
+            _pattern = (Pattern) _editingDomain.getResourceSet().getEObject(EcoreUtil.getURI(pattern), true);
         }
-        // Process
+        // Create an adapter factory that yields label providers.
+        _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+        _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
+        _adapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
+        _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
+        _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        // Create an adapter factory that yields selection label providers.
+        _selectionAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+        _selectionAdapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
+        _selectionAdapterFactory.addAdapterFactory(new PatternCustomItemProviderAdapterFactory());
+        _selectionAdapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
+        _selectionAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Pattern.class.getSimpleName()));
+        setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Pattern.class.getSimpleName()));
+        setListLabelProvider(getLabelProvider());
+        setListSelectionLabelDecorator(getSelectionLabelProvider());
+        setDetailsLabelProvider(getDetailsLabelProvider());
+        setSelectionHistory(new PatternSelectionHistory());
+        if (_pattern != null && _pattern.eResource() != null) {
+            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(_pattern.eResource());
+            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
+        } else {
+            setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+        }
+    }
+
+    @Override
+    public Object[] getResult() {
+        Object[] result = super.getResult();
+        if (result == null) {
+            return null;
+        }
+        List<Pattern> resultToReturn = new ArrayList<Pattern>();
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] instanceof Pattern) {
+                resultToReturn.add(((Pattern) result[i]));
+            }
+        }
+        return resultToReturn.toArray();
+    }
+
+    @Override
+    protected Control createExtendedContentArea(Composite parent) {
+        return null;
+    }
+
+    @Override
+    protected ItemsFilter createFilter() {
+        return new PatternSearchItemsFilter();
+    }
+
+    @Override
+    protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
         try {
-          contentProvider.add(pattern, itemsFilter);
+            for (Pattern pattern : PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns()) {
+                // Ignore current
+                if (_pattern != null && EcoreUtil.getURI(_pattern).equals(EcoreUtil.getURI(pattern))) {
+                    continue;
+                }
+                // Process
+                try {
+                    contentProvider.add(pattern, itemsFilter);
+                } catch (OperationCanceledException e) {
+                    return;
+                } catch (ClassCastException cce) {
+                    // Ignore
+                    continue;
+                }
+            }
         } catch (OperationCanceledException e) {
-          return;
-        } catch (ClassCastException cce) {
-          // Ignore
-          continue;
+            return;
         }
-      }
-    } catch (OperationCanceledException e) {
-      return;
     }
-  }
 
-  @Override
-  protected IDialogSettings getDialogSettings() {
-    IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
-    if (settings == null) {
-      settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+    @Override
+    protected IDialogSettings getDialogSettings() {
+        IDialogSettings settings = Activator.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
+        if (settings == null) {
+            settings = Activator.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+        }
+        return settings;
     }
-    return settings;
-  }
 
-  @Override
-  public String getElementName(Object item) {
-    if (item instanceof IPlatformFcore) {
-      IPlatformFcore fc = (IPlatformFcore) item;
-      return fc.getURI().toString();
+    @Override
+    public String getElementName(Object item) {
+        if (item instanceof IPlatformFcore) {
+            IPlatformFcore fc = (IPlatformFcore) item;
+            return fc.getURI().toString();
+        }
+        return null;
     }
-    return null;
-  }
 
-  @Override
-  protected Comparator<Pattern> getItemsComparator() {
-    return new PatternSearchComparator();
-  }
+    @Override
+    protected Comparator<Pattern> getItemsComparator() {
+        return new PatternSearchComparator();
+    }
 
-  @Override
-  protected IStatus validateItem(Object item) {
-    return new Status(IStatus.OK, Activator.getDefault().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
-  }
+    @Override
+    protected IStatus validateItem(Object item) {
+        return new Status(IStatus.OK, Activator.getDefault().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
+    }
 
 }
