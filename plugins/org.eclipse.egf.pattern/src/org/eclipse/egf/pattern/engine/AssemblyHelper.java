@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -29,8 +29,11 @@ import org.eclipse.emf.common.util.EList;
 public abstract class AssemblyHelper {
 
     protected final Pattern pattern;
+
     protected final StringBuilder content = new StringBuilder(1000);
+
     protected int orchestrationIndex;
+
     protected final AssemblyContentHelper contentHelper;
 
     public AssemblyHelper(Pattern pattern, AssemblyContentProvider contentProvider) {
@@ -75,9 +78,12 @@ public abstract class AssemblyHelper {
      * the current index. The inserted code is mainly a kind of loop containing
      * the pattern body over the result of the query.
      */
+    @SuppressWarnings("unused")
     protected void endOrchestration() throws PatternException {
+        // Nothing to do
     }
 
+    @SuppressWarnings("unused")
     protected void beginOrchestration() throws PatternException {
         orchestrationIndex = content.length();
     }
@@ -94,7 +100,8 @@ public abstract class AssemblyHelper {
         }
     }
 
-    public static final String GENERATE_METHOD = "generate";
-    public static final String ORCHESTRATION_METHOD = "orchestration";
+    public static final String GENERATE_METHOD = "generate"; //$NON-NLS-1$
+
+    public static final String ORCHESTRATION_METHOD = "orchestration"; //$NON-NLS-1$
 
 }
