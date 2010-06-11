@@ -24,39 +24,65 @@ import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.swt.graphics.Image;
+import org.eclipse.jface.viewers.CellLabelProvider;
+import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.swt.graphics.Point;
 
 /**
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public class ParametersTableLabelProvider extends LabelProvider implements ITableLabelProvider {
+public class ParametersTableLabelProvider extends CellLabelProvider {
 
-    public Image getColumnImage(Object element, int columnIndex) {
+    @Override
+    public String getToolTipText(Object element) {
+        if (element instanceof PatternParameter) {
+            return ((PatternParameter) element).getType();
+        } else if (element instanceof PatternVariable) {
+            return ((PatternVariable) element).getType();
+        }
+        return null;
+    }
+
+    @Override
+    public Point getToolTipShift(Object object) {
+        return new Point(5, 5);
+    }
+
+    @Override
+    public int getToolTipDisplayDelayTime(Object object) {
+        return 100;
+    }
+
+    @Override
+    public int getToolTipTimeDisplayed(Object object) {
+        return 5000;
+    }
+
+    @Override
+    public void update(ViewerCell cell) {
+        Object element = cell.getElement();
+        int columnIndex = cell.getColumnIndex();
+        // Image Processing
         if (element instanceof PatternParameter && columnIndex == 2) {
             Query query = ((PatternParameter) element).getQuery();
             if (query != null) {
                 EMap<String, String> queryContext = query.getQueryContext();
                 if (queryContext != null && !queryContext.isEmpty()) {
-                    return Activator.getDefault().getImage(ImageShop.IMG_QUERY_SET);
+                    cell.setImage(Activator.getDefault().getImage(ImageShop.IMG_QUERY_SET));
                 }
             }
         }
-        return null;
-    }
-
-    public String getColumnText(Object element, int columnIndex) {
-
+        // Text Processing
         if (element instanceof PatternParameter) {
             PatternParameter patternParameter = (PatternParameter) element;
             switch (columnIndex) {
                 case 0:
-                    return patternParameter.getName();
+                    cell.setText(patternParameter.getName());
+                    return;
                 case 1:
-                    return getType(patternParameter.getType());
+                    cell.setText(getType(patternParameter.getType()));
+                    return;
                 case 2:
                     Query query = patternParameter.getQuery();
                     if (query != null) {
@@ -64,36 +90,27 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
                         QueryKind queryKind = IQuery.INSTANCE.getQueryKind(extensionId);
                         String queryKindName = queryKind == null ? null : queryKind.getName();
                         if (queryKindName != null) {
-                            return queryKindName;
+                            cell.setText(queryKindName);
+                            return;
                         }
-                        return extensionId == null ? "" : extensionId;
+                        cell.setText(extensionId == null ? "" : extensionId); //$NON-NLS-1$
+                        return;
                     }
-                    return "";
+                    cell.setText(""); //$NON-NLS-1$
+                    return;
             }
         } else if (element instanceof PatternVariable) {
             PatternVariable patternVariable = (PatternVariable) element;
             switch (columnIndex) {
                 case 0:
-                    return patternVariable.getName();
+                    cell.setText(patternVariable.getName());
+                    return;
                 case 1:
-                    return getType(patternVariable.getType());
+                    cell.setText(getType(patternVariable.getType()));
+                    return;
             }
         }
-        return "";
-    }
-
-    public void addListener(ILabelProviderListener listener) {
-    }
-
-    public void dispose() {
-    }
-
-    public boolean isLabelProperty(Object element, String property) {
-
-        return false;
-    }
-
-    public void removeListener(ILabelProviderListener listener) {
+        cell.setText(""); //$NON-NLS-1$
     }
 
     /**
@@ -101,10 +118,10 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
      */
     public static String getType(String type) {
         if (type == null || type.length() == 0)
-            return "";
-        int mark1Index = type.lastIndexOf("$");
-        int mark2Index = type.lastIndexOf(".");
-        int mark3 = type.lastIndexOf("//");
+            return ""; //$NON-NLS-1$
+        int mark1Index = type.lastIndexOf("$"); //$NON-NLS-1$
+        int mark2Index = type.lastIndexOf("."); //$NON-NLS-1$
+        int mark3 = type.lastIndexOf("//"); //$NON-NLS-1$
         int mark3Index = mark3 == -1 ? -1 : mark3 + 1;
         int index = getIndex(mark1Index, mark2Index, mark3Index);
         if (index != -1) {
