@@ -18,25 +18,27 @@ import org.eclipse.emf.ecore.resource.Resource;
  * @author Xavier Maysonnave
  */
 class EGFPersistedSynchRequest extends EGFSynchRequest {
-  /**
-   * Initializes me with the synchronizer on whose behalf I perform a
-   * synchronization and the resource whose workspace partner is created.
-   * 
-   * @param synch
-   *          the workspace synchronizer
-   * @param resource
-   *          the resource that has been deleted
-   */
-  EGFPersistedSynchRequest(EGFWorkspaceSynchronizer synch, Resource resource) {
-    super(synch, resource);
-  }
 
-  @Override
-  protected void doPerform() {
-    if (!synch.getDelegate().handleResourcePersisted(resource)) {
-      // note that if our delegate is the default, it
-      // will always return true
-      EGFWorkspaceSynchronizer.defaultDelegate.handleResourcePersisted(resource);
+    /**
+     * Initializes me with the synchronizer on whose behalf I perform a
+     * synchronization and the resource whose workspace partner is created.
+     * 
+     * @param synch
+     *            the workspace synchronizer
+     * @param resource
+     *            the resource that has been deleted
+     */
+    EGFPersistedSynchRequest(EGFWorkspaceSynchronizer synch, Resource resource) {
+        super(synch, resource);
     }
-  }
+
+    @Override
+    protected void doPerform() {
+        if (!synch.getDelegate().handleResourcePersisted(resource)) {
+            // note that if our delegate is the default, it
+            // will always return true
+            EGFWorkspaceSynchronizer.defaultDelegate.handleResourcePersisted(resource);
+        }
+    }
+
 }
