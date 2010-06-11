@@ -43,7 +43,7 @@ import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
 import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionDialog;
-import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
+import org.eclipse.egf.producer.ui.internal.ui.IProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -227,7 +227,7 @@ public class RunActivityAction implements IObjectActionDelegate {
                 }
             };
             activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
-            activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
+            activityJob.setProperty(IProgressConstants.ICON_PROPERTY, IProducerUIImages.EGF_RUN_ACTIVITY);
             activityJob.setPriority(Job.LONG);
             activityJob.setUser(true);
             activityJob.setSystem(false);

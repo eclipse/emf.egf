@@ -39,7 +39,7 @@ import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
 import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionDialog;
-import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
+import org.eclipse.egf.producer.ui.internal.ui.IProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.action.Action;
@@ -67,7 +67,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         setText(ProducerUIMessages.GlobalRunActivityAction_label);
         setDescription(ProducerUIMessages.GlobalRunActivityAction_description);
         setToolTipText(ProducerUIMessages.GlobalRunActivityAction_tooltip);
-        setImageDescriptor(ProducerUIImages.EGF_RUN_ACTIVITY);
+        setImageDescriptor(EGFProducerUIPlugin.getDefault().getImageDescriptor(IProducerUIImages.EGF_RUN_ACTIVITY));
     }
 
     @Override
@@ -229,7 +229,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                 }
             };
             activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
-            activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
+            activityJob.setProperty(IProgressConstants.ICON_PROPERTY, IProducerUIImages.EGF_RUN_ACTIVITY);
             activityJob.setPriority(Job.LONG);
             activityJob.setUser(true);
             activityJob.setSystem(false);
