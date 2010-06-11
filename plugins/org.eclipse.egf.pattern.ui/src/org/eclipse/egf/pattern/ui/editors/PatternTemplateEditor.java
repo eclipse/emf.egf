@@ -17,6 +17,8 @@ package org.eclipse.egf.pattern.ui.editors;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -25,10 +27,12 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -49,13 +53,24 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
 
     private boolean patternInWorkspace;
 
+    private final AdapterImpl methodAdapter = new AdapterImpl() {
+        public void notifyChanged(Notification msg) {
+            if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature()) && msg.getNotifier() instanceof PatternMethod) {
+                executeMethodEditorRename((PatternMethod) msg.getNotifier());
+            }
+        }
+    };
+
     private final AdapterImpl refresher = new AdapterImpl() {
 
         @Override
         public void notifyChanged(Notification msg) {
             if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature()) && msg.getNotifier() instanceof Pattern) {
                 setPartName((String) msg.getNewValue());
+            } else if (PatternPackage.Literals.PATTERN__METHODS.equals(msg.getFeature())) {
+                refreshTemplateEditor(msg);
             }
+
         }
     };
 
@@ -63,6 +78,108 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
 
     public PatternTemplateEditor() {
         super();
+    }
+
+    /**
+     * Refresh the template editor while user change the content of pattern's
+     * methods.
+     */
+    private void refreshTemplateEditor(Notification msg) {
+        Object newValue = msg.getNewValue();
+        Object oldValue = msg.getOldValue();
+        int eventType = msg.getEventType();
+        if ((newValue != null && newValue instanceof PatternMethod) || (newValue == null && oldValue instanceof PatternMethod)) {
+            switch (eventType) {
+            case Notification.ADD:
+                executeMethodEditorAdd((PatternMethod) newValue);
+                break;
+            case Notification.REMOVE:
+                executeMethodEditorRemove((PatternMethod) oldValue);
+                break;
+            // case Notification.MOVE:
+            // executeMethodEditorsReorder((PatternMethod) newValue, oldValue);
+            // break;
+            default:
+                return;
+            }
+        }
+    }
+
+    private void executeMethodEditorRename(PatternMethod patternMethod) {
+        IEditorPart editorPart = getEditorPart(patternMethod.getID());
+        if (editorPart != null) {
+            for (int i = 0; i < getPageCount(); i++)
+                if (editorPart.equals(getEditor(i)))
+                    setPageText(i, patternMethod.getName());
+
+        }
+    }
+
+    private void executeMethodEditorRemove(PatternMethod deleteMethod) {
+        for (int i = 0; i < getPageCount(); i++) {
+            IEditorPart editor = getEditor(i);
+            AbstractPatternMethodEditorInput input = (AbstractPatternMethodEditorInput) editor.getEditorInput();
+            PatternMethod patternMethod = input.getPatternMethod();
+            if (patternMethod == null)
+                removePage(i);
+        }
+    }
+
+    protected void executeMethodEditorAdd(final PatternMethod addMethod) {
+        getActiveEditor().getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+            public void run() {
+                createPage(addMethod);
+            }
+        });
+        addMethodChangeAdapter(addMethod);
+    }
+
+    /**
+     * While pattern has been changed, refresh the editor title.
+     */
+    protected void addPatternChangeAdapter(final Pattern pattern) {
+        if (pattern != null && !pattern.eAdapters().contains(refresher)) {
+            pattern.eAdapters().add(refresher);
+            EList<PatternMethod> methods = pattern.getMethods();
+            for (PatternMethod method : methods) {
+                addMethodChangeAdapter(method);
+            }
+        }
+    }
+
+    /**
+     * While method has been changed, refresh the editor title.
+     */
+    protected void addMethodChangeAdapter(PatternMethod method) {
+        if (method != null && !method.eAdapters().contains(methodAdapter)) {
+            method.eAdapters().add(methodAdapter);
+        }
+    }
+
+    /**
+     * Remove the Adapter add for refreshing the editor title
+     */
+    protected void removePatternChangeAdapter() {
+        Pattern pattern = getPattern();
+        if (pattern == null)
+            return;
+        if (pattern.eAdapters().contains(refresher)) {
+            pattern.eAdapters().remove(refresher);
+        }
+        EList<PatternMethod> methods = pattern.getMethods();
+        for (PatternMethod method : methods) {
+            removeMethodChangeAdapter(method);
+        }
+    }
+
+    /**
+     * Remove the Adapter add for refreshing the editor title
+     */
+    protected void removeMethodChangeAdapter(PatternMethod method) {
+        if (method != null && method.eAdapters().contains(methodAdapter)) {
+            method.eAdapters().remove(methodAdapter);
+        }
     }
 
     void createPage(PatternMethod method) {
@@ -121,21 +238,11 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
             public void run() {
                 Pattern pattern = getPattern();
                 if (pattern != null) {
-                    pattern.eAdapters().add(refresher);
+                    addPatternChangeAdapter(pattern);
                     setPartName(pattern.getName());
                 }
             }
         });
-    }
-
-    /**
-     * Remove the Adapter add for refreshing the editor title
-     */
-    private void removePatternChangeAdapter() {
-        Pattern pattern = getPattern();
-        if (pattern != null && pattern.eAdapters().contains(refresher)) {
-            pattern.eAdapters().remove(refresher);
-        }
     }
 
     /**
