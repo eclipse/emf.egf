@@ -91,7 +91,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 Map<String, PatternExtension> extensions = ExtensionHelper.getExtensions();
                 for (String nature : extensions.keySet()) {
                     PatternExtension patternExtension = extensions.get(nature);
-                    CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern"));
+                    CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern")); //$NON-NLS-1$
                     CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, (PatternLibrary) selection2.getFirstElement());
                     createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
                     createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
@@ -117,9 +117,9 @@ public class PatternMenuContributor extends EditorMenuContributor {
         }
 
         @Override
-        protected Command createActionCommand(EditingDomain editingDomain, Collection<?> collection) {
+        protected Command createActionCommand(EditingDomain innerEditingDomain, Collection<?> collection) {
 
-            final Command createActionCommand = super.createActionCommand(editingDomain, collection);
+            final Command createActionCommand = super.createActionCommand(innerEditingDomain, collection);
             if (UnexecutableCommand.INSTANCE.equals(createActionCommand))
                 return UnexecutableCommand.INSTANCE;
             return createActionCommand.chain(new AbstractCommand() {
@@ -151,6 +151,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     }
                 }
 
+                @Override
                 public void undo() {
                     Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
                     Pattern pattern = (Pattern) affectedObjects.iterator().next();
