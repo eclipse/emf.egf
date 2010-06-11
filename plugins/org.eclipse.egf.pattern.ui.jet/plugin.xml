@@ -14,7 +14,7 @@
       <editor
             class="org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor"
             default="false"
-            icon="icons/sample.gif"
+            icon="icons/full/obj16/sample.gif"
             id="org.eclipse.egf.pattern.ui.JetTemplateEditor"
             name="%editor.name">
       </editor>
