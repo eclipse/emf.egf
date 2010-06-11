@@ -92,8 +92,9 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
         super.setTitle(title);
     }
 
-    /*
-     * (non-Javadoc)
+    /**
+     * TypeSelectionDialog inherit from an internal class
+     * As such the inherited open is hidden.
      * 
      * @see org.eclipse.jface.window.Window#open()
      */
@@ -104,7 +105,8 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
 
     /**
      * Returns the list of selections made by the user, or <code>null</code>
-     * if the selection was canceled.
+     * if the selection was canceled. A computeResult is done when this dialog
+     * is used in a wizard page
      * 
      * @return the array of selected elements, or <code>null</code> if Cancel
      *         was pressed
@@ -115,6 +117,12 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
         return super.getResult();
     }
 
+    /**
+     * Hack to use a dialog in a wizard page
+     * 
+     * @return the array of selected elements, or <code>null</code> if Cancel
+     *         was pressed
+     */
     public Control createPage(Composite parent) {
         return dialogArea = createDialogArea(parent);
     }
