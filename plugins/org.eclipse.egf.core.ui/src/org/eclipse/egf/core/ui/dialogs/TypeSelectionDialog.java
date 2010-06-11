@@ -10,7 +10,6 @@
  */
 package org.eclipse.egf.core.ui.dialogs;
 
-import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.jdt.core.IJavaElement;
@@ -39,7 +38,7 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
         }), elementKinds, null);
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
         setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
+        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, javaProject.getProject().getName()));
     }
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds, TypeSelectionExtension extension) {
@@ -48,7 +47,7 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
         }), elementKinds, extension);
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
         setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
+        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, javaProject.getProject().getName()));
     }
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, int elementKinds) {
