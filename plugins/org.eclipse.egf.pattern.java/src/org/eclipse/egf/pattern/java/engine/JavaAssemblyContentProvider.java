@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -32,7 +32,7 @@ import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProvider {
 
     public JavaAssemblyContentProvider(Pattern pattern) {
-        super(pattern, new JavaMethodGenerationHelper("out"));
+        super(pattern, new JavaMethodGenerationHelper("out")); //$NON-NLS-1$
     }
 
     @Override
@@ -46,25 +46,25 @@ public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProv
         for (PatternMethod method : PatternHelper.getUserMethods(pattern)) {
             javaMethodHelper.addSignature(method);
             content.append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append(getMethodContent(method)).append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
         PatternMethod conditionMethod = pattern.getConditionMethod();
         if (conditionMethod != null) {
             javaMethodHelper.addConditionSignature(conditionMethod);
             content.append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             String methodContent = getMethodContent(conditionMethod);
-            if (methodContent == null || "".equals(methodContent.trim())) {
+            if (methodContent == null || "".equals(methodContent.trim())) { //$NON-NLS-1$
                 if (pattern.getSuperPattern() == null || pattern.getSuperPattern().getConditionMethod() == null)
-                    methodContent = "return true;";
+                    methodContent = "return true;"; //$NON-NLS-1$
                 else
-                    methodContent = "return super." + PatternFactory.PRECONDITION_METHOD_NAME + "();";
+                    methodContent = "return super." + PatternFactory.PRECONDITION_METHOD_NAME + "();"; //$NON-NLS-1$  //$NON-NLS-2$
             }
             content.append(methodContent).append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
     }
 
