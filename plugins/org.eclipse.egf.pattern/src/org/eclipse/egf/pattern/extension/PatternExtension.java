@@ -19,6 +19,9 @@ import java.net.URL;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternNature;
@@ -27,6 +30,8 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 
 /**
  * @author Thomas Guiu
@@ -100,5 +105,30 @@ public abstract class PatternExtension {
     }
 
     public abstract RefactoringManager getRefactoringManager();
+
+    protected static void deleteJavaFile(IProject project, String packageName, String className) {
+        if (project == null || packageName == null || className == null) {
+            return;
+        }
+        // IJavaProject lookup
+        IJavaProject javaProject = null;
+        try {
+            if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+                javaProject = JavaCore.create(project);
+            }
+            if (javaProject != null) {
+                IPath path = new Path(org.eclipse.egf.common.helper.FileHelper.convertPackageNameToFolderPath(packageName));
+                JavaHelper.deleteJavaFile(javaProject, path.append(className + ".java"), false); //$NON-NLS-1$
+            }
+        } catch (Throwable t) {
+            // Ignore
+        } finally {
+            try {
+                javaProject.close();
+            } catch (Throwable t) {
+                // Ignore
+            }
+        }
+    }
 
 }
