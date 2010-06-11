@@ -1,4 +1,4 @@
-package callbackAndReporter2;
+package base.substitution_1_3;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,24 +7,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class AttributePattern extends callbackAndReporter2.BasePattern {
+public class ClassConditionPattern extends base.ClassPattern {
 	protected static String nl;
 
-	public static synchronized AttributePattern create(String lineSeparator) {
+	public static synchronized ClassConditionPattern create(String lineSeparator) {
 		nl = lineSeparator;
-		AttributePattern result = new AttributePattern();
+		ClassConditionPattern result = new ClassConditionPattern();
 		nl = null;
 		return result;
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "[Attribute ";
-	protected final String TEXT_2 = "]";
-	protected final String TEXT_3 = "[end Attribute]";
+	protected final String TEXT_1 = "[class ";
+	protected final String TEXT_2 = " with condition]";
+	protected final String TEXT_3 = NL;
 	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
 
-	public AttributePattern() {
+	public ClassConditionPattern() {
 		//Here is the constructor
 		StringBuffer stringBuffer = new StringBuffer();
 
@@ -44,9 +43,10 @@ public class AttributePattern extends callbackAndReporter2.BasePattern {
 
 		for (Object parameterParameter : parameterList) {
 
-			this.parameter = (org.eclipse.emf.ecore.EAttribute) parameterParameter;
+			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			orchestration(ctx);
+			if (preCondition())
+				orchestration(ctx);
 
 		}
 		if (ctx.useReporter()) {
@@ -54,8 +54,8 @@ public class AttributePattern extends callbackAndReporter2.BasePattern {
 			ctx.clearBuffer();
 		}
 
+		stringBuffer.append(TEXT_3);
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
 		return stringBuffer.toString();
 	}
 
@@ -78,12 +78,6 @@ public class AttributePattern extends callbackAndReporter2.BasePattern {
 		return loop;
 	}
 
-	protected org.eclipse.emf.ecore.EAttribute parameter = null;
-
-	public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
-		this.parameter = object;
-	}
-
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("parameter", this.parameter);
@@ -97,8 +91,7 @@ public class AttributePattern extends callbackAndReporter2.BasePattern {
 		stringBuffer.append(TEXT_2);
 	}
 
-	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		stringBuffer.append(TEXT_3);
+	public boolean preCondition() throws Exception {
+		return "Employee".equals(parameter.getName());
 	}
 }

@@ -42,6 +42,46 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_fQx9AXSPEd-vn419Bi375g" name="extended run 1.3">
+    <viewpointContainer xmi:id="_iQIDAHSPEd-vn419Bi375g">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_k6ILIHSPEd-vn419Bi375g">
+        <libraries xmi:id="_lUi2QHSPEd-vn419Bi375g" name="base.substitution_1_3">
+          <elements xmi:type="pattern:Pattern" xmi:id="_nVvR8HSPEd-vn419Bi375g" name="ClassConditionPattern"
+              headerMethod="#_nVvR8XSPEd-vn419Bi375g" footerMethod="#_nVvR9XSPEd-vn419Bi375g"
+              superPattern="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_p_tlEEPgEd-mKPwasigGsA"
+              initMethod="#_nVvR8nSPEd-vn419Bi375g" conditionMethod="#_nVvR83SPEd-vn419Bi375g">
+            <methods xmi:id="_nVvR8XSPEd-vn419Bi375g" name="header" patternFilePath="templates/pattern._nVvR8HSPEd-vn419Bi375g/method._nVvR8XSPEd-vn419Bi375g.pt"/>
+            <methods xmi:id="_nVvR8nSPEd-vn419Bi375g" name="init" patternFilePath="templates/pattern._nVvR8HSPEd-vn419Bi375g/method._nVvR8nSPEd-vn419Bi375g.pt"/>
+            <methods xmi:id="_nVvR83SPEd-vn419Bi375g" name="preCondition" patternFilePath="templates/pattern._nVvR8HSPEd-vn419Bi375g/method._nVvR83SPEd-vn419Bi375g.pt"/>
+            <methods xmi:id="_nVvR9HSPEd-vn419Bi375g" name="start" patternFilePath="templates/pattern._nVvR8HSPEd-vn419Bi375g/method._nVvR9HSPEd-vn419Bi375g.pt"/>
+            <methods xmi:id="_nVvR9XSPEd-vn419Bi375g" name="footer" patternFilePath="templates/pattern._nVvR8HSPEd-vn419Bi375g/method._nVvR9XSPEd-vn419Bi375g.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_nVvR9nSPEd-vn419Bi375g"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_nVvR93SPEd-vn419Bi375g"
+                name="JET"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_9SbLsHSPEd-vn419Bi375g">
+        <domains xmi:type="domain:DomainURI" xmi:id="__KOa0HSPEd-vn419Bi375g" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_IPHiwHSQEd-vn419Bi375g">
+      <invocations xmi:id="_K_IzUHSQEd-vn419Bi375g" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_lMRBAEPcEd-mKPwasigGsA">
+        <invocationContractContainer xmi:id="_K_IzUXSQEd-vn419Bi375g">
+          <invocationContracts xmi:id="_K_IzUnSQEd-vn419Bi375g" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_nJPEAEPcEd-mKPwasigGsA">
+            <type xmi:type="domain:TypeDomainURI" xmi:id="_MlwL0HSQEd-vn419Bi375g"
+                domain="#__KOa0HSPEd-vn419Bi375g"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_K_IzU3SQEd-vn419Bi375g" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_R7MgUEZKEd-PqL2cWqhi6Q">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_PrzWwHSQEd-vn419Bi375g">
+              <substitutions xmi:id="_Ua_pwHSQEd-vn419Bi375g" replacedElement="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_1.fcore#_p_tlEEPgEd-mKPwasigGsA"
+                  replacement="#_nVvR8HSPEd-vn419Bi375g"/>
+            </type>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
   <fcore:FactoryComponent xmi:id="_VQousGHAEd-kBJe5uU7CpQ" name="extended run 1.2">
     <viewpointContainer xmi:id="_YmID0GHAEd-kBJe5uU7CpQ">
       <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_Zb-twGHAEd-kBJe5uU7CpQ">

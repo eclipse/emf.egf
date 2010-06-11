@@ -1,5 +1,7 @@
 Export-Package: base,
+ base.substitution,
  base.substitution_1_2,
+ base.substitution_1_3,
  callbackAndReporter,
  callbackAndReporter2,
  callbackAndReporter3,
@@ -15,11 +17,14 @@ Export-Package: base,
  linefeed,
  linefeed2,
  no_callback.strategy,
+ org.eclipse.egf.core.test.pattern,
  pattern.call1,
  pattern.call2,
  substitution.another.base,
  substitution.another.call,
- substitution3.base
+ substitution3.base,
+ substitution3.extension,
+ substitution_4
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.egf.core.test.pattern;singleton:=true
 Bundle-Name: Pattern
