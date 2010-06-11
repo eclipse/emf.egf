@@ -26,9 +26,15 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class OpenActivityMenuContributor extends OpenEObjectMenuContributor {
 
-    public static final String OPEN_ACTIVITY_ACTION_ID = "open-activity"; //$NON-NLS-1$  
+    public static final String OPEN_ACTIVITY_ACTION_ID = "open-activity"; //$NON-NLS-1$
 
-    protected final OpenAction _openAction = new OpenAction(OPEN_ACTIVITY_ACTION_ID) {
+    private OpenEObjectMenuContributor.OpenAction _openAction;
+
+    protected class ActivityOpenAction extends OpenAction {
+
+        public ActivityOpenAction() {
+            super(OPEN_ACTIVITY_ACTION_ID);
+        }
 
         @Override
         protected EObject getEObject() {
@@ -41,13 +47,12 @@ public class OpenActivityMenuContributor extends OpenEObjectMenuContributor {
             }
             Object object = sselection.getFirstElement();
             if (object instanceof Invocation) {
-                Invocation invocation = (Invocation) object;
-                return invocation.getInvokedActivity();
+                return ((Invocation) object).getInvokedActivity();
             }
             return null;
         }
 
-    };
+    }
 
     @Override
     protected String getText() {
@@ -59,6 +64,9 @@ public class OpenActivityMenuContributor extends OpenEObjectMenuContributor {
 
     @Override
     protected OpenAction getOpenAction() {
+        if (_openAction == null) {
+            _openAction = new ActivityOpenAction();
+        }
         return _openAction;
     }
 
