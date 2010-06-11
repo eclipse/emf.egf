@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public abstract class AssemblyContentProvider extends PatternSwitch<String> {
 
-    protected static final String OK = "ok";
+    protected static final String OK = "ok"; //$NON-NLS-1$
 
     protected final Pattern pattern;
 
@@ -140,9 +140,10 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
 
     static class WrappedException extends RuntimeException {
 
+        static final long serialVersionUID = 1L;
+
         public WrappedException(Throwable cause) {
             super(cause);
-
         }
 
     }
