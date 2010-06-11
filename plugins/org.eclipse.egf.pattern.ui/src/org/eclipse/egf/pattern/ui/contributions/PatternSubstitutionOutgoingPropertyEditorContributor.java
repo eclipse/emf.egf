@@ -22,6 +22,8 @@ import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.widgets.Composite;
@@ -33,24 +35,26 @@ import org.eclipse.swt.widgets.Control;
  */
 public class PatternSubstitutionOutgoingPropertyEditorContributor extends DefaultPropertyEditorContributor {
 
-  public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__OUTGOING) && object instanceof Substitution;
-  }
+    public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
+        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__OUTGOING) && object instanceof Substitution;
+    }
 
-  public CellEditor createPropertyEditor(final Composite composite, Object object, IItemPropertyDescriptor descriptor) {
-    return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
-      @Override
-      protected Object openDialogBox(Control cellEditorWindow) {
-        PatternSelectionDialog dialog = new PatternSelectionDialog(cellEditorWindow.getShell(), false);
-        dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
-        dialog.open();
-        Object[] result = dialog.getResult();
-        if (result != null && result.length > 0 && result[0] instanceof Pattern) {
-          return result[0];
-        }
-        return null;
-      }
-    };
-  }
+    public CellEditor createPropertyEditor(final Composite composite, final Object object, IItemPropertyDescriptor descriptor) {
+        return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
+
+            @Override
+            protected Object openDialogBox(Control cellEditorWindow) {
+                PatternSelectionDialog dialog = new PatternSelectionDialog(cellEditorWindow.getShell(), false);
+                dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
+                dialog.open();
+                Object[] result = dialog.getResult();
+                // Solve the result against our current resourceSet
+                if (result != null && result.length > 0 && result[0] instanceof Pattern) {
+                    return ((EObject) object).eResource().getResourceSet().getEObject(EcoreUtil.getURI((EObject) result[0]), true);
+                }
+                return null;
+            }
+        };
+    }
 
 }
