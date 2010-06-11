@@ -24,11 +24,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -47,7 +48,6 @@ import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
@@ -275,8 +275,8 @@ public class RunActivityAction implements IObjectActionDelegate {
         if (selectedObject instanceof IResource) {
             // Load this IFile as an EMF Resource
             try {
-                ResourceSet resourceSet = new ResourceSetImpl();
-                Resource resource = ResourceHelper.loadResource(resourceSet, (IResource) selectedObject);
+                ResourceSet resourceSet = new EGFResourceSet();
+                Resource resource = resourceSet.getResource(URIHelper.getPlatformURI((IResource) selectedObject), true);
                 IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
                 if (fcore != null) {
                     if (resource.getContents().size() == 1 && resource.getContents().get(0) instanceof Activity) {
