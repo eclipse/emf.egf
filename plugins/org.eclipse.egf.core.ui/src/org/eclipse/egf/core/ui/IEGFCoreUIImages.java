@@ -16,14 +16,24 @@ package org.eclipse.egf.core.ui;
  */
 public interface IEGFCoreUIImages {
 
-  /**
-   * Identifies a Fcore resource.
-   */
-  public final String IMG_FACTORY_COMPONENT = "obj16/Fcore.gif"; //$NON-NLS-1$
+    /**
+     * Identifies a Fcore resource.
+     */
+    public final String IMG_FCORE = "obj16/fcore.gif"; //$NON-NLS-1$
 
-  /**
-   * Identifies a mandatory field.
-   */
-  public final String IMG_MANDATORY = "ovr16/Mandatory.gif"; //$NON-NLS-1$    
+    /**
+     * Identifies a jar resource.
+     */
+    public final String IMG_JAR = "obj16/jar.gif"; //$NON-NLS-1$  
+
+    /**
+     * Identifies a directory resource.
+     */
+    public final String IMG_DIRECTORY = "obj16/directory.gif"; //$NON-NLS-1$  
+
+    /**
+     * Identifies a mandatory field.
+     */
+    public final String IMG_MANDATORY = "ovr16/Mandatory.gif"; //$NON-NLS-1$    
 
 }
