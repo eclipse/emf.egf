@@ -109,4 +109,8 @@ public class CoreUIMessages {
 
     public static String EcoreSelectionDialog_select;
 
+    public static String _UI_FileConflict_label;
+
+    public static String _WARN_FileConflict;
+
 }

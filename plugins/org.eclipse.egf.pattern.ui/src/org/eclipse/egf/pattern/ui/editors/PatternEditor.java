@@ -28,6 +28,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.EGFResourceLoadedListener;
 import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
@@ -596,8 +597,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      * Shows a dialog that asks if conflicting changes should be discarded.
      */
     protected boolean handleDirtyConflict() {
-        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
-                "External changes, close the editor ?"); //$NON-NLS-1$
+        return MessageDialog.openQuestion(getSite().getShell(), CoreUIMessages._UI_FileConflict_label, CoreUIMessages._WARN_FileConflict);
     }
 
     public ResourceListener getListener() {

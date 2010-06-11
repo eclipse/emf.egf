@@ -43,6 +43,7 @@ import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
@@ -809,11 +810,10 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
-     * @generated
+     * @generated NOT
      */
     protected boolean handleDirtyConflict() {
-        return MessageDialog.openQuestion(getSite().getShell(), getString("_UI_FileConflict_label"), //$NON-NLS-1$
-                getString("_WARN_FileConflict")); //$NON-NLS-1$
+        return MessageDialog.openQuestion(getSite().getShell(), CoreUIMessages._UI_FileConflict_label, CoreUIMessages._WARN_FileConflict);
     }
 
     /**
