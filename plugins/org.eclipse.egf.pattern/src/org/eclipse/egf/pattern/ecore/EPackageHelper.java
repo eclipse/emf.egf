@@ -20,12 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
-import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
-import org.eclipse.egf.pattern.Activator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
@@ -35,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * The purpose is to handle ecore models from the workspace as well as runtime
@@ -52,12 +51,13 @@ public class EPackageHelper {
 
     public static final String INSTANCE_FIELD_NAME = "eINSTANCE"; //$NON-NLS-1$
 
+    // TODO: we mix the target definition with the runtime definition
+    // This should be clarified and processed
     public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
 
     private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
     private static void init() {
-
         for (IPlatformGenModel genModel : EGFCorePlugin.getPlatformGenModels()) {
             addEcoreModel(genModel);
         }
@@ -87,7 +87,7 @@ public class EPackageHelper {
             }
             addPackage2registry(genModel);
         } catch (Exception e) {
-            Activator.getDefault().logError(e);
+            EGFCorePlugin.getDefault().logError(e);
         }
 
     }
@@ -108,8 +108,8 @@ public class EPackageHelper {
     }
 
     private static void handleURI(URI uri) {
-        ResourceSetImpl set = new ResourceSetImpl();
-        Resource res = ResourceHelper.loadResource(set, uri);
+        ResourceSet set = new EGFResourceSet();
+        Resource res = set.getResource(uri, true);
         try {
             for (EObject obj : res.getContents()) {
                 if (obj instanceof GenModel) {
@@ -150,6 +150,7 @@ public class EPackageHelper {
     }
 
     public static class RegistrationException extends Exception {
+
         private static final long serialVersionUID = 1L;
 
         private RegistrationException(String message, Throwable cause) {
@@ -168,14 +169,13 @@ public class EPackageHelper {
         }
 
         public EFactory getEFactory() {
-
             return null;
         }
 
         public EPackage getEPackage() {
             try {
                 Class<?> javaClass = getGenModel().getPlatformBundle().getBundle().loadClass(getGenModel().getGeneratedPackage());
-                Field field = javaClass.getField("eINSTANCE");
+                Field field = javaClass.getField(INSTANCE_FIELD_NAME);
                 Object result = field.get(null);
                 return (EPackage) result;
             } catch (ClassNotFoundException e) {
@@ -190,6 +190,7 @@ public class EPackageHelper {
         public IPlatformGenModel getGenModel() {
             return genModel;
         }
+
     }
 
     private static class Descriptor implements EPackage.Descriptor {
