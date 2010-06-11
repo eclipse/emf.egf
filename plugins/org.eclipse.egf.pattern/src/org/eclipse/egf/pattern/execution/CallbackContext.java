@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -27,11 +27,11 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 public class CallbackContext extends DefaultInternalPatternContext {
 
     private final CallbackReporter reporter = new CallbackReporter();
+
     private final StringBuffer buffer = new StringBuffer(2000);
 
     public CallbackContext(InternalPatternContext parent) {
-        super((InternalPatternContext) parent);
-
+        super(parent);
     }
 
     @Override
@@ -48,11 +48,10 @@ public class CallbackContext extends DefaultInternalPatternContext {
     }
 
     public void setReporter(PatternExecutionReporter reporter) {
-        throw new UnsupportedOperationException("unexpected");
+        throw new UnsupportedOperationException("unexpected"); //$NON-NLS-1$
     }
 
     public boolean useReporter() {
-
         return true;
     }
 
@@ -63,7 +62,7 @@ public class CallbackContext extends DefaultInternalPatternContext {
     private class CallbackReporter implements PatternExecutionReporter {
 
         public void executionFinished(String output, PatternContext context) {
-            throw new UnsupportedOperationException("unexpected");
+            throw new UnsupportedOperationException("unexpected"); //$NON-NLS-1$
         }
 
         public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
@@ -71,4 +70,5 @@ public class CallbackContext extends DefaultInternalPatternContext {
         }
 
     }
+
 }
