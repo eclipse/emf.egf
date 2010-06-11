@@ -39,8 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MethodCallItemProvider extends CallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class MethodCallItemProvider extends CallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -116,9 +115,9 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
         updateChildren(notification);
 
         switch (notification.getFeatureID(MethodCall.class)) {
-            case PatternPackage.METHOD_CALL__CALLED:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.METHOD_CALL__CALLED:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }

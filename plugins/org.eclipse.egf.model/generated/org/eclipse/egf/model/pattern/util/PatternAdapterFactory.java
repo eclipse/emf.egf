@@ -108,7 +108,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     protected PatternSwitch<Adapter> modelSwitch = new PatternSwitch<Adapter>() {
-
         @Override
         public Adapter casePattern(Pattern object) {
             return createPatternAdapter();

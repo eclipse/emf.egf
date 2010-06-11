@@ -39,8 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AbstractPatternCallItemProvider extends CallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class AbstractPatternCallItemProvider extends CallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -105,9 +104,9 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
         updateChildren(notification);
 
         switch (notification.getFeatureID(AbstractPatternCall.class)) {
-            case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }

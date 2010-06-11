@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -44,11 +45,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Pattern} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier. <!--
@@ -162,7 +161,6 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
      * This adds a property descriptor for the Nature feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addNaturePropertyDescriptor(Object object) {
@@ -176,7 +174,6 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
      * This adds a property descriptor for the Init Method feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addInitMethodPropertyDescriptor(Object object) {
@@ -184,6 +181,18 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
                 getString("_UI_PropertyDescriptor_description", "_UI_Pattern_initMethod_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 PatternPackage.Literals.PATTERN__INIT_METHOD, true, false, true, null, getString("_UI_MethodPropertyCategory"), //$NON-NLS-1$
                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Condition Method feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addConditionMethodPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_conditionMethod_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Pattern_conditionMethod_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN__CONDITION_METHOD, true, false, true, null, null, null));
     }
 
     /**
@@ -203,7 +212,6 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -217,7 +225,6 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     /**
      * This returns Pattern.gif.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -229,7 +236,6 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -244,7 +250,6 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -252,19 +257,19 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(Pattern.class)) {
-            case PatternPackage.PATTERN__HEADER_METHOD:
-            case PatternPackage.PATTERN__FOOTER_METHOD:
-            case PatternPackage.PATTERN__SUPER_PATTERN:
-            case PatternPackage.PATTERN__NATURE:
-            case PatternPackage.PATTERN__INIT_METHOD:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case PatternPackage.PATTERN__METHODS:
-            case PatternPackage.PATTERN__ORCHESTRATION:
-            case PatternPackage.PATTERN__PARAMETERS:
-            case PatternPackage.PATTERN__VARIABLES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case PatternPackage.PATTERN__HEADER_METHOD:
+        case PatternPackage.PATTERN__FOOTER_METHOD:
+        case PatternPackage.PATTERN__SUPER_PATTERN:
+        case PatternPackage.PATTERN__NATURE:
+        case PatternPackage.PATTERN__INIT_METHOD:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        case PatternPackage.PATTERN__METHODS:
+        case PatternPackage.PATTERN__ORCHESTRATION:
+        case PatternPackage.PATTERN__PARAMETERS:
+        case PatternPackage.PATTERN__VARIABLES:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

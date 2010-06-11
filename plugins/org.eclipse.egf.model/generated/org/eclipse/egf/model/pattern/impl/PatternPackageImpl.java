@@ -322,7 +322,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         // Register package validator
         EValidator.Registry.INSTANCE.put(thePatternPackage, new EValidator.Descriptor() {
-
             public EValidator getEValidator() {
                 return PatternValidator.INSTANCE;
             }
@@ -414,6 +413,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     public EReference getPattern_InitMethod() {
         return (EReference) patternEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_ConditionMethod() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(9);
     }
 
     /**
@@ -932,6 +940,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         createEReference(patternEClass, PATTERN__NATURE);
         createEReference(patternEClass, PATTERN__VARIABLES);
         createEReference(patternEClass, PATTERN__INIT_METHOD);
+        createEReference(patternEClass, PATTERN__CONDITION_METHOD);
 
         patternMethodEClass = createEClass(PATTERN_METHOD);
         createEReference(patternMethodEClass, PATTERN_METHOD__PATTERN);
@@ -1097,6 +1106,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEReference(getPattern_Nature(), this.getPatternNature(), null, "nature", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPattern_Variables(), this.getPatternVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPattern_InitMethod(), this.getPatternMethod(), null, "initMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_ConditionMethod(), this.getPatternMethod(), null, "conditionMethod", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         EOperation op = addEOperation(patternEClass, this.getPatternMethod(), "getMethod", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         addEParameter(op, theEcorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1252,23 +1262,17 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(patternEClass, source, new String[] {
-                "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternEClass, source, new String[] { "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternMethodEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternMethodEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternParameterEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternParameterEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternElementEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternElementEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternNatureEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternNatureEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternVariableEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternVariableEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
     }
 

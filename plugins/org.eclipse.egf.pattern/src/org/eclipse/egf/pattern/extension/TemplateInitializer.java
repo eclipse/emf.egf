@@ -58,6 +58,11 @@ public abstract class TemplateInitializer extends BasePatternInitializer {
         return runEngine(TemplateEngine.Templates.INIT);
     }
 
+    @Override
+    protected String getConditionContent(PatternMethod method) throws PatternException {
+        return runEngine(TemplateEngine.Templates.PRE_CONDITION);
+    }
+
     private String runEngine(TemplateEngine.Templates template) throws PatternException {
         try {
             return engine.process(template, createContext());

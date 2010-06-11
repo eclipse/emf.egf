@@ -15,6 +15,7 @@ package org.eclipse.egf.model.pattern.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -37,17 +38,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternLibrary} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class PatternLibraryItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class PatternLibraryItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternLibraryItemProvider(AdapterFactory adapterFactory) {
@@ -58,7 +56,6 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -71,10 +68,11 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -90,7 +88,6 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -105,7 +102,6 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
      * This returns PatternLibrary.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -117,7 +113,6 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -132,7 +127,6 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -140,10 +134,10 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
         updateChildren(notification);
 
         switch (notification.getFeatureID(PatternLibrary.class)) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-            case PatternPackage.PATTERN_LIBRARY__FILTERS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

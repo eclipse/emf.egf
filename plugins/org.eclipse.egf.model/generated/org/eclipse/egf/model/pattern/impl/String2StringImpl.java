@@ -28,11 +28,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.String2StringImpl#getTypedKey <em>Key</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.String2StringImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.String2StringImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.String2StringImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class String2StringImpl extends ModelElementImpl implements BasicEMap.Entry<String, String> {
@@ -41,7 +41,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -51,7 +50,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
      * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getTypedKey()
      * @generated
      * @ordered
@@ -62,7 +60,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
      * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getTypedKey()
      * @generated
      * @ordered
@@ -73,7 +70,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
      * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getTypedValue()
      * @generated
      * @ordered
@@ -84,7 +80,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
      * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getTypedValue()
      * @generated
      * @ordered
@@ -94,7 +89,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected String2StringImpl() {
@@ -104,7 +98,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -115,7 +108,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getTypedKey() {
@@ -125,7 +117,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setTypedKey(String newKey) {
@@ -138,7 +129,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getTypedValue() {
@@ -148,7 +138,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setTypedValue(String newValue) {
@@ -161,16 +150,15 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.STRING2_STRING__KEY:
-                return getTypedKey();
-            case PatternPackage.STRING2_STRING__VALUE:
-                return getTypedValue();
+        case PatternPackage.STRING2_STRING__KEY:
+            return getTypedKey();
+        case PatternPackage.STRING2_STRING__VALUE:
+            return getTypedValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -178,18 +166,17 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.STRING2_STRING__KEY:
-                setTypedKey((String) newValue);
-                return;
-            case PatternPackage.STRING2_STRING__VALUE:
-                setTypedValue((String) newValue);
-                return;
+        case PatternPackage.STRING2_STRING__KEY:
+            setTypedKey((String) newValue);
+            return;
+        case PatternPackage.STRING2_STRING__VALUE:
+            setTypedValue((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -197,18 +184,17 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.STRING2_STRING__KEY:
-                setTypedKey(KEY_EDEFAULT);
-                return;
-            case PatternPackage.STRING2_STRING__VALUE:
-                setTypedValue(VALUE_EDEFAULT);
-                return;
+        case PatternPackage.STRING2_STRING__KEY:
+            setTypedKey(KEY_EDEFAULT);
+            return;
+        case PatternPackage.STRING2_STRING__VALUE:
+            setTypedValue(VALUE_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -216,16 +202,15 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.STRING2_STRING__KEY:
-                return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-            case PatternPackage.STRING2_STRING__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        case PatternPackage.STRING2_STRING__KEY:
+            return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+        case PatternPackage.STRING2_STRING__VALUE:
+            return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
         return super.eIsSet(featureID);
     }
@@ -233,7 +218,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -253,7 +237,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected int hash = -1;
@@ -261,7 +244,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public int getHash() {
@@ -275,7 +257,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setHash(int hash) {
@@ -285,7 +266,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getKey() {
@@ -295,7 +275,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setKey(String key) {
@@ -305,7 +284,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getValue() {
@@ -315,7 +293,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String setValue(String value) {
@@ -327,7 +304,6 @@ public class String2StringImpl extends ModelElementImpl implements BasicEMap.Ent
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")

@@ -47,6 +47,10 @@ public abstract class PatternFactory {
     public static final String PRECONDITION_METHOD_NAME = "preCondition";
     public static final String BODY_METHOD_NAME = "body";
 
+    public static boolean isSpecialMethod(String name) {
+        return HEADER_METHOD_NAME.equals(name) || INIT_METHOD_NAME.equals(name) || PRECONDITION_METHOD_NAME.equals(name) || FOOTER_METHOD_NAME.equals(name);
+    }
+
     public void createDebugPatternUC5(PatternLibrary lib) {
         Pattern p1 = createPattern(lib, "Pattern UN");
 
@@ -433,6 +437,11 @@ public abstract class PatternFactory {
         pattern.setInitMethod(initMethod);
         initIinit(initMethod);
 
+        PatternMethod preConditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        pattern.getMethods().add(preConditionMethod);
+        pattern.setConditionMethod(preConditionMethod);
+        initPreCondition(preConditionMethod);
+
         PatternMethod bodyMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(bodyMethod);
         initBody(bodyMethod);
@@ -468,27 +477,23 @@ public abstract class PatternFactory {
         // nom du projet :( )
     }
 
-    /**
-     * @param bodyMethod
-     */
     protected void initBody(PatternMethod method) {
         method.setName(BODY_METHOD_NAME);
         method.setPatternFilePath(createURI(method));
     }
 
-    /**
-     * @param headerMethod
-     */
     protected void initHeader(PatternMethod method) {
         method.setName(HEADER_METHOD_NAME);
         method.setPatternFilePath(createURI(method));
     }
 
-    /**
-     * @param headerMethod
-     */
     protected void initIinit(PatternMethod method) {
         method.setName(INIT_METHOD_NAME);
+        method.setPatternFilePath(createURI(method));
+    }
+
+    protected void initPreCondition(PatternMethod method) {
+        method.setName(PRECONDITION_METHOD_NAME);
         method.setPatternFilePath(createURI(method));
     }
 

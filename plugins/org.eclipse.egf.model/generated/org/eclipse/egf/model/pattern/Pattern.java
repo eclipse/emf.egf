@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getNature <em>Nature</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getInitMethod <em>Init Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getConditionMethod <em>Condition Method</em>}</li>
  * </ul>
  * </p>
  *
@@ -237,6 +238,32 @@ public interface Pattern extends PatternElement {
      * @generated
      */
     void setInitMethod(PatternMethod value);
+
+    /**
+     * Returns the value of the '<em><b>Condition Method</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Condition Method</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Condition Method</em>' reference.
+     * @see #setConditionMethod(PatternMethod)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_ConditionMethod()
+     * @model resolveProxies="false"
+     * @generated
+     */
+    PatternMethod getConditionMethod();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Pattern#getConditionMethod <em>Condition Method</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Condition Method</em>' reference.
+     * @see #getConditionMethod()
+     * @generated
+     */
+    void setConditionMethod(PatternMethod value);
 
     /**
      * <!-- begin-user-doc -->

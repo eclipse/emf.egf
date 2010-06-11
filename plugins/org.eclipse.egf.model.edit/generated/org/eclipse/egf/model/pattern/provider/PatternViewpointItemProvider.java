@@ -43,8 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternViewpointItemProvider extends ViewpointItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class PatternViewpointItemProvider extends ViewpointItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -136,9 +135,9 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
         updateChildren(notification);
 
         switch (notification.getFeatureID(PatternViewpoint.class)) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

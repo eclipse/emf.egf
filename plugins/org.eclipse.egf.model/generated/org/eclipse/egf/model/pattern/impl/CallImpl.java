@@ -116,10 +116,10 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.CALL__PATTERN:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetPattern((Pattern) otherEnd, msgs);
+        case PatternPackage.CALL__PATTERN:
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            return basicSetPattern((Pattern) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -132,8 +132,8 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.CALL__PATTERN:
-                return basicSetPattern(null, msgs);
+        case PatternPackage.CALL__PATTERN:
+            return basicSetPattern(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -146,8 +146,8 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-            case PatternPackage.CALL__PATTERN:
-                return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN__ORCHESTRATION, Pattern.class, msgs);
+        case PatternPackage.CALL__PATTERN:
+            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN__ORCHESTRATION, Pattern.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -160,8 +160,8 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.CALL__PATTERN:
-                return getPattern();
+        case PatternPackage.CALL__PATTERN:
+            return getPattern();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -174,9 +174,9 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.CALL__PATTERN:
-                setPattern((Pattern) newValue);
-                return;
+        case PatternPackage.CALL__PATTERN:
+            setPattern((Pattern) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -189,9 +189,9 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.CALL__PATTERN:
-                setPattern((Pattern) null);
-                return;
+        case PatternPackage.CALL__PATTERN:
+            setPattern((Pattern) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -204,8 +204,8 @@ public abstract class CallImpl extends ModelElementImpl implements Call {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.CALL__PATTERN:
-                return getPattern() != null;
+        case PatternPackage.CALL__PATTERN:
+            return getPattern() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -111,10 +111,10 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-                if (resolve)
-                    return getCalled();
-                return basicGetCalled();
+        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+            if (resolve)
+                return getCalled();
+            return basicGetCalled();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -127,9 +127,9 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-                setCalled((Pattern) newValue);
-                return;
+        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+            setCalled((Pattern) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -142,9 +142,9 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-                setCalled((Pattern) null);
-                return;
+        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+            setCalled((Pattern) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -157,8 +157,8 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-                return called != null;
+        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+            return called != null;
         }
         return super.eIsSet(featureID);
     }

@@ -41,17 +41,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link java.util.Map.Entry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class String2PatternListItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class String2PatternListItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String2PatternListItemProvider(AdapterFactory adapterFactory) {
@@ -62,7 +59,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -80,7 +76,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * This adds a property descriptor for the Key feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addKeyPropertyDescriptor(Object object) {
@@ -94,7 +89,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * This adds a property descriptor for the Value feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addValuePropertyDescriptor(Object object) {
@@ -108,7 +102,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * This returns String2PatternList.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -120,7 +113,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -134,7 +126,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -142,10 +133,10 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
         updateChildren(notification);
 
         switch (notification.getFeatureID(Map.Entry.class)) {
-            case PatternPackage.STRING2_PATTERN_LIST__KEY:
-            case PatternPackage.STRING2_PATTERN_LIST__VALUE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.STRING2_PATTERN_LIST__KEY:
+        case PatternPackage.STRING2_PATTERN_LIST__VALUE:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }
@@ -155,7 +146,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -167,7 +157,6 @@ public class String2PatternListItemProvider extends ModelElementItemProvider imp
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

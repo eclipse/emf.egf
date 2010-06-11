@@ -20,7 +20,7 @@ import java.text.MessageFormat;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -139,11 +139,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
                 isModify = true;
                 Button editButton = implementationPage.getEditButton();
                 if (editButton != null && !editButton.isDisposed()) {
-                    if (Messages.ImplementationPage_header.equals(text) || Messages.ImplementationPage_init.equals(text) || Messages.ImplementationPage_footer.equals(text)) {
-                        editButton.setEnabled(false);
-                    } else if (!("").equals(text)) {
-                        editButton.setEnabled(true);
-                    }
+                    editButton.setEnabled(!PatternFactory.isSpecialMethod(text) && !("").equals(text));
                 }
             }
         });

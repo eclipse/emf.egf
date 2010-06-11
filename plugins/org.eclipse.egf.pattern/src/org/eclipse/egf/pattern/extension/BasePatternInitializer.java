@@ -49,7 +49,7 @@ public abstract class BasePatternInitializer implements PatternInitializer {
     public void updateContent() throws PatternException {
         for (PatternMethod method : pattern.getMethods()) {
             String methodName = method.getName();
-            if (PatternFactory.HEADER_METHOD_NAME.equals(methodName) || PatternFactory.INIT_METHOD_NAME.equals(methodName) || PatternFactory.FOOTER_METHOD_NAME.equals(methodName)) {
+            if (PatternFactory.isSpecialMethod(methodName)) {
                 IFile outputFile = getFile(method);
                 createFileContent(outputFile, method);
             }
@@ -64,6 +64,8 @@ public abstract class BasePatternInitializer implements PatternInitializer {
             content = getFooterContent(method);
         else if (method == pattern.getInitMethod())
             content = getInitContent(method);
+        else if (method == pattern.getConditionMethod())
+            content = getConditionContent(method);
         else
             content = getDefaultContent(method);
         try {
@@ -73,6 +75,8 @@ public abstract class BasePatternInitializer implements PatternInitializer {
 
         }
     }
+
+    protected abstract String getConditionContent(PatternMethod method) throws PatternException;
 
     protected abstract String getHeaderContent(PatternMethod method) throws PatternException;
 

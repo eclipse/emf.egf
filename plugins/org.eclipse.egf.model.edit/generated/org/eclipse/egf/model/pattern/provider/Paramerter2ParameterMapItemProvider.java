@@ -40,17 +40,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link java.util.Map.Entry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Paramerter2ParameterMapItemProvider(AdapterFactory adapterFactory) {
@@ -61,7 +58,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -79,7 +75,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * This adds a property descriptor for the Value feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addValuePropertyDescriptor(Object object) {
@@ -92,7 +87,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * This adds a property descriptor for the Key feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addKeyPropertyDescriptor(Object object) {
@@ -105,7 +99,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * This returns Paramerter2ParameterMap.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -117,7 +110,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -131,7 +123,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -139,10 +130,10 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
         updateChildren(notification);
 
         switch (notification.getFeatureID(Map.Entry.class)) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }
@@ -152,7 +143,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -164,7 +154,6 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

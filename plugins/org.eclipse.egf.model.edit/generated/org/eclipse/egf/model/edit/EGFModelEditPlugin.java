@@ -52,9 +52,7 @@ public final class EGFModelEditPlugin extends EMFPlugin {
         // TODO: EMF try to generate a delegated resource locator to the current plugin
         // however that one should be ignore eg: EGFModelsEditPlugin.INSTANCE is null
         // super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
-        super(new ResourceLocator[] {
-            EcoreEditPlugin.INSTANCE,
-        });
+        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
     }
 
     /**

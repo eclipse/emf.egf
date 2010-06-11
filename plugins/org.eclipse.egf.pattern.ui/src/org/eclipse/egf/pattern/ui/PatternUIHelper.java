@@ -25,6 +25,7 @@ import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
 import org.eclipse.egf.pattern.ui.editors.models.QueryContent;
@@ -68,11 +69,11 @@ public class PatternUIHelper {
         if (pattern != null) {
             for (PatternMethod patternMethod : pattern.getAllMethods()) {
                 String name = patternMethod.getName();
-                if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
-                    if (!names.contains(name)) {
-                        parentMethods.add(patternMethod);
-                        names.add(name);
-                    }
+                if (PatternFactory.isSpecialMethod(name))
+                    continue;
+                if (!names.contains(name)) {
+                    parentMethods.add(patternMethod);
+                    names.add(name);
                 }
             }
         }
@@ -88,9 +89,9 @@ public class PatternUIHelper {
         if (pattern != null) {
             for (PatternMethod patternMethod : pattern.getMethods()) {
                 String name = patternMethod.getName();
-                if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
-                    parentMethods.add(name);
-                }
+                if (PatternFactory.isSpecialMethod(name))
+                    continue;
+                parentMethods.add(name);
             }
         }
         return parentMethods;
@@ -217,7 +218,7 @@ public class PatternUIHelper {
      */
     public static boolean isRenameDisable(PatternMethod element) {
         Pattern pattern = element.getPattern();
-        if (pattern.getInitMethod().equals(element) || pattern.getHeaderMethod().equals(element) || pattern.getFooterMethod().equals(element)) {
+        if (pattern.getInitMethod().equals(element) || pattern.getConditionMethod().equals(element) || pattern.getHeaderMethod().equals(element) || pattern.getFooterMethod().equals(element)) {
             return true;
         }
         return false;

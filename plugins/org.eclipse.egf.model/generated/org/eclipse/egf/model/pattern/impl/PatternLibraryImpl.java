@@ -115,8 +115,8 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-                return ((InternalEList<InternalEObject>) (InternalEList<?>) getElements()).basicAdd(otherEnd, msgs);
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+            return ((InternalEList<InternalEObject>) (InternalEList<?>) getElements()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -129,10 +129,10 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-                return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
-            case PatternPackage.PATTERN_LIBRARY__FILTERS:
-                return ((InternalEList<?>) getFilters()).basicRemove(otherEnd, msgs);
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+            return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            return ((InternalEList<?>) getFilters()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -146,13 +146,13 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     @SuppressWarnings("all")
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-                return getElements();
-            case PatternPackage.PATTERN_LIBRARY__FILTERS:
-                if (coreType)
-                    return getFilters();
-                else
-                    return getFilters().map();
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+            return getElements();
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            if (coreType)
+                return getFilters();
+            else
+                return getFilters().map();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -166,13 +166,13 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-                getElements().clear();
-                getElements().addAll((Collection<? extends PatternElement>) newValue);
-                return;
-            case PatternPackage.PATTERN_LIBRARY__FILTERS:
-                ((EStructuralFeature.Setting) getFilters()).set(newValue);
-                return;
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+            getElements().clear();
+            getElements().addAll((Collection<? extends PatternElement>) newValue);
+            return;
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            ((EStructuralFeature.Setting) getFilters()).set(newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -185,12 +185,12 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-                getElements().clear();
-                return;
-            case PatternPackage.PATTERN_LIBRARY__FILTERS:
-                getFilters().clear();
-                return;
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+            getElements().clear();
+            return;
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            getFilters().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -203,10 +203,10 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
-                return elements != null && !elements.isEmpty();
-            case PatternPackage.PATTERN_LIBRARY__FILTERS:
-                return filters != null && !filters.isEmpty();
+        case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
+            return elements != null && !elements.isEmpty();
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            return filters != null && !filters.isEmpty();
         }
         return super.eIsSet(featureID);
     }

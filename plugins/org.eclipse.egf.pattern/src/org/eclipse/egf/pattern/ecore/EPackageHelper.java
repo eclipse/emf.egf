@@ -25,6 +25,7 @@ import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
+import org.eclipse.egf.pattern.Activator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
@@ -53,11 +54,13 @@ public class EPackageHelper {
 
     // TODO: we mix the target definition with the runtime definition
     // This should be clarified and processed
+
     public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
 
     private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
     private static void init() {
+
         for (IPlatformGenModel genModel : EGFCorePlugin.getPlatformGenModels()) {
             addEcoreModel(genModel);
         }
@@ -87,7 +90,7 @@ public class EPackageHelper {
             }
             addPackage2registry(genModel);
         } catch (Exception e) {
-            EGFCorePlugin.getDefault().logError(e);
+            Activator.getDefault().logError(e);
         }
 
     }
@@ -150,7 +153,6 @@ public class EPackageHelper {
     }
 
     public static class RegistrationException extends Exception {
-
         private static final long serialVersionUID = 1L;
 
         private RegistrationException(String message, Throwable cause) {
@@ -169,6 +171,7 @@ public class EPackageHelper {
         }
 
         public EFactory getEFactory() {
+
             return null;
         }
 
@@ -190,7 +193,6 @@ public class EPackageHelper {
         public IPlatformGenModel getGenModel() {
             return genModel;
         }
-
     }
 
     private static class Descriptor implements EPackage.Descriptor {

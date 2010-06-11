@@ -211,7 +211,7 @@ public class PatternHelper {
         ArrayList<PatternMethod> result = new ArrayList<PatternMethod>();
         for (PatternMethod m : pattern.getMethods()) {
             String name = m.getName();
-            if (name.equals(PatternFactory.INIT_METHOD_NAME) || name.equals(PatternFactory.HEADER_METHOD_NAME) || name.equals(PatternFactory.FOOTER_METHOD_NAME) || name.equals(PatternFactory.PRECONDITION_METHOD_NAME))
+            if (PatternFactory.isSpecialMethod(name))
                 continue;
             result.add(m);
 
@@ -245,6 +245,7 @@ public class PatternHelper {
 
         private FilenameFormatException(String message) {
             super(message);
+
         }
 
     }
@@ -257,14 +258,11 @@ public class PatternHelper {
      */
 
     public static class Filename {
-
         private static final String PATTERN_TOKEN = "pattern.";
-
         private static final String METHOD_TOKEN = "method.";
 
         public static URI computeFileURI(PatternMethod method) {
-            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER
-                    + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
+            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
         }
 
         public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {

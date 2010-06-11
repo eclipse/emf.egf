@@ -29,7 +29,6 @@ import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.AssemblyContentProvider;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -70,11 +69,11 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
     @Override
     protected void call(PatternInjectedCall call) throws PatternException {
         Pattern pattern = call.getCalled();
-        String ctxName = "ctx_" + PatternHelper.generateID();
-        content.append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        String ctxName = "ctx_local";// + PatternHelper.generateID();
+        content.append('}').append(EGFCommonConstants.LINE_SEPARATOR).append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append(ctxName).append(".setValue(").append("PatternContext.INJECTED_CONTEXT, ").append(call.getContext().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
         String uri = EcoreUtil.getURI(pattern).toString();
-        content.append("CallHelper.executeWithContextInjection(\"").append(uri).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("CallHelper.executeWithContextInjection(\"").append(uri).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append('}').append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     @Override
@@ -96,7 +95,7 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
                 content.append("parameters.put(\"").append(binding.getKey().getName()).append("\", this.").append(binding.getValue().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
             }
         }
-        String ctxName = "ctx_" + PatternHelper.generateID();
+        String ctxName = "ctx_local";// + PatternHelper.generateID();
         content.append("ExecutionContext ").append(ctxName).append(" = new ExecutionContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR);
 
         String uri = EcoreUtil.getURI(pattern).toString();

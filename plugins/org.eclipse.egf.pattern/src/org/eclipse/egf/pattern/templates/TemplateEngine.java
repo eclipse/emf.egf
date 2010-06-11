@@ -53,7 +53,7 @@ public abstract class TemplateEngine {
 
     public static enum Templates {
 
-        HEADER("header"), FOOTER("footer"), INIT("init"), DEFAULT("default");
+        HEADER("header"), FOOTER("footer"), INIT("init"), PRE_CONDITION("condition"), DEFAULT("default");
 
         private final String templateName;
 

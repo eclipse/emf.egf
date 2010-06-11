@@ -331,7 +331,9 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void linkActivated(HyperlinkEvent e) {
-                // TODO
+                PatternMethod conditionMethod = getPattern().getConditionMethod();
+                if (conditionMethod != null)
+                    openMethodTemplate(conditionMethod.getID());
             }
         });
 
@@ -951,10 +953,7 @@ public class ImplementationPage extends PatternEditorPage {
         int index = methodsTableViewer.getTable().getSelectionIndex();
         PatternMethod drag = (PatternMethod) methodsTableViewer.getElementAt(index);
         String name = drag.getName();
-        if (Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name)) {
-            return false;
-        }
-        return true;
+        return !org.eclipse.egf.pattern.extension.PatternFactory.isSpecialMethod(name);
     }
 
     /**

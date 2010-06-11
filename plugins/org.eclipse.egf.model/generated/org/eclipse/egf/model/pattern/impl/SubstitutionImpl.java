@@ -33,11 +33,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutgoing <em>Outgoing</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getOutgoing <em>Outgoing</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl#getIncoming <em>Incoming</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class SubstitutionImpl extends ModelElementImpl implements Substitution {
@@ -46,7 +46,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -56,7 +55,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getOutgoing()
      * @generated
      * @ordered
@@ -67,7 +65,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
      * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getIncoming()
      * @generated
      * @ordered
@@ -88,7 +85,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -99,7 +95,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Pattern getOutgoing() {
@@ -117,7 +112,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Pattern basicGetOutgoing() {
@@ -127,7 +121,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setOutgoing(Pattern newOutgoing) {
@@ -140,7 +133,6 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<Pattern> getIncoming() {
@@ -153,18 +145,17 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.SUBSTITUTION__OUTGOING:
-                if (resolve)
-                    return getOutgoing();
-                return basicGetOutgoing();
-            case PatternPackage.SUBSTITUTION__INCOMING:
-                return getIncoming();
+        case PatternPackage.SUBSTITUTION__OUTGOING:
+            if (resolve)
+                return getOutgoing();
+            return basicGetOutgoing();
+        case PatternPackage.SUBSTITUTION__INCOMING:
+            return getIncoming();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -172,20 +163,19 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.SUBSTITUTION__OUTGOING:
-                setOutgoing((Pattern) newValue);
-                return;
-            case PatternPackage.SUBSTITUTION__INCOMING:
-                getIncoming().clear();
-                getIncoming().addAll((Collection<? extends Pattern>) newValue);
-                return;
+        case PatternPackage.SUBSTITUTION__OUTGOING:
+            setOutgoing((Pattern) newValue);
+            return;
+        case PatternPackage.SUBSTITUTION__INCOMING:
+            getIncoming().clear();
+            getIncoming().addAll((Collection<? extends Pattern>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -193,18 +183,17 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.SUBSTITUTION__OUTGOING:
-                setOutgoing((Pattern) null);
-                return;
-            case PatternPackage.SUBSTITUTION__INCOMING:
-                getIncoming().clear();
-                return;
+        case PatternPackage.SUBSTITUTION__OUTGOING:
+            setOutgoing((Pattern) null);
+            return;
+        case PatternPackage.SUBSTITUTION__INCOMING:
+            getIncoming().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -212,16 +201,15 @@ public class SubstitutionImpl extends ModelElementImpl implements Substitution {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.SUBSTITUTION__OUTGOING:
-                return outgoing != null;
-            case PatternPackage.SUBSTITUTION__INCOMING:
-                return incoming != null && !incoming.isEmpty();
+        case PatternPackage.SUBSTITUTION__OUTGOING:
+            return outgoing != null;
+        case PatternPackage.SUBSTITUTION__INCOMING:
+            return incoming != null && !incoming.isEmpty();
         }
         return super.eIsSet(featureID);
     }

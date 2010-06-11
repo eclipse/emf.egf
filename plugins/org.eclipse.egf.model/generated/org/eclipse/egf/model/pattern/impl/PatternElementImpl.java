@@ -116,10 +116,10 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetContainer((PatternLibrary) otherEnd, msgs);
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            return basicSetContainer((PatternLibrary) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -132,8 +132,8 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                return basicSetContainer(null, msgs);
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            return basicSetContainer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -146,8 +146,8 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -160,8 +160,8 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                return getContainer();
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            return getContainer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -174,9 +174,9 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                setContainer((PatternLibrary) newValue);
-                return;
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            setContainer((PatternLibrary) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -189,9 +189,9 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                setContainer((PatternLibrary) null);
-                return;
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            setContainer((PatternLibrary) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -204,8 +204,8 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-                return getContainer() != null;
+        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+            return getContainer() != null;
         }
         return super.eIsSet(featureID);
     }

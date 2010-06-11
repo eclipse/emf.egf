@@ -31,11 +31,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedValue <em>Value</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedKey <em>Key</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class Paramerter2ParameterMapImpl extends ModelElementImpl implements BasicEMap.Entry<PatternParameter, PatternParameter> {
@@ -44,7 +44,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -54,7 +53,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getTypedValue()
      * @generated
      * @ordered
@@ -65,7 +63,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getTypedKey()
      * @generated
      * @ordered
@@ -75,7 +72,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Paramerter2ParameterMapImpl() {
@@ -85,7 +81,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -96,7 +91,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter getTypedKey() {
@@ -106,7 +100,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setTypedKey(PatternParameter newKey) {
@@ -119,7 +112,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter getTypedValue() {
@@ -137,7 +129,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter basicGetTypedValue() {
@@ -147,7 +138,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setTypedValue(PatternParameter newValue) {
@@ -160,18 +150,17 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                if (resolve)
-                    return getTypedValue();
-                return basicGetTypedValue();
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                return getTypedKey();
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            if (resolve)
+                return getTypedValue();
+            return basicGetTypedValue();
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            return getTypedKey();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -179,18 +168,17 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                setTypedValue((PatternParameter) newValue);
-                return;
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                setTypedKey((PatternParameter) newValue);
-                return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            setTypedValue((PatternParameter) newValue);
+            return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            setTypedKey((PatternParameter) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -198,18 +186,17 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                setTypedValue((PatternParameter) null);
-                return;
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                setTypedKey((PatternParameter) null);
-                return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            setTypedValue((PatternParameter) null);
+            return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            setTypedKey((PatternParameter) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -217,16 +204,15 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                return value != null;
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                return key != null;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            return value != null;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            return key != null;
         }
         return super.eIsSet(featureID);
     }
@@ -234,7 +220,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected int hash = -1;
@@ -242,7 +227,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public int getHash() {
@@ -256,7 +240,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setHash(int hash) {
@@ -266,7 +249,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter getKey() {
@@ -276,7 +258,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setKey(PatternParameter key) {
@@ -286,7 +267,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter getValue() {
@@ -296,7 +276,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter setValue(PatternParameter value) {
@@ -308,7 +287,6 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")

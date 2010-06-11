@@ -43,17 +43,14 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Substitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public SubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -64,7 +61,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -82,7 +78,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This adds a property descriptor for the Outgoing feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addOutgoingPropertyDescriptor(Object object) {
@@ -96,7 +91,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This adds a property descriptor for the Incoming feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addIncomingPropertyDescriptor(Object object) {
@@ -110,7 +104,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This returns Substitution.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -172,7 +165,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -180,10 +172,10 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
         updateChildren(notification);
 
         switch (notification.getFeatureID(Substitution.class)) {
-            case PatternPackage.SUBSTITUTION__OUTGOING:
-            case PatternPackage.SUBSTITUTION__INCOMING:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.SUBSTITUTION__OUTGOING:
+        case PatternPackage.SUBSTITUTION__INCOMING:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }
@@ -193,7 +185,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -205,7 +196,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

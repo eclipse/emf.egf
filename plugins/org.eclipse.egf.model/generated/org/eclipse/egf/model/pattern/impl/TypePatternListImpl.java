@@ -117,8 +117,8 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-                return getElements();
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            return getElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -132,10 +132,10 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-                getElements().clear();
-                getElements().addAll((Collection<? extends PatternElement>) newValue);
-                return;
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            getElements().clear();
+            getElements().addAll((Collection<? extends PatternElement>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -148,9 +148,9 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-                getElements().clear();
-                return;
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            getElements().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -163,8 +163,8 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-                return elements != null && !elements.isEmpty();
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            return elements != null && !elements.isEmpty();
         }
         return super.eIsSet(featureID);
     }
