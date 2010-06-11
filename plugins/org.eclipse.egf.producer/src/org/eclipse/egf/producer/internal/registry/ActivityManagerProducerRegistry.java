@@ -34,7 +34,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public final class ActivityManagerProducerRegistry implements IRegistryEventListener {
 
-    private Map<String, ActivityManagerProducerProxy> _producers;
+    private Map<String, ActivityManagerProducerProxy> _proxies;
 
     /**
      * Define a constant for the activityManagerProducer extension-point id.
@@ -57,7 +57,7 @@ public final class ActivityManagerProducerRegistry implements IRegistryEventList
     }
 
     public <P extends Activity> ActivityManagerProducer<P> getActivityManagerProducer(P activity) throws CoreException {
-        ActivityManagerProducerProxy proxy = _producers.get(activity.eClass().getInstanceTypeName());
+        ActivityManagerProducerProxy proxy = _proxies.get(activity.eClass().getInstanceTypeName());
         if (proxy == null) {
             throw new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManagerProducer_extension_error, activity.eClass().getInstanceTypeName()), null));
         }
@@ -65,10 +65,10 @@ public final class ActivityManagerProducerRegistry implements IRegistryEventList
     }
 
     private void initialize() {
-        if (_producers != null) {
+        if (_proxies != null) {
             return;
         }
-        _producers = new HashMap<String, ActivityManagerProducerProxy>();
+        _proxies = new HashMap<String, ActivityManagerProducerProxy>();
         IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(EXTENSION_ID);
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
@@ -85,12 +85,12 @@ public final class ActivityManagerProducerRegistry implements IRegistryEventList
         }
         ActivityManagerProducerProxy proxy = ActivityManagerProducerProxy.createProxy(element);
         if (proxy != null) {
-            if (_producers.get(proxy.getActivity()) != null) {
+            if (_proxies.get(proxy.getActivity()) != null) {
                 EGFProducerPlugin.getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_Element_Message, proxy.getActivity()));
                 EGFProducerPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                 EGFProducerPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
             }
-            _producers.put(proxy.getActivity(), proxy);
+            _proxies.put(proxy.getActivity(), proxy);
         }
     }
 
@@ -107,7 +107,7 @@ public final class ActivityManagerProducerRegistry implements IRegistryEventList
 
     public void removed(IExtension[] extensions) {
         for (int i = 0; i < extensions.length; i++) {
-            for (Iterator<ActivityManagerProducerProxy> it = _producers.values().iterator(); it.hasNext();) {
+            for (Iterator<ActivityManagerProducerProxy> it = _proxies.values().iterator(); it.hasNext();) {
                 ActivityManagerProducerProxy proxy = it.next();
                 if (proxy.originatesFrom(extensions[i])) {
                     it.remove();
@@ -126,7 +126,7 @@ public final class ActivityManagerProducerRegistry implements IRegistryEventList
 
     public void dispose() {
         RegistryFactory.getRegistry().removeListener(this);
-        _producers = null;
+        _proxies = null;
     }
 
 }

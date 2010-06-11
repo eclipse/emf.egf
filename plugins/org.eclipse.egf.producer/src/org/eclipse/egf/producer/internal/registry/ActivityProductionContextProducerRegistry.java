@@ -34,7 +34,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public final class ActivityProductionContextProducerRegistry implements IRegistryEventListener {
 
-    private Map<String, ActivityProductionContextProducerProxy> _producers;
+    private Map<String, ActivityProductionContextProducerProxy> _proxies;
 
     /**
      * Define a constant for the activityProductionContextProducer extension-point id.
@@ -57,7 +57,7 @@ public final class ActivityProductionContextProducerRegistry implements IRegistr
     }
 
     public <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws CoreException {
-        ActivityProductionContextProducerProxy proxy = _producers.get(activity.eClass().getInstanceTypeName());
+        ActivityProductionContextProducerProxy proxy = _proxies.get(activity.eClass().getInstanceTypeName());
         if (proxy == null) {
             throw new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityProductionContextProducer_extension_error, activity.eClass().getInstanceTypeName()), null));
         }
@@ -65,10 +65,10 @@ public final class ActivityProductionContextProducerRegistry implements IRegistr
     }
 
     private void initialize() {
-        if (_producers != null) {
+        if (_proxies != null) {
             return;
         }
-        _producers = new HashMap<String, ActivityProductionContextProducerProxy>();
+        _proxies = new HashMap<String, ActivityProductionContextProducerProxy>();
         IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(EXTENSION_ID);
         if (point != null) {
             for (IExtension extension : point.getExtensions()) {
@@ -85,12 +85,12 @@ public final class ActivityProductionContextProducerRegistry implements IRegistr
         }
         ActivityProductionContextProducerProxy proxy = ActivityProductionContextProducerProxy.createProxy(element);
         if (proxy != null) {
-            if (_producers.get(proxy.getActivity()) != null) {
+            if (_proxies.get(proxy.getActivity()) != null) {
                 EGFProducerPlugin.getDefault().logError(NLS.bind(EGFCommonMessages.Duplicate_Element_Message, proxy.getActivity()));
                 EGFProducerPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                 EGFProducerPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
             }
-            _producers.put(proxy.getActivity(), proxy);
+            _proxies.put(proxy.getActivity(), proxy);
         }
     }
 
@@ -107,7 +107,7 @@ public final class ActivityProductionContextProducerRegistry implements IRegistr
 
     public void removed(IExtension[] extensions) {
         for (int i = 0; i < extensions.length; i++) {
-            for (Iterator<ActivityProductionContextProducerProxy> it = _producers.values().iterator(); it.hasNext();) {
+            for (Iterator<ActivityProductionContextProducerProxy> it = _proxies.values().iterator(); it.hasNext();) {
                 ActivityProductionContextProducerProxy proxy = it.next();
                 if (proxy.originatesFrom(extensions[i])) {
                     it.remove();
@@ -126,7 +126,7 @@ public final class ActivityProductionContextProducerRegistry implements IRegistr
 
     public void dispose() {
         RegistryFactory.getRegistry().removeListener(this);
-        _producers = null;
+        _proxies = null;
     }
 
 }

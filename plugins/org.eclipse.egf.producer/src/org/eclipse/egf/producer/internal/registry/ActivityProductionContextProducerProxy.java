@@ -37,7 +37,7 @@ public class ActivityProductionContextProducerProxy {
 
     private String _class;
 
-    private Object _producer;
+    private Object _executable;
 
     /**
      * Creates a new ActivityProductionContextProducerProxy proxy based on the given configuration element.
@@ -97,7 +97,7 @@ public class ActivityProductionContextProducerProxy {
      */
     @SuppressWarnings("unchecked")
     public <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws CoreException {
-        if (_producer == null) {
+        if (_executable == null) {
             Object object = _element.createExecutableExtension(ActivityProductionContextProducerRegistry.INVOKER_ATT_CLASS);
             if (object == null) {
                 return null;
@@ -128,9 +128,9 @@ public class ActivityProductionContextProducerProxy {
                 EGFProducerPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                 return null;
             }
-            _producer = object;
+            _executable = object;
         }
-        return (ActivityProductionContextProducer<P>) _producer;
+        return (ActivityProductionContextProducer<P>) _executable;
     }
 
     public String getActivity() {

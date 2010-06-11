@@ -37,7 +37,7 @@ public class OrchestrationManagerProducerProxy {
 
     private String _class;
 
-    private Object _producer;
+    private Object _executable;
 
     /**
      * Creates a new OrchestrationManagerProducerProxy proxy based on the given configuration element.
@@ -97,7 +97,7 @@ public class OrchestrationManagerProducerProxy {
      */
     @SuppressWarnings("unchecked")
     public <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationManagerProducer(P orchestration) throws CoreException {
-        if (_producer == null) {
+        if (_executable == null) {
             Object object = _element.createExecutableExtension(OrchestrationManagerProducerRegistry.INVOKER_ATT_CLASS);
             if (object == null) {
                 return null;
@@ -128,9 +128,9 @@ public class OrchestrationManagerProducerProxy {
                 EGFProducerPlugin.getDefault().logInfo(NLS.bind(EGFCommonMessages.Attribute_Message, _class), 1);
                 return null;
             }
-            _producer = object;
+            _executable = object;
         }
-        return (OrchestrationManagerProducer<P>) _producer;
+        return (OrchestrationManagerProducer<P>) _executable;
     }
 
     public String getOrchestration() {
