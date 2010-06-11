@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
@@ -40,14 +41,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Pattern} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.model.pattern.Pattern} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier. <!--
@@ -71,6 +72,19 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
             super.getPropertyDescriptors(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * Disable name edit
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected void addNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NamedModelElement_name_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_NamedModelElement_name_feature", "_UI_NamedModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_IdentityPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
@@ -170,7 +184,11 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
 
     /**
      * This specifies how to implement {@link #getChildren} and is used to
-     * deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand},
+     * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in
+     * {@link #createCommand}.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
@@ -190,7 +208,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
      */
     @Override
     protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
+        // Check the type of the specified child object and return the proper
+        // feature to use for
         // adding (see {@link AddCommand}) it as a child.
 
         return super.getChildFeature(object, child);
@@ -222,8 +241,10 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to
+     * update any cached
+     * children and by creating a viewer notification, which it passes to
+     * {@link #fireNotifyChanged}.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
      * 
@@ -234,18 +255,18 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(Pattern.class)) {
-            case PatternPackage.PATTERN__HEADER_METHOD:
-            case PatternPackage.PATTERN__FOOTER_METHOD:
-            case PatternPackage.PATTERN__SUPER_PATTERN:
-            case PatternPackage.PATTERN__ORCHESTRATION:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case PatternPackage.PATTERN__METHODS:
-            case PatternPackage.PATTERN__PARAMETERS:
-            case PatternPackage.PATTERN__NATURE:
-            case PatternPackage.PATTERN__VARIABLES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case PatternPackage.PATTERN__HEADER_METHOD:
+        case PatternPackage.PATTERN__FOOTER_METHOD:
+        case PatternPackage.PATTERN__SUPER_PATTERN:
+        case PatternPackage.PATTERN__ORCHESTRATION:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        case PatternPackage.PATTERN__METHODS:
+        case PatternPackage.PATTERN__PARAMETERS:
+        case PatternPackage.PATTERN__NATURE:
+        case PatternPackage.PATTERN__VARIABLES:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }
