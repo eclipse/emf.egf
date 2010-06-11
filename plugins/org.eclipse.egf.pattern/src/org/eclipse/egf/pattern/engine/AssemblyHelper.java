@@ -28,6 +28,10 @@ import org.eclipse.emf.common.util.EList;
  */
 public abstract class AssemblyHelper {
 
+    public static final String GENERATE_METHOD = "generate"; //$NON-NLS-1$
+
+    public static final String ORCHESTRATION_METHOD = "orchestration"; //$NON-NLS-1$    
+
     protected final Pattern pattern;
 
     protected final StringBuilder content = new StringBuilder(1000);
@@ -99,9 +103,5 @@ public abstract class AssemblyHelper {
             contentHelper.addContent(element);
         }
     }
-
-    public static final String GENERATE_METHOD = "generate"; //$NON-NLS-1$
-
-    public static final String ORCHESTRATION_METHOD = "orchestration"; //$NON-NLS-1$
 
 }
