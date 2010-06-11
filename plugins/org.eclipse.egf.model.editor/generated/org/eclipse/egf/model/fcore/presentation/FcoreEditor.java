@@ -612,7 +612,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         currentViewerPane.setTitle(innerResource);
                     }
                     setPartName(innerResource.getURI().lastSegment());
-                    setTitleToolTip(innerResource.toString());
                 }
             });
         }
@@ -868,7 +867,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         if (collection == null || collection.isEmpty()) {
             return;
         }
-        final Collection<EObject> theSelection = new UniqueEList<EObject>(collection.size());
+        final Collection<EObject> selection = new UniqueEList<EObject>(collection.size());
         // Solve EObject against our resource set
         for (Object object : collection) {
             if (object instanceof EObject == false) {
@@ -877,10 +876,10 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             URI uri = null;
             try {
                 uri = EcoreUtil.getURI((EObject) object);
-                if (uri != null && uri.isEmpty() == false) {
+                if (uri != null && uri.isEmpty() == false && "#//".equals(uri.toString().trim()) == false) { //$NON-NLS-1$
                     EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
                     if (eObject != null) {
-                        theSelection.add(eObject);
+                        selection.add(eObject);
                     }
                 }
             } catch (Throwable t) {
@@ -892,7 +891,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             public void run() {
                 // Try to select the items in the current content viewer of the editor.
                 if (currentViewer != null) {
-                    currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+                    currentViewer.setSelection(new StructuredSelection(selection.toArray()), true);
                 }
             }
         };
@@ -1413,6 +1412,23 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     }
 
     /**
+     * Gets the title tool tip text of this part.
+     * 
+     * @return the tool tip text
+     *         <!-- begin-user-doc -->
+     *         <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getTitleToolTip() {
+        if (getEditorInput() == null) {
+            return super.getTitleToolTip();
+        }
+        return getResource().getURI().toString();
+    }
+
+    /**
      * This is for implementing {@link IEditorPart} and simply tests the command stack.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1438,8 +1454,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
         // Do the work within an operation because this is a long running
-        // activity that modifies the
-        // workbench.
+        // activity that modifies the workbench.
         WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 
             // This is the method that gets invoked when the operation runs.
