@@ -45,10 +45,6 @@ public interface ImageShop {
 
     public static final String IMG_OVER_OBJ = "obj16/over_obj.gif"; //$NON-NLS-1$
 
-    public static final String IMG_CATEGORY_OBJ = "obj16/category_obj.gif"; //$NON-NLS-1$
-
-    public static final String IMG_TREE_MODE = "obj16/tree_mode.gif"; //$NON-NLS-1$
-
     public static final String IMG_CLASS_OBJ = "obj16/class_obj.gif"; //$NON-NLS-1$
 
     public static final String IMG_ADD_OBJ = "obj16/add.gif"; //$NON-NLS-1$
