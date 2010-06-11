@@ -41,4 +41,6 @@ public interface IEGFCoreUIImages {
      */
     public static final String IMG_MANDATORY = "ovr16/Mandatory.gif"; //$NON-NLS-1$
 
+    public static final String IMG_VIEW_MENU = "obj16/view_menu.gif"; //$NON-NLS-1$    
+
 }
