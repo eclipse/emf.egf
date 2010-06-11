@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -34,14 +34,18 @@ import org.eclipse.egf.pattern.strategy.Strategy;
  * @author Thomas Guiu
  */
 public abstract class AbstractStrategyTask extends AbstractPatternTask {
+
     private final Strategy strategy;
+
     protected Object parameter;
+
     protected final List<PatternElement> patterns = new ArrayList<PatternElement>();
 
     protected AbstractStrategyTask(Strategy strategy) {
         this.strategy = strategy;
     }
 
+    @Override
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
         super.readContext(context, ctx);
         PatternExecutionReporter reporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
@@ -83,4 +87,5 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
         super.postExecute(context, monitor);
         parameter = null;
     }
+
 }
