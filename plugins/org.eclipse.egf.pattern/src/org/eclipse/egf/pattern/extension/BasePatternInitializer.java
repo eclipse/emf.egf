@@ -20,14 +20,13 @@ import java.io.File;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.common.util.URI;
@@ -58,9 +57,9 @@ public abstract class BasePatternInitializer implements PatternInitializer {
             String methodName = method.getName();
             if (PatternFactory.HEADER_METHOD_NAME.equals(methodName) || PatternFactory.INIT_METHOD_NAME.equals(methodName) || PatternFactory.FOOTER_METHOD_NAME.equals(methodName)) {
                 IFile outputFile = getFile(method);
-                if (outputFile.exists()) {
-                    copeyToHistoryFolder(outputFile);
-                }
+                // if (outputFile.exists()) {
+                // copeyToHistoryFolder(outputFile);
+                // }
                 createFileContent(outputFile, method);
             }
         }
@@ -77,7 +76,7 @@ public abstract class BasePatternInitializer implements PatternInitializer {
         else
             content = getDefaultContent(method);
         try {
-            FileHelper.setContent(outputFile, content == null ? "" : content, false);
+            FileHelper.setContent(outputFile, content == null ? "" : content, true);
         } catch (CoreException e) {
             throw new PatternException(e);
 
@@ -103,13 +102,12 @@ public abstract class BasePatternInitializer implements PatternInitializer {
         int fullPathIndex = fullPath.lastIndexOf("/");
         String historyFilePath = fullPath.substring(0, fullPathIndex) + "/_bak/" + fileName;
 
-        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
         try {
-            root.refreshLocal(IResource.DEPTH_INFINITE, null);
+            outputFile.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
             IPath path = new Path(historyFilePath);
             outputFile.copy(path, true, null);
         } catch (CoreException e) {
-            e.printStackTrace();
+            Activator.getDefault().logWarning(e);
         }
     }
 
