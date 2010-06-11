@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * </copyright>
  */
 
@@ -18,18 +18,20 @@ package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.egf.pattern.ecore.EPackageHelper;
+import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.EcoreModelSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.providers.EcoreContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.EcoreLabelProvider;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -79,7 +81,7 @@ public class ChooseTypePage extends WizardPage {
 
     private String type;
 
-    private static final String PARAMETER_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$
+    private static final URI NSURI_GENMODEL = URI.createURI("http://www.eclipse.org/emf/2002/GenModel"); //$NON-NLS-1$
 
     public ChooseTypePage(ISelection selection, TransactionalEditingDomain editingDomain, String type) {
         super(Messages.ChooseTypePage_title);
@@ -102,22 +104,21 @@ public class ChooseTypePage extends WizardPage {
      * Get the types of default model.
      */
     private void initContent() {
-        String nsURI;
+        URI nsURI;
         if (!"".equals(type) && type != null) { //$NON-NLS-1$
             int index = type.indexOf("#//"); //$NON-NLS-1$
             if (index != -1) {
-                nsURI = type.substring(0, index);
+                nsURI = URI.createURI(type.substring(0, index));
             } else {
-                nsURI = PARAMETER_TYPE_DEFAULT_VALUE;
+                nsURI = NSURI_GENMODEL;
             }
         } else {
-            nsURI = PARAMETER_TYPE_DEFAULT_VALUE;
+            nsURI = NSURI_GENMODEL;
         }
-        EPackage ePackage = EPackageHelper.REGISTRY.getEPackage(nsURI);
-        if (ePackage != null) {
-            ecoreTypeTreeViewer.setInput(ePackage.eResource().getContents());
-            ecoreTypeTreeViewer.expandToLevel(2);
-        }
+        ResourceSet resourceSet = new EGFResourceSet();
+        Resource resource = resourceSet.getResource(nsURI, true);
+        ecoreTypeTreeViewer.setInput(resource.getContents());
+        ecoreTypeTreeViewer.expandToLevel(2);
     }
 
     private void createTabFolder(Composite container) {
@@ -142,9 +143,11 @@ public class ChooseTypePage extends WizardPage {
         compositeJavaType.setLayout(new GridLayout());
         dialog.createPage(compositeJavaType);
         compositeJavaType.addDisposeListener(new DisposeListener() {
+
             public void widgetDisposed(DisposeEvent e) {
                 dialog.close();
             }
+
         });
         javaTypeTabItem.setControl(compositeJavaType);
     }
@@ -153,6 +156,7 @@ public class ChooseTypePage extends WizardPage {
      * Create the ecoreType tabItem.
      */
     private void createEcoreType(final Composite compositeEcoreType) {
+
         GridLayout layout = new GridLayout();
         compositeEcoreType.setLayout(layout);
 
@@ -174,19 +178,19 @@ public class ChooseTypePage extends WizardPage {
         ecoreTypeTreeViewer = new TreeViewer(tree);
         ecoreTypeTreeViewer.setLabelProvider(new EcoreLabelProvider());
         ecoreTypeTreeViewer.setComparator(new ViewerComparator() {
+
             private final EcoreSwitch<Integer> _switch = new EcoreSwitch<Integer>() {
 
                 @Override
                 public Integer caseEClassifier(EClassifier object) {
-
                     return 2;
                 }
 
                 @Override
                 public Integer caseEPackage(EPackage object) {
-
                     return 1;
                 }
+
             };
 
             @Override
@@ -195,6 +199,7 @@ public class ChooseTypePage extends WizardPage {
                     return _switch.doSwitch((EObject) element);
                 return 10;
             }
+
         });
         ecoreTypeTreeViewer.addFilter(new ViewerFilter() {
 
@@ -204,6 +209,7 @@ public class ChooseTypePage extends WizardPage {
                 // PatternParameter
                 return element instanceof EClass || element instanceof EPackage;
             }
+
         });
         ecoreTypeTreeViewer.setContentProvider(new EcoreContentProvider());
         ecoreTypeTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -211,6 +217,7 @@ public class ChooseTypePage extends WizardPage {
             public void selectionChanged(SelectionChangedEvent event) {
                 selectType();
             }
+
         });
 
         ecoreTypeTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -223,11 +230,13 @@ public class ChooseTypePage extends WizardPage {
                     ((WizardDialog) wizardContainer).close();
                 }
             }
+
         });
 
         Button button = new Button(compositeEcoreType, SWT.PUSH);
         button.setText(Messages.ChooseTypePage_choose_model_button_title);
         button.addListener(SWT.Selection, new Listener() {
+
             public void handleEvent(Event event) {
                 selectType();
                 EcoreModelSelectionDialog chooseModelDialog = new EcoreModelSelectionDialog(compositeEcoreType.getShell(), editingDomain);
@@ -237,7 +246,9 @@ public class ChooseTypePage extends WizardPage {
                     ecoreTypeTreeViewer.expandToLevel(2);
                 }
             }
+
         });
+
     }
 
     private void selectType() {
@@ -256,14 +267,13 @@ public class ChooseTypePage extends WizardPage {
         if (!("".equals(nsURI) && "".equals(typeName))) { //$NON-NLS-1$ //$NON-NLS-2$
             chooseType = nsURI + "#//" + typeName; //$NON-NLS-1$
         }
-
     }
 
     /**
      * Get the content's ns_uri.
      */
     private String getEPackageNsURI(EObject eObject) {
-        EObject eContainer = ((EObject) eObject).eContainer();
+        EObject eContainer = eObject.eContainer();
         if (eContainer instanceof EPackage) {
             String nsURI = ((EPackage) eContainer).getNsURI();
             return nsURI;
@@ -289,11 +299,13 @@ public class ChooseTypePage extends WizardPage {
      * Drop any package or uri information of the type.
      */
     public static String getType(String type) {
-        if (type == null || type.length() == 0) //$NON-NLS-1$
+        if (type == null || type.length() == 0) {
             return ""; //$NON-NLS-1$
+        }
         int index = type.lastIndexOf("."); //$NON-NLS-1$
-        if (index != -1)
+        if (index != -1) {
             return type.substring(index + 1);
+        }
         return type;
     }
 
