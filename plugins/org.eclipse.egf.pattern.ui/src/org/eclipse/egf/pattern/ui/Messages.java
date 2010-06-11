@@ -197,13 +197,9 @@ public class Messages extends NLS {
     public static String ChooseKindPage_title;
 
     // ChooseType Page
-    public static String ChooseTypePage_choose_model_button_title;
-
     public static String ChooseTypePage_coreTypeTabItem_title;
 
     public static String ChooseTypePage_description;
-
-    public static String ChooseTypePage_ecore_file;
 
     public static String ChooseTypePage_javaTypeTabItem_title;
 
@@ -288,10 +284,6 @@ public class Messages extends NLS {
     public static String ListBuilderDialog_searchPatternValue_label;
 
     public static String ListBuilderDialog_currentValue_label;
-
-    public static String _UI_TargetPlatform_label;
-
-    public static String _UI_RuntimeVersion_label;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
 
