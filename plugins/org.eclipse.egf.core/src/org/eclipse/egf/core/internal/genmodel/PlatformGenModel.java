@@ -15,12 +15,16 @@
  */
 package org.eclipse.egf.core.internal.genmodel;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 
 public final class PlatformGenModel extends PlatformExtensionPointURI implements IPlatformGenModel {
 
@@ -30,6 +34,21 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
 
     private URI _genModelURI;
 
+    private static Map<String, URI> _ePackageNsURIToGenModelLocationMap;
+
+    /**
+     * Returns a map from {@link EPackage#getNsURI() package namespace URI} (represented as a String)
+     * to the location of the GenModel containing a GenPackage for the package (represented as a {@link URI URI}).
+     * 
+     * @return a map from package namespace to GenModel location.
+     */
+    public static Map<String, URI> getEPackageNsURIToGenModelLocationMap() {
+        if (_ePackageNsURIToGenModelLocationMap == null) {
+            _ePackageNsURIToGenModelLocationMap = new HashMap<String, URI>();
+        }
+        return _ePackageNsURIToGenModelLocationMap;
+    }
+
     public PlatformGenModel(IPlatformBundle bundle, String id, String className, String genModel) {
         super(bundle, id);
         Assert.isNotNull(className);
@@ -38,6 +57,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         if (genModel != null && genModel.trim().length() != 0) {
             _genModel = genModel.trim();
             _genModelURI = URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
+            getEPackageNsURIToGenModelLocationMap().put(getId(), _genModelURI);
         }
     }
 
@@ -80,4 +100,10 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         }
         return true;
     }
+
+    @Override
+    protected void dispose() {
+        getEPackageNsURIToGenModelLocationMap().remove(getId());
+    }
+
 }
