@@ -155,12 +155,12 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 }
                 _listeners.remove(resourceUser.getListener());
                 if (noMoreObserver()) {
-                    clearResourceSet();
+                    clear();
                 }
             }
         }
 
-        private void clearResourceSet() {
+        private void clear() {
             // no editor is actually open, so let's unload all the resources
             final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
             try {
@@ -175,7 +175,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                     }
                 });
                 if (EGFCorePlugin.getDefault().isDebugging()) {
-                    EGFPlatformPlugin.getDefault().logInfo("EGFResourceLoadedListener.clearResourceSet()"); //$NON-NLS-1$           
+                    EGFPlatformPlugin.getDefault().logInfo(NLS.bind("''{0}'' _ clear", EGFCorePlugin.EDITING_DOMAIN_ID)); //$NON-NLS-1$           
                 }
             } catch (InterruptedException e) {
                 EGFCorePlugin.getDefault().logError(e);
