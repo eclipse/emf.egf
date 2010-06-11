@@ -61,9 +61,14 @@
 	    </provider> 
 	</extension>
 
-   	<extension point="org.eclipse.ui.elementFactories">
-   		<factory id="org.eclipse.egf.pattern.ui.pattern.factory.id" class="org.eclipse.egf.pattern.ui.editors.PatternElementFactory" /> 
- 	</extension>
+    <extension 
+        point="org.eclipse.ui.elementFactories"
+    >
+        <factory 
+            id="org.eclipse.egf.pattern.ui.pattern.factory.id" 
+            class="org.eclipse.egf.pattern.ui.editors.PatternElementFactory" 
+        /> 
+    </extension>
    
     <extension
           id="PatternBuilder"
