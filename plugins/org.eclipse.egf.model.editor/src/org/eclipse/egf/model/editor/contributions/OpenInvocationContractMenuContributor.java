@@ -26,28 +26,29 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class OpenInvocationContractMenuContributor extends OpenEObjectMenuContributor {
 
-    public static final String OPEN_INVOCATION_CONTRACT_ACTION_ID = "open-invocation-contract"; //$NON-NLS-1$  
+    public static final String OPEN_INVOCATION_CONTRACT_ACTION_ID = "open-invocation-contract"; //$NON-NLS-1$
 
-    protected final OpenAction _openAction = new OpenAction(OPEN_INVOCATION_CONTRACT_ACTION_ID) {
+    private OpenEObjectMenuContributor.OpenAction _openAction;
+
+    protected class InvocationContractOpenAction extends OpenAction {
+
+        public InvocationContractOpenAction() {
+            super(OPEN_INVOCATION_CONTRACT_ACTION_ID);
+        }
 
         @Override
         protected EObject getEObject() {
-            if (_selection == null) {
+            if (_selection == null || _selection.isEmpty()) {
                 return null;
             }
-            IStructuredSelection sselection = (IStructuredSelection) _selection;
-            if (sselection.size() != 1) {
-                return null;
-            }
-            Object object = sselection.getFirstElement();
+            Object object = ((IStructuredSelection) _selection).getFirstElement();
             if (object instanceof InvocationContract) {
-                InvocationContract invocationContract = (InvocationContract) object;
-                return invocationContract.getInvokedContract();
+                return ((InvocationContract) object).getInvokedContract();
             }
             return null;
         }
 
-    };
+    }
 
     @Override
     protected String getText() {
@@ -59,6 +60,9 @@ public class OpenInvocationContractMenuContributor extends OpenEObjectMenuContri
 
     @Override
     protected OpenAction getOpenAction() {
+        if (_openAction == null) {
+            _openAction = new InvocationContractOpenAction();
+        }
         return _openAction;
     }
 

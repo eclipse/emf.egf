@@ -90,7 +90,10 @@
   >
     <contribution
       class="org.eclipse.egf.model.editor.contributions.OpenActivityListenerContributor"
-    />    
+    />
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractListenerContributor"
+    />            
   </extension>  
   
   <!-- ================================================================================= -->
