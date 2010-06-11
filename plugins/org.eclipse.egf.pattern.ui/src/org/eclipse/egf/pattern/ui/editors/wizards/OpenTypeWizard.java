@@ -16,7 +16,6 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards;
 
-import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseTypePage;
 import org.eclipse.emf.ecore.EObject;
@@ -57,13 +56,12 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
 
     @Override
     public boolean performFinish() {
-        TypeSelectionDialog page = _chooseTypePage.getTypeSelectionDialog();
         if (_chooseTypePage.isInCoreTab()) {
-            if (_chooseTypePage.getType() != null) {
-                _selectType = _chooseTypePage.getType();
+            if (_chooseTypePage.getSelectedEcoreType() != null) {
+                _selectType = _chooseTypePage.getSelectedEcoreType();
             }
         } else {
-            Object result = page.getFirstResult();
+            Object result = _chooseTypePage.getSelectedJavaType();
             if (result instanceof IType) {
                 _selectType = result;
             }
