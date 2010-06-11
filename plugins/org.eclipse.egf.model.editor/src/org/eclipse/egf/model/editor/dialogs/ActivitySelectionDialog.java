@@ -351,8 +351,27 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         this(parentShell, (Activity) null, multipleSelection);
     }
 
+    /**
+     * Hack to use a dialog in a wizard page
+     * 
+     * @return the array of selected elements, or <code>null</code> if Cancel
+     *         was pressed
+     */
+    public Control createPage(Composite parent) {
+        return dialogArea = createDialogArea(parent);
+    }
+
+    /**
+     * Returns the list of selections made by the user, or <code>null</code>
+     * if the selection was canceled. A computeResult is done when this dialog
+     * is used in a wizard page
+     * 
+     * @return the array of selected elements, or <code>null</code> if Cancel
+     *         was pressed
+     */
     @Override
     public Object[] getResult() {
+        computeResult();
         Object[] result = super.getResult();
         if (result == null) {
             return null;
