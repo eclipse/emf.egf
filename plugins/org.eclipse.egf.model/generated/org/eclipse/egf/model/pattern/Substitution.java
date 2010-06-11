@@ -12,28 +12,27 @@
  */
 package org.eclipse.egf.model.pattern;
 
+import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Substitution</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Substitution#getIncoming <em>Incoming</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.Substitution#getIncoming <em>Incoming</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution()
  * @model
  * @generated
  */
-public interface Substitution extends EObject {
+public interface Substitution extends ModelElement {
 
     /**
      * Returns the value of the '<em><b>Outgoing</b></em>' reference.
@@ -43,6 +42,7 @@ public interface Substitution extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * 
      * @return the value of the '<em>Outgoing</em>' reference.
      * @see #setOutgoing(Pattern)
      * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Outgoing()
@@ -55,7 +55,9 @@ public interface Substitution extends EObject {
      * Sets the value of the '{@link org.eclipse.egf.model.pattern.Substitution#getOutgoing <em>Outgoing</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Outgoing</em>' reference.
+     * 
+     * @param value
+     *            the new value of the '<em>Outgoing</em>' reference.
      * @see #getOutgoing()
      * @generated
      */
@@ -70,6 +72,7 @@ public interface Substitution extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
+     * 
      * @return the value of the '<em>Incoming</em>' reference list.
      * @see org.eclipse.egf.model.pattern.PatternPackage#getSubstitution_Incoming()
      * @model

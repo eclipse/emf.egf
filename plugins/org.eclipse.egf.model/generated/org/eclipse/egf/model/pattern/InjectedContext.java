@@ -12,23 +12,24 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.egf.model.fcore.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Injected Context</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.egf.model.pattern.PatternPackage#getInjectedContext()
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface InjectedContext extends EObject {
+public interface InjectedContext extends ModelElement {
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @model kind="operation" required="true"
      * @generated
      */
@@ -37,6 +38,7 @@ public interface InjectedContext extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @model kind="operation" required="true"
      * @generated
      */
@@ -45,6 +47,7 @@ public interface InjectedContext extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @model kind="operation" required="true"
      * @generated
      */

@@ -784,13 +784,31 @@ public interface PatternPackage extends EPackage {
     int PARAMERTER2_PARAMETER_MAP = 9;
 
     /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMERTER2_PARAMETER_MAP__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMERTER2_PARAMETER_MAP__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Value</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PARAMERTER2_PARAMETER_MAP__VALUE = 0;
+    int PARAMERTER2_PARAMETER_MAP__VALUE = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Key</b></em>' reference.
@@ -799,7 +817,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARAMERTER2_PARAMETER_MAP__KEY = 1;
+    int PARAMERTER2_PARAMETER_MAP__KEY = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Paramerter2 Parameter Map</em>' class.
@@ -808,7 +826,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARAMERTER2_PARAMETER_MAP_FEATURE_COUNT = 2;
+    int PARAMERTER2_PARAMETER_MAP_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.MethodCallImpl <em>Method Call</em>}' class.
@@ -1251,13 +1269,31 @@ public interface PatternPackage extends EPackage {
     int STRING2_PATTERN_LIST = 19;
 
     /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING2_PATTERN_LIST__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING2_PATTERN_LIST__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STRING2_PATTERN_LIST__KEY = 0;
+    int STRING2_PATTERN_LIST__KEY = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' reference list.
@@ -1266,7 +1302,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STRING2_PATTERN_LIST__VALUE = 1;
+    int STRING2_PATTERN_LIST__VALUE = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>String2 Pattern List</em>' class.
@@ -1275,7 +1311,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STRING2_PATTERN_LIST_FEATURE_COUNT = 2;
+    int STRING2_PATTERN_LIST_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.String2StringImpl <em>String2 String</em>}' class.
@@ -1288,13 +1324,31 @@ public interface PatternPackage extends EPackage {
     int STRING2_STRING = 20;
 
     /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING2_STRING__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING2_STRING__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STRING2_STRING__KEY = 0;
+    int STRING2_STRING__KEY = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1303,7 +1357,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STRING2_STRING__VALUE = 1;
+    int STRING2_STRING__VALUE = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>String2 String</em>' class.
@@ -1312,7 +1366,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STRING2_STRING_FEATURE_COUNT = 2;
+    int STRING2_STRING_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl <em>Type Pattern Execution Reporter</em>}' class.
@@ -1555,13 +1609,31 @@ public interface PatternPackage extends EPackage {
     int INJECTED_CONTEXT = 26;
 
     /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INJECTED_CONTEXT__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INJECTED_CONTEXT__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+    /**
      * The number of structural features of the '<em>Injected Context</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INJECTED_CONTEXT_FEATURE_COUNT = 0;
+    int INJECTED_CONTEXT_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternSubstitutionImpl <em>Type Pattern Substitution</em>}' class.
@@ -1620,13 +1692,31 @@ public interface PatternPackage extends EPackage {
     int SUBSTITUTION = 28;
 
     /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUBSTITUTION__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUBSTITUTION__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Outgoing</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__OUTGOING = 0;
+    int SUBSTITUTION__OUTGOING = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Incoming</b></em>' reference list.
@@ -1635,7 +1725,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__INCOMING = 1;
+    int SUBSTITUTION__INCOMING = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Substitution</em>' class.
@@ -1644,7 +1734,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION_FEATURE_COUNT = 2;
+    int SUBSTITUTION_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '<em>Context</em>' data type.
