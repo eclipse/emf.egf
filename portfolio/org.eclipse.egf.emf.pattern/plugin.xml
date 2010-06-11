@@ -12,13 +12,12 @@
  -->
  
 <plugin>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/EMF_Pattern.fcore">
+      </fcore>
+   </extension>
 
-  <extension
-    point="org.eclipse.egf.core.fcore"
-  >
-    <fcore
-      id="egf/EMF_Pattern.fcore"
-    />
-  </extension>
   
 </plugin>
