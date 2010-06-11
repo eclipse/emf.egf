@@ -60,7 +60,8 @@ public class CodegenCompilationUnitHelper {
         }
 
         public void acceptProblem(IProblem problem) {
-            problems.add(problem);
+            if (problem.isError())
+                problems.add(problem);
         }
     }
 
