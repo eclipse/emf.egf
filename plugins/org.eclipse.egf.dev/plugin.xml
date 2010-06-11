@@ -32,5 +32,11 @@
         id="org.eclipse.egf.dev.pattern.actions.TranslateAllAction"/>
     </actionSet>
   </extension>
+   	<extension 
+    	point="org.eclipse.egf.core.ui.editor.menu.contributor">
+        <contribution
+               class="org.eclipse.egf.dev.pattern.contributions.PatternMenuContributor">
+        </contribution>
+   	</extension>
 
 </plugin>
