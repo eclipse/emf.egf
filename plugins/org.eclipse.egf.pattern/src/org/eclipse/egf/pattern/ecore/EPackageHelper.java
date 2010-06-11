@@ -181,7 +181,6 @@ public class EPackageHelper {
     }
 
     public static String getFullName(EObject obj) {
-        URI resourceURI = obj.eClass().getEPackage().eResource().getURI();
         String nsURI = null;
         String typeName = null;
         EClass eClass = obj.eClass();
