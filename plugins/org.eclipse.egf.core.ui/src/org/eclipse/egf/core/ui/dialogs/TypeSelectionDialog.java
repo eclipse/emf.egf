@@ -33,35 +33,44 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
     private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog"; //$NON-NLS-1$ 
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds) {
-        super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] {
+        super(parent, multi, context, javaProject != null ? SearchEngine.createJavaSearchScope(new IJavaElement[] {
             javaProject
-        }), elementKinds, null);
+        }) : SearchEngine.createWorkspaceScope(), elementKinds, null);
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
         setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, javaProject.getProject().getName()));
+        if (javaProject != null) {
+            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, javaProject.getProject().getName()));
+        } else {
+            setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_workspaceSeparatorLabel);
+        }
     }
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds, TypeSelectionExtension extension) {
-        super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] {
+        super(parent, multi, context, javaProject != null ? SearchEngine.createJavaSearchScope(new IJavaElement[] {
             javaProject
-        }), elementKinds, extension);
+        }) : SearchEngine.createWorkspaceScope(), elementKinds, extension);
+        setTitle(NLS.bind(CoreUIMessages._UI_SelectType, extension.getFilterExtension()));
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
         setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-        setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, javaProject.getProject().getName()));
+        if (javaProject != null) {
+            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, javaProject.getProject().getName()));
+        } else {
+            setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_workspaceSeparatorLabel);
+        }
     }
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, int elementKinds) {
         super(parent, multi, context, SearchEngine.createWorkspaceScope(), elementKinds, null);
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
         setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_workspaceSeparatorLabel);
     }
 
     public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, int elementKinds, TypeSelectionExtension extension) {
         super(parent, multi, context, SearchEngine.createWorkspaceScope(), elementKinds, extension);
         setTitle(CoreUIMessages.TypeSelection_dialogTitle);
         setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
-        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_workspaceSeparatorLabel);
     }
 
     /*
@@ -79,8 +88,31 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
     }
 
     @Override
-    public void computeResult() {
-        super.computeResult();
+    public void setTitle(String title) {
+        super.setTitle(title);
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.jface.window.Window#open()
+     */
+    @Override
+    public int open() {
+        return super.open();
+    }
+
+    /**
+     * Returns the list of selections made by the user, or <code>null</code>
+     * if the selection was canceled.
+     * 
+     * @return the array of selected elements, or <code>null</code> if Cancel
+     *         was pressed
+     */
+    @Override
+    public Object[] getResult() {
+        computeResult();
+        return super.getResult();
     }
 
     public Control createPage(Composite parent) {
