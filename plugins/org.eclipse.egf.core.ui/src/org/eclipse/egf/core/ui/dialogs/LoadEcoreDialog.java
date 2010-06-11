@@ -25,6 +25,8 @@ import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog;
@@ -87,6 +89,8 @@ public class LoadEcoreDialog extends LoadResourceDialog {
                 if (result == null) {
                     return;
                 }
+                ResourceSet resourceSet = new ResourceSetImpl();
+                resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
                 StringBuffer uris = new StringBuffer();
                 if (dialog.isTarget() && _asEPackageNsURI == false) {
                     Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
