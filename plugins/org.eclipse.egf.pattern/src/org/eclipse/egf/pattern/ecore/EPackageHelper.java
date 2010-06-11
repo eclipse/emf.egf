@@ -49,7 +49,7 @@ import org.eclipse.osgi.util.NLS;
  * The purpose is to handle ecore models from the workspace as well as runtime
  * ones.
  * 
- * TODO Une fois terminée, cette classe devrait plûtot se trouver dans core ou
+ * TODO Une fois terminée, cette classe devrait plutôt se trouver dans core ou
  * platform <br>
  * TODO revoir l'utilisation de ProjectClassLoaderHelper <br>
  * 
