@@ -77,7 +77,8 @@ public abstract class PatternEditorPage extends FormPage {
 
     protected abstract void doCreateFormContent(IManagedForm managedForm);
 
-    public final void rebind() {
+    public final void rebind(PatternEditorInput editorInput) {
+        setInput(editorInput);
         if (bindings.isEmpty() == false) {
             ctx.getValidationRealm().asyncExec(new Runnable() {
 

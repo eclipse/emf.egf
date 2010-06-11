@@ -30,6 +30,7 @@ import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -48,7 +49,6 @@ import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -68,10 +68,14 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
     public static final String ID = "org.eclipse.egf.pattern.ui.pattern.editor.id"; //$NON-NLS-1$
 
-    private String initialPatternName;
-
+    /**
+     * UndoContext
+     */
     protected ObjectUndoContext undoContext;
 
+    /**
+     * TransactionalEditingDomain
+     */
     private TransactionalEditingDomain editingDomain;
 
     /**
@@ -89,24 +93,29 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      */
     protected boolean resourceHasBeenRemoved;
 
+    /**
+     * Current pattern
+     */
+    private Pattern pattern;
+
+    /**
+     * Current title
+     */
+    private String partName;
+
     private final ResourceListener resourceListener = new ResourceListener() {
 
         public void resourceMoved(Resource movedResource, final URI oldURI) {
+            // TODO: partially implemented, we do need to handle .pt
             if (movedResource == getResource()) {
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                addPatternChangeAdapter();
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
                     public void run() {
-                        getOperationHistory().dispose(undoContext, true, true, true);
-                        firePropertyChange(IEditorPart.PROP_DIRTY);
-                        setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
+                        setInputWithNotify(new PatternEditorInput(getResource(), ((PatternEditorInput) getEditorInput()).getID()));
                         firePropertyChange(PROP_TITLE);
-                        for (PatternEditorPage page : pages) {
-                            page.rebind();
-                        }
                     }
 
                 });
@@ -131,29 +140,50 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         }
 
         public void resourceReloaded(Resource reloadedResource) {
+
             if (reloadedResource == getResource()) {
+
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                // Remove previous adapter
-                removePatternChangeAdapter();
+
+                // Create a new input
+                final PatternEditorInput newEditorInput = new PatternEditorInput(getResource(), ((PatternEditorInput) getEditorInput()).getID());
+
                 // Check whether or not this pattern is still alive
-                if (getPattern() != null) {
-                    addPatternChangeAdapter();
+                if (newEditorInput.getPattern() != null) {
+
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
                         public void run() {
-                            getOperationHistory().dispose(undoContext, true, true, true);
-                            firePropertyChange(IEditorPart.PROP_DIRTY);
-                            setInputWithNotify(new PatternEditorInput(getResource(), getPattern().getID()));
-                            firePropertyChange(PROP_TITLE);
-                            for (PatternEditorPage page : pages) {
-                                page.rebind();
+
+                            // Do we have something to do
+                            if (pattern != newEditorInput.getPattern()) {
+
+                                // Remove previous adapters
+                                removePatternChangeAdapter();
+                                // Store reloaded pattern
+                                pattern = newEditorInput.getPattern();
+                                // Add new adapters
+                                addPatternChangeAdapter();
+
+                                getOperationHistory().dispose(undoContext, true, true, true);
+                                firePropertyChange(IEditorPart.PROP_DIRTY);
+                                setInputWithNotify(newEditorInput);
+                                for (PatternEditorPage page : pages) {
+                                    page.rebind(newEditorInput);
+                                }
+                                // Update title
+                                firePropertyChange(PROP_TITLE);
+
                             }
+
                         }
 
                     });
+
                 } else {
+
                     // just close now without prompt
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
@@ -162,7 +192,9 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                         }
 
                     });
+
                 }
+
             }
 
         }
@@ -174,39 +206,23 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         }
 
         public void internalUpdate(Resource changedResource) {
+
             if (changedResource == getResource()) {
+
                 resourceHasBeenExternallyChanged = false;
                 resourceHasBeenRemoved = false;
                 userHasSavedResource = false;
-                // Check whether or not this pattern is still alive
-                if (getPattern() != null) {
-                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                        public void run() {
-                            firePropertyChange(IEditorPart.PROP_DIRTY);
-                            String name = getPattern().getName();
-                            if (initialPatternName != null && !initialPatternName.equals(name)) {
-                                try {
-                                    ExtensionHelper.getExtension(getPattern().getNature()).getRefactoringManager().renamePattern(getPattern(), initialPatternName, name);
-                                } catch (Exception e) {
-                                    Activator.getDefault().logError(e);
-                                }
-                                initialPatternName = name;
-                            }
-                        }
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                    });
-                } else {
-                    // just close now without prompt
-                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                    public void run() {
+                        firePropertyChange(IEditorPart.PROP_DIRTY);
+                    }
 
-                        public void run() {
-                            getSite().getPage().closeEditor(PatternEditor.this, false);
-                        }
+                });
 
-                    });
-                }
             }
+
         }
 
     };
@@ -281,14 +297,39 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
     };
 
-    // The adapter is for refreshing the editor title while the name of pattern
-    // has been changed.
-    AdapterImpl refresher = new AdapterImpl() {
+    // The current pattern adapter
+    AdapterImpl patternAdapter = new AdapterImpl() {
 
         @Override
-        public void notifyChanged(Notification msg) {
+        public void notifyChanged(final Notification msg) {
             if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
-                setPartName((String) msg.getNewValue());
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                    public void run() {
+                        // Title update and generated class refactoring if necessary
+                        if (partName != null && partName.equals(msg.getNewValue()) == false) {
+                            try {
+                                ExtensionHelper.getExtension(pattern.getNature()).getRefactoringManager().renamePattern(pattern, partName, (String) msg.getNewValue());
+                            } catch (Exception e) {
+                                Activator.getDefault().logError(e);
+                            }
+                            partName = (String) msg.getNewValue();
+                            setPartName(partName);
+                        }
+                    }
+
+                });
+            } else if (PatternPackage.Literals.PATTERN_ELEMENT__CONTAINER.equals(msg.getFeature()) && msg.getNewValue() == null) {
+                // Removed Pattern
+                // just close now without prompt
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+
+                    public void run() {
+                        getSite().getPage().closeEditor(PatternEditor.this, false);
+                    }
+
+                });
+
             }
         }
 
@@ -390,29 +431,20 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     }
 
     /**
-     * While the name of the pattern has been changed, refresh the editor title.
+     * Add the Adapter add for refreshing the editor title
      */
     private void addPatternChangeAdapter() {
-        Display.getDefault().asyncExec(new Runnable() {
-
-            public void run() {
-                Pattern pattern = getPattern();
-                if (pattern != null) {
-                    pattern.eAdapters().add(refresher);
-                    setPartName(pattern.getName());
-                }
-            }
-
-        });
+        if (pattern != null && pattern.eAdapters().contains(patternAdapter) == false) {
+            pattern.eAdapters().add(patternAdapter);
+        }
     }
 
     /**
      * Remove the Adapter add for refreshing the editor title
      */
     private void removePatternChangeAdapter() {
-        Pattern pattern = getPattern();
-        if (pattern != null && pattern.eAdapters().contains(refresher)) {
-            pattern.eAdapters().remove(refresher);
+        if (pattern != null && pattern.eAdapters().contains(patternAdapter)) {
+            pattern.eAdapters().remove(patternAdapter);
         }
     }
 
@@ -463,13 +495,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         }
     }
 
-    private Pattern getPattern() {
-        PatternEditorInput input = (PatternEditorInput) getEditorInput();
-        if (input == null)
-            throw new IllegalStateException();
-        return input.getPattern();
-    }
-
     public Resource getResource() {
         PatternEditorInput input = (PatternEditorInput) getEditorInput();
         if (input == null)
@@ -493,12 +518,14 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         setSite(site);
         setInputWithNotify(editorInput);
         site.getPage().addPartListener(partListener);
-        initialPatternName = getPattern().getName();
+        pattern = ((PatternEditorInput) getEditorInput()).getPattern();
+        partName = pattern.getName();
         resourceHasBeenExternallyChanged = EGFResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
         EGFResourceLoadedListener.getResourceManager().addObserver(this);
         // populate operation history if applicable
         EGFResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
         addPatternChangeAdapter();
+        setPartName(pattern.getName());
     }
 
     protected void initializeEditingDomain() {

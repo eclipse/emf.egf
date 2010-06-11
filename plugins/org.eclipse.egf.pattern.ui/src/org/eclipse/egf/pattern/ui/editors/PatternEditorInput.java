@@ -64,9 +64,11 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
 
     private final PatternPersistableElement persistable = new PatternPersistableElement();
 
-    private final String fragment;
+    private final String id;
 
     private final Resource resource;
+
+    private IFile file;
 
     // Add for test read only mode --start;
     private boolean isReadOnly = false;
@@ -77,11 +79,12 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
 
     // Add for test read only mode --end;
 
-    public PatternEditorInput(Resource resource, String fragment) {
-        if (fragment == null || resource == null)
+    public PatternEditorInput(Resource resource, String id) {
+        if (id == null || resource == null) {
             throw new IllegalArgumentException();
+        }
         this.resource = resource;
-        this.fragment = fragment;
+        this.id = id;
     }
 
     /**
@@ -101,11 +104,15 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public Pattern getPattern() {
-        return (Pattern) getResource().getEObject(fragment);
+        return (Pattern) getResource().getEObject(id);
     }
 
     public Resource getResource() {
         return resource;
+    }
+
+    public String getID() {
+        return id;
     }
 
     public URI getURI() {
@@ -151,7 +158,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
 
         public void saveState(IMemento memento) {
             if (getPattern() != null) {
-                memento.putString(PATTERN_ID, getPattern().getID());
+                memento.putString(PATTERN_ID, getID());
                 memento.putString(RESSOURCE_URI, resource.getURI().toString());
             }
         }
@@ -163,7 +170,10 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
     }
 
     public IFile getFile() {
-        return (IFile) EclipseUtil.getAdapter(IFile.class, getURI());
+        if (file == null) {
+            file = (IFile) EclipseUtil.getAdapter(IFile.class, getURI());
+        }
+        return file;
     }
 
     public IStorage getStorage() {
