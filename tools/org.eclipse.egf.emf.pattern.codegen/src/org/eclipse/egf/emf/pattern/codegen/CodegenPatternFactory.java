@@ -64,7 +64,7 @@ public class CodegenPatternFactory {
 
         if (patternInfo instanceof JetSubPatternInfo) {
             JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
-            for (VariableInfo variableInfo : jetSubPatternInfo.getSection().getBeginVariables()) {
+            for (VariableInfo variableInfo : jetSubPatternInfo.getVariableInfos()) {
                 PatternParameter parameter = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
                 parameter.setName(variableInfo.getName());
                 parameter.setType(variableInfo.getType());

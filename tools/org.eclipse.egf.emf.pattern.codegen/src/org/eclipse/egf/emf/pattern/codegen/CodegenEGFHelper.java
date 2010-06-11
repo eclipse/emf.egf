@@ -449,8 +449,18 @@ public class CodegenEGFHelper {
         XMIResource xmiResource = getXMIResource();
         for (String id : patternElementOrder.keySet()) {
             PatternElement patternElement = (PatternElement) xmiResource.getEObject(id);
-            if (patternElement != null) 
-                getSiblingCollection(patternElement).move(patternElementOrder.get(id), patternElement);
+            if (patternElement != null) {
+                int newPosition = patternElementOrder.get(id);
+                boolean moved = false;
+                while (newPosition > -1 && !moved) {
+                    try {
+                        getSiblingCollection(patternElement).move(newPosition, patternElement);
+                        moved = true;
+                    } catch (IndexOutOfBoundsException e) {
+                        newPosition--;
+                    }
+                }
+            }
         }
     }
 

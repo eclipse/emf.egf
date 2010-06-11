@@ -76,14 +76,14 @@ public class CodegenJetPatternHelper {
 
                 CodegenJetCompiler codegenJetCompiler = new CodegenJetCompiler(codegenProject, templateURI);
                 codegenJetCompiler.parse();
-                computeJetSubPatternInfo(newPatternInfos, jetPatternInfo, jetPatternInfo, codegenJetCompiler.getSection());
+                computeJetSubPatternInfo(patternInfos, newPatternInfos, jetPatternInfo, jetPatternInfo, codegenJetCompiler.getSection());
             }
         }
 
         patternInfos.addAll(newPatternInfos.values());
     }
 
-    protected void computeJetSubPatternInfo(Map<String, JetAbstractPatternInfo> newPatternInfos, JetAbstractPatternInfo rootPatternInfo, JetAbstractPatternInfo patternInfo, CodegenJetTemplateSection section) {
+    protected void computeJetSubPatternInfo(List<PatternInfo> patternInfos, Map<String, JetAbstractPatternInfo> newPatternInfos, JetPatternInfo rootPatternInfo, JetAbstractPatternInfo patternInfo, CodegenJetTemplateSection section) {
         if (patternInfo != null) {
             patternInfo.setSection(section);
             section.setPatternInfo(patternInfo);
@@ -91,20 +91,23 @@ public class CodegenJetPatternHelper {
             // ignore predefined Header Pattern
         } else {
             if (section.fileAttribute != null) {
-                replaceFileAttribute(section, rootPatternInfo.getName());
-                
+                replaceFileAttribute(patternInfos, section, rootPatternInfo);
+
                 if (newPatternInfos.containsKey(section.fileAttribute)) {
+                    CodegenJetTemplateSection previousSection = newPatternInfos.get(section.fileAttribute).getSection();
                     if (CodegenJetConstants.FAIL_ALTERNATIVE.equals(section.failAttribute)) {
-                        CodegenJetTemplateSection previousSection = newPatternInfos.get(section.fileAttribute).getSection();
-                        if (!section.templateBuffer.toString().equals(previousSection.templateBuffer.toString())) {
+                        if (!sameContent(section, previousSection)) {
                             throw new IllegalStateException("Duplicate alternative include declaration with different content"); //$NON-NLS-1$
                         }
                     }
+                    //only keep common variablesInfo
+                    previousSection.getPatternInfo().getVariableInfos().retainAll(section.beginVariables);
                 } else {
                     patternInfo = new JetSubPatternInfo();
                     patternInfo.setSection(section);
                     patternInfo.setContentType(rootPatternInfo.getContentType());
                     patternInfo.setPartType(rootPatternInfo.getPartType());
+                    patternInfo.setVariableInfos(section.beginVariables);
                     newPatternInfos.put(section.fileAttribute, patternInfo);
                 }
 
@@ -113,13 +116,52 @@ public class CodegenJetPatternHelper {
         }
 
         for (CodegenJetTemplateSection subSection : section.getSections()) {
-            computeJetSubPatternInfo(newPatternInfos, rootPatternInfo, null, subSection);
+            computeJetSubPatternInfo(patternInfos, newPatternInfos, rootPatternInfo, null, subSection);
         }
     }
 
-    private void replaceFileAttribute(CodegenJetTemplateSection section, String firstSegment) {
-        Path initPath = new Path(section.fileAttribute);
-        IPath newPath = new Path(firstSegment).append(initPath.removeFirstSegments(1));
+    protected boolean sameContent(CodegenJetTemplateSection section, CodegenJetTemplateSection previousSection) {
+        return getTestContent(section).equals(getTestContent(previousSection));
+    }
+
+    protected String getTestContent(CodegenJetTemplateSection section) {
+        StringBuilder buffer = new StringBuilder();
+        for (CodegenJetTemplateSection subSection : section.getSections()) {
+            for (int i =0; i < subSection.templateBuffer.length() ; i++) {
+                char charAt = subSection.templateBuffer.charAt(i);
+                if (charAt != ' ' && charAt != '\n' && charAt != '\r'  && charAt != '\t' )
+                    buffer.append(charAt);
+            }
+        }
+        return buffer.toString();
+    }
+
+    protected void replaceFileAttribute(List<PatternInfo> patternInfos, CodegenJetTemplateSection section, JetPatternInfo rootPatternInfo) {
+        String rootJetTemplateName = new Path(rootPatternInfo.getJetTemplatePath()).removeFileExtension().lastSegment();
+        String fileAttributeParentName = new Path(section.fileAttribute).segment(0);
+        String fileAttributeName = new Path(section.fileAttribute).segment(1);
+
+        if (!fileAttributeParentName.equals(rootJetTemplateName)) {
+            // the subSection is contained in another template
+            // so will find the good one
+            rootPatternInfo = null;
+            for (PatternInfo patternInfo : patternInfos) {
+                if (patternInfo instanceof JetPatternInfo) {
+                    JetPatternInfo jetPatternInfo = (JetPatternInfo) patternInfo;
+                    rootJetTemplateName = new Path(jetPatternInfo.getJetTemplatePath()).removeFileExtension().lastSegment();
+                    if (rootJetTemplateName.equals(fileAttributeParentName)) {
+                        if (rootPatternInfo != null)
+                            throw new IllegalStateException("Found two jet¨PatternInfo"); //$NON-NLS-1$
+                        rootPatternInfo = jetPatternInfo;
+                    }
+                }
+            }
+        }
+
+        if (rootPatternInfo == null)
+            throw new IllegalStateException("Found no jet¨PatternInfo"); //$NON-NLS-1$
+
+        IPath newPath = new Path(rootPatternInfo.getName()).append(fileAttributeName);
         section.fileAttribute = newPath.toString();
     }
 
@@ -127,7 +169,7 @@ public class CodegenJetPatternHelper {
         URL url = new URL(PLATFORM_PLUGIN_ORG_ECLIPSE_EMF_CODEGEN_ECORE_TEMPLATES + templateRelativePath);
         return FileLocator.find(url).toString();
     }
-    
+
     public String getContent(CodegenJetTemplateSection parentSection) {
         StringBuilder buffer = new StringBuilder();
         for (CodegenJetTemplateSection section : parentSection.getSections()) {
@@ -162,11 +204,11 @@ public class CodegenJetPatternHelper {
                     buffer.append(ARGS);
                     buffer.append("=\"parameter:argument\""); //$NON-NLS-1$
                 } else {
-                    if (section.beginVariables.size() > 0) {
+                    if (section.getPatternInfo().getVariableInfos().size() > 0) {
                         buffer.append(ARGS);
                         buffer.append("=\""); //$NON-NLS-1$
-                        for (VariableInfo variableInfo : section.beginVariables) {
-                            if (section.beginVariables.indexOf(variableInfo) > 0)
+                        for (VariableInfo variableInfo : section.getPatternInfo().getVariableInfos()) {
+                            if (section.getPatternInfo().getVariableInfos().indexOf(variableInfo) > 0)
                                 buffer.append(ARGS_SEPARATOR);
                             buffer.append(variableInfo.getName());
                             buffer.append(MATCH_SEPARATOR);
@@ -185,7 +227,7 @@ public class CodegenJetPatternHelper {
         return buffer.toString();
     }
 
-    private String getPatternURI(Resource resource, String name, String libraryName) {
+    protected String getPatternURI(Resource resource, String name, String libraryName) {
         StringBuilder buffer = new StringBuilder();
         buffer.append(LOGICAL_NAME);
         buffer.append("="); //$NON-NLS-1$

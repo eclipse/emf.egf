@@ -26,13 +26,13 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL + "\t\t\t\t(";
+  protected final String TEXT_1 = "\t\t\t\tnewChildDescriptors.add" + NL + "\t\t\t\t\t(createChildParameter" + NL + "\t\t\t\t\t\t(";
   protected final String TEXT_2 = ",";
-  protected final String TEXT_3 = NL + "\t\t\t\t ";
+  protected final String TEXT_3 = NL + "\t\t\t\t\t\t ";
   protected final String TEXT_4 = "));";
-  protected final String TEXT_5 = NL + "\t\t\t\t ";
+  protected final String TEXT_5 = NL + "\t\t\t\t\t\t ";
   protected final String TEXT_6 = "));";
-  protected final String TEXT_7 = NL + "\t\t\t\t ";
+  protected final String TEXT_7 = NL + "\t\t\t\t\t\t ";
   protected final String TEXT_8 = ".createFromString(";
   protected final String TEXT_9 = ", ";
   protected final String TEXT_10 = ")));";
@@ -76,8 +76,6 @@ List<Object> genPackageList = null;
 //this pattern can only be called by another (i.e. it's not an entry point in execution)
 List<Object> genModelList = null;
 //this pattern can only be called by another (i.e. it's not an entry point in execution)
-List<Object> _ListList = null;
-//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 
 for (Object createDataTypeParameter : createDataTypeList ) {
@@ -88,7 +86,6 @@ for (Object childCreationDataParameter : childCreationDataList ) {
 for (Object genClassParameter : genClassList ) {
 for (Object genPackageParameter : genPackageList ) {
 for (Object genModelParameter : genModelList ) {
-for (Object _ListParameter : _ListList ) {
 
 this.createDataType = (org.eclipse.emf.codegen.ecore.genmodel.GenDataType)createDataTypeParameter;
 this.createFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature)createFeatureParameter;
@@ -98,12 +95,10 @@ this.childCreationData = (org.eclipse.emf.codegen.ecore.genmodel.GenClass.ChildC
 this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass)genClassParameter;
 this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage)genPackageParameter;
 this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel)genModelParameter;
-this._List = (java.lang.String)_ListParameter;
 
 
     orchestration(ctx);
     
-}
 }
 }
 }
@@ -142,7 +137,6 @@ if (ictx.useReporter()){
     parameterValues.put("genClass", this.genClass);
     parameterValues.put("genPackage", this.genPackage);
     parameterValues.put("genModel", this.genModel);
-    parameterValues.put("_List", this._List);
     String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
     ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
     ictx.clearBuffer();}
@@ -181,10 +175,6 @@ protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
 public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
 this.genModel = object;
 }
-protected java.lang.String _List = null;
-public void set__List(java.lang.String object) {
-this._List = object;
-}
 public Map<String, Object> getParameters() {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("createDataType", this.createDataType);
@@ -195,7 +185,6 @@ parameters.put("childCreationData", this.childCreationData);
 parameters.put("genClass", this.genClass);
 parameters.put("genPackage", this.genPackage);
 parameters.put("genModel", this.genModel);
-parameters.put("_List", this._List);
 return parameters; }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -237,7 +226,6 @@ callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("_List", _List);
 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_05ZT0GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 

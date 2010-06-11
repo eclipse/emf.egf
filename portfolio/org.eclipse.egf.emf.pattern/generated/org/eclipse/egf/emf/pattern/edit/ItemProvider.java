@@ -471,7 +471,6 @@ callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("_List", _List);
 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_036GEGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
@@ -489,7 +488,6 @@ callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("_List", _List);
 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04WyAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
@@ -508,7 +506,6 @@ callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("_List", _List);
 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
@@ -526,7 +523,6 @@ callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("_List", _List);
 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_048n4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 

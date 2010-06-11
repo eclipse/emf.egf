@@ -553,14 +553,9 @@ callParameters.put("delegatedFeature", delegatedFeature);
 callParameters.put("createClassifier", createClassifier);
 callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
-callParameters.put("classEntry", classEntry);
-callParameters.put("packageEntry", packageEntry);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("useGenerics", useGenerics);
-callParameters.put("_ArrayList", _ArrayList);
-callParameters.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_05_JsWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_036GEGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
     //ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc
@@ -575,14 +570,9 @@ callParameters.put("delegatedFeature", delegatedFeature);
 callParameters.put("createClassifier", createClassifier);
 callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
-callParameters.put("classEntry", classEntry);
-callParameters.put("packageEntry", packageEntry);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("useGenerics", useGenerics);
-callParameters.put("_ArrayList", _ArrayList);
-callParameters.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_06lmoGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04WyAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
     //ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc
@@ -598,14 +588,9 @@ callParameters.put("delegatedFeature", delegatedFeature);
 callParameters.put("createClassifier", createClassifier);
 callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
-callParameters.put("classEntry", classEntry);
-callParameters.put("packageEntry", packageEntry);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("useGenerics", useGenerics);
-callParameters.put("_ArrayList", _ArrayList);
-callParameters.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_07e-gGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
     //ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc 
@@ -620,14 +605,9 @@ callParameters.put("delegatedFeature", delegatedFeature);
 callParameters.put("createClassifier", createClassifier);
 callParameters.put("childCreationData", childCreationData);
 callParameters.put("genClass", genClass);
-callParameters.put("classEntry", classEntry);
-callParameters.put("packageEntry", packageEntry);
 callParameters.put("genPackage", genPackage);
 callParameters.put("genModel", genModel);
-callParameters.put("useGenerics", useGenerics);
-callParameters.put("_ArrayList", _ArrayList);
-callParameters.put("_Collection", _Collection);
-CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_08OlYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_048n4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
 }
 
     //ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc
