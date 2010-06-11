@@ -149,17 +149,16 @@ public class CodegenPatternDescriptionHandler {
         if (patternInfo instanceof GIFPatternInfo)
             return;
 
-        builder.append("file \""); //$NON-NLS-1$
-
-        if (patternInfo instanceof JetPatternInfo)
+        if (patternInfo instanceof JetPatternInfo) {
+            builder.append("file \""); //$NON-NLS-1$
             builder.append(((JetPatternInfo) patternInfo).getJetTemplatePath());
-        else if (patternInfo instanceof JetSubPatternInfo) {
+            builder.append("\" in "); //$NON-NLS-1$
+        } else if (patternInfo instanceof JetSubPatternInfo) {
             JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
             JetAbstractPatternInfo rootPatternInfo = jetSubPatternInfo.getSection().getRoot().getPatternInfo();
             addTemplatePath(builder, rootPatternInfo);
         }
 
-        builder.append("\" in "); //$NON-NLS-1$
     }
 
 }
