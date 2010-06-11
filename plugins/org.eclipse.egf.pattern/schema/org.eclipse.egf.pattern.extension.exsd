@@ -32,6 +32,9 @@
                <documentation>
                   
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier"/>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="name" type="string">
