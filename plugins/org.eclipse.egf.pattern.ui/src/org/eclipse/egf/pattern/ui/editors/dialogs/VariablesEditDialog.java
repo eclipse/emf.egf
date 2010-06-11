@@ -23,8 +23,10 @@ import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -131,15 +133,15 @@ public class VariablesEditDialog extends SelectionStatusDialog {
             public void widgetSelected(SelectionEvent e) {
                 OpenTypeWizard wizard = new OpenTypeWizard(_editingDomain, _type, _current);
                 wizard.init(PlatformUI.getWorkbench(), null);
-                WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-                int returnValue = dialog.open();
-                if (Window.OK == returnValue) {
-                    Object selectType = wizard.getSelectType();
-                    if (selectType instanceof String) {
-                        if ("".equals(selectType) == false) { //$NON-NLS-1$
-                            _type = (String) selectType;
-                            _typeText.setText(ParametersTableLabelProvider.getType(_type));
-                        }
+                WizardDialog dialog = new WizardDialog(getShell(), wizard);
+                if (dialog.open() == Window.OK) {
+                    Object object = wizard.getSelectType();
+                    if (object instanceof EObject) {
+                        _type = EcoreUtil.getURI((EObject) object).toString();
+                        _typeText.setText(ParametersTableLabelProvider.getType(_type));
+                    } else if (object instanceof IType) {
+                        _type = ((IType) object).getFullyQualifiedName();
+                        _typeText.setText(((IType) object).getElementName());
                     }
                 }
             }

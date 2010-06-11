@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.ui.dialogs.AbstractFilteredItemsSelectionDialog;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
@@ -32,6 +33,7 @@ import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -42,19 +44,19 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IMemento;
-import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class PatternSelectionDialog extends FilteredItemsSelectionDialog {
+public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog {
 
     private static final String DIALOG_SETTINGS = "org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog"; //$NON-NLS-1$
 
@@ -286,7 +288,7 @@ public class PatternSelectionDialog extends FilteredItemsSelectionDialog {
             buffer.append("]"); //$NON-NLS-1$      
             return buffer.toString();
         }
-    };
+    }
 
     public PatternSelectionDialog(Shell parentShell, boolean multipleSelection) {
         this(parentShell, (Pattern) null, multipleSelection);
@@ -322,6 +324,26 @@ public class PatternSelectionDialog extends FilteredItemsSelectionDialog {
             setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
         } else {
             setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+        }
+    }
+
+    /**
+     * Handle selection
+     * 
+     * @param selection
+     *            the new selection
+     */
+    @Override
+    protected void handleSelected(StructuredSelection selection) {
+        super.handleSelected(selection);
+        if (selection.size() != 0) {
+            List<Pattern> patterns = new UniqueEList<Pattern>();
+            for (Object object : selection.toList()) {
+                if (object instanceof Pattern) {
+                    patterns.add((Pattern) object);
+                }
+            }
+            notifySelectionListeners(patterns.toArray());
         }
     }
 
