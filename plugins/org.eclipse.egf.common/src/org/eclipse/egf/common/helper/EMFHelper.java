@@ -105,7 +105,7 @@ public class EMFHelper {
 
     public static IJavaProject getJavaProject(Resource resource) {
         IProject project = getProject(resource);
-        if (project != null) {
+        if (project != null && project.isAccessible()) {
             IJavaProject javaProject = JavaCore.create(project);
             if (javaProject.exists()) {
                 return javaProject;
