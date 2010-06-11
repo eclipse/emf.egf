@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -74,7 +74,9 @@ public abstract class AbstractJavaEngine extends PatternEngine {
             Class<?> templateClass = loadTemplateClass(context, getPatternClassname());
             Object template = templateClass.newInstance();
             Class<?>[] parameterClasses = new Class<?>[1];
-            Object[] parameterValues = new Object[] { context };
+            Object[] parameterValues = new Object[] {
+                context
+            };
             if (AssemblyHelper.GENERATE_METHOD.equals(methodName)) {
                 parameterClasses[0] = Object.class;
             } else if (AssemblyHelper.ORCHESTRATION_METHOD.equals(methodName)) {
@@ -109,7 +111,7 @@ public abstract class AbstractJavaEngine extends PatternEngine {
 
     protected abstract String getPatternClassname() throws PatternException;
 
-    private void setupExecutionReporter(InternalPatternContext context) throws PatternException {
+    private void setupExecutionReporter(InternalPatternContext context) {
         if (context.hasReporter())
             return;
         PatternExecutionReporter reporter = (PatternExecutionReporter) context.getValue(PatternContext.PATTERN_REPORTER);
@@ -119,15 +121,15 @@ public abstract class AbstractJavaEngine extends PatternEngine {
     }
 
     protected IPath computeFilePath(String classname) {
-        if (classname == null || "".equals(classname))
+        if (classname == null || "".equals(classname)) //$NON-NLS-1$
             throw new IllegalArgumentException();
 
         IPath result = new Path(PatternPreferences.getGenerationFolderName());
-        String[] names = classname.split("\\.");
+        String[] names = classname.split("\\."); //$NON-NLS-1$
         for (String name : names) {
             result = result.append(name);
         }
-        result = result.addFileExtension("java");
+        result = result.addFileExtension("java"); //$NON-NLS-1$
         return result;
     }
 
@@ -146,13 +148,13 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         if (project == null)
             throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
 
-        //format code
+        // format code
         IJavaProject javaProject = JavaCore.create(project);
         if (javaProject != null) {
             Map<?, ?> options = javaProject.getOptions(true);
             CodeFormatter codeFormatter = ToolFactory.createCodeFormatter(options);
             IDocument doc = new Document(content);
-            TextEdit edit = ((CodeFormatter) codeFormatter).format(CodeFormatter.K_COMPILATION_UNIT, doc.get(), 0, doc.get().length(), 0, null);
+            TextEdit edit = codeFormatter.format(CodeFormatter.K_COMPILATION_UNIT, doc.get(), 0, doc.get().length(), 0, null);
             if (edit != null) {
                 edit.apply(doc);
                 content = doc.get();
