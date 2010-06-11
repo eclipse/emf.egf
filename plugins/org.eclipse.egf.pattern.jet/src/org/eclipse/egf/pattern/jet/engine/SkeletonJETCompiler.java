@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -31,10 +31,13 @@ import org.eclipse.jdt.core.jdom.IDOMType;
  * @author Thomas Guiu
  * 
  */
+@SuppressWarnings("deprecation")
 public class SkeletonJETCompiler extends JetTagsCompiler {
-    private static final String GENERATOR_SKELETON = "platform:/plugin/org.eclipse.egf.pattern.jet/templates/generator.skeleton";
+
+    private static final String GENERATOR_SKELETON = "platform:/plugin/org.eclipse.egf.pattern.jet/templates/generator.skeleton"; //$NON-NLS-1$
 
     public static class CustomJETSkeleton extends JETSkeleton {
+
         public void setParentClass(String classname) {
             for (IDOMNode node = compilationUnit.getFirstChild(); node != null; node = node.getNextNode()) {
                 if (node.getNodeType() == IDOMNode.TYPE) {
@@ -44,6 +47,7 @@ public class SkeletonJETCompiler extends JetTagsCompiler {
             }
 
         }
+
     }
 
     public SkeletonJETCompiler(String templateURI, InputStream inputStream, String encoding) throws JETException {
@@ -54,10 +58,11 @@ public class SkeletonJETCompiler extends JetTagsCompiler {
      * Overriding the method to enhance the behavior (change the default
      * skeleton)
      */
+    @Override
     public void handleDirective(String directive, JETMark start, JETMark stop, Map<String, String> attributes) throws JETException {
-        if (directive.equals("jet") && skeleton == null) {
+        if (directive.equals("jet") && skeleton == null) { //$NON-NLS-1$
             skeleton = new CustomJETSkeleton();
-            String skeletonURI = attributes.get("skeleton");
+            String skeletonURI = attributes.get("skeleton"); //$NON-NLS-1$
             if (skeletonURI == null)
                 skeletonURI = GENERATOR_SKELETON;
             try {
@@ -73,24 +78,26 @@ public class SkeletonJETCompiler extends JetTagsCompiler {
             for (Map.Entry<String, String> entry : attributes.entrySet()) {
                 // Ignore this now
                 //
-                if (entry.getKey().equals("skeleton")) {
+                if (entry.getKey().equals("skeleton")) { //$NON-NLS-1$
                     // Ignore
-                } else if (entry.getKey().equals("package")) {
+                } else if (entry.getKey().equals("package")) { //$NON-NLS-1$
                     skeleton.setPackageName(entry.getValue());
-                } else if (entry.getKey().equals("imports")) {
+                } else if (entry.getKey().equals("imports")) { //$NON-NLS-1$
                     skeleton.addImports(entry.getValue());
-                } else if (entry.getKey().equals("class")) {
+                } else if (entry.getKey().equals("class")) { //$NON-NLS-1$
                     skeleton.setClassName(entry.getValue());
-                } else if (entry.getKey().equals("nlString")) {
+                } else if (entry.getKey().equals("nlString")) { //$NON-NLS-1$
                     skeleton.setNLString(entry.getValue());
-                } else if (entry.getKey().equals("startTag")) {
+                } else if (entry.getKey().equals("startTag")) { //$NON-NLS-1$
                     parser.setStartTag(entry.getValue());
-                } else if (entry.getKey().equals("endTag")) {
+                } else if (entry.getKey().equals("endTag")) { //$NON-NLS-1$
                     parser.setEndTag(entry.getValue());
-                } else if (entry.getKey().equals("version")) {
+                } else if (entry.getKey().equals("version")) { //$NON-NLS-1$
                     // Ignore the version
                 } else {
-                    throw new JETException(CodeGenPlugin.getPlugin().getString("jet.error.bad.attribute", new Object[] { entry.getKey(), start.format("jet.mark.file.line.column") }));
+                    throw new JETException(CodeGenPlugin.getPlugin().getString("jet.error.bad.attribute", new Object[] { //$NON-NLS-1$
+                                    entry.getKey(), start.format("jet.mark.file.line.column") //$NON-NLS-1$
+                            }));
                 }
             }
 

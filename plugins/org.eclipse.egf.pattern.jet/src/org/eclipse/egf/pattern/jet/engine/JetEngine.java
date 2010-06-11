@@ -40,6 +40,7 @@ public class JetEngine extends AbstractJavaEngine {
         super(pattern);
     }
 
+    @Override
     public void translate() throws PatternException {
         Pattern pattern = getPattern();
 
@@ -49,7 +50,7 @@ public class JetEngine extends AbstractJavaEngine {
         String templatecontent = helper.visit();
 
         // 2 - compile the result
-        String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
+        String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         try {
             SkeletonJETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
             compiler.parse();
@@ -86,10 +87,10 @@ public class JetEngine extends AbstractJavaEngine {
         Pattern pattern = getPattern();
         // add call to orchestration
         if (pattern.getConditionMethod() != null) {
-            builder.append("if (preCondition())");
+            builder.append("if (preCondition())"); //$NON-NLS-1$
             builder.append(EGFCommonConstants.LINE_SEPARATOR);
         }
-        builder.append(AssemblyHelper.ORCHESTRATION_METHOD).append("(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append(AssemblyHelper.ORCHESTRATION_METHOD).append("(ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         // add end of class code
         int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, endIndex);
@@ -102,35 +103,35 @@ public class JetEngine extends AbstractJavaEngine {
             builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), insertionIndex));
 
         // add pattern reporter stuff
-        builder.append("public String ").append(AssemblyHelper.ORCHESTRATION_METHOD).append("(PatternContext ctx) throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("int executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("public String ").append(AssemblyHelper.ORCHESTRATION_METHOD).append("(PatternContext ctx) throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$
+        builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("int executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // add orchestration statements
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !getPattern().getAllParameters().isEmpty();
-        builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         if (hasParameter) {
-            builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 String name = parameter.getName();
                 // String type =
                 // ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
                 // builder.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-                builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+                builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            builder.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
-        builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         // Handle variable initialization and fields
         int startVariable = content.indexOf(JetAssemblyHelper.START_INIT_VARIABLE_MARKER);
@@ -142,7 +143,7 @@ public class JetEngine extends AbstractJavaEngine {
                 indexOf += JetAssemblyHelper.CONSTRUCTOR_MARKER.length();
                 builder.insert(indexOf, sequence);
                 // TODO filter sequence instead of using a workaround...
-                builder.insert(indexOf, "\nStringBuffer stringBuffer = new StringBuffer();\n");
+                builder.insert(indexOf, "\nStringBuffer stringBuffer = new StringBuffer();\n"); //$NON-NLS-1$
                 startVariable = builder.indexOf(JetAssemblyHelper.START_INIT_VARIABLE_MARKER);
                 endVariable = builder.indexOf(JetAssemblyHelper.END_INIT_VARIABLE_MARKER);
                 if (startVariable != -1 && endVariable != -1) {
@@ -154,29 +155,29 @@ public class JetEngine extends AbstractJavaEngine {
         // handle variable declarations and setters
         for (PatternVariable var : pattern.getVariables()) {
             String type = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(var.getType());
-            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$
+            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
         // handle parameter declarations and setters
         for (PatternParameter var : pattern.getParameters()) {
             String type = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(var.getType());
-            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$
+            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
         // handle getParameter() method declaration
-        builder.append("public Map<String, Object> getParameters() {").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("final Map<String, Object> parameters = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("public Map<String, Object> getParameters() {").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("final Map<String, Object> parameters = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         for (PatternParameter parameter : pattern.getAllParameters()) {
             String name = parameter.getName();
-            builder.append("parameters.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("parameters.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
-        builder.append("return parameters; }").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("return parameters; }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         // handle methods declarations
         if (startMethodIndex != -1 && endMethodIndex != -1) {
