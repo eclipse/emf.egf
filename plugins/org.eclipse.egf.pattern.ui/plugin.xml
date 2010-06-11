@@ -36,6 +36,14 @@
             class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
             id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
       	</editor>
+      	<editor
+            name="%patternTemplateEditorLabel"
+            extensions="fcore"
+            icon="icons/template.gif"
+            contributorClass="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditorContributor"
+            class="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor"
+            id="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor">
+      	</editor>
       	
    	</extension>
 

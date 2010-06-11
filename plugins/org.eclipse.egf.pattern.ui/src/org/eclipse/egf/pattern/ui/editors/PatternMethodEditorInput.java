@@ -112,6 +112,8 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     public IFile getFile() {
         IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
         IProject project = platformFcore.getPlatformBundle().getProject();
+        if (project == null)
+            return null;
         PatternMethod patternMethod = getPatternMethod();
         IFile file;
         if (patternMethod == null)
@@ -135,7 +137,6 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public IStorage getStorage() throws CoreException {
-
         return getFile();
     }
 }

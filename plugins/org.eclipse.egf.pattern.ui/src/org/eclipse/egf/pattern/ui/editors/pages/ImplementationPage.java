@@ -35,7 +35,9 @@ import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
+import org.eclipse.egf.pattern.ui.contributions.EditHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
@@ -747,10 +749,21 @@ public class ImplementationPage extends PatternEditorPage {
             PatternMethod method = (PatternMethod) ((IStructuredSelection) selection).getFirstElement();
             methodId = method.getID();
         }
+
         openMethodTemplate(methodId);
     }
 
     private void openMethodTemplate(String methodId) {
+        IWorkbench workbench = PlatformUI.getWorkbench();
+        IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+        IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+        Pattern pattern = getPattern();
+        PatternTemplateEditor editorPart = EditHelper.openTemplateBasicEditor(activePage, pattern);
+        if (editorPart != null)
+            editorPart.setActiveEditor(methodId);
+    }
+
+    private void openMethodTemplate1(String methodId) {
         Pattern pattern = getPattern();
         String editor = TemplateExtensionRegistry.getEditor(pattern);
         if (editor != null) {

@@ -41,7 +41,6 @@ import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegistry;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -245,10 +244,12 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 // PatternTemplateEditor.openEditor(parent.getPage(),
                 // patternInTransactionalEditingDomain, null);
                 Pattern pattern = getPattern();
-                String editor = TemplateExtensionRegistry.getEditor(pattern);
-                if (editor != null) {
-                    EditHelper.openTemplateEditor(_parent.getPage(), pattern, editor);
-                }
+                EditHelper.openTemplateBasicEditor(_parent.getPage(), pattern);
+                // String editor = TemplateExtensionRegistry.getEditor(pattern);
+                // if (editor != null) {
+                // EditHelper.openTemplateEditor(_parent.getPage(), pattern,
+                // editor);
+                // }
             }
         }
     }
