@@ -265,8 +265,18 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
     /**
      * Hack to use a dialog in a wizard page
      * 
-     * @return the array of selected elements, or <code>null</code> if Cancel
-     *         was pressed
+     * @return the current shell or its parent shell
+     */
+    @Override
+    public Shell getShell() {
+        return super.getShell() != null ? super.getShell() : getParentShell();
+    }
+
+    /**
+     * Hack to use a dialog in a wizard page
+     * 
+     * @return Control
+     * 
      */
     public Control createPage(Composite parent) {
         return dialogArea = createDialogArea(parent);
