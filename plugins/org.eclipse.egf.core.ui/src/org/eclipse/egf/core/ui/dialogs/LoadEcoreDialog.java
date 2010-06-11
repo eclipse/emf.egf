@@ -101,7 +101,7 @@ public class LoadEcoreDialog extends LoadResourceDialog {
                             continue;
                         }
                         URI location = ePackageNsURItoGenModelLocationMap.get(genmodel.getURI().toString());
-                        Resource resource = domain.getResourceSet().getResource(location, true);
+                        Resource resource = resourceSet.getResource(location, true);
                         EcoreUtil.resolveAll(resource);
                     }
                     for (Resource resource : domain.getResourceSet().getResources()) {
