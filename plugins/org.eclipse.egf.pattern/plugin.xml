@@ -45,7 +45,7 @@
         point="org.eclipse.egf.core.platform.manager"
     >
         <manager
-            extension="org.eclipse.egf.query"    
+            extension="org.eclipse.egf.pattern.query"    
             class="org.eclipse.egf.pattern.query.QueryFactory"
         />
     </extension>  
