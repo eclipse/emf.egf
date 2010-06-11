@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -32,17 +32,20 @@ public class ModelDrivenStrategyTask extends AbstractStrategyTask {
         super(new ModelDrivenStrategy());
     }
 
+    @Override
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
         super.readContext(context, ctx);
-        PatternExecutionReporter reporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
-        ctx.setValue(PatternContext.PATTERN_REPORTER, this.reporter = new StrategyReporter(reporter));
+        PatternExecutionReporter innerReporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
+        ctx.setValue(PatternContext.PATTERN_REPORTER, reporter = new StrategyReporter(innerReporter));
     }
 
+    @Override
     protected void writeContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
         super.writeContext(context, ctx);
         reporter.executionFinished(ctx);
     }
 
+    @Override
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         super.preExecute(context, monitor);
         parameter = this; // must be non null
