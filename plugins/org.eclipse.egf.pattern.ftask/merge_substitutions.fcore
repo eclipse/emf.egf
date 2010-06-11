@@ -7,11 +7,10 @@
     <contracts xmi:id="_UVURwEldEd-TSsH7K-_bxQ" name="substitution A">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aC11QEldEd-TSsH7K-_bxQ"/>
     </contracts>
-    <contracts xmi:id="_ahgHMEldEd-TSsH7K-_bxQ" name="substitution B" mandatory="true">
+    <contracts xmi:id="_ahgHMEldEd-TSsH7K-_bxQ" name="substitution B">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_c10TMEldEd-TSsH7K-_bxQ"/>
     </contracts>
-    <contracts xmi:id="_gBdIwEldEd-TSsH7K-_bxQ" name="merged substitution" mandatory="true"
-        mode="Out">
+    <contracts xmi:id="_gBdIwEldEd-TSsH7K-_bxQ" name="merged substitution" mode="Out">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_yMveMEuyEd-1V_-yzWj1kQ"/>
     </contracts>
   </contractContainer>
