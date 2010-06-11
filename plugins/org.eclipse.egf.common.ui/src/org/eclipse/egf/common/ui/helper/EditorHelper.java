@@ -192,17 +192,19 @@ public class EditorHelper {
         if (workbench == null) {
             return null;
         }
-        for (IWorkbenchWindow workbenchWindow : workbench.getWorkbenchWindows()) {
-            for (IWorkbenchPage workbenchPage : workbenchWindow.getPages()) {
-                for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
+        for (IWorkbenchWindow window : workbench.getWorkbenchWindows()) {
+            for (IWorkbenchPage innerPage : window.getPages()) {
+                for (IEditorReference reference : innerPage.getEditorReferences()) {
                     try {
-                        IEditorInput editorInput = editorReference.getEditorInput();
+                        IEditorInput editorInput = reference.getEditorInput();
                         if (editorInput != null) {
                             URI editorInputURI = EditorHelper.getURI(editorInput);
                             if (editorInputURI != null && editorInputURI.equals(uriToCheck)) {
-                                IEditorPart part = editorReference.getEditor(false);
+                                IEditorPart part = reference.getEditor(false);
                                 if (activate) {
-                                    workbenchPage.activate(part);
+                                    window.setActivePage(innerPage);
+                                    innerPage.activate(part);
+                                    part.setFocus();
                                 }
                                 return part;
                             }
