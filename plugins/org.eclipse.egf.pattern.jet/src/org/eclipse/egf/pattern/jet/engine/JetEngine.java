@@ -18,20 +18,15 @@ package org.eclipse.egf.pattern.jet.engine;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.common.java.AbstractJavaEngine;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.jet.JetPreferences;
-import org.eclipse.egf.pattern.jet.Messages;
-import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 
@@ -66,15 +61,10 @@ public class JetEngine extends AbstractJavaEngine {
             compiler.generate(outStream);
 
             String targetClassName = JetNatureHelper.getTemplateClassName(pattern);
+            String content = getContent(new String(outStream.toByteArray()));
             IPath outputPath = computeFilePath(targetClassName);
-            IPlatformFcore platformFcore = PatternHelper.getPlatformFcore(getPattern());
-            if (platformFcore == null)
-                throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
-            IProject project = platformFcore.getPlatformBundle().getProject();
-            if (project == null)
-                throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
-            FileHelper.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())), false);
 
+            writeContent(pattern, outputPath, content);
         } catch (PatternException e) {
             throw e;
         } catch (Exception e) {

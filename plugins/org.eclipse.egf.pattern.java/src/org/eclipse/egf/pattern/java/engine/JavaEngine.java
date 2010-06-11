@@ -15,16 +15,11 @@
 
 package org.eclipse.egf.pattern.java.engine;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.common.java.AbstractJavaEngine;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
-import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.java.Messages;
-import org.eclipse.egf.pattern.utils.FileHelper;
 
 /**
  * @author Thomas Guiu
@@ -52,16 +47,10 @@ public class JavaEngine extends AbstractJavaEngine {
 
         // 3 - put the result in the right file
         try {
-
-            IPlatformFcore platformFactoryComponent = PatternHelper.getPlatformFcore(pattern);
-            if (platformFactoryComponent == null)
-                throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
-            IProject project = platformFactoryComponent.getPlatformBundle().getProject();
-            if (project == null)
-                throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
             String classname = JavaNatureHelper.getClassName(pattern);
             IPath outputPath = computeFilePath(classname);
-            FileHelper.setContent(project.getFile(outputPath), templatecontent, false);
+
+            writeContent(pattern, outputPath, templatecontent);
         } catch (PatternException e) {
             throw e;
         } catch (Exception e) {

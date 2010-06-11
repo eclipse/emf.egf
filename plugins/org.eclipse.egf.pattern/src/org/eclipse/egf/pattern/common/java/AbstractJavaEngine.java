@@ -19,8 +19,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -30,10 +32,19 @@ import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
+import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.execution.InternalPatternContext;
+import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.ToolFactory;
+import org.eclipse.jdt.core.formatter.CodeFormatter;
+import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.text.edits.TextEdit;
 
 /**
  * @author Thomas Guiu
@@ -127,4 +138,27 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         return templateClass;
     }
 
+    protected void writeContent(Pattern pattern, IPath outputPath, String content) throws Exception {
+        IPlatformFcore platformFcore = PatternHelper.getPlatformFcore(pattern);
+        if (platformFcore == null)
+            throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
+        IProject project = platformFcore.getPlatformBundle().getProject();
+        if (project == null)
+            throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
+
+        //format code
+        IJavaProject javaProject = JavaCore.create(project);
+        if (javaProject != null) {
+            Map<?, ?> options = javaProject.getOptions(true);
+            CodeFormatter codeFormatter = ToolFactory.createCodeFormatter(options);
+            IDocument doc = new Document(content);
+            TextEdit edit = ((CodeFormatter) codeFormatter).format(CodeFormatter.K_COMPILATION_UNIT, doc.get(), 0, doc.get().length(), 0, null);
+            if (edit != null) {
+                edit.apply(doc);
+                content = doc.get();
+            }
+        }
+
+        FileHelper.setContent(project.getFile(outputPath), content, false);
+    }
 }
