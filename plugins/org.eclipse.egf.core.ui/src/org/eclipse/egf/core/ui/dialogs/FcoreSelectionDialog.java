@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.core.ui.dialogs;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,6 +27,7 @@ import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -41,235 +43,285 @@ import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
  */
 public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
-  private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog"; //$NON-NLS-1$
+    private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog"; //$NON-NLS-1$
 
-  /**
-   * <code>FcoreSelectionHistory</code> provides behavior specific to
-   * fcores - storing and restoring <code>IPlatformFcore</code>s state
-   * to/from XML (memento).
-   */
-  private class FcoreSelectionHistory extends SelectionHistory {
+    /**
+     * <code>FcoreSelectionHistory</code> provides behavior specific to
+     * fcores - storing and restoring <code>IPlatformFcore</code>s state
+     * to/from XML (memento).
+     */
+    private class FcoreSelectionHistory extends SelectionHistory {
 
-    private static final String TAG_URI = "path"; //$NON-NLS-1$
+        private static final String TAG_URI = "path"; //$NON-NLS-1$
 
-    private IPlatformFcore _previous;
+        private IPlatformFcore _previous;
 
-    public FcoreSelectionHistory() {
-      super();
+        public FcoreSelectionHistory() {
+            super();
+        }
+
+        @Override
+        protected Object restoreItemFromMemento(IMemento memento) {
+            // Get the IPlatformFcore URI
+            String tag = memento.getString(TAG_URI);
+            if (tag == null) {
+                return null;
+            }
+            URI uri = URI.createURI(tag);
+            // TODO: We should have an index to improve such control
+            for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
+                if (fcore.getURI().equals(uri)) {
+                    _previous = fcore;
+                    return fcore;
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void storeItemToMemento(Object item, IMemento element) {
+            if (getReturnCode() == OK) {
+                Object[] items = getHistoryItems();
+                for (int i = 0; i < items.length; i++) {
+                    IPlatformFcore fcore = (IPlatformFcore) items[i];
+                    element.putString(TAG_URI, fcore.getURI().toString());
+                }
+            } else if (_previous != null) {
+                element.putString(TAG_URI, _previous.getURI().toString());
+            }
+        }
+
+    }
+
+    private class FcoreSearchItemsFilter extends ItemsFilter {
+
+        @Override
+        public boolean matchItem(Object item) {
+            if (item instanceof IPlatformFcore == false) {
+                return false;
+            }
+            return (matches(((IPlatformFcore) item).getName()));
+        }
+
+        @Override
+        public boolean isConsistentItem(Object item) {
+            if (item instanceof IPlatformFcore) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean isSubFilter(ItemsFilter filter) {
+            if (super.isSubFilter(filter) == false) {
+                return false;
+            }
+            if (filter instanceof FcoreSearchItemsFilter) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public boolean equalsFilter(ItemsFilter filter) {
+            if (super.equalsFilter(filter) == false) {
+                return false;
+            }
+            if (filter instanceof FcoreSearchItemsFilter) {
+                return true;
+            }
+            return false;
+        }
+
+    }
+
+    private static class FcoreSearchComparator implements Comparator<IPlatformFcore>, Serializable {
+
+        public static final long serialVersionUID = 1L;
+
+        public int compare(IPlatformFcore fc1, IPlatformFcore fc2) {
+            if (fc1.getName() == null) {
+                return -1;
+            }
+            if (fc2.getName() == null) {
+                return 1;
+            }
+            return fc1.getName().compareTo(fc2.getName());
+        }
+
+    }
+
+    private static IPlatformFcore[] getElements() {
+        return EGFCorePlugin.getPlatformFcores();
+    }
+
+    private ILabelProvider _labelProvider = new LabelProvider() {
+
+        @Override
+        public Image getImage(Object element) {
+            if (element instanceof IPlatformFcore == false) {
+                return super.getImage(element);
+            }
+            return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_FCORE);
+        }
+
+        @Override
+        public String getText(Object element) {
+            if (element instanceof IPlatformFcore == false) {
+                return super.getText(element);
+            }
+            return ((IPlatformFcore) element).getName();
+        }
+    };
+
+    private class ResourceSelectionLabelProvider extends LabelProvider implements ILabelDecorator {
+
+        public ResourceSelectionLabelProvider() {
+            // Nothing to do
+        }
+
+        public String decorateText(String text, Object element) {
+            if (element instanceof IPlatformFcore == false) {
+                return getText(element);
+            }
+            return ((IPlatformFcore) element).getURI().toString();
+        }
+
+        public Image decorateImage(Image image, Object element) {
+            if (element instanceof IPlatformFcore == false) {
+                return getImage(element);
+            }
+            return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_FCORE);
+        }
+
+    }
+
+    private ILabelProvider _detailsLabelProvider = new LabelProvider() {
+
+        @Override
+        public Image getImage(Object element) {
+            if (element instanceof IPlatformFcore == false) {
+                return super.getImage(element);
+            }
+            IPlatformFcore fc = (IPlatformFcore) element;
+            File file = new File(fc.getPlatformBundle().getInstallLocation());
+            if (file.exists() && file.isDirectory()) {
+                return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_DIRECTORY);
+            } else if (file.exists() && file.isFile()) {
+                return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_JAR);
+            }
+            return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_FCORE);
+        }
+
+        @Override
+        public String getText(Object element) {
+            if (element instanceof IPlatformFcore == false) {
+                return super.getText(element);
+            }
+            StringBuffer buffer = new StringBuffer();
+            IPlatformFcore fc = (IPlatformFcore) element;
+            if (fc.getPlatformBundle().isTarget()) {
+                buffer.append(" [Target]"); //$NON-NLS-1$
+            } else {
+                buffer.append(" [Workspace]"); //$NON-NLS-1$
+            }
+            buffer.append(" ["); //$NON-NLS-1$
+            buffer.append(fc.getPlatformBundle().getInstallLocation());
+            buffer.append("]"); //$NON-NLS-1$      
+            return buffer.toString();
+        }
+    };
+
+    private IPlatformFcore[] _fcores;
+
+    public FcoreSelectionDialog(Shell parentShell, boolean multipleSelection) {
+        this(parentShell, getElements(), multipleSelection);
+    }
+
+    public FcoreSelectionDialog(Shell parentShell, IPlatformFcore[] factoryComponents, boolean multipleSelection) {
+        super(parentShell, multipleSelection);
+        _fcores = factoryComponents;
+        setTitle(CoreUIMessages._UI_FcoreSelection_label);
+        setMessage(CoreUIMessages._UI_SelectRegisteredFcore);
+        setListLabelProvider(getLabelProvider());
+        setListSelectionLabelDecorator(getSelectionLabelProvider());
+        setDetailsLabelProvider(getDetailsLabelProvider());
+        setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+        setSelectionHistory(new FcoreSelectionHistory());
+    }
+
+    protected ILabelProvider getLabelProvider() {
+        return _labelProvider;
+    }
+
+    protected ILabelDecorator getSelectionLabelProvider() {
+        return new ResourceSelectionLabelProvider();
+    }
+
+    protected ILabelProvider getDetailsLabelProvider() {
+        return _detailsLabelProvider;
     }
 
     @Override
-    protected Object restoreItemFromMemento(IMemento memento) {
-      // Get the IPlatformFcore URI
-      String tag = memento.getString(TAG_URI);
-      if (tag == null) {
+    public Object[] getResult() {
+        Object[] result = super.getResult();
+        if (result == null) {
+            return null;
+        }
+        List<IPlatformFcore> resultToReturn = new ArrayList<IPlatformFcore>();
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] instanceof IPlatformFcore) {
+                resultToReturn.add(((IPlatformFcore) result[i]));
+            }
+        }
+        return resultToReturn.toArray();
+    }
+
+    @Override
+    protected Control createExtendedContentArea(Composite parent) {
         return null;
-      }
-      URI uri = URI.createURI(tag);
-      // TODO: We should have an index to improve such control
-      for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
-        if (fcore.getURI().equals(uri)) {
-          _previous = fcore;
-          return fcore;
+    }
+
+    @Override
+    protected ItemsFilter createFilter() {
+        return new FcoreSearchItemsFilter();
+    }
+
+    @Override
+    protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
+        for (int i = 0; i < _fcores.length; i++) {
+            contentProvider.add(_fcores[i], itemsFilter);
+            progressMonitor.worked(1);
         }
-      }
-      return null;
+        progressMonitor.done();
     }
 
     @Override
-    protected void storeItemToMemento(Object item, IMemento element) {
-      if (getReturnCode() == OK) {
-        Object[] items = getHistoryItems();
-        for (int i = 0; i < items.length; i++) {
-          IPlatformFcore fcore = (IPlatformFcore) items[i];
-          element.putString(TAG_URI, fcore.getURI().toString());
+    protected IDialogSettings getDialogSettings() {
+        IDialogSettings settings = EGFCoreUIPlugin.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
+        if (settings == null) {
+            settings = EGFCoreUIPlugin.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
         }
-      } else if (_previous != null) {
-        element.putString(TAG_URI, _previous.getURI().toString());
-      }
-    }
-
-  }
-
-  private class FcoreSearchItemsFilter extends ItemsFilter {
-
-    @Override
-    public boolean matchItem(Object item) {
-      if (item instanceof IPlatformFcore == false) {
-        return false;
-      }
-      return (matches(((IPlatformFcore) item).getName()));
+        return settings;
     }
 
     @Override
-    public boolean isConsistentItem(Object item) {
-      if (item instanceof IPlatformFcore) {
-        return true;
-      }
-      return false;
+    public String getElementName(Object item) {
+        if (item instanceof IPlatformFcore) {
+            IPlatformFcore fc = (IPlatformFcore) item;
+            return fc.getURI().toString();
+        }
+        return null;
     }
 
     @Override
-    public boolean isSubFilter(ItemsFilter filter) {
-      if (super.isSubFilter(filter) == false) {
-        return false;
-      }
-      if (filter instanceof FcoreSearchItemsFilter) {
-        return true;
-      }
-      return false;
+    protected Comparator<IPlatformFcore> getItemsComparator() {
+        return new FcoreSearchComparator();
     }
 
     @Override
-    public boolean equalsFilter(ItemsFilter filter) {
-      if (super.equalsFilter(filter) == false) {
-        return false;
-      }
-      if (filter instanceof FcoreSearchItemsFilter) {
-        return true;
-      }
-      return false;
+    protected IStatus validateItem(Object item) {
+        return new Status(IStatus.OK, EGFCoreUIPlugin.getDefault().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
     }
-
-  }
-
-  private static class FcoreSearchComparator implements Comparator<IPlatformFcore>, Serializable {
-
-    public static final long serialVersionUID = 1L;
-
-    public int compare(IPlatformFcore fc1, IPlatformFcore fc2) {
-      if (fc1.getName() == null) {
-        return -1;
-      }
-      if (fc2.getName() == null) {
-        return 1;
-      }
-      return fc1.getName().compareTo(fc2.getName());
-    }
-
-  }
-
-  private IPlatformFcore[] _fcores;
-
-  private ILabelProvider _labelProvider = new LabelProvider() {
-    @Override
-    public Image getImage(Object element) {
-      return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_FACTORY_COMPONENT);
-    }
-
-    @Override
-    public String getText(Object element) {
-      if (element instanceof IPlatformFcore == false) {
-        return super.getText(element);
-      }
-      return URI.decode(((IPlatformFcore) element).getURI().toString());
-    }
-  };
-
-  private ILabelProvider _detailsLabelProvider = new LabelProvider() {
-    @Override
-    public Image getImage(Object element) {
-      return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_FACTORY_COMPONENT);
-    }
-
-    @Override
-    public String getText(Object element) {
-      if (element instanceof IPlatformFcore == false) {
-        return super.getText(element);
-      }
-      StringBuffer buffer = new StringBuffer();
-      IPlatformFcore fc = (IPlatformFcore) element;
-      if (fc.getPlatformBundle().isTarget()) {
-        buffer.append(" [Target]"); //$NON-NLS-1$
-      } else {
-        buffer.append(" [Workspace]"); //$NON-NLS-1$
-      }
-      buffer.append(" ["); //$NON-NLS-1$
-      buffer.append(fc.getPlatformBundle().getBundleLocation());
-      buffer.append("]"); //$NON-NLS-1$      
-      return buffer.toString();
-    }
-  };
-
-  public FcoreSelectionDialog(Shell parentShell, boolean multipleSelection) {
-    this(parentShell, getElements(), multipleSelection);
-  }
-
-  public FcoreSelectionDialog(Shell parentShell, IPlatformFcore[] factoryComponents, boolean multipleSelection) {
-    super(parentShell, multipleSelection);
-    _fcores = factoryComponents;
-    setTitle(CoreUIMessages._UI_FcoreSelection_label);
-    setMessage(CoreUIMessages._UI_SelectRegisteredFcore);
-    setListLabelProvider(_labelProvider);
-    setDetailsLabelProvider(_detailsLabelProvider);
-    setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
-    setSelectionHistory(new FcoreSelectionHistory());
-  }
-
-  private static IPlatformFcore[] getElements() {
-    return EGFCorePlugin.getPlatformFcores();
-  }
-
-  @Override
-  public Object[] getResult() {
-    Object[] result = super.getResult();
-    if (result == null) {
-      return null;
-    }
-    List<IPlatformFcore> resultToReturn = new ArrayList<IPlatformFcore>();
-    for (int i = 0; i < result.length; i++) {
-      if (result[i] instanceof IPlatformFcore) {
-        resultToReturn.add(((IPlatformFcore) result[i]));
-      }
-    }
-    return resultToReturn.toArray();
-  }
-
-  @Override
-  protected Control createExtendedContentArea(Composite parent) {
-    return null;
-  }
-
-  @Override
-  protected ItemsFilter createFilter() {
-    return new FcoreSearchItemsFilter();
-  }
-
-  @Override
-  protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
-    for (int i = 0; i < _fcores.length; i++) {
-      contentProvider.add(_fcores[i], itemsFilter);
-      progressMonitor.worked(1);
-    }
-    progressMonitor.done();
-  }
-
-  @Override
-  protected IDialogSettings getDialogSettings() {
-    IDialogSettings settings = EGFCoreUIPlugin.getDefault().getDialogSettings().getSection(DIALOG_SETTINGS);
-    if (settings == null) {
-      settings = EGFCoreUIPlugin.getDefault().getDialogSettings().addNewSection(DIALOG_SETTINGS);
-    }
-    return settings;
-  }
-
-  @Override
-  public String getElementName(Object item) {
-    if (item instanceof IPlatformFcore) {
-      IPlatformFcore fc = (IPlatformFcore) item;
-      return fc.getURI().toString();
-    }
-    return null;
-  }
-
-  @Override
-  protected Comparator<IPlatformFcore> getItemsComparator() {
-    return new FcoreSearchComparator();
-  }
-
-  @Override
-  protected IStatus validateItem(Object item) {
-    return new Status(IStatus.OK, EGFCoreUIPlugin.getDefault().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
-  }
 
 }
