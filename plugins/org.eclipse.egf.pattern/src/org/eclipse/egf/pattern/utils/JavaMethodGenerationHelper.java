@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.utils;
 
 import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 
 /**
  * @author Thomas Guiu
@@ -37,6 +38,10 @@ public class JavaMethodGenerationHelper {
 
     public void addSignature(PatternMethod called) {
         content.append("protected void method_").append(called.getName()).append("(final StringBuffer ").append(bufferName).append(", final PatternContext ctx)throws Exception ");
+    }
+
+    public void addConditionSignature(PatternMethod called) {
+        content.append("public boolean ").append(PatternFactory.PRECONDITION_METHOD_NAME).append("() throws Exception ");
     }
 
     public void setContent(StringBuilder content) {

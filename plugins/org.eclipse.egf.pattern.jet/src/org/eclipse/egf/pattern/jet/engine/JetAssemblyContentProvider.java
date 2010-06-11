@@ -91,11 +91,12 @@ public class JetAssemblyContentProvider extends AbstractJavaAssemblyContentProvi
         PatternMethod conditionMethod = pattern.getConditionMethod();
         if (conditionMethod != null) {
             content.append("<%");
-            content.append("public boolean ").append(PatternFactory.PRECONDITION_METHOD_NAME).append("() throws Exception").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+            javaMethodHelper.addConditionSignature(conditionMethod);
+            content.append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
             String methodContent = getMethodContent(conditionMethod);
             if (methodContent == null || "".equals(methodContent.trim())) {
-                if (pattern.getSuperPattern() == null)
+                if (pattern.getSuperPattern() == null || pattern.getSuperPattern().getConditionMethod() == null)
                     methodContent = "return true;";
                 else
                     methodContent = "super." + PatternFactory.PRECONDITION_METHOD_NAME + "();";
