@@ -10,8 +10,9 @@
  */
 package org.eclipse.egf.common.ui.actions;
 
+import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
 import org.eclipse.egf.common.ui.l10n.EGFCommonUIMessages;
-import org.eclipse.egf.common.ui.utils.ModelSearchImages;
+import org.eclipse.egf.common.ui.utils.IModelSearchImages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,37 +28,37 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  */
 public class CopyEObjectMetaClassQualifiedNameAction extends CopyQualifiedNameAction {
 
-  private EObject _eObject;
+    private EObject _eObject;
 
-  public CopyEObjectMetaClassQualifiedNameAction() {
-    super(EGFCommonUIMessages.CopyEObjectMetaClassQualifiedName_name, ModelSearchImages.getEcoreImage());
-  }
+    public CopyEObjectMetaClassQualifiedNameAction() {
+        super(EGFCommonUIMessages.CopyEObjectMetaClassQualifiedName_name, EGFCommonUIPlugin.getDefault().getImageDescriptor(IModelSearchImages.ECORE_IMAGE_PATH));
+    }
 
-  @Override
-  public void selectionChanged(IAction action_p, ISelection selection_p) {
-    _eObject = null;
-    if (selection_p instanceof IStructuredSelection) {
-      _eObject = getSelection((IStructuredSelection) selection_p);
+    @Override
+    public void selectionChanged(IAction action_p, ISelection selection_p) {
+        _eObject = null;
+        if (selection_p instanceof IStructuredSelection) {
+            _eObject = getSelection((IStructuredSelection) selection_p);
+        }
     }
-  }
 
-  @Override
-  public URI getURI() {
-    if (_eObject == null) {
-      return null;
+    @Override
+    public URI getURI() {
+        if (_eObject == null) {
+            return null;
+        }
+        Resource resource = _eObject.eResource();
+        if (resource == null) {
+            return null;
+        }
+        URI uri = EcoreUtil.getURI(_eObject.eClass());
+        if (uri != null && resource.getResourceSet() != null) {
+            URIConverter converter = resource.getResourceSet().getURIConverter();
+            if (converter != null) {
+                uri = converter.normalize(uri);
+            }
+        }
+        return uri;
     }
-    Resource resource = _eObject.eResource();
-    if (resource == null) {
-      return null;
-    }
-    URI uri = EcoreUtil.getURI(_eObject.eClass());
-    if (uri != null && resource.getResourceSet() != null) {
-      URIConverter converter = resource.getResourceSet().getURIConverter();
-      if (converter != null) {
-        uri = converter.normalize(uri);
-      }
-    }
-    return uri;
-  }
 
 }
