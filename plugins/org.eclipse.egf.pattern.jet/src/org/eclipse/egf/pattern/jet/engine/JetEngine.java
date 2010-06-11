@@ -94,8 +94,12 @@ public class JetEngine extends AbstractJavaEngine {
         builder.append(content.substring(0, startIndex));
 
         Pattern pattern = getPattern();
-        // add new method call
-        builder.append(AssemblyHelper.ORCHESTRATION_METHOD).append("(ctx);");
+        // add call to orchestration
+        if (pattern.getConditionMethod() != null) {
+            builder.append("if (preCondition())");
+            builder.append(EGFCommonConstants.LINE_SEPARATOR);
+        }
+        builder.append(AssemblyHelper.ORCHESTRATION_METHOD).append("(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
 
         // add end of class code
         int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, endIndex);

@@ -74,15 +74,19 @@ public class JavaAssemblyHelper extends AssemblyHelper {
             }
 
             content.append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("if (preCondition())");
+            content.append(EGFCommonConstants.LINE_SEPARATOR);
 
-            content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
 
             // 2 - Add post block at current index
             for (int i = 0; i < pattern.getAllParameters().size(); i++)
                 content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
-        } else
-            content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR);
-
+        } else {
+            content.append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("if (preCondition())");
+            content.append(EGFCommonConstants.LINE_SEPARATOR).append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+        }
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("    ctx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
