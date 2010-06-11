@@ -889,14 +889,11 @@ public class SpecificationPage extends PatternEditorPage {
                 OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType(), getPattern());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-                int returnValue = dialog.open();
-                if (Window.OK == returnValue) {
+                if (dialog.open() == Window.OK) {
                     if (wizard.getSelectType() instanceof String) {
-                        final String selectType = (String) wizard.getSelectType();
-                        updateType(selectType);
+                        updateType((String) wizard.getSelectType());
                     } else if (wizard.getSelectType() instanceof IType) {
-                        final String selectType = ((IType) wizard.getSelectType()).getFullyQualifiedName();
-                        updateType(selectType);
+                        updateType(((IType) wizard.getSelectType()).getFullyQualifiedName());
                     }
 
                 }
