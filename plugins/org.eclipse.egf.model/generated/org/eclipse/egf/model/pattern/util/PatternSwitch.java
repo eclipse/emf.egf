@@ -233,6 +233,8 @@ public class PatternSwitch<T> {
                 Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
                 T result = caseParamerter2ParameterMap(paramerter2ParameterMap);
                 if (result == null)
+                    result = caseModelElement((ModelElement) paramerter2ParameterMap);
+                if (result == null)
                     result = defaultCase(theEObject);
                 return result;
             }
@@ -340,6 +342,8 @@ public class PatternSwitch<T> {
                 Map.Entry<String, EList<PatternElement>> string2PatternList = (Map.Entry<String, EList<PatternElement>>) theEObject;
                 T result = caseString2PatternList(string2PatternList);
                 if (result == null)
+                    result = caseModelElement((ModelElement) string2PatternList);
+                if (result == null)
                     result = defaultCase(theEObject);
                 return result;
             }
@@ -347,6 +351,8 @@ public class PatternSwitch<T> {
                 @SuppressWarnings("unchecked")
                 Map.Entry<String, String> string2String = (Map.Entry<String, String>) theEObject;
                 T result = caseString2String(string2String);
+                if (result == null)
+                    result = caseModelElement((ModelElement) string2String);
                 if (result == null)
                     result = defaultCase(theEObject);
                 return result;
@@ -416,6 +422,8 @@ public class PatternSwitch<T> {
                 InjectedContext injectedContext = (InjectedContext) theEObject;
                 T result = caseInjectedContext(injectedContext);
                 if (result == null)
+                    result = caseModelElement(injectedContext);
+                if (result == null)
                     result = defaultCase(theEObject);
                 return result;
             }
@@ -433,6 +441,8 @@ public class PatternSwitch<T> {
             case PatternPackage.SUBSTITUTION: {
                 Substitution substitution = (Substitution) theEObject;
                 T result = caseSubstitution(substitution);
+                if (result == null)
+                    result = caseModelElement(substitution);
                 if (result == null)
                     result = defaultCase(theEObject);
                 return result;
