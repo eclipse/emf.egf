@@ -94,11 +94,11 @@ public interface IQuery {
         }
 
         public String getQueryClassName(String queryID) throws PatternException {
-            if (queryID == null || "".equals(queryID))
+            if (queryID == null || "".equals(queryID)) //$NON-NLS-1$
                 throw new PatternException(Messages.query_error2);
             for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
                 if (queryID.equals(kind.getId())) {
-                    if (kind.getClassName() == null || "".equals(kind.getClassName()))
+                    if (kind.getClassName() == null || "".equals(kind.getClassName())) //$NON-NLS-1$
                         throw new PatternException(Messages.query_error5);
                     return kind.getClassName();
                 }
@@ -107,6 +107,7 @@ public interface IQuery {
         }
 
         private Helper() {
+            // Nothing to do
         }
     }
 
