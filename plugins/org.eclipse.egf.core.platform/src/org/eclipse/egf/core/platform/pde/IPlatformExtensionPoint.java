@@ -10,12 +10,10 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
-public interface IPlatformExtensionPoint {
+public interface IPlatformExtensionPoint extends Comparable<IPlatformExtensionPoint> {
 
     public String getId();
 
     public IPlatformBundle getPlatformBundle();
-
-    public void setPlatformBundle(IPlatformBundle bundle);
 
 }
