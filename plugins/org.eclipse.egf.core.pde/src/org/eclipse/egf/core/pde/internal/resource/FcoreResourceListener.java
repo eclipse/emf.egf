@@ -142,7 +142,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
                         // check whether or not we are processing an fcore
                         boolean isFcore = IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(delta.getResource().getFileExtension());
-                        URI uri = URIHelper.getPlatformURI(delta.getResource());
+                        URI uri = URIHelper.getPlatformPluginURI(delta.getResource());
                         // Locate the bundleId, resource should be located in a bundle project
                         String bundleId = BundleHelper.getBundleId(delta.getResource());
                         if (uri != null && bundleId != null) {
@@ -163,13 +163,13 @@ public class FcoreResourceListener implements IResourceChangeListener {
                                 }
                                 // Check whether or not we are moving an fcore to an fcore
                                 if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0 && isFcore && isMovedToFcore) {
-                                    _deltaFcores.addMovedFcore(uri, URIHelper.getPlatformURI(delta.getMovedToPath()));
+                                    _deltaFcores.addMovedFcore(uri, URIHelper.getPlatformPluginURI(delta.getMovedToPath()));
                                     _movedFcores.put(delta.getResource().getFullPath(), delta.getMovedToPath());
                                     _affectedProjects.add(delta.getResource().getProject());
                                     _affectedProjects.add(ProjectHelper.getProject(delta.getMovedToPath()));
                                     // Check whether or not we are moving a non fcore to an fcore
                                 } else if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0 && isFcore == false && isMovedToFcore) {
-                                    _deltaFcores.addNewFcore(URIHelper.getPlatformURI(delta.getMovedToPath()));
+                                    _deltaFcores.addNewFcore(URIHelper.getPlatformPluginURI(delta.getMovedToPath()));
                                     _newFcores.add(delta.getMovedToPath());
                                     _affectedProjects.add(delta.getResource().getProject());
                                     _affectedProjects.add(ProjectHelper.getProject(delta.getMovedToPath()));

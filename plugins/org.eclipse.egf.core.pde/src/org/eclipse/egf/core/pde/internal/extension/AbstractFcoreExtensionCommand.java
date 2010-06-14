@@ -68,7 +68,7 @@ public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionCha
         if (value == null || value.trim().length() == 0) {
             return false;
         }
-        URI uri = URIHelper.getPlatformURI(getBundleId(), URI.decode(value), false);
+        URI uri = URIHelper.getPlatformPluginURI(getBundleId(), URI.decode(value), false);
         if (uri.equals(getURI())) {
             return true;
         }
@@ -86,7 +86,7 @@ public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionCha
      * @return
      */
     protected URI getURI() {
-        return URIHelper.getPlatformURI(_path);
+        return URIHelper.getPlatformPluginURI(_path);
     }
 
 }
