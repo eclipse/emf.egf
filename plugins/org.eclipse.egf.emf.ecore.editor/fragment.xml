@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<fragment>
+
+    <extension 
+        point="org.eclipse.ui.newWizards"
+    >
+        <category
+            id="org.eclipse.egf.category.wizards"
+            name="%_UI_EGF_Wizard_Category"
+        />
+        <wizard
+            id="org.eclipse.emf.ecore.presentation.EGFEcoreModelWizardID"
+            name="%_UI_EGF_EcoreModelWizard_label"
+            class="org.eclipse.emf.ecore.presentation.EGFEcoreModelWizard"
+            category="org.eclipse.egf.category.wizards"
+            icon="platform:/plugin/org.eclipse.emf.ecore.editor/icons/full/ctool16/NewEcore.gif"
+        >
+            <description>%_UI_EGF_EcoreModelWizard_description</description>
+            <selection 
+                class="org.eclipse.core.resources.IResource"
+            />
+        </wizard>
+    </extension>
+
+    <extension 
+        point="org.eclipse.ui.editors"
+    >
+        <editor
+            id="org.eclipse.emf.ecore.presentation.EGFEcoreEditorID"
+            name="%_UI_EGF_EcoreEditor_label"
+            icon="platform:/plugin/org.eclipse.emf.ecore.editor/icons/full/obj16/EcoreModelFile.gif"            
+            class="org.eclipse.emf.ecore.presentation.EGFEcoreEditor"
+            contributorClass="org.eclipse.emf.ecore.presentation.EGFEcoreActionBarContributor"
+        >
+            <contentTypeBinding 
+                contentTypeId="org.eclipse.emf.ecore"
+            />
+            <contentTypeBinding 
+                contentTypeId="org.eclipse.emf.emof"
+            />
+        </editor>
+    </extension>
+    
+</fragment>
