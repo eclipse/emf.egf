@@ -26,7 +26,7 @@
 	</tbody>
 </table>
 
-<p class="Para">This first tutorial explains how to create and execute simple patterns with EGF. A pattern is a solution to a recurrent generation problem. A pattern is based on a language, for instance Jet for model-to-text transformations. The pattern technique allows pattern inheritance, delegation to other patterns in order to elaborate reusable and customizable generation solutions.</p>
+<p class="Para">This tutorial explains how to create and execute simple patterns with EGF. A pattern is a solution to a recurrent problem. A pattern is based on a language, for instance Jet for model-to-text transformations. The pattern technique allows pattern inheritance, delegation to other patterns in order to elaborate reusable and customizable generation solutions.</p>
 
 <br/>
 
@@ -44,7 +44,7 @@
 <ul CLASS="UnorderedList">
     <li CLASS="Item">Create the <i>viewpoints</i> node - On a factory component, Commands: <i>[New Child][Viewpoint Container]</i></li>
     <li CLASS="Item">Create the <i>Pattern Viewpoint</i> node - On the <i>Viewpoint Container</i> node, Commands: <i>[New Child][Pattern Viewpoint]</i></li>
-    <li CLASS="Item">Create a pattern library - On the pattern viewpoint, Commands: <i>[New Child][Library]</i></li>
+    <li CLASS="Item">Create a pattern library - On the pattern viewpoint, Commands: <i>[New Child][Library]</i>. Set the library name in order to identify it later.</li>
     <li CLASS="Item">Next, create a <i>pattern</i> - On the pattern library, Commands: <i>[New Child][JetNature Pattern | JavaNature Pattern]</i></li>
     <li CLASS="Item">Edit the pattern -  On the pattern, Commands: <i>[Double-click]</i> or <i>[Right-Click][Open]</i></li>
     <li CLASS="Item">Set the pattern name</li>
@@ -65,7 +65,7 @@
 <h3 class="Head">2.1. Comprehension</h3>
 
 <p class="Para"><i>Specification view</i>. This view enables to set 1) the super-pattern of the current pattern when pattern inheritance is needed, 2) the pattern nature already set during the pattern creation, 3) the pattern parameters.</p>
-<p class="Para"><i>Pattern query and parameter</i>. The pattern applies queries over a resource that the pattern consumes, for instance a model. Each query record is successively stored in a parameter. The record process is described in the pattern implementation.</p>
+<p class="Para"><i>Pattern query and parameter</i>. The pattern applies queries over a resource that the pattern consumes, for instance a model. Each query record is successively associated to a parameter. This record is processed by the description defined in the pattern implementation.</p>
 <p class="Para"><i>Pattern query</i>. EGF proposes a default model query. The query list is extensible.</p>
 <p class="Para"><i>Pattern parameter</i>. The pattern type is either a class defined in an ecore model or a Java type (class or interface).</p>
 
@@ -96,6 +96,8 @@
 <p class="Para"><i>Pattern methods</i>. Four methods are predefined: header, init, preCondition and footer. Header is used for instance to declare the Jet declaration, init for the initialization of local variables (cf. explanation below), preCondition to filter records onto a query result. The user creates as many as methods s/he wants to implement the pattern. Each pattern method contents is supposed to conform to the pattern nature, for instance Jet-based code.</p>
 <p class="Para"><i>Pattern method orchestration</i>. The method orchestration defines the order to call available methods and patterns: methods local to the current pattern, methods from the super-patterns, pattern call with parameter context passing, pattern call with injection.</p>
 <p class="Para"><i>Pattern variables</i>. The pattern variables are accessible by any method of the current pattern. The type is either a class defined in an ecore model or a Java type (class or interface). Pattern variables can be initialized in the <i>init</i> method, update and used in the pattern methods.</p>
+<p class="Para"><i>Precondition</i>. A pattern is applied over a resource. A parameter type is a first restriction to apply or not a pattern. A precondition is another restriction. The precondition body conforms to the pattern nature and is expressed without the <i>if/endif</i> syntax. Example in Java: <i>return true</i>.</p>
+<p class="Para"><i>Header</i>. The header is a header for generation. In Jet, it is used to set general parameters, such the package where Java classes are generated, the imports.</p>
 
 
 <h3 class="Head">3.2. Practice</h3>
@@ -162,23 +164,16 @@ Hello &lt;%= parameter.getName() %&gt;!
 <ul CLASS="UnorderedList">
     <li CLASS="Item"><i>Domain creation</i>. This step can be reused independently of the pattern usage.</li>
     <ul CLASS="UnorderedList">
-        <li CLASS="Item">Step 1. Creation of the domain reference</li>
-        <ul CLASS="UnorderedList">
             <li CLASS="Item">Creation of the domain viewpoint where domains are declared - On the Viewpoint Container, Command: [New Child][Domain Viewpoint]</li>
-            <li CLASS="Item">Creation of a domain reference - On the Domain Viewpoint, Command: [New Child][URI]. Next, in the Uri property, providing a Uri like <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i></li>
-        </ul>
-        <li CLASS="Item">Step 2. Creation of a domain parameter</li>
-        <ul CLASS="UnorderedList">
-            <li CLASS="Item">Creation of a domain reference as a production plan parameter - On the production plan, Command: [New Child][Orchestration Parameter Container]</li>
-            <li CLASS="Item">Creation of a parameter - On the Orchestration Parameter Container, Commands: [New Child][Orchestration Parameter]; Set the parameter name; Set the Domain property to the Uri created just before</li>
-        </ul>
+            <li CLASS="Item">Creation of a domain reference - On the Domain Viewpoint, Command: [New Child][Domain URI]. Next, in the Uri property, providing a Uri like <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i></li>
     </ul>
     <br/>
     <li CLASS="Item"><i>Configuration of the pattern call</i>.</li>
     <ul CLASS="UnorderedList">
+        <li CLASS="Item">Create of production plan in the factory component</li>
         <li CLASS="Item">Creation of the pattern execution task - On the Production Plan node, Command: [Right-Click][Invoke Activity], and choose the <i>Model driven pattern strategy task [Task Java]</i></li>
-        <li CLASS="Item">Remove the <i>pattern.execution.reporter</i>, <i>pattern.call.back.handler</i> and <i>pattern.modeldriven.visitor</i> contracts</li>
-        <li CLASS="Item">Set the domain identification - On the new Activity / Invocation Contract Container / domain Invocation Contract, Command: 1) Set the Orchestration Parameter to the Orchestration Parameter newly created</li>
+        <li CLASS="Item">Click on <i>Next</i> and select only <i>domain</i> and <i>pattern.ids</i>. Click on <i>Finish</i>.</li>
+        <li CLASS="Item">Set the domain - On the new Activity / Invocation Contract Container / domain Invocation Contract, Command: 1) [Right-Click][New Child][Type Domain URI], 2) Set the <i>Domain</i> property of this Domain URI with domain URI declared in the Domain viewpoint</li>
         <li CLASS="Item">Set the pattern library - On the new Activity / Invocation Contract Container / pattern.ids Invocation Contract, Command: [New Child][Type Pattern List]; Next, [Click on the Elements Property], select the pattern library newly created</li>
     </ul>
 </ul>
@@ -189,7 +184,7 @@ Hello &lt;%= parameter.getName() %&gt;!
 <h3 class="Head">4.3. Application</h3>
 <p class="Para">Create a pattern task invocation as described above. Example of domain: <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i>.</p>
 
-<p class="Para">Finally, execute the factory component. The output is displayed on the console.</p>
+<p class="Para">Finally, execute the factory component. The output is displayed on the console. The last line sums up all the previous lines.</p>
 
 <br/>
 
@@ -197,7 +192,7 @@ Hello &lt;%= parameter.getName() %&gt;!
 <h3 class="Head">4.4. Fixing pattern method errors</h3>
 <p class="Para">Patterns to be compiled are compiled when a pattern is saved. Errors may be raised and, as a consequence, the pattern execution would fail. Then:</p>
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">At anytime, in order to regenerate pattern classes and methods: 1) delete the packages under the project <i>generated</i> folder, 2) right-click on the Pattern viewpoint, and apply the [Update generated elements] command on the Pattern viewpoint.</li>
+    <li CLASS="Item">At anytime, it is possible to regenerate all pattern classes and methods: 1) delete the packages under the project <i>generated</i> folder, 2) right-click on the Pattern viewpoint, and apply the [Update generated elements] command on the Pattern viewpoint.</li>
     <li CLASS="Item">Fixing the errors. Locate the errors in the generated methods, update the pattern methods accordingly, and save the pattern methods.</li>
 </ul>
 
@@ -226,18 +221,17 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
 public class MyReporter implements PatternExecutionReporter{
 
-	@Override
 	public void executionFinished(String output, PatternContext context) {
 		// Message on the default console
-		System.out.println("Result of pattern:\n"+output);
+		System.out.println("=> Result of pattern:\n"+output);
 		// Message on the EGF console
-		EGFCorePlugin.getDefault().logInfo("Result of pattern:\n"+output);
+		EGFCorePlugin.getDefault().logInfo("=> Result of pattern:\n"+output);
 	}
 
-	@Override
-	public void loopFinished(String output, PatternContext context,
-			Map&lt;String, Object&gt; parameterValues) {
+	public void loopFinished(String output, String outputWithCallBack,
+			PatternContext context, Map&lt;String, Object&gt; parameterValues) {
 		// TODO Auto-generated method stub
+		
 	}
 
 }
@@ -245,9 +239,10 @@ public class MyReporter implements PatternExecutionReporter{
 
 <p class="Para">2. Complete the task with the reporter parameter:
     <ul CLASS="UnorderedList">
-        <li CLASS="Item">Add a contract to the task created before</li>
-        <li CLASS="Item">For Behaviour/Invoked Contract property, select the <i>pattern.execution.reporter</i> contract (removed before!)</li>
-        <li CLASS="Item">Add the <i>Type Pattern Execution Reporter</i> and for value, select the pattern reporter class</li>
+        <li CLASS="Item">Add a contract to the task created before - Command: on the Inovation Contract Container, [New Child][Invocation Contract]</li>
+        <li CLASS="Item">In <i>Behaviour/Invoked Contract</i> property, select the <i>pattern.execution.reporter</i></li>
+        <li CLASS="Item">Add the <i>Type Pattern Execution Reporter</i> - Command: on the Invocation Contract, [New Child][Type Pattern Execution Reporter], and select the pattern reporter class in the <i>value</i> property</li>
+        <li CLASS="Item">Execute the factory component to see the new result</li>
     </ul>
 </p>
 
