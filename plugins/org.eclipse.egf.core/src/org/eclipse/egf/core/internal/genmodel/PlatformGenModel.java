@@ -56,7 +56,11 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         _generatedPackage = className.trim();
         if (genModel != null && genModel.trim().length() != 0) {
             _genModel = genModel.trim();
-            _genModelURI = URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
+            if (bundle.isTarget()) {
+                _genModelURI = URIHelper.getPlatformPluginURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
+            } else {
+                _genModelURI = URIHelper.getPlatformResourceURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
+            }
             getEPackageNsURIToGenModelLocationMap().put(getId(), _genModelURI);
         }
     }
