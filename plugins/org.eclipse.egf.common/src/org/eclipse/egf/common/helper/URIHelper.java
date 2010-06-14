@@ -56,7 +56,7 @@ public class URIHelper {
         return uri.toString();
     }
 
-    public static URI getPlatformURI(IPluginModelBase model, String value) {
+    public static URI getPlatformPluginURI(IPluginModelBase model, String value) {
         if (model == null || value == null || value.trim().length() == 0) {
             return null;
         }
@@ -64,10 +64,10 @@ public class URIHelper {
         if (bundleId == null) {
             return null;
         }
-        return getPlatformURI(bundleId, URI.decode(value.trim()), false);
+        return getPlatformPluginURI(bundleId, URI.decode(value.trim()), false);
     }
 
-    public static URI getPlatformURI(IPath path) {
+    public static URI getPlatformPluginURI(IPath path) {
         if (path == null || path.segmentCount() < 2) {
             return null;
         }
@@ -79,10 +79,10 @@ public class URIHelper {
         if (bundleId == null) {
             return null;
         }
-        return getPlatformURI(bundleId, path.removeFirstSegments(1).toString(), false);
+        return getPlatformPluginURI(bundleId, path.removeFirstSegments(1).toString(), false);
     }
 
-    public static URI getPlatformURI(IResource resource) {
+    public static URI getPlatformPluginURI(IResource resource) {
         if (resource == null || resource.getFullPath() == null || resource.getFullPath().segmentCount() < 2) {
             return null;
         }
@@ -90,10 +90,10 @@ public class URIHelper {
         if (bundleId == null) {
             return null;
         }
-        return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), false);
+        return getPlatformPluginURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), false);
     }
 
-    public static URI getPlatformURI(String bundleId, String value, boolean encode) {
+    public static URI getPlatformPluginURI(String bundleId, String value, boolean encode) {
         if (bundleId == null || bundleId.trim().length() == 0 || value == null || value.trim().length() == 0) {
             return null;
         }
@@ -103,6 +103,21 @@ public class URIHelper {
                 uri = URI.createPlatformPluginURI(bundleId.trim() + uri.toString(), encode);
             } else {
                 uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
+            }
+        }
+        return uri;
+    }
+
+    public static URI getPlatformResourceURI(String bundleId, String value, boolean encode) {
+        if (bundleId == null || bundleId.trim().length() == 0 || value == null || value.trim().length() == 0) {
+            return null;
+        }
+        URI uri = URI.createURI(value.trim());
+        if (uri.isRelative()) {
+            if (value.trim().charAt(0) == EGFCommonConstants.SLASH_CHARACTER) {
+                uri = URI.createPlatformResourceURI(bundleId.trim() + uri.toString(), encode);
+            } else {
+                uri = URI.createPlatformResourceURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
             }
         }
         return uri;
