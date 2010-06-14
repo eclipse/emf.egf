@@ -19,6 +19,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 <project name="project">
     <!--Property file containing overrides for the default properties -->
     <property environment="env" />
+    <property file="build.local.properties" />
     <property file="build.properties" />
 
     <!-- if we are not running in Huson, we some up with a reasonable default -->
