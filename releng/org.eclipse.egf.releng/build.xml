@@ -166,7 +166,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
     	<buckminster command="installJRE">
             <cmdargs>
                 <arg value="--location" />
-                <arg value="${jdk1.5.dir}" />
+                <arg value="${env.JAVA_HOME}" />
             </cmdargs>
         </buckminster>
 
