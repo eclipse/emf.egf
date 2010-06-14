@@ -18,7 +18,7 @@
 
 	<searchPath name="egf.jet.editor">
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/plugins/{1}">
+			<uri format="file:{0}/plugins/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
@@ -27,43 +27,43 @@
 
 	<searchPath name="egf">
 		<provider componentTypes="buckminster" readerType="local" source="true">
-			<uri format="file://{0}/releng/{1}">
+			<uri format="file:{0}/releng/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/doc/{1}">
+			<uri format="file:{0}/doc/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/examples/workspace/{1}">
+			<uri format="file:{0}/examples/workspace/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="file://{0}/features/{1}.feature">
+			<uri format="file:{0}/features/{1}.feature">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/plugins/{1}">
+			<uri format="file:{0}/plugins/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/portfolio/{1}">
+			<uri format="file:{0}/portfolio/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/tests/{1}">
+			<uri format="file:{0}/tests/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
