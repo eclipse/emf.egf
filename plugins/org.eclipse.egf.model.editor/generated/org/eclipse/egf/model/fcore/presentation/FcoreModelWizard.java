@@ -253,7 +253,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                     final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
                     try {
                         // Create a resource for this file.
-                        final Resource resource = editingDomain.getResourceSet().createResource(URIHelper.getPlatformURI(modelFile.getFullPath()));
+                        final Resource resource = editingDomain.getResourceSet().createResource(URIHelper.getPlatformPluginURI(modelFile.getFullPath()));
                         // Add the initial model object to the contents.
                         if (rootObject != null) {
                             editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
