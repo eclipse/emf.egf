@@ -62,6 +62,14 @@ http://www.eclipse.org/legal/epl-v10.html
     install-size="0"
     version="0.0.0"
     unpack="false"
-  />         
+  />
+  
+  <fragment
+    id="org.eclipse.egf.emf.ecore.editor"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />                    
 
 </feature>
