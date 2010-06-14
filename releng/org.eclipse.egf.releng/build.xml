@@ -74,7 +74,6 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
             <eclipse.launch app="buckminster">
                 <args>
                     <jvmarg value="-Dbugfix.288796=true"/>
-                    <jvmarg value="${jvmarg.add}"/>
                     <arg value="-data" />
                     <arg value="@{workspace}" />
                     <arg value="--loglevel" />
