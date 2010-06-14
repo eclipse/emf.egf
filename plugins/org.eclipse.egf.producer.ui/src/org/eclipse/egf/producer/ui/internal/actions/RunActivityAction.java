@@ -283,7 +283,7 @@ public class RunActivityAction implements IObjectActionDelegate {
             // Load this IFile as an EMF Resource
             try {
                 ResourceSet resourceSet = new EGFResourceSet();
-                Resource resource = resourceSet.getResource(URIHelper.getPlatformURI((IResource) selectedObject), true);
+                Resource resource = resourceSet.getResource(URIHelper.getPlatformPluginURI((IResource) selectedObject), true);
                 IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
                 if (fcore != null) {
                     if (resource.getContents().size() == 1 && resource.getContents().get(0) instanceof Activity) {

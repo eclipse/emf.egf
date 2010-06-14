@@ -236,25 +236,24 @@ public class EPackageHelper {
         }
     }
 
-    /*
-     * private static class Descriptor implements EPackage.Descriptor {
-     * 
-     * private EPackage epackage;
-     * 
-     * public Descriptor(EPackage ePackage) {
-     * super();
-     * this.epackage = ePackage;
-     * }
-     * 
-     * public EFactory getEFactory() {
-     * return epackage.getEFactoryInstance();
-     * }
-     * 
-     * public EPackage getEPackage() {
-     * return epackage;
-     * }
-     * 
-     * }
-     */
+    @SuppressWarnings("unused")
+    private static class Descriptor implements EPackage.Descriptor {
+
+        private EPackage epackage;
+
+        public Descriptor(EPackage ePackage) {
+            super();
+            this.epackage = ePackage;
+        }
+
+        public EFactory getEFactory() {
+            return epackage.getEFactoryInstance();
+        }
+
+        public EPackage getEPackage() {
+            return epackage;
+        }
+
+    }
 
 }

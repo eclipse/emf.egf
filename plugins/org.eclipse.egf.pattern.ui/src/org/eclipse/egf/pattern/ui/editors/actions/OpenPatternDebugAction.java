@@ -57,7 +57,7 @@ public class OpenPatternDebugAction implements IObjectActionDelegate {
     public void run(IAction action) {
         try {
             IFile file = (IFile) _selection.getFirstElement();
-            URI uri = URIHelper.getPlatformURI(file.getFullPath());
+            URI uri = URIHelper.getPlatformPluginURI(file.getFullPath());
             TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
 
             Resource res = editingDomain.getResourceSet().getResource(uri, true);

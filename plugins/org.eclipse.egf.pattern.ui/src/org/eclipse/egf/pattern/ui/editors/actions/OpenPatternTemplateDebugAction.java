@@ -60,7 +60,7 @@ public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
         Object firstElement = _selection.getFirstElement();
         TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
         IFile file = (IFile) firstElement;
-        URI uri = URIHelper.getPlatformURI(file.getFullPath());
+        URI uri = URIHelper.getPlatformPluginURI(file.getFullPath());
         Resource res = editingDomain.getResourceSet().getResource(uri, true);
         FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
         PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);

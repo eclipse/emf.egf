@@ -77,7 +77,7 @@ public class FileHelper {
             throw new IllegalStateException();
         if (file.exists())
             return getFileContent(file);
-        URI uri = URIHelper.getPlatformURI(pluginId, templatePath.toPortableString(), false);
+        URI uri = URIHelper.getPlatformPluginURI(pluginId, templatePath.toPortableString(), false);
         return getContent(EGFCorePlugin.getPlatformURIConverter().createInputStream(uri));
     }
 
