@@ -19,7 +19,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
 
     public PlatformExtensionPointURI(IPlatformBundle bundle, String id) {
         super(bundle, id);
-        _uri = URIHelper.getPlatformURI(bundle.getBundleId(), URI.decode(getId()), false);
+        _uri = URIHelper.getPlatformPluginURI(bundle.getBundleId(), URI.decode(getId()), false);
     }
 
     public URI getURI() {
