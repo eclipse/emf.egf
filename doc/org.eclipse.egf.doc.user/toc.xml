@@ -20,6 +20,8 @@
    </topic>
    <topic label="Tutorials">
       <anchor id="egfEngineTutorials"/>
+      <topic href="http://wiki.eclipse.org/EGF_Tutorial_and_Use_Cases" label="Tutorial on the EGF Wiki">
+      </topic>
    </topic>
    <topic label="Concepts">
       <anchor id="concepts"/>
