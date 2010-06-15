@@ -23,10 +23,11 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Group;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -34,19 +35,17 @@ import org.eclipse.swt.widgets.Label;
  */
 public class ChooseKindPage extends WizardPage {
 
-    private CallTypeEnum selectedKind;
+    private CallTypeEnum _selectedKind;
 
-    private Button methodCall;
+    private Button _methodCall;
 
-    private Button patternCall;
+    private Button _patternCall;
 
     private Button patternInjectedCall;
 
-    private Button superPatternCall;
+    private Button _superPatternCall;
 
-    private Button strategyCall;
-
-    private Label label;
+    private Button _strategyCall;
 
     public ChooseKindPage(ISelection selection) {
         super(Messages.ChooseKindPage_title);
@@ -55,79 +54,98 @@ public class ChooseKindPage extends WizardPage {
     }
 
     public void createControl(Composite parent) {
+
         Composite container = new Composite(parent, SWT.NONE);
-        GridLayout layout = new GridLayout();
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd.horizontalSpan = 1;
+        container.setLayoutData(gd);
+        GridLayout layout = new GridLayout(1, false);
+        container.setFont(parent.getFont());
         container.setLayout(layout);
 
-        label = new Label(container, SWT.NONE);
-        label.setText(Messages.ChooseKindPage_label_text);
+        Group group = new Group(container, SWT.NONE);
+        group.setLayout(new GridLayout(1, false));
+        group.setText(Messages.ChooseKindPage_label_text);
+        group.setFont(parent.getFont());
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd.horizontalSpan = 1;
+        group.setLayoutData(gd);
 
-        methodCall = new Button(container, SWT.RADIO);
-        methodCall.setText(Messages.ChooseKindPage_radio_methodCall);
-        selectedKind = CallTypeEnum.METHOD_CALL;
-        methodCall.setSelection(true);
-        methodCall.addSelectionListener(new SelectionListener() {
+        _methodCall = new Button(group, SWT.RADIO);
+        _methodCall.setText(Messages.ChooseKindPage_radio_methodCall);
+        _selectedKind = CallTypeEnum.METHOD_CALL;
+        _methodCall.setSelection(true);
+        _methodCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                selectedKind = CallTypeEnum.METHOD_CALL;
+                _selectedKind = CallTypeEnum.METHOD_CALL;
                 getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
-        patternCall = new Button(container, SWT.RADIO);
-        patternCall.setText(Messages.ChooseKindPage_radio_patternCall);
-        patternCall.addSelectionListener(new SelectionListener() {
+        _patternCall = new Button(group, SWT.RADIO);
+        _patternCall.setText(Messages.ChooseKindPage_radio_patternCall);
+        _patternCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                selectedKind = CallTypeEnum.PATTERN_CALL;
+                _selectedKind = CallTypeEnum.PATTERN_CALL;
                 getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
-        patternInjectedCall = new Button(container, SWT.RADIO);
+        patternInjectedCall = new Button(group, SWT.RADIO);
         patternInjectedCall.setText(Messages.ChooseKindPage_radio_patternInjectedCall);
         patternInjectedCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                selectedKind = CallTypeEnum.PATTERNINJECTED_CALL;
+                _selectedKind = CallTypeEnum.PATTERNINJECTED_CALL;
                 getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
-        superPatternCall = new Button(container, SWT.RADIO);
-        superPatternCall.setText(Messages.ChooseKindPage_radio_superPatternCall);
-        superPatternCall.addSelectionListener(new SelectionListener() {
+        _superPatternCall = new Button(group, SWT.RADIO);
+        _superPatternCall.setText(Messages.ChooseKindPage_radio_superPatternCall);
+        _superPatternCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                selectedKind = CallTypeEnum.SUPERPATTERN_CALL;
+                _selectedKind = CallTypeEnum.SUPERPATTERN_CALL;
                 getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
-        strategyCall = new Button(container, SWT.RADIO);
-        strategyCall.setText(Messages.ChooseKindPage_radio_backCall);
-        strategyCall.addSelectionListener(new SelectionListener() {
+        _strategyCall = new Button(group, SWT.RADIO);
+        _strategyCall.setText(Messages.ChooseKindPage_radio_backCall);
+        _strategyCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                selectedKind = CallTypeEnum.BACK_CALL;
+                _selectedKind = CallTypeEnum.BACK_CALL;
                 getContainer().updateButtons();
-                // setPageComplete(true);
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
             }
+
         });
 
         setControl(container);
@@ -135,13 +153,11 @@ public class ChooseKindPage extends WizardPage {
 
     @Override
     public IWizardPage getNextPage() {
-        // if (isPageComplete())
-        // return null;
         return super.getNextPage();
     }
 
     public CallTypeEnum getKind() {
-        return selectedKind;
+        return _selectedKind;
     }
 
 }

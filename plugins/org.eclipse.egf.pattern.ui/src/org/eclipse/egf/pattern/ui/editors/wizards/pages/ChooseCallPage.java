@@ -107,6 +107,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private void createCallControl(Composite parent) {
+
         _container = new Composite(parent, SWT.NONE);
         _container.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL));
         GridLayout layout = new GridLayout();
