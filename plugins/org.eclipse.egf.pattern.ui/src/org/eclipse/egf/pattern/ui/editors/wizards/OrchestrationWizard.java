@@ -83,7 +83,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         if (_chooseKindPage != null && (_chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || _chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL)) {
             return true;
         }
-        if (_chooseKindPage != null && _chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL && _defaultKind == CallTypeEnum.Add) {
+        if (_chooseKindPage != null && _chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL && _defaultKind == CallTypeEnum.ADD) {
             return _chooseMethodCallPage.canFinish();
         }
         return _chooseCallPage.canFinish();
@@ -97,7 +97,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         // Set the window's title label
         setWindowTitle(Messages.OrchestrationWizard_title);
         // Add chooseKindPage.
-        if (_defaultKind.equals(CallTypeEnum.Add)) {
+        if (_defaultKind.equals(CallTypeEnum.ADD)) {
             _chooseKindPage = new ChooseKindPage(_selection);
             addPage(_chooseKindPage);
         }
@@ -108,7 +108,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         _chooseMethodCallPage = new ChooseMethodCallPage(_pattern, _selection, _editItem);
         addPage(_chooseMethodCallPage);
         // Add parameterMatchingPage.
-        if (_defaultKind.equals(CallTypeEnum.PATTERN_CALL) || _defaultKind.equals(CallTypeEnum.Add)) {
+        if (_defaultKind.equals(CallTypeEnum.PATTERN_CALL) || _defaultKind.equals(CallTypeEnum.ADD)) {
             _parameterMatchingPage = new ParameterMatchingPage(_selection, _pattern, _editingDomain);
             Pattern patternCallee = null;
             if (_editItem instanceof PatternCall) {
@@ -124,7 +124,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         IWizardPage nextPage;
         if (page instanceof ChooseKindPage) {
             CallTypeEnum kind = ((ChooseKindPage) page).getKind();
-            if (kind == CallTypeEnum.METHOD_CALL && _defaultKind.equals(CallTypeEnum.Add)) {
+            if (kind == CallTypeEnum.METHOD_CALL && _defaultKind.equals(CallTypeEnum.ADD)) {
                 nextPage = _chooseMethodCallPage;
             } else if (_chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || _chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL) {
                 return null;
@@ -205,4 +205,5 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     public CallTypeEnum getDefaultKind() {
         return _defaultKind;
     }
+
 }

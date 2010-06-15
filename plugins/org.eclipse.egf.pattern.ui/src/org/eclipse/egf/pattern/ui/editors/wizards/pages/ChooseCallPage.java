@@ -55,7 +55,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
@@ -67,7 +66,7 @@ public class ChooseCallPage extends WizardPage {
 
     private CallTypeEnum _selectKind;
 
-    private CallTypeEnum _oldKind = CallTypeEnum.Add;
+    private CallTypeEnum _oldKind = CallTypeEnum.ADD;
 
     private Pattern _pattern;
 
@@ -123,6 +122,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private void createPatternsMethodsArea() {
+
         _text = new Text(_container, SWT.BORDER);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 550;
@@ -135,6 +135,7 @@ public class ChooseCallPage extends WizardPage {
                     checkListAreaExist(_text.getText());
                 }
             }
+
         });
         Label label = new Label(_container, SWT.NONE);
         label.setText(Messages.ChooseCallPage_label_text);
@@ -144,8 +145,6 @@ public class ChooseCallPage extends WizardPage {
         gd.heightHint = 60;
         listTable.setLayoutData(gd);
 
-        TableColumn tableColumn = new TableColumn(listTable, SWT.NONE);
-        tableColumn.setWidth(500);
         _parentTableViewer = new TableViewer(listTable);
         _parentTableViewer.setContentProvider(new CommonListContentProvider());
         _parentTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -159,6 +158,7 @@ public class ChooseCallPage extends WizardPage {
                     }
                 }
             }
+
         });
 
         _parentTableViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -184,6 +184,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private void createVariablesArea() {
+
         _varParaLabel = new Label(_container, SWT.NONE);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         _varParaLabel.setLayoutData(gd);
@@ -194,8 +195,6 @@ public class ChooseCallPage extends WizardPage {
         gd.heightHint = 60;
         listTable.setLayoutData(gd);
 
-        TableColumn tableColumn = new TableColumn(listTable, SWT.NONE);
-        tableColumn.setWidth(500);
         _childTableViewer = new TableViewer(listTable);
         _childTableViewer.setLabelProvider(new PatternSelectionLabelProvider());
         _childTableViewer.setContentProvider(new CommonListContentProvider());
@@ -207,6 +206,7 @@ public class ChooseCallPage extends WizardPage {
                     checkParentTableSelect();
                 }
             }
+
         });
 
         _childTableViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -217,6 +217,7 @@ public class ChooseCallPage extends WizardPage {
                     PatterninjectedCallDoubleClick();
                 }
             }
+
         });
     }
 

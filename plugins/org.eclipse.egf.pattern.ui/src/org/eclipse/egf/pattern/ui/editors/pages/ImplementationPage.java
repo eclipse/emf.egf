@@ -1084,7 +1084,7 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), CallTypeEnum.Add, null, getEditingDomain());
+                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), CallTypeEnum.ADD, null, getEditingDomain());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -1175,7 +1175,7 @@ public class ImplementationPage extends PatternEditorPage {
         int index = orchestrationTableViewer.getTable().getSelectionIndex();
         Object selectItem = orchestrationTableViewer.getElementAt(index);
 
-        CallTypeEnum kind = CallTypeEnum.Add;
+        CallTypeEnum kind = CallTypeEnum.ADD;
         if (selectItem instanceof MethodCall) {
             kind = CallTypeEnum.METHOD_CALL;
         } else if (selectItem instanceof PatternCall) {
@@ -1203,7 +1203,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     protected void exectuteOrchestrationAdd(OrchestrationWizard wizard) {
         List<Call> selectCallList = new ArrayList<Call>();
-        if (wizard.getDefaultKind() == CallTypeEnum.Add && wizard.getSelectCall() instanceof MethodCall) {
+        if (wizard.getDefaultKind() == CallTypeEnum.ADD && wizard.getSelectCall() instanceof MethodCall) {
             selectCallList = wizard.getSelectMethodCallList();
         } else {
             Call selectCall = wizard.getSelectCall();

@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -27,13 +27,13 @@ import org.eclipse.swt.widgets.Table;
  */
 public class ChooseMethodCallPage extends ChooseCallPage {
 
-    public ChooseMethodCallPage(Pattern pattern, ISelection selection, Object eidtItem) {
-        super(pattern, selection, eidtItem);
+    public ChooseMethodCallPage(Pattern pattern, ISelection selection, Object item) {
+        super(pattern, selection, item);
     }
 
     @Override
     protected Table createParentTable() {
-        Table listTable = new Table(_container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.MULTI);
-        return listTable;
+        return new Table(_container, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
     }
+
 }
