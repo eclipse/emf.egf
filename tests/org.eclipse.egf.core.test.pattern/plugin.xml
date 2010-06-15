@@ -67,6 +67,21 @@
       <fcore
             id="fc/substitution_4.fcore">
       </fcore>
+      <fcore
+            id="fc/patternCall_Condition1.fcore">
+      </fcore>
+      <fcore
+            id="fc/patternCall_Condition2.fcore">
+      </fcore>
+      <fcore
+            id="fc/patternCall_Condition3.fcore">
+      </fcore>
+      <fcore
+            id="fc/patternCall_Condition_extension.fcore">
+      </fcore>
+      <fcore
+            id="fc/model_driven_startegy_condition.fcore">
+      </fcore>
       
    </extension>
    

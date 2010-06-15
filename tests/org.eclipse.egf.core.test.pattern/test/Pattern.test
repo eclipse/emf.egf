@@ -45,6 +45,10 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Package mypackage&#xA;&#xA;loop finished:&#xA;Class Employee&#xA;&#xA;loop finished:&#xA;Attribute name&#xA;&#xA;loop finished:&#xA;Class Company&#xA;&#xA;loop finished:&#xA;Attribute name&#xA;&#xA;loop finished:&#xA;Class Test&#xA;&#xA;exec finished:&#xA;Package mypackage&#xA;Class Employee&#xA;Attribute name&#xA;Class Company&#xA;Attribute name&#xA;Class Test&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/no_callback_1.fcore#_gUlg4CLhEd-F8rS2HRRtPA"/>
     </tests>
+    <tests xsi:type="test:EGFTestCase" name="with condition">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;found Package mypackage&#xA;&#xA;loop with callback finished:&#xA;found Package mypackage&#xA;&#xA;loop finished:&#xA;found Class Employee&#xA;&#xA;loop with callback finished:&#xA;found Class Employee&#xA;&#xA;loop finished:&#xA;found Attribute name&#xA;&#xA;loop with callback finished:&#xA;found Attribute name&#xA;&#xA;loop finished:&#xA;found Class Company&#xA;&#xA;loop with callback finished:&#xA;found Class Company&#xA;&#xA;loop finished:&#xA;found Attribute name&#xA;&#xA;loop with callback finished:&#xA;found Attribute name&#xA;&#xA;loop finished:&#xA;found Class Test&#xA;&#xA;loop with callback finished:&#xA;found Class Test&#xA;&#xA;loop finished:&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;loop with callback finished:&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;exec finished:&#xA;found Package mypackage&#xA;found Class Employee&#xA;found Attribute name&#xA;found Class Company&#xA;found Attribute name&#xA;found Class Test&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/model_driven_startegy_condition.fcore#_1EK9EXhOEd-36-tf633IWg"/>
+    </tests>
   </tests>
   <tests xsi:type="test:TestSuite" name="Extension">
     <tests xsi:type="test:EGFTestCase" name="Sanity test 1">
@@ -104,6 +108,22 @@
     <tests xsi:type="test:EGFTestCase" name="call without parameter">
       <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xA;Message from callerMessage from Callee"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_1.fcore#_aEI0EVa2Ed-upsLSxDR5IA"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="pattern injected call with condition">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Message from caller&#xA;Callee has found the 'test' EClass&#xA;loop with callback finished:&#xA;Message from caller&#xA;Callee has found the 'test' EClass&#xA;exec finished:&#xA;Message from caller&#xA;Callee has found the 'test' EClass&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition2.fcore#_XHL6EHeMEd-eFrQyPU1i3Q"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="pattern call with condition">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Message from caller: found Employee&#xA;&#xA;loop with callback finished:&#xA;Message from caller: found Employee&#xA;&#xA;loop finished:&#xA;Message from caller: found Company&#xA;&#xA;loop with callback finished:&#xA;Message from caller: found Company&#xA;&#xA;loop finished:&#xA;Message from caller: found Test&#xA;Callee has found the 'test' EClass&#xA;&#xA;loop with callback finished:&#xA;Message from caller: found Test&#xA;Callee has found the 'test' EClass&#xA;&#xA;exec finished:&#xA;Message from caller: found Employee&#xA;Message from caller: found Company&#xA;Message from caller: found Test&#xA;Callee has found the 'test' EClass&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition3.fcore#_ecZv8HeTEd-ent-ImclT8w"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="mix substitutions and condition (sanity check)">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;&#xA;loop finished:&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;&#xA;loop finished:&#xA;Message from Caller pattern: Test&#xA;Message from Callee pattern: Test&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Test&#xA;Message from Callee pattern: Test&#xA;&#xA;exec finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;Message from Caller pattern: Test&#xA;Message from Callee pattern: Test&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition_extension.fcore#_GZD8oHecEd-ent-ImclT8w"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="mix substitutions and condition">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;&#xA;loop finished:&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;&#xA;loop finished:&#xA;Message from Caller pattern: Test&#xA;Extension: callee applied on 'Test' EClass&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Test&#xA;Extension: callee applied on 'Test' EClass&#xA;&#xA;exec finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;Message from Caller pattern: Test&#xA;Extension: callee applied on 'Test' EClass&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition_extension.fcore#_X7hMIHevEd-ent-ImclT8w"/>
     </tests>
   </tests>
   <tests xsi:type="test:TestSuite" name="Jet Tags Library">

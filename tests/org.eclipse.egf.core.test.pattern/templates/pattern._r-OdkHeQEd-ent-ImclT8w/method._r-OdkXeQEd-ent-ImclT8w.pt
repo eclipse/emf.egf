@@ -1,0 +1,1 @@
+<%@ jet package="pattern.call.condition2" class="CCallee2" imports="org.eclipse.egf.common.helper.* java.util.* org.eclipse.emf.ecore.* org.eclipse.egf.model.pattern.* org.eclipse.egf.pattern.execution.* org.eclipse.egf.pattern.query.*"  %>
