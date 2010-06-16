@@ -29,6 +29,7 @@ import org.eclipse.egf.model.pattern.PatternRuntimeException;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
@@ -48,6 +49,9 @@ public class CallHelper {
 
         try {
             List<Pattern> patterns = getPatterns(patternURI, ctx);
+            TypePatternSubstitution substitutions = (TypePatternSubstitution) ctx.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
+            SubstitutionHelper.apply(patterns, substitutions);
+
             for (Pattern pattern : patterns) {
                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
                 String reason = extension.canExecute(pattern);
@@ -65,8 +69,16 @@ public class CallHelper {
     public static void executeWithParameterInjection(String patternURI, PatternContext ctx, Map<String, Object> name2parameterValue) {
         try {
             List<Pattern> patterns = getPatterns(patternURI, ctx);
+            Pattern originalPattern = patterns.get(0);
+            List<Object> values = new ArrayList<Object>(originalPattern.getAllParameters().size());
+            for (PatternParameter param : originalPattern.getAllParameters()) {
+                Object value = name2parameterValue.get(param.getName());
+                values.add(value);
+            }
 
-            for (Pattern pattern : patterns) {
+            List<Pattern> substituedPatterns = SubstitutionHelper.apply(ctx, patterns, values);
+
+            for (Pattern pattern : substituedPatterns) {
                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
                 String reason = extension.canExecute(pattern);
                 if (reason != null)
@@ -78,7 +90,9 @@ public class CallHelper {
                         throw new PatternException(Messages.bind(Messages.call_execution_error1, entry.getKey(), pattern.getName()));
                     parameters.put(parameter, entry.getValue());
                 }
-                extension.createEngine(pattern).executeWithInjection(ctx, parameters);
+                PatternEngine engine = extension.createEngine(pattern);
+                if (engine.checkCondition(ctx, parameters))
+                    engine.executeWithInjection(ctx, parameters);
             }
         } catch (PatternException e) {
             throw new PatternRuntimeException(e);
@@ -102,8 +116,6 @@ public class CallHelper {
         if (targetPattern == null)
             throw new PatternException(Messages.bind(Messages.call_execution_error4, patternURI));
         patterns.add(targetPattern);
-        TypePatternSubstitution substitutions = (TypePatternSubstitution) ctx.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
-        SubstitutionHelper.apply(patterns, substitutions);
         return patterns;
     }
 

@@ -44,7 +44,8 @@ public class SubstitutionHelper {
      * patterns. Substitution is performed only if one candidate for replacement
      * can be executed (i.e. the preCondition is true)
      */
-    public static List<Pattern> apply(PatternContext context, List<Pattern> patterns1, TypePatternSubstitution substitutions, List<Object> parameterValues) throws PatternException {
+    public static List<Pattern> apply(PatternContext context, List<Pattern> patterns1, List<Object> parameterValues) throws PatternException {
+        TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
         List<Pattern> patterns = new ArrayList<Pattern>(patterns1);
         if (substitutions == null || substitutions.getSubstitutions().isEmpty() || patterns.isEmpty())
             return patterns;

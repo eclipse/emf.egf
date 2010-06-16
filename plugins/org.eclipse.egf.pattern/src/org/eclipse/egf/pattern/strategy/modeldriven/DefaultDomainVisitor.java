@@ -14,9 +14,9 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.ecore.EPackageHelper;
+import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
@@ -57,12 +57,8 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
 
         if (result == null)
             return null;
-        // Apply substitution and check condition
-        TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
-        // Map<PatternParameter, Object> parameters =
-        // createParameterMap(pattern, model);
         List<Object> parameterValues = Arrays.asList(model);
-        return SubstitutionHelper.apply(context, result, substitutions, parameterValues);
+        return SubstitutionHelper.apply(context, result, parameterValues);
     }
 
     public void visit(PatternContext context, Object model) throws PatternException {
@@ -90,7 +86,9 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
                 String canExecute = extension.canExecute(pattern);
                 if (canExecute != null)
                     throw new PatternException(canExecute);
-                extension.createEngine(pattern).executeWithInjection(context, parameters);
+                PatternEngine engine = extension.createEngine(pattern);
+                if (engine.checkCondition(context, parameters))
+                    engine.executeWithInjection(context, parameters);
             } catch (MissingExtensionException e) {
                 throw new PatternException(e);
             }
