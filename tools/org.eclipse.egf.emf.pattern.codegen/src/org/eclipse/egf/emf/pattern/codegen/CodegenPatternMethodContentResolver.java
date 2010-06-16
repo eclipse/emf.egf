@@ -41,7 +41,7 @@ public class CodegenPatternMethodContentResolver {
     public static final String DO_GENERATE = "doGenerate"; //$NON-NLS-1$
 
     protected static final String SET_REPORTER_VARIABLES = "setReporterVariables"; //$NON-NLS-1$
-    protected static final String SET_CAN_GENERATE = "setCanGenerate"; //$NON-NLS-1$
+    protected static final String PRE_CONDITION = "preCondition"; //$NON-NLS-1$
     protected static final String SET_ARGUMENT = "setArgument"; //$NON-NLS-1$
     protected static final String ENSURE_PROJECT_EXISTS = "ensureProjectExists"; //$NON-NLS-1$
     protected static final String PRE_GENERATE = "preGenerate"; //$NON-NLS-1$
@@ -64,7 +64,7 @@ public class CodegenPatternMethodContentResolver {
         JetContentProvider contentProvider = new JetContentProvider(jetPatternInfo);
         addMethodInfo(jetPatternInfo, contentProvider.createSetReporterVariablesMethod());
         addMethodInfo(jetPatternInfo, contentProvider.createSetArgumentMethod());
-        addMethodInfo(jetPatternInfo, contentProvider.createSetCanGenerateMethod());
+        addMethodInfo(jetPatternInfo, contentProvider.createPreConditionMethod());
         addMethodInfo(jetPatternInfo, contentProvider.createEnsureProjectExistsMethod());
         addMethodInfo(jetPatternInfo, MethodInfoFactory.createSuperMethodCall(PRE_GENERATE));
         addMethodInfo(jetPatternInfo, contentProvider.createDoGenerateMethod());
@@ -79,7 +79,7 @@ public class CodegenPatternMethodContentResolver {
 
     public void computeMethodsContent(GIFPatternInfo patternInfo) {
         GIFContentProvider contentProvider = new GIFContentProvider(patternInfo);
-        addMethodInfo(patternInfo, contentProvider.createSetCanGenerateMethod());
+        addMethodInfo(patternInfo, contentProvider.createPreConditionMethod());
         addMethodInfo(patternInfo, contentProvider.createEnsureProjectExistsMethod());
         addMethodInfo(patternInfo, MethodInfoFactory.createSuperMethodCall(PRE_GENERATE));
         addMethodInfo(patternInfo, contentProvider.createDoGenerateMethod());
@@ -120,8 +120,6 @@ public class CodegenPatternMethodContentResolver {
 
             StringBuffer buffer = new StringBuffer();
             buffer.append("<%"); //$NON-NLS-1$
-            buffer.append(N);
-            addReturnIfCannotGenerate(buffer);
             buffer.append(N);
             addParameterDeclaration(buffer);
             buffer.append(N);
@@ -228,17 +226,7 @@ public class CodegenPatternMethodContentResolver {
         protected MethodInfo createDoGenerateMethod() {
             String name = DO_GENERATE;
 
-            StringBuffer buffer = new StringBuffer();
-
-            buffer.append("<%"); //$NON-NLS-1$
-            buffer.append(N);
-            addReturnIfCannotGenerate(buffer);
-            buffer.append(N);
-            buffer.append("%>"); //$NON-NLS-1$
-
-            buffer.append(codegenJetPatternHelper.getContent(jetPatternInfo.getSection()));
-
-            String content = buffer.toString();
+            String content = codegenJetPatternHelper.getContent(jetPatternInfo.getSection());
 
             return MethodInfoFactory.createMethodCall(name, content);
         }
@@ -314,21 +302,21 @@ public class CodegenPatternMethodContentResolver {
             }
         }
 
-        protected MethodInfo createSetCanGenerateMethod() {
-            String name = SET_CAN_GENERATE;
+        protected MethodInfo createPreConditionMethod() {
+            String name = PRE_CONDITION;
 
             StringBuffer buffer = new StringBuffer();
-            buffer.append("<%"); //$NON-NLS-1$
-            buffer.append(N);
             addParameterDeclaration(buffer);
+            buffer.append(N);
+            buffer.append("genModel = parameter.getGenModel();");
             buffer.append(N);
             addCanGenerateAssigment(buffer);
             buffer.append(N);
-            buffer.append("%>"); //$NON-NLS-1$
+            buffer.append("return canGenerate;");
             String content = buffer.toString();
 
             content = replaceAbstractGeneratorAdapterCalls(content);
-            return MethodInfoFactory.createMethodCall(name, content);
+            return MethodInfoFactory.createMethod(name, content);
         }
 
         protected MethodInfo createEnsureProjectExistsMethod() {
@@ -346,24 +334,15 @@ public class CodegenPatternMethodContentResolver {
         }
 
         protected void addCanGenerateAssigment(StringBuffer buffer) {
-            buffer.append("canGenerate = "); //$NON-NLS-1$
+            buffer.append("boolean canGenerate = "); //$NON-NLS-1$
             buffer.append("new CodegenGeneratorAdapter(parameter).canGenerate("); //$NON-NLS-1$
             buffer.append("\"org.eclipse.emf.codegen.ecore.genmodel.generator."); //$NON-NLS-1$
             buffer.append(patternInfo.getPartType());
             buffer.append("Project\");"); //$NON-NLS-1$
         }
 
-        protected void addReturnIfCannotGenerate(StringBuffer buffer) {
-            buffer.append("if (!canGenerate)"); //$NON-NLS-1$
-            buffer.append(N);
-            buffer.append("    return;"); //$NON-NLS-1$
-        }
-
         protected void addEnsureProjectExists(StringBuffer buffer) {
             // add ensure project exists
-            buffer.append("if (canGenerate)"); //$NON-NLS-1$
-            buffer.append(N);
-            buffer.append("    "); //$NON-NLS-1$
             buffer.append("new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.get"); //$NON-NLS-1$
             buffer.append(patternInfo.getPartType());
             buffer.append("Directory(), genModel, GenBaseGeneratorAdapter."); //$NON-NLS-1$

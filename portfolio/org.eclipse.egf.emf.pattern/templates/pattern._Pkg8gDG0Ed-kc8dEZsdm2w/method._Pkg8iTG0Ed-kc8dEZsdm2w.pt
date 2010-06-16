@@ -1,6 +1,4 @@
 <%
-if (!canGenerate)
-    return;
 GenClass genClass = parameter;
 GenModel genModel=genClass.getGenModel();
 if (genModel.isCreationCommands() && genModel.isCreationIcons()) {

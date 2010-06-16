@@ -24,9 +24,6 @@ public class ContentTypePatternExecutionReporter extends CodegenPatternExecution
     public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
         super.loopFinished(output, outputWithCallBack, context, parameterValues);
 
-        if (!canGenerate)
-            return;
-
         ContentType contentType = (ContentType) context.getValue("contentType"); //$NON-NLS-1$
 
         if (contentType == null || contentType.equals(ContentType.Undefined))

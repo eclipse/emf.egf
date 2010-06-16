@@ -1,5 +1,0 @@
-<%
-GenEnum genEnum = parameter;
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && true;
-%>

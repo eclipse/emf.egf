@@ -1,7 +1,4 @@
 <%
-if (!canGenerate)
-    return;
-%><%
 /**
  * <copyright>
  *

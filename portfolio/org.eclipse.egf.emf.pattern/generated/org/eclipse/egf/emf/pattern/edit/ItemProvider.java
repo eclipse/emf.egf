@@ -263,26 +263,14 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 
 	}
 
-	protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		GenClass genClass = parameter;
-		canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
-		canGenerate = canGenerate && true;
-
-	}
-
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		if (canGenerate)
-			new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel,
-					GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel,
+				GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		if (!canGenerate)
-			return;
 
 		/**
 		 * <copyright>
@@ -663,6 +651,11 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 	}
 
 	public boolean preCondition() throws Exception {
-		return true;
+		GenClass genClass = parameter;
+		genModel = parameter.getGenModel();
+		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
+				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
+		canGenerate = canGenerate && true;
+		return canGenerate;
 	}
 }

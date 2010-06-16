@@ -739,26 +739,14 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 
 	}
 
-	protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		GenPackage genPackage = parameter;
-		canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.hasConstraints());
-
-	}
-
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		if (canGenerate)
-			new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel,
-					GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel,
+				GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		if (!canGenerate)
-			return;
 
 		/**
 		 * <copyright>
@@ -2048,6 +2036,11 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
 	}
 
 	public boolean preCondition() throws Exception {
-		return true;
+		GenPackage genPackage = parameter;
+		genModel = parameter.getGenModel();
+		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
+				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+		canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.hasConstraints());
+		return canGenerate;
 	}
 }

@@ -140,27 +140,14 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
 	}
 
-	protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		GenModel genModel = parameter;
-		canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate && (genModel.isBundleManifest())
-				&& (genModel.hasPluginSupport() && !genModel.sameModelEditProject() && !genModel.sameModelEditorProject());
-
-	}
-
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		if (canGenerate)
-			new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel,
-					GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel,
+				GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		if (!canGenerate)
-			return;
 
 		/**
 		 * <copyright>
@@ -235,6 +222,12 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
 	}
 
 	public boolean preCondition() throws Exception {
-		return true;
+		GenModel genModel = parameter;
+		genModel = parameter.getGenModel();
+		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
+				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+		canGenerate = canGenerate && (genModel.isBundleManifest())
+				&& (genModel.hasPluginSupport() && !genModel.sameModelEditProject() && !genModel.sameModelEditorProject());
+		return canGenerate;
 	}
 }

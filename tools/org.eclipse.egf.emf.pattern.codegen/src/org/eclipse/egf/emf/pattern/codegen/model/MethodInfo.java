@@ -21,7 +21,7 @@ package org.eclipse.egf.emf.pattern.codegen.model;
  */
 public class MethodInfo {
     public enum MethodInfoType {
-        MethodCall, SuperMethodCall, BackCall, PatternCall
+        MethodCall, SuperMethodCall, BackCall, PatternCall, Method
     }
 
     protected MethodInfoType methodInfoType;

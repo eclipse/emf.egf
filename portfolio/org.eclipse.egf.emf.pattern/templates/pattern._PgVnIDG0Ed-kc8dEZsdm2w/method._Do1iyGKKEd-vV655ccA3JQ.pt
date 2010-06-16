@@ -1,5 +1,0 @@
-<%
-GenPackage genPackage = parameter;
-canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-canGenerate = canGenerate && (genPackage.hasClassifiers() && !genModel.isSuppressInterfaces());
-%>

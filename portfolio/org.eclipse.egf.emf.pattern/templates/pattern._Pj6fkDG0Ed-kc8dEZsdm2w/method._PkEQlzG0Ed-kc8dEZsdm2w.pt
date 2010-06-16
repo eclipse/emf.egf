@@ -1,6 +1,4 @@
 <%
-if (!canGenerate)
-    return;
 GenPackage genPackage = parameter;
 GenModel genModel=genPackage.getGenModel();
 if (genModel.isCreationCommands() && genModel.isCreationIcons() && genPackage.isChildCreationExtenders()) {

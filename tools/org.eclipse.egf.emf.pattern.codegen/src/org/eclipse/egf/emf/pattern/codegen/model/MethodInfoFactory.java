@@ -33,6 +33,10 @@ public class MethodInfoFactory {
     public static MethodInfo createMethodCall(String name, String content) {
         return new MethodInfo(MethodInfoType.MethodCall, name, content);
     }
+    
+    public static MethodInfo createMethod(String name, String content) {
+        return new MethodInfo(MethodInfoType.Method, name, content);
+    }
 
     public static MethodInfo createPatternCall(String name) {
         return new MethodInfo(MethodInfoType.PatternCall, name, null);

@@ -19,6 +19,7 @@ import org.eclipse.egf.emf.pattern.codegen.model.JetSubPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.MethodInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.VariableInfo;
+import org.eclipse.egf.emf.pattern.codegen.model.MethodInfo.MethodInfoType;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -98,6 +99,7 @@ public class CodegenPatternFactory {
                 pattern.getOrchestration().add(superMethodCall);
                 break;
 
+            case Method:
             case MethodCall:
                 PatternMethod method = null;
 
@@ -112,7 +114,7 @@ public class CodegenPatternFactory {
                     method.setName(methodName);
                 }
 
-                if (!isMethodCalledInOrchestration(pattern, method)) {
+                if (MethodInfoType.MethodCall == methodInfo.getMethodInfoType() && !isMethodCalledInOrchestration(pattern, method)) {
                     MethodCall methodCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
                     methodCall.setCalled(method);
                     pattern.getOrchestration().add(methodCall);

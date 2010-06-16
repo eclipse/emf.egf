@@ -29,9 +29,6 @@ public class PropertiesPatternExecutionReporter extends CodegenPatternExecutionR
   public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
     super.loopFinished(output, outputWithCallBack, context, parameterValues);
 
-    if (!canGenerate)
-      return;
-
     generateProperties(output, context);
   }
 }

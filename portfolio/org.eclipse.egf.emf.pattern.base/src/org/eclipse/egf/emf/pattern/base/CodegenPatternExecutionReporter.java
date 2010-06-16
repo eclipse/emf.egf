@@ -34,20 +34,15 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
 
   protected GenModel genModel;
 
-  protected Boolean canGenerate;
-
   public void executionFinished(String output, PatternContext context) {
     // Nothing to do
   }
 
   public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
     genModel = (GenModel) context.getValue("genModel"); //$NON-NLS-1$
-    canGenerate = (Boolean) context.getValue("canGenerate"); //$NON-NLS-1$
 
     if (genModel == null)
       throw new IllegalStateException("Variable genModel must be set."); //$NON-NLS-1$
-    if (canGenerate == null)
-      throw new IllegalStateException("Variable canGenerate must be set."); //$NON-NLS-1$
   }
 
   protected void generateText(String output, PatternContext context) {

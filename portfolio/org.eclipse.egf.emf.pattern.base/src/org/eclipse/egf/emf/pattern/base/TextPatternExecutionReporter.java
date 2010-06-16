@@ -29,9 +29,6 @@ public class TextPatternExecutionReporter extends CodegenPatternExecutionReporte
   public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
     super.loopFinished(output, outputWithCallBack, context, parameterValues);
 
-    if (!canGenerate)
-      return;
-
     generateText(output, context);
   }
 }

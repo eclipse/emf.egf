@@ -44,7 +44,7 @@ public class CodegenPatternInitializer {
                 if (methodInfo.getName() != null && methodInfo.getName().equals(method.getName()))
                     return methodInfo.getContent();
             }
-            throw new IllegalStateException("no content found"); //$NON-NLS-1$
+            return null;
         }
     }
 
@@ -58,8 +58,19 @@ public class CodegenPatternInitializer {
         }
 
         @Override
+        protected String getConditionContent(PatternMethod method) throws PatternException {
+            String content = contentProvider.getContent(method);
+            if (content != null)
+                return content;
+            return super.getConditionContent(method);
+        }
+        
+        @Override
         protected String getDefaultContent(PatternMethod method) throws PatternException {
-            return contentProvider.getContent(method);
+            String content = contentProvider.getContent(method);
+            if (content == null)
+                throw new IllegalStateException("no content found"); //$NON-NLS-1$
+            return content;
         }
     }
 }

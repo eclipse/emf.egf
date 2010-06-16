@@ -264,26 +264,14 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 
 	}
 
-	protected void method_setCanGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		GenEnum genEnum = parameter;
-		canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
-		canGenerate = canGenerate && true;
-
-	}
-
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		if (canGenerate)
-			new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel,
-					GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel,
+				GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-		if (!canGenerate)
-			return;
 
 		/**
 		 * <copyright>
@@ -579,6 +567,11 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
 	}
 
 	public boolean preCondition() throws Exception {
-		return true;
+		GenEnum genEnum = parameter;
+		genModel = parameter.getGenModel();
+		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
+				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+		canGenerate = canGenerate && true;
+		return canGenerate;
 	}
 }

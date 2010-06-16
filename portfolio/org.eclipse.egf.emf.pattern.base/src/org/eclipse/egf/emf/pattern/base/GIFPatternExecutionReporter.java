@@ -29,9 +29,6 @@ public class GIFPatternExecutionReporter extends CodegenPatternExecutionReporter
   public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
     super.loopFinished(output, outputWithCallBack, context, parameterValues);
 
-    if (!canGenerate)
-      return;
-
     generateGIF(output, context);
   }
 
