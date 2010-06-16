@@ -25,8 +25,8 @@ public class Writer_Name_Class_getGenFeature_TODO_override extends org.eclipse.e
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "if (getFirstName() == null) {" + NL + "    if (getLastName() == null) {" + NL + "        return \"\"; ";
-    protected final String TEXT_2 = NL + "    }" + NL + "    return getLastName();" + NL + "} else if (getLastName() == null) {" + NL + "    return getFirstName();" + NL + "} else {" + NL + "    StringBuffer result = new StringBuffer();" + NL + "    result.append(getFirstName()).append(' ').append(getLastName());" + NL + "    return result.toString();" + NL + "}";
+    protected final String TEXT_1 = "        if (getFirstName() == null) {" + NL + "            if (getLastName() == null) {" + NL + "                return \"\"; ";
+    protected final String TEXT_2 = NL + "            }" + NL + "            return getLastName();" + NL + "        } else if (getLastName() == null) {" + NL + "            return getFirstName();" + NL + "        } else {" + NL + "            StringBuffer result = new StringBuffer();" + NL + "            result.append(getFirstName()).append(' ').append(getLastName());" + NL + "            return result.toString();" + NL + "        }";
     protected final String TEXT_3 = NL;
     protected final String TEXT_4 = NL;
 

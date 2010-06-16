@@ -25,7 +25,7 @@ public class Writer_Name_Class_setGenFeature_TODO_override extends org.eclipse.e
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "if (newName == null || newName.length() == 0) {" + NL + "    setFirstName(null);" + NL + "    setLastName(null);" + NL + "} else {" + NL + "    int comma = newName.indexOf(',');" + NL + "    if (comma < 0) {" + NL + "        comma = newName.indexOf(' ');" + NL + "    }" + NL + "    if (comma >= 0) {" + NL + "        setFirstName(newName.substring(0, comma).trim());" + NL + "        setLastName(newName.substring(comma + 1).trim());" + NL + "    } else {" + NL + "        setFirstName(newName);" + NL + "        setLastName(null);" + NL + "    }" + NL + "}";
+    protected final String TEXT_1 = "    if (newName == null || newName.length() == 0) {" + NL + "        setFirstName(null);" + NL + "        setLastName(null);" + NL + "    } else {" + NL + "        int comma = newName.indexOf(',');" + NL + "        if (comma < 0) {" + NL + "            comma = newName.indexOf(' ');" + NL + "        }" + NL + "        if (comma >= 0) {" + NL + "            setFirstName(newName.substring(0, comma).trim());" + NL + "            setLastName(newName.substring(comma + 1).trim());" + NL + "        } else {" + NL + "            setFirstName(newName);" + NL + "            setLastName(null);" + NL + "        }" + NL + "    }";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
