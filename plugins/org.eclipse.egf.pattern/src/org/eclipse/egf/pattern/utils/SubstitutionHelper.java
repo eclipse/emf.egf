@@ -46,41 +46,40 @@ public class SubstitutionHelper {
      */
     public static List<Pattern> apply(PatternContext context, List<Pattern> patterns1, List<Object> parameterValues) throws PatternException {
         TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
-        List<Pattern> patterns = new ArrayList<Pattern>(patterns1);
-        if (substitutions == null || substitutions.getSubstitutions().isEmpty() || patterns.isEmpty())
-            return patterns;
+        if (substitutions == null || substitutions.getSubstitutions().isEmpty() || patterns1.isEmpty())
+            return patterns1;
 
+        List<Pattern> patterns = new ArrayList<Pattern>(patterns1);
         for (Substitution substitution : substitutions.getSubstitutions()) {
             Pattern[] array = patterns.toArray(new Pattern[patterns.size()]);
             for (Pattern pattern : array) {
                 Pattern target = substitution.getReplacedElement();
                 if (target != null && pattern.getID().equals(target.getID())) {
+                    // if (!checkCondition(context, target, parameterValues)) {
+                    // // if the pattern won't be applied, no need to
+                    // // substitute it.
+                    // continue;
+                    // }
+
                     int index = patterns.indexOf(pattern);
                     EList<Pattern> replacement = substitution.getReplacement();
                     if (replacement != null) {
-                        // substitute patterns if at least one pattern from
-                        // replacement list can apply
-                        List<Pattern> toAdd = new ArrayList<Pattern>(replacement.size());
-                        for (Pattern replacementPattern : replacement) {
-                            try {
-                                PatternExtension extension = ExtensionHelper.getExtension(replacementPattern.getNature());
-                                Map<PatternParameter, Object> parameters = new HashMap<PatternParameter, Object>();
-                                if (replacementPattern.getAllParameters().size() != parameterValues.size())
-                                    continue;
-                                int nb = replacementPattern.getAllParameters().size();
-                                for (int i = 0; i < nb; i++) {
-                                    parameters.put(replacementPattern.getAllParameters().get(i), parameterValues.get(i));
-                                }
-                                if (extension.createEngine(replacementPattern).checkCondition(context, parameters)) {
+                        if (replacement.isEmpty()) {
+                            patterns.remove(index);
+                        } else {
+
+                            // substitute patterns if at least one pattern from
+                            // replacement list can apply
+                            List<Pattern> toAdd = new ArrayList<Pattern>(replacement.size());
+                            for (Pattern replacementPattern : replacement) {
+                                if (checkCondition(context, replacementPattern, parameterValues)) {
                                     toAdd.add(replacementPattern);
                                 }
-                            } catch (MissingExtensionException e) {
-                                throw new PatternException(e);
                             }
-                        }
-                        if (!toAdd.isEmpty()) {
-                            patterns.remove(index);
-                            patterns.addAll(index, replacement);
+                            if (!toAdd.isEmpty()) {
+                                patterns.remove(index);
+                                patterns.addAll(index, replacement);
+                            }
                         }
                     }
                     break;
@@ -89,6 +88,24 @@ public class SubstitutionHelper {
         }
 
         return patterns;
+    }
+
+    private static boolean checkCondition(PatternContext context, Pattern replacementPattern, List<Object> parameterValues) throws PatternException {
+        try {
+
+            PatternExtension extension = ExtensionHelper.getExtension(replacementPattern.getNature());
+            Map<PatternParameter, Object> parameters = new HashMap<PatternParameter, Object>();
+            if (replacementPattern.getAllParameters().size() != parameterValues.size())
+                return false;
+            int nb = replacementPattern.getAllParameters().size();
+            for (int i = 0; i < nb; i++) {
+                parameters.put(replacementPattern.getAllParameters().get(i), parameterValues.get(i));
+            }
+            return extension.createEngine(replacementPattern).checkCondition(context, parameters);
+        } catch (MissingExtensionException e) {
+            throw new PatternException(e);
+        }
+
     }
 
     public static void apply(List<Pattern> patterns, TypePatternSubstitution substitutions) {
@@ -113,29 +130,6 @@ public class SubstitutionHelper {
             }
         }
 
-    }
-
-    /**
-     * This method applies the given substitutions to the given list of
-     * patterns.
-     * The current implementation only deals with simple cases.
-     */
-    public static void apply1(List<Pattern> patterns, TypePatternSubstitution substitutions) {
-        if (substitutions == null)
-            return;
-        Pattern[] array = patterns.toArray(new Pattern[patterns.size()]);
-        for (Pattern pattern : array) {
-            EList<Pattern> substitutions2 = substitutions.getSubstitutions(pattern);
-            if (substitutions2 != null) {
-                int index = patterns.indexOf(pattern);
-                patterns.remove(index);
-                patterns.addAll(index, substitutions2);
-            }
-        }
-        // Add patterns
-        EList<Pattern> additions = substitutions.getSubstitutions(null);
-        if (additions != null)
-            patterns.addAll(additions);
     }
 
     public static TypePatternSubstitution merge(TypePatternSubstitution inputA, TypePatternSubstitution inputB) {
