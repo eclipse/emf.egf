@@ -45,10 +45,6 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Package mypackage&#xA;&#xA;loop finished:&#xA;Class Employee&#xA;&#xA;loop finished:&#xA;Attribute name&#xA;&#xA;loop finished:&#xA;Class Company&#xA;&#xA;loop finished:&#xA;Attribute name&#xA;&#xA;loop finished:&#xA;Class Test&#xA;&#xA;exec finished:&#xA;Package mypackage&#xA;Class Employee&#xA;Attribute name&#xA;Class Company&#xA;Attribute name&#xA;Class Test&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/no_callback_1.fcore#_gUlg4CLhEd-F8rS2HRRtPA"/>
     </tests>
-    <tests xsi:type="test:EGFTestCase" name="with condition">
-      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;found Package mypackage&#xA;&#xA;loop with callback finished:&#xA;found Package mypackage&#xA;&#xA;loop finished:&#xA;found Class Employee&#xA;&#xA;loop with callback finished:&#xA;found Class Employee&#xA;&#xA;loop finished:&#xA;found Attribute name&#xA;&#xA;loop with callback finished:&#xA;found Attribute name&#xA;&#xA;loop finished:&#xA;found Class Company&#xA;&#xA;loop with callback finished:&#xA;found Class Company&#xA;&#xA;loop finished:&#xA;found Attribute name&#xA;&#xA;loop with callback finished:&#xA;found Attribute name&#xA;&#xA;loop finished:&#xA;found Class Test&#xA;&#xA;loop with callback finished:&#xA;found Class Test&#xA;&#xA;loop finished:&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;loop with callback finished:&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;exec finished:&#xA;found Package mypackage&#xA;found Class Employee&#xA;found Attribute name&#xA;found Class Company&#xA;found Attribute name&#xA;found Class Test&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;"/>
-      <activity xsi:type="fcore:FactoryComponent" href="../fc/model_driven_startegy_condition.fcore#_1EK9EXhOEd-36-tf633IWg"/>
-    </tests>
   </tests>
   <tests xsi:type="test:TestSuite" name="Extension">
     <tests xsi:type="test:EGFTestCase" name="Sanity test 1">
@@ -109,6 +105,20 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xA;Message from callerMessage from Callee"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_1.fcore#_aEI0EVa2Ed-upsLSxDR5IA"/>
     </tests>
+  </tests>
+  <tests xsi:type="test:TestSuite" name="Jet Tags Library">
+    <tests xsi:type="test:EGFTestCase" name="Jet tags test">
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xD;&#xA;CalleeInjected : className=MyClassName&#xD;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
+    </tests>
+  </tests>
+  <tests xsi:type="test:TestSuite" name="Jet Linefeed">
+    <tests xsi:type="test:EGFTestCase" name="Linefeed">
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;one-----&#xD;&#xA;two&#xD;&#xA;-----&#xD;&#xA;three&#xD;&#xA; -----&#xD;&#xA;abdc"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/linefeed.fcore#_aNgOQF3DEd-W5eBkkAoHaA"/>
+    </tests>
+  </tests>
+  <tests xsi:type="test:TestSuite" name="preCondition">
     <tests xsi:type="test:EGFTestCase" name="pattern injected call with condition">
       <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Message from caller&#xA;Callee has found the 'test' EClass&#xA;loop with callback finished:&#xA;Message from caller&#xA;Callee has found the 'test' EClass&#xA;exec finished:&#xA;Message from caller&#xA;Callee has found the 'test' EClass&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition2.fcore#_XHL6EHeMEd-eFrQyPU1i3Q"/>
@@ -129,17 +139,17 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;&#xA;loop finished:&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;&#xA;loop finished:&#xA;Message from Caller pattern: Test&#xA;Extension: callee applied on 'Test' EClass&#xA;&#xA;loop with callback finished:&#xA;Message from Caller pattern: Test&#xA;Extension: callee applied on 'Test' EClass&#xA;&#xA;exec finished:&#xA;Message from Caller pattern: Employee&#xA;Message from Callee pattern: Employee&#xA;Message from Caller pattern: Company&#xA;Message from Callee pattern: Company&#xA;Message from Caller pattern: Test&#xA;Extension: callee applied on 'Test' EClass&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition_extension.fcore#_X7hMIHevEd-ent-ImclT8w"/>
     </tests>
-  </tests>
-  <tests xsi:type="test:TestSuite" name="Jet Tags Library">
-    <tests xsi:type="test:EGFTestCase" name="Jet tags test">
-      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;Callee : parameter=CallValue, parameter2=CallValue2&#xD;&#xA;CalleeInjected : className=MyClassName&#xD;&#xA;"/>
-      <activity xsi:type="fcore:FactoryComponent" href="../fc/jet_tags.fcore#_eCqw4VaPEd-xDMudhFTQKg"/>
+    <tests xsi:type="test:EGFTestCase" name="model driven strategy with condition">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;found Package mypackage&#xA;&#xA;loop with callback finished:&#xA;found Package mypackage&#xA;&#xA;loop finished:&#xA;found Class Employee&#xA;&#xA;loop with callback finished:&#xA;found Class Employee&#xA;&#xA;loop finished:&#xA;found Attribute name&#xA;&#xA;loop with callback finished:&#xA;found Attribute name&#xA;&#xA;loop finished:&#xA;found Class Company&#xA;&#xA;loop with callback finished:&#xA;found Class Company&#xA;&#xA;loop finished:&#xA;found Attribute name&#xA;&#xA;loop with callback finished:&#xA;found Attribute name&#xA;&#xA;loop finished:&#xA;found Class Test&#xA;&#xA;loop with callback finished:&#xA;found Class Test&#xA;&#xA;loop finished:&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;loop with callback finished:&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;exec finished:&#xA;found Package mypackage&#xA;found Class Employee&#xA;found Attribute name&#xA;found Class Company&#xA;found Attribute name&#xA;found Class Test&#xA;found special Class Test !  (element name is Test)&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/model_driven_startegy_condition.fcore#_1EK9EXhOEd-36-tf633IWg"/>
     </tests>
-  </tests>
-  <tests xsi:type="test:TestSuite" name="Jet Linefeed">
-    <tests xsi:type="test:EGFTestCase" name="Linefeed">
-      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;one-----&#xD;&#xA;two&#xD;&#xA;-----&#xD;&#xA;three&#xD;&#xA; -----&#xD;&#xA;abdc"/>
-      <activity xsi:type="fcore:FactoryComponent" href="../fc/linefeed.fcore#_aNgOQF3DEd-W5eBkkAoHaA"/>
+    <tests xsi:type="test:EGFTestCase" name="condition &amp; extension 1 - to be fixed">
+      <result xsi:type="test:ConsoleOutputTestResult"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/patternCall_Condition_extension.fcore#_7bpx0Hh1Ed-ESZ0E4UoGEA"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="Condition &amp; pattern deletion">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;Employee&#xA;loop finished:&#xA;Company&#xA;loop finished:&#xA;Test&#xA;exec finished:&#xA;EmployeeCompanyTest&#xA;loop finished:&#xA;Employee&#xA;loop finished:&#xA;found Company&#xA;loop finished:&#xA;Test&#xA;exec finished:&#xA;Employeefound CompanyTest&#xA;exec finished:&#xA;&#xA;loop finished:&#xA;found Company&#xA;exec finished:&#xA;found Company&#xA;loop finished:&#xA;found Company&#xA;exec finished:&#xA;found Company&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_preCondition.fcore#_Kwg6YXkjEd-R_void7tQ-Q"/>
     </tests>
   </tests>
 </test:TestSuite>

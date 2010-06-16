@@ -1,4 +1,4 @@
-package substitution.preCondition;
+package patternCall.Condition.extension4;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,22 +7,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class ClassName {
+public class InjectedCallee5 {
 	protected static String nl;
 
-	public static synchronized ClassName create(String lineSeparator) {
+	public static synchronized InjectedCallee5 create(String lineSeparator) {
 		nl = lineSeparator;
-		ClassName result = new ClassName();
+		InjectedCallee5 result = new InjectedCallee5();
 		nl = null;
 		return result;
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "";
-	protected final String TEXT_2 = NL;
+	protected final String TEXT_1 = "InjectedCallee has found the 'Test' EClass (on element ";
+	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
-	public ClassName() {
+	public InjectedCallee5() {
 		//Here is the constructor
 		StringBuffer stringBuffer = new StringBuffer();
 
@@ -37,8 +38,9 @@ public class ClassName {
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
 
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+		queryCtx = new HashMap<String, String>();
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -53,8 +55,8 @@ public class ClassName {
 			ctx.clearBuffer();
 		}
 
-		stringBuffer.append(TEXT_2);
 		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -91,11 +93,12 @@ public class ClassName {
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_1);
+		stringBuffer.append(parameter.getName());
+		stringBuffer.append(TEXT_2);
 	}
 
 	public boolean preCondition() throws Exception {
-		return true;
+		return "Test".equals(parameter.getName());
 	}
 }

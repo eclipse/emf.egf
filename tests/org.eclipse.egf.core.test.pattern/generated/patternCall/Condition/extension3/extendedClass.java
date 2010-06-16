@@ -1,4 +1,4 @@
-package substitution.preCondition;
+package patternCall.Condition.extension3;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,22 +7,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class ClassName {
+public class extendedClass {
 	protected static String nl;
 
-	public static synchronized ClassName create(String lineSeparator) {
+	public static synchronized extendedClass create(String lineSeparator) {
 		nl = lineSeparator;
-		ClassName result = new ClassName();
+		extendedClass result = new extendedClass();
 		nl = null;
 		return result;
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "";
-	protected final String TEXT_2 = NL;
+	protected final String TEXT_1 = "found the EClass 'Company' (element name is ";
+	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
-	public ClassName() {
+	public extendedClass() {
 		//Here is the constructor
 		StringBuffer stringBuffer = new StringBuffer();
 
@@ -53,8 +54,8 @@ public class ClassName {
 			ctx.clearBuffer();
 		}
 
-		stringBuffer.append(TEXT_2);
 		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -91,11 +92,12 @@ public class ClassName {
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_1);
+		stringBuffer.append(parameter.getName());
+		stringBuffer.append(TEXT_2);
 	}
 
 	public boolean preCondition() throws Exception {
-		return true;
+		return "Company".equals(parameter.getName());
 	}
 }

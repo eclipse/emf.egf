@@ -18,8 +18,9 @@ public class ClassNameForCompanyOnly extends substitution.preCondition.ClassName
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "";
+	protected final String TEXT_1 = "found ";
 	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
 	public ClassNameForCompanyOnly() {
 		//Here is the constructor
@@ -52,8 +53,8 @@ public class ClassNameForCompanyOnly extends substitution.preCondition.ClassName
 			ctx.clearBuffer();
 		}
 
-		stringBuffer.append(TEXT_1);
 		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -80,6 +81,12 @@ public class ClassNameForCompanyOnly extends substitution.preCondition.ClassName
 		final Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("parameter", this.parameter);
 		return parameters;
+	}
+
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(parameter.getName());
 	}
 
 	public boolean preCondition() throws Exception {
