@@ -19,7 +19,6 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 <project name="project">
     <!--Property file containing overrides for the default properties -->
     <property environment="env" />
-    <property file="build.local.properties" />
     <property file="build.properties" />
 
     <!-- if we are not running in Huson, we some up with a reasonable default -->
@@ -31,11 +30,15 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
     <property name="tools" location="${build.root}/tools" />
     <property name="result" location="${build.root}/result" />
     <property name="workspace" location="${result}/workspace" />
-	<property name="targetPlatformPath" location="${result}/tp" />
-
+	
     <property name="buckminster.output.root" location="${result}/output" />
     <property name="buckminster.temp.root" location="${result}/temp" />
     <property name="eclipse.staging.area" location="${result}/signing" />
+
+	<!-- if we have defined a local target platform, we use it -->
+    <condition property="targetPlatformPath" value="${localTargetPlatformPath}" else="${result}/tp">
+        <isset property="localTargetPlatformPath" />
+    </condition>
 
     <!-- This macro executes the default application of an eclipse installation that resides
          in the folder ${buildtools}/@app
