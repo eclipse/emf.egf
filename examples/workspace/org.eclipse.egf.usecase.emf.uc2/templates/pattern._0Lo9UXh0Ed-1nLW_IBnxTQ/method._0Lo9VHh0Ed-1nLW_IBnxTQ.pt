@@ -1,0 +1,4 @@
+if ("Library".equals(genFeature.getGenClass().getEcoreClass().getName()) && "stock".equals(genFeature.getName())) {
+    return true;
+}
+return false;

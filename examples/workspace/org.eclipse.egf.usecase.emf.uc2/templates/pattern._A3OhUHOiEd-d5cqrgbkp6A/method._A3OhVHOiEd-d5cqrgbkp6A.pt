@@ -1,0 +1,38 @@
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public <%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%><%if (genClass.hasCollidingGetAccessorOperation(genFeature)) {%>_<%}%>() 
+    {
+        if (books == null) {    
+            // create a custom list implementation that synchronizes its content
+            //    with the "stock" superset
+            books = new <%=genModel.getImportedName("org.eclipse.emf.ecore.util.EObjectEList")%><Book>(Book.class, this, EXTLibraryPackage.LIBRARY__BOOKS) {
+                private static final long serialVersionUID = 1L;
+    
+                @Override
+                protected void didAdd(int index, Book newObject) {
+                    if (getStock().indexOf(newObject) == -1) {
+                        // these lists are unordered, so index doesn't matter
+                        getStock().add(newObject);
+                    }
+                }
+    
+                @Override
+                protected void didRemove(int index, Book oldObject) {
+                    if (getStock().indexOf(oldObject) != -1) {
+                        // these lists are unordered, so index doesn't matter
+                        getStock().remove(oldObject);
+                    }
+                }
+    
+                @Override
+                protected void didSet(int index, Book newObject, Book oldObject) {
+                    didRemove(index, oldObject);
+                    didAdd(index, newObject);
+                }
+            };
+        }
+        return books;
+    }

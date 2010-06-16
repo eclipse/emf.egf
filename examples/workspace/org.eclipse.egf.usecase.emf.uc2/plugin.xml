@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/EMF_Library_UC2_1.fcore">
+      </fcore>
+      <fcore
+            id="egf/EMF_Library_UC2_2.fcore">
+      </fcore>
+   </extension>
+
+</plugin>
