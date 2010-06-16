@@ -450,7 +450,7 @@ public class FileHelper {
             return false;
         }
         try {
-            resource.delete(IResource.KEEP_HISTORY, new NullProgressMonitor());
+            resource.delete(IResource.FORCE | IResource.KEEP_HISTORY, new NullProgressMonitor());
             return true;
         } catch (CoreException ce) {
             EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.deleteFile(..) _ Unable to delete file ''{0}''", resource.getFullPath()), ce); //$NON-NLS-1$
