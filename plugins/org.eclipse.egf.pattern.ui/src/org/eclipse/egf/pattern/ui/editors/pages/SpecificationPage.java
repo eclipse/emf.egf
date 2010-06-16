@@ -412,7 +412,7 @@ public class SpecificationPage extends PatternEditorPage {
             PatternInitializer initializer;
             try {
                 initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
-                initializer.updateContent();
+                initializer.updateSpecialMethods(true);
             } catch (PatternException e) {
                 e.printStackTrace();
             } catch (MissingExtensionException e) {
@@ -469,12 +469,8 @@ public class SpecificationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         tableViewer = new TableViewer(table);
-        String[] colNames = {
-                Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query
-        };
-        int[] colWidths = {
-                100, 80, 80
-        };
+        String[] colNames = { Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query };
+        int[] colWidths = { 100, 80, 80 };
         tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -508,9 +504,7 @@ public class SpecificationPage extends PatternEditorPage {
     private void addDragDrop() {
         if (isReadOnly())
             return;
-        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new DragSourceListener() {
+        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 if (tableViewer.getSelection() == null) {
@@ -528,9 +522,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new ViewerDropAdapter(tableViewer) {
+        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(tableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -878,9 +870,7 @@ public class SpecificationPage extends PatternEditorPage {
     private void initTableEditor() {
         if (isReadOnly())
             return;
-        tableViewer.setColumnProperties(new String[] {
-                NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID
-        });
+        tableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID });
         final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
         final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
 
@@ -906,9 +896,7 @@ public class SpecificationPage extends PatternEditorPage {
         queryEditor.setLabelProvider(new ComboListLabelProvider());
         queryEditor.setContenProvider(new CommonListContentProvider());
         setComboViewerInput();
-        tableViewer.setCellEditors(new CellEditor[] {
-                nameEditor, typeEditor, queryEditor
-        });
+        tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
         ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
         tableViewer.setCellModifier(modifier);
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {

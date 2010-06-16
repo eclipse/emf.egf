@@ -23,7 +23,8 @@ import org.eclipse.egf.model.pattern.PatternException;
  */
 public interface PatternInitializer {
 
-    public void initContent() throws PatternException;
+    void initContent() throws PatternException;
 
-    public void updateContent() throws PatternException;
+    void updateSpecialMethods(boolean overwrite) throws PatternException;
+
 }

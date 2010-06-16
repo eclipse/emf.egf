@@ -95,7 +95,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
                                 preConditionMethod.setPatternFilePath(extension.getFactory().createURI(preConditionMethod));
 
                                 IProject project = PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getProject();
-                                extension.createInitializer(project, pattern).initContent();
+                                extension.createInitializer(project, pattern).updateSpecialMethods(false);
                             }
                         }
                     } catch (Exception e) {
