@@ -18,9 +18,10 @@ public class CCallee1 {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "Callee has found the 'test' EClass";
-	protected final String TEXT_2 = NL;
+	protected final String TEXT_1 = "Callee has found the 'test' EClass (element name is ";
+	protected final String TEXT_2 = ")" + NL;
 	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
 	public CCallee1() {
 		//Here is the constructor
@@ -37,16 +38,25 @@ public class CCallee1 {
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
 
-		if (preCondition())
-			orchestration(ctx);
+		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+		queryCtx = new HashMap<String, String>();
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
+		for (Object parameterParameter : parameterList) {
+
+			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
+
+			if (preCondition())
+				orchestration(ctx);
+
+		}
 		if (ctx.useReporter()) {
 			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
 			ctx.clearBuffer();
 		}
 
-		stringBuffer.append(TEXT_2);
 		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -60,23 +70,36 @@ public class CCallee1 {
 		if (ictx.useReporter()) {
 			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
 			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("parameter", this.parameter);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			ictx.clearBuffer();
 		}
 		return loop;
 	}
 
+	protected org.eclipse.emf.ecore.EClass parameter = null;
+
+	public void set_parameter(org.eclipse.emf.ecore.EClass object) {
+		this.parameter = object;
+	}
+
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("parameter", this.parameter);
 		return parameters;
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
+		stringBuffer.append(parameter.getName());
+		stringBuffer.append(TEXT_2);
 	}
 
 	public boolean preCondition() throws Exception {
-		//return "Test".equals(getParameter().getName());
-		return true;
+		return "Test".equals(parameter.getName());
+
 	}
 }

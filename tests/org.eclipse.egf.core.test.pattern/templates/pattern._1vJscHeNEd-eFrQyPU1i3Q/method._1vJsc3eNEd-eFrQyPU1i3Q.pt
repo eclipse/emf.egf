@@ -1,2 +1,1 @@
-//return "Test".equals(getParameter().getName());
-return true;
+return "Test".equals(parameter.getName());

@@ -18,9 +18,10 @@ public class CCaller1 {
 	}
 
 	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "Message from caller" + NL;
+	protected final String TEXT_1 = "Message from caller: found ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
 	public CCaller1() {
 		//Here is the constructor
@@ -54,8 +55,8 @@ public class CCaller1 {
 			ctx.clearBuffer();
 		}
 
-		stringBuffer.append(TEXT_2);
 		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
 		return stringBuffer.toString();
 	}
 
@@ -66,7 +67,7 @@ public class CCaller1 {
 		method_body(ictx.getBuffer(), ictx);
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, variable);
+			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, parameter);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition1.fcore#_1vJscHeNEd-eFrQyPU1i3Q", ctx_local);
 		}
 
@@ -81,12 +82,6 @@ public class CCaller1 {
 			ictx.clearBuffer();
 		}
 		return loop;
-	}
-
-	protected org.eclipse.emf.ecore.EClass variable = null;
-
-	public void set_variable(org.eclipse.emf.ecore.EClass object) {
-		this.variable = object;
 	}
 
 	protected org.eclipse.emf.ecore.EClass parameter = null;
@@ -104,6 +99,8 @@ public class CCaller1 {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
+		stringBuffer.append(parameter.getName());
+		stringBuffer.append(TEXT_2);
 	}
 
 	public boolean preCondition() throws Exception {

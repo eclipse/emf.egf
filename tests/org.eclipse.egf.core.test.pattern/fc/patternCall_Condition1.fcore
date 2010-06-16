@@ -22,15 +22,14 @@
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_0_YcZneNEd-eFrQyPU1i3Q"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_940iQHeNEd-eFrQyPU1i3Q"
               called="#_0_YcZHeNEd-eFrQyPU1i3Q"/>
-          <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_BqQzkHeOEd-eFrQyPU1i3Q"
-              called="#_1vJscHeNEd-eFrQyPU1i3Q" context="#_-xtSEHeNEd-eFrQyPU1i3Q"/>
+          <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_qQn1wXhgEd-5bZKVWckh0w"
+              called="#_1vJscHeNEd-eFrQyPU1i3Q" context="#_pOB4wHeOEd-eFrQyPU1i3Q"/>
           <parameters xmi:id="_pOB4wHeOEd-eFrQyPU1i3Q" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass">
             <query xmi:type="pattern:BasicQuery" xmi:id="_z6mwMHeOEd-eFrQyPU1i3Q"
                 extensionId="org.eclipse.egf.pattern.basic.query"/>
           </parameters>
           <nature xmi:type="jetpattern:JetNature" xmi:id="_0_YcZ3eNEd-eFrQyPU1i3Q"
               name="JET"/>
-          <variables xmi:id="_-xtSEHeNEd-eFrQyPU1i3Q" name="variable" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
         </elements>
         <elements xmi:type="pattern:Pattern" xmi:id="_1vJscHeNEd-eFrQyPU1i3Q" name="CCallee1"
             headerMethod="#_1vJscXeNEd-eFrQyPU1i3Q" footerMethod="#_1vJsdXeNEd-eFrQyPU1i3Q"
@@ -43,6 +42,10 @@
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_1vJsdneNEd-eFrQyPU1i3Q"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_J1NbwHeOEd-eFrQyPU1i3Q"
               called="#_1vJsdHeNEd-eFrQyPU1i3Q"/>
+          <parameters xmi:id="_TReO4HhfEd-36-tf633IWg" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass">
+            <query xmi:type="pattern:BasicQuery" xmi:id="_T0NvkHhfEd-36-tf633IWg"
+                extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+          </parameters>
           <nature xmi:type="jetpattern:JetNature" xmi:id="_1vJsd3eNEd-eFrQyPU1i3Q"
               name="JET"/>
         </elements>
@@ -59,7 +62,6 @@
         <invocationContracts xmi:id="_DIgvs3eNEd-eFrQyPU1i3Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_PyUv4HeNEd-eFrQyPU1i3Q" domain="#_IVE7MHeNEd-eFrQyPU1i3Q"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_DIgvtneNEd-eFrQyPU1i3Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_Y2fXwUhpEd-A7KV9v5yLhw"/>
         <invocationContracts xmi:id="_mhNQsHePEd-ent-ImclT8w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ssS58HePEd-ent-ImclT8w"
               value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter2"/>
