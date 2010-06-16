@@ -82,6 +82,9 @@
       <fcore
             id="fc/model_driven_startegy_condition.fcore">
       </fcore>
+      <fcore
+            id="fc/substitution_preCondition.fcore">
+      </fcore>
       
    </extension>
    
