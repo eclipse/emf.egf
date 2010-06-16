@@ -118,7 +118,7 @@ public abstract class PatternExtension {
             }
             if (javaProject != null) {
                 IPath path = new Path(org.eclipse.egf.common.helper.FileHelper.convertPackageNameToFolderPath(packageName));
-                JavaHelper.deleteJavaFile(javaProject, path.append(className + ".java"), false); //$NON-NLS-1$
+                JavaHelper.deleteJavaFile(javaProject, path.append(PatternHelper.dropNonWordCharacter(className) + ".java"), false); //$NON-NLS-1$
             }
         } catch (Throwable t) {
             // Ignore
