@@ -58,34 +58,53 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EPackageHelper {
 
+    private static EPackageHelper __packageHelper;
+
     public static final String INSTANCE_FIELD_NAME = "eINSTANCE"; //$NON-NLS-1$
 
     // TODO: we mix the target definition with the runtime definition
     // This should be clarified and processed
 
-    public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+    public final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
 
-    private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
+    private final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
-    private static void init() {
+    private IPlatformExtensionPointListener _extensionPointListener = new IPlatformExtensionPointListener() {
 
+        public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
+            for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
+                addEcoreModel(genModel);
+            }
+            for (IPlatformGenModel genModel : delta.getRemovedPlatformExtensionPoints(IPlatformGenModel.class)) {
+                removePackageFromRegistry(genModel);
+            }
+        }
+
+    };
+
+    private EPackageHelper() {
+        // Prevent instantiation
+    }
+
+    public static EPackageHelper getInstance() {
+        if (__packageHelper == null) {
+            __packageHelper = new EPackageHelper();
+        }
+        return __packageHelper;
+    }
+
+    public void dispose() {
+        EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_extensionPointListener);
+    }
+
+    private void init() {
         for (IPlatformGenModel genModel : EGFCorePlugin.getPlatformGenModels()) {
             addEcoreModel(genModel);
         }
-        EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(new IPlatformExtensionPointListener() {
-
-            public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
-                for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
-                    addEcoreModel(genModel);
-                }
-                for (IPlatformGenModel genModel : delta.getRemovedPlatformExtensionPoints(IPlatformGenModel.class)) {
-                    removePackageFromRegistry(genModel);
-                }
-            }
-        });
+        EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_extensionPointListener);
     }
 
-    private static void addEcoreModel(IPlatformGenModel genModel) {
+    private void addEcoreModel(IPlatformGenModel genModel) {
         try {
             try {
                 URI uri = genModel.getGenModelURI();
@@ -103,7 +122,7 @@ public class EPackageHelper {
 
     }
 
-    private static void handleClassname(IPlatformGenModel genModel) {
+    private void handleClassname(IPlatformGenModel genModel) {
         String classname = genModel.getGeneratedPackage();
         int index = classname.lastIndexOf("."); //$NON-NLS-1$
         if (index == -1) {
@@ -118,7 +137,7 @@ public class EPackageHelper {
 
     }
 
-    private static void handleURI(URI uri) {
+    private void handleURI(URI uri) {
         ResourceSet set = new EGFResourceSet();
         Resource res = set.getResource(uri, true);
         try {
@@ -129,7 +148,6 @@ public class EPackageHelper {
                         EPackage ecorePackage = gPack.getEcorePackage();
                         String basePackageName = gPack.getInterfacePackageName();
                         nsuri2basePackage.put(ecorePackage.getNsURI(), basePackageName);
-
                     }
                 }
             }
@@ -138,8 +156,7 @@ public class EPackageHelper {
         }
     }
 
-    public static String getBasePackage(EPackage ePackage) {
-
+    public String getBasePackage(EPackage ePackage) {
         if (nsuri2basePackage.isEmpty())
             init();
         String nsURI = ePackage.getNsURI();
@@ -149,18 +166,18 @@ public class EPackageHelper {
         return name;
     }
 
-    private static void addPackage2registry(IPlatformGenModel genModel) {
+    private void addPackage2registry(IPlatformGenModel genModel) {
         String nsURI = genModel.getNamespace();
         if (!REGISTRY.containsKey(nsURI))
             REGISTRY.put(nsURI, new Descriptor2(genModel));
     }
 
-    private static void removePackageFromRegistry(IPlatformGenModel genModel) {
+    private void removePackageFromRegistry(IPlatformGenModel genModel) {
         String nsURI = genModel.getNamespace();
         REGISTRY.remove(nsURI);
     }
 
-    public static EPackage getEPackage(EObject eObject) {
+    public EPackage getEPackage(EObject eObject) {
         if (eObject == null) {
             return null;
         }
@@ -180,7 +197,7 @@ public class EPackageHelper {
         throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
     }
 
-    public static String getFullName(EObject obj) {
+    public String getFullName(EObject obj) {
         String nsURI = null;
         String typeName = null;
         EClass eClass = obj.eClass();
@@ -199,6 +216,7 @@ public class EPackageHelper {
         private RegistrationException(String message, Throwable cause) {
             super(message, cause);
         }
+
     }
 
     private static class Descriptor2 implements EPackage.Descriptor {

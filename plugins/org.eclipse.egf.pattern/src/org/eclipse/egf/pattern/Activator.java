@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.pattern.ecore.EPackageHelper;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -27,6 +28,10 @@ public class Activator extends EGFAbstractPlugin {
 
     // The shared instance
     private static Activator plugin;
+
+    public static EPackageHelper getEPackageHelper() {
+        return EPackageHelper.getInstance();
+    }
 
     /*
      * (non-Javadoc)
@@ -52,6 +57,7 @@ public class Activator extends EGFAbstractPlugin {
     @Override
     public void stop(BundleContext context) throws Exception {
         super.stop(context);
+        getEPackageHelper().dispose();
         plugin = null;
     }
 

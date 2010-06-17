@@ -14,8 +14,8 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.ecore.EPackageHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
@@ -50,7 +50,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     protected List<Pattern> findPatterns(PatternContext context, Object model) throws PatternException {
         List<Pattern> result = null;
         if (model instanceof EObject) {
-            String fullName = EPackageHelper.getFullName((EObject) model);
+            String fullName = Activator.getEPackageHelper().getFullName((EObject) model);
             result = type2patterns.get(fullName);
         } else
             throw new UnsupportedOperationException();

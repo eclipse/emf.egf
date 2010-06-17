@@ -16,8 +16,8 @@
 package org.eclipse.egf.pattern.utils;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.ecore.EPackageHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -58,7 +58,7 @@ public class ParameterTypeHelper {
 
         EPackage ePackage = getEPackage(type, index);
         // String nsURI = ePackage.getNsURI();
-        String basePackage = EPackageHelper.getBasePackage(ePackage);
+        String basePackage = Activator.getEPackageHelper().getBasePackage(ePackage);
         if (basePackage == null)
             throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
 
@@ -100,7 +100,7 @@ public class ParameterTypeHelper {
         if (eObject == null) {
             throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
         }
-        return EPackageHelper.getEPackage(eObject);
+        return Activator.getEPackageHelper().getEPackage(eObject);
         // return EPackageHelper.REGISTRY.getEPackage(getNsURI(type, index));
     }
 
