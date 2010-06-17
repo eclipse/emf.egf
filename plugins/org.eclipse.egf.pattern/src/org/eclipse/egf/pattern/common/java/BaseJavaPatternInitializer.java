@@ -11,6 +11,8 @@ import org.eclipse.egf.pattern.templates.TemplateEngine;
 
 public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
 
+    public static final String DEFAULT_PACKAGE = "default_package"; //$NON-NLS-1$
+
     private static final String CLASS_KEY = "CLASS";//$NON-NLS-1$
 
     private static final String PACKAGE_KEY = "PACKAGE"; //$NON-NLS-1$
@@ -29,7 +31,7 @@ public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
         ctx.put(CLASS_KEY, PatternHelper.dropNonWordCharacter(getPattern().getName()));
         String fullLibraryName = PatternHelper.getFullLibraryName(getPattern());
         if (fullLibraryName == null || "".equals(fullLibraryName)) //$NON-NLS-1$
-            fullLibraryName = "default_package"; //$NON-NLS-1$
+            fullLibraryName = DEFAULT_PACKAGE;
         ctx.put(PACKAGE_KEY, fullLibraryName);
         return ctx;
     }
