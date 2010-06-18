@@ -253,6 +253,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 	</target>
 	
 	<target name="publish.examples" depends="eclipse.build"> 
+		<mkdir dir="${publish}/examples/"/>
 		<for param="plugin">
 			<path>
 				<dirset dir="${sources}/examples/workspace/" includes="**" >
