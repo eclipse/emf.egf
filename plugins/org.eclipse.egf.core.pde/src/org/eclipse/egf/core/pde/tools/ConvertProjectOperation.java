@@ -111,11 +111,11 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
      * project.
      * 
      * @param project
-     *            The project to be converted in a Bundle
+     * The project to be converted in a Bundle
      * @param createJavaProject
-     *            The project should be converted to a JavaProject
+     * The project should be converted to a JavaProject
      * @param createEGFNature
-     *            The project should have en EGF Nature.
+     * The project should have en EGF Nature.
      */
     public ConvertProjectOperation(IProject project, boolean createJavaProject, boolean createEGFNature) {
         _project = project;
@@ -136,7 +136,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
      * Convert a project
      * 
      * @param monitor
-     *            Progress monitor
+     * Progress monitor
      */
 
     @Override
@@ -481,6 +481,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
                 }
                 manageBuildFile((IBuildModel) base);
             }
+
         }, monitor);
     }
 
@@ -623,6 +624,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
                 subMonitor.worked(100);
                 OrganizeManifest.organizeExportPackages(((IBundlePluginModelBase) model).getBundleModel().getBundle(), _project, true, true);
             }
+
         }, monitor);
     }
 
