@@ -253,7 +253,6 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 	</target>
 	
 	<target name="publish.examples" depends="eclipse.build"> 
-		<mkdir dir="${publish}/examples/"/>
 		<for param="plugin">
 			<path>
 				<dirset dir="${sources}/examples/workspace/" includes="**" >
@@ -262,8 +261,11 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 			</path>
 			<sequential>
 				<var name="filename" unset="true"/> 
-				<basename file="@{plugin}" property="filename"/> 
+				<basename file="@{plugin}" property="filename"/>
+				<echo message="zip @{plugin} in ${publish}/examples/${filename}.zip"/>
+<!--
 				<zip destfile="${publish}/examples/${filename}.zip" basedir="@{plugin}" />
+-->				
 			</sequential>
 		</for>
 	</target>
