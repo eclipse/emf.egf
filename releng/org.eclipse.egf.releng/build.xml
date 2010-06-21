@@ -220,16 +220,6 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 	</target>
 	
     <target name="site.p2" depends="eclipse.build">
-        <echo message="Performing ${featurename}:eclipse.feature#site.p2" />
-		<buckminster command="perform">
-			<cmdargs>
-				<arg value="${featurename}:eclipse.feature#site.p2" />
-			</cmdargs>
-		</buckminster>
-	</target>
-
-    <target name="site.p2.all" depends="eclipse.build">
-        <echo message="Performing ${featurename}:eclipse.feature#site.p2 with top feature" />
 		<buckminster command="perform">
 			<globargs>
 				<arg value="-Dsite.include.top=true"/>
@@ -269,7 +259,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 		</for>
 	</target>
 	
-	<target name="publish.dropins" depends="site.p2.all,featureVersion"> 
+	<target name="publish.dropins" depends="site.p2,featureVersion"> 
 		<condition property="site.src" value="site.signed" else="site">
 			<istrue value="${site.signing}" />
 		</condition>
@@ -318,7 +308,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 	</target>
 	
 	<target name="publish" depends="publish.site,publish.examples,publish.dropins" />
-	<target name="all" depends="clean.result,eclipse.build,publish,test" />
+	<target name="all" depends="clean.result,eclipse.build,site.p2,publish,test" />
 
     <target name="clean.tools">
         <delete dir="${tools}" failonerror="true" quiet="true" />
