@@ -107,7 +107,7 @@ public abstract class AbstractJavaEngine extends PatternEngine {
                 }
             }
 
-            // finally execute the pattern call
+            // finally execute the pattern call.
             Method method = null;
             try {
                 method = templateClass.getMethod(methodName, parameterClasses);
