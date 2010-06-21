@@ -116,7 +116,7 @@ public abstract class AbstractJavaEngine extends PatternEngine {
                     return Boolean.TRUE;
                 throw e;
             }
-            // the pattern is executed but we don't care about the result.
+            // the pattern is executed but we don't care about the result
             return method.invoke(template, parameterValues);
         } catch (InvocationTargetException e) {
             throw new PatternException(e.getCause());
