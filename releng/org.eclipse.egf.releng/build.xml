@@ -270,11 +270,16 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 	</target>
 	
 	<target name="publish.dropins" depends="site.p2.all,featureVersion"> 
+		<condition property="site.src" value="site.signed" else="site">
+			<istrue value="${site.signing}" />
+		</condition>
+		<echo message="Create dropins from ${sitesrc}" />
+		
 		<mkdir dir="${publish}/dropins/${featurename}_${featureVersion}/eclipse/plugins/"/>
 		<for param="file">
 			<path>
 				<fileset dir="${result}/output">
-					<include name="${featurename}*/site.p2/plugins/*.jar"/>
+					<include name="${featurename}*/${site.src}/plugins/*.jar"/>
 				</fileset>
 			</path>
 			<sequential>
@@ -286,7 +291,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 		<for param="file">
 			<path>
 				<fileset dir="${result}/output">
-					<include name="${featurename}*/site.p2/features/*.jar"/>
+					<include name="${featurename}*/${site.src}/features/*.jar"/>
 				</fileset>
 			</path>
 			<sequential>
