@@ -273,7 +273,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 		<condition property="site.src" value="site.signed" else="site">
 			<istrue value="${site.signing}" />
 		</condition>
-		<echo message="Create dropins from ${sitesrc}" />
+		<echo message="Create dropins from ${site.src}" />
 		
 		<mkdir dir="${publish}/dropins/${featurename}_${featureVersion}/eclipse/plugins/"/>
 		<for param="file">
