@@ -26,16 +26,17 @@ import static org.eclipse.egf.pattern.jet.JetTagsConstants.MATCH_SEPARATOR;
 import static org.eclipse.egf.pattern.jet.JetTagsConstants.PATTERN_ID;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil;
 import org.eclipse.egf.emf.pattern.codegen.CodegenPatternHelper;
 import org.eclipse.egf.emf.pattern.codegen.model.JetAbstractPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.JetPatternInfo;
@@ -52,7 +53,6 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public class CodegenJetPatternHelper {
 
-    private static final String PLATFORM_PLUGIN_ORG_ECLIPSE_EMF_CODEGEN_ECORE_TEMPLATES = "platform:/plugin/org.eclipse.emf.codegen.ecore/templates/"; //$NON-NLS-1$
     protected CodegenPatternHelper codegenPatternHelper;
     protected IProject codegenProject;
     protected Resource emfPatternBaseResource;
@@ -166,8 +166,9 @@ public class CodegenJetPatternHelper {
     }
 
     protected String getTemplateURI(String templateRelativePath) throws MalformedURLException {
-        URL url = new URL(PLATFORM_PLUGIN_ORG_ECLIPSE_EMF_CODEGEN_ECORE_TEMPLATES + templateRelativePath);
-        return FileLocator.find(url).toString();
+        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE);
+        IResource member = project.findMember(new Path("templates").append(templateRelativePath)); //$NON-NLS-1$
+        return member.getLocationURI().toString();
     }
 
     public String getContent(CodegenJetTemplateSection parentSection) {
