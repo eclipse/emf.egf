@@ -66,6 +66,24 @@ public class CodegenFcoreUtil {
 
     protected List<PatternInfo> patternInfos;
 
+    protected class ClearCommand extends RecordingCommand {
+        protected Exception exception;
+
+        public ClearCommand(TransactionalEditingDomain domain) {
+            super(domain);
+        }
+
+        @Override
+        protected void doExecute() {
+            try {
+                emfPatternResource.getContents().clear();
+            } catch (Exception e) {
+                this.exception = e;
+            }
+        }
+
+    }
+    
     protected class CreateCommand extends RecordingCommand {
 
         protected Exception exception;
@@ -100,10 +118,14 @@ public class CodegenFcoreUtil {
         URI platformResourceURI = URI.createPlatformResourceURI(fcore.getFullPath().toString(), true);
         editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
 
-        keepPreviousFcoreIdsAndOrder(fcore, editingDomain, platformPluginURI);
-        
         // Create a resource for this file.
-        emfPatternResource = editingDomain.getResourceSet().createResource(platformPluginURI);
+        if (fcore.exists()) {
+            emfPatternResource = editingDomain.getResourceSet().getResource(platformPluginURI, true);
+            keepPreviousFcoreIdsAndOrder(fcore, editingDomain, platformPluginURI);
+            clearFcore(editingDomain);
+        }
+        else 
+            emfPatternResource = editingDomain.getResourceSet().createResource(platformPluginURI);
 
         URI emfPatternBaseResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore", true); //$NON-NLS-1$
         emfPatternBaseResource = editingDomain.getResourceSet().getResource(emfPatternBaseResourceURI, true);
@@ -157,17 +179,18 @@ public class CodegenFcoreUtil {
         return;
     }
 
+    protected void clearFcore(TransactionalEditingDomain editingDomain) throws Exception {
+        ClearCommand clearCommand = new ClearCommand(editingDomain);
+        editingDomain.getCommandStack().execute(clearCommand);
+        if (clearCommand.exception != null)
+            throw clearCommand.exception;
+    }
+
     protected void keepPreviousFcoreIdsAndOrder(IFile fcore, TransactionalEditingDomain editingDomain, URI platformPluginURI) throws CoreException {
         // Try to keep xmi ids if fcore exists
-        if (fcore.exists()) {
-            emfPatternResource = editingDomain.getResourceSet().getResource(platformPluginURI, true);
-            createCodegenEGFHelper(); //called with old resource
-            codegenEGFHelper.populateXmiIds();
-            codegenEGFHelper.populatePatternOrder();
-            emfPatternResource.unload();
-            editingDomain.getResourceSet().getResources().remove(emfPatternResource);
-            fcore.delete(true, new NullProgressMonitor());
-        }
+        createCodegenEGFHelper(); //called with old resource
+        codegenEGFHelper.populateXmiIds();
+        codegenEGFHelper.populatePatternOrder();
     }
 
     protected void createCodegenPatternHelper() {
