@@ -53,8 +53,8 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
     protected final String TEXT_26 = NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\t";
     protected final String TEXT_27 = "(";
     protected final String TEXT_28 = ", \"";
-    protected final String TEXT_29 = "\", \"";
-    protected final String TEXT_30 = "\")";
+    protected final String TEXT_29 = "\", ";
+    protected final String TEXT_30 = ")";
     protected final String TEXT_31 = ",";
     protected final String TEXT_32 = ";";
     protected final String TEXT_33 = NL;
@@ -83,8 +83,8 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
     protected final String TEXT_56 = " = new ";
     protected final String TEXT_57 = "(";
     protected final String TEXT_58 = ", \"";
-    protected final String TEXT_59 = "\", \"";
-    protected final String TEXT_60 = "\");";
+    protected final String TEXT_59 = "\", ";
+    protected final String TEXT_60 = ");";
     protected final String TEXT_61 = NL;
     protected final String TEXT_62 = NL + "\t/**" + NL + "\t * An array of all the '<em><b>";
     protected final String TEXT_63 = "</b></em>' enumerators." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final ";
@@ -335,7 +335,7 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
                     stringBuffer.append(TEXT_28);
                     stringBuffer.append(genEnumLiteral.getName());
                     stringBuffer.append(TEXT_29);
-                    stringBuffer.append(genEnumLiteral.getLiteral());
+                    stringBuffer.append(Literals.toStringLiteral(genEnumLiteral.getLiteral(), genModel));
                     stringBuffer.append(TEXT_30);
                     if (l.hasNext()) {
                         stringBuffer.append(TEXT_31);
@@ -414,7 +414,7 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
                 stringBuffer.append(TEXT_58);
                 stringBuffer.append(genEnumLiteral.getName());
                 stringBuffer.append(TEXT_59);
-                stringBuffer.append(genEnumLiteral.getLiteral());
+                stringBuffer.append(Literals.toStringLiteral(genEnumLiteral.getLiteral(), genModel));
                 stringBuffer.append(TEXT_60);
                 stringBuffer.append(genModel.getNonNLS());
                 stringBuffer.append(genModel.getNonNLS(2));

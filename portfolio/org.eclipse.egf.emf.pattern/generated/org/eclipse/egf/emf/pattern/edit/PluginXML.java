@@ -319,7 +319,7 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
         GenModel genModel = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
-        canGenerate = canGenerate && (!genModel.sameEditEditorProject());
+        canGenerate = canGenerate && (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) && (!genModel.sameEditEditorProject());
         return canGenerate;
     }
 }

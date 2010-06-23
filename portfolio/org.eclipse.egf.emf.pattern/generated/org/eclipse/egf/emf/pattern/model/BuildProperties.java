@@ -30,13 +30,14 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
     protected final String TEXT_3 = ",\\" + NL + "               model/,\\";
     protected final String TEXT_4 = NL + "               icons/,\\";
     protected final String TEXT_5 = NL + "               META-INF/,\\";
-    protected final String TEXT_6 = NL + "               plugin.xml,\\" + NL + "               plugin.properties" + NL + "jars.compile.order = ";
-    protected final String TEXT_7 = NL + "source.";
-    protected final String TEXT_8 = " = ";
-    protected final String TEXT_9 = NL + "output.";
-    protected final String TEXT_10 = " = bin/" + NL;
-    protected final String TEXT_11 = NL;
+    protected final String TEXT_6 = NL + "               plugin.xml,\\";
+    protected final String TEXT_7 = NL + "               plugin.properties" + NL + "jars.compile.order = ";
+    protected final String TEXT_8 = NL + "source.";
+    protected final String TEXT_9 = " = ";
+    protected final String TEXT_10 = NL + "output.";
+    protected final String TEXT_11 = " = bin/" + NL;
     protected final String TEXT_12 = NL;
+    protected final String TEXT_13 = NL;
 
     public BuildProperties() {
         //Here is the constructor
@@ -69,8 +70,8 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_11);
         stringBuffer.append(TEXT_12);
+        stringBuffer.append(TEXT_13);
         return stringBuffer.toString();
     }
 
@@ -139,7 +140,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
         /**
          * <copyright>
          *
-         * Copyright (c) 2002-2008 IBM Corporation and others.
+         * Copyright (c) 2002-2010 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
          * which accompanies this distribution, and is available at
@@ -170,7 +171,10 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
         if (genModel.isBundleManifest()) {
             stringBuffer.append(TEXT_5);
         }
-        stringBuffer.append(TEXT_6);
+        if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {
+            stringBuffer.append(TEXT_6);
+        }
+        stringBuffer.append(TEXT_7);
         stringBuffer.append(pluginClassesLocation);
         boolean first = true;
         for (Iterator<String> i = sourceFolders.iterator(); i.hasNext();) {
@@ -179,18 +183,18 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
                 sourceFolder += ",\\";
             }
             if (first) {
-                stringBuffer.append(TEXT_7);
-                stringBuffer.append(pluginClassesLocation);
                 stringBuffer.append(TEXT_8);
+                stringBuffer.append(pluginClassesLocation);
+                stringBuffer.append(TEXT_9);
                 stringBuffer.append(sourceFolder);
                 first = false;
             } else {
                 stringBuffer.append(sourceFolder);
             }
         }
-        stringBuffer.append(TEXT_9);
-        stringBuffer.append(pluginClassesLocation);
         stringBuffer.append(TEXT_10);
+        stringBuffer.append(pluginClassesLocation);
+        stringBuffer.append(TEXT_11);
     }
 
     public boolean preCondition() throws Exception {

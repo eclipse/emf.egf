@@ -3,7 +3,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2006 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,6 +47,9 @@ package <%=genPackage.getReflectionPackageName()%>;
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+  <%if (genModel.isOperationReflection()) {%>
+ *   <li>each operation of each class,</li>
+  <%}%>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
@@ -186,6 +189,30 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	 */
 	<%=publicStaticFinalFlag%>int <%=genClass.getFeatureCountID()%> = <%=genClass.getFeatureCountValue()%>;
 
+      <%if (genModel.isOperationReflection()) {%>
+        <%for (GenOperation genOperation : genClass.getAllGenOperations(false)) {%>
+          <%if (genClass.getOverrideGenOperation(genOperation) == null) {%>
+	/**
+	 * The operation id for the '<em><%=genOperation.getFormattedName()%></em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	<%=publicStaticFinalFlag%>int <%=genClass.getOperationID(genOperation, false)%> = <%=genClass.getOperationValue(genOperation)%>;
+
+          <%}%>
+        <%}%>
+	/**
+	 * The number of operations of the '<em><%=genClass.getFormattedName()%></em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	<%=publicStaticFinalFlag%>int <%=genClass.getOperationCountID()%> = <%=genClass.getOperationCountValue()%>;
+
+      <%}%>
     <%}%>
   <%}%>
 <%}%>
@@ -253,6 +280,10 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 	{
 		if (isInited) return (<%=genPackage.getImportedPackageInterfaceName()%>)<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.getEPackage(<%=genPackage.getImportedPackageInterfaceName()%>.eNS_URI);
 
+    <%if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT) {%>
+		initializeRegistryHelpers();
+
+    <%}%>
 		// Obtain or create and register package
 		<%=genPackage.getPackageClassName()%> the<%=genPackage.getBasicPackageName()%> = (<%=genPackage.getPackageClassName()%>)(<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.get(eNS_URI) instanceof <%=genPackage.getPackageClassName()%> ? <%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.get(eNS_URI) : new <%=genPackage.getPackageClassName()%>());
 
@@ -335,6 +366,90 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 		<%=genModel.getImportedName("org.eclipse.emf.ecore.EPackage")%>.Registry.INSTANCE.put(<%=genPackage.getImportedPackageInterfaceName()%>.eNS_URI, the<%=genPackage.getBasicPackageName()%>);
 		return the<%=genPackage.getBasicPackageName()%>;
 	}
+  <%if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT) {%>
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void initializeRegistryHelpers()
+	{
+    <%for (GenClassifier genClassifier : genPackage.getGenClassifiers()) {%>
+      <%if (genClassifier instanceof GenClass) { GenClass genClass = (GenClass)genClassifier;%>
+        <%if (!genClass.isDynamic()) {%>
+		<%=genModel.getImportedName("org.eclipse.emf.common.util.Reflect")%>.register
+			(<%=genClass.isMapEntry() ? genClass.getImportedClassName() : genClass.getRawImportedInterfaceName()%>.class, 
+			 new <%=genModel.getImportedName("org.eclipse.emf.common.util.Reflect")%>.Helper() 
+			 {
+				 public boolean isInstance(Object instance)
+				 {
+					 return instance instanceof <%=genClass.isMapEntry() ? genClass.getImportedClassName() : genClass.getRawImportedInterfaceName() + genClass.getInterfaceWildTypeArguments()%>;
+				 }
+
+				 public Object newArrayInstance(int size)
+				 {
+					 return new <%=genClass.isMapEntry() ? genClass.getImportedClassName() : genClass.getRawImportedInterfaceName()%>[size];
+				 }
+			 });
+        <%}%>
+      <%} else if (genClassifier instanceof GenDataType) { GenDataType genDataType = (GenDataType)genClassifier;%>
+        <%if (!genDataType.isPrimitiveType() && !genDataType.isObjectType()) {%>
+		<%=genModel.getImportedName("org.eclipse.emf.common.util.Reflect")%>.register
+			(<%=genDataType.getRawImportedInstanceClassName()%>.class, 
+			 new <%=genModel.getImportedName("org.eclipse.emf.common.util.Reflect")%>.Helper() 
+			 {
+				 public boolean isInstance(Object instance)
+				 {
+					 return instance instanceof <%=genDataType.getImportedWildcardInstanceClassName()%>;
+				 }
+
+				 public Object newArrayInstance(int size)
+				 {
+        <%if (genDataType.isArrayType()) { String componentType = genDataType.getRawImportedInstanceClassName(); String indices = ""; while(componentType.endsWith("[]")) { componentType = componentType.substring(0, componentType.length() - 2); indices += "[]";}%>
+					 return new <%=componentType%>[size]<%=indices%>;
+        <%} else {%>
+					 return new <%=genDataType.getRawImportedInstanceClassName()%>[size];
+        <%}%>
+				 }
+		});
+        <%}%>
+      <%}%>
+    <%}%>
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static class WhiteList implements <%=genModel.getImportedName("com.google.gwt.user.client.rpc.IsSerializable")%>
+	{
+    <%for (GenClassifier genClassifier : genPackage.getGenClassifiers()) {%>
+      <%if (genClassifier instanceof GenClass) { GenClass genClass = (GenClass)genClassifier;%>
+        <%if (!genClass.isDynamic()) {%>
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected <%=genClass.isMapEntry() ? genClass.getImportedClassName() : genClass.getImportedWildcardInstanceClassName()%> <%=genClass.getSafeUncapName()%>;
+
+        <%}%>
+      <%} else if (genClassifier instanceof GenDataType) { GenDataType genDataType = (GenDataType)genClassifier;%>
+        <%if (!genDataType.isObjectType() && genDataType.isSerializable()) {%>
+		/**
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		protected <%=genDataType.getImportedWildcardInstanceClassName()%> <%=genDataType.getSafeUncapName()%>;
+
+        <%}%>
+      <%}%>
+    <%}%>
+	}
+  <%}%>
 
 <%}%>
 <%if (isInterface) { // TODO REMOVE THIS BOGUS EMPTY LINE%>
@@ -440,6 +555,39 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 <%}%>
 
       <%}%>
+      <%if (genModel.isOperationReflection()) {%>
+        <%for (GenOperation genOperation : genClass.getGenOperations()) {%>
+<%if (isInterface) {%>
+	/**
+	 * Returns the meta object for the '{@link <%=genClass.getQualifiedInterfaceName()%>#<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>) <em><%=genOperation.getFormattedName()%></em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em><%=genOperation.getFormattedName()%></em>' operation.
+	 * @see <%=genClass.getQualifiedInterfaceName()%>#<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>)
+	 * @generated
+	 */
+<%} else {%>
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+<%}%>
+<%if (isImplementation) {%>
+	public <%=genOperation.getImportedMetaType()%> get<%=genOperation.getOperationAccessorName()%>()
+	{
+        <%if (!genPackage.isLoadedInitialization()) {%>
+		return <%=genClass.getClassifierInstanceName()%>.getEOperations().get(<%=genClass.getLocalOperationIndex(genOperation)%>);
+        <%} else {%>
+        return get<%=genClassifier.getClassifierAccessorName()%>().getEOperations().get(<%=genClass.getLocalOperationIndex(genOperation)%>);
+        <%}%>
+	}
+<%} else {%>
+	<%=genOperation.getImportedMetaType()%> get<%=genOperation.getOperationAccessorName()%>();
+<%}%>
+
+        <%}%>
+      <%}%>
     <%}%>
   <%}%>
 <%if (isInterface) {%>
@@ -493,6 +641,11 @@ public interface <%=genPackage.getPackageInterfaceName()%> extends <%=genModel.g
 		<%=genClass.getClassifierInstanceName()%> = create<%=genClass.getMetaType()%>(<%=genClass.getClassifierID()%>);
         <%for (GenFeature genFeature : genClass.getGenFeatures()) {%>
 		create<%=genFeature.getMetaType()%>(<%=genClass.getClassifierInstanceName()%>, <%=genClass.getFeatureID(genFeature)%>);
+        <%}%>
+        <%if (genModel.isOperationReflection()) {%>
+          <%for (GenOperation genOperation : genClass.getGenOperations()) {%>
+		createEOperation(<%=genClass.getClassifierInstanceName()%>, <%=genClass.getOperationID(genOperation, false)%>);
+          <%}%>
         <%}%>
         <%if (c.hasNext()) {%>
 
@@ -673,7 +826,7 @@ int maxGenericTypeAssignment = 0;
         <%}%>
       <%}%>
 
-		// Initialize classes and features; add operations and parameters
+		// Initialize classes<%if (genModel.isOperationReflection()) {%>, features, and operations; add parameters<%} else {%> and features; add operations and parameters<%}%>
       <%for (Iterator<GenClass> c=genPackage.getGenClasses().iterator(); c.hasNext();) { GenClass genClass = c.next(); boolean hasInstanceTypeName = genModel.useGenerics() && genClass.getEcoreClass().getInstanceTypeName() != null && genClass.getEcoreClass().getInstanceTypeName().contains("<");%>
 		initEClass(<%=genClass.getClassifierInstanceName()%>, <%if (genClass.isDynamic()) {%>null<%} else {%><%=genClass.getRawImportedInterfaceName()%>.class<%}%>, "<%=genClass.getName()%>", <%=genClass.getAbstractFlag()%>, <%=genClass.getInterfaceFlag()%>, <%=genClass.getGeneratedInstanceClassFlag()%><%if (hasInstanceTypeName) {%>, "<%=genClass.getEcoreClass().getInstanceTypeName()%>"<%}%>);<%=genModel.getNonNLS()%><%if (hasInstanceTypeName) {%><%=genModel.getNonNLS(2)%><%}%>
         <%for (GenFeature genFeature : genClass.getGenFeatures()) {%>
@@ -698,15 +851,15 @@ int maxGenericTypeAssignment = 0;
         <%for (GenOperation genOperation : genClass.getGenOperations()) {String prefix = ""; if (genOperation.hasGenericType() || !genOperation.getGenParameters().isEmpty() || !genOperation.getGenExceptions().isEmpty() || !genOperation.getGenTypeParameters().isEmpty()) { if (firstOperationAssignment) { firstOperationAssignment = false; prefix = genModel.getImportedName("org.eclipse.emf.ecore.EOperation") + " op = "; } else { prefix = "op = "; }} %>
 
           <%if (genModel.useGenerics()) {%>
-		<%=prefix%>addEOperation(<%=genClass.getClassifierInstanceName()%>, <%if (genOperation.isVoid() || genOperation.hasGenericType()) {%>null<%} else {%><%=genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage())%>.get<%=genOperation.getTypeClassifierAccessorName()%>()<%}%>, "<%=genOperation.getName()%>", <%=genOperation.getLowerBound()%>, <%=genOperation.getUpperBound()%>, <%=genOperation.getUniqueFlag()%>, <%=genOperation.getOrderedFlag()%>);<%=genModel.getNonNLS()%>
+		<%=prefix%><%if (genModel.isOperationReflection()) {%>initEOperation(get<%=genOperation.getOperationAccessorName()%>()<%} else {%>addEOperation(<%=genClass.getClassifierInstanceName()%><%}%>, <%if (genOperation.isVoid() || genOperation.hasGenericType()) {%>null<%} else {%><%=genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage())%>.get<%=genOperation.getTypeClassifierAccessorName()%>()<%}%>, "<%=genOperation.getName()%>", <%=genOperation.getLowerBound()%>, <%=genOperation.getUpperBound()%>, <%=genOperation.getUniqueFlag()%>, <%=genOperation.getOrderedFlag()%>);<%=genModel.getNonNLS()%>
           <%} else if (!genOperation.isVoid()) {%>
             <%if (!genOperation.getEcoreOperation().isOrdered() || !genOperation.getEcoreOperation().isUnique()) { needsAddEOperation = true;%>
-		<%=prefix%>addEOperation(<%=genClass.getClassifierInstanceName()%>, <%=genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage())%>.get<%=genOperation.getTypeClassifierAccessorName()%>(), "<%=genOperation.getName()%>", <%=genOperation.getLowerBound()%>, <%=genOperation.getUpperBound()%>, <%=genOperation.getUniqueFlag()%>, <%=genOperation.getOrderedFlag()%>);<%=genModel.getNonNLS()%>
+		<%=prefix%><%if (genModel.isOperationReflection()) {%>initEOperation(get<%=genOperation.getOperationAccessorName()%>()<%} else {%>addEOperation(<%=genClass.getClassifierInstanceName()%><%}%>, <%=genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage())%>.get<%=genOperation.getTypeClassifierAccessorName()%>(), "<%=genOperation.getName()%>", <%=genOperation.getLowerBound()%>, <%=genOperation.getUpperBound()%>, <%=genOperation.getUniqueFlag()%>, <%=genOperation.getOrderedFlag()%>);<%=genModel.getNonNLS()%>
             <%} else {%>
-		<%=prefix%>addEOperation(<%=genClass.getClassifierInstanceName()%>, <%=genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage())%>.get<%=genOperation.getTypeClassifierAccessorName()%>(), "<%=genOperation.getName()%>", <%=genOperation.getLowerBound()%>, <%=genOperation.getUpperBound()%>);<%=genModel.getNonNLS()%>
+		<%=prefix%><%if (genModel.isOperationReflection()) {%>initEOperation(get<%=genOperation.getOperationAccessorName()%>()<%} else {%>addEOperation(<%=genClass.getClassifierInstanceName()%><%}%>, <%=genPackage.getPackageInstanceVariable(genOperation.getTypeGenPackage())%>.get<%=genOperation.getTypeClassifierAccessorName()%>(), "<%=genOperation.getName()%>", <%=genOperation.getLowerBound()%>, <%=genOperation.getUpperBound()%>);<%=genModel.getNonNLS()%>
             <%}%>
           <%} else {%>
-		<%=prefix%>addEOperation(<%=genClass.getClassifierInstanceName()%>, null, "<%=genOperation.getName()%>");<%=genModel.getNonNLS()%>
+		<%=prefix%><%if (genModel.isOperationReflection()) {%>initEOperation(get<%=genOperation.getOperationAccessorName()%>()<%} else {%>addEOperation(<%=genClass.getClassifierInstanceName()%><%}%>, null, "<%=genOperation.getName()%>");<%=genModel.getNonNLS()%>
           <%}%>
           <%if (genModel.useGenerics()) {%>
             <%for (ListIterator<GenTypeParameter> t=genOperation.getGenTypeParameters().listIterator(); t.hasNext(); ) { GenTypeParameter genTypeParameter = t.next(); String typeParameterVariable = ""; if (!genTypeParameter.getEcoreTypeParameter().getEBounds().isEmpty() || genTypeParameter.isUsed()) { if (maxTypeParameterAssignment <= t.previousIndex()) { ++maxTypeParameterAssignment; typeParameterVariable = genModel.getImportedName("org.eclipse.emf.ecore.ETypeParameter") + " t" + t.nextIndex() + " = "; } else { typeParameterVariable = "t" + t.nextIndex() + " = "; }} %>
@@ -1002,6 +1155,9 @@ int maxGenericTypeAssignment = 0;
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
+  <%if (genModel.isOperationReflection()) {%>
+	 *   <li>each operation of each class,</li>
+  <%}%>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
@@ -1052,6 +1208,18 @@ int maxGenericTypeAssignment = 0;
 		 */
 		<%=publicStaticFinalFlag%><%=genFeature.getImportedMetaType()%> <%=genClass.getFeatureID(genFeature)%> = eINSTANCE.get<%=genFeature.getFeatureAccessorName()%>();
 
+      <%}%>
+      <%if (genModel.isOperationReflection()) {%>
+        <%for (GenOperation genOperation : genClass.getGenOperations()) {%>
+		/**
+		 * The meta object literal for the '<em><b><%=genOperation.getFormattedName()%></b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		<%=publicStaticFinalFlag%><%=genOperation.getImportedMetaType()%> <%=genClass.getOperationID(genOperation, false)%> = eINSTANCE.get<%=genOperation.getOperationAccessorName()%>();
+
+        <%}%>
       <%}%>
     <%}%>
   <%}%>

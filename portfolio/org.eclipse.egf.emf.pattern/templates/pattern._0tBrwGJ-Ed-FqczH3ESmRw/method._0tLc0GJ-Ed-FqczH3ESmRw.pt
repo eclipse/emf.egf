@@ -1,7 +1,32 @@
 
 
+  <%if (isImplementation) {%>
+    <%if (genOperation.isInvariant() && genOperation.hasInvariantExpression()) {%>
+	/**
+	 * The cached validation expression for the '{@link #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>) <em><%=genOperation.getFormattedName()%></em>}' invariant operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final <%=genModel.getImportedName("java.lang.String")%> <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EEXPRESSION = "<%=genOperation.getInvariantExpression("\t\t")%>";<%=genModel.getNonNLS()%>
+
+    <%} else if (genOperation.hasInvocationDelegate()) {%>
+	/**
+	 * The cached invocation delegate for the '{@link #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>) <em><%=genOperation.getFormattedName()%></em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #<%=genOperation.getName()%>(<%=genOperation.getParameterTypes(", ")%>)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final <%=genModel.getImportedName("org.eclipse.emf.ecore.EOperation")%>.Internal.InvocationDelegate <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.EOperation")%>.Internal)<%=genOperation.getQualifiedOperationAccessor()%>).getInvocationDelegate();
+
+    <%}%>
+  <%}%>
 <%if (isInterface) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.javadoc.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/genOperation.javadoc.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.javadoc.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/genOperation.javadoc.override.javajetinc%>
 <%} else {%>
 	/**
 	 * <!-- begin-user-doc -->
@@ -9,7 +34,7 @@
 	 * @generated
 	 */
 <%if (isJDK50) { //Class/genOperation.annotations.insert.javajetinc%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.annotations.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.annotations.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 <%}%>
 <%}%>
 <%if (!isImplementation) {%>
@@ -21,6 +46,20 @@
   <%if (genOperation.hasBody()) {%>
 		<%=genOperation.getBody(genModel.getIndentation(stringBuffer))%>
   <%} else if (genOperation.isInvariant()) {GenClass opClass = genOperation.getGenClass(); String diagnostics = genOperation.getGenParameters().get(0).getName(); String context = genOperation.getGenParameters().get(1).getName();%>
+    <%if (genOperation.hasInvariantExpression()) {%>
+		return
+			<%=opClass.getGenPackage().getImportedValidatorClassName()%>.validate
+				(<%=genClass.getQualifiedClassifierAccessor()%>,
+				 this,
+				 <%=diagnostics%>,
+				 <%=context%>,
+				 "<%=genOperation.getValidationDelegate()%>",<%=genModel.getNonNLS()%>
+				 <%=genOperation.getQualifiedOperationAccessor()%>,
+				 <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EEXPRESSION,
+				 <%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
+				 <%=opClass.getGenPackage().getImportedValidatorClassName()%>.DIAGNOSTIC_SOURCE,
+				 <%=opClass.getGenPackage().getImportedValidatorClassName()%>.<%=opClass.getOperationID(genOperation)%>);
+    <%} else {%>
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
@@ -40,10 +79,24 @@
 			return false;
 		}
 		return true;
+    <%}%>
+  <%} else if (genOperation.hasInvocationDelegate()) { int size = genOperation.getGenParameters().size();%>
+		try
+		{
+    <%if (genOperation.isVoid()) {%>
+			<%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE.dynamicInvoke(this, <%if (size > 0) {%>new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%>.UnmodifiableEList<Object>(<%=size%>, <%=genOperation.getParametersArray(genClass)%>)<%} else {%>null<%}%>);
+    <%} else {%>
+			return <%if (!isJDK50 && genOperation.isPrimitiveType()) {%>(<%}%>(<%=genOperation.getObjectType(genClass)%>)<%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE.dynamicInvoke(this, <%if (size > 0) {%>new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%>.UnmodifiableEList<Object>(<%=size%>, <%=genOperation.getParametersArray(genClass)%>)<%} else {%>null<%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>).<%=genOperation.getPrimitiveValueFunction()%>()<%}%>;
+    <%}%>
+		}
+		catch (<%=genModel.getImportedName(isGWT ? "org.eclipse.emf.common.util.InvocationTargetException" : "java.lang.reflect.InvocationTargetException")%> ite)
+		{
+			throw new <%=genModel.getImportedName("org.eclipse.emf.common.util.WrappedException")%>(ite);
+		}
   <%} else {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.implementedGenOperation.TODO.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/implementedGenOperation.todo.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.implementedGenOperation.TODO.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/implementedGenOperation.todo.override.javajetinc%>
   <%}%>
 	}
 
 <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>

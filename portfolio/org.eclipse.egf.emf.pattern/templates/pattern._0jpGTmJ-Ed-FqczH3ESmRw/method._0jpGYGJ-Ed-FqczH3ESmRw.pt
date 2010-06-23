@@ -1,6 +1,20 @@
 
 
-    <%if (genFeature.isListType() || genFeature.isReferenceType()) {%>
+    <%if (genFeature.hasSettingDelegate()) {%>
+	/**
+	 * The cached setting delegate for the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #<%=genFeature.getGetAccessor()%>()
+	 * @generated
+	 * @ordered
+	 */
+      <%if (isGWT) {%>
+	@<%=genModel.getImportedName("com.google.gwt.user.client.rpc.GwtTransient")%>
+      <%}%>
+	protected <%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%>.Internal.SettingDelegate <%=genFeature.getUpperName()%>__ESETTING_DELEGATE = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature")%>.Internal)<%=genFeature.getQualifiedFeatureAccessor()%>).getSettingDelegate();
+
+    <%} else if (genFeature.isListType() || genFeature.isReferenceType()) {%>
       <%if (genClass.isField(genFeature)) {%>
 	/**
 	 * The cached value of the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
@@ -10,6 +24,9 @@
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isGWT) {%>
+	@<%=genModel.getImportedName("com.google.gwt.user.client.rpc.GwtTransient")%>
+      <%}%>
 	protected <%=genFeature.getImportedInternalType(genClass)%> <%=genFeature.getSafeName()%>;
 
       <%}%>
@@ -54,6 +71,9 @@
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isGWT) {%>
+	@<%=genModel.getImportedName("com.google.gwt.user.client.rpc.GwtTransient")%>
+      <%}%>
 	protected int <%=genClass.getFlagsField(genFeature)%> = 0;
 
           <%}%>
@@ -105,6 +125,9 @@
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isGWT) {%>
+	@<%=genModel.getImportedName("com.google.gwt.user.client.rpc.GwtTransient")%>
+      <%}%>
 	protected <%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%><%if (genFeature.hasEDefault()) {%> = <%=genFeature.getEDefault()%><%}%>;
 
         <%}%>
@@ -120,6 +143,9 @@
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isGWT) {%>
+	@<%=genModel.getImportedName("com.google.gwt.user.client.rpc.GwtTransient")%>
+      <%}%>
 	protected int <%=genClass.getESetFlagsField(genFeature)%> = 0;
 
         <%}%>
@@ -140,8 +166,11 @@
 	 * @generated
 	 * @ordered
 	 */
+      <%if (isGWT) {%>
+	@<%=genModel.getImportedName("com.google.gwt.user.client.rpc.GwtTransient")%>
+      <%}%>
 	protected boolean <%=genFeature.getUncapName()%>ESet;
 
       <%}%>
     <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>

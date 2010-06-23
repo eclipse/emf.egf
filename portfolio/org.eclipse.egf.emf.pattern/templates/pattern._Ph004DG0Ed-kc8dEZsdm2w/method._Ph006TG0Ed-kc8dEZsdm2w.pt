@@ -3,7 +3,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2006 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -105,6 +105,19 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 	protected <%=baseGenPackage.getImportedValidatorClassName()%> <%=genPackage.getValidatorPackageUniqueSafeName(baseGenPackage)%>Validator;
 
 <%}%>
+<%if (genPackage.hasInvariantExpressions()) {%>
+	/**
+	 * Delegates evaluation of the given invariant expression against the object in the given context.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static boolean validate(<%=genModel.getImportedName("org.eclipse.emf.ecore.EClass")%> eClass, <%=genModel.getImportedName("org.eclipse.emf.ecore.EObject")%> eObject, DiagnosticChain diagnostics, <%=_Map%> context, <%=genModel.getImportedName("java.lang.String")%> validationDelegate, <%=genModel.getImportedName("org.eclipse.emf.ecore.EOperation")%> invariant, <%=genModel.getImportedName("java.lang.String")%> expression, int severity, <%=genModel.getImportedName("java.lang.String")%> source, int code)
+	{
+		return <%=genModel.getImportedName("org.eclipse.emf.ecore.util.EObjectValidator")%>.validate(eClass, eObject, diagnostics, context, validationDelegate, invariant, expression, severity, source, code);
+	}
+
+<%}%>
 	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
@@ -191,7 +204,9 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
   String delegate = constraintImplementor == null || constraintImplementor.getGenPackage() == genPackage ? "" : genPackage.getValidatorPackageUniqueSafeName(constraintImplementor.getGenPackage()) + "Validator.";
   String cast = constraintImplementor == null && genClassifier instanceof GenClass && !((GenClass)genClassifier).isEObjectExtension() ? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
   String accessor = constraintImplementor != null && genClassifier instanceof GenDataType && !((GenDataType)genClassifier).isPrimitiveType() && ((GenDataType)constraintImplementor).isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "." + ((GenDataType)constraintImplementor).getPrimitiveValueFunction() + "()" : "";%>
-<%if (first) { first = false;%>
+<%if ("NoCircularContainment".equals(constraint)) {%>
+		if (!validate_NoCircularContainment(<%if (!((GenClass)genClassifier).isEObjectExtension()){%>(<%=genModel.getImportedName("org.eclipse.emf.ecore.EObject")%>)<%}%><%=genClassifier.getSafeUncapName()%>, <%=diagnostics%>, <%=context%>)) return false;
+<%} else if (first) { first = false;%>
 		boolean <%=result%> = <%=delegate%>validate<%=constraintImplementor == null ? "" : constraintImplementor.getName()%>_<%=constraint%>(<%=cast%><%=genClassifier.getSafeUncapName()%><%=accessor%>, <%=diagnostics%>, <%=context%>);
 <%} else {%>
 		if (<%=result%> || <%=diagnostics%> != null) result &= <%=delegate%>validate<%=constraintImplementor == null ? "" : constraintImplementor.getName()%>_<%=constraint%>(<%=cast%><%=genClassifier.getSafeUncapName()%><%=accessor%>, <%=diagnostics%>, <%=context%>);
@@ -283,6 +298,16 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 			 });
 
 <%}%>
+<%}%>
+<%if (genClassifier.hasConstraintExpression(constraint)) {%>
+	/**
+	 * The cached validation expression for the <%=constraint%> constraint of '<em><%=genClassifier.getFormattedName()%></em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected static final <%=genModel.getImportedName("java.lang.String")%> <%=genClassifier.getClassifierID()%>__<%=CodeGenUtil.upperName(constraint)%>__EEXPRESSION = "<%=genClassifier.getConstraintExpression(constraint, "\t\t")%>";<%=genModel.getNonNLS()%>
+
 <%}%>
 	/**
 	 * Validates the <%=constraint%> constraint of '<em><%=genClassifier.getFormattedName()%></em>'.
@@ -481,6 +506,20 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 		}
 		return <%=delegate%>validate<%=constraintDelegate.getName()%>_<%=constraint%>(<%=genClassifier.getSafeUncapName()%><%=accessor%>, <%=diagnostics%>, <%=context%>);
 <%} else {%>
+  <%if (genClassifier.hasConstraintExpression(constraint)) {%>
+		return
+			validate
+				(<%=genClassifier.getQualifiedClassifierAccessor()%>,
+				 <%=genClassifier.getSafeUncapName()%>,
+				 <%=diagnostics%>,
+				 <%=context%>,
+				 "<%=genClassifier.getValidationDelegate(constraint)%>",<%=genModel.getNonNLS()%>
+				 "<%=constraint%>",<%=genModel.getNonNLS()%>
+				 <%=genClassifier.getClassifierID()%>__<%=CodeGenUtil.upperName(constraint)%>__EEXPRESSION,
+				 <%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+  <%} else {%>
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -490,7 +529,7 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 			if (<%=diagnostics%> != null)
 			{
 				<%=diagnostics%>.add
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
+    <%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
 					(createDiagnostic
 						(<%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
 						 DIAGNOSTIC_SOURCE,
@@ -499,18 +538,19 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 						 new Object[] { "<%=constraint%>", getValueLabel(<%=genDataType.getQualifiedClassifierAccessor()%>, <%=genClassifier.getSafeUncapName()%>, <%=context%>) },<%=genModel.getNonNLS()%>
 						 new Object[] { <%=genClassifier.getSafeUncapName()%> },
 						 context));
-<%} else {%>
+    <%} else {%>
 					(new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic")%>
 						(<%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 <%=genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin")%>.INSTANCE.getString("_UI_GenericConstraint_diagnostic", new Object[] { "<%=constraint%>", getValueLabel(<%=genDataType.getQualifiedClassifierAccessor()%>, <%=genClassifier.getSafeUncapName()%>, <%=context%>) }),<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
 						 new Object[] { <%=genClassifier.getSafeUncapName()%> }));
-<%}%>
+    <%}%>
 			}
 			return false;
 		}
 		return true;
+  <%}%>
 <%}%>
 <%} else if (constraintDelegate != null) {%>
 		// TODO override the constraint, if desired
@@ -523,7 +563,7 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 			if (<%=diagnostics%> != null)
 			{
 				<%=diagnostics%>.add
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
+  <%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
 					(createDiagnostic
 						(<%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
 						 DIAGNOSTIC_SOURCE,
@@ -532,14 +572,14 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 						 new Object[] { "<%=constraint%>", getObjectLabel(<%=genClassifier.getSafeUncapName()%>, <%=context%>) },<%=genModel.getNonNLS()%>
 						 new Object[] { <%=genClassifier.getSafeUncapName()%> },
 						 context));
-<%} else {%>
+  <%} else {%>
 					(new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic")%>
 						(<%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 <%=genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin")%>.INSTANCE.getString("_UI_GenericConstraint_diagnostic", new Object[] { "<%=constraint%>", getObjectLabel(<%=genClassifier.getSafeUncapName()%>, <%=context%>) }),<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
 						 new Object[] { <%=genClassifier.getSafeUncapName()%> }));
-<%}%>
+  <%}%>
 			}
 			return false;
 		}
@@ -547,6 +587,20 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 <%} else { GenOperation genOperation = ((GenClass)genClassifier).getInvariantOperation(constraint); if (genOperation != null) {%>
 		return <%=genClassifier.getSafeUncapName()%>.<%=constraint%>(<%=diagnostics%>, <%=context%>);
 <%} else {%>
+  <%if (genClassifier.hasConstraintExpression(constraint)) {%>
+		return
+			validate
+				(<%=genClassifier.getQualifiedClassifierAccessor()%>,
+				 <%=genClassifier.getSafeUncapName()%>,
+				 <%=diagnostics%>,
+				 <%=context%>,
+				 "<%=genClassifier.getValidationDelegate(constraint)%>",<%=genModel.getNonNLS()%>
+				 "<%=constraint%>",<%=genModel.getNonNLS()%>
+				 <%=genClassifier.getClassifierID()%>__<%=CodeGenUtil.upperName(constraint)%>__EEXPRESSION,
+				 <%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
+				 DIAGNOSTIC_SOURCE,
+				 0);
+  <%} else {%>
 		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and message
@@ -556,7 +610,7 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 			if (<%=diagnostics%> != null)
 			{
 				<%=diagnostics%>.add
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
+    <%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
 					(createDiagnostic
 						(<%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
 						 DIAGNOSTIC_SOURCE,
@@ -565,18 +619,19 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 						 new Object[] { "<%=constraint%>", getObjectLabel(<%=genClassifier.getSafeUncapName()%>, <%=context%>) },<%=genModel.getNonNLS()%>
 						 new Object[] { <%=genClassifier.getSafeUncapName()%> },
 						 context));
-<%} else {%>
+    <%} else {%>
 					(new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic")%>
 						(<%=genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic")%>.ERROR,
 						 DIAGNOSTIC_SOURCE,
 						 0,
 						 <%=genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin")%>.INSTANCE.getString("_UI_GenericConstraint_diagnostic", new Object[] { "<%=constraint%>", getObjectLabel(<%=genClassifier.getSafeUncapName()%>, <%=context%>) }),<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
 						 new Object[] { <%=genClassifier.getSafeUncapName()%> }));
-<%}%>
+    <%}%>
 			}
 			return false;
 		}
 		return true;
+  <%}%>
 <%}}%>
 	}
 

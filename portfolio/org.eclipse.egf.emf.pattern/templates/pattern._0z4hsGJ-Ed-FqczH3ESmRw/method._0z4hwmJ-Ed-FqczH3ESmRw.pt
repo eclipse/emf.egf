@@ -1,7 +1,7 @@
 
 
 <%if (isInterface) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.javadoc.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/unsetGenFeature.javadoc.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.javadoc.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/unsetGenFeature.javadoc.override.javajetinc%>
 <%} else {%>
 	/**
 	 * <!-- begin-user-doc -->
@@ -9,7 +9,7 @@
 	 * @generated
 	 */
 <%if (isJDK50) { //Class/unsetGenFeature.annotations.insert.javajetinc%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 <%}%>
 <%}%>
 <%if (!isImplementation) {%>
@@ -22,6 +22,8 @@
 		eDynamicUnset(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>);
     <%} else if (genModel.isReflectiveDelegation()) {%>
 		eUnset(<%=genFeature.getQualifiedFeatureAccessor()%>);
+    <%} else if (genFeature.hasSettingDelegate()) {%>
+		<%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
     <%} else if (!genFeature.isVolatile()) {%>
       <%if (genFeature.isListType()) {%>
         <%if (genModel.isVirtualDelegation()) {%>
@@ -37,7 +39,7 @@
 			<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs = null;
         <%if (!genFeature.isBidirectional()) {%>
 			msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - <%=genClass.getQualifiedFeatureID(genFeature)%><%=negativeOffsetCorrection%>, null, msgs);
-        <%} else { GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(reverseFeature) : "";%>
+        <%} else { GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(genFeature) : "";%>
 			msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, msgs);
         <%}%>
 			msgs = basicUnset<%=genFeature.getAccessorName()%>(msgs);
@@ -133,7 +135,7 @@
     <%} else if (genClass.getUnsetAccessorOperation(genFeature) != null) {%>
 		<%=genClass.getUnsetAccessorOperation(genFeature).getBody(genModel.getIndentation(stringBuffer))%>
     <%} else {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/unsetGenFeature.todo.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.unsetGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/unsetGenFeature.todo.override.javajetinc%>
     <%}%>
 	}
 

@@ -41,10 +41,12 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
     protected final String TEXT_14 = ",";
     protected final String TEXT_15 = NL + " ";
     protected final String TEXT_16 = ";visibility:=reexport";
-    protected final String TEXT_17 = NL + "Eclipse-LazyStart: true";
-    protected final String TEXT_18 = NL + "Bundle-ActivationPolicy: lazy" + NL;
-    protected final String TEXT_19 = NL;
+    protected final String TEXT_17 = NL + "Import-Package: org.eclipse.emf.common.ui," + NL + " org.eclipse.emf.common.ui.action," + NL + " org.eclipse.emf.common.ui.dialogs," + NL + " org.eclipse.emf.common.ui.editor," + NL + " org.eclipse.emf.common.ui.viewer," + NL + " org.eclipse.emf.edit.ui," + NL + " org.eclipse.emf.edit.ui.action," + NL + " org.eclipse.emf.edit.ui.celleditor," + NL + " org.eclipse.emf.edit.ui.dnd," + NL + " org.eclipse.emf.edit.ui.provider," + NL + " org.eclipse.emf.edit.ui.util," + NL + " org.eclipse.emf.edit.ui.view," + NL + " org.eclipse.jface.action," + NL + " org.eclipse.jface.dialogs," + NL + " org.eclipse.jface.operation," + NL + " org.eclipse.jface.viewers," + NL + " org.eclipse.jface.window," + NL + " org.eclipse.jface.wizard," + NL + " org.eclipse.swt,"
+            + NL + " org.eclipse.swt.custom," + NL + " org.eclipse.swt.dnd," + NL + " org.eclipse.swt.events," + NL + " org.eclipse.swt.graphics," + NL + " org.eclipse.swt.layout," + NL + " org.eclipse.swt.widgets," + NL + " org.eclipse.ui;ui.workbench=\"split\"," + NL + " org.eclipse.ui.actions;ui.workbench=\"split\"," + NL + " org.eclipse.ui.application," + NL + " org.eclipse.ui.part;ui.workbench=\"split\"," + NL + " org.eclipse.ui.views," + NL + " org.eclipse.ui.views.contentoutline," + NL + " org.eclipse.ui.views.properties;ui.views=\"split\"";
+    protected final String TEXT_18 = NL + "Eclipse-LazyStart: true";
+    protected final String TEXT_19 = NL + "Bundle-ActivationPolicy: lazy" + NL;
     protected final String TEXT_20 = NL;
+    protected final String TEXT_21 = NL;
 
     public ManifestMF() {
         //Here is the constructor
@@ -77,8 +79,8 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_19);
         stringBuffer.append(TEXT_20);
+        stringBuffer.append(TEXT_21);
         return stringBuffer.toString();
     }
 
@@ -147,7 +149,7 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
         /**
          * <copyright>
          *
-         * Copyright (c) 2005 IBM Corporation and others.
+         * Copyright (c) 2005-2010 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
          * which accompanies this distribution, and is available at
@@ -207,10 +209,13 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
                 }
             }
         }
-        if (genModel.getRuntimeVersion() == GenRuntimeVersion.EMF22 || genModel.getRuntimeVersion() == GenRuntimeVersion.EMF23) {
+        if (genModel.isRichAjaxPlatform()) {
             stringBuffer.append(TEXT_17);
         }
-        stringBuffer.append(TEXT_18);
+        if (genModel.getRuntimeVersion() == GenRuntimeVersion.EMF22 || genModel.getRuntimeVersion() == GenRuntimeVersion.EMF23) {
+            stringBuffer.append(TEXT_18);
+        }
+        stringBuffer.append(TEXT_19);
     }
 
     public boolean preCondition() throws Exception {

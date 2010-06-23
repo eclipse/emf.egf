@@ -3,7 +3,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2008 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -424,7 +424,10 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 			{
 				page.openEditor
 					(new FileEditorInput(modelFile),
-					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+					 workbench.getEditorRegistry().getDefaultEditor<%if (!genPackage.isContentType()) {%>(modelFile.getFullPath().toString()).getId());<%} else {%>
+					 	(modelFile.getFullPath().toString(),
+					 	 <%=genModel.getImportedName("org.eclipse.core.runtime.Platform")%>.getContentTypeManager().getContentType(<%=genPackage.getImportedPackageInterfaceName()%>.eCONTENT_TYPE)).getId());
+<%}%>					 	 
 			}
 			catch (<%=genModel.getImportedName("org.eclipse.ui.PartInitException")%> exception)
 			{
@@ -604,15 +607,16 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 
 			fileField.addModifyListener(validator);
 
+  <%if (!genModel.isRichAjaxPlatform()) {%>
 			<%=genModel.getImportedName("org.eclipse.swt.widgets.Button")%> resourceURIBrowseFileSystemButton = new <%=genModel.getImportedName("org.eclipse.swt.widgets.Button")%>(fileComposite, SWT.PUSH);
 			resourceURIBrowseFileSystemButton.setText(<%=genPackage.getImportedEditorPluginClassName()%>.INSTANCE.getString("_UI_Browse_label"));<%=genModel.getNonNLS()%>
 
 			resourceURIBrowseFileSystemButton.addSelectionListener
 				(new <%=genModel.getImportedName("org.eclipse.swt.events.SelectionAdapter")%>()
 				 {
-<%if (genModel.useClassOverrideAnnotation()) {%>
+    <%if (genModel.useClassOverrideAnnotation()) {%>
 					 @Override
-<%}%>
+    <%}%>
 					 public void widgetSelected(<%=genModel.getImportedName("org.eclipse.swt.events.SelectionEvent")%> event)
 					 {
 						 String[] filters = <%if (!genModel.useGenerics()) {%>(String[])<%}%><%=genPackage.getImportedEditorClassName()%>.FILE_EXTENSION_FILTERS.toArray(new String[<%=genPackage.getImportedEditorClassName()%>.FILE_EXTENSION_FILTERS.size()]);
@@ -623,6 +627,7 @@ public class <%=genPackage.getModelWizardClassName()%> extends Wizard implements
 						 }
 					 }
 				 });
+  <%}%>
 <%}%>
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{

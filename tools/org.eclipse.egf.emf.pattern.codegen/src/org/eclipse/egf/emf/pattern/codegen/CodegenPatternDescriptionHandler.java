@@ -42,7 +42,7 @@ import org.osgi.framework.Constants;
  */
 public class CodegenPatternDescriptionHandler {
 
-    private static final String ORG_ECLIPSE_EMF_ECORE_VISIBILITY_REEXPORT_BUNDLE_VERSION = "org.eclipse.emf.ecore;visibility:=reexport;bundle-version=\"["; //$NON-NLS-1$
+    private static final String ORG_ECLIPSE_EMF_ECORE_VISIBILITY_REEXPORT_BUNDLE_VERSION = "org.eclipse.emf.ecore;visibility:=\"reexport\";bundle-version=\"["; //$NON-NLS-1$
 
     private static final Pattern MANIFEST_REGEX = Pattern.compile("([a-zA-Z\\-]*):(.*)"); //$NON-NLS-1$
 

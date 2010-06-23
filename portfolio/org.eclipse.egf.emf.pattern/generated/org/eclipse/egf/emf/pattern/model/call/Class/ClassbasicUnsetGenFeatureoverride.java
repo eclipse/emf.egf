@@ -107,6 +107,8 @@ public class ClassbasicUnsetGenFeatureoverride {
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isImplementationList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        List<Object> isGWTList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> publicStaticFinalFlagList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> singleWildcardList = null;
@@ -114,6 +116,10 @@ public class ClassbasicUnsetGenFeatureoverride {
         List<Object> negativeOffsetCorrectionList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> positiveOffsetCorrectionList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        List<Object> negativeOperationOffsetCorrectionList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        List<Object> positiveOperationOffsetCorrectionList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
         for (Object genFeatureParameter : genFeatureList) {
@@ -123,26 +129,35 @@ public class ClassbasicUnsetGenFeatureoverride {
                         for (Object isJDK50Parameter : isJDK50List) {
                             for (Object isInterfaceParameter : isInterfaceList) {
                                 for (Object isImplementationParameter : isImplementationList) {
-                                    for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
-                                        for (Object singleWildcardParameter : singleWildcardList) {
-                                            for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
-                                                for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+                                    for (Object isGWTParameter : isGWTList) {
+                                        for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
+                                            for (Object singleWildcardParameter : singleWildcardList) {
+                                                for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
+                                                    for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+                                                        for (Object negativeOperationOffsetCorrectionParameter : negativeOperationOffsetCorrectionList) {
+                                                            for (Object positiveOperationOffsetCorrectionParameter : positiveOperationOffsetCorrectionList) {
 
-                                                    this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                                                    this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                                                    this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                                                    this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-                                                    this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-                                                    this.isInterface = (java.lang.Boolean) isInterfaceParameter;
-                                                    this.isImplementation = (java.lang.Boolean) isImplementationParameter;
-                                                    this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
-                                                    this.singleWildcard = (java.lang.String) singleWildcardParameter;
-                                                    this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
-                                                    this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                                this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+                                                                this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+                                                                this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+                                                                this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+                                                                this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+                                                                this.isInterface = (java.lang.Boolean) isInterfaceParameter;
+                                                                this.isImplementation = (java.lang.Boolean) isImplementationParameter;
+                                                                this.isGWT = (java.lang.Boolean) isGWTParameter;
+                                                                this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
+                                                                this.singleWildcard = (java.lang.String) singleWildcardParameter;
+                                                                this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
+                                                                this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                                this.negativeOperationOffsetCorrection = (java.lang.String) negativeOperationOffsetCorrectionParameter;
+                                                                this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
-                                                    if (preCondition())
-                                                        orchestration(ctx);
+                                                                if (preCondition())
+                                                                    orchestration(ctx);
 
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -182,10 +197,13 @@ public class ClassbasicUnsetGenFeatureoverride {
             parameterValues.put("isJDK50", this.isJDK50);
             parameterValues.put("isInterface", this.isInterface);
             parameterValues.put("isImplementation", this.isImplementation);
+            parameterValues.put("isGWT", this.isGWT);
             parameterValues.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
             parameterValues.put("singleWildcard", this.singleWildcard);
             parameterValues.put("negativeOffsetCorrection", this.negativeOffsetCorrection);
             parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
+            parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
+            parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
             String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
             ictx.clearBuffer();
@@ -235,6 +253,12 @@ public class ClassbasicUnsetGenFeatureoverride {
         this.isImplementation = object;
     }
 
+    protected java.lang.Boolean isGWT = null;
+
+    public void set_isGWT(java.lang.Boolean object) {
+        this.isGWT = object;
+    }
+
     protected java.lang.String publicStaticFinalFlag = null;
 
     public void set_publicStaticFinalFlag(java.lang.String object) {
@@ -259,6 +283,18 @@ public class ClassbasicUnsetGenFeatureoverride {
         this.positiveOffsetCorrection = object;
     }
 
+    protected java.lang.String negativeOperationOffsetCorrection = null;
+
+    public void set_negativeOperationOffsetCorrection(java.lang.String object) {
+        this.negativeOperationOffsetCorrection = object;
+    }
+
+    protected java.lang.String positiveOperationOffsetCorrection = null;
+
+    public void set_positiveOperationOffsetCorrection(java.lang.String object) {
+        this.positiveOperationOffsetCorrection = object;
+    }
+
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("genFeature", this.genFeature);
@@ -268,10 +304,13 @@ public class ClassbasicUnsetGenFeatureoverride {
         parameters.put("isJDK50", this.isJDK50);
         parameters.put("isInterface", this.isInterface);
         parameters.put("isImplementation", this.isImplementation);
+        parameters.put("isGWT", this.isGWT);
         parameters.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
         parameters.put("singleWildcard", this.singleWildcard);
         parameters.put("negativeOffsetCorrection", this.negativeOffsetCorrection);
         parameters.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
+        parameters.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
+        parameters.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
         return parameters;
     }
 
@@ -289,10 +328,13 @@ public class ClassbasicUnsetGenFeatureoverride {
                 callParameters.put("isJDK50", isJDK50);
                 callParameters.put("isInterface", isInterface);
                 callParameters.put("isImplementation", isImplementation);
+                callParameters.put("isGWT", isGWT);
                 callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
                 callParameters.put("singleWildcard", singleWildcard);
                 callParameters.put("negativeOffsetCorrection", negativeOffsetCorrection);
                 callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
+                callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
+                callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
                 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qpGIGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
             }
 
@@ -416,10 +458,13 @@ public class ClassbasicUnsetGenFeatureoverride {
                 callParameters.put("isJDK50", isJDK50);
                 callParameters.put("isInterface", isInterface);
                 callParameters.put("isImplementation", isImplementation);
+                callParameters.put("isGWT", isGWT);
                 callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
                 callParameters.put("singleWildcard", singleWildcard);
                 callParameters.put("negativeOffsetCorrection", negativeOffsetCorrection);
                 callParameters.put("positiveOffsetCorrection", positiveOffsetCorrection);
+                callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
+                callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
                 CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qy3IGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
             }
 

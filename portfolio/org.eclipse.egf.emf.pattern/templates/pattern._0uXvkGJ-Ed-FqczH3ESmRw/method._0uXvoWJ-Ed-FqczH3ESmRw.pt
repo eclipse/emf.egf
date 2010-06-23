@@ -21,7 +21,13 @@
 		{
 <%for (GenFeature genFeature : genClass.getEIsSetGenFeatures()) { String safeNameAccessor = genFeature.getSafeName(); if ("featureID".equals(safeNameAccessor)) { safeNameAccessor = "this." + safeNameAccessor; }%>
 			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
-  <%if (genFeature.isListType() && !genFeature.isUnsettable()) {%>
+  <%if (genFeature.hasSettingDelegate()) {%>
+    <%if (genFeature.isUnsettable()) {%>
+				return isSet<%=genFeature.getAccessorName()%>();
+    <%} else {%>
+				return <%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+    <%}%>
+  <%} else if (genFeature.isListType() && !genFeature.isUnsettable()) {%>
     <%if (genFeature.isWrappedFeatureMapType()) {%>
       <%if (genFeature.isVolatile()) {%>
 				return !((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal.Wrapper)<%=genFeature.getGetAccessor()%>()).featureMap().isEmpty();

@@ -80,47 +80,53 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
     protected final String TEXT_53 = "$Application\"/>" + NL + "      </application>" + NL + "   </extension>" + NL + "" + NL + "   <extension point=\"org.eclipse.ui.perspectives\">" + NL + "      <perspective" + NL + "            name=\"%_UI_Perspective_label\"" + NL + "            class=\"";
     protected final String TEXT_54 = "$Perspective\"" + NL + "            id=\"";
     protected final String TEXT_55 = "Perspective\">" + NL + "      </perspective>" + NL + "   </extension>" + NL + "" + NL + "   <extension point=\"org.eclipse.ui.commands\">" + NL + "      <command" + NL + "            name=\"%_UI_Menu_OpenURI_label\"" + NL + "            description=\"%_UI_Menu_OpenURI_description\"" + NL + "            categoryId=\"org.eclipse.ui.category.file\"" + NL + "            id=\"";
-    protected final String TEXT_56 = "OpenURICommand\"/>" + NL + "      <command" + NL + "            name=\"%_UI_Menu_Open_label\"" + NL + "            description=\"%_UI_Menu_Open_description\"" + NL + "            categoryId=\"org.eclipse.ui.category.file\"" + NL + "            id=\"";
-    protected final String TEXT_57 = "OpenCommand\"/>" + NL + "   </extension>" + NL + "" + NL + "   <extension point=\"org.eclipse.ui.bindings\">" + NL + "      <key" + NL + "            commandId=\"";
-    protected final String TEXT_58 = "OpenURICommand\"" + NL + "            sequence=\"M1+U\"" + NL + "            schemeId=\"org.eclipse.ui.defaultAcceleratorConfiguration\"/>" + NL + "      <key" + NL + "            commandId=\"";
-    protected final String TEXT_59 = "OpenCommand\"" + NL + "            sequence=\"M1+O\"" + NL + "            schemeId=\"org.eclipse.ui.defaultAcceleratorConfiguration\"/>" + NL + "   </extension>" + NL + "" + NL + "   <extension point=\"org.eclipse.ui.actionSets\">" + NL + "      <actionSet" + NL + "            label=\"%_UI_";
-    protected final String TEXT_60 = "_ActionSet_label\"" + NL + "            visible=\"true\"" + NL + "            id=\"";
-    protected final String TEXT_61 = "ActionSet\">" + NL + "         <action" + NL + "               label=\"%_UI_Menu_About_label\"" + NL + "               class=\"";
-    protected final String TEXT_62 = "$AboutAction\"" + NL + "               menubarPath=\"help/additions\"" + NL + "               id=\"";
-    protected final String TEXT_63 = "AboutAction\"/>" + NL + "         <action" + NL + "               label=\"%_UI_Menu_OpenURI_label\"" + NL + "               definitionId=\"";
-    protected final String TEXT_64 = "OpenURICommand\"" + NL + "               class=\"";
-    protected final String TEXT_65 = "$OpenURIAction\"" + NL + "               menubarPath=\"file/additions\"" + NL + "               id=\"";
-    protected final String TEXT_66 = "OpenURIAction\"/>" + NL + "         <action" + NL + "               label=\"%_UI_Menu_Open_label\"" + NL + "               definitionId=\"";
-    protected final String TEXT_67 = "OpenCommand\"" + NL + "               class=\"";
-    protected final String TEXT_68 = "$OpenAction\"" + NL + "               menubarPath=\"file/additions\"" + NL + "               id=\"";
-    protected final String TEXT_69 = "OpenAction\"/>" + NL + "      </actionSet>" + NL + "   </extension>";
-    protected final String TEXT_70 = NL + NL + "   <extension point=\"org.eclipse.ui.actionSets\">" + NL + "      <actionSet" + NL + "            label=\"%_UI_";
-    protected final String TEXT_71 = "_ActionSet_label\"" + NL + "            visible=\"true\"" + NL + "            id=\"";
-    protected final String TEXT_72 = "ActionSet\">" + NL + "         <action" + NL + "               label=\"%_UI_";
-    protected final String TEXT_73 = "_label\"" + NL + "               class=\"";
-    protected final String TEXT_74 = "$NewAction\"" + NL + "               menubarPath=\"file/new/additions\"" + NL + "               id=\"";
-    protected final String TEXT_75 = "NewAction\"/>" + NL + "      </actionSet>" + NL + "   </extension>";
-    protected final String TEXT_76 = NL + NL + "   <extension point=\"org.eclipse.ui.newWizards\">" + NL + "      <category" + NL + "            id=\"org.eclipse.emf.ecore.Wizard.category.ID\"" + NL + "            name=\"%_UI_Wizard_category\"/>" + NL + "      <wizard" + NL + "            id=\"";
-    protected final String TEXT_77 = "ID\"" + NL + "            name=\"%_UI_";
-    protected final String TEXT_78 = "_label\"" + NL + "            class=\"";
-    protected final String TEXT_79 = "\"" + NL + "            category=\"org.eclipse.emf.ecore.Wizard.category.ID\"" + NL + "            icon=\"icons/full/obj16/";
-    protected final String TEXT_80 = "ModelFile.gif\">" + NL + "         <description>%_UI_";
-    protected final String TEXT_81 = "_description</description>" + NL + "         <selection class=\"org.eclipse.core.resources.IResource\"/>" + NL + "      </wizard>" + NL + "   </extension>";
-    protected final String TEXT_82 = NL + NL + "   <extension point=\"org.eclipse.ui.editors\">" + NL + "      <editor" + NL + "            id=\"";
+    protected final String TEXT_56 = "OpenURICommand\"/>";
+    protected final String TEXT_57 = NL + "      <command" + NL + "            name=\"%_UI_Menu_Open_label\"" + NL + "            description=\"%_UI_Menu_Open_description\"" + NL + "            categoryId=\"org.eclipse.ui.category.file\"" + NL + "            id=\"";
+    protected final String TEXT_58 = "OpenCommand\"/>";
+    protected final String TEXT_59 = NL + "   </extension>" + NL;
+    protected final String TEXT_60 = NL + "   <extension point=\"org.eclipse.ui.bindings\">" + NL + "      <key" + NL + "            commandId=\"";
+    protected final String TEXT_61 = "OpenURICommand\"" + NL + "            sequence=\"M1+U\"" + NL + "            schemeId=\"org.eclipse.ui.defaultAcceleratorConfiguration\"/>" + NL + "      <key" + NL + "            commandId=\"";
+    protected final String TEXT_62 = "OpenCommand\"" + NL + "            sequence=\"M1+O\"" + NL + "            schemeId=\"org.eclipse.ui.defaultAcceleratorConfiguration\"/>" + NL + "   </extension>";
+    protected final String TEXT_63 = NL + NL + "   <extension point=\"org.eclipse.ui.actionSets\">" + NL + "      <actionSet" + NL + "            label=\"%_UI_";
+    protected final String TEXT_64 = "_ActionSet_label\"" + NL + "            visible=\"true\"" + NL + "            id=\"";
+    protected final String TEXT_65 = "ActionSet\">" + NL + "         <action" + NL + "               label=\"%_UI_Menu_About_label\"" + NL + "               class=\"";
+    protected final String TEXT_66 = "$AboutAction\"" + NL + "               menubarPath=\"help/additions\"" + NL + "               id=\"";
+    protected final String TEXT_67 = "AboutAction\"/>" + NL + "         <action" + NL + "               label=\"%_UI_Menu_OpenURI_label\"" + NL + "               definitionId=\"";
+    protected final String TEXT_68 = "OpenURICommand\"" + NL + "               class=\"";
+    protected final String TEXT_69 = "$OpenURIAction\"" + NL + "               menubarPath=\"file/additions\"" + NL + "               id=\"";
+    protected final String TEXT_70 = "OpenURIAction\"/>";
+    protected final String TEXT_71 = NL + "         <action" + NL + "               label=\"%_UI_Menu_Open_label\"" + NL + "               definitionId=\"";
+    protected final String TEXT_72 = "OpenCommand\"" + NL + "               class=\"";
+    protected final String TEXT_73 = "$OpenAction\"" + NL + "               menubarPath=\"file/additions\"" + NL + "               id=\"";
+    protected final String TEXT_74 = "OpenAction\"/>";
+    protected final String TEXT_75 = NL + "      </actionSet>" + NL + "   </extension>";
+    protected final String TEXT_76 = NL + NL + "   <extension point=\"org.eclipse.ui.actionSets\">" + NL + "      <actionSet" + NL + "            label=\"%_UI_";
+    protected final String TEXT_77 = "_ActionSet_label\"" + NL + "            visible=\"true\"" + NL + "            id=\"";
+    protected final String TEXT_78 = "ActionSet\">" + NL + "         <action" + NL + "               label=\"%_UI_";
+    protected final String TEXT_79 = "_label\"" + NL + "               class=\"";
+    protected final String TEXT_80 = "$NewAction\"" + NL + "               menubarPath=\"file/new/additions\"" + NL + "               id=\"";
+    protected final String TEXT_81 = "NewAction\"/>" + NL + "      </actionSet>" + NL + "   </extension>";
+    protected final String TEXT_82 = NL + NL + "   <extension point=\"org.eclipse.ui.newWizards\">" + NL + "      <category" + NL + "            id=\"org.eclipse.emf.ecore.Wizard.category.ID\"" + NL + "            name=\"%_UI_Wizard_category\"/>" + NL + "      <wizard" + NL + "            id=\"";
     protected final String TEXT_83 = "ID\"" + NL + "            name=\"%_UI_";
-    protected final String TEXT_84 = "_label\"" + NL + "            icon=\"icons/full/obj16/";
-    protected final String TEXT_85 = "ModelFile.gif\"";
-    protected final String TEXT_86 = NL + "            extensions=\"";
-    protected final String TEXT_87 = "\"";
-    protected final String TEXT_88 = NL + "            class=\"";
-    protected final String TEXT_89 = "\"" + NL + "            contributorClass=\"";
-    protected final String TEXT_90 = "\">";
-    protected final String TEXT_91 = NL + "         <contentTypeBinding contentTypeId=\"";
-    protected final String TEXT_92 = "\"/>";
-    protected final String TEXT_93 = NL + "      </editor>" + NL + "   </extension>";
-    protected final String TEXT_94 = NL + NL + "</plugin>" + NL;
-    protected final String TEXT_95 = NL;
-    protected final String TEXT_96 = NL;
+    protected final String TEXT_84 = "_label\"" + NL + "            class=\"";
+    protected final String TEXT_85 = "\"" + NL + "            category=\"org.eclipse.emf.ecore.Wizard.category.ID\"" + NL + "            icon=\"icons/full/obj16/";
+    protected final String TEXT_86 = "ModelFile.gif\">" + NL + "         <description>%_UI_";
+    protected final String TEXT_87 = "_description</description>" + NL + "         <selection class=\"org.eclipse.core.resources.IResource\"/>" + NL + "      </wizard>" + NL + "   </extension>";
+    protected final String TEXT_88 = NL + NL + "   <extension point=\"org.eclipse.ui.editors\">" + NL + "      <editor" + NL + "            id=\"";
+    protected final String TEXT_89 = "ID\"" + NL + "            name=\"%_UI_";
+    protected final String TEXT_90 = "_label\"" + NL + "            icon=\"icons/full/obj16/";
+    protected final String TEXT_91 = "ModelFile.gif\"";
+    protected final String TEXT_92 = NL + "            extensions=\"";
+    protected final String TEXT_93 = "\"";
+    protected final String TEXT_94 = NL + "            class=\"";
+    protected final String TEXT_95 = "\"" + NL + "            contributorClass=\"";
+    protected final String TEXT_96 = "\">";
+    protected final String TEXT_97 = NL + "         <contentTypeBinding contentTypeId=\"";
+    protected final String TEXT_98 = "\"/>";
+    protected final String TEXT_99 = NL + "      </editor>" + NL + "   </extension>";
+    protected final String TEXT_100 = NL + NL + "</plugin>" + NL;
+    protected final String TEXT_101 = NL;
+    protected final String TEXT_102 = NL;
 
     public PluginXML() {
         //Here is the constructor
@@ -153,8 +159,8 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_95);
-        stringBuffer.append(TEXT_96);
+        stringBuffer.append(TEXT_101);
+        stringBuffer.append(TEXT_102);
         return stringBuffer.toString();
     }
 
@@ -223,7 +229,7 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
         /**
          * <copyright>
          *
-         * Copyright (c) 2002-2005 IBM Corporation and others.
+         * Copyright (c) 2002-2010 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
          * which accompanies this distribution, and is available at
@@ -369,23 +375,23 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
             stringBuffer.append(TEXT_55);
             stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
             stringBuffer.append(TEXT_56);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
-            stringBuffer.append(TEXT_57);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
-            stringBuffer.append(TEXT_58);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+            if (!genModel.isRichAjaxPlatform()) {
+                stringBuffer.append(TEXT_57);
+                stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+                stringBuffer.append(TEXT_58);
+            }
             stringBuffer.append(TEXT_59);
-            stringBuffer.append(genModel.getEditorAdvisorClassName());
-            stringBuffer.append(TEXT_60);
-            stringBuffer.append(genModel.getEditorAdvisorClassName());
-            stringBuffer.append(TEXT_61);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
-            stringBuffer.append(TEXT_62);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+            if (!genModel.isRichAjaxPlatform()) {
+                stringBuffer.append(TEXT_60);
+                stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+                stringBuffer.append(TEXT_61);
+                stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+                stringBuffer.append(TEXT_62);
+            }
             stringBuffer.append(TEXT_63);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+            stringBuffer.append(genModel.getEditorAdvisorClassName());
             stringBuffer.append(TEXT_64);
-            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+            stringBuffer.append(genModel.getEditorAdvisorClassName());
             stringBuffer.append(TEXT_65);
             stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
             stringBuffer.append(TEXT_66);
@@ -395,69 +401,81 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
             stringBuffer.append(TEXT_68);
             stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
             stringBuffer.append(TEXT_69);
+            stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+            stringBuffer.append(TEXT_70);
+            if (!genModel.isRichAjaxPlatform()) {
+                stringBuffer.append(TEXT_71);
+                stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+                stringBuffer.append(TEXT_72);
+                stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+                stringBuffer.append(TEXT_73);
+                stringBuffer.append(genModel.getQualifiedEditorAdvisorClassName());
+                stringBuffer.append(TEXT_74);
+            }
+            stringBuffer.append(TEXT_75);
         }
         for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
             if (genPackage.hasConcreteClasses()) {
                 if (genPackage.isGenerateModelWizard()) {
                     if (genModel.isRichClientPlatform()) {
-                        stringBuffer.append(TEXT_70);
-                        stringBuffer.append(genPackage.getModelWizardClassName());
-                        stringBuffer.append(TEXT_71);
-                        stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
-                        stringBuffer.append(TEXT_72);
-                        stringBuffer.append(genPackage.getModelWizardClassName());
-                        stringBuffer.append(TEXT_73);
-                        stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
-                        stringBuffer.append(TEXT_74);
-                        stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
-                        stringBuffer.append(TEXT_75);
-                    } else {
                         stringBuffer.append(TEXT_76);
-                        stringBuffer.append(genPackage.getQualifiedModelWizardClassName());
+                        stringBuffer.append(genPackage.getModelWizardClassName());
                         stringBuffer.append(TEXT_77);
-                        stringBuffer.append(genPackage.getModelWizardClassName());
+                        stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
                         stringBuffer.append(TEXT_78);
-                        stringBuffer.append(genPackage.getQualifiedModelWizardClassName());
-                        stringBuffer.append(TEXT_79);
-                        stringBuffer.append(genPackage.getPrefix());
-                        stringBuffer.append(TEXT_80);
                         stringBuffer.append(genPackage.getModelWizardClassName());
+                        stringBuffer.append(TEXT_79);
+                        stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
+                        stringBuffer.append(TEXT_80);
+                        stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
                         stringBuffer.append(TEXT_81);
+                    } else {
+                        stringBuffer.append(TEXT_82);
+                        stringBuffer.append(genPackage.getQualifiedModelWizardClassName());
+                        stringBuffer.append(TEXT_83);
+                        stringBuffer.append(genPackage.getModelWizardClassName());
+                        stringBuffer.append(TEXT_84);
+                        stringBuffer.append(genPackage.getQualifiedModelWizardClassName());
+                        stringBuffer.append(TEXT_85);
+                        stringBuffer.append(genPackage.getPrefix());
+                        stringBuffer.append(TEXT_86);
+                        stringBuffer.append(genPackage.getModelWizardClassName());
+                        stringBuffer.append(TEXT_87);
                     }
-                }
-                stringBuffer.append(TEXT_82);
-                stringBuffer.append(genPackage.getQualifiedEditorClassName());
-                stringBuffer.append(TEXT_83);
-                stringBuffer.append(genPackage.getEditorClassName());
-                stringBuffer.append(TEXT_84);
-                stringBuffer.append(genPackage.getPrefix());
-                stringBuffer.append(TEXT_85);
-                if (!genPackage.isContentType()) {
-                    stringBuffer.append(TEXT_86);
-                    stringBuffer.append(genPackage.getFileExtension());
-                    stringBuffer.append(TEXT_87);
                 }
                 stringBuffer.append(TEXT_88);
                 stringBuffer.append(genPackage.getQualifiedEditorClassName());
                 stringBuffer.append(TEXT_89);
-                stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
+                stringBuffer.append(genPackage.getEditorClassName());
                 stringBuffer.append(TEXT_90);
-                if (genPackage.isContentType()) {
-                    stringBuffer.append(TEXT_91);
-                    stringBuffer.append(genPackage.getQualifiedContentTypeIdentifier());
+                stringBuffer.append(genPackage.getPrefix());
+                stringBuffer.append(TEXT_91);
+                if (!genPackage.isContentType()) {
                     stringBuffer.append(TEXT_92);
+                    stringBuffer.append(genPackage.getFileExtension());
+                    stringBuffer.append(TEXT_93);
                 }
-                stringBuffer.append(TEXT_93);
+                stringBuffer.append(TEXT_94);
+                stringBuffer.append(genPackage.getQualifiedEditorClassName());
+                stringBuffer.append(TEXT_95);
+                stringBuffer.append(genPackage.getQualifiedActionBarContributorClassName());
+                stringBuffer.append(TEXT_96);
+                if (genPackage.isContentType()) {
+                    stringBuffer.append(TEXT_97);
+                    stringBuffer.append(genPackage.getQualifiedContentTypeIdentifier());
+                    stringBuffer.append(TEXT_98);
+                }
+                stringBuffer.append(TEXT_99);
             }
         }
-        stringBuffer.append(TEXT_94);
+        stringBuffer.append(TEXT_100);
     }
 
     public boolean preCondition() throws Exception {
         GenModel genModel = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-        canGenerate = canGenerate && true;
+        canGenerate = canGenerate && (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT);
         return canGenerate;
     }
 }

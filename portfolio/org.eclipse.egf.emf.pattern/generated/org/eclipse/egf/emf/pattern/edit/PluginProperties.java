@@ -238,7 +238,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
         GenModel genModel = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
-        canGenerate = canGenerate && true;
+        canGenerate = canGenerate && (true);
         return canGenerate;
     }
 }
