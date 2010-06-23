@@ -20,14 +20,25 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
     </copyright>
 
-    <license url="%licenseURL">
+    <license 
+        url="%licenseURL"
+    >
         %license
     </license>
 
     <url>
-        <update label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
-        <discovery label="%EMFUpdateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
-        <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
+        <update 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+        <discovery 
+            label="%EMFUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emf/updates/"
+        />
+        <discovery 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
     </url>
 
     <requires>
