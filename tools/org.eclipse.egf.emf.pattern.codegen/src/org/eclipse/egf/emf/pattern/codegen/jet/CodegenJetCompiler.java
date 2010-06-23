@@ -50,8 +50,6 @@ public class CodegenJetCompiler extends JETCompiler {
     protected StringBuffer javaBuffer = new StringBuffer();
     protected IProject codegenProject;
 
-    protected boolean skipNextLine = false;
-
     public CodegenJetCompiler(IProject codegenProject, String templateURI) throws JETException {
         super(templateURI);
         this.codegenProject = codegenProject;
@@ -59,17 +57,17 @@ public class CodegenJetCompiler extends JETCompiler {
 
     @Override
     public void handleCharData(char[] chars) throws JETException {
-        if (skipNextLine ) {
-            skipNextLine = false;
-            if (chars.length > 0 && chars[0] == '\n') {
-                if (chars.length == 1)
-                    return;
-                
-                char[] newChars = new char[chars.length - 1];
-                System.arraycopy(chars, 1, newChars, 0, chars.length - 1);
-                chars = newChars;
-            }
-        }
+//        if (skipNextLine) {
+//            skipNextLine = false;
+//            if (chars.length > 0 && chars[0] == '\n') {
+//                if (chars.length == 1)
+//                    return;
+//                
+//                char[] newChars = new char[chars.length - 1];
+//                System.arraycopy(chars, 1, newChars, 0, chars.length - 1);
+//                chars = newChars;
+//            }
+//        }
 
         if (currentSection == null)
             enterSection();
@@ -112,19 +110,15 @@ public class CodegenJetCompiler extends JETCompiler {
             currentSection.setFailAttribute(fail);
 
             if (FAIL_ALTERNATIVE.equals(fail)) {
-                skipNextLine = true;
                 parentSection = currentSection;
             }
             exitSection();
         } else if (DIRECTIVE_START.equals(directive)) {
-            skipNextLine = true;
             // ignore me
         } else if (DIRECTIVE_END.equals(directive)) {
-            skipNextLine = true;
             parentSection = parentSection.getParent();
             exitSection();
         } else if (DIRECTIVE_JET.equals(directive)) {
-            skipNextLine = true;
             javaBuffer.append("package default;\n"); //$NON-NLS-1$
             String[] imports = attributes.get("imports").split(" "); //$NON-NLS-1$ //$NON-NLS-2$
             for (String myImport : imports) {
