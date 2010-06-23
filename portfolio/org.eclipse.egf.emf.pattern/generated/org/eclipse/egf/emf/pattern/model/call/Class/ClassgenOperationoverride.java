@@ -26,34 +26,34 @@ public class ClassgenOperationoverride {
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
-    protected final String TEXT_2 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_3 = NL;
-    protected final String TEXT_4 = NL + "\t";
-    protected final String TEXT_5 = " ";
-    protected final String TEXT_6 = "(";
-    protected final String TEXT_7 = ")";
-    protected final String TEXT_8 = ";" + NL;
-    protected final String TEXT_9 = NL + "\tpublic ";
-    protected final String TEXT_10 = " ";
-    protected final String TEXT_11 = "(";
-    protected final String TEXT_12 = ")";
-    protected final String TEXT_13 = NL + "\t{";
-    protected final String TEXT_14 = NL + "\t\t";
-    protected final String TEXT_15 = NL + "\t\t// TODO: implement this method" + NL + "\t\t// -> specify the condition that violates the invariant" + NL + "\t\t// -> verify the details of the diagnostic, including severity and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
-    protected final String TEXT_16 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-    protected final String TEXT_17 = ".add" + NL + "\t\t\t\t\t(new ";
-    protected final String TEXT_18 = NL + "\t\t\t\t\t\t(";
-    protected final String TEXT_19 = ".ERROR," + NL + "\t\t\t\t\t\t ";
-    protected final String TEXT_20 = ".DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t ";
-    protected final String TEXT_21 = ".";
-    protected final String TEXT_22 = "," + NL + "\t\t\t\t\t\t ";
-    protected final String TEXT_23 = ".INSTANCE.getString(\"_UI_GenericInvariant_diagnostic\", new Object[] { \"";
-    protected final String TEXT_24 = "\", ";
-    protected final String TEXT_25 = ".getObjectLabel(this, ";
-    protected final String TEXT_26 = ") }),";
-    protected final String TEXT_27 = NL + "\t\t\t\t\t\t new Object [] { this }));" + NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn true;";
-    protected final String TEXT_28 = NL;
-    protected final String TEXT_29 = "  ";
+    protected final String TEXT_2 = NL;
+    protected final String TEXT_3 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_4 = NL;
+    protected final String TEXT_5 = NL + "\t";
+    protected final String TEXT_6 = " ";
+    protected final String TEXT_7 = "(";
+    protected final String TEXT_8 = ")";
+    protected final String TEXT_9 = ";" + NL;
+    protected final String TEXT_10 = NL + "\tpublic ";
+    protected final String TEXT_11 = " ";
+    protected final String TEXT_12 = "(";
+    protected final String TEXT_13 = ")";
+    protected final String TEXT_14 = NL + "\t{";
+    protected final String TEXT_15 = NL + "\t\t";
+    protected final String TEXT_16 = NL + "\t\t// TODO: implement this method" + NL + "\t\t// -> specify the condition that violates the invariant" + NL + "\t\t// -> verify the details of the diagnostic, including severity and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+    protected final String TEXT_17 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+    protected final String TEXT_18 = ".add" + NL + "\t\t\t\t\t(new ";
+    protected final String TEXT_19 = NL + "\t\t\t\t\t\t(";
+    protected final String TEXT_20 = ".ERROR," + NL + "\t\t\t\t\t\t ";
+    protected final String TEXT_21 = ".DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t ";
+    protected final String TEXT_22 = ".";
+    protected final String TEXT_23 = "," + NL + "\t\t\t\t\t\t ";
+    protected final String TEXT_24 = ".INSTANCE.getString(\"_UI_GenericInvariant_diagnostic\", new Object[] { \"";
+    protected final String TEXT_25 = "\", ";
+    protected final String TEXT_26 = ".getObjectLabel(this, ";
+    protected final String TEXT_27 = ") }),";
+    protected final String TEXT_28 = NL + "\t\t\t\t\t\t new Object [] { this }));" + NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn true;";
+    protected final String TEXT_29 = NL;
     protected final String TEXT_30 = NL + "\t}" + NL;
     protected final String TEXT_31 = NL;
     protected final String TEXT_32 = NL;
@@ -259,8 +259,9 @@ public class ClassgenOperationoverride {
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        stringBuffer.append(TEXT_1);
         if (isInterface) {
-            stringBuffer.append(TEXT_1);
+            stringBuffer.append(TEXT_2);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genOperation", genOperation);
@@ -279,9 +280,9 @@ public class ClassgenOperationoverride {
 
             //Class/genOperation.javadoc.override.javajetinc
         } else {
-            stringBuffer.append(TEXT_2);
+            stringBuffer.append(TEXT_3);
             if (isJDK50) { //Class/genOperation.annotations.insert.javajetinc
-                stringBuffer.append(TEXT_3);
+                stringBuffer.append(TEXT_4);
                 {
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genOperation", genOperation);
@@ -301,62 +302,62 @@ public class ClassgenOperationoverride {
             }
         }
         if (!isImplementation) {
-            stringBuffer.append(TEXT_4);
-            stringBuffer.append(genOperation.getTypeParameters(genClass));
-            stringBuffer.append(genOperation.getImportedType(genClass));
             stringBuffer.append(TEXT_5);
-            stringBuffer.append(genOperation.getName());
-            stringBuffer.append(TEXT_6);
-            stringBuffer.append(genOperation.getParameters(genClass));
-            stringBuffer.append(TEXT_7);
-            stringBuffer.append(genOperation.getThrows(genClass));
-            stringBuffer.append(TEXT_8);
-        } else {
-            stringBuffer.append(TEXT_9);
             stringBuffer.append(genOperation.getTypeParameters(genClass));
             stringBuffer.append(genOperation.getImportedType(genClass));
-            stringBuffer.append(TEXT_10);
+            stringBuffer.append(TEXT_6);
             stringBuffer.append(genOperation.getName());
-            stringBuffer.append(TEXT_11);
+            stringBuffer.append(TEXT_7);
             stringBuffer.append(genOperation.getParameters(genClass));
-            stringBuffer.append(TEXT_12);
+            stringBuffer.append(TEXT_8);
             stringBuffer.append(genOperation.getThrows(genClass));
+            stringBuffer.append(TEXT_9);
+        } else {
+            stringBuffer.append(TEXT_10);
+            stringBuffer.append(genOperation.getTypeParameters(genClass));
+            stringBuffer.append(genOperation.getImportedType(genClass));
+            stringBuffer.append(TEXT_11);
+            stringBuffer.append(genOperation.getName());
+            stringBuffer.append(TEXT_12);
+            stringBuffer.append(genOperation.getParameters(genClass));
             stringBuffer.append(TEXT_13);
+            stringBuffer.append(genOperation.getThrows(genClass));
+            stringBuffer.append(TEXT_14);
             if (genOperation.hasBody()) {
-                stringBuffer.append(TEXT_14);
+                stringBuffer.append(TEXT_15);
                 stringBuffer.append(genOperation.getBody(genModel.getIndentation(stringBuffer)));
             } else if (genOperation.isInvariant()) {
                 GenClass opClass = genOperation.getGenClass();
                 String diagnostics = genOperation.getGenParameters().get(0).getName();
                 String context = genOperation.getGenParameters().get(1).getName();
-                stringBuffer.append(TEXT_15);
-                stringBuffer.append(diagnostics);
                 stringBuffer.append(TEXT_16);
                 stringBuffer.append(diagnostics);
                 stringBuffer.append(TEXT_17);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
+                stringBuffer.append(diagnostics);
                 stringBuffer.append(TEXT_18);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
+                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.BasicDiagnostic"));
                 stringBuffer.append(TEXT_19);
-                stringBuffer.append(opClass.getGenPackage().getImportedValidatorClassName());
+                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Diagnostic"));
                 stringBuffer.append(TEXT_20);
                 stringBuffer.append(opClass.getGenPackage().getImportedValidatorClassName());
                 stringBuffer.append(TEXT_21);
-                stringBuffer.append(opClass.getOperationID(genOperation));
+                stringBuffer.append(opClass.getGenPackage().getImportedValidatorClassName());
                 stringBuffer.append(TEXT_22);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
+                stringBuffer.append(opClass.getOperationID(genOperation));
                 stringBuffer.append(TEXT_23);
-                stringBuffer.append(genOperation.getName());
+                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
                 stringBuffer.append(TEXT_24);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.EObjectValidator"));
+                stringBuffer.append(genOperation.getName());
                 stringBuffer.append(TEXT_25);
-                stringBuffer.append(context);
+                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.EObjectValidator"));
                 stringBuffer.append(TEXT_26);
+                stringBuffer.append(context);
+                stringBuffer.append(TEXT_27);
                 stringBuffer.append(genModel.getNonNLS());
                 stringBuffer.append(genModel.getNonNLS(2));
-                stringBuffer.append(TEXT_27);
-            } else {
                 stringBuffer.append(TEXT_28);
+            } else {
+                stringBuffer.append(TEXT_29);
                 {
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genOperation", genOperation);
@@ -374,7 +375,6 @@ public class ClassgenOperationoverride {
                 }
 
                 //Class/implementedGenOperation.todo.override.javajetinc
-                stringBuffer.append(TEXT_29);
             }
             stringBuffer.append(TEXT_30);
         }

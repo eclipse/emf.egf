@@ -1,3 +1,5 @@
+
+
 	/**
 	 * Returns the value of the '<em><b><%=genFeature.getFormattedName()%></b></em>' <%=genFeature.getFeatureKind()%>.
     <%if (genFeature.isListType()) {%>

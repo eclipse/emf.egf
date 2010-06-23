@@ -25,7 +25,7 @@ public class InterfacebasicUnsetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL + "\tpublic ";
     protected final String TEXT_4 = " basicUnset";
@@ -74,10 +74,9 @@ public class InterfacebasicUnsetGenFeatureoverride {
     protected final String TEXT_47 = "ESet";
     protected final String TEXT_48 = ");" + NL + "\t\t\tif (msgs == null) msgs = notification; else msgs.add(notification);" + NL + "\t\t}" + NL + "\t\treturn msgs;";
     protected final String TEXT_49 = NL;
-    protected final String TEXT_50 = "    ";
-    protected final String TEXT_51 = NL + "\t}" + NL + NL;
+    protected final String TEXT_50 = NL + "\t}" + NL + NL;
+    protected final String TEXT_51 = NL;
     protected final String TEXT_52 = NL;
-    protected final String TEXT_53 = NL;
 
     public InterfacebasicUnsetGenFeatureoverride() {
         //Here is the constructor
@@ -160,8 +159,8 @@ public class InterfacebasicUnsetGenFeatureoverride {
             ctx.clearBuffer();
         }
 
+        stringBuffer.append(TEXT_51);
         stringBuffer.append(TEXT_52);
-        stringBuffer.append(TEXT_53);
         return stringBuffer.toString();
     }
 
@@ -425,9 +424,8 @@ public class InterfacebasicUnsetGenFeatureoverride {
             }
 
             //Class/basicUnsetGenFeature.todo.override.javajetinc
-            stringBuffer.append(TEXT_50);
         }
-        stringBuffer.append(TEXT_51);
+        stringBuffer.append(TEXT_50);
     }
 
     public boolean preCondition() throws Exception {

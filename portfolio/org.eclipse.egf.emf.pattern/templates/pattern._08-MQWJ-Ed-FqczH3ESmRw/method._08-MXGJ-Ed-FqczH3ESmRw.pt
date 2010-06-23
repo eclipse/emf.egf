@@ -1,3 +1,5 @@
+
+
 <%for (GenPackage aGenPackage : genModel.getAllGenPackagesWithClassifiers()) {%>
   <%if (!aGenPackage.getGenClasses().isEmpty() && aGenPackage.getGenModel().hasEditSupport()) {%>
 		adapterFactory.addAdapterFactory(new <%=aGenPackage.getImportedItemProviderAdapterFactoryClassName()%>());

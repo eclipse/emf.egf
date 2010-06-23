@@ -25,7 +25,7 @@ public class TestCasegetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * Tests the '{@link ";
+    protected final String TEXT_1 = NL + NL + "\t/**" + NL + "\t * Tests the '{@link ";
     protected final String TEXT_2 = "#";
     protected final String TEXT_3 = "() <em>";
     protected final String TEXT_4 = "</em>}' feature getter." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see ";
@@ -35,7 +35,7 @@ public class TestCasegetGenFeatureoverride {
     protected final String TEXT_8 = NL + "\tpublic void test";
     protected final String TEXT_9 = "()" + NL + "\t{";
     protected final String TEXT_10 = NL;
-    protected final String TEXT_11 = "\t}" + NL;
+    protected final String TEXT_11 = NL + "\t}" + NL;
     protected final String TEXT_12 = NL;
     protected final String TEXT_13 = NL;
 

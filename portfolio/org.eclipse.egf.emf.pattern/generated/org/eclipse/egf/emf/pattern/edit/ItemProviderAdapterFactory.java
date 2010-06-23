@@ -135,29 +135,25 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
     protected final String TEXT_106 = "(";
     protected final String TEXT_107 = " object)" + NL + "\t\t\t{";
     protected final String TEXT_108 = NL;
-    protected final String TEXT_109 = "        ";
+    protected final String TEXT_109 = NL;
     protected final String TEXT_110 = NL;
-    protected final String TEXT_111 = "        ";
+    protected final String TEXT_111 = NL;
     protected final String TEXT_112 = NL;
-    protected final String TEXT_113 = "      ";
-    protected final String TEXT_114 = NL;
-    protected final String TEXT_115 = "      ";
-    protected final String TEXT_116 = NL;
-    protected final String TEXT_117 = NL + "\t\t\t\treturn null;" + NL + "\t\t\t}" + NL + " ";
-    protected final String TEXT_118 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
-    protected final String TEXT_119 = " createChildParameter(Object feature, Object child)" + NL + "\t\t\t{" + NL + "\t\t\t\treturn new ";
-    protected final String TEXT_120 = "(null, feature, child);" + NL + "\t\t\t}" + NL + "" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
-    protected final String TEXT_121 = " getNewChildDescriptors(Object object, ";
-    protected final String TEXT_122 = " editingDomain)" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_123 = " result = new ";
-    protected final String TEXT_124 = "();" + NL + "\t\t   new CreationSwitch(result, editingDomain).doSwitch((";
-    protected final String TEXT_125 = ")object);" + NL + "\t\t   return result;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
-    protected final String TEXT_126 = " getResourceLocator()" + NL + "\t\t{" + NL + "\t\t\treturn ";
-    protected final String TEXT_127 = ".INSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL;
-    protected final String TEXT_128 = NL + "}";
-    protected final String TEXT_129 = NL;
-    protected final String TEXT_130 = NL;
-    protected final String TEXT_131 = NL;
+    protected final String TEXT_113 = NL + "\t\t\t\treturn null;" + NL + "\t\t\t}" + NL + " ";
+    protected final String TEXT_114 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
+    protected final String TEXT_115 = " createChildParameter(Object feature, Object child)" + NL + "\t\t\t{" + NL + "\t\t\t\treturn new ";
+    protected final String TEXT_116 = "(null, feature, child);" + NL + "\t\t\t}" + NL + "" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+    protected final String TEXT_117 = " getNewChildDescriptors(Object object, ";
+    protected final String TEXT_118 = " editingDomain)" + NL + "\t\t{" + NL + "\t\t\t";
+    protected final String TEXT_119 = " result = new ";
+    protected final String TEXT_120 = "();" + NL + "\t\t   new CreationSwitch(result, editingDomain).doSwitch((";
+    protected final String TEXT_121 = ")object);" + NL + "\t\t   return result;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+    protected final String TEXT_122 = " getResourceLocator()" + NL + "\t\t{" + NL + "\t\t\treturn ";
+    protected final String TEXT_123 = ".INSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL;
+    protected final String TEXT_124 = NL + "}";
+    protected final String TEXT_125 = NL;
+    protected final String TEXT_126 = NL;
+    protected final String TEXT_127 = NL;
 
     public ItemProviderAdapterFactory() {
         //Here is the constructor
@@ -190,8 +186,8 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_130);
-        stringBuffer.append(TEXT_131);
+        stringBuffer.append(TEXT_126);
+        stringBuffer.append(TEXT_127);
         return stringBuffer.toString();
     }
 
@@ -551,10 +547,9 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
                                 }
 
                                 //ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc
-                                stringBuffer.append(TEXT_109);
                             } else {
                                 GenDataType createDataType = (GenDataType) createClassifier;
-                                stringBuffer.append(TEXT_110);
+                                stringBuffer.append(TEXT_109);
                                 {
                                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                                     callParameters.put("createDataType", createDataType);
@@ -569,11 +564,10 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
                                 }
 
                                 //ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc
-                                stringBuffer.append(TEXT_111);
                             }
                         } else if (createFeature.isReferenceType()) {
                             GenClass createClass = (GenClass) createClassifier;
-                            stringBuffer.append(TEXT_112);
+                            stringBuffer.append(TEXT_110);
                             {
                                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                                 callParameters.put("createClass", createClass);
@@ -588,10 +582,9 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
                             }
 
                             //ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc 
-                            stringBuffer.append(TEXT_113);
                         } else {
                             GenDataType createDataType = (GenDataType) createClassifier;
-                            stringBuffer.append(TEXT_114);
+                            stringBuffer.append(TEXT_111);
                             {
                                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                                 callParameters.put("createDataType", createDataType);
@@ -606,36 +599,35 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
                             }
 
                             //ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc
-                            stringBuffer.append(TEXT_115);
                         }
-                        stringBuffer.append(TEXT_116);
+                        stringBuffer.append(TEXT_112);
                     }
-                    stringBuffer.append(TEXT_117);
+                    stringBuffer.append(TEXT_113);
                 }
-                stringBuffer.append(TEXT_118);
+                stringBuffer.append(TEXT_114);
                 stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.command.CommandParameter"));
-                stringBuffer.append(TEXT_119);
+                stringBuffer.append(TEXT_115);
                 stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.command.CommandParameter"));
-                stringBuffer.append(TEXT_120);
+                stringBuffer.append(TEXT_116);
                 stringBuffer.append(_Collection);
-                stringBuffer.append(TEXT_121);
+                stringBuffer.append(TEXT_117);
                 stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.domain.EditingDomain"));
-                stringBuffer.append(TEXT_122);
+                stringBuffer.append(TEXT_118);
                 stringBuffer.append(_ArrayList);
-                stringBuffer.append(TEXT_123);
+                stringBuffer.append(TEXT_119);
                 stringBuffer.append(_ArrayList);
-                stringBuffer.append(TEXT_124);
+                stringBuffer.append(TEXT_120);
                 stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EObject"));
-                stringBuffer.append(TEXT_125);
+                stringBuffer.append(TEXT_121);
                 stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.ResourceLocator"));
-                stringBuffer.append(TEXT_126);
+                stringBuffer.append(TEXT_122);
                 stringBuffer.append(genPackage.getImportedEditPluginClassName());
-                stringBuffer.append(TEXT_127);
+                stringBuffer.append(TEXT_123);
             }
         }
-        stringBuffer.append(TEXT_128);
+        stringBuffer.append(TEXT_124);
         genModel.emitSortedImports();
-        stringBuffer.append(TEXT_129);
+        stringBuffer.append(TEXT_125);
     }
 
     public boolean preCondition() throws Exception {

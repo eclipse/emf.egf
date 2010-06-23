@@ -25,7 +25,7 @@ public class InterfaceisSetGenFeaturejavadocoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * Returns whether the value of the '{@link ";
+    protected final String TEXT_1 = NL + "\t/**" + NL + "\t * Returns whether the value of the '{@link ";
     protected final String TEXT_2 = "#";
     protected final String TEXT_3 = " <em>";
     protected final String TEXT_4 = "</em>}' ";

@@ -25,7 +25,7 @@ public class InterfacegetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\t// TODO: implement this method to return the '";
+    protected final String TEXT_1 = NL + "\t\t// TODO: implement this method to return the '";
     protected final String TEXT_2 = "' ";
     protected final String TEXT_3 = NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT";
     protected final String TEXT_4 = NL + "\t\t// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting" + NL + "\t\t// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.";

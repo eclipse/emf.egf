@@ -54,7 +54,7 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
     protected final String TEXT_27 = NL + "\t@Override";
     protected final String TEXT_28 = NL + "\tpublic Resource createResource(URI uri)" + NL + "\t{";
     protected final String TEXT_29 = NL;
-    protected final String TEXT_30 = "\t}" + NL + "" + NL + "} //";
+    protected final String TEXT_30 = NL + "\t}" + NL + "" + NL + "} //";
     protected final String TEXT_31 = NL;
     protected final String TEXT_32 = NL;
     protected final String TEXT_33 = NL;

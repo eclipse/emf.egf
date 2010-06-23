@@ -25,14 +25,15 @@ public class EditoraddItemProviderFactoriesoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\tadapterFactory.addAdapterFactory(new ";
-    protected final String TEXT_2 = "());";
-    protected final String TEXT_3 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
-    protected final String TEXT_4 = "());";
-    protected final String TEXT_5 = NL;
+    protected final String TEXT_1 = "";
+    protected final String TEXT_2 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
+    protected final String TEXT_3 = "());";
+    protected final String TEXT_4 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
+    protected final String TEXT_5 = "());";
     protected final String TEXT_6 = NL;
     protected final String TEXT_7 = NL;
     protected final String TEXT_8 = NL;
+    protected final String TEXT_9 = NL;
 
     public EditoraddItemProviderFactoriesoverride() {
         //Here is the constructor
@@ -160,8 +161,8 @@ public class EditoraddItemProviderFactoriesoverride {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_7);
         stringBuffer.append(TEXT_8);
+        stringBuffer.append(TEXT_9);
         return stringBuffer.toString();
     }
 
@@ -350,21 +351,22 @@ public class EditoraddItemProviderFactoriesoverride {
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        stringBuffer.append(TEXT_1);
         for (GenPackage aGenPackage : genModel.getAllGenPackagesWithClassifiers()) {
             if (!aGenPackage.getGenClasses().isEmpty() && aGenPackage.getGenModel().hasEditSupport()) {
-                stringBuffer.append(TEXT_1);
-                stringBuffer.append(aGenPackage.getImportedItemProviderAdapterFactoryClassName());
                 stringBuffer.append(TEXT_2);
+                stringBuffer.append(aGenPackage.getImportedItemProviderAdapterFactoryClassName());
+                stringBuffer.append(TEXT_3);
             }
         }
         for (GenPackage aGenPackage : genModel.getAllUsedGenPackagesWithClassifiers()) {
             if (!aGenPackage.getGenClasses().isEmpty() && aGenPackage.getGenModel().hasEditSupport()) {
-                stringBuffer.append(TEXT_3);
-                stringBuffer.append(aGenPackage.getImportedItemProviderAdapterFactoryClassName());
                 stringBuffer.append(TEXT_4);
+                stringBuffer.append(aGenPackage.getImportedItemProviderAdapterFactoryClassName());
+                stringBuffer.append(TEXT_5);
             }
         }
-        stringBuffer.append(TEXT_5);
+        stringBuffer.append(TEXT_6);
         {
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genPackage", genPackage);
@@ -390,7 +392,7 @@ public class EditoraddItemProviderFactoriesoverride {
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_09RHMGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_7);
     }
 
     public boolean preCondition() throws Exception {

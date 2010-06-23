@@ -25,7 +25,7 @@ public class InterfacebasicGetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\t// TODO: implement this method to return the '";
+    protected final String TEXT_1 = NL + "\t\t// TODO: implement this method to return the '";
     protected final String TEXT_2 = "' ";
     protected final String TEXT_3 = NL + "\t\t// -> do not perform proxy resolution" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tthrow new UnsupportedOperationException();" + NL;
     protected final String TEXT_4 = NL;

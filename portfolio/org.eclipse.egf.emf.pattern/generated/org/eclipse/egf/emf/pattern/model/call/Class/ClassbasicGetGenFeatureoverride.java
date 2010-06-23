@@ -25,7 +25,7 @@ public class ClassbasicGetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL + "\tpublic ";
     protected final String TEXT_4 = " basicGet";
@@ -54,10 +54,9 @@ public class ClassbasicGetGenFeatureoverride {
     protected final String TEXT_27 = "().get(";
     protected final String TEXT_28 = ", false);";
     protected final String TEXT_29 = NL;
-    protected final String TEXT_30 = "    ";
-    protected final String TEXT_31 = NL + "\t}" + NL + NL;
+    protected final String TEXT_30 = NL + "\t}" + NL + NL;
+    protected final String TEXT_31 = NL;
     protected final String TEXT_32 = NL;
-    protected final String TEXT_33 = NL;
 
     public ClassbasicGetGenFeatureoverride() {
         //Here is the constructor
@@ -140,8 +139,8 @@ public class ClassbasicGetGenFeatureoverride {
             ctx.clearBuffer();
         }
 
+        stringBuffer.append(TEXT_31);
         stringBuffer.append(TEXT_32);
-        stringBuffer.append(TEXT_33);
         return stringBuffer.toString();
     }
 
@@ -370,9 +369,8 @@ public class ClassbasicGetGenFeatureoverride {
             }
 
             //Class/basicGetGenFeature.todo.override.javajetinc
-            stringBuffer.append(TEXT_30);
         }
-        stringBuffer.append(TEXT_31);
+        stringBuffer.append(TEXT_30);
     }
 
     public boolean preCondition() throws Exception {

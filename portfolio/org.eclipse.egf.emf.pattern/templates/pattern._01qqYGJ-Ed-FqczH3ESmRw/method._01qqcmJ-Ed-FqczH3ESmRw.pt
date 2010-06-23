@@ -1,3 +1,5 @@
+
+
 		// TODO: implement this method to return whether the '<%=genFeature.getFormattedName()%>' <%=genFeature.getFeatureKind()%> is set
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

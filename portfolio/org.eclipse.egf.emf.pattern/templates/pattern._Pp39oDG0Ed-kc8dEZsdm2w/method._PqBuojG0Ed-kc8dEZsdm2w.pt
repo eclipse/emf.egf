@@ -1,3 +1,4 @@
+
 <%
 /**
  * <copyright>
@@ -178,9 +179,11 @@ public<%if (genClass.isAbstract()) {%> abstract<%}%> class <%=genClass.getTestCa
 	}
 <%}%>
 <%for (GenFeature genFeature : genClass.getImplementedGenFeatures()) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenFeature.override.javajetinc%><%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenFeature.override.javajetinc%>
+<%}%>
 <%for (GenOperation genOperation : genClass.getImplementedGenOperations()) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenOperation.override.javajetinc%><%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/implementedGenOperation.override.javajetinc%>
+<%}%>
 
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 } //<%=genClass.getTestCaseClassName()%>

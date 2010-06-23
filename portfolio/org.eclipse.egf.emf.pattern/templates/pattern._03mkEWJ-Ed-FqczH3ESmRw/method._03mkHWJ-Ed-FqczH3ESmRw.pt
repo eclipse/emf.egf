@@ -1,3 +1,5 @@
+
+
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((<%=genModel.getImportedName("org.eclipse.emf.edit.provider.ComposeableAdapterFactory")%>)adapterFactory).getRootAdapterFactory(),

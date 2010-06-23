@@ -1,3 +1,4 @@
+
 <%
 /**
  * <copyright>
@@ -85,7 +86,8 @@ public class <%=genPackage.getResourceFactoryClassName()%> extends <%=genPackage
   <%}%>
 	public Resource createResource(URI uri)
 	{
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel"%><%//ResourceFactoryClass/createResource.override.javajetinc%>	}
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel"%><%//ResourceFactoryClass/createResource.override.javajetinc%>
+	}
 
 } //<%=genPackage.getResourceFactoryClassName()%>
 <%genModel.emitSortedImports();%>

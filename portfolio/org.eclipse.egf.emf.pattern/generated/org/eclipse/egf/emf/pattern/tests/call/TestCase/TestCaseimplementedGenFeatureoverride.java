@@ -25,19 +25,15 @@ public class TestCaseimplementedGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "  ";
+    protected final String TEXT_1 = "";
     protected final String TEXT_2 = NL;
-    protected final String TEXT_3 = "    ";
+    protected final String TEXT_3 = NL;
     protected final String TEXT_4 = NL;
-    protected final String TEXT_5 = "    ";
+    protected final String TEXT_5 = NL;
     protected final String TEXT_6 = NL;
-    protected final String TEXT_7 = "    ";
+    protected final String TEXT_7 = NL;
     protected final String TEXT_8 = NL;
-    protected final String TEXT_9 = "    ";
-    protected final String TEXT_10 = NL;
-    protected final String TEXT_11 = NL;
-    protected final String TEXT_12 = NL;
-    protected final String TEXT_13 = NL;
+    protected final String TEXT_9 = NL;
 
     public TestCaseimplementedGenFeatureoverride() {
         //Here is the constructor
@@ -85,8 +81,8 @@ public class TestCaseimplementedGenFeatureoverride {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_12);
-        stringBuffer.append(TEXT_13);
+        stringBuffer.append(TEXT_8);
+        stringBuffer.append(TEXT_9);
         return stringBuffer.toString();
     }
 
@@ -161,10 +157,9 @@ public class TestCaseimplementedGenFeatureoverride {
                 }
 
                 //TestCase/getGenFeature.override.javajetinc
-                stringBuffer.append(TEXT_3);
             }
             if (genFeature.isSet() && !genFeature.isSuppressedSetVisibility()) {
-                stringBuffer.append(TEXT_4);
+                stringBuffer.append(TEXT_3);
                 {
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
@@ -175,10 +170,9 @@ public class TestCaseimplementedGenFeatureoverride {
                 }
 
                 //TestCase/setGenFeature.override.javajetinc
-                stringBuffer.append(TEXT_5);
             }
             if (genFeature.isUnset() && !genFeature.isSuppressedUnsetVisibility()) {
-                stringBuffer.append(TEXT_6);
+                stringBuffer.append(TEXT_4);
                 {
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
@@ -189,10 +183,9 @@ public class TestCaseimplementedGenFeatureoverride {
                 }
 
                 //TestCase/unsetGenFeature.override.javajetinc
-                stringBuffer.append(TEXT_7);
             }
             if (genFeature.isIsSet() && !genFeature.isSuppressedIsSetVisibility()) {
-                stringBuffer.append(TEXT_8);
+                stringBuffer.append(TEXT_5);
                 {
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
@@ -203,10 +196,9 @@ public class TestCaseimplementedGenFeatureoverride {
                 }
 
                 //TestCase/isSetGenFeature.override.javajetinc
-                stringBuffer.append(TEXT_9);
             }
         }
-        stringBuffer.append(TEXT_10);
+        stringBuffer.append(TEXT_6);
         {
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
@@ -216,7 +208,7 @@ public class TestCaseimplementedGenFeatureoverride {
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1CovYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        stringBuffer.append(TEXT_11);
+        stringBuffer.append(TEXT_7);
     }
 
     public boolean preCondition() throws Exception {

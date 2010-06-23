@@ -1,3 +1,5 @@
+
+
 <%if (genClass.isMapEntry()) {%>
 		<%=genClass.getImportedInterfaceName()%><%if (genModel.useGenerics()) {%><?, ?><%}%> <%=genClass.getSafeUncapName()%> = (<%=genClass.getImportedInterfaceName()%><%if (genModel.useGenerics()) {%><?, ?><%}%>)object;
   <%if (!genClass.getMapEntryKeyFeature().isPropertyMultiLine() && !genClass.getMapEntryValueFeature().isPropertyMultiLine()) {%>

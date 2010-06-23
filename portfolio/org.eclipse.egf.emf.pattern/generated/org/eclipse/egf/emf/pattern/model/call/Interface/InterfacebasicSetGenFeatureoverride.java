@@ -25,7 +25,7 @@ public class InterfacebasicSetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL + "\tpublic ";
     protected final String TEXT_4 = " basicSet";
@@ -111,10 +111,9 @@ public class InterfacebasicSetGenFeatureoverride {
     protected final String TEXT_84 = ", new";
     protected final String TEXT_85 = ", msgs);";
     protected final String TEXT_86 = NL;
-    protected final String TEXT_87 = "    ";
-    protected final String TEXT_88 = NL + "\t}" + NL + NL;
+    protected final String TEXT_87 = NL + "\t}" + NL + NL;
+    protected final String TEXT_88 = NL;
     protected final String TEXT_89 = NL;
-    protected final String TEXT_90 = NL;
 
     public InterfacebasicSetGenFeatureoverride() {
         //Here is the constructor
@@ -197,8 +196,8 @@ public class InterfacebasicSetGenFeatureoverride {
             ctx.clearBuffer();
         }
 
+        stringBuffer.append(TEXT_88);
         stringBuffer.append(TEXT_89);
-        stringBuffer.append(TEXT_90);
         return stringBuffer.toString();
     }
 
@@ -628,9 +627,8 @@ public class InterfacebasicSetGenFeatureoverride {
             }
 
             //Class/basicSetGenFeature.todo.override.javajetinc
-            stringBuffer.append(TEXT_87);
         }
-        stringBuffer.append(TEXT_88);
+        stringBuffer.append(TEXT_87);
     }
 
     public boolean preCondition() throws Exception {

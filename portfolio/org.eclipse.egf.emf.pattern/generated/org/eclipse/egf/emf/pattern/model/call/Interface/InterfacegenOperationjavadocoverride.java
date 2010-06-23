@@ -25,7 +25,7 @@ public class InterfacegenOperationjavadocoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**";
+    protected final String TEXT_1 = NL + "\t/**";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->";
     protected final String TEXT_4 = NL + "\t * <!-- begin-model-doc -->";

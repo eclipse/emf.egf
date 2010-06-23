@@ -1,3 +1,5 @@
+
+
 		// TODO: implement this method to set the '<%=genFeature.getFormattedName()%>' <%=genFeature.getFeatureKind()%>
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

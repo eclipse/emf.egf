@@ -1,4 +1,6 @@
 
+
+
 	/**
 	 * Tests the '{@link <%=genFeature.getGenClass().getQualifiedInterfaceName()%>#set<%=genFeature.getAccessorName()%>(<%=genFeature.getRawBoundType()%>) <em><%=genFeature.getFormattedName()%></em>}' feature setter.
 	 * <!-- begin-user-doc -->
@@ -11,4 +13,5 @@
       <%}%>
 	public void testSet<%=genFeature.getAccessorName()%>()
 	{
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/setGenFeature.todo.override.javajetinc%>	}
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%><%//TestCase/setGenFeature.todo.override.javajetinc%>
+	}

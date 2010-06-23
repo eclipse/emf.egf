@@ -25,7 +25,7 @@ public class TestCaseunsetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\t// TODO: implement this test method" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tfail();" + NL;
+    protected final String TEXT_1 = NL + "\t\t// TODO: implement this test method" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tfail();" + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 

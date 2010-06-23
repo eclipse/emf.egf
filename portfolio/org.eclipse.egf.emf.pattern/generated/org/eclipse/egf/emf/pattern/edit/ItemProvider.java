@@ -51,7 +51,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
     protected final String TEXT_24 = " feature." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected void add";
     protected final String TEXT_25 = "PropertyDescriptor(Object object)" + NL + "\t{";
     protected final String TEXT_26 = NL;
-    protected final String TEXT_27 = "\t}" + NL;
+    protected final String TEXT_27 = NL + "\t}" + NL;
     protected final String TEXT_28 = NL + "\t/**" + NL + "\t * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an" + NL + "\t * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or" + NL + "\t * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_29 = NL + "\t@Override";
     protected final String TEXT_30 = NL + "\tpublic ";
@@ -77,7 +77,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
     protected final String TEXT_50 = NL + "\t@Override";
     protected final String TEXT_51 = NL + "\tpublic String getText(Object object)" + NL + "\t{";
     protected final String TEXT_52 = NL;
-    protected final String TEXT_53 = "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This handles model notifications by calling {@link #updateChildren} to update any cached" + NL + "\t * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_53 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This handles model notifications by calling {@link #updateChildren} to update any cached" + NL + "\t * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_54 = NL + "\t@Override";
     protected final String TEXT_55 = NL + "\tpublic void notifyChanged(Notification notification)" + NL + "\t{" + NL + "\t\tupdateChildren(notification);";
     protected final String TEXT_56 = NL + NL + "\t\tswitch (notification.getFeatureID(";
@@ -101,40 +101,36 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
     protected final String TEXT_74 = NL + "\tprotected void collectNewChildDescriptors(";
     protected final String TEXT_75 = " newChildDescriptors, Object object)" + NL + "\t{" + NL + "\t\tsuper.collectNewChildDescriptors(newChildDescriptors, object);";
     protected final String TEXT_76 = NL;
-    protected final String TEXT_77 = "        ";
+    protected final String TEXT_77 = NL;
     protected final String TEXT_78 = NL;
-    protected final String TEXT_79 = "        ";
-    protected final String TEXT_80 = NL;
-    protected final String TEXT_81 = "      ";
-    protected final String TEXT_82 = NL;
-    protected final String TEXT_83 = "      ";
-    protected final String TEXT_84 = NL + "\t}" + NL;
-    protected final String TEXT_85 = NL + "\t/**" + NL + "\t * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_86 = NL + "\t@Override";
-    protected final String TEXT_87 = NL + "\tpublic String getCreateChildText(Object owner, Object feature, Object child, ";
-    protected final String TEXT_88 = " selection)" + NL + "\t{" + NL + "\t\tObject childFeature = feature;" + NL + "\t\tObject childObject = child;" + NL;
-    protected final String TEXT_89 = NL + "\t\tif (childFeature instanceof ";
-    protected final String TEXT_90 = " && ";
-    protected final String TEXT_91 = ".isFeatureMap((EStructuralFeature)childFeature))" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_92 = ".Entry entry = (FeatureMap.Entry)childObject;" + NL + "\t\t\tchildFeature = entry.getEStructuralFeature();" + NL + "\t\t\tchildObject = entry.getValue();" + NL + "\t\t}" + NL;
-    protected final String TEXT_93 = NL + "\t\tboolean qualify =";
-    protected final String TEXT_94 = NL + "\t\t\tchildFeature == ";
-    protected final String TEXT_95 = NL + NL + "\t\tif (qualify)" + NL + "\t\t{" + NL + "\t\t\treturn getString" + NL + "\t\t\t\t(\"_UI_CreateChild_text2\",";
-    protected final String TEXT_96 = NL + "\t\t\t\t new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });" + NL + "\t\t}" + NL + "\t\treturn super.getCreateChildText(owner, feature, child, selection);" + NL + "\t}" + NL;
-    protected final String TEXT_97 = NL + "\t/**" + NL + "\t * Return the resource locator for this item provider's resources." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_98 = NL + "\t@Override";
-    protected final String TEXT_99 = NL + "\tpublic ";
-    protected final String TEXT_100 = " getResourceLocator()" + NL + "\t{";
-    protected final String TEXT_101 = NL + "\t\treturn ((";
-    protected final String TEXT_102 = ")adapterFactory).getResourceLocator();";
-    protected final String TEXT_103 = NL + "\t\treturn ";
-    protected final String TEXT_104 = ".INSTANCE;";
-    protected final String TEXT_105 = NL + "\t}" + NL;
+    protected final String TEXT_79 = NL;
+    protected final String TEXT_80 = NL + "\t}" + NL;
+    protected final String TEXT_81 = NL + "\t/**" + NL + "\t * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_82 = NL + "\t@Override";
+    protected final String TEXT_83 = NL + "\tpublic String getCreateChildText(Object owner, Object feature, Object child, ";
+    protected final String TEXT_84 = " selection)" + NL + "\t{" + NL + "\t\tObject childFeature = feature;" + NL + "\t\tObject childObject = child;" + NL;
+    protected final String TEXT_85 = NL + "\t\tif (childFeature instanceof ";
+    protected final String TEXT_86 = " && ";
+    protected final String TEXT_87 = ".isFeatureMap((EStructuralFeature)childFeature))" + NL + "\t\t{" + NL + "\t\t\t";
+    protected final String TEXT_88 = ".Entry entry = (FeatureMap.Entry)childObject;" + NL + "\t\t\tchildFeature = entry.getEStructuralFeature();" + NL + "\t\t\tchildObject = entry.getValue();" + NL + "\t\t}" + NL;
+    protected final String TEXT_89 = NL + "\t\tboolean qualify =";
+    protected final String TEXT_90 = NL + "\t\t\tchildFeature == ";
+    protected final String TEXT_91 = NL + NL + "\t\tif (qualify)" + NL + "\t\t{" + NL + "\t\t\treturn getString" + NL + "\t\t\t\t(\"_UI_CreateChild_text2\",";
+    protected final String TEXT_92 = NL + "\t\t\t\t new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });" + NL + "\t\t}" + NL + "\t\treturn super.getCreateChildText(owner, feature, child, selection);" + NL + "\t}" + NL;
+    protected final String TEXT_93 = NL + "\t/**" + NL + "\t * Return the resource locator for this item provider's resources." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_94 = NL + "\t@Override";
+    protected final String TEXT_95 = NL + "\tpublic ";
+    protected final String TEXT_96 = " getResourceLocator()" + NL + "\t{";
+    protected final String TEXT_97 = NL + "\t\treturn ((";
+    protected final String TEXT_98 = ")adapterFactory).getResourceLocator();";
+    protected final String TEXT_99 = NL + "\t\treturn ";
+    protected final String TEXT_100 = ".INSTANCE;";
+    protected final String TEXT_101 = NL + "\t}" + NL;
+    protected final String TEXT_102 = NL;
+    protected final String TEXT_103 = NL + "}";
+    protected final String TEXT_104 = NL;
+    protected final String TEXT_105 = NL;
     protected final String TEXT_106 = NL;
-    protected final String TEXT_107 = NL + "}";
-    protected final String TEXT_108 = NL;
-    protected final String TEXT_109 = NL;
-    protected final String TEXT_110 = NL;
 
     public ItemProvider() {
         //Here is the constructor
@@ -167,8 +163,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_109);
-        stringBuffer.append(TEXT_110);
+        stringBuffer.append(TEXT_105);
+        stringBuffer.append(TEXT_106);
         return stringBuffer.toString();
     }
 
@@ -464,10 +460,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                         }
 
                         //ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc
-                        stringBuffer.append(TEXT_77);
                     } else {
                         GenDataType createDataType = (GenDataType) createClassifier;
-                        stringBuffer.append(TEXT_78);
+                        stringBuffer.append(TEXT_77);
                         {
                             final Map<String, Object> callParameters = new HashMap<String, Object>();
                             callParameters.put("createDataType", createDataType);
@@ -482,11 +477,10 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                         }
 
                         //ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc
-                        stringBuffer.append(TEXT_79);
                     }
                 } else if (createFeature.isReferenceType()) {
                     GenClass createClass = (GenClass) createClassifier;
-                    stringBuffer.append(TEXT_80);
+                    stringBuffer.append(TEXT_78);
                     {
                         final Map<String, Object> callParameters = new HashMap<String, Object>();
                         callParameters.put("createClass", createClass);
@@ -501,10 +495,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                     }
 
                     //ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc 
-                    stringBuffer.append(TEXT_81);
                 } else {
                     GenDataType createDataType = (GenDataType) createClassifier;
-                    stringBuffer.append(TEXT_82);
+                    stringBuffer.append(TEXT_79);
                     {
                         final Map<String, Object> callParameters = new HashMap<String, Object>();
                         callParameters.put("createDataType", createDataType);
@@ -519,59 +512,58 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                     }
 
                     //ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc
-                    stringBuffer.append(TEXT_83);
                 }
             }
-            stringBuffer.append(TEXT_84);
+            stringBuffer.append(TEXT_80);
             if (!genClass.getSharedClassCreateChildFeatures().isEmpty()) {
-                stringBuffer.append(TEXT_85);
+                stringBuffer.append(TEXT_81);
                 if (genModel.useClassOverrideAnnotation()) {
-                    stringBuffer.append(TEXT_86);
+                    stringBuffer.append(TEXT_82);
                 }
-                stringBuffer.append(TEXT_87);
+                stringBuffer.append(TEXT_83);
                 stringBuffer.append(genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<?>" : "java.util.Collection"));
-                stringBuffer.append(TEXT_88);
+                stringBuffer.append(TEXT_84);
                 if (genClass.hasFeatureMapCreateChildFeatures()) {
-                    stringBuffer.append(TEXT_89);
+                    stringBuffer.append(TEXT_85);
                     stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature"));
-                    stringBuffer.append(TEXT_90);
+                    stringBuffer.append(TEXT_86);
                     stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMapUtil"));
-                    stringBuffer.append(TEXT_91);
+                    stringBuffer.append(TEXT_87);
                     stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
-                    stringBuffer.append(TEXT_92);
+                    stringBuffer.append(TEXT_88);
                 }
-                stringBuffer.append(TEXT_93);
+                stringBuffer.append(TEXT_89);
                 for (Iterator<GenFeature> i = genClass.getSharedClassCreateChildFeatures().iterator(); i.hasNext();) {
                     GenFeature createFeature = i.next();
-                    stringBuffer.append(TEXT_94);
+                    stringBuffer.append(TEXT_90);
                     stringBuffer.append(createFeature.getQualifiedFeatureAccessor());
                     stringBuffer.append(i.hasNext() ? " ||" : ";");
                 }
-                stringBuffer.append(TEXT_95);
+                stringBuffer.append(TEXT_91);
                 stringBuffer.append(genModel.getNonNLS());
-                stringBuffer.append(TEXT_96);
+                stringBuffer.append(TEXT_92);
             }
         }
         if (genClass.getProviderExtendsGenClass() == null || genClass.getProviderExtendsGenClass().getGenPackage() != genPackage && (!genPackage.isExtensibleProviderFactory() || genClass.getProviderExtendsGenClass().getGenPackage().isExtensibleProviderFactory() != genPackage.isExtensibleProviderFactory())) {
-            stringBuffer.append(TEXT_97);
+            stringBuffer.append(TEXT_93);
             if (genModel.useClassOverrideAnnotation()) {
-                stringBuffer.append(TEXT_98);
+                stringBuffer.append(TEXT_94);
             }
-            stringBuffer.append(TEXT_99);
+            stringBuffer.append(TEXT_95);
             stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.ResourceLocator"));
-            stringBuffer.append(TEXT_100);
+            stringBuffer.append(TEXT_96);
             if (genPackage.isExtensibleProviderFactory()) {
-                stringBuffer.append(TEXT_101);
+                stringBuffer.append(TEXT_97);
                 stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.IChildCreationExtender"));
-                stringBuffer.append(TEXT_102);
+                stringBuffer.append(TEXT_98);
             } else {
-                stringBuffer.append(TEXT_103);
+                stringBuffer.append(TEXT_99);
                 stringBuffer.append(genPackage.getImportedEditPluginClassName());
-                stringBuffer.append(TEXT_104);
+                stringBuffer.append(TEXT_100);
             }
-            stringBuffer.append(TEXT_105);
+            stringBuffer.append(TEXT_101);
         }
-        stringBuffer.append(TEXT_106);
+        stringBuffer.append(TEXT_102);
         {
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genClass", genClass);
@@ -581,9 +573,9 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_051_wGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        stringBuffer.append(TEXT_107);
+        stringBuffer.append(TEXT_103);
         genModel.emitSortedImports();
-        stringBuffer.append(TEXT_108);
+        stringBuffer.append(TEXT_104);
     }
 
     public boolean preCondition() throws Exception {

@@ -25,7 +25,7 @@ public class InterfacegenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "  ";
+    protected final String TEXT_1 = "";
     protected final String TEXT_2 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_3 = NL + "\t";
     protected final String TEXT_4 = "[] ";
@@ -94,23 +94,16 @@ public class InterfacegenFeatureoverride {
     protected final String TEXT_67 = " element)" + NL + "\t{" + NL + "\t\t";
     protected final String TEXT_68 = "().set(index, element);" + NL + "\t}" + NL;
     protected final String TEXT_69 = NL;
-    protected final String TEXT_70 = "  ";
+    protected final String TEXT_70 = NL;
     protected final String TEXT_71 = NL;
-    protected final String TEXT_72 = "  ";
+    protected final String TEXT_72 = NL;
     protected final String TEXT_73 = NL;
-    protected final String TEXT_74 = "  ";
+    protected final String TEXT_74 = NL;
     protected final String TEXT_75 = NL;
-    protected final String TEXT_76 = "  ";
+    protected final String TEXT_76 = NL;
     protected final String TEXT_77 = NL;
-    protected final String TEXT_78 = "  ";
+    protected final String TEXT_78 = NL;
     protected final String TEXT_79 = NL;
-    protected final String TEXT_80 = "  ";
-    protected final String TEXT_81 = NL;
-    protected final String TEXT_82 = "  ";
-    protected final String TEXT_83 = NL;
-    protected final String TEXT_84 = NL;
-    protected final String TEXT_85 = NL;
-    protected final String TEXT_86 = NL;
 
     public InterfacegenFeatureoverride() {
         //Here is the constructor
@@ -193,8 +186,8 @@ public class InterfacegenFeatureoverride {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_85);
-        stringBuffer.append(TEXT_86);
+        stringBuffer.append(TEXT_78);
+        stringBuffer.append(TEXT_79);
         return stringBuffer.toString();
     }
 
@@ -475,10 +468,9 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class/getGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_70);
         }
         if (isImplementation && !genModel.isReflectiveDelegation() && genFeature.isBasicGet()) {
-            stringBuffer.append(TEXT_71);
+            stringBuffer.append(TEXT_70);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
@@ -496,10 +488,9 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class/basicGetGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_72);
         }
         if (isImplementation && !genModel.isReflectiveDelegation() && genFeature.isBasicSet()) {
-            stringBuffer.append(TEXT_73);
+            stringBuffer.append(TEXT_71);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
@@ -517,10 +508,9 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class/basicSetGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_74);
         }
         if (genFeature.isSet() && (isImplementation || !genFeature.isSuppressedSetVisibility())) {
-            stringBuffer.append(TEXT_75);
+            stringBuffer.append(TEXT_72);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
@@ -538,10 +528,9 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class/setGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_76);
         }
         if (isImplementation && !genModel.isReflectiveDelegation() && genFeature.isBasicUnset()) {
-            stringBuffer.append(TEXT_77);
+            stringBuffer.append(TEXT_73);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
@@ -559,10 +548,9 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class.basicUnsetGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_78);
         }
         if (genFeature.isUnset() && (isImplementation || !genFeature.isSuppressedUnsetVisibility())) {
-            stringBuffer.append(TEXT_79);
+            stringBuffer.append(TEXT_74);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
@@ -580,10 +568,9 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class/unsetGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_80);
         }
         if (genFeature.isIsSet() && (isImplementation || !genFeature.isSuppressedIsSetVisibility())) {
-            stringBuffer.append(TEXT_81);
+            stringBuffer.append(TEXT_75);
             {
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
@@ -601,9 +588,8 @@ public class InterfacegenFeatureoverride {
             }
 
             //Class/isSetGenFeature.override.javajetinc
-            stringBuffer.append(TEXT_82);
         }
-        stringBuffer.append(TEXT_83);
+        stringBuffer.append(TEXT_76);
         {
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
@@ -620,7 +606,7 @@ public class InterfacegenFeatureoverride {
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_010bYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        stringBuffer.append(TEXT_84);
+        stringBuffer.append(TEXT_77);
     }
 
     public boolean preCondition() throws Exception {

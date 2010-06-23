@@ -25,7 +25,7 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL + "\t\t\t\t(";
+    protected final String TEXT_1 = NL + NL + "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL + "\t\t\t\t(";
     protected final String TEXT_2 = ",";
     protected final String TEXT_3 = NL + "\t\t\t\t ";
     protected final String TEXT_4 = "));";

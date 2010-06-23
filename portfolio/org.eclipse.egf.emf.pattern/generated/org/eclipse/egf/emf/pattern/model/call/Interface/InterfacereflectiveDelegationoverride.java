@@ -25,13 +25,14 @@ public class InterfacereflectiveDelegationoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_2 = NL + "\t@Override";
-    protected final String TEXT_3 = NL + "\tprotected int eStaticFeatureCount()" + NL + "\t{" + NL + "\t\treturn ";
-    protected final String TEXT_4 = ";" + NL + "\t}" + NL;
-    protected final String TEXT_5 = NL;
+    protected final String TEXT_1 = "";
+    protected final String TEXT_2 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_3 = NL + "\t@Override";
+    protected final String TEXT_4 = NL + "\tprotected int eStaticFeatureCount()" + NL + "\t{" + NL + "\t\treturn ";
+    protected final String TEXT_5 = ";" + NL + "\t}" + NL;
     protected final String TEXT_6 = NL;
     protected final String TEXT_7 = NL;
+    protected final String TEXT_8 = NL;
 
     public InterfacereflectiveDelegationoverride() {
         //Here is the constructor
@@ -109,8 +110,8 @@ public class InterfacereflectiveDelegationoverride {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_6);
         stringBuffer.append(TEXT_7);
+        stringBuffer.append(TEXT_8);
         return stringBuffer.toString();
     }
 
@@ -219,16 +220,17 @@ public class InterfacereflectiveDelegationoverride {
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        stringBuffer.append(TEXT_1);
         if (isImplementation && (genModel.getFeatureDelegation() == GenDelegationKind.REFLECTIVE_LITERAL || genModel.isDynamicDelegation()) && (genClass.getClassExtendsGenClass() == null || (genClass.getClassExtendsGenClass().getGenModel().getFeatureDelegation() != GenDelegationKind.REFLECTIVE_LITERAL && !genClass.getClassExtendsGenClass().getGenModel().isDynamicDelegation()))) {
-            stringBuffer.append(TEXT_1);
+            stringBuffer.append(TEXT_2);
             if (genModel.useClassOverrideAnnotation()) {
-                stringBuffer.append(TEXT_2);
+                stringBuffer.append(TEXT_3);
             }
-            stringBuffer.append(TEXT_3);
-            stringBuffer.append(genClass.getClassExtendsGenClass() == null ? 0 : genClass.getClassExtendsGenClass().getAllGenFeatures().size());
             stringBuffer.append(TEXT_4);
+            stringBuffer.append(genClass.getClassExtendsGenClass() == null ? 0 : genClass.getClassExtendsGenClass().getAllGenFeatures().size());
+            stringBuffer.append(TEXT_5);
         }
-        stringBuffer.append(TEXT_5);
+        stringBuffer.append(TEXT_6);
     }
 
     public boolean preCondition() throws Exception {

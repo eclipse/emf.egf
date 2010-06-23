@@ -1,3 +1,5 @@
+
+
     <%if (genFeature.isListType() || genFeature.isReferenceType()) {%>
       <%if (genClass.isField(genFeature)) {%>
 	/**

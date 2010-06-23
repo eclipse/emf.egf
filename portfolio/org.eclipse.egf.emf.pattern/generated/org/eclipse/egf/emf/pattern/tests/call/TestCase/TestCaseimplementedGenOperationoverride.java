@@ -25,7 +25,7 @@ public class TestCaseimplementedGenOperationoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t/**" + NL + "\t * Tests the '{@link ";
+    protected final String TEXT_1 = NL + NL + "\t/**" + NL + "\t * Tests the '{@link ";
     protected final String TEXT_2 = "#";
     protected final String TEXT_3 = "(";
     protected final String TEXT_4 = ") <em>";
@@ -37,7 +37,7 @@ public class TestCaseimplementedGenOperationoverride {
     protected final String TEXT_10 = NL + "\tpublic void test";
     protected final String TEXT_11 = "()" + NL + "\t{";
     protected final String TEXT_12 = NL;
-    protected final String TEXT_13 = "\t}";
+    protected final String TEXT_13 = NL + "\t}";
     protected final String TEXT_14 = NL;
     protected final String TEXT_15 = NL;
     protected final String TEXT_16 = NL;
