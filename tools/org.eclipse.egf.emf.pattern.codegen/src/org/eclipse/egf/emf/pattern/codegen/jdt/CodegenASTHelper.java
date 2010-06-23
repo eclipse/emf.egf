@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -93,23 +94,35 @@ public class CodegenASTHelper {
         for (final IMethod contentMethod : contentMethods) {
 
             final Map<SearchMatch, IMethod> patternMethods = computeCallingMethods(contentMethod);
-            for (final SearchMatch searchMatch : patternMethods.keySet()) {
-                IMethod patternMethod = patternMethods.get(searchMatch);
-                MethodInvocation contentMethodInvocation = getMethodInvocation(patternMethod, searchMatch);
-                MethodDeclaration methodDeclaration = getMethodDeclaration(patternMethod);
+            for (final SearchMatch patternMethodSearchMatch : patternMethods.keySet()) {
+                IMethod patternMethod = patternMethods.get(patternMethodSearchMatch);
+                MethodInvocation contentMethodInvocation = getMethodInvocation(patternMethod, patternMethodSearchMatch);
+                MethodDeclaration patternMethodDeclaration = getMethodDeclaration(patternMethod);
+
+                Map<SearchMatch, IMethod> partMethods = computeCallingMethods(patternMethod);
+                if (partMethods.size() != 1)
+                    throw new IllegalStateException("We should find only one Calling method for " + patternMethod.getElementName()); //$NON-NLS-1$
+                Entry<SearchMatch, IMethod> next = partMethods.entrySet().iterator().next();
+                SearchMatch partMethodSearchMatch = next.getKey();
+                IMethod partMethod = next.getValue();
+                MethodInvocation patternMethodInvocation = getMethodInvocation(partMethod, partMethodSearchMatch);
 
                 PatternInfo patternInfo = createPatternInfo(contentMethod);
-                patternInfo.setPartType(computePartType(patternMethod));
+                patternInfo.setPartType(computePartType(partMethod));
                 patternInfo.setMethodName(getNameWithoutGenerate(patternMethod));
                 patternInfo.setParameterType(computeParameterType(patternMethod));
                 patternInfo.setParameterName(computeParameterName(patternMethod));
                 analyseContentMethodParameters(patternInfo, contentMethod, contentMethodInvocation);
-                replaceLocalVariables(methodDeclaration, patternInfo);
+                replaceLocalVariables(patternMethodDeclaration, patternInfo);
 
-                if (ContentType.GIF.equals(patternInfo.getContentType())) 
-                    ((GIFPatternInfo) patternInfo).setMethodContent(computeMethodContent(methodDeclaration));
-                 else 
-                    ((JetPatternInfo) patternInfo).setCondition(getMethodInvocationCondition(contentMethodInvocation));
+                if (ContentType.GIF.equals(patternInfo.getContentType()))
+                    ((GIFPatternInfo) patternInfo).setMethodContent(computeMethodContent(patternMethodDeclaration));
+                else {
+                    ArrayList<String> conditions = new ArrayList<String>();
+                    conditions.addAll(getMethodInvocationCondition(patternMethodInvocation));
+                    conditions.addAll(getMethodInvocationCondition(contentMethodInvocation));
+                    ((JetPatternInfo) patternInfo).setCondition(getConditionString(conditions));
+                }
 
                 result.add(patternInfo);
 
@@ -123,7 +136,7 @@ public class CodegenASTHelper {
     protected void replaceLocalVariables(MethodDeclaration methodDeclaration, final PatternInfo patternInfo) {
         if (patternInfo instanceof GIFPatternInfo)
             return;
-        
+
         ASTVisitor astVisitor = new ASTVisitor() {
             @SuppressWarnings("unchecked")
             @Override
@@ -155,8 +168,8 @@ public class CodegenASTHelper {
         return buffer.toString();
     }
 
-    protected PartType computePartType(IMethod patternMethod) throws CoreException {
-        String partTypeString = getNameWithoutGenerate(getPartMethod(patternMethod));
+    protected PartType computePartType(IMethod partMethod) throws CoreException {
+        String partTypeString = getNameWithoutGenerate(partMethod);
         return PartType.valueOf(partTypeString);
     }
 
@@ -173,14 +186,6 @@ public class CodegenASTHelper {
 
         patternInfo.setContentType(contentType);
         return patternInfo;
-    }
-
-    protected IMethod getPartMethod(IMethod patternMethod) throws CoreException {
-        Collection<IMethod> partMethods = computeCallingMethods(patternMethod).values();
-        if (partMethods.size() != 1)
-            throw new IllegalStateException("We should find only one Calling method for " + patternMethod.getElementName()); //$NON-NLS-1$
-        IMethod method = partMethods.toArray(new IMethod[0])[0];
-        return method;
     }
 
     protected String computeParameterName(IMethod patternMethod) throws JavaModelException {
@@ -276,7 +281,7 @@ public class CodegenASTHelper {
         return (Integer) id.resolveConstantExpressionValue();
     }
 
-    protected String getMethodInvocationCondition(ASTNode node) {
+    protected List<String> getMethodInvocationCondition(ASTNode node) {
         List<String> conditions = new ArrayList<String>();
         while (true) {
             ASTNode parent = node.getParent();
@@ -284,16 +289,7 @@ public class CodegenASTHelper {
                 throw new IllegalStateException("We should have found a Method Declaration as a parent"); //$NON-NLS-1$
 
             if (node instanceof MethodDeclaration) {
-                if (conditions.size() == 0)
-                    return null;
-
-                StringBuffer buffer = new StringBuffer();
-                for (String string : conditions) {
-                    if (buffer.length() > 0)
-                        buffer.append(CONDITION_AND);
-                    buffer.append(string);
-                }
-                return buffer.toString();
+                return conditions;
             }
 
             if (parent instanceof IfStatement) {
@@ -308,6 +304,19 @@ public class CodegenASTHelper {
 
             node = parent;
         }
+    }
+
+    protected String getConditionString(List<String> conditions) {
+        if (conditions.size() == 0)
+            return null;
+
+        StringBuffer buffer = new StringBuffer();
+        for (String string : conditions) {
+            if (buffer.length() > 0)
+                buffer.append(CONDITION_AND);
+            buffer.append(string);
+        }
+        return buffer.toString();
     }
 
     protected MethodInvocation getMethodInvocation(final IMethod patternMethod, final SearchMatch searchMatch) throws JavaModelException {
