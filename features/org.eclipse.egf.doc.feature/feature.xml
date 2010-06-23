@@ -1,81 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-  id="org.eclipse.egf.doc"
-  label="%featureName"
-  version="0.2.5.qualifier"
-  provider-name="%providerName"
-  plugin="org.eclipse.egf.doc.user"
-  image="eclipse_update_120.jpg"
+    id="org.eclipse.egf.doc"
+    label="%featureName"
+    version="0.2.5.qualifier"
+    provider-name="%providerName"
+    plugin="org.eclipse.egf.doc.user"
+    image="eclipse_update_120.jpg"
 >
 
-  <description>
-    %description
-  </description>
+    <description>
+        %description
+     </description>
 
-  <copyright>
+    <copyright>
       Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
-  </copyright>
+    </copyright>
 
-  <license 
-    url="%licenseURL"
-  >
-    %license
-  </license>
+    <license 
+        url="%licenseURL"
+    >
+        %license
+    </license>
 
-  <url>
-    <update 
-      label="%EMFTUpdateSiteName" 
-      url="http://download.eclipse.org/modeling/emft/updates/"
-    />
-    <discovery 
-      label="%EMFUpdateSiteName" 
-      url="http://download.eclipse.org/modeling/emf/updates/"
-    />
-    <discovery 
-      label="%EMFTUpdateSiteName" 
-      url="http://download.eclipse.org/modeling/emft/updates/"
-    />
-  </url>
+    <url>
+        <update 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+        <discovery 
+            label="%EMFUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emf/updates/"
+        />
+        <discovery 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+    </url>
 
-  <requires>
-    <import
-      feature="org.eclipse.platform" 
-      version="3.5.1.R35x_v20090910-9gEeG1_FthkNDSP2odXdThaOu9GFDPn83DGB7" 
-      match="compatible"
+    <requires>
+        <import
+            feature="org.eclipse.sdk" 
+        />
+    </requires>
+  
+    <plugin
+        id="org.eclipse.egf.doc.user"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
     />
-    <import
-      feature="org.eclipse.pde"
-      version="3.5.1.R35x_v20090811-7Z7_F9zFDX-aT6Ywvh8_S93" 
-      match="compatible"
+  
+    <plugin
+        id="org.eclipse.egf.engine.doc"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
     />
-  </requires>
   
-  <plugin
-    id="org.eclipse.egf.doc.user"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />
-  
-  <plugin
-    id="org.eclipse.egf.engine.doc"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />
-  
-  <plugin
-    id="org.eclipse.egf.engine.doc.pattern"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />      
+    <plugin
+        id="org.eclipse.egf.engine.doc.pattern"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />      
 
 </feature>

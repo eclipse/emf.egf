@@ -1,110 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-  id="org.eclipse.egf.examples"
-  label="%featureName"
-  version="0.2.5.qualifier"
-  provider-name="%providerName"
-  plugin="org.eclipse.egf.examples.uc1"
-  image="eclipse_update_120.jpg"
+    id="org.eclipse.egf.examples"
+    label="%featureName"
+    version="0.2.5.qualifier"
+    provider-name="%providerName"
+    plugin="org.eclipse.egf.examples.uc1"
+    image="eclipse_update_120.jpg"
 >
 
-  <description>
-    %description
-  </description>
+    <description>
+        %description
+    </description>
 
-  <copyright>
+    <copyright>
       Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
 All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
-  </copyright>
+    </copyright>
 
-  <license 
-    url="%licenseURL"
-  >
-    %license
-  </license>
+    <license 
+        url="%licenseURL"
+    >
+        %license
+    </license>
 
-  <url>
-    <update 
-      label="%EMFTUpdateSiteName" 
-      url="http://download.eclipse.org/modeling/emft/updates/"
+    <url>
+        <update 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+        <discovery 
+            label="%EMFUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emf/updates/"
+        />
+        <discovery 
+            label="%EMFTUpdateSiteName" 
+            url="http://download.eclipse.org/modeling/emft/updates/"
+        />
+    </url>
+
+    <requires>
+        <import 
+            feature="org.eclipse.egf" 
+        />   
+    </requires>
+  
+    <includes
+        id="org.eclipse.egf.examples.source"
+        version="0.0.0"
     />
-    <discovery 
-      label="%EMFUpdateSiteName" 
-      url="http://download.eclipse.org/modeling/emf/updates/"
+  
+    <plugin
+        id="org.eclipse.egf.example.emf.docgen.html"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />   
+  
+    <plugin
+        id="org.eclipse.egf.example.fcs"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
     />
-    <discovery 
-      label="%EMFTUpdateSiteName" 
-      url="http://download.eclipse.org/modeling/emft/updates/"
+  
+    <plugin
+        id="org.eclipse.egf.example.strategy.modeldriven"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
     />
-  </url>
 
-  <includes 
-    id="org.eclipse.egf" 
-    version="0.0.0"
-  />
-  
-  <includes
-    id="org.eclipse.egf.examples.source"
-    version="0.0.0"
-  />
-  
-  <plugin
-    id="org.eclipse.egf.example.emf.docgen.html"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />   
-  
-  <plugin
-    id="org.eclipse.egf.example.fcs"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />
-  
-  <plugin
-    id="org.eclipse.egf.example.strategy.modeldriven"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />
+    <plugin
+        id="org.eclipse.egf.example.task.h1"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    /> 
+    
+    <plugin
+        id="org.eclipse.egf.usecase.emf.uc1"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />  
+    
+    <plugin
+        id="org.eclipse.egf.usecase.emf.uc2"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />               
 
-  <plugin
-    id="org.eclipse.egf.example.task.h1"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />      
-
-  <plugin
-    id="org.eclipse.egf.usecase.fc.uc1"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />
+    <plugin
+        id="org.eclipse.egf.usecase.fc.uc1"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />
   
-  <plugin
-    id="org.eclipse.egf.usecase.pattern.uc1"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />  
-
-  <plugin
-    id="org.eclipse.egf.usecase.emf.uc1"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />  
+    <plugin
+        id="org.eclipse.egf.usecase.pattern.uc1"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />
+    
+    <plugin
+        id="org.eclipse.egf.usecase.pattern.uc2"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"
+    />
 
 </feature>
