@@ -58,7 +58,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EPackageHelper {
 
-    private static EPackageHelper __packageHelper;
+    private static final EPackageHelper INSTANCE = new EPackageHelper();
 
     public static final String INSTANCE_FIELD_NAME = "eINSTANCE"; //$NON-NLS-1$
 
@@ -87,10 +87,7 @@ public class EPackageHelper {
     }
 
     public static EPackageHelper getInstance() {
-        if (__packageHelper == null) {
-            __packageHelper = new EPackageHelper();
-        }
-        return __packageHelper;
+        return INSTANCE;
     }
 
     public void dispose() {
