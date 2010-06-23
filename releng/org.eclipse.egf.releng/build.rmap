@@ -72,12 +72,12 @@
 
 	<searchPath name="eclipse">
 		<provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/eclipse/updates/3.5">
+			<uri format="{0}/eclipse/updates/3.6">
 				<bc:propertyRef key="eclipse.download.prefix" />
 			</uri>
 		</provider>
 		<provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-			<uri format="{0}/releases/galileo">
+			<uri format="{0}/releases/helios">
 				<bc:propertyRef key="eclipse.download.prefix" />
 			</uri>
 		</provider>
