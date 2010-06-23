@@ -50,6 +50,7 @@ import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
+import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
@@ -95,6 +96,7 @@ public class CodegenASTHelper {
             for (final SearchMatch searchMatch : patternMethods.keySet()) {
                 IMethod patternMethod = patternMethods.get(searchMatch);
                 MethodInvocation contentMethodInvocation = getMethodInvocation(patternMethod, searchMatch);
+                MethodDeclaration methodDeclaration = getMethodDeclaration(patternMethod);
 
                 PatternInfo patternInfo = createPatternInfo(contentMethod);
                 patternInfo.setPartType(computePartType(patternMethod));
@@ -102,13 +104,12 @@ public class CodegenASTHelper {
                 patternInfo.setParameterType(computeParameterType(patternMethod));
                 patternInfo.setParameterName(computeParameterName(patternMethod));
                 analyseContentMethodParameters(patternInfo, contentMethod, contentMethodInvocation);
+                replaceLocalVariables(methodDeclaration, patternInfo);
 
-                if (ContentType.GIF.equals(patternInfo.getContentType())) {
-                    MethodDeclaration methodDeclaration = getMethodDeclaration(patternMethod);
+                if (ContentType.GIF.equals(patternInfo.getContentType())) 
                     ((GIFPatternInfo) patternInfo).setMethodContent(computeMethodContent(methodDeclaration));
-                } else {
+                 else 
                     ((JetPatternInfo) patternInfo).setCondition(getMethodInvocationCondition(contentMethodInvocation));
-                }
 
                 result.add(patternInfo);
 
@@ -117,6 +118,29 @@ public class CodegenASTHelper {
         }
 
         return result;
+    }
+
+    protected void replaceLocalVariables(MethodDeclaration methodDeclaration, final PatternInfo patternInfo) {
+        if (patternInfo instanceof GIFPatternInfo)
+            return;
+        
+        ASTVisitor astVisitor = new ASTVisitor() {
+            @SuppressWarnings("unchecked")
+            @Override
+            public boolean visit(VariableDeclarationStatement node) {
+                List<VariableDeclarationFragment> fragments = node.fragments();
+                for (VariableDeclarationFragment fragment : fragments) {
+                    String name = fragment.getName().toString();
+                    String expression = fragment.getInitializer().toString();
+                    List<VariableInfo> variableInfos = patternInfo.getVariableInfos();
+                    for (VariableInfo variableInfo : variableInfos) {
+                        variableInfo.setValue(variableInfo.getValue().replace(name, expression));
+                    }
+                }
+                return true;
+            }
+        };
+        methodDeclaration.accept(astVisitor);
     }
 
     @SuppressWarnings("unchecked")
