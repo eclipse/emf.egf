@@ -536,7 +536,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenPackage genPackage = parameter;
-        targetPath = genModel.getModelDirectory();
+        targetPath = genPackage.getGenModel().getModelDirectory();
         packageName = genPackage.getReflectionPackageName();
         className = genPackage.getFactoryInterfaceName();
 

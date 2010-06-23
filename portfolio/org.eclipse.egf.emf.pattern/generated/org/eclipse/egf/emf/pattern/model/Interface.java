@@ -514,8 +514,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenClass genClass = parameter;
-        targetPath = genModel.getModelDirectory();
-        packageName = genPackage.getInterfacePackageName();
+        targetPath = genClass.getGenModel().getModelDirectory();
+        packageName = genClass.getGenPackage().getInterfacePackageName();
         className = genClass.getInterfaceName();
 
     }

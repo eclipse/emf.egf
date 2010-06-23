@@ -514,8 +514,8 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenClass genClass = parameter;
-        targetPath = genModel.getModelDirectory();
-        packageName = genPackage.getClassPackageName();
+        targetPath = genClass.getGenModel().getModelDirectory();
+        packageName = genClass.getGenPackage().getClassPackageName();
         className = genClass.getClassName();
 
     }
@@ -523,7 +523,7 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenClass genClass = parameter;
-        argument = ((Object[]) new Object[] { new Object[] { genClass, genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } })[0];
+        argument = ((Object[]) new Object[] { new Object[] { genClass, genClass.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } })[0];
 
     }
 

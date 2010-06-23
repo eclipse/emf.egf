@@ -536,7 +536,7 @@ public class FactoryClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenPackage genPackage = parameter;
-        targetPath = genModel.getModelDirectory();
+        targetPath = genPackage.getGenModel().getModelDirectory();
         packageName = genPackage.getReflectionClassPackageName();
         className = genPackage.getFactoryClassName();
 
@@ -545,7 +545,7 @@ public class FactoryClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
     protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenPackage genPackage = parameter;
-        argument = ((Object[]) new Object[] { new Object[] { genPackage, genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } })[0];
+        argument = ((Object[]) new Object[] { new Object[] { genPackage, genPackage.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } })[0];
 
     }
 

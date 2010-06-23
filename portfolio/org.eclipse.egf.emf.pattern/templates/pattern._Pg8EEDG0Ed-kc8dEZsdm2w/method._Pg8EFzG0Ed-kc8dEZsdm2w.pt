@@ -1,6 +1,6 @@
 <%
 GenClass genClass = parameter;
-targetPath = genModel.getModelDirectory();
-packageName = genPackage.getInterfacePackageName();
+targetPath = genClass.getGenModel().getModelDirectory();
+packageName = genClass.getGenPackage().getInterfacePackageName();
 className = genClass.getInterfaceName();
 %>
