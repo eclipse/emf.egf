@@ -12,7 +12,7 @@
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.buckminster.releng" componentType="buckminster" version="1.0.0">
     <cs:dependencies>
         <cs:dependency name="org.eclipse.egf.sdk" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.egf.examples.feature" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.egf.examples" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.egf.test" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.equinox.executable" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.rcp" componentType="eclipse.feature"/>
