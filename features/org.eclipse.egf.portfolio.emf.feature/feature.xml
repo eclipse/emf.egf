@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-    id="org.eclipse.egf.emf"
+    id="org.eclipse.egf.portfolio.emf"
     label="%featureName"
     version="0.2.5.qualifier"
     provider-name="%providerName"
