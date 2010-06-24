@@ -38,7 +38,7 @@
       </libraries>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_AJ9EgBsiEd-L7sk1dmRWLg">
-      <domains xmi:type="domain:DomainURI" xmi:id="_CQ9NQBsiEd-L7sk1dmRWLg" uri="platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.ecore"/>
+      <domains xmi:type="domain:DomainURI" xmi:id="_CQ9NQBsiEd-L7sk1dmRWLg" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_uWUq0BshEd-L7sk1dmRWLg">
