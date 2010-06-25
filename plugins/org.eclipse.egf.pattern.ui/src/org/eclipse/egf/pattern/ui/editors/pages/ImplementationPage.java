@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -31,6 +32,8 @@ import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.extension.ExtensionHelper;
+import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -82,7 +85,9 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerDropAdapter;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -353,9 +358,33 @@ public class ImplementationPage extends PatternEditorPage {
             }
 
             public void linkActivated(HyperlinkEvent e) {
-                PatternMethod conditionMethod = getPattern().getConditionMethod();
-                if (conditionMethod != null)
-                    openMethodTemplate(conditionMethod.getID());
+                final Pattern pattern = getPattern();
+                if (pattern.getConditionMethod() == null) {
+                    TransactionalEditingDomain editingDomain = getEditingDomain();
+
+                    RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
+                        @Override
+                        protected void doExecute() {
+
+                            try {
+                                PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
+                                PatternMethod conditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+                                conditionMethod.setName(org.eclipse.egf.pattern.extension.PatternFactory.PRECONDITION_METHOD_NAME);
+                                pattern.getMethods().add(conditionMethod);
+                                pattern.setConditionMethod(conditionMethod);
+                                conditionMethod.setPatternFilePath(extension.getFactory().createURI(conditionMethod));
+                                IProject project = PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getProject();
+                                extension.createInitializer(project, pattern).updateSpecialMethods(false);
+                            } catch (Exception e2) {
+                                Activator.getDefault().logError(e2);
+                            }
+                        }
+                    };
+                    editingDomain.getCommandStack().execute(cmd);
+                }
+                if (pattern.getConditionMethod() != null)
+                    openMethodTemplate(pattern.getConditionMethod().getID());
             }
 
         });
@@ -419,6 +448,14 @@ public class ImplementationPage extends PatternEditorPage {
         layout.setColumnData(tableColumn, new ColumnWeightData(200, true));
 
         methodsTableViewer.setContentProvider(new MethodsTableObservableListContentProvider(methodsTableViewer, 3));
+        methodsTableViewer.addFilter(new ViewerFilter() {
+
+            @Override
+            public boolean select(Viewer viewer, Object parentElement, Object element) {
+
+                return !PatternUIHelper.isRenameDisable((PatternMethod) element);
+            }
+        });
         initMethodsTableEditor();
 
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -452,9 +489,7 @@ public class ImplementationPage extends PatternEditorPage {
      */
     private void addDragDropForMethodsTable() {
 
-        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new DragSourceListener() {
+        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = false;
@@ -477,9 +512,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new ViewerDropAdapter(methodsTableViewer) {
+        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(methodsTableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -505,15 +538,11 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void initMethodsTableEditor() {
-        methodsTableViewer.setColumnProperties(new String[] {
-            NAME_COLUMN_ID
-        });
+        methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
         nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
-        methodsTableViewer.setCellEditors(new CellEditor[] {
-            nameEditor
-        });
+        methodsTableViewer.setCellEditors(new CellEditor[] { nameEditor });
         methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer) {
 
             @Override
@@ -933,9 +962,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void addDragDropForOrchestrationTable() {
         if (isReadOnly())
             return;
-        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new DragSourceListener() {
+        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = true;
@@ -957,9 +984,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new ViewerDropAdapter(orchestrationTableViewer) {
+        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(orchestrationTableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -1366,12 +1391,8 @@ public class ImplementationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         variablesTableViewer = new TableViewer(table);
-        String[] colNames = {
-                Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type
-        };
-        int[] colWidths = {
-                130, 135
-        };
+        String[] colNames = { Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type };
+        int[] colWidths = { 130, 135 };
         variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         ColumnViewerToolTipSupport.enableFor(variablesTableViewer, ToolTip.NO_RECREATE);
         CellLabelProvider cellLabelProvider = new ParametersTableLabelProvider();
@@ -1390,9 +1411,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void initVariablesTableEditor() {
         if (isReadOnly())
             return;
-        variablesTableViewer.setColumnProperties(new String[] {
-                NAME_COLUMN_ID, TYPE_COLUMN_ID
-        });
+        variablesTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID });
         final TextCellEditor textCellEditor = new TextCellEditor(variablesTableViewer.getTable());
         final DialogCellEditor dialogCellEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
 
@@ -1413,9 +1432,7 @@ public class ImplementationPage extends PatternEditorPage {
                 return null;
             }
         };
-        variablesTableViewer.setCellEditors(new CellEditor[] {
-                textCellEditor, dialogCellEditor
-        });
+        variablesTableViewer.setCellEditors(new CellEditor[] { textCellEditor, dialogCellEditor });
         variablesTableViewer.setCellModifier(new VariablesTableCellModifier(getEditingDomain(), variablesTableViewer));
 
         variablesTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
