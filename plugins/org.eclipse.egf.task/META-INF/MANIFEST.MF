@@ -12,5 +12,7 @@ Require-Bundle:
  org.eclipse.core.runtime,
  org.eclipse.egf.model.ftask
 Export-Package: 
- org.eclipse.egf.task
+ org.eclipse.egf.task,
+ org.eclipse.egf.task.internal.nature,
+ org.eclipse.egf.task.l10n
 Bundle-ActivationPolicy: lazy 

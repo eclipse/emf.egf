@@ -17,17 +17,31 @@
 <plugin>
   
   <!-- ================================================================================= -->
-  <!-- Task                                                                              -->
+  <!-- Task Natures                                                                              -->
   <!-- ================================================================================= -->  
+
+	<extension point="org.eclipse.egf.model.ftask.task">
+	    <nature 
+	    	kind="java"    
+	      	class="org.eclipse.egf.task.internal.nature.TaskNatureJava"/>
+	    <nature 
+	    	kind="ruby"    
+	      	class="org.eclipse.egf.task.internal.nature.TaskNatureRuby"/>
+	</extension>  
   
-  <extension
-    point="org.eclipse.egf.model.ftask.task"
-  >
-    <nature
-      kind="java"    
-      class="org.eclipse.egf.task.internal.nature.TaskNatureJava"
-    />
-  </extension>  
-   
+    <extension point="org.eclipse.egf.core.test">
+    	<EGFTestModel modelPath="test/Task.test"/>
+   	</extension>
+   	
+    <extension
+          point="org.eclipse.egf.core.fcore">
+       <fcore
+             id="egf/ruby_task.fcore">
+       </fcore>
+       <fcore
+             id="test/testcases_ruby.fcore">
+       </fcore>
+    </extension>
+  
 </plugin>
   

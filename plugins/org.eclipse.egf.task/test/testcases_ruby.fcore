@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_QaBgIINhEd-nE_aB6JA6Fw" name="testcases_ruby_1">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_m0IOUINkEd-nE_aB6JA6Fw">
+      <invocations xmi:id="_oh7z8INkEd-nE_aB6JA6Fw" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.task/egf/ruby_task.fcore#_pdABMIK4Ed-nE_aB6JA6Fw"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_j5ZikINkEd-nE_aB6JA6Fw" name="testcases_ruby_2">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_nOTB0INkEd-nE_aB6JA6Fw">
+      <invocations xmi:id="_qchRUINkEd-nE_aB6JA6Fw" invokedActivity="#_T0HocINhEd-nE_aB6JA6Fw">
+        <invocationContractContainer xmi:id="_qchRUYNkEd-nE_aB6JA6Fw">
+          <invocationContracts xmi:id="_qchRUoNkEd-nE_aB6JA6Fw" invokedContract="#_gdoGoINhEd-nE_aB6JA6Fw">
+            <type xmi:type="types:TypeString" xmi:id="_rg5fcINkEd-nE_aB6JA6Fw" value="This is an input parameter"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_llFoUINkEd-nE_aB6JA6Fw" name="testcases_ruby_3">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_npYbUINkEd-nE_aB6JA6Fw">
+      <invocations xmi:id="_vW1PMINkEd-nE_aB6JA6Fw" invokedActivity="#_eB6SIINhEd-nE_aB6JA6Fw">
+        <invocationContractContainer xmi:id="_JVOuAYQtEd-wFsBPl2vnhg">
+          <invocationContracts xmi:id="_Jo8UMIQtEd-wFsBPl2vnhg" targetInvocationContract="#_MLlFg4QsEd-p8Kv17Yk9xg"
+              invokedContract="#_z6CcAINhEd-nE_aB6JA6Fw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_MLlFgYQsEd-p8Kv17Yk9xg" invokedActivity="#_T0HocINhEd-nE_aB6JA6Fw">
+        <invocationContractContainer xmi:id="_MLlFgoQsEd-p8Kv17Yk9xg">
+          <invocationContracts xmi:id="_MLlFg4QsEd-p8Kv17Yk9xg" sourceInvocationContract="#_Jo8UMIQtEd-wFsBPl2vnhg"
+              invokedContract="#_gdoGoINhEd-nE_aB6JA6Fw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_T0HocINhEd-nE_aB6JA6Fw" name="Test - ruby task with input contract"
+      superTask="platform:/plugin/org.eclipse.egf.task/egf/ruby_task.fcore#_pdABMIK4Ed-nE_aB6JA6Fw">
+    <contractContainer xmi:id="_ffm_MINhEd-nE_aB6JA6Fw">
+      <contracts xmi:id="_gdoGoINhEd-nE_aB6JA6Fw" name="input_parameter">
+        <type xmi:type="types:TypeString" xmi:id="_xc_KwINhEd-nE_aB6JA6Fw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_eB6SIINhEd-nE_aB6JA6Fw" name="Test - ruby task with output contract"
+      superTask="platform:/plugin/org.eclipse.egf.task/egf/ruby_task.fcore#_pdABMIK4Ed-nE_aB6JA6Fw">
+    <contractContainer xmi:id="_gDK_QINhEd-nE_aB6JA6Fw">
+      <contracts xmi:id="_z6CcAINhEd-nE_aB6JA6Fw" name="output_parameter" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_1Z4eIINhEd-nE_aB6JA6Fw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+</xmi:XMI>
