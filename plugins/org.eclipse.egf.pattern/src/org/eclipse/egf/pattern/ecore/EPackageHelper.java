@@ -250,25 +250,4 @@ public class EPackageHelper {
             return genModel;
         }
     }
-
-    @SuppressWarnings("unused")
-    private static class Descriptor implements EPackage.Descriptor {
-
-        private EPackage epackage;
-
-        public Descriptor(EPackage ePackage) {
-            super();
-            this.epackage = ePackage;
-        }
-
-        public EFactory getEFactory() {
-            return epackage.getEFactoryInstance();
-        }
-
-        public EPackage getEPackage() {
-            return epackage;
-        }
-
-    }
-
 }
