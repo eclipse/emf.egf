@@ -110,7 +110,7 @@ public class EPackageHelper {
                 else
                     handleURI(uri);
             } catch (Exception e) {
-                // don't care since we will try another way
+                // don't care since we will try another way.
             }
             addPackage2registry(genModel);
         } catch (Exception e) {
