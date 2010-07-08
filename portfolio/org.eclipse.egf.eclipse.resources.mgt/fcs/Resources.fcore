@@ -15,6 +15,14 @@
       </contracts>
     </contractContainer>
   </ftask:Task>
+  <ftask:Task xmi:id="_DSL_oIqSEd-U1srr1078Ww" name="Convert project to plugin" kind="java"
+      implementation="org.eclipse.egf.eclipse.resources.mgt.ConvertProject2PluginTask">
+    <contractContainer xmi:id="_6rGw4IqYEd-U1srr1078Ww">
+      <contracts xmi:id="_WbRLgIqhEd-U1srr1078Ww" name="name" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_Ymz2AIqhEd-U1srr1078Ww"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
   <ftask:Task xmi:id="_bLHVECakEd-RhP-A_BvFzw" name="CreateJavaProject" kind="java"
       implementation="org.eclipse.egf.eclipse.resources.mgt.CreateJavaProjectTask">
     <contractContainer xmi:id="_FbHXACalEd-RhP-A_BvFzw">
