@@ -38,134 +38,134 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class FactoryComponentContractImpl extends ContractImpl implements FactoryComponentContract {
-  /**
-   * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getInvocationContracts()
-   * @generated
-   * @ordered
-   */
-  protected EList<InvocationContract> invocationContracts;
+    /**
+     * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInvocationContracts()
+     * @generated
+     * @ordered
+     */
+    protected EList<InvocationContract> invocationContracts;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected FactoryComponentContractImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<InvocationContract> getInvocationContracts() {
-    if (invocationContracts == null) {
-      invocationContracts = new EObjectWithInverseEList<InvocationContract>(InvocationContract.class, this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FactoryComponentContractImpl() {
+        super();
     }
-    return invocationContracts;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT;
     }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<InvocationContract> getInvocationContracts() {
+        if (invocationContracts == null) {
+            invocationContracts = new EObjectWithInverseEList<InvocationContract>(InvocationContract.class, this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT);
+        }
+        return invocationContracts;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      return getInvocationContracts();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+            return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      getInvocationContracts().clear();
-      getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+            return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      getInvocationContracts().clear();
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+            return getInvocationContracts();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      return invocationContracts != null && !invocationContracts.isEmpty();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+            getInvocationContracts().clear();
+            getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
+            return;
+        }
+        super.eSet(featureID, newValue);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+            getInvocationContracts().clear();
+            return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+            return invocationContracts != null && !invocationContracts.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // FactoryComponentContractImpl

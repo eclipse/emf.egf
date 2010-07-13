@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the Pattern model plugin.
+ * This is the central singleton for the Fcore model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -53,9 +53,7 @@ public final class EGFModelPlugin extends EMFPlugin {
      * @generated NOT
      */
     public EGFModelPlugin() {
-        super(new ResourceLocator[] {
-            EcorePlugin.INSTANCE,
-        });
+        super(new ResourceLocator[] { EcorePlugin.INSTANCE, });
     }
 
     /**

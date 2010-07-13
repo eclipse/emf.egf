@@ -31,22 +31,22 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface FactoryComponentContract extends Contract {
-  /**
-   * Returns the value of the '<em><b>Invocation Contracts</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.fcore.InvocationContract}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContract#getFactoryComponentContract <em>Factory Component Contract</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Invocation Contracts</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Invocation Contracts</em>' reference list.
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponentContract_InvocationContracts()
-   * @see org.eclipse.egf.model.fcore.InvocationContract#getFactoryComponentContract
-   * @model opposite="factoryComponentContract" resolveProxies="false"
-   * @generated
-   */
-  EList<InvocationContract> getInvocationContracts();
+    /**
+     * Returns the value of the '<em><b>Invocation Contracts</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.fcore.InvocationContract}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContract#getFactoryComponentContract <em>Factory Component Contract</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Invocation Contracts</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Invocation Contracts</em>' reference list.
+     * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponentContract_InvocationContracts()
+     * @see org.eclipse.egf.model.fcore.InvocationContract#getFactoryComponentContract
+     * @model opposite="factoryComponentContract" resolveProxies="false"
+     * @generated
+     */
+    EList<InvocationContract> getInvocationContracts();
 
 } // FactoryComponentContract

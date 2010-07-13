@@ -36,11 +36,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContractContainer <em>Invocation Contract Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvokedActivity <em>Invoked Activity</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContractContainer <em>Invocation Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvokedActivity <em>Invoked Activity</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class InvocationImpl extends NamedModelElementImpl implements Invocation {
@@ -49,7 +49,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
      * The cached value of the '{@link #getInvocationContractContainer() <em>Invocation Contract Container</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getInvocationContractContainer()
      * @generated
      * @ordered
@@ -60,7 +59,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
      * The cached value of the '{@link #getInvokedActivity() <em>Invoked Activity</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getInvokedActivity()
      * @generated
      * @ordered
@@ -70,7 +68,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected InvocationImpl() {
@@ -80,7 +77,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -91,7 +87,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public InvocationContractContainer getInvocationContractContainer() {
@@ -101,7 +96,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public NotificationChain basicSetInvocationContractContainer(InvocationContractContainer newInvocationContractContainer, NotificationChain msgs) {
@@ -120,7 +114,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setInvocationContractContainer(InvocationContractContainer newInvocationContractContainer) {
@@ -140,7 +133,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Activity getInvokedActivity() {
@@ -158,7 +150,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Activity basicGetInvokedActivity() {
@@ -168,7 +159,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setInvokedActivity(Activity newInvokedActivity) {
@@ -181,7 +171,6 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public FactoryComponent getFactoryComponent() {
@@ -355,16 +344,15 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                if (invocationContractContainer != null)
-                    msgs = ((InternalEObject) invocationContractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER, null, msgs);
-                return basicSetInvocationContractContainer((InvocationContractContainer) otherEnd, msgs);
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            if (invocationContractContainer != null)
+                msgs = ((InternalEObject) invocationContractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER, null, msgs);
+            return basicSetInvocationContractContainer((InvocationContractContainer) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -372,14 +360,13 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                return basicSetInvocationContractContainer(null, msgs);
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            return basicSetInvocationContractContainer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -387,18 +374,17 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                return getInvocationContractContainer();
-            case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-                if (resolve)
-                    return getInvokedActivity();
-                return basicGetInvokedActivity();
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            return getInvocationContractContainer();
+        case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+            if (resolve)
+                return getInvokedActivity();
+            return basicGetInvokedActivity();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -406,18 +392,17 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                setInvocationContractContainer((InvocationContractContainer) newValue);
-                return;
-            case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-                setInvokedActivity((Activity) newValue);
-                return;
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            setInvocationContractContainer((InvocationContractContainer) newValue);
+            return;
+        case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+            setInvokedActivity((Activity) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -425,18 +410,17 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                setInvocationContractContainer((InvocationContractContainer) null);
-                return;
-            case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-                setInvokedActivity((Activity) null);
-                return;
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            setInvocationContractContainer((InvocationContractContainer) null);
+            return;
+        case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+            setInvokedActivity((Activity) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -444,16 +428,15 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                return invocationContractContainer != null;
-            case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-                return invokedActivity != null;
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            return invocationContractContainer != null;
+        case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+            return invokedActivity != null;
         }
         return super.eIsSet(featureID);
     }

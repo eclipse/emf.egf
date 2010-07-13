@@ -26,6 +26,9 @@
       <eParameters name="type" eType="ecore:EClass Types.ecore#//Type"/>
       <eParameters name="mode" eType="#//ContractMode"/>
     </eOperations>
+    <eOperations name="getContract" eType="#//Contract">
+      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contractContainer" eType="#//ContractContainer"
         containment="true" resolveProxies="false" eOpposite="#//ContractContainer/activity"/>
   </eClassifiers>
