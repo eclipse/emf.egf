@@ -85,6 +85,9 @@
       <fcore
             id="fc/substitution_preCondition.fcore">
       </fcore>
+      <fcore
+            id="fc/substitution_patternCall.fcore">
+      </fcore>
       
    </extension>
    

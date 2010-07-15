@@ -95,6 +95,10 @@
       <result xsi:type="test:ConsoleOutputTestResult" text="c&#xD;&#xA;b&#xD;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_4.fcore#_PoLl4GlqEd-AhuXDVJhj5w"/>
     </tests>
+    <tests xsi:type="test:EGFTestCase" name="Substitution (for addition) and patternCall">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xD;&#xA;caller eClass : Employee&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;&#xD;&#xA;loop finished:&#xD;&#xA;added eClass : Employee&#xD;&#xA;&#xD;&#xA;loop finished:&#xD;&#xA;caller eClass : Company&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;&#xD;&#xA;loop finished:&#xD;&#xA;added eClass : Company&#xD;&#xA;&#xD;&#xA;loop finished:&#xD;&#xA;caller eClass : Test&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;&#xD;&#xA;loop finished:&#xD;&#xA;added eClass : Test&#xD;&#xA;&#xD;&#xA;exec finished:&#xD;&#xA;caller eClass : Employee&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;added eClass : Employee&#xD;&#xA;caller eClass : Company&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;added eClass : Company&#xD;&#xA;caller eClass : Test&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;  callee eAttribute : name&#xD;&#xA;added eClass : Test&#xD;&#xA;&#xD;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_patternCall.fcore#_Mhwk8ZAhEd-qRrvFxb1RDA"/>
+    </tests>
   </tests>
   <tests xsi:type="test:TestSuite" name="PatternCalls">
     <tests xsi:type="test:EGFTestCase" name="call with parameter">
