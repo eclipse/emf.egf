@@ -34,6 +34,7 @@ Export-Package: base,
  substitution3.extension,
  substitution5,
  substitution_4,
+ substitution_chain,
  substitution_patternCall
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.egf.core.test.pattern;singleton:=true

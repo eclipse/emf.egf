@@ -88,6 +88,9 @@
       <fcore
             id="fc/substitution_patternCall.fcore">
       </fcore>
+      <fcore
+            id="fc/substitution_chain.fcore">
+      </fcore>
       
    </extension>
    
