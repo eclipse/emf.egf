@@ -65,6 +65,9 @@ public class JetTagsCompiler extends JETCompiler {
             StringBuffer buffer = new StringBuffer();
             buffer.append("{"); //$NON-NLS-1$
             buffer.append(N);
+            buffer.append("//");
+            buffer.append(reader.getChars(start, stop));
+            buffer.append(N);
             buffer.append("final Map<String, Object> callParameters"); //$NON-NLS-1$
             buffer.append(" = new HashMap<String, Object>();"); //$NON-NLS-1$
             buffer.append(N);
@@ -95,6 +98,9 @@ public class JetTagsCompiler extends JETCompiler {
 
             StringBuffer buffer = new StringBuffer();
             buffer.append("{"); //$NON-NLS-1$
+            buffer.append(N);
+            buffer.append("//");
+            buffer.append(reader.getChars(start, stop));
             buffer.append(N);
             buffer.append("ExecutionContext callCtx"); //$NON-NLS-1$
             buffer.append(" = new ExecutionContext((InternalPatternContext) ctx);"); //$NON-NLS-1$
