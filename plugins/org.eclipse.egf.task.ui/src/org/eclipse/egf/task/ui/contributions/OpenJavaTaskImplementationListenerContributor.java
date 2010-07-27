@@ -15,16 +15,24 @@
 
 package org.eclipse.egf.task.ui.contributions;
 
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.task.EGFTaskPlugin;
 
 /**
- * @author Thomas Guiu
+ * @author Xavier Maysonnave
  * 
  */
-public class TaskJavaEditorContributor extends AbstractTaskEditorContributor {
+public class OpenJavaTaskImplementationListenerContributor extends TaskListenerContributor {
 
-    public TaskJavaEditorContributor() {
-        super(EGFTaskPlugin.KIND_JAVA);
+    @Override
+    protected void doDoubleClick(Task task) {
+        new OpenJavaTaskImplementationMenuContributor.OpenAction(task).run();
+    }
+
+    @Override
+    protected String getExpectedKind() {
+
+        return EGFTaskPlugin.KIND_JAVA;
     }
 
 }

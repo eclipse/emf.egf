@@ -13,26 +13,26 @@
  * </copyright>
  */
 
-package org.eclipse.egf.task.l10n;
+package org.eclipse.egf.task.ui.contributions;
 
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.egf.model.ftask.Task;
+import org.eclipse.egf.task.EGFTaskPlugin;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public class EGFTaskMessages extends NLS {
+public class OpenRubyTaskImplementationListenerContributor extends TaskListenerContributor {
 
-    private static final String BUNDLE_NAME = "org.eclipse.egf.task.l10n.messages"; //$NON-NLS-1$
-
-    static {
-        NLS.initializeMessages(BUNDLE_NAME, EGFTaskMessages.class);
+    @Override
+    protected void doDoubleClick(Task task) {
+        new OpenRubyTaskImplementationMenuContributor.OpenAction(task).run();
     }
 
-    public static String Production_TaskJava_Invoke;
+    @Override
+    protected String getExpectedKind() {
 
-    public static String Production_TaskRuby_Invoke;
-    
-    public static String Implementation_error_match_message;
+        return EGFTaskPlugin.KIND_RUBY;
+    }
 
 }

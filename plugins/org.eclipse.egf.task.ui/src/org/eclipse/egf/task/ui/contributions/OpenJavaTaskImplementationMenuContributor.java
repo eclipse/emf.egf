@@ -18,12 +18,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
-import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
-import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.task.EGFTaskPlugin;
 import org.eclipse.egf.task.ui.EGFTaskUIPlugin;
@@ -41,11 +37,7 @@ import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.TypeNameMatch;
 import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 import org.eclipse.jdt.ui.JavaUI;
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.PDECore;
@@ -56,9 +48,9 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class OpenTaskImplementationMenuContributor extends EditorMenuContributor {
+public class OpenJavaTaskImplementationMenuContributor extends TaskMenuContributor {
 
-    public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$
+    public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-java-task-implementation"; //$NON-NLS-1$
 
     public static class FindOperation implements IRunnableWithProgress {
 
@@ -116,15 +108,12 @@ public class OpenTaskImplementationMenuContributor extends EditorMenuContributor
                     // Is the current bundle part of Java Search
                     String id = fcore.getPlatformBundle().getPluginBase().getId();
                     if (PDECore.getDefault().getSearchablePluginsManager().isInJavaSearch(id) == false) {
-                        PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] {
-                            fcore.getPlatformBundle().getPluginModelBase()
-                        });
+                        PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] { fcore.getPlatformBundle().getPluginModelBase() });
                     }
                     // Java Search
                     TypeSearchRequestor requestor = new TypeSearchRequestor();
                     SearchEngine engine = new SearchEngine((WorkingCopyOwner) null);
-                    engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor,
-                            IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
+                    engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor, IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
                     _type = requestor.getMatched();
                 }
             } catch (Throwable t) {
@@ -154,107 +143,34 @@ public class OpenTaskImplementationMenuContributor extends EditorMenuContributor
 
     }
 
-    protected class TaskImplementationOpenAction extends Action {
-
-        public TaskImplementationOpenAction() {
-            setId(OPEN_TASK_IMPLEMENTATION_ACTION_ID);
-        }
-
-        protected Task getTask() {
-            if (_selection == null || _selection.isEmpty()) {
-                return null;
-            }
-            Object object = ((IStructuredSelection) _selection).getFirstElement();
-            if (object instanceof Task) {
-                return (Task) object;
-            }
-            return null;
-        }
-
-        protected Resource getResource() {
-            Task task = getTask();
-            if (task == null) {
-                return null;
-            }
-            return task.eResource();
-        }
-
-        protected String getKind() {
-            Task task = getTask();
-            if (task == null) {
-                return null;
-            }
-            if (task.getKindValue() != null && task.getKindValue().trim().length() != 0) {
-                return task.getKindValue().trim();
-            }
-            return null;
-        }
-
-        protected String getImplementation() {
-            Task task = getTask();
-            if (task == null) {
-                return null;
-            }
-            if (task.getImplementationValue() != null && task.getImplementationValue().trim().length() != 0) {
-                return task.getImplementationValue().trim();
-            }
-            return null;
+    protected static class OpenAction extends TaskImplementationOpenAction {
+        public OpenAction(Task task) {
+            super(task, OPEN_TASK_IMPLEMENTATION_ACTION_ID);
         }
 
         @Override
-        public boolean isEnabled() {
-            if (getTask() == null) {
+        protected boolean doRun() throws Exception {
+            FindOperation operation = new FindOperation(getTask().eResource(), getImplementation());
+            PlatformUI.getWorkbench().getProgressService().busyCursorWhile(operation);
+            if (operation.getType() == null)
                 return false;
-            }
-            if (getTask().eResource() == null) {
-                return false;
-            }
-            if (getKind() == null) {
-                return false;
-            }
-            if (getImplementation() == null || getImplementation().length() == 0) {
-                return false;
-            }
+
+            JavaUI.openInEditor(operation.getType());
             return true;
         }
-
-        @Override
-        public void run() {
-            // Find a suitable IType
-            FindOperation operation = new FindOperation(getResource(), getImplementation());
-            try {
-                PlatformUI.getWorkbench().getProgressService().busyCursorWhile(operation);
-                if (operation.getType() != null) {
-                    JavaUI.openInEditor(operation.getType());
-                } else {
-                    MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
-                }
-            } catch (InterruptedException e) {
-                return;
-            } catch (Throwable t) {
-                ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
-                return;
-            }
-        }
-    }
-
-    private TaskImplementationOpenAction _openAction;
-
-    public OpenTaskImplementationMenuContributor() {
-        _openAction = new TaskImplementationOpenAction();
     }
 
     @Override
-    public void menuAboutToShow(IMenuManager menuManager) {
-        if (((IStructuredSelection) _selection).size() == 1 && _openAction.getTask() != null && EGFTaskPlugin.KIND_JAVA.equals(_openAction.getKind())) {
-            _openAction.setText(getText());
-            _openAction.setEnabled(_openAction.isEnabled());
-            menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _openAction);
-        }
+    protected String getExpectedKind() {
+        return EGFTaskPlugin.KIND_JAVA;
     }
 
-    protected String getText() {
-        return EGFTaskUIMessages.TaskImplementationMenuContributor_openAction_label;
+    @Override
+    protected TaskImplementationOpenAction createAction(Task task) {
+        TaskImplementationOpenAction openAction = new OpenAction(task);
+        openAction.setText(EGFTaskUIMessages.TaskImplementationMenuContributor_openAction_label);
+        // openAction.setEnabled(openAction.isEnabled());
+        return openAction;
     }
 
 }

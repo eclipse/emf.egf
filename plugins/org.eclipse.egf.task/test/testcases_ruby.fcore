@@ -23,31 +23,29 @@
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_npYbUINkEd-nE_aB6JA6Fw">
       <invocations xmi:id="_vW1PMINkEd-nE_aB6JA6Fw" invokedActivity="#_eB6SIINhEd-nE_aB6JA6Fw">
         <invocationContractContainer xmi:id="_JVOuAYQtEd-wFsBPl2vnhg">
-          <invocationContracts xmi:id="_Jo8UMIQtEd-wFsBPl2vnhg" targetInvocationContract="#_MLlFg4QsEd-p8Kv17Yk9xg"
-              invokedContract="#_z6CcAINhEd-nE_aB6JA6Fw"/>
-        </invocationContractContainer>
-      </invocations>
-      <invocations xmi:id="_MLlFgYQsEd-p8Kv17Yk9xg" invokedActivity="#_T0HocINhEd-nE_aB6JA6Fw">
-        <invocationContractContainer xmi:id="_MLlFgoQsEd-p8Kv17Yk9xg">
-          <invocationContracts xmi:id="_MLlFg4QsEd-p8Kv17Yk9xg" sourceInvocationContract="#_Jo8UMIQtEd-wFsBPl2vnhg"
-              invokedContract="#_gdoGoINhEd-nE_aB6JA6Fw"/>
+          <invocationContracts xmi:id="_Jo8UMIQtEd-wFsBPl2vnhg" invokedContract="#_z6CcAINhEd-nE_aB6JA6Fw"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
   <ftask:Task xmi:id="_T0HocINhEd-nE_aB6JA6Fw" name="Test - ruby task with input contract"
+      kind="ruby" implementation="platform:/plugin/org.eclipse.egf.task/test/ReadInputContract.rb"
       superTask="platform:/plugin/org.eclipse.egf.task/egf/ruby_task.fcore#_pdABMIK4Ed-nE_aB6JA6Fw">
     <contractContainer xmi:id="_ffm_MINhEd-nE_aB6JA6Fw">
       <contracts xmi:id="_gdoGoINhEd-nE_aB6JA6Fw" name="input_parameter">
-        <type xmi:type="types:TypeString" xmi:id="_xc_KwINhEd-nE_aB6JA6Fw"/>
+        <type xmi:type="types:TypeString" xmi:id="_gu3BoJiLEd-VRZZc0CnDWg"/>
       </contracts>
     </contractContainer>
   </ftask:Task>
   <ftask:Task xmi:id="_eB6SIINhEd-nE_aB6JA6Fw" name="Test - ruby task with output contract"
+      kind="ruby" implementation="platform:/plugin/org.eclipse.egf.task/test/WriteOutputContract.rb"
       superTask="platform:/plugin/org.eclipse.egf.task/egf/ruby_task.fcore#_pdABMIK4Ed-nE_aB6JA6Fw">
     <contractContainer xmi:id="_gDK_QINhEd-nE_aB6JA6Fw">
       <contracts xmi:id="_z6CcAINhEd-nE_aB6JA6Fw" name="output_parameter" mode="Out">
-        <type xmi:type="types:TypeString" xmi:id="_1Z4eIINhEd-nE_aB6JA6Fw"/>
+        <type xmi:type="types:TypeString" xmi:id="_FZRP4JiTEd-eo99-NVHrKg"/>
+      </contracts>
+      <contracts xmi:id="_2QnsMJiGEd-VRZZc0CnDWg" name="input_parameter">
+        <type xmi:type="types:TypeString" xmi:id="_D_fP8JiHEd-VRZZc0CnDWg" value="This is an output parameter"/>
       </contracts>
     </contractContainer>
   </ftask:Task>

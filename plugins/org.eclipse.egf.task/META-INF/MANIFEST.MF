@@ -3,7 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.task;singleton:=true
 Bundle-Version: 0.2.5.qualifier
-Bundle-ClassPath: .
+Bundle-ClassPath: .,
+ lib/jruby.jar
 Bundle-Activator: org.eclipse.egf.task.EGFTaskPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

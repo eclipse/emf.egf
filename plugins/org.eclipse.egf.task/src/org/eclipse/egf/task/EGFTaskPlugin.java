@@ -25,6 +25,8 @@ public class EGFTaskPlugin extends EGFAbstractPlugin {
 
     public static String KIND_JAVA = "java"; //$NON-NLS-1$  
 
+    public static String KIND_RUBY = "ruby"; //$NON-NLS-1$  
+
     // The shared instance
     private static EGFTaskPlugin __plugin;
 
