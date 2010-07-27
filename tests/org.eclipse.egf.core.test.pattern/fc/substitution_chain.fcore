@@ -82,7 +82,11 @@
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_5VWQgJmOEd-BDZHgxyTzjQ">
     <invocations xmi:id="_VsUGEJmPEd-BDZHgxyTzjQ" name="substitution1" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
       <invocationContractContainer xmi:id="_VsUGEZmPEd-BDZHgxyTzjQ">
-        <invocationContracts xmi:id="_VsUGEpmPEd-BDZHgxyTzjQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ"/>
+        <invocationContracts xmi:id="_VsUGEpmPEd-BDZHgxyTzjQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_AxacoZmTEd-MCqxMFNsASQ">
+            <substitutions xmi:id="_Cbgm8JmTEd-MCqxMFNsASQ"/>
+          </type>
+        </invocationContracts>
         <invocationContracts xmi:id="_VsUGE5mPEd-BDZHgxyTzjQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_fXmfoJmPEd-BDZHgxyTzjQ"
               description="">
