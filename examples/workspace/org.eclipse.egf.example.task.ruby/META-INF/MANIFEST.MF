@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ruby
+Bundle-SymbolicName: org.eclipse.egf.example.task.ruby;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
