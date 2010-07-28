@@ -28,8 +28,8 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -111,11 +111,6 @@ public class SubstitutionHelper {
     public static void apply(List<Pattern> patterns, TypePatternSubstitution substitutions) {
         if (substitutions == null || substitutions.getSubstitutions().isEmpty() || patterns.isEmpty())
             return;
-
-        // Add patterns
-        EList<Pattern> additions = substitutions.getSubstitutions(null);
-        if (additions != null)
-            patterns.addAll(additions);
 
         for (Substitution substitution : substitutions.getSubstitutions()) {
             Pattern[] array = patterns.toArray(new Pattern[patterns.size()]);
