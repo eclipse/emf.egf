@@ -50,6 +50,8 @@
           <methods xmi:id="_acQJ5JAhEd-qRrvFxb1RDA" name="body" patternFilePath="templates/pattern._acQJ4JAhEd-qRrvFxb1RDA/method._acQJ5JAhEd-qRrvFxb1RDA.pt"/>
           <methods xmi:id="_acQJ5ZAhEd-qRrvFxb1RDA" name="footer" patternFilePath="templates/pattern._acQJ4JAhEd-qRrvFxb1RDA/method._acQJ5ZAhEd-qRrvFxb1RDA.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_acQJ5pAhEd-qRrvFxb1RDA"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_GEoTMZoWEd-YEcFm035fJw"
+              called="#_acQJ5JAhEd-qRrvFxb1RDA"/>
           <parameters xmi:id="_V8Zd8JAiEd-qRrvFxb1RDA" name="eClass" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
           <nature xmi:type="jetpattern:JetNature" xmi:id="_acQJ55AhEd-qRrvFxb1RDA"
               name="JET"/>
