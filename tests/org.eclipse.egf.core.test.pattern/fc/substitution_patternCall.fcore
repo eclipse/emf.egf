@@ -4,7 +4,7 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Mhwk8ZAhEd-qRrvFxb1RDA"
-    name="substitution_patternCall">
+    name="substitution_patternCall ">
   <viewpointContainer xmi:id="_NyX4QJAhEd-qRrvFxb1RDA">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_ONDCEJAhEd-qRrvFxb1RDA">
       <libraries xmi:id="_OyJ6QJAhEd-qRrvFxb1RDA" name="substitution_patternCall">

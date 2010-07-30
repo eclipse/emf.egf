@@ -100,7 +100,7 @@
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_patternCall.fcore#_Mhwk8ZAhEd-qRrvFxb1RDA"/>
     </tests>
     <tests xsi:type="test:EGFTestCase" name="substitution chain">
-      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xD;&#xA;replace1&#xD;&#xA;&#xD;&#xA;exec finished:&#xD;&#xA;replace1&#xD;&#xA;replace2&#xD;&#xA;&#xD;&#xA;exec finished:&#xD;&#xA;replace1&#xD;&#xA;replace2&#xD;&#xA;replace3&#xD;&#xA;&#xD;&#xA;exec finished:&#xD;&#xA;replace1&#xD;&#xA;replace2&#xD;&#xA;replace3&#xD;&#xA;&#xD;&#xA;"/>
+      <result xsi:type="test:ConsoleOutputTestResult" text="exec finished:&#xA;replace1&#xA;&#xA;exec finished:&#xA;replace2&#xA;&#xA;exec finished:&#xA;replace3&#xA;&#xA;exec finished:&#xA;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/substitution_chain.fcore#_x6JqQZmOEd-BDZHgxyTzjQ"/>
     </tests>
   </tests>
