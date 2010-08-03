@@ -13,8 +13,8 @@
 
 package org.eclipse.egf.core.ui.dialogs;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
 
@@ -24,11 +24,11 @@ import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
  */
 public class ResourcesSelectionDialog extends FilteredResourcesSelectionDialog {
 
-    private String _fileExtension;
+    private String fileExtension;
 
     public ResourcesSelectionDialog(Shell shell, boolean multi, IContainer container, int typesMask, String fileExtension) {
         super(shell, multi, container, typesMask);
-        _fileExtension = fileExtension == null ? "" : fileExtension.toLowerCase(); //$NON-NLS-1$
+        fileExtension = fileExtension == null ? "" : fileExtension.toLowerCase(); //$NON-NLS-1$
     }
 
     @Override
@@ -45,13 +45,10 @@ public class ResourcesSelectionDialog extends FilteredResourcesSelectionDialog {
         @Override
         public boolean matchItem(Object item) {
             boolean match = super.matchItem(item);
-            if (!match || (_fileExtension.isEmpty() && match))
+            if (!match || ("".equals(fileExtension) && match))
                 return match;
             String currentExtension = ((IResource) item).getFileExtension();
-            if (!(currentExtension == null) && _fileExtension.equals(currentExtension.toLowerCase()))
-                return true;
-            else
-                return false;
+            return (!(currentExtension == null) && fileExtension.equals(currentExtension.toLowerCase()));
         }
 
     }
