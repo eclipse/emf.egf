@@ -98,7 +98,7 @@ public class TaskNatureRuby implements ITaskNature {
      *         not a file path.
      */
     public boolean checkRubyImplementation(String implementation, String kind) {
-        if (implementation == null || implementation.isEmpty())
+        if (implementation == null)
             return false;
 
         URI platformURI = URI.createURI(implementation);
