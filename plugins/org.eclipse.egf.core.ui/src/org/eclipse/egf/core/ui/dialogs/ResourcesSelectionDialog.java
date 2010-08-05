@@ -24,11 +24,11 @@ import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
  */
 public class ResourcesSelectionDialog extends FilteredResourcesSelectionDialog {
 
-    private String fileExtension;
+    private final String fileExtension;
 
     public ResourcesSelectionDialog(Shell shell, boolean multi, IContainer container, int typesMask, String fileExtension) {
         super(shell, multi, container, typesMask);
-        fileExtension = fileExtension == null ? "" : fileExtension.toLowerCase(); //$NON-NLS-1$
+        this.fileExtension = fileExtension == null ? "" : fileExtension.toLowerCase(); //$NON-NLS-1$
     }
 
     @Override
