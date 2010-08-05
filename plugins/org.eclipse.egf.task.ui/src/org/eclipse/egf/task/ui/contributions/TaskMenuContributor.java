@@ -30,7 +30,7 @@ public abstract class TaskMenuContributor extends EditorMenuContributor {
     @Override
     public void menuAboutToShow(IMenuManager menuManager) {
         final IStructuredSelection selection = (IStructuredSelection) _selection;
-        if (selection.size() != 1) {
+        if (selection.size() == 1) {
             if (selection.getFirstElement() instanceof Task) {
                 Task task = (Task) selection.getFirstElement();
                 if (getExpectedKind().equals(task.getKind())) {

@@ -58,7 +58,7 @@ public class OpenRubyTaskImplementationMenuContributor extends TaskMenuContribut
 
     @Override
     protected String getExpectedKind() {
-        return EGFTaskPlugin.KIND_JAVA;
+        return EGFTaskPlugin.KIND_RUBY;
     }
 
     @Override
