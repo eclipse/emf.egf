@@ -1,0 +1,19 @@
+		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+
+		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
+
+		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
+		DomainViewpoint dvp = (DomainViewpoint) fc.getViewpointContainer().getViewpoint(DomainViewpoint.class);
+
+		DomainURI genModelDomainURI = DomainFactory.eINSTANCE.createDomainURI();
+		URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter);
+		genModelDomainURI.setUri(uri);
+		dvp.getDomains().add(genModelDomainURI);
+
+		ResourceSet resourceSet = fc.eResource().getResourceSet();
+		if (parameter.isGenerateModel())
+			ActivityInvocationHelper.addInvocation(pp, genModelDomainURI, (Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true));
+		if (parameter.isGenerateEdit())
+			ActivityInvocationHelper.addInvocation(pp, genModelDomainURI, (Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true));
+		if (parameter.isGenerateEditor())
+			ActivityInvocationHelper.addInvocation(pp, genModelDomainURI, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true));

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.portfolio.genchain/generated"
+    editDirectory="/org.eclipse.egf.portfolio.genchain.edit/generated" editorDirectory="/org.eclipse.egf.portfolio.genchain.editor/generated"
+    modelPluginID="org.eclipse.egf.portfolio.genchain" templateDirectory="org.eclipse.egf.portfolio.genchain/templates"
+    dynamicTemplates="true" modelName="GenerationChain" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" runtimeVersion="2.5">
+  <foreignModel>generationChain.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.portfolio.genchain</templatePluginVariables>
+  <genPackages prefix="GenerationChain" basePackage="org.eclipse.egf.portfolio.genchain"
+      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="generationChain.ecore#/">
+    <genClasses image="false" ecoreClass="generationChain.ecore#//GenerationElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//GenerationElement/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference generationChain.ecore#//GenerationElement/container"/>
+    </genClasses>
+    <genClasses ecoreClass="generationChain.ecore#//GenerationChain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//GenerationChain/factoryComponentName"/>
+      <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"
+          ecoreFeature="ecore:EReference generationChain.ecore#//GenerationChain/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="generationChain.ecore#//EmfGeneration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateModel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateEdit"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateEditor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/modelPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/pluginName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/basePackage"/>
+    </genClasses>
+    <genClasses ecoreClass="generationChain.ecore#//DocumentationGeneration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//DocumentationGeneration/pluginName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//DocumentationGeneration/modelPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//DocumentationGeneration/outputDirectoryPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//DocumentationGeneration/configurationPath"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

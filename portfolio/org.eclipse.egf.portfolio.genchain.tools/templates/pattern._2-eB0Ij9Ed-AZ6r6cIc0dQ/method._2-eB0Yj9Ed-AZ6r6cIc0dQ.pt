@@ -1,0 +1,36 @@
+package fcore.builder.patterns;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.pattern.execution.CallHelper;
+import org.eclipse.egf.pattern.execution.ExecutionContext;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
+import org.eclipse.egf.pattern.query.IQuery;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.GenResourceKind;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.importer.ecore.EcoreImporter;
+
+import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
+import org.eclipse.egf.portfolio.genchain.tools.utils.EcoreImporterHelper;
+import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
+import org.eclipse.emf.common.util.BasicMonitor;
+
+
+
+public class ModelGenmodelPattern {
+
+	public ModelGenmodelPattern() {
+		//Here is the constructor
+	}
+
+

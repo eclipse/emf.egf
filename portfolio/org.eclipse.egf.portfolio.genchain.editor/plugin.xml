@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+
+   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+  
+   Contributors:
+       Thales Corporate Services S.A.S - initial API and implementation
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.egf.portfolio.genchain.generationChain.presentation.GenerationChainModelWizardID"
+            name="%_UI_GenerationChainModelWizard_label"
+            class="org.eclipse.egf.portfolio.genchain.generationChain.presentation.GenerationChainModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/GenerationChainModelFile.gif">
+         <description>%_UI_GenerationChainModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.egf.portfolio.genchain.generationChain.presentation.GenerationChainEditorID"
+            name="%_UI_GenerationChainEditor_label"
+            icon="icons/full/obj16/GenerationChainModelFile.gif"
+            extensions="generationchain"
+            class="org.eclipse.egf.portfolio.genchain.generationChain.presentation.GenerationChainEditor"
+            contributorClass="org.eclipse.egf.portfolio.genchain.generationChain.presentation.GenerationChainActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

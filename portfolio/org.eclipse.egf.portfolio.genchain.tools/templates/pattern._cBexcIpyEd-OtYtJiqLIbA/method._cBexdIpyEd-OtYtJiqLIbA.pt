@@ -1,0 +1,34 @@
+		GenModel genModel = ecoreImporter.getGenModel();
+		String emfModelPath = model.getEmfModelPath();
+		for (GenPackage genPackage : genModel.getGenPackages()) {
+			String ecoreFileName = genPackage.getEcorePackage().eResource().getURI().lastSegment();
+			if (emfModelPath.contains(ecoreFileName)) {
+				genPackage.setBasePackage(model.getEmfBasePackage());
+			}
+
+			// EMDE Extension Genmodel
+			genPackage.setResource(GenResourceKind.XMI_LITERAL);
+			genPackage.setDisposableProviderFactory(true);
+			genPackage.setGenerateExampleClass(false);
+			genPackage.setMultipleEditorPages(false);
+			genPackage.setExtensibleProviderFactory(true);
+			genPackage.setChildCreationExtenders(true);
+			// EMDE Extension Genmodel
+
+		}
+
+		String emfPluginName = model.getEmfPluginName();
+		genModel.setModelPluginID(emfPluginName);
+		genModel.setModelDirectory("/" + emfPluginName + "/src");
+
+		// EMDE Extension Genmodel
+		genModel.setNonNLSMarkers(true);
+		genModel.setRootExtendsClass("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container");
+		genModel.setCodeFormatting(true);
+		genModel.setBooleanFlagsField("flags");
+		genModel.setOptimizedHasChildren(true);
+		genModel.setTableProviders(true);
+		genModel.setColorProviders(true);
+		genModel.setPackedEnums(true);
+		// EMDE Extension Genmodel
+

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_6qO2EYhGEd-Ii9WHGzCGHg" name="Generation Chain Producer">
+    <contractContainer xmi:id="_e5UQQI2eEd-EUL5-4Nq41g">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_fqpmkI2eEd-EUL5-4Nq41g"
+          name="genChain model" mandatory="true" invocationContracts="#__6CUE4hMEd-Ii9WHGzCGHg">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_ozah4I2eEd-EUL5-4Nq41g"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tmoZQI2eEd-EUL5-4Nq41g"
+          name="generation plugin name" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_yE-z4I2eEd-EUL5-4Nq41g"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FDGDsI2fEd-EUL5-4Nq41g"
+          name="pattern substitutions" invocationContracts="#_Kr6tYI2fEd-EUL5-4Nq41g">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_IlqykI2fEd-EUL5-4Nq41g"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_hE3f0I20Ed-EUL5-4Nq41g"
+          name="model name" mandatory="true" invocationContracts="#__6CUEohMEd-Ii9WHGzCGHg">
+        <type xmi:type="types:TypeString" xmi:id="_iA-iwI20Ed-EUL5-4Nq41g"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ZsQ4gI6OEd-xWoHAb-RqYQ"
+          name="fcore output path" mandatory="true" invocationContracts="#_zAQYQIjbEd-Ii9WHGzCGHg">
+        <type xmi:type="types:TypeString" xmi:id="_cfoYAI6OEd-xWoHAb-RqYQ"/>
+      </contracts>
+    </contractContainer>
+    <viewpointContainer xmi:id="_CgCtAIhNEd-Ii9WHGzCGHg"/>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Aj5YIIhHEd-Ii9WHGzCGHg">
+      <invocations xmi:id="__6CUEIhMEd-Ii9WHGzCGHg" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_Xo7dMIhLEd-Ii9WHGzCGHg">
+        <invocationContractContainer xmi:id="__6CUEYhMEd-Ii9WHGzCGHg">
+          <invocationContracts xmi:id="__6CUEohMEd-Ii9WHGzCGHg" factoryComponentContract="#_hE3f0I20Ed-EUL5-4Nq41g"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_quyeUIhMEd-Ii9WHGzCGHg"/>
+          <invocationContracts xmi:id="__6CUE4hMEd-Ii9WHGzCGHg" factoryComponentContract="#_fqpmkI2eEd-EUL5-4Nq41g"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_vW-xcIhMEd-Ii9WHGzCGHg"/>
+          <invocationContracts xmi:id="_pL0aQIhNEd-Ii9WHGzCGHg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_txgzAIhNEd-Ii9WHGzCGHg">
+            <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_0YOoUIhNEd-Ii9WHGzCGHg"
+                value="org.eclipse.egf.portfolio.genchain.tools.BuildFcoreReporter"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_zAQYQIjbEd-Ii9WHGzCGHg" factoryComponentContract="#_ZsQ4gI6OEd-xWoHAb-RqYQ"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_eXu8cIjYEd-Ii9WHGzCGHg"/>
+          <invocationContracts xmi:id="_Kr6tYI2fEd-EUL5-4Nq41g" factoryComponentContract="#_FDGDsI2fEd-EUL5-4Nq41g"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/EMF_Generation_Fcore_Builder.fcore#_NHyS4I2fEd-EUL5-4Nq41g"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_CAwXsIhHEd-Ii9WHGzCGHg" name="Read build model" kind="java"
+      implementation="org.eclipse.egf.portfolio.genchain.tools.ReadBuildModelTask">
+    <contractContainer xmi:id="_Vz1goIhHEd-Ii9WHGzCGHg">
+      <contracts xmi:id="_wWWWAIhHEd-Ii9WHGzCGHg" name="pluginName" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_xJ0k4IhIEd-Ii9WHGzCGHg"/>
+      </contracts>
+      <contracts xmi:id="_nVZQcIjXEd-Ii9WHGzCGHg" name="fcoreOutputPath" mandatory="true"
+          mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_aYxzkIjYEd-Ii9WHGzCGHg"/>
+      </contracts>
+      <contracts xmi:id="_mfWykI20Ed-EUL5-4Nq41g" name="model name" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_pnqnUI20Ed-EUL5-4Nq41g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_284uQI2vEd-EUL5-4Nq41g" name="Fix plugin.xml file" kind="java"
+      implementation="org.eclipse.egf.portfolio.genchain.tools.FixPluginFileTask">
+    <contractContainer xmi:id="_88x0II2vEd-EUL5-4Nq41g">
+      <contracts xmi:id="_S4sKcI2zEd-EUL5-4Nq41g" name="pluginName" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_S4sKcY2zEd-EUL5-4Nq41g"/>
+      </contracts>
+      <contracts xmi:id="__QaDoI2vEd-EUL5-4Nq41g" name="fcoreOutputPath" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_UYNccI2zEd-EUL5-4Nq41g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+</xmi:XMI>

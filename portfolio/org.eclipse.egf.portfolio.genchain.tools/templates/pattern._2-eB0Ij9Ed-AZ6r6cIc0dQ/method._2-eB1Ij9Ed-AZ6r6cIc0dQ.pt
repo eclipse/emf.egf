@@ -1,0 +1,22 @@
+		ResourceSet resourceSet = (ResourceSet) ctx.getValue(FcoreBuilderConstants.RESOURCE_SET);
+		IPath ecorePath = new Path(parameter.getModelPath());
+		URI ecoreURI = URI.createPlatformPluginURI(ecorePath.toString(), false);
+		IPath genmodelPath = ecorePath.removeFileExtension().addFileExtension("genmodel");
+		URI genmodelURI = URI.createPlatformPluginURI(genmodelPath.toString(), false);
+		try {
+			Resource resource = resourceSet.getResource(genmodelURI, true);
+			((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
+		} catch (Exception e) {
+			IPath fcorePath = new Path((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH));
+			fcorePath = fcorePath.removeLastSegments(1).append(genmodelPath.lastSegment());
+			URI fcoreURI = URI.createPlatformPluginURI(fcorePath.toString(), false);
+			Resource genResource = null;
+			try {
+				genResource = resourceSet.getResource(fcoreURI, true);
+				((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, fcoreURI);
+			} catch (Exception e1) {
+				genResource = resourceSet.createResource(fcoreURI);
+				((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, fcoreURI);
+				importer = EcoreImporterHelper.createEcoreImporter(fcorePath.removeLastSegments(1), ecoreURI, parameter);
+			}
+		}
