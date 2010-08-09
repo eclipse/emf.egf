@@ -24,7 +24,10 @@ import static org.eclipse.egf.pattern.jet.JetTagsConstants.MATCH_SEPARATOR;
 import static org.eclipse.egf.pattern.jet.JetTagsConstants.PATTERN_ID;
 import static org.eclipse.egf.pattern.jet.JetTagsConstants.TO_INJECT;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.util.Map;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
@@ -65,8 +68,7 @@ public class JetTagsCompiler extends JETCompiler {
             StringBuffer buffer = new StringBuffer();
             buffer.append("{"); //$NON-NLS-1$
             buffer.append(N);
-            buffer.append("//");
-            buffer.append(reader.getChars(start, stop));
+            addDirectiveComment(start, stop, buffer);
             buffer.append(N);
             buffer.append("final Map<String, Object> callParameters"); //$NON-NLS-1$
             buffer.append(" = new HashMap<String, Object>();"); //$NON-NLS-1$
@@ -99,8 +101,7 @@ public class JetTagsCompiler extends JETCompiler {
             StringBuffer buffer = new StringBuffer();
             buffer.append("{"); //$NON-NLS-1$
             buffer.append(N);
-            buffer.append("//");
-            buffer.append(reader.getChars(start, stop));
+            addDirectiveComment(start, stop, buffer);
             buffer.append(N);
             buffer.append("ExecutionContext callCtx"); //$NON-NLS-1$
             buffer.append(" = new ExecutionContext((InternalPatternContext) ctx);"); //$NON-NLS-1$
@@ -122,6 +123,29 @@ public class JetTagsCompiler extends JETCompiler {
         }
 
         super.handleDirective(directive, start, stop, attributes);
+    }
+
+    private void addDirectiveComment(JETMark start, JETMark stop, StringBuffer buffer) {
+        BufferedReader bufferedReader = null;
+        try {
+            char[] chars = reader.getChars(start, stop);
+            bufferedReader = new BufferedReader(new StringReader(new String(chars)));
+            String line = ""; //$NON-NLS-1$
+            while ((line = bufferedReader.readLine()) != null) {
+                buffer.append("//"); //$NON-NLS-1$
+                buffer.append(line); //$NON-NLS-1$
+                buffer.append("\n"); //$NON-NLS-1$
+            }
+        } catch (IOException e) {
+            //ignore me
+        } finally {
+            if (bufferedReader != null)
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    //ignore me
+                }
+        }
     }
 
     protected String translateId(String id) {
