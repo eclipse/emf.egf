@@ -30,6 +30,13 @@
         tooltip="%Translate_All_Patterns"
         toolbarPath="sampleGroup"
         id="org.eclipse.egf.dev.pattern.actions.TranslateAllAction"/>
+      <action
+        label="%Delete_Unused_Templates_Action_Label"
+        icon="icons/sample.gif"
+        class="org.eclipse.egf.dev.pattern.actions.DeleteUnusedTemplatesAction"
+        tooltip="%Delete_Unused_Templates_Action_Tooltip"
+        toolbarPath="sampleGroup"
+        id="org.eclipse.egf.dev.pattern.actions.DeleteUnusedTemplatesAction"/>
     </actionSet>
   </extension>
    	<extension 
