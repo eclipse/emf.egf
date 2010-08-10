@@ -235,8 +235,6 @@ public class FcoreValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(activity, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(activity, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(activity, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(activity, diagnostics, context);
@@ -305,8 +303,6 @@ public class FcoreValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(contract, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(contract, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(contract, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(contract, diagnostics, context);
@@ -335,8 +331,6 @@ public class FcoreValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(factoryComponent, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(factoryComponent, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(factoryComponent, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(factoryComponent, diagnostics, context);
@@ -364,8 +358,6 @@ public class FcoreValidator extends EObjectValidator {
             result &= validate_EveryDataValueConforms(contractContainer, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(contractContainer, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(contractContainer, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(contractContainer, diagnostics, context);
         if (result || diagnostics != null)
@@ -420,8 +412,6 @@ public class FcoreValidator extends EObjectValidator {
             result &= validate_EveryDataValueConforms(factoryComponentContract, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(factoryComponentContract, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(factoryComponentContract, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(factoryComponentContract, diagnostics, context);
         if (result || diagnostics != null)
@@ -501,8 +491,6 @@ public class FcoreValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(orchestrationParameterContainer, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(orchestrationParameterContainer, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(orchestrationParameterContainer, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(orchestrationParameterContainer, diagnostics, context);
@@ -528,8 +516,6 @@ public class FcoreValidator extends EObjectValidator {
             result &= validate_EveryDataValueConforms(orchestrationParameter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(orchestrationParameter, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(orchestrationParameter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(orchestrationParameter, diagnostics, context);
         if (result || diagnostics != null)
@@ -612,8 +598,6 @@ public class FcoreValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(invocation, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(invocation, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(invocation, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(invocation, diagnostics, context);
@@ -688,8 +672,6 @@ public class FcoreValidator extends EObjectValidator {
             result &= validate_EveryDataValueConforms(invocationContract, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(invocationContract, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(invocationContract, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(invocationContract, diagnostics, context);
         if (result || diagnostics != null)
