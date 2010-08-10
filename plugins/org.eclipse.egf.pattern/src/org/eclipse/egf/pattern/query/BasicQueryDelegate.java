@@ -23,8 +23,11 @@ import java.util.Map;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
 import org.eclipse.emf.query.conditions.eobjects.TypeRelation;
 import org.eclipse.emf.query.statements.FROM;
@@ -48,11 +51,27 @@ public class BasicQueryDelegate implements IQuery {
         if (domain == null)
             throw new IllegalStateException(Messages.query_error8);
 
-        MAINTAIN_ORDER_SELECT query = new MAINTAIN_ORDER_SELECT(new FROM(domain), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
-        IQueryResult result = query.execute();
-        if (result.getException() != null)
-            throw new IllegalStateException(result.getException());
-        return query.getOrderedObjects();
+        List<Object> result = new ArrayList<Object>();
+        
+        TreeIterator<EObject> allContentsIterator = EcoreUtil.getAllContents(domain);
+        while (allContentsIterator.hasNext()) {
+            EObject eObject = allContentsIterator.next();
+            URI parameterTypeURI = EcoreUtil.getURI((EObject) loadClass);
+            
+            //same type
+            URI eObjectClassURI = EcoreUtil.getURI(eObject.eClass());
+            if (eObjectClassURI.equals(parameterTypeURI))
+                result.add(eObject);
+            
+            //sub type
+            for (EClass superClass : eObject.eClass().getEAllSuperTypes()) {
+                URI eSuperClassURI = EcoreUtil.getURI(superClass);
+                if (eSuperClassURI.equals(parameterTypeURI))
+                    result.add(eObject);
+            }
+        }
+        
+        return result;
     }
 
     @SuppressWarnings("unchecked")
@@ -60,23 +79,4 @@ public class BasicQueryDelegate implements IQuery {
         return (Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
     }
 
-    protected static class MAINTAIN_ORDER_SELECT extends SELECT {
-
-        private List<Object> result = new ArrayList<Object>();
-
-        public MAINTAIN_ORDER_SELECT(FROM from, WHERE where) {
-            super(from, where);
-        }
-
-        @Override
-        protected void addEObject(EObject eObject) {
-            if (!result.contains(eObject))
-                result.add(eObject);
-            super.addEObject(eObject);
-        }
-
-        public List<Object> getOrderedObjects() {
-            return result;
-        }
-    }
 }
