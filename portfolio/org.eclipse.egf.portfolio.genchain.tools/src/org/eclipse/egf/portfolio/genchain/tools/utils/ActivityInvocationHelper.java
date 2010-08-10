@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.portfolio.genchain.tools.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -27,25 +28,43 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.InvocationContractContainer;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
+import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.types.Type;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * 
  * @author Thomas Guiu
  */
 public class ActivityInvocationHelper {
+    public static final String GENERATION_EXTENSION_PARAMETER_NAME = "generation extension";
+
+    public static void clearOrchestration(FactoryComponent fc) {
+        ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
+        for (Object obj : pp.getInvocations().toArray())
+            EcoreUtil.delete((EObject) obj, true);
+    }
 
     public static FactoryComponent createDefaultFC(String name) {
         FactoryComponent fc = FcoreFactory.eINSTANCE.createFactoryComponent();
         fc.setName(name);
 
         // Create Production plan
-        ProductionPlan pPlan = FprodFactory.eINSTANCE.createProductionPlan();
-        fc.setOrchestration(pPlan);
+        ProductionPlan pp = FprodFactory.eINSTANCE.createProductionPlan();
+        fc.setOrchestration(pp);
+
+        // Create Parameter container
+        pp.setOrchestrationParameterContainer(FcoreFactory.eINSTANCE.createOrchestrationParameterContainer());
+        final OrchestrationParameter parameter = FcoreFactory.eINSTANCE.createOrchestrationParameter();
+        parameter.setName(GENERATION_EXTENSION_PARAMETER_NAME);
+        parameter.setType(PatternFactory.eINSTANCE.createTypePatternSubstitution());
+        pp.getOrchestrationParameterContainer().getOrchestrationParameters().add(parameter);
 
         // Create viewpoint container
         ViewpointContainer viewpointContainer = FcoreFactory.eINSTANCE.createViewpointContainer();
@@ -58,7 +77,15 @@ public class ActivityInvocationHelper {
         return fc;
     }
 
+    public static void addInvocation(ProductionPlan pp, Activity activity) {
+        addInvocation(pp, activity, new HashMap<String, Type>());
+    }
+
     public static void addInvocation(ProductionPlan pp, Activity activity, Map<String, Type> contract2type) {
+        addInvocation(pp, activity, contract2type, new HashMap<String, OrchestrationParameter>());
+    }
+
+    public static void addInvocation(ProductionPlan pp, Activity activity, Map<String, Type> contract2type, Map<String, OrchestrationParameter> contract2parameter) {
         ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
         productionPlanInvocation.setName(activity.getName() + " invocation");
         productionPlanInvocation.setProductionPlan(pp);
@@ -69,9 +96,18 @@ public class ActivityInvocationHelper {
 
         for (Entry<String, Type> entry : contract2type.entrySet()) {
             InvocationContract invocationContract = FcoreFactory.eINSTANCE.createInvocationContract();
-            invocationContract.setInvocationContractContainer(invocationContractContainer);
+            invocationContractContainer.getInvocationContracts().add(invocationContract);
+            // invocationContract.setInvocationContractContainer(invocationContractContainer);
             invocationContract.setInvokedContract(activity.getContract(entry.getKey()));
             invocationContract.setType(entry.getValue());
+        }
+
+        for (Entry<String, OrchestrationParameter> entry : contract2parameter.entrySet()) {
+            InvocationContract invocationContract = FcoreFactory.eINSTANCE.createInvocationContract();
+            invocationContractContainer.getInvocationContracts().add(invocationContract);
+            // invocationContract.setInvocationContractContainer(invocationContractContainer);
+            invocationContract.setInvokedContract(activity.getContract(entry.getKey()));
+            invocationContract.setOrchestrationParameter(entry.getValue());
         }
 
     }
@@ -86,7 +122,8 @@ public class ActivityInvocationHelper {
         invocationContractContainer.setInvocation(productionPlanInvocation);
 
         InvocationContract invocationContract = FcoreFactory.eINSTANCE.createInvocationContract();
-        invocationContract.setInvocationContractContainer(invocationContractContainer);
+        invocationContractContainer.getInvocationContracts().add(invocationContract);
+        // invocationContract.setInvocationContractContainer(invocationContractContainer);
         invocationContract.setInvokedContract(activity.getContracts().get(0));
 
         TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();

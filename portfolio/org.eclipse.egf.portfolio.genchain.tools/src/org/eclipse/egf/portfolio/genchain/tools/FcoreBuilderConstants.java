@@ -27,6 +27,7 @@ public interface FcoreBuilderConstants {
     static final String PLUGIN_NAME = "pluginName";
     static final String MAIN_FCORE = "target.fcore";
     static final String CURRENT_FCORE = "current.fcore";
+    static final String UNUSED_FCORE = "unused.fcore";
     static final String GENMODEL_URIS = "genmodel.uris";
     static final String RESOURCE_SET = "resource.set";
 

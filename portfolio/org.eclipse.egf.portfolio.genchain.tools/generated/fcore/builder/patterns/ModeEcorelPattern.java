@@ -4,24 +4,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.query.IQuery;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
 import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
-import org.eclipse.egf.portfolio.genchain.tools.Uris;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 public class ModeEcorelPattern {
 
@@ -80,18 +81,51 @@ public class ModeEcorelPattern {
 		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
 		DomainViewpoint dvp = (DomainViewpoint) fc.getViewpointContainer().getViewpoint(DomainViewpoint.class);
 
-		DomainURI genModelDomainURI = DomainFactory.eINSTANCE.createDomainURI();
+		DomainURI genModelDomainURI = null;
 		URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter);
-		genModelDomainURI.setUri(uri);
-		dvp.getDomains().add(genModelDomainURI);
+		for (Domain domain : dvp.getDomains()) {
+			if (domain instanceof DomainURI) {
+				DomainURI domainUri = (DomainURI) domain;
+				if (uri.equals(domainUri.getUri())) {
+					genModelDomainURI = domainUri;
+					break;
+				}
+			}
+		}
+		if (genModelDomainURI == null) {
+			genModelDomainURI = DomainFactory.eINSTANCE.createDomainURI();
+			genModelDomainURI.setUri(uri);
+			dvp.getDomains().add(genModelDomainURI);
+		}
+
+		Map<String, Type> contracts = new HashMap<String, Type>();
+		Map<String, OrchestrationParameter> parameters = new HashMap<String, OrchestrationParameter>();
+
+		for (OrchestrationParameter param : pp.getOrchestrationParameters()) {
+			if (ActivityInvocationHelper.GENERATION_EXTENSION_PARAMETER_NAME.equals(param.getName())) {
+				parameters.put("pattern.substitutions", param);
+			}
+		}
 
 		ResourceSet resourceSet = fc.eResource().getResourceSet();
-		if (parameter.isGenerateModel())
-			ActivityInvocationHelper.addInvocation(pp, genModelDomainURI, (Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true));
-		if (parameter.isGenerateEdit())
-			ActivityInvocationHelper.addInvocation(pp, genModelDomainURI, (Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true));
-		if (parameter.isGenerateEditor())
-			ActivityInvocationHelper.addInvocation(pp, genModelDomainURI, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true));
+		if (parameter.isGenerateModel()) {
+			TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
+			typeDomainURI.setDomain(genModelDomainURI);
+			contracts.put("genModelURI", typeDomainURI);
+			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true), contracts, parameters);
+		}
+		if (parameter.isGenerateEdit()) {
+			TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
+			typeDomainURI.setDomain(genModelDomainURI);
+			contracts.put("genModelURI", typeDomainURI);
+			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true), contracts, parameters);
+		}
+		if (parameter.isGenerateEditor()) {
+			TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
+			typeDomainURI.setDomain(genModelDomainURI);
+			contracts.put("genModelURI", typeDomainURI);
+			ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts, parameters);
+		}
 
 	}
 

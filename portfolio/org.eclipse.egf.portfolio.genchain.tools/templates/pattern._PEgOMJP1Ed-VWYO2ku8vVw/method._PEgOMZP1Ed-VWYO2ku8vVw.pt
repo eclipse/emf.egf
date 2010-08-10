@@ -1,5 +1,6 @@
 package fcore.builder.patterns;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,13 +8,12 @@ import java.util.Map;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.query.IQuery;
-
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
 import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
+import org.eclipse.egf.portfolio.genchain.tools.utils.FCMatcher;
 
 
 public class GenerationChainPattern {
