@@ -31,32 +31,27 @@ public class ClassbasicGetGenFeatureoverride {
     protected final String TEXT_4 = " basicGet";
     protected final String TEXT_5 = "()" + NL + "\t{";
     protected final String TEXT_6 = NL;
-    protected final String TEXT_7 = NL + "\t\treturn (";
-    protected final String TEXT_8 = ")eDynamicGet(";
-    protected final String TEXT_9 = ", ";
-    protected final String TEXT_10 = ", false, ";
-    protected final String TEXT_11 = ");";
-    protected final String TEXT_12 = NL + "\t\tif (eContainerFeatureID() != ";
-    protected final String TEXT_13 = ") return null;" + NL + "\t\treturn (";
-    protected final String TEXT_14 = ")eInternalContainer();";
+    protected final String TEXT_7 = NL + "\t\tif (eContainerFeatureID != ";
+    protected final String TEXT_8 = ") return null;" + NL + "\t\treturn (";
+    protected final String TEXT_9 = ")eInternalContainer();";
+    protected final String TEXT_10 = NL + "\t\treturn (";
+    protected final String TEXT_11 = ")eVirtualGet(";
+    protected final String TEXT_12 = ");";
+    protected final String TEXT_13 = NL + "\t\treturn ";
+    protected final String TEXT_14 = ";";
     protected final String TEXT_15 = NL + "\t\treturn (";
-    protected final String TEXT_16 = ")eVirtualGet(";
-    protected final String TEXT_17 = ");";
-    protected final String TEXT_18 = NL + "\t\treturn ";
-    protected final String TEXT_19 = ";";
+    protected final String TEXT_16 = ")((";
+    protected final String TEXT_17 = ".Internal.Wrapper)get";
+    protected final String TEXT_18 = "()).featureMap().get(";
+    protected final String TEXT_19 = ", false);";
     protected final String TEXT_20 = NL + "\t\treturn (";
-    protected final String TEXT_21 = ")((";
-    protected final String TEXT_22 = ".Internal.Wrapper)get";
-    protected final String TEXT_23 = "()).featureMap().get(";
-    protected final String TEXT_24 = ", false);";
-    protected final String TEXT_25 = NL + "\t\treturn (";
-    protected final String TEXT_26 = ")get";
-    protected final String TEXT_27 = "().get(";
-    protected final String TEXT_28 = ", false);";
-    protected final String TEXT_29 = NL;
-    protected final String TEXT_30 = NL + "\t}" + NL + NL;
-    protected final String TEXT_31 = NL;
-    protected final String TEXT_32 = NL;
+    protected final String TEXT_21 = ")get";
+    protected final String TEXT_22 = "().get(";
+    protected final String TEXT_23 = ", false);";
+    protected final String TEXT_24 = NL;
+    protected final String TEXT_25 = NL + "\t}" + NL + NL;
+    protected final String TEXT_26 = NL;
+    protected final String TEXT_27 = NL;
 
     public ClassbasicGetGenFeatureoverride() {
         //Here is the constructor
@@ -81,8 +76,6 @@ public class ClassbasicGetGenFeatureoverride {
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> genModelList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> isJDK50List = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isInterfaceList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isImplementationList = null;
@@ -100,30 +93,27 @@ public class ClassbasicGetGenFeatureoverride {
             for (Object genClassParameter : genClassList) {
                 for (Object genPackageParameter : genPackageList) {
                     for (Object genModelParameter : genModelList) {
-                        for (Object isJDK50Parameter : isJDK50List) {
-                            for (Object isInterfaceParameter : isInterfaceList) {
-                                for (Object isImplementationParameter : isImplementationList) {
-                                    for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
-                                        for (Object singleWildcardParameter : singleWildcardList) {
-                                            for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
-                                                for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+                        for (Object isInterfaceParameter : isInterfaceList) {
+                            for (Object isImplementationParameter : isImplementationList) {
+                                for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
+                                    for (Object singleWildcardParameter : singleWildcardList) {
+                                        for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
+                                            for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
 
-                                                    this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                                                    this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                                                    this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                                                    this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-                                                    this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-                                                    this.isInterface = (java.lang.Boolean) isInterfaceParameter;
-                                                    this.isImplementation = (java.lang.Boolean) isImplementationParameter;
-                                                    this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
-                                                    this.singleWildcard = (java.lang.String) singleWildcardParameter;
-                                                    this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
-                                                    this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+                                                this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+                                                this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+                                                this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+                                                this.isInterface = (java.lang.Boolean) isInterfaceParameter;
+                                                this.isImplementation = (java.lang.Boolean) isImplementationParameter;
+                                                this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
+                                                this.singleWildcard = (java.lang.String) singleWildcardParameter;
+                                                this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
+                                                this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
 
-                                                    if (preCondition())
-                                                        orchestration(ctx);
+                                                if (preCondition())
+                                                    orchestration(ctx);
 
-                                                }
                                             }
                                         }
                                     }
@@ -139,8 +129,8 @@ public class ClassbasicGetGenFeatureoverride {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_31);
-        stringBuffer.append(TEXT_32);
+        stringBuffer.append(TEXT_26);
+        stringBuffer.append(TEXT_27);
         return stringBuffer.toString();
     }
 
@@ -159,7 +149,6 @@ public class ClassbasicGetGenFeatureoverride {
             parameterValues.put("genClass", this.genClass);
             parameterValues.put("genPackage", this.genPackage);
             parameterValues.put("genModel", this.genModel);
-            parameterValues.put("isJDK50", this.isJDK50);
             parameterValues.put("isInterface", this.isInterface);
             parameterValues.put("isImplementation", this.isImplementation);
             parameterValues.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
@@ -195,12 +184,6 @@ public class ClassbasicGetGenFeatureoverride {
 
     public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
         this.genModel = object;
-    }
-
-    protected java.lang.Boolean isJDK50 = null;
-
-    public void set_isJDK50(java.lang.Boolean object) {
-        this.isJDK50 = object;
     }
 
     protected java.lang.Boolean isInterface = null;
@@ -245,7 +228,6 @@ public class ClassbasicGetGenFeatureoverride {
         parameters.put("genClass", this.genClass);
         parameters.put("genPackage", this.genPackage);
         parameters.put("genModel", this.genModel);
-        parameters.put("isJDK50", this.isJDK50);
         parameters.put("isInterface", this.isInterface);
         parameters.put("isImplementation", this.isImplementation);
         parameters.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
@@ -258,15 +240,16 @@ public class ClassbasicGetGenFeatureoverride {
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        if (isJDK50) { //Class/basicGetGenFeature.annotations.insert.javajetinc
+        if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //Class/basicGetGenFeature.annotations.insert.javajetinc
             stringBuffer.append(TEXT_2);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
                 callParameters.put("genPackage", genPackage);
                 callParameters.put("genModel", genModel);
-                callParameters.put("isJDK50", isJDK50);
                 callParameters.put("isInterface", isInterface);
                 callParameters.put("isImplementation", isImplementation);
                 callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
@@ -284,12 +267,13 @@ public class ClassbasicGetGenFeatureoverride {
         stringBuffer.append(TEXT_5);
         stringBuffer.append(TEXT_6);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.pre.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
             callParameters.put("genClass", genClass);
             callParameters.put("genPackage", genPackage);
             callParameters.put("genModel", genModel);
-            callParameters.put("isJDK50", isJDK50);
             callParameters.put("isInterface", isInterface);
             callParameters.put("isImplementation", isImplementation);
             callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
@@ -299,66 +283,57 @@ public class ClassbasicGetGenFeatureoverride {
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0mBr4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        if (genModel.isDynamicDelegation()) {
+        if (genFeature.isContainer()) {
             stringBuffer.append(TEXT_7);
-            stringBuffer.append(genFeature.getImportedType(genClass));
-            stringBuffer.append(TEXT_8);
-            stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
-            stringBuffer.append(TEXT_9);
-            stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-            stringBuffer.append(TEXT_10);
-            stringBuffer.append(!genFeature.isEffectiveSuppressEMFTypes());
-            stringBuffer.append(TEXT_11);
-        } else if (genFeature.isContainer()) {
-            stringBuffer.append(TEXT_12);
             stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
             stringBuffer.append(positiveOffsetCorrection);
-            stringBuffer.append(TEXT_13);
+            stringBuffer.append(TEXT_8);
             stringBuffer.append(genFeature.getImportedType(genClass));
-            stringBuffer.append(TEXT_14);
+            stringBuffer.append(TEXT_9);
         } else if (!genFeature.isVolatile()) {
             if (genModel.isVirtualDelegation()) {
-                stringBuffer.append(TEXT_15);
+                stringBuffer.append(TEXT_10);
                 stringBuffer.append(genFeature.getImportedType(genClass));
-                stringBuffer.append(TEXT_16);
+                stringBuffer.append(TEXT_11);
                 stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
                 stringBuffer.append(positiveOffsetCorrection);
-                stringBuffer.append(TEXT_17);
+                stringBuffer.append(TEXT_12);
             } else {
-                stringBuffer.append(TEXT_18);
+                stringBuffer.append(TEXT_13);
                 stringBuffer.append(genFeature.getSafeName());
-                stringBuffer.append(TEXT_19);
+                stringBuffer.append(TEXT_14);
             }
         } else if (genFeature.hasDelegateFeature()) {
             GenFeature delegateFeature = genFeature.getDelegateFeature();
             if (delegateFeature.isWrappedFeatureMapType()) {
+                stringBuffer.append(TEXT_15);
+                stringBuffer.append(genFeature.getImportedType(genClass));
+                stringBuffer.append(TEXT_16);
+                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
+                stringBuffer.append(TEXT_17);
+                stringBuffer.append(delegateFeature.getAccessorName());
+                stringBuffer.append(TEXT_18);
+                stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
+                stringBuffer.append(TEXT_19);
+            } else {
                 stringBuffer.append(TEXT_20);
                 stringBuffer.append(genFeature.getImportedType(genClass));
                 stringBuffer.append(TEXT_21);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap"));
+                stringBuffer.append(delegateFeature.getAccessorName());
                 stringBuffer.append(TEXT_22);
-                stringBuffer.append(delegateFeature.getAccessorName());
+                stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
                 stringBuffer.append(TEXT_23);
-                stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-                stringBuffer.append(TEXT_24);
-            } else {
-                stringBuffer.append(TEXT_25);
-                stringBuffer.append(genFeature.getImportedType(genClass));
-                stringBuffer.append(TEXT_26);
-                stringBuffer.append(delegateFeature.getAccessorName());
-                stringBuffer.append(TEXT_27);
-                stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
-                stringBuffer.append(TEXT_28);
             }
         } else {
-            stringBuffer.append(TEXT_29);
+            stringBuffer.append(TEXT_24);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
                 callParameters.put("genPackage", genPackage);
                 callParameters.put("genModel", genModel);
-                callParameters.put("isJDK50", isJDK50);
                 callParameters.put("isInterface", isInterface);
                 callParameters.put("isImplementation", isImplementation);
                 callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
@@ -370,7 +345,7 @@ public class ClassbasicGetGenFeatureoverride {
 
             //Class/basicGetGenFeature.todo.override.javajetinc
         }
-        stringBuffer.append(TEXT_30);
+        stringBuffer.append(TEXT_25);
     }
 
     public boolean preCondition() throws Exception {

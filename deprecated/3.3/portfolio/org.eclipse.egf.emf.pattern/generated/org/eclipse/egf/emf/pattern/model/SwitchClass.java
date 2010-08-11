@@ -199,6 +199,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
         GenModel genModel = genPackage.getGenModel();
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -218,7 +220,7 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
             for (GenEnum genEnum : genPackage.getGenEnums()) {
                 usedNames.add(genEnum.getName());
             }
-            for (GenClass genClass : genPackage.getAllSwitchGenClasses()) {
+            for (GenClass genClass : genPackage.getGenClasses()) {
                 if (!genClass.isDynamic() && !genClass.isExternalInterface()) {
                     usedNames.add(genClass.getName());
                 }
@@ -282,7 +284,7 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
                 stringBuffer.append(TEXT_24);
                 stringBuffer.append(genPackage.getClassifierID(genClass));
                 stringBuffer.append(TEXT_25);
-                if (genClass.isUncheckedCast() || genClass.isMapEntry() && genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {
+                if (genClass.isUncheckedCast() || genClass.getInterfaceWildTypeArguments().length() > 0) {
                     stringBuffer.append(TEXT_26);
                 }
                 stringBuffer.append(genClass.getImportedInterfaceName());

@@ -16,10 +16,9 @@
  */
 %>
 <%final GenClass genClass = (GenClass)((Object[])argument)[0]; final GenPackage genPackage = genClass.getGenPackage(); final GenModel genModel=genPackage.getGenModel();%>
-<%final boolean isJDK50 = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50;%>
 <%final boolean isInterface = Boolean.TRUE.equals(((Object[])argument)[1]); final boolean isImplementation = Boolean.TRUE.equals(((Object[])argument)[2]);%>
 <%final String publicStaticFinalFlag = isImplementation ? "public static final " : "";%>
-<%final String singleWildcard = isJDK50 ? "<?>" : "";%>
+<%final String singleWildcard = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<?>" : "";%>
 <%final String negativeOffsetCorrection = genClass.hasOffsetCorrection() ? " - " + genClass.getOffsetCorrectionField(null) : "";%>
 <%final String positiveOffsetCorrection = genClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(null) : "";%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -30,7 +29,6 @@ package <%=genPackage.getClassPackageName()%>;
 <%}%>
 
 <%genModel.markImportLocation(stringBuffer, genPackage);%>
-<%if (isImplementation) { genClass.addClassPsuedoImports(); }%>
 
 <%if (isInterface) {%>
 /**
@@ -163,7 +161,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 <%}%>
 <%if (isImplementation && !genModel.isReflectiveDelegation()) {%>
   <%for (GenFeature genFeature : genClass.getDeclaredFieldGenFeatures()) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/declaredFieldGenFeature.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/declaredFieldGenFeature.override.javajetinc%>
   <%}%>
 <%}%>
 <%if (isImplementation && genClass.hasOffsetCorrection() && !genClass.getImplementedGenFeatures().isEmpty()) {%>
@@ -197,8 +195,8 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	<%if (genModel.isPublicConstructors()) {%>public<%} else {%>protected<%}%> <%=genClass.getClassName()%>()
 	{
 		super();
-  <%for (GenFeature genFeature : genClass.getFlagGenFeaturesWithDefault()) {%>
-		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG<%if (!genFeature.isBooleanType()) {%>_DEFAULT<%}%>;
+  <%for (GenFeature genFeature : genClass.getFlagGenFeatures("true")) {%>
+		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG;
   <%}%>
 	}
 
@@ -216,14 +214,14 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	}
 
 <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.reflectiveDelegation.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/reflectiveDelegation.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.reflectiveDelegation.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/reflectiveDelegation.override.javajetinc%>
 <%new Runnable() { public void run() {%>
 <%for (GenFeature genFeature : (isImplementation ? genClass.getImplementedGenFeatures() : genClass.getDeclaredGenFeatures())) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/genFeature.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/genFeature.override.javajetinc%>
 <%}//for%>
 <%}}.run();%>
 <%for (GenOperation genOperation : (isImplementation ? genClass.getImplementedGenOperations() : genClass.getDeclaredGenOperations())) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/implementedGenOperation.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/implementedGenOperation.override.javajetinc%>
 <%}//for%>
 <%if (isImplementation && !genModel.isReflectiveDelegation() && genClass.implementsAny(genClass.getEInverseAddGenFeatures())) {%>
 	/**
@@ -233,7 +231,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	 */
   <%if (genModel.useGenerics()) {%>
     <%for (GenFeature genFeature : genClass.getEInverseAddGenFeatures()) {%>
-      <%if (genFeature.isUncheckedCast(genClass)) {%>
+      <%if (genFeature.isUncheckedCast()) {%>
 	@SuppressWarnings("unchecked")
       <%break; }%>
     <%}%>
@@ -264,14 +262,14 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
   <%} else {%>
     <%if (genClass.getImplementingGenModel(genFeature).isVirtualDelegation()) {%>
 				<%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%> = (<%=genFeature.getImportedType(genClass)%>)eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>);
-    <%} else if (genFeature.isVolatile() || genClass.getImplementingGenModel(genFeature).isDynamicDelegation()) {%>
+    <%} else if (genFeature.isVolatile()) {%>
 				<%=genFeature.getImportedType(genClass)%> <%=genFeature.getSafeName()%> = <%if (genFeature.isResolveProxies()) {%>basicGet<%=genFeature.getAccessorName()%><%} else {%><%=genFeature.getGetAccessor()%><%}%>();
     <%}%>
 				if (<%=genFeature.getSafeName()%> != null)
     <%if (genFeature.isEffectiveContains()) {%>
 					msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - <%=genClass.getQualifiedFeatureID(genFeature)%><%=negativeOffsetCorrection%>, null, msgs);
     <%} else { GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(reverseFeature) : "";%>
-					msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, msgs);
+					msgs = ((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>).eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getImportedInterfaceName()%>.class, msgs);
     <%}%>
 				return basicSet<%=genFeature.getAccessorName()%>((<%=genFeature.getImportedType(genClass)%>)otherEnd, msgs);
   <%}%>
@@ -336,12 +334,12 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
   <%}%>
 	public <%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> eBasicRemoveFromContainerFeature(<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs)
 	{
-		switch (eContainerFeatureID()<%=negativeOffsetCorrection%>)
+		switch (eContainerFeatureID<%=negativeOffsetCorrection%>)
 		{
 <%for (GenFeature genFeature : genClass.getEBasicRemoveFromContainerGenFeatures()) {%>
   <%GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(reverseFeature) : "";%>
 			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
-				return eInternalContainer().eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, msgs);
+				return eInternalContainer().eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getImportedInterfaceName()%>.class, msgs);
 <%}%>
 		}
 <%if (genModel.isMinimalReflectiveMethods()) {%>
@@ -368,9 +366,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 <%for (GenFeature genFeature : genClass.getEGetGenFeatures()) {%>
 			case <%=genClass.getQualifiedFeatureID(genFeature)%>:
   <%if (genFeature.isPrimitiveType()) {%>
-    <%if (isJDK50) {%>
-				return <%=genFeature.getGetAccessor()%>();
-    <%} else if (genFeature.isBooleanType()) {%>
+    <%if (genFeature.isBooleanType()) {%>
 				return <%=genFeature.getGetAccessor()%>() ? Boolean.TRUE : Boolean.FALSE;
     <%} else {%>
 				return new <%=genFeature.getObjectType(genClass)%>(<%=genFeature.getGetAccessor()%>());
@@ -413,7 +409,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	 */
   <%if (genModel.useGenerics()) {%>
     <%for (GenFeature genFeature : genClass.getESetGenFeatures()) {%>
-      <%if (genFeature.isUncheckedCast(genClass) && !genFeature.isFeatureMapType() && !genFeature.isMapType()) {%>
+      <%if (genFeature.isUncheckedCast() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) {%>
 	@SuppressWarnings("unchecked")
       <%break; }%>
     <%}%>
@@ -440,12 +436,12 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
         <%}%>
       <%} else {%>
 				<%=genFeature.getGetAccessor()%>().clear();
-				<%=genFeature.getGetAccessor()%>().addAll((<%=genModel.getImportedName("java.util.Collection")%><%if (isJDK50) {%><? extends <%=genFeature.getListItemType(genClass)%>><%}%>)newValue);
+				<%=genFeature.getGetAccessor()%>().addAll((<%=genModel.getImportedName("java.util.Collection")%><%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {%><? extends <%=genFeature.getListItemType(genClass)%>><%}%>)newValue);
       <%}%>
-    <%} else if (!isJDK50 && genFeature.isPrimitiveType()) {%>
+    <%} else if (genFeature.isPrimitiveType()) {%>
 				set<%=genFeature.getAccessorName()%>(((<%=genFeature.getObjectType(genClass)%>)newValue).<%=genFeature.getPrimitiveValueFunction()%>());
     <%} else {%>
-				set<%=genFeature.getAccessorName()%>(<%if (genFeature.getTypeGenDataType() == null || !genFeature.getTypeGenDataType().isObjectType() || !genFeature.getRawType().equals(genFeature.getType(genClass))) {%>(<%=genFeature.getObjectType(genClass)%>)<%}%>newValue);
+				set<%=genFeature.getAccessorName()%>(<%if (genFeature.getTypeGenDataType() == null || !genFeature.getTypeGenDataType().isObjectType() || !genFeature.getRawType().equals(genFeature.getType(genClass))) {%>(<%=genFeature.getImportedType(genClass)%>)<%}%>newValue);
     <%}%>
 				return;
   <%}%>
@@ -459,10 +455,10 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 
 <%}%>
 <%if (isImplementation && !genModel.isReflectiveDelegation() && genClass.implementsAny(genClass.getEUnsetGenFeatures())) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.eUnset.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/eUnset.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.eUnset.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/eUnset.override.javajetinc%>
 <%}%>
 <%if (isImplementation && !genModel.isReflectiveDelegation() && genClass.implementsAny(genClass.getEIsSetGenFeatures())) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.eIsSet.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/eIsSet.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.eIsSet.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/eIsSet.override.javajetinc%>
 <%}%>
 <%if (isImplementation && (!genClass.getMixinGenFeatures().isEmpty() || genClass.hasOffsetCorrection() && !genClass.getGenFeatures().isEmpty())) {%>
   <%if (!genClass.getMixinGenFeatures().isEmpty()) {%>
@@ -477,7 +473,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<%=singleWildcard%> baseClass)
 	{
     <%for (GenClass mixinGenClass : genClass.getMixinGenClasses()) {%>
-		if (baseClass == <%=mixinGenClass.getRawImportedInterfaceName()%>.class)
+		if (baseClass == <%=mixinGenClass.getImportedInterfaceName()%>.class)
 		{
 			switch (derivedFeatureID<%=negativeOffsetCorrection%>)
 			{
@@ -503,7 +499,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<%=singleWildcard%> baseClass)
 	{
   <%for (GenClass mixinGenClass : genClass.getMixinGenClasses()) {%>
-		if (baseClass == <%=mixinGenClass.getRawImportedInterfaceName()%>.class)
+		if (baseClass == <%=mixinGenClass.getImportedInterfaceName()%>.class)
 		{
 			switch (baseFeatureID)
 			{
@@ -515,7 +511,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 		}
   <%}%>
   <%if (genClass.hasOffsetCorrection() && !genClass.getGenFeatures().isEmpty()) {%>
-		if (baseClass == <%=genClass.getRawImportedInterfaceName()%>.class)
+		if (baseClass == <%=genClass.getImportedInterfaceName()%>.class)
 		{
 			switch (baseFeatureID<%=negativeOffsetCorrection%>)
 			{
@@ -607,7 +603,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
     <%}%>
   <%}%>
 <%}%>
-<%if (!genClass.hasImplementedToStringGenOperation() && isImplementation && !genModel.isReflectiveDelegation() && !genModel.isDynamicDelegation() && !genClass.getToStringGenFeatures().isEmpty()) {%>
+<%if (isImplementation && !genModel.isReflectiveDelegation() && !genClass.getToStringGenFeatures().isEmpty()) {%>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -633,11 +629,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 		if (eVirtualIsSet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>)) result.append(eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>)); else result.append("<unset>");<%=genModel.getNonNLS()%>
         <%} else {%>
           <%if (genClass.isFlag(genFeature)) {%>
-            <%if (genFeature.isBooleanType()) {%>
 		if (<%if (genClass.isESetFlag(genFeature)) {%>(<%=genClass.getESetFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_ESETFLAG) != 0<%} else {%><%=genFeature.getUncapName()%>ESet<%}%>) result.append((<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) != 0); else result.append("<unset>");<%=genModel.getNonNLS()%>
-            <%} else {%>
-		if (<%if (genClass.isESetFlag(genFeature)) {%>(<%=genClass.getESetFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_ESETFLAG) != 0<%} else {%><%=genFeature.getUncapName()%>ESet<%}%>) result.append(<%=genFeature.getUpperName()%>_EFLAG_VALUES[(<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) >>> <%=genFeature.getUpperName()%>_EFLAG_OFFSET]); else result.append("<unset>");<%=genModel.getNonNLS()%>
-            <%}%>
           <%} else {%>
 		if (<%if (genClass.isESetFlag(genFeature)) {%>(<%=genClass.getESetFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_ESETFLAG) != 0<%} else {%><%=genFeature.getUncapName()%>ESet<%}%>) result.append(<%=genFeature.getSafeName()%>); else result.append("<unset>");<%=genModel.getNonNLS()%>
           <%}%>
@@ -647,11 +639,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 		result.append(eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%><%if (!genFeature.isListType() && !genFeature.isReferenceType()){%>, <%=genFeature.getEDefault()%><%}%>));
         <%} else {%>
           <%if (genClass.isFlag(genFeature)) {%>
-          <%if (genFeature.isBooleanType()) {%>
 		result.append((<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) != 0);
-          <%} else {%>
-		result.append(<%=genFeature.getUpperName()%>_EFLAG_VALUES[(<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) >>> <%=genFeature.getUpperName()%>_EFLAG_OFFSET]);
-          <%}%>
           <%} else {%>
 		result.append(<%=genFeature.getSafeName()%>);
           <%}%>
@@ -666,9 +654,9 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 <%}%>
 <%if (isImplementation && genClass.isMapEntry()) { GenFeature keyFeature = genClass.getMapEntryKeyFeature(); GenFeature valueFeature = genClass.getMapEntryValueFeature();%>
 <%String objectType = genModel.getImportedName("java.lang.Object");%>
-<%String keyType = isJDK50 ? keyFeature.getObjectType(genClass) : objectType;%>
-<%String valueType = isJDK50 ? valueFeature.getObjectType(genClass) : objectType;%>
-<%String eMapType = genModel.getImportedName("org.eclipse.emf.common.util.EMap") + (isJDK50 ? "<" + keyType + ", " + valueType + ">" : "");%>
+<%String keyType = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? keyFeature.getObjectType(genClass) : objectType;%>
+<%String valueType = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? valueFeature.getObjectType(genClass) : objectType;%>
+<%String eMapType = genModel.getImportedName("org.eclipse.emf.common.util.EMap") + (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<" + keyType + ", " + valueType + ">" : "");%>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -708,7 +696,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	 */
 	public <%=keyType%> getKey()
 	{
-  <%if (!isJDK50 && keyFeature.isPrimitiveType()) {%>
+  <%if (keyFeature.isPrimitiveType()) {%>
 		return new <%=keyFeature.getObjectType(genClass)%>(getTypedKey());
   <%} else {%>
 		return getTypedKey();
@@ -724,7 +712,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	{
   <%if (keyFeature.isListType()) {%>
 		getTypedKey().addAll(<%if (!genModel.useGenerics()) {%>(<%=genModel.getImportedName("java.util.Collection")%>)<%}%>key);
-  <%} else if (isJDK50) {%>
+  <%} else if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {%>
 		setTypedKey(key);
   <%} else if (keyFeature.isPrimitiveType()) {%>
 		setTypedKey(((<%=keyFeature.getObjectType(genClass)%>)key).<%=keyFeature.getPrimitiveValueFunction()%>());
@@ -740,7 +728,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	 */
 	public <%=valueType%> getValue()
 	{
-  <%if (!isJDK50 && valueFeature.isPrimitiveType()) {%>
+  <%if (valueFeature.isPrimitiveType()) {%>
 		return new <%=valueFeature.getObjectType(genClass)%>(getTypedValue());
   <%} else {%>
 		return getTypedValue();
@@ -758,7 +746,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
   <%if (valueFeature.isListType()) {%>
 		getTypedValue().clear();
 		getTypedValue().addAll(<%if (!genModel.useGenerics()) {%>(<%=genModel.getImportedName("java.util.Collection")%>)<%}%>value);
-  <%} else if (isJDK50) {%>
+  <%} else if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {%>
 		setTypedValue(value);
   <%} else if (valueFeature.isPrimitiveType()) {%>
 		setTypedValue(((<%=valueFeature.getObjectType(genClass)%>)value).<%=valueFeature.getPrimitiveValueFunction()%>());
@@ -783,7 +771,7 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	}
 
 <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
 } //<%=isInterface ? " " + genClass.getInterfaceName() : genClass.getClassName()%>
 <%// TODO fix the space above%>
 <%genModel.emitSortedImports();%>

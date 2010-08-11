@@ -10,7 +10,7 @@
 					 <%=delegatedFeature.getTypeGenEnum().getStaticValue(delegatedFeature.getEcoreFeature().getDefaultValueLiteral())%>)));
           <%} else if (delegatedFeature.isStringBasedType()) {%>
 					 <%=delegatedFeature.getCreateChildValueLiteral()%>)));<%=genModel.getNonNLS()%>
-          <%} else { String literal = delegatedFeature.getCreateChildValueLiteral();%>
+          <%} else { String literal = delegatedFeature.getCreateChildValueLiteral(); GenDataType createDataType = delegatedFeature.getTypeGenDataType();%>
 					 <%=createDataType.getGenPackage().getQualifiedEFactoryInstanceAccessor()%>.createFromString(<%=createDataType.getQualifiedClassifierAccessor()%>, <%=literal%>))));<%if (literal != null) {%><%=genModel.getNonNLS()%><%} else {%> // TODO: ensure this is a valid literal value<%}%>
           <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.insert" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.insert" args="delegatedFeature:delegatedFeature,createFeature:createFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>

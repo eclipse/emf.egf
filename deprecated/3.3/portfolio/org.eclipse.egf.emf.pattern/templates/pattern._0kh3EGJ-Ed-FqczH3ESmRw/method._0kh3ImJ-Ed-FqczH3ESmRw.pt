@@ -1,31 +1,29 @@
 
 
 <%if (isInterface) {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.javadoc.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/getGenFeature.javadoc.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.javadoc.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/getGenFeature.javadoc.override.javajetinc%>
 <%} else {%>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-<%if (isJDK50) { //Class/getGenFeature.annotations.insert.javajetinc%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //Class/getGenFeature.annotations.insert.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
 <%}%>
 <%}%>
 <%if (!isImplementation) {%>
 	<%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%>();
 
 <%} else {%>
-  <%if (genModel.useGenerics() && ((genFeature.isContainer() || genFeature.isResolveProxies()) && !genFeature.isListType() && !(genModel.isReflectiveDelegation() && genModel.isDynamicDelegation()) && genFeature.isUncheckedCast(genClass) || genFeature.isListType() && !genFeature.isFeatureMapType() && (genModel.isReflectiveDelegation() || genModel.isVirtualDelegation() || genModel.isDynamicDelegation()) || genFeature.isListDataType() && genFeature.hasDelegateFeature())) {%>
+  <%if (genModel.useGenerics() && ((genFeature.isContainer() || genFeature.isResolveProxies()) && !genFeature.isListType() && !genModel.isReflectiveDelegation() && genFeature.isUncheckedCast() || genFeature.isListType() && (genModel.isReflectiveDelegation() || genModel.isVirtualDelegation()) || genFeature.isListDataType() && genFeature.hasDelegateFeature())) {%>
 	@SuppressWarnings("unchecked")
   <%}%>
-	public <%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%><%if (genClass.hasCollidingGetAccessorOperation(genFeature)) {%>_<%}%>()
+	public <%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%>()
 	{
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.pre.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
-    <%if (genModel.isDynamicDelegation()) {%>
-		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eDynamicGet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>, true, <%=!genFeature.isEffectiveSuppressEMFTypes()%>)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
-    <%} else if (genModel.isReflectiveDelegation()) {%>
-		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eGet(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.pre.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+    <%if (genModel.isReflectiveDelegation()) {%>
+		return <%if (genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eGet(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
     <%} else if (!genFeature.isVolatile()) {%>
       <%if (genFeature.isListType()) {%>
         <%if (genModel.isVirtualDelegation()) {%>
@@ -41,7 +39,7 @@
 		}
 		return <%=genFeature.getSafeName()%><%=genFeature.isMapType() && genFeature.isEffectiveSuppressEMFTypes() ? ".map()" : ""%>;
       <%} else if (genFeature.isContainer()) {%>
-		if (eContainerFeatureID() != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) return null;
+		if (eContainerFeatureID != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) return null;
 		return (<%=genFeature.getImportedType(genClass)%>)eContainer();
       <%} else {%>
         <%if (genFeature.isResolveProxies()) {%>
@@ -59,14 +57,14 @@
           <%if (!genFeature.isBidirectional()) {%>
 				<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs = old<%=genFeature.getCapName()%>.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - <%=genClass.getQualifiedFeatureID(genFeature)%><%=negativeOffsetCorrection%>, null, null);
           <%} else { GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(reverseFeature) : "";%>
-				<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs =  old<%=genFeature.getCapName()%>.eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, null);
+				<%=genModel.getImportedName("org.eclipse.emf.common.notify.NotificationChain")%> msgs =  old<%=genFeature.getCapName()%>.eInverseRemove(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getImportedInterfaceName()%>.class, null);
           <%}%>
 				if (new<%=genFeature.getCapName()%>.eInternalContainer() == null)
 				{
           <%if (!genFeature.isBidirectional()) {%>
 					msgs = new<%=genFeature.getCapName()%>.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - <%=genClass.getQualifiedFeatureID(genFeature)%><%=negativeOffsetCorrection%>, null, msgs);
           <%} else { GenFeature reverseFeature = genFeature.getReverse(); GenClass targetClass = reverseFeature.getGenClass(); String reverseOffsetCorrection = targetClass.hasOffsetCorrection() ? " + " + genClass.getOffsetCorrectionField(reverseFeature) : "";%>
-					msgs =  new<%=genFeature.getCapName()%>.eInverseAdd(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getRawImportedInterfaceName()%>.class, msgs);
+					msgs =  new<%=genFeature.getCapName()%>.eInverseAdd(this, <%=targetClass.getQualifiedFeatureID(reverseFeature)%><%=reverseOffsetCorrection%>, <%=targetClass.getImportedInterfaceName()%>.class, msgs);
           <%}%>
 				}
 				if (msgs != null) msgs.dispatch();
@@ -83,11 +81,7 @@
         <%if (!genFeature.isResolveProxies() && genModel.isVirtualDelegation() && !genFeature.isPrimitiveType()) {%>
 		return (<%=genFeature.getImportedType(genClass)%>)eVirtualGet(<%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%><%if (genFeature.hasEDefault()) {%>, <%=genFeature.getEDefault()%><%}%>);
         <%} else if (genClass.isFlag(genFeature)) {%>
-          <%if (genFeature.isBooleanType()) {%>
 		return (<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) != 0;
-          <%} else {%>
-		return <%=genFeature.getUpperName()%>_EFLAG_VALUES[(<%=genClass.getFlagsField(genFeature)%> & <%=genFeature.getUpperName()%>_EFLAG) >>> <%=genFeature.getUpperName()%>_EFLAG_OFFSET];
-          <%}%>
         <%} else {%>
 		return <%=genFeature.getSafeName()%>;
         <%}%>
@@ -98,7 +92,7 @@
 		return <%=genFeature.getSafeName()%> != null && <%=genFeature.getSafeNameAsEObject()%>.eIsProxy() ? <%=genFeature.getNonEObjectInternalTypeCast(genClass)%>eResolveProxy((<%=genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject")%>)<%=genFeature.getSafeName()%>) : <%=genFeature.getSafeName()%>;
       <%} else if (genFeature.hasDelegateFeature()) { GenFeature delegateFeature = genFeature.getDelegateFeature();%>
         <%if (genFeature.isFeatureMapType()) {%>
-        <%String featureMapEntryTemplateArgument = isJDK50 ? "<" + genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap") + ".Entry>" : "";%>
+        <%String featureMapEntryTemplateArgument = genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50 ? "<" + genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap") + ".Entry>" : "";%>
           <%if (delegateFeature.isWrappedFeatureMapType()) {%>
 		return new <%=genFeature.getImportedEffectiveFeatureMapWrapperClass()%>((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal)((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal.Wrapper)get<%=delegateFeature.getAccessorName()%>()).featureMap().<%=featureMapEntryTemplateArgument%>list(<%=genFeature.getQualifiedFeatureAccessor()%>));
           <%} else {%>
@@ -112,15 +106,13 @@
           <%}%>
         <%} else {%>
           <%if (delegateFeature.isWrappedFeatureMapType()) {%>
-		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%><%if (genFeature.getTypeGenDataType() == null || !genFeature.getTypeGenDataType().isObjectType()) {%>(<%=genFeature.getObjectType(genClass)%>)<%}%>((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal.Wrapper)get<%=delegateFeature.getAccessorName()%>()).featureMap().get(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
+		return <%if (genFeature.isPrimitiveType()) {%>(<%}%><%if (genFeature.getTypeGenDataType() == null || !genFeature.getTypeGenDataType().isObjectType()) {%>(<%=genFeature.getObjectType(genClass)%>)<%}%>((<%=genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMap")%>.Internal.Wrapper)get<%=delegateFeature.getAccessorName()%>()).featureMap().get(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
           <%} else {%>
-		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%><%if (genFeature.getTypeGenDataType() == null || !genFeature.getTypeGenDataType().isObjectType()) {%>(<%=genFeature.getObjectType(genClass)%>)<%}%>get<%=delegateFeature.getAccessorName()%>().get(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
+		return <%if (genFeature.isPrimitiveType()) {%>(<%}%><%if (genFeature.getTypeGenDataType() == null || !genFeature.getTypeGenDataType().isObjectType()) {%>(<%=genFeature.getObjectType(genClass)%>)<%}%>get<%=delegateFeature.getAccessorName()%>().get(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
           <%}%>
         <%}%>
-      <%} else if (genClass.getGetAccessorOperation(genFeature) != null) {%>
-		<%=genClass.getGetAccessorOperation(genFeature).getBody(genModel.getIndentation(stringBuffer))%>
       <%} else {%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/getGenFeature.todo.override.javajetinc%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%><%//Class/getGenFeature.todo.override.javajetinc%>
       <%}%>
     <%}%>
 	}

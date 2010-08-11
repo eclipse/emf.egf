@@ -43,8 +43,6 @@ public class ClasssetGenFeaturepostinsert {
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        List<Object> setAccessorOperationList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> genFeatureList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> genClassList = null;
@@ -52,8 +50,6 @@ public class ClasssetGenFeaturepostinsert {
         List<Object> genPackageList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> genModelList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> isJDK50List = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isInterfaceList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -68,37 +64,31 @@ public class ClasssetGenFeaturepostinsert {
         List<Object> positiveOffsetCorrectionList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-        for (Object setAccessorOperationParameter : setAccessorOperationList) {
-            for (Object genFeatureParameter : genFeatureList) {
-                for (Object genClassParameter : genClassList) {
-                    for (Object genPackageParameter : genPackageList) {
-                        for (Object genModelParameter : genModelList) {
-                            for (Object isJDK50Parameter : isJDK50List) {
-                                for (Object isInterfaceParameter : isInterfaceList) {
-                                    for (Object isImplementationParameter : isImplementationList) {
-                                        for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
-                                            for (Object singleWildcardParameter : singleWildcardList) {
-                                                for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
-                                                    for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+        for (Object genFeatureParameter : genFeatureList) {
+            for (Object genClassParameter : genClassList) {
+                for (Object genPackageParameter : genPackageList) {
+                    for (Object genModelParameter : genModelList) {
+                        for (Object isInterfaceParameter : isInterfaceList) {
+                            for (Object isImplementationParameter : isImplementationList) {
+                                for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
+                                    for (Object singleWildcardParameter : singleWildcardList) {
+                                        for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
+                                            for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
 
-                                                        this.setAccessorOperation = (org.eclipse.emf.codegen.ecore.genmodel.GenOperation) setAccessorOperationParameter;
-                                                        this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                                                        this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                                                        this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                                                        this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-                                                        this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-                                                        this.isInterface = (java.lang.Boolean) isInterfaceParameter;
-                                                        this.isImplementation = (java.lang.Boolean) isImplementationParameter;
-                                                        this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
-                                                        this.singleWildcard = (java.lang.String) singleWildcardParameter;
-                                                        this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
-                                                        this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+                                                this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+                                                this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+                                                this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+                                                this.isInterface = (java.lang.Boolean) isInterfaceParameter;
+                                                this.isImplementation = (java.lang.Boolean) isImplementationParameter;
+                                                this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
+                                                this.singleWildcard = (java.lang.String) singleWildcardParameter;
+                                                this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
+                                                this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
 
-                                                        if (preCondition())
-                                                            orchestration(ctx);
+                                                if (preCondition())
+                                                    orchestration(ctx);
 
-                                                    }
-                                                }
                                             }
                                         }
                                     }
@@ -130,12 +120,10 @@ public class ClasssetGenFeaturepostinsert {
             ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
             ictx.setExecutionCurrentIndex(0);
             Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("setAccessorOperation", this.setAccessorOperation);
             parameterValues.put("genFeature", this.genFeature);
             parameterValues.put("genClass", this.genClass);
             parameterValues.put("genPackage", this.genPackage);
             parameterValues.put("genModel", this.genModel);
-            parameterValues.put("isJDK50", this.isJDK50);
             parameterValues.put("isInterface", this.isInterface);
             parameterValues.put("isImplementation", this.isImplementation);
             parameterValues.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
@@ -147,12 +135,6 @@ public class ClasssetGenFeaturepostinsert {
             ictx.clearBuffer();
         }
         return loop;
-    }
-
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenOperation setAccessorOperation = null;
-
-    public void set_setAccessorOperation(org.eclipse.emf.codegen.ecore.genmodel.GenOperation object) {
-        this.setAccessorOperation = object;
     }
 
     protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
@@ -177,12 +159,6 @@ public class ClasssetGenFeaturepostinsert {
 
     public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
         this.genModel = object;
-    }
-
-    protected java.lang.Boolean isJDK50 = null;
-
-    public void set_isJDK50(java.lang.Boolean object) {
-        this.isJDK50 = object;
     }
 
     protected java.lang.Boolean isInterface = null;
@@ -223,12 +199,10 @@ public class ClasssetGenFeaturepostinsert {
 
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("setAccessorOperation", this.setAccessorOperation);
         parameters.put("genFeature", this.genFeature);
         parameters.put("genClass", this.genClass);
         parameters.put("genPackage", this.genPackage);
         parameters.put("genModel", this.genModel);
-        parameters.put("isJDK50", this.isJDK50);
         parameters.put("isInterface", this.isInterface);
         parameters.put("isImplementation", this.isImplementation);
         parameters.put("publicStaticFinalFlag", this.publicStaticFinalFlag);

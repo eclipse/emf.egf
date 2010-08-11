@@ -26,7 +26,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
-    protected final String TEXT_2 = NL + NL + "pluginName = ";
+    protected final String TEXT_2 = NL + NL + "# ====================================================================" + NL + "# To code developer:" + NL + "#   Do NOT change the properties between this line and the" + NL + "#   \"%%% END OF TRANSLATED PROPERTIES %%%\" line." + NL + "#   Make a new property name, append to the end of the file and change" + NL + "#   the code to use the new property." + NL + "# ====================================================================" + NL + "" + NL + "# ====================================================================" + NL + "# %%% END OF TRANSLATED PROPERTIES %%%" + NL + "# ====================================================================" + NL + "" + NL + "pluginName = ";
     protected final String TEXT_3 = " Editor" + NL + "providerName = www.example.org" + NL;
     protected final String TEXT_4 = NL + "_UI_";
     protected final String TEXT_5 = "_menu = &";
@@ -45,9 +45,9 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
     protected final String TEXT_18 = "_label = ";
     protected final String TEXT_19 = " Model Editor" + NL + "" + NL + "_UI_";
     protected final String TEXT_20 = "FilenameDefaultBase = My" + NL + "_UI_";
-    protected final String TEXT_21 = "FilenameExtensions = ";
+    protected final String TEXT_21 = "FilenameExtension = ";
     protected final String TEXT_22 = NL;
-    protected final String TEXT_23 = NL + "_UI_Wizard_label = New" + NL + "" + NL + "_WARN_FilenameExtension = The file name must end in ''.{0}''" + NL + "_WARN_FilenameExtensions = The file name must have one of the following extensions: {0}" + NL + "" + NL + "_UI_ModelObject = &Model Object" + NL + "_UI_XMLEncoding = &XML Encoding" + NL + "_UI_XMLEncodingChoices = ";
+    protected final String TEXT_23 = NL + "_UI_Wizard_label = New" + NL + "" + NL + "_WARN_FilenameExtension = The file name must end in \".{0}\"" + NL + "" + NL + "_UI_ModelObject = &Model Object" + NL + "_UI_XMLEncoding = &XML Encoding" + NL + "_UI_XMLEncodingChoices = ";
     protected final String TEXT_24 = NL + "_UI_Wizard_initial_object_description = Specify a file name and select a model object to create";
     protected final String TEXT_25 = NL + "_UI_Wizard_initial_object_description = Select a model object to create";
     protected final String TEXT_26 = NL + NL + "_UI_FileConflict_label = File Conflict" + NL + "_WARN_FileConflict = There are unsaved changes that conflict with changes made outside the editor.  Do you wish to discard this editor's changes?" + NL;
@@ -178,10 +178,14 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
          * </copyright>
          */
 
-        GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-        Iterator.class.getName();
+        GenModel genModel = (GenModel) argument;
+        if (false) {/* Trick to import java.util.* without warnings */
+            Iterator.class.getName();
+        }
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -231,7 +235,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
             stringBuffer.append(TEXT_20);
             stringBuffer.append(genPackage.getEditorClassName());
             stringBuffer.append(TEXT_21);
-            stringBuffer.append(genPackage.isMultipleFileExtensions() ? genPackage.getFileExtensions() : genPackage.getFileExtension());
+            stringBuffer.append(genPackage.getPrefix().toLowerCase());
             stringBuffer.append(TEXT_22);
         }
         stringBuffer.append(TEXT_23);

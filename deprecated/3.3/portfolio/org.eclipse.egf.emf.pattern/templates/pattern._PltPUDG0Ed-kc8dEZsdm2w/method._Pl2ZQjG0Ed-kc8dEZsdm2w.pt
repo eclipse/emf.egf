@@ -245,8 +245,8 @@ public class <%=genPackage.getActionBarContributorClassName()%>
 <%}%>
 	public void contributeToToolBar(<%=genModel.getImportedName("org.eclipse.jface.action.IToolBarManager")%> toolBarManager)
 	{
-		toolBarManager.add(new <%=genModel.getImportedName("org.eclipse.jface.action.Separator")%>("<%=genPackage.getPrefix().toLowerCase(genModel.getLocale())%>-settings"));<%=genModel.getNonNLS()%>
-		toolBarManager.add(new <%=genModel.getImportedName("org.eclipse.jface.action.Separator")%>("<%=genPackage.getPrefix().toLowerCase(genModel.getLocale())%>-additions"));<%=genModel.getNonNLS()%>
+		toolBarManager.add(new <%=genModel.getImportedName("org.eclipse.jface.action.Separator")%>("<%=genPackage.getPrefix().toLowerCase()%>-settings"));<%=genModel.getNonNLS()%>
+		toolBarManager.add(new <%=genModel.getImportedName("org.eclipse.jface.action.Separator")%>("<%=genPackage.getPrefix().toLowerCase()%>-additions"));<%=genModel.getNonNLS()%>
 	}
 
 	/**

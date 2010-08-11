@@ -75,14 +75,6 @@ public class EditoraddItemProviderFactoriesinsert {
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> _ListOfAnythingList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> useExtendedLabelProviderList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> _AdapterFactoryLabelProviderList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> _ArrayListOfStringList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> _ListOfStringList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
         for (Object genPackageParameter : genPackageList) {
             for (Object genModelParameter : genModelList) {
@@ -100,39 +92,27 @@ public class EditoraddItemProviderFactoriesinsert {
                                                             for (Object _LinkedHashMapOfResourceToDiagnosticParameter : _LinkedHashMapOfResourceToDiagnosticList) {
                                                                 for (Object _CollectionOfAnythingParameter : _CollectionOfAnythingList) {
                                                                     for (Object _ListOfAnythingParameter : _ListOfAnythingList) {
-                                                                        for (Object useExtendedLabelProviderParameter : useExtendedLabelProviderList) {
-                                                                            for (Object _AdapterFactoryLabelProviderParameter : _AdapterFactoryLabelProviderList) {
-                                                                                for (Object _ArrayListOfStringParameter : _ArrayListOfStringList) {
-                                                                                    for (Object _ListOfStringParameter : _ListOfStringList) {
 
-                                                                                        this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                                                                                        this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-                                                                                        this.importedOperationClassName = (java.lang.String) importedOperationClassNameParameter;
-                                                                                        this.operationMethodName = (java.lang.String) operationMethodNameParameter;
-                                                                                        this._ArrayListOfObject = (java.lang.String) _ArrayListOfObjectParameter;
-                                                                                        this._ArrayListOfSelectionChangedListener = (java.lang.String) _ArrayListOfSelectionChangedListenerParameter;
-                                                                                        this._CollectionOfSelectionChangedListener = (java.lang.String) _CollectionOfSelectionChangedListenerParameter;
-                                                                                        this._ArrayListOfResource = (java.lang.String) _ArrayListOfResourceParameter;
-                                                                                        this._CollectionOfResource = (java.lang.String) _CollectionOfResourceParameter;
-                                                                                        this._MapOfResourceToDiagnostic = (java.lang.String) _MapOfResourceToDiagnosticParameter;
-                                                                                        this._HashMapOfResourceToBoolean = (java.lang.String) _HashMapOfResourceToBooleanParameter;
-                                                                                        this._MapOfObjectToObject = (java.lang.String) _MapOfObjectToObjectParameter;
-                                                                                        this._HashMapOfObjectToObject = (java.lang.String) _HashMapOfObjectToObjectParameter;
-                                                                                        this._LinkedHashMapOfResourceToDiagnostic = (java.lang.String) _LinkedHashMapOfResourceToDiagnosticParameter;
-                                                                                        this._CollectionOfAnything = (java.lang.String) _CollectionOfAnythingParameter;
-                                                                                        this._ListOfAnything = (java.lang.String) _ListOfAnythingParameter;
-                                                                                        this.useExtendedLabelProvider = (java.lang.Boolean) useExtendedLabelProviderParameter;
-                                                                                        this._AdapterFactoryLabelProvider = (java.lang.String) _AdapterFactoryLabelProviderParameter;
-                                                                                        this._ArrayListOfString = (java.lang.String) _ArrayListOfStringParameter;
-                                                                                        this._ListOfString = (java.lang.String) _ListOfStringParameter;
+                                                                        this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+                                                                        this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+                                                                        this.importedOperationClassName = (java.lang.String) importedOperationClassNameParameter;
+                                                                        this.operationMethodName = (java.lang.String) operationMethodNameParameter;
+                                                                        this._ArrayListOfObject = (java.lang.String) _ArrayListOfObjectParameter;
+                                                                        this._ArrayListOfSelectionChangedListener = (java.lang.String) _ArrayListOfSelectionChangedListenerParameter;
+                                                                        this._CollectionOfSelectionChangedListener = (java.lang.String) _CollectionOfSelectionChangedListenerParameter;
+                                                                        this._ArrayListOfResource = (java.lang.String) _ArrayListOfResourceParameter;
+                                                                        this._CollectionOfResource = (java.lang.String) _CollectionOfResourceParameter;
+                                                                        this._MapOfResourceToDiagnostic = (java.lang.String) _MapOfResourceToDiagnosticParameter;
+                                                                        this._HashMapOfResourceToBoolean = (java.lang.String) _HashMapOfResourceToBooleanParameter;
+                                                                        this._MapOfObjectToObject = (java.lang.String) _MapOfObjectToObjectParameter;
+                                                                        this._HashMapOfObjectToObject = (java.lang.String) _HashMapOfObjectToObjectParameter;
+                                                                        this._LinkedHashMapOfResourceToDiagnostic = (java.lang.String) _LinkedHashMapOfResourceToDiagnosticParameter;
+                                                                        this._CollectionOfAnything = (java.lang.String) _CollectionOfAnythingParameter;
+                                                                        this._ListOfAnything = (java.lang.String) _ListOfAnythingParameter;
 
-                                                                                        if (preCondition())
-                                                                                            orchestration(ctx);
+                                                                        if (preCondition())
+                                                                            orchestration(ctx);
 
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
                                                                     }
                                                                 }
                                                             }
@@ -186,10 +166,6 @@ public class EditoraddItemProviderFactoriesinsert {
             parameterValues.put("_LinkedHashMapOfResourceToDiagnostic", this._LinkedHashMapOfResourceToDiagnostic);
             parameterValues.put("_CollectionOfAnything", this._CollectionOfAnything);
             parameterValues.put("_ListOfAnything", this._ListOfAnything);
-            parameterValues.put("useExtendedLabelProvider", this.useExtendedLabelProvider);
-            parameterValues.put("_AdapterFactoryLabelProvider", this._AdapterFactoryLabelProvider);
-            parameterValues.put("_ArrayListOfString", this._ArrayListOfString);
-            parameterValues.put("_ListOfString", this._ListOfString);
             String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
             ictx.clearBuffer();
@@ -293,30 +269,6 @@ public class EditoraddItemProviderFactoriesinsert {
         this._ListOfAnything = object;
     }
 
-    protected java.lang.Boolean useExtendedLabelProvider = null;
-
-    public void set_useExtendedLabelProvider(java.lang.Boolean object) {
-        this.useExtendedLabelProvider = object;
-    }
-
-    protected java.lang.String _AdapterFactoryLabelProvider = null;
-
-    public void set__AdapterFactoryLabelProvider(java.lang.String object) {
-        this._AdapterFactoryLabelProvider = object;
-    }
-
-    protected java.lang.String _ArrayListOfString = null;
-
-    public void set__ArrayListOfString(java.lang.String object) {
-        this._ArrayListOfString = object;
-    }
-
-    protected java.lang.String _ListOfString = null;
-
-    public void set__ListOfString(java.lang.String object) {
-        this._ListOfString = object;
-    }
-
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("genPackage", this.genPackage);
@@ -335,10 +287,6 @@ public class EditoraddItemProviderFactoriesinsert {
         parameters.put("_LinkedHashMapOfResourceToDiagnostic", this._LinkedHashMapOfResourceToDiagnostic);
         parameters.put("_CollectionOfAnything", this._CollectionOfAnything);
         parameters.put("_ListOfAnything", this._ListOfAnything);
-        parameters.put("useExtendedLabelProvider", this.useExtendedLabelProvider);
-        parameters.put("_AdapterFactoryLabelProvider", this._AdapterFactoryLabelProvider);
-        parameters.put("_ArrayListOfString", this._ArrayListOfString);
-        parameters.put("_ListOfString", this._ListOfString);
         return parameters;
     }
 

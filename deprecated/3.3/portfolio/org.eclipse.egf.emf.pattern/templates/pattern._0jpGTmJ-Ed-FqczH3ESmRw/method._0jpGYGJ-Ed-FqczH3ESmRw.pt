@@ -45,8 +45,8 @@
 
       <%}%>
       <%if (genClass.isField(genFeature)) {%>
-        <%if (genClass.isFlag(genFeature)) { int flagIndex = genClass.getFlagIndex(genFeature);%>
-          <%if (flagIndex > 31 && flagIndex % 32 == 0) {%>
+        <%if (genClass.isFlag(genFeature)) {%>
+          <%if (genClass.getFlagIndex(genFeature) > 31 && genClass.getFlagIndex(genFeature) % 32 == 0) {%>
 	/**
 	 * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
 	 * <!-- begin-user-doc -->
@@ -57,44 +57,15 @@
 	protected int <%=genClass.getFlagsField(genFeature)%> = 0;
 
           <%}%>
-          <%if (genFeature.isEnumType()) {%>
 	/**
-	 * The offset of the flags representing the value of the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int <%=genFeature.getUpperName()%>_EFLAG_OFFSET = <%=flagIndex % 32%>;
-
-	/**
-	 * The flags representing the default value of the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int <%=genFeature.getUpperName()%>_EFLAG_DEFAULT = <%if (isJDK50) {%><%=genFeature.getEDefault()%>.ordinal()<%} else {%><%=genFeature.getImportedType(genClass)%>.VALUES.indexOf(<%=genFeature.getEDefault()%>)<%}%> << <%=genFeature.getUpperName()%>_EFLAG_OFFSET;
-
-	/**
-	 * The array of enumeration values for '{@link <%=genFeature.getImportedType(genClass)%> <%=genFeature.getTypeGenClassifier().getFormattedName()%>}'
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	private static final <%=genFeature.getImportedType(genClass)%>[] <%=genFeature.getUpperName()%>_EFLAG_VALUES = <%if (isJDK50) {%><%=genFeature.getImportedType(genClass)%>.values()<%} else {%>(<%=genFeature.getImportedType(genClass)%>[])<%=genFeature.getImportedType(genClass)%>.VALUES.toArray(new <%=genFeature.getImportedType(genClass)%>[<%=genFeature.getImportedType(genClass)%>.VALUES.size()])<%}%>;
-
-          <%}%>
-	/**
-	 * The flag<%=genClass.getFlagSize(genFeature) > 1 ? "s" : ""%> representing the value of the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
+	 * The flag representing the value of the '{@link #<%=genFeature.getGetAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' <%=genFeature.getFeatureKind()%>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #<%=genFeature.getGetAccessor()%>()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int <%=genFeature.getUpperName()%>_EFLAG = <%=genClass.getFlagMask(genFeature)%> << <%if (genFeature.isEnumType()) {%><%=genFeature.getUpperName()%>_EFLAG_OFFSET<%} else {%><%=flagIndex % 32%><%}%>;
+	protected static final int <%=genFeature.getUpperName()%>_EFLAG = 1 <%="<< " + genClass.getFlagIndex(genFeature) % 32 %>;
 
         <%} else {%>
 	/**
@@ -111,8 +82,8 @@
       <%}%>
     <%}%>
     <%if (genClass.isESetField(genFeature)) {%>
-      <%if (genClass.isESetFlag(genFeature)) { int flagIndex = genClass.getESetFlagIndex(genFeature);%>
-        <%if (flagIndex > 31 && flagIndex % 32 == 0) {%>
+      <%if (genClass.isESetFlag(genFeature)) {%>
+        <%if (genClass.getESetFlagIndex(genFeature) > 31 && genClass.getESetFlagIndex(genFeature) % 32 == 0) {%>
 	/**
 	 * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
 	 * <!-- begin-user-doc -->
@@ -130,7 +101,7 @@
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int <%=genFeature.getUpperName()%>_ESETFLAG = 1 << <%=flagIndex % 32 %>;
+	protected static final int <%=genFeature.getUpperName()%>_ESETFLAG = 1 <%="<< " + genClass.getESetFlagIndex(genFeature) % 32 %>;
 
       <%} else {%>
 	/**
@@ -144,4 +115,4 @@
 
       <%}%>
     <%}%>
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.declaredFieldGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>

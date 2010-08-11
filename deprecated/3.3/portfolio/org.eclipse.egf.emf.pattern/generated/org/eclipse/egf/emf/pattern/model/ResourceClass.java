@@ -343,6 +343,8 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
         ExtendedMetaData extendedMetaData = genModel.getExtendedMetaData();
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -443,7 +445,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
             stringBuffer.append(TEXT_36);
             for (GenClass genClass : genPackage.getGenClasses()) {
                 stringBuffer.append(TEXT_37);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_38);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_39);
@@ -459,59 +461,59 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                 List<EStructuralFeature> attributes = extendedMetaData.getAllAttributes(genClass.getEcoreClass());
                 List<EStructuralFeature> elements = extendedMetaData.getAllElements(genClass.getEcoreClass());
                 stringBuffer.append(TEXT_43);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_44);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_45);
                 stringBuffer.append(_StackFrame);
                 stringBuffer.append(TEXT_46);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_47);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_48);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_49);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_50);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_51);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_52);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_53);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_54);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_55);
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(TEXT_56);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_57);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_58);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_59);
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(TEXT_60);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_61);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_62);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_63);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_64);
                 stringBuffer.append(genClass.getSafeUncapName());
                 stringBuffer.append(TEXT_65);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_66);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_67);
                 stringBuffer.append(_StackFrame);
                 stringBuffer.append(TEXT_68);
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(TEXT_69);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_70);
                 for (GenFeature genFeature : genClass.getAllGenFeatures()) {
                     String name = extendedMetaData.getName(genFeature.getEcoreFeature());
@@ -520,7 +522,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                             stringBuffer.append(TEXT_71);
                             stringBuffer.append(genFeature.getTypeGenClass().getGenPackage().getImportedResourceClassName());
                             stringBuffer.append(TEXT_72);
-                            stringBuffer.append(genFeature.getTypeGenClass().getName());
+                            stringBuffer.append(genFeature.getTypeGenClass().getInterfaceName());
                             stringBuffer.append(TEXT_73);
                             stringBuffer.append(genFeature.getSafeName());
                             stringBuffer.append(TEXT_74);
@@ -563,7 +565,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                             stringBuffer.append(TEXT_87);
                             if (genClassifier.getGenPackage().isDataTypeConverters()) {
                                 stringBuffer.append(TEXT_88);
-                                stringBuffer.append(genClass.getName());
+                                stringBuffer.append(genClass.getInterfaceName());
                                 stringBuffer.append(TEXT_89);
                                 stringBuffer.append(genFeature.getAccessorName());
                                 stringBuffer.append(TEXT_90);
@@ -573,7 +575,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                                 stringBuffer.append(TEXT_92);
                             } else {
                                 stringBuffer.append(TEXT_93);
-                                stringBuffer.append(genClass.getName());
+                                stringBuffer.append(genClass.getInterfaceName());
                                 stringBuffer.append(TEXT_94);
                                 stringBuffer.append(genFeature.getAccessorName());
                                 stringBuffer.append(TEXT_95);
@@ -647,7 +649,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                         stringBuffer.append(TEXT_122);
                         if (genFeature.isListType()) {
                             stringBuffer.append(TEXT_123);
-                            stringBuffer.append(genClass.getName());
+                            stringBuffer.append(genClass.getInterfaceName());
                             stringBuffer.append(TEXT_124);
                             stringBuffer.append(genFeature.getGetAccessor());
                             stringBuffer.append(TEXT_125);
@@ -659,7 +661,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                             stringBuffer.append(TEXT_128);
                         } else {
                             stringBuffer.append(TEXT_129);
-                            stringBuffer.append(genClass.getName());
+                            stringBuffer.append(genClass.getInterfaceName());
                             stringBuffer.append(TEXT_130);
                             stringBuffer.append(genFeature.getAccessorName());
                             stringBuffer.append(TEXT_131);
@@ -685,25 +687,25 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                     stringBuffer.append(TEXT_140);
                 }
                 stringBuffer.append(TEXT_141);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_142);
                 stringBuffer.append(genPackage.getQualifiedFactoryInstanceAccessor());
                 stringBuffer.append(TEXT_143);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_144);
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(TEXT_145);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_146);
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(TEXT_147);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_148);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_149);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_150);
-                stringBuffer.append(genClass.getName());
+                stringBuffer.append(genClass.getInterfaceName());
                 stringBuffer.append(TEXT_151);
             }
             for (GenDataType genDataType : genPackage.getAllGenDataTypes()) {
@@ -752,7 +754,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                     stringBuffer.append(TEXT_173);
                     stringBuffer.append(genDataType.getSafeUncapName());
                     stringBuffer.append(TEXT_174);
-                } else if (genDataType.isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50) {
+                } else if (genDataType.isPrimitiveType()) {
                     stringBuffer.append(TEXT_175);
                     stringBuffer.append(genDataType.getImportedInstanceClassName());
                     stringBuffer.append(TEXT_176);
@@ -774,7 +776,7 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
                     stringBuffer.append(TEXT_184);
                     stringBuffer.append(genDataType.getName());
                     stringBuffer.append(TEXT_185);
-                    stringBuffer.append(genDataType.getObjectInstanceClassName());
+                    stringBuffer.append(genDataType.getImportedInstanceClassName());
                     stringBuffer.append(TEXT_186);
                     stringBuffer.append(genDataType.getGenPackage().getQualifiedEFactoryInstanceAccessor());
                     stringBuffer.append(TEXT_187);

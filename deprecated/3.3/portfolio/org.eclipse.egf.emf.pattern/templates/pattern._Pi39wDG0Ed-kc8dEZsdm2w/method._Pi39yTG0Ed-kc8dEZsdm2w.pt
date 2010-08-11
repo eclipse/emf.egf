@@ -15,8 +15,20 @@
  * </copyright>
  */
 %>
-<%GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
+<%GenModel genModel = (GenModel)argument; if (false) {/* Trick to import java.util.* without warnings */Iterator.class.getName();}%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
+
+# ====================================================================
+# To code developer:
+#   Do NOT change the properties between this line and the
+#   "%%% END OF TRANSLATED PROPERTIES %%%" line.
+#   Make a new property name, append to the end of the file and change
+#   the code to use the new property.
+# ====================================================================
+
+# ====================================================================
+# %%% END OF TRANSLATED PROPERTIES %%%
+# ====================================================================
 
 pluginName = <%=genModel.getModelName()%> Edit Support
 providerName = www.example.org

@@ -3,7 +3,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2008 IBM Corporation and others.
+ * Copyright (c) 2002-2007 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,9 +15,10 @@
  * </copyright>
  */
 %>
-<%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName(); %>
-<%String importedOperationClassName = genModel.getImportedName(genModel.isRichClientPlatform() ? "org.eclipse.jface.operation.IRunnableWithProgress" : "org.eclipse.ui.actions.WorkspaceModifyOperation");%>
-<%String operationMethodName = genModel.isRichClientPlatform() ? "run" : "execute";%>
+<%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel();
+String importedOperationClassName = genModel.getImportedName(genModel.isRichClientPlatform() ? "org.eclipse.jface.operation.IRunnableWithProgress" : "org.eclipse.ui.actions.WorkspaceModifyOperation");
+String operationMethodName = genModel.isRichClientPlatform() ? "run" : "execute"; if (false) {/* Trick to import java.util.* without warnings */Iterator.class.getName();}
+%>
 <%String _ArrayListOfObject = "ArrayList" + (genModel.useGenerics() ? "<Object>" : "");%>
 <%String _ArrayListOfSelectionChangedListener = "ArrayList" + (genModel.useGenerics() ? "<ISelectionChangedListener>" : "");%>
 <%String _CollectionOfSelectionChangedListener = "Collection" + (genModel.useGenerics() ? "<ISelectionChangedListener>" : "");%>
@@ -30,10 +31,6 @@
 <%String _LinkedHashMapOfResourceToDiagnostic = "LinkedHashMap" + (genModel.useGenerics() ? "<Resource, Diagnostic>" : "");%>
 <%String _CollectionOfAnything = "Collection" + (genModel.useGenerics() ? "<?>" : "");%>
 <%String _ListOfAnything = "List" + (genModel.useGenerics() ? "<?>" : "");%>
-<%boolean useExtendedLabelProvider = genModel.isFontProviders() || genModel.isColorProviders();%>
-<%String _AdapterFactoryLabelProvider = "AdapterFactoryLabelProvider" + (genModel.isFontProviders() && genModel.isColorProviders() ? ".FontAndColorProvider" : genModel.isFontProviders() ? ".FontProvider" : genModel.isColorProviders() ? ".ColorProvider" : "");%>
-<%String _ArrayListOfString = "ArrayList" + (genModel.useGenerics() ? "<String>" : "");%>
-<%String _ListOfString = "List" + (genModel.useGenerics() ? "<String>" : "");%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getPresentationPackageName()%>;
 
@@ -212,9 +209,7 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF23_VALUE) {%>
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
-<%}%>
 <%if (!genModel.isRichClientPlatform()) {%>
 
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
@@ -247,40 +242,6 @@ public class <%=genPackage.getEditorClassName()%>
 	 * @generated
 	 */
 	public static final <%=genModel.getImportedName("java.lang.String")%> copyright = <%=genModel.getCopyrightFieldLiteral()%>;<%=genModel.getNonNLS()%>
-
-<%}%>
-<%if (genModel.isRichClientPlatform()) {%>
-	/**
-	 * The filters for file extensions supported by the editor.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */<%if (genPackage.isGenerateModelWizard()) {%>
-	public static final <%=_ListOfString%> FILE_EXTENSION_FILTERS = prefixExtensions(<%=genPackage.getImportedModelWizardClassName()%>.FILE_EXTENSIONS, "*.");<%=genModel.getNonNLS()%>
-	<%} else {%>
-	public static final <%=_ListOfString%> FILE_EXTENSION_FILTERS = prefixExtensions(<%=genModel.getImportedName("java.util.Arrays")%>.asList(<%=genPackage.getImportedEditorPluginClassName()%>.INSTANCE.getString("_UI_<%=genPackage.getEditorClassName()%>FilenameExtensions").split("\\s*,\\s*")), "*.");<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%><%=genModel.getNonNLS(3)%>
-	<%}%>
-	/**
-	 * Returns a new unmodifiable list containing prefixed versions of the extensions in the given list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static <%=_ListOfString%> prefixExtensions(<%=_ListOfString%> extensions, String prefix)
-	{
-		<%=_ListOfString%> result = new <%=_ArrayListOfString%>();
-  <%if (genModel.useGenerics()) {%>
-		for (String extension : extensions)
-		{
-			result.add(prefix + extension);
-  <%} else {%>
-		for (Iterator iterator = extensions.iterator() ; iterator.hasNext(); )
-		{
-			result.add(prefix + (String)iterator.next());
-  <%}%>
-		}
-		return Collections.unmodifiableList(result);
-	}
 
 <%}%>
 	/**
@@ -609,89 +570,94 @@ public class <%=genPackage.getEditorClassName()%>
 		{
 			public void resourceChanged(IResourceChangeEvent event)
 			{
-				IResourceDelta delta = event.getDelta();
-				try
+				// Only listening to these.
+				// if (event.getType() == IResourceDelta.POST_CHANGE)
 				{
-					class ResourceDeltaVisitor implements IResourceDeltaVisitor
+					IResourceDelta delta = event.getDelta();
+					try
 					{
-						protected ResourceSet resourceSet = editingDomain.getResourceSet();
-						protected <%=_CollectionOfResource%> changedResources = new <%=_ArrayListOfResource%>();
-						protected <%=_CollectionOfResource%> removedResources = new <%=_ArrayListOfResource%>();
-
-						public boolean visit(IResourceDelta delta)
+						class ResourceDeltaVisitor implements IResourceDeltaVisitor
 						{
-							if (delta.getResource().getType() == IResource.FILE)
+							protected ResourceSet resourceSet = editingDomain.getResourceSet();
+							protected <%=_CollectionOfResource%> changedResources = new <%=_ArrayListOfResource%>();
+							protected <%=_CollectionOfResource%> removedResources = new <%=_ArrayListOfResource%>();
+
+							public boolean visit(IResourceDelta delta)
 							{
-								if (delta.getKind() == IResourceDelta.REMOVED ||
-								    delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS)
+								if (delta.getFlags() != IResourceDelta.MARKERS &&
+								    delta.getResource().getType() == IResource.FILE)
 								{
-									Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
-									if (resource != null)
+									if ((delta.getKind() & (IResourceDelta.CHANGED | IResourceDelta.REMOVED)) != 0)
 									{
-										if (delta.getKind() == IResourceDelta.REMOVED)
+										Resource resource = resourceSet.getResource(URI.createURI(delta.getFullPath().toString()), false);
+										if (resource != null)
 										{
-											removedResources.add(resource);
-										}
-										else if (!savedResources.remove(resource))
-										{
-											changedResources.add(resource);
+											if ((delta.getKind() & IResourceDelta.REMOVED) != 0)
+											{
+												removedResources.add(resource);
+											}
+											else if (!savedResources.remove(resource))
+											{
+												changedResources.add(resource);
+											}
 										}
 									}
 								}
+
+								return true;
 							}
 
-							return true;
+							public <%=_CollectionOfResource%> getChangedResources()
+							{
+								return changedResources;
+							}
+
+							public <%=_CollectionOfResource%> getRemovedResources()
+							{
+								return removedResources;
+							}
 						}
 
-						public <%=_CollectionOfResource%> getChangedResources()
+						ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+						delta.accept(visitor);
+
+						if (!visitor.getRemovedResources().isEmpty())
 						{
-							return changedResources;
+							removedResources.addAll(visitor.getRemovedResources());
+							if (!isDirty())
+							{
+								getSite().getShell().getDisplay().asyncExec
+									(new Runnable()
+									 {
+										 public void run()
+										 {
+											 getSite().getPage().closeEditor(<%=genPackage.getEditorClassName()%>.this, false);
+											 <%=genPackage.getEditorClassName()%>.this.dispose();
+										 }
+									 });
+							}
 						}
 
-						public <%=_CollectionOfResource%> getRemovedResources()
+						if (!visitor.getChangedResources().isEmpty())
 						{
-							return removedResources;
+							changedResources.addAll(visitor.getChangedResources());
+							if (getSite().getPage().getActiveEditor() == <%=genPackage.getEditorClassName()%>.this)
+							{
+								getSite().getShell().getDisplay().asyncExec
+									(new Runnable()
+									 {
+										 public void run()
+										 {
+											 handleActivate();
+										 }
+									 });
+							}
 						}
 					}
-
-					final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-					delta.accept(visitor);
-
-					if (!visitor.getRemovedResources().isEmpty())
+					catch (CoreException exception)
 					{
-						getSite().getShell().getDisplay().asyncExec
-							(new Runnable()
-							 {
-								 public void run()
-								 {
-									 removedResources.addAll(visitor.getRemovedResources());
-									 if (!isDirty())
-									 {
-										 getSite().getPage().closeEditor(<%=genPackage.getEditorClassName()%>.this, false);
-									 }
-								 }
-							 });
+						<%=genPackage.getImportedEditorPluginClassName()%>.INSTANCE.log(exception);
 					}
-
-					if (!visitor.getChangedResources().isEmpty())
-					{
-						getSite().getShell().getDisplay().asyncExec
-							(new Runnable()
-							 {
-								 public void run()
-								 {
-									 changedResources.addAll(visitor.getChangedResources());
-									 if (getSite().getPage().getActiveEditor() == <%=genPackage.getEditorClassName()%>.this)
-									 {
-										 handleActivate();
-									 }
-								 }
-							 });
-					}
-				}
-				catch (CoreException exception)
-				{
-					<%=genPackage.getImportedEditorPluginClassName()%>.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -721,6 +687,7 @@ public class <%=genPackage.getEditorClassName()%>
 			if (handleDirtyConflict())
 			{
 				getSite().getPage().closeEditor(<%=genPackage.getEditorClassName()%>.this, false);
+				<%=genPackage.getEditorClassName()%>.this.dispose();
 			}
 			else
 			{
@@ -748,10 +715,6 @@ public class <%=genPackage.getEditorClassName()%>
 	{
 		if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict()))
 		{
-			if (isDirty())
-			{
-				changedResources.addAll(editingDomain.getResourceSet().getResources());
-			}
 			editingDomain.getCommandStack().flush();
 
 			updateProblemIndication = false;
@@ -780,14 +743,6 @@ public class <%=genPackage.getEditorClassName()%>
 					}
 				}
 			}
-
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
-			if (AdapterFactoryEditingDomain.isStale(editorSelection))
-			{
-				setSelection(StructuredSelection.EMPTY);
-			}
-<%}%>
-
 			updateProblemIndication = true;
 			updateProblemIndication();
 		}
@@ -914,7 +869,7 @@ public class <%=genPackage.getEditorClassName()%>
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.override" args="genPackage:genPackage,genModel:genModel,importedOperationClassName:importedOperationClassName,operationMethodName:operationMethodName,_ArrayListOfObject:_ArrayListOfObject,_ArrayListOfSelectionChangedListener:_ArrayListOfSelectionChangedListener,_CollectionOfSelectionChangedListener:_CollectionOfSelectionChangedListener,_ArrayListOfResource:_ArrayListOfResource,_CollectionOfResource:_CollectionOfResource,_MapOfResourceToDiagnostic:_MapOfResourceToDiagnostic,_HashMapOfResourceToBoolean:_HashMapOfResourceToBoolean,_MapOfObjectToObject:_MapOfObjectToObject,_HashMapOfObjectToObject:_HashMapOfObjectToObject,_LinkedHashMapOfResourceToDiagnostic:_LinkedHashMapOfResourceToDiagnostic,_CollectionOfAnything:_CollectionOfAnything,_ListOfAnything:_ListOfAnything,useExtendedLabelProvider:useExtendedLabelProvider,_AdapterFactoryLabelProvider:_AdapterFactoryLabelProvider,_ArrayListOfString:_ArrayListOfString,_ListOfString:_ListOfString"%><%//Editor/addItemproviderFactories.override.javajetinc"%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.override" args="genPackage:genPackage,genModel:genModel,importedOperationClassName:importedOperationClassName,operationMethodName:operationMethodName,_ArrayListOfObject:_ArrayListOfObject,_ArrayListOfSelectionChangedListener:_ArrayListOfSelectionChangedListener,_CollectionOfSelectionChangedListener:_CollectionOfSelectionChangedListener,_ArrayListOfResource:_ArrayListOfResource,_CollectionOfResource:_CollectionOfResource,_MapOfResourceToDiagnostic:_MapOfResourceToDiagnostic,_HashMapOfResourceToBoolean:_HashMapOfResourceToBoolean,_MapOfObjectToObject:_MapOfObjectToObject,_HashMapOfObjectToObject:_HashMapOfObjectToObject,_LinkedHashMapOfResourceToDiagnostic:_LinkedHashMapOfResourceToDiagnostic,_CollectionOfAnything:_CollectionOfAnything,_ListOfAnything:_ListOfAnything"%><%//Editor/addItemproviderFactories.override.javajetinc"%>
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are executed.
@@ -983,6 +938,11 @@ public class <%=genPackage.getEditorClassName()%>
 		//
 		if (theSelection != null && !theSelection.isEmpty())
 		{
+			// I don't know if this should be run this deferred
+			// because we might have to give the editor a chance to process the viewer update events
+			// and hence to update the views first.
+			//
+			//
 			Runnable runnable =
 				new Runnable()
 				{
@@ -996,7 +956,7 @@ public class <%=genPackage.getEditorClassName()%>
 						}
 					}
 				};
-			getSite().getShell().getDisplay().asyncExec(runnable);
+			runnable.run();
 		}
 	}
 
@@ -1184,11 +1144,7 @@ public class <%=genPackage.getEditorClassName()%>
 		contextMenu.addMenuListener(this);
 		Menu menu= contextMenu.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF23_VALUE) {%>
 		getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
-<%} else {%>
-		getSite().registerContextMenu(contextMenu, viewer);
-<%}%>
 
 		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
@@ -1204,7 +1160,7 @@ public class <%=genPackage.getEditorClassName()%>
 	 */
 	public void createModel()
 	{
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF23_VALUE) {%>
+<%if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {%>
 		URI resourceURI = EditUIUtil.getURI(getEditorInput());
 <%} else if (genModel.isRichClientPlatform()) {%>
 		URI resourceURI = URI.createURI(getEditorInput().getName());
@@ -1290,7 +1246,8 @@ public class <%=genPackage.getEditorClassName()%>
 
 		// Only creates the other pages if there is something that can be edited
 		//
-		if (!getEditingDomain().getResourceSet().getResources().isEmpty())
+		if (!getEditingDomain().getResourceSet().getResources().isEmpty() &&
+		    !(<%if (!genModel.useGenerics()){%>(Resource)<%}%>getEditingDomain().getResourceSet().getResources().get(0)).getContents().isEmpty())
 		{
 			// Create a page for the selection tree view.
 			//
@@ -1322,7 +1279,7 @@ public class <%=genPackage.getEditorClassName()%>
 				selectionViewer = (TreeViewer)viewerPane.getViewer();
 				selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 
-				selectionViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, selectionViewer<%}%>));
+				selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 				selectionViewer.setInput(editingDomain.getResourceSet());
 				selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 				viewerPane.setTitle(editingDomain.getResourceSet());
@@ -1363,7 +1320,7 @@ public class <%=genPackage.getEditorClassName()%>
 				parentViewer = (TreeViewer)viewerPane.getViewer();
 				parentViewer.setAutoExpandLevel(30);
 				parentViewer.setContentProvider(new ReverseAdapterFactoryContentProvider(adapterFactory));
-				parentViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, parentViewer<%}%>));
+				parentViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(parentViewer);
 				int pageIndex = addPage(viewerPane.getControl());
@@ -1395,7 +1352,7 @@ public class <%=genPackage.getEditorClassName()%>
 				viewerPane.createControl(getContainer());
 				listViewer = (ListViewer)viewerPane.getViewer();
 				listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				listViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, listViewer<%}%>));
+				listViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(listViewer);
 				int pageIndex = addPage(viewerPane.getControl());
@@ -1427,7 +1384,7 @@ public class <%=genPackage.getEditorClassName()%>
 				viewerPane.createControl(getContainer());
 				treeViewer = (TreeViewer)viewerPane.getViewer();
 				treeViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, treeViewer<%}%>));
+				treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				new AdapterFactoryTreeEditor(treeViewer.getTree(), adapterFactory);
 
@@ -1479,7 +1436,7 @@ public class <%=genPackage.getEditorClassName()%>
 
 				tableViewer.setColumnProperties(new String [] {"a", "b"});<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
 				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				tableViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, tableViewer<%}%>));
+				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
@@ -1529,7 +1486,7 @@ public class <%=genPackage.getEditorClassName()%>
 
 				treeViewerWithColumns.setColumnProperties(new String [] {"a", "b"});<%=genModel.getNonNLS()%><%=genModel.getNonNLS(2)%>
 				treeViewerWithColumns.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-				treeViewerWithColumns.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, treeViewerWithColumns<%}%>));
+				treeViewerWithColumns.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
 				createContextMenuFor(treeViewerWithColumns);
 				int pageIndex = addPage(viewerPane.getControl());
@@ -1541,7 +1498,7 @@ public class <%=genPackage.getEditorClassName()%>
 			setCurrentViewer(selectionViewer);
 
 			selectionViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-			selectionViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, selectionViewer<%}%>));
+			selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 			selectionViewer.setInput(editingDomain.getResourceSet());
 			selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
 
@@ -1714,7 +1671,7 @@ public class <%=genPackage.getEditorClassName()%>
 					// Set up the tree viewer.
 					//
 					contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-					contentOutlineViewer.setLabelProvider(new <%=_AdapterFactoryLabelProvider%>(adapterFactory<%if (useExtendedLabelProvider) {%>, contentOutlineViewer<%}%>));
+					contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 					contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
 					// Make sure our popups work.
@@ -1895,9 +1852,7 @@ public class <%=genPackage.getEditorClassName()%>
 		// Save only resources that have actually changed.
 		//
 		final <%=_MapOfObjectToObject%> saveOptions = new <%=_HashMapOfObjectToObject%>();
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF23_VALUE) {%>
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-<%}%>
 
 		// Do the work within an operation because this is a long running activity that modifies the workbench.
 		//
@@ -1927,17 +1882,8 @@ public class <%=genPackage.getEditorClassName()%>
 						{
 							try
 							{
-<%if (genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF24_VALUE) {%>
-								long timeStamp = resource.getTimeStamp();
-								resource.save(saveOptions);
-								if (resource.getTimeStamp() != timeStamp)
-								{
-									savedResources.add(resource);
-								}
-<%} else {%>
-								resource.save(saveOptions);
 								savedResources.add(resource);
-<%}%>
+								resource.save(saveOptions);
 							}
 							catch (Exception exception)
 							{
@@ -2023,11 +1969,15 @@ public class <%=genPackage.getEditorClassName()%>
 	public void doSaveAs()
 	{
 <%if (genModel.isRichClientPlatform()) {%>
-		String[] filters = <%if (!genModel.useGenerics()) {%>(String[])<%}%>FILE_EXTENSION_FILTERS.toArray(new String[FILE_EXTENSION_FILTERS.size()]);
-		String[] files = <%=genModel.getImportedName(genModel.getQualifiedEditorAdvisorClassName())%>.openFilePathDialog(getSite().getShell(), <%=genModel.getImportedName("org.eclipse.swt.SWT")%>.SAVE, filters);
-		if (files.length > 0)
+		String fileExtension = getString("_UI_<%=genPackage.getEditorClassName()%>FilenameExtension");<%=genModel.getNonNLS()%>
+		String file = <%=genModel.getImportedName(genModel.getQualifiedEditorAdvisorClassName())%>.openFilePathDialog(getSite().getShell(), "*." + fileExtension, <%=genModel.getImportedName("org.eclipse.swt.SWT")%>.SAVE);<%=genModel.getNonNLS()%>
+		if (file != null)
 		{
-			URI uri = URI.createFileURI(files[0]);
+			if (!file.endsWith("." + fileExtension))<%=genModel.getNonNLS()%>
+			{
+				file = file + "." + fileExtension;<%=genModel.getNonNLS()%>
+			}
+			URI uri = URI.createFileURI(file);
 			doSaveAs(uri, new <%=genModel.getImportedName("org.eclipse.emf.common.ui.URIEditorInput")%>(uri));
 		}
 <%} else {%>

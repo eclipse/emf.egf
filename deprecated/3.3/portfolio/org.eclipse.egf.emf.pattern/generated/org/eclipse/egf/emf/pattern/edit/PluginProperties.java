@@ -26,7 +26,7 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
-    protected final String TEXT_2 = NL + NL + "pluginName = ";
+    protected final String TEXT_2 = NL + NL + "# ====================================================================" + NL + "# To code developer:" + NL + "#   Do NOT change the properties between this line and the" + NL + "#   \"%%% END OF TRANSLATED PROPERTIES %%%\" line." + NL + "#   Make a new property name, append to the end of the file and change" + NL + "#   the code to use the new property." + NL + "# ====================================================================" + NL + "" + NL + "# ====================================================================" + NL + "# %%% END OF TRANSLATED PROPERTIES %%%" + NL + "# ====================================================================" + NL + "" + NL + "pluginName = ";
     protected final String TEXT_3 = " Edit Support" + NL + "providerName = www.example.org" + NL;
     protected final String TEXT_4 = NL + "_UI_CreateChild_text = {0}" + NL + "_UI_CreateChild_text2 = {1} ";
     protected final String TEXT_5 = "| ";
@@ -162,10 +162,14 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
          * </copyright>
          */
 
-        GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-        Iterator.class.getName();
+        GenModel genModel = (GenModel) argument;
+        if (false) {/* Trick to import java.util.* without warnings */
+            Iterator.class.getName();
+        }
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);

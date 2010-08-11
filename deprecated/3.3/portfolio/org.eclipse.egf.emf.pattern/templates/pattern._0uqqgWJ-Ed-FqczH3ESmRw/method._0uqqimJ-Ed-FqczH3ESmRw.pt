@@ -11,7 +11,7 @@
 		result.getDefaultSaveOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
 
 		result.getDefaultLoadOptions().put(<%=genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource")%>.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE);
-<%if (genPackage.isDataTypeConverters() && genPackage.hasDocumentRoot()) {%>
+<%if (genPackage.isDataTypeConverters()) {%>
 		result.getDefaultLoadOptions().put(<%=genPackage.getResourceClassName()%>.OPTION_USE_DATA_CONVERTER, Boolean.TRUE);
 <%}%>
 <%} else if (genPackage.hasXMLMap()) {%>

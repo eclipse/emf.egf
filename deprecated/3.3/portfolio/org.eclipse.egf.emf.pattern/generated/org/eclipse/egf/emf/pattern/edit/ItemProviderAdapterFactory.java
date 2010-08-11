@@ -32,128 +32,80 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
     protected final String TEXT_5 = " extends ";
     protected final String TEXT_6 = " implements ComposeableAdapterFactory, IChangeNotifier";
     protected final String TEXT_7 = ", ";
-    protected final String TEXT_8 = ", ";
-    protected final String TEXT_9 = NL + "{";
-    protected final String TEXT_10 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
-    protected final String TEXT_11 = " copyright = ";
-    protected final String TEXT_12 = ";";
-    protected final String TEXT_13 = NL;
-    protected final String TEXT_14 = NL + "\t/**" + NL + "\t * This keeps track of the root adapter factory that delegates to this adapter factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ComposedAdapterFactory parentAdapterFactory;" + NL + "" + NL + "\t/**" + NL + "\t * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected IChangeNotifier changeNotifier = new ChangeNotifier();" + NL;
-    protected final String TEXT_15 = NL + "\t/**" + NL + "\t * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_16 = " disposable = new Disposable();" + NL;
-    protected final String TEXT_17 = NL + "\t/**" + NL + "\t * This helps manage the child creation extenders." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_18 = " childCreationExtenderManager = new ";
-    protected final String TEXT_19 = "(";
-    protected final String TEXT_20 = ".INSTANCE, ";
-    protected final String TEXT_21 = ".eNS_URI);" + NL;
-    protected final String TEXT_22 = NL + "\t/**" + NL + "\t * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_23 = " supportedTypes = new ";
-    protected final String TEXT_24 = "();" + NL + "" + NL + "\t/**" + NL + "\t * This constructs an instance." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_25 = "()" + NL + "\t{";
-    protected final String TEXT_26 = NL + "\t\tsupportedTypes.add(";
-    protected final String TEXT_27 = ".class);";
-    protected final String TEXT_28 = NL + "\t}" + NL;
-    protected final String TEXT_29 = NL + "\t/**" + NL + "\t * This keeps track of the factory to which to delegate adapter creation for objects from that package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_30 = " ";
-    protected final String TEXT_31 = " = null;" + NL + "" + NL + "\t/**" + NL + "\t * This determines the delegate factory for the package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_32 = " get";
-    protected final String TEXT_33 = "()" + NL + "\t{" + NL + "\t\tif (";
-    protected final String TEXT_34 = " == null)" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_35 = " rootAdapterFactory = getRootAdapterFactory();" + NL + "\t\t\tif (rootAdapterFactory instanceof ComposedAdapterFactory)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-    protected final String TEXT_36 = " delegateAdapterFactory =" + NL + "\t\t\t\t\t((ComposedAdapterFactory)rootAdapterFactory).getFactoryForType(";
-    protected final String TEXT_37 = ".getPackage());" + NL + "\t\t\t\tif (delegateAdapterFactory instanceof ";
-    protected final String TEXT_38 = ")" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\t";
-    protected final String TEXT_39 = " = (";
-    protected final String TEXT_40 = ")delegateAdapterFactory;" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn ";
-    protected final String TEXT_41 = ";" + NL + "\t}" + NL;
-    protected final String TEXT_42 = NL + "\t/**" + NL + "\t * This keeps track of the one adapter used for all {@link ";
-    protected final String TEXT_43 = "} instances." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_44 = " ";
-    protected final String TEXT_45 = "ItemProvider;" + NL + "" + NL + "\t/**" + NL + "\t * This creates an adapter for a {@link ";
-    protected final String TEXT_46 = "}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_47 = NL + "\t@Override";
-    protected final String TEXT_48 = NL + "\tpublic Adapter create";
-    protected final String TEXT_49 = "Adapter()" + NL + "\t{" + NL + "\t\tif (";
-    protected final String TEXT_50 = "ItemProvider == null)" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_51 = "ItemProvider = new ";
-    protected final String TEXT_52 = "(this);" + NL + "\t\t}" + NL + "" + NL + "\t\treturn ";
-    protected final String TEXT_53 = "ItemProvider;" + NL + "\t}" + NL;
-    protected final String TEXT_54 = NL + "\t/**" + NL + "\t * This creates an adapter for a {@link ";
-    protected final String TEXT_55 = "}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_56 = NL + "\t@Override";
-    protected final String TEXT_57 = NL + "\tpublic Adapter create";
-    protected final String TEXT_58 = "Adapter()" + NL + "\t{" + NL + "\t\treturn new ";
-    protected final String TEXT_59 = "(this);" + NL + "\t}" + NL;
-    protected final String TEXT_60 = NL + "\t/**" + NL + "\t * ";
-    protected final String TEXT_61 = " of ";
-    protected final String TEXT_62 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic Adapter create";
-    protected final String TEXT_63 = "Adapter()" + NL + "\t{" + NL + "\t\treturn" + NL + "\t\t\tget";
-    protected final String TEXT_64 = "() == null ?" + NL + "\t\t\t\tnull :" + NL + "\t\t\t\tget";
-    protected final String TEXT_65 = "().create";
-    protected final String TEXT_66 = "Adapter();" + NL + "\t}" + NL;
-    protected final String TEXT_67 = NL + "\t/**" + NL + "\t * This returns the root adapter factory that contains this factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ComposeableAdapterFactory getRootAdapterFactory()" + NL + "\t{" + NL + "\t\treturn parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This sets the composed adapter factory that contains this factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)" + NL + "\t{" + NL
+    protected final String TEXT_8 = NL + "{";
+    protected final String TEXT_9 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+    protected final String TEXT_10 = " copyright = ";
+    protected final String TEXT_11 = ";";
+    protected final String TEXT_12 = NL;
+    protected final String TEXT_13 = NL + "\t/**" + NL + "\t * This keeps track of the root adapter factory that delegates to this adapter factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ComposedAdapterFactory parentAdapterFactory;" + NL + "" + NL + "\t/**" + NL + "\t * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected IChangeNotifier changeNotifier = new ChangeNotifier();" + NL;
+    protected final String TEXT_14 = NL + "\t/**" + NL + "\t * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_15 = " disposable = new Disposable();" + NL;
+    protected final String TEXT_16 = NL + "\t/**" + NL + "\t * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_17 = " supportedTypes = new ";
+    protected final String TEXT_18 = "();" + NL + "" + NL + "\t/**" + NL + "\t * This constructs an instance." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+    protected final String TEXT_19 = "()" + NL + "\t{";
+    protected final String TEXT_20 = NL + "\t\tsupportedTypes.add(";
+    protected final String TEXT_21 = ".class);";
+    protected final String TEXT_22 = NL + "\t}" + NL;
+    protected final String TEXT_23 = NL + "\t/**" + NL + "\t * This keeps track of the factory to which to delegate adapter creation for objects from that package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_24 = " ";
+    protected final String TEXT_25 = " = null;" + NL + "" + NL + "\t/**" + NL + "\t * This determines the delegate factory for the package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_26 = " get";
+    protected final String TEXT_27 = "()" + NL + "\t{" + NL + "\t\tif (";
+    protected final String TEXT_28 = " == null)" + NL + "\t\t{" + NL + "\t\t\t";
+    protected final String TEXT_29 = " rootAdapterFactory = getRootAdapterFactory();" + NL + "\t\t\tif (rootAdapterFactory instanceof ComposedAdapterFactory)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+    protected final String TEXT_30 = " delegateAdapterFactory =" + NL + "\t\t\t\t\t((ComposedAdapterFactory)rootAdapterFactory).getFactoryForType(";
+    protected final String TEXT_31 = ".getPackage());" + NL + "\t\t\t\tif (delegateAdapterFactory instanceof ";
+    protected final String TEXT_32 = ")" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\t";
+    protected final String TEXT_33 = " = (";
+    protected final String TEXT_34 = ")delegateAdapterFactory;" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn ";
+    protected final String TEXT_35 = ";" + NL + "\t}" + NL;
+    protected final String TEXT_36 = NL + "\t/**" + NL + "\t * This keeps track of the one adapter used for all {@link ";
+    protected final String TEXT_37 = "} instances." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_38 = " ";
+    protected final String TEXT_39 = "ItemProvider;" + NL + "" + NL + "\t/**" + NL + "\t * This creates an adapter for a {@link ";
+    protected final String TEXT_40 = "}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_41 = NL + "\t@Override";
+    protected final String TEXT_42 = NL + "\tpublic Adapter create";
+    protected final String TEXT_43 = "Adapter()" + NL + "\t{" + NL + "\t\tif (";
+    protected final String TEXT_44 = "ItemProvider == null)" + NL + "\t\t{" + NL + "\t\t\t";
+    protected final String TEXT_45 = "ItemProvider = new ";
+    protected final String TEXT_46 = "(this);" + NL + "\t\t}" + NL + "" + NL + "\t\treturn ";
+    protected final String TEXT_47 = "ItemProvider;" + NL + "\t}" + NL;
+    protected final String TEXT_48 = NL + "\t/**" + NL + "\t * This creates an adapter for a {@link ";
+    protected final String TEXT_49 = "}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic Adapter create";
+    protected final String TEXT_50 = "Adapter()" + NL + "\t{" + NL + "\t\treturn new ";
+    protected final String TEXT_51 = "(this);" + NL + "\t}" + NL;
+    protected final String TEXT_52 = NL + "\t/**" + NL + "\t * ";
+    protected final String TEXT_53 = " of ";
+    protected final String TEXT_54 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic Adapter create";
+    protected final String TEXT_55 = "Adapter()" + NL + "\t{" + NL + "\t\treturn" + NL + "\t\t\tget";
+    protected final String TEXT_56 = "() == null ?" + NL + "\t\t\t\tnull :" + NL + "\t\t\t\tget";
+    protected final String TEXT_57 = "().create";
+    protected final String TEXT_58 = "Adapter();" + NL + "\t}" + NL;
+    protected final String TEXT_59 = NL + "\t/**" + NL + "\t * This returns the root adapter factory that contains this factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ComposeableAdapterFactory getRootAdapterFactory()" + NL + "\t{" + NL + "\t\treturn parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This sets the composed adapter factory that contains this factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory)" + NL + "\t{" + NL
             + "\t\tthis.parentAdapterFactory = parentAdapterFactory;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_68 = NL + "\t@Override";
-    protected final String TEXT_69 = NL + "\tpublic boolean isFactoryForType(Object type)" + NL + "\t{" + NL + "\t\treturn supportedTypes.contains(type) || super.isFactoryForType(type);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This implementation substitutes the factory itself as the key for the adapter." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_70 = NL + "\t@Override";
-    protected final String TEXT_71 = NL + "\tpublic Adapter adapt(Notifier notifier, Object type)" + NL + "\t{" + NL + "\t\treturn super.adapt(notifier, this);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_72 = NL + "\t@Override";
-    protected final String TEXT_73 = NL + "\tpublic Object adapt(Object object, Object type)" + NL + "\t{" + NL + "\t\tif (isFactoryForType(type))" + NL + "\t\t{" + NL + "\t\t\tObject adapter = super.adapt(object, type);" + NL + "\t\t\tif (!(type instanceof Class";
-    protected final String TEXT_74 = "<?>";
-    protected final String TEXT_75 = ") || (((Class";
-    protected final String TEXT_76 = "<?>";
-    protected final String TEXT_77 = ")type).isInstance(adapter)))" + NL + "\t\t\t{" + NL + "\t\t\t\treturn adapter;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "" + NL + "\t\treturn null;" + NL + "\t}" + NL;
-    protected final String TEXT_78 = NL + "\t/**" + NL + "\t * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_79 = NL + "\t@Override";
-    protected final String TEXT_80 = NL + "\tprotected void associate(Adapter adapter, Notifier target)" + NL + "\t{" + NL + "\t\tsuper.associate(adapter, target);" + NL + "\t\tif (adapter != null)" + NL + "\t\t{" + NL + "\t\t\tdisposable.add(adapter);" + NL + "\t\t}" + NL + "\t}" + NL;
-    protected final String TEXT_81 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_82 = " getChildCreationExtenders()" + NL + "\t{" + NL + "\t\treturn childCreationExtenderManager.getChildCreationExtenders();" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_83 = " getNewChildDescriptors(Object object, ";
-    protected final String TEXT_84 = " editingDomain)" + NL + "\t{" + NL + "\t\treturn childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_85 = " getResourceLocator()" + NL + "\t{" + NL + "\t\treturn childCreationExtenderManager;" + NL + "\t}" + NL;
-    protected final String TEXT_86 = NL + "\t/**" + NL + "\t * This adds a listener." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void addListener(INotifyChangedListener notifyChangedListener)" + NL + "\t{" + NL + "\t\tchangeNotifier.addListener(notifyChangedListener);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This removes a listener." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void removeListener(INotifyChangedListener notifyChangedListener)" + NL + "\t{" + NL + "\t\tchangeNotifier.removeListener(notifyChangedListener);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
+    protected final String TEXT_60 = NL + "\t@Override";
+    protected final String TEXT_61 = NL + "\tpublic boolean isFactoryForType(Object type)" + NL + "\t{" + NL + "\t\treturn supportedTypes.contains(type) || super.isFactoryForType(type);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This implementation substitutes the factory itself as the key for the adapter." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_62 = NL + "\t@Override";
+    protected final String TEXT_63 = NL + "\tpublic Adapter adapt(Notifier notifier, Object type)" + NL + "\t{" + NL + "\t\treturn super.adapt(notifier, this);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_64 = NL + "\t@Override";
+    protected final String TEXT_65 = NL + "\tpublic Object adapt(Object object, Object type)" + NL + "\t{" + NL + "\t\tif (isFactoryForType(type))" + NL + "\t\t{" + NL + "\t\t\tObject adapter = super.adapt(object, type);" + NL + "\t\t\tif (!(type instanceof Class) || (((Class";
+    protected final String TEXT_66 = "<?>";
+    protected final String TEXT_67 = ")type).isInstance(adapter)))" + NL + "\t\t\t{" + NL + "\t\t\t\treturn adapter;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "" + NL + "\t\treturn null;" + NL + "\t}" + NL;
+    protected final String TEXT_68 = NL + "\t/**" + NL + "\t * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected void associate(Adapter adapter, Notifier target)" + NL + "\t{" + NL + "\t\tsuper.associate(adapter, target);" + NL + "\t\tif (adapter != null)" + NL + "\t\t{" + NL + "\t\t\tdisposable.add(adapter);" + NL + "\t\t}" + NL + "\t}" + NL;
+    protected final String TEXT_69 = NL + "\t/**" + NL + "\t * This adds a listener." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void addListener(INotifyChangedListener notifyChangedListener)" + NL + "\t{" + NL + "\t\tchangeNotifier.addListener(notifyChangedListener);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This removes a listener." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void removeListener(INotifyChangedListener notifyChangedListener)" + NL + "\t{" + NL + "\t\tchangeNotifier.removeListener(notifyChangedListener);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
             + "\t * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void fireNotifyChanged(Notification notification)" + NL + "\t{" + NL + "\t\tchangeNotifier.fireNotifyChanged(notification);" + NL + "" + NL + "\t\tif (parentAdapterFactory != null)" + NL + "\t\t{" + NL + "\t\t\tparentAdapterFactory.fireNotifyChanged(notification);" + NL + "\t\t}" + NL + "\t}" + NL;
-    protected final String TEXT_87 = NL + "\t/**" + NL + "\t * This disposes all of the item providers created by this factory. " + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void dispose()" + NL + "\t{";
-    protected final String TEXT_88 = NL + "\t\tdisposable.dispose();";
-    protected final String TEXT_89 = NL + "\t\tif (";
-    protected final String TEXT_90 = "ItemProvider != null) ";
-    protected final String TEXT_91 = "ItemProvider.dispose();";
-    protected final String TEXT_92 = NL + "\t}" + NL;
-    protected final String TEXT_93 = NL + "\t/**" + NL + "\t * A child creation extender for the {@link ";
-    protected final String TEXT_94 = "}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static class ";
-    protected final String TEXT_95 = " implements ";
-    protected final String TEXT_96 = NL + "\t{" + NL + "\t\t/**" + NL + "\t\t * The switch for creating child descriptors specific to each extended class." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected static class CreationSwitch extends ";
-    protected final String TEXT_97 = NL + "\t\t{" + NL + "\t\t\t/**" + NL + "\t\t\t * The child descriptors being populated." + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
-    protected final String TEXT_98 = " newChildDescriptors;" + NL + "" + NL + "\t\t\t/**" + NL + "\t\t\t * The domain in which to create the children." + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
-    protected final String TEXT_99 = " editingDomain;" + NL + "" + NL + "\t\t\t/**" + NL + "\t\t\t * Creates the a switch for populating child descriptors in the given domain." + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tCreationSwitch(";
-    protected final String TEXT_100 = " newChildDescriptors, ";
-    protected final String TEXT_101 = " editingDomain) " + NL + "\t\t\t{" + NL + "\t\t\t\tthis.newChildDescriptors = newChildDescriptors;" + NL + "\t\t\t\tthis.editingDomain = editingDomain;" + NL + "\t\t\t}";
-    protected final String TEXT_102 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */";
-    protected final String TEXT_103 = NL + "\t\t\t@Override";
-    protected final String TEXT_104 = NL + "\t\t\tpublic ";
-    protected final String TEXT_105 = "Object case";
-    protected final String TEXT_106 = "(";
-    protected final String TEXT_107 = " object)" + NL + "\t\t\t{";
-    protected final String TEXT_108 = NL;
-    protected final String TEXT_109 = NL;
-    protected final String TEXT_110 = NL;
-    protected final String TEXT_111 = NL;
-    protected final String TEXT_112 = NL;
-    protected final String TEXT_113 = NL + "\t\t\t\treturn null;" + NL + "\t\t\t}" + NL + " ";
-    protected final String TEXT_114 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
-    protected final String TEXT_115 = " createChildParameter(Object feature, Object child)" + NL + "\t\t\t{" + NL + "\t\t\t\treturn new ";
-    protected final String TEXT_116 = "(null, feature, child);" + NL + "\t\t\t}" + NL + "" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
-    protected final String TEXT_117 = " getNewChildDescriptors(Object object, ";
-    protected final String TEXT_118 = " editingDomain)" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_119 = " result = new ";
-    protected final String TEXT_120 = "();" + NL + "\t\t   new CreationSwitch(result, editingDomain).doSwitch((";
-    protected final String TEXT_121 = ")object);" + NL + "\t\t   return result;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
-    protected final String TEXT_122 = " getResourceLocator()" + NL + "\t\t{" + NL + "\t\t\treturn ";
-    protected final String TEXT_123 = ".INSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL;
-    protected final String TEXT_124 = NL + "}";
-    protected final String TEXT_125 = NL;
-    protected final String TEXT_126 = NL;
-    protected final String TEXT_127 = NL;
+    protected final String TEXT_70 = NL + "\t/**" + NL + "\t * This disposes all of the item providers created by this factory. " + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void dispose()" + NL + "\t{";
+    protected final String TEXT_71 = NL + "\t\tdisposable.dispose();";
+    protected final String TEXT_72 = NL + "\t\tif (";
+    protected final String TEXT_73 = "ItemProvider != null) ";
+    protected final String TEXT_74 = "ItemProvider.dispose();";
+    protected final String TEXT_75 = NL + "\t}" + NL;
+    protected final String TEXT_76 = NL + "}";
+    protected final String TEXT_77 = NL;
+    protected final String TEXT_78 = NL;
+    protected final String TEXT_79 = NL;
 
     public ItemProviderAdapterFactory() {
         //Here is the constructor
@@ -186,8 +138,8 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_126);
-        stringBuffer.append(TEXT_127);
+        stringBuffer.append(TEXT_78);
+        stringBuffer.append(TEXT_79);
         return stringBuffer.toString();
     }
 
@@ -269,10 +221,14 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
          */
 
         GenPackage genPackage = (GenPackage) argument;
-        GenModel genModel = genPackage.getGenModel(); /* Trick to import java.util.* without warnings */
-        Iterator.class.getName();
+        GenModel genModel = genPackage.getGenModel();
+        if (false) {/* Trick to import java.util.* without warnings */
+            Iterator.class.getName();
+        }
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -294,9 +250,8 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
         genModel.addImport("org.eclipse.emf.edit.provider.INotifyChangedListener");
         genModel.addImport("org.eclipse.emf.edit.provider.IStructuredItemContentProvider");
         genModel.addImport("org.eclipse.emf.edit.provider.ITreeItemContentProvider");
-        boolean useGenerics = genModel.useGenerics();
-        String _ArrayList = genModel.getImportedName(useGenerics ? "java.util.ArrayList<java.lang.Object>" : "java.util.ArrayList");
-        String _Collection = genModel.getImportedName(useGenerics ? "java.util.Collection<java.lang.Object>" : "java.util.Collection");
+        String _ArrayList = genModel.getImportedName(genModel.useGenerics() ? "java.util.ArrayList<java.lang.Object>" : "java.util.ArrayList");
+        String _Collection = genModel.getImportedName(genModel.useGenerics() ? "java.util.Collection<java.lang.Object>" : "java.util.Collection");
         genModel.markImportLocation(stringBuffer);
         stringBuffer.append(TEXT_4);
         stringBuffer.append(genPackage.getItemProviderAdapterFactoryClassName());
@@ -307,327 +262,155 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
             stringBuffer.append(TEXT_7);
             stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.IDisposable"));
         }
-        if (genPackage.isExtensibleProviderFactory()) {
-            stringBuffer.append(TEXT_8);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.IChildCreationExtender"));
-        }
-        stringBuffer.append(TEXT_9);
+        stringBuffer.append(TEXT_8);
         if (genModel.hasCopyrightField()) {
-            stringBuffer.append(TEXT_10);
+            stringBuffer.append(TEXT_9);
             stringBuffer.append(genModel.getImportedName("java.lang.String"));
-            stringBuffer.append(TEXT_11);
+            stringBuffer.append(TEXT_10);
             stringBuffer.append(genModel.getCopyrightFieldLiteral());
-            stringBuffer.append(TEXT_12);
+            stringBuffer.append(TEXT_11);
             stringBuffer.append(genModel.getNonNLS());
-            stringBuffer.append(TEXT_13);
+            stringBuffer.append(TEXT_12);
         }
-        stringBuffer.append(TEXT_14);
+        stringBuffer.append(TEXT_13);
         if (genPackage.isDisposableProviderFactory() && genPackage.hasStatefulProvider()) {
-            stringBuffer.append(TEXT_15);
+            stringBuffer.append(TEXT_14);
             stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.Disposable"));
-            stringBuffer.append(TEXT_16);
+            stringBuffer.append(TEXT_15);
         }
-        if (genPackage.isExtensibleProviderFactory()) {
-            stringBuffer.append(TEXT_17);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.ChildCreationExtenderManager"));
-            stringBuffer.append(TEXT_18);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.ChildCreationExtenderManager"));
-            stringBuffer.append(TEXT_19);
-            stringBuffer.append(genPackage.getImportedEditPluginClassName());
+        stringBuffer.append(TEXT_16);
+        stringBuffer.append(_Collection);
+        stringBuffer.append(TEXT_17);
+        stringBuffer.append(_ArrayList);
+        stringBuffer.append(TEXT_18);
+        stringBuffer.append(genPackage.getItemProviderAdapterFactoryClassName());
+        stringBuffer.append(TEXT_19);
+        for (String name : genPackage.getProviderSupportedTypes()) {
             stringBuffer.append(TEXT_20);
-            stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+            stringBuffer.append(genModel.getImportedName(name));
             stringBuffer.append(TEXT_21);
         }
         stringBuffer.append(TEXT_22);
-        stringBuffer.append(_Collection);
-        stringBuffer.append(TEXT_23);
-        stringBuffer.append(_ArrayList);
-        stringBuffer.append(TEXT_24);
-        stringBuffer.append(genPackage.getItemProviderAdapterFactoryClassName());
-        stringBuffer.append(TEXT_25);
-        for (String name : genPackage.getProviderSupportedTypes()) {
-            stringBuffer.append(TEXT_26);
-            stringBuffer.append(genModel.getImportedName(name));
-            stringBuffer.append(TEXT_27);
-        }
-        stringBuffer.append(TEXT_28);
         for (GenPackage genDelegate : genPackage.getAdapterDelegatePackages()) {
-            stringBuffer.append(TEXT_29);
+            stringBuffer.append(TEXT_23);
             stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
-            stringBuffer.append(TEXT_30);
+            stringBuffer.append(TEXT_24);
             stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
+            stringBuffer.append(TEXT_25);
+            stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
+            stringBuffer.append(TEXT_26);
+            stringBuffer.append(genPackage.getAdapterFactoryDelegateName(genDelegate));
+            stringBuffer.append(TEXT_27);
+            stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
+            stringBuffer.append(TEXT_28);
+            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.AdapterFactory"));
+            stringBuffer.append(TEXT_29);
+            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.AdapterFactory"));
+            stringBuffer.append(TEXT_30);
+            stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
             stringBuffer.append(TEXT_31);
             stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
             stringBuffer.append(TEXT_32);
-            stringBuffer.append(genPackage.getAdapterFactoryDelegateName(genDelegate));
+            stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
             stringBuffer.append(TEXT_33);
-            stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
+            stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
             stringBuffer.append(TEXT_34);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.AdapterFactory"));
+            stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
             stringBuffer.append(TEXT_35);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.notify.AdapterFactory"));
-            stringBuffer.append(TEXT_36);
-            stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
-            stringBuffer.append(TEXT_37);
-            stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
-            stringBuffer.append(TEXT_38);
-            stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
-            stringBuffer.append(TEXT_39);
-            stringBuffer.append(genDelegate.getImportedAdapterFactoryClassName());
-            stringBuffer.append(TEXT_40);
-            stringBuffer.append(genPackage.getUncapAdapterFactoryDelegateName(genDelegate));
-            stringBuffer.append(TEXT_41);
         }
         for (GenClass genClass : genPackage.getGenClasses()) {
             if (!genClass.isAbstract() && genClass.getProvider() != GenProviderKind.NONE_LITERAL) {
                 if (genClass.isProviderSingleton()) {
-                    stringBuffer.append(TEXT_42);
+                    stringBuffer.append(TEXT_36);
                     stringBuffer.append(genClass.getQualifiedInterfaceName());
-                    stringBuffer.append(TEXT_43);
+                    stringBuffer.append(TEXT_37);
                     stringBuffer.append(genClass.getProviderClassName());
+                    stringBuffer.append(TEXT_38);
+                    stringBuffer.append(genClass.getUncapName());
+                    stringBuffer.append(TEXT_39);
+                    stringBuffer.append(genClass.getQualifiedInterfaceName());
+                    stringBuffer.append(TEXT_40);
+                    if (genModel.useClassOverrideAnnotation()) {
+                        stringBuffer.append(TEXT_41);
+                    }
+                    stringBuffer.append(TEXT_42);
+                    stringBuffer.append(genClass.getName());
+                    stringBuffer.append(TEXT_43);
+                    stringBuffer.append(genClass.getUncapName());
                     stringBuffer.append(TEXT_44);
                     stringBuffer.append(genClass.getUncapName());
                     stringBuffer.append(TEXT_45);
-                    stringBuffer.append(genClass.getQualifiedInterfaceName());
+                    stringBuffer.append(genClass.getProviderClassName());
                     stringBuffer.append(TEXT_46);
-                    if (genModel.useClassOverrideAnnotation()) {
-                        stringBuffer.append(TEXT_47);
-                    }
-                    stringBuffer.append(TEXT_48);
-                    stringBuffer.append(genClass.getName());
-                    stringBuffer.append(TEXT_49);
                     stringBuffer.append(genClass.getUncapName());
-                    stringBuffer.append(TEXT_50);
-                    stringBuffer.append(genClass.getUncapName());
-                    stringBuffer.append(TEXT_51);
-                    stringBuffer.append(genClass.getProviderClassName());
-                    stringBuffer.append(TEXT_52);
-                    stringBuffer.append(genClass.getUncapName());
-                    stringBuffer.append(TEXT_53);
+                    stringBuffer.append(TEXT_47);
                 } else {
-                    stringBuffer.append(TEXT_54);
+                    stringBuffer.append(TEXT_48);
                     stringBuffer.append(genClass.getQualifiedInterfaceName());
-                    stringBuffer.append(TEXT_55);
-                    if (genModel.useClassOverrideAnnotation()) {
-                        stringBuffer.append(TEXT_56);
-                    }
-                    stringBuffer.append(TEXT_57);
+                    stringBuffer.append(TEXT_49);
                     stringBuffer.append(genClass.getName());
-                    stringBuffer.append(TEXT_58);
+                    stringBuffer.append(TEXT_50);
                     stringBuffer.append(genClass.getProviderClassName());
-                    stringBuffer.append(TEXT_59);
+                    stringBuffer.append(TEXT_51);
                 }
             }
         }
         for (GenClass genClass : genPackage.getAdapterDelegateSuperClasses()) {
+            stringBuffer.append(TEXT_52);
+            stringBuffer.append(genClass.getName());
+            stringBuffer.append(TEXT_53);
+            stringBuffer.append(genClass.getItemProviderAdapterFactoryClassName());
+            stringBuffer.append(TEXT_54);
+            stringBuffer.append(genClass.getName());
+            stringBuffer.append(TEXT_55);
+            stringBuffer.append(genClass.getItemProviderAdapterFactoryClassName());
+            stringBuffer.append(TEXT_56);
+            stringBuffer.append(genClass.getItemProviderAdapterFactoryClassName());
+            stringBuffer.append(TEXT_57);
+            stringBuffer.append(genClass.getName());
+            stringBuffer.append(TEXT_58);
+        }
+        stringBuffer.append(TEXT_59);
+        if (genModel.useClassOverrideAnnotation()) {
             stringBuffer.append(TEXT_60);
-            stringBuffer.append(genClass.getName());
-            stringBuffer.append(TEXT_61);
-            stringBuffer.append(genClass.getItemProviderAdapterFactoryClassName());
+        }
+        stringBuffer.append(TEXT_61);
+        if (genModel.useClassOverrideAnnotation()) {
             stringBuffer.append(TEXT_62);
-            stringBuffer.append(genClass.getName());
-            stringBuffer.append(TEXT_63);
-            stringBuffer.append(genClass.getItemProviderAdapterFactoryClassName());
+        }
+        stringBuffer.append(TEXT_63);
+        if (genModel.useClassOverrideAnnotation()) {
             stringBuffer.append(TEXT_64);
-            stringBuffer.append(genClass.getItemProviderAdapterFactoryClassName());
-            stringBuffer.append(TEXT_65);
-            stringBuffer.append(genClass.getName());
+        }
+        stringBuffer.append(TEXT_65);
+        if (genModel.useGenerics()) {
             stringBuffer.append(TEXT_66);
         }
         stringBuffer.append(TEXT_67);
-        if (genModel.useClassOverrideAnnotation()) {
+        if (genPackage.isDisposableProviderFactory() && genPackage.hasStatefulProvider()) {
             stringBuffer.append(TEXT_68);
         }
         stringBuffer.append(TEXT_69);
-        if (genModel.useClassOverrideAnnotation()) {
-            stringBuffer.append(TEXT_70);
-        }
-        stringBuffer.append(TEXT_71);
-        if (genModel.useClassOverrideAnnotation()) {
-            stringBuffer.append(TEXT_72);
-        }
-        stringBuffer.append(TEXT_73);
-        if (genModel.useGenerics()) {
-            stringBuffer.append(TEXT_74);
-        }
-        stringBuffer.append(TEXT_75);
-        if (genModel.useGenerics()) {
-            stringBuffer.append(TEXT_76);
-        }
-        stringBuffer.append(TEXT_77);
-        if (genPackage.isDisposableProviderFactory() && genPackage.hasStatefulProvider()) {
-            stringBuffer.append(TEXT_78);
-            if (genModel.useClassOverrideAnnotation()) {
-                stringBuffer.append(TEXT_79);
-            }
-            stringBuffer.append(TEXT_80);
-        }
-        if (genPackage.isExtensibleProviderFactory()) {
-            stringBuffer.append(TEXT_81);
-            stringBuffer.append(genModel.getImportedName(useGenerics ? "java.util.List<org.eclipse.emf.edit.provider.IChildCreationExtender>" : "java.util.List"));
-            stringBuffer.append(TEXT_82);
-            stringBuffer.append(genModel.getImportedName(useGenerics ? "java.util.Collection<?>" : "java.util.Collection"));
-            stringBuffer.append(TEXT_83);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.domain.EditingDomain"));
-            stringBuffer.append(TEXT_84);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.ResourceLocator"));
-            stringBuffer.append(TEXT_85);
-        }
-        stringBuffer.append(TEXT_86);
         if (genPackage.isDisposableProviderFactory()) {
-            stringBuffer.append(TEXT_87);
+            stringBuffer.append(TEXT_70);
             if (genPackage.hasStatefulProvider()) {
-                stringBuffer.append(TEXT_88);
+                stringBuffer.append(TEXT_71);
             } else {
                 for (GenClass genClass : genPackage.getGenClasses()) {
                     if (!genClass.isAbstract() && genClass.isProviderSingleton()) {
-                        stringBuffer.append(TEXT_89);
+                        stringBuffer.append(TEXT_72);
                         stringBuffer.append(genClass.getUncapName());
-                        stringBuffer.append(TEXT_90);
+                        stringBuffer.append(TEXT_73);
                         stringBuffer.append(genClass.getUncapName());
-                        stringBuffer.append(TEXT_91);
+                        stringBuffer.append(TEXT_74);
                     }
                 }
             }
-            stringBuffer.append(TEXT_92);
+            stringBuffer.append(TEXT_75);
         }
-        if (genPackage.isChildCreationExtenders()) {
-            for (Map.Entry<GenPackage, Map<GenClass, List<GenClass.ChildCreationData>>> packageEntry : genPackage.getExtendedChildCreationData().entrySet()) {
-                stringBuffer.append(TEXT_93);
-                stringBuffer.append(packageEntry.getKey().getImportedPackageInterfaceName());
-                stringBuffer.append(TEXT_94);
-                stringBuffer.append(genPackage.getChildCreationExtenderName(packageEntry.getKey()));
-                stringBuffer.append(TEXT_95);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.provider.IChildCreationExtender"));
-                stringBuffer.append(TEXT_96);
-                stringBuffer.append(genModel.getImportedName(packageEntry.getKey().getQualifiedSwitchClassName()));
-                stringBuffer.append(useGenerics ? "<Object>" : "");
-                stringBuffer.append(TEXT_97);
-                stringBuffer.append(genModel.getImportedName(useGenerics ? "java.util.List<Object>" : "java.util.List"));
-                stringBuffer.append(TEXT_98);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.domain.EditingDomain"));
-                stringBuffer.append(TEXT_99);
-                stringBuffer.append(genModel.getImportedName(useGenerics ? "java.util.List<Object>" : "java.util.List"));
-                stringBuffer.append(TEXT_100);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.domain.EditingDomain"));
-                stringBuffer.append(TEXT_101);
-                for (Map.Entry<GenClass, List<GenClass.ChildCreationData>> classEntry : packageEntry.getValue().entrySet()) {
-                    GenClass genClass = classEntry.getKey();
-                    stringBuffer.append(TEXT_102);
-                    if (genModel.useClassOverrideAnnotation()) {
-                        stringBuffer.append(TEXT_103);
-                    }
-                    stringBuffer.append(TEXT_104);
-                    stringBuffer.append(genClass.getTypeParameters());
-                    stringBuffer.append(TEXT_105);
-                    stringBuffer.append(genPackage.getClassUniqueName(genClass));
-                    stringBuffer.append(TEXT_106);
-                    stringBuffer.append(genClass.getImportedInterfaceName());
-                    stringBuffer.append(genClass.getInterfaceTypeArguments());
-                    stringBuffer.append(TEXT_107);
-                    for (GenClass.ChildCreationData childCreationData : classEntry.getValue()) {
-                        GenFeature createFeature = childCreationData.createFeature;
-                        GenFeature delegatedFeature = childCreationData.delegatedFeature;
-                        GenClassifier createClassifier = childCreationData.createClassifier;
-                        if (createFeature.isFeatureMapType()) {
-                            if (delegatedFeature.isReferenceType()) {
-                                GenClass createClass = (GenClass) createClassifier;
-                                stringBuffer.append(TEXT_108);
-                                {
-                                    final Map<String, Object> callParameters = new HashMap<String, Object>();
-                                    callParameters.put("createClass", createClass);
-                                    callParameters.put("createFeature", createFeature);
-                                    callParameters.put("delegatedFeature", delegatedFeature);
-                                    callParameters.put("createClassifier", createClassifier);
-                                    callParameters.put("childCreationData", childCreationData);
-                                    callParameters.put("genClass", genClass);
-                                    callParameters.put("genPackage", genPackage);
-                                    callParameters.put("genModel", genModel);
-                                    CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_036GEGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                                }
-
-                                //ItemProvider/newChildDescriptorsReferenceDelegatedFeature.override.javajetinc
-                            } else {
-                                GenDataType createDataType = (GenDataType) createClassifier;
-                                stringBuffer.append(TEXT_109);
-                                {
-                                    final Map<String, Object> callParameters = new HashMap<String, Object>();
-                                    callParameters.put("createDataType", createDataType);
-                                    callParameters.put("createFeature", createFeature);
-                                    callParameters.put("delegatedFeature", delegatedFeature);
-                                    callParameters.put("createClassifier", createClassifier);
-                                    callParameters.put("childCreationData", childCreationData);
-                                    callParameters.put("genClass", genClass);
-                                    callParameters.put("genPackage", genPackage);
-                                    callParameters.put("genModel", genModel);
-                                    CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04WyAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                                }
-
-                                //ItemProvider/newChildDescriptorsAttributeDelegatedFeature.override.javajetinc
-                            }
-                        } else if (createFeature.isReferenceType()) {
-                            GenClass createClass = (GenClass) createClassifier;
-                            stringBuffer.append(TEXT_110);
-                            {
-                                final Map<String, Object> callParameters = new HashMap<String, Object>();
-                                callParameters.put("createClass", createClass);
-                                callParameters.put("createFeature", createFeature);
-                                callParameters.put("delegatedFeature", delegatedFeature);
-                                callParameters.put("createClassifier", createClassifier);
-                                callParameters.put("childCreationData", childCreationData);
-                                callParameters.put("genClass", genClass);
-                                callParameters.put("genPackage", genPackage);
-                                callParameters.put("genModel", genModel);
-                                CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                            }
-
-                            //ItemProvider/newChildDescriptorsReferenceFeature.override.javajetinc 
-                        } else {
-                            GenDataType createDataType = (GenDataType) createClassifier;
-                            stringBuffer.append(TEXT_111);
-                            {
-                                final Map<String, Object> callParameters = new HashMap<String, Object>();
-                                callParameters.put("createDataType", createDataType);
-                                callParameters.put("createFeature", createFeature);
-                                callParameters.put("delegatedFeature", delegatedFeature);
-                                callParameters.put("createClassifier", createClassifier);
-                                callParameters.put("childCreationData", childCreationData);
-                                callParameters.put("genClass", genClass);
-                                callParameters.put("genPackage", genPackage);
-                                callParameters.put("genModel", genModel);
-                                CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_048n4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                            }
-
-                            //ItemProvider/newChildDescriptorsAttributeFeature.override.javajetinc
-                        }
-                        stringBuffer.append(TEXT_112);
-                    }
-                    stringBuffer.append(TEXT_113);
-                }
-                stringBuffer.append(TEXT_114);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.command.CommandParameter"));
-                stringBuffer.append(TEXT_115);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.command.CommandParameter"));
-                stringBuffer.append(TEXT_116);
-                stringBuffer.append(_Collection);
-                stringBuffer.append(TEXT_117);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.edit.domain.EditingDomain"));
-                stringBuffer.append(TEXT_118);
-                stringBuffer.append(_ArrayList);
-                stringBuffer.append(TEXT_119);
-                stringBuffer.append(_ArrayList);
-                stringBuffer.append(TEXT_120);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EObject"));
-                stringBuffer.append(TEXT_121);
-                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.ResourceLocator"));
-                stringBuffer.append(TEXT_122);
-                stringBuffer.append(genPackage.getImportedEditPluginClassName());
-                stringBuffer.append(TEXT_123);
-            }
-        }
-        stringBuffer.append(TEXT_124);
+        stringBuffer.append(TEXT_76);
         genModel.emitSortedImports();
-        stringBuffer.append(TEXT_125);
+        stringBuffer.append(TEXT_77);
     }
 
     public boolean preCondition() throws Exception {

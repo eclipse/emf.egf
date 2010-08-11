@@ -27,19 +27,19 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + NL + "<?eclipse version=\"3.0\"?>" + NL;
     protected final String TEXT_2 = NL;
-    protected final String TEXT_3 = NL;
-    protected final String TEXT_4 = NL + "<plugin>";
-    protected final String TEXT_5 = NL + "<plugin" + NL + "      name=\"%pluginName\"" + NL + "      id=\"";
-    protected final String TEXT_6 = "\"" + NL + "      version=\"1.0.0\"" + NL + "      provider-name=\"%providerName\">" + NL + "" + NL + "   <requires>";
-    protected final String TEXT_7 = NL + "      <import plugin=\"";
-    protected final String TEXT_8 = "\"";
-    protected final String TEXT_9 = " export=\"true\"";
+    protected final String TEXT_3 = NL + NL + "<plugin";
+    protected final String TEXT_4 = ">";
+    protected final String TEXT_5 = NL + "    name = \"%pluginName\"" + NL + "    id = \"";
+    protected final String TEXT_6 = "\"" + NL + "    version = \"1.0.0\"" + NL + "    provider-name = \"%providerName\">" + NL + "" + NL + "  <requires>";
+    protected final String TEXT_7 = NL + "    <import plugin=\"";
+    protected final String TEXT_8 = "\" ";
+    protected final String TEXT_9 = "export=\"true\"";
     protected final String TEXT_10 = "/>";
-    protected final String TEXT_11 = NL + "   </requires>" + NL + "" + NL + "   <runtime>";
-    protected final String TEXT_12 = NL + "      <library name=\"";
+    protected final String TEXT_11 = NL + "  </requires>" + NL + "" + NL + "  <runtime>";
+    protected final String TEXT_12 = NL + "    <library name=\"";
     protected final String TEXT_13 = ".jar\">";
-    protected final String TEXT_14 = NL + "      <library name=\".\">";
-    protected final String TEXT_15 = NL + "         <export name=\"*\"/>" + NL + "      </library>" + NL + "   </runtime>" + NL;
+    protected final String TEXT_14 = NL + "    <library name=\".\">";
+    protected final String TEXT_15 = NL + "      <export name=\"*\"/>" + NL + "    </library>" + NL + "  </runtime>";
     protected final String TEXT_16 = NL + "</plugin>" + NL;
     protected final String TEXT_17 = NL;
     protected final String TEXT_18 = NL;
@@ -157,11 +157,15 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
          * </copyright>
          */
 
-        GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */
-        Iterator.class.getName();
+        GenModel genModel = (GenModel) argument;
+        if (false) {/* Trick to import java.util.* without warnings */
+            Iterator.class.getName();
+        }
         stringBuffer.append(TEXT_1);
         stringBuffer.append(TEXT_2);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderXml" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#__h1VkCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -200,7 +204,7 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
         GenModel genModel = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
-        canGenerate = canGenerate && (!(genModel.isBundleManifest())) && (!genModel.sameModelTestsProject());
+        canGenerate = canGenerate && (!genModel.sameModelTestsProject());
         return canGenerate;
     }
 }

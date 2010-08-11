@@ -413,6 +413,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
 
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -544,13 +546,13 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
         stringBuffer.append(TEXT_63);
         stringBuffer.append(genModel.getImportedName("org.eclipse.jface.action.Separator"));
         stringBuffer.append(TEXT_64);
-        stringBuffer.append(genPackage.getPrefix().toLowerCase(genModel.getLocale()));
+        stringBuffer.append(genPackage.getPrefix().toLowerCase());
         stringBuffer.append(TEXT_65);
         stringBuffer.append(genModel.getNonNLS());
         stringBuffer.append(TEXT_66);
         stringBuffer.append(genModel.getImportedName("org.eclipse.jface.action.Separator"));
         stringBuffer.append(TEXT_67);
-        stringBuffer.append(genPackage.getPrefix().toLowerCase(genModel.getLocale()));
+        stringBuffer.append(genPackage.getPrefix().toLowerCase());
         stringBuffer.append(TEXT_68);
         stringBuffer.append(genModel.getNonNLS());
         stringBuffer.append(TEXT_69);

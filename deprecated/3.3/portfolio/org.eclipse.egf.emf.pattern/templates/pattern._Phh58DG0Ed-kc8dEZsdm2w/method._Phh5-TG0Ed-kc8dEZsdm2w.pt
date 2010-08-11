@@ -31,7 +31,7 @@ if (genModel.useGenerics())
   {
     usedNames.add(genEnum.getName());
   }
-  for (GenClass genClass : genPackage.getAllSwitchGenClasses())
+  for (GenClass genClass : genPackage.getGenClasses())
   {
     if (!genClass.isDynamic() && !genClass.isExternalInterface())
     {
@@ -149,7 +149,7 @@ public class <%=genPackage.getSwitchClassName()%><%=templateParameters%>
 <%if (!genClass.isExternalInterface() && !genClass.isEObject() || genClass.isMapEntry()) { String result = "result".equals(genClass.getSafeUncapName()) ? "theResult" : "result"; %>
 			case <%=genPackage.getImportedPackageInterfaceName()%>.<%=genPackage.getClassifierID(genClass)%>:
 			{
-				<%if (genClass.isUncheckedCast() || genClass.isMapEntry() && genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {%>@SuppressWarnings("unchecked") <%}%><%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%> <%=genClass.getSafeUncapName()%> = (<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)theEObject;
+				<%if (genClass.isUncheckedCast() || genClass.getInterfaceWildTypeArguments().length() > 0) {%>@SuppressWarnings("unchecked") <%}%><%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%> <%=genClass.getSafeUncapName()%> = (<%=genClass.getImportedInterfaceName()%><%=genClass.getInterfaceWildTypeArguments()%>)theEObject;
 				<%=returnType%> <%=result%> = case<%=genPackage.getClassUniqueName(genClass)%>(<%=genClass.getSafeUncapName()%>);
 <%for (GenClass baseGenClass : genClass.getSwitchGenClasses()) {%>
 				if (<%=result%> == null) <%=result%> = case<%=genPackage.getClassUniqueName(baseGenClass)%>(<%if (genClass.isMapEntry()) {%>(<%=baseGenClass.getImportedInterfaceName()%><%=baseGenClass.getInterfaceTypeArguments()%>)<%}%><%=genClass.getSafeUncapName()%>);

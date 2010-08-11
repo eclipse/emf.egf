@@ -58,65 +58,36 @@ public class InterfacedeclaredFieldGenFeatureoverride {
     protected final String TEXT_31 = NL;
     protected final String TEXT_32 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected int ";
     protected final String TEXT_33 = " = 0;" + NL;
-    protected final String TEXT_34 = NL + "\t/**" + NL + "\t * The offset of the flags representing the value of the '{@link #";
+    protected final String TEXT_34 = NL + "\t/**" + NL + "\t * The flag representing the value of the '{@link #";
     protected final String TEXT_35 = "() <em>";
     protected final String TEXT_36 = "</em>}' ";
-    protected final String TEXT_37 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
-    protected final String TEXT_38 = "_EFLAG_OFFSET = ";
-    protected final String TEXT_39 = ";" + NL + "" + NL + "\t/**" + NL + "\t * The flags representing the default value of the '{@link #";
-    protected final String TEXT_40 = "() <em>";
-    protected final String TEXT_41 = "</em>}' ";
-    protected final String TEXT_42 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
-    protected final String TEXT_43 = "_EFLAG_DEFAULT = ";
-    protected final String TEXT_44 = ".ordinal()";
-    protected final String TEXT_45 = ".VALUES.indexOf(";
-    protected final String TEXT_46 = ")";
-    protected final String TEXT_47 = " << ";
-    protected final String TEXT_48 = "_EFLAG_OFFSET;" + NL + "" + NL + "\t/**" + NL + "\t * The array of enumeration values for '{@link ";
-    protected final String TEXT_49 = " ";
-    protected final String TEXT_50 = "}'" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprivate static final ";
-    protected final String TEXT_51 = "[] ";
-    protected final String TEXT_52 = "_EFLAG_VALUES = ";
-    protected final String TEXT_53 = ".values()";
-    protected final String TEXT_54 = "(";
-    protected final String TEXT_55 = "[])";
-    protected final String TEXT_56 = ".VALUES.toArray(new ";
-    protected final String TEXT_57 = "[";
-    protected final String TEXT_58 = ".VALUES.size()])";
-    protected final String TEXT_59 = ";" + NL;
-    protected final String TEXT_60 = NL + "\t/**" + NL + "\t * The flag";
-    protected final String TEXT_61 = " representing the value of the '{@link #";
-    protected final String TEXT_62 = "() <em>";
-    protected final String TEXT_63 = "</em>}' ";
-    protected final String TEXT_64 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
-    protected final String TEXT_65 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
-    protected final String TEXT_66 = "_EFLAG = ";
-    protected final String TEXT_67 = " << ";
-    protected final String TEXT_68 = "_EFLAG_OFFSET";
-    protected final String TEXT_69 = ";" + NL;
-    protected final String TEXT_70 = NL + "\t/**" + NL + "\t * The cached value of the '{@link #";
-    protected final String TEXT_71 = "() <em>";
-    protected final String TEXT_72 = "</em>}' ";
-    protected final String TEXT_73 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
-    protected final String TEXT_74 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_75 = " ";
-    protected final String TEXT_76 = " = ";
-    protected final String TEXT_77 = ";" + NL;
-    protected final String TEXT_78 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected int ";
-    protected final String TEXT_79 = " = 0;" + NL;
-    protected final String TEXT_80 = NL + "\t/**" + NL + "\t * The flag representing whether the ";
-    protected final String TEXT_81 = " ";
-    protected final String TEXT_82 = " has been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
-    protected final String TEXT_83 = "_ESETFLAG = 1 << ";
-    protected final String TEXT_84 = ";" + NL;
-    protected final String TEXT_85 = NL + "\t/**" + NL + "\t * This is true if the ";
-    protected final String TEXT_86 = " ";
-    protected final String TEXT_87 = " has been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected boolean ";
-    protected final String TEXT_88 = "ESet;" + NL;
-    protected final String TEXT_89 = NL;
-    protected final String TEXT_90 = NL;
-    protected final String TEXT_91 = NL;
-    protected final String TEXT_92 = NL;
+    protected final String TEXT_37 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+    protected final String TEXT_38 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
+    protected final String TEXT_39 = "_EFLAG = 1 ";
+    protected final String TEXT_40 = ";" + NL;
+    protected final String TEXT_41 = NL + "\t/**" + NL + "\t * The cached value of the '{@link #";
+    protected final String TEXT_42 = "() <em>";
+    protected final String TEXT_43 = "</em>}' ";
+    protected final String TEXT_44 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+    protected final String TEXT_45 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_46 = " ";
+    protected final String TEXT_47 = " = ";
+    protected final String TEXT_48 = ";" + NL;
+    protected final String TEXT_49 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected int ";
+    protected final String TEXT_50 = " = 0;" + NL;
+    protected final String TEXT_51 = NL + "\t/**" + NL + "\t * The flag representing whether the ";
+    protected final String TEXT_52 = " ";
+    protected final String TEXT_53 = " has been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
+    protected final String TEXT_54 = "_ESETFLAG = 1 ";
+    protected final String TEXT_55 = ";" + NL;
+    protected final String TEXT_56 = NL + "\t/**" + NL + "\t * This is true if the ";
+    protected final String TEXT_57 = " ";
+    protected final String TEXT_58 = " has been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected boolean ";
+    protected final String TEXT_59 = "ESet;" + NL;
+    protected final String TEXT_60 = NL;
+    protected final String TEXT_61 = NL;
+    protected final String TEXT_62 = NL;
+    protected final String TEXT_63 = NL;
 
     public InterfacedeclaredFieldGenFeatureoverride() {
         //Here is the constructor
@@ -141,8 +112,6 @@ public class InterfacedeclaredFieldGenFeatureoverride {
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> genModelList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> isJDK50List = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isInterfaceList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isImplementationList = null;
@@ -160,30 +129,27 @@ public class InterfacedeclaredFieldGenFeatureoverride {
             for (Object genClassParameter : genClassList) {
                 for (Object genPackageParameter : genPackageList) {
                     for (Object genModelParameter : genModelList) {
-                        for (Object isJDK50Parameter : isJDK50List) {
-                            for (Object isInterfaceParameter : isInterfaceList) {
-                                for (Object isImplementationParameter : isImplementationList) {
-                                    for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
-                                        for (Object singleWildcardParameter : singleWildcardList) {
-                                            for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
-                                                for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+                        for (Object isInterfaceParameter : isInterfaceList) {
+                            for (Object isImplementationParameter : isImplementationList) {
+                                for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
+                                    for (Object singleWildcardParameter : singleWildcardList) {
+                                        for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
+                                            for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
 
-                                                    this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                                                    this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                                                    this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                                                    this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-                                                    this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-                                                    this.isInterface = (java.lang.Boolean) isInterfaceParameter;
-                                                    this.isImplementation = (java.lang.Boolean) isImplementationParameter;
-                                                    this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
-                                                    this.singleWildcard = (java.lang.String) singleWildcardParameter;
-                                                    this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
-                                                    this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+                                                this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+                                                this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+                                                this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+                                                this.isInterface = (java.lang.Boolean) isInterfaceParameter;
+                                                this.isImplementation = (java.lang.Boolean) isImplementationParameter;
+                                                this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
+                                                this.singleWildcard = (java.lang.String) singleWildcardParameter;
+                                                this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
+                                                this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
 
-                                                    if (preCondition())
-                                                        orchestration(ctx);
+                                                if (preCondition())
+                                                    orchestration(ctx);
 
-                                                }
                                             }
                                         }
                                     }
@@ -199,8 +165,8 @@ public class InterfacedeclaredFieldGenFeatureoverride {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_91);
-        stringBuffer.append(TEXT_92);
+        stringBuffer.append(TEXT_62);
+        stringBuffer.append(TEXT_63);
         return stringBuffer.toString();
     }
 
@@ -219,7 +185,6 @@ public class InterfacedeclaredFieldGenFeatureoverride {
             parameterValues.put("genClass", this.genClass);
             parameterValues.put("genPackage", this.genPackage);
             parameterValues.put("genModel", this.genModel);
-            parameterValues.put("isJDK50", this.isJDK50);
             parameterValues.put("isInterface", this.isInterface);
             parameterValues.put("isImplementation", this.isImplementation);
             parameterValues.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
@@ -255,12 +220,6 @@ public class InterfacedeclaredFieldGenFeatureoverride {
 
     public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
         this.genModel = object;
-    }
-
-    protected java.lang.Boolean isJDK50 = null;
-
-    public void set_isJDK50(java.lang.Boolean object) {
-        this.isJDK50 = object;
     }
 
     protected java.lang.Boolean isInterface = null;
@@ -305,7 +264,6 @@ public class InterfacedeclaredFieldGenFeatureoverride {
         parameters.put("genClass", this.genClass);
         parameters.put("genPackage", this.genPackage);
         parameters.put("genModel", this.genModel);
-        parameters.put("isJDK50", this.isJDK50);
         parameters.put("isInterface", this.isInterface);
         parameters.put("isImplementation", this.isImplementation);
         parameters.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
@@ -396,146 +354,80 @@ public class InterfacedeclaredFieldGenFeatureoverride {
             }
             if (genClass.isField(genFeature)) {
                 if (genClass.isFlag(genFeature)) {
-                    int flagIndex = genClass.getFlagIndex(genFeature);
-                    if (flagIndex > 31 && flagIndex % 32 == 0) {
+                    if (genClass.getFlagIndex(genFeature) > 31 && genClass.getFlagIndex(genFeature) % 32 == 0) {
                         stringBuffer.append(TEXT_32);
                         stringBuffer.append(genClass.getFlagsField(genFeature));
                         stringBuffer.append(TEXT_33);
                     }
-                    if (genFeature.isEnumType()) {
-                        stringBuffer.append(TEXT_34);
-                        stringBuffer.append(genFeature.getGetAccessor());
-                        stringBuffer.append(TEXT_35);
-                        stringBuffer.append(genFeature.getFormattedName());
-                        stringBuffer.append(TEXT_36);
-                        stringBuffer.append(genFeature.getFeatureKind());
-                        stringBuffer.append(TEXT_37);
-                        stringBuffer.append(genFeature.getUpperName());
-                        stringBuffer.append(TEXT_38);
-                        stringBuffer.append(flagIndex % 32);
-                        stringBuffer.append(TEXT_39);
-                        stringBuffer.append(genFeature.getGetAccessor());
-                        stringBuffer.append(TEXT_40);
-                        stringBuffer.append(genFeature.getFormattedName());
-                        stringBuffer.append(TEXT_41);
-                        stringBuffer.append(genFeature.getFeatureKind());
-                        stringBuffer.append(TEXT_42);
-                        stringBuffer.append(genFeature.getUpperName());
-                        stringBuffer.append(TEXT_43);
-                        if (isJDK50) {
-                            stringBuffer.append(genFeature.getEDefault());
-                            stringBuffer.append(TEXT_44);
-                        } else {
-                            stringBuffer.append(genFeature.getImportedType(genClass));
-                            stringBuffer.append(TEXT_45);
-                            stringBuffer.append(genFeature.getEDefault());
-                            stringBuffer.append(TEXT_46);
-                        }
-                        stringBuffer.append(TEXT_47);
-                        stringBuffer.append(genFeature.getUpperName());
-                        stringBuffer.append(TEXT_48);
-                        stringBuffer.append(genFeature.getImportedType(genClass));
-                        stringBuffer.append(TEXT_49);
-                        stringBuffer.append(genFeature.getTypeGenClassifier().getFormattedName());
-                        stringBuffer.append(TEXT_50);
-                        stringBuffer.append(genFeature.getImportedType(genClass));
-                        stringBuffer.append(TEXT_51);
-                        stringBuffer.append(genFeature.getUpperName());
-                        stringBuffer.append(TEXT_52);
-                        if (isJDK50) {
-                            stringBuffer.append(genFeature.getImportedType(genClass));
-                            stringBuffer.append(TEXT_53);
-                        } else {
-                            stringBuffer.append(TEXT_54);
-                            stringBuffer.append(genFeature.getImportedType(genClass));
-                            stringBuffer.append(TEXT_55);
-                            stringBuffer.append(genFeature.getImportedType(genClass));
-                            stringBuffer.append(TEXT_56);
-                            stringBuffer.append(genFeature.getImportedType(genClass));
-                            stringBuffer.append(TEXT_57);
-                            stringBuffer.append(genFeature.getImportedType(genClass));
-                            stringBuffer.append(TEXT_58);
-                        }
-                        stringBuffer.append(TEXT_59);
-                    }
-                    stringBuffer.append(TEXT_60);
-                    stringBuffer.append(genClass.getFlagSize(genFeature) > 1 ? "s" : "");
-                    stringBuffer.append(TEXT_61);
+                    stringBuffer.append(TEXT_34);
                     stringBuffer.append(genFeature.getGetAccessor());
-                    stringBuffer.append(TEXT_62);
+                    stringBuffer.append(TEXT_35);
                     stringBuffer.append(genFeature.getFormattedName());
-                    stringBuffer.append(TEXT_63);
+                    stringBuffer.append(TEXT_36);
                     stringBuffer.append(genFeature.getFeatureKind());
-                    stringBuffer.append(TEXT_64);
+                    stringBuffer.append(TEXT_37);
                     stringBuffer.append(genFeature.getGetAccessor());
-                    stringBuffer.append(TEXT_65);
+                    stringBuffer.append(TEXT_38);
                     stringBuffer.append(genFeature.getUpperName());
-                    stringBuffer.append(TEXT_66);
-                    stringBuffer.append(genClass.getFlagMask(genFeature));
-                    stringBuffer.append(TEXT_67);
-                    if (genFeature.isEnumType()) {
-                        stringBuffer.append(genFeature.getUpperName());
-                        stringBuffer.append(TEXT_68);
-                    } else {
-                        stringBuffer.append(flagIndex % 32);
-                    }
-                    stringBuffer.append(TEXT_69);
+                    stringBuffer.append(TEXT_39);
+                    stringBuffer.append("<< " + genClass.getFlagIndex(genFeature) % 32);
+                    stringBuffer.append(TEXT_40);
                 } else {
-                    stringBuffer.append(TEXT_70);
+                    stringBuffer.append(TEXT_41);
                     stringBuffer.append(genFeature.getGetAccessor());
-                    stringBuffer.append(TEXT_71);
+                    stringBuffer.append(TEXT_42);
                     stringBuffer.append(genFeature.getFormattedName());
-                    stringBuffer.append(TEXT_72);
+                    stringBuffer.append(TEXT_43);
                     stringBuffer.append(genFeature.getFeatureKind());
-                    stringBuffer.append(TEXT_73);
+                    stringBuffer.append(TEXT_44);
                     stringBuffer.append(genFeature.getGetAccessor());
-                    stringBuffer.append(TEXT_74);
+                    stringBuffer.append(TEXT_45);
                     stringBuffer.append(genFeature.getImportedType(genClass));
-                    stringBuffer.append(TEXT_75);
+                    stringBuffer.append(TEXT_46);
                     stringBuffer.append(genFeature.getSafeName());
                     if (genFeature.hasEDefault()) {
-                        stringBuffer.append(TEXT_76);
+                        stringBuffer.append(TEXT_47);
                         stringBuffer.append(genFeature.getEDefault());
                     }
-                    stringBuffer.append(TEXT_77);
+                    stringBuffer.append(TEXT_48);
                 }
             }
         }
         if (genClass.isESetField(genFeature)) {
             if (genClass.isESetFlag(genFeature)) {
-                int flagIndex = genClass.getESetFlagIndex(genFeature);
-                if (flagIndex > 31 && flagIndex % 32 == 0) {
-                    stringBuffer.append(TEXT_78);
+                if (genClass.getESetFlagIndex(genFeature) > 31 && genClass.getESetFlagIndex(genFeature) % 32 == 0) {
+                    stringBuffer.append(TEXT_49);
                     stringBuffer.append(genClass.getESetFlagsField(genFeature));
-                    stringBuffer.append(TEXT_79);
+                    stringBuffer.append(TEXT_50);
                 }
-                stringBuffer.append(TEXT_80);
+                stringBuffer.append(TEXT_51);
                 stringBuffer.append(genFeature.getFormattedName());
-                stringBuffer.append(TEXT_81);
+                stringBuffer.append(TEXT_52);
                 stringBuffer.append(genFeature.getFeatureKind());
-                stringBuffer.append(TEXT_82);
+                stringBuffer.append(TEXT_53);
                 stringBuffer.append(genFeature.getUpperName());
-                stringBuffer.append(TEXT_83);
-                stringBuffer.append(flagIndex % 32);
-                stringBuffer.append(TEXT_84);
+                stringBuffer.append(TEXT_54);
+                stringBuffer.append("<< " + genClass.getESetFlagIndex(genFeature) % 32);
+                stringBuffer.append(TEXT_55);
             } else {
-                stringBuffer.append(TEXT_85);
+                stringBuffer.append(TEXT_56);
                 stringBuffer.append(genFeature.getFormattedName());
-                stringBuffer.append(TEXT_86);
+                stringBuffer.append(TEXT_57);
                 stringBuffer.append(genFeature.getFeatureKind());
-                stringBuffer.append(TEXT_87);
+                stringBuffer.append(TEXT_58);
                 stringBuffer.append(genFeature.getUncapName());
-                stringBuffer.append(TEXT_88);
+                stringBuffer.append(TEXT_59);
             }
         }
-        stringBuffer.append(TEXT_89);
+        stringBuffer.append(TEXT_60);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.declaredFieldGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isInterface:isInterface,isImplementation:isImplementation,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
             callParameters.put("genClass", genClass);
             callParameters.put("genPackage", genPackage);
             callParameters.put("genModel", genModel);
-            callParameters.put("isJDK50", isJDK50);
             callParameters.put("isInterface", isInterface);
             callParameters.put("isImplementation", isImplementation);
             callParameters.put("publicStaticFinalFlag", publicStaticFinalFlag);
@@ -545,7 +437,7 @@ public class InterfacedeclaredFieldGenFeatureoverride {
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0vHWcGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        stringBuffer.append(TEXT_90);
+        stringBuffer.append(TEXT_61);
     }
 
     public boolean preCondition() throws Exception {

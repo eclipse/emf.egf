@@ -14,12 +14,12 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class CreateChildIconsForGenClass extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
+public class CreateChildIcons extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
     protected static String nl;
 
-    public static synchronized CreateChildIconsForGenClass create(String lineSeparator) {
+    public static synchronized CreateChildIcons create(String lineSeparator) {
         nl = lineSeparator;
-        CreateChildIconsForGenClass result = new CreateChildIconsForGenClass();
+        CreateChildIcons result = new CreateChildIcons();
         nl = null;
         return result;
     }
@@ -28,7 +28,7 @@ public class CreateChildIconsForGenClass extends org.eclipse.egf.emf.pattern.bas
     protected final String TEXT_1 = "";
     protected final String TEXT_2 = NL;
 
-    public CreateChildIconsForGenClass() {
+    public CreateChildIcons() {
         //Here is the constructor
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -113,11 +113,12 @@ public class CreateChildIconsForGenClass extends org.eclipse.egf.emf.pattern.bas
         GenClass genClass = parameter;
         GenModel genModel = genClass.getGenModel();
         if (genModel.isCreationCommands() && genModel.isCreationIcons()) {
-            for (GenFeature feature : genClass.getCreateChildFeaturesIncludingDelegation()) {
+            for (GenFeature feature : genClass.getAllCreateChildFeaturesIncludingDelegation()) {
                 for (GenClass childClass : genClass.getChildrenClasses(feature)) {
                     new CodegenGeneratorAdapter(parameter).generateGIF("edit/CreateChild.gif", genClass.getCreateChildIconFileName(feature, childClass), genClass.getName(), childClass.getName(), false);
                 }
             }
+        } else {
         }
 
     }

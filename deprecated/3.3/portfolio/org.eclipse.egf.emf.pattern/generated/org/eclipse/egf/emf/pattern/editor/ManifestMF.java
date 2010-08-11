@@ -26,7 +26,7 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "Manifest-Version: 1.0" + NL + "Bundle-ManifestVersion: 2" + NL + "Bundle-Name: %pluginName" + NL + "Bundle-SymbolicName: ";
-    protected final String TEXT_2 = ";singleton:=true" + NL + "Bundle-Version: 1.0.0" + NL + "Bundle-ClassPath: ";
+    protected final String TEXT_2 = "; singleton:=true" + NL + "Bundle-Version: 1.0.0" + NL + "Bundle-ClassPath: ";
     protected final String TEXT_3 = ".jar";
     protected final String TEXT_4 = ".";
     protected final String TEXT_5 = NL + "Bundle-Activator: ";
@@ -41,10 +41,9 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
     protected final String TEXT_14 = ",";
     protected final String TEXT_15 = NL + " ";
     protected final String TEXT_16 = ";visibility:=reexport";
-    protected final String TEXT_17 = NL + "Eclipse-LazyStart: true";
-    protected final String TEXT_18 = NL + "Bundle-ActivationPolicy: lazy" + NL;
+    protected final String TEXT_17 = NL + "Eclipse-LazyStart: true" + NL;
+    protected final String TEXT_18 = NL;
     protected final String TEXT_19 = NL;
-    protected final String TEXT_20 = NL;
 
     public ManifestMF() {
         //Here is the constructor
@@ -77,8 +76,8 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
             ctx.clearBuffer();
         }
 
+        stringBuffer.append(TEXT_18);
         stringBuffer.append(TEXT_19);
-        stringBuffer.append(TEXT_20);
         return stringBuffer.toString();
     }
 
@@ -207,17 +206,14 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
                 }
             }
         }
-        if (genModel.getRuntimeVersion() == GenRuntimeVersion.EMF22 || genModel.getRuntimeVersion() == GenRuntimeVersion.EMF23) {
-            stringBuffer.append(TEXT_17);
-        }
-        stringBuffer.append(TEXT_18);
+        stringBuffer.append(TEXT_17);
     }
 
     public boolean preCondition() throws Exception {
         GenModel genModel = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-        canGenerate = canGenerate && (genModel.isBundleManifest());
+        canGenerate = canGenerate && (genModel.isBundleManifest() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml")));
         return canGenerate;
     }
 }

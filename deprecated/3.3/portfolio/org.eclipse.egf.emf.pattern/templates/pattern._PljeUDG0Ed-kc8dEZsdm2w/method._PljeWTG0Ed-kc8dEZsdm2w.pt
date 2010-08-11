@@ -15,8 +15,20 @@
  * </copyright>
  */
 %>
-<%GenModel genModel = (GenModel)argument; /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
+<%GenModel genModel = (GenModel)argument; if (false) {/* Trick to import java.util.* without warnings */Iterator.class.getName();}%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
+
+# ====================================================================
+# To code developer:
+#   Do NOT change the properties between this line and the
+#   "%%% END OF TRANSLATED PROPERTIES %%%" line.
+#   Make a new property name, append to the end of the file and change
+#   the code to use the new property.
+# ====================================================================
+
+# ====================================================================
+# %%% END OF TRANSLATED PROPERTIES %%%
+# ====================================================================
 
 pluginName = <%=genModel.getModelName()%> Editor
 providerName = www.example.org
@@ -56,21 +68,20 @@ _UI_Wizard_category = Example EMF Model Creation Wizards
 _UI_CreateModelError_message = Problems encountered in file "{0}"
 
 <%for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {%>
-  <%if (genPackage.isGenerateModelWizard()) {%>
+<%if (genPackage.isGenerateModelWizard()) {%>
 _UI_<%=genPackage.getModelWizardClassName()%>_label = <%=genPackage.getPrefix()%> Model
 _UI_<%=genPackage.getModelWizardClassName()%>_description = Create a new <%=genPackage.getPrefix()%> model
 
-  <%}%>
+<%}%>
 _UI_<%=genPackage.getEditorClassName()%>_label = <%=genPackage.getPrefix()%> Model Editor
 
 _UI_<%=genPackage.getEditorClassName()%>FilenameDefaultBase = My
-_UI_<%=genPackage.getEditorClassName()%>FilenameExtensions = <%=genPackage.isMultipleFileExtensions() ? genPackage.getFileExtensions() : genPackage.getFileExtension()%>
+_UI_<%=genPackage.getEditorClassName()%>FilenameExtension = <%=genPackage.getPrefix().toLowerCase()%>
 
 <%}%>
 _UI_Wizard_label = New
 
-_WARN_FilenameExtension = The file name must end in ''.{0}''
-_WARN_FilenameExtensions = The file name must have one of the following extensions: {0}
+_WARN_FilenameExtension = The file name must end in ".{0}"
 
 _UI_ModelObject = &Model Object
 _UI_XMLEncoding = &XML Encoding

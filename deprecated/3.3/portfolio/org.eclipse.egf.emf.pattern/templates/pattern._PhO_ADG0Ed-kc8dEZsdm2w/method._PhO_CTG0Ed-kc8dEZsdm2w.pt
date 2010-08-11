@@ -15,7 +15,7 @@
  * </copyright>
  */
 %>
-<%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); /* Trick to import java.util.* without warnings */Iterator.class.getName();%>
+<%GenPackage genPackage = (GenPackage)argument; GenModel genModel=genPackage.getGenModel(); if (false) {/* Trick to import java.util.* without warnings */Iterator.class.getName();}%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 package <%=genPackage.getUtilitiesPackageName()%>;
 
@@ -95,7 +95,7 @@ public class <%=genPackage.getAdapterFactoryClassName()%> extends AdapterFactory
 	}
 
 	/**
-	 * The switch that delegates to the <code>createXXX</code> methods.
+	 * The switch the delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -117,7 +117,7 @@ public class <%=genPackage.getAdapterFactoryClassName()%> extends AdapterFactory
   <%}%>
 			public <%=returnType%> defaultCase(EObject object)
 			{
-				return create<%=genPackage.getClassUniqueName(null)%>Adapter();
+				return createEObjectAdapter();
 			}
 		};
 
@@ -163,7 +163,7 @@ public class <%=genPackage.getAdapterFactoryClassName()%> extends AdapterFactory
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter create<%=genPackage.getClassUniqueName(null)%>Adapter()
+	public Adapter createEObjectAdapter()
 	{
 		return null;
 	}

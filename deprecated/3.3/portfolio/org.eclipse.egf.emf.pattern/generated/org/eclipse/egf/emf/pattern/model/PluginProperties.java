@@ -26,15 +26,10 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
-    protected final String TEXT_2 = NL + NL + "pluginName = ";
-    protected final String TEXT_3 = " Model" + NL + "providerName = www.example.org";
+    protected final String TEXT_2 = NL + NL + "# ====================================================================" + NL + "# To code developer:" + NL + "#   Do NOT change the properties between this line and the" + NL + "#   \"%%% END OF TRANSLATED PROPERTIES %%%\" line." + NL + "#   Make a new property name, append to the end of the file and change" + NL + "#   the code to use the new property." + NL + "# ====================================================================" + NL + "" + NL + "# ====================================================================" + NL + "# %%% END OF TRANSLATED PROPERTIES %%%" + NL + "# ====================================================================" + NL + "" + NL + "pluginName = ";
+    protected final String TEXT_3 = " Model" + NL + "providerName = www.example.org" + NL;
     protected final String TEXT_4 = NL;
-    protected final String TEXT_5 = NL + "_UI_";
-    protected final String TEXT_6 = "_content_type = ";
-    protected final String TEXT_7 = " File";
-    protected final String TEXT_8 = NL;
-    protected final String TEXT_9 = NL;
-    protected final String TEXT_10 = NL;
+    protected final String TEXT_5 = NL;
 
     public PluginProperties() {
         //Here is the constructor
@@ -67,8 +62,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_9);
-        stringBuffer.append(TEXT_10);
+        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_5);
         return stringBuffer.toString();
     }
 
@@ -150,6 +145,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
         GenModel genModel = (GenModel) argument;
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -158,21 +155,6 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
         stringBuffer.append(TEXT_2);
         stringBuffer.append(genModel.getModelName());
         stringBuffer.append(TEXT_3);
-        boolean first = true;
-        for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {
-            if (genPackage.isContentType()) {
-                if (first) {
-                    first = false;
-                    stringBuffer.append(TEXT_4);
-                }
-                stringBuffer.append(TEXT_5);
-                stringBuffer.append(genPackage.getPrefix());
-                stringBuffer.append(TEXT_6);
-                stringBuffer.append(genPackage.getPrefix());
-                stringBuffer.append(TEXT_7);
-            }
-        }
-        stringBuffer.append(TEXT_8);
     }
 
     public boolean preCondition() throws Exception {

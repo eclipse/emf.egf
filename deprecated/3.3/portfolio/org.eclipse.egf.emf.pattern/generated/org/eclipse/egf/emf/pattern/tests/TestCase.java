@@ -59,7 +59,7 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     protected final String TEXT_32 = " fixture = null;";
     protected final String TEXT_33 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static void main(String[] args)" + NL + "\t{" + NL + "\t\t";
     protected final String TEXT_34 = ".run(";
-    protected final String TEXT_35 = ".class);" + NL + "\t}";
+    protected final String TEXT_35 = "Test.class);" + NL + "\t}";
     protected final String TEXT_36 = NL + NL + "\t/**" + NL + "\t * Constructs a new ";
     protected final String TEXT_37 = " test case with the given name." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
     protected final String TEXT_38 = "(String name)" + NL + "\t{" + NL + "\t\tsuper(name);" + NL + "\t}";
@@ -80,26 +80,19 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     protected final String TEXT_53 = NL + "\t}";
     protected final String TEXT_54 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see junit.framework.TestCase#setUp()" + NL + "\t * @generated" + NL + "\t */";
     protected final String TEXT_55 = NL + "\t@Override";
-    protected final String TEXT_56 = NL + "\t@SuppressWarnings(\"unchecked\")";
-    protected final String TEXT_57 = NL + "\tprotected void setUp() throws Exception" + NL + "\t{";
-    protected final String TEXT_58 = NL + "\t\tsetFixture((";
-    protected final String TEXT_59 = ")";
-    protected final String TEXT_60 = ".create(";
-    protected final String TEXT_61 = "));";
-    protected final String TEXT_62 = NL + "\t\tsetFixture(";
-    protected final String TEXT_63 = ".create";
-    protected final String TEXT_64 = "());";
-    protected final String TEXT_65 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see junit.framework.TestCase#tearDown()" + NL + "\t * @generated" + NL + "\t */";
-    protected final String TEXT_66 = NL + "\t@Override";
-    protected final String TEXT_67 = NL + "\tprotected void tearDown() throws Exception" + NL + "\t{" + NL + "\t\tsetFixture(null);" + NL + "\t}";
+    protected final String TEXT_56 = NL + "\tprotected void setUp() throws Exception" + NL + "\t{" + NL + "\t\tsetFixture(";
+    protected final String TEXT_57 = ".create";
+    protected final String TEXT_58 = "());" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see junit.framework.TestCase#tearDown()" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_59 = NL + "\t@Override";
+    protected final String TEXT_60 = NL + "\tprotected void tearDown() throws Exception" + NL + "\t{" + NL + "\t\tsetFixture(null);" + NL + "\t}";
+    protected final String TEXT_61 = NL;
+    protected final String TEXT_62 = NL;
+    protected final String TEXT_63 = NL;
+    protected final String TEXT_64 = NL;
+    protected final String TEXT_65 = NL + "} //";
+    protected final String TEXT_66 = NL;
+    protected final String TEXT_67 = NL;
     protected final String TEXT_68 = NL;
-    protected final String TEXT_69 = NL;
-    protected final String TEXT_70 = NL;
-    protected final String TEXT_71 = NL;
-    protected final String TEXT_72 = NL + "} //";
-    protected final String TEXT_73 = NL;
-    protected final String TEXT_74 = NL;
-    protected final String TEXT_75 = NL;
 
     public TestCase() {
         //Here is the constructor
@@ -132,8 +125,8 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_74);
-        stringBuffer.append(TEXT_75);
+        stringBuffer.append(TEXT_67);
+        stringBuffer.append(TEXT_68);
         return stringBuffer.toString();
     }
 
@@ -216,10 +209,14 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 
         GenClass genClass = (GenClass) argument;
         GenPackage genPackage = genClass.getGenPackage();
-        GenModel genModel = genPackage.getGenModel(); /* Trick to import java.util.* without warnings */
-        Iterator.class.getName();
+        GenModel genModel = genPackage.getGenModel();
+        if (false) {/* Trick to import java.util.* without warnings */
+            Iterator.class.getName();
+        }
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -311,7 +308,7 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
             stringBuffer.append(TEXT_33);
             stringBuffer.append(genModel.getImportedName("junit.textui.TestRunner"));
             stringBuffer.append(TEXT_34);
-            stringBuffer.append(genClass.getTestCaseClassName());
+            stringBuffer.append(genClass.getInterfaceName());
             stringBuffer.append(TEXT_35);
         }
         stringBuffer.append(TEXT_36);
@@ -357,35 +354,21 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
             if (genModel.useClassOverrideAnnotation()) {
                 stringBuffer.append(TEXT_55);
             }
-            if (genModel.useGenerics() && genClass.isMapEntry()) {
-                stringBuffer.append(TEXT_56);
-            }
+            stringBuffer.append(TEXT_56);
+            stringBuffer.append(genPackage.getQualifiedEFactoryInternalInstanceAccessor());
             stringBuffer.append(TEXT_57);
-            if (genClass.isMapEntry()) {
-                stringBuffer.append(TEXT_58);
-                stringBuffer.append(genClass.getImportedInterfaceName());
-                stringBuffer.append(genClass.getInterfaceWildTypeArguments());
-                stringBuffer.append(TEXT_59);
-                stringBuffer.append(genPackage.getQualifiedEFactoryInternalInstanceAccessor());
-                stringBuffer.append(TEXT_60);
-                stringBuffer.append(genClass.getQualifiedClassifierAccessor());
-                stringBuffer.append(TEXT_61);
-            } else {
-                stringBuffer.append(TEXT_62);
-                stringBuffer.append(genPackage.getQualifiedEFactoryInternalInstanceAccessor());
-                stringBuffer.append(TEXT_63);
-                stringBuffer.append(genClass.getName());
-                stringBuffer.append(TEXT_64);
-            }
-            stringBuffer.append(TEXT_65);
+            stringBuffer.append(genClass.getName());
+            stringBuffer.append(TEXT_58);
             if (genModel.useClassOverrideAnnotation()) {
-                stringBuffer.append(TEXT_66);
+                stringBuffer.append(TEXT_59);
             }
-            stringBuffer.append(TEXT_67);
+            stringBuffer.append(TEXT_60);
         }
         for (GenFeature genFeature : genClass.getImplementedGenFeatures()) {
-            stringBuffer.append(TEXT_68);
+            stringBuffer.append(TEXT_61);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -397,8 +380,10 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
             //TestCase/implementedGenFeature.override.javajetinc
         }
         for (GenOperation genOperation : genClass.getImplementedGenOperations()) {
-            stringBuffer.append(TEXT_69);
+            stringBuffer.append(TEXT_62);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genOperation", genOperation);
                 callParameters.put("genClass", genClass);
@@ -409,9 +394,11 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 
             //TestCase/implementedGenOperation.override.javajetinc
         }
-        stringBuffer.append(TEXT_70);
-        stringBuffer.append(TEXT_71);
+        stringBuffer.append(TEXT_63);
+        stringBuffer.append(TEXT_64);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genClass", genClass);
             callParameters.put("genPackage", genPackage);
@@ -419,10 +406,10 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1DYWQGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
         }
 
-        stringBuffer.append(TEXT_72);
+        stringBuffer.append(TEXT_65);
         stringBuffer.append(genClass.getTestCaseClassName());
         genModel.emitSortedImports();
-        stringBuffer.append(TEXT_73);
+        stringBuffer.append(TEXT_66);
     }
 
     public boolean preCondition() throws Exception {

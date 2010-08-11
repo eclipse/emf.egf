@@ -1,0 +1,12 @@
+--- ItemProvider.javajet	2010-08-11 16:00:46.203000000 +0200
++++ ItemProvider.javajet	2010-08-11 16:01:06.359375000 +0200
+@@ -319,8 +319,8 @@
+ 				 <%=createClass.getGenPackage().getQualifiedFactoryInstanceAccessor()%>.create<%=createClass.getName()%>()));
+       <%}%>
+ <%@ include file="ItemProvider/newChildDescriptorsCrossPackageFeature.insert.javajetinc" fail="silent"%>
+-<%@ end %><%//ItemProvider/newChildDescriptorsCrossPackageFeature.override.javajetinc%>
+     <%}%>
++<%@ end %><%//ItemProvider/newChildDescriptorsCrossPackageFeature.override.javajetinc%>
+   <%}%>
+   <%for (GenFeature createFeature : genClass.getCreateChildFeatures()) { %>
+     <%if (createFeature.isFeatureMapType()) {%>

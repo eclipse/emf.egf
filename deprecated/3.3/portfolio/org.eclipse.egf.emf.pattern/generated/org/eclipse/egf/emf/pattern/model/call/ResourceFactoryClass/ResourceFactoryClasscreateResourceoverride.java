@@ -167,7 +167,7 @@ public class ResourceFactoryClasscreateResourceoverride {
             stringBuffer.append(TEXT_15);
             stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource"));
             stringBuffer.append(TEXT_16);
-            if (genPackage.isDataTypeConverters() && genPackage.hasDocumentRoot()) {
+            if (genPackage.isDataTypeConverters()) {
                 stringBuffer.append(TEXT_17);
                 stringBuffer.append(genPackage.getResourceClassName());
                 stringBuffer.append(TEXT_18);

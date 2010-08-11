@@ -1,5 +1,5 @@
 GenModel genModel = parameter;
 genModel = parameter.getGenModel();
 boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-canGenerate = canGenerate && (genModel.isBundleManifest());
+canGenerate = canGenerate && (genModel.isBundleManifest() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml")));
 return canGenerate;

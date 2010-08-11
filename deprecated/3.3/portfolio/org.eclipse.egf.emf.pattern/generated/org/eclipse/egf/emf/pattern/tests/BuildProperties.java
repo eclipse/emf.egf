@@ -29,14 +29,12 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
     protected final String TEXT_2 = NL + NL + "bin.includes = ";
     protected final String TEXT_3 = ",\\";
     protected final String TEXT_4 = NL + "               META-INF/,\\";
-    protected final String TEXT_5 = NL + "               plugin.xml,\\";
-    protected final String TEXT_6 = NL + "               plugin.properties" + NL + "jars.compile.order = ";
-    protected final String TEXT_7 = NL + "source.";
-    protected final String TEXT_8 = " = ";
-    protected final String TEXT_9 = NL + "output.";
-    protected final String TEXT_10 = " = bin/" + NL;
-    protected final String TEXT_11 = NL;
-    protected final String TEXT_12 = NL;
+    protected final String TEXT_5 = NL + "               plugin.xml,\\" + NL + "               plugin.properties" + NL + "jars.compile.order = ";
+    protected final String TEXT_6 = NL + "source.";
+    protected final String TEXT_7 = " = src/" + NL + "output.";
+    protected final String TEXT_8 = " = bin/" + NL;
+    protected final String TEXT_9 = NL;
+    protected final String TEXT_10 = NL;
 
     public BuildProperties() {
         //Here is the constructor
@@ -69,8 +67,8 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_11);
-        stringBuffer.append(TEXT_12);
+        stringBuffer.append(TEXT_9);
+        stringBuffer.append(TEXT_10);
         return stringBuffer.toString();
     }
 
@@ -116,7 +114,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 
         GenModel genModel = parameter;
         targetPathName = genModel.getTestsProjectDirectory() + "/build.properties";
-        overwrite = false;
+        overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getTestsProjectDirectory()).appendSegment("plugin.xml"));
         encoding = "ISO-8859-1";
 
     }
@@ -139,7 +137,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
         /**
          * <copyright>
          *
-         * Copyright (c) 2005-2008 IBM Corporation and others.
+         * Copyright (c) 2005 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
          * which accompanies this distribution, and is available at
@@ -153,9 +151,10 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 
         GenModel genModel = (GenModel) argument;
         String pluginClassesLocation = genModel.isRuntimeJar() ? genModel.getTestsPluginID() + ".jar" : ".";
-        List<String> sourceFolders = genModel.getTestsSourceFolders();
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -166,30 +165,14 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
         stringBuffer.append(TEXT_3);
         if (genModel.isBundleManifest()) {
             stringBuffer.append(TEXT_4);
-        } else {
-            stringBuffer.append(TEXT_5);
         }
+        stringBuffer.append(TEXT_5);
+        stringBuffer.append(pluginClassesLocation);
         stringBuffer.append(TEXT_6);
         stringBuffer.append(pluginClassesLocation);
-        boolean first = true;
-        for (Iterator<String> i = sourceFolders.iterator(); i.hasNext();) {
-            String sourceFolder = i.next();
-            if (i.hasNext()) {
-                sourceFolder += ",\\";
-            }
-            if (first) {
-                stringBuffer.append(TEXT_7);
-                stringBuffer.append(pluginClassesLocation);
-                stringBuffer.append(TEXT_8);
-                stringBuffer.append(sourceFolder);
-                first = false;
-            } else {
-                stringBuffer.append(sourceFolder);
-            }
-        }
-        stringBuffer.append(TEXT_9);
+        stringBuffer.append(TEXT_7);
         stringBuffer.append(pluginClassesLocation);
-        stringBuffer.append(TEXT_10);
+        stringBuffer.append(TEXT_8);
     }
 
     public boolean preCondition() throws Exception {

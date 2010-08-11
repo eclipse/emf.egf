@@ -19,7 +19,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: <%=genModel.getModelPluginID()%>;singleton:=true
+Bundle-SymbolicName: <%=genModel.getModelPluginID()%>; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: <%if (genModel.isRuntimeJar()) {%><%=genModel.getModelPluginID()%>.jar<%}else{%>.<%}%>
 <%if (genModel.hasModelPluginClass()) {%>
@@ -40,7 +40,4 @@ Export-Package: <%=pack%><%while(packagesIterator.hasNext()) { pack = packagesIt
 Require-Bundle: <%=pluginID%><%if (!pluginID.startsWith("org.eclipse.core.runtime")){%>;visibility:=reexport<%} while(requiredPluginIterator.hasNext()) { pluginID = requiredPluginIterator.next();%>,
  <%=pluginID%><%if (!pluginID.startsWith("org.eclipse.core.runtime")){%>;visibility:=reexport<%}}%>
 <%}%>
-<%if (genModel.getRuntimeVersion() == GenRuntimeVersion.EMF22 || genModel.getRuntimeVersion() == GenRuntimeVersion.EMF23) {%>
 Eclipse-LazyStart: true
-<%}%>
-Bundle-ActivationPolicy: lazy

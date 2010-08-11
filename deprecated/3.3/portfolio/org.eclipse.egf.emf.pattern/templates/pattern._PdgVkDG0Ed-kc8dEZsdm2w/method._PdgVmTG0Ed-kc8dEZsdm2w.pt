@@ -18,13 +18,17 @@
 <%GenModel genModel = (GenModel)argument;%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
 
+# ====================================================================
+# To code developer:
+#   Do NOT change the properties between this line and the
+#   "%%% END OF TRANSLATED PROPERTIES %%%" line.
+#   Make a new property name, append to the end of the file and change
+#   the code to use the new property.
+# ====================================================================
+
+# ====================================================================
+# %%% END OF TRANSLATED PROPERTIES %%%
+# ====================================================================
+
 pluginName = <%=genModel.getModelName()%> Model
 providerName = www.example.org
-<%boolean first = true; for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {%>
-  <%if (genPackage.isContentType()) {%>
-    <%if (first) { first = false;%>
-
-    <%}%>
-_UI_<%=genPackage.getPrefix()%>_content_type = <%=genPackage.getPrefix()%> File
-  <%}%>
-<%}%>
