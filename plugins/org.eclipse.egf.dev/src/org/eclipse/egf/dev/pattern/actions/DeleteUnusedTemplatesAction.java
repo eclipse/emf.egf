@@ -83,7 +83,7 @@ public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelega
                                 if (!found(patterns, resource)) {
                                     delete(resource);
                                     if (resource.getParent().getType() == IResource.FOLDER) {
-                                        IFolder folder = (IFolder) resource;
+                                        IFolder folder = (IFolder) resource.getParent();
                                         if (folder.members().length == 0)
                                             delete(resource);
                                     }
