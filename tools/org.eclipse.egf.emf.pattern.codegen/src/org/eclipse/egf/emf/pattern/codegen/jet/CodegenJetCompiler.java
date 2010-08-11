@@ -26,6 +26,9 @@ import static org.eclipse.egf.emf.pattern.codegen.jet.CodegenJetConstants.DIRECT
 import static org.eclipse.egf.emf.pattern.codegen.jet.CodegenJetConstants.END_JET;
 import static org.eclipse.egf.emf.pattern.codegen.jet.CodegenJetConstants.FAIL_ALTERNATIVE;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,18 +39,18 @@ import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.codegen.jet.JETMark;
 
-
 /**
  * @author Matthieu Helleboid
  * 
  */
 public class CodegenJetCompiler extends JETCompiler {
 
-    private InternalSection currentSection;
-    private CodegenJetTemplateSection parentSection;
+    protected InternalSection currentSection;
+    protected CodegenJetTemplateSection parentSection;
 
     protected List<InternalSection> allSections = new ArrayList<InternalSection>();
     protected StringBuffer javaBuffer = new StringBuffer();
+    protected StringBuffer originalBuffer = new StringBuffer();
     protected IProject codegenProject;
 
     public CodegenJetCompiler(IProject codegenProject, String templateURI) throws JETException {
@@ -57,18 +60,7 @@ public class CodegenJetCompiler extends JETCompiler {
 
     @Override
     public void handleCharData(char[] chars) throws JETException {
-//        if (skipNextLine) {
-//            skipNextLine = false;
-//            if (chars.length > 0 && chars[0] == '\n') {
-//                if (chars.length == 1)
-//                    return;
-//                
-//                char[] newChars = new char[chars.length - 1];
-//                System.arraycopy(chars, 1, newChars, 0, chars.length - 1);
-//                chars = newChars;
-//            }
-//        }
-
+        originalBuffer.append(chars);
         if (currentSection == null)
             enterSection();
 
@@ -77,6 +69,7 @@ public class CodegenJetCompiler extends JETCompiler {
 
     @Override
     public void handleExpression(JETMark start, JETMark stop, Map<String, String> attributes) throws JETException {
+        originalBuffer.append(reader.getChars(start, stop));
         if (currentSection == null)
             enterSection();
 
@@ -87,6 +80,7 @@ public class CodegenJetCompiler extends JETCompiler {
 
     @Override
     public void handleScriptlet(JETMark start, JETMark stop, Map<String, String> attributes) throws JETException {
+        originalBuffer.append(reader.getChars(start, stop));
         if (currentSection == null)
             enterSection();
 
@@ -100,6 +94,7 @@ public class CodegenJetCompiler extends JETCompiler {
 
     @Override
     public void handleDirective(String directive, JETMark start, JETMark stop, Map<String, String> attributes) throws JETException {
+        originalBuffer.append(reader.getChars(start, stop));
         if (DIRECTIVE_INCLUDE.equals(directive)) {
             String file = attributes.get(ATTRIBUTE_FILE);
             String fail = attributes.get(ATTRIBUTE_FAIL);
@@ -116,8 +111,9 @@ public class CodegenJetCompiler extends JETCompiler {
         } else if (DIRECTIVE_START.equals(directive)) {
             // ignore me
         } else if (DIRECTIVE_END.equals(directive)) {
-            parentSection = parentSection.getParent();
             exitSection();
+            checkSection(parentSection.getSections());
+            parentSection = parentSection.getParent();
         } else if (DIRECTIVE_JET.equals(directive)) {
             javaBuffer.append("package default;\n"); //$NON-NLS-1$
             String[] imports = attributes.get("imports").split(" "); //$NON-NLS-1$ //$NON-NLS-2$
@@ -143,6 +139,7 @@ public class CodegenJetCompiler extends JETCompiler {
         exitSection();
         javaBuffer.append("};\n"); //$NON-NLS-1$
         javaBuffer.append("};\n"); //$NON-NLS-1$
+        checkSection(parentSection.sections);
         new CodegenJetVariablesResolver(this, codegenProject).computeVariables();
     }
 
@@ -166,6 +163,58 @@ public class CodegenJetCompiler extends JETCompiler {
         javaBuffer.append(CodegenJetConstants.MARK_STATEMENT);
 
         currentSection = null;
+    }
+
+    protected void checkSection(List<CodegenJetTemplateSection> sections) {
+        int open = 0;
+        int close = 0;
+        for (CodegenJetTemplateSection section : sections) {
+            InternalSection internalSection = (InternalSection) section;
+            int begin = internalSection.beginJavaOffset;
+            int end = internalSection.endJavaOffset;
+
+            for (int i = begin; i < end; i++) {
+                char myChar = javaBuffer.charAt(i);
+                if (myChar == '{') //$NON-NLS-1$
+                    open++;
+                if (myChar == '}') //$NON-NLS-1$
+                    close++;
+            }
+        }
+
+        if (open != close) {
+            StringBuffer buffer = new StringBuffer();
+            buffer.append("Problem while reversing "); //$NON-NLS-1$
+            buffer.append(templateURI);
+            buffer.append(" :"); //$NON-NLS-1$
+            buffer.append("\n"); //$NON-NLS-1$
+
+            buffer.append("  missing "); //$NON-NLS-1$
+            if (open > close)
+                buffer.append("}"); //$NON-NLS-1$
+            else 
+                buffer.append("{"); //$NON-NLS-1$
+            
+            int line = 0;
+            BufferedReader bufferedReader = new BufferedReader(new StringReader(originalBuffer.toString()));
+            try {
+                while (bufferedReader.readLine() != null) 
+                    line ++;
+                bufferedReader.close();
+            } catch (IOException e) {
+                //ignore me
+            } finally {
+                try {
+                    bufferedReader.close();
+                } catch (IOException e) {
+                    //ignore me
+                }
+            }
+            buffer.append("at line "); //$NON-NLS-1$
+            buffer.append(String.valueOf(line));
+            
+            System.out.println(buffer.toString());
+        }
     }
 
     public List<InternalSection> getAllSections() {
