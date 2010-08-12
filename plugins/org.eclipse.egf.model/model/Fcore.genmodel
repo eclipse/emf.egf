@@ -10,7 +10,7 @@
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
     booleanFlagsField="flags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
-    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Types.genmodel#//types">
+    fontProviders="true" runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Types.genmodel#//types">
   <foreignModel>Fcore.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Fcore" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
@@ -42,6 +42,9 @@
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getContracts.3">
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getContracts.3/type"/>
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getContracts.3/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//Activity/getContract">
+        <genParameters ecoreParameter="Fcore.ecore#//Activity/getContract/name"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//Contract">

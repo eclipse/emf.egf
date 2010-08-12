@@ -33,21 +33,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer
- * <em>Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer <em>Contract Container</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ActivityImpl extends NamedModelElementImpl implements Activity {
     /**
-     * The cached value of the '{@link #getContractContainer()
-     * <em>Contract Container</em>}' containment reference.
+     * The cached value of the '{@link #getContractContainer() <em>Contract Container</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getContractContainer()
      * @generated
      * @ordered
@@ -57,7 +53,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected ActivityImpl() {
@@ -67,7 +62,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -78,7 +72,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ContractContainer getContractContainer() {
@@ -88,7 +81,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public NotificationChain basicSetContractContainer(ContractContainer newContractContainer, NotificationChain msgs) {
@@ -107,7 +99,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setContractContainer(ContractContainer newContractContainer) {
@@ -196,7 +187,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -213,7 +203,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -228,7 +217,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -243,7 +231,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -259,7 +246,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -275,7 +261,6 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
