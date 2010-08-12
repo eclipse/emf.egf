@@ -83,15 +83,7 @@ public class ModeEcorelPattern {
 
 		DomainURI genModelDomainURI = null;
 		URI uri = ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).get(parameter);
-		for (Domain domain : dvp.getDomains()) {
-			if (domain instanceof DomainURI) {
-				DomainURI domainUri = (DomainURI) domain;
-				if (uri.equals(domainUri.getUri())) {
-					genModelDomainURI = domainUri;
-					break;
-				}
-			}
-		}
+		genModelDomainURI = ActivityInvocationHelper.getDomain(dvp, uri);
 		if (genModelDomainURI == null) {
 			genModelDomainURI = DomainFactory.eINSTANCE.createDomainURI();
 			genModelDomainURI.setUri(uri);

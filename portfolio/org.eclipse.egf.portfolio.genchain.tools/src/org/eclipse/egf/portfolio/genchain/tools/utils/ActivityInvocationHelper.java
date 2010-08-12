@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
@@ -35,6 +36,7 @@ import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.types.Type;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -83,6 +85,21 @@ public class ActivityInvocationHelper {
 
     public static void addInvocation(ProductionPlan pp, Activity activity, Map<String, Type> contract2type) {
         addInvocation(pp, activity, contract2type, new HashMap<String, OrchestrationParameter>());
+    }
+
+    public static DomainURI getDomain(DomainViewpoint dvp, URI uri) {
+        for (Domain domain : dvp.getDomains()) {
+            if (domain instanceof DomainURI) {
+                DomainURI domainUri = (DomainURI) domain;
+                if (uri.equals(domainUri.getUri())) {
+                    return domainUri;
+                }
+            }
+        }
+        DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+        domainURI.setUri(uri);
+        dvp.getDomains().add(domainURI);
+        return domainURI;
     }
 
     public static void addInvocation(ProductionPlan pp, Activity activity, Map<String, Type> contract2type, Map<String, OrchestrationParameter> contract2parameter) {

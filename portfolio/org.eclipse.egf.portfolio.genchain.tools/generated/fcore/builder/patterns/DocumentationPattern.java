@@ -65,7 +65,7 @@ public class DocumentationPattern {
 		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 
 		// add invocation to documentation generation FC
-		DocumentationHelper.addDocumentationFCInvocation(fc, parameter.getName(), parameter.getConfigurationPath(), parameter.getModelPath(), parameter.getOutputDirectoryPath(), parameter.getModelPath());
+		DocumentationHelper.addDocumentationInvocation(fc, parameter.getModelPath(), parameter.getOutputDirectoryPath(), parameter.getPluginName());
 
 	}
 
