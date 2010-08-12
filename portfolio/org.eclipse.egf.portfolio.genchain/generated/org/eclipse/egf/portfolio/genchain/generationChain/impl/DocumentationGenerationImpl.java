@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getModelPath <em>Model Path</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getOutputDirectoryPath <em>Output Directory Path</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getConfigurationPath <em>Configuration Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -97,26 +96,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
      * @ordered
      */
     protected String outputDirectoryPath = OUTPUT_DIRECTORY_PATH_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getConfigurationPath() <em>Configuration Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getConfigurationPath()
-     * @generated
-     * @ordered
-     */
-    protected static final String CONFIGURATION_PATH_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getConfigurationPath() <em>Configuration Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getConfigurationPath()
-     * @generated
-     * @ordered
-     */
-    protected String configurationPath = CONFIGURATION_PATH_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -205,27 +184,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getConfigurationPath() {
-        return configurationPath;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setConfigurationPath(String newConfigurationPath) {
-        String oldConfigurationPath = configurationPath;
-        configurationPath = newConfigurationPath;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GenerationChainPackage.DOCUMENTATION_GENERATION__CONFIGURATION_PATH, oldConfigurationPath, configurationPath));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -235,8 +193,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
             return getModelPath();
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             return getOutputDirectoryPath();
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__CONFIGURATION_PATH:
-            return getConfigurationPath();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -257,9 +213,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
             return;
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             setOutputDirectoryPath((String) newValue);
-            return;
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__CONFIGURATION_PATH:
-            setConfigurationPath((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -282,9 +235,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             setOutputDirectoryPath(OUTPUT_DIRECTORY_PATH_EDEFAULT);
             return;
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__CONFIGURATION_PATH:
-            setConfigurationPath(CONFIGURATION_PATH_EDEFAULT);
-            return;
         }
         super.eUnset(featureID);
     }
@@ -303,8 +253,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
             return MODEL_PATH_EDEFAULT == null ? modelPath != null : !MODEL_PATH_EDEFAULT.equals(modelPath);
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             return OUTPUT_DIRECTORY_PATH_EDEFAULT == null ? outputDirectoryPath != null : !OUTPUT_DIRECTORY_PATH_EDEFAULT.equals(outputDirectoryPath);
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__CONFIGURATION_PATH:
-            return CONFIGURATION_PATH_EDEFAULT == null ? configurationPath != null : !CONFIGURATION_PATH_EDEFAULT.equals(configurationPath);
         }
         return super.eIsSet(featureID);
     }
@@ -326,8 +274,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         result.append(modelPath);
         result.append(", outputDirectoryPath: ");
         result.append(outputDirectoryPath);
-        result.append(", configurationPath: ");
-        result.append(configurationPath);
         result.append(')');
         return result.toString();
     }

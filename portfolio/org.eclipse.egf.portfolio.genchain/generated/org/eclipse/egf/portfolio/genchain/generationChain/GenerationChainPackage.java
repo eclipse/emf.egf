@@ -304,22 +304,13 @@ public interface GenerationChainPackage extends EPackage {
     int DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH = GENERATION_ELEMENT_FEATURE_COUNT + 2;
 
     /**
-     * The feature id for the '<em><b>Configuration Path</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENTATION_GENERATION__CONFIGURATION_PATH = GENERATION_ELEMENT_FEATURE_COUNT + 3;
-
-    /**
      * The number of structural features of the '<em>Documentation Generation</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOCUMENTATION_GENERATION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 4;
+    int DOCUMENTATION_GENERATION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement <em>Generation Element</em>}'.
@@ -505,17 +496,6 @@ public interface GenerationChainPackage extends EPackage {
     EAttribute getDocumentationGeneration_OutputDirectoryPath();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getConfigurationPath <em>Configuration Path</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Configuration Path</em>'.
-     * @see org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getConfigurationPath()
-     * @see #getDocumentationGeneration()
-     * @generated
-     */
-    EAttribute getDocumentationGeneration_ConfigurationPath();
-
-    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -680,14 +660,6 @@ public interface GenerationChainPackage extends EPackage {
          * @generated
          */
         EAttribute DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH = eINSTANCE.getDocumentationGeneration_OutputDirectoryPath();
-
-        /**
-         * The meta object literal for the '<em><b>Configuration Path</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute DOCUMENTATION_GENERATION__CONFIGURATION_PATH = eINSTANCE.getDocumentationGeneration_ConfigurationPath();
 
     }
 

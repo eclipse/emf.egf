@@ -23,7 +23,6 @@ package org.eclipse.egf.portfolio.genchain.generationChain;
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getPluginName <em>Plugin Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getModelPath <em>Model Path</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getOutputDirectoryPath <em>Output Directory Path</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getConfigurationPath <em>Configuration Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -109,31 +108,5 @@ public interface DocumentationGeneration extends GenerationElement {
      * @generated
      */
     void setOutputDirectoryPath(String value);
-
-    /**
-     * Returns the value of the '<em><b>Configuration Path</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Configuration Path</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Configuration Path</em>' attribute.
-     * @see #setConfigurationPath(String)
-     * @see org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage#getDocumentationGeneration_ConfigurationPath()
-     * @model required="true"
-     * @generated
-     */
-    String getConfigurationPath();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getConfigurationPath <em>Configuration Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Configuration Path</em>' attribute.
-     * @see #getConfigurationPath()
-     * @generated
-     */
-    void setConfigurationPath(String value);
 
 } // DocumentationGeneration

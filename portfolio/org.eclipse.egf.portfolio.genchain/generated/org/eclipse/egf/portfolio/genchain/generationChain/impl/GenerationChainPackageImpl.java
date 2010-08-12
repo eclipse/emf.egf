@@ -280,15 +280,6 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDocumentationGeneration_ConfigurationPath() {
-        return (EAttribute) documentationGenerationEClass.getEStructuralFeatures().get(3);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public GenerationChainFactory getGenerationChainFactory() {
         return (GenerationChainFactory) getEFactoryInstance();
     }
@@ -333,7 +324,6 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__PLUGIN_NAME);
         createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__MODEL_PATH);
         createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH);
-        createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__CONFIGURATION_PATH);
     }
 
     /**
@@ -390,7 +380,6 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         initEAttribute(getDocumentationGeneration_PluginName(), ecorePackage.getEString(), "pluginName", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentationGeneration_ModelPath(), ecorePackage.getEString(), "modelPath", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentationGeneration_OutputDirectoryPath(), ecorePackage.getEString(), "outputDirectoryPath", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentationGeneration_ConfigurationPath(), ecorePackage.getEString(), "configurationPath", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

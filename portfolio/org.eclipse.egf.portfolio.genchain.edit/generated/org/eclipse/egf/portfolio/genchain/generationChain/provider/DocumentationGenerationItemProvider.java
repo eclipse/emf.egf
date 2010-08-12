@@ -62,7 +62,6 @@ public class DocumentationGenerationItemProvider extends GenerationElementItemPr
             addPluginNamePropertyDescriptor(object);
             addModelPathPropertyDescriptor(object);
             addOutputDirectoryPathPropertyDescriptor(object);
-            addConfigurationPathPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -95,16 +94,6 @@ public class DocumentationGenerationItemProvider extends GenerationElementItemPr
      */
     protected void addOutputDirectoryPathPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DocumentationGeneration_outputDirectoryPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DocumentationGeneration_outputDirectoryPath_feature", "_UI_DocumentationGeneration_type"), GenerationChainPackage.Literals.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Configuration Path feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addConfigurationPathPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DocumentationGeneration_configurationPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DocumentationGeneration_configurationPath_feature", "_UI_DocumentationGeneration_type"), GenerationChainPackage.Literals.DOCUMENTATION_GENERATION__CONFIGURATION_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -145,7 +134,6 @@ public class DocumentationGenerationItemProvider extends GenerationElementItemPr
         case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
         case GenerationChainPackage.DOCUMENTATION_GENERATION__MODEL_PATH:
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__CONFIGURATION_PATH:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
         }
