@@ -37,7 +37,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class EmfGenerationItemProvider extends GenerationElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EmfGenerationItemProvider extends EcoreElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -62,7 +62,6 @@ public class EmfGenerationItemProvider extends GenerationElementItemProvider imp
             addGenerateModelPropertyDescriptor(object);
             addGenerateEditPropertyDescriptor(object);
             addGenerateEditorPropertyDescriptor(object);
-            addModelPathPropertyDescriptor(object);
             addPluginNamePropertyDescriptor(object);
             addBasePackagePropertyDescriptor(object);
         }
@@ -97,16 +96,6 @@ public class EmfGenerationItemProvider extends GenerationElementItemProvider imp
      */
     protected void addGenerateEditorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EmfGeneration_generateEditor_feature"), getString("_UI_PropertyDescriptor_description", "_UI_EmfGeneration_generateEditor_feature", "_UI_EmfGeneration_type"), GenerationChainPackage.Literals.EMF_GENERATION__GENERATE_EDITOR, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This adds a property descriptor for the Model Path feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addModelPathPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EmfGeneration_modelPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_EmfGeneration_modelPath_feature", "_UI_EmfGeneration_type"), GenerationChainPackage.Literals.EMF_GENERATION__MODEL_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -167,7 +156,6 @@ public class EmfGenerationItemProvider extends GenerationElementItemProvider imp
         case GenerationChainPackage.EMF_GENERATION__GENERATE_MODEL:
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDIT:
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
-        case GenerationChainPackage.EMF_GENERATION__MODEL_PATH:
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
         case GenerationChainPackage.EMF_GENERATION__BASE_PACKAGE:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

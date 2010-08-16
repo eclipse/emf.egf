@@ -15,7 +15,7 @@ package org.eclipse.egf.portfolio.genchain.generationChain.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration;
+import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -32,19 +32,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DocumentationGenerationItemProvider extends EcoreElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class EcoreElementItemProvider extends GenerationElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public DocumentationGenerationItemProvider(AdapterFactory adapterFactory) {
+    public EcoreElementItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -59,41 +59,30 @@ public class DocumentationGenerationItemProvider extends EcoreElementItemProvide
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addPluginNamePropertyDescriptor(object);
-            addOutputDirectoryPathPropertyDescriptor(object);
+            addModelPathPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Plugin Name feature.
+     * This adds a property descriptor for the Model Path feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addPluginNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DocumentationGeneration_pluginName_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DocumentationGeneration_pluginName_feature", "_UI_DocumentationGeneration_type"), GenerationChainPackage.Literals.DOCUMENTATION_GENERATION__PLUGIN_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    protected void addModelPathPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EcoreElement_modelPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_EcoreElement_modelPath_feature", "_UI_EcoreElement_type"), GenerationChainPackage.Literals.ECORE_ELEMENT__MODEL_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
-     * This adds a property descriptor for the Output Directory Path feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addOutputDirectoryPathPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DocumentationGeneration_outputDirectoryPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DocumentationGeneration_outputDirectoryPath_feature", "_UI_DocumentationGeneration_type"), GenerationChainPackage.Literals.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This returns DocumentationGeneration.gif.
+     * This returns EcoreElement.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/DocumentationGeneration"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/EcoreElement"));
     }
 
     /**
@@ -104,8 +93,8 @@ public class DocumentationGenerationItemProvider extends EcoreElementItemProvide
      */
     @Override
     public String getText(Object object) {
-        String label = ((DocumentationGeneration) object).getName();
-        return label == null || label.length() == 0 ? getString("_UI_DocumentationGeneration_type") : getString("_UI_DocumentationGeneration_type") + " " + label;
+        String label = ((EcoreElement) object).getName();
+        return label == null || label.length() == 0 ? getString("_UI_EcoreElement_type") : getString("_UI_EcoreElement_type") + " " + label;
     }
 
     /**
@@ -119,9 +108,8 @@ public class DocumentationGenerationItemProvider extends EcoreElementItemProvide
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(DocumentationGeneration.class)) {
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
+        switch (notification.getFeatureID(EcoreElement.class)) {
+        case GenerationChainPackage.ECORE_ELEMENT__MODEL_PATH:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
         }
