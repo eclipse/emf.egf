@@ -13,6 +13,7 @@
 package org.eclipse.egf.portfolio.genchain.generationChain.impl;
 
 import org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration;
+import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory;
@@ -60,6 +61,13 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * @generated
      */
     private EClass documentationGenerationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass ecoreElementEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -217,7 +225,7 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getEmfGeneration_ModelPath() {
+    public EAttribute getEmfGeneration_PluginName() {
         return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(3);
     }
 
@@ -226,17 +234,8 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getEmfGeneration_PluginName() {
-        return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getEmfGeneration_BasePackage() {
-        return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(5);
+        return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -262,7 +261,7 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDocumentationGeneration_ModelPath() {
+    public EAttribute getDocumentationGeneration_OutputDirectoryPath() {
         return (EAttribute) documentationGenerationEClass.getEStructuralFeatures().get(1);
     }
 
@@ -271,8 +270,17 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getDocumentationGeneration_OutputDirectoryPath() {
-        return (EAttribute) documentationGenerationEClass.getEStructuralFeatures().get(2);
+    public EClass getEcoreElement() {
+        return ecoreElementEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEcoreElement_ModelPath() {
+        return (EAttribute) ecoreElementEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -316,14 +324,15 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_MODEL);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_EDIT);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_EDITOR);
-        createEAttribute(emfGenerationEClass, EMF_GENERATION__MODEL_PATH);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__PLUGIN_NAME);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__BASE_PACKAGE);
 
         documentationGenerationEClass = createEClass(DOCUMENTATION_GENERATION);
         createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__PLUGIN_NAME);
-        createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__MODEL_PATH);
         createEAttribute(documentationGenerationEClass, DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH);
+
+        ecoreElementEClass = createEClass(ECORE_ELEMENT);
+        createEAttribute(ecoreElementEClass, ECORE_ELEMENT__MODEL_PATH);
     }
 
     /**
@@ -356,8 +365,9 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
 
         // Add supertypes to classes
         generationChainEClass.getESuperTypes().add(this.getGenerationElement());
-        emfGenerationEClass.getESuperTypes().add(this.getGenerationElement());
-        documentationGenerationEClass.getESuperTypes().add(this.getGenerationElement());
+        emfGenerationEClass.getESuperTypes().add(this.getEcoreElement());
+        documentationGenerationEClass.getESuperTypes().add(this.getEcoreElement());
+        ecoreElementEClass.getESuperTypes().add(this.getGenerationElement());
 
         // Initialize classes and features; add operations and parameters
         initEClass(generationElementEClass, GenerationElement.class, "GenerationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -372,14 +382,15 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         initEAttribute(getEmfGeneration_GenerateModel(), ecorePackage.getEBoolean(), "generateModel", null, 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_GenerateEdit(), ecorePackage.getEBoolean(), "generateEdit", null, 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_GenerateEditor(), ecorePackage.getEBoolean(), "generateEditor", null, 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getEmfGeneration_ModelPath(), ecorePackage.getEString(), "modelPath", null, 1, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_PluginName(), ecorePackage.getEString(), "pluginName", null, 1, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_BasePackage(), ecorePackage.getEString(), "basePackage", null, 1, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(documentationGenerationEClass, DocumentationGeneration.class, "DocumentationGeneration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDocumentationGeneration_PluginName(), ecorePackage.getEString(), "pluginName", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentationGeneration_ModelPath(), ecorePackage.getEString(), "modelPath", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentationGeneration_OutputDirectoryPath(), ecorePackage.getEString(), "outputDirectoryPath", null, 1, 1, DocumentationGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(ecoreElementEClass, EcoreElement.class, "EcoreElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getEcoreElement_ModelPath(), ecorePackage.getEString(), "modelPath", null, 1, 1, EcoreElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

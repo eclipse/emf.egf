@@ -158,6 +158,52 @@ public interface GenerationChainPackage extends EPackage {
     int GENERATION_CHAIN_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EcoreElementImpl <em>Ecore Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.EcoreElementImpl
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getEcoreElement()
+     * @generated
+     */
+    int ECORE_ELEMENT = 4;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ECORE_ELEMENT__NAME = GENERATION_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Container</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ECORE_ELEMENT__CONTAINER = GENERATION_ELEMENT__CONTAINER;
+
+    /**
+     * The feature id for the '<em><b>Model Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ECORE_ELEMENT__MODEL_PATH = GENERATION_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Ecore Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ECORE_ELEMENT_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl <em>Emf Generation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -174,7 +220,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__NAME = GENERATION_ELEMENT__NAME;
+    int EMF_GENERATION__NAME = ECORE_ELEMENT__NAME;
 
     /**
      * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -183,34 +229,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__CONTAINER = GENERATION_ELEMENT__CONTAINER;
-
-    /**
-     * The feature id for the '<em><b>Generate Model</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_GENERATION__GENERATE_MODEL = GENERATION_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Generate Edit</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_GENERATION__GENERATE_EDIT = GENERATION_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Generate Editor</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_GENERATION__GENERATE_EDITOR = GENERATION_ELEMENT_FEATURE_COUNT + 2;
+    int EMF_GENERATION__CONTAINER = ECORE_ELEMENT__CONTAINER;
 
     /**
      * The feature id for the '<em><b>Model Path</b></em>' attribute.
@@ -219,7 +238,34 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__MODEL_PATH = GENERATION_ELEMENT_FEATURE_COUNT + 3;
+    int EMF_GENERATION__MODEL_PATH = ECORE_ELEMENT__MODEL_PATH;
+
+    /**
+     * The feature id for the '<em><b>Generate Model</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_GENERATION__GENERATE_MODEL = ECORE_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Generate Edit</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_GENERATION__GENERATE_EDIT = ECORE_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Generate Editor</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_GENERATION__GENERATE_EDITOR = ECORE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>Plugin Name</b></em>' attribute.
@@ -228,7 +274,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__PLUGIN_NAME = GENERATION_ELEMENT_FEATURE_COUNT + 4;
+    int EMF_GENERATION__PLUGIN_NAME = ECORE_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Base Package</b></em>' attribute.
@@ -237,7 +283,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__BASE_PACKAGE = GENERATION_ELEMENT_FEATURE_COUNT + 5;
+    int EMF_GENERATION__BASE_PACKAGE = ECORE_ELEMENT_FEATURE_COUNT + 4;
 
     /**
      * The number of structural features of the '<em>Emf Generation</em>' class.
@@ -246,7 +292,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 6;
+    int EMF_GENERATION_FEATURE_COUNT = ECORE_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl <em>Documentation Generation</em>}' class.
@@ -265,7 +311,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENTATION_GENERATION__NAME = GENERATION_ELEMENT__NAME;
+    int DOCUMENTATION_GENERATION__NAME = ECORE_ELEMENT__NAME;
 
     /**
      * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -274,16 +320,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENTATION_GENERATION__CONTAINER = GENERATION_ELEMENT__CONTAINER;
-
-    /**
-     * The feature id for the '<em><b>Plugin Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DOCUMENTATION_GENERATION__PLUGIN_NAME = GENERATION_ELEMENT_FEATURE_COUNT + 0;
+    int DOCUMENTATION_GENERATION__CONTAINER = ECORE_ELEMENT__CONTAINER;
 
     /**
      * The feature id for the '<em><b>Model Path</b></em>' attribute.
@@ -292,7 +329,16 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENTATION_GENERATION__MODEL_PATH = GENERATION_ELEMENT_FEATURE_COUNT + 1;
+    int DOCUMENTATION_GENERATION__MODEL_PATH = ECORE_ELEMENT__MODEL_PATH;
+
+    /**
+     * The feature id for the '<em><b>Plugin Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOCUMENTATION_GENERATION__PLUGIN_NAME = ECORE_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Output Directory Path</b></em>' attribute.
@@ -301,7 +347,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH = GENERATION_ELEMENT_FEATURE_COUNT + 2;
+    int DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH = ECORE_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Documentation Generation</em>' class.
@@ -310,7 +356,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENTATION_GENERATION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 3;
+    int DOCUMENTATION_GENERATION_FEATURE_COUNT = ECORE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement <em>Generation Element</em>}'.
@@ -420,17 +466,6 @@ public interface GenerationChainPackage extends EPackage {
     EAttribute getEmfGeneration_GenerateEditor();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#getModelPath <em>Model Path</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Model Path</em>'.
-     * @see org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#getModelPath()
-     * @see #getEmfGeneration()
-     * @generated
-     */
-    EAttribute getEmfGeneration_ModelPath();
-
-    /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#getPluginName <em>Plugin Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -474,17 +509,6 @@ public interface GenerationChainPackage extends EPackage {
     EAttribute getDocumentationGeneration_PluginName();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getModelPath <em>Model Path</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Model Path</em>'.
-     * @see org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getModelPath()
-     * @see #getDocumentationGeneration()
-     * @generated
-     */
-    EAttribute getDocumentationGeneration_ModelPath();
-
-    /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getOutputDirectoryPath <em>Output Directory Path</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -494,6 +518,27 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      */
     EAttribute getDocumentationGeneration_OutputDirectoryPath();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement <em>Ecore Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Ecore Element</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement
+     * @generated
+     */
+    EClass getEcoreElement();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement#getModelPath <em>Model Path</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Model Path</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement#getModelPath()
+     * @see #getEcoreElement()
+     * @generated
+     */
+    EAttribute getEcoreElement_ModelPath();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -604,14 +649,6 @@ public interface GenerationChainPackage extends EPackage {
         EAttribute EMF_GENERATION__GENERATE_EDITOR = eINSTANCE.getEmfGeneration_GenerateEditor();
 
         /**
-         * The meta object literal for the '<em><b>Model Path</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute EMF_GENERATION__MODEL_PATH = eINSTANCE.getEmfGeneration_ModelPath();
-
-        /**
          * The meta object literal for the '<em><b>Plugin Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -646,20 +683,30 @@ public interface GenerationChainPackage extends EPackage {
         EAttribute DOCUMENTATION_GENERATION__PLUGIN_NAME = eINSTANCE.getDocumentationGeneration_PluginName();
 
         /**
-         * The meta object literal for the '<em><b>Model Path</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute DOCUMENTATION_GENERATION__MODEL_PATH = eINSTANCE.getDocumentationGeneration_ModelPath();
-
-        /**
          * The meta object literal for the '<em><b>Output Directory Path</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         EAttribute DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH = eINSTANCE.getDocumentationGeneration_OutputDirectoryPath();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EcoreElementImpl <em>Ecore Element</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.EcoreElementImpl
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getEcoreElement()
+         * @generated
+         */
+        EClass ECORE_ELEMENT = eINSTANCE.getEcoreElement();
+
+        /**
+         * The meta object literal for the '<em><b>Model Path</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ECORE_ELEMENT__MODEL_PATH = eINSTANCE.getEcoreElement_ModelPath();
 
     }
 

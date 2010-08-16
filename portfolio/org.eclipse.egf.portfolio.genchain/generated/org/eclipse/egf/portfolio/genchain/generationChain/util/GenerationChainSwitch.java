@@ -109,6 +109,8 @@ public class GenerationChainSwitch<T> {
             EmfGeneration emfGeneration = (EmfGeneration) theEObject;
             T result = caseEmfGeneration(emfGeneration);
             if (result == null)
+                result = caseEcoreElement(emfGeneration);
+            if (result == null)
                 result = caseGenerationElement(emfGeneration);
             if (result == null)
                 result = defaultCase(theEObject);
@@ -118,7 +120,18 @@ public class GenerationChainSwitch<T> {
             DocumentationGeneration documentationGeneration = (DocumentationGeneration) theEObject;
             T result = caseDocumentationGeneration(documentationGeneration);
             if (result == null)
+                result = caseEcoreElement(documentationGeneration);
+            if (result == null)
                 result = caseGenerationElement(documentationGeneration);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case GenerationChainPackage.ECORE_ELEMENT: {
+            EcoreElement ecoreElement = (EcoreElement) theEObject;
+            T result = caseEcoreElement(ecoreElement);
+            if (result == null)
+                result = caseGenerationElement(ecoreElement);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -185,6 +198,21 @@ public class GenerationChainSwitch<T> {
      * @generated
      */
     public T caseDocumentationGeneration(DocumentationGeneration object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Ecore Element</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Ecore Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseEcoreElement(EcoreElement object) {
         return null;
     }
 

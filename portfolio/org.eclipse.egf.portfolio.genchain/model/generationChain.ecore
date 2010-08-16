@@ -13,23 +13,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//GenerationElement" containment="true" eOpposite="#//GenerationElement/container"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EmfGeneration" eSuperTypes="#//GenerationElement">
+  <eClassifiers xsi:type="ecore:EClass" name="EmfGeneration" eSuperTypes="#//EcoreElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateModel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateEdit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateEditor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="basePackage" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DocumentationGeneration" eSuperTypes="#//GenerationElement">
+  <eClassifiers xsi:type="ecore:EClass" name="DocumentationGeneration" eSuperTypes="#//EcoreElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pluginName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelPath" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="outputDirectoryPath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EcoreElement" abstract="true" eSuperTypes="#//GenerationElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelPath" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

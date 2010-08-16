@@ -21,7 +21,6 @@ package org.eclipse.egf.portfolio.genchain.generationChain;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getPluginName <em>Plugin Name</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getModelPath <em>Model Path</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getOutputDirectoryPath <em>Output Directory Path</em>}</li>
  * </ul>
  * </p>
@@ -30,7 +29,7 @@ package org.eclipse.egf.portfolio.genchain.generationChain;
  * @model
  * @generated
  */
-public interface DocumentationGeneration extends GenerationElement {
+public interface DocumentationGeneration extends EcoreElement {
     /**
      * Returns the value of the '<em><b>Plugin Name</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -56,32 +55,6 @@ public interface DocumentationGeneration extends GenerationElement {
      * @generated
      */
     void setPluginName(String value);
-
-    /**
-     * Returns the value of the '<em><b>Model Path</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Model Path</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Model Path</em>' attribute.
-     * @see #setModelPath(String)
-     * @see org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage#getDocumentationGeneration_ModelPath()
-     * @model required="true"
-     * @generated
-     */
-    String getModelPath();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration#getModelPath <em>Model Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Model Path</em>' attribute.
-     * @see #getModelPath()
-     * @generated
-     */
-    void setModelPath(String value);
 
     /**
      * Returns the value of the '<em><b>Output Directory Path</b></em>' attribute.

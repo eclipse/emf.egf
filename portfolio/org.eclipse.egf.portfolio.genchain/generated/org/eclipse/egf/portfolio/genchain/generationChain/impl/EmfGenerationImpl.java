@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateModel <em>Generate Model</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEdit <em>Generate Edit</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEditor <em>Generate Editor</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getModelPath <em>Model Path</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getBasePackage <em>Base Package</em>}</li>
  * </ul>
@@ -39,7 +38,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class EmfGenerationImpl extends GenerationElementImpl implements EmfGeneration {
+public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration {
     /**
      * The default value of the '{@link #isGenerateModel() <em>Generate Model</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -99,26 +98,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
      * @ordered
      */
     protected boolean generateEditor = GENERATE_EDITOR_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getModelPath() <em>Model Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getModelPath()
-     * @generated
-     * @ordered
-     */
-    protected static final String MODEL_PATH_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getModelPath() <em>Model Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getModelPath()
-     * @generated
-     * @ordered
-     */
-    protected String modelPath = MODEL_PATH_EDEFAULT;
 
     /**
      * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
@@ -247,27 +226,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getModelPath() {
-        return modelPath;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setModelPath(String newModelPath) {
-        String oldModelPath = modelPath;
-        modelPath = newModelPath;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GenerationChainPackage.EMF_GENERATION__MODEL_PATH, oldModelPath, modelPath));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public String getPluginName() {
         return pluginName;
     }
@@ -319,8 +277,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
             return isGenerateEdit();
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             return isGenerateEditor();
-        case GenerationChainPackage.EMF_GENERATION__MODEL_PATH:
-            return getModelPath();
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             return getPluginName();
         case GenerationChainPackage.EMF_GENERATION__BASE_PACKAGE:
@@ -345,9 +301,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
             return;
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             setGenerateEditor((Boolean) newValue);
-            return;
-        case GenerationChainPackage.EMF_GENERATION__MODEL_PATH:
-            setModelPath((String) newValue);
             return;
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             setPluginName((String) newValue);
@@ -376,9 +329,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             setGenerateEditor(GENERATE_EDITOR_EDEFAULT);
             return;
-        case GenerationChainPackage.EMF_GENERATION__MODEL_PATH:
-            setModelPath(MODEL_PATH_EDEFAULT);
-            return;
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             setPluginName(PLUGIN_NAME_EDEFAULT);
             return;
@@ -403,8 +353,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
             return generateEdit != GENERATE_EDIT_EDEFAULT;
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             return generateEditor != GENERATE_EDITOR_EDEFAULT;
-        case GenerationChainPackage.EMF_GENERATION__MODEL_PATH:
-            return MODEL_PATH_EDEFAULT == null ? modelPath != null : !MODEL_PATH_EDEFAULT.equals(modelPath);
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             return PLUGIN_NAME_EDEFAULT == null ? pluginName != null : !PLUGIN_NAME_EDEFAULT.equals(pluginName);
         case GenerationChainPackage.EMF_GENERATION__BASE_PACKAGE:
@@ -430,8 +378,6 @@ public class EmfGenerationImpl extends GenerationElementImpl implements EmfGener
         result.append(generateEdit);
         result.append(", generateEditor: ");
         result.append(generateEditor);
-        result.append(", modelPath: ");
-        result.append(modelPath);
         result.append(", pluginName: ");
         result.append(pluginName);
         result.append(", basePackage: ");

@@ -29,14 +29,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getModelPath <em>Model Path</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getOutputDirectoryPath <em>Output Directory Path</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DocumentationGenerationImpl extends GenerationElementImpl implements DocumentationGeneration {
+public class DocumentationGenerationImpl extends EcoreElementImpl implements DocumentationGeneration {
     /**
      * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -56,26 +55,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
      * @ordered
      */
     protected String pluginName = PLUGIN_NAME_EDEFAULT;
-
-    /**
-     * The default value of the '{@link #getModelPath() <em>Model Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getModelPath()
-     * @generated
-     * @ordered
-     */
-    protected static final String MODEL_PATH_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getModelPath() <em>Model Path</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getModelPath()
-     * @generated
-     * @ordered
-     */
-    protected String modelPath = MODEL_PATH_EDEFAULT;
 
     /**
      * The default value of the '{@link #getOutputDirectoryPath() <em>Output Directory Path</em>}' attribute.
@@ -142,27 +121,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getModelPath() {
-        return modelPath;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setModelPath(String newModelPath) {
-        String oldModelPath = modelPath;
-        modelPath = newModelPath;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, GenerationChainPackage.DOCUMENTATION_GENERATION__MODEL_PATH, oldModelPath, modelPath));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public String getOutputDirectoryPath() {
         return outputDirectoryPath;
     }
@@ -189,8 +147,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         switch (featureID) {
         case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
             return getPluginName();
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__MODEL_PATH:
-            return getModelPath();
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             return getOutputDirectoryPath();
         }
@@ -207,9 +163,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         switch (featureID) {
         case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
             setPluginName((String) newValue);
-            return;
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__MODEL_PATH:
-            setModelPath((String) newValue);
             return;
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             setOutputDirectoryPath((String) newValue);
@@ -229,9 +182,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
             setPluginName(PLUGIN_NAME_EDEFAULT);
             return;
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__MODEL_PATH:
-            setModelPath(MODEL_PATH_EDEFAULT);
-            return;
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             setOutputDirectoryPath(OUTPUT_DIRECTORY_PATH_EDEFAULT);
             return;
@@ -249,8 +199,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         switch (featureID) {
         case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
             return PLUGIN_NAME_EDEFAULT == null ? pluginName != null : !PLUGIN_NAME_EDEFAULT.equals(pluginName);
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__MODEL_PATH:
-            return MODEL_PATH_EDEFAULT == null ? modelPath != null : !MODEL_PATH_EDEFAULT.equals(modelPath);
         case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
             return OUTPUT_DIRECTORY_PATH_EDEFAULT == null ? outputDirectoryPath != null : !OUTPUT_DIRECTORY_PATH_EDEFAULT.equals(outputDirectoryPath);
         }
@@ -270,8 +218,6 @@ public class DocumentationGenerationImpl extends GenerationElementImpl implement
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (pluginName: ");
         result.append(pluginName);
-        result.append(", modelPath: ");
-        result.append(modelPath);
         result.append(", outputDirectoryPath: ");
         result.append(outputDirectoryPath);
         result.append(')');
