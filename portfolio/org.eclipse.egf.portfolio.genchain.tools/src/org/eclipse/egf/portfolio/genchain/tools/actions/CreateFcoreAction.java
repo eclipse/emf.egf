@@ -21,14 +21,20 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.types.TypeString;
+import org.eclipse.egf.portfolio.genchain.extension.ExtensionHelper;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
 import org.eclipse.egf.portfolio.genchain.tools.Activator;
 import org.eclipse.egf.portfolio.genchain.tools.utils.RunActivityHelper;
@@ -54,28 +60,44 @@ public class CreateFcoreAction implements IObjectActionDelegate {
         if (selection == null || selection.size() != 1)
             return;
 
-        try {
-            IFile modelFile = (IFile) selection.getFirstElement();
-            URI modelURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), false);
-            EGFResourceSet resourceSet = new EGFResourceSet();
-            GenerationChain generationChain = (GenerationChain) resourceSet.getResource(modelURI, true).getContents().get(0);
+        // try {
+        IFile modelFile = (IFile) selection.getFirstElement();
+        final URI modelURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), false);
+        final EGFResourceSet resourceSet = new EGFResourceSet();
 
-            String fcoreRelativePath = "/model/" + generationChain.getName() + ".fcore";
-            String fcoreOutputPath = generationChain.getFactoryComponentName() + fcoreRelativePath;
-            workAroundforProjectCreation(generationChain.getFactoryComponentName(), fcoreRelativePath);
+        final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(modelURI, true).getContents().get(0);
 
-            FactoryComponent fc = (FactoryComponent) resourceSet.getEObject(GENERATOR_URI, true);
-            DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
-            domainURI.setUri(modelURI);
+        final String fcoreRelativePath = "/model/" + generationChain.getName() + ".fcore";
+        final String fcoreOutputPath = generationChain.getFactoryComponentName() + fcoreRelativePath;
+        // fcoreRelativePath);
 
-            ((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
-            ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
-            ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
-            ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
-            RunActivityHelper.run(fc, null);
-        } catch (Exception e) {
-            Activator.getDefault().logError(e);
-        }
+        final WorkspaceJob buildJob = new WorkspaceJob("Generate chain") {
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                try {
+                    workAroundforProjectCreation(generationChain.getFactoryComponentName(), fcoreRelativePath);
+                    FactoryComponent fc = (FactoryComponent) resourceSet.getEObject(GENERATOR_URI, true);
+                    DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+                    domainURI.setUri(modelURI);
+
+                    ((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(ExtensionHelper.getAllSubstitutions());
+                    ((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
+                    ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
+                    ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
+                    ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
+                    RunActivityHelper.run(fc, null);
+                } catch (Exception e) {
+                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+                }
+                return Status.OK_STATUS;
+            }
+        };
+
+        buildJob.schedule();
+
+        // } catch (Exception e) {
+        // Activator.getDefault().logError(e);
+        // }
 
         System.out.println();
     }
