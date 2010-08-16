@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_R9l6EakQEd-ffsPMurYerg"
+    name="default">
+  <viewpointContainer xmi:id="_W6JToKkQEd-ffsPMurYerg">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_XTrN8KkQEd-ffsPMurYerg">
+      <libraries xmi:id="__6LW8KkaEd-4urftpcdWZw" name="lib">
+        <elements xmi:type="pattern:Pattern" xmi:id="_EgW34KkbEd-4urftpcdWZw" name="APattern"
+            headerMethod="#_EgW34akbEd-4urftpcdWZw" footerMethod="#_EgW35akbEd-4urftpcdWZw"
+            initMethod="#_EgW34qkbEd-4urftpcdWZw" conditionMethod="#_EgW346kbEd-4urftpcdWZw">
+          <methods xmi:id="_EgW34akbEd-4urftpcdWZw" name="header" patternFilePath="templates/pattern._EgW34KkbEd-4urftpcdWZw/method._EgW34akbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_EgW34qkbEd-4urftpcdWZw" name="init" patternFilePath="templates/pattern._EgW34KkbEd-4urftpcdWZw/method._EgW34qkbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_EgW346kbEd-4urftpcdWZw" name="preCondition" patternFilePath="templates/pattern._EgW34KkbEd-4urftpcdWZw/method._EgW346kbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_EgW35KkbEd-4urftpcdWZw" name="body" patternFilePath="templates/pattern._EgW34KkbEd-4urftpcdWZw/method._EgW35KkbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_EgW35akbEd-4urftpcdWZw" name="footer" patternFilePath="templates/pattern._EgW34KkbEd-4urftpcdWZw/method._EgW35akbEd-4urftpcdWZw.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_Kre9YKkbEd-4urftpcdWZw"
+              called="#_EgW35KkbEd-4urftpcdWZw"/>
+          <parameters xmi:id="_IPSnwKkbEd-4urftpcdWZw" name="parameter" type="http://package_a#//A"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_EgW356kbEd-4urftpcdWZw"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_NirM8KkbEd-4urftpcdWZw" name="BPattern"
+            headerMethod="#_NirM8akbEd-4urftpcdWZw" footerMethod="#_NirM9akbEd-4urftpcdWZw"
+            initMethod="#_NirM8qkbEd-4urftpcdWZw" conditionMethod="#_NirM86kbEd-4urftpcdWZw">
+          <methods xmi:id="_NirM8akbEd-4urftpcdWZw" name="header" patternFilePath="templates/pattern._NirM8KkbEd-4urftpcdWZw/method._NirM8akbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_NirM8qkbEd-4urftpcdWZw" name="init" patternFilePath="templates/pattern._NirM8KkbEd-4urftpcdWZw/method._NirM8qkbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_NirM86kbEd-4urftpcdWZw" name="preCondition" patternFilePath="templates/pattern._NirM8KkbEd-4urftpcdWZw/method._NirM86kbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_NirM9KkbEd-4urftpcdWZw" name="body" patternFilePath="templates/pattern._NirM8KkbEd-4urftpcdWZw/method._NirM9KkbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_NirM9akbEd-4urftpcdWZw" name="footer" patternFilePath="templates/pattern._NirM8KkbEd-4urftpcdWZw/method._NirM9akbEd-4urftpcdWZw.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_UbamYKkbEd-4urftpcdWZw"
+              called="#_NirM9KkbEd-4urftpcdWZw"/>
+          <parameters xmi:id="_SlqlsKkbEd-4urftpcdWZw" name="parameter" type="http://package_b#//B"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_NirM96kbEd-4urftpcdWZw"
+              name="JET"/>
+        </elements>
+        <elements xmi:type="pattern:Pattern" xmi:id="_XVqJ8KkbEd-4urftpcdWZw" name="ContainerPattern"
+            headerMethod="#_XVqJ8akbEd-4urftpcdWZw" footerMethod="#_XVqJ9akbEd-4urftpcdWZw"
+            initMethod="#_XVqJ8qkbEd-4urftpcdWZw" conditionMethod="#_XVqJ86kbEd-4urftpcdWZw">
+          <methods xmi:id="_XVqJ8akbEd-4urftpcdWZw" name="header" patternFilePath="templates/pattern._XVqJ8KkbEd-4urftpcdWZw/method._XVqJ8akbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_XVqJ8qkbEd-4urftpcdWZw" name="init" patternFilePath="templates/pattern._XVqJ8KkbEd-4urftpcdWZw/method._XVqJ8qkbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_XVqJ86kbEd-4urftpcdWZw" name="preCondition" patternFilePath="templates/pattern._XVqJ8KkbEd-4urftpcdWZw/method._XVqJ86kbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_XVqJ9KkbEd-4urftpcdWZw" name="body" patternFilePath="templates/pattern._XVqJ8KkbEd-4urftpcdWZw/method._XVqJ9KkbEd-4urftpcdWZw.pt"/>
+          <methods xmi:id="_XVqJ9akbEd-4urftpcdWZw" name="footer" patternFilePath="templates/pattern._XVqJ8KkbEd-4urftpcdWZw/method._XVqJ9akbEd-4urftpcdWZw.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_aeIWwKkbEd-4urftpcdWZw"
+              called="#_XVqJ9KkbEd-4urftpcdWZw"/>
+          <parameters xmi:id="_Ylv40KkbEd-4urftpcdWZw" name="parameter" type="http://package_a#//AContainer"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_XVqJ96kbEd-4urftpcdWZw"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_6lPSkakaEd-4urftpcdWZw">
+      <domains xmi:type="domain:DomainURI" xmi:id="_7EzjcKkaEd-4urftpcdWZw" uri="platform:/plugin/C/egf/My.package_a"/>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Xssx8KkQEd-ffsPMurYerg">
+    <invocations xmi:id="_cI9h4KkQEd-ffsPMurYerg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      <invocationContractContainer xmi:id="_cI9h4akQEd-ffsPMurYerg">
+        <invocationContracts xmi:id="_cI9h4qkQEd-ffsPMurYerg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_hQuE4KkbEd-4urftpcdWZw" domain="#_7EzjcKkaEd-4urftpcdWZw"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_cI9h5qkQEd-ffsPMurYerg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_lD7QwKkbEd-4urftpcdWZw"
+              description="" elements="#_EgW34KkbEd-4urftpcdWZw #_NirM8KkbEd-4urftpcdWZw #_XVqJ8KkbEd-4urftpcdWZw"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_cI9h56kQEd-ffsPMurYerg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_kkj0MKkbEd-4urftpcdWZw"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

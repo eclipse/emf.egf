@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/B/src"
+    modelPluginID="B" modelName="B" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="../../A/model/A.genmodel#//package_a">
+  <foreignModel>B.ecore</foreignModel>
+  <genPackages prefix="Package_b" disposableProviderFactory="true" ecorePackage="B.ecore#/">
+    <genClasses ecoreClass="B.ecore#//B"/>
+  </genPackages>
+</genmodel:GenModel>
