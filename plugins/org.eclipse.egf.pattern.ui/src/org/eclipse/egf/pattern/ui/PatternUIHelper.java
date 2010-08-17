@@ -124,11 +124,15 @@ public class PatternUIHelper {
      */
     public static void addChildAdapter(Object object, AdapterImpl refresher) {
         if (object instanceof MethodCall) {
-            EList<Adapter> eAdapters = ((MethodCall) object).getCalled().eAdapters();
-            addIntoAdapters(eAdapters, refresher);
+            if (((MethodCall) object).getCalled() != null) {
+                EList<Adapter> eAdapters = ((MethodCall) object).getCalled().eAdapters();
+                addIntoAdapters(eAdapters, refresher);
+            }
         } else if (object instanceof PatternInjectedCall) {
-            EList<Adapter> eAdapters = ((PatternInjectedCall) object).getContext().eAdapters();
-            addIntoAdapters(eAdapters, refresher);
+            if (((PatternInjectedCall) object).getContext() != null) {
+                EList<Adapter> eAdapters = ((PatternInjectedCall) object).getContext().eAdapters();
+                addIntoAdapters(eAdapters, refresher);
+            }
         }
     }
 
@@ -137,12 +141,15 @@ public class PatternUIHelper {
      */
     public static void removeChildAdapter(Object object, AdapterImpl refresher) {
         if (object instanceof MethodCall) {
-            EList<Adapter> eAdapters = ((MethodCall) object).getCalled().eAdapters();
-            removeFromeAdapters(eAdapters, refresher);
-
+            if (((MethodCall) object).getCalled() != null) {
+                EList<Adapter> eAdapters = ((MethodCall) object).getCalled().eAdapters();
+                removeFromeAdapters(eAdapters, refresher);
+            }
         } else if (object instanceof PatternInjectedCall) {
-            EList<Adapter> eAdapters = ((PatternInjectedCall) object).getContext().eAdapters();
-            removeFromeAdapters(eAdapters, refresher);
+            if (((PatternInjectedCall) object).getContext() != null) {
+                EList<Adapter> eAdapters = ((PatternInjectedCall) object).getContext().eAdapters();
+                removeFromeAdapters(eAdapters, refresher);
+            }
         }
     }
 
