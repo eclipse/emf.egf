@@ -51,6 +51,8 @@ import org.osgi.service.packageadmin.PackageAdmin;
  */
 public final class ProjectBundleSession {
 
+  private static final String EGF_TARGET_BUNDLE_PRIORITY = "egf.target.bundle.priority"; //$NON-NLS-1$
+
   public static String PROJECT_BUNDLE_SESSION = "org.eclipse.egf.core.project.bundle.session"; //$NON-NLS-1$
 
   private BundleContext _context;
@@ -58,6 +60,8 @@ public final class ProjectBundleSession {
   private Map<String, Bundle> _projectBundles = new HashMap<String, Bundle>();
 
   private List<String> _uninstalled = new UniqueEList<String>();
+  
+  private Boolean targetBundlePriority;
 
   public static String getLocation(IPluginModelBase base) throws CoreException {
     IResource resource = base.getUnderlyingResource();
@@ -157,7 +161,7 @@ public final class ProjectBundleSession {
     List<IPluginModelBase> dependencies = new UniqueEList<IPluginModelBase>();
     dependencies.add(base);
     BundleDescription description = base.getBundleDescription();
-    if (description == null) {
+    if (description == null || isTargetBundlePriority()) {
       return dependencies;
     }
     for (BundleSpecification requiredBundle : description.getRequiredBundles()) {
@@ -255,7 +259,7 @@ public final class ProjectBundleSession {
       return null;
     }
     // Check if we face a non workspace model
-    if (model.getUnderlyingResource() == null) {
+    if (model.getUnderlyingResource() == null || isTargetBundlePriority()) {
       return Platform.getBundle(BundleHelper.getBundleId(model));
     }
     String location = getLocation(model);
@@ -280,6 +284,11 @@ public final class ProjectBundleSession {
    */
   public Bundle getBundle(IProject project) throws CoreException {
     IPluginModelBase model = PluginRegistry.findModel(project);
+    if (isTargetBundlePriority()) {
+      Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(model));
+      if (bundle != null)
+        return bundle;
+    }
     if (model == null) {
       return null;
     }
@@ -410,6 +419,14 @@ public final class ProjectBundleSession {
     } catch (BundleException be) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_UninstallationFailure, bundle.getSymbolicName()), be));
     }
+  }
+  
+  private boolean isTargetBundlePriority() {
+    if (targetBundlePriority == null) {
+      String property = System.getProperty(EGF_TARGET_BUNDLE_PRIORITY);
+      targetBundlePriority = Boolean.TRUE.toString().equals(property);
+    }
+    return targetBundlePriority;
   }
 
 }
