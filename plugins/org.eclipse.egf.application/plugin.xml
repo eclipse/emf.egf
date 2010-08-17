@@ -53,5 +53,21 @@
       class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask" 
     />
   </extension>
+
+  <!-- ================================================================================= -->
+  <!-- Product                                                                          -->
+  <!-- ================================================================================= -->  
+  <extension
+        id="EGFApplication"
+        point="org.eclipse.core.runtime.products">
+     <product
+           application="org.eclipse.egf.application.activity"
+           name="org.eclipse.egf.application.product">
+        <property
+              name="appName"
+              value="org.eclipse.egf.application.product">
+        </property>
+     </product>
+  </extension>
   
 </plugin>
