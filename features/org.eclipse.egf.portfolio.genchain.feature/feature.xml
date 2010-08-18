@@ -20,68 +20,64 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
     </copyright>
 
-    <license 
-        url="%licenseURL"
-    >
+    <license url="%licenseURL">
         %license
     </license>
 
     <url>
         <update 
             label="%EMFTUpdateSiteName" 
-            url="http://download.eclipse.org/modeling/emft/updates/"
-        />
+            url="http://download.eclipse.org/modeling/emft/updates/"/>
         <discovery 
             label="%EMFUpdateSiteName" 
-            url="http://download.eclipse.org/modeling/emf/updates/"
-        />
+            url="http://download.eclipse.org/modeling/emf/updates/"/>
         <discovery 
             label="%EMFTUpdateSiteName" 
-            url="http://download.eclipse.org/modeling/emft/updates/"
-        />
+            url="http://download.eclipse.org/modeling/emft/updates/"/>
     </url>
 
     <requires>
         <import 
-            feature="org.eclipse.egf" 
-        />
+            feature="org.eclipse.egf"/>
     </requires>
    
     <includes
         id="org.eclipse.egf.portfolio.genchain.source"
-        version="0.0.0"
-    />        
+        version="0.0.0"/>        
 
     <plugin
         id="org.eclipse.egf.portfolio.genchain"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />
+        unpack="false"/>
 
     <plugin
         id="org.eclipse.egf.portfolio.genchain.edit"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />
+        unpack="false"/>
 
     <plugin
         id="org.eclipse.egf.portfolio.genchain.editor"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />
+        unpack="false"/>
          
     <plugin
         id="org.eclipse.egf.portfolio.genchain.tools"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />
+        unpack="false"/>
+         
+    <plugin
+        id="org.eclipse.egf.portfolio.genchain.tools.ui"
+        download-size="0"
+        install-size="0"
+        version="0.0.0"
+        unpack="false"/>
          
 </feature>
