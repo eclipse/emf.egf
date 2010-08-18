@@ -36,6 +36,7 @@ Require-Bundle:
  org.eclipse.egf.model.edit
 Bundle-ActivationPolicy: lazy
 Export-Package: 
+ org.eclipse.egf.pattern.ui,
  org.eclipse.egf.pattern.ui.editors,
  org.eclipse.egf.pattern.ui.editors.templateEditor,
  org.eclipse.egf.pattern.ui.editors.templateEditor.computer
