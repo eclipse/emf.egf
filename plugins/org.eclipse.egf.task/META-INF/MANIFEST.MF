@@ -1,13 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.egf.task;singleton:=true
-Bundle-Version: 0.2.5.qualifier
-Bundle-ClassPath: .,
- lib/jruby_placeholder.jar
-Bundle-Activator: org.eclipse.egf.task.EGFTaskPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-Version: 0.2.5.qualifier
+Bundle-SymbolicName: org.eclipse.egf.task;singleton:=true
+Bundle-Activator: org.eclipse.egf.task.EGFTaskPlugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.core.runtime,

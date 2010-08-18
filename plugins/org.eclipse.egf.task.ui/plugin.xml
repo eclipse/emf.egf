@@ -24,8 +24,6 @@
     	point="org.eclipse.egf.core.ui.editor.menu.contributor">
     	<contribution
       		class="org.eclipse.egf.task.ui.contributions.OpenJavaTaskImplementationMenuContributor"/>    
-    	<contribution
-    		class="org.eclipse.egf.task.ui.contributions.OpenRubyTaskImplementationMenuContributor"/>    
   </extension>
   
   <!-- ================================================================================= -->
@@ -35,7 +33,6 @@
 	<extension 
     	point="org.eclipse.egf.core.ui.editor.listener.contributor">
     	<contribution class="org.eclipse.egf.task.ui.contributions.OpenJavaTaskImplementationListenerContributor"/>
-    	<contribution class="org.eclipse.egf.task.ui.contributions.OpenRubyTaskImplementationListenerContributor"/>
   	</extension>    
 
   <!-- ================================================================================= -->
@@ -44,20 +41,7 @@
    
   <extension point="org.eclipse.egf.core.ui.editor.property.contributor">
 	    <contribution class="org.eclipse.egf.task.ui.contributions.TaskJavaEditorContributor"/>
-	    <contribution class="org.eclipse.egf.task.ui.contributions.TaskRubyEditorContributor"/>
   </extension>
   
-  <extension point="org.eclipse.ui.preferencePages">
-     	<page
-        	class="org.eclipse.egf.task.ui.preferences.InterpreterSetPreferencePage"
-           	id="org.eclipse.egf.task.ui.preferences.InterpreterSetPreferencePage"
-           	name="%JRubyInterpreter">
-     	</page>
-  </extension>
-
-  <extension point="org.eclipse.core.runtime.preferences">
-     	<initializer class="org.eclipse.egf.task.ui.preferences.PreferenceInitializer"/>
-  </extension>  
-   
 </plugin>
   

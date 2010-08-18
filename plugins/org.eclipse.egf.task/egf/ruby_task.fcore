@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ftask:Task xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmi:id="_pdABMIK4Ed-nE_aB6JA6Fw"
-    name="Ruby Task" kind="ruby" implementation="platform:/plugin/org.eclipse.egf.task/test/SayHello.rb">
-  <contractContainer xmi:id="_ryXWEIK4Ed-nE_aB6JA6Fw"/>
-</ftask:Task>

@@ -1,1 +1,0 @@
-puts "Ruby task sayes Hello !"
