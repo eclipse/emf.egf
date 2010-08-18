@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.egf.portfolio.genchain.wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainWizardID"
+            name="%_UI_GenerationChainWizard_label"
+            class="org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainWizard"
+            category="org.eclipse.egf.portfolio.genchain.wizard.category.ID"
+            icon="icons/full/obj16/GenerationChainModelFile.gif">
+         <description>%_UI_GenerationChainWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+	<extension point="org.eclipse.ui.popupMenus">
+  
+	    <objectContribution
+			id="org.eclipse.egf.portfolio.genchain.tools.contribution"
+			objectClass="org.eclipse.core.resources.IFile"
+			nameFilter="*.generationChain">
+	        
+			<action
+				class="org.eclipse.egf.portfolio.genchain.tools.ui.actions.CreateFcoreAction"
+				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.run.activity"
+				label="%CreateAction_label"
+				enablesFor="1"
+				menubarPath="additions"
+				tooltip="%CreateAction_tooltip"/>
+	    </objectContribution>
+  
+  </extension>      
+	
+</plugin>

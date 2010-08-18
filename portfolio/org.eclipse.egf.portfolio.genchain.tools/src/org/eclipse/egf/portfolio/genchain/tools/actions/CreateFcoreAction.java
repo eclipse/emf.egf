@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.portfolio.genchain.tools.actions;
+package org.eclipse.egf.portfolio.genchain.tools.ui.actions;
 
 import java.io.ByteArrayInputStream;
 import java.lang.reflect.InvocationTargetException;
