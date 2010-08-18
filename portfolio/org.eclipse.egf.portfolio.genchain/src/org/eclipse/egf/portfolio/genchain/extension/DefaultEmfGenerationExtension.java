@@ -15,6 +15,12 @@
 
 package org.eclipse.egf.portfolio.genchain.extension;
 
+import java.util.Map;
+
+import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
+import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
+import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory;
+
 /**
  * @author Thomas Guiu
  * 
@@ -24,7 +30,15 @@ public class DefaultEmfGenerationExtension extends ExtensionHelper {
     @Override
     public String getLabel() {
 
-        return "Emf Documentation";
+        return "Emf Generation";
+    }
+
+    @Override
+    public EcoreElement createEcoreElement(Map<String, String> properties) {
+        EmfGeneration element = GenerationChainFactory.eINSTANCE.createEmfGeneration();
+        String modelPath = properties.get(MODEL_PATH);
+        element.setModelPath(modelPath);
+        return element;
     }
 
 }

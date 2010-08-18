@@ -16,13 +16,16 @@
 package org.eclipse.egf.portfolio.genchain.extension;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 
 /**
  * Associated to a EClass
@@ -30,15 +33,37 @@ import org.eclipse.egf.pattern.Activator;
  * @author Thomas Guiu
  * 
  */
-public abstract class ExtensionHelper {
+public abstract class ExtensionHelper implements ExtensionProperties {
 
     private static final String EXTENSION_ID = "org.eclipse.egf.portfolio.genchain.elements";
     protected final List<Substitution> EMPTY_SUBSTITUTION = new ArrayList<Substitution>();
 
+    public abstract EcoreElement createEcoreElement(Map<String, String> properties);
+
     public abstract String getLabel();
+
+    // not used yet
+    public Map<String, String> computeDefaultProperties(Map<String, String> properties) {
+        Map<String, String> defaultProperties = new HashMap<String, String>();
+
+        return defaultProperties;
+    }
+
+    // TODO upgrade this implementation
+    public String getId() {
+        return getLabel();
+    }
 
     public List<Substitution> getSubstitutions() {
         return EMPTY_SUBSTITUTION;
+    }
+
+    public static Map<String, ExtensionHelper> getExtensionsAsMap() {
+
+        Map<String, ExtensionHelper> result = new HashMap<String, ExtensionHelper>();
+        for (ExtensionHelper helper : getExtensions())
+            result.put(helper.getId(), helper);
+        return result;
     }
 
     public static List<ExtensionHelper> getExtensions() {

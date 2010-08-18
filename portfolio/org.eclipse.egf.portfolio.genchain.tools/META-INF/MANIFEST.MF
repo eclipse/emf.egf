@@ -9,19 +9,15 @@ Bundle-Activator: org.eclipse.egf.portfolio.genchain.tools.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.model;visibility:=reexport,
  org.eclipse.egf.model.fprod;visibility:=reexport,
- org.eclipse.ui,
- org.eclipse.ui.editors,
  org.eclipse.emf.importer,
  org.eclipse.emf.importer.ecore,
  org.eclipse.egf.model.ftask,
- org.eclipse.egf.core.pde,
- org.eclipse.egf.producer.ftask,
- org.eclipse.egf.pattern.ftask,
+ org.eclipse.egf.producer.ftask;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask;visibility:=reexport,
  org.eclipse.egf.portfolio.genchain;visibility:=reexport,
- org.eclipse.egf.pattern
+ org.eclipse.egf.pattern;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: fcore.builder.patterns,
  org.eclipse.egf.portfolio.genchain.tools,
- org.eclipse.egf.portfolio.genchain.tools.actions,
  org.eclipse.egf.portfolio.genchain.tools.utils

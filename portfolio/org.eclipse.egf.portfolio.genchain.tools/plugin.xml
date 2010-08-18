@@ -18,22 +18,5 @@
   		<fcore id="egf/Generation_Chain_Producer.fcore"/>
 	</extension>
 	
-	<extension point="org.eclipse.ui.popupMenus">
-  
-	    <objectContribution
-			id="org.eclipse.egf.portfolio.genchain.tools.contribution"
-			objectClass="org.eclipse.core.resources.IFile"
-			nameFilter="*.generationChain">
-	        
-			<action
-				class="org.eclipse.egf.portfolio.genchain.tools.actions.CreateFcoreAction"
-				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.run.activity"
-				label="%CreateAction_label"
-				enablesFor="1"
-				menubarPath="additions"
-				tooltip="%CreateAction_tooltip"/>
-	    </objectContribution>
-  
-  </extension>      
 	
 </plugin>
