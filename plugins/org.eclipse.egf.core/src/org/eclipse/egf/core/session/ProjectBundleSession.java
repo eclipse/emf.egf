@@ -11,6 +11,7 @@
 package org.eclipse.egf.core.session;
 
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -161,7 +162,7 @@ public final class ProjectBundleSession {
     List<IPluginModelBase> dependencies = new UniqueEList<IPluginModelBase>();
     dependencies.add(base);
     BundleDescription description = base.getBundleDescription();
-    if (description == null || isTargetBundlePriority()) {
+    if (description == null) {
       return dependencies;
     }
     for (BundleSpecification requiredBundle : description.getRequiredBundles()) {
@@ -182,6 +183,12 @@ public final class ProjectBundleSession {
         }
       }
     }
+    
+    if (isTargetBundlePriority()) 
+      for (IPluginModelBase iPluginModelBase : new ArrayList<IPluginModelBase>(dependencies)) 
+        if (Platform.getBundle(iPluginModelBase.getBundleDescription().getSymbolicName()) != null)
+          dependencies.remove(iPluginModelBase);
+    
     return dependencies;
   }
 
