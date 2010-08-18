@@ -1,0 +1,55 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
+
+package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.portfolio.genchain.tools.ui.Messages;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+
+/**
+ * @author Thomas Guiu
+ * 
+ */
+public class NewFilePage extends WizardNewFileCreationPage {
+
+    private static final String FILE_EXTENSION = "generationchain";
+
+    public NewFilePage(String pageName, IStructuredSelection selection) {
+        super(pageName, selection);
+        setFileName("My.generationchain");
+    }
+
+    public IFile getModelFile() {
+        return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
+    }
+
+    @Override
+    protected boolean validatePage() {
+        if (super.validatePage()) {
+            String extension = new Path(getFileName()).getFileExtension();
+            if (extension == null || !FILE_EXTENSION.equals(extension)) {
+                setErrorMessage(Messages.bind(Messages.genchain_wizard_extension_error, FILE_EXTENSION));
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
+}
