@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.egf.core.ui,
  org.eclipse.core.runtime,
  org.eclipse.egf.portfolio.genchain.tools,
- org.eclipse.egf.pattern.ui;bundle-version="0.2.5"
+ org.eclipse.egf.pattern.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
