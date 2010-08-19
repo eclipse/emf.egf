@@ -169,7 +169,7 @@ public class JavaTranslationEnhancer {
             String typeValue = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(var.getType());
 
             // 1 - Add fields
-            addField(type, var.getName(), typeValue, Modifier.PRIVATE);
+            addField(type, var.getName(), typeValue, Modifier.PROTECTED);
 
             // 2 - add setter methods
             addSetter(type, var, typeValue);
