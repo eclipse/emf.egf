@@ -19,6 +19,9 @@
       <fcore
             id="egf/Substitution_composition.fcore">
       </fcore>
+      <fcore
+            id="egf/Model_driven_validation_pattern_strategy_task.fcore">
+      </fcore>
    </extension>
 
 </plugin>

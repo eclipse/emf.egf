@@ -16,4 +16,5 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: 
  org.eclipse.egf.pattern.ftask,
- org.eclipse.egf.pattern.ftask.tasks
+ org.eclipse.egf.pattern.ftask.tasks,
+ org.eclipse.egf.pattern.validation

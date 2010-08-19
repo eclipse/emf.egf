@@ -17,6 +17,7 @@ Require-Bundle:
  org.eclipse.egf.emf.pattern;visibility:=reexport,
  org.eclipse.egf.emf.pattern.base;visibility:=reexport
 Export-Package: 
+ extention,
  myLib,
  strategy
 Bundle-ActivationPolicy: lazy

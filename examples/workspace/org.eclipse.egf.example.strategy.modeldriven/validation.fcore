@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_jMjKUauKEd-xlMT8MPVQ3Q"
+    name="validation">
+  <viewpointContainer xmi:id="_oz-F0KuKEd-xlMT8MPVQ3Q">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_pFsvAKuKEd-xlMT8MPVQ3Q">
+      <domains xmi:type="domain:DomainURI" xmi:id="_pFsvAauKEd-xlMT8MPVQ3Q" uri="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/model/mypackage.ecore"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_s1T0UKuKEd-xlMT8MPVQ3Q">
+      <libraries xmi:id="_t_E4wKuKEd-xlMT8MPVQ3Q" name="org.eclipse.egf.example.strategy.modeldriven.validation">
+        <elements xmi:type="pattern:Pattern" xmi:id="_yWdvwKuKEd-xlMT8MPVQ3Q" name="classWithoutAttributes"
+            headerMethod="#_yWdvwauKEd-xlMT8MPVQ3Q" footerMethod="#_yWdvxauKEd-xlMT8MPVQ3Q"
+            superPattern="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_jKJUYKt7Ed-0oekoriqU8Q"
+            initMethod="#_yWdvwquKEd-xlMT8MPVQ3Q" conditionMethod="#_yWdvw6uKEd-xlMT8MPVQ3Q">
+          <methods xmi:id="_yWdvwauKEd-xlMT8MPVQ3Q" name="header" patternFilePath="templates/pattern._yWdvwKuKEd-xlMT8MPVQ3Q/method._yWdvwauKEd-xlMT8MPVQ3Q.pt"/>
+          <methods xmi:id="_yWdvwquKEd-xlMT8MPVQ3Q" name="init" patternFilePath="templates/pattern._yWdvwKuKEd-xlMT8MPVQ3Q/method._yWdvwquKEd-xlMT8MPVQ3Q.pt"/>
+          <methods xmi:id="_yWdvw6uKEd-xlMT8MPVQ3Q" name="preCondition" patternFilePath="templates/pattern._yWdvwKuKEd-xlMT8MPVQ3Q/method._yWdvw6uKEd-xlMT8MPVQ3Q.pt"/>
+          <methods xmi:id="_yWdvxKuKEd-xlMT8MPVQ3Q" name="checkAttributes" patternFilePath="templates/pattern._yWdvwKuKEd-xlMT8MPVQ3Q/method._yWdvxKuKEd-xlMT8MPVQ3Q.pt"/>
+          <methods xmi:id="_yWdvxauKEd-xlMT8MPVQ3Q" name="footer" patternFilePath="templates/pattern._yWdvwKuKEd-xlMT8MPVQ3Q/method._yWdvxauKEd-xlMT8MPVQ3Q.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_yWdvxquKEd-xlMT8MPVQ3Q"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_OZwbYKuLEd-xlMT8MPVQ3Q"
+              called="#_yWdvxKuKEd-xlMT8MPVQ3Q"/>
+          <parameters xmi:id="_3vbYgKuKEd-xlMT8MPVQ3Q" name="eClass" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+          <nature xmi:type="javapattern:JavaNature" xmi:id="_yWdvx6uKEd-xlMT8MPVQ3Q"
+              name="Java"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_vy2jgKuKEd-xlMT8MPVQ3Q">
+    <invocations xmi:id="_xB-pEKuKEd-xlMT8MPVQ3Q" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_lIo_MKtsEd-IItjEL3Zf6g">
+      <invocationContractContainer xmi:id="_xB-pEauKEd-xlMT8MPVQ3Q">
+        <invocationContracts xmi:id="_xB-pEquKEd-xlMT8MPVQ3Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_ryXFMKtsEd-IItjEL3Zf6g"/>
+        <invocationContracts xmi:id="_xB-pE6uKEd-xlMT8MPVQ3Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_ydWlcKuLEd-xlMT8MPVQ3Q" domain="#_pFsvAauKEd-xlMT8MPVQ3Q"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_xB-pF6uKEd-xlMT8MPVQ3Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_1IHikKuLEd-xlMT8MPVQ3Q"
+              elements="#_t_E4wKuKEd-xlMT8MPVQ3Q"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>
