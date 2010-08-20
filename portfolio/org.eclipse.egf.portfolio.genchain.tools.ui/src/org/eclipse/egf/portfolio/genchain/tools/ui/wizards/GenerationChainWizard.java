@@ -67,7 +67,7 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
 
         // TODO add a page to choose the name and factory component name
 
-        ecorePage = new EcoreModelPage("ecore", model);
+        ecorePage = new EcoreModelPage("ecore", model, selection);
         ecorePage.setTitle(Messages.genchain_wizard_title);
         ecorePage.setDescription(Messages.genchain_wizard_content_description);
         addPage(ecorePage);
@@ -97,10 +97,11 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
             container.setName(containerNode.getName());
             for (Node leafNode : containerNode.getChildren()) {
                 String id = leafNode.getProperties().get(ID);
+                String modelName = getModelName(leafNode.getProperties().get(MODEL_PATH));
                 ExtensionHelper extensionHelper = extensionsAsMap.get(id);
                 if (checkedElements.contains(leafNode)) {
                     EcoreElement leaf = extensionHelper.createEcoreElement(leafNode.getProperties());
-                    leaf.setName(leafNode.getName());
+                    leaf.setName(leafNode.getName() + " on " + modelName);
                     container.getElements().add(leaf);
                 }
             }
@@ -171,5 +172,10 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
             });
         }
         return true;
+    }
+
+    static String getModelName(String modelPath) {
+        return modelPath.substring(modelPath.lastIndexOf('/') + 1, modelPath.lastIndexOf('.'));
+
     }
 }

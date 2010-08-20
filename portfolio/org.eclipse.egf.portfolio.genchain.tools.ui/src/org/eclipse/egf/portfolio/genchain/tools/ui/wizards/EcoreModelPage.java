@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.egf.core.ui.dialogs.LoadEcoreDialog;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
@@ -66,13 +67,20 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
     private final Node model;
     private ContainerCheckedTreeViewer viewer;
 
-    protected EcoreModelPage(String pageName, Node model) {
+    protected EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
         super(pageName);
         this.model = model;
+        for (Object obj : selection.toArray()) {
+            if (obj instanceof IFile) {
+                IFile file = (IFile) obj;
+                if (file.getName().endsWith(".ecore"))
+                    addEcore(file.getFullPath().toString());
+            }
+        }
     }
 
-    private void addEcore(String modelPath) {
-        String name = modelPath.substring(modelPath.lastIndexOf('/') + 1, modelPath.lastIndexOf('.'));
+    private Node addEcore(String modelPath) {
+        String name = GenerationChainWizard.getModelName(modelPath);
         Node chainNode = new Node(model, Node.CONTAINER_NODE);
         chainNode.setName(name);
         model.getChildren().add(chainNode);
@@ -92,8 +100,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
             // }
 
         }
-        viewer.refresh();
-        viewer.expandToLevel(chainNode, AbstractTreeViewer.ALL_LEVELS);
+        return chainNode;
 
     }
 
@@ -140,7 +147,9 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
                         uri = uri.substring("platform:/resource".length());
                     else
                         return;
-                    addEcore(uri);
+                    Node newNode = addEcore(uri);
+                    viewer.refresh();
+                    viewer.expandToLevel(newNode, AbstractTreeViewer.ALL_LEVELS);
                 }
 
             }
