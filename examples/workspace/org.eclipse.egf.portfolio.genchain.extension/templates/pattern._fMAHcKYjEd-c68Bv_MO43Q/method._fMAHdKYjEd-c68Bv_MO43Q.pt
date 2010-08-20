@@ -1,0 +1,7 @@
+		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
+		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
+		ResourceSet resourceSet = fc.eResource().getResourceSet();
+		ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
+		URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.extension/egf/sampleExtension.fcore#_ZPAkkaYjEd-c68Bv_MO43Q", false);
+		ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(uri, true) );
+
