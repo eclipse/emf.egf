@@ -12,7 +12,7 @@
       </contracts>
     </contractContainer>
   </ftask:Task>
-  <fcore:FactoryComponent xmi:id="_fVLN8Kt7Ed-0oekoriqU8Q">
+  <fcore:FactoryComponent xmi:id="_fVLN8Kt7Ed-0oekoriqU8Q" name="Model Driven Validation Pattern Strategy Patterns">
     <viewpointContainer xmi:id="_fuqE8Kt7Ed-0oekoriqU8Q">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_gfOmQKt7Ed-0oekoriqU8Q">
         <libraries xmi:id="_gzpXEKt7Ed-0oekoriqU8Q" name="org.eclipse.egf.pattern.validation">
