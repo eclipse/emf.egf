@@ -20,6 +20,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.portfolio.genchain.tools.ui.Messages;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 /**
@@ -37,6 +38,11 @@ public class NewFilePage extends WizardNewFileCreationPage {
 
     public IFile getModelFile() {
         return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
+    }
+
+    public void createControl(Composite parent) {
+        super.createControl(parent);
+        validatePage();
     }
 
     @Override
