@@ -1,0 +1,1 @@
+        return EMFPatternHelper.isSameEClass(BuildstepPackage.eINSTANCE.getJavadocStep(), createClass.getEcoreClass());

@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fcore:FactoryComponent xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
-    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="__j9E8I5jEd-Tlrutn5SzgA"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="__j9E8I5jEd-Tlrutn5SzgA"
     name="BuildStep.genmodel EMF Pattern">
   <viewpointContainer xmi:id="__j9E8Y5jEd-Tlrutn5SzgA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="__j9E8o5jEd-Tlrutn5SzgA">
       <domains xmi:type="domain:DomainURI" xmi:id="__j9E845jEd-Tlrutn5SzgA" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_tG_5kK9hEd-9ZMYZexsxtg">
+      <libraries xmi:id="_uCvwIK9hEd-9ZMYZexsxtg" name="org.eclipse.egf.portfolio.eclipse.build.buildstep.edit">
+        <elements xmi:type="pattern:Pattern" xmi:id="_Gg3E0K9iEd-9ZMYZexsxtg" name="newChildDescriptors.createJavadocStep"
+            headerMethod="#_Gg3E0a9iEd-9ZMYZexsxtg" footerMethod="#_Gg3E1a9iEd-9ZMYZexsxtg"
+            superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw"
+            initMethod="#_Gg3E0q9iEd-9ZMYZexsxtg" conditionMethod="#_Gg3E069iEd-9ZMYZexsxtg">
+          <methods xmi:id="_Gg3E0a9iEd-9ZMYZexsxtg" name="header" patternFilePath="templates/pattern._Gg3E0K9iEd-9ZMYZexsxtg/method._Gg3E0a9iEd-9ZMYZexsxtg.pt"/>
+          <methods xmi:id="_Gg3E0q9iEd-9ZMYZexsxtg" name="init" patternFilePath="templates/pattern._Gg3E0K9iEd-9ZMYZexsxtg/method._Gg3E0q9iEd-9ZMYZexsxtg.pt"/>
+          <methods xmi:id="_Gg3E069iEd-9ZMYZexsxtg" name="preCondition" patternFilePath="templates/pattern._Gg3E0K9iEd-9ZMYZexsxtg/method._Gg3E069iEd-9ZMYZexsxtg.pt"/>
+          <methods xmi:id="_Gg3E1K9iEd-9ZMYZexsxtg" name="doGenerate" patternFilePath="templates/pattern._Gg3E0K9iEd-9ZMYZexsxtg/method._Gg3E1K9iEd-9ZMYZexsxtg.pt"/>
+          <methods xmi:id="_Gg3E1a9iEd-9ZMYZexsxtg" name="footer" patternFilePath="templates/pattern._Gg3E0K9iEd-9ZMYZexsxtg/method._Gg3E1a9iEd-9ZMYZexsxtg.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_Gg3E1q9iEd-9ZMYZexsxtg"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_Gg3E169iEd-9ZMYZexsxtg"
+              name="JET"/>
+        </elements>
+      </libraries>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="__j9E9I5jEd-Tlrutn5SzgA">
@@ -22,6 +40,12 @@
       <invocationContractContainer xmi:id="__j9E-o5jEd-Tlrutn5SzgA">
         <invocationContracts xmi:id="__j9E-45jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
           <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E_I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_zPpS0K9hEd-9ZMYZexsxtg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_UCnhEFHVEd-dr9AWwNwIMQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1QPRkK9hEd-9ZMYZexsxtg">
+            <substitutions xmi:id="_bhZfYK9iEd-9ZMYZexsxtg" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04ps8GJ-Ed-FqczH3ESmRw"
+                replacement="#_Gg3E0K9iEd-9ZMYZexsxtg"/>
+          </type>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

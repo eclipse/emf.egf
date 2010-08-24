@@ -19,16 +19,25 @@ import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
+
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreSwitch;
+
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
+
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.util.BuildstepAdapterFactory;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.command.CommandParameter;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -52,7 +61,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
-	/**
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -62,34 +71,34 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     /**
      * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected ComposedAdapterFactory parentAdapterFactory;
+    protected ComposedAdapterFactory parentAdapterFactory;
 
-	/**
+    /**
      * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected IChangeNotifier changeNotifier = new ChangeNotifier();
+    protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
-	/**
+    /**
      * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+    protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
-	/**
+    /**
      * This constructs an instance.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public BuildstepItemProviderAdapterFactory() {
+    public BuildstepItemProviderAdapterFactory() {
         supportedTypes.add(IEditingDomainItemProvider.class);
         supportedTypes.add(IStructuredItemContentProvider.class);
         supportedTypes.add(ITreeItemContentProvider.class);
@@ -97,7 +106,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         supportedTypes.add(IItemPropertySource.class);
     }
 
-	/**
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -121,159 +130,113 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected SCMBuildLocationItemProvider scmBuildLocationItemProvider;
+    protected BuildStepItemProvider buildStepItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createSCMBuildLocationAdapter() {
-        if (scmBuildLocationItemProvider == null) {
-            scmBuildLocationItemProvider = new SCMBuildLocationItemProvider(this);
+    @Override
+    public Adapter createBuildStepAdapter() {
+        if (buildStepItemProvider == null) {
+            buildStepItemProvider = new BuildStepItemProvider(this);
         }
 
-        return scmBuildLocationItemProvider;
+        return buildStepItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected UpdateSiteBuildLocationItemProvider updateSiteBuildLocationItemProvider;
+    protected PublishStepItemProvider publishStepItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createUpdateSiteBuildLocationAdapter() {
-        if (updateSiteBuildLocationItemProvider == null) {
-            updateSiteBuildLocationItemProvider = new UpdateSiteBuildLocationItemProvider(this);
+    @Override
+    public Adapter createPublishStepAdapter() {
+        if (publishStepItemProvider == null) {
+            publishStepItemProvider = new PublishStepItemProvider(this);
         }
 
-        return updateSiteBuildLocationItemProvider;
+        return publishStepItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected TargetPlatformBuildLocationItemProvider targetPlatformBuildLocationItemProvider;
+    protected TestStepItemProvider testStepItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createTargetPlatformBuildLocationAdapter() {
-        if (targetPlatformBuildLocationItemProvider == null) {
-            targetPlatformBuildLocationItemProvider = new TargetPlatformBuildLocationItemProvider(this);
+    @Override
+    public Adapter createTestStepAdapter() {
+        if (testStepItemProvider == null) {
+            testStepItemProvider = new TestStepItemProvider(this);
         }
 
-        return targetPlatformBuildLocationItemProvider;
+        return testStepItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AntStep} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected LocalBuildLocationItemProvider localBuildLocationItemProvider;
+    protected AntStepItemProvider antStepItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AntStep}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createLocalBuildLocationAdapter() {
-        if (localBuildLocationItemProvider == null) {
-            localBuildLocationItemProvider = new LocalBuildLocationItemProvider(this);
+    @Override
+    public Adapter createAntStepAdapter() {
+        if (antStepItemProvider == null) {
+            antStepItemProvider = new AntStepItemProvider(this);
         }
 
-        return localBuildLocationItemProvider;
+        return antStepItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin} instances.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected PluginItemProvider pluginItemProvider;
-
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin}.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	public Adapter createPluginAdapter() {
-        if (pluginItemProvider == null) {
-            pluginItemProvider = new PluginItemProvider(this);
-        }
-
-        return pluginItemProvider;
-    }
-
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature} instances.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected FeatureItemProvider featureItemProvider;
-
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature}.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	public Adapter createFeatureAdapter() {
-        if (featureItemProvider == null) {
-            featureItemProvider = new FeatureItemProvider(this);
-        }
-
-        return featureItemProvider;
-    }
-
-	/**
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.JavadocStep} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected JavadocStepItemProvider javadocStepItemProvider;
+    protected JavadocStepItemProvider javadocStepItemProvider;
 
-	/**
+    /**
      * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.JavadocStep}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createJavadocStepAdapter() {
+    @Override
+    public Adapter createJavadocStepAdapter() {
         if (javadocStepItemProvider == null) {
             javadocStepItemProvider = new JavadocStepItemProvider(this);
         }
@@ -281,7 +244,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         return javadocStepItemProvider;
     }
 
-	/**
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -307,19 +270,19 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected SourceBuildLocationItemProvider sourceBuildLocationItemProvider;
+    protected SourceBuildLocationItemProvider sourceBuildLocationItemProvider;
 
-	/**
+    /**
      * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createSourceBuildLocationAdapter() {
+    @Override
+    public Adapter createSourceBuildLocationAdapter() {
         if (sourceBuildLocationItemProvider == null) {
             sourceBuildLocationItemProvider = new SourceBuildLocationItemProvider(this);
         }
@@ -327,146 +290,192 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         return sourceBuildLocationItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected BuildStepItemProvider buildStepItemProvider;
+    protected LocalBuildLocationItemProvider localBuildLocationItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createBuildStepAdapter() {
-        if (buildStepItemProvider == null) {
-            buildStepItemProvider = new BuildStepItemProvider(this);
+    @Override
+    public Adapter createLocalBuildLocationAdapter() {
+        if (localBuildLocationItemProvider == null) {
+            localBuildLocationItemProvider = new LocalBuildLocationItemProvider(this);
         }
 
-        return buildStepItemProvider;
+        return localBuildLocationItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected PublishStepItemProvider publishStepItemProvider;
+    protected SCMBuildLocationItemProvider scmBuildLocationItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createPublishStepAdapter() {
-        if (publishStepItemProvider == null) {
-            publishStepItemProvider = new PublishStepItemProvider(this);
+    @Override
+    public Adapter createSCMBuildLocationAdapter() {
+        if (scmBuildLocationItemProvider == null) {
+            scmBuildLocationItemProvider = new SCMBuildLocationItemProvider(this);
         }
 
-        return publishStepItemProvider;
+        return scmBuildLocationItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected TestStepItemProvider testStepItemProvider;
+    protected TargetPlatformBuildLocationItemProvider targetPlatformBuildLocationItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createTestStepAdapter() {
-        if (testStepItemProvider == null) {
-            testStepItemProvider = new TestStepItemProvider(this);
+    @Override
+    public Adapter createTargetPlatformBuildLocationAdapter() {
+        if (targetPlatformBuildLocationItemProvider == null) {
+            targetPlatformBuildLocationItemProvider = new TargetPlatformBuildLocationItemProvider(this);
         }
 
-        return testStepItemProvider;
+        return targetPlatformBuildLocationItemProvider;
     }
 
-	/**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AntStep} instances.
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation} instances.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	protected AntStepItemProvider antStepItemProvider;
+    protected UpdateSiteBuildLocationItemProvider updateSiteBuildLocationItemProvider;
 
-	/**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AntStep}.
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter createAntStepAdapter() {
-        if (antStepItemProvider == null) {
-            antStepItemProvider = new AntStepItemProvider(this);
+    @Override
+    public Adapter createUpdateSiteBuildLocationAdapter() {
+        if (updateSiteBuildLocationItemProvider == null) {
+            updateSiteBuildLocationItemProvider = new UpdateSiteBuildLocationItemProvider(this);
         }
 
-        return antStepItemProvider;
+        return updateSiteBuildLocationItemProvider;
     }
 
-	/**
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PluginItemProvider pluginItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPluginAdapter() {
+        if (pluginItemProvider == null) {
+            pluginItemProvider = new PluginItemProvider(this);
+        }
+
+        return pluginItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FeatureItemProvider featureItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createFeatureAdapter() {
+        if (featureItemProvider == null) {
+            featureItemProvider = new FeatureItemProvider(this);
+        }
+
+        return featureItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public ComposeableAdapterFactory getRootAdapterFactory() {
+    public ComposeableAdapterFactory getRootAdapterFactory() {
         return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
     }
 
-	/**
+    /**
      * This sets the composed adapter factory that contains this factory.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
         this.parentAdapterFactory = parentAdapterFactory;
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public boolean isFactoryForType(Object type) {
+    @Override
+    public boolean isFactoryForType(Object type) {
         return supportedTypes.contains(type) || super.isFactoryForType(type);
     }
 
-	/**
+    /**
      * This implementation substitutes the factory itself as the key for the adapter.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Adapter adapt(Notifier notifier, Object type) {
+    @Override
+    public Adapter adapt(Notifier notifier, Object type) {
         return super.adapt(notifier, this);
     }
 
-	/**
+    /**
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	@Override
-	public Object adapt(Object object, Object type) {
+    @Override
+    public Object adapt(Object object, Object type) {
         if (isFactoryForType(type)) {
             Object adapter = super.adapt(object, type);
             if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
@@ -477,33 +486,33 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         return null;
     }
 
-	/**
+    /**
      * This adds a listener.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void addListener(INotifyChangedListener notifyChangedListener) {
+    public void addListener(INotifyChangedListener notifyChangedListener) {
         changeNotifier.addListener(notifyChangedListener);
     }
 
-	/**
+    /**
      * This removes a listener.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void removeListener(INotifyChangedListener notifyChangedListener) {
+    public void removeListener(INotifyChangedListener notifyChangedListener) {
         changeNotifier.removeListener(notifyChangedListener);
     }
 
-	/**
+    /**
      * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void fireNotifyChanged(Notification notification) {
+    public void fireNotifyChanged(Notification notification) {
         changeNotifier.fireNotifyChanged(notification);
 
         if (parentAdapterFactory != null) {
@@ -511,13 +520,13 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         }
     }
 
-	/**
+    /**
      * This disposes all of the item providers created by this factory. 
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public void dispose() {
+    public void dispose() {
         if (cleanStepItemProvider != null) cleanStepItemProvider.dispose();
         if (buildStepItemProvider != null) buildStepItemProvider.dispose();
         if (publishStepItemProvider != null) publishStepItemProvider.dispose();
@@ -534,94 +543,95 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (featureItemProvider != null) featureItemProvider.dispose();
     }
 
-	/**
+    /**
      * A child creation extender for the {@link BuildcorePackage}.
      * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-	public static class BuildcoreChildCreationExtender implements IChildCreationExtender {
-		/**
+    public static class BuildcoreChildCreationExtender implements IChildCreationExtender {
+        /**
          * The switch for creating child descriptors specific to each extended class.
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		protected static class CreationSwitch extends BuildcoreSwitch<Object> {
-			/**
+        protected static class CreationSwitch extends BuildcoreSwitch<Object> {
+            /**
              * The child descriptors being populated.
              * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
+             * <!-- end-user-doc -->
              * @generated
              */
-			protected List<Object> newChildDescriptors;
+            protected List<Object> newChildDescriptors;
 
-			/**
+            /**
              * The domain in which to create the children.
              * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
+             * <!-- end-user-doc -->
              * @generated
              */
-			protected EditingDomain editingDomain;
+            protected EditingDomain editingDomain;
 
-			/**
+            /**
              * Creates the a switch for populating child descriptors in the given domain.
              * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
+             * <!-- end-user-doc -->
              * @generated
              */
-			CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+            CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
                 this.newChildDescriptors = newChildDescriptors;
                 this.editingDomain = editingDomain;
             }
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated NOT
-			 */
-			@Override
-			public Object caseJob(Job object) {
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
+            public Object caseJob(Job object) {
 
 
-         newChildDescriptors.add
+        newChildDescriptors.add
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__STEPS,
                  BuildstepFactory.eINSTANCE.createCleanStep()));
 
-         
-		newChildDescriptors.add
-			(createChildParameter
-				(BuildcorePackage.Literals.JOB__STEPS,
-				 BuildstepFactory.eINSTANCE.createBuildStep()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createBuildStep()));
 
 
 
 
 
-		newChildDescriptors.add
-			(createChildParameter
-				(BuildcorePackage.Literals.JOB__STEPS,
-				 BuildstepFactory.eINSTANCE.createPublishStep()));
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createPublishStep()));
 
 
 
 
 
-		newChildDescriptors.add
-			(createChildParameter
-				(BuildcorePackage.Literals.JOB__STEPS,
-				 BuildstepFactory.eINSTANCE.createTestStep()));
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createTestStep()));
 
 
 
 
 
-		newChildDescriptors.add
-			(createChildParameter
-				(BuildcorePackage.Literals.JOB__STEPS,
-				 BuildstepFactory.eINSTANCE.createAntStep()));
-
-
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createAntStep()));
 
 
 
@@ -633,7 +643,6 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
 
 
-
         newChildDescriptors.add
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__STEPS,
@@ -641,39 +650,39 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
 
 
-				return null;
-			}
+                return null;
+            }
  
-			/**
+            /**
              * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
+             * <!-- end-user-doc -->
              * @generated
              */
-			protected CommandParameter createChildParameter(Object feature, Object child) {
+            protected CommandParameter createChildParameter(Object feature, Object child) {
                 return new CommandParameter(null, feature, child);
             }
 
-		}
+        }
 
-		/**
+        /**
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+        public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
             ArrayList<Object> result = new ArrayList<Object>();
            new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
            return result;
         }
 
-		/**
+        /**
          * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-		public ResourceLocator getResourceLocator() {
+        public ResourceLocator getResourceLocator() {
             return BuildStepEditPlugin.INSTANCE;
         }
-	}
+    }
 
 }
