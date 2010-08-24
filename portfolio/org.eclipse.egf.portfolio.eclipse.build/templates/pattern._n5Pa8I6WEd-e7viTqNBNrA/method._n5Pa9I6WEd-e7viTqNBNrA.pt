@@ -1,0 +1,5 @@
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.XmlHeader"
+%>
+<cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="<%=buildStepName%>" componentType="buckminster" version="1.0.0">
+    <cs:dependencies>

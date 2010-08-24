@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="__j9E8I5jEd-Tlrutn5SzgA"
+    name="BuildTrigger.genmodel EMF Pattern">
+  <viewpointContainer xmi:id="__j9E8Y5jEd-Tlrutn5SzgA">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="__j9E8o5jEd-Tlrutn5SzgA">
+      <domains xmi:type="domain:DomainURI" xmi:id="__j9E845jEd-Tlrutn5SzgA" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildTrigger.genmodel"/>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="__j9E9I5jEd-Tlrutn5SzgA">
+    <invocations xmi:id="__j9E9Y5jEd-Tlrutn5SzgA" name="EMF Model Pattern invocation"
+        invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="__j9E9o5jEd-Tlrutn5SzgA">
+        <invocationContracts xmi:id="__j9E945jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E-I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="__j9E-Y5jEd-Tlrutn5SzgA" name="EMF Edit Pattern invocation"
+        invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="__j9E-o5jEd-Tlrutn5SzgA">
+        <invocationContracts xmi:id="__j9E-45jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E_I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

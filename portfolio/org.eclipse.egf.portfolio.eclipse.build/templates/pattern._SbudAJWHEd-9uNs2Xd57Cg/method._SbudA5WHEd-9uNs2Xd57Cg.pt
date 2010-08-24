@@ -1,0 +1,1 @@
+return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep));

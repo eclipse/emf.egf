@@ -1,0 +1,45 @@
+	<target name="<%=new GenerationHelper().getPositionString(javadocStep)%>">
+		<delete dir="${build.root}/../javadoc" />
+		<javadoc
+			destdir="${build.root}/../javadoc"
+			maxmemory="1024m"
+			source="1.5"
+			useexternalfile="true"
+			author="true"
+			version="true"
+			use="true"
+			windowtitle="Javadoc">
+
+<%for (String linkString : javadocStep.getLinks()) {%> 
+		<link offline="false" href="<%=linkString%>"/>
+<%}%>
+
+<!-- TODO better handling of dir parameter -->
+<!-- TODO better handling of SourceBuildLocation model extension -->
+<%for (SourceBuildLocation sourceLocation : javadocStep.getSources()) {%>
+
+<%if (sourceLocation instanceof LocalBuildLocation) {%>
+		<fileset dir="<%=((LocalBuildLocation)sourceLocation).getPath()%>" defaultexcludes="true">
+<%}%>
+
+<%if (sourceLocation instanceof SCMBuildLocation) {
+SCMBuildLocation scmBuildLocation = (SCMBuildLocation) sourceLocation;
+if (scmBuildLocation.getScmLocation() instanceof SVNLocation ) {
+SVNLocation svnLocation = (SVNLocation) scmBuildLocation.getScmLocation();%>
+		<fileset dir="${build.root}/<%=svnLocation.getLocalPath()%>/<%=scmBuildLocation.getFolderName()%>" defaultexcludes="true">
+<%}}%>
+
+<%for (String includeString : javadocStep.getIncludes()) {%> 
+			<include name="<%=includeString%>"/>
+<%}%>
+<%for (String excludeString : javadocStep.getExcludes()) {%> 
+			<exclude name="<%=excludeString%>"/>
+<%}%>
+		</fileset>
+<%}%>
+
+<!-- TODO better handling of copyright (escape chars) -->
+<!-- <bottom>copyright</bottom> -->
+	</javadoc>
+</target>
+

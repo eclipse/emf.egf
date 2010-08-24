@@ -1,0 +1,19 @@
+  <scm class="hudson.scm.SubversionSCM">
+    <locations>
+      <%Iterator<SVNLocation> iterator = svn.getLocations().iterator();%>
+      <%while(iterator.hasNext()) {%>
+      <%SVNLocation svnLocation = iterator.next();%>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote><%=svnLocation.getProtocol().getLiteral()%><%=svnLocation.getUrl()%></remote>
+        <local><%=new GenerationHelper().getStringIfNotNull(svnLocation.getLocalPath())%></local>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <%}%>
+    </locations>
+    <useUpdate>true</useUpdate>
+    <doRevert>false</doRevert>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+  </scm>

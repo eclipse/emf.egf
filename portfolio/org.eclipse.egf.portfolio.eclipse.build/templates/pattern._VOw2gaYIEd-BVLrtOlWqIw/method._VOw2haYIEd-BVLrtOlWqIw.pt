@@ -1,0 +1,14 @@
+	<target name="<%=new GenerationHelper().getPositionString(egfStep)%>" depends="init,install.egf">
+		<egf>
+            <globargs>
+<%for(Property property : egfStep.getProperties()) {%>
+				<jvmarg value="-D<%=property.getKey()%>=<%=property.getValue()%>" />
+<%}%>            
+			</globargs>
+			<activities>
+<%for(String activity: egfStep.getActivities()) {%>
+				<arg value="<%=activity%>"/>
+<%}%>
+			</activities>
+		</egf>
+	</target>

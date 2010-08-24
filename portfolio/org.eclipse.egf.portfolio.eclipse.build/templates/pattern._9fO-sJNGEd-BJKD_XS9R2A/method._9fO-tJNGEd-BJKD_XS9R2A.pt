@@ -1,0 +1,7 @@
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.XmlHeader"
+%>
+<?pde version="3.5"?>
+
+<target name="build.target">
+	<locations>

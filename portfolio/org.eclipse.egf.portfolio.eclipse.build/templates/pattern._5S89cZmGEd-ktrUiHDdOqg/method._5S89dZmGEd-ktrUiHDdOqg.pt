@@ -1,0 +1,9 @@
+	<%Job nextJob = new GenerationHelper().getNextChainJob(job);%>
+    <hudson.tasks.BuildTrigger>
+      <childProjects><%=new GenerationHelper().getJobName(ctx, nextJob)%></childProjects>
+      <threshold>
+        <name>UNSTABLE</name>
+        <ordinal>1</ordinal>
+        <color>YELLOW</color>
+      </threshold>
+    </hudson.tasks.BuildTrigger>

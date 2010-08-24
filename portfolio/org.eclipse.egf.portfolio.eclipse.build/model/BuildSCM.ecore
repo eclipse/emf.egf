@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildscm"
+    nsURI="http://www.eclipse.org/egf/1.0.0/buildscm" nsPrefix="buildscm">
+  <eClassifiers xsi:type="ecore:EClass" name="SVN" eSuperTypes="BuildCore.ecore#//SCM">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locations" lowerBound="1"
+        upperBound="-1" eType="#//SVNLocation" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SVNLocation" eSuperTypes="BuildCore.ecore#//SCMLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocol" lowerBound="1"
+        eType="#//SVNProtocol"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="localPath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SVNProtocol">
+    <eLiterals name="HTTP" literal="http://"/>
+    <eLiterals name="HTTPS" value="1" literal="https://"/>
+    <eLiterals name="SVN" value="2" literal="svn://"/>
+    <eLiterals name="SVNSSH" value="3" literal="svn+ssh://"/>
+  </eClassifiers>
+</ecore:EPackage>

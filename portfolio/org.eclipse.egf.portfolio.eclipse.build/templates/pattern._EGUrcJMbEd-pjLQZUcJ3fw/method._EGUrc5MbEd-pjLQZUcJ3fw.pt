@@ -1,0 +1,1 @@
+return scmBuildLocation.getScmLocation() instanceof SVNLocation;

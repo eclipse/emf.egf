@@ -1,0 +1,31 @@
+  <description><%=new GenerationHelper().getStringIfNotNull(job.getDescription())%></description>
+  <actions>
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Action.add"
+%>
+  </actions>
+  <builders>
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Builder.add"
+%>
+  </builders>
+  <buildWrappers>
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.BuildWrapper.add"
+%>
+  </buildWrappers>
+  <properties>
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Property.add"
+%>
+  </properties>
+  <publishers>
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Publisher.add"
+%>
+  </publishers>
+  <triggers class="vector">
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Trigger.add"
+%>
+  </triggers>

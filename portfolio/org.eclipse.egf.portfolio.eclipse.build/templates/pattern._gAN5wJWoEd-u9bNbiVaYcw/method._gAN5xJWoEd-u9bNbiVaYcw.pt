@@ -1,0 +1,20 @@
+    <hudson.tasks.junit.JUnitResultArchiver>
+      <testResults>result/testReport*.xml</testResults>
+      <keepLongStdio>false</keepLongStdio>
+      <testDataPublishers/>
+    </hudson.tasks.junit.JUnitResultArchiver>
+<%if (testStep.isCodeCoverage()) {%>
+    <hudson.plugins.emma.EmmaPublisher>
+      <includes>result/coverageReport*.xml</includes>
+      <healthReports>
+        <minClass>0</minClass>
+        <maxClass>0</maxClass>
+        <minMethod>0</minMethod>
+        <maxMethod>0</maxMethod>
+        <minBlock>0</minBlock>
+        <maxBlock>0</maxBlock>
+        <minLine>0</minLine>
+        <maxLine>0</maxLine>
+      </healthReports>
+    </hudson.plugins.emma.EmmaPublisher>
+<%}%>

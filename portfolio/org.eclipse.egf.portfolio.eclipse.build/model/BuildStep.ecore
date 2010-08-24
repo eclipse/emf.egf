@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildstep"
+    nsURI="http://www.eclipse.org/egf/1.0.0/buildstep" nsPrefix="buildstep">
+  <eClassifiers xsi:type="ecore:EClass" name="CleanStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//CLEAN_TYPE"
+        defaultValueLiteral="Workspace"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuildStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buildLocations" upperBound="-1"
+        eType="#//BuildLocation" containment="true" eOpposite="#//BuildLocation/buildStep"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//Component" containment="true" eOpposite="#//Component/buildStep"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cleanBeforeBuild" eType="#//CLEAN_TYPE"
+        defaultValueLiteral="Result"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PublishStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
+        eType="#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="generateSources" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="launchConfigurationPath"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codeCoverage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AntStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xml" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="runInEclipse" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JavadocStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sources" lowerBound="1"
+        upperBound="-1" eType="#//SourceBuildLocation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includes" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="excludes" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="links" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EgfStep" eSuperTypes="BuildCore.ecore#//Step BuildCore.ecore#//Item">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activities" unique="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CLEAN_TYPE">
+    <eLiterals name="RESULT" literal="Result"/>
+    <eLiterals name="WORKSPACE" value="1" literal="Workspace"/>
+    <eLiterals name="NOTHING" value="2" literal="Nothing"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuildLocation" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buildStep" lowerBound="1"
+        eType="#//BuildStep" eOpposite="#//BuildStep/buildLocations"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SourceBuildLocation" eSuperTypes="#//BuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocalBuildLocation" eSuperTypes="#//SourceBuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SCMBuildLocation" eSuperTypes="#//SourceBuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scmLocation" lowerBound="1"
+        eType="ecore:EClass BuildCore.ecore#//SCMLocation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TargetPlatformBuildLocation" eSuperTypes="#//BuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateSiteBuildLocation" eSuperTypes="#//BuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buildStep" lowerBound="1"
+        eType="#//BuildStep" eOpposite="#//BuildStep/components"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Plugin" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//Component"/>
+</ecore:EPackage>

@@ -1,0 +1,1 @@
+return BuildstepPackage.eINSTANCE.getFeature().equals(publishStep.getComponent().eClass());

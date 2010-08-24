@@ -1,0 +1,2 @@
+<%filePath = new GenerationHelper().getJobName(ctx, buildStep.getJob());%>
+<%filePath = filePath + "/buckminster/" + new GenerationHelper().getPositionString(buildStep);%>

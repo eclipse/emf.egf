@@ -1,0 +1,6 @@
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.XmlHeader"
+%>
+<mspec:mspec xmlns:mspec="http://www.eclipse.org/buckminster/MetaData-1.0" materializer="p2" name="build.mspec" url="build.cquery">
+  <mspec:mspecNode materializer="workspace" namePattern="" filter="(buckminster.source=true)"/>
+</mspec:mspec>

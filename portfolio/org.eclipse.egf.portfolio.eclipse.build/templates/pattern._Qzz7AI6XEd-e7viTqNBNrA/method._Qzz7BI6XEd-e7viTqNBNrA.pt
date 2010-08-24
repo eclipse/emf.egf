@@ -1,0 +1,22 @@
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.XmlHeader"
+%>
+<rmap xmlns="http://www.eclipse.org/buckminster/RMap-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
+	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0" xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0">
+
+	<locator searchPathRef="buckminster" failOnError="false" />
+	<searchPath name="buckminster">
+		<!-- buckminster provider for windows -->
+		<provider componentTypes="buckminster" readerType="local" source="true">
+			<uri format="file:/{0}/../buckminster/<%=buildStepName%>">
+				<bc:propertyRef key="build.root" />
+			</uri>
+		</provider>
+		<!-- buckminster provider for unix -->
+		<provider componentTypes="buckminster" readerType="local" source="true">
+			<uri format="file://{0}/../buckminster/<%=buildStepName%>">
+				<bc:propertyRef key="build.root" />
+			</uri>
+		</provider>
+	</searchPath>
+

@@ -1,0 +1,4 @@
+    <hudson.tasks.Ant>
+      <targets>all</targets>
+      <buildFile>../build.xml</buildFile>
+    </hudson.tasks.Ant>

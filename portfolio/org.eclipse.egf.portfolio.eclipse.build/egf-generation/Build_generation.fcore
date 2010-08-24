@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_uJ9jEI2OEd-vRqSMFuBJBQ"
+    name="Build.genmodel EMF Pattern">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_vYoVoI2OEd-vRqSMFuBJBQ">
+    <invocations xmi:id="_zNRr8I2OEd-vRqSMFuBJBQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf-generation/BuildCore_generation.fcore#_nSpF8I2OEd-vRqSMFuBJBQ"/>
+    <invocations xmi:id="_TCbP0I5kEd-Tlrutn5SzgA" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf-generation/BuildStep_generation.fcore#__j9E8I5jEd-Tlrutn5SzgA"/>
+    <invocations xmi:id="_1Z9l8I2OEd-vRqSMFuBJBQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf-generation/BuildSCM_generation.fcore#_oBfI8I2OEd-vRqSMFuBJBQ"/>
+    <invocations xmi:id="_tn8EYJ8DEd-0pNICf7pxGw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf-generation/BuildTrigger_generation.fcore#__j9E8I5jEd-Tlrutn5SzgA"/>
+  </orchestration>
+</fcore:FactoryComponent>

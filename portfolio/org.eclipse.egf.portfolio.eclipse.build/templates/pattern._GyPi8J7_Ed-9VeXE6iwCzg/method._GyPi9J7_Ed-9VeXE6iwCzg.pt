@@ -1,0 +1,4 @@
+    <hudson.tasks.JavadocArchiver>
+      <javadocDir>../javadoc</javadocDir>
+      <keepAll>false</keepAll>
+    </hudson.tasks.JavadocArchiver>
