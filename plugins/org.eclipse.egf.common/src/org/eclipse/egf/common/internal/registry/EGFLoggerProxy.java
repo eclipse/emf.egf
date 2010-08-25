@@ -51,7 +51,7 @@ public class EGFLoggerProxy {
     }
 
     /**
-     * @return the _logger
+     * @return the _executable
      */
     public IEGFLogger getEGFLogger() {
         if (_executable == null) {
