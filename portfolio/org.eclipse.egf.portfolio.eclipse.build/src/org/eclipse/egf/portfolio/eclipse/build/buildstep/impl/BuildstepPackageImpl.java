@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.AntStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
@@ -104,6 +105,13 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     private EClass egfStepEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass aggregateStepEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -460,6 +468,33 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAggregateStep() {
+        return aggregateStepEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAggregateStep_PublishSteps() {
+        return (EReference)aggregateStepEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getAggregateStep_UpdateSiteUrls() {
+        return (EAttribute)aggregateStepEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBuildLocation() {
         return buildLocationEClass;
     }
@@ -694,6 +729,10 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         egfStepEClass = createEClass(EGF_STEP);
         createEAttribute(egfStepEClass, EGF_STEP__ACTIVITIES);
 
+        aggregateStepEClass = createEClass(AGGREGATE_STEP);
+        createEReference(aggregateStepEClass, AGGREGATE_STEP__PUBLISH_STEPS);
+        createEAttribute(aggregateStepEClass, AGGREGATE_STEP__UPDATE_SITE_URLS);
+
         buildLocationEClass = createEClass(BUILD_LOCATION);
         createEAttribute(buildLocationEClass, BUILD_LOCATION__PATTERN);
         createEReference(buildLocationEClass, BUILD_LOCATION__BUILD_STEP);
@@ -765,6 +804,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         javadocStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         egfStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         egfStepEClass.getESuperTypes().add(theBuildcorePackage.getItem());
+        aggregateStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         sourceBuildLocationEClass.getESuperTypes().add(this.getBuildLocation());
         localBuildLocationEClass.getESuperTypes().add(this.getSourceBuildLocation());
         scmBuildLocationEClass.getESuperTypes().add(this.getSourceBuildLocation());
@@ -804,6 +844,10 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
 
         initEClass(egfStepEClass, EgfStep.class, "EgfStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEgfStep_Activities(), ecorePackage.getEString(), "activities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(aggregateStepEClass, AggregateStep.class, "AggregateStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAggregateStep_PublishSteps(), this.getPublishStep(), null, "publishSteps", null, 0, -1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAggregateStep_UpdateSiteUrls(), ecorePackage.getEString(), "updateSiteUrls", null, 0, -1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(buildLocationEClass, BuildLocation.class, "BuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getBuildLocation_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, BuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

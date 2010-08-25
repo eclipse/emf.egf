@@ -88,6 +88,7 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.ANT_STEP: return createAntStep();
             case BuildstepPackage.JAVADOC_STEP: return createJavadocStep();
             case BuildstepPackage.EGF_STEP: return createEgfStep();
+            case BuildstepPackage.AGGREGATE_STEP: return createAggregateStep();
             case BuildstepPackage.SOURCE_BUILD_LOCATION: return createSourceBuildLocation();
             case BuildstepPackage.LOCAL_BUILD_LOCATION: return createLocalBuildLocation();
             case BuildstepPackage.SCM_BUILD_LOCATION: return createSCMBuildLocation();
@@ -238,6 +239,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     public EgfStep createEgfStep() {
         EgfStepImpl egfStep = new EgfStepImpl();
         return egfStep;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AggregateStep createAggregateStep() {
+        AggregateStepImpl aggregateStep = new AggregateStepImpl();
+        return aggregateStep;
     }
 
     /**

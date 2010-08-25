@@ -48,6 +48,13 @@ public class SVNLocationItemProvider
 		IItemLabelProvider,
 		IItemPropertySource {
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
+
+    /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -435,6 +435,52 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl <em>Aggregate Step</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getAggregateStep()
+     * @generated
+     */
+    int AGGREGATE_STEP = 7;
+
+    /**
+     * The feature id for the '<em><b>Job</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Publish Steps</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__PUBLISH_STEPS = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Update Site Urls</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__UPDATE_SITE_URLS = BuildcorePackage.STEP_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>Aggregate Step</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 2;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -442,7 +488,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBuildLocation()
      * @generated
      */
-    int BUILD_LOCATION = 7;
+    int BUILD_LOCATION = 8;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -479,7 +525,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSourceBuildLocation()
      * @generated
      */
-    int SOURCE_BUILD_LOCATION = 8;
+    int SOURCE_BUILD_LOCATION = 9;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -525,7 +571,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getLocalBuildLocation()
      * @generated
      */
-    int LOCAL_BUILD_LOCATION = 9;
+    int LOCAL_BUILD_LOCATION = 10;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -580,7 +626,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSCMBuildLocation()
      * @generated
      */
-    int SCM_BUILD_LOCATION = 10;
+    int SCM_BUILD_LOCATION = 11;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -644,7 +690,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getTargetPlatformBuildLocation()
      * @generated
      */
-    int TARGET_PLATFORM_BUILD_LOCATION = 11;
+    int TARGET_PLATFORM_BUILD_LOCATION = 12;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -690,7 +736,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getUpdateSiteBuildLocation()
      * @generated
      */
-    int UPDATE_SITE_BUILD_LOCATION = 12;
+    int UPDATE_SITE_BUILD_LOCATION = 13;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -736,7 +782,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getComponent()
      * @generated
      */
-    int COMPONENT = 13;
+    int COMPONENT = 14;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -773,7 +819,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getPlugin()
      * @generated
      */
-    int PLUGIN = 14;
+    int PLUGIN = 15;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -810,7 +856,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getFeature()
      * @generated
      */
-    int FEATURE = 15;
+    int FEATURE = 16;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -847,7 +893,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getCLEAN_TYPE()
      * @generated
      */
-    int CLEAN_TYPE = 16;
+    int CLEAN_TYPE = 17;
 
 
     /**
@@ -1106,6 +1152,38 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     EAttribute getEgfStep_Activities();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep <em>Aggregate Step</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Aggregate Step</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep
+     * @generated
+     */
+    EClass getAggregateStep();
+
+    /**
+     * Returns the meta object for the reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getPublishSteps <em>Publish Steps</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Publish Steps</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getPublishSteps()
+     * @see #getAggregateStep()
+     * @generated
+     */
+    EReference getAggregateStep_PublishSteps();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getUpdateSiteUrls <em>Update Site Urls</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Update Site Urls</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getUpdateSiteUrls()
+     * @see #getAggregateStep()
+     * @generated
+     */
+    EAttribute getAggregateStep_UpdateSiteUrls();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation <em>Build Location</em>}'.
@@ -1544,6 +1622,32 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute EGF_STEP__ACTIVITIES = eINSTANCE.getEgfStep_Activities();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl <em>Aggregate Step</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getAggregateStep()
+         * @generated
+         */
+        EClass AGGREGATE_STEP = eINSTANCE.getAggregateStep();
+
+        /**
+         * The meta object literal for the '<em><b>Publish Steps</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference AGGREGATE_STEP__PUBLISH_STEPS = eINSTANCE.getAggregateStep_PublishSteps();
+
+        /**
+         * The meta object literal for the '<em><b>Update Site Urls</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AGGREGATE_STEP__UPDATE_SITE_URLS = eINSTANCE.getAggregateStep_UpdateSiteUrls();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.

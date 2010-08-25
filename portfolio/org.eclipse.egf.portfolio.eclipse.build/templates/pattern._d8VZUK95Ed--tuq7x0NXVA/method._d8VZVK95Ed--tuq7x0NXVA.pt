@@ -1,0 +1,5 @@
+if (job.getSteps().isEmpty()) {
+	BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.WARNING, "org.eclipse.egf.portfolio.build", 0, "a job should have at least a step", new Object[] { job });
+    diagnosticChain.add(diagnostic);
+}
+	

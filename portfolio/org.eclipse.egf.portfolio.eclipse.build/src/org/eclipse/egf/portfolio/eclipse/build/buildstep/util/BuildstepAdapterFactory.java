@@ -117,6 +117,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createEgfStepAdapter();
             }
             @Override
+            public Adapter caseAggregateStep(AggregateStep object) {
+                return createAggregateStepAdapter();
+            }
+            @Override
             public Adapter caseBuildLocation(BuildLocation object) {
                 return createBuildLocationAdapter();
             }
@@ -275,6 +279,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createEgfStepAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep <em>Aggregate Step</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep
+     * @generated
+     */
+    public Adapter createAggregateStepAdapter() {
         return null;
     }
 

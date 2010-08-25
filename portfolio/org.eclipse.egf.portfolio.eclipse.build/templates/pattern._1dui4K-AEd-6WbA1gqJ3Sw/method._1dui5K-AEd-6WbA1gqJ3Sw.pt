@@ -1,0 +1,30 @@
+	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>" depends="init,install.egf" >
+		<anteclipse target="<%=new GenerationHelper().getPositionString(aggregateStep)%>_dropins" />
+		<anteclipse target="<%=new GenerationHelper().getPositionString(aggregateStep)%>_sitep2" />
+	</target>	
+
+	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>_dropins">
+<%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
+String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";%>
+		<copy todir="${publish}/aggregate/dropins">
+			<fileset dir="<%=location%>"/>
+		</copy>
+<%}%>
+	</target>	
+
+	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>_sitep2">
+		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
+		<p2.mirror>
+			<repository location="file:/${publish}/aggregate/site.p2" name="repository aggregation" />
+			<source>
+<%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
+if (publishStep.getComponent() instanceof Feature) {
+String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";%>
+				<repository location="<%=location%>" />
+<%}}%>
+<%for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {%>
+				<repository location="<%=updateSiteUrl%>" />
+<%}%>
+			</source>
+		</p2.mirror>
+	</target>

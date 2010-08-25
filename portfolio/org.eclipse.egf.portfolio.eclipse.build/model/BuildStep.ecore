@@ -50,6 +50,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="activities" unique="false"
         lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AggregateStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="publishSteps" upperBound="-1"
+        eType="#//PublishStep"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateSiteUrls" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CLEAN_TYPE">
     <eLiterals name="RESULT" literal="Result"/>
     <eLiterals name="WORKSPACE" value="1" literal="Workspace"/>

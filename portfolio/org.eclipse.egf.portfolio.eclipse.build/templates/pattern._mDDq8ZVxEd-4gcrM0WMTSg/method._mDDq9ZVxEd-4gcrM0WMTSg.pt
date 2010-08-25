@@ -17,8 +17,8 @@
 		</buckminster>
 
 		<echo message="Publish site"/>
-		<mkdir dir="<%=publishdirectory%>/site/"/>
-		<copy todir="<%=publishdirectory%>/site/">
+		<mkdir dir="<%=publishdirectory%>/site.p2/"/>
+		<copy todir="<%=publishdirectory%>/site.p2/">
 			<fileset dir="${result}/output">
 				<include name="<%=featurename%>*/site.p2/*"/>
 				<include name="<%=featurename%>*/site.p2/**"/>

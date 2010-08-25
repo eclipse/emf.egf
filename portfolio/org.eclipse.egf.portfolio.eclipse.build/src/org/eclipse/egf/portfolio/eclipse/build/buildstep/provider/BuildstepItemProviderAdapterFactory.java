@@ -268,6 +268,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AggregateStepItemProvider aggregateStepItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAggregateStepAdapter() {
+        if (aggregateStepItemProvider == null) {
+            aggregateStepItemProvider = new AggregateStepItemProvider(this);
+        }
+
+        return aggregateStepItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -534,6 +557,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (antStepItemProvider != null) antStepItemProvider.dispose();
         if (javadocStepItemProvider != null) javadocStepItemProvider.dispose();
         if (egfStepItemProvider != null) egfStepItemProvider.dispose();
+        if (aggregateStepItemProvider != null) aggregateStepItemProvider.dispose();
         if (sourceBuildLocationItemProvider != null) sourceBuildLocationItemProvider.dispose();
         if (localBuildLocationItemProvider != null) localBuildLocationItemProvider.dispose();
         if (scmBuildLocationItemProvider != null) scmBuildLocationItemProvider.dispose();
@@ -647,6 +671,15 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__STEPS,
                  BuildstepFactory.eINSTANCE.createEgfStep()));
+
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createAggregateStep()));
 
 
 

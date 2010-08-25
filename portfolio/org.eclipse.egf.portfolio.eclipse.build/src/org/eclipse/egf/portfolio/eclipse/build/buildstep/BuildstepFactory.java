@@ -120,6 +120,15 @@ public interface BuildstepFactory extends EFactory {
     EgfStep createEgfStep();
 
     /**
+     * Returns a new object of class '<em>Aggregate Step</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Aggregate Step</em>'.
+     * @generated
+     */
+    AggregateStep createAggregateStep();
+
+    /**
 	 * Returns a new object of class '<em>Javadoc Step</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -27,8 +27,8 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
     protected final String TEXT_4 = "\"/>\t\t\t\t" + NL + "\t\t\t\t<arg value=\"-Dcbi.include.source=";
     protected final String TEXT_5 = "\"/>\t\t\t\t" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<cmdargs>" + NL + "\t\t\t\t<arg value=\"";
     protected final String TEXT_6 = ":eclipse.feature#site.p2\" />" + NL + "\t\t\t</cmdargs>" + NL + "\t\t</buckminster>" + NL + "" + NL + "\t\t<echo message=\"Publish site\"/>" + NL + "\t\t<mkdir dir=\"";
-    protected final String TEXT_7 = "/site/\"/>" + NL + "\t\t<copy todir=\"";
-    protected final String TEXT_8 = "/site/\">" + NL + "\t\t\t<fileset dir=\"${result}/output\">" + NL + "\t\t\t\t<include name=\"";
+    protected final String TEXT_7 = "/site.p2/\"/>" + NL + "\t\t<copy todir=\"";
+    protected final String TEXT_8 = "/site.p2/\">" + NL + "\t\t\t<fileset dir=\"${result}/output\">" + NL + "\t\t\t\t<include name=\"";
     protected final String TEXT_9 = "*/site.p2/*\"/>" + NL + "\t\t\t\t<include name=\"";
     protected final String TEXT_10 = "*/site.p2/**\"/>" + NL + "\t\t\t</fileset>" + NL + "\t\t\t<filtermapper>" + NL + "\t\t\t\t<replaceregex pattern=\".*site\\.p2\" replace=\"\" />" + NL + "\t\t\t</filtermapper>" + NL + "\t\t</copy>" + NL + "" + NL + "\t\t<echo message=\"Publish dropins\"/>" + NL + "\t\t<condition property=\"site.src\" value=\"site.signed\" else=\"site\">" + NL + "\t\t\t<istrue value=\"${site.signing}\" />" + NL + "\t\t</condition>" + NL + "" + NL + "\t\t<pathconvert property=\"featurefile";
     protected final String TEXT_11 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<fileset dir=\"${result}/output\" includes=\"";

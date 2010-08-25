@@ -154,6 +154,13 @@ public class BuildstepSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildstepPackage.AGGREGATE_STEP: {
+                AggregateStep aggregateStep = (AggregateStep)theEObject;
+                T result = caseAggregateStep(aggregateStep);
+                if (result == null) result = caseStep(aggregateStep);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildstepPackage.BUILD_LOCATION: {
                 BuildLocation buildLocation = (BuildLocation)theEObject;
                 T result = caseBuildLocation(buildLocation);
@@ -323,6 +330,21 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseEgfStep(EgfStep object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Aggregate Step</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Aggregate Step</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseAggregateStep(AggregateStep object) {
         return null;
     }
 
