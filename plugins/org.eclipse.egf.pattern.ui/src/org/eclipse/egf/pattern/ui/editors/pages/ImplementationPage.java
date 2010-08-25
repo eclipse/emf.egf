@@ -573,11 +573,11 @@ public class ImplementationPage extends PatternEditorPage {
         methodsAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                Pattern parent = getPatternParent();
-                MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), PatternUIHelper.getUseablePatternMethodsNameList(parent), ""); //$NON-NLS-1$
+                MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), PatternUIHelper.getUseablePatternMethodsNameList(getPattern()), ""); //$NON-NLS-1$
                 dialog.setTitle(Messages.ImplementationPage_methAdd_dialog_title);
                 if (dialog.open() == Window.OK) {
                     executeMethodsAdd(dialog.getName());
+                    initNameEditorInput();
                     setMethodsButtonsStatus();
                 }
             }
@@ -609,6 +609,8 @@ public class ImplementationPage extends PatternEditorPage {
                 dialog.setTitle(Messages.ImplementationPage_methEdit_dialog_title);
                 if (dialog.open() == Window.OK) {
                     executeMethodsEdit(dialog.getName());
+                    initNameEditorInput();
+                    setMethodsButtonsStatus();
                 }
             }
 
@@ -1736,16 +1738,19 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     void bindMethodsTable(Pattern pattern) {
-        if (nameEditor != null) {
-            List<String> useablePatternMethods = PatternUIHelper.getUseablePatternMethodsNameList(getPatternParent());
-            nameEditor.setInput(useablePatternMethods);
-        }
+        initNameEditorInput();
         if (methodsTableViewer != null) {
             methodsTableViewer.setInput(null);
-            methodsTableViewer.setLabelProvider(new MethodLabelProvider());
+            methodsTableViewer.setLabelProvider(new MethodLabelProvider(PatternUIHelper.getPatternParentMethodsNameList(getPattern())));
             IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__METHODS);
             IObservableList observe = input.observe(pattern);
             methodsTableViewer.setInput(observe);
+        }
+    }
+
+    protected void initNameEditorInput() {
+        if (nameEditor != null) {
+            nameEditor.setInput(PatternUIHelper.getUseablePatternMethodsNameList(getPattern()));
         }
     }
 
