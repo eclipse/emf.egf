@@ -58,6 +58,8 @@ public class FilePattern {
 
         method_setFilePath(ictx.getBuffer(), ictx);
 
+        method_alterFilePath(ictx.getBuffer(), ictx);
+
         method_setContext(ictx.getBuffer(), ictx);
 
         String loop = ictx.getBuffer().toString();
@@ -93,6 +95,10 @@ public class FilePattern {
     protected void method_setFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
+    }
+
+    protected void method_alterFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
     }
 
     protected void method_setContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {

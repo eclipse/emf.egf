@@ -20,7 +20,7 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "    <hudson.tasks.Ant>" + NL + "      <targets>all</targets>" + NL + "      <buildFile>../build.xml</buildFile>" + NL + "    </hudson.tasks.Ant>" + NL;
+    protected final String TEXT_1 = "    <hudson.tasks.Ant>" + NL + "      <targets>all</targets>" + NL + "      <buildFile>../releng/build.xml</buildFile>" + NL + "    </hudson.tasks.Ant>" + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 

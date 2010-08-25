@@ -33,3 +33,4 @@ site.retain.unpacked=false
 
 #local
 eclipse.download.prefix=http://download.eclipse.org
+relengDir=../releng

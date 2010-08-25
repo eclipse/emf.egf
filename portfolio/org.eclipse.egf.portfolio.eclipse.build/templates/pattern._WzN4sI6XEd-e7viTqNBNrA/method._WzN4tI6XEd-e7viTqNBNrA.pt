@@ -7,7 +7,7 @@
     <property file="build.properties" />
 
     <!-- if we are not running in Hudson, we some up with a reasonable default -->
-    <condition property="build.root" value="${env.WORKSPACE}" else="${basedir}/workspace">
+    <condition property="build.root" value="${env.WORKSPACE}" else="${basedir}/../workspace">
         <isset property="env.WORKSPACE" />
     </condition>
 
@@ -102,7 +102,7 @@
 
 	<macrodef name="anteclipse">
         <attribute name="workspace" default="${workspace}" />
-        <attribute name="buildfile" default="${build.root}/../build.xml" />
+        <attribute name="buildfile" default="${build.root}/${relengDir}/build.xml" />
         <attribute name="target" />
         <element name="globargs" optional="true" />
         <sequential>

@@ -44,11 +44,14 @@
             <methods xmi:id="_pMVydaa8Ed-uuvkstnP_MQ" name="footer" patternFilePath="templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._pMVydaa8Ed-uuvkstnP_MQ.pt"/>
             <methods xmi:id="_LIF5sKbSEd-qVbFBxWG7lA" name="setFileName" patternFilePath="templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._LIF5sKbSEd-qVbFBxWG7lA.pt"/>
             <methods xmi:id="_pMVydKa8Ed-uuvkstnP_MQ" name="setFilePath" patternFilePath="templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._pMVydKa8Ed-uuvkstnP_MQ.pt"/>
+            <methods xmi:id="_w_qpobAkEd-kZYPuJ1ZE3A" name="alterFilePath" patternFilePath="templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._w_qpobAkEd-kZYPuJ1ZE3A.pt"/>
             <methods xmi:id="_yffY0Ka8Ed-uuvkstnP_MQ" name="setContext" patternFilePath="templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._yffY0Ka8Ed-uuvkstnP_MQ.pt"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_MD_hQKbSEd-qVbFBxWG7lA"
                 called="#_LIF5sKbSEd-qVbFBxWG7lA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_zMMt0Ka8Ed-uuvkstnP_MQ"
                 called="#_pMVydKa8Ed-uuvkstnP_MQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_xb1BMLAkEd-kZYPuJ1ZE3A"
+                called="#_w_qpobAkEd-kZYPuJ1ZE3A"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_zazKgKa8Ed-uuvkstnP_MQ"
                 called="#_yffY0Ka8Ed-uuvkstnP_MQ"/>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_pMVyd6a8Ed-uuvkstnP_MQ"
@@ -522,6 +525,7 @@
             <methods xmi:id="_WzN4so6XEd-e7viTqNBNrA" name="init" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4so6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_WzN4s46XEd-e7viTqNBNrA" name="preCondition" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4s46XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_ZcV3EI6XEd-e7viTqNBNrA" name="setFileName" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._ZcV3EI6XEd-e7viTqNBNrA.pt"/>
+            <methods xmi:id="_FaDqMLAlEd-kZYPuJ1ZE3A" name="alterFilePath" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._FaDqMLAlEd-kZYPuJ1ZE3A.pt"/>
             <methods xmi:id="_WzN4tI6XEd-e7viTqNBNrA" name="begin" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4tI6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_WzN4tY6XEd-e7viTqNBNrA" name="footer" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4tY6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_IgNrEJ4XEd-3wvN5SnesGA" name="end" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._IgNrEJ4XEd-3wvN5SnesGA.pt"/>
@@ -543,6 +547,7 @@
             <methods xmi:id="_IfGS0o6XEd-e7viTqNBNrA" name="init" patternFilePath="templates/pattern._IfGS0I6XEd-e7viTqNBNrA/method._IfGS0o6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_IfGS046XEd-e7viTqNBNrA" name="preCondition" patternFilePath="templates/pattern._IfGS0I6XEd-e7viTqNBNrA/method._IfGS046XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_L1OhII6XEd-e7viTqNBNrA" name="setFileName" patternFilePath="templates/pattern._IfGS0I6XEd-e7viTqNBNrA/method._L1OhII6XEd-e7viTqNBNrA.pt"/>
+            <methods xmi:id="_LC0CcLAlEd-kZYPuJ1ZE3A" name="alterFilePath" patternFilePath="templates/pattern._IfGS0I6XEd-e7viTqNBNrA/method._LC0CcLAlEd-kZYPuJ1ZE3A.pt"/>
             <methods xmi:id="_IfGS1I6XEd-e7viTqNBNrA" name="body" patternFilePath="templates/pattern._IfGS0I6XEd-e7viTqNBNrA/method._IfGS1I6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_IfGS1Y6XEd-e7viTqNBNrA" name="footer" patternFilePath="templates/pattern._IfGS0I6XEd-e7viTqNBNrA/method._IfGS1Y6XEd-e7viTqNBNrA.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_IfGS1o6XEd-e7viTqNBNrA"/>
