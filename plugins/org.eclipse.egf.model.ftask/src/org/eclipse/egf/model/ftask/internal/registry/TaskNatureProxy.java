@@ -52,7 +52,7 @@ public class TaskNatureProxy {
         if (declaringExtension instanceof Handle) {
             handleId = ((Handle) declaringExtension).getId();
         }
-        // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
+        // see platform:/plugin/org.eclipse.egf.model.ftask/schema/org.eclipse.egf.model.ftask.task.exsd
         String clazz = element.getAttribute(TaskNatureRegistry.INVOKER_ATT_CLASS);
         // 'class' attribute is mandatory
         if (clazz == null || clazz.trim().length() == 0) {
