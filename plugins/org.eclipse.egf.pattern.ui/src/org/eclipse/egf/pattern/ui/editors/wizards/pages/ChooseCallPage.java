@@ -338,7 +338,7 @@ public class ChooseCallPage extends WizardPage {
     private void updateTable(CallTypeEnum kind) {
         if (kind == CallTypeEnum.METHOD_CALL) {
             if (kind != _oldKind) {
-                _parentTableViewer.setLabelProvider(new MethodLabelProvider());
+                _parentTableViewer.setLabelProvider(new MethodLabelProvider(PatternUIHelper.getPatternParentMethodsNameList(_pattern)));
                 _parentTableViewer.setSorter(new ViewerSorter(Collator.getInstance(Locale.ENGLISH)));
                 updateTableInput(getMethods(), null, true, false);
             }
@@ -481,17 +481,17 @@ public class ChooseCallPage extends WizardPage {
     private List<?> getListAreaDisplay(String name) {
         List<?> input = new ArrayList<Object>();
         switch (_selectKind) {
-            case METHOD_CALL:
-                input = getMethods();
-                break;
-            case PATTERN_CALL:
-                input = getPatterns();
-                break;
-            case PATTERNINJECTED_CALL:
-                input = getPatterns();
-                break;
-            default:
-                return null;
+        case METHOD_CALL:
+            input = getMethods();
+            break;
+        case PATTERN_CALL:
+            input = getPatterns();
+            break;
+        case PATTERNINJECTED_CALL:
+            input = getPatterns();
+            break;
+        default:
+            return null;
         }
         List<Object> callsNew = new ArrayList<Object>();
         if (!"".equals(name)) { //$NON-NLS-1$
@@ -525,32 +525,32 @@ public class ChooseCallPage extends WizardPage {
         if (selectParentTableIndex >= 0) {
             Object selectParentItem = _parentTableViewer.getElementAt(selectParentTableIndex);
             switch (_selectKind) {
-                case METHOD_CALL:
-                    getSelectMethodCallList();
-                    PatternMethod patternMethod = (PatternMethod) selectParentItem;
-                    MethodCall methodCall = PatternFactory.eINSTANCE.createMethodCall();
-                    methodCall.setCalled(patternMethod);
-                    _selectCall = methodCall;
-                    return;
-                case PATTERN_CALL:
-                    Pattern patternKind_1 = (Pattern) selectParentItem;
-                    PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
-                    patternCall.setCalled(patternKind_1);
-                    _selectCall = patternCall;
-                    return;
-                case PATTERNINJECTED_CALL:
-                    Pattern patternKind_2 = (Pattern) selectParentItem;
-                    PatternInjectedCall patternInjectedCall = PatternFactory.eINSTANCE.createPatternInjectedCall();
-                    patternInjectedCall.setCalled(patternKind_2);
-                    // Get the select PatternVariable.
-                    int selectChildTableIndex = _childTableViewer.getTable().getSelectionIndex();
-                    Object selectChildItem = _childTableViewer.getElementAt(selectChildTableIndex);
-                    if (selectChildItem instanceof InjectedContext) {
-                        InjectedContext ctx = (InjectedContext) selectChildItem;
-                        patternInjectedCall.setContext(ctx);
-                    }
-                    _selectCall = patternInjectedCall;
-                    return;
+            case METHOD_CALL:
+                getSelectMethodCallList();
+                PatternMethod patternMethod = (PatternMethod) selectParentItem;
+                MethodCall methodCall = PatternFactory.eINSTANCE.createMethodCall();
+                methodCall.setCalled(patternMethod);
+                _selectCall = methodCall;
+                return;
+            case PATTERN_CALL:
+                Pattern patternKind_1 = (Pattern) selectParentItem;
+                PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
+                patternCall.setCalled(patternKind_1);
+                _selectCall = patternCall;
+                return;
+            case PATTERNINJECTED_CALL:
+                Pattern patternKind_2 = (Pattern) selectParentItem;
+                PatternInjectedCall patternInjectedCall = PatternFactory.eINSTANCE.createPatternInjectedCall();
+                patternInjectedCall.setCalled(patternKind_2);
+                // Get the select PatternVariable.
+                int selectChildTableIndex = _childTableViewer.getTable().getSelectionIndex();
+                Object selectChildItem = _childTableViewer.getElementAt(selectChildTableIndex);
+                if (selectChildItem instanceof InjectedContext) {
+                    InjectedContext ctx = (InjectedContext) selectChildItem;
+                    patternInjectedCall.setContext(ctx);
+                }
+                _selectCall = patternInjectedCall;
+                return;
             }
         }
     }

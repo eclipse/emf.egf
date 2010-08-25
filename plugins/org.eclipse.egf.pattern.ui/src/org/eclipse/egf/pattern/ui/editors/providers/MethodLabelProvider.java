@@ -18,11 +18,9 @@ package org.eclipse.egf.pattern.ui.editors.providers;
 
 import java.util.List;
 
-import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -32,6 +30,11 @@ import org.eclipse.swt.graphics.Image;
  * 
  */
 public class MethodLabelProvider extends LabelProvider implements ITableLabelProvider {
+
+    public MethodLabelProvider(List<String> parentMethods) {
+        super();
+        this.parentMethods = parentMethods;
+    }
 
     private List<String> parentMethods;
 
@@ -46,14 +49,7 @@ public class MethodLabelProvider extends LabelProvider implements ITableLabelPro
     private boolean isOverride(Object element) {
         if (element instanceof PatternMethod) {
             PatternMethod patternMethod = (PatternMethod) element;
-            Pattern pattern = patternMethod.getPattern();
-            parentMethods = PatternUIHelper.getPatternParentMethodsNameList(pattern);
-            for (String parentMethod : parentMethods) {
-                String elementName = patternMethod.getName();
-                if (elementName.equals(parentMethod)) {
-                    return true;
-                }
-            }
+            return parentMethods.contains(patternMethod.getName());
         }
         return false;
     }

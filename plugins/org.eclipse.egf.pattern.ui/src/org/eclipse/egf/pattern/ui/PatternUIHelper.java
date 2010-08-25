@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -49,15 +50,19 @@ public class PatternUIHelper {
      * Get the pattern's parent methods.
      */
     public static List<String> getPatternParentMethodsNameList(Pattern pattern) {
-        List<String> parentMethods = new ArrayList<String>();
-        Pattern parent = pattern == null ? null : pattern.getSuperPattern();
-        if (parent != null) {
-            for (PatternMethod patternMethod : parent.getMethods()) {
+        Set<String> parentMethods = new HashSet<String>();
+        while (pattern != null) {
+            for (PatternMethod patternMethod : pattern.getMethods()) {
                 String name = patternMethod.getName();
+                if (PatternFactory.isSpecialMethod(name))
+                    continue;
                 parentMethods.add(name);
             }
+            pattern = pattern.getSuperPattern();
         }
-        return parentMethods;
+        List<String> result = new ArrayList<String>(parentMethods);
+        Collections.sort(result);
+        return result;
     }
 
     /**
@@ -81,20 +86,17 @@ public class PatternUIHelper {
     }
 
     /**
-     * Get the pattern's parent methods name list with out header/init/footer
+     * Get the pattern's parents methods name list with out header/init/footer
      * methods.
      */
     public static List<String> getUseablePatternMethodsNameList(Pattern pattern) {
-        List<String> parentMethods = new ArrayList<String>();
+        final List<String> result = getPatternParentMethodsNameList(pattern);
         if (pattern != null) {
             for (PatternMethod patternMethod : pattern.getMethods()) {
-                String name = patternMethod.getName();
-                if (PatternFactory.isSpecialMethod(name))
-                    continue;
-                parentMethods.add(name);
+                result.remove(patternMethod.getName());
             }
         }
-        return parentMethods;
+        return result;
     }
 
     /**
