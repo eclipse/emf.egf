@@ -91,7 +91,7 @@ public class EGFLoggerProxy {
         if (declaringExtension instanceof Handle) {
             handleId = ((Handle) declaringExtension).getId();
         }
-        // see platform:/plugin/org.eclipse.egf.model.ftask/org.eclipse.egf.model.ftask.task.exsd
+        // see platform:/plugin/org.eclipse.egf.common/schema/logger.exsd
         String clazz = element.getAttribute(EGFLoggerRegistry.INVOKER_ATT_CLASS);
         // 'class' attribute is mandatory
         if (clazz == null || clazz.trim().length() == 0) {
