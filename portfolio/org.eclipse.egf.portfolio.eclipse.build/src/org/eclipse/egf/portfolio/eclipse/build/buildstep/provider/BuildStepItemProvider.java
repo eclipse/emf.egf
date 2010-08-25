@@ -158,17 +158,11 @@ public class BuildStepItemProvider
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-
-        CLEAN_TYPE labelValue = ((BuildStep)object).getCleanBeforeBuild();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_BuildStep_type") :
-            getString("_UI_BuildStep_type") + " " + label;
-
+        return getString("_UI_BuildStep_type");
     }
 
     /**

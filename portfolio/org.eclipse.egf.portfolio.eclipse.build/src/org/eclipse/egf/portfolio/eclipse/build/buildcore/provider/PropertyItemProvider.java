@@ -148,16 +148,23 @@ public class PropertyItemProvider
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
 
-        String label = ((Property)object).getKey();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Property_type") :
-            getString("_UI_Property_type") + " " + label;
-
+        String key = ((Property)object).getKey();
+        String value = ((Property)object).getValue();
+        StringBuilder buffer = new StringBuilder(getString("_UI_Property_type"));
+        if (key != null) {
+            buffer.append(" ");
+            buffer.append(key);
+            if (value != null) {
+                buffer.append(" = ");
+                buffer.append(value);
+            }
+        }
+        return buffer.toString();
     }
 
     /**

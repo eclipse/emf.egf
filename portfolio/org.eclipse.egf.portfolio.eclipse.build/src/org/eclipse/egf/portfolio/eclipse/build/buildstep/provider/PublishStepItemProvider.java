@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.Component;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -173,14 +174,18 @@ public class PublishStepItemProvider
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-
         PublishStep publishStep = (PublishStep)object;
-        return getString("_UI_PublishStep_type") + " " + publishStep.isSigning();
-
+        Component component = publishStep.getComponent();
+        StringBuilder buffer = new StringBuilder(getString("_UI_PublishStep_type"));
+        if (component != null && component.getName() != null) {
+            buffer.append(" ");
+            buffer.append(component.getName());
+        }
+        return buffer.toString();
     }
 
     /**
