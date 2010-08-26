@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.pattern.strategy.modeldriven;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -29,8 +28,6 @@ import org.eclipse.emf.ecore.EObject;
  * 
  */
 public class EmfModelVisitor extends DefaultDomainVisitor {
-
-    private static final List<Object> EMPTY_LIST = new ArrayList<Object>();
 
     public List<?> getChildren(Object model) {
         // a implementer par les users en fct du model

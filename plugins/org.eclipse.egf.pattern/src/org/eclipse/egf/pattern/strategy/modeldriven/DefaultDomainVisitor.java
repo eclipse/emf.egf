@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EObject;
 
 public abstract class DefaultDomainVisitor implements DomainVisitor {
 
+    protected static final List<Object> EMPTY_LIST = new ArrayList<Object>();
+
     private final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
 
     protected final Set<Object> visited = new HashSet<Object>();
