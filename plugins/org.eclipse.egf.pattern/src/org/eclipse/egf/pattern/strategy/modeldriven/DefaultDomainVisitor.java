@@ -18,8 +18,8 @@ import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +28,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
 
     private final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
 
-    private final Set<Object> visited = new HashSet<Object>();
+    protected final Set<Object> visited = new HashSet<Object>();
 
     public void setPatterns(List<Pattern> patterns) throws PatternException {
         for (Pattern p : patterns) {
@@ -63,14 +63,14 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
 
     public void visit(PatternContext context, Object model) throws PatternException {
         for (Object obj : getChildren(model)) {
-            if (!visited.contains(obj))
+            if (!hasBeenVisited(obj))
                 doProcess(context, obj);
             visit(context, obj);
         }
     }
 
     protected void doProcess(PatternContext context, Object model) throws PatternException {
-        visited.add(model);
+        markVisited(model);
         List<Pattern> foundPattern = findPatterns(context, model);
         if (foundPattern == null || foundPattern.isEmpty())
             return;
@@ -108,6 +108,14 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
         }
         type2patterns.clear();
 
+    }
+
+    protected boolean hasBeenVisited(Object obj) {
+        return visited.contains(obj);
+    }
+
+    protected void markVisited(Object model) {
+        visited.add(model);
     }
 
 }
