@@ -242,7 +242,7 @@ public class EditorHelper {
                         if (editorInput != null) {
                             URI editorInputURI = EditorHelper.getURI(editorInput);
                             if (editorInputURI != null && editorInputURI.equals(uriToCheck)) {
-                                IEditorPart part = reference.getEditor(false);
+                                IEditorPart part = reference.getEditor(true);
                                 if (editorId != null && editorId.equals(part.getEditorSite().getId()) == false) {
                                     continue;
                                 }
