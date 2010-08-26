@@ -41,9 +41,6 @@ import org.eclipse.pde.core.IModel;
 import org.eclipse.pde.core.IModelChangeProvider;
 import org.eclipse.pde.core.IModelChangedEvent;
 import org.eclipse.pde.core.ModelChangedEvent;
-import org.eclipse.pde.core.plugin.IPluginBase;
-import org.eclipse.pde.core.plugin.IPluginImport;
-import org.eclipse.pde.core.plugin.IPluginLibrary;
 import org.eclipse.pde.core.plugin.IPluginObject;
 import org.eclipse.pde.internal.core.ICoreConstants;
 import org.eclipse.pde.internal.core.ibundle.IBundle;
@@ -93,9 +90,6 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
     @Override
     public void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
 
-        IPluginBase pluginBase = platformBundle.getPluginBase();
-        IPluginImport[] imports = pluginBase.getImports();
-        IPluginLibrary[] libraries = pluginBase.getLibraries();
         IProject project = platformBundle.getProject();
 
         // Copy the original manifest, see manageManifestFile
