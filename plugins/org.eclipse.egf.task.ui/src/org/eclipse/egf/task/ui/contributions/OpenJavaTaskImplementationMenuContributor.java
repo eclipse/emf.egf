@@ -106,14 +106,17 @@ public class OpenJavaTaskImplementationMenuContributor extends TaskMenuContribut
                         throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_load_class, _fqn), null)));
                     }
                     // Is the current bundle part of Java Search
-                    String id = fcore.getPlatformBundle().getPluginBase().getId();
+                    String id = fcore.getPlatformBundle().getBundleId();
                     if (PDECore.getDefault().getSearchablePluginsManager().isInJavaSearch(id) == false) {
-                        PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] { fcore.getPlatformBundle().getPluginModelBase() });
+                        PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] {
+                            fcore.getPlatformBundle().getPluginModelBase()
+                        });
                     }
                     // Java Search
                     TypeSearchRequestor requestor = new TypeSearchRequestor();
                     SearchEngine engine = new SearchEngine((WorkingCopyOwner) null);
-                    engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor, IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
+                    engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor,
+                            IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
                     _type = requestor.getMatched();
                 }
             } catch (Throwable t) {
@@ -144,6 +147,7 @@ public class OpenJavaTaskImplementationMenuContributor extends TaskMenuContribut
     }
 
     protected static class OpenAction extends TaskImplementationOpenAction {
+
         public OpenAction(Task task) {
             super(task, OPEN_TASK_IMPLEMENTATION_ACTION_ID);
         }
