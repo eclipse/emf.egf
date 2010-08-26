@@ -32,6 +32,11 @@ public class Messages extends NLS {
     public static String genchain_wizard_downButton_label;
     public static String genchain_wizard_extension_error;
 
+    public static String genchain_action_label;
+    public static String genchain_wizard_valueColumn_label;
+    public static String genchain_wizard_error1;
+    public static String genchain_wizard_element_name_creation;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.portfolio.genchain.tools.ui.Messages";//$NON-NLS-1$
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);

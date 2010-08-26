@@ -13,16 +13,15 @@
  * </copyright>
  */
 
-package org.eclipse.egf.portfolio.genchain.extension;
+package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public interface ExtensionProperties {
-    String ID = "id";
-    String MODEL_PATH = "model.path";
-    String PROPERTY_VALUE = "property.value";
-    String PROPERTY_EATTRIBUTE = "property.attribute";
-
+public interface NodeTypes {
+    int ROOT = 0;
+    int MODEL = 1;
+    int EXTENSION = 2;
+    int PROPERTY = 3;
 }

@@ -29,11 +29,11 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
  */
 public class NewFilePage extends WizardNewFileCreationPage {
 
-    private static final String FILE_EXTENSION = "generationchain";
+    private static final String FILE_EXTENSION = "generationchain";//$NON-NLS-1$
 
     public NewFilePage(String pageName, IStructuredSelection selection) {
         super(pageName, selection);
-        setFileName("My.generationchain");
+        setFileName("My.generationchain");//$NON-NLS-1$
     }
 
     public IFile getModelFile() {

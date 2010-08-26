@@ -13,16 +13,22 @@
  * </copyright>
  */
 
-package org.eclipse.egf.portfolio.genchain.extension;
+package org.eclipse.egf.portfolio.genchain;
+
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public interface ExtensionProperties {
-    String ID = "id";
-    String MODEL_PATH = "model.path";
-    String PROPERTY_VALUE = "property.value";
-    String PROPERTY_EATTRIBUTE = "property.attribute";
+public class Messages extends NLS {
+
+    private static final String BUNDLE_NAME = "org.eclipse.egf.portfolio.genchain.genchainMessages";//$NON-NLS-1$
+    public static String emfDocumentation_extension_label;
+    public static String emfGeneration_extension_label;
+
+    static {
+        NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+    }
 
 }

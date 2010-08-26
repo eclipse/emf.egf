@@ -25,15 +25,13 @@ import java.util.Map;
  * 
  */
 public class Node {
-    public static final int ROOT_NODE = 0;
-    public static final int CONTAINER_NODE = 1;
-    public static final int LEAF_NODE = 2;
 
     private final List<Node> children = new ArrayList<Node>();
     private String name;
     private int type;
     private final Node parent;
     private final Map<String, String> properties = new HashMap<String, String>();
+    private final Map<String, Object> extendedProperties = new HashMap<String, Object>();
 
     public Node(int type) {
         this(null, type);
@@ -53,6 +51,10 @@ public class Node {
         return properties;
     }
 
+    public Map<String, Object> getExtendedProperties() {
+        return extendedProperties;
+    }
+
     public String getName() {
         return name;
     }
@@ -69,15 +71,7 @@ public class Node {
         return parent;
     }
 
-    public boolean isRootNode() {
-        return type == ROOT_NODE;
-    }
-
-    public boolean isContainerNode() {
-        return type == CONTAINER_NODE;
-    }
-
-    public boolean isLeafNode() {
-        return type == LEAF_NODE;
+    public boolean is(int otherType) {
+        return type == otherType;
     }
 }

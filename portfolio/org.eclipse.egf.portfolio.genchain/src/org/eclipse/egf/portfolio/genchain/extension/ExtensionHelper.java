@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
+import org.eclipse.emf.ecore.EAttribute;
 
 /**
  * Associated to a EClass
@@ -38,16 +39,20 @@ public abstract class ExtensionHelper implements ExtensionProperties {
     private static final String EXTENSION_ID = "org.eclipse.egf.portfolio.genchain.elements";
     protected final List<Substitution> EMPTY_SUBSTITUTION = new ArrayList<Substitution>();
 
+    protected final Map<EAttribute, String> properties = new HashMap<EAttribute, String>();
+
     public abstract EcoreElement createEcoreElement(Map<String, String> properties);
 
     public abstract String getLabel();
 
-    // not used yet
-    public Map<String, String> computeDefaultProperties(Map<String, String> properties) {
-        Map<String, String> defaultProperties = new HashMap<String, String>();
-
-        return defaultProperties;
+    public final Map<EAttribute, String> getProperties() {
+        if (properties.isEmpty())
+            computeDefaultProperties();
+        return properties;
     }
+
+    protected void computeDefaultProperties() {
+    };
 
     // TODO upgrade this implementation
     public String getId() {

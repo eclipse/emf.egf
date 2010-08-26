@@ -50,7 +50,7 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
 
     private EcoreModelPage ecorePage;
     private NewFilePage filePage;
-    private final Node model = new Node(Node.ROOT_NODE);
+    private final Node model = new Node(NodeTypes.ROOT);
     private IStructuredSelection selection;
     private IWorkbench workbench;
 
@@ -60,14 +60,14 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
     }
 
     public void addPages() {
-        filePage = new NewFilePage("newFile", selection);
+        filePage = new NewFilePage("newFile", selection);//$NON-NLS-1$
         filePage.setTitle(Messages.genchain_wizard_title);
         filePage.setDescription(Messages.genchain_wizard_file_description);
         addPage(filePage);
 
         // TODO add a page to choose the name and factory component name
 
-        ecorePage = new EcoreModelPage("ecore", model, selection);
+        ecorePage = new EcoreModelPage("ecore", model, selection);//$NON-NLS-1$
         ecorePage.setTitle(Messages.genchain_wizard_title);
         ecorePage.setDescription(Messages.genchain_wizard_content_description);
         addPage(ecorePage);
@@ -79,7 +79,7 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
         final String name = modelFile.getName();
         final String shortName = name.substring(0, name.indexOf('.'));
         root.setName(shortName);
-        root.setFactoryComponentName("org.eclipse.egf.chain." + shortName.toLowerCase());
+        root.setFactoryComponentName("org.eclipse.egf.chain." + shortName.toLowerCase());//$NON-NLS-1$
 
         init(root);
 
@@ -95,13 +95,18 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
             root.getElements().add(container);
 
             container.setName(containerNode.getName());
-            for (Node leafNode : containerNode.getChildren()) {
-                String id = leafNode.getProperties().get(ID);
-                String modelName = getModelName(leafNode.getProperties().get(MODEL_PATH));
+            for (Node extensionNode : containerNode.getChildren()) {
+                String id = extensionNode.getProperties().get(ID);
+                String modelName = getModelName(extensionNode.getProperties().get(MODEL_PATH));
                 ExtensionHelper extensionHelper = extensionsAsMap.get(id);
-                if (checkedElements.contains(leafNode)) {
-                    EcoreElement leaf = extensionHelper.createEcoreElement(leafNode.getProperties());
-                    leaf.setName(leafNode.getName() + " on " + modelName);
+                if (checkedElements.contains(extensionNode)) {
+                    Map<String, String> properties = new HashMap<String, String>();
+                    for (Node propertyNode : extensionNode.getChildren()) {
+                        properties.put(propertyNode.getName(), propertyNode.getProperties().get(PROPERTY_VALUE));
+                    }
+                    properties.putAll(extensionNode.getProperties());
+                    EcoreElement leaf = extensionHelper.createEcoreElement(properties);
+                    leaf.setName(Messages.bind(Messages.genchain_wizard_element_name_creation, extensionNode.getName(), modelName));
                     container.getElements().add(leaf);
                 }
             }

@@ -15,7 +15,9 @@
 
 package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -26,10 +28,26 @@ import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.portfolio.genchain.extension.ExtensionHelper;
 import org.eclipse.egf.portfolio.genchain.extension.ExtensionProperties;
 import org.eclipse.egf.portfolio.genchain.tools.ui.Messages;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
+import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
+import org.eclipse.jface.viewers.ComboBoxViewerCellEditor;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.ICheckStateListener;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -39,13 +57,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public class EcoreModelPage extends WizardPage implements ExtensionProperties {
+public class EcoreModelPage extends WizardPage implements ExtensionProperties, NodeTypes {
 
     private abstract class MySelectionListener implements SelectionListener {
         protected abstract void buttonSelected();
@@ -73,7 +93,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
         for (Object obj : selection.toArray()) {
             if (obj instanceof IFile) {
                 IFile file = (IFile) obj;
-                if (file.getName().endsWith(".ecore"))
+                if (file.getName().endsWith(".ecore"))//$NON-NLS-1$
                     addEcore(file.getFullPath().toString());
             }
         }
@@ -81,36 +101,109 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
 
     private Node addEcore(String modelPath) {
         String name = GenerationChainWizard.getModelName(modelPath);
-        Node chainNode = new Node(model, Node.CONTAINER_NODE);
+        Node chainNode = new Node(model, MODEL);
         chainNode.setName(name);
         model.getChildren().add(chainNode);
 
         for (Entry<String, ExtensionHelper> entrySet : ExtensionHelper.getExtensionsAsMap().entrySet()) {
-            Node extensionNode = new Node(chainNode, Node.LEAF_NODE);
+            Node extensionNode = new Node(chainNode, EXTENSION);
             extensionNode.getProperties().put(ID, entrySet.getKey());
             extensionNode.getProperties().put(MODEL_PATH, modelPath);
             extensionNode.setName(entrySet.getKey());
             chainNode.getChildren().add(extensionNode);
 
-            // for (String prop : entrySet.getValue().getPropertyNames())
-            // {
-            // Node propertyNode = new Node(extensionNode, Node.LEAF_NODE);
-            // propertyNode.setName(prop);
-            // extensionNode.getChildren().add(propertyNode);
-            // }
-
+            for (Entry<EAttribute, String> prop : entrySet.getValue().getProperties().entrySet()) {
+                Node propertyNode = new Node(extensionNode, PROPERTY);
+                propertyNode.setName(prop.getKey().getName());
+                propertyNode.getProperties().put(PROPERTY_VALUE, prop.getValue());
+                propertyNode.getExtendedProperties().put(PROPERTY_EATTRIBUTE, prop.getKey());
+                extensionNode.getChildren().add(propertyNode);
+            }
         }
         return chainNode;
 
     }
 
     private void createViewerControl(Composite container) {
+
         viewer = new ContainerCheckedTreeViewer(container);
+        Tree tree = viewer.getTree();
+        tree.setHeaderVisible(true);
+        TreeColumn col1 = new TreeColumn(tree, SWT.FULL_SELECTION);
+        col1.setText("");//$NON-NLS-1$
+        col1.setResizable(true);
+        col1.setWidth(280);
+
+        TreeColumn col2 = new TreeColumn(tree, SWT.FULL_SELECTION);
+        col2.setText(Messages.genchain_wizard_valueColumn_label);
+        col2.setResizable(true);
+        col2.setWidth(200);
+
+        TreeViewerColumn tcol2 = new TreeViewerColumn(viewer, col2);
+        tcol2.setEditingSupport(new EditingSupport(viewer) {
+
+            private final TextCellEditor textEditor = new TextCellEditor(viewer.getTree());
+            private final ComboBoxViewerCellEditor booleanEditor = new ComboBoxViewerCellEditor(viewer.getTree());
+            {
+                booleanEditor.setLabelProvider(new LabelProvider());
+                booleanEditor.setContenProvider(new ListContentProvider());
+                booleanEditor.setInput(Arrays.asList("true", "false"));//$NON-NLS-1$ //$NON-NLS-2$
+                booleanEditor.getViewer().addDoubleClickListener(new IDoubleClickListener() {
+
+                    public void doubleClick(DoubleClickEvent event) {
+                        booleanEditor.getViewer().getCombo().setListVisible(true);
+                    }
+                });
+            }
+
+            @Override
+            protected void setValue(Object element, Object value) {
+                Node node = (Node) element;
+                node.getProperties().put(PROPERTY_VALUE, value.toString());
+                viewer.refresh(node);
+            }
+
+            @Override
+            protected Object getValue(Object element) {
+                Node node = (Node) element;
+                return node.getProperties().get(PROPERTY_VALUE);
+            }
+
+            @Override
+            protected CellEditor getCellEditor(Object element) {
+                Node node = (Node) element;
+                EAttribute attr = (EAttribute) node.getExtendedProperties().get(PROPERTY_EATTRIBUTE);
+                if (attr == null)
+                    return null;
+                final EClassifier eType = attr.getEType();
+                if (EcorePackage.eINSTANCE.getEBoolean().equals(eType))
+                    return booleanEditor;
+                if (EcorePackage.eINSTANCE.getEString().equals(eType))
+                    return textEditor;
+                return null;
+            }
+
+            @Override
+            protected boolean canEdit(Object element) {
+
+                return true;
+            }
+        });
+
         viewer.setLabelProvider(new NodeLabelProvider());
         viewer.setContentProvider(new NodeContentProvider());
+        viewer.setComparator(new ViewerComparator());
         GridData gd = new GridData(GridData.FILL_BOTH);
         viewer.getTree().setLayoutData(gd);
         viewer.setInput(model);
+        viewer.addCheckStateListener(new ICheckStateListener() {
+
+            public void checkStateChanged(CheckStateChangedEvent event) {
+                Node node = (Node) event.getElement();
+                if (node.is(PROPERTY))
+                    viewer.setChecked(node.getParent(), event.getChecked());
+            }
+        });
         viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -118,6 +211,20 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
             }
         });
 
+    }
+
+    @Override
+    public boolean isPageComplete() {
+        if (viewer != null) {
+            final boolean complete = viewer.getCheckedElements().length != 0;
+            if (complete) {
+                setErrorMessage(null);
+            } else {
+                setErrorMessage(Messages.genchain_wizard_error1);
+            }
+            return complete;
+        }
+        return super.isPageComplete();
     }
 
     public void createButtonControl(Composite parent) {
@@ -141,10 +248,10 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
                     String uri = chooseModelDialog.getURIText();
                     if (uri == null)
                         return;
-                    if (uri.startsWith("platform:/plugin"))
-                        uri = uri.substring("platform:/plugin".length());
-                    else if (uri.startsWith("platform:/resource"))
-                        uri = uri.substring("platform:/resource".length());
+                    if (uri.startsWith("platform:/plugin"))//$NON-NLS-1$
+                        uri = uri.substring("platform:/plugin".length());//$NON-NLS-1$
+                    else if (uri.startsWith("platform:/resource"))//$NON-NLS-1$
+                        uri = uri.substring("platform:/resource".length());//$NON-NLS-1$
                     else
                         return;
                     Node newNode = addEcore(uri);
@@ -166,7 +273,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
                 for (Object obj : selection.toArray()) {
                     if (obj instanceof Node) {
                         Node node = (Node) obj;
-                        if (node.isContainerNode()) {
+                        if (node.is(MODEL)) {
                             node.getParent().getChildren().remove(node);
                         }
                     }
@@ -237,6 +344,10 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
         refreshButtons();
 
         setControl(container);
+
+        container.pack();
+
+        viewer.expandAll();
     }
 
     protected void refreshButtons() {
@@ -248,7 +359,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
             Node node = (Node) selection.getFirstElement();
             final Node parent2 = node.getParent();
             final int index = parent2.getChildren().indexOf(node);
-            if (node.isContainerNode()) {
+            if (node.is(MODEL)) {
                 upButton.setEnabled(index > 0);
                 downButton.setEnabled(index < parent2.getChildren().size() - 1);
             }
@@ -259,7 +370,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
             for (Object obj : selection.toArray()) {
                 if (obj instanceof Node) {
                     Node node = (Node) obj;
-                    if (!node.isContainerNode()) {
+                    if (!node.is(MODEL)) {
                         enableDelete = false;
                         break;
                     }
@@ -276,6 +387,24 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties {
             checkedElements.add((Node) obj);
 
         return checkedElements;
+    }
+
+    static private class ListContentProvider implements IStructuredContentProvider {
+
+        public Object[] getElements(Object inputElement) {
+            if (inputElement instanceof List<?>)
+                return ((List<?>) inputElement).toArray();
+            return null;
+        }
+
+        public void dispose() {
+        }
+
+        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+            if (newInput != null)
+                viewer.refresh();
+        }
+
     }
 
 }

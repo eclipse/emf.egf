@@ -49,13 +49,9 @@ public class FixPluginFileTask implements ITaskProduction, FcoreBuilderConstants
     }
 
     public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        // TODO Auto-generated method stub
-
     }
 
     public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        // TODO Auto-generated method stub
-
     }
 
 }

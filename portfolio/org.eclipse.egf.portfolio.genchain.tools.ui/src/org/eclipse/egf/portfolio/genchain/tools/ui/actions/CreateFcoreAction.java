@@ -37,6 +37,7 @@ import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.portfolio.genchain.extension.ExtensionHelper;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
 import org.eclipse.egf.portfolio.genchain.tools.Activator;
+import org.eclipse.egf.portfolio.genchain.tools.ui.Messages;
 import org.eclipse.egf.portfolio.genchain.tools.utils.RunActivityHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.action.IAction;
@@ -69,7 +70,7 @@ public class CreateFcoreAction implements IObjectActionDelegate {
         final String fcoreRelativePath = "/model/" + generationChain.getName() + ".fcore";
         final String fcoreOutputPath = generationChain.getFactoryComponentName() + fcoreRelativePath;
 
-        final WorkspaceJob buildJob = new WorkspaceJob("Generate chain") {
+        final WorkspaceJob buildJob = new WorkspaceJob(Messages.genchain_action_label) {
             @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
                 try {
@@ -102,7 +103,7 @@ public class CreateFcoreAction implements IObjectActionDelegate {
         project.open(null);
         WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
         runner.setProgressMonitor(null);
-        runner.run(true, false, new ConvertProjectOperation(project, false, true));
+        runner.run(true, false, new ConvertProjectOperation(project, true, true));
         IFile file = project.getFile("plugin.xml");
         if (!file.exists()) {
             String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?eclipse version=\"3.2\"?>\n<plugin>" + "\n\t<extension\n\tpoint=\"org.eclipse.egf.core.fcore\">\n\t\t<fcore id=\"" + path + "\">\n\t" + "</fcore>\n</extension>\n</plugin>";

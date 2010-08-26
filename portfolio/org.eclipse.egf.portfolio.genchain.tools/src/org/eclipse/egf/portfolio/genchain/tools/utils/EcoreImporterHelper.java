@@ -66,10 +66,6 @@ public class EcoreImporterHelper {
                 List<Resource> resources = new UniqueEList.FastCompare<Resource>();
                 Resource genModelResource = getGenModel().eResource();
                 resources.add(genModelResource);
-                // for (GenPackage genPackage : getGenModel().getGenPackages())
-                // {
-                // resources.add(genPackage.getEcorePackage().eResource());
-                // }
 
                 // Handle application genmodel stub
                 //

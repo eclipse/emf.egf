@@ -43,43 +43,37 @@ public class FcoreBuilderTask extends ModelDrivenStrategyTask {
         super.readContext(context, ctx);
         // Create FC
         String name = (String) ctx.getValue(FcoreBuilderConstants.NAME);
-        
+
         EGFResourceSet resourceSet = new EGFResourceSet();
-        
-        Collection<FactoryComponent> unusedFC = new ArrayList<FactoryComponent>(); 
+
+        Collection<FactoryComponent> unusedFC = new ArrayList<FactoryComponent>();
         URI fcoreUri = URI.createPlatformResourceURI((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH), true);
         FactoryComponent mainFC = null;
-        
-        Resource resource = null;
-		try {
-			resource = resourceSet.getResource(fcoreUri, true);
-			for (EObject obj : resource.getContents())
-			{
-				if (obj instanceof FactoryComponent)
-				{
-					FactoryComponent fc = (FactoryComponent) obj;
-					if (FCMatcher.isLauncherFC(fc))
-					{
-						mainFC = fc;
-						ActivityInvocationHelper.clearOrchestration(fc);
-					}
-					else
-						unusedFC.add(fc);
-				}
-			}
-			
-			//TODO match de fc, 
-		} catch (Exception e) {
-	        resource = resourceSet.createResource(fcoreUri);
-		}
-		
-		if (mainFC == null)
-		{
-	        mainFC = ActivityInvocationHelper.createDefaultFC(name + " Launcher");
-	        resource.getContents().add(mainFC);
-		}
 
-		
+        Resource resource = null;
+        try {
+            resource = resourceSet.getResource(fcoreUri, true);
+            for (EObject obj : resource.getContents()) {
+                if (obj instanceof FactoryComponent) {
+                    FactoryComponent fc = (FactoryComponent) obj;
+                    if (FCMatcher.isLauncherFC(fc)) {
+                        mainFC = fc;
+                        ActivityInvocationHelper.clearOrchestration(fc);
+                    } else
+                        unusedFC.add(fc);
+                }
+            }
+
+            // TODO match de fc,
+        } catch (Exception e) {
+            resource = resourceSet.createResource(fcoreUri);
+        }
+
+        if (mainFC == null) {
+            mainFC = ActivityInvocationHelper.createDefaultFC(name + " Launcher");
+            resource.getContents().add(mainFC);
+        }
+
         Map<GenerationElement, FactoryComponent> fcs = new HashMap<GenerationElement, FactoryComponent>();
         fcs.put(null, mainFC);
         ctx.setValue(FcoreBuilderConstants.MAIN_FCORE, mainFC);
@@ -88,29 +82,5 @@ public class FcoreBuilderTask extends ModelDrivenStrategyTask {
         ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<EmfGeneration, URI>());
         ctx.setValue(FcoreBuilderConstants.UNUSED_FCORE, unusedFC);
         ctx.setValue(FcoreBuilderConstants.RESOURCE_SET, resourceSet);
-
-        
-        //*******************************************************************************
-/*        FactoryComponent fc = ActivityInvocationHelper.createDefaultFC(name + " Launcher");
-
-        EGFResourceSet resourceSet = new EGFResourceSet();
-
-        String path = (String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH);
-        Resource resource = resourceSet.createResource();
-        resource.getContents().add(fc);
-        ctx.setValue(FcoreBuilderConstants.MAIN_FCORE, fc);
-        ctx.setValue(FcoreBuilderConstants.RESOURCE_SET, resourceSet);
-
-        Map<GenerationElement, FactoryComponent> fcs = new HashMap<GenerationElement, FactoryComponent>();
-        fcs.put(null, fc);
-        ctx.setValue(FcoreBuilderConstants.CURRENT_FCORE, fcs);
-
-        ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<EmfGeneration, URI>());
-        */
     }
-
-	private void handleFcoreResource(EGFResourceSet resourceSet, Collection<FactoryComponent> unusedFC, PatternContext ctx) {
-		
-	}
-
 }
