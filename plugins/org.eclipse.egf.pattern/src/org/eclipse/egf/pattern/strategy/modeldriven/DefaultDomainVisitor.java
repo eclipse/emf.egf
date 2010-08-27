@@ -14,7 +14,6 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
@@ -23,6 +22,7 @@ import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public abstract class DefaultDomainVisitor implements DomainVisitor {
 
@@ -52,7 +52,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     protected List<Pattern> findPatterns(PatternContext context, Object model) throws PatternException {
         List<Pattern> result = null;
         if (model instanceof EObject) {
-            String fullName = Activator.getEPackageHelper().getFullName((EObject) model);
+            String fullName = EcoreUtil.getURI(((EObject) model).eClass()).toString();
             result = type2patterns.get(fullName);
         } else
             throw new UnsupportedOperationException();
