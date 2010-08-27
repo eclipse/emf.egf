@@ -194,18 +194,6 @@ public class EPackageHelper {
         throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
     }
 
-    public String getFullName(EObject obj) {
-        String nsURI = null;
-        String typeName = null;
-        EClass eClass = obj.eClass();
-        nsURI = eClass.getEPackage().getNsURI();
-        typeName = eClass.getName();
-        if (nsURI == null || typeName == null) {
-            return null;
-        }
-        return nsURI + "#//" + typeName; //$NON-NLS-1$
-    }
-
     public static class RegistrationException extends Exception {
 
         private static final long serialVersionUID = 1L;
