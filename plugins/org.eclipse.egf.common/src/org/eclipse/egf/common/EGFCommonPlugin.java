@@ -16,6 +16,8 @@ import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.internal.registry.EGFLoggerRegistry;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.packageadmin.PackageAdmin;
 
 /**
  * Common plug-in activator.
@@ -23,6 +25,8 @@ import org.osgi.framework.BundleContext;
  * @author Xavier Maysonnave
  */
 public class EGFCommonPlugin extends EGFAbstractPlugin {
+
+    private volatile static PackageAdmin __packageAdmin;
 
     /**
      * Keep track of the EGFLoggerRegistry
@@ -43,6 +47,10 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
         return __plugin;
     }
 
+    public static PackageAdmin getPackageAdmin() {
+        return __packageAdmin;
+    }
+
     /**
      * Get egf loggers implementations.
      * 
@@ -59,6 +67,10 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         __plugin = this;
+        ServiceReference service = context.getServiceReference(PackageAdmin.class.getName());
+        if (service != null) {
+            __packageAdmin = (PackageAdmin) context.getService(service);
+        }
     }
 
     @Override
@@ -67,6 +79,7 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
             __loggerRegistry.dispose();
             __loggerRegistry = null;
         }
+        __packageAdmin = null;
         super.stop(context);
         __plugin = null;
     }
