@@ -21,7 +21,7 @@
             id="org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainWizardID"
             name="%_UI_GenerationChainWizard_label"
             class="org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainWizard"
-            category="org.eclipse.egf.portfolio.genchain.wizard.category.ID"
+            category="org.eclipse.egf.category.wizards"
             icon="icons/full/obj16/GenerationChainModelFile.gif">
          <description>%_UI_GenerationChainWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
