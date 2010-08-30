@@ -11,63 +11,66 @@
  -->
 
 <plugin>
-
-  <!-- ================================================================================= -->
-  <!-- Applications                                                                      -->
-  <!-- ================================================================================= -->
-
-  <extension
-    id="org.eclipse.egf.application.activity"
-    point="org.eclipse.core.runtime.applications"
-  >
-    <application>
-      <run
-        class="org.eclipse.egf.application.activity.ActivityApplication"
-      />
-    </application>
-  </extension>
   
-  <!-- ================================================================================= -->
-  <!-- Ant ExtraClasspathEntries                                                         -->
-  <!-- ================================================================================= -->  
+    <!-- ================================================================================= -->
+    <!-- Ant ExtraClasspathEntries                                                         -->
+    <!-- ================================================================================= -->  
   
-  <extension 
-    point="org.eclipse.ant.core.extraClasspathEntries"
-  >
-    <extraClasspathEntry 
-      library="ant_tasks/egf.ant.tasks.jar" 
-    />
-  </extension>
+    <extension 
+        point="org.eclipse.ant.core.extraClasspathEntries"
+    >
+        <extraClasspathEntry 
+            library="ant_tasks/egf.ant.tasks.jar" 
+        />
+    </extension>
   
-  <!-- ================================================================================= -->
-  <!-- Ant Taks                                                                          -->
-  <!-- ================================================================================= -->  
+    <!-- ================================================================================= -->
+    <!-- Ant Taks                                                                          -->
+    <!-- ================================================================================= -->  
 
-  <extension 
-    point="org.eclipse.ant.core.antTasks"
-  >
-    <antTask 
-      library="ant_tasks/egf.ant.tasks.jar" 
-      name="egf.activities" 
-      headless="true" 
-      class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask" 
-    />
-  </extension>
+    <extension 
+        point="org.eclipse.ant.core.antTasks"
+    >
+        <antTask 
+            library="ant_tasks/egf.ant.tasks.jar" 
+            name="egf.activities" 
+            headless="true" 
+            class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask" 
+        />
+    </extension>
+    
+    <!-- ================================================================================= -->
+    <!-- Applications                                                                      -->
+    <!-- ================================================================================= -->
 
-  <!-- ================================================================================= -->
-  <!-- Product                                                                          -->
-  <!-- ================================================================================= -->  
-  <extension
-        id="EGFApplication"
-        point="org.eclipse.core.runtime.products">
-     <product
-           application="org.eclipse.egf.application.activity"
-           name="org.eclipse.egf.application.product">
-        <property
-              name="appName"
-              value="org.eclipse.egf.application.product">
-        </property>
-     </product>
-  </extension>
+    <extension
+        id="org.eclipse.egf.application.activity"
+        point="org.eclipse.core.runtime.applications"
+    >
+        <application>
+            <run
+                class="org.eclipse.egf.application.activity.ActivityApplication"
+            />
+        </application>
+    </extension>    
+
+    <!-- ================================================================================= -->
+    <!-- Product                                                                          -->
+    <!-- ================================================================================= -->
+      
+    <extension
+        id="org.eclipse.egf.application.products"
+        point="org.eclipse.core.runtime.products"
+    >
+        <product
+            name="%activityApplicationName"        
+            application="org.eclipse.egf.application.activity"
+        >
+            <property
+                name="appName"
+                value="org.eclipse.egf.application.activity"
+            />
+        </product>
+    </extension>
   
 </plugin>
