@@ -40,7 +40,7 @@ public class Triggerscm extends org.eclipse.egf.portfolio.eclipse.build.hudson.c
 
         paramDesc = new IQuery.ParameterDescription("scmTrigger", "http://www.eclipse.org/egf/1.0.0/buildtrigger#//SCMTrigger");
         queryCtx = new HashMap<String, String>();
-        List<Object> scmTriggerList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> scmTriggerList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object scmTriggerParameter : scmTriggerList) {
 

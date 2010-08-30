@@ -54,7 +54,7 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 
         paramDesc = new IQuery.ParameterDescription("aggregateStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//AggregateStep");
         queryCtx = new HashMap<String, String>();
-        List<Object> aggregateStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> aggregateStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object aggregateStepParameter : aggregateStepList) {
 

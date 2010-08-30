@@ -39,7 +39,7 @@ public class PublisherjavadocStep extends org.eclipse.egf.portfolio.eclipse.buil
 
         paramDesc = new IQuery.ParameterDescription("javadocStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//JavadocStep");
         queryCtx = new HashMap<String, String>();
-        List<Object> javadocStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> javadocStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object javadocStepParameter : javadocStepList) {
 

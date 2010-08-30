@@ -49,7 +49,7 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
         paramDesc = new IQuery.ParameterDescription("egfStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//EgfStep");
         queryCtx = new HashMap<String, String>();
-        List<Object> egfStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> egfStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object egfStepParameter : egfStepList) {
 

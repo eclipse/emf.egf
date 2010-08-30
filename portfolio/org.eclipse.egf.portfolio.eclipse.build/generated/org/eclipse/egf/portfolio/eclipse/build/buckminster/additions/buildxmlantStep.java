@@ -48,7 +48,7 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
         paramDesc = new IQuery.ParameterDescription("antStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//AntStep");
         queryCtx = new HashMap<String, String>();
-        List<Object> antStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> antStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object antStepParameter : antStepList) {
 

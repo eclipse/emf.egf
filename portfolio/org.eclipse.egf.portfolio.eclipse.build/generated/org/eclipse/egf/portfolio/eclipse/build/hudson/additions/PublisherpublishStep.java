@@ -39,7 +39,7 @@ public class PublisherpublishStep extends org.eclipse.egf.portfolio.eclipse.buil
 
         paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep");
         queryCtx = new HashMap<String, String>();
-        List<Object> publishStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> publishStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object publishStepParameter : publishStepList) {
 

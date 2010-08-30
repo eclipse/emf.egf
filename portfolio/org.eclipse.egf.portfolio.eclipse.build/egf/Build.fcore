@@ -354,7 +354,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_0ICZF5WnEd-u9bNbiVaYcw"/>
             <parameters xmi:id="_SDqfUJWoEd-u9bNbiVaYcw" name="publishStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_WVeSwJWoEd-u9bNbiVaYcw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_0ICZGJWnEd-u9bNbiVaYcw"
                 name="JET"/>
@@ -371,7 +371,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_gAN5xpWoEd-u9bNbiVaYcw"/>
             <parameters xmi:id="_kJs3oJWoEd-u9bNbiVaYcw" name="testStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//TestStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_pDFocJWoEd-u9bNbiVaYcw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_gAN5x5WoEd-u9bNbiVaYcw"
                 name="JET"/>
@@ -405,7 +405,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_GyPi9p7_Ed-9VeXE6iwCzg"/>
             <parameters xmi:id="_LaeSUJ7_Ed-9VeXE6iwCzg" name="javadocStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//JavadocStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_N02DAJ7_Ed-9VeXE6iwCzg"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_GyPi957_Ed-9VeXE6iwCzg"
                 name="JET"/>
@@ -422,7 +422,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_WOWc558FEd-qe8Qq1eNVqQ"/>
             <parameters xmi:id="_b03ZcJ8FEd-qe8Qq1eNVqQ" name="cronTrigger" type="http://www.eclipse.org/egf/1.0.0/buildtrigger#//CronTrigger">
               <query xmi:type="pattern:BasicQuery" xmi:id="_E7CFgZ8GEd-nb4TPjagXkA"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_WOWc6J8FEd-qe8Qq1eNVqQ"
                 name="JET"/>
@@ -439,7 +439,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_NZITNp8GEd-nb4TPjagXkA"/>
             <parameters xmi:id="_O7CK0J8GEd-nb4TPjagXkA" name="scmTrigger" type="http://www.eclipse.org/egf/1.0.0/buildtrigger#//SCMTrigger">
               <query xmi:type="pattern:BasicQuery" xmi:id="_QP99cJ8GEd-nb4TPjagXkA"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_NZITN58GEd-nb4TPjagXkA"
                 name="JET"/>
@@ -763,7 +763,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_dSeb56oGEd-k9aH6AnUHCw"/>
             <parameters xmi:id="_hvsOEKoGEd-k9aH6AnUHCw" name="cleanStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//CleanStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_mPuqwKoGEd-k9aH6AnUHCw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_dSeb6KoGEd-k9aH6AnUHCw"
                 name="JET"/>
@@ -780,7 +780,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_sTvtRpVuEd-fvPvNnKEvJg"/>
             <parameters xmi:id="_xF8Q8JVuEd-fvPvNnKEvJg" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_0eN0UJVuEd-fvPvNnKEvJg"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_sTvtR5VuEd-fvPvNnKEvJg"
                 name="JET"/>
@@ -797,7 +797,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_Q9g79pVuEd-fvPvNnKEvJg"/>
             <parameters xmi:id="_U5KSIJVuEd-fvPvNnKEvJg" name="testStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//TestStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_YG4LUJVuEd-fvPvNnKEvJg"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_Q9g795VuEd-fvPvNnKEvJg"
                 name="JET"/>
@@ -814,7 +814,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_mDDq95VxEd-4gcrM0WMTSg"/>
             <parameters xmi:id="_rTRnYJVxEd-4gcrM0WMTSg" name="publishStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_vSWFAJVxEd-4gcrM0WMTSg"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_mDDq-JVxEd-4gcrM0WMTSg"
                 name="JET"/>
@@ -831,7 +831,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_f2VpZ6bdEd-ZgeUI-BonwQ"/>
             <parameters xmi:id="_lqRW4KbdEd-ZgeUI-BonwQ" name="publishStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_omepUKbdEd-ZgeUI-BonwQ"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_f2VpaKbdEd-ZgeUI-BonwQ"
                 name="JET"/>
@@ -848,7 +848,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_gvxW95VyEd--Q_dCgK5jqw"/>
             <parameters xmi:id="_jo-YsJVyEd--Q_dCgK5jqw" name="antStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//AntStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_mH4EEJVyEd--Q_dCgK5jqw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_gvxW-JVyEd--Q_dCgK5jqw"
                 name="JET"/>
@@ -882,7 +882,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_VOw2h6YIEd-BVLrtOlWqIw"/>
             <parameters xmi:id="_ZX2y0KYIEd-BVLrtOlWqIw" name="egfStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//EgfStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_co668KYIEd-BVLrtOlWqIw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_VOw2iKYIEd-BVLrtOlWqIw"
                 name="JET"/>
@@ -899,7 +899,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_1dui5q-AEd-6WbA1gqJ3Sw"/>
             <parameters xmi:id="_6jdtoK-AEd-6WbA1gqJ3Sw" name="aggregateStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//AggregateStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_-T0Z0K-AEd-6WbA1gqJ3Sw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_1dui56-AEd-6WbA1gqJ3Sw"
                 name="JET"/>
@@ -933,7 +933,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_dmdItpMZEd-pjLQZUcJ3fw"/>
             <parameters xmi:id="_f0UHYJMZEd-pjLQZUcJ3fw" name="feature" type="http://www.eclipse.org/egf/1.0.0/buildstep#//Feature">
               <query xmi:type="pattern:BasicQuery" xmi:id="_jXjkoJMZEd-pjLQZUcJ3fw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_dmdIt5MZEd-pjLQZUcJ3fw"
                 name="JET"/>
@@ -950,7 +950,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_CrT7dpMaEd-pjLQZUcJ3fw"/>
             <parameters xmi:id="_G8dAgJMaEd-pjLQZUcJ3fw" name="plugin" type="http://www.eclipse.org/egf/1.0.0/buildstep#//Plugin">
               <query xmi:type="pattern:BasicQuery" xmi:id="_Ji5eUJMaEd-pjLQZUcJ3fw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_CrT7d5MaEd-pjLQZUcJ3fw"
                 name="JET"/>
@@ -984,7 +984,7 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_EGUrdpMbEd-pjLQZUcJ3fw"/>
             <parameters xmi:id="_JPx4kJMbEd-pjLQZUcJ3fw" name="scmBuildLocation" type="http://www.eclipse.org/egf/1.0.0/buildstep#//SCMBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_Npj8QJMbEd-pjLQZUcJ3fw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_EGUrd5MbEd-pjLQZUcJ3fw"
                 name="JET"/>
@@ -1002,7 +1002,7 @@
             <parameters xmi:id="_JupXAJSpEd-BJKD_XS9R2A" name="targetPlatformBuildLocation"
                 type="http://www.eclipse.org/egf/1.0.0/buildstep#//TargetPlatformBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_iUUFMJSpEd-BJKD_XS9R2A"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_wiU4h5SoEd-BJKD_XS9R2A"
                 name="JET"/>
@@ -1020,7 +1020,7 @@
             <parameters xmi:id="_QM7agJTUEd-fvPvNnKEvJg" name="updateSiteBuildLocation"
                 type="http://www.eclipse.org/egf/1.0.0/buildstep#//UpdateSiteBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_mJ-rMJTVEd-fvPvNnKEvJg"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_MXMfF5TUEd-fvPvNnKEvJg"
                 name="JET"/>
@@ -1038,7 +1038,7 @@
             <parameters xmi:id="_viwKUJloEd-GKqXx_evxEw" name="localBuildLocation"
                 type="http://www.eclipse.org/egf/1.0.0/buildstep#//LocalBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_0I5PAJloEd-GKqXx_evxEw"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_pFGKaJloEd-GKqXx_evxEw"
                 name="JET"/>
@@ -1073,7 +1073,7 @@
             <parameters xmi:id="_UtyiwJ45Ed-3wvN5SnesGA" name="targetPlatformBuildLocation"
                 type="http://www.eclipse.org/egf/1.0.0/buildstep#//TargetPlatformBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_ZYG80J45Ed-3wvN5SnesGA"
-                  extensionId="org.eclipse.egf.pattern.basic.query"/>
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_C6JiB545Ed-3wvN5SnesGA"
                 name="JET"/>

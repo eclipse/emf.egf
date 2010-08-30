@@ -43,7 +43,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 
         paramDesc = new IQuery.ParameterDescription("cleanStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//CleanStep");
         queryCtx = new HashMap<String, String>();
-        List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+        List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object cleanStepParameter : cleanStepList) {
 
