@@ -187,7 +187,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     private static final String VARIABLE_NAME_DEFAULT_VALUE = "variable"; //$NON-NLS-1$
 
-    private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
+    private static final String VARIABLE_TYPE_DEFAULT_VALUE = "java.lang.String"; //$NON-NLS-1$
 
     private LiveValidationContentAdapter variableNameEmpetyValidationAdapter;
 
