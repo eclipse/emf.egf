@@ -16,12 +16,14 @@
 package org.eclipse.egf.portfolio.genchain.tools;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * 
@@ -31,6 +33,9 @@ public class BuildFcoreReporter implements PatternExecutionReporter, FcoreBuilde
 
     public void executionFinished(String output, PatternContext context) {
         FactoryComponent fc = (FactoryComponent) context.getValue(FcoreBuilderConstants.MAIN_FCORE);
+        for (FactoryComponent unusedFC : (Collection<FactoryComponent>) context.getValue(FcoreBuilderConstants.UNUSED_FCORE)) {
+            EcoreUtil.delete(unusedFC);
+        }
 
         try {
             fc.eResource().save(Collections.EMPTY_MAP);

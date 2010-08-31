@@ -71,8 +71,10 @@ public class GenerationChainPattern {
 		if (fc == null) {
 			fc = ActivityInvocationHelper.createDefaultFC(parameter.getName());
 			parentFC.eResource().getContents().add(fc);
-		} else
+		} else {
 			ActivityInvocationHelper.clearOrchestration(fc);
+			unused.remove(fc);
+		}
 		fcs.put(parameter, fc);
 
 		ActivityInvocationHelper.addInvocation((ProductionPlan) parentFC.getOrchestration(), fc);
