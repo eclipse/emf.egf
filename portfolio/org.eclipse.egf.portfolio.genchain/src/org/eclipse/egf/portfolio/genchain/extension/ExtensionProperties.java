@@ -25,4 +25,6 @@ public interface ExtensionProperties {
     String PROPERTY_VALUE = "property.value";
     String PROPERTY_EATTRIBUTE = "property.attribute";
 
+    String CONTEXT_PROJECT_NAME = "ctx.project.name";
+
 }

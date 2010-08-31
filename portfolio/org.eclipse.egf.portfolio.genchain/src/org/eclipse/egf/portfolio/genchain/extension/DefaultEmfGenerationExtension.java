@@ -60,11 +60,12 @@ public class DefaultEmfGenerationExtension extends ExtensionHelper {
     }
 
     @Override
-    protected void computeDefaultProperties() {
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage(), "");
+    protected void computeDefaultProperties(Map<String, String> context) {
+        final String project = context.get(CONTEXT_PROJECT_NAME);
+        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage(), project);
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit(), "false");
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor(), "false");
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel(), "true");
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), "");
+        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), project);
     };
 }

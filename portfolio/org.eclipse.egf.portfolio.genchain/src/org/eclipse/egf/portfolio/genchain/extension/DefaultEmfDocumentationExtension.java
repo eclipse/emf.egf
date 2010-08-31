@@ -36,9 +36,10 @@ public class DefaultEmfDocumentationExtension extends ExtensionHelper {
     }
 
     @Override
-    protected void computeDefaultProperties() {
+    protected void computeDefaultProperties(Map<String, String> context) {
+        final String project = context.get(CONTEXT_PROJECT_NAME);
         properties.put(GenerationChainPackage.eINSTANCE.getDocumentationGeneration_OutputDirectoryPath(), "output");
-        properties.put(GenerationChainPackage.eINSTANCE.getDocumentationGeneration_PluginName(), "");
+        properties.put(GenerationChainPackage.eINSTANCE.getDocumentationGeneration_PluginName(), project + ".doc");
     };
 
     @Override

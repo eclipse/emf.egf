@@ -45,13 +45,13 @@ public abstract class ExtensionHelper implements ExtensionProperties {
 
     public abstract String getLabel();
 
-    public final Map<EAttribute, String> getProperties() {
+    public final Map<EAttribute, String> getDefaultProperties(Map<String, String> context) {
         if (properties.isEmpty())
-            computeDefaultProperties();
+            computeDefaultProperties(context);
         return properties;
     }
 
-    protected void computeDefaultProperties() {
+    protected void computeDefaultProperties(Map<String, String> context) {
     };
 
     // TODO upgrade this implementation

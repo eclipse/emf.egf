@@ -16,8 +16,10 @@
 package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -101,18 +103,22 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
     private Node addEcore(String modelPath) {
         String name = GenerationChainWizard.getModelName(modelPath);
+        String bundleName = GenerationChainWizard.getBundleName(modelPath);
         Node chainNode = new Node(model, MODEL);
         chainNode.setName(name);
         model.getChildren().add(chainNode);
 
         for (Entry<String, ExtensionHelper> entrySet : ExtensionHelper.getExtensionsAsMap().entrySet()) {
             Node extensionNode = new Node(chainNode, EXTENSION);
+            Map<String, String> context = new HashMap<String, String>();
+            context.put(CONTEXT_PROJECT_NAME, bundleName);
+
             extensionNode.getProperties().put(ID, entrySet.getKey());
             extensionNode.getProperties().put(MODEL_PATH, modelPath);
             extensionNode.setName(entrySet.getKey());
             chainNode.getChildren().add(extensionNode);
 
-            for (Entry<EAttribute, String> prop : entrySet.getValue().getProperties().entrySet()) {
+            for (Entry<EAttribute, String> prop : entrySet.getValue().getDefaultProperties(context).entrySet()) {
                 Node propertyNode = new Node(extensionNode, PROPERTY);
                 propertyNode.setName(prop.getKey().getName());
                 propertyNode.getProperties().put(PROPERTY_VALUE, prop.getValue());

@@ -181,6 +181,9 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
 
     static String getModelName(String modelPath) {
         return modelPath.substring(modelPath.lastIndexOf('/') + 1, modelPath.lastIndexOf('.'));
+    }
 
+    static String getBundleName(String modelPath) {
+        return modelPath.substring(1, modelPath.indexOf('/', 1));
     }
 }
