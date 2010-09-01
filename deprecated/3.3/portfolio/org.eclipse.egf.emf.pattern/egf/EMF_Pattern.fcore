@@ -3271,30 +3271,6 @@
     <viewpointContainer xmi:id="_PiIW4TG0Ed-kc8dEZsdm2w">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_PiIW4jG0Ed-kc8dEZsdm2w">
         <libraries xmi:id="_PiIW4zG0Ed-kc8dEZsdm2w" name="org.eclipse.egf.emf.pattern.edit">
-          <elements xmi:type="pattern:Pattern" xmi:id="_PiIW5DG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/plugin.xmljet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderXml&#xA;"
-              name="PluginXML" headerMethod="#_PiIW5jG0Ed-kc8dEZsdm2w" footerMethod="#_PiIW6TG0Ed-kc8dEZsdm2w"
-              superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
-              initMethod="#_PiIW5zG0Ed-kc8dEZsdm2w" conditionMethod="#_9qU51HLYEd-09ds9dfYpFw">
-            <methods xmi:id="_PiIW5jG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW5jG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PiIW5zG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW5zG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_9qU51HLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._9qU51HLYEd-09ds9dfYpFw.pt"/>
-            <methods xmi:id="_PiIW6TG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW6TG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PiIW6zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
-                patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW6zG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_SuSFqGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._SuSFqGKPEd-2a5uccsiuZA.pt"/>
-            <methods xmi:id="_09tDuWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._09tDuWKMEd-_wNQtGaQ-lw.pt"/>
-            <methods xmi:id="_PiIW7TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW7TG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_kfjQV6VVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kfjQW6VVEd--2dbcyH2cnQ"
-                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kfjQXaVVEd--2dbcyH2cnQ"
-                called="#_PiIW7TG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_kfjQXqVVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kfjQX6VVEd--2dbcyH2cnQ"
-                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_kfjQUaVVEd--2dbcyH2cnQ"
-                name="JET"/>
-          </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PibR0DG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/build.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
               name="BuildProperties" headerMethod="#_PibR0jG0Ed-kc8dEZsdm2w" footerMethod="#_PibR1TG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
@@ -3341,6 +3317,30 @@
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_kf_8T6VVEd--2dbcyH2cnQ"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_kf_8QaVVEd--2dbcyH2cnQ"
+                name="JET"/>
+          </elements>
+          <elements xmi:type="pattern:Pattern" xmi:id="_PiIW5DG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/plugin.xmljet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderXml&#xA;"
+              name="PluginXML" headerMethod="#_PiIW5jG0Ed-kc8dEZsdm2w" footerMethod="#_PiIW6TG0Ed-kc8dEZsdm2w"
+              superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
+              initMethod="#_PiIW5zG0Ed-kc8dEZsdm2w" conditionMethod="#_9qU51HLYEd-09ds9dfYpFw">
+            <methods xmi:id="_PiIW5jG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW5jG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PiIW5zG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW5zG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_9qU51HLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._9qU51HLYEd-09ds9dfYpFw.pt"/>
+            <methods xmi:id="_PiIW6TG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW6TG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PiIW6zG0Ed-kc8dEZsdm2w" name="setReporterVariables"
+                patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW6zG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_SuSFqGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._SuSFqGKPEd-2a5uccsiuZA.pt"/>
+            <methods xmi:id="_09tDuWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._09tDuWKMEd-_wNQtGaQ-lw.pt"/>
+            <methods xmi:id="_PiIW7TG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PiIW5DG0Ed-kc8dEZsdm2w/method._PiIW7TG0Ed-kc8dEZsdm2w.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_kfjQV6VVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kfjQW6VVEd--2dbcyH2cnQ"
+                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kfjQXaVVEd--2dbcyH2cnQ"
+                called="#_PiIW7TG0Ed-kc8dEZsdm2w"/>
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_kfjQXqVVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kfjQX6VVEd--2dbcyH2cnQ"
+                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_kfjQUaVVEd--2dbcyH2cnQ"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pi39wDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;edit/plugin.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
@@ -3758,28 +3758,28 @@
     <viewpointContainer xmi:id="_PkqGcTG0Ed-kc8dEZsdm2w">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_PkqGcjG0Ed-kc8dEZsdm2w">
         <libraries xmi:id="_PkqGczG0Ed-kc8dEZsdm2w" name="org.eclipse.egf.emf.pattern.editor">
-          <elements xmi:type="pattern:Pattern" xmi:id="_PkqGdDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/plugin.xmljet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderXml&#xA;"
-              name="PluginXML" headerMethod="#_PkqGdjG0Ed-kc8dEZsdm2w" footerMethod="#_PkqGeTG0Ed-kc8dEZsdm2w"
+          <elements xmi:type="pattern:Pattern" xmi:id="_PlQjYDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/build.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
+              name="BuildProperties" headerMethod="#_PlQjYjG0Ed-kc8dEZsdm2w" footerMethod="#_PlQjZTG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
-              initMethod="#_PkqGdzG0Ed-kc8dEZsdm2w" conditionMethod="#_-G79VHLYEd-09ds9dfYpFw">
-            <methods xmi:id="_PkqGdjG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._PkqGdjG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PkqGdzG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._PkqGdzG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_-G79VHLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._-G79VHLYEd-09ds9dfYpFw.pt"/>
-            <methods xmi:id="_PkqGeTG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._PkqGeTG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_Pkz3cDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
-                patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._Pkz3cDG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_SvoJeGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._SvoJeGKPEd-2a5uccsiuZA.pt"/>
-            <methods xmi:id="_0_MReWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._0_MReWKMEd-_wNQtGaQ-lw.pt"/>
-            <methods xmi:id="_Pkz3cjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._Pkz3cjG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ki1N26VVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ki1N36VVEd--2dbcyH2cnQ"
+              initMethod="#_PlQjYzG0Ed-kc8dEZsdm2w" conditionMethod="#_-DEJ9HLYEd-09ds9dfYpFw">
+            <methods xmi:id="_PlQjYjG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjYjG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PlQjYzG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjYzG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_-DEJ9HLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._-DEJ9HLYEd-09ds9dfYpFw.pt"/>
+            <methods xmi:id="_PlQjZTG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjZTG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PlQjZzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
+                patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjZzG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_SvVOjGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._SvVOjGKPEd-2a5uccsiuZA.pt"/>
+            <methods xmi:id="_0-5WjWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._0-5WjWKMEd-_wNQtGaQ-lw.pt"/>
+            <methods xmi:id="_PlQjaTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjaTG0Ed-kc8dEZsdm2w.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_kjk0t6VVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kjk0u6VVEd--2dbcyH2cnQ"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ki1N4aVVEd--2dbcyH2cnQ"
-                called="#_Pkz3cjG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_ki1N4qVVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ki1N46VVEd--2dbcyH2cnQ"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kjk0vaVVEd--2dbcyH2cnQ"
+                called="#_PlQjaTG0Ed-kc8dEZsdm2w"/>
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_kjk0vqVVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kjk0v6VVEd--2dbcyH2cnQ"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_ki1N1aVVEd--2dbcyH2cnQ"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_kjk0saVVEd--2dbcyH2cnQ"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_Pk9BYDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/manifest.mfjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;"
@@ -3806,28 +3806,28 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_kjIIwaVVEd--2dbcyH2cnQ"
                 name="JET"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_PlQjYDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/build.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
-              name="BuildProperties" headerMethod="#_PlQjYjG0Ed-kc8dEZsdm2w" footerMethod="#_PlQjZTG0Ed-kc8dEZsdm2w"
+          <elements xmi:type="pattern:Pattern" xmi:id="_PkqGdDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/plugin.xmljet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderXml&#xA;"
+              name="PluginXML" headerMethod="#_PkqGdjG0Ed-kc8dEZsdm2w" footerMethod="#_PkqGeTG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
-              initMethod="#_PlQjYzG0Ed-kc8dEZsdm2w" conditionMethod="#_-DEJ9HLYEd-09ds9dfYpFw">
-            <methods xmi:id="_PlQjYjG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjYjG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PlQjYzG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjYzG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_-DEJ9HLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._-DEJ9HLYEd-09ds9dfYpFw.pt"/>
-            <methods xmi:id="_PlQjZTG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjZTG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PlQjZzG0Ed-kc8dEZsdm2w" name="setReporterVariables"
-                patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjZzG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_SvVOjGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._SvVOjGKPEd-2a5uccsiuZA.pt"/>
-            <methods xmi:id="_0-5WjWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._0-5WjWKMEd-_wNQtGaQ-lw.pt"/>
-            <methods xmi:id="_PlQjaTG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PlQjYDG0Ed-kc8dEZsdm2w/method._PlQjaTG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_kjk0t6VVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kjk0u6VVEd--2dbcyH2cnQ"
+              initMethod="#_PkqGdzG0Ed-kc8dEZsdm2w" conditionMethod="#_-G79VHLYEd-09ds9dfYpFw">
+            <methods xmi:id="_PkqGdjG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._PkqGdjG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PkqGdzG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._PkqGdzG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_-G79VHLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._-G79VHLYEd-09ds9dfYpFw.pt"/>
+            <methods xmi:id="_PkqGeTG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._PkqGeTG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_Pkz3cDG0Ed-kc8dEZsdm2w" name="setReporterVariables"
+                patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._Pkz3cDG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_SvoJeGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._SvoJeGKPEd-2a5uccsiuZA.pt"/>
+            <methods xmi:id="_0_MReWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._0_MReWKMEd-_wNQtGaQ-lw.pt"/>
+            <methods xmi:id="_Pkz3cjG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PkqGdDG0Ed-kc8dEZsdm2w/method._Pkz3cjG0Ed-kc8dEZsdm2w.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ki1N26VVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ki1N36VVEd--2dbcyH2cnQ"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kjk0vaVVEd--2dbcyH2cnQ"
-                called="#_PlQjaTG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_kjk0vqVVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kjk0v6VVEd--2dbcyH2cnQ"
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ki1N4aVVEd--2dbcyH2cnQ"
+                called="#_Pkz3cjG0Ed-kc8dEZsdm2w"/>
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_ki1N4qVVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ki1N46VVEd--2dbcyH2cnQ"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_kjk0saVVEd--2dbcyH2cnQ"
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_ki1N1aVVEd--2dbcyH2cnQ"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PljeUDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;editor/plugin.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
@@ -4158,30 +4158,6 @@
     <viewpointContainer xmi:id="_PoO-4DG0Ed-kc8dEZsdm2w">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_PoO-4TG0Ed-kc8dEZsdm2w">
         <libraries xmi:id="_PoO-4jG0Ed-kc8dEZsdm2w" name="org.eclipse.egf.emf.pattern.tests">
-          <elements xmi:type="pattern:Pattern" xmi:id="_PoO-4zG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model.tests/plugin.xmljet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderXml&#xA;"
-              name="PluginXML" headerMethod="#_PoO-5TG0Ed-kc8dEZsdm2w" footerMethod="#_PoO-6DG0Ed-kc8dEZsdm2w"
-              superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
-              initMethod="#_PoO-5jG0Ed-kc8dEZsdm2w" conditionMethod="#_-pXU9HLYEd-09ds9dfYpFw">
-            <methods xmi:id="_PoO-5TG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-5TG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PoO-5jG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-5jG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_-pXU9HLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._-pXU9HLYEd-09ds9dfYpFw.pt"/>
-            <methods xmi:id="_PoO-6DG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-6DG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_PoO-6jG0Ed-kc8dEZsdm2w" name="setReporterVariables"
-                patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-6jG0Ed-kc8dEZsdm2w.pt"/>
-            <methods xmi:id="_SxaSKGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._SxaSKGKPEd-2a5uccsiuZA.pt"/>
-            <methods xmi:id="_1A1QOWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._1A1QOWKMEd-_wNQtGaQ-lw.pt"/>
-            <methods xmi:id="_PoO-7DG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-7DG0Ed-kc8dEZsdm2w.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_krxud6VVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_krxue6VVEd--2dbcyH2cnQ"
-                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_krxufaVVEd--2dbcyH2cnQ"
-                called="#_PoO-7DG0Ed-kc8dEZsdm2w"/>
-            <orchestration xmi:type="pattern:BackCall" xmi:id="_krxufqVVEd--2dbcyH2cnQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_krxuf6VVEd--2dbcyH2cnQ"
-                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_krxucaVVEd--2dbcyH2cnQ"
-                name="JET"/>
-          </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PoYv4DG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model.tests/build.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
               name="BuildProperties" headerMethod="#_PoYv4jG0Ed-kc8dEZsdm2w" footerMethod="#_PoYv5TG0Ed-kc8dEZsdm2w"
               superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
@@ -4228,6 +4204,30 @@
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_kqR5s6VVEd--2dbcyH2cnQ"
                 called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_kqR5paVVEd--2dbcyH2cnQ"
+                name="JET"/>
+          </elements>
+          <elements xmi:type="pattern:Pattern" xmi:id="_PoO-4zG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model.tests/plugin.xmljet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderXml&#xA;"
+              name="PluginXML" headerMethod="#_PoO-5TG0Ed-kc8dEZsdm2w" footerMethod="#_PoO-6DG0Ed-kc8dEZsdm2w"
+              superPattern="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_ZTUvECg7Ed-ROrlGa8LEeQ"
+              initMethod="#_PoO-5jG0Ed-kc8dEZsdm2w" conditionMethod="#_-pXU9HLYEd-09ds9dfYpFw">
+            <methods xmi:id="_PoO-5TG0Ed-kc8dEZsdm2w" name="header" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-5TG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PoO-5jG0Ed-kc8dEZsdm2w" name="init" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-5jG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_-pXU9HLYEd-09ds9dfYpFw" name="preCondition" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._-pXU9HLYEd-09ds9dfYpFw.pt"/>
+            <methods xmi:id="_PoO-6DG0Ed-kc8dEZsdm2w" name="footer" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-6DG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_PoO-6jG0Ed-kc8dEZsdm2w" name="setReporterVariables"
+                patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-6jG0Ed-kc8dEZsdm2w.pt"/>
+            <methods xmi:id="_SxaSKGKPEd-2a5uccsiuZA" name="setArgument" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._SxaSKGKPEd-2a5uccsiuZA.pt"/>
+            <methods xmi:id="_1A1QOWKMEd-_wNQtGaQ-lw" name="ensureProjectExists" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._1A1QOWKMEd-_wNQtGaQ-lw.pt"/>
+            <methods xmi:id="_PoO-7DG0Ed-kc8dEZsdm2w" name="doGenerate" patternFilePath="templates/pattern._PoO-4zG0Ed-kc8dEZsdm2w/method._PoO-7DG0Ed-kc8dEZsdm2w.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_krxud6VVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_krxue6VVEd--2dbcyH2cnQ"
+                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_mwzm4ChGEd-zj5CV40Ozyg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_krxufaVVEd--2dbcyH2cnQ"
+                called="#_PoO-7DG0Ed-kc8dEZsdm2w"/>
+            <orchestration xmi:type="pattern:BackCall" xmi:id="_krxufqVVEd--2dbcyH2cnQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_krxuf6VVEd--2dbcyH2cnQ"
+                called="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_DrPLUChGEd-zj5CV40Ozyg"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_krxucaVVEd--2dbcyH2cnQ"
                 name="JET"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_PplCsDG0Ed-kc8dEZsdm2w" description="This pattern was generated from file &quot;model.tests/plugin.propertiesjet&quot; in project org.eclipse.emf.codegen.ecore 2.3.2.v200802051830.&#xA;This pattern calls:&#xA;    * org.eclipse.egf.emf.pattern.base.HeaderProperties&#xA;"
