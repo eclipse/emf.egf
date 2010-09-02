@@ -454,13 +454,22 @@ public interface BuildstepPackage extends EPackage {
     int AGGREGATE_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__NAME = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Publish Steps</b></em>' reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AGGREGATE_STEP__PUBLISH_STEPS = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+    int AGGREGATE_STEP__PUBLISH_STEPS = BuildcorePackage.STEP_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Update Site Urls</b></em>' attribute list.
@@ -469,7 +478,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int AGGREGATE_STEP__UPDATE_SITE_URLS = BuildcorePackage.STEP_FEATURE_COUNT + 1;
+    int AGGREGATE_STEP__UPDATE_SITE_URLS = BuildcorePackage.STEP_FEATURE_COUNT + 2;
 
     /**
      * The number of structural features of the '<em>Aggregate Step</em>' class.
@@ -478,7 +487,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int AGGREGATE_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 2;
+    int AGGREGATE_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.
@@ -1164,6 +1173,17 @@ public interface BuildstepPackage extends EPackage {
     EClass getAggregateStep();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getName()
+     * @see #getAggregateStep()
+     * @generated
+     */
+    EAttribute getAggregateStep_Name();
+
+    /**
      * Returns the meta object for the reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getPublishSteps <em>Publish Steps</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1632,6 +1652,14 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EClass AGGREGATE_STEP = eINSTANCE.getAggregateStep();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AGGREGATE_STEP__NAME = eINSTANCE.getAggregateStep_Name();
 
         /**
          * The meta object literal for the '<em><b>Publish Steps</b></em>' reference list feature.

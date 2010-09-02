@@ -51,6 +51,7 @@
         lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AggregateStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="publishSteps" upperBound="-1"
         eType="#//PublishStep"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateSiteUrls" upperBound="-1"
@@ -76,7 +77,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="scmLocation" lowerBound="1"
         eType="ecore:EClass BuildCore.ecore#//SCMLocation"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetPlatformBuildLocation" eSuperTypes="#//BuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

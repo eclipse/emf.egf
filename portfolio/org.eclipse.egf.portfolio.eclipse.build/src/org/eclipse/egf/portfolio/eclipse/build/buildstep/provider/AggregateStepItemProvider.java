@@ -79,10 +79,35 @@ public class AggregateStepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addNamePropertyDescriptor(object);
             addPublishStepsPropertyDescriptor(object);
             addUpdateSiteUrlsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamePropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AggregateStep_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AggregateStep_name_feature", "_UI_AggregateStep_type"),
+                 BuildstepPackage.Literals.AGGREGATE_STEP__NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
     }
 
     /**
@@ -153,7 +178,10 @@ public class AggregateStepItemProvider
     @Override
     public String getText(Object object) {
 
-        return getString("_UI_AggregateStep_type");
+        String label = ((AggregateStep)object).getName();
+        return label == null || label.length() == 0 ?
+            getString("_UI_AggregateStep_type") :
+            getString("_UI_AggregateStep_type") + " " + label;
 
     }
 
@@ -169,6 +197,7 @@ public class AggregateStepItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(AggregateStep.class)) {
+            case BuildstepPackage.AGGREGATE_STEP__NAME:
             case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

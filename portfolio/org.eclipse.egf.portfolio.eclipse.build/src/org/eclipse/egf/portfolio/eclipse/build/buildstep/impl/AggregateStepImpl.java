@@ -21,10 +21,12 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
@@ -35,6 +37,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getPublishSteps <em>Publish Steps</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getUpdateSiteUrls <em>Update Site Urls</em>}</li>
  * </ul>
@@ -49,6 +52,28 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
      * @generated
      */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
+
+
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
+
+    /**
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected String name = NAME_EDEFAULT;
 
 
     /**
@@ -103,6 +128,32 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
      * @generated
      */
 
+    public String getName() {
+
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setName(String newName) {
+
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.AGGREGATE_STEP__NAME, oldName, name));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
     public EList<PublishStep> getPublishSteps() {
 
         if (publishSteps == null) {
@@ -136,6 +187,8 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case BuildstepPackage.AGGREGATE_STEP__NAME:
+                return getName();
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 return getPublishSteps();
             case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
@@ -153,6 +206,9 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case BuildstepPackage.AGGREGATE_STEP__NAME:
+                setName((String)newValue);
+                return;
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 getPublishSteps().clear();
                 getPublishSteps().addAll((Collection<? extends PublishStep>)newValue);
@@ -174,6 +230,9 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case BuildstepPackage.AGGREGATE_STEP__NAME:
+                setName(NAME_EDEFAULT);
+                return;
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 getPublishSteps().clear();
                 return;
@@ -194,6 +253,8 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case BuildstepPackage.AGGREGATE_STEP__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 return publishSteps != null && !publishSteps.isEmpty();
             case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
@@ -212,7 +273,9 @@ public class AggregateStepImpl extends StepImpl implements AggregateStep {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (updateSiteUrls: ");
+        result.append(" (name: ");
+        result.append(name);
+        result.append(", updateSiteUrls: ");
         result.append(updateSiteUrls);
         result.append(')');
         return result.toString();

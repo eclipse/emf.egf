@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getPublishSteps <em>Publish Steps</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getUpdateSiteUrls <em>Update Site Urls</em>}</li>
  * </ul>
@@ -41,6 +42,46 @@ public interface AggregateStep extends Step {
      * @generated
      */
     String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
+
+
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getAggregateStep_Name()
+     * @model required="true"
+     * @generated
+     */
+
+    String getName();
+
+
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getName <em>Name</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
+     * @generated
+     */
+
+    void setName(String value);
 
 
 

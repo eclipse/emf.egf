@@ -5,9 +5,15 @@
 
 	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>_dropins">
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";%>
-		<copy todir="${publish}/aggregate/dropins">
-			<fileset dir="<%=location%>"/>
+String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";
+String propertyName = "aggregateFrom_" + publishStep.getComponent().getName();%>
+		<pathconvert property="<%=propertyName%>">
+			<first count="1">
+				<dirset dir="<%=location%>" includes="**/eclipse/" />
+			</first>
+		</pathconvert>
+		<copy todir="${publish}/tousensemble/dropins/tousensemble/eclipse/" >
+			<fileset dir="${<%=propertyName%>}"/>
 		</copy>
 <%}%>
 	</target>	
@@ -15,7 +21,7 @@ String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx
 	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>_sitep2">
 		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
 		<p2.mirror>
-			<repository location="file:/${publish}/aggregate/site.p2" name="repository aggregation" />
+			<repository location="file:/${publish}/<%=aggregateStep.getName()%>/site.p2" name="repository aggregation" />
 			<source>
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
 if (publishStep.getComponent() instanceof Feature) {

@@ -69,7 +69,7 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
      * @generated
      * @ordered
      */
-    protected static final String FOLDER_NAME_EDEFAULT = null;
+    protected static final String FOLDER_NAME_EDEFAULT = "";
 
     /**
      * The cached value of the '{@link #getFolderName() <em>Folder Name</em>}' attribute.

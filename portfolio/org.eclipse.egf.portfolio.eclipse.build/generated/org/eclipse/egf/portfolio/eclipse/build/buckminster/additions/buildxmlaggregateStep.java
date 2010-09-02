@@ -25,17 +25,20 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
     protected final String TEXT_3 = "_dropins\" />" + NL + "\t\t<anteclipse target=\"";
     protected final String TEXT_4 = "_sitep2\" />" + NL + "\t</target>\t" + NL + "" + NL + "\t<target name=\"";
     protected final String TEXT_5 = "_dropins\">";
-    protected final String TEXT_6 = NL + "\t\t<copy todir=\"${publish}/aggregate/dropins\">" + NL + "\t\t\t<fileset dir=\"";
-    protected final String TEXT_7 = "\"/>" + NL + "\t\t</copy>";
-    protected final String TEXT_8 = NL + "\t</target>\t" + NL + "" + NL + "\t<target name=\"";
-    protected final String TEXT_9 = "_sitep2\">" + NL + "\t\t<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->" + NL + "\t\t<p2.mirror>" + NL + "\t\t\t<repository location=\"file:/${publish}/aggregate/site.p2\" name=\"repository aggregation\" />" + NL + "\t\t\t<source>";
-    protected final String TEXT_10 = NL + "\t\t\t\t<repository location=\"";
-    protected final String TEXT_11 = "\" />";
-    protected final String TEXT_12 = NL + "\t\t\t\t<repository location=\"";
-    protected final String TEXT_13 = "\" />";
-    protected final String TEXT_14 = NL + "\t\t\t</source>" + NL + "\t\t</p2.mirror>" + NL + "\t</target>" + NL;
-    protected final String TEXT_15 = NL;
-    protected final String TEXT_16 = NL;
+    protected final String TEXT_6 = NL + "\t\t<pathconvert property=\"";
+    protected final String TEXT_7 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<dirset dir=\"";
+    protected final String TEXT_8 = "\" includes=\"**/eclipse/\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL + "\t\t<copy todir=\"${publish}/tousensemble/dropins/tousensemble/eclipse/\" >" + NL + "\t\t\t<fileset dir=\"${";
+    protected final String TEXT_9 = "}\"/>" + NL + "\t\t</copy>";
+    protected final String TEXT_10 = NL + "\t</target>\t" + NL + "" + NL + "\t<target name=\"";
+    protected final String TEXT_11 = "_sitep2\">" + NL + "\t\t<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->" + NL + "\t\t<p2.mirror>" + NL + "\t\t\t<repository location=\"file:/${publish}/";
+    protected final String TEXT_12 = "/site.p2\" name=\"repository aggregation\" />" + NL + "\t\t\t<source>";
+    protected final String TEXT_13 = NL + "\t\t\t\t<repository location=\"";
+    protected final String TEXT_14 = "\" />";
+    protected final String TEXT_15 = NL + "\t\t\t\t<repository location=\"";
+    protected final String TEXT_16 = "\" />";
+    protected final String TEXT_17 = NL + "\t\t\t</source>" + NL + "\t\t</p2.mirror>" + NL + "\t</target>" + NL;
+    protected final String TEXT_18 = NL;
+    protected final String TEXT_19 = NL;
 
     public buildxmlaggregateStep() {
         //Here is the constructor
@@ -69,8 +72,8 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_15);
-        stringBuffer.append(TEXT_16);
+        stringBuffer.append(TEXT_18);
+        stringBuffer.append(TEXT_19);
         return stringBuffer.toString();
     }
 
@@ -118,27 +121,34 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         stringBuffer.append(TEXT_5);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
             String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";
+            String propertyName = "aggregateFrom_" + publishStep.getComponent().getName();
             stringBuffer.append(TEXT_6);
-            stringBuffer.append(location);
+            stringBuffer.append(propertyName);
             stringBuffer.append(TEXT_7);
+            stringBuffer.append(location);
+            stringBuffer.append(TEXT_8);
+            stringBuffer.append(propertyName);
+            stringBuffer.append(TEXT_9);
         }
-        stringBuffer.append(TEXT_8);
+        stringBuffer.append(TEXT_10);
         stringBuffer.append(new GenerationHelper().getPositionString(aggregateStep));
-        stringBuffer.append(TEXT_9);
+        stringBuffer.append(TEXT_11);
+        stringBuffer.append(aggregateStep.getName());
+        stringBuffer.append(TEXT_12);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
             if (publishStep.getComponent() instanceof Feature) {
                 String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";
-                stringBuffer.append(TEXT_10);
+                stringBuffer.append(TEXT_13);
                 stringBuffer.append(location);
-                stringBuffer.append(TEXT_11);
+                stringBuffer.append(TEXT_14);
             }
         }
         for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {
-            stringBuffer.append(TEXT_12);
+            stringBuffer.append(TEXT_15);
             stringBuffer.append(updateSiteUrl);
-            stringBuffer.append(TEXT_13);
+            stringBuffer.append(TEXT_16);
         }
-        stringBuffer.append(TEXT_14);
+        stringBuffer.append(TEXT_17);
     }
 
     public boolean preCondition() throws Exception {

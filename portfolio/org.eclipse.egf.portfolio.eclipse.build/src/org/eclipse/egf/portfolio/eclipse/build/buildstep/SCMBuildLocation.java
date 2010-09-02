@@ -86,6 +86,7 @@ public interface SCMBuildLocation extends SourceBuildLocation {
 
     /**
      * Returns the value of the '<em><b>Folder Name</b></em>' attribute.
+     * The default value is <code>""</code>.
 
      * <!-- begin-user-doc -->
      * <p>
@@ -96,7 +97,7 @@ public interface SCMBuildLocation extends SourceBuildLocation {
      * @return the value of the '<em>Folder Name</em>' attribute.
      * @see #setFolderName(String)
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getSCMBuildLocation_FolderName()
-     * @model required="true"
+     * @model default="" required="true"
      * @generated
      */
 
