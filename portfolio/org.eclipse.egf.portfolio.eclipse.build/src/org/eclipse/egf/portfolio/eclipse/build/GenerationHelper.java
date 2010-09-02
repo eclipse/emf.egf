@@ -84,7 +84,7 @@ public class GenerationHelper {
         boolean prefixJobNameWithChainName = (Boolean) context.getValue("prefixJobNameWithChainName"); //$NON-NLS-1$
         Chain chain = job.getChain();
         if (prefixJobNameWithChainName && chain != null)
-            return chain.getName() + job.getName();
+            return chain.getName() + "_" + job.getName();
         else
             return job.getName();
     }
