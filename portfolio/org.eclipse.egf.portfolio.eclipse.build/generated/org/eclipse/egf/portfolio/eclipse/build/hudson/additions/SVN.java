@@ -103,7 +103,7 @@ public class SVN {
             SVNLocation svnLocation = iterator.next();
             stringBuffer.append(TEXT_2);
             stringBuffer.append(svnLocation.getProtocol().getLiteral());
-            stringBuffer.append(svnLocation.getUrl());
+            stringBuffer.append(new GenerationHelper().replaceProperties(svnLocation, svnLocation.getUrl()));
             stringBuffer.append(TEXT_3);
             stringBuffer.append(new GenerationHelper().getStringIfNotNull(svnLocation.getLocalPath()));
             stringBuffer.append(TEXT_4);

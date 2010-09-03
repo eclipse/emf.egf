@@ -4,7 +4,7 @@
       <%while(iterator.hasNext()) {%>
       <%SVNLocation svnLocation = iterator.next();%>
       <hudson.scm.SubversionSCM_-ModuleLocation>
-        <remote><%=svnLocation.getProtocol().getLiteral()%><%=svnLocation.getUrl()%></remote>
+        <remote><%=svnLocation.getProtocol().getLiteral()%><%=new GenerationHelper().replaceProperties(svnLocation, svnLocation.getUrl())%></remote>
         <local><%=new GenerationHelper().getStringIfNotNull(svnLocation.getLocalPath())%></local>
       </hudson.scm.SubversionSCM_-ModuleLocation>
       <%}%>
