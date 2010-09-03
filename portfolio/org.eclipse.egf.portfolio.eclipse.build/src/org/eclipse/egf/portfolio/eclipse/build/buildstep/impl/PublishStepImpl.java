@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PublishStepImpl extends StepImpl implements PublishStep {
+public class PublishStepImpl extends ResultStepImpl implements PublishStep {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

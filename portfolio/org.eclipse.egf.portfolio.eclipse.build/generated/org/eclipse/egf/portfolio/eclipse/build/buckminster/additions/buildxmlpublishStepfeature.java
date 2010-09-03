@@ -30,23 +30,24 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
     protected final String TEXT_7 = "/site.p2/\"/>" + NL + "\t\t<copy todir=\"";
     protected final String TEXT_8 = "/site.p2/\">" + NL + "\t\t\t<fileset dir=\"${result}/output\">" + NL + "\t\t\t\t<include name=\"";
     protected final String TEXT_9 = "*/site.p2/*\"/>" + NL + "\t\t\t\t<include name=\"";
-    protected final String TEXT_10 = "*/site.p2/**\"/>" + NL + "\t\t\t</fileset>" + NL + "\t\t\t<filtermapper>" + NL + "\t\t\t\t<replaceregex pattern=\".*site\\.p2\" replace=\"\" />" + NL + "\t\t\t</filtermapper>" + NL + "\t\t</copy>" + NL + "" + NL + "\t\t<echo message=\"Publish dropins\"/>" + NL + "\t\t<condition property=\"site.src\" value=\"site.signed\" else=\"site\">" + NL + "\t\t\t<istrue value=\"${site.signing}\" />" + NL + "\t\t</condition>" + NL + "" + NL + "\t\t<pathconvert property=\"featurefile";
-    protected final String TEXT_11 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<fileset dir=\"${result}/output\" includes=\"";
-    protected final String TEXT_12 = "*eclipse.feature/temp/feature.xml\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL + "\t\t<loadfile property=\"featureversion";
-    protected final String TEXT_13 = "\" srcFile=\"${featurefile";
-    protected final String TEXT_14 = "}\">" + NL + "\t\t\t<filterchain>" + NL + "\t\t\t\t<striplinebreaks/>" + NL + "\t\t\t\t<replaceregex" + NL + "\t\t\t\t\tpattern=\"^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$\"" + NL + "\t\t\t\t\treplace=\"\\1\"/>" + NL + "\t\t\t</filterchain>" + NL + "\t\t</loadfile>" + NL + "" + NL + "\t\t<copy todir=\"";
+    protected final String TEXT_10 = "*/site.p2/**\"/>" + NL + "\t\t\t</fileset>" + NL + "\t\t\t<filtermapper>" + NL + "\t\t\t\t<replaceregex pattern=\".*site\\.p2\" replace=\"\" />" + NL + "\t\t\t</filtermapper>" + NL + "\t\t</copy>" + NL + "" + NL + "\t\t<echo message=\"Publish dropins\"/>" + NL + "\t\t<condition property=\"site.src\" value=\"site.signed\" else=\"site\">" + NL + "\t\t\t<istrue value=\"${site.signing}\" />" + NL + "\t\t</condition>" + NL + "" + NL + "\t\t<copy todir=\"";
+    protected final String TEXT_11 = "/dropins/";
+    protected final String TEXT_12 = "/eclipse/\">" + NL + "\t\t\t<fileset dir=\"${result}/output\">" + NL + "\t\t\t\t<include name=\"";
+    protected final String TEXT_13 = "*/${site.src}/plugins/*.jar\"/>" + NL + "\t\t\t\t<include name=\"";
+    protected final String TEXT_14 = "*/${site.src}/features/*.jar\"/>" + NL + "\t\t\t</fileset>" + NL + "\t\t\t<filtermapper>" + NL + "\t\t\t\t<replaceregex pattern=\".*_.*-eclipse\\.feature.${site.src}.plugins\" replace=\"plugins\" />" + NL + "\t\t\t\t<replaceregex pattern=\".*_.*-eclipse\\.feature.${site.src}.features\" replace=\"features\" />" + NL + "\t\t\t</filtermapper>" + NL + "\t\t</copy>" + NL + "" + NL + "\t\t<buckminster command=\"perform\">" + NL + "\t\t\t<globargs>" + NL + "\t\t\t\t<arg value=\"-DsiteDir=";
     protected final String TEXT_15 = "/dropins/";
-    protected final String TEXT_16 = "_${featureversion";
-    protected final String TEXT_17 = "}/eclipse/\">" + NL + "\t\t\t<fileset dir=\"${result}/output\">" + NL + "\t\t\t\t<include name=\"";
-    protected final String TEXT_18 = "*/${site.src}/plugins/*.jar\"/>" + NL + "\t\t\t\t<include name=\"";
-    protected final String TEXT_19 = "*/${site.src}/features/*.jar\"/>" + NL + "\t\t\t</fileset>" + NL + "\t\t\t<filtermapper>" + NL + "\t\t\t\t<replaceregex pattern=\".*_.*-eclipse\\.feature.${site.src}.plugins\" replace=\"plugins\" />" + NL + "\t\t\t\t<replaceregex pattern=\".*_.*-eclipse\\.feature.${site.src}.features\" replace=\"features\" />" + NL + "\t\t\t</filtermapper>" + NL + "\t\t</copy>" + NL + "" + NL + "\t\t<buckminster command=\"perform\">" + NL + "\t\t\t<globargs>" + NL + "\t\t\t\t<arg value=\"-DsiteDir=";
-    protected final String TEXT_20 = "/dropins/";
-    protected final String TEXT_21 = "_${featureversion";
-    protected final String TEXT_22 = "}/eclipse/\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<cmdargs>";
-    protected final String TEXT_23 = "\t\t\t" + NL + "\t\t\t\t<arg value=\"";
-    protected final String TEXT_24 = ":buckminster#convertSiteToRuntime\" />" + NL + "\t\t\t</cmdargs>" + NL + "\t\t</buckminster>" + NL + "\t</target>" + NL + NL;
-    protected final String TEXT_25 = NL;
+    protected final String TEXT_16 = "/eclipse/\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<cmdargs>";
+    protected final String TEXT_17 = "\t\t\t" + NL + "\t\t\t\t<arg value=\"";
+    protected final String TEXT_18 = ":buckminster#convertSiteToRuntime\" />" + NL + "\t\t\t</cmdargs>" + NL + "\t\t</buckminster>" + NL + "\t\t" + NL + "\t\t<pathconvert property=\"featurefile";
+    protected final String TEXT_19 = "\">" + NL + "\t\t\t<first count=\"1\">" + NL + "\t\t\t\t<fileset dir=\"${result}/output\" includes=\"";
+    protected final String TEXT_20 = "*eclipse.feature/temp/feature.xml\" />" + NL + "\t\t\t</first>" + NL + "\t\t</pathconvert>" + NL + "\t\t<loadfile property=\"featureversion";
+    protected final String TEXT_21 = "\" srcFile=\"${featurefile";
+    protected final String TEXT_22 = "}\">" + NL + "\t\t\t<filterchain>" + NL + "\t\t\t\t<striplinebreaks/>" + NL + "\t\t\t\t<replaceregex" + NL + "\t\t\t\t\tpattern=\"^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$\"" + NL + "\t\t\t\t\treplace=\"\\1\"/>" + NL + "\t\t\t</filterchain>" + NL + "\t\t</loadfile>" + NL + "" + NL + "\t\t<touch file=\"";
+    protected final String TEXT_23 = "/dropins/";
+    protected final String TEXT_24 = "/version_${featureversion";
+    protected final String TEXT_25 = "}\" />" + NL + "\t</target>" + NL + NL;
     protected final String TEXT_26 = NL;
+    protected final String TEXT_27 = NL;
 
     public buildxmlpublishStepfeature() {
         //Here is the constructor
@@ -80,8 +81,8 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_25);
         stringBuffer.append(TEXT_26);
+        stringBuffer.append(TEXT_27);
         return stringBuffer.toString();
     }
 
@@ -139,35 +140,37 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
         stringBuffer.append(TEXT_9);
         stringBuffer.append(featurename);
         stringBuffer.append(TEXT_10);
-        stringBuffer.append(stepName);
+        stringBuffer.append(publishdirectory);
         stringBuffer.append(TEXT_11);
         stringBuffer.append(featurename);
         stringBuffer.append(TEXT_12);
-        stringBuffer.append(stepName);
+        stringBuffer.append(featurename);
         stringBuffer.append(TEXT_13);
-        stringBuffer.append(stepName);
+        stringBuffer.append(featurename);
         stringBuffer.append(TEXT_14);
         stringBuffer.append(publishdirectory);
         stringBuffer.append(TEXT_15);
         stringBuffer.append(featurename);
         stringBuffer.append(TEXT_16);
-        stringBuffer.append(stepName);
+        BuildStep buildStep = publishStep.getComponent().getBuildStep();
+        String buildStepName = new GenerationHelper().getPositionString(buildStep);
         stringBuffer.append(TEXT_17);
-        stringBuffer.append(featurename);
+        stringBuffer.append(buildStepName);
         stringBuffer.append(TEXT_18);
-        stringBuffer.append(featurename);
+        stringBuffer.append(stepName);
         stringBuffer.append(TEXT_19);
-        stringBuffer.append(publishdirectory);
-        stringBuffer.append(TEXT_20);
         stringBuffer.append(featurename);
+        stringBuffer.append(TEXT_20);
+        stringBuffer.append(stepName);
         stringBuffer.append(TEXT_21);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_22);
-        BuildStep buildStep = publishStep.getComponent().getBuildStep();
-        String buildStepName = new GenerationHelper().getPositionString(buildStep);
+        stringBuffer.append(publishdirectory);
         stringBuffer.append(TEXT_23);
-        stringBuffer.append(buildStepName);
+        stringBuffer.append(featurename);
         stringBuffer.append(TEXT_24);
+        stringBuffer.append(stepName);
+        stringBuffer.append(TEXT_25);
     }
 
     public boolean preCondition() throws Exception {

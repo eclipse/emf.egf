@@ -45,7 +45,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class AggregateStepImpl extends StepImpl implements AggregateStep {
+public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

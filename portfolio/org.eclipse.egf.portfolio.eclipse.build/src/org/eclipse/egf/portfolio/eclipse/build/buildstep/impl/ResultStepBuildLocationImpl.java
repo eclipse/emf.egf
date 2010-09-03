@@ -14,28 +14,30 @@
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Source Build Location</b></em>'.
+ * An implementation of the model object '<em><b>Result Step Build Location</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SourceBuildLocationImpl#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ResultStepBuildLocationImpl#getResultStep <em>Result Step</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class SourceBuildLocationImpl extends BuildLocationImpl implements SourceBuildLocation {
+public class ResultStepBuildLocationImpl extends BuildLocationImpl implements ResultStepBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -45,24 +47,14 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
 
 
     /**
-     * The default value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
+     * The cached value of the '{@link #getResultStep() <em>Result Step</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSuffix()
+     * @see #getResultStep()
      * @generated
      * @ordered
      */
-    protected static final String SUFFIX_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSuffix()
-     * @generated
-     * @ordered
-     */
-    protected String suffix = SUFFIX_EDEFAULT;
+    protected ResultStep resultStep;
 
 
 
@@ -71,7 +63,7 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    protected SourceBuildLocationImpl() {
+    protected ResultStepBuildLocationImpl() {
         super();
     }
 
@@ -82,7 +74,7 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildstepPackage.Literals.SOURCE_BUILD_LOCATION;
+        return BuildstepPackage.Literals.RESULT_STEP_BUILD_LOCATION;
     }
 
 
@@ -95,9 +87,17 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
      * @generated
      */
 
-    public String getSuffix() {
+    public ResultStep getResultStep() {
 
-        return suffix;
+        if (resultStep != null && resultStep.eIsProxy()) {
+            InternalEObject oldResultStep = (InternalEObject)resultStep;
+            resultStep = (ResultStep)eResolveProxy(oldResultStep);
+            if (resultStep != oldResultStep) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildstepPackage.RESULT_STEP_BUILD_LOCATION__RESULT_STEP, oldResultStep, resultStep));
+            }
+        }
+        return resultStep;
     }
 
 
@@ -108,12 +108,25 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
      * @generated
      */
 
-    public void setSuffix(String newSuffix) {
+    public ResultStep basicGetResultStep() {
 
-        String oldSuffix = suffix;
-        suffix = newSuffix;
+        return resultStep;
+    }
+
+
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setResultStep(ResultStep newResultStep) {
+
+        ResultStep oldResultStep = resultStep;
+        resultStep = newResultStep;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.SOURCE_BUILD_LOCATION__SUFFIX, oldSuffix, suffix));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.RESULT_STEP_BUILD_LOCATION__RESULT_STEP, oldResultStep, resultStep));
 
     }
 
@@ -128,8 +141,9 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.SOURCE_BUILD_LOCATION__SUFFIX:
-                return getSuffix();
+            case BuildstepPackage.RESULT_STEP_BUILD_LOCATION__RESULT_STEP:
+                if (resolve) return getResultStep();
+                return basicGetResultStep();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -142,8 +156,8 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.SOURCE_BUILD_LOCATION__SUFFIX:
-                setSuffix((String)newValue);
+            case BuildstepPackage.RESULT_STEP_BUILD_LOCATION__RESULT_STEP:
+                setResultStep((ResultStep)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -158,8 +172,8 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.SOURCE_BUILD_LOCATION__SUFFIX:
-                setSuffix(SUFFIX_EDEFAULT);
+            case BuildstepPackage.RESULT_STEP_BUILD_LOCATION__RESULT_STEP:
+                setResultStep((ResultStep)null);
                 return;
         }
         super.eUnset(featureID);
@@ -175,28 +189,12 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.SOURCE_BUILD_LOCATION__SUFFIX:
-                return SUFFIX_EDEFAULT == null ? suffix != null : !SUFFIX_EDEFAULT.equals(suffix);
+            case BuildstepPackage.RESULT_STEP_BUILD_LOCATION__RESULT_STEP:
+                return resultStep != null;
         }
         return super.eIsSet(featureID);
     }
 
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (suffix: ");
-        result.append(suffix);
-        result.append(')');
-        return result.toString();
-    }
-
-
-} //SourceBuildLocationImpl
+} //ResultStepBuildLocationImpl

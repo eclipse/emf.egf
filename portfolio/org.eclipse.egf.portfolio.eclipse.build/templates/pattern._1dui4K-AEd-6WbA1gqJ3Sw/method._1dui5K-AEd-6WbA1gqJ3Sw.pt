@@ -12,7 +12,7 @@ String propertyName = "aggregateFrom_" + publishStep.getComponent().getName();%>
 				<dirset dir="<%=location%>" includes="**/eclipse/" />
 			</first>
 		</pathconvert>
-		<copy todir="${publish}/tousensemble/dropins/tousensemble/eclipse/" >
+		<copy todir="${publish}/<%=aggregateStep.getName()%>/dropins/<%=aggregateStep.getName()%>/eclipse/" >
 			<fileset dir="${<%=propertyName%>}"/>
 		</copy>
 <%}%>

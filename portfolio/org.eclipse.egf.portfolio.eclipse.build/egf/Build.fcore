@@ -1045,15 +1045,16 @@
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_zgvmsJ5GEd-3wvN5SnesGA" name="build.target.updateSite"
               headerMethod="#_zgvmsZ5GEd-3wvN5SnesGA" footerMethod="#_zgvmtZ5GEd-3wvN5SnesGA"
-              initMethod="#_zgvmsp5GEd-3wvN5SnesGA" conditionMethod="#_zgvms55GEd-3wvN5SnesGA">
+              superPattern="#_geJq4J4XEd-3wvN5SnesGA" initMethod="#_zgvmsp5GEd-3wvN5SnesGA"
+              conditionMethod="#_zgvms55GEd-3wvN5SnesGA">
             <methods xmi:id="_zgvmsZ5GEd-3wvN5SnesGA" name="header" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmsZ5GEd-3wvN5SnesGA.pt"/>
             <methods xmi:id="_zgvmsp5GEd-3wvN5SnesGA" name="init" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmsp5GEd-3wvN5SnesGA.pt"/>
             <methods xmi:id="_zgvms55GEd-3wvN5SnesGA" name="preCondition" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvms55GEd-3wvN5SnesGA.pt"/>
             <methods xmi:id="_zgvmtJ5GEd-3wvN5SnesGA" name="body" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmtJ5GEd-3wvN5SnesGA.pt"/>
             <methods xmi:id="_zgvmtZ5GEd-3wvN5SnesGA" name="footer" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmtZ5GEd-3wvN5SnesGA.pt"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_u1XnQJ5HEd-3wvN5SnesGA"
-                called="#_zgvmtJ5GEd-3wvN5SnesGA"/>
-            <parameters xmi:id="_qhZ3sJ5HEd-3wvN5SnesGA" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep">
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_3NdOMLaeEd-YN_PdUdJuug"/>
+            <parameters xmi:id="_qhZ3sJ5HEd-3wvN5SnesGA" name="updateSiteBuildLocation"
+                type="http://www.eclipse.org/egf/1.0.0/buildstep#//UpdateSiteBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_rY-_8J5HEd-3wvN5SnesGA"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1078,6 +1079,24 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_C6JiB545Ed-3wvN5SnesGA"
                 name="JET"/>
           </elements>
+          <elements xmi:type="pattern:Pattern" xmi:id="_QzNV0LaeEd-YN_PdUdJuug" name="build.target.resultStep"
+              headerMethod="#_QzNV0baeEd-YN_PdUdJuug" footerMethod="#_QzNV1baeEd-YN_PdUdJuug"
+              superPattern="#_geJq4J4XEd-3wvN5SnesGA" initMethod="#_QzNV0raeEd-YN_PdUdJuug"
+              conditionMethod="#_QzNV07aeEd-YN_PdUdJuug">
+            <methods xmi:id="_QzNV0baeEd-YN_PdUdJuug" name="header" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV0baeEd-YN_PdUdJuug.pt"/>
+            <methods xmi:id="_QzNV0raeEd-YN_PdUdJuug" name="init" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV0raeEd-YN_PdUdJuug.pt"/>
+            <methods xmi:id="_QzNV07aeEd-YN_PdUdJuug" name="preCondition" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV07aeEd-YN_PdUdJuug.pt"/>
+            <methods xmi:id="_QzNV1LaeEd-YN_PdUdJuug" name="body" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV1LaeEd-YN_PdUdJuug.pt"/>
+            <methods xmi:id="_QzNV1baeEd-YN_PdUdJuug" name="footer" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV1baeEd-YN_PdUdJuug.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_QzNV1raeEd-YN_PdUdJuug"/>
+            <parameters xmi:id="_7EETYLaeEd-YN_PdUdJuug" name="resultStepBuildLocation"
+                type="http://www.eclipse.org/egf/1.0.0/buildstep#//ResultStepBuildLocation">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_9ll08LaeEd-YN_PdUdJuug"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_QzNV17aeEd-YN_PdUdJuug"
+                name="JET"/>
+          </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
@@ -1095,7 +1114,7 @@
               <substitutions xmi:id="_SGBtUJTYEd-fvPvNnKEvJg" replacedElement="#_C_qLIJTYEd-fvPvNnKEvJg"
                   replacement="#_dSeb4aoGEd-k9aH6AnUHCw #_sTvtQJVuEd-fvPvNnKEvJg #_mDDq8ZVxEd-4gcrM0WMTSg #_Q9g78JVuEd-fvPvNnKEvJg #_gvxW8ZVyEd--Q_dCgK5jqw #_fy4H8Z7VEd-8De2HBT3r0w #_VOw2gaYIEd-BVLrtOlWqIw #_1dui4K-AEd-6WbA1gqJ3Sw #_C_qLIJTYEd-fvPvNnKEvJg"/>
               <substitutions xmi:id="_4KK70J45Ed-3wvN5SnesGA" replacedElement="#_geJq4J4XEd-3wvN5SnesGA"
-                  replacement="#_zgvmsJ5GEd-3wvN5SnesGA #_C6JiAJ45Ed-3wvN5SnesGA #_geJq4J4XEd-3wvN5SnesGA"/>
+                  replacement="#_zgvmsJ5GEd-3wvN5SnesGA #_C6JiAJ45Ed-3wvN5SnesGA #_QzNV0LaeEd-YN_PdUdJuug #_geJq4J4XEd-3wvN5SnesGA"/>
             </type>
           </invocationContracts>
           <invocationContracts xmi:id="_fpjcY4_5Ed-Mh9dXw3mL3g" factoryComponentContract="#_QISjs46VEd-e7viTqNBNrA"

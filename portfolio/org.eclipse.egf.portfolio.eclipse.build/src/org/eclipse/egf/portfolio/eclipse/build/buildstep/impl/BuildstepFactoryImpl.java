@@ -89,11 +89,11 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.JAVADOC_STEP: return createJavadocStep();
             case BuildstepPackage.EGF_STEP: return createEgfStep();
             case BuildstepPackage.AGGREGATE_STEP: return createAggregateStep();
-            case BuildstepPackage.SOURCE_BUILD_LOCATION: return createSourceBuildLocation();
             case BuildstepPackage.LOCAL_BUILD_LOCATION: return createLocalBuildLocation();
             case BuildstepPackage.SCM_BUILD_LOCATION: return createSCMBuildLocation();
             case BuildstepPackage.TARGET_PLATFORM_BUILD_LOCATION: return createTargetPlatformBuildLocation();
             case BuildstepPackage.UPDATE_SITE_BUILD_LOCATION: return createUpdateSiteBuildLocation();
+            case BuildstepPackage.RESULT_STEP_BUILD_LOCATION: return createResultStepBuildLocation();
             case BuildstepPackage.PLUGIN: return createPlugin();
             case BuildstepPackage.FEATURE: return createFeature();
             default:
@@ -162,6 +162,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResultStepBuildLocation createResultStepBuildLocation() {
+        ResultStepBuildLocationImpl resultStepBuildLocation = new ResultStepBuildLocationImpl();
+        return resultStepBuildLocation;
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -265,16 +275,6 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
 		javadocStep.getIncludes().add("**/*.java"); //$NON-NLS-1$
 		return javadocStep;
 	}
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SourceBuildLocation createSourceBuildLocation() {
-        SourceBuildLocationImpl sourceBuildLocation = new SourceBuildLocationImpl();
-        return sourceBuildLocation;
-    }
 
 	/**
      * <!-- begin-user-doc -->

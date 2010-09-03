@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AggregateStep extends Step {
+public interface AggregateStep extends ResultStep {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

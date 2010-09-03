@@ -104,6 +104,13 @@ public class BuildstepSwitch<T> {
      */
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case BuildstepPackage.RESULT_STEP: {
+                ResultStep resultStep = (ResultStep)theEObject;
+                T result = caseResultStep(resultStep);
+                if (result == null) result = caseStep(resultStep);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildstepPackage.CLEAN_STEP: {
                 CleanStep cleanStep = (CleanStep)theEObject;
                 T result = caseCleanStep(cleanStep);
@@ -121,6 +128,7 @@ public class BuildstepSwitch<T> {
             case BuildstepPackage.PUBLISH_STEP: {
                 PublishStep publishStep = (PublishStep)theEObject;
                 T result = casePublishStep(publishStep);
+                if (result == null) result = caseResultStep(publishStep);
                 if (result == null) result = caseStep(publishStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -157,6 +165,7 @@ public class BuildstepSwitch<T> {
             case BuildstepPackage.AGGREGATE_STEP: {
                 AggregateStep aggregateStep = (AggregateStep)theEObject;
                 T result = caseAggregateStep(aggregateStep);
+                if (result == null) result = caseResultStep(aggregateStep);
                 if (result == null) result = caseStep(aggregateStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -204,6 +213,13 @@ public class BuildstepSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildstepPackage.RESULT_STEP_BUILD_LOCATION: {
+                ResultStepBuildLocation resultStepBuildLocation = (ResultStepBuildLocation)theEObject;
+                T result = caseResultStepBuildLocation(resultStepBuildLocation);
+                if (result == null) result = caseBuildLocation(resultStepBuildLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildstepPackage.COMPONENT: {
                 Component component = (Component)theEObject;
                 T result = caseComponent(component);
@@ -226,6 +242,21 @@ public class BuildstepSwitch<T> {
             }
             default: return defaultCase(theEObject);
         }
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Result Step</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Result Step</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResultStep(ResultStep object) {
+        return null;
     }
 
     /**
@@ -435,6 +466,21 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseUpdateSiteBuildLocation(UpdateSiteBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Result Step Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Result Step Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResultStepBuildLocation(ResultStepBuildLocation object) {
         return null;
     }
 

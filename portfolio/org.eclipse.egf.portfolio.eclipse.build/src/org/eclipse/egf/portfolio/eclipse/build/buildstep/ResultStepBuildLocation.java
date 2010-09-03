@@ -16,21 +16,21 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Source Build Location</b></em>'.
+ * A representation of the model object '<em><b>Result Step Build Location</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation#getResultStep <em>Result Step</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getSourceBuildLocation()
- * @model abstract="true"
+ * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getResultStepBuildLocation()
+ * @model
  * @generated
  */
-public interface SourceBuildLocation extends BuildLocation {
+public interface ResultStepBuildLocation extends BuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -44,40 +44,40 @@ public interface SourceBuildLocation extends BuildLocation {
 
 
     /**
-     * Returns the value of the '<em><b>Suffix</b></em>' attribute.
+     * Returns the value of the '<em><b>Result Step</b></em>' reference.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Suffix</em>' attribute isn't clear,
+     * If the meaning of the '<em>Result Step</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Suffix</em>' attribute.
-     * @see #setSuffix(String)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getSourceBuildLocation_Suffix()
-     * @model
+     * @return the value of the '<em>Result Step</em>' reference.
+     * @see #setResultStep(ResultStep)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getResultStepBuildLocation_ResultStep()
+     * @model required="true"
      * @generated
      */
 
-    String getSuffix();
+    ResultStep getResultStep();
 
 
 
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation#getSuffix <em>Suffix</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation#getResultStep <em>Result Step</em>}' reference.
 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Suffix</em>' attribute.
-     * @see #getSuffix()
+     * @param value the new value of the '<em>Result Step</em>' reference.
+     * @see #getResultStep()
      * @generated
      */
 
-    void setSuffix(String value);
+    void setResultStep(ResultStep value);
 
 
 
 
 
-} // SourceBuildLocation
+} // ResultStepBuildLocation

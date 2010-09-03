@@ -291,29 +291,6 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected SourceBuildLocationItemProvider sourceBuildLocationItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createSourceBuildLocationAdapter() {
-        if (sourceBuildLocationItemProvider == null) {
-            sourceBuildLocationItemProvider = new SourceBuildLocationItemProvider(this);
-        }
-
-        return sourceBuildLocationItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -403,6 +380,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         }
 
         return updateSiteBuildLocationItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ResultStepBuildLocationItemProvider resultStepBuildLocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createResultStepBuildLocationAdapter() {
+        if (resultStepBuildLocationItemProvider == null) {
+            resultStepBuildLocationItemProvider = new ResultStepBuildLocationItemProvider(this);
+        }
+
+        return resultStepBuildLocationItemProvider;
     }
 
     /**
@@ -558,11 +558,11 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (javadocStepItemProvider != null) javadocStepItemProvider.dispose();
         if (egfStepItemProvider != null) egfStepItemProvider.dispose();
         if (aggregateStepItemProvider != null) aggregateStepItemProvider.dispose();
-        if (sourceBuildLocationItemProvider != null) sourceBuildLocationItemProvider.dispose();
         if (localBuildLocationItemProvider != null) localBuildLocationItemProvider.dispose();
         if (scmBuildLocationItemProvider != null) scmBuildLocationItemProvider.dispose();
         if (targetPlatformBuildLocationItemProvider != null) targetPlatformBuildLocationItemProvider.dispose();
         if (updateSiteBuildLocationItemProvider != null) updateSiteBuildLocationItemProvider.dispose();
+        if (resultStepBuildLocationItemProvider != null) resultStepBuildLocationItemProvider.dispose();
         if (pluginItemProvider != null) pluginItemProvider.dispose();
         if (featureItemProvider != null) featureItemProvider.dispose();
     }

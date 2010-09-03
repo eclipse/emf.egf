@@ -89,6 +89,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
     protected BuildstepSwitch<Adapter> modelSwitch =
         new BuildstepSwitch<Adapter>() {
             @Override
+            public Adapter caseResultStep(ResultStep object) {
+                return createResultStepAdapter();
+            }
+            @Override
             public Adapter caseCleanStep(CleanStep object) {
                 return createCleanStepAdapter();
             }
@@ -145,6 +149,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createUpdateSiteBuildLocationAdapter();
             }
             @Override
+            public Adapter caseResultStepBuildLocation(ResultStepBuildLocation object) {
+                return createResultStepBuildLocationAdapter();
+            }
+            @Override
             public Adapter caseComponent(Component object) {
                 return createComponentAdapter();
             }
@@ -183,6 +191,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
         return modelSwitch.doSwitch((EObject)target);
     }
 
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep <em>Result Step</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep
+     * @generated
+     */
+    public Adapter createResultStepAdapter() {
+        return null;
+    }
 
     /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep <em>Clean Step</em>}'.
@@ -377,6 +399,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createUpdateSiteBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation <em>Result Step Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation
+     * @generated
+     */
+    public Adapter createResultStepBuildLocationAdapter() {
         return null;
     }
 

@@ -33,6 +33,28 @@
 			<istrue value="${site.signing}" />
 		</condition>
 
+		<copy todir="<%=publishdirectory%>/dropins/<%=featurename%>/eclipse/">
+			<fileset dir="${result}/output">
+				<include name="<%=featurename%>*/${site.src}/plugins/*.jar"/>
+				<include name="<%=featurename%>*/${site.src}/features/*.jar"/>
+			</fileset>
+			<filtermapper>
+				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.plugins" replace="plugins" />
+				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.features" replace="features" />
+			</filtermapper>
+		</copy>
+
+		<buckminster command="perform">
+			<globargs>
+				<arg value="-DsiteDir=<%=publishdirectory%>/dropins/<%=featurename%>/eclipse/" />
+			</globargs>
+			<cmdargs>
+<%BuildStep buildStep = publishStep.getComponent().getBuildStep();%>
+<%String buildStepName = new GenerationHelper().getPositionString(buildStep);%>			
+				<arg value="<%=buildStepName%>:buckminster#convertSiteToRuntime" />
+			</cmdargs>
+		</buckminster>
+		
 		<pathconvert property="featurefile<%=stepName%>">
 			<first count="1">
 				<fileset dir="${result}/output" includes="<%=featurename%>*eclipse.feature/temp/feature.xml" />
@@ -47,26 +69,6 @@
 			</filterchain>
 		</loadfile>
 
-		<copy todir="<%=publishdirectory%>/dropins/<%=featurename%>_${featureversion<%=stepName%>}/eclipse/">
-			<fileset dir="${result}/output">
-				<include name="<%=featurename%>*/${site.src}/plugins/*.jar"/>
-				<include name="<%=featurename%>*/${site.src}/features/*.jar"/>
-			</fileset>
-			<filtermapper>
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.plugins" replace="plugins" />
-				<replaceregex pattern=".*_.*-eclipse\.feature.${site.src}.features" replace="features" />
-			</filtermapper>
-		</copy>
-
-		<buckminster command="perform">
-			<globargs>
-				<arg value="-DsiteDir=<%=publishdirectory%>/dropins/<%=featurename%>_${featureversion<%=stepName%>}/eclipse/" />
-			</globargs>
-			<cmdargs>
-<%BuildStep buildStep = publishStep.getComponent().getBuildStep();%>
-<%String buildStepName = new GenerationHelper().getPositionString(buildStep);%>			
-				<arg value="<%=buildStepName%>:buckminster#convertSiteToRuntime" />
-			</cmdargs>
-		</buckminster>
+		<touch file="<%=publishdirectory%>/dropins/<%=featurename%>/version_${featureversion<%=stepName%>}" />
 	</target>
 

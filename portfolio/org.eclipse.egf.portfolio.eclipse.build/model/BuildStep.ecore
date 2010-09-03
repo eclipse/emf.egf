@@ -3,6 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildstep"
     nsURI="http://www.eclipse.org/egf/1.0.0/buildstep" nsPrefix="buildstep">
+  <eClassifiers xsi:type="ecore:EClass" name="ResultStep" abstract="true" eSuperTypes="BuildCore.ecore#//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="CleanStep" eSuperTypes="BuildCore.ecore#//Step">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//CLEAN_TYPE"
         defaultValueLiteral="Workspace"/>
@@ -15,7 +16,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cleanBeforeBuild" eType="#//CLEAN_TYPE"
         defaultValueLiteral="Result"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PublishStep" eSuperTypes="BuildCore.ecore#//Step">
+  <eClassifiers xsi:type="ecore:EClass" name="PublishStep" eSuperTypes="#//ResultStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
         eType="#//Component"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -50,7 +51,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="activities" unique="false"
         lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AggregateStep" eSuperTypes="BuildCore.ecore#//Step">
+  <eClassifiers xsi:type="ecore:EClass" name="AggregateStep" eSuperTypes="#//ResultStep">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="publishSteps" upperBound="-1"
         eType="#//PublishStep"/>
@@ -67,7 +68,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="buildStep" lowerBound="1"
         eType="#//BuildStep" eOpposite="#//BuildStep/buildLocations"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SourceBuildLocation" eSuperTypes="#//BuildLocation">
+  <eClassifiers xsi:type="ecore:EClass" name="SourceBuildLocation" abstract="true"
+      eSuperTypes="#//BuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalBuildLocation" eSuperTypes="#//SourceBuildLocation">
@@ -84,6 +86,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UpdateSiteBuildLocation" eSuperTypes="#//BuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResultStepBuildLocation" eSuperTypes="#//BuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultStep" lowerBound="1"
+        eType="#//ResultStep"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

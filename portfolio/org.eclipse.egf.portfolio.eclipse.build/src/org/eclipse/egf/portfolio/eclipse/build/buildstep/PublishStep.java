@@ -33,7 +33,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
  * @model
  * @generated
  */
-public interface PublishStep extends Step {
+public interface PublishStep extends ResultStep {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

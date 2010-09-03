@@ -203,14 +203,6 @@ public class BuildStepItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
-                 BuildstepFactory.eINSTANCE.createSourceBuildLocation()));
-
-
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
                  BuildstepFactory.eINSTANCE.createLocalBuildLocation()));
 
 
@@ -236,6 +228,14 @@ public class BuildStepItemProvider
             (createChildParameter
                 (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
                  BuildstepFactory.eINSTANCE.createUpdateSiteBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createResultStepBuildLocation()));
 
 
 
