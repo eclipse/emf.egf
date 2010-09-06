@@ -92,7 +92,6 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
 
         for (Node containerNode : model.getChildren()) {
             GenerationChain container = GenerationChainFactory.eINSTANCE.createGenerationChain();
-            root.getElements().add(container);
 
             container.setName(containerNode.getName());
             for (Node extensionNode : containerNode.getChildren()) {
@@ -110,6 +109,9 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
                     container.getElements().add(leaf);
                 }
             }
+            if (!container.getElements().isEmpty())
+                root.getElements().add(container);
+
         }
     }
 

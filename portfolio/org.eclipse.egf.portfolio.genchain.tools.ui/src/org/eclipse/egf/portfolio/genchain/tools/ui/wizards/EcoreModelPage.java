@@ -89,7 +89,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
     private final Node model;
     private ContainerCheckedTreeViewer viewer;
 
-    protected EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
+    public EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
         super(pageName);
         this.model = model;
         for (Object obj : selection.toArray()) {
@@ -353,7 +353,8 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
         container.pack();
 
-        viewer.expandAll();
+        viewer.expandToLevel(2);
+        viewer.setCheckedElements(viewer.getExpandedElements());
     }
 
     protected void refreshButtons() {
