@@ -180,6 +180,8 @@
                 <jvmarg value="-Declipse.p2.mirrors=false" />
                 <arg value="-r" />
                 <arg value="${egf.site}" />
+                <arg value="-r" />
+                <arg value="${egf.site2}" />
                 <arg value="-d" />
                 <arg value="${tools}/egf" />
                 <arg value="-p" />
