@@ -89,9 +89,13 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
     private final Node model;
     private ContainerCheckedTreeViewer viewer;
 
-    public EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
+    public EcoreModelPage(String pageName, Node model) {
         super(pageName);
         this.model = model;
+    }
+
+    public EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
+        this(pageName, model);
         for (Object obj : selection.toArray()) {
             if (obj instanceof IFile) {
                 IFile file = (IFile) obj;
@@ -222,7 +226,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
     @Override
     public boolean isPageComplete() {
         if (viewer != null) {
-            final boolean complete = viewer.getCheckedElements().length != 0;
+            final boolean complete = viewer.getVisibleExpandedElements().length == 0 || viewer.getCheckedElements().length != 0;
             if (complete) {
                 setErrorMessage(null);
             } else {
