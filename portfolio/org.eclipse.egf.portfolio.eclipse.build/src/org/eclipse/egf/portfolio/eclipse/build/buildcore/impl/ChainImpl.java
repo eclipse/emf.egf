@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -155,28 +156,13 @@ public class ChainImpl extends ItemImpl implements Chain {
     public EList<Job> getJobs() {
 
         if (jobs == null) {
-            jobs = new EObjectContainmentWithInverseEList.Resolving<Job>(Job.class, this, BuildcorePackage.CHAIN__JOBS, BuildcorePackage.JOB__CHAIN);
+            jobs = new EObjectContainmentEList.Resolving<Job>(Job.class, this, BuildcorePackage.CHAIN__JOBS);
         }
         return jobs;
     }
 
 
 
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case BuildcorePackage.CHAIN__JOBS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getJobs()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
 
     /**
      * <!-- begin-user-doc -->

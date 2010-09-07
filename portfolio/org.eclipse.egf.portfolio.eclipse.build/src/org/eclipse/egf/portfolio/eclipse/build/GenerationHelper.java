@@ -61,7 +61,7 @@ public class GenerationHelper {
     }
 
     public Job getNextChainJob(Job job) {
-        Chain chain = job.getChain();
+        Chain chain = (Chain) job.eContainer();
         if (chain == null)
             return null;
         EList<EObject> eContents = chain.eContents();
@@ -78,7 +78,7 @@ public class GenerationHelper {
 
     public String getJobName(PatternContext context, Job job) {
         boolean prefixJobNameWithChainName = (Boolean) context.getValue("prefixJobNameWithChainName"); //$NON-NLS-1$
-        Chain chain = job.getChain();
+        Chain chain = (Chain) job.eContainer();
         if (prefixJobNameWithChainName && chain != null)
             return chain.getName() + "_" + job.getName();
         else

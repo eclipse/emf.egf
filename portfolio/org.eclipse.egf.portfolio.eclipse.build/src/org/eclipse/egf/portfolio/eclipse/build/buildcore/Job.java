@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getScms <em>Scms</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getTriggers <em>Triggers</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getChain <em>Chain</em>}</li>
  * </ul>
  * </p>
  *
@@ -250,47 +249,6 @@ public interface Job extends Item {
      */
 
     void setEnabled(boolean value);
-
-
-
-
-
-
-
-    /**
-     * Returns the value of the '<em><b>Chain</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain#getJobs <em>Jobs</em>}'.
-
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Chain</em>' container reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Chain</em>' container reference.
-     * @see #setChain(Chain)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Chain()
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain#getJobs
-     * @model opposite="jobs" transient="false"
-     * @generated
-     */
-
-    Chain getChain();
-
-
-
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getChain <em>Chain</em>}' container reference.
-
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Chain</em>' container reference.
-     * @see #getChain()
-     * @generated
-     */
-
-    void setChain(Chain value);
 
 
 

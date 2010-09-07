@@ -50,7 +50,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#getScms <em>Scms</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#getTriggers <em>Triggers</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#isEnabled <em>Enabled</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#getChain <em>Chain</em>}</li>
  * </ul>
  * </p>
  *
@@ -400,86 +399,12 @@ public class JobImpl extends ItemImpl implements Job {
      * <!-- end-user-doc -->
      * @generated
      */
-
-    public Chain getChain() {
-
-        if (eContainerFeatureID() != BuildcorePackage.JOB__CHAIN) return null;
-        return (Chain)eContainer();
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public Chain basicGetChain() {
-
-        if (eContainerFeatureID() != BuildcorePackage.JOB__CHAIN) return null;
-        return (Chain)eInternalContainer();
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public NotificationChain basicSetChain(Chain newChain, NotificationChain msgs) {
-
-        msgs = eBasicSetContainer((InternalEObject)newChain, BuildcorePackage.JOB__CHAIN, msgs);
-
-        return msgs;
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public void setChain(Chain newChain) {
-
-        if (newChain != eInternalContainer() || (eContainerFeatureID() != BuildcorePackage.JOB__CHAIN && newChain != null)) {
-            if (EcoreUtil.isAncestor(this, newChain))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newChain != null)
-                msgs = ((InternalEObject)newChain).eInverseAdd(this, BuildcorePackage.CHAIN__JOBS, Chain.class, msgs);
-            msgs = basicSetChain(newChain, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildcorePackage.JOB__CHAIN, newChain, newChain));
-
-    }
-
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case BuildcorePackage.JOB__STEPS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getSteps()).basicAdd(otherEnd, msgs);
-            case BuildcorePackage.JOB__CHAIN:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetChain((Chain)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -498,24 +423,8 @@ public class JobImpl extends ItemImpl implements Job {
                 return basicSetScms(null, msgs);
             case BuildcorePackage.JOB__TRIGGERS:
                 return ((InternalEList<?>)getTriggers()).basicRemove(otherEnd, msgs);
-            case BuildcorePackage.JOB__CHAIN:
-                return basicSetChain(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case BuildcorePackage.JOB__CHAIN:
-                return eInternalContainer().eInverseRemove(this, BuildcorePackage.CHAIN__JOBS, Chain.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
     /**
@@ -538,9 +447,6 @@ public class JobImpl extends ItemImpl implements Job {
                 return getTriggers();
             case BuildcorePackage.JOB__ENABLED:
                 return isEnabled();
-            case BuildcorePackage.JOB__CHAIN:
-                if (resolve) return getChain();
-                return basicGetChain();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -574,9 +480,6 @@ public class JobImpl extends ItemImpl implements Job {
             case BuildcorePackage.JOB__ENABLED:
                 setEnabled((Boolean)newValue);
                 return;
-            case BuildcorePackage.JOB__CHAIN:
-                setChain((Chain)newValue);
-                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -608,9 +511,6 @@ public class JobImpl extends ItemImpl implements Job {
             case BuildcorePackage.JOB__ENABLED:
                 setEnabled(ENABLED_EDEFAULT);
                 return;
-            case BuildcorePackage.JOB__CHAIN:
-                setChain((Chain)null);
-                return;
         }
         super.eUnset(featureID);
     }
@@ -637,8 +537,6 @@ public class JobImpl extends ItemImpl implements Job {
                 return triggers != null && !triggers.isEmpty();
             case BuildcorePackage.JOB__ENABLED:
                 return enabled != ENABLED_EDEFAULT;
-            case BuildcorePackage.JOB__CHAIN:
-                return basicGetChain() != null;
         }
         return super.eIsSet(featureID);
     }

@@ -274,15 +274,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJob_Chain() {
-        return (EReference)jobEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getStep() {
         return stepEClass;
     }
@@ -392,7 +383,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         createEReference(jobEClass, JOB__SCMS);
         createEReference(jobEClass, JOB__TRIGGERS);
         createEAttribute(jobEClass, JOB__ENABLED);
-        createEReference(jobEClass, JOB__CHAIN);
 
         stepEClass = createEClass(STEP);
         createEReference(stepEClass, STEP__JOB);
@@ -445,7 +435,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         initEClass(chainEClass, Chain.class, "Chain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getChain_Name(), ecorePackage.getEString(), "name", null, 1, 1, Chain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getChain_Jobs(), this.getJob(), this.getJob_Chain(), "jobs", null, 1, -1, Chain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getChain_Jobs(), this.getJob(), null, "jobs", null, 1, -1, Chain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jobEClass, Job.class, "Job", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getJob_Name(), ecorePackage.getEString(), "name", null, 1, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -454,7 +444,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEReference(getJob_Scms(), this.getSCM(), null, "scms", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJob_Triggers(), this.getTrigger(), null, "triggers", null, 0, -1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJob_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJob_Chain(), this.getChain(), this.getChain_Jobs(), "chain", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(stepEClass, Step.class, "Step", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getStep_Job(), this.getJob(), this.getJob_Steps(), "job", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

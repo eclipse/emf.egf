@@ -87,7 +87,6 @@ public interface Chain extends Item {
     /**
      * Returns the value of the '<em><b>Jobs</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job}.
-     * It is bidirectional and its opposite is '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getChain <em>Chain</em>}'.
 
      * <!-- begin-user-doc -->
      * <p>
@@ -97,8 +96,7 @@ public interface Chain extends Item {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Jobs</em>' containment reference list.
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getChain_Jobs()
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getChain
-     * @model opposite="chain" containment="true" resolveProxies="true" required="true"
+     * @model containment="true" resolveProxies="true" required="true"
      * @generated
      */
 

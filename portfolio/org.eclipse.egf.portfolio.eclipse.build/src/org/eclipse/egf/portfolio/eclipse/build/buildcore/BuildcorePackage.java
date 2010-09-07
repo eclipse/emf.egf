@@ -221,22 +221,13 @@ public interface BuildcorePackage extends EPackage {
     int JOB__ENABLED = ITEM_FEATURE_COUNT + 5;
 
     /**
-     * The feature id for the '<em><b>Chain</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__CHAIN = ITEM_FEATURE_COUNT + 6;
-
-    /**
      * The number of structural features of the '<em>Job</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JOB_FEATURE_COUNT = ITEM_FEATURE_COUNT + 7;
+    int JOB_FEATURE_COUNT = ITEM_FEATURE_COUNT + 6;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
@@ -491,17 +482,6 @@ public interface BuildcorePackage extends EPackage {
     EAttribute getJob_Enabled();
 
     /**
-     * Returns the meta object for the container reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getChain <em>Chain</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the container reference '<em>Chain</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getChain()
-     * @see #getJob()
-     * @generated
-     */
-    EReference getJob_Chain();
-
-    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step <em>Step</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -707,14 +687,6 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EAttribute JOB__ENABLED = eINSTANCE.getJob_Enabled();
-
-        /**
-         * The meta object literal for the '<em><b>Chain</b></em>' container reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference JOB__CHAIN = eINSTANCE.getJob_Chain();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
