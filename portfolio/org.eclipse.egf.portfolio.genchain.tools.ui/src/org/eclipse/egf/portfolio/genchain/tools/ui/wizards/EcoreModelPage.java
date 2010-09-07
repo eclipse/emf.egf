@@ -106,8 +106,8 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
     }
 
     private Node addEcore(String modelPath) {
-        String name = GenerationChainWizard.getModelName(modelPath);
-        String bundleName = GenerationChainWizard.getBundleName(modelPath);
+        String name = GenerationChainFactory.getModelName(modelPath);
+        String bundleName = GenerationChainFactory.getBundleName(modelPath);
         Node chainNode = new Node(model, MODEL);
         chainNode.setName(name);
         model.getChildren().add(chainNode);

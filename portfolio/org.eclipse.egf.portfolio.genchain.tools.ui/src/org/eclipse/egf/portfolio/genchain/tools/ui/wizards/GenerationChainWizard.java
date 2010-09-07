@@ -14,13 +14,10 @@ package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.portfolio.genchain.extension.ExtensionHelper;
 import org.eclipse.egf.portfolio.genchain.extension.ExtensionProperties;
-import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory;
 import org.eclipse.egf.portfolio.genchain.tools.ui.Activator;
@@ -81,38 +78,9 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
         root.setName(shortName);
         root.setFactoryComponentName("org.eclipse.egf.chain." + shortName.toLowerCase());//$NON-NLS-1$
 
-        init(root);
+        org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainFactory.INSTANCE.create(root, model, ecorePage.getCheckedElements());
 
         return root;
-    }
-
-    private void init(GenerationChain root) {
-        final Map<String, ExtensionHelper> extensionsAsMap = ExtensionHelper.getExtensionsAsMap();
-        final Set<Node> checkedElements = ecorePage.getCheckedElements();
-
-        for (Node containerNode : model.getChildren()) {
-            GenerationChain container = GenerationChainFactory.eINSTANCE.createGenerationChain();
-
-            container.setName(containerNode.getName());
-            for (Node extensionNode : containerNode.getChildren()) {
-                String id = extensionNode.getProperties().get(ID);
-                String modelName = getModelName(extensionNode.getProperties().get(MODEL_PATH));
-                ExtensionHelper extensionHelper = extensionsAsMap.get(id);
-                if (checkedElements.contains(extensionNode)) {
-                    Map<String, String> properties = new HashMap<String, String>();
-                    for (Node propertyNode : extensionNode.getChildren()) {
-                        properties.put(propertyNode.getName(), propertyNode.getProperties().get(PROPERTY_VALUE));
-                    }
-                    properties.putAll(extensionNode.getProperties());
-                    EcoreElement leaf = extensionHelper.createEcoreElement(properties);
-                    leaf.setName(Messages.bind(Messages.genchain_wizard_element_name_creation, extensionNode.getName(), modelName));
-                    container.getElements().add(leaf);
-                }
-            }
-            if (!container.getElements().isEmpty())
-                root.getElements().add(container);
-
-        }
     }
 
     @Override
@@ -179,13 +147,5 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
             });
         }
         return true;
-    }
-
-    static String getModelName(String modelPath) {
-        return modelPath.substring(modelPath.lastIndexOf('/') + 1, modelPath.lastIndexOf('.'));
-    }
-
-    static String getBundleName(String modelPath) {
-        return modelPath.substring(1, modelPath.indexOf('/', 1));
     }
 }
