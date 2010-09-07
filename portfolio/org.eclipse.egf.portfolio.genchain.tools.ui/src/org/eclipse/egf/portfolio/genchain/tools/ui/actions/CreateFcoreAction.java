@@ -84,7 +84,7 @@ public class CreateFcoreAction implements IObjectActionDelegate {
                     ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
                     ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
                     ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
-                    RunActivityHelper.run(fc, null);
+                    RunActivityHelper.run(fc, monitor);
                 } catch (Exception e) {
                     throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
                 }
