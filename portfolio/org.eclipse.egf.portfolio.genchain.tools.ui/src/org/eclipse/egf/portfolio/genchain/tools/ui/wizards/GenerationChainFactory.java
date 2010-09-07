@@ -32,33 +32,36 @@ import org.eclipse.egf.portfolio.genchain.tools.ui.Messages;
 public class GenerationChainFactory implements ExtensionProperties {
     public static final GenerationChainFactory INSTANCE = new GenerationChainFactory();
 
-    public void create(GenerationChain root, Node data, Set<Node> activeNodes) {
+    public void createExtension(GenerationChain container, Node containerNode, Set<Node> activeNodes) {
         final Map<String, ExtensionHelper> extensionsAsMap = ExtensionHelper.getExtensionsAsMap();
+        for (Node extensionNode : containerNode.getChildren()) {
+            String id = extensionNode.getProperties().get(ID);
+            String modelName = getModelName(extensionNode.getProperties().get(MODEL_PATH));
+            ExtensionHelper extensionHelper = extensionsAsMap.get(id);
+            if (activeNodes.contains(extensionNode)) {
+                Map<String, String> properties = new HashMap<String, String>();
+                for (Node propertyNode : extensionNode.getChildren()) {
+                    properties.put(propertyNode.getName(), propertyNode.getProperties().get(PROPERTY_VALUE));
+                }
+                properties.putAll(extensionNode.getProperties());
+                EcoreElement leaf = extensionHelper.createEcoreElement(properties);
+                leaf.setName(Messages.bind(Messages.genchain_wizard_element_name_creation, extensionNode.getName(), modelName));
+                container.getElements().add(leaf);
+            }
+        }
+
+    }
+
+    public void createContainer(GenerationChain root, Node data, Set<Node> activeNodes) {
 
         for (Node containerNode : data.getChildren()) {
             GenerationChain container = org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory.eINSTANCE.createGenerationChain();
 
             container.setName(containerNode.getName());
-            for (Node extensionNode : containerNode.getChildren()) {
-                String id = extensionNode.getProperties().get(ID);
-                String modelName = getModelName(extensionNode.getProperties().get(MODEL_PATH));
-                ExtensionHelper extensionHelper = extensionsAsMap.get(id);
-                if (activeNodes.contains(extensionNode)) {
-                    Map<String, String> properties = new HashMap<String, String>();
-                    for (Node propertyNode : extensionNode.getChildren()) {
-                        properties.put(propertyNode.getName(), propertyNode.getProperties().get(PROPERTY_VALUE));
-                    }
-                    properties.putAll(extensionNode.getProperties());
-                    EcoreElement leaf = extensionHelper.createEcoreElement(properties);
-                    leaf.setName(Messages.bind(Messages.genchain_wizard_element_name_creation, extensionNode.getName(), modelName));
-                    container.getElements().add(leaf);
-                }
-            }
+            createExtension(container, containerNode, activeNodes);
             if (!container.getElements().isEmpty())
                 root.getElements().add(container);
-
         }
-
     }
 
     public static String getBundleName(String modelPath) {

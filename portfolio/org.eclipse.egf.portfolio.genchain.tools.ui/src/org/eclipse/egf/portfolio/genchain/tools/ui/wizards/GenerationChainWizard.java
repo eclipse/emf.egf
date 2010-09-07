@@ -78,7 +78,7 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
         root.setName(shortName);
         root.setFactoryComponentName("org.eclipse.egf.chain." + shortName.toLowerCase());//$NON-NLS-1$
 
-        org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainFactory.INSTANCE.create(root, model, ecorePage.getCheckedElements());
+        org.eclipse.egf.portfolio.genchain.tools.ui.wizards.GenerationChainFactory.INSTANCE.createContainer(root, model, ecorePage.getCheckedElements());
 
         return root;
     }
