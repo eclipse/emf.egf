@@ -29,6 +29,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
@@ -55,35 +56,29 @@ public class CreateFcoreHelper {
 
     public WorkspaceJob createJob(final URI fcoreURI) {
 
-        final EGFResourceSet resourceSet = new EGFResourceSet();
-
-        final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
-
-        final String fcoreRelativePath = "/model/" + generationChain.getName() + ".fcore";
-        final String fcoreOutputPath = generationChain.getFactoryComponentName() + fcoreRelativePath;
-
-        final WorkspaceJob buildJob = new WorkspaceJob(Messages.genchain_action_label) {
+        final WorkspaceJob buildJob = new WorkspaceJob(getJobName()) {
             @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
                 try {
-                    setupProject(generationChain.getFactoryComponentName(), fcoreRelativePath);
-                    FactoryComponent fc = (FactoryComponent) resourceSet.getEObject(GENERATOR_URI, true);
-                    DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
-                    domainURI.setUri(fcoreURI);
-
-                    ((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
-                    ((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
-                    ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
-                    ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
-                    ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
-                    RunActivityHelper.run(fc, monitor);
+                    final EGFResourceSet resourceSet = new EGFResourceSet();
+                    final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
+                    executeJob(generationChain, monitor);
                 } catch (Exception e) {
                     throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
                 }
                 return Status.OK_STATUS;
             }
+
         };
         return buildJob;
+    }
+
+    protected void executeJob(GenerationChain generationChain, IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException, InvocationException {
+        final String fcoreRelativePath = "/model/" + generationChain.getName() + ".fcore";
+        final String fcoreOutputPath = generationChain.getFactoryComponentName() + fcoreRelativePath;
+
+        setupProject(generationChain.getFactoryComponentName(), fcoreRelativePath);
+        createFcore(generationChain, fcoreOutputPath, monitor);
     }
 
     public void setupProject(String projectName, String fcorePath) throws CoreException, InvocationTargetException, InterruptedException {
@@ -107,8 +102,30 @@ public class CreateFcoreHelper {
             file.create(new ByteArrayInputStream(data.getBytes()), true, null);
     }
 
+    protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws InvocationException, CoreException {
+        FactoryComponent fc = (FactoryComponent) generationChain.eResource().getResourceSet().getEObject(getGeneratorURI(), true);
+        DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+        final URI uri = generationChain.eResource().getURI();
+        domainURI.setUri(uri);
+
+        ((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
+        ((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
+        ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
+        ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
+        ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
+        RunActivityHelper.run(fc, monitor);
+    }
+
     protected List<Substitution> computeSubstitutions() {
         return ExtensionHelper.getAllSubstitutions();
+    }
+
+    protected String getJobName() {
+        return Messages.genchain_action_label;
+    }
+
+    protected URI getGeneratorURI() {
+        return GENERATOR_URI;
     }
 
 }
