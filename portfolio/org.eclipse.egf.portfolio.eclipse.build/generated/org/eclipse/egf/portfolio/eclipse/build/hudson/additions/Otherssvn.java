@@ -9,12 +9,12 @@ import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
-public class SVN {
+public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.call.Othersadd {
     protected static String nl;
 
-    public static synchronized SVN create(String lineSeparator) {
+    public static synchronized Otherssvn create(String lineSeparator) {
         nl = lineSeparator;
-        SVN result = new SVN();
+        Otherssvn result = new Otherssvn();
         nl = null;
         return result;
     }
@@ -28,7 +28,7 @@ public class SVN {
     protected final String TEXT_6 = NL;
     protected final String TEXT_7 = NL;
 
-    public SVN() {
+    public Otherssvn() {
         //Here is the constructor
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -43,8 +43,9 @@ public class SVN {
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        List<Object> svnList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        paramDesc = new IQuery.ParameterDescription("svn", "http://www.eclipse.org/egf/1.0.0/buildscm#//SVN");
+        queryCtx = new HashMap<String, String>();
+        List<Object> svnList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object svnParameter : svnList) {
 
@@ -68,7 +69,7 @@ public class SVN {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
 
-        method_body(ictx.getBuffer(), ictx);
+        super.orchestration(new SuperOrchestrationContext(ictx));
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {
@@ -112,6 +113,6 @@ public class SVN {
     }
 
     public boolean preCondition() throws Exception {
-        return true;
+        return super.preCondition();
     }
 }

@@ -33,10 +33,12 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
     protected final String TEXT_12 = NL;
     protected final String TEXT_13 = NL + "  </publishers>" + NL + "  <triggers class=\"vector\">";
     protected final String TEXT_14 = NL;
-    protected final String TEXT_15 = NL + "  </triggers>" + NL;
-    protected final String TEXT_16 = "</project>";
+    protected final String TEXT_15 = NL + "  </triggers>";
+    protected final String TEXT_16 = NL;
     protected final String TEXT_17 = NL;
-    protected final String TEXT_18 = NL;
+    protected final String TEXT_18 = "</project>";
+    protected final String TEXT_19 = NL;
+    protected final String TEXT_20 = NL;
 
     public configxml() {
         //Here is the constructor
@@ -69,8 +71,8 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_17);
-        stringBuffer.append(TEXT_18);
+        stringBuffer.append(TEXT_19);
+        stringBuffer.append(TEXT_20);
         return stringBuffer.toString();
     }
 
@@ -208,11 +210,23 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
         }
 
         stringBuffer.append(TEXT_15);
+        stringBuffer.append(TEXT_16);
+        {
+            //<%@ egf:patternInjectedCall toInject="job"
+            //	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Others.add"
+            //%>
+
+            ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
+            callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
+            CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ZjWVULv6Ed-8jux89nECug", callCtx);
+        }
+
+        stringBuffer.append(TEXT_17);
     }
 
     protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_16);
+        stringBuffer.append(TEXT_18);
     }
 
     public boolean preCondition() throws Exception {

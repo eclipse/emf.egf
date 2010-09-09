@@ -29,3 +29,6 @@
 	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Trigger.add"
 %>
   </triggers>
+<%@ egf:patternInjectedCall toInject="job"
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.hudson.call.Others.add"
+%>

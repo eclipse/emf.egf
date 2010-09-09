@@ -44,10 +44,11 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
     protected final String TEXT_21 = "\" srcFile=\"${featurefile";
     protected final String TEXT_22 = "}\">" + NL + "\t\t\t<filterchain>" + NL + "\t\t\t\t<striplinebreaks/>" + NL + "\t\t\t\t<replaceregex" + NL + "\t\t\t\t\tpattern=\"^.*&lt;feature[^&gt;]*version=&quot;([^&quot;]*)&quot;.*$\"" + NL + "\t\t\t\t\treplace=\"\\1\"/>" + NL + "\t\t\t</filterchain>" + NL + "\t\t</loadfile>" + NL + "" + NL + "\t\t<touch file=\"";
     protected final String TEXT_23 = "/dropins/";
-    protected final String TEXT_24 = "/version_${featureversion";
-    protected final String TEXT_25 = "}\" />" + NL + "\t</target>" + NL + NL;
-    protected final String TEXT_26 = NL;
+    protected final String TEXT_24 = "/";
+    protected final String TEXT_25 = "_version_${featureversion";
+    protected final String TEXT_26 = "}\" />" + NL + "\t</target>" + NL + NL;
     protected final String TEXT_27 = NL;
+    protected final String TEXT_28 = NL;
 
     public buildxmlpublishStepfeature() {
         //Here is the constructor
@@ -81,8 +82,8 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_26);
         stringBuffer.append(TEXT_27);
+        stringBuffer.append(TEXT_28);
         return stringBuffer.toString();
     }
 
@@ -169,8 +170,10 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
         stringBuffer.append(TEXT_23);
         stringBuffer.append(featurename);
         stringBuffer.append(TEXT_24);
-        stringBuffer.append(stepName);
+        stringBuffer.append(featurename);
         stringBuffer.append(TEXT_25);
+        stringBuffer.append(stepName);
+        stringBuffer.append(TEXT_26);
     }
 
     public boolean preCondition() throws Exception {

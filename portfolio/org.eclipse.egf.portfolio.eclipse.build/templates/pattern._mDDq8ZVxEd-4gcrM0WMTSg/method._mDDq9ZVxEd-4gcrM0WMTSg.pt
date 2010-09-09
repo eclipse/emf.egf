@@ -69,6 +69,6 @@
 			</filterchain>
 		</loadfile>
 
-		<touch file="<%=publishdirectory%>/dropins/<%=featurename%>/version_${featureversion<%=stepName%>}" />
+		<touch file="<%=publishdirectory%>/dropins/<%=featurename%>/<%=featurename%>_version_${featureversion<%=stepName%>}" />
 	</target>
 
