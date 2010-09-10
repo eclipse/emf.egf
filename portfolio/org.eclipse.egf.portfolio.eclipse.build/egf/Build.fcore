@@ -19,6 +19,10 @@
           name="prefixJobNameWithChainName" invocationContracts="#_p2sdEJmBEd-FyeHxc8pAZg #_rnfsUJmBEd-FyeHxc8pAZg">
         <type xmi:type="types:TypeBoolean" xmi:id="_nt5kkJmBEd-FyeHxc8pAZg"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ahMPALzpEd-Ni-pzi_M0Ew"
+          name="Model validation patterns" invocationContracts="#_9iziMLzqEd-Ni-pzi_M0Ew">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_fEqaMLzpEd-Ni-pzi_M0Ew"/>
+      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mKZJoI_tEd-ggNhbFv1Fiw"
           name="Hudson pattern substitutions" invocationContracts="#_kXzxs4_tEd-ggNhbFv1Fiw">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_nu1X4I_tEd-ggNhbFv1Fiw"/>
@@ -147,6 +151,8 @@
             <type xmi:type="pattern:TypePatternList" xmi:id="_1awdgK93Ed--tuq7x0NXVA"
                 elements="#_d8VZUK95Ed--tuq7x0NXVA"/>
           </invocationContracts>
+          <invocationContracts xmi:id="_9iziMLzqEd-Ni-pzi_M0Ew" factoryComponentContract="#_ahMPALzpEd-Ni-pzi_M0Ew"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
         </invocationContractContainer>
       </invocations>
       <invocations xmi:id="_kXzxsI_tEd-ggNhbFv1Fiw" invokedActivity="#_cUxUQY28Ed-Tlrutn5SzgA">
