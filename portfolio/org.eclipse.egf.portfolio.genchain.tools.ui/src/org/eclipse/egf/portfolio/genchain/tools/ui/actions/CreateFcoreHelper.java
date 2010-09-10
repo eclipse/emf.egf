@@ -16,11 +16,11 @@
 package org.eclipse.egf.portfolio.genchain.tools.ui.actions;
 
 import java.io.ByteArrayInputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
@@ -50,82 +50,120 @@ import org.eclipse.ui.internal.editors.text.WorkspaceOperationRunner;
  * 
  */
 public class CreateFcoreHelper {
-    public static final CreateFcoreHelper INSTANCE = new CreateFcoreHelper();
+	public static final CreateFcoreHelper INSTANCE = new CreateFcoreHelper();
 
-    private static final URI GENERATOR_URI = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_6qO2EYhGEd-Ii9WHGzCGHg");
+	private static final URI GENERATOR_URI = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_6qO2EYhGEd-Ii9WHGzCGHg");
 
-    public WorkspaceJob createJob(final URI fcoreURI) {
+	public WorkspaceJob createJob(final URI fcoreURI) {
 
-        final WorkspaceJob buildJob = new WorkspaceJob(getJobName()) {
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                try {
-                    final EGFResourceSet resourceSet = new EGFResourceSet();
-                    final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
-                    executeJob(generationChain, monitor);
-                } catch (Exception e) {
-                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-                }
-                return Status.OK_STATUS;
-            }
+		final WorkspaceJob buildJob = new WorkspaceJob(getJobName()) {
+			@Override
+			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				try {
+					final EGFResourceSet resourceSet = new EGFResourceSet();
+					final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
+					executeJob(generationChain, monitor);
+				} catch (CoreException e) {
+					throw e;
+				} catch (Exception e) {
+					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+				}
+				return Status.OK_STATUS;
+			}
 
-        };
-        return buildJob;
-    }
+		};
+		final WorkspaceJob setupJob = new WorkspaceJob(getJobName()) {
+			@Override
+			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+				try {
+					final EGFResourceSet resourceSet = new EGFResourceSet();
+					final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
+					setupProject(generationChain.getFactoryComponentName(), computeFcoreRelativePath(generationChain));
+					buildJob.schedule(1000);
+				} catch (CoreException e) {
+					throw e;
+				} catch (Exception e) {
+					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+				}
+				return Status.OK_STATUS;
+			}
 
-    protected void executeJob(GenerationChain generationChain, IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException, InvocationException {
-        final String fcoreRelativePath = "/model/" + generationChain.getName() + ".fcore";
-        final String fcoreOutputPath = generationChain.getFactoryComponentName() + fcoreRelativePath;
+		};
+		return setupJob;
+	}
 
-        setupProject(generationChain.getFactoryComponentName(), fcoreRelativePath);
-        createFcore(generationChain, fcoreOutputPath, monitor);
-    }
+	protected void executeJob(GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
+		final String fcoreOutputPath = computeFcoreOutputPath(generationChain);
 
-    public void setupProject(String projectName, String fcorePath) throws CoreException, InvocationTargetException, InterruptedException {
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-        if (!project.exists())
-            project.create(null);
-        project.open(null);
-        WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
-        runner.setProgressMonitor(null);
-        runner.run(true, false, new ConvertProjectOperation(project, true, true));
-        IFile file = project.getFile("plugin.xml");
-        if (!file.exists()) {
-            String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?eclipse version=\"3.2\"?>\n<plugin>" + "\n\t<extension\n\tpoint=\"org.eclipse.egf.core.fcore\">\n\t\t<fcore id=\"" + fcorePath + "\">\n\t" + "</fcore>\n</extension>\n</plugin>";
-            file.create(new ByteArrayInputStream(data.getBytes()), true, null);
-        }
-        file = project.getFile("build.properties");
-        String data = "bin.includes = META-INF/,\\\nmodel/,\\\nplugin.xml\n";
-        if (file.exists())
-            file.setContents(new ByteArrayInputStream(data.getBytes()), true, false, null);
-        else
-            file.create(new ByteArrayInputStream(data.getBytes()), true, null);
-    }
+		createFcore(generationChain, fcoreOutputPath, monitor);
+	}
 
-    protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws InvocationException, CoreException {
-        FactoryComponent fc = (FactoryComponent) generationChain.eResource().getResourceSet().getEObject(getGeneratorURI(), true);
-        DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
-        final URI uri = generationChain.eResource().getURI();
-        domainURI.setUri(uri);
+	protected String computeFcoreOutputPath(GenerationChain generationChain) {
+		return generationChain.getFactoryComponentName() + computeFcoreRelativePath(generationChain);
+	}
 
-        ((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
-        ((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
-        ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
-        ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
-        ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
-        RunActivityHelper.run(fc, monitor);
-    }
+	protected String computeFcoreRelativePath(GenerationChain generationChain) {
+		return "/model/" + generationChain.getName() + ".fcore";
+	}
 
-    protected List<Substitution> computeSubstitutions() {
-        return ExtensionHelper.getAllSubstitutions();
-    }
+	public void setupProject(String projectName, String fcorePath) throws CoreException {
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+		if (!project.exists())
+			project.create(null);
+		project.open(null);
+		WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
+		runner.setProgressMonitor(null);
+		try {
+			runner.run(true, false, new ConvertProjectOperation(project, true, true));
+		} catch (Exception e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+		}
+		IFile file = project.getFile("plugin.xml");
+		if (!file.exists()) {
+			String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?eclipse version=\"3.2\"?>\n<plugin>" + "\n\t<extension\n\tpoint=\"org.eclipse.egf.core.fcore\">\n\t\t<fcore id=\"" + fcorePath + "\">\n\t" + "</fcore>\n</extension>\n</plugin>";
+			file.create(new ByteArrayInputStream(data.getBytes()), true, null);
+		}
+		file = project.getFile("build.properties");
+		String data = "bin.includes = META-INF/,\\\nmodel/,\\\nplugin.xml\n";
+		if (file.exists())
+			file.setContents(new ByteArrayInputStream(data.getBytes()), true, false, null);
+		else
+			file.create(new ByteArrayInputStream(data.getBytes()), true, null);
+	}
 
-    protected String getJobName() {
-        return Messages.genchain_action_label;
-    }
+	protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
+		FactoryComponent fc = (FactoryComponent) generationChain.eResource().getResourceSet().getEObject(getGeneratorURI(), true);
+		DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+		final URI uri = generationChain.eResource().getURI();
+		domainURI.setUri(uri);
 
-    protected URI getGeneratorURI() {
-        return GENERATOR_URI;
-    }
+		((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
+		((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
+		((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
+		((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
+		((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
+		try {
+			RunActivityHelper.run(fc, monitor);
+		} catch (InvocationException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+		}
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(generationChain.getFactoryComponentName());
+		if (project != null && project.exists()) {
+			project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
+		}
+
+	}
+
+	protected List<Substitution> computeSubstitutions() {
+		return ExtensionHelper.getAllSubstitutions();
+	}
+
+	protected String getJobName() {
+		return Messages.genchain_action_label;
+	}
+
+	protected URI getGeneratorURI() {
+		return GENERATOR_URI;
+	}
 
 }
