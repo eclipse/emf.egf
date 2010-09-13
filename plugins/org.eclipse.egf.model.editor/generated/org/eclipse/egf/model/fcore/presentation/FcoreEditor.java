@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
@@ -83,8 +82,8 @@ import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider.ViewerRefresh;
+import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
@@ -599,7 +598,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * 
      * @generated NOT
      */
-    public void resourceMoved(Resource movedResource, final URI oldURI) {
+    public void resourceMoved(final Resource movedResource, final URI oldURI) {
         if (movedResource == getResource()) {
             resourceHasBeenExternallyChanged = false;
             resourceHasBeenRemoved = false;
@@ -610,13 +609,12 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
                         setSelection(StructuredSelection.EMPTY);
                     }
-                    Resource innerResource = getResource();
-                    selectionViewer.setSelection(new StructuredSelection(innerResource), true);
+                    selectionViewer.setSelection(new StructuredSelection(movedResource), true);
                     if (currentViewerPane != null) {
-                        currentViewerPane.setTitle(innerResource);
+                        currentViewerPane.setTitle(movedResource);
                     }
-                    setPartName(innerResource.getURI().lastSegment());
-                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(getResource().getURI())));
+                    setPartName(movedResource.getURI().lastSegment());
+                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(movedResource.getURI())));
                     firePropertyChange(PROP_TITLE);
                 }
 
@@ -655,7 +653,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * 
      * @generated NOT
      */
-    public void resourceReloaded(Resource reloadedResource) {
+    public void resourceReloaded(final Resource reloadedResource) {
         if (reloadedResource == getResource()) {
             resourceHasBeenExternallyChanged = false;
             resourceHasBeenRemoved = false;
@@ -667,11 +665,11 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                         setSelection(StructuredSelection.EMPTY);
                     }
                     getOperationHistory().dispose(undoContext, true, true, true);
-                    selectionViewer.setInput(getResource());
-                    selectionViewer.setSelection(new StructuredSelection(getResource()), true);
-                    currentViewerPane.setTitle(getResource());
+                    selectionViewer.setInput(reloadedResource);
+                    selectionViewer.setSelection(new StructuredSelection(reloadedResource), true);
+                    currentViewerPane.setTitle(reloadedResource);
                     updateProblemIndication = true;
-                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(getResource().getURI())));
+                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(reloadedResource.getURI())));
                     firePropertyChange(PROP_TITLE);
                 }
 
@@ -894,20 +892,22 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     }
                 }
             } catch (Throwable t) {
-                EGFModelEditorPlugin.getPlugin().logError(object.toString(), t);
+                // Just ignore
             }
         }
-        Runnable runnable = new Runnable() {
+        if (selection.isEmpty() == false) {
+            Runnable runnable = new Runnable() {
 
-            public void run() {
-                // Try to select the items in the current content viewer of the editor.
-                if (currentViewer != null) {
-                    currentViewer.setSelection(new StructuredSelection(selection.toArray()), true);
+                public void run() {
+                    // Try to select the items in the current content viewer of the editor.
+                    if (currentViewer != null) {
+                        currentViewer.setSelection(new StructuredSelection(selection.toArray()), true);
+                    }
                 }
-            }
 
-        };
-        getSite().getShell().getDisplay().asyncExec(runnable);
+            };
+            getSite().getShell().getDisplay().asyncExec(runnable);
+        }
     }
 
     /**
@@ -1283,7 +1283,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * 
      * @generated NOT
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     @Override
     public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
@@ -1436,7 +1436,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * @return the tool tip text
      *         <!-- begin-user-doc -->
      *         <!-- end-user-doc -->
-     * 
      * @generated NOT
      */
     @Override
