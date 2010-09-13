@@ -136,7 +136,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
     private void createViewerControl(Composite container) {
 
-        viewer = new ContainerCheckedTreeViewer(container);
+        viewer = new ContainerCheckedTreeViewer(container, SWT.FULL_SELECTION);
         Tree tree = viewer.getTree();
         tree.setHeaderVisible(true);
         TreeColumn col1 = new TreeColumn(tree, SWT.FULL_SELECTION);
