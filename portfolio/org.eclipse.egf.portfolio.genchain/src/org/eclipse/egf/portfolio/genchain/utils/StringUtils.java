@@ -13,19 +13,14 @@
  * </copyright>
  */
 
-package org.eclipse.egf.portfolio.genchain.extension;
+package org.eclipse.egf.portfolio.genchain.utils;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public interface ExtensionProperties {
-    String ID = "id";
-    String MODEL_PATH = "model.path";
-    String PROPERTY_VALUE = "property.value";
-    String PROPERTY_EATTRIBUTE = "property.attribute";
-
-    String CONTEXT_PROJECT_NAME = "ctx.project.name";
-    String CONTEXT_MODEL_NAME = "ctx.model.path";
-
+public class StringUtils {
+    public static String format1(String value) {
+        return value.toLowerCase().replaceAll("\\s", "");
+    }
 }

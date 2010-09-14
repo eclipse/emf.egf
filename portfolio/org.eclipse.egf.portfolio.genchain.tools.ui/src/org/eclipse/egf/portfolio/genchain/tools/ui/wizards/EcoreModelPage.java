@@ -116,6 +116,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
             Node extensionNode = new Node(chainNode, EXTENSION);
             Map<String, String> context = new HashMap<String, String>();
             context.put(CONTEXT_PROJECT_NAME, bundleName);
+            context.put(CONTEXT_MODEL_NAME, name);
 
             extensionNode.getProperties().put(ID, entrySet.getKey());
             extensionNode.getProperties().put(MODEL_PATH, modelPath);

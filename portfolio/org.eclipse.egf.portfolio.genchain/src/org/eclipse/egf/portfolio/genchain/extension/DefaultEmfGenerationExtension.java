@@ -22,6 +22,7 @@ import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
+import org.eclipse.egf.portfolio.genchain.utils.StringUtils;
 
 /**
  * @author Thomas Guiu
@@ -62,10 +63,11 @@ public class DefaultEmfGenerationExtension extends ExtensionHelper {
     @Override
     protected void computeDefaultProperties(Map<String, String> context) {
         final String project = context.get(CONTEXT_PROJECT_NAME);
+        final String modelName = context.get(CONTEXT_MODEL_NAME);
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage(), project);
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit(), "true");
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor(), "false");
         properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel(), "true");
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), project);
+        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), StringUtils.format1(project + '.' + modelName));
     };
 }
