@@ -14,32 +14,38 @@ package org.eclipse.egf.portfolio.genchain.generationChain.impl;
 
 import org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Documentation Generation</b></em>'.
+ * An implementation of the model object '
+ * <em><b>Documentation Generation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getOutputDirectoryPath <em>Output Directory Path</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getPluginName
+ * <em>Plugin Name</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getOutputDirectoryPath
+ * <em>Output Directory Path</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DocumentationGenerationImpl extends EcoreElementImpl implements DocumentationGeneration {
     /**
-     * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
+     * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}'
+     * attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getPluginName()
      * @generated
      * @ordered
@@ -47,9 +53,11 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     protected static final String PLUGIN_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
+     * The cached value of the '{@link #getPluginName() <em>Plugin Name</em>}'
+     * attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getPluginName()
      * @generated
      * @ordered
@@ -57,9 +65,11 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     protected String pluginName = PLUGIN_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getOutputDirectoryPath() <em>Output Directory Path</em>}' attribute.
+     * The default value of the '{@link #getOutputDirectoryPath()
+     * <em>Output Directory Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getOutputDirectoryPath()
      * @generated
      * @ordered
@@ -67,9 +77,11 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     protected static final String OUTPUT_DIRECTORY_PATH_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getOutputDirectoryPath() <em>Output Directory Path</em>}' attribute.
+     * The cached value of the '{@link #getOutputDirectoryPath()
+     * <em>Output Directory Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getOutputDirectoryPath()
      * @generated
      * @ordered
@@ -79,6 +91,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected DocumentationGenerationImpl() {
@@ -88,6 +101,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -98,6 +112,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getPluginName() {
@@ -107,6 +122,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setPluginName(String newPluginName) {
@@ -119,6 +135,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getOutputDirectoryPath() {
@@ -128,6 +145,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setOutputDirectoryPath(String newOutputDirectoryPath) {
@@ -140,6 +158,20 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public EList<String> getPluginNames() {
+        EList<String> result = new BasicEList<String>();
+        final String pluginName2 = getPluginName();
+        result.add(pluginName2);
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -156,6 +188,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -174,6 +207,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -192,6 +226,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -208,6 +243,7 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -224,4 +260,4 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
         return result.toString();
     }
 
-} //DocumentationGenerationImpl
+} // DocumentationGenerationImpl

@@ -32,7 +32,7 @@ package org.eclipse.egf.portfolio.genchain.generationChain;
  * @model
  * @generated
  */
-public interface EmfGeneration extends EcoreElement {
+public interface EmfGeneration extends EcoreElement, PluginProvider {
     /**
      * Returns the value of the '<em><b>Generate Model</b></em>' attribute.
      * <!-- begin-user-doc -->

@@ -29,7 +29,7 @@ package org.eclipse.egf.portfolio.genchain.generationChain;
  * @model
  * @generated
  */
-public interface DocumentationGeneration extends EcoreElement {
+public interface DocumentationGeneration extends EcoreElement, PluginProvider {
     /**
      * Returns the value of the '<em><b>Plugin Name</b></em>' attribute.
      * <!-- begin-user-doc -->

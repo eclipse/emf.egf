@@ -359,6 +359,25 @@ public interface GenerationChainPackage extends EPackage {
     int DOCUMENTATION_GENERATION_FEATURE_COUNT = ECORE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider <em>Plugin Provider</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getPluginProvider()
+     * @generated
+     */
+    int PLUGIN_PROVIDER = 5;
+
+    /**
+     * The number of structural features of the '<em>Plugin Provider</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PLUGIN_PROVIDER_FEATURE_COUNT = 0;
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement <em>Generation Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -541,6 +560,16 @@ public interface GenerationChainPackage extends EPackage {
     EAttribute getEcoreElement_ModelPath();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider <em>Plugin Provider</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Plugin Provider</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider
+     * @generated
+     */
+    EClass getPluginProvider();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -707,6 +736,16 @@ public interface GenerationChainPackage extends EPackage {
          * @generated
          */
         EAttribute ECORE_ELEMENT__MODEL_PATH = eINSTANCE.getEcoreElement_ModelPath();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider <em>Plugin Provider</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getPluginProvider()
+         * @generated
+         */
+        EClass PLUGIN_PROVIDER = eINSTANCE.getPluginProvider();
 
     }
 

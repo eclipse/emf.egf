@@ -14,11 +14,10 @@ package org.eclipse.egf.portfolio.genchain.generationChain.impl;
 
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -28,21 +27,33 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateModel <em>Generate Model</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEdit <em>Generate Edit</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEditor <em>Generate Editor</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getBasePackage <em>Base Package</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateModel
+ * <em>Generate Model</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEdit
+ * <em>Generate Edit</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEditor
+ * <em>Generate Editor</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getPluginName
+ * <em>Plugin Name</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getBasePackage
+ * <em>Base Package</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration {
     /**
-     * The default value of the '{@link #isGenerateModel() <em>Generate Model</em>}' attribute.
+     * The default value of the '{@link #isGenerateModel()
+     * <em>Generate Model</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #isGenerateModel()
      * @generated
      * @ordered
@@ -50,9 +61,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected static final boolean GENERATE_MODEL_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isGenerateModel() <em>Generate Model</em>}' attribute.
+     * The cached value of the '{@link #isGenerateModel()
+     * <em>Generate Model</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #isGenerateModel()
      * @generated
      * @ordered
@@ -60,9 +73,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected boolean generateModel = GENERATE_MODEL_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isGenerateEdit() <em>Generate Edit</em>}' attribute.
+     * The default value of the '{@link #isGenerateEdit()
+     * <em>Generate Edit</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #isGenerateEdit()
      * @generated
      * @ordered
@@ -70,9 +85,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected static final boolean GENERATE_EDIT_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isGenerateEdit() <em>Generate Edit</em>}' attribute.
+     * The cached value of the '{@link #isGenerateEdit() <em>Generate Edit</em>}
+     * ' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #isGenerateEdit()
      * @generated
      * @ordered
@@ -80,9 +97,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected boolean generateEdit = GENERATE_EDIT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isGenerateEditor() <em>Generate Editor</em>}' attribute.
+     * The default value of the '{@link #isGenerateEditor()
+     * <em>Generate Editor</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #isGenerateEditor()
      * @generated
      * @ordered
@@ -90,9 +109,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected static final boolean GENERATE_EDITOR_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #isGenerateEditor() <em>Generate Editor</em>}' attribute.
+     * The cached value of the '{@link #isGenerateEditor()
+     * <em>Generate Editor</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #isGenerateEditor()
      * @generated
      * @ordered
@@ -100,9 +121,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected boolean generateEditor = GENERATE_EDITOR_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
+     * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}'
+     * attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getPluginName()
      * @generated
      * @ordered
@@ -110,9 +133,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected static final String PLUGIN_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
+     * The cached value of the '{@link #getPluginName() <em>Plugin Name</em>}'
+     * attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getPluginName()
      * @generated
      * @ordered
@@ -120,9 +145,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected String pluginName = PLUGIN_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getBasePackage() <em>Base Package</em>}' attribute.
+     * The default value of the '{@link #getBasePackage() <em>Base Package</em>}
+     * ' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getBasePackage()
      * @generated
      * @ordered
@@ -130,9 +157,11 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     protected static final String BASE_PACKAGE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getBasePackage() <em>Base Package</em>}' attribute.
+     * The cached value of the '{@link #getBasePackage() <em>Base Package</em>}'
+     * attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getBasePackage()
      * @generated
      * @ordered
@@ -142,6 +171,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected EmfGenerationImpl() {
@@ -151,6 +181,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -161,6 +192,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean isGenerateModel() {
@@ -170,6 +202,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setGenerateModel(boolean newGenerateModel) {
@@ -182,6 +215,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean isGenerateEdit() {
@@ -191,6 +225,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setGenerateEdit(boolean newGenerateEdit) {
@@ -203,6 +238,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean isGenerateEditor() {
@@ -212,6 +248,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setGenerateEditor(boolean newGenerateEditor) {
@@ -224,6 +261,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getPluginName() {
@@ -233,6 +271,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setPluginName(String newPluginName) {
@@ -245,6 +284,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getBasePackage() {
@@ -254,6 +294,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setBasePackage(String newBasePackage) {
@@ -266,6 +307,24 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public EList<String> getPluginNames() {
+        EList<String> result = new BasicEList<String>();
+        final String pluginName2 = getPluginName();
+        result.add(pluginName2);
+        if (isGenerateEdit())
+            result.add(pluginName2 + ".edit");
+        if (isGenerateEditor())
+            result.add(pluginName2 + ".editor");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -288,6 +347,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -315,6 +375,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -342,6 +403,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -364,6 +426,7 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -386,4 +449,4 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
         return result.toString();
     }
 
-} //EmfGenerationImpl
+} // EmfGenerationImpl

@@ -111,6 +111,8 @@ public class GenerationChainSwitch<T> {
             if (result == null)
                 result = caseEcoreElement(emfGeneration);
             if (result == null)
+                result = casePluginProvider(emfGeneration);
+            if (result == null)
                 result = caseGenerationElement(emfGeneration);
             if (result == null)
                 result = defaultCase(theEObject);
@@ -122,6 +124,8 @@ public class GenerationChainSwitch<T> {
             if (result == null)
                 result = caseEcoreElement(documentationGeneration);
             if (result == null)
+                result = casePluginProvider(documentationGeneration);
+            if (result == null)
                 result = caseGenerationElement(documentationGeneration);
             if (result == null)
                 result = defaultCase(theEObject);
@@ -132,6 +136,13 @@ public class GenerationChainSwitch<T> {
             T result = caseEcoreElement(ecoreElement);
             if (result == null)
                 result = caseGenerationElement(ecoreElement);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case GenerationChainPackage.PLUGIN_PROVIDER: {
+            PluginProvider pluginProvider = (PluginProvider) theEObject;
+            T result = casePluginProvider(pluginProvider);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -213,6 +224,21 @@ public class GenerationChainSwitch<T> {
      * @generated
      */
     public T caseEcoreElement(EcoreElement object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Plugin Provider</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Plugin Provider</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePluginProvider(PluginProvider object) {
         return null;
     }
 
