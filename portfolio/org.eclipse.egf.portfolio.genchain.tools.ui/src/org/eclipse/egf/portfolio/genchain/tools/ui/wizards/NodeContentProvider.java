@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
 
+import java.util.List;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
@@ -31,6 +33,8 @@ public class NodeContentProvider implements ITreeContentProvider {
     }
 
     public Object[] getElements(Object element) {
+        if (element instanceof List)
+            return ((List) element).toArray();
         Node node = (Node) element;
         return node.getChildren().toArray();
     }
