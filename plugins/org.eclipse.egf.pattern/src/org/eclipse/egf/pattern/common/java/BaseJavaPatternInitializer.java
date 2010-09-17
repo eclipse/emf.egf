@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.TemplateInitializer;
 import org.eclipse.egf.pattern.templates.TemplateEngine;
 
@@ -13,9 +12,9 @@ public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
 
     public static final String DEFAULT_PACKAGE = "default_package"; //$NON-NLS-1$
 
-    private static final String CLASS_KEY = "CLASS";//$NON-NLS-1$
+    public static final String CLASS_KEY = "CLASS";//$NON-NLS-1$
 
-    private static final String PACKAGE_KEY = "PACKAGE"; //$NON-NLS-1$
+    public static final String PACKAGE_KEY = "PACKAGE"; //$NON-NLS-1$
 
     private Map<String, String> ctx;
 
@@ -28,11 +27,15 @@ public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
         if (ctx != null)
             return ctx;
         ctx = new HashMap<String, String>();
-        ctx.put(CLASS_KEY, PatternHelper.dropNonWordCharacter(getPattern().getName()));
-        String fullLibraryName = PatternHelper.getFullLibraryName(getPattern());
-        if (fullLibraryName == null || "".equals(fullLibraryName)) //$NON-NLS-1$
-            fullLibraryName = DEFAULT_PACKAGE;
-        ctx.put(PACKAGE_KEY, fullLibraryName);
+        // Behavior update: we don't want anymore to read the class and package
+        // names in the template
+        // ctx.put(CLASS_KEY,
+        // PatternHelper.dropNonWordCharacter(getPattern().getName()));
+        // String fullLibraryName =
+        // PatternHelper.getFullLibraryName(getPattern());
+        //        if (fullLibraryName == null || "".equals(fullLibraryName)) //$NON-NLS-1$
+        // fullLibraryName = DEFAULT_PACKAGE;
+        // ctx.put(PACKAGE_KEY, fullLibraryName);
         return ctx;
     }
 

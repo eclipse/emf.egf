@@ -20,6 +20,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.pattern.common.java.BaseJavaAssemblyHelper;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
@@ -27,7 +28,7 @@ import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 /**
  * @author Thomas Guiu
  */
-public class JavaAssemblyHelper extends AssemblyHelper {
+public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
 
     public static final String CONSTRUCTOR_MARKER = "//Here is the constructor"; //$NON-NLS-1$
 

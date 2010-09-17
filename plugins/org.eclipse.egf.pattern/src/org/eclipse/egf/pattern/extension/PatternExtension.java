@@ -104,8 +104,6 @@ public abstract class PatternExtension {
         return null; // no problem
     }
 
-    public abstract RefactoringManager getRefactoringManager();
-
     protected static void deleteJavaFile(IProject project, String packageName, String className) {
         if (project == null || packageName == null || className == null) {
             return;

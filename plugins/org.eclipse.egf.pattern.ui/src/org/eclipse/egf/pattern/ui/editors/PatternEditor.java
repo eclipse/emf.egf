@@ -32,7 +32,6 @@ import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
@@ -270,16 +269,16 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             // Process Resource who belongs to a resource set
             if (notification.getNotifier() instanceof Resource) {
                 switch (notification.getFeatureID(Resource.class)) {
-                    case Resource.RESOURCE__URI: {
-                        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                case Resource.RESOURCE__URI: {
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                            public void run() {
-                                firePropertyChange(IEditorPart.PROP_DIRTY);
-                            }
+                        public void run() {
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                        }
 
-                        });
-                        break;
-                    }
+                    });
+                    break;
+                }
                 }
             } else {
                 super.notifyChanged(notification);
@@ -307,13 +306,9 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
                     public void run() {
-                        // Title update and generated class refactoring if necessary
+                        // Title update and generated class refactoring if
+                        // necessary
                         if (partName != null && partName.equals(msg.getNewValue()) == false) {
-                            try {
-                                ExtensionHelper.getExtension(pattern.getNature()).getRefactoringManager().renamePattern(pattern, partName, (String) msg.getNewValue());
-                            } catch (Exception e) {
-                                Activator.getDefault().logError(e);
-                            }
                             partName = (String) msg.getNewValue();
                             setPartName(partName);
                         }
@@ -543,7 +538,8 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             getSite().getPage().removePartListener(partListener);
             removePatternChangeAdapter();
         }
-        // Initialized in initializeEditingDomain, if init failed, this must be disposed
+        // Initialized in initializeEditingDomain, if init failed, this must be
+        // disposed
         EGFResourceLoadedListener.getResourceManager().removeObserver(this);
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
@@ -556,33 +552,33 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         public void historyNotification(final OperationHistoryEvent event) {
             Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());
             switch (event.getEventType()) {
-                case OperationHistoryEvent.DONE:
-                    if (affectedResources.contains(getResource())) {
-                        final IUndoableOperation operation = event.getOperation();
-                        // remove the default undo context so that we can have
-                        // independent undo/redo of independent resource changes
-                        operation.removeContext(((IWorkspaceCommandStack) getEditingDomain().getCommandStack()).getDefaultUndoContext());
-                        // add our undo context to populate our undo menu
-                        operation.addContext(undoContext);
-                        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+            case OperationHistoryEvent.DONE:
+                if (affectedResources.contains(getResource())) {
+                    final IUndoableOperation operation = event.getOperation();
+                    // remove the default undo context so that we can have
+                    // independent undo/redo of independent resource changes
+                    operation.removeContext(((IWorkspaceCommandStack) getEditingDomain().getCommandStack()).getDefaultUndoContext());
+                    // add our undo context to populate our undo menu
+                    operation.addContext(undoContext);
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                            public void run() {
-                                firePropertyChange(IEditorPart.PROP_DIRTY);
-                            }
-                        });
-                    }
-                    break;
-                case OperationHistoryEvent.UNDONE:
-                case OperationHistoryEvent.REDONE:
-                    if (affectedResources.contains(getResource())) {
-                        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                        }
+                    });
+                }
+                break;
+            case OperationHistoryEvent.UNDONE:
+            case OperationHistoryEvent.REDONE:
+                if (affectedResources.contains(getResource())) {
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                            public void run() {
-                                firePropertyChange(IEditorPart.PROP_DIRTY);
-                            }
-                        });
-                    }
-                    break;
+                        public void run() {
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                        }
+                    });
+                }
+                break;
             }
         }
 
