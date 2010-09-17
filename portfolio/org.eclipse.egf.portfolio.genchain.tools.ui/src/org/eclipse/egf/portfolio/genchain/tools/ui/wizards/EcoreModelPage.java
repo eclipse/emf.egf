@@ -59,6 +59,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
@@ -162,7 +163,9 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
                 booleanEditor.getViewer().addDoubleClickListener(new IDoubleClickListener() {
 
                     public void doubleClick(DoubleClickEvent event) {
-                        booleanEditor.getViewer().getCombo().setListVisible(true);
+                        final Control control = booleanEditor.getViewer().getControl();
+                        if (control != null && !control.isDisposed())
+                            booleanEditor.getViewer().getCombo().setListVisible(true);
                     }
                 });
             }
