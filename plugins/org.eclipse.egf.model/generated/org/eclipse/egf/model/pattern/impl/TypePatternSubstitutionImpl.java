@@ -20,6 +20,7 @@ import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.types.impl.TypeImpl;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -34,27 +35,33 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.TypePatternSubstitutionImpl#getSubstitutions <em>Substitutions</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.pattern.impl.TypePatternSubstitutionImpl#getSubstitutions
+ * <em>Substitutions</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TypePatternSubstitutionImpl extends TypeImpl implements TypePatternSubstitution {
 
     /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * A set of bit flags representing the values of boolean attributes and
+     * whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
     protected int flags = 0;
 
     /**
-     * The cached value of the '{@link #getSubstitutions() <em>Substitutions</em>}' containment reference list.
+     * The cached value of the '{@link #getSubstitutions()
+     * <em>Substitutions</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getSubstitutions()
      * @generated
      * @ordered
@@ -64,6 +71,7 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected TypePatternSubstitutionImpl() {
@@ -73,6 +81,7 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -83,6 +92,7 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EList<Substitution> getSubstitutions() {
@@ -95,6 +105,7 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -110,25 +121,27 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
      * @generated NOT
      */
     public EList<Pattern> getSubstitutions(Pattern pattern) {
+        EList<Pattern> result = new BasicEList<Pattern>();
         for (Substitution sub : getSubstitutions()) {
             if (pattern == null && sub.getReplacedElement() == null)
-                return sub.getReplacement();
+                result.addAll(sub.getReplacement());
             else if (pattern != null && sub.getReplacedElement() != null && pattern.getID().equals(sub.getReplacedElement().getID()))
-                return sub.getReplacement();
+                result.addAll(sub.getReplacement());
         }
-        return null;
+        return result.isEmpty() ? null : result;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                return ((InternalEList<?>) getSubstitutions()).basicRemove(otherEnd, msgs);
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            return ((InternalEList<?>) getSubstitutions()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -136,13 +149,14 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                return getSubstitutions();
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            return getSubstitutions();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -150,16 +164,17 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                getSubstitutions().clear();
-                getSubstitutions().addAll((Collection<? extends Substitution>) newValue);
-                return;
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            getSubstitutions().clear();
+            getSubstitutions().addAll((Collection<? extends Substitution>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -167,14 +182,15 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                getSubstitutions().clear();
-                return;
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            getSubstitutions().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -182,13 +198,14 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                return substitutions != null && !substitutions.isEmpty();
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            return substitutions != null && !substitutions.isEmpty();
         }
         return super.eIsSet(featureID);
     }
