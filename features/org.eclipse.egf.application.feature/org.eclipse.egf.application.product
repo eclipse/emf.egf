@@ -1,5 +1,5 @@
-<?xml ?>
-<?pde ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
 
 <product name="org.eclipse.egf.application.product" uid="org.eclipse.egf.application.product" id="org.eclipse.egf.application.EGFApplication" application="org.eclipse.egf.application.activity" useFeatures="true" includeLaunchers="false">
 
