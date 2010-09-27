@@ -24,7 +24,9 @@ Export-Package:
  org.eclipse.egf.core.helper,
  org.eclipse.egf.core.l10n,
  org.eclipse.egf.core.natures,
+ org.eclipse.egf.core.pattern,
  org.eclipse.egf.core.preferences,
+ org.eclipse.egf.core.processor,
  org.eclipse.egf.core.session,
  org.eclipse.egf.core.workspace
 Bundle-ActivationPolicy: lazy
