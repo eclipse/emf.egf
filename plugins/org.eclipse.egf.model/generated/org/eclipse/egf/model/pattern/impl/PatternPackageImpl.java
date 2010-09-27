@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.impl;
 
@@ -349,22 +346,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     public EReference getPattern_HeaderMethod() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPattern_Methods() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPattern_SuperPattern() {
         return (EReference) patternEClass.getEStructuralFeatures().get(3);
     }
 
@@ -372,39 +353,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPattern_FooterMethod() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPattern_Orchestration() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(4);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPattern_Parameters() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(5);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPattern_Nature() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(6);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPattern_Variables() {
+    public EReference getPattern_Methods() {
         return (EReference) patternEClass.getEStructuralFeatures().get(7);
     }
 
@@ -412,8 +361,65 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPattern_InitMethod() {
+    public EReference getPattern_SuperPattern() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_FooterMethod() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_Orchestration() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(10);
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_Parameters() {
         return (EReference) patternEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_Nature() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_Container() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_Variables() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_InitMethod() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(5);
     }
 
     /**
@@ -422,7 +428,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     public EReference getPattern_ConditionMethod() {
-        return (EReference) patternEClass.getEStructuralFeatures().get(9);
+        return (EReference) patternEClass.getEStructuralFeatures().get(4);
     }
 
     /**
@@ -482,10 +488,11 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPatternLibrary_Elements() {
+    public EReference getPatternLibrary_PatternViewpoint() {
         return (EReference) patternLibraryEClass.getEStructuralFeatures().get(0);
     }
 
@@ -494,8 +501,17 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPatternLibrary_Filters() {
+    public EReference getPatternLibrary_Elements() {
         return (EReference) patternLibraryEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPatternLibrary_Filters() {
+        return (EReference) patternLibraryEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -504,14 +520,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     public EClass getPatternElement() {
         return patternElementEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getPatternElement_Container() {
-        return (EReference) patternElementEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -931,17 +939,27 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         isCreated = true;
 
         // Create classes and their features
+        patternNatureEClass = createEClass(PATTERN_NATURE);
+
+        patternElementEClass = createEClass(PATTERN_ELEMENT);
+
+        patternLibraryEClass = createEClass(PATTERN_LIBRARY);
+        createEReference(patternLibraryEClass, PATTERN_LIBRARY__PATTERN_VIEWPOINT);
+        createEReference(patternLibraryEClass, PATTERN_LIBRARY__ELEMENTS);
+        createEReference(patternLibraryEClass, PATTERN_LIBRARY__FILTERS);
+
         patternEClass = createEClass(PATTERN);
-        createEReference(patternEClass, PATTERN__HEADER_METHOD);
-        createEReference(patternEClass, PATTERN__METHODS);
-        createEReference(patternEClass, PATTERN__FOOTER_METHOD);
-        createEReference(patternEClass, PATTERN__SUPER_PATTERN);
-        createEReference(patternEClass, PATTERN__ORCHESTRATION);
-        createEReference(patternEClass, PATTERN__PARAMETERS);
         createEReference(patternEClass, PATTERN__NATURE);
-        createEReference(patternEClass, PATTERN__VARIABLES);
-        createEReference(patternEClass, PATTERN__INIT_METHOD);
+        createEReference(patternEClass, PATTERN__CONTAINER);
+        createEReference(patternEClass, PATTERN__SUPER_PATTERN);
+        createEReference(patternEClass, PATTERN__HEADER_METHOD);
         createEReference(patternEClass, PATTERN__CONDITION_METHOD);
+        createEReference(patternEClass, PATTERN__INIT_METHOD);
+        createEReference(patternEClass, PATTERN__FOOTER_METHOD);
+        createEReference(patternEClass, PATTERN__METHODS);
+        createEReference(patternEClass, PATTERN__PARAMETERS);
+        createEReference(patternEClass, PATTERN__VARIABLES);
+        createEReference(patternEClass, PATTERN__ORCHESTRATION);
 
         patternMethodEClass = createEClass(PATTERN_METHOD);
         createEReference(patternMethodEClass, PATTERN_METHOD__PATTERN);
@@ -951,17 +969,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         createEAttribute(patternParameterEClass, PATTERN_PARAMETER__TYPE);
         createEReference(patternParameterEClass, PATTERN_PARAMETER__QUERY);
 
-        patternLibraryEClass = createEClass(PATTERN_LIBRARY);
-        createEReference(patternLibraryEClass, PATTERN_LIBRARY__ELEMENTS);
-        createEReference(patternLibraryEClass, PATTERN_LIBRARY__FILTERS);
-
-        patternElementEClass = createEClass(PATTERN_ELEMENT);
-        createEReference(patternElementEClass, PATTERN_ELEMENT__CONTAINER);
-
         patternViewpointEClass = createEClass(PATTERN_VIEWPOINT);
         createEReference(patternViewpointEClass, PATTERN_VIEWPOINT__LIBRARIES);
-
-        patternNatureEClass = createEClass(PATTERN_NATURE);
 
         patternCallEClass = createEClass(PATTERN_CALL);
         createEReference(patternCallEClass, PATTERN_CALL__PARAMETER_MATCHING);
@@ -1055,8 +1064,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         setNsURI(eNS_URI);
 
         // Obtain other dependent packages
-        EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
         FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
+        EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
         TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
         // Create type parameters
@@ -1064,14 +1073,14 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        patternNatureEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
+        patternElementEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
+        patternLibraryEClass.getESuperTypes().add(this.getPatternElement());
         patternEClass.getESuperTypes().add(this.getPatternElement());
         patternMethodEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternParameterEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternParameterEClass.getESuperTypes().add(this.getInjectedContext());
-        patternLibraryEClass.getESuperTypes().add(this.getPatternElement());
-        patternElementEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
-        patternNatureEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
         superCallEClass.getESuperTypes().add(this.getCall());
         paramerter2ParameterMapEClass.getESuperTypes().add(theFcorePackage.getModelElement());
@@ -1097,26 +1106,37 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         substitutionEClass.getESuperTypes().add(theFcorePackage.getModelElement());
 
         // Initialize classes and features; add operations and parameters
-        initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPattern_HeaderMethod(), this.getPatternMethod(), null, "headerMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_Methods(), this.getPatternMethod(), this.getPatternMethod_Pattern(), "methods", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_FooterMethod(), this.getPatternMethod(), null, "footerMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_SuperPattern(), this.getPattern(), null, "superPattern", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_Orchestration(), this.getCall(), this.getCall_Pattern(), "orchestration", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_Parameters(), this.getPatternParameter(), null, "parameters", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_Nature(), this.getPatternNature(), null, "nature", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_Variables(), this.getPatternVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_InitMethod(), this.getPatternMethod(), null, "initMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPattern_ConditionMethod(), this.getPatternMethod(), null, "conditionMethod", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEClass(patternNatureEClass, PatternNature.class, "PatternNature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        EOperation op = addEOperation(patternEClass, this.getPatternMethod(), "getMethod", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        addEParameter(op, theEcorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        initEClass(patternElementEClass, PatternElement.class, "PatternElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        initEClass(patternLibraryEClass, PatternLibrary.class, "PatternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getPatternLibrary_PatternViewpoint(), this.getPatternViewpoint(), this.getPatternViewpoint_Libraries(),
+                "patternViewpoint", null, 0, 1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPatternLibrary_Elements(), this.getPattern(), this.getPattern_Container(), "elements", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPatternLibrary_Filters(), this.getString2PatternList(), null, "filters", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getPattern_Nature(), this.getPatternNature(), null, "nature", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_Container(), this.getPatternLibrary(), this.getPatternLibrary_Elements(), "container", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_SuperPattern(), this.getPattern(), null, "superPattern", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_HeaderMethod(), this.getPatternMethod(), null, "headerMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_ConditionMethod(), this.getPatternMethod(), null, "conditionMethod", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_InitMethod(), this.getPatternMethod(), null, "initMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_FooterMethod(), this.getPatternMethod(), null, "footerMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_Methods(), this.getPatternMethod(), this.getPatternMethod_Pattern(), "methods", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_Parameters(), this.getPatternParameter(), null, "parameters", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_Variables(), this.getPatternVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_Orchestration(), this.getCall(), this.getCall_Pattern(), "orchestration", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(patternEClass, this.getPatternParameter(), "getAllParameters", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(patternEClass, this.getPatternVariable(), "getAllVariables", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(patternEClass, this.getPatternMethod(), "getAllMethods", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        EOperation op = addEOperation(patternEClass, this.getPatternMethod(), "getMethod", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        addEParameter(op, theEcorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(patternEClass, this.getPatternParameter(), "getParameter", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1129,17 +1149,9 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEAttribute(getPatternParameter_Type(), ecorePackage.getEString(), "type", null, 1, 1, PatternParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPatternParameter_Query(), this.getQuery(), this.getQuery_Parameter(), "query", null, 0, 1, PatternParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(patternLibraryEClass, PatternLibrary.class, "PatternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPatternLibrary_Elements(), this.getPatternElement(), this.getPatternElement_Container(), "elements", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPatternLibrary_Filters(), this.getString2PatternList(), null, "filters", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-        initEClass(patternElementEClass, PatternElement.class, "PatternElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPatternElement_Container(), this.getPatternLibrary(), this.getPatternLibrary_Elements(), "container", null, 0, 1, PatternElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
         initEClass(patternViewpointEClass, PatternViewpoint.class, "PatternViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPatternViewpoint_Libraries(), this.getPatternLibrary(), null, "libraries", null, 0, -1, PatternViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-        initEClass(patternNatureEClass, PatternNature.class, "PatternNature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getPatternViewpoint_Libraries(), this.getPatternLibrary(), this.getPatternLibrary_PatternViewpoint(),
+                "libraries", null, 0, -1, PatternViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(patternCallEClass, PatternCall.class, "PatternCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPatternCall_ParameterMatching(), this.getParamerter2ParameterMap(), null, "parameterMatching", null, 0, -1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1263,19 +1275,19 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(patternEClass, source, new String[] {
-                "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
-        });
-        addAnnotation(patternMethodEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
-        });
-        addAnnotation(patternParameterEClass, source, new String[] {
+        addAnnotation(patternNatureEClass, source, new String[] {
                 "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(patternElementEClass, source, new String[] {
                 "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternNatureEClass, source, new String[] {
+        addAnnotation(patternEClass, source, new String[] {
+                "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
+        });
+        addAnnotation(patternMethodEClass, source, new String[] {
+                "constraints", "MandatoryName ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
+        });
+        addAnnotation(patternParameterEClass, source, new String[] {
                 "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(patternVariableEClass, source, new String[] {

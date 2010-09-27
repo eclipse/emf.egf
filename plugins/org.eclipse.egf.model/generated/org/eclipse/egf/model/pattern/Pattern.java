@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern;
 
@@ -22,16 +19,17 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getMethods <em>Methods</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getSuperPattern <em>Super Pattern</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getOrchestration <em>Orchestration</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getNature <em>Nature</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getInitMethod <em>Init Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getSuperPattern <em>Super Pattern</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getConditionMethod <em>Condition Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getInitMethod <em>Init Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
  * </p>
  *
@@ -196,6 +194,34 @@ public interface Pattern extends PatternElement {
      * @generated
      */
     void setNature(PatternNature value);
+
+    /**
+     * Returns the value of the '<em><b>Container</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>Elements</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Container</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Container</em>' container reference.
+     * @see #setContainer(PatternLibrary)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_Container()
+     * @see org.eclipse.egf.model.pattern.PatternLibrary#getElements
+     * @model opposite="elements" resolveProxies="false" transient="false"
+     * @generated
+     */
+    PatternLibrary getContainer();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Pattern#getContainer <em>Container</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Container</em>' container reference.
+     * @see #getContainer()
+     * @generated
+     */
+    void setContainer(PatternLibrary value);
 
     /**
      * Returns the value of the '<em><b>Variables</b></em>' containment reference list.

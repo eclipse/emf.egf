@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.util;
 
@@ -121,6 +118,41 @@ public class PatternSwitch<T> {
      */
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case PatternPackage.PATTERN_NATURE: {
+                PatternNature patternNature = (PatternNature) theEObject;
+                T result = casePatternNature(patternNature);
+                if (result == null)
+                    result = caseNamedModelElement(patternNature);
+                if (result == null)
+                    result = caseModelElement(patternNature);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_ELEMENT: {
+                PatternElement patternElement = (PatternElement) theEObject;
+                T result = casePatternElement(patternElement);
+                if (result == null)
+                    result = caseNamedModelElement(patternElement);
+                if (result == null)
+                    result = caseModelElement(patternElement);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.PATTERN_LIBRARY: {
+                PatternLibrary patternLibrary = (PatternLibrary) theEObject;
+                T result = casePatternLibrary(patternLibrary);
+                if (result == null)
+                    result = casePatternElement(patternLibrary);
+                if (result == null)
+                    result = caseNamedModelElement(patternLibrary);
+                if (result == null)
+                    result = caseModelElement(patternLibrary);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
             case PatternPackage.PATTERN: {
                 Pattern pattern = (Pattern) theEObject;
                 T result = casePattern(pattern);
@@ -158,30 +190,6 @@ public class PatternSwitch<T> {
                     result = defaultCase(theEObject);
                 return result;
             }
-            case PatternPackage.PATTERN_LIBRARY: {
-                PatternLibrary patternLibrary = (PatternLibrary) theEObject;
-                T result = casePatternLibrary(patternLibrary);
-                if (result == null)
-                    result = casePatternElement(patternLibrary);
-                if (result == null)
-                    result = caseNamedModelElement(patternLibrary);
-                if (result == null)
-                    result = caseModelElement(patternLibrary);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case PatternPackage.PATTERN_ELEMENT: {
-                PatternElement patternElement = (PatternElement) theEObject;
-                T result = casePatternElement(patternElement);
-                if (result == null)
-                    result = caseNamedModelElement(patternElement);
-                if (result == null)
-                    result = caseModelElement(patternElement);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
             case PatternPackage.PATTERN_VIEWPOINT: {
                 PatternViewpoint patternViewpoint = (PatternViewpoint) theEObject;
                 T result = casePatternViewpoint(patternViewpoint);
@@ -189,17 +197,6 @@ public class PatternSwitch<T> {
                     result = caseViewpoint(patternViewpoint);
                 if (result == null)
                     result = caseModelElement(patternViewpoint);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case PatternPackage.PATTERN_NATURE: {
-                PatternNature patternNature = (PatternNature) theEObject;
-                T result = casePatternNature(patternNature);
-                if (result == null)
-                    result = caseNamedModelElement(patternNature);
-                if (result == null)
-                    result = caseModelElement(patternNature);
                 if (result == null)
                     result = defaultCase(theEObject);
                 return result;

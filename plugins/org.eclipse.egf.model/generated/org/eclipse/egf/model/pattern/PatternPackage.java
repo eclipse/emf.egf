@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern;
 
@@ -83,7 +80,113 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternElement()
      * @generated
      */
-    int PATTERN_ELEMENT = 4;
+    int PATTERN_ELEMENT = 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternImpl <em>Pattern</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.pattern.impl.PatternImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPattern()
+     * @generated
+     */
+    int PATTERN = 3;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.pattern.impl.PatternMethodImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternMethod()
+     * @generated
+     */
+    int PATTERN_METHOD = 4;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl <em>Parameter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.pattern.impl.PatternParameterImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternParameter()
+     * @generated
+     */
+    int PATTERN_PARAMETER = 5;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.pattern.impl.PatternLibraryImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternLibrary()
+     * @generated
+     */
+    int PATTERN_LIBRARY = 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl <em>Viewpoint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.pattern.impl.PatternViewpointImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternViewpoint()
+     * @generated
+     */
+    int PATTERN_VIEWPOINT = 6;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternNatureImpl <em>Nature</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.egf.model.pattern.impl.PatternNatureImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternNature()
+     * @generated
+     */
+    int PATTERN_NATURE = 0;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_NATURE__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_NATURE__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_NATURE__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
+
+    /**
+     * The number of structural features of the '<em>Nature</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_NATURE_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -116,16 +219,6 @@ public interface PatternPackage extends EPackage {
     int PATTERN_ELEMENT__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
     /**
-     * The feature id for the '<em><b>Container</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_ELEMENT__CONTAINER = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
      * The number of structural features of the '<em>Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -133,18 +226,77 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_ELEMENT_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
+    int PATTERN_ELEMENT_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternImpl <em>Pattern</em>}' class.
+     * The feature id for the '<em><b>ID</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
-     * @see org.eclipse.egf.model.pattern.impl.PatternImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPattern()
      * @generated
+     * @ordered
      */
-    int PATTERN = 0;
+    int PATTERN_LIBRARY__ID = PATTERN_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_LIBRARY__DESCRIPTION = PATTERN_ELEMENT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_LIBRARY__NAME = PATTERN_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Pattern Viewpoint</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_LIBRARY__PATTERN_VIEWPOINT = PATTERN_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_LIBRARY__ELEMENTS = PATTERN_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Filters</b></em>' map.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_LIBRARY__FILTERS = PATTERN_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Library</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN_LIBRARY_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -177,6 +329,16 @@ public interface PatternPackage extends EPackage {
     int PATTERN__NAME = PATTERN_ELEMENT__NAME;
 
     /**
+     * The feature id for the '<em><b>Nature</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__NATURE = PATTERN_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Container</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -184,37 +346,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN__CONTAINER = PATTERN_ELEMENT__CONTAINER;
-
-    /**
-     * The feature id for the '<em><b>Header Method</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__HEADER_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Methods</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__METHODS = PATTERN_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Footer Method</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__FOOTER_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 2;
+    int PATTERN__CONTAINER = PATTERN_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Super Pattern</b></em>' reference.
@@ -224,57 +356,17 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN__SUPER_PATTERN = PATTERN_ELEMENT_FEATURE_COUNT + 3;
+    int PATTERN__SUPER_PATTERN = PATTERN_ELEMENT_FEATURE_COUNT + 2;
 
     /**
-     * The feature id for the '<em><b>Orchestration</b></em>' containment reference list.
+     * The feature id for the '<em><b>Header Method</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
      * @generated
      * @ordered
      */
-    int PATTERN__ORCHESTRATION = PATTERN_ELEMENT_FEATURE_COUNT + 4;
-
-    /**
-     * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__PARAMETERS = PATTERN_ELEMENT_FEATURE_COUNT + 5;
-
-    /**
-     * The feature id for the '<em><b>Nature</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__NATURE = PATTERN_ELEMENT_FEATURE_COUNT + 6;
-
-    /**
-     * The feature id for the '<em><b>Variables</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__VARIABLES = PATTERN_ELEMENT_FEATURE_COUNT + 7;
-
-    /**
-     * The feature id for the '<em><b>Init Method</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN__INIT_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 8;
+    int PATTERN__HEADER_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 3;
 
     /**
      * The feature id for the '<em><b>Condition Method</b></em>' reference.
@@ -284,7 +376,67 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN__CONDITION_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 9;
+    int PATTERN__CONDITION_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Init Method</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__INIT_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 5;
+
+    /**
+     * The feature id for the '<em><b>Footer Method</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__FOOTER_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 6;
+
+    /**
+     * The feature id for the '<em><b>Methods</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__METHODS = PATTERN_ELEMENT_FEATURE_COUNT + 7;
+
+    /**
+     * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__PARAMETERS = PATTERN_ELEMENT_FEATURE_COUNT + 8;
+
+    /**
+     * The feature id for the '<em><b>Variables</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__VARIABLES = PATTERN_ELEMENT_FEATURE_COUNT + 9;
+
+    /**
+     * The feature id for the '<em><b>Orchestration</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     * @ordered
+     */
+    int PATTERN__ORCHESTRATION = PATTERN_ELEMENT_FEATURE_COUNT + 10;
 
     /**
      * The number of structural features of the '<em>Pattern</em>' class.
@@ -294,18 +446,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 10;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.pattern.impl.PatternMethodImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternMethod()
-     * @generated
-     */
-    int PATTERN_METHOD = 1;
+    int PATTERN_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 11;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -368,17 +509,6 @@ public interface PatternPackage extends EPackage {
     int PATTERN_METHOD_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl <em>Parameter</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.pattern.impl.PatternParameterImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternParameter()
-     * @generated
-     */
-    int PATTERN_PARAMETER = 2;
-
-    /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -439,98 +569,6 @@ public interface PatternPackage extends EPackage {
     int PATTERN_PARAMETER_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.pattern.impl.PatternLibraryImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternLibrary()
-     * @generated
-     */
-    int PATTERN_LIBRARY = 3;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY__ID = PATTERN_ELEMENT__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY__DESCRIPTION = PATTERN_ELEMENT__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY__NAME = PATTERN_ELEMENT__NAME;
-
-    /**
-     * The feature id for the '<em><b>Container</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY__CONTAINER = PATTERN_ELEMENT__CONTAINER;
-
-    /**
-     * The feature id for the '<em><b>Elements</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY__ELEMENTS = PATTERN_ELEMENT_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Filters</b></em>' map.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY__FILTERS = PATTERN_ELEMENT_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>Library</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_LIBRARY_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 2;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl <em>Viewpoint</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.pattern.impl.PatternViewpointImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternViewpoint()
-     * @generated
-     */
-    int PATTERN_VIEWPOINT = 5;
-
-    /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -579,57 +617,6 @@ public interface PatternPackage extends EPackage {
      * @ordered
      */
     int PATTERN_VIEWPOINT_FEATURE_COUNT = FcorePackage.VIEWPOINT_FEATURE_COUNT + 1;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternNatureImpl <em>Nature</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.pattern.impl.PatternNatureImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternNature()
-     * @generated
-     */
-    int PATTERN_NATURE = 6;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_NATURE__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_NATURE__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_NATURE__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
-
-    /**
-     * The number of structural features of the '<em>Nature</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     * @ordered
-     */
-    int PATTERN_NATURE_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.CallImpl <em>Call</em>}' class.
@@ -2051,6 +2038,18 @@ public interface PatternPackage extends EPackage {
     EReference getPattern_Nature();
 
     /**
+     * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.Pattern#getContainer <em>Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @return the meta object for the container reference '<em>Container</em>'.
+     * @see org.eclipse.egf.model.pattern.Pattern#getContainer()
+     * @see #getPattern()
+     * @generated
+     */
+    EReference getPattern_Container();
+
+    /**
      * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2168,6 +2167,18 @@ public interface PatternPackage extends EPackage {
     EClass getPatternLibrary();
 
     /**
+     * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.PatternLibrary#getPatternViewpoint <em>Pattern Viewpoint</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @return the meta object for the container reference '<em>Pattern Viewpoint</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternLibrary#getPatternViewpoint()
+     * @see #getPatternLibrary()
+     * @generated
+     */
+    EReference getPatternLibrary_PatternViewpoint();
+
+    /**
      * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>Elements</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2201,18 +2212,6 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EClass getPatternElement();
-
-    /**
-     * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.PatternElement#getContainer <em>Container</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @return the meta object for the container reference '<em>Container</em>'.
-     * @see org.eclipse.egf.model.pattern.PatternElement#getContainer()
-     * @see #getPatternElement()
-     * @generated
-     */
-    EReference getPatternElement_Container();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternViewpoint <em>Viewpoint</em>}'.
@@ -2857,6 +2856,16 @@ public interface PatternPackage extends EPackage {
         EReference PATTERN__NATURE = eINSTANCE.getPattern_Nature();
 
         /**
+         * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * 
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EReference PATTERN__CONTAINER = eINSTANCE.getPattern_Container();
+
+        /**
          * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2963,6 +2972,16 @@ public interface PatternPackage extends EPackage {
         EClass PATTERN_LIBRARY = eINSTANCE.getPatternLibrary();
 
         /**
+         * The meta object literal for the '<em><b>Pattern Viewpoint</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * 
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EReference PATTERN_LIBRARY__PATTERN_VIEWPOINT = eINSTANCE.getPatternLibrary_PatternViewpoint();
+
+        /**
          * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2993,16 +3012,6 @@ public interface PatternPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EClass PATTERN_ELEMENT = eINSTANCE.getPatternElement();
-
-        /**
-         * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        @SuppressWarnings("hiding")
-        EReference PATTERN_ELEMENT__CONTAINER = eINSTANCE.getPatternElement_Container();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl <em>Viewpoint</em>}' class.

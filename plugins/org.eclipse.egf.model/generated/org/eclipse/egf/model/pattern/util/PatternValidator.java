@@ -1,29 +1,31 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.util;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.FileHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
-import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.CustomQuery;
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
@@ -40,15 +42,21 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.model.pattern.StringQuery;
+import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
 import org.eclipse.egf.model.pattern.TypePatternDomainVisitor;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
+import org.eclipse.egf.model.pattern.TypePatternList;
+import org.eclipse.egf.model.pattern.TypePatternSubstitution;
+import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
+import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper.FilenameFormatException;
 import org.eclipse.egf.model.types.util.TypesValidator;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -56,12 +64,14 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
-import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
+import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.osgi.util.NLS;
 
 /**
- * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
- * -->
+ * <!-- begin-user-doc --> 
+ * The <b>Validator</b> for the model. 
+ * <!-- end-user-doc -->
  * 
  * @see org.eclipse.egf.model.pattern.PatternPackage
  * @generated
@@ -70,7 +80,9 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * The cached model package
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -78,7 +90,9 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.emf.common.util.Diagnostic#getSource()
      * @see org.eclipse.emf.common.util.Diagnostic#getCode()
      * @generated
@@ -88,23 +102,27 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * A constant with a fixed name that can be used as the base value for additional hand written constants.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
     /**
      * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
-     * <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
+     * <!-- begin-user-doc--> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
     /**
      * Model Validation Service interface for batch validation of EMF elements.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     private final IBatchValidator batchValidator;
@@ -113,14 +131,16 @@ public class PatternValidator extends EObjectValidator {
      * The cached base package validator.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected TypesValidator typesValidator;
 
     /**
      * Creates an instance of the switch.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternValidator() {
@@ -136,6 +156,7 @@ public class PatternValidator extends EObjectValidator {
      * Returns the package of this validator switch.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -144,7 +165,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -155,10 +178,10 @@ public class PatternValidator extends EObjectValidator {
         // no point in validating if we can't report results
         if (diagnostics != null) {
             // if EMF Mode Validation Service already covered the sub-tree,
-            //    which it does for efficient computation and error reporting,
-            //    then don't repeat (the Diagnostician does the recursion
-            //    externally).  If there is no context map, then we can't
-            //    help it
+            // which it does for efficient computation and error reporting,
+            // then don't repeat (the Diagnostician does the recursion
+            // externally). If there is no context map, then we can't
+            // help it
             if (hasProcessed(eObject, context) == false) {
                 status = batchValidator.validate(eObject, new NullProgressMonitor());
                 processed(eObject, context, status);
@@ -170,26 +193,28 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * Calls <code>validateXXX</code> for the corresponding classifier of the model.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
+            case PatternPackage.PATTERN_NATURE:
+                return validatePatternNature((PatternNature) value, diagnostics, context);
+            case PatternPackage.PATTERN_ELEMENT:
+                return validatePatternElement((PatternElement) value, diagnostics, context);
+            case PatternPackage.PATTERN_LIBRARY:
+                return validatePatternLibrary((PatternLibrary) value, diagnostics, context);
             case PatternPackage.PATTERN:
                 return validatePattern((Pattern) value, diagnostics, context);
             case PatternPackage.PATTERN_METHOD:
                 return validatePatternMethod((PatternMethod) value, diagnostics, context);
             case PatternPackage.PATTERN_PARAMETER:
                 return validatePatternParameter((PatternParameter) value, diagnostics, context);
-            case PatternPackage.PATTERN_LIBRARY:
-                return validatePatternLibrary((PatternLibrary) value, diagnostics, context);
-            case PatternPackage.PATTERN_ELEMENT:
-                return validatePatternElement((PatternElement) value, diagnostics, context);
             case PatternPackage.PATTERN_VIEWPOINT:
                 return validatePatternViewpoint((PatternViewpoint) value, diagnostics, context);
-            case PatternPackage.PATTERN_NATURE:
-                return validatePatternNature((PatternNature) value, diagnostics, context);
             case PatternPackage.PATTERN_CALL:
                 return validatePatternCall((PatternCall) value, diagnostics, context);
             case PatternPackage.SUPER_CALL:
@@ -244,15 +269,21 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePattern(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(pattern, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(pattern, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(pattern, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(pattern, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(pattern, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(pattern, diagnostics, context);
         if (result || diagnostics != null)
@@ -271,8 +302,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * Validates the HeaderMethod constraint of '<em>Pattern</em>'. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * Validates the HeaderMethod constraint of '<em>Pattern</em>'. 
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -292,8 +324,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * Validates the FooterMethod constraint of '<em>Pattern</em>'. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * Validates the FooterMethod constraint of '<em>Pattern</em>'. 
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -313,15 +346,21 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternMethod(PatternMethod patternMethod, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(patternMethod, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(patternMethod, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(patternMethod, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(patternMethod, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(patternMethod, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(patternMethod, diagnostics, context);
         if (result || diagnostics != null)
@@ -332,6 +371,10 @@ public class PatternValidator extends EObjectValidator {
             result &= validate_EveryMapEntryUnique(patternMethod, diagnostics, context);
         if (result || diagnostics != null)
             result &= validatePatternMethod_MandatoryName(patternMethod, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validatePatternMethod_ValidURI(patternMethod, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validatePatternMethod_ValidPatternFilePath(patternMethod, diagnostics, context);
         return result;
     }
 
@@ -358,15 +401,133 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Validates the ValidURI constraint of '<em>Method</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public boolean validatePatternMethod_ValidURI(PatternMethod method, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (method.getPatternFilePath() == null || method.eResource() == null) {
+            return true;
+        }
+        URI uri = method.getPatternFilePath();
+        boolean valid = true;
+        InputStream inputStream = null;
+        // Try to open an InputStream
+        try {
+            inputStream = TemplateModelFileHelper.getInputStream(((IPlatformFcoreProvider) method.eResource()).getIPlatformFcore(), method);
+        } catch (IOException exception) {
+            valid = false;
+        }
+        // Safe Close
+        FileHelper.safeClose(inputStream);
+        // Check
+        if (valid == false) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "ValidURI", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("Unable to load URI ''{0}''", uri)}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            method.getPattern()
+                        }, context));
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Validates the ValidPatternFilePath constraint of '<em>Method</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public boolean validatePatternMethod_ValidPatternFilePath(PatternMethod method, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (method.getPatternFilePath() == null || method.eResource() == null) {
+            return true;
+        }
+        boolean valid = true;
+        String patternId = null;
+        String methodId = null;
+        // Extract ids
+        try {
+            patternId = TemplateModelFileHelper.extractPatternId(new Path(method.getPatternFilePath().toPlatformString(true)));
+            methodId = TemplateModelFileHelper.extractPatternMethodId(new Path(method.getPatternFilePath().toPlatformString(true)));
+        } catch (FilenameFormatException ffe) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), ffe.getMessage()}, //$NON-NLS-1$
+                        new Object[] {
+                            method.getPattern()
+                        }, context));
+            }
+            return false;
+        }
+        // Check Pattern Id
+        if (method.getPattern().getID().equals(patternId) == false) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("Pattern ID doesn''t match ''{0}'' found ''{1}''", new Object[] { method.getPattern().getID(), patternId})}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            method.getPattern()
+                        }, context));
+            }
+            valid = false;
+        }
+        // Check Method Id
+        if (method.getID().equals(methodId) == false) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("PatternMethod ID doesn''t match ''{0}'' found ''{1}''", new Object[] { method.getID(), methodId})}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            method.getPattern()
+                        }, context));
+            }
+            valid = false;
+        }
+        // Check BundleId
+        if (method.getPatternFilePath().isPlatform()) {
+            String patternFilePathBundle = method.getPatternFilePath().segment(1);
+            URI methodBundleURI = method.eResource().getURI();
+            if (patternFilePathBundle != null && methodBundleURI.isPlatform()) {
+                String methodBundle = methodBundleURI.segment(1);
+                if (patternFilePathBundle.equals(methodBundle) == false) {
+                    if (diagnostics != null) {
+                        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                                new Object[] {
+                                        "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("PatternMethod Bundle ''{0}'' doesn't match PatternFilePath Bundle ''{1}''", new Object[] { methodBundle, patternFilePathBundle})}, //$NON-NLS-1$ //$NON-NLS-2$
+                                new Object[] {
+                                    method.getPattern()
+                                }, context));
+                    }
+                    valid = false;
+                }
+            }
+        }
+        return valid;
+    }
+
+    /**
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternParameter(PatternParameter patternParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(patternParameter, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(patternParameter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(patternParameter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(patternParameter, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(patternParameter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(patternParameter, diagnostics, context);
         if (result || diagnostics != null)
@@ -403,15 +564,21 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternLibrary(PatternLibrary patternLibrary, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(patternLibrary, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(patternLibrary, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(patternLibrary, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(patternLibrary, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(patternLibrary, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(patternLibrary, diagnostics, context);
         if (result || diagnostics != null)
@@ -426,15 +593,21 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternElement(PatternElement patternElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(patternElement, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(patternElement, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(patternElement, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(patternElement, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(patternElement, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(patternElement, diagnostics, context);
         if (result || diagnostics != null)
@@ -471,7 +644,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternViewpoint(PatternViewpoint patternViewpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -479,15 +654,21 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternNature(PatternNature patternNature, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(patternNature, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(patternNature, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(patternNature, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(patternNature, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(patternNature, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(patternNature, diagnostics, context);
         if (result || diagnostics != null)
@@ -524,7 +705,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternCall(PatternCall patternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -534,6 +717,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateSuperCall(SuperCall superCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -541,7 +725,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateParamerter2ParameterMap(Map.Entry<?, ?> paramerter2ParameterMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -549,7 +735,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateCall(Call call, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -557,7 +745,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateMethodCall(MethodCall methodCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -565,15 +755,21 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternVariable(PatternVariable patternVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(patternVariable, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(patternVariable, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(patternVariable, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(patternVariable, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(patternVariable, diagnostics, context);
         if (result || diagnostics != null)
@@ -610,7 +806,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateAbstractPatternCall(AbstractPatternCall abstractPatternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -618,7 +816,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternInjectedCall(PatternInjectedCall patternInjectedCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -626,7 +826,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateQuery(Query query, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -634,7 +836,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateBasicQuery(BasicQuery basicQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -642,7 +846,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateStringQuery(StringQuery stringQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -650,7 +856,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateCustomQuery(CustomQuery customQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -660,6 +868,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateString2PatternList(Map.Entry<?, ?> string2PatternList, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -669,6 +878,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateString2String(Map.Entry<?, ?> string2String, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -678,14 +888,19 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateTypePatternExecutionReporter(TypePatternExecutionReporter typePatternExecutionReporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typePatternExecutionReporter, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typePatternExecutionReporter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typePatternExecutionReporter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(typePatternExecutionReporter, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(typePatternExecutionReporter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(typePatternExecutionReporter, diagnostics, context);
         if (result || diagnostics != null)
@@ -704,6 +919,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateBackCall(BackCall backCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -713,14 +929,19 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateTypePatternCallBackHandler(TypePatternCallBackHandler typePatternCallBackHandler, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typePatternCallBackHandler, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typePatternCallBackHandler, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typePatternCallBackHandler, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(typePatternCallBackHandler, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(typePatternCallBackHandler, diagnostics, context);
         if (result || diagnostics != null)
@@ -739,14 +960,19 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateTypePatternDomainVisitor(TypePatternDomainVisitor typePatternDomainVisitor, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typePatternDomainVisitor, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typePatternDomainVisitor, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typePatternDomainVisitor, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryBidirectionalReferenceIsPaired(typePatternDomainVisitor, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(typePatternDomainVisitor, diagnostics, context);
         if (result || diagnostics != null)
@@ -765,6 +991,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateTypePatternList(TypePatternList typePatternList, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -774,6 +1001,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateInjectedContext(InjectedContext injectedContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -783,6 +1011,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateTypePatternSubstitution(TypePatternSubstitution typePatternSubstitution, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -792,6 +1021,7 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateSubstitution(Substitution substitution, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -799,7 +1029,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternContext(PatternContext patternContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -807,7 +1039,9 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validatePatternException(PatternException patternException, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -816,7 +1050,9 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -828,11 +1064,14 @@ public class PatternValidator extends EObjectValidator {
      * If we have a context map, record this object's <code>status</code> in it
      * so that we will know later that we have processed it and its sub-tree.
      * 
-     * @param eObject an element that we have validated
-     * @param context the context (may be <code>null</code>)
-     * @param status the element's validation status
-     *            <!-- begin-user-doc --> <!--
-     *            end-user-doc -->
+     * @param eObject
+     *            an element that we have validated
+     * @param context
+     *            the context (may be <code>null</code>)
+     * @param status
+     *            the element's validation status
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
      * @generated
      */
     private void processed(EObject eObject, Map<Object, Object> context, IStatus status) {
@@ -843,16 +1082,18 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * Determines whether we have processed this <code>eObject</code> before,
-     * by automatic recursion of the EMF Model Validation Service.  This is
+     * by automatic recursion of the EMF Model Validation Service. This is
      * only possible if we do, indeed, have a context.
      * 
-     * @param eObject an element to be validated (we hope not)
-     * @param context the context (may be <code>null</code>)
+     * @param eObject
+     *            an element to be validated (we hope not)
+     * @param context
+     *            the context (may be <code>null</code>)
      * @return <code>true</code> if the context is not <code>null</code> and
-     *     the <code>eObject</code> or one of its containers has already been
-     *     validated;  <code>false</code>, otherwise
-     *         <!-- begin-user-doc -->
-     *         <!-- end-user-doc -->
+     *         the <code>eObject</code> or one of its containers has already been
+     *         validated; <code>false</code>, otherwise
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     private boolean hasProcessed(EObject eObject, Map<Object, Object> context) {
@@ -877,8 +1118,9 @@ public class PatternValidator extends EObjectValidator {
      * @param status
      *            the EMF validation service's status result
      * @param diagnostics
-     *            a diagnostic chain to accumulate results on <!--
-     *            begin-user-doc --> <!-- end-user-doc -->
+     *            a diagnostic chain to accumulate results on 
+     * <!-- begin-user-doc --> 
+     * <!-- end-user-doc -->
      * @generated
      */
     private void appendDiagnostics(IStatus status, DiagnosticChain diagnostics) {
@@ -891,4 +1133,5 @@ public class PatternValidator extends EObjectValidator {
             diagnostics.add(new BasicDiagnostic(status.getSeverity(), status.getPlugin(), status.getCode(), status.getMessage(), ((IConstraintStatus) status).getResultLocus().toArray()));
         }
     }
+
 } // PatternValidator
