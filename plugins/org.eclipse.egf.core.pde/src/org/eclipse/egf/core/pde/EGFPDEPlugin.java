@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
@@ -75,7 +74,6 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     }
 
     /**
-     * 
      * Returns the currently active window for this workbench (if any). Returns
      * <code>null</code> if there is no active workbench window. Returns
      * <code>null</code> if called from a non-UI thread.
@@ -128,13 +126,13 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
                     workspace.run(new IWorkspaceRunnable() {
 
                         public void run(IProgressMonitor progress) throws CoreException {
-                            ISavedState savedState = workspace.addSaveParticipant(EGFPDEPlugin.getDefault(), EGFPDEPlugin.this);
+                            ISavedState savedState = workspace.addSaveParticipant(__plugin, __plugin);
                             if (savedState != null) {
                                 // the event type coming from the saved state is always POST_BUILD
                                 // force it to be POST_CHANGE so that the delta processor can handle it
-                                EGFPDEPlugin.this._fcoreResourceListener._overridenEventType = IResourceChangeEvent.POST_CHANGE;
-                                savedState.processResourceChangeEvents(EGFPDEPlugin.this._fcoreResourceListener);
-                                EGFPDEPlugin.this._fcoreResourceListener._overridenEventType = -1;
+                                _fcoreResourceListener._overridenEventType = IResourceChangeEvent.POST_CHANGE;
+                                savedState.processResourceChangeEvents(_fcoreResourceListener);
+                                _fcoreResourceListener._overridenEventType = -1;
                             }
                         }
                     }, monitor);
