@@ -11,8 +11,12 @@
 package org.eclipse.egf.core.domain;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.CutToClipboardCommand;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
 import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
@@ -78,4 +82,12 @@ public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImp
         ((EGFAdapterFactoryEditingDomainResourceSet) getResourceSet()).setEditingDomain(this);
     }
 
+    @Override
+    public Command createCommand(Class<? extends Command> commandClass, CommandParameter commandParameter) {
+        if (commandClass == CutToClipboardCommand.class) {
+            // DeleteCommand clean href while the default RemoveCommand don't (this avoid dangling href)
+            return new CutToClipboardCommand(this, DeleteCommand.create(this, commandParameter.getCollection()));
+        }
+        return super.createCommand(commandClass, commandParameter);
+    }
 }
