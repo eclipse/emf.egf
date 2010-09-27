@@ -7,16 +7,24 @@
 			Resource resource = resourceSet.getResource(genmodelURI, true);
 			((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
 		} catch (Exception e) {
-			IPath fcorePath = new Path((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH));
-			fcorePath = fcorePath.removeLastSegments(1).append(genmodelPath.lastSegment());
-			URI fcoreURI = URI.createPlatformPluginURI(fcorePath.toString(), false);
+			IPath newPath = new Path(parameter.getPluginName());
+			newPath = newPath.append(genmodelPath.removeFirstSegments(1));
+			URI newPathURI = URI.createPlatformPluginURI(newPath.toString(), false);
 			Resource genResource = null;
 			try {
-				genResource = resourceSet.getResource(fcoreURI, true);
-				((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, fcoreURI);
+				genResource = resourceSet.getResource(newPathURI, true);
+				((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, newPathURI);
 			} catch (Exception e1) {
-				genResource = resourceSet.createResource(fcoreURI);
-				((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, fcoreURI);
-				importer = EcoreImporterHelper.createEcoreImporter(fcorePath.removeLastSegments(1), ecoreURI, parameter);
-			}
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(parameter.getPluginName());
+				if (!project.exists())
+					project.create(null);
+				if (!project.isOpen())
+					project.open(null);
+				WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
+				runner.setProgressMonitor(null);
+				runner.run(true, false, new ConvertProjectOperation(project, false, false));
+
+				genResource = resourceSet.createResource(newPathURI);
+				((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, newPathURI);
+				importer = EcoreImporterHelper.createEcoreImporter(newPath.removeLastSegments(1), ecoreURI, parameter);			}
 		}
