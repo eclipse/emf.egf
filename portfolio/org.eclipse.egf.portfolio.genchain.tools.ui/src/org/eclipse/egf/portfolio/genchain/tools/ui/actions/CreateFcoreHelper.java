@@ -114,21 +114,10 @@ public class CreateFcoreHelper {
 		WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
 		runner.setProgressMonitor(null);
 		try {
-			runner.run(true, false, new ConvertProjectOperation(project, true, true));
+			runner.run(true, false, new ConvertProjectOperation(project, false, false));
 		} catch (Exception e) {
 			throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
 		}
-		IFile file = project.getFile("plugin.xml");
-		if (!file.exists()) {
-			String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<?eclipse version=\"3.2\"?>\n<plugin>" + "\n\t<extension\n\tpoint=\"org.eclipse.egf.core.fcore\">\n\t\t<fcore id=\"" + fcorePath + "\">\n\t" + "</fcore>\n</extension>\n</plugin>";
-			file.create(new ByteArrayInputStream(data.getBytes()), true, null);
-		}
-		file = project.getFile("build.properties");
-		String data = "bin.includes = META-INF/,\\\nmodel/,\\\nplugin.xml\n";
-		if (file.exists())
-			file.setContents(new ByteArrayInputStream(data.getBytes()), true, false, null);
-		else
-			file.create(new ByteArrayInputStream(data.getBytes()), true, null);
 	}
 
 	protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
