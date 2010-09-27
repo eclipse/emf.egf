@@ -24,55 +24,55 @@ import org.eclipse.emf.common.util.UniqueEList;
  */
 public class OrchestrationParameterHelper {
 
-  private OrchestrationParameterHelper() {
-    // Prevent Instantiation
-  }
+    private OrchestrationParameterHelper() {
+        // Prevent Instantiation
+    }
 
-  public static Collection<InvocationContract> getAvailableInvocationContracts(OrchestrationParameter orchestrationParameter) {
-    Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
-    if (orchestrationParameter.getType() == null) {
-      return result;
-    }
-    // Retrieve all the InvocationContracts based on their types and mode
-    result.addAll(orchestrationParameter.getOrchestration().getInvocationContracts(orchestrationParameter.getType()));
-    if (result.isEmpty()) {
-      return result;
-    }
-    // Filter
-    for (Iterator<InvocationContract> it = result.iterator(); it.hasNext();) {
-      InvocationContract invocationContract = it.next();
-      if (invocationContract.getInvokedMode() == ContractMode.OUT) {
-        // Only In or In_Out mode are assignable to an OrchestrationParameter
-        // They have an In semantic in this area
-        it.remove();
-      } else {
-        if (invocationContract.getFactoryComponentContract() != null) {
-          if (invocationContract.getInvokedMode() == ContractMode.IN) {
-            // Filter InvocationContract with In mode already assigned to a FactoryComponentContract
-            it.remove();
-          } else if (invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
-            // Filter InvocationContract with In_Out mode already assigned to an In or In_Out FactoryComponentContract
-            it.remove();
-          }
+    public static Collection<InvocationContract> getAvailableInvocationContracts(OrchestrationParameter orchestrationParameter) {
+        Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
+        if (orchestrationParameter.getType() == null) {
+            return result;
         }
-        if (invocationContract.getSourceInvocationContract() != null) {
-          if (invocationContract.getInvokedMode() == ContractMode.IN) {
-            // Filter InvocationContract with In mode already assigned to a SourceInvocationContract
-            it.remove();
-          }
+        // Retrieve all the InvocationContracts based on their types and mode
+        result.addAll(orchestrationParameter.getOrchestration().getInvocationContracts(orchestrationParameter.getType()));
+        if (result.isEmpty()) {
+            return result;
         }
-      }
+        // Filter
+        for (Iterator<InvocationContract> it = result.iterator(); it.hasNext();) {
+            InvocationContract invocationContract = it.next();
+            if (invocationContract.getInvokedMode() == ContractMode.OUT) {
+                // Only In or In_Out mode are assignable to an OrchestrationParameter
+                // They have an In semantic in this area
+                it.remove();
+            } else {
+                if (invocationContract.getFactoryComponentContract() != null) {
+                    if (invocationContract.getInvokedMode() == ContractMode.IN) {
+                        // Filter InvocationContract with In mode already assigned to a FactoryComponentContract
+                        it.remove();
+                    } else if (invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+                        // Filter InvocationContract with In_Out mode already assigned to an In or In_Out FactoryComponentContract
+                        it.remove();
+                    }
+                }
+                if (invocationContract.getSourceInvocationContract() != null) {
+                    if (invocationContract.getInvokedMode() == ContractMode.IN) {
+                        // Filter InvocationContract with In mode already assigned to a SourceInvocationContract
+                        it.remove();
+                    }
+                }
+            }
+        }
+        // Filter InvocationContract already assigned to an OrchestrationParameter
+        for (OrchestrationParameter innerOrchestrationParameter : orchestrationParameter.getOrchestrationParameterContainer().getOrchestrationParameters()) {
+            if (orchestrationParameter == innerOrchestrationParameter) {
+                continue;
+            }
+            for (InvocationContract invocationContract : innerOrchestrationParameter.getInvocationContracts()) {
+                result.remove(invocationContract);
+            }
+        }
+        return result;
     }
-    // Filter InvocationContract already assigned to an OrchestrationParameter
-    for (OrchestrationParameter innerOrchestrationParameter : orchestrationParameter.getOrchestrationParameterContainer().getOrchestrationParameters()) {
-      if (orchestrationParameter == innerOrchestrationParameter) {
-        continue;
-      }
-      for (InvocationContract invocationContract : innerOrchestrationParameter.getInvocationContracts()) {
-        result.remove(invocationContract);
-      }
-    }
-    return result;
-  }
 
 }
