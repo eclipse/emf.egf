@@ -24,9 +24,11 @@ Export-Package:
  org.eclipse.egf.model.pattern,
  org.eclipse.egf.model.pattern.impl,
  org.eclipse.egf.model.pattern.util,
+ org.eclipse.egf.model.pattern.template, 
  org.eclipse.egf.model.types,
  org.eclipse.egf.model.types.impl,
- org.eclipse.egf.model.types.util
+ org.eclipse.egf.model.types.util,
+ org.eclipse.egf.model.l10n
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
