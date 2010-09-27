@@ -96,15 +96,15 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     public static interface ResourceListener {
 
-        public void resourceDeleted(Resource resource);
+        public void resourceDeleted(final Resource resource);
 
-        public void resourceMoved(Resource resource, URI oldURI);
+        public void resourceMoved(final Resource resource, URI oldURI);
 
-        public void resourceReloaded(Resource resource);
+        public void resourceReloaded(final Resource resource);
 
-        public void externalUpdate(Resource resource);
+        public void externalUpdate(final Resource resource);
 
-        public void internalUpdate(Resource resource);
+        public void internalUpdate(final Resource resource);
 
     }
 
