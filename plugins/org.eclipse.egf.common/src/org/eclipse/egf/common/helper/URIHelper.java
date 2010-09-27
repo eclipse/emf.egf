@@ -123,4 +123,18 @@ public class URIHelper {
         return uri;
     }
 
+    public static String toPlatformProjectString(URI uri, boolean decode) {
+        if (uri != null && uri.isPlatform() && uri.segmentCount() > 2) {
+            StringBuffer result = new StringBuffer();
+            for (int i = 2, len = uri.segmentCount(); i < len; i++) {
+                if (result.length() != 0) {
+                    result.append('/');
+                }
+                result.append(decode ? URI.decode(uri.segment(i)) : uri.segment(i));
+            }
+            return result.toString();
+        }
+        return null;
+    }
+
 }
