@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S and others
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.common.helper;
 
@@ -31,7 +28,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
@@ -40,12 +40,40 @@ import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.osgi.util.NLS;
 
 public class JavaHelper {
 
     private JavaHelper() {
         // Prevent Instantiation
+    }
+
+    public static String dropNonWordCharacterWith(String value, String replacement) {
+        if (value == null) {
+            return null;
+        }
+        if (replacement != null) {
+            return value.replaceAll("\\W", replacement); //$NON-NLS-1$
+        }
+        return dropNonWordCharacter(value);
+    }
+
+    public static String dropNonWordCharacter(String value) {
+        if (value == null) {
+            return null;
+        }
+        return value.replaceAll("\\W", ""); //$NON-NLS-1$ //$NON-NLS-2$
+    }
+
+    public static String dropNonWordCharacterExcept(String value, String except) {
+        if (value == null) {
+            return null;
+        }
+        if (except != null) {
+            return value.replaceAll("\\W^" + except, ""); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+        return dropNonWordCharacter(value);
     }
 
     private static IFolder findFolder(IPath path) {
@@ -243,46 +271,136 @@ public class JavaHelper {
      * Optionally delete its parent folder if they are empty.
      * Source folder is never deleted.
      * 
+     * @param monitor 
      * @param project
-     * @param path
+     * @param folderName
+     * @param packageName
+     * @param className
      * @param deleteParent
      */
-    public static boolean deleteJavaFile(IJavaProject project, IPath path, boolean deleteParent) throws CoreException {
-        if (project == null || path == null) {
+    public static boolean deleteJavaResource(IProgressMonitor monitor, IProject project, String folderName, String packageName, String className, boolean deleteParent) throws CoreException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 200);
+        subMonitor.beginTask(null, 200);
+        if (project == null || packageName == null) {
+            subMonitor.worked(200);
             return false;
         }
-        // Retrieve the java source folder who contain the resource path
-        IFolder sourceFolder = JavaHelper.getSourceFolder(project, path);
-        if (sourceFolder == null) {
+        // IJavaProject lookup
+        IJavaProject javaProject = null;
+        try {
+            if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+                javaProject = JavaCore.create(project);
+            }
+            if (javaProject == null) {
+                subMonitor.worked(200);
+                return false;
+            }
+            IFolder root = JavaHelper.getSourceFolder(javaProject, folderName);
+            if (root == null) {
+                subMonitor.worked(200);
+                return false;
+            }
+            IResource resource = null;
+            IContainer container = null;
+            // Locate the resource
+            if (className != null) {
+                IPath targetPath = new Path(FileHelper.convertPackageNameToFolderPath(packageName)).append(className + ".java"); //$NON-NLS-1$
+                resource = root.findMember(targetPath);
+            } else {
+                IPath targetPath = new Path(FileHelper.convertPackageNameToFolderPath(packageName));
+                container = (IContainer) root.findMember(targetPath);
+            }
+            if (resource != null && resource.exists()) {
+                return FileHelper.deleteIResource(subMonitor.newChild(200, SubMonitor.SUPPRESS_NONE), root, resource, deleteParent);
+            }
+            if (container != null && container.exists() && (container.members() == null || container.members().length == 0)) {
+                return FileHelper.deleteIResource(subMonitor.newChild(200, SubMonitor.SUPPRESS_NONE), root, container, deleteParent);
+            }
+            subMonitor.worked(200);
+        } finally {
+            try {
+                javaProject.close();
+            } catch (JavaModelException t) {
+                // Ignore
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Locate in source folders and Delete a java file.
+     * Optionally delete its parent folder if they are empty.
+     * Source folder is never deleted.
+     * 
+     * @param monitor 
+     * @param project
+     * @param folderName
+     * @param oldPackageName
+     * @param oldClassName
+     * @param newPackageName
+     * @param newClassName 
+     * @param deleteParent 
+     */
+    public static boolean moveJavaResource(IProgressMonitor monitor, IProject project, String folderName, String oldPackageName, String oldClassName, String newPackageName, String newClassName, boolean deleteParent) throws CoreException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 200);
+        subMonitor.beginTask(null, 200);
+        if (project == null || oldPackageName == null || newPackageName == null) {
+            subMonitor.worked(200);
             return false;
         }
-        // Locate the resource path member
-        IResource resource = sourceFolder.findMember(path);
-        if (resource == null || resource instanceof IFile == false) {
-            return false;
-        }
-        // Delete found resource member
-        if (FileHelper.deleteResource(resource) == false) {
-            return false;
-        }
-        // Delete children container if they are empty
-        if (deleteParent) {
-            IContainer container = (IContainer) sourceFolder.findMember(path.removeLastSegments(1));
-            while (container.equals(sourceFolder) == false) {
-                try {
-                    IResource[] members = container.members();
-                    if (members == null || members.length == 0) {
-                        if (FileHelper.deleteResource(container)) {
-                            container = container.getParent();
-                        } else {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } catch (CoreException ce) {
-                    break;
+        // IJavaProject lookup
+        IJavaProject javaProject = null;
+        try {
+            if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+                javaProject = JavaCore.create(project);
+            }
+            if (javaProject == null) {
+                subMonitor.worked(200);
+                return false;
+            }
+            IFolder root = JavaHelper.getSourceFolder(javaProject, folderName);
+            if (root == null) {
+                subMonitor.worked(200);
+                return false;
+            }
+            IResource resourceToMove = null;
+            IContainer container = null;
+            // Locate the resource
+            if (oldClassName != null) {
+                resourceToMove = root.findMember(new Path(FileHelper.convertPackageNameToFolderPath(oldPackageName)).append(oldClassName + ".java")); //$NON-NLS-1$
+                container = (IContainer) root.findMember(new Path(FileHelper.convertPackageNameToFolderPath(oldPackageName)));
+            } else {
+                resourceToMove = root.findMember(new Path(FileHelper.convertPackageNameToFolderPath(oldPackageName)));
+                if (resourceToMove != null && resourceToMove.exists()) {
+                    container = resourceToMove.getParent();
                 }
+            }
+            if (resourceToMove == null || resourceToMove.exists() == false) {
+                subMonitor.worked(200);
+                return false;
+            }
+            // Move the resource
+            if (newClassName != null) {
+                IPath targetPath = new Path(FileHelper.convertPackageNameToFolderPath(newPackageName)).append(newClassName + ".java"); //$NON-NLS-1$ 
+                IResource targetResource = root.findMember(targetPath);
+                if (targetResource == null || targetResource.exists() == false) {
+                    resourceToMove.move(root.getFullPath().append(targetPath), false, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+                } else {
+                    return FileHelper.deleteIResource(subMonitor.newChild(200, SubMonitor.SUPPRESS_NONE), root, resourceToMove, deleteParent);
+                }
+            } else {
+                IPath targetPath = root.getFullPath().append(new Path(FileHelper.convertPackageNameToFolderPath(newPackageName)));
+                resourceToMove.move(targetPath, false, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+            }
+            if (container != null && container.exists() && (container.members() == null || container.members().length == 0)) {
+                return FileHelper.deleteIResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), root, container, deleteParent);
+            }
+            subMonitor.worked(100);
+        } finally {
+            try {
+                javaProject.close();
+            } catch (JavaModelException t) {
+                // Ignore
             }
         }
         return true;
@@ -330,6 +448,27 @@ public class JavaHelper {
             IResource resource = folder.findMember(path);
             if (resource != null) {
                 // We got it, we return the current java source folder
+                return folder;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get a java source folder from its name.<br>
+     * 
+     * @param project
+     * @param name
+     * @return null if it could not be found.
+     */
+    public static IFolder getSourceFolder(IJavaProject project, String name) throws CoreException {
+        if (project == null || name == null) {
+            return null;
+        }
+        List<IFolder> folders = getSourceFolders(project);
+        // Lookup in source folders
+        for (IFolder folder : folders) {
+            if (folder.getName().equals(name)) {
                 return folder;
             }
         }
