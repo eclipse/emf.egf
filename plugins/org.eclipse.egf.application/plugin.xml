@@ -59,7 +59,7 @@
     <!-- ================================================================================= -->
       
     <extension
-        id="org.eclipse.egf.application.products"
+        id="org.eclipse.egf.application.product"
         point="org.eclipse.core.runtime.products"
     >
         <product
