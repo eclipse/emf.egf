@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model;
 
@@ -22,7 +19,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the Fcore model plugin.
+ * This is the central singleton for the Pattern model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -53,15 +50,18 @@ public final class EGFModelPlugin extends EMFPlugin {
      * @generated NOT
      */
     public EGFModelPlugin() {
-        super(new ResourceLocator[] { EcorePlugin.INSTANCE, });
+        super(new ResourceLocator[] {
+            EcorePlugin.INSTANCE,
+        });
     }
 
     /**
      * Returns the singleton instance of the Eclipse plugin.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @return the singleton instance.
-     * @generated
+     * @generated NOT
      */
     @Override
     public ResourceLocator getPluginResourceLocator() {
@@ -91,26 +91,23 @@ public final class EGFModelPlugin extends EMFPlugin {
          * Creates an instance.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
+         * 
+         * @generated NOT
          */
         public Implementation() {
             super();
-
-            // Remember the static instance.
-            //
-            plugin = this;
         }
 
         /**
          * <!-- begin-user-doc -->
-         * 
          * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
-         *      <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated NOT
          */
         @Override
         public void start(BundleContext context_p) throws Exception {
             super.start(context_p);
+            plugin = this;
             // Force EGF Core Plugin initialization
             Bundle core = Platform.getBundle("org.eclipse.egf.core"); //$NON-NLS-1$
             if (core != null) {
@@ -129,6 +126,19 @@ public final class EGFModelPlugin extends EMFPlugin {
                     logError(e);
                 }
             }
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+         * <!-- end-user-doc -->
+         * 
+         * @generated NOT
+         */
+        @Override
+        public void stop(BundleContext context) throws Exception {
+            super.stop(context);
+            plugin = null;
         }
 
     }
