@@ -13,8 +13,8 @@ package org.eclipse.egf.model.helper;
 import java.util.Map;
 
 import org.eclipse.egf.common.helper.ClassHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -28,85 +28,85 @@ import org.osgi.framework.Bundle;
  */
 public class ValidationHelper {
 
-  private ValidationHelper() {
-    // Prevent Instantiation
-  }
+    private ValidationHelper() {
+        // Prevent Instantiation
+    }
 
-  public static boolean isLoadableClass(EObject eObject, String value, Map<Object, Object> context) {
-    if (context != null && context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
-      return true;
-    }
-    if (eObject.eResource() == null || value == null || value.trim().length() == 0) {
-      return true;
-    }
-    IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eObject.eResource());
-    if (platformFcore == null) {
-      return true;
-    }
-    // Retrieve Session if any
-    if (context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION) == null) {
-      return true;
-    }
-    ProjectBundleSession session = (ProjectBundleSession) context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION);
-    try {
-      Bundle bundle = BundleSessionHelper.getBundle(session, platformFcore);
-      if (bundle == null) {
+    public static boolean isLoadableClass(EObject eObject, String value, Map<Object, Object> context) {
+        if (context != null && context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
+            return true;
+        }
+        if (eObject.eResource() == null || value == null || value.trim().length() == 0) {
+            return true;
+        }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) eObject.eResource()).getIPlatformFcore();
+        if (fcore == null) {
+            return true;
+        }
+        // Retrieve Session if any
+        if (context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION) == null) {
+            return true;
+        }
+        ProjectBundleSession session = (ProjectBundleSession) context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION);
+        try {
+            Bundle bundle = BundleSessionHelper.getBundle(session, fcore);
+            if (bundle == null) {
+                return true;
+            }
+            // Load Class
+            Class<?> clazz = null;
+            try {
+                clazz = bundle.loadClass(value.trim());
+            } catch (Throwable t) {
+                // Nothing to do
+            }
+            if (clazz == null) {
+                return false;
+            }
+        } catch (Throwable t) {
+            EGFModelPlugin.getPlugin().logError(t);
+            return false;
+        }
         return true;
-      }
-      // Load Class
-      Class<?> clazz = null;
-      try {
-        clazz = bundle.loadClass(value.trim());
-      } catch (Throwable t) {
-        // Nothing to do
-      }
-      if (clazz == null) {
-        return false;
-      }
-    } catch (Throwable t) {
-      EGFModelPlugin.getPlugin().logError(t);
-      return false;
     }
-    return true;
-  }
 
-  public static boolean isValidClass(EObject eObject, Class<?> type, String value, Map<Object, Object> context) {
-    if (eObject == null || context == null || type == null || value == null || value.trim().length() == 0) {
-      return true;
-    }
-    IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eObject.eResource());
-    if (platformFcore == null) {
-      return true;
-    }
-    // Retrieve Session if any
-    if (context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION) == null) {
-      return true;
-    }
-    ProjectBundleSession session = (ProjectBundleSession) context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION);
-    try {
-      Bundle bundle = BundleSessionHelper.getBundle(session, platformFcore);
-      if (bundle == null) {
+    public static boolean isValidClass(EObject eObject, Class<?> type, String value, Map<Object, Object> context) {
+        if (eObject == null || context == null || type == null || value == null || value.trim().length() == 0) {
+            return true;
+        }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) eObject.eResource()).getIPlatformFcore();
+        if (fcore == null) {
+            return true;
+        }
+        // Retrieve Session if any
+        if (context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION) == null) {
+            return true;
+        }
+        ProjectBundleSession session = (ProjectBundleSession) context.get(ProjectBundleSession.PROJECT_BUNDLE_SESSION);
+        try {
+            Bundle bundle = BundleSessionHelper.getBundle(session, fcore);
+            if (bundle == null) {
+                return true;
+            }
+            // Load Class
+            Class<?> clazz = null;
+            try {
+                clazz = bundle.loadClass(value.trim());
+            } catch (Throwable t) {
+                // Nothing to do
+            }
+            if (clazz == null) {
+                return true;
+            }
+            // Valid Value
+            if (ClassHelper.isSubClass(clazz, type) == false) {
+                return false;
+            }
+        } catch (Throwable t) {
+            EGFModelPlugin.getPlugin().logError(t);
+            return false;
+        }
         return true;
-      }
-      // Load Class
-      Class<?> clazz = null;
-      try {
-        clazz = bundle.loadClass(value.trim());
-      } catch (Throwable t) {
-        // Nothing to do
-      }
-      if (clazz == null) {
-        return true;
-      }
-      // Valid Value
-      if (ClassHelper.isSubClass(clazz, type) == false) {
-        return false;
-      }
-    } catch (Throwable t) {
-      EGFModelPlugin.getPlugin().logError(t);
-      return false;
     }
-    return true;
-  }
 
 }
