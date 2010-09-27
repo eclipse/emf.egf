@@ -25,58 +25,61 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class TypeDomainEPackageAdapter extends AdapterImpl {
 
-  private TypeDomainEPackage _typeDomainEPackage;
+    private TypeDomainEPackage _typeDomainEPackage;
 
-  private DomainEPackage _domainEPackage;
+    private DomainEPackage _domainEPackage;
 
-  private EStructuralFeature _domainEPackageFeature = DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE;
+    private EStructuralFeature _domainEPackageFeature = DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE;
 
-  private EStructuralFeature _typeDomainEPackageFeature = DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__VALUE;
+    private EStructuralFeature _typeDomainEPackageFeature = DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__VALUE;
 
-  private AdapterImpl _domainEPackageAdapter = new AdapterImpl() {
+    private AdapterImpl _domainEPackageAdapter = new AdapterImpl() {
+
+        @Override
+        public void notifyChanged(Notification msg) {
+            if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainEPackageFeature)) {
+                _typeDomainEPackage.eNotify(new ENotificationImpl((InternalEObject) _typeDomainEPackage, -1, _typeDomainEPackageFeature, null, null) {
+
+                    @Override
+                    public boolean isTouch() {
+                        return true;
+                    }
+
+                });
+            }
+        }
+    };
+
+    public TypeDomainEPackageAdapter(TypeDomainEPackage typeDomainEPackage) {
+        super();
+        _typeDomainEPackage = typeDomainEPackage;
+        _typeDomainEPackage.eAdapters().add(this);
+    }
+
     @Override
-    public void notifyChanged(Notification msg) {
-      if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainEPackageFeature)) {
-        _typeDomainEPackage.eNotify(new ENotificationImpl((InternalEObject) _typeDomainEPackage, -1, _typeDomainEPackageFeature, null, null) {
-          @Override
-          public boolean isTouch() {
-            return true;
-          }
-        });
-      }
+    public void notifyChanged(Notification notification) {
+        if (notification.getFeature() == null || notification.getFeature().equals(_typeDomainEPackageFeature)) {
+            switch (notification.getEventType()) {
+                case Notification.SET:
+                    DomainEPackage newValue = (DomainEPackage) notification.getNewValue();
+                    DomainEPackage oldValue = (DomainEPackage) notification.getOldValue();
+                    if (oldValue != null) {
+                        oldValue.eAdapters().remove(_domainEPackageAdapter);
+                    }
+                    if (newValue != null && newValue.eAdapters().contains(_domainEPackageAdapter) == false) {
+                        newValue.eAdapters().add(_domainEPackageAdapter);
+                    }
+                    _domainEPackage = newValue;
+                    break;
+                case Notification.REMOVING_ADAPTER:
+                    if (_domainEPackage != null) {
+                        _domainEPackage.eAdapters().remove(_domainEPackageAdapter);
+                    }
+                    break;
+                default:
+                    return; // No notification
+            }
+        }
     }
-  };
-
-  public TypeDomainEPackageAdapter(TypeDomainEPackage typeDomainEPackage) {
-    super();
-    _typeDomainEPackage = typeDomainEPackage;
-    _typeDomainEPackage.eAdapters().add(this);
-  }
-
-  @Override
-  public void notifyChanged(Notification notification) {
-    if (notification.getFeature() == null || notification.getFeature().equals(_typeDomainEPackageFeature)) {
-      switch (notification.getEventType()) {
-      case Notification.SET:
-        DomainEPackage newValue = (DomainEPackage) notification.getNewValue();
-        DomainEPackage oldValue = (DomainEPackage) notification.getOldValue();
-        if (oldValue != null) {
-          oldValue.eAdapters().remove(_domainEPackageAdapter);
-        }
-        if (newValue != null && newValue.eAdapters().contains(_domainEPackageAdapter) == false) {
-          newValue.eAdapters().add(_domainEPackageAdapter);
-        }
-        _domainEPackage = newValue;
-        break;
-      case Notification.REMOVING_ADAPTER:
-        if (_domainEPackage != null) {
-          _domainEPackage.eAdapters().remove(_domainEPackageAdapter);
-        }
-        break;
-      default:
-        return; // No notification
-      }
-    }
-  }
 
 }

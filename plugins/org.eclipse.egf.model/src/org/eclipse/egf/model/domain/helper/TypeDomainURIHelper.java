@@ -25,21 +25,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class TypeDomainURIHelper {
 
-  private TypeDomainURIHelper() {
-    // Prevent Instantiation
-  }
-
-  public static Collection<DomainURI> getAvailableDomainURI(TypeDomainURI typeDomainURI) {
-    Collection<DomainURI> result = new UniqueEList<DomainURI>();
-    if (typeDomainURI != null) {
-      for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainURI, true), true); iterator.hasNext();) {
-        EObject eObject = iterator.next();
-        if (eObject instanceof DomainURI) {
-          result.add((DomainURI) eObject);
-        }
-      }
+    private TypeDomainURIHelper() {
+        // Prevent Instantiation
     }
-    return result;
-  }
+
+    public static Collection<DomainURI> getAvailableDomainURI(TypeDomainURI typeDomainURI) {
+        Collection<DomainURI> result = new UniqueEList<DomainURI>();
+        if (typeDomainURI != null) {
+            for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainURI, true), true); iterator.hasNext();) {
+                EObject eObject = iterator.next();
+                if (eObject instanceof DomainURI) {
+                    result.add((DomainURI) eObject);
+                }
+            }
+        }
+        return result;
+    }
 
 }
