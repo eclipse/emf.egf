@@ -96,7 +96,7 @@ public class TypeClassEditorContributor extends DefaultPropertyEditorContributor
                     try {
                         javaProject.close();
                     } catch (JavaModelException jme) {
-                        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), jme);
+                        // Ignore
                     }
                 }
                 return null;
