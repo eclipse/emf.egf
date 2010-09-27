@@ -10,8 +10,8 @@
  */
 package org.eclipse.egf.model.fprod.adapter;
 
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
@@ -64,7 +64,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
                     case Resource.RESOURCE__URI: {
                         if (_productionPlanInvocation.eResource() != null) {
                             final ResourceImpl resource = (ResourceImpl) _productionPlanInvocation.eResource();
-                            IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+                            IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
                             // target fcore can't be modified, give a chance to read only workspace resource to do something
                             if (fcore != null && fcore.getPlatformBundle().isTarget() == false) {
                                 resource.setModified(true);
