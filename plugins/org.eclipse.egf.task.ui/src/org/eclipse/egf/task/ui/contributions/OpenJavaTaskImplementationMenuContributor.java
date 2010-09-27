@@ -18,8 +18,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.task.EGFTaskPlugin;
 import org.eclipse.egf.task.ui.EGFTaskUIPlugin;
@@ -89,13 +89,12 @@ public class OpenJavaTaskImplementationMenuContributor extends TaskMenuContribut
                 URI uri = getURI();
                 // Workspace
                 if (uri.isPlatformResource()) {
-                    String path = uri.toPlatformString(true);
-                    IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+                    IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(uri.toPlatformString(true)));
                     IJavaProject project = JavaCore.create(resource.getProject());
                     _type = project.findType(_fqn, monitor);
                 } else {
                     // Target
-                    IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
+                    IPlatformFcore fcore = ((IPlatformFcoreProvider) _resource).getIPlatformFcore();
                     Bundle fcoreBundle = fcore.getPlatformBundle().getBundle();
                     if (fcoreBundle == null) {
                         throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_find_platform_fcore, _resource.getURI()), null)));
