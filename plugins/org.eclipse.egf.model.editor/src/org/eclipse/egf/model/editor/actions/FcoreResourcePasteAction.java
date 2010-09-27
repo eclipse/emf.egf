@@ -8,7 +8,7 @@ package org.eclipse.egf.model.editor.actions;
 
 import java.util.Collection;
 
-import org.eclipse.egf.model.fcore.commands.FcoreResourcePasteFromClipboardCommand;
+import org.eclipse.egf.model.fcore.commands.resource.FcoreResourcePasteFromClipboardCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -21,34 +21,34 @@ import org.eclipse.ui.IWorkbenchPart;
  */
 public class FcoreResourcePasteAction extends PasteAction {
 
-  /**
-   * Constructor
-   */
-  public FcoreResourcePasteAction() {
-    super();
-  }
-
-  /**
-   * @since 2.1.0
-   */
-  @Override
-  public void setActiveWorkbenchPart(IWorkbenchPart workbenchPart) {
-    super.setActiveWorkbenchPart(workbenchPart);
-    domain = null;
-    if (workbenchPart instanceof IEditingDomainProvider) {
-      domain = ((IEditingDomainProvider) workbenchPart).getEditingDomain();
+    /**
+     * Constructor
+     */
+    public FcoreResourcePasteAction() {
+        super();
     }
-  }
 
-  /**
-   * @see org.eclipse.emf.edit.ui.action.CommandActionHandler#createCommand(java.util.Collection)
-   */
-  @Override
-  public Command createCommand(Collection<?> selection) {
-    if (selection == null || selection.size() != 1) {
-      return UnexecutableCommand.INSTANCE;
+    /**
+     * @since 2.1.0
+     */
+    @Override
+    public void setActiveWorkbenchPart(IWorkbenchPart workbenchPart) {
+        super.setActiveWorkbenchPart(workbenchPart);
+        domain = null;
+        if (workbenchPart instanceof IEditingDomainProvider) {
+            domain = ((IEditingDomainProvider) workbenchPart).getEditingDomain();
+        }
     }
-    return FcoreResourcePasteFromClipboardCommand.create(domain, selection.iterator().next(), null);
-  }
+
+    /**
+     * @see org.eclipse.emf.edit.ui.action.CommandActionHandler#createCommand(java.util.Collection)
+     */
+    @Override
+    public Command createCommand(Collection<?> selection) {
+        if (selection == null || selection.size() != 1) {
+            return UnexecutableCommand.INSTANCE;
+        }
+        return FcoreResourcePasteFromClipboardCommand.create(domain, selection.iterator().next(), null);
+    }
 
 }
