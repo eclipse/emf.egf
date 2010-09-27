@@ -14,83 +14,83 @@
 
 <plugin>
 
-  <!-- ================================================================================= -->
-  <!-- Types Model                                                                       -->
-  <!-- ================================================================================= -->
+    <!-- ================================================================================= -->
+    <!-- Types Model                                                                       -->
+    <!-- ================================================================================= -->
   
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/types"
-      class="org.eclipse.egf.model.types.TypesPackage"
-      genModel="model/Types.genmodel"
-    />
-  </extension>  
+    <extension 
+        point="org.eclipse.emf.ecore.generated_package"
+    >
+        <package
+            uri="http://www.eclipse.org/egf/1.0.0/types"
+            class="org.eclipse.egf.model.types.TypesPackage"
+            genModel="model/Types.genmodel"
+        />
+    </extension>  
   
-  <!-- ================================================================================= -->
-  <!-- Fcore Model                                                                       -->
-  <!-- ================================================================================= -->
+    <!-- ================================================================================= -->
+    <!-- Fcore Model                                                                       -->
+    <!-- ================================================================================= -->
 
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/fcore"
-      class="org.eclipse.egf.model.fcore.FcorePackage"
-      genModel="model/Fcore.genmodel"
-    />
-  </extension>
+    <extension 
+        point="org.eclipse.emf.ecore.generated_package"
+    >
+        <package
+            uri="http://www.eclipse.org/egf/1.0.0/fcore"
+            class="org.eclipse.egf.model.fcore.FcorePackage"
+            genModel="model/Fcore.genmodel"
+        />
+    </extension>
 
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="fcore"
-      class="org.eclipse.egf.model.fcore.util.FcoreResourceFactoryImpl"
-    />
-  </extension>
+    <extension 
+        point="org.eclipse.emf.ecore.extension_parser"
+    >
+        <parser
+            type="fcore"
+            class="org.eclipse.egf.model.fcore.util.FcoreResourceFactoryImpl"
+        />
+    </extension>
   
-  <!-- ================================================================================= -->
-  <!-- Domain Model                                                                      -->
-  <!-- ================================================================================= -->  
+    <!-- ================================================================================= -->
+    <!-- Domain Model                                                                      -->
+    <!-- ================================================================================= -->  
   
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/domain"
-      class="org.eclipse.egf.model.domain.DomainPackage"
-      genModel="model/Domain.genmodel"
-    />
-  </extension>
+    <extension 
+        point="org.eclipse.emf.ecore.generated_package"
+    >
+        <package
+            uri="http://www.eclipse.org/egf/1.0.0/domain"
+            class="org.eclipse.egf.model.domain.DomainPackage"
+            genModel="model/Domain.genmodel"
+        />
+    </extension>
     
-  <!-- ================================================================================= -->
-  <!-- Mapping Model                                                                     -->
-  <!-- ================================================================================= -->
+    <!-- ================================================================================= -->
+    <!-- Mapping Model                                                                     -->
+    <!-- ================================================================================= -->
   
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/mapping"
-      class="org.eclipse.egf.model.mapping.MappingPackage"
-      genModel="model/Mapping.genmodel"
-    />
-  </extension> 
+    <extension 
+        point="org.eclipse.emf.ecore.generated_package"
+    >
+        <package
+            uri="http://www.eclipse.org/egf/1.0.0/mapping"
+            class="org.eclipse.egf.model.mapping.MappingPackage"
+            genModel="model/Mapping.genmodel"
+        />
+    </extension> 
       
-  <!-- ================================================================================= -->
-  <!-- Pattern Model                                                                     -->
-  <!-- ================================================================================= --> 
+    <!-- ================================================================================= -->
+    <!-- Pattern Model                                                                     -->
+    <!-- ================================================================================= --> 
   
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/pattern"
-      class="org.eclipse.egf.model.pattern.PatternPackage"
-      genModel="model/Pattern.genmodel"
-    />
-  </extension>
+    <extension 
+        point="org.eclipse.emf.ecore.generated_package"
+    >
+        <package
+            uri="http://www.eclipse.org/egf/1.0.0/pattern"
+            class="org.eclipse.egf.model.pattern.PatternPackage"
+            genModel="model/Pattern.genmodel"
+        />
+    </extension>
     
 </plugin>
