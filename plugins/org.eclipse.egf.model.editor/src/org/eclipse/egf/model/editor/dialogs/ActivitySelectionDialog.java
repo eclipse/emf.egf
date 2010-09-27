@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.dialogs.AbstractFilteredItemsSelectionDialog;
@@ -94,7 +95,7 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
             try {
                 _activity = (Activity) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
                 // Check whether or not this activity belongs to our fcores
-                IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_activity.eResource());
+                IPlatformFcore fcore = ((IPlatformFcoreProvider) _activity.eResource()).getIPlatformFcore();
                 if (fcore != null) {
                     for (IPlatformFcore innerFcore : _fcores) {
                         if (innerFcore.equals(fcore)) {
@@ -250,11 +251,11 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
                 return _adapterFactoryLabelProvider.getImage(activity);
             }
             // Retrieve Fcore
-            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(activity.eResource());
-            if (fc == null) {
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
+            if (fcore == null) {
                 return _adapterFactoryLabelProvider.getImage(activity);
             }
-            File file = new File(fc.getPlatformBundle().getInstallLocation());
+            File file = new File(fcore.getPlatformBundle().getInstallLocation());
             if (file.exists() && file.isDirectory()) {
                 return EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_DIRECTORY);
             } else if (file.exists() && file.isFile()) {
@@ -275,18 +276,18 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
                 return _adapterFactoryLabelProvider.getText(activity);
             }
             // Retrieve Fcore
-            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(activity.eResource());
-            if (fc == null) {
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
+            if (fcore == null) {
                 return _adapterFactoryLabelProvider.getText(activity);
             }
             StringBuffer buffer = new StringBuffer();
-            if (fc.getPlatformBundle().isTarget()) {
+            if (fcore.getPlatformBundle().isTarget()) {
                 buffer.append(" [Target]"); //$NON-NLS-1$
             } else {
                 buffer.append(" [Workspace]"); //$NON-NLS-1$
             }
             buffer.append(" ["); //$NON-NLS-1$
-            buffer.append(fc.getPlatformBundle().getInstallLocation());
+            buffer.append(fcore.getPlatformBundle().getInstallLocation());
             buffer.append("]"); //$NON-NLS-1$      
             return buffer.toString();
         }
@@ -342,8 +343,8 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
         setDetailsLabelProvider(getDetailsLabelProvider());
         setSelectionHistory(new ActivitySelectionHistory());
         if (_activity != null && _activity.eResource() != null) {
-            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(_activity.eResource());
-            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) _activity.eResource()).getIPlatformFcore();
+            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
         } else {
             setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
         }
