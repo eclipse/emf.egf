@@ -42,17 +42,17 @@ public abstract class TaskImplementationOpenAction extends Action {
     }
 
     protected String getKind() {
-        Task task = getTask();
-        if (task.getKindValue() != null && task.getKindValue().trim().length() != 0) {
-            return task.getKindValue().trim();
+        Task innerTask = getTask();
+        if (innerTask.getKindValue() != null && innerTask.getKindValue().trim().length() != 0) {
+            return innerTask.getKindValue().trim();
         }
         return null;
     }
 
     protected String getImplementation() {
-        Task task = getTask();
-        if (task.getImplementationValue() != null && task.getImplementationValue().trim().length() != 0) {
-            return task.getImplementationValue().trim();
+        Task innerTask = getTask();
+        if (innerTask.getImplementationValue() != null && innerTask.getImplementationValue().trim().length() != 0) {
+            return innerTask.getImplementationValue().trim();
         }
         return null;
     }
