@@ -25,22 +25,24 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
+import org.eclipse.egf.core.pattern.PatternPreferences;
 import org.eclipse.egf.dev.Activator;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.PatternConstants;
-import org.eclipse.egf.pattern.PatternPreferences;
+import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -51,9 +53,8 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  */
 public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelegate {
 
-    private IWorkbenchWindow _window;
-
     public DeleteUnusedTemplatesAction() {
+        // Nothing to do
     }
 
     public void run(IAction action) {
@@ -75,40 +76,38 @@ public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelega
             }
 
             for (IFolder folder : folders) {
+
                 folder.accept(new IResourceVisitor() {
 
                     public boolean visit(IResource resource) throws CoreException {
                         if (resource.getType() == IResource.FILE) {
-                            if (PatternConstants.PATTERN_UNIT_FILE_EXTENSION.equals(resource.getFileExtension())) {
+                            if (TemplateModelFileHelper.PATTERN_UNIT_FILE_EXTENSION.equals(resource.getFileExtension())) {
                                 if (!found(patterns, resource)) {
                                     delete(resource);
                                     if (resource.getParent().getType() == IResource.FOLDER) {
-                                        IFolder folder = (IFolder) resource.getParent();
-                                        if (folder.members().length == 0)
-                                            delete(folder);
+                                        IFolder innerFolder = (IFolder) resource.getParent();
+                                        if (innerFolder.members().length == 0)
+                                            delete(innerFolder);
                                     }
                                 }
                             }
-
                             return false;
                         }
-
                         return true;
                     }
 
                     private void delete(IResource resource) throws CoreException {
-                        System.out.println("Will delete " + resource); //$NON-NLS-1$
-                        resource.delete(true, new NullProgressMonitor()); 
+                        Activator.getDefault().logInfo("Will delete " + resource); //$NON-NLS-1$
+                        resource.delete(true, new NullProgressMonitor());
                     }
 
-                    private boolean found(final List<Pattern> patterns, IResource resource) {
-                        for (Pattern pattern : patterns) {
-                            IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(pattern.eResource());
-                            IProject project = platformFcore.getPlatformBundle().getProject();
+                    private boolean found(final List<Pattern> innerPatterns, IResource resource) {
+                        for (Pattern pattern : innerPatterns) {
+                            IProject project = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore().getPlatformBundle().getProject();
                             if (project.equals(resource.getProject())) {
                                 for (PatternMethod method : pattern.getMethods()) {
-                                    IFile methodFile = project.getFile(method.getPatternFilePath().toFileString());
-                                    if (methodFile.equals(resource)) {
+                                    IFile methodFile = (IFile) ResourcesPlugin.getWorkspace().getRoot().findMember(method.getPatternFilePath().toPlatformString(true));
+                                    if (methodFile != null && methodFile.equals(resource)) {
                                         return true;
                                     }
                                 }
@@ -116,14 +115,14 @@ public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelega
                         }
                         return false;
                     }
-                });
-            }
-        } catch (Exception e) {
-            MessageDialog.openError(_window.getShell(), "Error", e.getMessage()); //$NON-NLS-1$
-            Activator.getDefault().logError(e);
-        }
 
-        System.out.println("finished"); //$NON-NLS-1$
+                });
+
+            }
+        } catch (Throwable t) {
+            ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), t);
+        }
+        Activator.getDefault().logInfo("finished"); //$NON-NLS-1$
     }
 
     /**
@@ -155,7 +154,7 @@ public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelega
      * @see IWorkbenchWindowActionDelegate#init
      */
     public void init(IWorkbenchWindow window) {
-        _window = window;
+        // Nothing to do
     }
 
 }
