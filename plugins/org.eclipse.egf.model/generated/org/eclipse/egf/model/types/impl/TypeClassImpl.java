@@ -77,7 +77,7 @@ public class TypeClassImpl extends TypeAbstractClassImpl implements TypeClass {
                     try {
                         javaProject.close();
                     } catch (JavaModelException jme) {
-                        EGFModelPlugin.getPlugin().logError(jme);
+                        // Ignore
                     }
                 }
             }
