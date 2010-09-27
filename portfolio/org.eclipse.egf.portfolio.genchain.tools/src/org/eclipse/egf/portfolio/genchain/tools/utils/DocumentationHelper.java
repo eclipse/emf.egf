@@ -67,45 +67,10 @@ public class DocumentationHelper {
 
     }
 
-    public static void addDocumentationFCInvocation(FactoryComponent mainFC, String name, String configurationFilePath, String ecorePath, String outputDirectoryPath, String ecoreWorkingSet) {
-        FactoryComponent fc = mainFC;
-        Resource eResource = mainFC.eResource();
-        ResourceSet resourceSet = eResource.getResourceSet();
-
-        ProductionPlan pp = (ProductionPlan) fc.getOrchestration();
-        Activity activity = getActivity(resourceSet, DOC_GEN_ACTIVITY_MODEL_URI, DOC_GEN_ACTIVITY_ID);
-        Map<String, Type> contract2type = new HashMap<String, Type>();
-        TypeString typeString = TypesFactory.eINSTANCE.createTypeString();
-        typeString.setValue(configurationFilePath);
-        contract2type.put("configurationFilePath", typeString);
-
-        typeString = TypesFactory.eINSTANCE.createTypeString();
-        typeString.setValue(ecorePath);
-        contract2type.put("ecoreFilePath", typeString);
-
-        typeString = TypesFactory.eINSTANCE.createTypeString();
-        typeString.setValue(outputDirectoryPath);
-        contract2type.put("outputDirectoryPath", typeString);
-
-        typeString = TypesFactory.eINSTANCE.createTypeString();
-        typeString.setValue(ecoreWorkingSet);
-        contract2type.put("ecoreWorkingSet", typeString);
-
-        ActivityInvocationHelper.addInvocation(pp, activity, contract2type);
-
-    }
-
     private static Activity getActivity(ResourceSet resourceSet, URI uri) {
         return (Activity) resourceSet.getEObject(uri, true);
     }
 
-    private static Activity getActivity(ResourceSet resourceSet, URI uri, String id) {
-        return (Activity) resourceSet.getResource(uri, true).getEObject(id);
-    }
-
     static final URI DOCUMENTATION_ACTIVITY_MODEL_URI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore#_BxjIkAG0Ed-7fNNmMjB2jQ", false);
-
-    static final URI DOC_GEN_ACTIVITY_MODEL_URI = URI.createPlatformPluginURI("/com.thalesgroup.mde.emf.doc.egf.fc/model/EcoreDocumentationGenerator.fcore", false);
-    static final String DOC_GEN_ACTIVITY_ID = "_OfhqEDf5Ed-kIMxG-EYTcA";
 
 }
