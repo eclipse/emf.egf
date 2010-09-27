@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.fcore.util;
 
@@ -18,7 +15,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.EGFModelPlugin;
-import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
@@ -49,14 +45,15 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
-import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
+import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.fcore.FcorePackage
  * @generated
  */
@@ -66,6 +63,7 @@ public class FcoreValidator extends EObjectValidator {
      * The cached model package
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -75,6 +73,7 @@ public class FcoreValidator extends EObjectValidator {
      * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see org.eclipse.emf.common.util.Diagnostic#getSource()
      * @see org.eclipse.emf.common.util.Diagnostic#getCode()
      * @generated
@@ -86,6 +85,7 @@ public class FcoreValidator extends EObjectValidator {
      * A constant with a fixed name that can be used as the base value for additional hand written constants.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
@@ -94,6 +94,7 @@ public class FcoreValidator extends EObjectValidator {
      * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -102,6 +103,7 @@ public class FcoreValidator extends EObjectValidator {
      * Model Validation Service interface for batch validation of EMF elements.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     private final IBatchValidator batchValidator;
@@ -110,6 +112,7 @@ public class FcoreValidator extends EObjectValidator {
      * Creates an instance of the switch.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public FcoreValidator() {
@@ -124,6 +127,7 @@ public class FcoreValidator extends EObjectValidator {
      * Returns the package of this validator switch.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -134,6 +138,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -144,10 +149,10 @@ public class FcoreValidator extends EObjectValidator {
         // no point in validating if we can't report results
         if (diagnostics != null) {
             // if EMF Mode Validation Service already covered the sub-tree,
-            //    which it does for efficient computation and error reporting,
-            //    then don't repeat (the Diagnostician does the recursion
-            //    externally).  If there is no context map, then we can't
-            //    help it
+            // which it does for efficient computation and error reporting,
+            // then don't repeat (the Diagnostician does the recursion
+            // externally). If there is no context map, then we can't
+            // help it
             if (hasProcessed(eObject, context) == false) {
                 status = batchValidator.validate(eObject, new NullProgressMonitor());
                 processed(eObject, context, status);
@@ -161,51 +166,53 @@ public class FcoreValidator extends EObjectValidator {
      * Calls <code>validateXXX</code> for the corresponding classifier of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
-        case FcorePackage.MODEL_ELEMENT:
-            return validateModelElement((ModelElement) value, diagnostics, context);
-        case FcorePackage.NAMED_MODEL_ELEMENT:
-            return validateNamedModelElement((NamedModelElement) value, diagnostics, context);
-        case FcorePackage.ACTIVITY:
-            return validateActivity((Activity) value, diagnostics, context);
-        case FcorePackage.CONTRACT:
-            return validateContract((Contract) value, diagnostics, context);
-        case FcorePackage.FACTORY_COMPONENT:
-            return validateFactoryComponent((FactoryComponent) value, diagnostics, context);
-        case FcorePackage.CONTRACT_CONTAINER:
-            return validateContractContainer((ContractContainer) value, diagnostics, context);
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT:
-            return validateFactoryComponentContract((FactoryComponentContract) value, diagnostics, context);
-        case FcorePackage.VIEWPOINT_CONTAINER:
-            return validateViewpointContainer((ViewpointContainer) value, diagnostics, context);
-        case FcorePackage.VIEWPOINT:
-            return validateViewpoint((Viewpoint) value, diagnostics, context);
-        case FcorePackage.ORCHESTRATION:
-            return validateOrchestration((Orchestration) value, diagnostics, context);
-        case FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER:
-            return validateOrchestrationParameterContainer((OrchestrationParameterContainer) value, diagnostics, context);
-        case FcorePackage.ORCHESTRATION_PARAMETER:
-            return validateOrchestrationParameter((OrchestrationParameter) value, diagnostics, context);
-        case FcorePackage.INVOCATION:
-            return validateInvocation((Invocation) value, diagnostics, context);
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER:
-            return validateInvocationContractContainer((InvocationContractContainer) value, diagnostics, context);
-        case FcorePackage.INVOCATION_CONTRACT:
-            return validateInvocationContract((InvocationContract) value, diagnostics, context);
-        case FcorePackage.CONTRACT_MODE:
-            return validateContractMode((ContractMode) value, diagnostics, context);
-        default:
-            return true;
+            case FcorePackage.MODEL_ELEMENT:
+                return validateModelElement((ModelElement) value, diagnostics, context);
+            case FcorePackage.NAMED_MODEL_ELEMENT:
+                return validateNamedModelElement((NamedModelElement) value, diagnostics, context);
+            case FcorePackage.ACTIVITY:
+                return validateActivity((Activity) value, diagnostics, context);
+            case FcorePackage.CONTRACT:
+                return validateContract((Contract) value, diagnostics, context);
+            case FcorePackage.FACTORY_COMPONENT:
+                return validateFactoryComponent((FactoryComponent) value, diagnostics, context);
+            case FcorePackage.CONTRACT_CONTAINER:
+                return validateContractContainer((ContractContainer) value, diagnostics, context);
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT:
+                return validateFactoryComponentContract((FactoryComponentContract) value, diagnostics, context);
+            case FcorePackage.VIEWPOINT_CONTAINER:
+                return validateViewpointContainer((ViewpointContainer) value, diagnostics, context);
+            case FcorePackage.VIEWPOINT:
+                return validateViewpoint((Viewpoint) value, diagnostics, context);
+            case FcorePackage.ORCHESTRATION:
+                return validateOrchestration((Orchestration) value, diagnostics, context);
+            case FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER:
+                return validateOrchestrationParameterContainer((OrchestrationParameterContainer) value, diagnostics, context);
+            case FcorePackage.ORCHESTRATION_PARAMETER:
+                return validateOrchestrationParameter((OrchestrationParameter) value, diagnostics, context);
+            case FcorePackage.INVOCATION:
+                return validateInvocation((Invocation) value, diagnostics, context);
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER:
+                return validateInvocationContractContainer((InvocationContractContainer) value, diagnostics, context);
+            case FcorePackage.INVOCATION_CONTRACT:
+                return validateInvocationContract((InvocationContract) value, diagnostics, context);
+            case FcorePackage.CONTRACT_MODE:
+                return validateContractMode((ContractMode) value, diagnostics, context);
+            default:
+                return true;
         }
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -215,6 +222,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateNamedModelElement(NamedModelElement namedModelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -224,6 +232,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateActivity(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -260,8 +269,11 @@ public class FcoreValidator extends EObjectValidator {
         if (activity.getName() == null || activity.getName().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "MandatoryName", getObjectLabel(activity, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { activity }, context));
+                        new Object[] {
+                                "MandatoryName", getObjectLabel(activity, context), "The attribute name is mandatory"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            activity
+                        }, context));
             }
             return false;
         }
@@ -281,8 +293,11 @@ public class FcoreValidator extends EObjectValidator {
         if (element != null) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ActivityCycle", getObjectLabel(element, context) }, //$NON-NLS-1$
-                        new Object[] { element }, context));
+                        new Object[] {
+                                "ActivityCycle", getObjectLabel(element, context)}, //$NON-NLS-1$
+                        new Object[] {
+                            element
+                        }, context));
             }
             return false;
         }
@@ -292,6 +307,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateContract(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -320,6 +336,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateFactoryComponent(FactoryComponent factoryComponent, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -348,6 +365,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateContractContainer(ContractContainer contractContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -392,8 +410,11 @@ public class FcoreValidator extends EObjectValidator {
         if (valid == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "FactoryComponentContract", getObjectLabel(contractContainer, context), "This ContractContainer should only hold FactoryComponentContract" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { contractContainer }, context));
+                        new Object[] {
+                                "FactoryComponentContract", getObjectLabel(contractContainer, context), "This ContractContainer should only hold FactoryComponentContract"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            contractContainer
+                        }, context));
             }
         }
         return valid;
@@ -402,6 +423,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateFactoryComponentContract(FactoryComponentContract factoryComponentContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -442,8 +464,11 @@ public class FcoreValidator extends EObjectValidator {
         if (factoryComponentContract.getInvocationContracts() == null || factoryComponentContract.getInvocationContracts().size() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UselessFactoryComponentContract", getObjectLabel(factoryComponentContract, context), "This FactoryComponentContract is not used" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { factoryComponentContract }, context));
+                        new Object[] {
+                                "UselessFactoryComponentContract", getObjectLabel(factoryComponentContract, context), "This FactoryComponentContract is not used"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            factoryComponentContract
+                        }, context));
             }
             return false;
         }
@@ -453,6 +478,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateViewpointContainer(ViewpointContainer viewpointContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -462,6 +488,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateViewpoint(Viewpoint viewpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -471,6 +498,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateOrchestration(Orchestration orchestration, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -480,6 +508,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateOrchestrationParameterContainer(OrchestrationParameterContainer orchestrationParameterContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -506,6 +535,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateOrchestrationParameter(OrchestrationParameter orchestrationParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -540,24 +570,33 @@ public class FcoreValidator extends EObjectValidator {
         if (orchestrationParameter.getInvocationContracts() == null || orchestrationParameter.getInvocationContracts().size() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), "This OrchestrationParameter is unused" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { orchestrationParameter }, context));
+                        new Object[] {
+                                "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), "This OrchestrationParameter is unused"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            orchestrationParameter
+                        }, context));
                 return false;
             }
         }
         if (orchestrationParameter.getType() != null && orchestrationParameter.getType().getValue() == null) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter.getType(), context), "This OrchestrationParameter Type has no defined value" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { orchestrationParameter.getType() }, context));
+                        new Object[] {
+                                "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter.getType(), context), "This OrchestrationParameter Type has no defined value"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            orchestrationParameter.getType()
+                        }, context));
                 return false;
             }
         }
         if (orchestrationParameter.getInvocationContracts().size() > 0 && orchestrationParameter.getInvocationContracts().size() == 1) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), NLS.bind("This OrchestrationParameter could be defined in ''{0}''", getObjectLabel(orchestrationParameter.getInvocationContracts().get(0), context)) }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { orchestrationParameter }, context));
+                        new Object[] {
+                                "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), NLS.bind("This OrchestrationParameter could be defined in ''{0}''", getObjectLabel(orchestrationParameter.getInvocationContracts().get(0), context))}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            orchestrationParameter
+                        }, context));
                 return false;
             }
         }
@@ -576,8 +615,11 @@ public class FcoreValidator extends EObjectValidator {
         if (orchestrationParameterContainer.getOrchestrationParameters() == null || orchestrationParameterContainer.getOrchestrationParameters().size() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UselessOrchestrationParameterContainer", getObjectLabel(orchestrationParameterContainer, context), "OrchestrationParameterContainer should contain at least one InvocationParameter" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { orchestrationParameterContainer }, context));
+                        new Object[] {
+                                "UselessOrchestrationParameterContainer", getObjectLabel(orchestrationParameterContainer, context), "OrchestrationParameterContainer should contain at least one InvocationParameter"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            orchestrationParameterContainer
+                        }, context));
             }
             return false;
         }
@@ -587,6 +629,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateInvocation(Invocation invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -641,8 +684,11 @@ public class FcoreValidator extends EObjectValidator {
             if (found == false) {
                 if (diagnostics != null) {
                     diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                            new Object[] { "MandatoryInvokedContract", getObjectLabel(invocation, context), NLS.bind("Mandatory Contract ''{0}'' should be invoked", getObjectLabel(contract, context)) }, //$NON-NLS-1$ //$NON-NLS-2$
-                            new Object[] { invocation }, context));
+                            new Object[] {
+                                    "MandatoryInvokedContract", getObjectLabel(invocation, context), NLS.bind("Mandatory Contract ''{0}'' should be invoked", getObjectLabel(contract, context))}, //$NON-NLS-1$ //$NON-NLS-2$
+                            new Object[] {
+                                invocation
+                            }, context));
                 }
                 return false;
             }
@@ -653,6 +699,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateInvocationContractContainer(InvocationContractContainer invocationContractContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -662,6 +709,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateInvocationContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -725,8 +773,11 @@ public class FcoreValidator extends EObjectValidator {
         if (found == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidInvokedContract", getObjectLabel(invocationContract, context), "InvokedContract doesn't match any InvokedActivity Contract" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidInvokedContract", getObjectLabel(invocationContract, context), "InvokedContract doesn't match any InvokedActivity Contract"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -747,8 +798,11 @@ public class FcoreValidator extends EObjectValidator {
         if (invocationContract.getType().isCompatible(invocationContract.getInvokedContract().getType()) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidInvokedContractType", getObjectLabel(invocationContract, context), "InvocationContract Type and InvokedContract Type are incompatible" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidInvokedContractType", getObjectLabel(invocationContract, context), "InvocationContract Type and InvokedContract Type are incompatible"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -769,15 +823,21 @@ public class FcoreValidator extends EObjectValidator {
         if (invocationContract.getInvokedMode() == ContractMode.OUT && invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to a FactoryComponentContract in In Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to a FactoryComponentContract in In Mode"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         } else if (invocationContract.getInvokedMode() == ContractMode.IN && invocationContract.getFactoryComponentContract().getMode() == ContractMode.OUT) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "InvocationContract in In Mode couldn't be assigned to a FactoryComponentContract in Out Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "InvocationContract in In Mode couldn't be assigned to a FactoryComponentContract in Out Mode"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -805,8 +865,11 @@ public class FcoreValidator extends EObjectValidator {
         if (type.isCompatible(invocationContract.getFactoryComponentContract().getType()) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidFactoryComponentContractType", getObjectLabel(invocationContract, context), "FactoryComponentContract Type and InvocationContract Type are incompatible" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidFactoryComponentContractType", getObjectLabel(invocationContract, context), "FactoryComponentContract Type and InvocationContract Type are incompatible"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -827,24 +890,33 @@ public class FcoreValidator extends EObjectValidator {
         if (invocationContract.getInvokedContract().getMode() == ContractMode.OUT) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to an OrchestrationParameter" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to an OrchestrationParameter"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
         if (invocationContract.getSourceInvocationContract() != null) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "InvocationContract assigned to a SourceInvocationContract couldn't be assigned to an OrchestrationParameter" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "InvocationContract assigned to a SourceInvocationContract couldn't be assigned to an OrchestrationParameter"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
         if (invocationContract.getFactoryComponentContract() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "FactoryComponentContract should be in Out Mode when an InvocationContract is assigned to an OrchestrationParameter and a FactoryComponentContract" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "FactoryComponentContract should be in Out Mode when an InvocationContract is assigned to an OrchestrationParameter and a FactoryComponentContract"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -869,8 +941,11 @@ public class FcoreValidator extends EObjectValidator {
         if (type.isCompatible(invocationContract.getOrchestrationParameter().getType()) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidOrchestrationParameterType", getObjectLabel(invocationContract, context), "OrchestrationParameter Type and InvocationContract Type are incompatible" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidOrchestrationParameterType", getObjectLabel(invocationContract, context), "OrchestrationParameter Type and InvocationContract Type are incompatible"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -891,16 +966,22 @@ public class FcoreValidator extends EObjectValidator {
         if (invocationContract.getInvokedContract().getMode() == ContractMode.OUT) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidSourceInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to a SourceInvocationContract" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidSourceInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to a SourceInvocationContract"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
         if (invocationContract.getFactoryComponentContract() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidSourceInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract with a SourceInvocationContract couldn't be assigned to a FactoryComponentContract in In or In_Out Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidSourceInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract with a SourceInvocationContract couldn't be assigned to a FactoryComponentContract in In or In_Out Mode"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -932,8 +1013,11 @@ public class FcoreValidator extends EObjectValidator {
         if (type.isCompatible(sourceType) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidSourceInvocationContractType", getObjectLabel(invocationContract, context), "SourceInvocationContract Type and InvocationContract Type are incompatible" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "ValidSourceInvocationContractType", getObjectLabel(invocationContract, context), "SourceInvocationContract Type and InvocationContract Type are incompatible"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
             }
             return false;
         }
@@ -955,8 +1039,11 @@ public class FcoreValidator extends EObjectValidator {
             if (invocationContract.getOrchestrationParameter() != null && invocationContract.getOrchestrationParameter().getType() != null && invocationContract.getOrchestrationParameter().getType().getValue() != null) {
                 if (diagnostics != null) {
                     diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                            new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in an OrchestrationParameter. Default OrchestrationParameter Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
-                            new Object[] { invocationContract }, context));
+                            new Object[] {
+                                    "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in an OrchestrationParameter. Default OrchestrationParameter Type Value will supersede InvocationContract Type Value"}, //$NON-NLS-1$ //$NON-NLS-2$
+                            new Object[] {
+                                invocationContract
+                            }, context));
                     return false;
                 }
             }
@@ -964,15 +1051,21 @@ public class FcoreValidator extends EObjectValidator {
                 if (invocationContract.getFactoryComponentContract().isMandatory()) {
                     if (diagnostics != null) {
                         diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                                new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a mandatory FactoryComponentContract. FactoryComponentContract Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
-                                new Object[] { invocationContract }, context));
+                                new Object[] {
+                                        "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a mandatory FactoryComponentContract. FactoryComponentContract Type Value will supersede InvocationContract Type Value"}, //$NON-NLS-1$ //$NON-NLS-2$
+                                new Object[] {
+                                    invocationContract
+                                }, context));
                         return false;
                     }
                 } else if (invocationContract.getFactoryComponentContract().getType() != null && invocationContract.getFactoryComponentContract().getType().getValue() != null) {
                     if (diagnostics != null) {
                         diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                                new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a FactoryComponentContract. Default FactoryComponentContract Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
-                                new Object[] { invocationContract }, context));
+                                new Object[] {
+                                        "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a FactoryComponentContract. Default FactoryComponentContract Type Value will supersede InvocationContract Type Value"}, //$NON-NLS-1$ //$NON-NLS-2$
+                                new Object[] {
+                                    invocationContract
+                                }, context));
                         return false;
                     }
                 }
@@ -995,8 +1088,11 @@ public class FcoreValidator extends EObjectValidator {
         if (invocationContract.getOrchestrationParameter() == null && invocationContract.getFactoryComponentContract() == null && invocationContract.getSourceInvocationContract() == null) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UselessInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract has no input" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { invocationContract }, context));
+                        new Object[] {
+                                "UselessInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract has no input"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            invocationContract
+                        }, context));
                 return false;
             }
         }
@@ -1034,8 +1130,11 @@ public class FcoreValidator extends EObjectValidator {
         if (collapse) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "UniqueName", getObjectLabel(contract, context), "Contract Name should be unique in its ContractContainer" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { contract }, context));
+                        new Object[] {
+                                "UniqueName", getObjectLabel(contract, context), "Contract Name should be unique in its ContractContainer"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            contract
+                        }, context));
             }
             return false;
         }
@@ -1055,8 +1154,11 @@ public class FcoreValidator extends EObjectValidator {
         }
         if (diagnostics != null) {
             diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                    new Object[] { "UselessMandatoryMode", getObjectLabel(contract, context), "A Mandatory Contract with a default value is always true" }, //$NON-NLS-1$ //$NON-NLS-2$
-                    new Object[] { contract }, context));
+                    new Object[] {
+                            "UselessMandatoryMode", getObjectLabel(contract, context), "A Mandatory Contract with a default value is always true"}, //$NON-NLS-1$ //$NON-NLS-2$
+                    new Object[] {
+                        contract
+                    }, context));
         }
         return false;
     }
@@ -1075,8 +1177,11 @@ public class FcoreValidator extends EObjectValidator {
         if (factoryComponentContract.getInvocationContracts().size() > 1) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "OutModeIsRestricted", getObjectLabel(factoryComponentContract, context), "FactoryComponentContract in Out or In_Out Mode should only have one assigned InvocationContract" }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { factoryComponentContract }, context));
+                        new Object[] {
+                                "OutModeIsRestricted", getObjectLabel(factoryComponentContract, context), "FactoryComponentContract in Out or In_Out Mode should only have one assigned InvocationContract"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            factoryComponentContract
+                        }, context));
             }
             return false;
         }
@@ -1086,6 +1191,7 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public boolean validateContractMode(ContractMode contractMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -1096,6 +1202,7 @@ public class FcoreValidator extends EObjectValidator {
      * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -1107,9 +1214,12 @@ public class FcoreValidator extends EObjectValidator {
      * If we have a context map, record this object's <code>status</code> in it
      * so that we will know later that we have processed it and its sub-tree.
      * 
-     * @param eObject an element that we have validated
-     * @param context the context (may be <code>null</code>)
-     * @param status the element's validation status
+     * @param eObject
+     *            an element that we have validated
+     * @param context
+     *            the context (may be <code>null</code>)
+     * @param status
+     *            the element's validation status
      *            <!-- begin-user-doc -->
      *            <!-- end-user-doc -->
      * @generated
@@ -1122,14 +1232,16 @@ public class FcoreValidator extends EObjectValidator {
 
     /**
      * Determines whether we have processed this <code>eObject</code> before,
-     * by automatic recursion of the EMF Model Validation Service.  This is
+     * by automatic recursion of the EMF Model Validation Service. This is
      * only possible if we do, indeed, have a context.
      * 
-     * @param eObject an element to be validated (we hope not)
-     * @param context the context (may be <code>null</code>)
+     * @param eObject
+     *            an element to be validated (we hope not)
+     * @param context
+     *            the context (may be <code>null</code>)
      * @return <code>true</code> if the context is not <code>null</code> and
-     *     the <code>eObject</code> or one of its containers has already been
-     *     validated;  <code>false</code>, otherwise
+     *         the <code>eObject</code> or one of its containers has already been
+     *         validated; <code>false</code>, otherwise
      *         <!-- begin-user-doc -->
      *         <!-- end-user-doc -->
      * @generated
@@ -1153,8 +1265,10 @@ public class FcoreValidator extends EObjectValidator {
     /**
      * Converts a status result from the EMF validation service to diagnostics.
      * 
-     * @param status the EMF validation service's status result
-     * @param diagnostics a diagnostic chain to accumulate results on
+     * @param status
+     *            the EMF validation service's status result
+     * @param diagnostics
+     *            a diagnostic chain to accumulate results on
      *            <!-- begin-user-doc -->
      *            <!-- end-user-doc -->
      * @generated
