@@ -46,7 +46,11 @@ public class ModelTestHelper {
     }
 
     public static Resource getResource(String contributorName, String modelPath) {
-        URI uri = URI.createURI(PLATFORM_PLUGIN + contributorName + "/" + modelPath); //$NON-NLS-1$
+        URI uri = null;
+        if (modelPath.startsWith(PLATFORM_PLUGIN))
+            uri = URI.createURI(modelPath); //$NON-NLS-1$
+        else
+            uri = URI.createURI(PLATFORM_PLUGIN + contributorName + "/" + modelPath); //$NON-NLS-1$
         Resource resource = new EGFResourceSet().getResource(uri, true);
         return resource;
     }

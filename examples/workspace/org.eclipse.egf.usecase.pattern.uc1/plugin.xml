@@ -46,10 +46,4 @@
             name="ContentQuery">
       </query>
    </extension>
-   <extension
-         point="org.eclipse.egf.core.test">
-      <EGFTestModel
-            modelPath="test/Pattern_UC1.test">
-      </EGFTestModel>
-   </extension>
 </plugin>
