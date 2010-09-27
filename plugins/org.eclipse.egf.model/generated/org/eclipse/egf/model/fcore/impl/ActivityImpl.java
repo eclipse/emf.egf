@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.fcore.impl;
 
@@ -33,17 +30,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer <em>Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer <em>Contract Container</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ActivityImpl extends NamedModelElementImpl implements Activity {
+
     /**
      * The cached value of the '{@link #getContractContainer() <em>Contract Container</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getContractContainer()
      * @generated
      * @ordered
@@ -53,6 +52,7 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected ActivityImpl() {
@@ -62,6 +62,7 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -72,6 +73,7 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public ContractContainer getContractContainer() {
@@ -81,6 +83,7 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public NotificationChain basicSetContractContainer(ContractContainer newContractContainer, NotificationChain msgs) {
@@ -99,6 +102,7 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setContractContainer(ContractContainer newContractContainer) {
@@ -173,13 +177,15 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
      * 
      * @generated NOT
      */
-    public Contract getContract(String name) {
-        if (getContractContainer() == null || name == null)
+    public Contract getContract(String innerName) {
+        if (getContractContainer() == null || innerName == null) {
             return null;
+        }
         final ContractContainer container = getContractContainer();
         for (Contract contract : container.getContracts()) {
-            if (name.equals(contract.getName()))
+            if (innerName.equals(contract.getName())) {
                 return contract;
+            }
         }
         return null;
     }
@@ -187,15 +193,16 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
-            if (contractContainer != null)
-                msgs = ((InternalEObject) contractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.ACTIVITY__CONTRACT_CONTAINER, null, msgs);
-            return basicSetContractContainer((ContractContainer) otherEnd, msgs);
+            case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
+                if (contractContainer != null)
+                    msgs = ((InternalEObject) contractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.ACTIVITY__CONTRACT_CONTAINER, null, msgs);
+                return basicSetContractContainer((ContractContainer) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -203,13 +210,14 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
-            return basicSetContractContainer(null, msgs);
+            case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
+                return basicSetContractContainer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -217,13 +225,14 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
-            return getContractContainer();
+            case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
+                return getContractContainer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -231,14 +240,15 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
-            setContractContainer((ContractContainer) newValue);
-            return;
+            case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
+                setContractContainer((ContractContainer) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -246,14 +256,15 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
-            setContractContainer((ContractContainer) null);
-            return;
+            case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
+                setContractContainer((ContractContainer) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -261,13 +272,14 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
-            return contractContainer != null;
+            case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
+                return contractContainer != null;
         }
         return super.eIsSet(featureID);
     }
