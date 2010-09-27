@@ -37,13 +37,41 @@
 	        
 			<action
 				class="org.eclipse.egf.portfolio.genchain.tools.ui.actions.CreateFcoreAction"
-				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.run.activity"
+				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.generationchain.resource.createFC"
 				label="%CreateAction_label"
 				enablesFor="1"
 				menubarPath="additions"
 				tooltip="%CreateAction_tooltip"/>
+
+			<action
+				class="org.eclipse.egf.portfolio.genchain.tools.ui.actions.CreateFcoreAction"
+				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.generationchain.resource.createrunFC"
+				label="%CreateRunAction_label"
+				enablesFor="1"
+				menubarPath="additions"
+				tooltip="%CreateRunAction_tooltip"/>
 	    </objectContribution>
   
+  	    <objectContribution
+			id="org.eclipse.egf.portfolio.genchain.tools.contribution"
+			objectClass="org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain">
+	        
+			<action
+				class="org.eclipse.egf.portfolio.genchain.tools.ui.actions.CreateFcoreAction"
+				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.generationchain.object.createFC"
+				label="%CreateAction_label"
+				enablesFor="1"
+				menubarPath="additions"
+				tooltip="%CreateAction_tooltip"/>
+	        
+			<action
+				class="org.eclipse.egf.portfolio.genchain.tools.ui.actions.CreateFcoreAction"
+				id="org.eclipse.egf.portfolio.genchain.tools.contribution.action.generationchain.object.createrunFC"
+				label="%CreateRunAction_label"
+				enablesFor="1"
+				menubarPath="additions"
+				tooltip="%CreateRunAction_tooltip"/>
+	    </objectContribution>
   </extension>      
 	
 </plugin>

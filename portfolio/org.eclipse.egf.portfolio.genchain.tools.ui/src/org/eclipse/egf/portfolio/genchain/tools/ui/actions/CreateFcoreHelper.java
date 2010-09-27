@@ -31,6 +31,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
@@ -41,6 +42,7 @@ import org.eclipse.egf.portfolio.genchain.tools.Activator;
 import org.eclipse.egf.portfolio.genchain.tools.ui.Messages;
 import org.eclipse.egf.portfolio.genchain.tools.utils.RunActivityHelper;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.internal.editors.text.WorkspaceOperationRunner;
 
 /**
@@ -52,51 +54,67 @@ public class CreateFcoreHelper {
 
 	private static final URI GENERATOR_URI = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/egf/Generation_Chain_Producer.fcore#_6qO2EYhGEd-Ii9WHGzCGHg");
 
-	public WorkspaceJob createJob(final URI fcoreURI) {
+    public WorkspaceJob createJob(final GenerationChain generationChain, final boolean run) {
+        final String fcoreOutputPath = computeFcoreOutputPath(generationChain);
 
-		final WorkspaceJob buildJob = new WorkspaceJob(getJobName()) {
-			@Override
-			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-				try {
-					final EGFResourceSet resourceSet = new EGFResourceSet();
-					final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
-					executeJob(generationChain, monitor);
-				} catch (CoreException e) {
-					throw e;
-				} catch (Exception e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-				}
-				return Status.OK_STATUS;
-			}
+        final WorkspaceJob runJob = new WorkspaceJob(Messages.genchain_run_action_label) {
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                try {
+                    runFcore(generationChain, fcoreOutputPath, monitor);
+                } catch (CoreException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+                }
+                return Status.OK_STATUS;
+            }
+        };
 
-		};
-		final WorkspaceJob setupJob = new WorkspaceJob(getJobName()) {
-			@Override
-			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-				try {
-					final EGFResourceSet resourceSet = new EGFResourceSet();
-					final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
-					setupProject(generationChain.getFactoryComponentName(), computeFcoreRelativePath(generationChain));
-					buildJob.schedule(1000);
-				} catch (CoreException e) {
-					throw e;
-				} catch (Exception e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
-				}
-				return Status.OK_STATUS;
-			}
+        final WorkspaceJob buildJob = new WorkspaceJob(Messages.genchain_generate_action_label) {
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                try {
+                    createFcore(generationChain, fcoreOutputPath, monitor);
+                    if (run)
+                        runJob.schedule(1000);
+                } catch (CoreException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+                }
+                return Status.OK_STATUS;
+            }
+        };
 
-		};
-		return setupJob;
+
+        final WorkspaceJob setupJob = new WorkspaceJob(Messages.genchain_generate_action_label) {
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                try {
+                    setupProject(generationChain.getFactoryComponentName(), computeFcoreRelativePath(generationChain));
+                    buildJob.schedule(1000);
+                } catch (CoreException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+                }
+                return Status.OK_STATUS;
+            }
+
+        };
+        
+        return setupJob;
+    }
+
+	public WorkspaceJob createJob(URI fcoreURI, boolean run) {
+        final EGFResourceSet resourceSet = new EGFResourceSet();
+        final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
+
+        return createJob(generationChain, run);
 	}
 
-	protected void executeJob(GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
-		final String fcoreOutputPath = computeFcoreOutputPath(generationChain);
-
-		createFcore(generationChain, fcoreOutputPath, monitor);
-	}
-
-	protected String computeFcoreOutputPath(GenerationChain generationChain) {
+    protected String computeFcoreOutputPath(GenerationChain generationChain) {
 		return generationChain.getFactoryComponentName() + computeFcoreRelativePath(generationChain);
 	}
 
@@ -141,12 +159,18 @@ public class CreateFcoreHelper {
 
 	}
 
+	private void runFcore(GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
+	    URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
+	    EObject eObject = new EGFResourceSet().getResource(uri, true).getContents().get(0);
+        try {
+            RunActivityHelper.run((Activity) eObject, monitor);
+        } catch (InvocationException e) {
+            throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
+        }
+	}
+	
 	protected List<Substitution> computeSubstitutions() {
 		return ExtensionHelper.getAllSubstitutions();
-	}
-
-	protected String getJobName() {
-		return Messages.genchain_action_label;
 	}
 
 	protected URI getGeneratorURI() {

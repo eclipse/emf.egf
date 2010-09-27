@@ -32,7 +32,8 @@ public class Messages extends NLS {
     public static String genchain_wizard_downButton_label;
     public static String genchain_wizard_extension_error;
 
-    public static String genchain_action_label;
+    public static String genchain_generate_action_label;
+    public static String genchain_run_action_label;
     public static String genchain_wizard_valueColumn_label;
     public static String genchain_wizard_error1;
     public static String genchain_wizard_element_name_creation;
