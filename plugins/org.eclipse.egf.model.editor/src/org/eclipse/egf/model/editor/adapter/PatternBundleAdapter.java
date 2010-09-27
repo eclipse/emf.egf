@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -34,64 +34,69 @@ import org.eclipse.ui.IWorkbenchPartSite;
  */
 public class PatternBundleAdapter extends EContentAdapter {
 
-  private Resource _resource;
+    private Resource _resource;
 
-  private Shell _shell;
+    private Shell _shell;
 
-  public PatternBundleAdapter(Resource resource) {
-    _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
-    _resource = resource;
-  }
-
-  public PatternBundleAdapter(Resource resource, IWorkbenchPartSite site) {
-    _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
-    _resource = resource;
-  }
-
-  @Override
-  public void notifyChanged(Notification notification) {
-    super.notifyChanged(notification);
-    if (notification.getNewValue() != null && notification.getNewValue() instanceof Pattern) {
-      handleNotification(notification);
+    public PatternBundleAdapter(Resource resource) {
+        _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
+        _resource = resource;
     }
-  }
 
-  private void handleNotification(Notification notification) {
-    if (notification.getEventType() == Notification.ADD) {
-      Pattern pattern = (Pattern) notification.getNewValue();
-      Resource resource = pattern.eResource();
-      if (resource != _resource || ((ResourceImpl) resource).isLoading()) {
-        return;
-      }
-      final IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(pattern.eResource());
-      if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
-        return;
-      }
-      IRunnableWithProgress operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
-        @Override
-        public List<String> addDependencies() {
-          List<String> dependencies = new ArrayList<String>(2);
-          dependencies.add("org.eclipse.egf.pattern"); //$NON-NLS-1$
-          dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$
-          return dependencies;
-        }
-
-        @Override
-        public List<String> addSourceFolders() {
-          List<String> sourceFolders = new ArrayList<String>(1);
-          sourceFolders.add("generated"); //$NON-NLS-1$
-          return sourceFolders;
-        }
-      };
-      // asynchronous operation
-      try {
-        new ProgressMonitorDialog(_shell).run(true, false, operation);
-      } catch (InterruptedException ie) {
-        // Nothing to do
-      } catch (Exception e) {
-        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), e);
-      }
+    public PatternBundleAdapter(Resource resource, IWorkbenchPartSite site) {
+        _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
+        _resource = resource;
     }
-  }
+
+    @Override
+    public void notifyChanged(Notification notification) {
+        super.notifyChanged(notification);
+        if (notification.getNewValue() != null && notification.getNewValue() instanceof Pattern) {
+            handleNotification(notification);
+        }
+    }
+
+    private void handleNotification(Notification notification) {
+        if (notification.getEventType() == Notification.ADD) {
+            Pattern pattern = (Pattern) notification.getNewValue();
+            Resource resource = pattern.eResource();
+            if (resource != _resource || ((ResourceImpl) resource).isLoading()) {
+                return;
+            }
+            if (resource instanceof IPlatformFcoreProvider == false) {
+                return;
+            }
+            final IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
+            if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
+                return;
+            }
+            IRunnableWithProgress operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
+
+                @Override
+                public List<String> addDependencies() {
+                    List<String> dependencies = new ArrayList<String>(2);
+                    dependencies.add("org.eclipse.egf.pattern"); //$NON-NLS-1$
+                    dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$
+                    return dependencies;
+                }
+
+                @Override
+                public List<String> addSourceFolders() {
+                    List<String> sourceFolders = new ArrayList<String>(1);
+                    sourceFolders.add("generated"); //$NON-NLS-1$
+                    return sourceFolders;
+                }
+
+            };
+            // asynchronous operation
+            try {
+                new ProgressMonitorDialog(_shell).run(true, false, operation);
+            } catch (InterruptedException ie) {
+                // Nothing to do
+            } catch (Exception e) {
+                ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), e);
+            }
+        }
+    }
 
 }
