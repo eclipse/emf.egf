@@ -26,8 +26,6 @@ import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.emf.common.util.BasicMonitor;
 
 import org.eclipse.core.resources.*;
-import org.eclipse.egf.core.pde.tools.*;
-import org.eclipse.ui.internal.editors.text.*;
 import org.eclipse.egf.core.domain.*;
 
 public class ModelGenmodelPattern {

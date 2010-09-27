@@ -26,8 +26,6 @@ import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.emf.common.util.BasicMonitor;
 
 import org.eclipse.core.resources.*;
-import org.eclipse.egf.core.pde.tools.*;
-import org.eclipse.ui.internal.editors.text.*;
 import org.eclipse.egf.core.domain.*;
 
 public class ModelGenmodelPattern {
@@ -93,7 +91,7 @@ public class ModelGenmodelPattern {
             resource = resourceSet.getResource(genmodelURI, true);
         } catch (Exception e) {
             genmodelPath = new Path(parameter.getPluginName()).append(genmodelPath.removeFirstSegments(1));
-            genmodelURI = URI.createPlatformPluginURI(genmodelPath.toString(), false);
+            genmodelURI = URI.createPlatformResourceURI(genmodelPath.toString(), false);
 
             try {
                 //see if a created genmodel exists
@@ -105,9 +103,6 @@ public class ModelGenmodelPattern {
                     project.create(null);
                 if (!project.isOpen())
                     project.open(null);
-                WorkspaceOperationRunner runner = new WorkspaceOperationRunner();
-                runner.setProgressMonitor(null);
-                runner.run(true, false, new ConvertProjectOperation(project, false, false));
 
                 resource = resourceSet.createResource(genmodelURI);
                 importer = EcoreImporterHelper.createEcoreImporter(genmodelPath.removeLastSegments(1), ecoreURI, parameter);
