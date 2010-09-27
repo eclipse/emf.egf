@@ -14,14 +14,16 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.eclipse.egf.core.test.context.factorycomponent.memory.ContextFactoryComponentMemory;
 import org.eclipse.egf.core.test.context.factorycomponent.resource.ContextFactoryComponentResource;
 
 public class ContextFactoryComponent extends TestCase {
 
-  public static Test suite() {
-    TestSuite suite = new TestSuite("EGF Core Context FactoryComponent Test Suite"); //$NON-NLS-1$
-    suite.addTest(ContextFactoryComponentResource.suite());
-    return suite;
-  }
+    public static Test suite() {
+        TestSuite suite = new TestSuite("EGF Core Context FactoryComponent Test Suite"); //$NON-NLS-1$
+        suite.addTest(ContextFactoryComponentMemory.suite());
+        suite.addTest(ContextFactoryComponentResource.suite());
+        return suite;
+    }
 
 }

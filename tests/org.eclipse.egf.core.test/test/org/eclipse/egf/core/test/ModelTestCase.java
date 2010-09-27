@@ -186,7 +186,6 @@ public class ModelTestCase extends junit.framework.TestCase {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void runActivity(Activity activity, TestResult result) throws CoreException, InvocationException {
         Diagnostician diagnostician = new Diagnostician();
         if (activity == null)
@@ -196,8 +195,8 @@ public class ModelTestCase extends junit.framework.TestCase {
         if (diagnostic.getSeverity() != Diagnostic.OK)
             handleValidationErrorTestResult(result, diagnostic);
 
-        ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(activity);
-        IActivityManager manager = producer.createActivityManager(activity);
+        ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
+        IActivityManager<Activity> manager = producer.createActivityManager(activity);
 
         try {
             manager.initializeContext();
@@ -206,4 +205,5 @@ public class ModelTestCase extends junit.framework.TestCase {
             manager.dispose();
         }
     }
+
 }
