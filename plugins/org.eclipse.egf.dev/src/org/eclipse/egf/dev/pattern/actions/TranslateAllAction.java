@@ -18,6 +18,16 @@ package org.eclipse.egf.dev.pattern.actions;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.ProjectHelper;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -25,11 +35,11 @@ import org.eclipse.egf.dev.Activator;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -39,26 +49,56 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  */
 public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
 
-    private IWorkbenchWindow _window;
-
     public TranslateAllAction() {
+        // Nothing to do
     }
 
     public void run(IAction action) {
-        List<Pattern> result = new ArrayList<Pattern>(200);
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
-        ResourceSet resourceSet = new EGFResourceSet();
+
+        final List<Pattern> patterns = new ArrayList<Pattern>(200);
+        final IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        final ResourceSet resourceSet = new EGFResourceSet();
+        List<IProject> projects = new UniqueEList<IProject>();
+
+        // Collect Patterns
         try {
             for (IPlatformFcore platformFcore : platformFcores) {
-                URI uri = platformFcore.getURI();
-                Resource res = resourceSet.getResource(uri, true);
-                PatternCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
+                Resource resource = resourceSet.getResource(platformFcore.getURI(), true);
+                PatternCollector.INSTANCE.collect(resource.getContents(), patterns, PatternCollector.EMPTY_ID_SET);
+                if (platformFcore.getPlatformBundle().getProject() != null) {
+                    projects.add(platformFcore.getPlatformBundle().getProject());
+                }
             }
-            new TranslationHelper().translate(result);
-        } catch (Exception e) {
-            MessageDialog.openError(_window.getShell(), "Error", e.getMessage()); //$NON-NLS-1$
-            Activator.getDefault().logError(e);
+        } catch (Throwable t) {
+            ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), t);
+            return;
         }
+
+        // Translate Job
+        WorkspaceJob job = new WorkspaceJob(EGFPatternMessages.patterns_translations_job_label) {
+
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                MultiStatus statii = new MultiStatus(Activator.getDefault().getPluginID(), IStatus.ERROR, EGFPatternMessages.PatternTranslation_exception, null);
+                try {
+                    TranslationHelper.translate(monitor, patterns);
+                } catch (OperationCanceledException oce) {
+                    throw oce;
+                } catch (Throwable t) {
+                    if (t instanceof CoreException) {
+                        statii.add(((CoreException) t).getStatus());
+                    } else {
+                        statii.add(Activator.getDefault().newStatus(Status.ERROR, EGFPatternMessages.PatternTranslation_exception, t));
+                    }
+                } finally {
+                    monitor.done();
+                }
+                return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
+
+            }
+        };
+        job.setRule(ProjectHelper.getRule(projects));
+        job.schedule();
 
     }
 
@@ -91,7 +131,7 @@ public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
      * @see IWorkbenchWindowActionDelegate#init
      */
     public void init(IWorkbenchWindow window) {
-        _window = window;
+        // Nothing to do
     }
 
 }
