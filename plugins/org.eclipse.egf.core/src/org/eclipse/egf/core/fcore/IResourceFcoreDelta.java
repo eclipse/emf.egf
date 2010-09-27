@@ -18,16 +18,19 @@ package org.eclipse.egf.core.fcore;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
 
 public interface IResourceFcoreDelta {
 
-  public List<URI> getNewFcores();
+    public List<IProject> getAffectedProjects();
 
-  public List<URI> getRemovedFcores();
+    public List<URI> getNewFcores();
 
-  public Map<URI, URI> getMovedFcores();
+    public List<URI> getRemovedFcores();
 
-  public List<URI> getUpdatedFcores();
+    public Map<URI, URI> getMovedFcores();
+
+    public List<URI> getUpdatedFcores();
 
 }
