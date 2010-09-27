@@ -15,8 +15,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -43,178 +43,184 @@ import org.osgi.framework.Bundle;
  */
 public abstract class ModelElementManager<P extends ModelElement, T extends ModelElement> implements IModelElementManager<P, T> {
 
-  protected static BasicDiagnostic getDiagnostic(ModelElement element, boolean runtime) {
-    String message = null;
-    if (element instanceof NamedModelElement) {
-      NamedModelElement namedElement = (NamedModelElement) element;
-      if (namedElement.getName() != null && namedElement.getName().trim().length() != 0) {
-        if (runtime) {
-          message = NLS.bind(ProducerMessages.RuntimeCanInvoke_Diagnosis_message, namedElement.getName());
+    protected static BasicDiagnostic getDiagnostic(ModelElement element, boolean runtime) {
+        String message = null;
+        if (element instanceof NamedModelElement) {
+            NamedModelElement namedElement = (NamedModelElement) element;
+            if (namedElement.getName() != null && namedElement.getName().trim().length() != 0) {
+                if (runtime) {
+                    message = NLS.bind(ProducerMessages.RuntimeCanInvoke_Diagnosis_message, namedElement.getName());
+                } else {
+                    message = NLS.bind(ProducerMessages.CanInvoke_Diagnosis_message, namedElement.getName());
+                }
+            }
+        }
+        if (message == null) {
+            if (runtime) {
+                message = NLS.bind(ProducerMessages.RuntimeCanInvoke_Diagnosis_message, element.eClass().getName());
+            } else {
+                message = NLS.bind(ProducerMessages.CanInvoke_Diagnosis_message, element.eClass().getName());
+            }
+        }
+        return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] {
+            element
+        });
+    }
+
+    protected static <M extends ModelElement> void populateContext(ProductionContext<?, M> context, Bundle bundle, M key, ContractMode mode, Type type, Object value) throws InvocationException {
+        // Class
+        if (type instanceof TypeAbstractClass) {
+            try {
+                Object object = null;
+                // Should we instantiate value
+                String fqcn = (String) value;
+                if (fqcn != null && fqcn.trim().length() != 0) {
+                    object = BundleHelper.instantiate(fqcn.trim(), bundle);
+                    if (object == null) {
+                        throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), null)));
+                    }
+                }
+                if (mode == ContractMode.IN) {
+                    context.addInputData(key, type.getType(), object, true);
+                } else if (mode == ContractMode.OUT) {
+                    context.addOutputData(key, type.getType(), null, true);
+                } else if (mode == ContractMode.IN_OUT) {
+                    context.addInputData(key, type.getType(), object, true);
+                    context.addOutputData(key, type.getType(), object, true);
+                }
+            } catch (Throwable t) {
+                throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value), t)));
+            }
         } else {
-          message = NLS.bind(ProducerMessages.CanInvoke_Diagnosis_message, namedElement.getName());
+            if (mode == ContractMode.IN) {
+                context.addInputData(key, type.getType(), value, true);
+            } else if (mode == ContractMode.OUT) {
+                context.addOutputData(key, type.getType(), null, true);
+            } else if (mode == ContractMode.IN_OUT) {
+                context.addInputData(key, type.getType(), value, true);
+                context.addOutputData(key, type.getType(), value, true);
+            }
         }
-      }
     }
-    if (message == null) {
-      if (runtime) {
-        message = NLS.bind(ProducerMessages.RuntimeCanInvoke_Diagnosis_message, element.eClass().getName());
-      } else {
-        message = NLS.bind(ProducerMessages.CanInvoke_Diagnosis_message, element.eClass().getName());
-      }
-    }
-    return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });
-  }
 
-  protected static <M extends ModelElement> void populateContext(ProductionContext<?, M> context, Bundle bundle, M key, ContractMode mode, Type type, Object value) throws InvocationException {
-    // Class
-    if (type instanceof TypeAbstractClass) {
-      try {
-        Object object = null;
-        // Should we instantiate value
-        String fqcn = (String) value;
-        if (fqcn != null && fqcn.trim().length() != 0) {
-          object = BundleHelper.instantiate(fqcn.trim(), bundle);
-          if (object == null) {
-            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), null)));
-          }
+    private P _element;
+
+    protected IModelElementManager<?, ?> _parent;
+
+    protected IProductionContext<P, T> _productionContext;
+
+    private Bundle _bundle;
+
+    private ProjectBundleSession _session;
+
+    private IPlatformFcore _fcore;
+
+    public ModelElementManager(P element) throws InvocationException {
+        Assert.isNotNull(element);
+        _element = element;
+        if (_element.eResource() == null) {
+            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.EObject_no_Resource, EcoreUtil.getURI(_element)), null)));
         }
-        if (mode == ContractMode.IN) {
-          context.addInputData(key, type.getType(), object, true);
-        } else if (mode == ContractMode.OUT) {
-          context.addOutputData(key, type.getType(), null, true);
-        } else if (mode == ContractMode.IN_OUT) {
-          context.addInputData(key, type.getType(), object, true);
-          context.addOutputData(key, type.getType(), object, true);
+        _fcore = ((IPlatformFcoreProvider) _element.eResource()).getIPlatformFcore();
+        if (_fcore == null) {
+            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(_element).trimFragment()), null)));
         }
-      } catch (Throwable t) {
-        throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value), t)));
-      }
-    } else {
-      if (mode == ContractMode.IN) {
-        context.addInputData(key, type.getType(), value, true);
-      } else if (mode == ContractMode.OUT) {
-        context.addOutputData(key, type.getType(), null, true);
-      } else if (mode == ContractMode.IN_OUT) {
-        context.addInputData(key, type.getType(), value, true);
-        context.addOutputData(key, type.getType(), value, true);
-      }
     }
-  }
 
-  private P _element;
-
-  protected IModelElementManager<?, ?> _parent;
-
-  protected IProductionContext<P, T> _productionContext;
-
-  private Bundle _bundle;
-
-  private ProjectBundleSession _projectBundleSession;
-
-  private IPlatformFcore _platformFcore;
-
-  public ModelElementManager(P element) throws InvocationException {
-    Assert.isNotNull(element);
-    _element = element;
-    if (_element.eResource() == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_no_resource, EcoreUtil.getURI(_element)), null)));
+    public ModelElementManager(IModelElementManager<?, ?> parent, P element) throws InvocationException {
+        Assert.isNotNull(parent);
+        Assert.isNotNull(element);
+        _parent = parent;
+        _element = element;
+        if (_element.eResource() == null && parent.getBundle() == null) {
+            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.EObject_no_Resource, EcoreUtil.getURI(_element)), null)));
+        }
+        if (_element.eResource() != null) {
+            _fcore = ((IPlatformFcoreProvider) _element.eResource()).getIPlatformFcore();
+            if (_fcore == null) {
+                throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(_element).trimFragment()), null)));
+            }
+        } else {
+            Assert.isNotNull(parent.getBundle());
+        }
     }
-    _platformFcore = EGFCorePlugin.getPlatformFcore(_element.eResource());
-    if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_no_fcore, EcoreUtil.getURI(_element).trimFragment()), null)));
+
+    public ModelElementManager(Bundle bundle, P element) {
+        Assert.isNotNull(bundle);
+        Assert.isNotNull(element);
+        _bundle = bundle;
+        _element = element;
     }
-  }
 
-  public ModelElementManager(IModelElementManager<?, ?> parent, P element) throws InvocationException {
-    Assert.isNotNull(parent);
-    Assert.isNotNull(element);
-    _parent = parent;
-    _element = element;
-    if (_element.eResource() == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_no_resource, EcoreUtil.getURI(_element)), null)));
+    public P getElement() {
+        return _element;
     }
-    _platformFcore = EGFCorePlugin.getPlatformFcore(_element.eResource());
-    if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_no_fcore, EcoreUtil.getURI(_element).trimFragment()), null)));
+
+    public IProductionContext<P, T> getProductionContext() throws InvocationException {
+        return getInternalProductionContext();
     }
-  }
 
-  public ModelElementManager(Bundle bundle, P element) {
-    Assert.isNotNull(bundle);
-    Assert.isNotNull(element);
-    _bundle = bundle;
-    _element = element;
-  }
-
-  public P getElement() {
-    return _element;
-  }
-
-  public IProductionContext<P, T> getProductionContext() throws InvocationException {
-    return getInternalProductionContext();
-  }
-
-  public IModelElementManager<?, ?> getParent() {
-    return _parent;
-  }
-
-  protected abstract ProductionContext<P, T> getInternalProductionContext() throws InvocationException;
-
-  public String getName() {
-    return EMFHelper.getText(getElement());
-  }
-
-  public Bundle getBundle() throws InvocationException {
-    // Platform
-    if (_platformFcore != null) {
-      try {
-        return BundleSessionHelper.getBundle(getProjectBundleSession(), _platformFcore);
-      } catch (Throwable t) {
-        throw new InvocationException(t);
-      }
+    public IModelElementManager<?, ?> getParent() {
+        return _parent;
     }
-    // Always from parent
-    if (getParent() != null) {
-      return getParent().getBundle();
+
+    protected abstract ProductionContext<P, T> getInternalProductionContext() throws InvocationException;
+
+    public String getName() {
+        return EMFHelper.getText(getElement());
     }
-    // Parent
-    return _bundle;
-  }
 
-  public ProjectBundleSession getProjectBundleSession() {
-    if (getParent() != null) {
-      return getParent().getProjectBundleSession();
+    public Bundle getBundle() throws InvocationException {
+        // Platform
+        if (_fcore != null) {
+            try {
+                return BundleSessionHelper.getBundle(getProjectBundleSession(), _fcore);
+            } catch (Throwable t) {
+                throw new InvocationException(t);
+            }
+        }
+        // Always from parent
+        if (getParent() != null) {
+            return getParent().getBundle();
+        }
+        // Parent
+        return _bundle;
     }
-    if (_projectBundleSession == null) {
-      _projectBundleSession = new ProjectBundleSession(EGFProducerPlugin.getDefault().getBundle().getBundleContext());
+
+    public ProjectBundleSession getProjectBundleSession() {
+        if (getParent() != null) {
+            return getParent().getProjectBundleSession();
+        }
+        if (_session == null) {
+            _session = new ProjectBundleSession(EGFProducerPlugin.getDefault().getBundle().getBundleContext());
+        }
+        return _session;
     }
-    return _projectBundleSession;
-  }
 
-  @SuppressWarnings("unused")
-  protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
-    return getDiagnostic(getElement(), runtime);
-  }
-
-  @SuppressWarnings("unused")
-  protected BasicDiagnostic checkOutputElement(BasicDiagnostic diagnostic) throws InvocationException {
-    return diagnostic;
-  }
-
-  public Diagnostic canInvoke() throws InvocationException {
-    return checkInputElement(false);
-  }
-
-  public abstract void initializeContext() throws InvocationException;
-
-  public void dispose() throws InvocationException {
-    if (_projectBundleSession != null) {
-      try {
-        _projectBundleSession.dispose();
-      } catch (Throwable t) {
-        throw new InvocationException(t);
-      }
+    @SuppressWarnings("unused")
+    protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
+        return getDiagnostic(getElement(), runtime);
     }
-  }
+
+    @SuppressWarnings("unused")
+    protected BasicDiagnostic checkOutputElement(BasicDiagnostic diagnostic) throws InvocationException {
+        return diagnostic;
+    }
+
+    public Diagnostic canInvoke() throws InvocationException {
+        return checkInputElement(false);
+    }
+
+    public abstract void initializeContext() throws InvocationException;
+
+    public void dispose() throws InvocationException {
+        if (_session != null) {
+            try {
+                _session.dispose();
+            } catch (Throwable t) {
+                throw new InvocationException(t);
+            }
+        }
+    }
 
 }
