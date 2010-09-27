@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
@@ -14,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -26,8 +26,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.emf.common.util.URI;
@@ -42,6 +44,47 @@ public class FileHelper {
 
     private FileHelper() {
         // Prevent Instantiation
+    }
+
+    /**
+     * Closes a stream and ignores any resulting exception. This is useful
+     * when doing stream cleanup in a finally block where secondary exceptions
+     * are not worth logging.
+     */
+    public static void safeClose(InputStream inputStream) {
+        try {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+        } catch (IOException e) {
+            //ignore
+        }
+    }
+
+    /**
+     * Closes a stream and ignores any resulting exception. This is useful
+     * when doing stream cleanup in a finally block where secondary exceptions
+     * are not worth logging.
+     */
+    public static void safeClose(OutputStream outputStream) {
+        try {
+            if (outputStream != null) {
+                outputStream.close();
+            }
+        } catch (IOException e) {
+            //ignore
+        }
+    }
+
+    public static void createContainers(IProgressMonitor monitor, IResource resource) throws CoreException {
+        IContainer container = resource.getParent();
+        if (container instanceof IFolder) {
+            IFolder parent = (IFolder) container;
+            if (parent.exists() == false) {
+                createContainers(monitor, parent);
+                parent.create(false, true, monitor);
+            }
+        }
     }
 
     /**
@@ -378,66 +421,67 @@ public class FileHelper {
 
     /**
      * Delete a workspace Resource. Optionally delete its parent folder if they
-     * are empty. Root folder is never deleted.
+     * are empty.
      * 
      * @param root
      * @param resource
      * @param deleteParent
      */
-    public static boolean deleteResource(IFolder root, IResource resource, boolean deleteParent) {
-        if (resource == null) {
-            return false;
-        }
-        // Delete found resource member
-        if (FileHelper.deleteResource(resource) == false) {
-            return false;
-        }
-        // Delete children container if they are empty
-        if (root != null && deleteParent) {
-            IContainer container = resource.getParent();
-            while (container.equals(root) == false) {
-                try {
-                    IResource[] members = container.members();
-                    if (members == null || members.length == 0) {
-                        if (FileHelper.deleteResource(container)) {
-                            container = container.getParent();
+    public static boolean deleteIResource(IProgressMonitor monitor, IFolder root, IResource resource, boolean deleteParent) throws CoreException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 100);
+        subMonitor.beginTask(null, 100);
+        try {
+            if (root == null || root.exists() == false || resource == null || resource.exists() == false || resource.equals(root)) {
+                return false;
+            }
+            // Delete found resource member
+            if (FileHelper.deleteResource(subMonitor, resource, false)) {
+                // Delete children container if they are empty
+                if (deleteParent) {
+                    IContainer container = resource.getParent();
+                    while (container.equals(root) == false) {
+                        IResource[] members = container.members();
+                        if (members == null || members.length == 0) {
+                            if (FileHelper.deleteResource(subMonitor, container, false)) {
+                                container = container.getParent();
+                            } else {
+                                break;
+                            }
                         } else {
                             break;
                         }
-                    } else {
-                        break;
                     }
-                } catch (CoreException ce) {
-                    break;
                 }
+                return true;
             }
+            return false;
+        } finally {
+            subMonitor.worked(100);
         }
-        return true;
     }
 
     /**
      * Delete given relative resource in the workspace.
      * 
-     * @param fileRelativePath
+     * @param path
      */
-    public static boolean deleteFile(String fileRelativePath) {
-        if (fileRelativePath == null || fileRelativePath.trim().length() == 0) {
-            return false;
+    public static void deleteFile(IProgressMonitor monitor, String path) throws CoreException {
+        if (path == null || path.trim().length() == 0) {
+            return;
         }
-        return deleteResource(getPlatformFile(fileRelativePath));
+        deleteResource(monitor, getPlatformFile(path), false);
     }
 
     /**
      * Delete given relative folder in the workspace.
      * 
-     * @param folderRelativePath
-     * @return true if successfully deleted, false otherwise.
+     * @param path
      */
-    public static boolean deleteFolder(String folderRelativePath) {
-        if (folderRelativePath == null || folderRelativePath.trim().length() == 0) {
-            return false;
+    public static void deleteFolder(IProgressMonitor monitor, String path) throws CoreException {
+        if (path == null || path.trim().length() == 0) {
+            return;
         }
-        return deleteResource(getPlatformFolder(folderRelativePath));
+        deleteResource(monitor, getPlatformFolder(path), false);
     }
 
     /**
@@ -445,17 +489,24 @@ public class FileHelper {
      * 
      * @param resource
      */
-    public static boolean deleteResource(IResource resource) {
+    public static boolean deleteResource(IProgressMonitor monitor, IResource resource, boolean removeParentIfEmpty) throws CoreException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 200);
+        subMonitor.beginTask(null, 200);
         if (resource == null || resource.exists() == false) {
+            subMonitor.worked(200);
             return false;
         }
-        try {
-            resource.delete(IResource.FORCE | IResource.KEEP_HISTORY, new NullProgressMonitor());
-            return true;
-        } catch (CoreException ce) {
-            EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.deleteFile(..) _ Unable to delete file ''{0}''", resource.getFullPath()), ce); //$NON-NLS-1$
+        resource.delete(IResource.FORCE | IResource.KEEP_HISTORY, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        if (removeParentIfEmpty) {
+            if (resource.getParent().members() == null || resource.getParent().members().length == 0) {
+                resource.getParent().delete(IResource.FORCE | IResource.KEEP_HISTORY, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+            } else {
+                subMonitor.worked(100);
+            }
+        } else {
+            subMonitor.worked(100);
         }
-        return false;
+        return true;
     }
 
     /**
@@ -525,6 +576,26 @@ public class FileHelper {
             return null;
         }
         return new Path(filePath).getFileExtension();
+    }
+
+    /**
+     * Get an IFile within an IFolder.<br>
+     * 
+     * @param folder
+     * @param path
+     * @return null if it could not be found.
+     */
+    public static IFile getFile(IFolder folder, IPath path) {
+        if (folder == null || path == null) {
+            return null;
+        }
+        // Check if a resource exist in this folder
+        IResource resource = folder.findMember(path);
+        if (resource != null && resource instanceof IFile) {
+            // We got it, we return the current java source folder
+            return (IFile) resource;
+        }
+        return null;
     }
 
 }
