@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
@@ -14,17 +13,18 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.commands.ResourceAddCommand;
-import org.eclipse.egf.model.fcore.commands.ResourceFeatureAddCommand;
-import org.eclipse.egf.model.fcore.commands.ResourceMoveCommand;
-import org.eclipse.egf.model.fcore.commands.ResourceRemoveCommand;
+import org.eclipse.egf.model.fcore.commands.resource.FcoreResourceAddCommand;
+import org.eclipse.egf.model.fcore.commands.resource.ResourceFeatureAddCommand;
+import org.eclipse.egf.model.fcore.commands.resource.ResourceMoveCommand;
+import org.eclipse.egf.model.fcore.commands.resource.ResourceRemoveCommand;
 import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -47,7 +47,6 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProvider;
 
 /**
  * @author Xavier Maysonnave
- * 
  */
 public class FcoreResourceItemProvider extends ResourceItemProvider {
 
@@ -139,15 +138,15 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
     public String getText(Object object) {
         Resource resource = (Resource) object;
         StringBuffer buffer = new StringBuffer(resource.getURI() == null ? "" : URI.decode(resource.getURI().toString())); //$NON-NLS-1$
-        IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(resource);
-        if (fc != null) {
-            if (fc.getPlatformBundle().isTarget()) {
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
+        if (fcore != null) {
+            if (fcore.getPlatformBundle().isTarget()) {
                 buffer.append(" [Target]"); //$NON-NLS-1$
             } else {
                 buffer.append(" [Workspace]"); //$NON-NLS-1$
             }
             buffer.append(" ["); //$NON-NLS-1$
-            buffer.append(fc.getPlatformBundle().getInstallLocation());
+            buffer.append(fcore.getPlatformBundle().getInstallLocation());
             buffer.append("]"); //$NON-NLS-1$
         }
         return buffer.toString();
@@ -203,28 +202,35 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
      * This creates a primitive {@link org.eclipse.emf.edit.command.RemoveCommand}.
      */
     protected Command createRemoveCommand(EditingDomain domain, FcoreResourceImpl resource, Collection<?> collection) {
-        return new ResourceRemoveCommand(domain, resource, collection);
+        CompoundCommand removeCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
+        removeCommand.append(new ResourceRemoveCommand(domain, resource, collection));
+        for (Object object : collection) {
+            if (object instanceof EObject == false) {
+                continue;
+            }
+            EObject eObject = (EObject) object;
+            if (eObject.eContents().isEmpty() == false) {
+                removeCommand.append(domain.createCommand(RemoveCommand.class, new CommandParameter(eObject, null, eObject.eContents())));
+            }
+        }
+        return removeCommand;
     }
 
     /**
      * This creates a primitive {@link org.eclipse.emf.edit.command.AddCommand}.
      */
     protected Command createAddCommand(EditingDomain domain, FcoreResourceImpl resource, Collection<?> collection, int index) {
-        boolean isValid = true;
         Collection<EClass> roots = getRoots();
         if (collection != null) {
             for (Object object : collection) {
                 if (object instanceof EObject) {
                     EObject eObject = (EObject) object;
                     if (roots.contains(EMFHelper.solveAgainstStaticPackage(eObject.eClass())) == false) {
-                        isValid = false;
-                        break;
+                        return UnexecutableCommand.INSTANCE;
                     }
                 }
             }
-            if (isValid) {
-                return new ResourceAddCommand(domain, resource, collection, index);
-            }
+            return new FcoreResourceAddCommand(domain, resource, collection, index);
         }
         return UnexecutableCommand.INSTANCE;
     }

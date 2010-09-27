@@ -27,43 +27,43 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  */
 public class ContractContainerAddCommand extends AddCommand {
 
-  /**
-   * This constructs a primitive command to insert a collection of values into the specified many-valued feature of the owner.
-   */
-  public ContractContainerAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
-    super(domain, owner, feature, collection, index);
-  }
+    /**
+     * This constructs a primitive command to insert a collection of values into the specified many-valued feature of the owner.
+     */
+    public ContractContainerAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+        super(domain, owner, feature, collection, index);
+    }
 
-  @Override
-  protected boolean prepare() {
-    boolean result = super.prepare();
-    if (result == false) {
-      return false;
-    }
-    if (owner instanceof ContractContainer == false) {
-      return true;
-    }
-    if (feature != FcorePackage.Literals.CONTRACT_CONTAINER__CONTRACTS) {
-      return true;
-    }
-    ContractContainer contractContainer = (ContractContainer) owner;
-    if (contractContainer.getActivity() == null) {
-      return true;
-    }
-    if (contractContainer.getActivity() instanceof FactoryComponent) {
-      for (Object object : collection) {
-        if (object instanceof FactoryComponentContract == false) {
-          return false;
+    @Override
+    protected boolean prepare() {
+        boolean result = super.prepare();
+        if (result == false) {
+            return false;
         }
-      }
-    } else {
-      for (Object object : collection) {
-        if (object instanceof FactoryComponentContract) {
-          return false;
+        if (owner instanceof ContractContainer == false) {
+            return true;
         }
-      }
+        if (feature != FcorePackage.Literals.CONTRACT_CONTAINER__CONTRACTS) {
+            return true;
+        }
+        ContractContainer contractContainer = (ContractContainer) owner;
+        if (contractContainer.getActivity() == null) {
+            return true;
+        }
+        if (contractContainer.getActivity() instanceof FactoryComponent) {
+            for (Object object : collection) {
+                if (object instanceof FactoryComponentContract == false) {
+                    return false;
+                }
+            }
+        } else {
+            for (Object object : collection) {
+                if (object instanceof FactoryComponentContract) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
-    return true;
-  }
 
 }

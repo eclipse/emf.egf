@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.model.fcore.commands;
+package org.eclipse.egf.model.fcore.commands.resource;
 
 import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.emf.edit.command.CommandActionDelegate;
@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
  * Multi-rooted resources support.
  * This command will add a root defined EObject to the resource.
  */
-public class ResourceFeatureAddCommand extends ResourceAddCommand implements CommandActionDelegate {
+public class ResourceFeatureAddCommand extends FcoreResourceAddCommand implements CommandActionDelegate {
 
     /**
    */
