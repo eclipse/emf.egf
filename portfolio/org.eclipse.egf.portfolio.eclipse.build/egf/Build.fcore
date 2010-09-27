@@ -483,6 +483,19 @@
             <nature xmi:type="jetpattern:JetNature" xmi:id="_J76ZV4_7Ed-Mh9dXw3mL3g"
                 name="JET"/>
           </elements>
+          <elements xmi:type="pattern:Pattern" xmi:id="__KOOsMS7Ed-vaoSzswKR5Q" name="Others.logRotator"
+              headerMethod="#__KOOscS7Ed-vaoSzswKR5Q" footerMethod="#__KOOtcS7Ed-vaoSzswKR5Q"
+              superPattern="#_ZjWVULv6Ed-8jux89nECug" initMethod="#__KOOssS7Ed-vaoSzswKR5Q"
+              conditionMethod="#__KOOs8S7Ed-vaoSzswKR5Q">
+            <methods xmi:id="__KOOscS7Ed-vaoSzswKR5Q" name="header" patternFilePath="templates/pattern.__KOOsMS7Ed-vaoSzswKR5Q/method.__KOOscS7Ed-vaoSzswKR5Q.pt"/>
+            <methods xmi:id="__KOOssS7Ed-vaoSzswKR5Q" name="init" patternFilePath="templates/pattern.__KOOsMS7Ed-vaoSzswKR5Q/method.__KOOssS7Ed-vaoSzswKR5Q.pt"/>
+            <methods xmi:id="__KOOs8S7Ed-vaoSzswKR5Q" name="preCondition" patternFilePath="templates/pattern.__KOOsMS7Ed-vaoSzswKR5Q/method.__KOOs8S7Ed-vaoSzswKR5Q.pt"/>
+            <methods xmi:id="__KOOtMS7Ed-vaoSzswKR5Q" name="body" patternFilePath="templates/pattern.__KOOsMS7Ed-vaoSzswKR5Q/method.__KOOtMS7Ed-vaoSzswKR5Q.pt"/>
+            <methods xmi:id="__KOOtcS7Ed-vaoSzswKR5Q" name="footer" patternFilePath="templates/pattern.__KOOsMS7Ed-vaoSzswKR5Q/method.__KOOtcS7Ed-vaoSzswKR5Q.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="__KOOtsS7Ed-vaoSzswKR5Q"/>
+            <nature xmi:type="jetpattern:JetNature" xmi:id="__KOOt8S7Ed-vaoSzswKR5Q"
+                name="JET"/>
+          </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
@@ -498,7 +511,7 @@
               <substitutions xmi:id="_bmZDIJ8GEd-nb4TPjagXkA" replacedElement="#_N0HwQJAXEd-LOqbFhvvp0A"
                   replacement="#_WOWc4Z8FEd-qe8Qq1eNVqQ #_NZITMJ8GEd-nb4TPjagXkA #_N0HwQJAXEd-LOqbFhvvp0A"/>
               <substitutions xmi:id="_VbSV8JAXEd-LOqbFhvvp0A" replacedElement="#_ZjWVULv6Ed-8jux89nECug"
-                  replacement="#_J76ZUI_7Ed-Mh9dXw3mL3g #_ZjWVULv6Ed-8jux89nECug"/>
+                  replacement="#_J76ZUI_7Ed-Mh9dXw3mL3g #__KOOsMS7Ed-vaoSzswKR5Q #_ZjWVULv6Ed-8jux89nECug"/>
             </type>
           </invocationContracts>
           <invocationContracts xmi:id="_V7I2U4_5Ed-Mh9dXw3mL3g" factoryComponentContract="#_AjBAYI3DEd-Tlrutn5SzgA"
