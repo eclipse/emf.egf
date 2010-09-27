@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.provider;
 
@@ -18,12 +15,20 @@ import java.util.List;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.provider.ViewpointItemProvider;
 import org.eclipse.egf.model.pattern.PatternFactory;
+import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
+import org.eclipse.egf.model.pattern.commands.PatternViewpointAddCommand;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -41,6 +46,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternViewpoint} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PatternViewpointItemProvider extends ViewpointItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -50,6 +56,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternViewpointItemProvider(AdapterFactory adapterFactory) {
@@ -60,6 +67,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -72,11 +80,10 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -91,6 +98,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -105,6 +113,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
      * This returns PatternViewpoint.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -129,6 +138,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -148,6 +158,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -161,6 +172,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -168,4 +180,40 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
         return EGFModelEditPlugin.INSTANCE;
     }
 
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.RemoveCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection) {
+        CompoundCommand removeCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
+        removeCommand.append(super.createRemoveCommand(domain, owner, feature, collection));
+        if (feature == PatternPackage.Literals.PATTERN_VIEWPOINT__LIBRARIES) {
+            for (Object object : collection) {
+                PatternLibrary library = (PatternLibrary) object;
+                if (library.getElements().isEmpty() == false) {
+                    removeCommand.append(domain.createCommand(RemoveCommand.class, new CommandParameter(library, null, library.getElements())));
+                }
+            }
+        }
+        return removeCommand;
+    }
+
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.AddCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+        if (feature != PatternPackage.Literals.PATTERN_VIEWPOINT__LIBRARIES) {
+            return super.createAddCommand(domain, owner, feature, collection, index);
+        }
+        return new PatternViewpointAddCommand(domain, (PatternViewpoint) owner, collection, index);
+    }
 }

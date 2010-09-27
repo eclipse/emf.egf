@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.provider;
 
@@ -17,9 +14,14 @@ import java.util.List;
 
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
+import org.eclipse.egf.model.pattern.commands.PatternLibraryAddPatternCommand;
+import org.eclipse.egf.model.pattern.commands.PatternLibraryRemovePatternCommand;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -150,8 +152,7 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
 
     /**
      * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-     * describing the children
-     * that can be created under this object.
+     * describing the children that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
@@ -169,6 +170,36 @@ public class PatternLibraryItemProvider extends PatternElementItemProvider imple
         //
         // newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN_LIBRARY__FILTERS,
         // PatternFactory.eINSTANCE.create(PatternPackage.Literals.STRING2_PATTERN_LIST)));
+    }
+
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.RemoveCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection) {
+        if (feature != PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS) {
+            return super.createRemoveCommand(domain, owner, feature, collection);
+        }
+        return new PatternLibraryRemovePatternCommand(domain, owner, collection);
+    }
+
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.AddCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+        if (feature != PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS) {
+            return super.createAddCommand(domain, owner, feature, collection, index);
+        }
+        return new PatternLibraryAddPatternCommand(domain, (PatternLibrary) owner, collection, index);
     }
 
 }

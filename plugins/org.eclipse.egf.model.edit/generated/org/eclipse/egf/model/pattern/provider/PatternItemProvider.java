@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.provider;
 
@@ -16,15 +13,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
+import org.eclipse.egf.model.pattern.commands.PatternAddPatternMethodCommand;
+import org.eclipse.egf.model.pattern.commands.PatternCopyCommand;
+import org.eclipse.egf.model.pattern.commands.PatternCreateCopyCommand;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.CopyCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -51,8 +54,9 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         IItemFontProvider {
 
     /**
-     * This constructs an instance from a factory and a notifier. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -61,8 +65,9 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * This returns the property descriptors for the adapted class. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -75,21 +80,9 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * Disable name edit
-     * 
-     * @generated NOT
-     */
-    @Override
-    protected void addNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_NamedModelElement_name_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_NamedModelElement_name_feature", "_UI_NamedModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_IdentityPropertyCategory"), //$NON-NLS-1$
-                null));
-    }
-
-    /**
-     * This adds a property descriptor for the Header Method feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Header Method feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -116,8 +109,9 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * This adds a property descriptor for the Footer Method feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Footer Method feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -146,8 +140,9 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * This adds a property descriptor for the Super Pattern feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Super Pattern feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -202,7 +197,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     /**
      * This specifies how to implement {@link #getChildren} and is used to
      * deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -215,7 +211,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -229,7 +226,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
 
     /**
      * This returns Pattern.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -255,8 +253,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     /**
      * This handles model notifications by calling {@link #updateChildren} to update any cached
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -265,17 +263,17 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(Pattern.class)) {
-            case PatternPackage.PATTERN__HEADER_METHOD:
-            case PatternPackage.PATTERN__FOOTER_METHOD:
-            case PatternPackage.PATTERN__SUPER_PATTERN:
             case PatternPackage.PATTERN__NATURE:
+            case PatternPackage.PATTERN__SUPER_PATTERN:
+            case PatternPackage.PATTERN__HEADER_METHOD:
             case PatternPackage.PATTERN__INIT_METHOD:
+            case PatternPackage.PATTERN__FOOTER_METHOD:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case PatternPackage.PATTERN__METHODS:
-            case PatternPackage.PATTERN__ORCHESTRATION:
             case PatternPackage.PATTERN__PARAMETERS:
             case PatternPackage.PATTERN__VARIABLES:
+            case PatternPackage.PATTERN__ORCHESTRATION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -294,6 +292,45 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         // Nothing to do
+    }
+
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.CopyCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Command createCopyCommand(EditingDomain domain, EObject owner, CopyCommand.Helper helper) {
+        return new PatternCopyCommand(domain, (Pattern) owner, helper, domain.getOptimizeCopy());
+    }
+
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.CreateCopyCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT 
+     */
+    @Override
+    protected Command createCreateCopyCommand(EditingDomain domain, EObject owner, CopyCommand.Helper helper) {
+        return new PatternCreateCopyCommand(domain, (Pattern) owner, helper);
+    }
+
+    /**
+     * This creates a primitive {@link org.eclipse.emf.edit.command.AddCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+        if (feature != PatternPackage.Literals.PATTERN__METHODS) {
+            return super.createAddCommand(domain, owner, feature, collection, index);
+        }
+        return new PatternAddPatternMethodCommand(domain, (Pattern) owner, collection, index);
     }
 
 }

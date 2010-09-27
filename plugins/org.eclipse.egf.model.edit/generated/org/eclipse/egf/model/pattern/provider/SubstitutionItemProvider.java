@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.provider;
 
@@ -47,7 +44,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.Substitution} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -57,7 +53,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public SubstitutionItemProvider(AdapterFactory adapterFactory) {
@@ -68,7 +63,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -86,7 +80,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This adds a property descriptor for the Replaced Element feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addReplacedElementPropertyDescriptor(Object object) {
@@ -100,7 +93,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This adds a property descriptor for the Replacement feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected void addReplacementPropertyDescriptor(Object object) {
@@ -114,7 +106,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * This returns Substitution.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -155,7 +146,7 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
                     container = provider.getText(substitution.getReplacedElement().getContainer());
                 }
             }
-            // Outgoing Name
+            // Outgoing Replaced Element
             name = substitution.getReplacedElement().getName();
         }
         String label = "[" + getString("_UI_Substitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -176,7 +167,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -197,7 +187,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -209,7 +198,6 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
