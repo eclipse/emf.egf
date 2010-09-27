@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
@@ -58,7 +57,6 @@ class PlatformBundle implements IPlatformBundle {
 
     /*
      * (non-Javadoc)
-     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -281,17 +279,11 @@ class PlatformBundle implements IPlatformBundle {
     }
 
     public URI getUnrootedBase() {
-        if (isTarget()) {
-            return URI.createURI("platform:/plugin/" + getBundleId()); //$NON-NLS-1$
-        }
-        return URI.createURI("platform:/resource/" + getBundleId()); //$NON-NLS-1$
+        return URI.createURI("platform:/plugin/" + getBundleId()); //$NON-NLS-1$
     }
 
     public URI getRootedBase() {
-        if (isTarget()) {
-            return URI.createURI("platform:/plugin/" + getBundleId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-        return URI.createURI("platform:/resource/" + getBundleId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$
+        return URI.createURI("platform:/plugin/" + getBundleId() + "/"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     @Override
