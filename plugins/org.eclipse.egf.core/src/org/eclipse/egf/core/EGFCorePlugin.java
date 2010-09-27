@@ -4,12 +4,12 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.core;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
@@ -21,9 +21,11 @@ import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.internal.genmodel.PlatformGenModel;
+import org.eclipse.egf.core.internal.processor.FcoreProcessorRegistry;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.egf.core.platform.uri.PlatformURIConverter;
+import org.eclipse.egf.core.processor.IFcoreProcessor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.Bundle;
@@ -40,6 +42,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     public static String EDITING_DOMAIN_ID = "org.eclipse.egf.core.editing.domain"; //$NON-NLS-1$  
 
     public static String FCORE_FILE_EXTENSION = "fcore"; //$NON-NLS-1$
+
+    /**
+     * Keep track of the FcoreProcessorRegistry
+     */
+    private static FcoreProcessorRegistry __fcoreProcessorRegistry;
 
     /**
      * Plug-in unique instance.
@@ -68,8 +75,19 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get the IPlatformManager
+     * Get fcore processor implementations.
      * 
+     * @return an empty list if none could be found.
+     */
+    public static List<IFcoreProcessor> getIFcoreProcessors() {
+        if (__fcoreProcessorRegistry == null) {
+            __fcoreProcessorRegistry = new FcoreProcessorRegistry();
+        }
+        return __fcoreProcessorRegistry.getIFcoreProcessors();
+    }
+
+    /**
+     * Get the IPlatformManager
      */
     public static IPlatformManager getPlatformManager() {
         return EGFPlatformPlugin.getPlatformManager();
@@ -116,7 +134,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
 
     /**
      * Get the IPlatformFcore[] for given project.
-     * 
      */
     public static IPlatformFcore[] getPlatformFcores(IProject project) {
         return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(project, IPlatformFcore.class);
@@ -151,7 +168,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
 
     /**
      * Get the IPlatformGenModel[] for given project.
-     * 
      */
     public static IPlatformGenModel[] getPlatformGenModels(IProject project) {
         return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(project, IPlatformGenModel.class);
@@ -211,6 +227,10 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
+        if (__fcoreProcessorRegistry != null) {
+            __fcoreProcessorRegistry.dispose();
+            __fcoreProcessorRegistry = null;
+        }
         super.stop(context);
         __plugin = null;
     }
