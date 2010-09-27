@@ -11,6 +11,7 @@ package org.eclipse.egf.model.fcore.presentation;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,6 +30,7 @@ import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -53,6 +55,7 @@ import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactor
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodCustomItemProviderAdapterFactory;
 import org.eclipse.egf.model.pattern.provider.PatternCustomItemProviderAdapterFactory;
+import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -628,7 +631,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * 
      * @generated NOT
      */
-    public void resourceDeleted(Resource deletedResource) {
+    public void resourceDeleted(final Resource deletedResource) {
         // Handle current resource
         if (deletedResource == getResource()) {
             if (isDirty() == false) {
@@ -703,7 +706,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * 
      * @generated NOT
      */
-    public void externalUpdate(Resource changedResource) {
+    public void externalUpdate(final Resource changedResource) {
         if (changedResource == getResource()) {
             resourceHasBeenExternallyChanged = true;
         }
@@ -715,7 +718,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * 
      * @generated NOT
      */
-    public void internalUpdate(Resource changedResource) {
+    public void internalUpdate(final Resource changedResource) {
         if (changedResource == getResource()) {
             resourceHasBeenExternallyChanged = false;
             resourceHasBeenRemoved = false;
@@ -986,6 +989,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         public Object getParent(Object object) {
             return null;
         }
+
     }
 
     /**
@@ -1471,14 +1475,16 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      */
     @Override
     public void doSave(IProgressMonitor progressMonitor) {
+
         // Do the work within an operation because this is a long running
         // activity that modifies the workbench.
         WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 
             // This is the method that gets invoked when the operation runs.
             @Override
-            public void execute(IProgressMonitor monitor) {
+            public void execute(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
                 try {
+                    // Save Resource
                     getEditingDomain().runExclusive(new Runnable() {
 
                         public void run() {
@@ -1491,12 +1497,13 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                                     userHasSavedResource = true;
                                 }
                             } catch (Exception exception) {
-                                resourceToDiagnosticMap.put(resource.getURI(), ResourceHelper.analyzeResourceProblems(resource, exception, ID));
+                                resourceToDiagnosticMap.put(resourceToSave.getURI(), ResourceHelper.analyzeResourceProblems(resourceToSave, exception, ID));
                             }
                         }
+
                     });
-                } catch (Throwable t) {
-                    ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
+                } finally {
+                    monitor.done();
                 }
             }
 
@@ -1506,9 +1513,13 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         try {
             // This runs the options, and shows progress.
             new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
+            // Refresh the necessary state.
+            ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
             firePropertyChange(IEditorPart.PROP_DIRTY);
-        } catch (Throwable t) {
-            ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
+        } catch (InvocationTargetException ite) {
+            ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), ite);
+        } catch (InterruptedException e) {
+            Assert.isTrue(false, "This operation can not be canceled."); //$NON-NLS-1$
         }
         updateProblemIndication = true;
         updateProblemIndication();
@@ -1893,4 +1904,5 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     protected boolean showOutlineView() {
         return true;
     }
+
 }
