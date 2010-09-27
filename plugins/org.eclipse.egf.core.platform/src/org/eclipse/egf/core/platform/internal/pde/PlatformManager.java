@@ -212,8 +212,8 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
             addPlatformBundle(BundleHelper.getBundleId(base), createPlatformBundle(base), null);
         }
         // Debug
+        long endTime = System.currentTimeMillis();
         if (EGFPlatformPlugin.getDefault().isDebugging()) {
-            long endTime = System.currentTimeMillis();
             long time = (endTime - startTime);
             EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager _ found {0} Platform Bundle{1} in ''{2}'' ms", //$NON-NLS-1$ 
                     new Object[] {
