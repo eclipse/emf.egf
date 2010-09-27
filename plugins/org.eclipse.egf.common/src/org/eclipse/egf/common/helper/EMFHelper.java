@@ -69,10 +69,25 @@ public class EMFHelper {
             protected Iterator<? extends EObject> getEObjectChildren(EObject eObject) {
                 return eObject instanceof EPackage ? ((EPackage) eObject).getESubpackages().iterator() : Collections.<EObject> emptyList().iterator();
             }
+
         }; j.hasNext();) {
             Object content = j.next();
             if (content instanceof EPackage) {
                 result.add((EPackage) content);
+            }
+        }
+        return result;
+    }
+
+    public static Collection<EObject> getAllProperContents(EClassifier eClassifier, EObject owner) {
+        Collection<EObject> result = new ArrayList<EObject>();
+        if (eClassifier == null || owner == null) {
+            return result;
+        }
+        for (TreeIterator<EObject> j = EcoreUtil.getAllProperContents(owner, false); j.hasNext();) {
+            EObject eObject = j.next();
+            if (eClassifier.isInstance(eObject)) {
+                result.add(eObject);
             }
         }
         return result;
