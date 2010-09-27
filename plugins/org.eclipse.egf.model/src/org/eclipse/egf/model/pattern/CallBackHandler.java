@@ -1,6 +1,4 @@
 /**
- * <copyright>
- *
  *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -10,9 +8,7 @@
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
  */
-
 package org.eclipse.egf.model.pattern;
 
 import java.util.Map;
@@ -22,5 +18,7 @@ import java.util.Map;
  * 
  */
 public interface CallBackHandler {
+
     void handleCall(PatternContext ctx, Map<String, Object> parameters) throws PatternException;
+
 }
