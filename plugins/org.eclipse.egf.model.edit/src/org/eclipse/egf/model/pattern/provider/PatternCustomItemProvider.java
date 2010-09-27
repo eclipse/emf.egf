@@ -1,14 +1,11 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.pattern.provider;
 
@@ -50,13 +47,13 @@ public class PatternCustomItemProvider extends PatternItemProvider {
             }
         }
         // Library
-        String container = null;
+        String library = null;
         if (pattern.getContainer() != null) {
             IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(pattern.getContainer(), IItemLabelProvider.class);
             if (provider == null) {
-                container = EMFHelper.getText(pattern.getContainer());
+                library = EMFHelper.getText(pattern.getContainer());
             } else {
-                container = provider.getText(pattern.getContainer());
+                library = provider.getText(pattern.getContainer());
             }
         }
         // Name
@@ -66,8 +63,8 @@ public class PatternCustomItemProvider extends PatternItemProvider {
         if (name != null && name.trim().length() != 0) {
             label = name + " " + label; //$NON-NLS-1$
         }
-        if (container != null && container.trim().length() != 0) {
-            label = container + " -> " + label; //$NON-NLS-1$
+        if (library != null && library.trim().length() != 0) {
+            label = library + " -> " + label; //$NON-NLS-1$
         }
         if (activity != null && activity.trim().length() != 0) {
             label = activity + " -> " + label; //$NON-NLS-1$
