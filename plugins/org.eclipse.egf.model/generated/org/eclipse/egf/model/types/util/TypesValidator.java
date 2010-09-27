@@ -22,6 +22,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.model.EGFModelPlugin;
@@ -61,8 +62,8 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
-import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
+import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -897,12 +898,16 @@ public class TypesValidator extends EObjectValidator {
         }
         URI uri = typeURI.getValue();
         boolean valid = true;
+        InputStream inputStream = null;
+        // Try to open an InputStream
         try {
-            InputStream inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
-            inputStream.close();
+            inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
         } catch (IOException exception) {
             valid = false;
         }
+        // Safe close
+        FileHelper.safeClose(inputStream);
+        // Check
         if (valid == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
