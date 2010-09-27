@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
@@ -111,11 +110,11 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
      * project.
      * 
      * @param project
-     * The project to be converted in a Bundle
+     *            The project to be converted in a Bundle
      * @param createJavaProject
-     * The project should be converted to a JavaProject
+     *            The project should be converted to a JavaProject
      * @param createEGFNature
-     * The project should have en EGF Nature.
+     *            The project should have en EGF Nature.
      */
     public ConvertProjectOperation(IProject project, boolean createJavaProject, boolean createEGFNature) {
         _project = project;
@@ -136,7 +135,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
      * Convert a project
      * 
      * @param monitor
-     * Progress monitor
+     *            Progress monitor
      */
 
     @Override
