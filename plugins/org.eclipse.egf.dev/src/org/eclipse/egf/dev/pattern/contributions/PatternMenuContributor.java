@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -21,6 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
@@ -31,7 +29,7 @@ import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -41,10 +39,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
- * 
- * 
  * @author Thomas Guiu
- * 
  */
 public class PatternMenuContributor extends EditorMenuContributor {
 
@@ -61,10 +56,11 @@ public class PatternMenuContributor extends EditorMenuContributor {
     private final class AddConditionAction extends Action {
 
         public AddConditionAction() {
-            super("Add conditions");//$NON-NLS-1$
+            super("Add Conditions");//$NON-NLS-1$
             setId(getText());
         }
 
+        @SuppressWarnings("unused")
         @Override
         public void run() {
             if (_selection == null)
@@ -81,6 +77,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
             PatternHelper patternCollector = PatternHelper.TRANSACTIONNAL_COLLECTOR;
             patterns.addAll(patternCollector.getPatterns(resource.getURI()));
             editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+
                 @Override
                 protected void doExecute() {
                     try {
@@ -91,10 +88,9 @@ public class PatternMenuContributor extends EditorMenuContributor {
                                 PatternMethod preConditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
                                 pattern.getMethods().add(preConditionMethod);
                                 pattern.setConditionMethod(preConditionMethod);
-                                preConditionMethod.setName(PatternFactory.PRECONDITION_METHOD_NAME);
+                                preConditionMethod.setName(PatternExtensionFactory.PRECONDITION_METHOD_NAME);
                                 preConditionMethod.setPatternFilePath(extension.getFactory().createURI(preConditionMethod));
-
-                                IProject project = PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getProject();
+                                IProject project = EMFHelper.getProject(pattern.eResource());
                                 extension.createInitializer(project, pattern).updateSpecialMethods(false);
                             }
                         }
@@ -104,11 +100,13 @@ public class PatternMenuContributor extends EditorMenuContributor {
                         patterns.clear();
                     }
                 }
+
             });
 
             // save fcore
             try {
                 editingDomain.runExclusive(new Runnable() {
+
                     public void run() {
                         try {
                             resource.save(Collections.EMPTY_MAP);
@@ -122,6 +120,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
             }
 
         }
+
     }
 
 }
