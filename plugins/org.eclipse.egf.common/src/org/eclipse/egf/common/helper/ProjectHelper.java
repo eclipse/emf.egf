@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceRuleFactory;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -28,6 +29,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.MultiRule;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.generator.IEgfGeneratorConstants;
@@ -48,6 +51,25 @@ public class ProjectHelper {
 
     private ProjectHelper() {
         // Prevent Instantiation
+    }
+
+    /**
+     * Obtains a scheduling rule to schedule myself on to give my delegate
+     * access to the specified affected resources.
+     * 
+     * @param projects
+     * @return the appropriate scheduling rule, or <code>null</code> if
+     *         none is required
+     */
+    public static ISchedulingRule getRule(List<IProject> projects) {
+        ISchedulingRule result = null;
+        if (projects.isEmpty() == false) {
+            IResourceRuleFactory factory = ResourcesPlugin.getWorkspace().getRuleFactory();
+            for (IResource next : projects) {
+                result = MultiRule.combine(result, factory.modifyRule(next));
+            }
+        }
+        return result;
     }
 
     /**
