@@ -30,44 +30,48 @@ import org.eclipse.egf.portfolio.genchain.utils.StringUtils;
  */
 public class DefaultEmfGenerationExtension extends ExtensionHelper {
 
-    @Override
-    public String getLabel() {
+	@Override
+	public String getLabel() {
 
-        return Messages.emfGeneration_extension_label;
-    }
+		return Messages.emfGeneration_extension_label;
+	}
 
-    @Override
-    public EcoreElement createEcoreElement(Map<String, String> properties) {
-        EmfGeneration element = GenerationChainFactory.eINSTANCE.createEmfGeneration();
-        String modelPath = properties.get(MODEL_PATH);
-        element.setModelPath(modelPath);
+	protected EmfGeneration doCreateEcoreElement() {
+		return GenerationChainFactory.eINSTANCE.createEmfGeneration();
+	}
 
-        String base = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage().getName());
-        element.setBasePackage(base);
+	@Override
+	public EcoreElement createEcoreElement(Map<String, String> properties) {
+		EmfGeneration element = doCreateEcoreElement();
+		String modelPath = properties.get(MODEL_PATH);
+		element.setModelPath(modelPath);
 
-        String plugin = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName().getName());
-        element.setPluginName(plugin);
+		String base = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage().getName());
+		element.setBasePackage(base);
 
-        String edit = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit().getName());
-        element.setGenerateEdit(Boolean.parseBoolean(edit));
+		String plugin = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName().getName());
+		element.setPluginName(plugin);
 
-        String editor = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor().getName());
-        element.setGenerateEditor(Boolean.parseBoolean(editor));
+		String edit = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit().getName());
+		element.setGenerateEdit(Boolean.parseBoolean(edit));
 
-        String model = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel().getName());
-        element.setGenerateModel(Boolean.parseBoolean(model));
+		String editor = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor().getName());
+		element.setGenerateEditor(Boolean.parseBoolean(editor));
 
-        return element;
-    }
+		String model = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel().getName());
+		element.setGenerateModel(Boolean.parseBoolean(model));
 
-    @Override
-    protected void computeDefaultProperties(Map<String, String> context) {
-        final String project = context.get(CONTEXT_PROJECT_NAME);
-        final String modelName = context.get(CONTEXT_MODEL_NAME);
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage(), project);
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit(), "true");
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor(), "false");
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel(), "true");
-        properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), StringUtils.format1(project + '.' + modelName));
-    };
+		return element;
+	}
+
+	@Override
+	protected void computeDefaultProperties(Map<String, String> context) {
+		final String project = context.get(CONTEXT_PROJECT_NAME);
+		final String modelName = context.get(CONTEXT_MODEL_NAME);
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_BasePackage(), project);
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit(), "true");
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor(), "false");
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel(), "true");
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), StringUtils.format1(project + '.' + modelName));
+	};
 }
