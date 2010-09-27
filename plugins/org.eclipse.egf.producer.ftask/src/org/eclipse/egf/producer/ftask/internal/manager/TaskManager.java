@@ -56,6 +56,7 @@ public class TaskManager extends ActivityManager<Task> {
     @SuppressWarnings("unchecked")
     public TaskProductionContext getInternalProductionContext() throws InvocationException {
         if (_productionContext == null) {
+            @SuppressWarnings("rawtypes")
             ActivityProductionContextProducer producer = null;
             try {
                 producer = EGFProducerPlugin.getActivityProductionContextProducer(getElement());
