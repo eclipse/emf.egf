@@ -27,7 +27,7 @@
     >
         <query
             id="org.eclipse.egf.pattern.basic.query"
-	        name="Basic query"
+	        name="Domain query"
             class="org.eclipse.egf.pattern.query.BasicQueryDelegate"
         />
         <query
