@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.core.resources.*;
 import org.eclipse.egf.core.pde.tools.*;
 import org.eclipse.ui.internal.editors.text.*;
+import org.eclipse.egf.core.domain.*;
 
 public class ModelGenmodelPattern {
 
@@ -78,23 +79,27 @@ public class ModelGenmodelPattern {
     }
 
     protected void method_create(final StringBuffer out, final PatternContext ctx) throws Exception {
-        ResourceSet resourceSet = (ResourceSet) ctx.getValue(FcoreBuilderConstants.RESOURCE_SET);
+        ResourceSet resourceSet = new EGFResourceSet();
+        Resource resource = null;
+
         IPath ecorePath = new Path(parameter.getModelPath());
         URI ecoreURI = URI.createPlatformPluginURI(ecorePath.toString(), false);
+
         IPath genmodelPath = ecorePath.removeFileExtension().addFileExtension("genmodel");
         URI genmodelURI = URI.createPlatformPluginURI(genmodelPath.toString(), false);
+
         try {
-            Resource resource = resourceSet.getResource(genmodelURI, true);
-            ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
+            //see if a genmodel exists
+            resource = resourceSet.getResource(genmodelURI, true);
         } catch (Exception e) {
-            IPath newPath = new Path(parameter.getPluginName());
-            newPath = newPath.append(genmodelPath.removeFirstSegments(1));
-            URI newPathURI = URI.createPlatformPluginURI(newPath.toString(), false);
-            Resource genResource = null;
+            genmodelPath = new Path(parameter.getPluginName()).append(genmodelPath.removeFirstSegments(1));
+            genmodelURI = URI.createPlatformPluginURI(genmodelPath.toString(), false);
+
             try {
-                genResource = resourceSet.getResource(newPathURI, true);
-                ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, newPathURI);
+                //see if a created genmodel exists
+                resource = resourceSet.getResource(genmodelURI, true);
             } catch (Exception e1) {
+                //create it
                 IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(parameter.getPluginName());
                 if (!project.exists())
                     project.create(null);
@@ -104,10 +109,11 @@ public class ModelGenmodelPattern {
                 runner.setProgressMonitor(null);
                 runner.run(true, false, new ConvertProjectOperation(project, false, false));
 
-                genResource = resourceSet.createResource(newPathURI);
-                ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, newPathURI);
-                importer = EcoreImporterHelper.createEcoreImporter(newPath.removeLastSegments(1), ecoreURI, parameter);
+                resource = resourceSet.createResource(genmodelURI);
+                importer = EcoreImporterHelper.createEcoreImporter(genmodelPath.removeLastSegments(1), ecoreURI, parameter);
             }
+        } finally {
+            ((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
         }
 
     }
