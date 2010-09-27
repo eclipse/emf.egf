@@ -1,18 +1,14 @@
 /**
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
@@ -36,13 +32,16 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
+
     /**
      * Creates the default factory implementation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public static FcoreFactory init() {
@@ -61,6 +60,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
      * Creates an instance of the factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public FcoreFactoryImpl() {
@@ -70,67 +70,71 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-        case FcorePackage.CONTRACT:
-            return createContract();
-        case FcorePackage.FACTORY_COMPONENT:
-            return createFactoryComponent();
-        case FcorePackage.CONTRACT_CONTAINER:
-            return createContractContainer();
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT:
-            return createFactoryComponentContract();
-        case FcorePackage.VIEWPOINT_CONTAINER:
-            return createViewpointContainer();
-        case FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER:
-            return createOrchestrationParameterContainer();
-        case FcorePackage.ORCHESTRATION_PARAMETER:
-            return createOrchestrationParameter();
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER:
-            return createInvocationContractContainer();
-        case FcorePackage.INVOCATION_CONTRACT:
-            return createInvocationContract();
-        default:
-            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+            case FcorePackage.CONTRACT:
+                return createContract();
+            case FcorePackage.FACTORY_COMPONENT:
+                return createFactoryComponent();
+            case FcorePackage.CONTRACT_CONTAINER:
+                return createContractContainer();
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT:
+                return createFactoryComponentContract();
+            case FcorePackage.VIEWPOINT_CONTAINER:
+                return createViewpointContainer();
+            case FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER:
+                return createOrchestrationParameterContainer();
+            case FcorePackage.ORCHESTRATION_PARAMETER:
+                return createOrchestrationParameter();
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER:
+                return createInvocationContractContainer();
+            case FcorePackage.INVOCATION_CONTRACT:
+                return createInvocationContract();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
-        case FcorePackage.CONTRACT_MODE:
-            return createContractModeFromString(eDataType, initialValue);
-        default:
-            throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+            case FcorePackage.CONTRACT_MODE:
+                return createContractModeFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
-        case FcorePackage.CONTRACT_MODE:
-            return convertContractModeToString(eDataType, instanceValue);
-        default:
-            throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+            case FcorePackage.CONTRACT_MODE:
+                return convertContractModeToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Contract createContract() {
@@ -141,6 +145,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public FactoryComponent createFactoryComponent() {
@@ -151,6 +156,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public ContractContainer createContractContainer() {
@@ -161,6 +167,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public FactoryComponentContract createFactoryComponentContract() {
@@ -171,6 +178,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public ViewpointContainer createViewpointContainer() {
@@ -181,6 +189,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public OrchestrationParameterContainer createOrchestrationParameterContainer() {
@@ -191,6 +200,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public OrchestrationParameter createOrchestrationParameter() {
@@ -201,6 +211,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public InvocationContractContainer createInvocationContractContainer() {
@@ -211,6 +222,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public InvocationContract createInvocationContract() {
@@ -221,6 +233,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public ContractMode createContractMode(String literal) {
@@ -233,6 +246,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public ContractMode createContractModeFromString(EDataType eDataType, String initialValue) {
@@ -242,6 +256,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String convertContractMode(ContractMode instanceValue) {
@@ -251,6 +266,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String convertContractModeToString(EDataType eDataType, Object instanceValue) {
@@ -270,6 +286,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public FcorePackage getFcorePackage() {
@@ -279,6 +296,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @deprecated
      * @generated
      */
