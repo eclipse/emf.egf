@@ -32,7 +32,6 @@ import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
-import org.eclipse.core.resources.IResourceRuleFactory;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
@@ -41,8 +40,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.ISchedulingRule;
-import org.eclipse.core.runtime.jobs.MultiRule;
+import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.emf.common.archive.ArchiveURLConnection;
@@ -636,7 +634,7 @@ public final class EGFWorkspaceSynchronizer {
         ResourceSynchJob(List<EGFSynchRequest> synchRequests, List<IProject> affectedProjects) {
             super(EGFCoreMessages.synchJobName);
             this.synchRequests = synchRequests;
-            setRule(getRule(affectedProjects));
+            setRule(ProjectHelper.getRule(affectedProjects));
         }
 
         /**
@@ -663,24 +661,6 @@ public final class EGFWorkspaceSynchronizer {
             return Status.OK_STATUS;
         }
 
-        /**
-         * Obtains a scheduling rule to schedule myself on to give my delegate
-         * access to the specified affected projects.
-         * 
-         * @param affectedProjects
-         * @return the appropriate scheduling rule, or <code>null</code> if
-         *         none is required
-         */
-        private ISchedulingRule getRule(List<IProject> affectedProjects) {
-            ISchedulingRule result = null;
-            if (affectedProjects.isEmpty() == false) {
-                IResourceRuleFactory factory = ResourcesPlugin.getWorkspace().getRuleFactory();
-                for (IResource next : affectedProjects) {
-                    result = MultiRule.combine(result, factory.modifyRule(next));
-                }
-            }
-            return result;
-        }
     }
 
 }
