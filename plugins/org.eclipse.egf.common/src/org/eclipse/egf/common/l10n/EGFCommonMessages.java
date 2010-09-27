@@ -51,4 +51,6 @@ public class EGFCommonMessages {
 
     public static String Missing_Element_Message;
 
+    public static String No_associated_project;
+
 }
