@@ -30,7 +30,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.BasicQuery} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class BasicQueryItemProvider extends QueryItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
@@ -40,7 +39,6 @@ public class BasicQueryItemProvider extends QueryItemProvider implements IEditin
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public BasicQueryItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +49,6 @@ public class BasicQueryItemProvider extends QueryItemProvider implements IEditin
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -67,7 +64,6 @@ public class BasicQueryItemProvider extends QueryItemProvider implements IEditin
      * This returns BasicQuery.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -92,7 +88,6 @@ public class BasicQueryItemProvider extends QueryItemProvider implements IEditin
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -106,7 +101,6 @@ public class BasicQueryItemProvider extends QueryItemProvider implements IEditin
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

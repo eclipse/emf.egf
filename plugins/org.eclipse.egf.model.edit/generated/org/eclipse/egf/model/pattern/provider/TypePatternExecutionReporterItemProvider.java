@@ -33,7 +33,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
@@ -43,7 +42,6 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public TypePatternExecutionReporterItemProvider(AdapterFactory adapterFactory) {
@@ -54,7 +52,6 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -70,7 +67,6 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
      * This returns TypePatternExecutionReporter.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -95,7 +91,6 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
      * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -109,7 +104,6 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -121,7 +115,6 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
