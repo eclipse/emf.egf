@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -27,15 +27,16 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternRuntimeException;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
-import org.eclipse.egf.pattern.Activator;
-import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.extension.PatternExtension;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * This is an helper class to ease translation of patterns.
@@ -87,7 +88,7 @@ public class CallHelper {
                 for (Map.Entry<String, Object> entry : name2parameterValue.entrySet()) {
                     PatternParameter parameter = pattern.getParameter(entry.getKey());
                     if (parameter == null)
-                        throw new PatternException(Messages.bind(Messages.call_execution_error1, entry.getKey(), pattern.getName()));
+                        throw new PatternException(NLS.bind(EGFPatternMessages.call_execution_error1, entry.getKey(), pattern.getName()));
                     parameters.put(parameter, entry.getValue());
                 }
                 PatternEngine engine = extension.createEngine(pattern);
@@ -105,16 +106,16 @@ public class CallHelper {
         List<Pattern> patterns = new ArrayList<Pattern>();
 
         if (patternURI == null)
-            throw new PatternException(Messages.call_execution_error3);
+            throw new PatternException(EGFPatternMessages.call_execution_error3);
         ResourceSet resourceSet = (ResourceSet) ctx.getValue(PatternContext.PATTERN_RESOURCESET);
         if (resourceSet == null)
-            throw new PatternException(Messages.call_execution_error2);
+            throw new PatternException(EGFPatternMessages.call_execution_error2);
         URI uri = URI.createURI(patternURI, false);
 
         Pattern targetPattern = (Pattern) resourceSet.getEObject(uri, true);
 
         if (targetPattern == null)
-            throw new PatternException(Messages.bind(Messages.call_execution_error4, patternURI));
+            throw new PatternException(NLS.bind(EGFPatternMessages.call_execution_error4, patternURI));
         patterns.add(targetPattern);
         return patterns;
     }
@@ -123,7 +124,7 @@ public class CallHelper {
         try {
             CallBackHandler handler = (CallBackHandler) ctx.getValue(PatternContext.CALL_BACK_HANDLER);
             if (handler == null)
-                Activator.getDefault().logWarning(Messages.missing_callback_handler);
+                EGFPatternPlugin.getDefault().logWarning(EGFPatternMessages.missing_callback_handler);
             else
                 handler.handleCall(ctx, parameters);
         } catch (PatternException e) {
