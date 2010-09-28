@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -26,14 +23,13 @@ import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
-import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.utils.FileHelper;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.egf.pattern.utils.TemplateFileHelper;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public abstract class AssemblyContentProvider extends PatternSwitch<String> {
 
@@ -121,14 +117,12 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
 
     @Override
     public String defaultCase(EObject object) {
-
-        throw new IllegalStateException(Messages.bind(Messages.assembly_error1, object.eClass().getName()));
+        throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error1, object.eClass().getName()));
     }
 
-    protected String getMethodContent(PatternMethod object) throws PatternException {
-        URI uri = object.getPatternFilePath();
+    protected String getMethodContent(PatternMethod method) throws PatternException {
         try {
-            return FileHelper.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
+            return TemplateFileHelper.getContent(method);
         } catch (IOException e) {
             throw new PatternException(e);
         }
