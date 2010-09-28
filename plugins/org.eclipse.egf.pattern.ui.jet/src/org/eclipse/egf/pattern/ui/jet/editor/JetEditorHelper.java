@@ -32,7 +32,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
 import org.eclipse.egf.pattern.ui.jet.Activator;
 import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
 import org.eclipse.emf.common.util.EList;
@@ -241,7 +241,7 @@ public class JetEditorHelper extends JETEditorHelper {
                 for (int i = 0; i < size; i++) {
                     JetTextEditor currentEditor = (JetTextEditor) editors.get(i);
                     String partName = currentEditor.getPartName();
-                    if (partName.equals(PatternFactory.FOOTER_METHOD_NAME)) {
+                    if (partName.equals(PatternExtensionFactory.FOOTER_METHOD_NAME)) {
                         footerEditor = currentEditor;
                         continue;
                     }
