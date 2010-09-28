@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -24,20 +21,19 @@ import org.eclipse.ui.IPersistableElement;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class AbstractPatternMethodEditorInput implements IEditorInput {
 
-    protected final String fragment;
+    protected final String _fragment;
 
-    protected final Resource resource;
+    protected final Resource _resource;
 
-    protected String path;
+    protected final PatternMethod _method;
 
     public AbstractPatternMethodEditorInput(Resource resource, String fragment) {
-        this.resource = resource;
-        this.fragment = fragment;
-        this.path = getPatternMethod().getPatternFilePath().path();
+        _resource = resource;
+        _method = (PatternMethod) resource.getEObject(fragment);
+        _fragment = fragment;
     }
 
     public boolean exists() {
@@ -45,11 +41,11 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     }
 
     public PatternMethod getPatternMethod() {
-        return (PatternMethod) resource.getEObject(fragment);
+        return _method;
     }
 
     public Resource getResource() {
-        return resource;
+        return _resource;
     }
 
     public ImageDescriptor getImageDescriptor() {
@@ -71,7 +67,7 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     public Object getAdapter(Class adapter) {
         return null;
     }
