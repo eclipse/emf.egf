@@ -23,10 +23,6 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
-    public static String _UI_GenericSelectionDialog_dialogTitle;
-
-    public static String _UI_GenericSelectionDialog_dialogMessage;
-
     public static String Editor_wrong_input;
 
     // Overview Page
@@ -87,12 +83,6 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_Error;
 
-    public static String ImplementationPage_footer;
-
-    public static String ImplementationPage_header;
-
-    public static String ImplementationPage_init;
-
     public static String ImplementationPage_Methods;
 
     public static String ImplementationPage_Methods_2;
@@ -105,13 +95,9 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_method_cannot_delete_message;
 
-    public static String ImplementationPage_methSection_label;
-
     public static String ImplementationPage_orchSection_label;
 
     public static String ImplementationPage_orchSection_title;
-
-    public static String ImplementationPage_split_mark;
 
     public static String ImplementationPage_variable_cannot_delete_message;
 
