@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.FileHelper;
-import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BackCall;
@@ -399,7 +398,7 @@ public class PatternValidator extends EObjectValidator {
         InputStream inputStream = null;
         // Try to open an InputStream
         try {
-            inputStream = TemplateModelFileHelper.getInputStream(((IPlatformFcoreProvider) method.eResource()).getIPlatformFcore(), method);
+            inputStream = TemplateModelFileHelper.getInputStream(method);
         } catch (IOException exception) {
             valid = false;
         }

@@ -62,9 +62,21 @@ public class TemplateModelFileHelper {
     }
 
     public static URI computeFileURI(IPlatformFcore fcore, PatternMethod method) {
+        if (method == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
+        }
+        if (method.getID() == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error6);
+        }
+        if (method.getPattern() == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error7);
+        }
+        if (method.getPattern().getID() == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error8);
+        }
         URI relativeURI = URI.createURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER
                 + PATTERN_UNIT_FILE_EXTENSION);
-        return TemplateModelFileHelper.getTemplateURI(fcore, relativeURI);
+        return URI.createURI(fcore.getPlatformBundle().getRootedBase().toString() + relativeURI.toString());
     }
 
     public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {
@@ -100,12 +112,12 @@ public class TemplateModelFileHelper {
     /**
      * get an input stream from a plugin who lives in the workspace or RT.
      */
-    public static URI getTemplateURI(IPlatformFcore fcore, URI uri) {
-        if (fcore == null || uri == null) {
+    public static URI getTemplateURI(URI uri) {
+        if (uri == null) {
             throw new IllegalArgumentException(EGFModelMessages.fileHelper_error3);
         }
         if (uri.isRelative()) {
-            uri = URI.createURI(fcore.getPlatformBundle().getRootedBase().toString() + uri.toString());
+            throw new IllegalArgumentException(NLS.bind(EGFModelMessages.fileHelper_error5, uri.toString()));
         }
         return uri;
 
@@ -114,21 +126,21 @@ public class TemplateModelFileHelper {
     /**
      * get an input stream from a plugin who lives in the workspace or RT.
      */
-    public static URI getTemplateURI(IPlatformFcore fcore, PatternMethod method) {
-        if (fcore == null || method == null) {
-            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error3);
+    public static URI getTemplateURI(PatternMethod method) {
+        if (method == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
         }
-        return getTemplateURI(fcore, method.getPatternFilePath());
+        return getTemplateURI(method.getPatternFilePath());
     }
 
     /**
      * get an input stream from a plugin who lives in the workspace or RT.
      */
-    public static InputStream getInputStream(IPlatformFcore fcore, PatternMethod method) throws IOException {
-        if (fcore == null || method == null) {
-            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error3);
+    public static InputStream getInputStream(PatternMethod method) throws IOException {
+        if (method == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
         }
-        return EGFCorePlugin.getPlatformURIConverter().createInputStream(getTemplateURI(fcore, method));
+        return EGFCorePlugin.getPlatformURIConverter().createInputStream(getTemplateURI(method));
 
     }
 

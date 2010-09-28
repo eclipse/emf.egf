@@ -11,7 +11,6 @@ package org.eclipse.egf.model.fcore.util;
 
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -36,7 +35,12 @@ public class FcoreXMIHelperImpl extends XMIHelperImpl {
             super.setValue(object, feature, value, position);
             return;
         }
-        object.eSet(feature, TemplateModelFileHelper.getTemplateURI(((IPlatformFcoreProvider) resource).getIPlatformFcore(), URI.createURI((String) value)));
+        URI uri = URI.createURI((String) value);
+        if (uri.isRelative()) {
+            object.eSet(feature, URI.createURI(((IPlatformFcoreProvider) resource).getIPlatformFcore().getPlatformBundle().getRootedBase().toString() + uri.toString()));
+        } else {
+            object.eSet(feature, uri);
+        }
     }
 
 }
