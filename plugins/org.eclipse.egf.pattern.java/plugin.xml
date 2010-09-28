@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-	<extension
-         point="org.eclipse.egf.pattern.extension">
-      <flavor
-            class="org.eclipse.egf.pattern.java.extension.JavaPatternExtension">
-      </flavor>
-   </extension>
+
+    <!-- ================================================================================= -->
+    <!-- PatternExtension                                                                  -->
+    <!-- ================================================================================= -->
+
+    <extension
+        point="org.eclipse.egf.pattern.extension"
+    >
+        <flavor
+            nature="org.eclipse.egf.model.javapattern.JavaNature"
+            class="org.eclipse.egf.pattern.java.extension.JavaPatternExtension"
+        />
+    </extension>
 
 </plugin>
