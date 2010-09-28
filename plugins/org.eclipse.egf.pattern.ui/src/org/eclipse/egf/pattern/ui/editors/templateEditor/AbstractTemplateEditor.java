@@ -18,13 +18,12 @@ package org.eclipse.egf.pattern.ui.editors.templateEditor;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -33,13 +32,13 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.platform.pde.IPlatformBundle;
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.helper.URIHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
@@ -49,7 +48,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.text.Position;
 import org.eclipse.pde.core.IBaseModel;
@@ -187,10 +185,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     protected IFile setPublicTemplateEditor(Pattern pattern, EList<PatternMethod> methods, String fileExtention) {
         IFile templateFile = null;
         try {
-            Resource eResource = pattern.eResource();
-            IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eResource);
-            IPlatformBundle platformBundle = platformFcore.getPlatformBundle();
-            IProject project = platformBundle.getProject();
+            IProject project = EMFHelper.getProject(pattern.eResource());
 
             NullProgressMonitor monitor = new NullProgressMonitor();
             String tempProjectName = "." + project.getName() + projectName;
@@ -202,7 +197,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
                 templateProject.delete(true, true, monitor);
                 // Create new template project.
                 getTemplateProject(templateProject, tempProjectName, monitor);
-                ConvertPluginProjectOperation convert = new ConvertPluginProjectOperation(templateProject, platformBundle);
+                ConvertPluginProjectOperation convert = new ConvertPluginProjectOperation(templateProject, ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore().getPlatformBundle());
                 convert.execute(monitor);
             }
             IFolder src = templateProject.getFolder("src");
@@ -233,14 +228,14 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
         return templateFile;
     }
 
-    private void visitMethod(IProject project, PatternMethod method, IFile templateFile, boolean seprator) throws CoreException, IOException {
-        IFile file = project.getFile(method.getPatternFilePath().path());
-        if (!file.exists()) {
+    private void visitMethod(IProject project, PatternMethod method, IFile templateFile, boolean separator) throws CoreException, IOException {
+        IFile file = project.getFile(URIHelper.toPlatformProjectString(method.getPatternFilePath(), true));
+        if (file.exists() == false) {
             file.create(new ByteArrayInputStream(new byte[0]), true, null);
         }
         templateFile.appendContents(file.getContents(), false, false, null);
-        if (seprator) {
-            templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
+        if (separator) {
+            templateFile.appendContents(new ByteArrayInputStream("\n".getBytes()), true, false, null); //$NON-NLS-1$
         }
         int startPosition = TemplateEditorUtility.getStartPosition(startPositions);
         int length = TemplateEditorUtility.getSourceLength(file.getContents());
@@ -377,7 +372,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     }
 
     protected void setPatternFilePath(PatternMethod addMethod) {
-        URI computeFileURI = PatternHelper.Filename.computeFileURI(addMethod);
+        URI computeFileURI = TemplateModelFileHelper.computeFileURI(((IPlatformFcoreProvider) getPattern().eResource()).getIPlatformFcore(), addMethod);
         addMethod.setPatternFilePath(computeFileURI);
     }
 
