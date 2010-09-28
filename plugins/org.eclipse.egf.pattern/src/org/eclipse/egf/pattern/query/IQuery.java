@@ -22,7 +22,8 @@ import java.util.Map;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Thomas Guiu
@@ -61,7 +62,7 @@ public interface IQuery {
         public IQuery loadQuery(String id) {
             QueryKind queryKind = getQueryKind(id);
             if (queryKind == null)
-                throw new IllegalStateException(Messages.query_error6);
+                throw new IllegalStateException(EGFPatternMessages.query_error6);
             // queryKind.getPlatformBundle().
 
             return null;
@@ -95,15 +96,15 @@ public interface IQuery {
 
         public String getQueryClassName(String queryID) throws PatternException {
             if (queryID == null || "".equals(queryID)) //$NON-NLS-1$
-                throw new PatternException(Messages.query_error2);
+                throw new PatternException(EGFPatternMessages.query_error2);
             for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
                 if (queryID.equals(kind.getId())) {
                     if (kind.getClassName() == null || "".equals(kind.getClassName())) //$NON-NLS-1$
-                        throw new PatternException(Messages.query_error5);
+                        throw new PatternException(EGFPatternMessages.query_error5);
                     return kind.getClassName();
                 }
             }
-            throw new PatternException(Messages.bind(Messages.query_error3, queryID));
+            throw new PatternException(NLS.bind(EGFPatternMessages.query_error3, queryID));
         }
 
         private Helper() {
