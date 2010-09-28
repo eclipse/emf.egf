@@ -466,13 +466,16 @@ public class CodegenEGFHelper {
 
     @SuppressWarnings("unchecked")
     protected <E extends PatternElement> EList<E> getSiblingCollection(PatternElement patternElement) {
-        PatternLibrary container = patternElement.getContainer();
-        if (container != null)
+        if (patternElement instanceof PatternLibrary) {
+            PatternLibrary patternLibrary = (PatternLibrary) patternElement;
+            PatternViewpoint patternViewpoint = (PatternViewpoint) patternLibrary.eContainer();
+            return (EList<E>) patternViewpoint.getLibraries();
+        } else if (patternElement instanceof Pattern) {
+            Pattern pattern = (Pattern) patternElement;
+            PatternLibrary container = pattern.getContainer();
             return (EList<E>) container.getElements();
-        
-        PatternLibrary patternLibrary = (PatternLibrary) patternElement;
-        PatternViewpoint patternViewpoint = (PatternViewpoint) patternLibrary.eContainer();
-        return (EList<E>) patternViewpoint.getLibraries();
+        } else
+            throw new IllegalStateException("Unknown patternElement type"); //$NON-NLS-1$
     }
 
     protected XMIResource getXMIResource() {

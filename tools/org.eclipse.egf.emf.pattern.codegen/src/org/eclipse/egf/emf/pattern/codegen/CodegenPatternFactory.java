@@ -28,7 +28,7 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
@@ -43,11 +43,11 @@ public class CodegenPatternFactory {
 
     protected CodegenEGFHelper codegenEGFHelper;
 
-    protected PatternFactory patternFactory;
+    protected PatternExtensionFactory patternFactory;
 
     protected CodegenPatternHelper codegenPatternHelper;
 
-    public CodegenPatternFactory(PatternFactory patternFactory, Resource emfPatternBaseResource, CodegenEGFHelper codegenEGFHelper, PatternInfo patternInfo, CodegenPatternHelper codegenPatternHelper) {
+    public CodegenPatternFactory(PatternExtensionFactory patternFactory, Resource emfPatternBaseResource, CodegenEGFHelper codegenEGFHelper, PatternInfo patternInfo, CodegenPatternHelper codegenPatternHelper) {
         this.patternFactory = patternFactory;
         this.emfPatternBaseResource = emfPatternBaseResource;
         this.codegenEGFHelper = codegenEGFHelper;
@@ -149,7 +149,7 @@ public class CodegenPatternFactory {
     protected void removeBodyMethod(Pattern pattern) {
         PatternMethod bodyMethod = null;
         for (PatternMethod patternMethod : pattern.getMethods()) {
-            if (PatternFactory.BODY_METHOD_NAME.equals(patternMethod.getName()))
+            if (PatternExtensionFactory.BODY_METHOD_NAME.equals(patternMethod.getName()))
                 bodyMethod = patternMethod;
         }
         if (bodyMethod != null)
