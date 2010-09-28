@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.ui.dialogs.AbstractFilteredItemsSelectionDialog;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
@@ -132,7 +133,7 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
             try {
                 _pattern = (Pattern) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
                 // Check whether or not this activity belongs to our fcores
-                IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_pattern.eResource());
+                IPlatformFcore fcore = ((IPlatformFcoreProvider) _pattern.eResource()).getIPlatformFcore();
                 if (fcore != null) {
                     for (IPlatformFcore innerFcore : _fcores) {
                         if (innerFcore.equals(fcore)) {
@@ -273,18 +274,18 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
                 return _adapterFactoryLabelProvider.getText(pattern);
             }
             // Retrieve Fcore
-            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(pattern.eResource());
-            if (fc == null) {
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+            if (fcore == null) {
                 return _adapterFactoryLabelProvider.getText(pattern);
             }
-            StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
-            if (fc.getPlatformBundle().isTarget()) {
+            StringBuffer buffer = new StringBuffer(fcore.getURI() == null ? "" : URI.decode(fcore.getURI().toString())); //$NON-NLS-1$
+            if (fcore.getPlatformBundle().isTarget()) {
                 buffer.append(" [Target]"); //$NON-NLS-1$
             } else {
                 buffer.append(" [Workspace]"); //$NON-NLS-1$
             }
             buffer.append(" ["); //$NON-NLS-1$
-            buffer.append(fc.getPlatformBundle().getInstallLocation());
+            buffer.append(fcore.getPlatformBundle().getInstallLocation());
             buffer.append("]"); //$NON-NLS-1$      
             return buffer.toString();
         }
@@ -320,8 +321,8 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
         setDetailsLabelProvider(getDetailsLabelProvider());
         setSelectionHistory(new PatternSelectionHistory());
         if (_pattern != null && _pattern.eResource() != null) {
-            IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(_pattern.eResource());
-            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) _pattern.eResource()).getIPlatformFcore();
+            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
         } else {
             setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
         }
