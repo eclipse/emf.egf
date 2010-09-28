@@ -72,14 +72,6 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
      * 
      * @generated NOT
      */
-    private ChangeDescription _changeDescription;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
     private IPlatformFcore _fcore;
 
     /**
@@ -267,7 +259,7 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
                 throw ioe;
             }
         } finally {
-            // Post-Processing
+            // Post-Processing, even save raise an exception always run post processors
             callPostSaveProcessors(this, getIPlatformFcore(), _recorder);
             // Start a fresh recorder
             _recorder = new ChangeRecorder(this);
