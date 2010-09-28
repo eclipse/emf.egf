@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -35,9 +32,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 
 /**
- * 
  * @author Thomas Guiu
- * 
  */
 
 public class OpenPatternDebugAction implements IObjectActionDelegate {
@@ -66,7 +61,7 @@ public class OpenPatternDebugAction implements IObjectActionDelegate {
             PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
             PatternLibrary patternLibrary = pvp.getLibraries().get(0);
 
-            Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
+            Pattern pattern = patternLibrary.getElements().get(0);
             // URI uri2 = EcoreUtil.getURI(pattern);
             PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
 
