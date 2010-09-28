@@ -25,7 +25,7 @@ import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
@@ -114,7 +114,7 @@ public class EPackageHelper {
             }
             addPackage2registry(genModel);
         } catch (Exception e) {
-            Activator.getDefault().logError(e);
+            EGFPatternPlugin.getDefault().logError(e);
         }
 
     }
