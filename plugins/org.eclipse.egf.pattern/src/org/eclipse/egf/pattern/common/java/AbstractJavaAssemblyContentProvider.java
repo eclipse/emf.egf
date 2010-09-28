@@ -25,12 +25,13 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.SuperCall;
-import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.AssemblyContentProvider;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Thomas Guiu
@@ -86,7 +87,7 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
             // try to match parameters
             ParameterMatcher matcher = ParameterMatcher.create(call.getPattern(), innerPattern);
             if (!matcher.matches())
-                throw new PatternException(Messages.bind(Messages.assembly_error10, call.getPattern().getName()));
+                throw new PatternException(NLS.bind(EGFPatternMessages.assembly_error10, call.getPattern().getName()));
             for (PatternParameter key : matcher.getMatching().keySet()) {
                 content.append("parameters.put(\"").append(key.getName()).append("\", this.").append(matcher.getMatching().get(key).getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
