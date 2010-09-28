@@ -1,25 +1,24 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -31,9 +30,9 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperCall;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
+import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -59,11 +58,14 @@ import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.CommandParameter;
+import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IType;
@@ -129,7 +131,6 @@ import org.eclipse.ui.ide.IDE;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class ImplementationPage extends PatternEditorPage {
 
@@ -308,7 +309,7 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void createPatternMethodsLink(FormToolkit toolkit, Composite container) {
-        ImageHyperlink headerLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.HEADER_METHOD_NAME);
+        ImageHyperlink headerLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.HEADER_METHOD_NAME);
         headerLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -327,7 +328,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        ImageHyperlink initLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.INIT_METHOD_NAME);
+        ImageHyperlink initLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.INIT_METHOD_NAME);
         initLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -346,7 +347,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        ImageHyperlink preConditionLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.PRECONDITION_METHOD_NAME);
+        ImageHyperlink preConditionLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.PRECONDITION_METHOD_NAME);
         preConditionLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -369,12 +370,12 @@ public class ImplementationPage extends PatternEditorPage {
 
                             try {
                                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
-                                PatternMethod conditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-                                conditionMethod.setName(org.eclipse.egf.pattern.extension.PatternFactory.PRECONDITION_METHOD_NAME);
+                                PatternMethod conditionMethod = PatternFactory.eINSTANCE.createPatternMethod();
+                                conditionMethod.setName(PatternExtensionFactory.PRECONDITION_METHOD_NAME);
                                 pattern.getMethods().add(conditionMethod);
                                 pattern.setConditionMethod(conditionMethod);
                                 conditionMethod.setPatternFilePath(extension.getFactory().createURI(conditionMethod));
-                                IProject project = PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getProject();
+                                IProject project = EMFHelper.getProject(pattern.eResource());
                                 extension.createInitializer(project, pattern).updateSpecialMethods(false);
                             } catch (Exception e2) {
                                 Activator.getDefault().logError(e2);
@@ -389,7 +390,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        ImageHyperlink footerLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.FOOTER_METHOD_NAME);
+        ImageHyperlink footerLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.FOOTER_METHOD_NAME);
         footerLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -489,7 +490,9 @@ public class ImplementationPage extends PatternEditorPage {
      */
     private void addDragDropForMethodsTable() {
 
-        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = false;
@@ -512,7 +515,9 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(methodsTableViewer) {
+        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new ViewerDropAdapter(methodsTableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -538,11 +543,15 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void initMethodsTableEditor() {
-        methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
+        methodsTableViewer.setColumnProperties(new String[] {
+            NAME_COLUMN_ID
+        });
         nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
-        methodsTableViewer.setCellEditors(new CellEditor[] { nameEditor });
+        methodsTableViewer.setCellEditors(new CellEditor[] {
+            nameEditor
+        });
         methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer) {
 
             @Override
@@ -806,23 +815,15 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void executeMethodsAdd(final String name) {
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-
-            @Override
-            protected void doExecute() {
-                PatternMethod newMethod = PatternFactory.eINSTANCE.createPatternMethod();
-                newMethod.setName(name);
-                newMethod.setPattern(getPattern());
-                getPattern().getMethods().add(newMethod);
-                newMethod.setPatternFilePath(PatternHelper.Filename.computeFileURI(newMethod));
-                PatternUIHelper.addAdapterForNewItem(methodsTableViewer, newMethod);
-            }
-
-        };
-        editingDomain.getCommandStack().execute(cmd);
-        methodsTableViewer.refresh();
-        methodsTableViewer.getTable().setSelection((methodsTableViewer.getTable().getItemCount()) - 1);
+        PatternMethod method = PatternFactory.eINSTANCE.createPatternMethod();
+        method.setName(name);
+        Command command = CreateChildCommand.create(getEditingDomain(), getPattern(), new CommandParameter(null, PatternPackage.Literals.PATTERN__METHODS, method), Collections.singletonList(getPattern()));
+        if (command.canExecute()) {
+            getEditingDomain().getCommandStack().execute(command);
+            PatternUIHelper.addAdapterForNewItem(methodsTableViewer, method);
+            methodsTableViewer.refresh();
+            methodsTableViewer.getTable().setSelection((methodsTableViewer.getTable().getItemCount()) - 1);
+        }
     }
 
     protected void executeMethodsEdit(final String name) {
@@ -964,7 +965,9 @@ public class ImplementationPage extends PatternEditorPage {
     private void addDragDropForOrchestrationTable() {
         if (isReadOnly())
             return;
-        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = true;
@@ -986,7 +989,9 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(orchestrationTableViewer) {
+        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new ViewerDropAdapter(orchestrationTableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -1066,7 +1071,7 @@ public class ImplementationPage extends PatternEditorPage {
         int index = methodsTableViewer.getTable().getSelectionIndex();
         PatternMethod drag = (PatternMethod) methodsTableViewer.getElementAt(index);
         String name = drag.getName();
-        return !org.eclipse.egf.pattern.extension.PatternFactory.isSpecialMethod(name);
+        return !PatternExtensionFactory.isSpecialMethod(name);
     }
 
     /**
@@ -1393,8 +1398,12 @@ public class ImplementationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         variablesTableViewer = new TableViewer(table);
-        String[] colNames = { Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type };
-        int[] colWidths = { 130, 135 };
+        String[] colNames = {
+                Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type
+        };
+        int[] colWidths = {
+                130, 135
+        };
         variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         ColumnViewerToolTipSupport.enableFor(variablesTableViewer, ToolTip.NO_RECREATE);
         CellLabelProvider cellLabelProvider = new ParametersTableLabelProvider();
@@ -1413,7 +1422,9 @@ public class ImplementationPage extends PatternEditorPage {
     private void initVariablesTableEditor() {
         if (isReadOnly())
             return;
-        variablesTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID });
+        variablesTableViewer.setColumnProperties(new String[] {
+                NAME_COLUMN_ID, TYPE_COLUMN_ID
+        });
         final TextCellEditor textCellEditor = new TextCellEditor(variablesTableViewer.getTable());
         final DialogCellEditor dialogCellEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
 
@@ -1434,7 +1445,9 @@ public class ImplementationPage extends PatternEditorPage {
                 return null;
             }
         };
-        variablesTableViewer.setCellEditors(new CellEditor[] { textCellEditor, dialogCellEditor });
+        variablesTableViewer.setCellEditors(new CellEditor[] {
+                textCellEditor, dialogCellEditor
+        });
         variablesTableViewer.setCellModifier(new VariablesTableCellModifier(getEditingDomain(), variablesTableViewer));
 
         variablesTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -1732,7 +1745,7 @@ public class ImplementationPage extends PatternEditorPage {
             bindMethodsTable(pattern);
             bindOrchestrationTable(pattern);
             bindVariablesTableViewer(pattern);
-            variableNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID, variablesTableViewer.getTable());
+            variableNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID, variablesTableViewer.getTable());
         }
         checkReadOnlyModel();
     }
