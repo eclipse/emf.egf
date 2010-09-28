@@ -20,9 +20,9 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.common.java.BaseJavaAssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 
 /**
@@ -95,7 +95,7 @@ public class JetAssemblyHelper extends BaseJavaAssemblyHelper {
         // 3- Add additional code for parameter names handling
         int startIndex = content.indexOf(START_LOOP_MARKER);
         if (startIndex == -1)
-            throw new PatternException(Messages.assembly_error2);
+            throw new PatternException(EGFPatternMessages.assembly_error2);
 
         // localContent.setLength(0);
         // localContent.append(EGFCommonConstants.LINE_SEPARATOR);
