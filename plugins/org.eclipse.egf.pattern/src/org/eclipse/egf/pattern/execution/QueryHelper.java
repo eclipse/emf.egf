@@ -16,7 +16,7 @@
 package org.eclipse.egf.pattern.execution;
 
 import org.eclipse.egf.model.pattern.BundleAccessor;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
 import org.osgi.framework.Bundle;
@@ -34,7 +34,7 @@ public class QueryHelper {
             Class<?> loadClass = bundle.loadClass(IQuery.INSTANCE.getQueryClassName(queryId));
             return (IQuery) loadClass.newInstance();
         } catch (Exception e) {
-            Activator.getDefault().logError(e);
+            EGFPatternPlugin.getDefault().logError(e);
             throw new QueryException(e);
         }
     }
