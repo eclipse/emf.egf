@@ -94,11 +94,11 @@ public class TemplateFileHelper {
      * Reads a file from a plugin who lives in the workspace or RT. If the file
      * doesn't exist an empty string is returned.
      */
-    public static String getContent(IPlatformFcore fcore, PatternMethod method) throws IOException {
-        if (fcore == null) {
-            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error3);
+    public static String getContent(PatternMethod method) throws IOException {
+        if (method == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
         }
-        return getContent(TemplateModelFileHelper.getInputStream(fcore, method));
+        return getContent(TemplateModelFileHelper.getInputStream(method));
 
     }
 
