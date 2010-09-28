@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -47,7 +44,6 @@ import org.eclipse.ui.part.MultiPageEditorPart;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class PatternTemplateEditor extends MultiPageEditorPart implements ResourceUser {
 
@@ -80,7 +76,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
                 });
 
-            } else if (PatternPackage.Literals.PATTERN_ELEMENT__CONTAINER.equals(msg.getFeature()) && msg.getNewValue() == null) {
+            } else if (PatternPackage.Literals.PATTERN_LIBRARY.equals(msg.getFeature()) && msg.getNewValue() == null) {
                 // Removed Pattern
                 // just close now without prompt
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -116,12 +112,12 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
      */
     private final ResourceListener resourceListener = new ResourceListener() {
 
-        public void resourceMoved(Resource movedResource, final URI oldURI) {
+        public void resourceMoved(final Resource movedResource, final URI oldURI) {
             if (movedResource == getResource()) {
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
                     public void run() {
-                        setInputWithNotify(new PatternEditorInput(getResource(), ((PatternEditorInput) getEditorInput()).getID()));
+                        setInputWithNotify(new PatternEditorInput(movedResource, ((PatternEditorInput) getEditorInput()).getID()));
                         firePropertyChange(PROP_TITLE);
                     }
 
@@ -129,7 +125,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
             }
         }
 
-        public void resourceDeleted(Resource deletedResource) {
+        public void resourceDeleted(final Resource deletedResource) {
             if ((deletedResource == getResource())) {
                 // just close now without prompt
                 getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -142,12 +138,12 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
             }
         }
 
-        public void resourceReloaded(Resource reloadedResource) {
+        public void resourceReloaded(final Resource reloadedResource) {
 
             if (reloadedResource == getResource()) {
 
                 // Create a new input
-                final PatternEditorInput newEditorInput = new PatternEditorInput(getResource(), ((PatternEditorInput) getEditorInput()).getID());
+                final PatternEditorInput newEditorInput = new PatternEditorInput(reloadedResource, ((PatternEditorInput) getEditorInput()).getID());
 
                 // Check whether or not this pattern is still alive
                 if (newEditorInput.getPattern() != null) {
@@ -211,7 +207,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
 
         }
 
-        public void externalUpdate(Resource changedResource) {
+        public void externalUpdate(final Resource changedResource) {
             if (changedResource == getResource()) {
                 // Wait until we are notified, this couldn't happen though
                 // if we are the latest opened editor in our editing domain
@@ -219,7 +215,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
             }
         }
 
-        public void internalUpdate(Resource changedResource) {
+        public void internalUpdate(final Resource changedResource) {
             if (changedResource == getResource()) {
                 // Nothing to do
             }
