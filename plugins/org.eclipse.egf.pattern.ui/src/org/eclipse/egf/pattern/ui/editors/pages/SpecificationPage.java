@@ -15,9 +15,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
@@ -27,7 +25,7 @@ import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternFactory;
@@ -36,8 +34,8 @@ import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.query.IQuery;
@@ -377,11 +375,8 @@ public class SpecificationPage extends PatternEditorPage {
 
         combo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
 
-        Object[] natures = getNatures().keySet().toArray();
-        for (int i = 0; i < natures.length; i++) {
-            PatternNature currentNature = (PatternNature) natures[i];
-            String currentNatureName = ExtensionHelper.getName(currentNature);
-            combo.add(currentNatureName);
+        for (String name : EGFPatternPlugin.getPatternNatures()) {
+            combo.add(name);
         }
         combo.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
@@ -408,7 +403,7 @@ public class SpecificationPage extends PatternEditorPage {
             // create template files
             Pattern pattern = getPattern();
             PatternLibrary library = pattern.getContainer();
-            IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
+            IProject project = EMFHelper.getProject(library.eResource());
             PatternInitializer initializer;
             try {
                 initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
@@ -469,8 +464,12 @@ public class SpecificationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         tableViewer = new TableViewer(table);
-        String[] colNames = { Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query };
-        int[] colWidths = { 100, 80, 80 };
+        String[] colNames = {
+                Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query
+        };
+        int[] colWidths = {
+                100, 80, 80
+        };
         tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -504,7 +503,9 @@ public class SpecificationPage extends PatternEditorPage {
     private void addDragDrop() {
         if (isReadOnly())
             return;
-        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 if (tableViewer.getSelection() == null) {
@@ -522,7 +523,9 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(tableViewer) {
+        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+            LocalSelectionTransfer.getTransfer()
+        }, new ViewerDropAdapter(tableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -767,17 +770,6 @@ public class SpecificationPage extends PatternEditorPage {
         }
     }
 
-    /**
-     * Get all the natures.
-     */
-    private static Map<PatternNature, PatternExtension> getNatures() {
-
-        Map<PatternNature, PatternExtension> result = new HashMap<PatternNature, PatternExtension>();
-        for (PatternExtension ext : ExtensionHelper.getExtensions().values())
-            result.put(ext.getNature(), ext);
-        return result;
-    }
-
     protected void executeRemove() {
         int index = tableViewer.getTable().getSelectionIndex();
         final Pattern pattern = getPattern();
@@ -870,7 +862,9 @@ public class SpecificationPage extends PatternEditorPage {
     private void initTableEditor() {
         if (isReadOnly())
             return;
-        tableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID });
+        tableViewer.setColumnProperties(new String[] {
+                NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID
+        });
         final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
         final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
 
@@ -896,7 +890,9 @@ public class SpecificationPage extends PatternEditorPage {
         queryEditor.setLabelProvider(new ComboListLabelProvider());
         queryEditor.setContenProvider(new CommonListContentProvider());
         setComboViewerInput();
-        tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
+        tableViewer.setCellEditors(new CellEditor[] {
+                nameEditor, typeEditor, queryEditor
+        });
         ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
         tableViewer.setCellModifier(modifier);
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -956,7 +952,7 @@ public class SpecificationPage extends PatternEditorPage {
             bindParent();
             bindNature();
             bindTableViewer();
-            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapeter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
+            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
         }
         checkReadOnlyModel();
     }
@@ -1028,6 +1024,7 @@ public class SpecificationPage extends PatternEditorPage {
                     return getPattern().getNature();
                 return ExtensionHelper.createNature((String) fromObject);
             }
+
         });
 
         UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
