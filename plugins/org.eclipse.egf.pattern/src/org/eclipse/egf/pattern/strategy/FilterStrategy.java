@@ -12,10 +12,11 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
-import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * 
@@ -66,16 +67,16 @@ public class FilterStrategy extends AbstractPatternStrategy {
 
         @Override
         public String defaultCase(EObject object) {
-            return Messages.bind(Messages.strategy_error1, object);
+            return NLS.bind(EGFPatternMessages.strategy_error1, object);
         }
 
     }
 
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException {
         if (parameter == null)
-            throw new PatternException(Messages.strategy_error3);
+            throw new PatternException(EGFPatternMessages.strategy_error3);
         if (!(parameter instanceof String))
-            throw new PatternException(Messages.bind(Messages.strategy_error2, "String", parameter.getClass().getName())); //$NON-NLS-1$
+            throw new PatternException(NLS.bind(EGFPatternMessages.strategy_error2, "String", parameter.getClass().getName())); //$NON-NLS-1$
 
         String filter = (String) parameter;
         TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
