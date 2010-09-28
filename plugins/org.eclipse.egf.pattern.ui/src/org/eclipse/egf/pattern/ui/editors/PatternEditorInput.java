@@ -140,7 +140,7 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
         return getURI().toString();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     public Object getAdapter(Class adapter) {
         Object result = EclipseUtil.getAdapter(adapter, getURI());
         if (result != null) {
