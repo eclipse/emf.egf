@@ -24,7 +24,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.emf.pattern.codegen.CodegenPatternInitializer.CodegenJetPatternInitializer;
 import org.eclipse.egf.emf.pattern.codegen.CodegenPatternInitializer.ContentProvider;
@@ -38,7 +37,7 @@ import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.extension.TemplateInitializer;
 import org.eclipse.egf.pattern.jet.JetPreferences;
-import org.eclipse.egf.pattern.jet.extension.JetPatternFactory;
+import org.eclipse.egf.pattern.jet.extension.JetPatternExtensionFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -51,22 +50,29 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 public class CodegenFcoreUtil {
 
     public static final String ORG_ECLIPSE_EMF_CODEGEN_ECORE = "org.eclipse.emf.codegen.ecore"; //$NON-NLS-1$
+
     public static final String N = "\n"; //$NON-NLS-1$
 
     protected IProject codegenProject;
+
     protected IProject fcoreProject;
 
     protected Resource mdpstResource;
+
     protected Resource emfPatternBaseResource;
+
     protected Resource emfPatternResource;
 
     protected CodegenPatternHelper codegenPatternHelper;
+
     protected CodegenEGFHelper codegenEGFHelper;
+
     protected CodegenJetPatternHelper codegenJetPatternHelper;
 
     protected List<PatternInfo> patternInfos;
 
     protected class ClearCommand extends RecordingCommand {
+
         protected Exception exception;
 
         public ClearCommand(TransactionalEditingDomain domain) {
@@ -83,10 +89,11 @@ public class CodegenFcoreUtil {
         }
 
     }
-    
+
     protected class CreateCommand extends RecordingCommand {
 
         protected Exception exception;
+
         protected IProgressMonitor monitor;
 
         public CreateCommand(TransactionalEditingDomain domain, IProgressMonitor monitor) {
@@ -123,8 +130,7 @@ public class CodegenFcoreUtil {
             emfPatternResource = editingDomain.getResourceSet().getResource(platformPluginURI, true);
             keepPreviousFcoreIdsAndOrder(fcore, editingDomain, platformPluginURI);
             clearFcore(editingDomain);
-        }
-        else 
+        } else
             emfPatternResource = editingDomain.getResourceSet().createResource(platformPluginURI);
 
         URI emfPatternBaseResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore", true); //$NON-NLS-1$
@@ -159,6 +165,7 @@ public class CodegenFcoreUtil {
         // save fcore
         try {
             editingDomain.runExclusive(new Runnable() {
+
                 public void run() {
                     try {
                         emfPatternResource.save(Collections.EMPTY_MAP);
@@ -215,7 +222,7 @@ public class CodegenFcoreUtil {
     public void createCodegenJetPattenHelper() {
         codegenJetPatternHelper = new CodegenJetPatternHelper(codegenPatternHelper, codegenProject, emfPatternBaseResource, emfPatternResource);
     }
-    
+
     public void computePatternInfoNames() {
         new CodegenPatternNameResolver(codegenPatternHelper).computePatternName(patternInfos);
     }
@@ -223,7 +230,7 @@ public class CodegenFcoreUtil {
     public void computePatternInfoDescription() throws Exception {
         new CodegenPatternDescriptionHandler(codegenProject).computeDescription(patternInfos);
     }
-    
+
     public void computeMethodsContent(IProgressMonitor monitor) {
         for (PatternInfo patternInfo : patternInfos) {
             CodegenPatternMethodContentResolver codegenPatternMethodContentResolver = new CodegenPatternMethodContentResolver(codegenProject, codegenPatternHelper, emfPatternBaseResource, codegenJetPatternHelper);
@@ -236,7 +243,7 @@ public class CodegenFcoreUtil {
             } else if (patternInfo instanceof JetSubPatternInfo) {
                 JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
                 codegenPatternMethodContentResolver.computeMethodsContent(jetSubPatternInfo);
-            } else 
+            } else
                 throw new IllegalStateException();
 
             monitor.worked(10);
@@ -268,6 +275,6 @@ public class CodegenFcoreUtil {
     }
 
     public CodegenPatternFactory getPatternFactory(PatternInfo patternInfo) {
-        return new CodegenPatternFactory(new JetPatternFactory(), emfPatternBaseResource, codegenEGFHelper, patternInfo, codegenPatternHelper);
+        return new CodegenPatternFactory(new JetPatternExtensionFactory(), emfPatternBaseResource, codegenEGFHelper, patternInfo, codegenPatternHelper);
     }
 }
