@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 import org.eclipse.emf.ecore.EClass;
@@ -44,11 +44,11 @@ public class ContentQuery implements IQuery {
         String type = parameter.getType();
         Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
         if (!(loadClass instanceof EClass))
-            throw new IllegalStateException(Messages.query_error1);
+            throw new IllegalStateException(EGFPatternMessages.query_error1);
 
         Collection<EObject> domain = ((EObject) context.getValue(PatternContext.INJECTED_CONTEXT)).eContents();
         if (domain == null)
-            throw new IllegalStateException(Messages.query_error8);
+            throw new IllegalStateException(EGFPatternMessages.query_error8);
 
         SELECT query = new SELECT(new FROM(domain), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
         IQueryResult result = query.execute();
