@@ -30,7 +30,7 @@ public abstract class BaseJavaPatternInitializer extends TemplateInitializer {
         // Behavior update: we don't want anymore to read the class and package
         // names in the template
         // ctx.put(CLASS_KEY,
-        // PatternHelper.dropNonWordCharacter(getPattern().getName()));
+        // JavaHelper.dropNonWordCharacter(getPattern().getName()));
         // String fullLibraryName =
         // PatternHelper.getFullLibraryName(getPattern());
         //        if (fullLibraryName == null || "".equals(fullLibraryName)) //$NON-NLS-1$
