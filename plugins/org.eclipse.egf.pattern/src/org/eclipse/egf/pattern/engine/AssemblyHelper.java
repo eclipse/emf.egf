@@ -19,7 +19,7 @@ import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -53,7 +53,7 @@ public abstract class AssemblyHelper {
         addVariableInitialization();
         beginOrchestration();
         if (orchestrationIndex == -1)
-            throw new PatternException(Messages.assembly_error6);
+            throw new PatternException(EGFPatternMessages.assembly_error6);
         visitOrchestration();
         endOrchestration();
         addMethodBodies();
