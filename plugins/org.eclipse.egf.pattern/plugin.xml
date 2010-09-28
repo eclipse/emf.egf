@@ -5,12 +5,12 @@
     <!-- ================================================================================= -->
     <!-- Extension Points Definition                                                       -->
     <!-- ================================================================================= -->
-
+    
     <extension-point 
         id="org.eclipse.egf.pattern.extension" 
         name="%PatternExtensionExtensionPoint" 
         schema="schema/org.eclipse.egf.pattern.extension.exsd"
-    />
+    />    
     
     <extension-point 
         id="org.eclipse.egf.pattern.query" 
@@ -49,5 +49,17 @@
             class="org.eclipse.egf.pattern.query.QueryFactory"
         />
     </extension>  
+    
+    <!-- ================================================================================= -->
+    <!-- Fcore Processor                                                                   -->
+    <!-- ================================================================================= -->     
+
+    <extension
+        point="org.eclipse.egf.core.fcoreProcessor"
+    >
+        <fcoreProcessor    
+            class="org.eclipse.egf.pattern.templates.TemplateProcessor"
+        />
+    </extension>     
     
 </plugin>
