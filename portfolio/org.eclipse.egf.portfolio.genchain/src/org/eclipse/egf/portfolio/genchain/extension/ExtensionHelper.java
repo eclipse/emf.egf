@@ -24,7 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.pattern.Substitution;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.emf.ecore.EAttribute;
 
@@ -79,7 +79,7 @@ public abstract class ExtensionHelper implements ExtensionProperties {
                 ExtensionHelper pe = (ExtensionHelper) element.createExecutableExtension("class");
                 result.add(pe);
             } catch (CoreException e) {
-                Activator.getDefault().logError(e);
+                EGFPatternPlugin.getDefault().logError(e);
             }
         }
         return result;
