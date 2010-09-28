@@ -191,7 +191,6 @@ public class JetEngine extends AbstractJavaEngine {
 
     @Override
     protected String getPatternClassname() throws PatternException {
-
         return JetNatureHelper.getTemplateClassName(getPattern());
     }
 
