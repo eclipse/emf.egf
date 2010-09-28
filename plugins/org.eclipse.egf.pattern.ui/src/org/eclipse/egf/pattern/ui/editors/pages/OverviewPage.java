@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -79,7 +76,6 @@ import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class OverviewPage extends PatternEditorPage {
 
@@ -87,9 +83,9 @@ public class OverviewPage extends PatternEditorPage {
 
     private FormEditor editor;
 
-    private Text nameText;
+    private Text patternNameText;
 
-    private Text fullNameText;
+    private Text fullLibraryNameText;
 
     private Text description;
 
@@ -97,7 +93,7 @@ public class OverviewPage extends PatternEditorPage {
 
     private FormColors colors = new FormColors(Display.getDefault());
 
-    private LiveValidationContentAdapter patternNameEmpetyValidationAdapter;
+    private LiveValidationContentAdapter patternNameEmptyValidationAdapter;
 
     private IMessageManager messageManager;
 
@@ -119,8 +115,8 @@ public class OverviewPage extends PatternEditorPage {
     }
 
     private void setEnabled(boolean enabled) {
-        nameText.setEnabled(enabled);
-        fullNameText.setEnabled(enabled);
+        patternNameText.setEnabled(enabled);
+        fullLibraryNameText.setEnabled(enabled);
         description.setEnabled(enabled);
         browse.setEnabled(enabled);
     }
@@ -180,12 +176,12 @@ public class OverviewPage extends PatternEditorPage {
         nameLabel.setLayoutData(gd);
         nameLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
-        nameText = toolkit.createText(container, getPattern() == null ? "" : getPattern().getName(), SWT.BORDER); //$NON-NLS-1$
+        patternNameText = toolkit.createText(container, getPattern() == null ? "" : getPattern().getName(), SWT.BORDER); //$NON-NLS-1$
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 20;
         gd.horizontalIndent = 5;
         gd.horizontalSpan = 2;
-        nameText.setLayoutData(gd);
+        patternNameText.setLayoutData(gd);
 
         Label fullNameLabel = toolkit.createLabel(container, Messages.OverviewPage_sectionLeft_fullName_label, SWT.WRAP);
         gd = new GridData();
@@ -194,14 +190,12 @@ public class OverviewPage extends PatternEditorPage {
         fullNameLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
         Color color = Display.getDefault().getSystemColor(SWT.COLOR_DARK_GRAY);
-        String fullName = PatternHelper.getFullLibraryName(getPattern());
-
-        fullNameText = toolkit.createText(container, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY);
+        String fullLibraryName = PatternHelper.getFullLibraryName(getPattern());
+        fullLibraryNameText = toolkit.createText(container, fullLibraryName == null ? "" : fullLibraryName, SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalIndent = 5;
-        fullNameText.setLayoutData(gd);
-        fullNameText.setForeground(color);
-        fullNameText.setText(fullName == null ? "" : fullName); //$NON-NLS-1$
+        fullLibraryNameText.setLayoutData(gd);
+        fullLibraryNameText.setForeground(color);
 
         browse = toolkit.createButton(container, Messages.OverviewPage_button_browse, SWT.PUSH);
         gd = new GridData();
@@ -381,7 +375,7 @@ public class OverviewPage extends PatternEditorPage {
         Pattern pattern = getPattern();
         IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME);
         IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, nameText);
+        IObservableValue uiObs = textProp.observeDelayed(400, patternNameText);
         IObservableValue mObs = mprop.observe(pattern);
 
         addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
@@ -409,9 +403,9 @@ public class OverviewPage extends PatternEditorPage {
     }
 
     void bindContainer() {
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN_ELEMENT__CONTAINER);
+        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__CONTAINER);
         IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, fullNameText);
+        IObservableValue uiObs = textProp.observeDelayed(400, fullLibraryNameText);
         IObservableValue mObs = mprop.observe(getPattern());
 
         UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
@@ -450,14 +444,14 @@ public class OverviewPage extends PatternEditorPage {
             bindName();
             bindDescripition();
             bindContainer();
-            patternNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID, nameText);
+            patternNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID, patternNameText);
         }
         checkReadOnlyModel();
     }
 
     @Override
     public void dispose() {
-        PatternUIHelper.removeAdapterForPattern(getPattern(), patternNameEmpetyValidationAdapter);
+        PatternUIHelper.removeAdapterForPattern(getPattern(), patternNameEmptyValidationAdapter);
         colors.dispose();
         super.dispose();
     }
