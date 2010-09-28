@@ -24,8 +24,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.utils.FileHelper;
+import org.eclipse.egf.core.pattern.PatternPreferences;
+import org.eclipse.egf.pattern.utils.TemplateFileHelper;
 
 /**
  * This is a quick 'template engine' used for initialization of the contents of
@@ -36,20 +36,21 @@ import org.eclipse.egf.pattern.utils.FileHelper;
  */
 public class SimpleEngine extends TemplateEngine {
 
-  public SimpleEngine(String pluginId, IProject project, String templateFileExtension) {
-    super(pluginId, project, templateFileExtension);
-  }
-
-  @Override
-  public String process(Templates template, Map<String, String> context) throws CoreException, IOException {
-    IPath path = new Path(PatternPreferences.getTemplatesFolderName()).append(template.getTemplateName()).addFileExtension(getExtension());
-    String content = FileHelper.getContent(getPluginId(), getProject(), path);
-    if (content == null)
-      return null;
-    for (Iterator<Entry<String, String>> it = context.entrySet().iterator(); it.hasNext();) {
-      Entry<String, String> entry = it.next();
-      content = content.replaceAll(entry.getKey(), entry.getValue());
+    public SimpleEngine(String pluginId, IProject project, String templateFileExtension) {
+        super(pluginId, project, templateFileExtension);
     }
-    return content;
-  }
+
+    @Override
+    public String process(Templates template, Map<String, String> context) throws CoreException, IOException {
+        IPath path = new Path(PatternPreferences.getTemplatesFolderName()).append(template.getTemplateName()).addFileExtension(getExtension());
+        String content = TemplateFileHelper.getContent(getPluginId(), getProject(), path);
+        if (content == null)
+            return null;
+        for (Iterator<Entry<String, String>> it = context.entrySet().iterator(); it.hasNext();) {
+            Entry<String, String> entry = it.next();
+            content = content.replaceAll(entry.getKey(), entry.getValue());
+        }
+        return content;
+    }
+
 }
