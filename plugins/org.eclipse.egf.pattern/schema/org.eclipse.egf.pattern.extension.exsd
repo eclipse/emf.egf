@@ -52,13 +52,23 @@
 
    <element name="flavor">
       <complexType>
+         <attribute name="nature" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.model.pattern.PatternNature"/>
+               </appinfo>
+            </annotation>
+         </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.egf.pattern.extension.PatternExtension:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.egf.model.pattern.extension.PatternExtension:"/>
                </appinfo>
             </annotation>
          </attribute>
