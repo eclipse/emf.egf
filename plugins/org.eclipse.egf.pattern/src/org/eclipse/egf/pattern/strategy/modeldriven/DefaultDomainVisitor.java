@@ -14,15 +14,16 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternExtension;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.util.NLS;
 
 public abstract class DefaultDomainVisitor implements DomainVisitor {
 
@@ -36,7 +37,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
         for (Pattern p : patterns) {
             EList<PatternParameter> parameters = p.getAllParameters();
             if (parameters.size() != 1)
-                throw new PatternException(Messages.bind(Messages.strategy_error4, p.getName()));
+                throw new PatternException(NLS.bind(EGFPatternMessages.strategy_error4, p.getName()));
             registerPattern(p, parameters.get(0));
         }
     }
