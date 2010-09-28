@@ -30,6 +30,7 @@ import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -284,7 +285,7 @@ public class RunActivityAction implements IObjectActionDelegate {
             try {
                 ResourceSet resourceSet = new EGFResourceSet();
                 Resource resource = resourceSet.getResource(URIHelper.getPlatformPluginURI((IResource) selectedObject), true);
-                IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+                IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
                 if (fcore != null) {
                     if (resource.getContents().size() == 1 && resource.getContents().get(0) instanceof Activity) {
                         _activity = (Activity) resource.getContents().get(0);
