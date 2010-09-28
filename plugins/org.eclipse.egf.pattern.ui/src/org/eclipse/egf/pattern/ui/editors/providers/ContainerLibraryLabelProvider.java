@@ -37,7 +37,7 @@ public class ContainerLibraryLabelProvider implements ITableLabelProvider {
     public String getColumnText(Object element, int columnIndex) {
         if (element instanceof PatternLibrary) {
             PatternLibrary libraryEntry = (PatternLibrary) element;
-            return (libraryEntry.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(libraryEntry) + Messages.common_mark2);
+            return (libraryEntry.getName() + Messages.common_mark1 + PatternHelper.getFactoryComponentName(libraryEntry) + Messages.common_mark2);
         }
         return ""; //$NON-NLS-1$
     }
