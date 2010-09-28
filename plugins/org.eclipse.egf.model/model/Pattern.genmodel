@@ -10,7 +10,7 @@
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
     booleanFlagsField="flags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
-    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
+    fontProviders="true" runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
   <foreignModel>Pattern.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" resource="XMI"
@@ -23,13 +23,13 @@
     <genClasses image="false" ecoreClass="Pattern.ecore#//PatternElement"/>
     <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/patternViewpoint"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/patterns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/filters"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//Pattern">
       <genFeatures createChild="false" propertyCategory="Pattern" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/nature"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/library"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/container"/>
       <genFeatures createChild="false" propertyCategory="Parent" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/superPattern"/>
       <genFeatures createChild="false" propertyCategory="Method" propertySortChoices="true"
