@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-SymbolicName: org.eclipse.egf.pattern;singleton:=true
 Bundle-Version: 0.2.5.qualifier
-Bundle-Activator: org.eclipse.egf.pattern.Activator
+Bundle-Activator: org.eclipse.egf.pattern.EGFPatternPlugin
 Bundle-Localization: plugin
 Require-Bundle: 
  org.eclipse.core.runtime,
@@ -24,6 +24,7 @@ Export-Package:
  org.eclipse.egf.pattern.engine,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,
+ org.eclipse.egf.pattern.l10n,
  org.eclipse.egf.pattern.query,
  org.eclipse.egf.pattern.strategy,
  org.eclipse.egf.pattern.strategy.modeldriven,
