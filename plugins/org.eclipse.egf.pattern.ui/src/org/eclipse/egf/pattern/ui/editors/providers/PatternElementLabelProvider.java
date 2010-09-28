@@ -1,16 +1,13 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
- * 
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * </copyright>
  */
 
@@ -31,7 +28,6 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class PatternElementLabelProvider implements ILabelProvider {
 
@@ -60,6 +56,7 @@ public class PatternElementLabelProvider implements ILabelProvider {
     }
 
     private final PatternSwitch<Image> imageSwitch = new PatternSwitch<Image>() {
+
         private final PatternItemProviderAdapterFactory patternItemProviderAdapterFactory = new PatternItemProviderAdapterFactory();
 
         @Override
@@ -79,13 +76,13 @@ public class PatternElementLabelProvider implements ILabelProvider {
 
         @Override
         public String casePattern(Pattern object) {
-
             return object.getName() + Messages.common_mark1 + object.getContainer().getName() + Messages.common_mark2;
         }
 
         @Override
         public String casePatternLibrary(PatternLibrary object) {
-            return object.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(object) + Messages.common_mark2 + " - " + object.eResource().getURI();
+            return object.getName() + Messages.common_mark1 + PatternHelper.getFactoryComponentName(object) + Messages.common_mark2 + " - " + object.eResource().getURI(); //$NON-NLS-1$
         }
+
     };
 }
