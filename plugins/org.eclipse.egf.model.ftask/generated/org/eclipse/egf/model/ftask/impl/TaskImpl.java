@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class TaskImpl extends ActivityImpl implements Task {
+
     /**
      * A set of bit flags representing the values of boolean attributes and
      * whether unsettable features have been set.
@@ -64,6 +65,7 @@ public class TaskImpl extends ActivityImpl implements Task {
      * @ordered
      */
     protected static final String KIND_EDEFAULT = null;
+
     /**
      * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -74,6 +76,7 @@ public class TaskImpl extends ActivityImpl implements Task {
      * @ordered
      */
     protected String kind = KIND_EDEFAULT;
+
     /**
      * The default value of the '{@link #getImplementation()
      * <em>Implementation</em>}' attribute.
@@ -85,6 +88,7 @@ public class TaskImpl extends ActivityImpl implements Task {
      * @ordered
      */
     protected static final String IMPLEMENTATION_EDEFAULT = null;
+
     /**
      * The cached value of the '{@link #getImplementation()
      * <em>Implementation</em>}' attribute.
@@ -96,6 +100,7 @@ public class TaskImpl extends ActivityImpl implements Task {
      * @ordered
      */
     protected String implementation = IMPLEMENTATION_EDEFAULT;
+
     /**
      * The cached value of the '{@link #getSuperTask() <em>Super Task</em>}'
      * reference.
@@ -172,16 +177,23 @@ public class TaskImpl extends ActivityImpl implements Task {
         return contracts;
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
     @Override
-    public Contract getContract(String name) {
+    public Contract getContract(String innerName) {
         final Task task = getSuperTask();
         Contract contract = null;
         if (task != null) {
-            contract = task.getContract(name);
-            if (contract != null)
+            contract = task.getContract(innerName);
+            if (contract != null) {
                 return contract;
+            }
         }
-        return super.getContract(name);
+        return super.getContract(innerName);
     }
 
     /**
@@ -335,14 +347,14 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FtaskPackage.TASK__KIND:
-            return getKind();
-        case FtaskPackage.TASK__IMPLEMENTATION:
-            return getImplementation();
-        case FtaskPackage.TASK__SUPER_TASK:
-            if (resolve)
-                return getSuperTask();
-            return basicGetSuperTask();
+            case FtaskPackage.TASK__KIND:
+                return getKind();
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                return getImplementation();
+            case FtaskPackage.TASK__SUPER_TASK:
+                if (resolve)
+                    return getSuperTask();
+                return basicGetSuperTask();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -356,15 +368,15 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FtaskPackage.TASK__KIND:
-            setKind((String) newValue);
-            return;
-        case FtaskPackage.TASK__IMPLEMENTATION:
-            setImplementation((String) newValue);
-            return;
-        case FtaskPackage.TASK__SUPER_TASK:
-            setSuperTask((Task) newValue);
-            return;
+            case FtaskPackage.TASK__KIND:
+                setKind((String) newValue);
+                return;
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                setImplementation((String) newValue);
+                return;
+            case FtaskPackage.TASK__SUPER_TASK:
+                setSuperTask((Task) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -378,15 +390,15 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FtaskPackage.TASK__KIND:
-            setKind(KIND_EDEFAULT);
-            return;
-        case FtaskPackage.TASK__IMPLEMENTATION:
-            setImplementation(IMPLEMENTATION_EDEFAULT);
-            return;
-        case FtaskPackage.TASK__SUPER_TASK:
-            setSuperTask((Task) null);
-            return;
+            case FtaskPackage.TASK__KIND:
+                setKind(KIND_EDEFAULT);
+                return;
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                setImplementation(IMPLEMENTATION_EDEFAULT);
+                return;
+            case FtaskPackage.TASK__SUPER_TASK:
+                setSuperTask((Task) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -400,12 +412,12 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FtaskPackage.TASK__KIND:
-            return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
-        case FtaskPackage.TASK__IMPLEMENTATION:
-            return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-        case FtaskPackage.TASK__SUPER_TASK:
-            return superTask != null;
+            case FtaskPackage.TASK__KIND:
+                return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
+            case FtaskPackage.TASK__SUPER_TASK:
+                return superTask != null;
         }
         return super.eIsSet(featureID);
     }
