@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -26,7 +26,7 @@ import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
 import org.eclipse.egf.pattern.ui.editors.models.QueryContent;
@@ -46,6 +46,7 @@ import org.eclipse.ui.forms.IMessageManager;
  * 
  */
 public class PatternUIHelper {
+
     /**
      * Get the pattern's parent methods.
      */
@@ -54,7 +55,7 @@ public class PatternUIHelper {
         while (pattern != null) {
             for (PatternMethod patternMethod : pattern.getMethods()) {
                 String name = patternMethod.getName();
-                if (PatternFactory.isSpecialMethod(name))
+                if (PatternExtensionFactory.isSpecialMethod(name))
                     continue;
                 parentMethods.add(name);
             }
@@ -74,7 +75,7 @@ public class PatternUIHelper {
         if (pattern != null) {
             for (PatternMethod patternMethod : pattern.getAllMethods()) {
                 String name = patternMethod.getName();
-                if (PatternFactory.isSpecialMethod(name))
+                if (PatternExtensionFactory.isSpecialMethod(name))
                     continue;
                 if (!names.contains(name)) {
                     parentMethods.add(patternMethod);
@@ -215,7 +216,8 @@ public class PatternUIHelper {
             if (status.isMultiStatus()) {
                 status = status.getChildren()[0];
             }
-            if ((status.getCode() == 1 && ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID.equals(key)) || (status.getCode() == 2 && ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID.equals(key)) || (status.getCode() == 3 && ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID.equals(key)))
+            if ((status.getCode() == 1 && ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID.equals(key)) || (status.getCode() == 2 && ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID.equals(key))
+                    || (status.getCode() == 3 && ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID.equals(key)))
                 mmng.addMessage(key, status.getMessage(), null, IMessageProvider.ERROR, control);
         } else {
             mmng.removeMessage(key, control);
@@ -226,13 +228,13 @@ public class PatternUIHelper {
      * Return whether the method can be rename.
      */
     public static boolean isRenameDisable(PatternMethod element) {
-        return PatternFactory.isSpecialMethod(element.getName());
+        return PatternExtensionFactory.isSpecialMethod(element.getName());
     }
 
     /**
      * If the validation adapter is not exist,add a new one.
      */
-    public static LiveValidationContentAdapter addValidationAdapeter(IMessageManager mmng, Pattern pattern, String key, Control control) {
+    public static LiveValidationContentAdapter addValidationAdapter(IMessageManager mmng, Pattern pattern, String key, Control control) {
         LiveValidationContentAdapter liveValidationContentAdapter = new LiveValidationContentAdapter(control, mmng, key, pattern);
         PatternUIHelper.addAdapterForPattern(pattern, liveValidationContentAdapter);
         validationContent(mmng, pattern, key, control);
