@@ -21,8 +21,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -43,18 +43,15 @@ public class PatternMethodEditorInput implements IFileEditorInput {
 
     public static final String RESSOURCE_URI = "uri"; //$NON-NLS-1$
 
-    private final PatternPersistableElement persistable = new PatternPersistableElement();
+    private final PatternPersistableElement _persistable = new PatternPersistableElement();
 
-    private final String fragment;
+    private PatternMethod _method;
 
-    private final Resource resource;
-
-    private String path;
+    private final Resource _resource;
 
     public PatternMethodEditorInput(Resource resource, String fragment) {
-        this.resource = resource;
-        this.fragment = fragment;
-        this.path = getPatternMethod().getPatternFilePath().path();
+        _resource = resource;
+        _method = (PatternMethod) resource.getEObject(fragment);
     }
 
     public boolean exists() {
@@ -62,11 +59,11 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public PatternMethod getPatternMethod() {
-        return (PatternMethod) resource.getEObject(fragment);
+        return _method;
     }
 
     public Resource getResource() {
-        return resource;
+        return _resource;
     }
 
     public ImageDescriptor getImageDescriptor() {
@@ -78,7 +75,7 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public IPersistableElement getPersistable() {
-        return persistable;
+        return _persistable;
     }
 
     public String getToolTipText() {
@@ -88,7 +85,7 @@ public class PatternMethodEditorInput implements IFileEditorInput {
         return Messages.input_tooltip;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
     public Object getAdapter(Class adapter) {
         if (IFile.class == adapter) {
             return getFile();
@@ -100,7 +97,7 @@ public class PatternMethodEditorInput implements IFileEditorInput {
 
         public void saveState(IMemento memento) {
             memento.putString(PATTERN_METHOD_ID, getPatternMethod().getID());
-            memento.putString(RESSOURCE_URI, resource.getURI().toString());
+            memento.putString(RESSOURCE_URI, _resource.getURI().toString());
         }
 
         public String getFactoryId() {
@@ -110,17 +107,14 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public IFile getFile() {
-        IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
-        IProject project = platformFcore.getPlatformBundle().getProject();
-        if (project == null)
+        IProject project = EMFHelper.getProject(getResource());
+        if (project == null) {
             return null;
-        PatternMethod patternMethod = getPatternMethod();
-        IFile file;
-        if (patternMethod == null)
-            return project.getFile(path);
-        file = project.getFile(patternMethod.getPatternFilePath().path());
-        if (file.exists())
+        }
+        IFile file = project.getFile(URIHelper.toPlatformProjectString(getPatternMethod().getPatternFilePath(), true));
+        if (file != null && file.exists()) {
             return file;
+        }
         // this is a new method so we need to create the template file
         try {
             file.create(new ByteArrayInputStream(new byte[0]), true, null);
