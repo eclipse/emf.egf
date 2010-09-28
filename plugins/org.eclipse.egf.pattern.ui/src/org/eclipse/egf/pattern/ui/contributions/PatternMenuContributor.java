@@ -1,30 +1,34 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
 package org.eclipse.egf.pattern.ui.contributions;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
-import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -33,12 +37,15 @@ import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
+import org.eclipse.egf.model.pattern.commands.PatternLibraryRemovePatternCommand;
+import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
+import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
-import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.common.command.AbstractCommand;
@@ -57,11 +64,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class PatternMenuContributor extends EditorMenuContributor {
 
@@ -88,14 +95,17 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     createChildMenuManager = new MenuManager(CoreUIMessages.MenuContributor_newChildGroup_label);
                     menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
                 }
-                Map<String, PatternExtension> extensions = ExtensionHelper.getExtensions();
-                for (String nature : extensions.keySet()) {
-                    PatternExtension patternExtension = extensions.get(nature);
-                    CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern")); //$NON-NLS-1$
-                    CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, (PatternLibrary) selection2.getFirstElement());
-                    createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
-                    createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
-                    createChildMenuManager.add(createChildAction);
+                for (String name : EGFPatternPlugin.getPatternNatures()) {
+                    try {
+                        PatternExtension patternExtension = EGFPatternPlugin.getPatternExtension(name);
+                        CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern")); //$NON-NLS-1$
+                        CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, (PatternLibrary) selection2.getFirstElement());
+                        createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, name));
+                        createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
+                        createChildMenuManager.add(createChildAction);
+                    } catch (CoreException ce) {
+                        Activator.getDefault().logError(ce);
+                    }
                 }
                 // menuManager.insertBefore("edit", createChildAction);
             } else if (selection2.getFirstElement() instanceof Pattern) {
@@ -120,9 +130,14 @@ public class PatternMenuContributor extends EditorMenuContributor {
         protected Command createActionCommand(EditingDomain innerEditingDomain, Collection<?> collection) {
 
             final Command createActionCommand = super.createActionCommand(innerEditingDomain, collection);
-            if (UnexecutableCommand.INSTANCE.equals(createActionCommand))
+
+            if (UnexecutableCommand.INSTANCE.equals(createActionCommand)) {
                 return UnexecutableCommand.INSTANCE;
+            }
+
             return createActionCommand.chain(new AbstractCommand() {
+
+                protected Collection<Pattern> _patterns;
 
                 @Override
                 protected boolean prepare() {
@@ -132,46 +147,32 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 public void execute() {
                     Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
                     Pattern pattern = (Pattern) affectedObjects.iterator().next();
+                    _patterns = Collections.singletonList(pattern);
                     // update method file URIs
-                    for (PatternMethod m : pattern.getMethods()) {
-                        m.setPatternFilePath(PatternHelper.Filename.computeFileURI(m));
+                    for (PatternMethod method : pattern.getMethods()) {
+                        method.setPatternFilePath(TemplateModelFileHelper.computeFileURI(((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore(), method));
                     }
-
                     // create template files
-                    IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
+                    IProject project = EMFHelper.getProject(library.eResource());
                     try {
                         PatternInitializer initializer = ExtensionHelper.getExtension(pattern.getNature()).createInitializer(project, pattern);
                         initializer.initContent();
                     } catch (PatternException e) {
                         Activator.getDefault().logError(e);
-
                     } catch (MissingExtensionException e) {
                         Activator.getDefault().logError(e);
-
                     }
                 }
 
                 @Override
                 public void undo() {
-                    Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
-                    Pattern pattern = (Pattern) affectedObjects.iterator().next();
-                    IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
-                    IFile currentFile = null;
-                    try {
-                        for (PatternMethod m : pattern.getMethods()) {
-                            currentFile = project.getFile(m.getPatternFilePath().path());
-                            currentFile.delete(true, false, null);
-                        }
-                        if (currentFile != null && currentFile.getParent() != null)
-                            currentFile.getParent().delete(true, null);
-                    } catch (CoreException e) {
-                        Activator.getDefault().logError(e);
-                    }
-
+                    PatternLibraryRemovePatternCommand.performDeletePatterns(library.eResource(), _patterns);
                 }
 
                 public void redo() {
+                    PatternLibraryRemovePatternCommand.performRestorePatterns(library.eResource(), _patterns);
                 }
+
             });
         }
     }
@@ -185,26 +186,47 @@ public class PatternMenuContributor extends EditorMenuContributor {
 
         @Override
         public void run() {
-            if (_selection == null)
+            if (_selection == null) {
                 throw new IllegalStateException();
-            IStructuredSelection sselection = (IStructuredSelection) _selection;
-            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject))
-                throw new IllegalStateException();
-
-            Resource resource = ((EObject) sselection.getFirstElement()).eResource();
-
-            Set<Pattern> patterns = new HashSet<Pattern>();
-            PatternHelper patternCollector = PatternHelper.createCollector();
-            try {
-                patterns.addAll(patternCollector.getPatterns(resource.getURI()));
-
-                new TranslationHelper().translate(patterns);
-            } catch (PatternException e) {
-                Activator.getDefault().logError(e);
-            } finally {
-                patterns.clear();
-                patternCollector.clear();
             }
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
+            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject)) {
+                throw new IllegalStateException();
+            }
+            final Resource resource = ((EObject) sselection.getFirstElement()).eResource();
+
+            WorkspaceJob job = new WorkspaceJob(NLS.bind(org.eclipse.egf.pattern.l10n.EGFPatternMessages.pattern_translation_label, resource.getURI())) {
+
+                @Override
+                public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+
+                    MultiStatus statii = new MultiStatus(Activator.getDefault().getPluginID(), IStatus.ERROR, org.eclipse.egf.pattern.l10n.EGFPatternMessages.PatternTranslation_pattern_exception, null);
+                    Set<Pattern> patterns = new HashSet<Pattern>();
+                    PatternHelper patternCollector = PatternHelper.createCollector();
+                    try {
+                        patterns.addAll(patternCollector.getPatterns(resource.getURI()));
+                        TranslationHelper.translate(monitor, patterns);
+                    } catch (OperationCanceledException oce) {
+                        throw oce;
+                    } catch (Throwable t) {
+                        if (t instanceof CoreException) {
+                            statii.add(((CoreException) t).getStatus());
+                        } else {
+                            statii.add(Activator.getDefault().newStatus(Status.ERROR, org.eclipse.egf.pattern.l10n.EGFPatternMessages.PatternTranslation_pattern_exception, t));
+                        }
+                    } finally {
+                        monitor.done();
+                        patterns.clear();
+                        patternCollector.clear();
+                    }
+                    return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
+
+                }
+
+            };
+            job.setRule(ProjectHelper.getRule(Collections.singletonList(EMFHelper.getProject(resource))));
+            job.schedule();
+
         }
     }
 
@@ -253,6 +275,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 // }
             }
         }
+
     }
 
     private final class EditPatternAction extends PatternAction {
