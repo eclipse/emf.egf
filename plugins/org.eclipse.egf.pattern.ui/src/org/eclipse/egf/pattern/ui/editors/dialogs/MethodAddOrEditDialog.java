@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.util.Util;
@@ -101,7 +101,7 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
     }
 
     private void checkRenameEnable() {
-        if (PatternFactory.isSpecialMethod(oldName)) {
+        if (PatternExtensionFactory.isSpecialMethod(oldName)) {
             combo.setEnabled(false);
         }
     }
