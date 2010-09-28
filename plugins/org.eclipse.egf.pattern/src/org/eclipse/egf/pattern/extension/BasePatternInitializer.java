@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -18,12 +18,13 @@ package org.eclipse.egf.pattern.extension;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.utils.FileHelper;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.egf.pattern.utils.TemplateFileHelper;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Thomas Guiu
@@ -32,6 +33,7 @@ import org.eclipse.emf.common.util.URI;
 public abstract class BasePatternInitializer implements PatternInitializer {
 
     private final IProject project;
+
     private final Pattern pattern;
 
     public BasePatternInitializer(IProject project, Pattern pattern) {
@@ -49,17 +51,20 @@ public abstract class BasePatternInitializer implements PatternInitializer {
     public void updateSpecialMethods(boolean overwrite) throws PatternException {
         for (PatternMethod method : pattern.getMethods()) {
             String methodName = method.getName();
-            if (PatternFactory.isSpecialMethod(methodName)) {
+            if (PatternExtensionFactory.isSpecialMethod(methodName)) {
                 IFile outputFile = getFile(method);
-                if (!overwrite && outputFile.exists())
+                if (!overwrite && outputFile.exists()) {
                     continue;
+                }
                 createFileContent(outputFile, method);
             }
         }
 
     }
 
+    @SuppressWarnings("unused")
     public void updateContent() throws PatternException {
+        // Nothing to do
     }
 
     private void createFileContent(IFile outputFile, PatternMethod method) throws PatternException {
@@ -75,7 +80,7 @@ public abstract class BasePatternInitializer implements PatternInitializer {
         else
             content = getDefaultContent(method);
         try {
-            FileHelper.setContent(outputFile, content == null ? "" : content, true);
+            TemplateFileHelper.setContent(outputFile, content == null ? "" : content, true); //$NON-NLS-1$
         } catch (CoreException e) {
             throw new PatternException(e);
 
@@ -93,18 +98,17 @@ public abstract class BasePatternInitializer implements PatternInitializer {
     protected abstract String getDefaultContent(PatternMethod method) throws PatternException;
 
     /**
-     * @param project
      * @param method
-     * @return
+     * @return IFile
      */
     public IFile getFile(PatternMethod method) {
-        URI patternFilePath = method.getPatternFilePath();
-        if (patternFilePath == null)
-            throw new IllegalStateException(Messages.bind(Messages.initializer_error1, method.getName()));
-
-        IFile file = project.getFile(patternFilePath.toFileString());
-        if (file == null)
-            throw new IllegalStateException(Messages.bind(Messages.initializer_error2, method.getName()));
+        if (method.getPatternFilePath() == null) {
+            throw new IllegalStateException(NLS.bind(EGFPatternMessages.initializer_error1, method.getName()));
+        }
+        IFile file = project.getFile(URIHelper.toPlatformProjectString(method.getPatternFilePath(), true));
+        if (file == null) {
+            throw new IllegalStateException(NLS.bind(EGFPatternMessages.initializer_error2, method.getName()));
+        }
         return file;
     }
 
