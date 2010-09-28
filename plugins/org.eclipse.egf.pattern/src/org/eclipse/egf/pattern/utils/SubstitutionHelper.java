@@ -139,7 +139,7 @@ public class SubstitutionHelper {
             return;
         }
         for (Substitution substitution : input.getSubstitutions()) {
-            Substitution newSub = EcoreUtil.copy(substitution);
+            Substitution newSub = (Substitution) EcoreUtil.copy(substitution);
             result.getSubstitutions().add(newSub);
         }
     }
