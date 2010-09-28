@@ -21,7 +21,7 @@ import org.eclipse.egf.model.pattern.CallBackHandler;
 import org.eclipse.egf.model.pattern.DomainVisitor;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 
 /**
  * @author Thomas Guiu
@@ -30,7 +30,7 @@ import org.eclipse.egf.pattern.Messages;
 public class ModelDrivenCallBackHandler implements CallBackHandler {
     public void handleCall(PatternContext ctx, Map<String, Object> parameters) throws PatternException {
         if (parameters.size() != 1)
-            throw new IllegalStateException(Messages.model_driven_strategy_error1);
+            throw new IllegalStateException(EGFPatternMessages.model_driven_strategy_error1);
 
         DomainVisitor visitor = (DomainVisitor) ctx.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
         if (visitor != null)
