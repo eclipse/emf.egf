@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.dialogs.EcoreSelectionDialog;
@@ -106,7 +105,7 @@ public class ChooseTypePage extends WizardPage {
                         _javaProject.close();
                     }
                 } catch (JavaModelException jme) {
-                    ThrowableHandler.handleThrowable(Activator.getDefault().getPluginID(), jme);
+                    // Ignore
                 }
             }
 
