@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -21,15 +18,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IFileEditorInput;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class WorkspacePatternMethodEditorInput extends RuntimePatternMethodEditorInput implements IFileEditorInput {
 
@@ -48,16 +43,11 @@ public class WorkspacePatternMethodEditorInput extends RuntimePatternMethodEdito
         if (_file != null) {
             return _file;
         }
-        IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
-        IProject project = platformFcore.getPlatformBundle().getProject();
+        IProject project = EMFHelper.getProject(getResource());
         if (project == null) {
             return null;
         }
-        PatternMethod patternMethod = getPatternMethod();
-        if (patternMethod == null) {
-            return _file = project.getFile(path);
-        }
-        _file = project.getFile(patternMethod.getPatternFilePath().path());
+        _file = project.getFile(URIHelper.toPlatformProjectString(getPatternMethod().getPatternFilePath(), true));
         if (_file.exists()) {
             return _file;
         }
