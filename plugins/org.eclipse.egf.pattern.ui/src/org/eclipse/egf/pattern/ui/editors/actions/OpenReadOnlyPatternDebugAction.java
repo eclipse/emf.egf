@@ -1,16 +1,13 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * XiaoRu Chen, Soyatec
- * 
  * </copyright>
  */
 
@@ -39,7 +36,6 @@ import org.eclipse.ui.PartInitException;
  * This class is used to test open the editor on a pattern in read only mode
  * 
  * @author XiaoRu Chen - Soyatec
- * 
  */
 public class OpenReadOnlyPatternDebugAction implements IObjectActionDelegate {
 
@@ -67,7 +63,7 @@ public class OpenReadOnlyPatternDebugAction implements IObjectActionDelegate {
             PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
             PatternLibrary patternLibrary = pvp.getLibraries().get(0);
 
-            Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
+            Pattern pattern = patternLibrary.getElements().get(0);
             // URI uri2 = EcoreUtil.getURI(pattern);
             PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
             // Set the editor on a pattern in read only mode.
