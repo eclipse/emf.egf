@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -22,16 +19,13 @@ import java.io.InputStream;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ui.IStorageEditorInput;
 
 /**
  * @author Thomas Guiu
- * 
  */
 public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditorInput implements IStorageEditorInput {
 
@@ -46,12 +40,10 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
     private class MyStorage implements IStorage {
 
         public InputStream getContents() throws CoreException {
-            IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
-            PatternMethod patternMethod = getPatternMethod();
             try {
-                return platformFcore.getPlatformBundle().getBundle().getEntry(patternMethod.getPatternFilePath().path()).openStream();
+                return TemplateModelFileHelper.getInputStream(_method);
             } catch (IOException e) {
-                Activator.getDefault().logError(e);
+                EGFPatternPlugin.getDefault().logError(e);
                 return new ByteArrayInputStream(e.toString().getBytes());
             }
         }
@@ -68,7 +60,7 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
             return true;
         }
 
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("rawtypes")
         public Object getAdapter(Class adapter) {
             return null;
         }
