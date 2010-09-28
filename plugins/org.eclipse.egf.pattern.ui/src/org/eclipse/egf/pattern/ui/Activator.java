@@ -11,8 +11,6 @@
 package org.eclipse.egf.pattern.ui;
 
 import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
-import org.eclipse.egf.core.pde.EGFPDEPlugin;
-import org.eclipse.egf.pattern.ui.builder.FcoreListener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.osgi.framework.BundleContext;
@@ -73,14 +71,10 @@ public class Activator extends EGFAbstractUIPlugin {
     public void start(BundleContext context_p) throws Exception {
         super.start(context_p);
         __plugin = this;
-        EGFPDEPlugin.getDefault().addResourceFcoreListener(FcoreListener.INSTANCE);
     }
 
     @Override
     public void stop(BundleContext context_p) throws Exception {
-        if (EGFPDEPlugin.getDefault() != null) {
-            EGFPDEPlugin.getDefault().removeResourceFcoreListener(FcoreListener.INSTANCE);
-        }
         super.stop(context_p);
         __plugin = null;
     }
