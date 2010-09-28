@@ -33,20 +33,6 @@ public class EGFCoreMessages {
 
     public static String Production_Invoke;
 
-    public static String Production_Invoked;
-
-    public static String Production_Dispose;
-
-    public static String Production_Instantiate;
-
-    public static String AbstractTask_postExecute;
-
-    public static String AbstractTask_doExecute;
-
-    public static String AbstractTask_preExecute;
-
-    public static String AbstractTask_errorTaskInstance;
-
     public static String ProjectBundleSession_IllegalBundleState;
 
     public static String ProjectBundleSession_InstallationFailure;
@@ -57,13 +43,7 @@ public class EGFCoreMessages {
 
     public static String ProjectBundleSession_PackageRefreshFailure;
 
-    public static String ProjectBundleSession_LoadFailure;
-
     public static String ProjectBundleSession_URLFailure;
-
-    public static String ProjectBundleSession_StoppingFailure;
-
-    public static String Production_Unknown_Bundle;
 
     public static String ConvertProjectOperation_converter;
 
