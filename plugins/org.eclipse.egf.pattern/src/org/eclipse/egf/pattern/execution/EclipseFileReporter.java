@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -55,7 +55,7 @@ public abstract class EclipseFileReporter implements PatternExecutionReporter {
                 file.delete(true, monitor);
             file.create(new ByteArrayInputStream(output.getBytes()), true, monitor);
         } catch (Exception exception) {
-            Activator.getDefault().logError(exception);
+            EGFPatternPlugin.getDefault().logError(exception);
         }
     }
 
