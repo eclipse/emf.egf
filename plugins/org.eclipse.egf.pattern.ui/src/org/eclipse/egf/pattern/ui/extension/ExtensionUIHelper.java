@@ -25,7 +25,9 @@ import org.eclipse.swt.graphics.Image;
  * 
  */
 public class ExtensionUIHelper {
+
     public static Image getImage(PatternExtension pe) {
         return ExtendedImageRegistry.getInstance().getImage(pe.getImageURL());
     }
+
 }
