@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl#getLibraries <em>Libraries</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl#getLibraries <em>Libraries</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpoint {
@@ -41,7 +41,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -51,7 +50,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
      * The cached value of the '{@link #getLibraries() <em>Libraries</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getLibraries()
      * @generated
      * @ordered
@@ -61,7 +59,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternViewpointImpl() {
@@ -71,7 +68,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -82,7 +78,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<PatternLibrary> getLibraries() {
@@ -95,7 +90,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -111,7 +105,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -126,7 +119,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -141,7 +133,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -159,7 +150,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -175,7 +165,6 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

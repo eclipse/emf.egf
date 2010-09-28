@@ -11,7 +11,6 @@ package org.eclipse.egf.model.fcore.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -240,19 +239,15 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
     @Override
     protected void doUnload() {
         try {
-            // ChangeDescription snapshot
-            _changeDescription = _recorder.endRecording();
             // Post-Processing
-            if (_changeDescription != null && (_changeDescription.getResourceChanges().isEmpty() == false || _changeDescription.getObjectsToDetach().isEmpty() == false || _changeDescription.getObjectChanges().isEmpty() == false)) {
-                callPreUnloadProcessors(this, getIPlatformFcore(), _changeDescription);
-            }
+            callPreUnloadProcessors(this, getIPlatformFcore(), _recorder);
             // Unload
             super.doUnload();
         } finally {
             // reset
             _fcore = null;
-            _recorder.dispose();
-            _recorder.beginRecording(Collections.singleton(this));
+            // Start a fresh recorder
+            _recorder = new ChangeRecorder(this);
         }
     }
 
@@ -265,89 +260,111 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
     @Override
     public void save(Map<?, ?> options) throws IOException {
         try {
-            // ChangeDescription snapshot
-            _changeDescription = _recorder.endRecording();
             // Save
             try {
                 super.save(options);
             } catch (IOException ioe) {
                 throw ioe;
             }
-            // Post-Processing
-            if (_changeDescription != null && (_changeDescription.getResourceChanges().isEmpty() == false || _changeDescription.getObjectsToAttach().isEmpty() == false || _changeDescription.getObjectChanges().isEmpty() == false)) {
-                callPostSaveProcessors(this, getIPlatformFcore(), _changeDescription);
-            }
         } finally {
-            _recorder.dispose();
-            _recorder.beginRecording(Collections.singleton(this));
+            // Post-Processing
+            callPostSaveProcessors(this, getIPlatformFcore(), _recorder);
+            // Start a fresh recorder
+            _recorder = new ChangeRecorder(this);
         }
     }
 
-    protected static void callPreUnloadProcessors(final Resource resource, final IPlatformFcore fcore, final ChangeDescription changeDescription) {
-        final List<IFcoreProcessor> processors = EGFCorePlugin.getIFcoreProcessors();
-        if (processors.isEmpty() == false) {
-            WorkspaceJob job = new WorkspaceJob(EGFModelMessages.FcoreResource_processor) {
+    protected static void callPreUnloadProcessors(final Resource resource, final IPlatformFcore fcore, final ChangeRecorder recorder) {
 
-                @Override
-                public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                    SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * processors.size());
-                    MultiStatus statii = new MultiStatus(EGFModelPlugin.getPlugin().getSymbolicName(), IStatus.ERROR, EGFModelMessages.FcoreResource_processors_execute_exception, null);
-                    try {
-                        for (IFcoreProcessor processor : processors) {
-                            try {
-                                processor.processPreUnload(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, changeDescription);
-                            } catch (Throwable t) {
-                                if (t instanceof CoreException) {
-                                    statii.add(((CoreException) t).getStatus());
-                                } else {
-                                    statii.add(EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFModelMessages.FcoreResource_processor_execute_exception, processor.getClass().getName()), t));
-                                }
+        // ChangeDescription snapshot
+        final ChangeDescription changeDescription = recorder.endRecording();
+        if (changeDescription == null || (changeDescription.getResourceChanges().isEmpty() && changeDescription.getObjectsToAttach().isEmpty() && changeDescription.getObjectChanges().isEmpty())) {
+            recorder.dispose();
+            return;
+        }
+
+        final List<IFcoreProcessor> processors = EGFCorePlugin.getIFcoreProcessors();
+        if (processors.isEmpty()) {
+            recorder.dispose();
+            return;
+        }
+
+        WorkspaceJob job = new WorkspaceJob(EGFModelMessages.FcoreResource_processor) {
+
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * processors.size());
+                MultiStatus statii = new MultiStatus(EGFModelPlugin.getPlugin().getSymbolicName(), IStatus.ERROR, EGFModelMessages.FcoreResource_processors_execute_exception, null);
+                try {
+                    for (IFcoreProcessor processor : processors) {
+                        try {
+                            processor.processPreUnload(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, changeDescription);
+                        } catch (Throwable t) {
+                            if (t instanceof CoreException) {
+                                statii.add(((CoreException) t).getStatus());
+                            } else {
+                                statii.add(EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFModelMessages.FcoreResource_processor_execute_exception, processor.getClass().getName()), t));
                             }
                         }
-                    } finally {
-                        monitor.done();
                     }
-                    return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
+                } finally {
+                    recorder.dispose();
+                    monitor.done();
                 }
+                return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
+            }
 
-            };
-            job.setRule(EMFHelper.getProject(resource));
-            job.schedule();
-        }
+        };
+
+        job.setRule(EMFHelper.getProject(resource));
+        job.schedule();
 
     }
 
-    protected static void callPostSaveProcessors(final Resource resource, final IPlatformFcore fcore, final ChangeDescription changeDescription) {
-        final List<IFcoreProcessor> processors = EGFCorePlugin.getIFcoreProcessors();
-        if (processors.isEmpty() == false) {
-            WorkspaceJob job = new WorkspaceJob(EGFModelMessages.FcoreResource_processor) {
+    protected static void callPostSaveProcessors(final Resource resource, final IPlatformFcore fcore, final ChangeRecorder recorder) {
 
-                @Override
-                public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                    SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * processors.size());
-                    MultiStatus statii = new MultiStatus(EGFModelPlugin.getPlugin().getSymbolicName(), IStatus.ERROR, EGFModelMessages.FcoreResource_processors_execute_exception, null);
-                    try {
-                        for (IFcoreProcessor processor : processors) {
-                            try {
-                                processor.processPostSave(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, changeDescription);
-                            } catch (Throwable t) {
-                                if (t instanceof CoreException) {
-                                    statii.add(((CoreException) t).getStatus());
-                                } else {
-                                    statii.add(EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFModelMessages.FcoreResource_processor_execute_exception, processor.getClass().getName()), t));
-                                }
+        // ChangeDescription snapshot
+        final ChangeDescription changeDescription = recorder.endRecording();
+        if (changeDescription == null || (changeDescription.getResourceChanges().isEmpty() && changeDescription.getObjectsToAttach().isEmpty() && changeDescription.getObjectChanges().isEmpty())) {
+            recorder.dispose();
+            return;
+        }
+
+        final List<IFcoreProcessor> processors = EGFCorePlugin.getIFcoreProcessors();
+        if (processors.isEmpty()) {
+            recorder.dispose();
+            return;
+        }
+
+        WorkspaceJob job = new WorkspaceJob(EGFModelMessages.FcoreResource_processor) {
+
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * processors.size());
+                MultiStatus statii = new MultiStatus(EGFModelPlugin.getPlugin().getSymbolicName(), IStatus.ERROR, EGFModelMessages.FcoreResource_processors_execute_exception, null);
+                try {
+                    for (IFcoreProcessor processor : processors) {
+                        try {
+                            processor.processPostSave(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, changeDescription);
+                        } catch (Throwable t) {
+                            if (t instanceof CoreException) {
+                                statii.add(((CoreException) t).getStatus());
+                            } else {
+                                statii.add(EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFModelMessages.FcoreResource_processor_execute_exception, processor.getClass().getName()), t));
                             }
                         }
-                    } finally {
-                        monitor.done();
                     }
-                    return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
+                } finally {
+                    recorder.dispose();
+                    monitor.done();
                 }
+                return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
+            }
 
-            };
-            job.setRule(EMFHelper.getProject(resource));
-            job.schedule();
-        }
+        };
+
+        job.setRule(EMFHelper.getProject(resource));
+        job.schedule();
 
     }
 

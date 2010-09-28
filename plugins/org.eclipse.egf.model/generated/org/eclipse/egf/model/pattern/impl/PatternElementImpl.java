@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class PatternElementImpl extends NamedModelElementImpl implements PatternElement {
@@ -29,7 +29,6 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -38,7 +37,6 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternElementImpl() {
@@ -48,7 +46,6 @@ public abstract class PatternElementImpl extends NamedModelElementImpl implement
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

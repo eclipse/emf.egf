@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.URI;
  * </p>
  *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName ValidURI'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName ValidURI ValidPatternFilePath'"
  * @generated
  */
 public interface PatternMethod extends NamedModelElement {

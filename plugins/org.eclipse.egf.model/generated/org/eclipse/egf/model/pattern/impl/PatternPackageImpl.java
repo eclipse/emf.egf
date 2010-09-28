@@ -1285,7 +1285,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
                 "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(patternMethodEClass, source, new String[] {
-                "constraints", "MandatoryName ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
+                "constraints", "MandatoryName ValidURI ValidPatternFilePath" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(patternParameterEClass, source, new String[] {
                 "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
