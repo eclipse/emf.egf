@@ -1,15 +1,12 @@
 /**
  * <copyright>
- * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  * </copyright>
  */
 
@@ -37,9 +34,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 
 /**
- * 
  * @author Thomas Guiu
- * 
  */
 
 public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
@@ -65,7 +60,7 @@ public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
         FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
         PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
         PatternLibrary patternLibrary = pvp.getLibraries().get(0);
-        Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
+        Pattern pattern = patternLibrary.getElements().get(0);
         String editor = TemplateExtensionRegistry.getEditor(pattern);
         if (editor != null) {
             try {
