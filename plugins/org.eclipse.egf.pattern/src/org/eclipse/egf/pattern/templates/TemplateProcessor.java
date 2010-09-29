@@ -49,6 +49,7 @@ import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.utils.TemplateFileHelper;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
@@ -94,7 +95,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         return patterns;
     }
 
-    protected void processPatternToRemove(EObject eObject, FeatureChange change, Set<Pattern> deletedPatterns, List<Pattern> patternsToUpdate) {
+    protected void processPatternToRemove(EObject eObject, FeatureChange change, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
         if (eObject == null || change == null) {
             return;
         }
@@ -122,7 +123,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
     }
 
-    protected void processPatternMethodToRemove(Object object, Set<Pattern> deletedPatterns, List<Pattern> patternsToUpdate) {
+    protected void processPatternMethodToRemove(Object object, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
         if (object instanceof PatternMethod) {
             processPatternConstraint(((PatternMethod) object).getPattern(), deletedPatterns, patternsToUpdate);
         } else {
@@ -179,15 +180,39 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
     }
 
-    protected void processPatternConstraint(Pattern pattern, Set<Pattern> deletedPatterns, List<Pattern> patternsToUpdate) {
+    protected boolean processPatternConstraint(Pattern pattern, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
         if (pattern == null) {
-            return;
+            return false;
         }
         // Ignore deleted Pattern
-        if (deletedPatterns.contains(pattern)) {
-            return;
+        if (deletedPatterns.keySet().contains(pattern)) {
+            return false;
+        }
+        // Analyse
+        Pattern patternToRemove = null;
+        LOOP: for (Pattern deletedPattern : deletedPatterns.keySet()) {
+            // Populate
+            List<URI> deletedURIs = new UniqueEList<URI>();
+            for (PatternMethod deletedMethod : deletedPattern.getMethods()) {
+                if (deletedMethod.getPatternFilePath() != null) {
+                    deletedURIs.add(deletedMethod.getPatternFilePath());
+                }
+            }
+            // Analyse
+            for (PatternMethod method : pattern.getMethods()) {
+                if (deletedURIs.contains(method.getPatternFilePath()) == false) {
+                    continue LOOP;
+                }
+            }
+            patternToRemove = deletedPattern;
+            break LOOP;
+        }
+        // Matching, will be processed as an update
+        if (patternToRemove != null) {
+            deletedPatterns.remove(patternToRemove);
         }
         patternsToUpdate.add(pattern);
+        return true;
     }
 
     protected void processPatternMethodConstraint(PatternMethod method, List<PatternMethod> methodsToDelete, List<PatternMethod> methodsToRestore) {
@@ -412,12 +437,17 @@ public class TemplateProcessor implements IFcoreProcessor {
             Object object = it.next();
             // PatternMethod
             if (object instanceof PatternMethod) {
-                methodsToDelete.add((PatternMethod) object);
+                if (changeDescription.getObjectChanges().keySet().contains(object) == false) {
+                    methodsToDelete.add((PatternMethod) object);
+                }
             }
             // Containers
             else {
                 for (Pattern pattern : getPatterns(Collections.singletonList(object))) {
-                    if (changeDescription != null && changeDescription.getObjectChanges().get(pattern) != null) {
+                    if (changeDescription == null || changeDescription.getObjectChanges().keySet().contains(pattern)) {
+                        continue;
+                    }
+                    if (changeDescription.getObjectChanges().get(pattern) != null) {
                         for (FeatureChange change : changeDescription.getObjectChanges().get(pattern)) {
                             if (change.getFeature() == PatternPackage.Literals.PATTERN__CONTAINER) {
                                 Object innerObject = change.getValue();
@@ -449,7 +479,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             if (entry.getKey() instanceof FactoryComponent) {
                 for (FeatureChange change : entry.getValue()) {
                     if (change.getFeature() == FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER) {
-                        processPatternToRemove(entry.getKey(), change, deletedPatterns.keySet(), patternsToUpdate);
+                        processPatternToRemove(entry.getKey(), change, deletedPatterns, patternsToUpdate);
                         break;
                     }
                 }
@@ -458,7 +488,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             else if (entry.getKey() instanceof ViewpointContainer) {
                 for (FeatureChange change : entry.getValue()) {
                     if (change.getFeature() == FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS) {
-                        processPatternToRemove(entry.getKey(), change, deletedPatterns.keySet(), patternsToUpdate);
+                        processPatternToRemove(entry.getKey(), change, deletedPatterns, patternsToUpdate);
                         break;
                     }
                 }
@@ -467,7 +497,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             else if (entry.getKey() instanceof PatternViewpoint) {
                 for (FeatureChange change : entry.getValue()) {
                     if (change.getFeature() == PatternPackage.Literals.PATTERN_VIEWPOINT__LIBRARIES) {
-                        processPatternToRemove(entry.getKey(), change, deletedPatterns.keySet(), patternsToUpdate);
+                        processPatternToRemove(entry.getKey(), change, deletedPatterns, patternsToUpdate);
                         break;
                     }
                 }
@@ -481,35 +511,31 @@ public class TemplateProcessor implements IFcoreProcessor {
                         updatedLibraries.put(library, change);
                         // Process PatternLibrary Content
                         for (Pattern pattern : library.getElements()) {
-                            processPatternConstraint(pattern, deletedPatterns.keySet(), patternsToUpdate);
+                            processPatternConstraint(pattern, deletedPatterns, patternsToUpdate);
                         }
                     }
                     // Process container update
                     else if (change.getFeature() == PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS) {
-                        processPatternToRemove(library, change, deletedPatterns.keySet(), patternsToUpdate);
+                        processPatternToRemove(library, change, deletedPatterns, patternsToUpdate);
                     }
                 }
             }
             // Pattern
             else if (entry.getKey() instanceof Pattern) {
                 Pattern pattern = (Pattern) entry.getKey();
-                // Ignore deleted Pattern
-                if (deletedPatterns.get(pattern) != null) {
-                    continue;
-                }
-                // Process
-                for (FeatureChange change : entry.getValue()) {
-                    // Process name update
-                    if (change.getFeature() == FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME) {
-                        updatedPatterns.put(pattern, change);
-                    }
-                    // Process container update
-                    else if (change.getFeature() == PatternPackage.Literals.PATTERN__CONTAINER) {
-                        updatedPatterns.put(pattern, change);
+                if (processPatternConstraint(pattern, deletedPatterns, patternsToUpdate)) {
+                    // Process
+                    for (FeatureChange change : entry.getValue()) {
+                        // Process name update
+                        if (change.getFeature() == FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME) {
+                            updatedPatterns.put(pattern, change);
+                        }
+                        // Process container update
+                        else if (change.getFeature() == PatternPackage.Literals.PATTERN__CONTAINER) {
+                            updatedPatterns.put(pattern, change);
+                        }
                     }
                 }
-                // We always update Changed Patterns
-                patternsToUpdate.add(pattern);
             }
             // PatternMethod
             else if (entry.getKey() instanceof PatternMethod) {
@@ -517,6 +543,13 @@ public class TemplateProcessor implements IFcoreProcessor {
                 // Ignore orphan PatternMethod
                 if (method.getPattern() == null) {
                     continue;
+                }
+                for (Iterator<PatternMethod> it = methodsToDelete.iterator(); it.hasNext();) {
+                    PatternMethod deletedMethod = it.next();
+                    if (deletedMethod.getPatternFilePath().equals(method.getPatternFilePath())) {
+                        it.remove();
+                        break;
+                    }
                 }
                 // Changed PatternMethods imply that Pattern should always be updated
                 patternsToUpdate.add(method.getPattern());
@@ -531,7 +564,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                     for (EObject eObject : change.getResource().getContents()) {
                         if (change.getValue().contains(eObject) == false && eObject instanceof FactoryComponent) {
                             for (Pattern pattern : getPatterns(Collections.singletonList(eObject))) {
-                                processPatternConstraint(pattern, deletedPatterns.keySet(), patternsToUpdate);
+                                processPatternConstraint(pattern, deletedPatterns, patternsToUpdate);
                             }
                         }
                     }
@@ -584,7 +617,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                         }
                     }
 
-                    // 5 - Touch Patterns to update
+                    // 6 - Touch Patterns to update
                     if (patternsToUpdate.isEmpty() == false) {
                         TemplateFileHelper.touchHeaderTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, TranslationHelper.getOrderedList(new HashSet<Pattern>(patternsToUpdate)));
                     }
