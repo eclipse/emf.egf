@@ -8,75 +8,80 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class BasePattern {
-	protected static String nl;
 
-	public static synchronized BasePattern create(String lineSeparator) {
-		nl = lineSeparator;
-		BasePattern result = new BasePattern();
-		nl = null;
-		return result;
-	}
+    protected static String nl;
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "//default content";
-	protected final String TEXT_2 = "// Pipo from parent";
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
+    public static synchronized BasePattern create(String lineSeparator) {
+        nl = lineSeparator;
+        BasePattern result = new BasePattern();
+        nl = null;
+        return result;
+    }
 
-	public BasePattern() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 
-		// add initialisation of the pattern variables (declaration has been already done).
+    protected final String TEXT_1 = "//default content";
 
-	}
+    protected final String TEXT_2 = "// Pipo from parent";
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    protected final String TEXT_3 = NL;
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
+    protected final String TEXT_4 = NL;
 
-		orchestration(ctx);
+    public BasePattern() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
-		}
+        // add initialisation of the pattern variables (declaration has been already done).
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
-		return stringBuffer.toString();
-	}
+    }
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-		method_pipo(ictx.getBuffer(), ictx);
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			ictx.clearBuffer();
-		}
-		return loop;
-	}
+        orchestration(ctx);
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		return parameters;
-	}
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
 
-	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+        stringBuffer.append(TEXT_3);
+        stringBuffer.append(TEXT_4);
+        return stringBuffer.toString();
+    }
 
-		stringBuffer.append(TEXT_1);
-	}
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
 
-	protected void method_pipo(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+        method_pipo(ictx.getBuffer(), ictx);
 
-		stringBuffer.append(TEXT_2);
-	}
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
+
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        return parameters;
+    }
+
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_1);
+    }
+
+    protected void method_pipo(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_2);
+    }
 }

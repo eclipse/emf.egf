@@ -1,4 +1,4 @@
-package substitution_chain;
+package PACKAGE;
 
 import java.util.*;
 import org.eclipse.emf.ecore.*;
@@ -8,9 +8,9 @@ import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.common.helper.*;
 
 
-public class caller {
+public class CLASS {
 
-	public caller() {
+	public CLASS() {
 		//Here is the constructor
 	}
 

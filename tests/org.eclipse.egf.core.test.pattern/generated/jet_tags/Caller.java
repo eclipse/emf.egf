@@ -8,6 +8,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Caller {
+
     protected static String nl;
 
     public static synchronized Caller create(String lineSeparator) {
@@ -18,9 +19,13 @@ public class Caller {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL;
+
     protected final String TEXT_4 = NL;
 
     public Caller() {
@@ -96,6 +101,7 @@ public class Caller {
         stringBuffer.append(TEXT_1);
         {
             //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#LogicalName=jet_tags.Callee" args="variable:parameter, variable2:parameter2" %>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("parameter", variable);
             callParameters.put("parameter2", variable2);
@@ -108,6 +114,7 @@ public class Caller {
         stringBuffer.append(TEXT_2);
         {
             //<%@ egf:patternInjectedCall patternId="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#LogicalName=jet_tags.CalleeInjected" toInject="toInject" %>
+
             ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
             callCtx.setValue(PatternContext.INJECTED_CONTEXT, toInject);
             CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", callCtx);

@@ -8,6 +8,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class calledByInjection {
+
     protected static String nl;
 
     public static synchronized calledByInjection create(String lineSeparator) {
@@ -18,8 +19,11 @@ public class calledByInjection {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "  fromInjected : ";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL;
 
     public calledByInjection() {

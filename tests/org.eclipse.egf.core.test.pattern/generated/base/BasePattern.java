@@ -1,4 +1,4 @@
-package model.driven.startegy.condition;
+package base;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,28 +7,28 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class Attribute {
+public class BasePattern {
 
     protected static String nl;
 
-    public static synchronized Attribute create(String lineSeparator) {
+    public static synchronized BasePattern create(String lineSeparator) {
         nl = lineSeparator;
-        Attribute result = new Attribute();
+        BasePattern result = new BasePattern();
         nl = null;
         return result;
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 
-    protected final String TEXT_1 = "found Attribute ";
+    protected final String TEXT_1 = "//default content";
 
-    protected final String TEXT_2 = NL;
+    protected final String TEXT_2 = "// Pipo from parent";
 
     protected final String TEXT_3 = NL;
 
     protected final String TEXT_4 = NL;
 
-    public Attribute() {
+    public BasePattern() {
         //Here is the constructor
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -43,17 +43,8 @@ public class Attribute {
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        List<Object> parameterList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        orchestration(ctx);
 
-        for (Object parameterParameter : parameterList) {
-
-            this.parameter = (org.eclipse.emf.ecore.EAttribute) parameterParameter;
-
-            if (preCondition())
-                orchestration(ctx);
-
-        }
         if (ctx.useReporter()) {
             ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
             ctx.clearBuffer();
@@ -68,41 +59,29 @@ public class Attribute {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
 
-        method_body(ictx.getBuffer(), ictx);
+        method_pipo(ictx.getBuffer(), ictx);
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {
             ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
             ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("parameter", this.parameter);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
             ictx.clearBuffer();
         }
         return loop;
     }
 
-    protected org.eclipse.emf.ecore.EAttribute parameter = null;
-
-    public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
-        this.parameter = object;
-    }
-
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("parameter", this.parameter);
         return parameters;
     }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(parameter.getName());
-        stringBuffer.append(TEXT_2);
     }
 
-    public boolean preCondition() throws Exception {
-        return true;
+    protected void method_pipo(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_2);
     }
 }

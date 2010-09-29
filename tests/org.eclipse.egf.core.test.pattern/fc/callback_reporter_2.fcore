@@ -4,16 +4,17 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_BDIgYS3HEd-K6fN6ULU38A"
-    name="callback_reporter_2">
+    description="" name="callback_reporter_2">
   <viewpointContainer xmi:id="_BpD38C3HEd-K6fN6ULU38A">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_CFJXAC3HEd-K6fN6ULU38A">
       <domains xmi:type="domain:DomainURI" xmi:id="_GbGqoC3HEd-K6fN6ULU38A" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_HZTYQC3HEd-K6fN6ULU38A">
       <libraries xmi:id="_IHYmQC3HEd-K6fN6ULU38A" name="callbackAndReporter2">
-        <elements xmi:type="pattern:Pattern" xmi:id="_U3pMsC3HEd-K6fN6ULU38A" name="BasePattern"
-            headerMethod="#_U3pMsS3HEd-K6fN6ULU38A" footerMethod="#_U3pMtC3HEd-K6fN6ULU38A"
-            initMethod="#_U3pMsi3HEd-K6fN6ULU38A">
+        <elements xmi:id="_U3pMsC3HEd-K6fN6ULU38A" name="BasePattern" headerMethod="#_U3pMsS3HEd-K6fN6ULU38A"
+            initMethod="#_U3pMsi3HEd-K6fN6ULU38A" footerMethod="#_U3pMtC3HEd-K6fN6ULU38A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_U3pzwS3HEd-K6fN6ULU38A"
+              name="JET"/>
           <methods xmi:id="_U3pMsS3HEd-K6fN6ULU38A" name="header" patternFilePath="templates/pattern._U3pMsC3HEd-K6fN6ULU38A/method._U3pMsS3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_U3pMsi3HEd-K6fN6ULU38A" name="init" patternFilePath="templates/pattern._U3pMsC3HEd-K6fN6ULU38A/method._U3pMsi3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_U3pMsy3HEd-K6fN6ULU38A" name="start" patternFilePath="templates/pattern._U3pMsC3HEd-K6fN6ULU38A/method._U3pMsy3HEd-K6fN6ULU38A.pt"/>
@@ -24,47 +25,45 @@
           <orchestration xmi:type="pattern:BackCall" xmi:id="_ZKFSQC3HEd-K6fN6ULU38A"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_YkUSwC3HEd-K6fN6ULU38A"
               called="#_YJDTEC3HEd-K6fN6ULU38A"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_U3pzwS3HEd-K6fN6ULU38A"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_jd32QC3HEd-K6fN6ULU38A" name="PackagePattern"
-            headerMethod="#_jd32QS3HEd-K6fN6ULU38A" footerMethod="#_jd32RC3HEd-K6fN6ULU38A"
-            superPattern="#_U3pMsC3HEd-K6fN6ULU38A" initMethod="#_jd32Qi3HEd-K6fN6ULU38A">
+        <elements xmi:id="_jd32QC3HEd-K6fN6ULU38A" name="PackagePattern" superPattern="#_U3pMsC3HEd-K6fN6ULU38A"
+            headerMethod="#_jd32QS3HEd-K6fN6ULU38A" initMethod="#_jd32Qi3HEd-K6fN6ULU38A"
+            footerMethod="#_jd32RC3HEd-K6fN6ULU38A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_jd32Ri3HEd-K6fN6ULU38A"
+              name="JET"/>
           <methods xmi:id="_jd32QS3HEd-K6fN6ULU38A" name="header" patternFilePath="templates/pattern._jd32QC3HEd-K6fN6ULU38A/method._jd32QS3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_jd32Qi3HEd-K6fN6ULU38A" name="init" patternFilePath="templates/pattern._jd32QC3HEd-K6fN6ULU38A/method._jd32Qi3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_jd32Qy3HEd-K6fN6ULU38A" name="start" patternFilePath="templates/pattern._jd32QC3HEd-K6fN6ULU38A/method._jd32Qy3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_jd32RC3HEd-K6fN6ULU38A" name="footer" patternFilePath="templates/pattern._jd32QC3HEd-K6fN6ULU38A/method._jd32RC3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_pZ7lAC3HEd-K6fN6ULU38A" name="end" patternFilePath="templates/pattern._jd32QC3HEd-K6fN6ULU38A/method._pZ7lAC3HEd-K6fN6ULU38A.pt"/>
-          <orchestration xmi:type="pattern:SuperCall" xmi:id="_jd32RS3HEd-K6fN6ULU38A"/>
           <parameters xmi:id="_k5p3wC3HEd-K6fN6ULU38A" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_jd32Ri3HEd-K6fN6ULU38A"
-              name="JET"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_jd32RS3HEd-K6fN6ULU38A"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_qQ8FgC3HEd-K6fN6ULU38A" name="ClassPattern"
-            headerMethod="#_qQ8FgS3HEd-K6fN6ULU38A" footerMethod="#_qQ8FhC3HEd-K6fN6ULU38A"
-            superPattern="#_U3pMsC3HEd-K6fN6ULU38A" initMethod="#_qQ8Fgi3HEd-K6fN6ULU38A">
+        <elements xmi:id="_qQ8FgC3HEd-K6fN6ULU38A" name="ClassPattern" superPattern="#_U3pMsC3HEd-K6fN6ULU38A"
+            headerMethod="#_qQ8FgS3HEd-K6fN6ULU38A" initMethod="#_qQ8Fgi3HEd-K6fN6ULU38A"
+            footerMethod="#_qQ8FhC3HEd-K6fN6ULU38A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_qQ8Fhi3HEd-K6fN6ULU38A"
+              name="JET"/>
           <methods xmi:id="_qQ8FgS3HEd-K6fN6ULU38A" name="header" patternFilePath="templates/pattern._qQ8FgC3HEd-K6fN6ULU38A/method._qQ8FgS3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_qQ8Fgi3HEd-K6fN6ULU38A" name="init" patternFilePath="templates/pattern._qQ8FgC3HEd-K6fN6ULU38A/method._qQ8Fgi3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_qQ8Fgy3HEd-K6fN6ULU38A" name="start" patternFilePath="templates/pattern._qQ8FgC3HEd-K6fN6ULU38A/method._qQ8Fgy3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_qQ8FhC3HEd-K6fN6ULU38A" name="footer" patternFilePath="templates/pattern._qQ8FgC3HEd-K6fN6ULU38A/method._qQ8FhC3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_tbwbsC3HEd-K6fN6ULU38A" name="end" patternFilePath="templates/pattern._qQ8FgC3HEd-K6fN6ULU38A/method._tbwbsC3HEd-K6fN6ULU38A.pt"/>
-          <orchestration xmi:type="pattern:SuperCall" xmi:id="_qQ8FhS3HEd-K6fN6ULU38A"/>
           <parameters xmi:id="_rTNa0C3HEd-K6fN6ULU38A" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_qQ8Fhi3HEd-K6fN6ULU38A"
-              name="JET"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_qQ8FhS3HEd-K6fN6ULU38A"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_xQU5gC3HEd-K6fN6ULU38A" name="AttributePattern"
-            headerMethod="#_xQU5gS3HEd-K6fN6ULU38A" footerMethod="#_xQU5hC3HEd-K6fN6ULU38A"
-            superPattern="#_U3pMsC3HEd-K6fN6ULU38A" initMethod="#_xQU5gi3HEd-K6fN6ULU38A">
+        <elements xmi:id="_xQU5gC3HEd-K6fN6ULU38A" name="AttributePattern" superPattern="#_U3pMsC3HEd-K6fN6ULU38A"
+            headerMethod="#_xQU5gS3HEd-K6fN6ULU38A" initMethod="#_xQU5gi3HEd-K6fN6ULU38A"
+            footerMethod="#_xQU5hC3HEd-K6fN6ULU38A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_xQU5hi3HEd-K6fN6ULU38A"
+              name="JET"/>
           <methods xmi:id="_xQU5gS3HEd-K6fN6ULU38A" name="header" patternFilePath="templates/pattern._xQU5gC3HEd-K6fN6ULU38A/method._xQU5gS3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_xQU5gi3HEd-K6fN6ULU38A" name="init" patternFilePath="templates/pattern._xQU5gC3HEd-K6fN6ULU38A/method._xQU5gi3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_xQU5gy3HEd-K6fN6ULU38A" name="start" patternFilePath="templates/pattern._xQU5gC3HEd-K6fN6ULU38A/method._xQU5gy3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_xQU5hC3HEd-K6fN6ULU38A" name="footer" patternFilePath="templates/pattern._xQU5gC3HEd-K6fN6ULU38A/method._xQU5hC3HEd-K6fN6ULU38A.pt"/>
           <methods xmi:id="_7G59EC3HEd-K6fN6ULU38A" name="end" patternFilePath="templates/pattern._xQU5gC3HEd-K6fN6ULU38A/method._7G59EC3HEd-K6fN6ULU38A.pt"/>
-          <orchestration xmi:type="pattern:SuperCall" xmi:id="_xQU5hS3HEd-K6fN6ULU38A"/>
           <parameters xmi:id="_3ASF8C3HEd-K6fN6ULU38A" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_xQU5hi3HEd-K6fN6ULU38A"
-              name="JET"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_xQU5hS3HEd-K6fN6ULU38A"/>
         </elements>
       </libraries>
     </viewpoints>

@@ -8,97 +8,102 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class callee {
-	protected static String nl;
 
-	public static synchronized callee create(String lineSeparator) {
-		nl = lineSeparator;
-		callee result = new callee();
-		nl = null;
-		return result;
-	}
+    protected static String nl;
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "  callee eAttribute : ";
-	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
+    public static synchronized callee create(String lineSeparator) {
+        nl = lineSeparator;
+        callee result = new callee();
+        nl = null;
+        return result;
+    }
 
-	public callee() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 
-		// add initialisation of the pattern variables (declaration has been already done).
+    protected final String TEXT_1 = "  callee eAttribute : ";
 
-	}
+    protected final String TEXT_2 = NL;
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    protected final String TEXT_3 = NL;
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
+    protected final String TEXT_4 = NL;
 
-		paramDesc = new IQuery.ParameterDescription("eAttribute", "http://www.eclipse.org/emf/2002/Ecore#//EAttribute");
-		queryCtx = new HashMap<String, String>();
-		List<Object> eAttributeList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+    public callee() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		for (Object eAttributeParameter : eAttributeList) {
+        // add initialisation of the pattern variables (declaration has been already done).
 
-			this.eAttribute = (org.eclipse.emf.ecore.EAttribute) eAttributeParameter;
+    }
 
-			if (preCondition())
-				orchestration(ctx);
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
-		}
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
-		return stringBuffer.toString();
-	}
+        paramDesc = new IQuery.ParameterDescription("eAttribute", "http://www.eclipse.org/emf/2002/Ecore#//EAttribute");
+        queryCtx = new HashMap<String, String>();
+        List<Object> eAttributeList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+        for (Object eAttributeParameter : eAttributeList) {
 
-		method_body(ictx.getBuffer(), ictx);
+            this.eAttribute = (org.eclipse.emf.ecore.EAttribute) eAttributeParameter;
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("eAttribute", this.eAttribute);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
-		}
-		return loop;
-	}
+            if (preCondition())
+                orchestration(ctx);
 
-	protected org.eclipse.emf.ecore.EAttribute eAttribute = null;
+        }
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
 
-	public void set_eAttribute(org.eclipse.emf.ecore.EAttribute object) {
-		this.eAttribute = object;
-	}
+        stringBuffer.append(TEXT_3);
+        stringBuffer.append(TEXT_4);
+        return stringBuffer.toString();
+    }
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("eAttribute", this.eAttribute);
-		return parameters;
-	}
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
 
-	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+        method_body(ictx.getBuffer(), ictx);
 
-		stringBuffer.append(TEXT_1);
-		stringBuffer.append(eAttribute.getName());
-		stringBuffer.append(TEXT_2);
-	}
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            Map<String, Object> parameterValues = new HashMap<String, Object>();
+            parameterValues.put("eAttribute", this.eAttribute);
+            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
 
-	public boolean preCondition() throws Exception {
-		return true;
-	}
+    protected org.eclipse.emf.ecore.EAttribute eAttribute = null;
+
+    public void set_eAttribute(org.eclipse.emf.ecore.EAttribute object) {
+        this.eAttribute = object;
+    }
+
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("eAttribute", this.eAttribute);
+        return parameters;
+    }
+
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_1);
+        stringBuffer.append(eAttribute.getName());
+        stringBuffer.append(TEXT_2);
+    }
+
+    public boolean preCondition() throws Exception {
+        return true;
+    }
 }
