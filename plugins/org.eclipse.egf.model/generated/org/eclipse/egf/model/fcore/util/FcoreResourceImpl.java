@@ -15,21 +15,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.WorkspaceJob;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.platform.uri.PlatformXMLURIHandler;
 import org.eclipse.egf.core.processor.IFcoreProcessor;
-import org.eclipse.egf.model.EGFModelPlugin;
-import org.eclipse.egf.model.l10n.EGFModelMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -46,7 +36,6 @@ import org.eclipse.emf.ecore.xmi.XMLSave.XMLTypeInfo;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -231,14 +220,21 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
     @Override
     protected void doUnload() {
         try {
-            // Post-Processing
-            callPreUnloadProcessors(this, getIPlatformFcore(), _recorder);
+            // ChangeDescription snapshot
+            ChangeDescription changeDescription = _recorder.endRecording();
+            if (changeDescription != null && (changeDescription.getResourceChanges().isEmpty() == false || changeDescription.getObjectsToAttach().isEmpty() == false || changeDescription.getObjectChanges().isEmpty() == false)) {
+                // Post-Processing
+                for (IFcoreProcessor processor : EGFCorePlugin.getIFcoreProcessors()) {
+                    processor.processPreUnload(this, changeDescription);
+                }
+            }
             // Unload
             super.doUnload();
         } finally {
             // reset
             _fcore = null;
             // Start a fresh recorder
+            _recorder.dispose();
             _recorder = new ChangeRecorder(this);
         }
     }
@@ -259,105 +255,17 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
                 throw ioe;
             }
         } finally {
-            // Post-Processing, even save raise an exception always run post processors
-            callPostSaveProcessors(this, getIPlatformFcore(), _recorder);
+            // ChangeDescription snapshot
+            ChangeDescription changeDescription = _recorder.endRecording();
+            if (changeDescription != null && (changeDescription.getResourceChanges().isEmpty() == false || changeDescription.getObjectsToAttach().isEmpty() == false || changeDescription.getObjectChanges().isEmpty() == false)) {
+                // Post-Processing
+                for (IFcoreProcessor processor : EGFCorePlugin.getIFcoreProcessors()) {
+                    processor.processPostSave(this, changeDescription);
+                }
+            }
             // Start a fresh recorder
             _recorder = new ChangeRecorder(this);
         }
-    }
-
-    protected static void callPreUnloadProcessors(final Resource resource, final IPlatformFcore fcore, final ChangeRecorder recorder) {
-
-        // ChangeDescription snapshot
-        final ChangeDescription changeDescription = recorder.endRecording();
-        if (changeDescription == null || (changeDescription.getResourceChanges().isEmpty() && changeDescription.getObjectsToAttach().isEmpty() && changeDescription.getObjectChanges().isEmpty())) {
-            recorder.dispose();
-            return;
-        }
-
-        final List<IFcoreProcessor> processors = EGFCorePlugin.getIFcoreProcessors();
-        if (processors.isEmpty()) {
-            recorder.dispose();
-            return;
-        }
-
-        WorkspaceJob job = new WorkspaceJob(EGFModelMessages.FcoreResource_processor) {
-
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * processors.size());
-                MultiStatus statii = new MultiStatus(EGFModelPlugin.getPlugin().getSymbolicName(), IStatus.ERROR, EGFModelMessages.FcoreResource_processors_execute_exception, null);
-                try {
-                    for (IFcoreProcessor processor : processors) {
-                        try {
-                            processor.processPreUnload(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, changeDescription);
-                        } catch (Throwable t) {
-                            if (t instanceof CoreException) {
-                                statii.add(((CoreException) t).getStatus());
-                            } else {
-                                statii.add(EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFModelMessages.FcoreResource_processor_execute_exception, processor.getClass().getName()), t));
-                            }
-                        }
-                    }
-                } finally {
-                    recorder.dispose();
-                    monitor.done();
-                }
-                return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
-            }
-
-        };
-
-        job.setRule(EMFHelper.getProject(resource));
-        job.schedule();
-
-    }
-
-    protected static void callPostSaveProcessors(final Resource resource, final IPlatformFcore fcore, final ChangeRecorder recorder) {
-
-        // ChangeDescription snapshot
-        final ChangeDescription changeDescription = recorder.endRecording();
-        if (changeDescription == null || (changeDescription.getResourceChanges().isEmpty() && changeDescription.getObjectsToAttach().isEmpty() && changeDescription.getObjectChanges().isEmpty())) {
-            recorder.dispose();
-            return;
-        }
-
-        final List<IFcoreProcessor> processors = EGFCorePlugin.getIFcoreProcessors();
-        if (processors.isEmpty()) {
-            recorder.dispose();
-            return;
-        }
-
-        WorkspaceJob job = new WorkspaceJob(EGFModelMessages.FcoreResource_processor) {
-
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-                SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * processors.size());
-                MultiStatus statii = new MultiStatus(EGFModelPlugin.getPlugin().getSymbolicName(), IStatus.ERROR, EGFModelMessages.FcoreResource_processors_execute_exception, null);
-                try {
-                    for (IFcoreProcessor processor : processors) {
-                        try {
-                            processor.processPostSave(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, changeDescription);
-                        } catch (Throwable t) {
-                            if (t instanceof CoreException) {
-                                statii.add(((CoreException) t).getStatus());
-                            } else {
-                                statii.add(EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFModelMessages.FcoreResource_processor_execute_exception, processor.getClass().getName()), t));
-                            }
-                        }
-                    }
-                } finally {
-                    recorder.dispose();
-                    monitor.done();
-                }
-                return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
-            }
-
-        };
-
-        job.setRule(EMFHelper.getProject(resource));
-        job.schedule();
-
     }
 
 } // FcoreResourceImpl

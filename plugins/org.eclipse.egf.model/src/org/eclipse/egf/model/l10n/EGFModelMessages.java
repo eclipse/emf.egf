@@ -46,10 +46,4 @@ public class EGFModelMessages {
 
     public static String PatternFilename_error4;
 
-    public static String FcoreResource_processor;
-
-    public static String FcoreResource_processors_execute_exception;
-
-    public static String FcoreResource_processor_execute_exception;
-
 }

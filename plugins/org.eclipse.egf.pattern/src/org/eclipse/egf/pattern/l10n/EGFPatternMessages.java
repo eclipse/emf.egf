@@ -137,4 +137,8 @@ public class EGFPatternMessages extends NLS {
 
     public static String engine_error1;
 
+    public static String Template_processor;
+
+    public static String Template_processor_fcore_execute_exception;
+
 }

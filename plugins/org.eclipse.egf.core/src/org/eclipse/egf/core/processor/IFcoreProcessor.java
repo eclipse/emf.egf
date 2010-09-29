@@ -10,10 +10,8 @@
  */
 package org.eclipse.egf.core.processor;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * @author Xavier Maysonnave
@@ -21,8 +19,8 @@ import org.eclipse.emf.ecore.change.ChangeDescription;
  */
 public interface IFcoreProcessor {
 
-    public void processPreUnload(IProgressMonitor monitor, IPlatformFcore fcore, ChangeDescription changeDescription) throws CoreException;
+    public void processPreUnload(Resource resource, ChangeDescription changeDescription);
 
-    public void processPostSave(IProgressMonitor monitor, IPlatformFcore fcore, ChangeDescription changeDescription) throws CoreException;
+    public void processPostSave(Resource resource, ChangeDescription changeDescription);
 
 }
