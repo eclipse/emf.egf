@@ -18,26 +18,26 @@ import org.apache.tools.ant.BuildException;
  */
 public class NestedElement {
 
-  /**
-   * Throws a <tt>BuildException</tt> if <tt>expression</tt> is false.
-   * 
-   * @param message
-   * @param expression
-   * @throws BuildException
-   */
-  public static void assertTrue(String message, boolean expression) throws BuildException {
-    if (expression == false) {
-      throw new BuildException(message);
+    /**
+     * Throws a <tt>BuildException</tt> if <tt>expression</tt> is false.
+     * 
+     * @param message
+     * @param expression
+     * @throws BuildException
+     */
+    public static void assertTrue(String message, boolean expression) throws BuildException {
+        if (expression == false) {
+            throw new BuildException(message);
+        }
     }
-  }
 
-  /**
-   * All the attribute checks should be performed in this method.
-   * 
-   * @throws BuildException
-   */
-  protected void checkAttributes() throws BuildException {
-    // Subclasses may override this method
-  }
+    /**
+     * All the attribute checks should be performed in this method.
+     * 
+     * @throws BuildException
+     */
+    protected void checkAttributes() throws BuildException {
+        // Subclasses may override this method
+    }
 
 }
