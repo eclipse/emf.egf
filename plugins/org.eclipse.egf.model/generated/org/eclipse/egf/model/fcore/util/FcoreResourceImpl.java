@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.XMLSave.XMLTypeInfo;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
@@ -145,6 +146,17 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
     @Override
     protected XMLHelper createXMLHelper() {
         return new FcoreXMIHelperImpl(this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected XMLSave createXMLSave() {
+        return new FcoreXMISaveImpl(createXMLHelper());
     }
 
     /**
