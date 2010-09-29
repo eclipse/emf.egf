@@ -136,6 +136,9 @@ public class GenerationHelper {
     }
 
     public String replaceProperties(EObject eObject, String input) {
+        if (input == null)
+            return null;
+        
         while (eObject != null) {
             if (eObject instanceof Item) {
                 Item item = (Item) eObject;
