@@ -41,8 +41,8 @@ public class ModelDrivenStrategyTask extends AbstractStrategyTask {
 
     @Override
     protected void writeContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
-        super.writeContext(context, ctx);
         reporter.executionFinished(ctx);
+        super.writeContext(context, ctx);
     }
 
     @Override
