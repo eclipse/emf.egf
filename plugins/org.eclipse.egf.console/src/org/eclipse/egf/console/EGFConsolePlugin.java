@@ -32,7 +32,10 @@ public class EGFConsolePlugin extends EGFAbstractUIPlugin {
      * @return the EGF console
      */
     public static Console getConsole() {
-        return getDefault().getInnerConsole();
+        if (getDefault() != null) {
+            return getDefault().getInnerConsole();
+        }
+        return null;
     }
 
     /**
