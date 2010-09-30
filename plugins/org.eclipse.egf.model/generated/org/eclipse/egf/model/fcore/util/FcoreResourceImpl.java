@@ -20,6 +20,7 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.platform.uri.PlatformXMLURIHandler;
 import org.eclipse.egf.core.processor.IFcoreProcessor;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -99,7 +100,6 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
      */
     public FcoreResourceImpl(URI uri) {
         super(uri);
-        _recorder = new ChangeRecorder(this);
     }
 
     /**
@@ -230,10 +230,29 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
      * @generated NOT
      */
     @Override
+    protected Notification setLoaded(boolean isLoaded) {
+        Notification notification = super.setLoaded(isLoaded);
+        if (isLoaded == true) {
+            // Start a recorder once the resource is loaded
+            _recorder = new ChangeRecorder(this);
+        }
+        return notification;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
     protected void doUnload() {
         try {
             // ChangeDescription snapshot
-            ChangeDescription changeDescription = _recorder.endRecording();
+            ChangeDescription changeDescription = null;
+            if (_recorder != null) {
+                changeDescription = _recorder.endRecording();
+            }
             if (changeDescription != null && (changeDescription.getResourceChanges().isEmpty() == false || changeDescription.getObjectsToAttach().isEmpty() == false || changeDescription.getObjectChanges().isEmpty() == false)) {
                 // Post-Processing
                 for (IFcoreProcessor processor : EGFCorePlugin.getIFcoreProcessors()) {
@@ -245,9 +264,10 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
         } finally {
             // reset
             _fcore = null;
-            // Start a fresh recorder
-            _recorder.dispose();
-            _recorder = new ChangeRecorder(this);
+            // dispose
+            if (_recorder != null) {
+                _recorder.dispose();
+            }
         }
     }
 
@@ -268,7 +288,10 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
             }
         } finally {
             // ChangeDescription snapshot
-            ChangeDescription changeDescription = _recorder.endRecording();
+            ChangeDescription changeDescription = null;
+            if (_recorder != null) {
+                changeDescription = _recorder.endRecording();
+            }
             if (changeDescription != null && (changeDescription.getResourceChanges().isEmpty() == false || changeDescription.getObjectsToAttach().isEmpty() == false || changeDescription.getObjectChanges().isEmpty() == false)) {
                 // Post-Processing
                 for (IFcoreProcessor processor : EGFCorePlugin.getIFcoreProcessors()) {
@@ -276,7 +299,10 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
                 }
             }
             // Start a fresh recorder
-            _recorder = new ChangeRecorder(this);
+            if (_recorder != null) {
+                _recorder.dispose();
+                _recorder = new ChangeRecorder(this);
+            }
         }
     }
 
