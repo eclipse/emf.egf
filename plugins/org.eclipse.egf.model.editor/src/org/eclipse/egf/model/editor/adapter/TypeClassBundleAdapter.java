@@ -88,7 +88,7 @@ public class TypeClassBundleAdapter extends EContentAdapter {
             };
             // asynchronous operation
             try {
-                new ProgressMonitorDialog(_shell).run(true, false, operation);
+                new ProgressMonitorDialog(_shell).run(false, false, operation);
             } catch (InterruptedException ie) {
                 // Nothing to do
             } catch (Exception e) {
