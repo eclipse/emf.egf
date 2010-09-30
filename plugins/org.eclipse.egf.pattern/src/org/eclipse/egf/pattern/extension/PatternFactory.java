@@ -21,7 +21,6 @@ import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternElement;
-import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -37,7 +36,7 @@ import org.eclipse.emf.common.util.URI;
 /**
  * @author Guiu
  */
-public abstract class PatternExtensionFactory implements IPatternExtensionFactory {
+public abstract class PatternFactory {
 
     public static final String INIT_METHOD_NAME = "init"; //$NON-NLS-1$
 
@@ -57,12 +56,12 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
 
         Pattern p1 = createPattern(lib, "Pattern UN"); //$NON-NLS-1$
 
-        PatternVariable var1 = PatternFactory.eINSTANCE.createPatternVariable();
+        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
         var1.setName("myVar"); //$NON-NLS-1$
         var1.setType("String"); //$NON-NLS-1$
         p1.getVariables().add(var1);
 
-        PatternMethod method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("My_Method_1"); //$NON-NLS-1$
         p1.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
@@ -74,11 +73,11 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         Pattern parentPattern = createPattern(lib, "Pattern UN"); //$NON-NLS-1$
         Pattern childPattern = createPattern(lib, "Pattern DEUX"); //$NON-NLS-1$
 
-        PatternVariable var1 = PatternFactory.eINSTANCE.createPatternVariable();
+        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
         var1.setName("myVar"); //$NON-NLS-1$
         var1.setType("String"); //$NON-NLS-1$
         parentPattern.getVariables().add(var1);
-        PatternInjectedCall patternCall = PatternFactory.eINSTANCE.createPatternInjectedCall();
+        PatternInjectedCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternInjectedCall();
         patternCall.setContext(var1);
         patternCall.setCalled(childPattern);
 
@@ -95,21 +94,21 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         p1.setSuperPattern(p2);
 
         // set up P1
-        PatternParameter param1 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("myCalledParam"); //$NON-NLS-1$
         param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         param1.setQuery(createBasicQuery());
         p1.getParameters().add(param1);
 
         // set up P2
-        PatternParameter param2 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("myChildParam"); //$NON-NLS-1$
         param2.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         param2.setQuery(createBasicQuery());
         p2.getParameters().add(param2);
 
         // set up P3
-        PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(p1);
         patternCall.getParameterMatching().put(param1, param2);
         p3.getOrchestration().add(patternCall);
@@ -126,7 +125,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         p3.setSuperPattern(p2);
 
         // set up P1
-        PatternParameter param1 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("myGrandParentParam"); //$NON-NLS-1$
         param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         param1.setQuery(createBasicQuery());
@@ -150,24 +149,24 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         p3.setSuperPattern(p2);
 
         // set up P1
-        PatternMethod method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("test1"); //$NON-NLS-1$
         p1.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
-        PatternMethod method2 = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod method2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method2.setName("test2"); //$NON-NLS-1$
         p1.getMethods().add(method2);
         method2.setPatternFilePath(createURI(method2));
 
-        MethodCall methodCall1 = PatternFactory.eINSTANCE.createMethodCall();
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
         methodCall1.setCalled(method1);
         p1.getOrchestration().add(methodCall1);
-        MethodCall methodCall2 = PatternFactory.eINSTANCE.createMethodCall();
+        MethodCall methodCall2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
         methodCall2.setCalled(method2);
         p1.getOrchestration().add(methodCall2);
 
         // set up P2
-        method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("test1"); //$NON-NLS-1$
         p2.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
@@ -175,7 +174,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         p2.getOrchestration().clear();
 
         // set up P3
-        method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("test2"); //$NON-NLS-1$
         p3.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
@@ -193,17 +192,17 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         p2.setSuperPattern(p1);
         p3.setSuperPattern(p1);
 
-        PatternMethod method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("run1"); //$NON-NLS-1$
         p1.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
 
-        MethodCall methodCall1 = PatternFactory.eINSTANCE.createMethodCall();
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
         methodCall1.setCalled(method1);
         p1.getOrchestration().add(methodCall1);
 
         // P2 overrides method run1
-        method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("run1"); //$NON-NLS-1$
         p2.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
@@ -220,12 +219,12 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         Pattern p2 = createPattern(lib, "Pattern DEUX"); //$NON-NLS-1$
         Pattern p3 = createPattern(lib, "Pattern TROIS"); //$NON-NLS-1$
 
-        PatternMethod method1 = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method1.setName("run1"); //$NON-NLS-1$
         p1.getMethods().add(method1);
         method1.setPatternFilePath(createURI(method1));
 
-        MethodCall methodCall1 = PatternFactory.eINSTANCE.createMethodCall();
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
         methodCall1.setCalled(method1);
         p1.getOrchestration().add(methodCall1);
 
@@ -241,7 +240,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         Pattern p2 = createPattern(lib, "Pattern DEUX"); //$NON-NLS-1$
         Pattern p3 = createPattern(lib, "Pattern TROIS"); //$NON-NLS-1$
 
-        PatternLibrary subLib = PatternFactory.eINSTANCE.createPatternLibrary();
+        PatternLibrary subLib = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternLibrary();
         subLib.setName("subLib"); //$NON-NLS-1$
         // lib.getPatterns().add(subLib);
 
@@ -270,11 +269,11 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         Pattern p2 = createPattern(lib, "Pattern DEUX"); //$NON-NLS-1$
         Pattern p3 = createPattern(lib, "Pattern TROIS"); //$NON-NLS-1$
 
-        PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(p2);
         p1.getOrchestration().add(patternCall);
 
-        patternCall = PatternFactory.eINSTANCE.createPatternCall();
+        patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(p3);
         p2.getOrchestration().add(patternCall);
 
@@ -291,18 +290,18 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         Pattern parentPattern = createPattern(lib, "ParentPattern"); //$NON-NLS-1$
         Pattern childPattern = createPattern(lib, "ChildPattern"); //$NON-NLS-1$
 
-        PatternVariable var1 = PatternFactory.eINSTANCE.createPatternVariable();
+        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
         var1.setName("myVar"); //$NON-NLS-1$
         var1.setType("String"); //$NON-NLS-1$
         parentPattern.getVariables().add(var1);
 
-        PatternParameter param1 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("myParam"); //$NON-NLS-1$
         param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         param1.setQuery(createBasicQuery());
         childPattern.getParameters().add(param1);
 
-        PatternInjectedCall iCall = PatternFactory.eINSTANCE.createPatternInjectedCall();
+        PatternInjectedCall iCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternInjectedCall();
         iCall.setContext(var1);
         iCall.setCalled(childPattern);
         // iCall.setPattern(parentPattern);
@@ -322,7 +321,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
     public List<Pattern> createDebugPattern6(PatternLibrary lib) {
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern createPattern = createPattern(lib, "MyPattern"); //$NON-NLS-1$
-        PatternParameter param1 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("myParam"); //$NON-NLS-1$
         param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         param1.setQuery(createBasicQuery());
@@ -332,7 +331,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
     }
 
     private Query createBasicQuery() {
-        BasicQuery createBasicQuery = PatternFactory.eINSTANCE.createBasicQuery();
+        BasicQuery createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
         createBasicQuery.setExtensionId("org.eclipse.egf.pattern.basic.query"); //$NON-NLS-1$
         return createBasicQuery;
     }
@@ -346,7 +345,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern parent = createPattern(lib, "parent"); //$NON-NLS-1$
         Pattern child = createPattern(lib, "child"); //$NON-NLS-1$
-        PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(child);
         parent.getOrchestration().add(patternCall);
         result.add(parent);
@@ -360,20 +359,20 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern parent = createPattern(lib, "parent"); //$NON-NLS-1$
         Pattern child = createPattern(lib, "child"); //$NON-NLS-1$
-        PatternParameter param1 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("parentP1"); //$NON-NLS-1$
         param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         parent.getParameters().add(param1);
-        PatternParameter param12 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param12 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param12.setName("parentP2"); //$NON-NLS-1$
         param12.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         parent.getParameters().add(param12);
 
-        PatternParameter param2 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("childP"); //$NON-NLS-1$
         param2.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         child.getParameters().add(param2);
-        PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.getParameterMatching().put(param2, param12);
         patternCall.setCalled(child);
 
@@ -387,17 +386,17 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
     public List<Pattern> createDebugPattern4(PatternLibrary lib) {
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern parent = createPattern(lib, "parent"); //$NON-NLS-1$
-        PatternParameter param1 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("parentP"); //$NON-NLS-1$
         param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         parent.getParameters().add(param1);
 
         Pattern child = createPattern(lib, "child"); //$NON-NLS-1$
-        PatternParameter param2 = PatternFactory.eINSTANCE.createPatternParameter();
+        PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("childP"); //$NON-NLS-1$
         param2.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass"); //$NON-NLS-1$
         child.getParameters().add(param2);
-        PatternCall patternCall = PatternFactory.eINSTANCE.createPatternCall();
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(child);
 
         parent.getOrchestration().add(patternCall);
@@ -408,7 +407,7 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
     }
 
     public Pattern createPattern(PatternLibrary lib, String patternName) {
-        Pattern pattern = PatternFactory.eINSTANCE.createPattern();
+        Pattern pattern = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPattern();
         pattern.setName(patternName);
         if (lib != null)
             lib.getElements().add(pattern);
@@ -432,32 +431,32 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
          * pattern.getVariables().add(var2);
          */
         // 1 - create default content
-        PatternMethod headerMethod = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod headerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(headerMethod);
         pattern.setHeaderMethod(headerMethod);
         initHeader(headerMethod);
 
-        PatternMethod initMethod = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod initMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(initMethod);
         pattern.setInitMethod(initMethod);
         initIinit(initMethod);
 
-        PatternMethod preConditionMethod = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod preConditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(preConditionMethod);
         pattern.setConditionMethod(preConditionMethod);
         initPreCondition(preConditionMethod);
 
-        PatternMethod bodyMethod = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod bodyMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(bodyMethod);
         initBody(bodyMethod);
 
-        PatternMethod footerMethod = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod footerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(footerMethod);
         pattern.setFooterMethod(footerMethod);
         initFooter(footerMethod);
 
         // 2 - set up default orchestration
-        SuperCall superCall = PatternFactory.eINSTANCE.createSuperCall();
+        SuperCall superCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createSuperCall();
         pattern.getOrchestration().add(superCall);
         return pattern;
     }
@@ -507,5 +506,10 @@ public abstract class PatternExtensionFactory implements IPatternExtensionFactor
             return null;
         return TemplateModelFileHelper.computeFileURI(((IPlatformFcoreProvider) method.eResource()).getIPlatformFcore(), method);
     }
+
+    /**
+     * @param pattern
+     */
+    protected abstract void addNature(Pattern pattern);
 
 }

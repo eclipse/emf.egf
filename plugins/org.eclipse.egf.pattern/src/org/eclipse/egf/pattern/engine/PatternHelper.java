@@ -32,7 +32,7 @@ import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.collector.PatternElementCollector;
 import org.eclipse.egf.pattern.collector.PatternLibraryCollector;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -165,7 +165,7 @@ public class PatternHelper {
         ArrayList<PatternMethod> result = new ArrayList<PatternMethod>();
         for (PatternMethod m : pattern.getMethods()) {
             String name = m.getName();
-            if (PatternExtensionFactory.isSpecialMethod(name))
+            if (PatternFactory.isSpecialMethod(name))
                 continue;
             result.add(m);
 

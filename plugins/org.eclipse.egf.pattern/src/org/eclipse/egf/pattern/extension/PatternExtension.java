@@ -38,7 +38,7 @@ public abstract class PatternExtension {
 
     public abstract PatternNature getNature();
 
-    public abstract IPatternExtensionFactory getFactory();
+    public abstract PatternFactory getFactory();
 
     protected abstract AdapterFactory getAdapterFactory();
 

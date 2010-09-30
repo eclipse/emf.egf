@@ -51,7 +51,7 @@ public abstract class BasePatternInitializer implements PatternInitializer {
     public void updateSpecialMethods(boolean overwrite) throws PatternException {
         for (PatternMethod method : pattern.getMethods()) {
             String methodName = method.getName();
-            if (PatternExtensionFactory.isSpecialMethod(methodName)) {
+            if (PatternFactory.isSpecialMethod(methodName)) {
                 IFile outputFile = getFile(method);
                 if (!overwrite && outputFile.exists()) {
                     continue;
