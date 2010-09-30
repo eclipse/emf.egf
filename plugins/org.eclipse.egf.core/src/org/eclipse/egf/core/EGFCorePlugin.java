@@ -26,6 +26,7 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.egf.core.platform.uri.PlatformURIConverter;
 import org.eclipse.egf.core.processor.IFcoreProcessor;
+import org.eclipse.egf.core.session.EGFBundleListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.osgi.framework.Bundle;
@@ -42,6 +43,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     public static String EDITING_DOMAIN_ID = "org.eclipse.egf.core.editing.domain"; //$NON-NLS-1$  
 
     public static String FCORE_FILE_EXTENSION = "fcore"; //$NON-NLS-1$
+
+    /**
+     * Bundle listener for debugging purposes
+     */
+    private static EGFBundleListener __bundleListener;
 
     /**
      * Keep track of the FcoreProcessorRegistry
@@ -220,6 +226,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
                 logError(e);
             }
         }
+        // Bundle Listener
+        if (isDebugging()) {
+            __bundleListener = new EGFBundleListener();
+            context.addBundleListener(__bundleListener);
+        }
     }
 
     /**
@@ -230,6 +241,10 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
         if (__fcoreProcessorRegistry != null) {
             __fcoreProcessorRegistry.dispose();
             __fcoreProcessorRegistry = null;
+        }
+        if (__bundleListener != null) {
+            context.removeBundleListener(__bundleListener);
+            __bundleListener = null;
         }
         super.stop(context);
         __plugin = null;
