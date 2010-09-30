@@ -13,20 +13,20 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.java.extension;
+package org.eclipse.egf.pattern.jet.extension;
 
-import org.eclipse.egf.model.javapattern.JavaPatternFactory;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 
 /**
  * @author Guiu
  * 
  */
-public class JavaPatternExtensionFactory extends PatternExtensionFactory {
+public class JetPatternFactory extends PatternFactory {
 
+    @Override
     public void addNature(Pattern pattern) {
-        pattern.setNature(JavaPatternFactory.eINSTANCE.createJavaNature());
+        pattern.setNature(org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature());
     }
 
 }

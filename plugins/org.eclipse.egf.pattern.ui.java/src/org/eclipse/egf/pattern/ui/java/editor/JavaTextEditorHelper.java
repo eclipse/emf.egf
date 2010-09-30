@@ -32,7 +32,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.java.Activator;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.emf.common.util.EList;
@@ -113,7 +113,7 @@ public class JavaTextEditorHelper {
                 for (int i = 0; i < size; i++) {
                     JavaTextEditor currentEditor = (JavaTextEditor) editors.get(i);
                     String partName = currentEditor.getPartName();
-                    if (partName.equals(PatternExtensionFactory.FOOTER_METHOD_NAME)) {
+                    if (partName.equals(PatternFactory.FOOTER_METHOD_NAME)) {
                         footerEditor = currentEditor;
                         continue;
                     }

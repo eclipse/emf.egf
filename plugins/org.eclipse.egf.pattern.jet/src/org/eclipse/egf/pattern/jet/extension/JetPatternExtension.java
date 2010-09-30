@@ -13,14 +13,13 @@
 package org.eclipse.egf.pattern.jet.extension;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.model.jetpattern.JetPatternFactory;
 import org.eclipse.egf.model.jetpattern.provider.JetPatternItemProviderAdapterFactory;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.jet.engine.JetEngine;
 import org.eclipse.egf.pattern.jet.engine.JetNatureHelper;
@@ -31,9 +30,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
  */
 public class JetPatternExtension extends PatternExtension {
 
-    private static final PatternNature NATURE = JetPatternFactory.eINSTANCE.createJetNature();
+    private static final PatternNature NATURE = org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature();
 
-    private final PatternExtensionFactory factory = new JetPatternExtensionFactory();
+    private final PatternFactory factory = new JetPatternFactory();
 
     @Override
     public String canTranslate(Pattern pattern) {
@@ -60,7 +59,7 @@ public class JetPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternExtensionFactory getFactory() {
+    public PatternFactory getFactory() {
         return factory;
     }
 

@@ -29,7 +29,7 @@ import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -88,7 +88,7 @@ public class PatternMenuContributor extends EditorMenuContributor {
                                 PatternMethod preConditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
                                 pattern.getMethods().add(preConditionMethod);
                                 pattern.setConditionMethod(preConditionMethod);
-                                preConditionMethod.setName(PatternExtensionFactory.PRECONDITION_METHOD_NAME);
+                                preConditionMethod.setName(PatternFactory.PRECONDITION_METHOD_NAME);
                                 preConditionMethod.setPatternFilePath(extension.getFactory().createURI(preConditionMethod));
                                 IProject project = EMFHelper.getProject(pattern.eResource());
                                 extension.createInitializer(project, pattern).updateSpecialMethods(false);

@@ -13,14 +13,13 @@
 package org.eclipse.egf.pattern.java.extension;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.model.javapattern.JavaPatternFactory;
 import org.eclipse.egf.model.javapattern.provider.JavaPatternItemProviderAdapterFactory;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.java.engine.JavaEngine;
 import org.eclipse.egf.pattern.java.engine.JavaNatureHelper;
@@ -31,9 +30,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
  */
 public class JavaPatternExtension extends PatternExtension {
 
-    private static final PatternNature NATURE = JavaPatternFactory.eINSTANCE.createJavaNature();
+    private static final PatternNature NATURE = org.eclipse.egf.model.javapattern.JavaPatternFactory.eINSTANCE.createJavaNature();
 
-    private final PatternExtensionFactory factory = new JavaPatternExtensionFactory();
+    private final PatternFactory factory = new JavaPatternFactory();
 
     @Override
     public PatternNature getNature() {
@@ -46,7 +45,7 @@ public class JavaPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternExtensionFactory getFactory() {
+    public PatternFactory getFactory() {
         return factory;
     }
 

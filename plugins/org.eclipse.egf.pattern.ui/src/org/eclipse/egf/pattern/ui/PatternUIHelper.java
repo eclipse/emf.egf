@@ -26,7 +26,7 @@ import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
 import org.eclipse.egf.pattern.ui.editors.models.QueryContent;
@@ -55,7 +55,7 @@ public class PatternUIHelper {
         while (pattern != null) {
             for (PatternMethod patternMethod : pattern.getMethods()) {
                 String name = patternMethod.getName();
-                if (PatternExtensionFactory.isSpecialMethod(name))
+                if (PatternFactory.isSpecialMethod(name))
                     continue;
                 parentMethods.add(name);
             }
@@ -75,7 +75,7 @@ public class PatternUIHelper {
         if (pattern != null) {
             for (PatternMethod patternMethod : pattern.getAllMethods()) {
                 String name = patternMethod.getName();
-                if (PatternExtensionFactory.isSpecialMethod(name))
+                if (PatternFactory.isSpecialMethod(name))
                     continue;
                 if (!names.contains(name)) {
                     parentMethods.add(patternMethod);
@@ -228,7 +228,7 @@ public class PatternUIHelper {
      * Return whether the method can be rename.
      */
     public static boolean isRenameDisable(PatternMethod element) {
-        return PatternExtensionFactory.isSpecialMethod(element.getName());
+        return PatternFactory.isSpecialMethod(element.getName());
     }
 
     /**

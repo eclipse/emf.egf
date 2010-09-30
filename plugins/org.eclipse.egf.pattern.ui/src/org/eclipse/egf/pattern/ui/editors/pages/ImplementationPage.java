@@ -24,7 +24,6 @@ import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
-import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
@@ -32,7 +31,7 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.PatternExtensionFactory;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -309,7 +308,7 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void createPatternMethodsLink(FormToolkit toolkit, Composite container) {
-        ImageHyperlink headerLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.HEADER_METHOD_NAME);
+        ImageHyperlink headerLink = createPatternMethodLink(toolkit, container, PatternFactory.HEADER_METHOD_NAME);
         headerLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -328,7 +327,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        ImageHyperlink initLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.INIT_METHOD_NAME);
+        ImageHyperlink initLink = createPatternMethodLink(toolkit, container, PatternFactory.INIT_METHOD_NAME);
         initLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -347,7 +346,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        ImageHyperlink preConditionLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.PRECONDITION_METHOD_NAME);
+        ImageHyperlink preConditionLink = createPatternMethodLink(toolkit, container, PatternFactory.PRECONDITION_METHOD_NAME);
         preConditionLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -370,8 +369,8 @@ public class ImplementationPage extends PatternEditorPage {
 
                             try {
                                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
-                                PatternMethod conditionMethod = PatternFactory.eINSTANCE.createPatternMethod();
-                                conditionMethod.setName(PatternExtensionFactory.PRECONDITION_METHOD_NAME);
+                                PatternMethod conditionMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+                                conditionMethod.setName(PatternFactory.PRECONDITION_METHOD_NAME);
                                 pattern.getMethods().add(conditionMethod);
                                 pattern.setConditionMethod(conditionMethod);
                                 conditionMethod.setPatternFilePath(extension.getFactory().createURI(conditionMethod));
@@ -390,7 +389,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        ImageHyperlink footerLink = createPatternMethodLink(toolkit, container, PatternExtensionFactory.FOOTER_METHOD_NAME);
+        ImageHyperlink footerLink = createPatternMethodLink(toolkit, container, PatternFactory.FOOTER_METHOD_NAME);
         footerLink.addHyperlinkListener(new IHyperlinkListener() {
 
             public void linkExited(HyperlinkEvent e) {
@@ -815,7 +814,7 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void executeMethodsAdd(final String name) {
-        PatternMethod method = PatternFactory.eINSTANCE.createPatternMethod();
+        PatternMethod method = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         method.setName(name);
         Command command = CreateChildCommand.create(getEditingDomain(), getPattern(), new CommandParameter(null, PatternPackage.Literals.PATTERN__METHODS, method), Collections.singletonList(getPattern()));
         if (command.canExecute()) {
@@ -1071,7 +1070,7 @@ public class ImplementationPage extends PatternEditorPage {
         int index = methodsTableViewer.getTable().getSelectionIndex();
         PatternMethod drag = (PatternMethod) methodsTableViewer.getElementAt(index);
         String name = drag.getName();
-        return !PatternExtensionFactory.isSpecialMethod(name);
+        return !PatternFactory.isSpecialMethod(name);
     }
 
     /**
@@ -1085,7 +1084,7 @@ public class ImplementationPage extends PatternEditorPage {
 
                 @Override
                 protected void doExecute() {
-                    MethodCall methodCallNew = PatternFactory.eINSTANCE.createMethodCall();
+                    MethodCall methodCallNew = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
                     methodCallNew.setCalled(dropEntry);
                     methodCallNew.setPattern(getPattern());
                     getPattern().getOrchestration().add(methodCallNew);
@@ -1608,7 +1607,7 @@ public class ImplementationPage extends PatternEditorPage {
 
             @Override
             protected void doExecute() {
-                PatternVariable patternVariableNew = PatternFactory.eINSTANCE.createPatternVariable();
+                PatternVariable patternVariableNew = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
                 patternVariableNew.setName(VARIABLE_NAME_DEFAULT_VALUE);
                 patternVariableNew.setType(VARIABLE_TYPE_DEFAULT_VALUE);
                 pattern.getVariables().add(patternVariableNew);

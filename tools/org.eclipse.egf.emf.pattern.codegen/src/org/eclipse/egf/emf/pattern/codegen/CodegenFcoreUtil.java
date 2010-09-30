@@ -37,7 +37,7 @@ import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.extension.TemplateInitializer;
 import org.eclipse.egf.pattern.jet.JetPreferences;
-import org.eclipse.egf.pattern.jet.extension.JetPatternExtensionFactory;
+import org.eclipse.egf.pattern.jet.extension.JetPatternFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -275,6 +275,6 @@ public class CodegenFcoreUtil {
     }
 
     public CodegenPatternFactory getPatternFactory(PatternInfo patternInfo) {
-        return new CodegenPatternFactory(new JetPatternExtensionFactory(), emfPatternBaseResource, codegenEGFHelper, patternInfo, codegenPatternHelper);
+        return new CodegenPatternFactory(new JetPatternFactory(), emfPatternBaseResource, codegenEGFHelper, patternInfo, codegenPatternHelper);
     }
 }
