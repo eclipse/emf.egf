@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.portfolio.genchain.tools.ui.wizards;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -59,7 +60,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
@@ -121,7 +121,8 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
             extensionNode.getProperties().put(ID, entrySet.getKey());
             extensionNode.getProperties().put(MODEL_PATH, modelPath);
-            extensionNode.setName(entrySet.getKey());
+            extensionNode.getExtendedProperties().put(CONFLICT, entrySet.getValue().getConflictingExtensions());
+            extensionNode.setName(entrySet.getValue().getLabel());
             chainNode.getChildren().add(extensionNode);
 
             for (Entry<EAttribute, String> prop : entrySet.getValue().getDefaultProperties(context).entrySet()) {
@@ -138,7 +139,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
     private void createViewerControl(Composite container) {
 
-        viewer = new ContainerCheckedTreeViewer(container, SWT.FULL_SELECTION);
+        viewer = new ContainerCheckedTreeViewer(container, SWT.FULL_SELECTION | SWT.BORDER);
         Tree tree = viewer.getTree();
         tree.setHeaderVisible(true);
         TreeColumn col1 = new TreeColumn(tree, SWT.FULL_SELECTION);
@@ -163,9 +164,11 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
                 booleanEditor.getViewer().addDoubleClickListener(new IDoubleClickListener() {
 
                     public void doubleClick(DoubleClickEvent event) {
-                        final Control control = booleanEditor.getViewer().getControl();
-                        if (control != null && !control.isDisposed())
+                        try {
                             booleanEditor.getViewer().getCombo().setListVisible(true);
+                        } catch (Exception e) {
+                            // sometime on win32 getCombo() fails
+                        }
                     }
                 });
             }
@@ -362,7 +365,23 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
         container.pack();
 
         viewer.expandToLevel(2);
-        viewer.setCheckedElements(viewer.getExpandedElements());
+        viewer.setCheckedElements(computeCheckedElements());
+    }
+
+    protected Object[] computeCheckedElements() {
+        Set<String> toDeselect = new HashSet<String>();
+        for (ExtensionHelper ext : ExtensionHelper.getExtensions())
+            toDeselect.addAll(ext.getConflictingExtensions());
+        List<Object> selected = new ArrayList<Object>();
+        for (Node ecoreNode : model.getChildren()) {
+            for (Node extNode : ecoreNode.getChildren()) {
+                final String id = extNode.getProperties().get(ID);
+                if (id != null && toDeselect.contains(id))
+                    continue;
+                selected.add(extNode);
+            }
+        }
+        return selected.toArray();
     }
 
     protected void refreshButtons() {

@@ -27,6 +27,8 @@ public class Messages extends NLS {
     public static String emfDocumentation_extension_label;
     public static String emfGeneration_extension_label;
 
+    public static String Extension_load_error1;
+
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
     }

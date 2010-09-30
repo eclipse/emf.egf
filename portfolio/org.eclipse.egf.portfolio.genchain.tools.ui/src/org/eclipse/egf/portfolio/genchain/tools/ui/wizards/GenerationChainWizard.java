@@ -36,7 +36,9 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
@@ -146,6 +148,16 @@ public class GenerationChainWizard extends Wizard implements INewWizard, Extensi
                 }
             });
         }
+
+        // Open an editor on the new file.
+        //
+        try {
+            page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+        } catch (PartInitException exception) {
+            Activator.getDefault().logError(exception);
+            return false;
+        }
+
         return true;
     }
 }

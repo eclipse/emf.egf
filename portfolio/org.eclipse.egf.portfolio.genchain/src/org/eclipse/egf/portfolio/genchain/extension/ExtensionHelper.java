@@ -25,6 +25,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.pattern.EGFPatternPlugin;
+import org.eclipse.egf.portfolio.genchain.Activator;
+import org.eclipse.egf.portfolio.genchain.Messages;
 import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.emf.ecore.EAttribute;
 
@@ -37,13 +39,19 @@ import org.eclipse.emf.ecore.EAttribute;
 public abstract class ExtensionHelper implements ExtensionProperties {
 
     private static final String EXTENSION_ID = "org.eclipse.egf.portfolio.genchain.elements";
-    protected final List<Substitution> EMPTY_SUBSTITUTION = new ArrayList<Substitution>();
+    private static final List<String> EMPTY_LIST = new ArrayList<String>();
 
+    protected final List<Substitution> EMPTY_SUBSTITUTION = new ArrayList<Substitution>();
     protected final Map<EAttribute, String> properties = new HashMap<EAttribute, String>();
+    private String id;
 
     public abstract EcoreElement createEcoreElement(Map<String, String> properties);
 
     public abstract String getLabel();
+
+    public List<String> getConflictingExtensions() {
+        return EMPTY_LIST;
+    }
 
     public final Map<EAttribute, String> getDefaultProperties(Map<String, String> context) {
         if (properties.isEmpty())
@@ -54,9 +62,12 @@ public abstract class ExtensionHelper implements ExtensionProperties {
     protected void computeDefaultProperties(Map<String, String> context) {
     };
 
-    // TODO upgrade this implementation
     public String getId() {
-        return getLabel();
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public List<Substitution> getSubstitutions() {
@@ -77,6 +88,12 @@ public abstract class ExtensionHelper implements ExtensionProperties {
         for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID)) {
             try {
                 ExtensionHelper pe = (ExtensionHelper) element.createExecutableExtension("class");
+                String id = element.getAttribute("id");
+                if (id == null) {
+                    Activator.getDefault().logError(Messages.bind(Messages.Extension_load_error1, element.getAttribute("class")));
+                    continue;
+                }
+                pe.setId(id);
                 result.add(pe);
             } catch (CoreException e) {
                 EGFPatternPlugin.getDefault().logError(e);

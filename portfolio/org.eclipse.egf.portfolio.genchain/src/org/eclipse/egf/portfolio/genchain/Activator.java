@@ -1,30 +1,22 @@
 package org.eclipse.egf.portfolio.genchain;
 
-import org.osgi.framework.BundleActivator;
+import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.osgi.framework.BundleContext;
 
-public class Activator implements BundleActivator {
+public class Activator extends EGFAbstractPlugin {
 
-	private static BundleContext context;
+    private static Activator plugin;
 
-	static BundleContext getContext() {
-		return context;
-	}
+    public static Activator getDefault() {
+        return plugin;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
-	}
+    public void start(BundleContext bundleContext) throws Exception {
+        plugin = this;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
-	}
+    public void stop(BundleContext bundleContext) throws Exception {
+        plugin = null;
+    }
 
 }

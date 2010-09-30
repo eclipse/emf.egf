@@ -27,8 +27,8 @@
 	</extension>
  
  	<extension point="org.eclipse.egf.portfolio.genchain.elements">
-    	<helper class="org.eclipse.egf.portfolio.genchain.extension.DefaultEmfGenerationExtension"/>
-    	<helper class="org.eclipse.egf.portfolio.genchain.extension.DefaultEmfDocumentationExtension"/>
+    	<helper id="basic.emf.generation" class="org.eclipse.egf.portfolio.genchain.extension.DefaultEmfGenerationExtension"/>
+    	<helper id="basic.documentation.generation" class="org.eclipse.egf.portfolio.genchain.extension.DefaultEmfDocumentationExtension"/>
     </extension>
 
 </plugin>

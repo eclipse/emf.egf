@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.portfolio.genchain.extension;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.portfolio.genchain.Messages;
@@ -28,6 +30,12 @@ import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage
  * 
  */
 public class DefaultEmfDocumentationExtension extends ExtensionHelper {
+
+    private static final List<String> CONFLICT_LIST = Arrays.asList(new String[] { "sample.extension" });
+
+    public List<String> getConflictingExtensions() {
+        return CONFLICT_LIST;
+    }
 
     @Override
     public String getLabel() {

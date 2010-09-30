@@ -24,6 +24,7 @@ public interface ExtensionProperties {
     String MODEL_PATH = "model.path";
     String PROPERTY_VALUE = "property.value";
     String PROPERTY_EATTRIBUTE = "property.attribute";
+    String CONFLICT = "property.conflict";
 
     String CONTEXT_PROJECT_NAME = "ctx.project.name";
     String CONTEXT_MODEL_NAME = "ctx.model.path";
