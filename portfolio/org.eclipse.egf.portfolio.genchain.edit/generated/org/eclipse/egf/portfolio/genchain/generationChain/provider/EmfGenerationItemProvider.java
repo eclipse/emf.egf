@@ -17,10 +17,9 @@ import java.util.List;
 
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
-
+import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -32,9 +31,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class EmfGenerationItemProvider extends EcoreElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
@@ -42,6 +44,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EmfGenerationItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +55,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -72,6 +76,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This adds a property descriptor for the Generate Model feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addGenerateModelPropertyDescriptor(Object object) {
@@ -82,6 +87,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This adds a property descriptor for the Generate Edit feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addGenerateEditPropertyDescriptor(Object object) {
@@ -92,6 +98,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This adds a property descriptor for the Generate Editor feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addGenerateEditorPropertyDescriptor(Object object) {
@@ -102,6 +109,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This adds a property descriptor for the Plugin Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addPluginNamePropertyDescriptor(Object object) {
@@ -112,6 +120,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This adds a property descriptor for the Base Package feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addBasePackagePropertyDescriptor(Object object) {
@@ -122,6 +131,7 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This returns EmfGeneration.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -133,19 +143,24 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * 
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-        String label = ((EmfGeneration) object).getName();
-        return label == null || label.length() == 0 ? getString("_UI_EmfGeneration_type") : getString("_UI_EmfGeneration_type") + " " + label;
+        String label = ((GenerationElement) object).getName();
+        final String type = getString("_UI_EmfGeneration_type");
+        return label == null || label.length() == 0 ? type : label + " " + type;
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to
+     * update any cached
+     * children and by creating a viewer notification, which it passes to
+     * {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -165,10 +180,12 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+     * describing the children
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
