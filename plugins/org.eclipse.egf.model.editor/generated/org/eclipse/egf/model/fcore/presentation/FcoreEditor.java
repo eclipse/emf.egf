@@ -670,7 +670,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     getOperationHistory().dispose(undoContext, true, true, true);
                     selectionViewer.setInput(reloadedResource);
                     selectionViewer.setSelection(new StructuredSelection(reloadedResource), true);
-                    currentViewerPane.setTitle(reloadedResource);
+                    if (currentViewerPane != null) {
+                        currentViewerPane.setTitle(reloadedResource);
+                    }
                     updateProblemIndication = true;
                     setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(reloadedResource.getURI())));
                     firePropertyChange(PROP_TITLE);
