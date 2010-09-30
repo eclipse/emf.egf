@@ -28,10 +28,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.emf.codegen.jet.JETCompiler;
@@ -39,13 +39,9 @@ import org.eclipse.emf.codegen.jet.JETCoreElement;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.codegen.jet.JETMark;
 import org.eclipse.emf.codegen.jet.JETParser;
-import org.eclipse.emf.codegen.jet.JETScriptletGenerator;
 import org.eclipse.emf.codegen.jet.JETParser.Directive;
-import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.codegen.jet.JETScriptletGenerator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Matthieu Helleboid
@@ -152,20 +148,15 @@ public class JetTagsCompiler extends JETCompiler {
         if (id != null && id.contains(LOGICAL_NAME)) {
             URI uri = URI.createURI(id);
             String fragment = uri.fragment().substring(LOGICAL_NAME.length() + 1);
-            TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-            Resource resource = editingDomain.getResourceSet().getResource(uri.trimFragment(), true);
-            TreeIterator<EObject> treeIterator = resource.getAllContents();
-            while (treeIterator.hasNext()) {
-                EObject eObject = treeIterator.next();
-                if (eObject instanceof Pattern) {
-                    Pattern pattern = (Pattern) eObject;
-                    StringBuilder buffer = new StringBuilder();
-                    buffer.append(PatternHelper.getFullLibraryName(pattern));
-                    buffer.append("."); //$NON-NLS-1$
-                    buffer.append(pattern.getName());
-                    if (buffer.toString().equals(fragment)) {
-                        return uri.trimFragment().appendFragment(pattern.getID()).toString();
-                    }
+            PatternHelper patternHelper = PatternHelper.createCollector();
+            List<Pattern> patterns = patternHelper.getPatterns(uri.trimFragment());
+            for (Pattern pattern : patterns) {
+                StringBuilder buffer = new StringBuilder();
+                buffer.append(PatternHelper.getFullLibraryName(pattern));
+                buffer.append("."); //$NON-NLS-1$
+                buffer.append(pattern.getName());
+                if (buffer.toString().equals(fragment)) {
+                    return uri.trimFragment().appendFragment(pattern.getID()).toString();
                 }
             }
         }
