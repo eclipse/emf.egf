@@ -144,7 +144,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
             List<Pattern> patterns = helper.getPatterns(project, null);
             SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * patterns.size());
             for (Pattern pattern : patterns) {
-                JavaHelper.deleteJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), project, PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(pattern.getContainer()), BaseJavaAssemblyHelper.getClassName(pattern), true);
+                JavaHelper.deleteJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), project, PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(pattern.getContainer()), BaseJavaAssemblyHelper.getClassName(pattern), false);
             }
         } finally {
             helper.clear();
