@@ -88,7 +88,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
     private Button upButton;
     private Button downButton;
     private final Node model;
-    private ContainerCheckedTreeViewer viewer;
+    protected ContainerCheckedTreeViewer viewer;
 
     public EcoreModelPage(String pageName, Node model) {
         super(pageName);
@@ -272,8 +272,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
                     else
                         return;
                     Node newNode = addEcore(uri);
-                    viewer.refresh();
-                    viewer.expandToLevel(newNode, AbstractTreeViewer.ALL_LEVELS);
+                    newNodeAdded(newNode);
                 }
 
             }
@@ -421,6 +420,11 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
             checkedElements.add((Node) obj);
 
         return checkedElements;
+    }
+
+    protected void newNodeAdded(Node newNode) {
+        viewer.refresh();
+        viewer.expandToLevel(newNode, AbstractTreeViewer.ALL_LEVELS);
     }
 
     static private class ListContentProvider implements IStructuredContentProvider {
