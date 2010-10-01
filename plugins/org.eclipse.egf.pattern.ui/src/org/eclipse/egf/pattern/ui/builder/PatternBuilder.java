@@ -25,14 +25,10 @@ import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.egf.common.helper.JavaHelper;
-import org.eclipse.egf.core.pattern.PatternPreferences;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper.FilenameFormatException;
 import org.eclipse.egf.pattern.EGFPatternPlugin;
-import org.eclipse.egf.pattern.common.java.BaseJavaAssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
@@ -131,25 +127,6 @@ public class PatternBuilder extends IncrementalProjectBuilder {
             }
         }
         return null;
-    }
-
-    @Override
-    protected void clean(IProgressMonitor monitor) throws CoreException {
-        IProject project = getProject();
-        if (project == null || project.isAccessible() == false) {
-            return;
-        }
-        PatternHelper helper = PatternHelper.createCollector();
-        try {
-            List<Pattern> patterns = helper.getPatterns(project, null);
-            SubMonitor subMonitor = SubMonitor.convert(monitor, 100 * patterns.size());
-            for (Pattern pattern : patterns) {
-                JavaHelper.deleteJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), project, PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(pattern.getContainer()), BaseJavaAssemblyHelper.getClassName(pattern), false);
-            }
-        } finally {
-            helper.clear();
-            monitor.done();
-        }
     }
 
 }
