@@ -126,7 +126,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
     }
 
-    protected void processPatternToRemove(EObject eObject, FeatureChange change, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
+    protected void processPatternToUpdate(EObject eObject, FeatureChange change, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
         if (eObject == null || change == null) {
             return;
         }
@@ -142,7 +142,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                     if (listChange.getKind() == ChangeKind.REMOVE_LITERAL) {
                         if (((List<?>) change.getValue()).isEmpty() == false) {
                             if (((List<?>) change.getValue()).contains(object) == false) {
-                                processPatternToRemove(object, deletedPatterns, patternsToUpdate);
+                                processPatternToUpdate(object, deletedPatterns, patternsToUpdate);
                                 continue LOOP;
                             }
                         }
@@ -155,7 +155,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                     }
                 }
             } else {
-                processPatternToRemove(object, deletedPatterns, patternsToUpdate);
+                processPatternToUpdate(object, deletedPatterns, patternsToUpdate);
             }
         }
     }
@@ -211,31 +211,31 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
     }
 
-    protected void processPatternToRemove(Object object, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
+    protected void processPatternToUpdate(Object object, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
         if (object instanceof PatternMethod) {
-            processPatternConstraint(((PatternMethod) object).getPattern(), deletedPatterns, patternsToUpdate);
+            processPatternToUpdateConstraint(((PatternMethod) object).getPattern(), deletedPatterns, patternsToUpdate);
         } else {
             for (Pattern pattern : getPatterns(Collections.singletonList(object))) {
-                processPatternConstraint(pattern, deletedPatterns, patternsToUpdate);
+                processPatternToUpdateConstraint(pattern, deletedPatterns, patternsToUpdate);
             }
         }
     }
 
     protected void processPatternMethodToRestore(Object object, Set<Pattern> deletedPatterns, List<PatternMethod> methodsToDelete, List<PatternMethod> methodsToRestore) {
         if (object instanceof PatternMethod) {
-            processPatternMethodConstraint((PatternMethod) object, methodsToDelete, methodsToRestore);
+            processPatternMethodToRestoreConstraint((PatternMethod) object, methodsToDelete, methodsToRestore);
         } else {
             for (Pattern pattern : getPatterns(Collections.singletonList(object))) {
                 if (deletedPatterns.contains(pattern) == false) {
                     for (PatternMethod method : pattern.getMethods()) {
-                        processPatternMethodConstraint(method, methodsToDelete, methodsToRestore);
+                        processPatternMethodToRestoreConstraint(method, methodsToDelete, methodsToRestore);
                     }
                 }
             }
         }
     }
 
-    protected boolean processPatternConstraint(Pattern pattern, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
+    protected boolean processPatternToUpdateConstraint(Pattern pattern, Map<Pattern, PatternLibrary> deletedPatterns, List<Pattern> patternsToUpdate) {
         if (pattern == null) {
             return false;
         }
@@ -247,7 +247,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         return true;
     }
 
-    protected boolean processPatternMethodConstraint(PatternMethod method, List<PatternMethod> methodsToDelete, List<PatternMethod> methodsToRestore) {
+    protected boolean processPatternMethodToRestoreConstraint(PatternMethod method, List<PatternMethod> methodsToDelete, List<PatternMethod> methodsToRestore) {
         if (method == null) {
             return false;
         }
@@ -346,7 +346,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                 }
                 // Process
                 for (PatternMethod method : pattern.getMethods()) {
-                    processPatternMethodConstraint(method, methodsToDelete, methodsToRestore);
+                    processPatternMethodToRestoreConstraint(method, methodsToDelete, methodsToRestore);
                 }
             }
             // PatternMethod
@@ -355,7 +355,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                 if (method.getPattern() != null && deletedPatterns.contains(method.getPattern())) {
                     continue;
                 }
-                processPatternMethodConstraint(method, methodsToDelete, methodsToRestore);
+                processPatternMethodToRestoreConstraint(method, methodsToDelete, methodsToRestore);
             }
 
         }
@@ -368,7 +368,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                         for (Object object : listChange.getReferenceValues()) {
                             for (Pattern pattern : getPatterns(Collections.singletonList(object))) {
                                 for (PatternMethod method : pattern.getMethods()) {
-                                    processPatternMethodConstraint(method, methodsToDelete, methodsToRestore);
+                                    processPatternMethodToRestoreConstraint(method, methodsToDelete, methodsToRestore);
                                 }
                             }
                         }
@@ -376,7 +376,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                         for (Object object : change.getValue()) {
                             for (Pattern pattern : getPatterns(Collections.singletonList(object))) {
                                 for (PatternMethod method : pattern.getMethods()) {
-                                    processPatternMethodConstraint(method, methodsToDelete, methodsToRestore);
+                                    processPatternMethodToRestoreConstraint(method, methodsToDelete, methodsToRestore);
                                 }
                             }
                         }
@@ -386,7 +386,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
 
         // Nothing to do
-        if (deletedPatterns.isEmpty() && methodsToDelete.isEmpty() && methodsToRestore.isEmpty()) {
+        if (methodsToRestore.isEmpty()) {
             return;
         }
 
@@ -396,24 +396,12 @@ public class TemplateProcessor implements IFcoreProcessor {
             @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 
-                SubMonitor subMonitor = SubMonitor.convert(monitor, (deletedPatterns.size() * 200) + (methodsToDelete.size() * 100) + (methodsToRestore.size() * 100));
-                subMonitor.beginTask(null, (deletedPatterns.size() * 100) + (methodsToDelete.size() * 100) + (methodsToRestore.size() * 100));
+                SubMonitor subMonitor = SubMonitor.convert(monitor, methodsToRestore.size() * 100);
+                subMonitor.beginTask(null, methodsToRestore.size() * 100);
 
                 try {
 
-                    // 1 - Remove java resource and Pattern
-                    for (Pattern pattern : deletedPatterns) {
-                        // Clean current or previous if any, package based on based on entry.getValue()
-                        JavaHelper.deleteJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(pattern.getContainer()),
-                                BaseJavaAssemblyHelper.getClassName(pattern), true);
-                        // Remove templates
-                        TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), pattern.getMethods());
-                    }
-
-                    // 2 - Remove PatternMethods
-                    TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), methodsToDelete);
-
-                    // 3 - Restore templates if any 
+                    // 1 - Restore templates if any 
                     if (methodsToRestore.isEmpty() == false) {
                         TemplateModelFileHelper.restoreTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, methodsToRestore);
                     }
@@ -502,7 +490,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             if (entry.getKey() instanceof FactoryComponent) {
                 for (FeatureChange change : entry.getValue()) {
                     if (change.getFeature() == FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER) {
-                        processPatternToRemove(entry.getKey(), change, deletedPatterns, patternsToUpdate);
+                        processPatternToUpdate(entry.getKey(), change, deletedPatterns, patternsToUpdate);
                         break;
                     }
                 }
@@ -511,7 +499,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             else if (entry.getKey() instanceof ViewpointContainer) {
                 for (FeatureChange change : entry.getValue()) {
                     if (change.getFeature() == FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS) {
-                        processPatternToRemove(entry.getKey(), change, deletedPatterns, patternsToUpdate);
+                        processPatternToUpdate(entry.getKey(), change, deletedPatterns, patternsToUpdate);
                         break;
                     }
                 }
@@ -520,7 +508,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             else if (entry.getKey() instanceof PatternViewpoint) {
                 for (FeatureChange change : entry.getValue()) {
                     if (change.getFeature() == PatternPackage.Literals.PATTERN_VIEWPOINT__LIBRARIES) {
-                        processPatternToRemove(entry.getKey(), change, deletedPatterns, patternsToUpdate);
+                        processPatternToUpdate(entry.getKey(), change, deletedPatterns, patternsToUpdate);
                         break;
                     }
                 }
@@ -534,19 +522,19 @@ public class TemplateProcessor implements IFcoreProcessor {
                         updatedLibraries.put(library, change);
                         // Process PatternLibrary Content
                         for (Pattern pattern : library.getElements()) {
-                            processPatternConstraint(pattern, deletedPatterns, patternsToUpdate);
+                            processPatternToUpdateConstraint(pattern, deletedPatterns, patternsToUpdate);
                         }
                     }
                     // Process container update
                     else if (change.getFeature() == PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS) {
-                        processPatternToRemove(library, change, deletedPatterns, patternsToUpdate);
+                        processPatternToUpdate(library, change, deletedPatterns, patternsToUpdate);
                     }
                 }
             }
             // Pattern
             else if (entry.getKey() instanceof Pattern) {
                 Pattern pattern = (Pattern) entry.getKey();
-                if (processPatternConstraint(pattern, deletedPatterns, patternsToUpdate)) {
+                if (processPatternToUpdateConstraint(pattern, deletedPatterns, patternsToUpdate)) {
                     // Process
                     for (FeatureChange change : entry.getValue()) {
                         // Process name update
@@ -578,6 +566,8 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
 
         // Analyse Pattern who will be deleted but also marked to be updated
+        // The idea here is keep the Pattern who have the same PatternFilePath marked as deleted but updated
+        // eg. EMF Pattern codegen
         for (Map.Entry<EObject, EList<FeatureChange>> entry : changeDescription.getObjectChanges().entrySet()) {
 
             // FactoryComponent
@@ -618,7 +608,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             // Pattern
             else if (entry.getKey() instanceof Pattern) {
                 Pattern pattern = (Pattern) entry.getKey();
-                if (processPatternConstraint(pattern, deletedPatterns, patternsToUpdate)) {
+                if (processPatternToUpdateConstraint(pattern, deletedPatterns, patternsToUpdate)) {
                     for (FeatureChange change : entry.getValue()) {
                         if (change.getFeature() == PatternPackage.Literals.PATTERN__CONTAINER) {
                             excludeDeletedPatternsFromPatterns(pattern, deletedPatterns, patternsToUpdate);
@@ -651,7 +641,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                     for (EObject eObject : change.getResource().getContents()) {
                         if (eObject instanceof FactoryComponent && change.getValue().contains(eObject) == false) {
                             for (Pattern pattern : getPatterns(Collections.singletonList(eObject))) {
-                                processPatternConstraint(pattern, deletedPatterns, patternsToUpdate);
+                                processPatternToUpdateConstraint(pattern, deletedPatterns, patternsToUpdate);
                             }
                         }
                     }
