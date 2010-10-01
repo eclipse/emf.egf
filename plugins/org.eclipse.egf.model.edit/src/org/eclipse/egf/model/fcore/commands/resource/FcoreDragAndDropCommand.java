@@ -43,6 +43,95 @@ public class FcoreDragAndDropCommand extends DragAndDropCommand {
     }
 
     /**
+     * This attempts to prepare a drop copy insert operation.
+     */
+    @Override
+    protected boolean prepareDropCopyInsert(final Object parent, Collection<?> children, final int index) {
+        boolean result;
+        // Ignore
+        if (collection == null || collection.isEmpty()) {
+            dragCommand = IdentityCommand.INSTANCE;
+            dropCommand = UnexecutableCommand.INSTANCE;
+            result = false;
+        }
+        // We don't want to copy insert an object before or after itself...
+        else if (collection.contains(owner)) {
+            dragCommand = IdentityCommand.INSTANCE;
+            dropCommand = UnexecutableCommand.INSTANCE;
+            result = false;
+        } else {
+            // Copy the collection
+            dragCommand = CopyCommand.create(domain, collection);
+            if (optimize) {
+                result = optimizedCanExecute();
+                if (result) {
+                    optimizedDropCommandOwner = parent;
+                }
+            } else {
+                if (dragCommand.canExecute() && dragCommand.canUndo()) {
+                    dragCommand.execute();
+                    isDragCommandExecuted = true;
+                    // And add the copy.
+                    dropCommand = AddCommand.create(domain, parent, null, dragCommand.getResult(), index);
+                    if (analyzeForNonContainment(dropCommand)) {
+                        dropCommand.dispose();
+                        dropCommand = UnexecutableCommand.INSTANCE;
+
+                        dragCommand.undo();
+                        dragCommand.dispose();
+                        isDragCommandExecuted = false;
+                        dragCommand = IdentityCommand.INSTANCE;
+                    }
+                    result = dropCommand.canExecute();
+                } else {
+                    dropCommand = UnexecutableCommand.INSTANCE;
+                    result = false;
+                }
+            } // if optimize
+        } // if collection
+        return result;
+    }
+
+    /**
+     * This attempts to prepare a drop copy on operation.
+     */
+    @Override
+    protected boolean prepareDropCopyOn() {
+        // Ignore
+        if (collection == null || collection.isEmpty()) {
+            dragCommand = IdentityCommand.INSTANCE;
+            dropCommand = UnexecutableCommand.INSTANCE;
+            return false;
+        }
+        boolean result;
+        dragCommand = CopyCommand.create(domain, collection);
+        if (optimize) {
+            result = optimizedCanExecute();
+            if (result) {
+                optimizedDropCommandOwner = owner;
+            }
+        } else {
+            if (dragCommand.canExecute() && dragCommand.canUndo()) {
+                dragCommand.execute();
+                isDragCommandExecuted = true;
+                dropCommand = AddCommand.create(domain, owner, null, dragCommand.getResult());
+                if (analyzeForNonContainment(dropCommand)) {
+                    dropCommand.dispose();
+                    dropCommand = UnexecutableCommand.INSTANCE;
+                    dragCommand.undo();
+                    dragCommand.dispose();
+                    isDragCommandExecuted = false;
+                    dragCommand = IdentityCommand.INSTANCE;
+                }
+            } else {
+                dropCommand = UnexecutableCommand.INSTANCE;
+            }
+            result = dragCommand.canExecute() && dropCommand.canExecute();
+        }
+        return result;
+    }
+
+    /**
      * This attempts to prepare a drop move insert operation.
      */
     @Override
