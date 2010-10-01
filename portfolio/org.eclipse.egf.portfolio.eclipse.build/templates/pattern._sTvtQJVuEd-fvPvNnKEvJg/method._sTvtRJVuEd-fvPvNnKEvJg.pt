@@ -26,6 +26,11 @@
         </buckminster>
 
         <echo message="Invoking all eclipse builders on workspace ${workspace}" />
-        <buckminster command="build" />
+        <buckminster command="build" >
+            <cmdargs>
+                <arg value="--clean" />
+                <arg value="--thorough" />
+            </cmdargs>
+		</buckminster>
     </target>
 
