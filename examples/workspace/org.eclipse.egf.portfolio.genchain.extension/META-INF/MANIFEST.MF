@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.portfolio.genchain.tools;visibility:=reexport,
  org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.pattern.ftask;visibility:=reexport,
- org.eclipse.egf.producer.ftask;bundle-version="0.2.5",
+ org.eclipse.egf.producer.ftask,
  org.eclipse.egf.model.ftask;visibility:=reexport,
- org.eclipse.egf.model.fprod;bundle-version="0.2.5"
+ org.eclipse.egf.model.fprod
 Bundle-ActivationPolicy: lazy
