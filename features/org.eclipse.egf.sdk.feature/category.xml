@@ -12,5 +12,8 @@
    <feature url="features/org.eclipse.egf.portfolio.emf_0.3.0.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="0.3.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
+   <feature url="features/org.eclipse.egf.portfolio.genchain_0.3.0.qualifier.jar" id="org.eclipse.egf.portfolio.genchain" version="0.3.0.qualifier">
+      <category name="org.eclipse.egf.sdk.category"/>
+   </feature>   
    <category-def name="org.eclipse.egf.sdk.category" label="EGF SDK"/>
 </site>
