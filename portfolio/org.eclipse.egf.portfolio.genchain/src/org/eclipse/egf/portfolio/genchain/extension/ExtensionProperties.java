@@ -20,13 +20,14 @@ package org.eclipse.egf.portfolio.genchain.extension;
  * 
  */
 public interface ExtensionProperties {
-    String ID = "id";
-    String MODEL_PATH = "model.path";
-    String PROPERTY_VALUE = "property.value";
-    String PROPERTY_EATTRIBUTE = "property.attribute";
-    String CONFLICT = "property.conflict";
+	String ID = "id";
+	String MODEL_PATH = "model.path";
+	String PROPERTY_VALUE = "property.value";
+	String PROPERTY_EATTRIBUTE = "property.attribute";
+	String CONFLICT = "property.conflict";
 
-    String CONTEXT_PROJECT_NAME = "ctx.project.name";
-    String CONTEXT_MODEL_NAME = "ctx.model.path";
+	String CONTEXT_CURRENT_PROJECT_NAME = "ctx.current.project.name";
+	String CONTEXT_PROJECT_NAME = "ctx.project.name";
+	String CONTEXT_MODEL_NAME = "ctx.model.path";
 
 }
