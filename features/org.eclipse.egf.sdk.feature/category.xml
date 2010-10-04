@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.egf_0.2.5.qualifier.jar" id="org.eclipse.egf" version="0.2.5.qualifier">
+   <feature url="features/org.eclipse.egf_0.3.0.qualifier.jar" id="org.eclipse.egf" version="0.3.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.doc_0.2.5.qualifier.jar" id="org.eclipse.egf.doc" version="0.2.5.qualifier">
+   <feature url="features/org.eclipse.egf.doc_0.3.0.qualifier.jar" id="org.eclipse.egf.doc" version="0.3.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio_0.2.5.qualifier.jar" id="org.eclipse.egf.portfolio" version="0.2.5.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio_0.3.0.qualifier.jar" id="org.eclipse.egf.portfolio" version="0.3.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio.emf_0.2.5.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="0.2.5.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio.emf_0.3.0.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="0.3.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
    <category-def name="org.eclipse.egf.sdk.category" label="EGF SDK"/>
