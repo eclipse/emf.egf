@@ -8,6 +8,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 import org.eclipse.egf.emf.pattern.base.*;
+import org.eclipse.emf.codegen.ecore.genmodel.*;
 
 public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceFeatureoverride {
     protected static String nl;
@@ -140,7 +141,12 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
     }
 
     public boolean preCondition() throws Exception {
-        return EMFPatternHelper.isSameEClass(BuildstepPackage.eINSTANCE.getJavadocStep(), createClass.getEcoreClass());
-
+        //workaroud : usage of reflection instead of this.createClass (to keep compatibility with emf 2.3)
+        try {
+            GenClass createClass = (GenClass) getParameters().get("createClass");
+            return EMFPatternHelper.isSameEClass(BuildstepPackage.eINSTANCE.getJavadocStep(), createClass.getEcoreClass());
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
