@@ -44,7 +44,7 @@ public class PatternExtensionProxy {
      * Returns the new proxy, or null if the element could not be created.
      */
     public static PatternExtensionProxy createProxy(IConfigurationElement element) {
-        if (element == null) {
+        if (element == null || element.isValid() == false) {
             return null;
         }
         // Store identifier
@@ -96,7 +96,7 @@ public class PatternExtensionProxy {
      * @return the PatternExtension
      */
     public PatternExtension getPatternExtension() throws CoreException {
-        if (_executable == null) {
+        if (_executable == null && _element.isValid()) {
             Object object = _element.createExecutableExtension(PatternExtensionRegistry.ATT_CLASS);
             if (object == null) {
                 return null;

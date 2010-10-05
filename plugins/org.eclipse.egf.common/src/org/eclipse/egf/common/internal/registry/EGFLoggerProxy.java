@@ -54,7 +54,7 @@ public class EGFLoggerProxy {
      * @return the _executable
      */
     public IEGFLogger getEGFLogger() {
-        if (_executable == null) {
+        if (_executable == null && _element.isValid()) {
             try {
                 Object object = _element.createExecutableExtension(EGFLoggerRegistry.INVOKER_ATT_CLASS);
                 if (object == null) {
@@ -81,7 +81,7 @@ public class EGFLoggerProxy {
      * Returns the new proxy, or null if the element could not be created.
      */
     public static EGFLoggerProxy createProxy(IConfigurationElement element) {
-        if (element == null) {
+        if (element == null || element.isValid() == false) {
             return null;
         }
         // Store identifier

@@ -44,7 +44,7 @@ public class ActivityProductionContextProducerProxy {
      * Returns the new proxy, or null if the element could not be created.
      */
     public static ActivityProductionContextProducerProxy createProxy(IConfigurationElement element) {
-        if (element == null) {
+        if (element == null || element.isValid() == false) {
             return null;
         }
         // Store identifier
@@ -97,7 +97,7 @@ public class ActivityProductionContextProducerProxy {
      */
     @SuppressWarnings("unchecked")
     public <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws CoreException {
-        if (_executable == null) {
+        if (_executable == null && _element.isValid()) {
             Object object = _element.createExecutableExtension(ActivityProductionContextProducerRegistry.INVOKER_ATT_CLASS);
             if (object == null) {
                 return null;

@@ -44,7 +44,7 @@ public class OrchestrationManagerProducerProxy {
      * Returns the new proxy, or null if the element could not be created.
      */
     public static OrchestrationManagerProducerProxy createProxy(IConfigurationElement element) {
-        if (element == null) {
+        if (element == null || element.isValid() == false) {
             return null;
         }
         // Store identifier
@@ -97,7 +97,7 @@ public class OrchestrationManagerProducerProxy {
      */
     @SuppressWarnings("unchecked")
     public <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationManagerProducer(P orchestration) throws CoreException {
-        if (_executable == null) {
+        if (_executable == null && _element.isValid()) {
             Object object = _element.createExecutableExtension(OrchestrationManagerProducerRegistry.INVOKER_ATT_CLASS);
             if (object == null) {
                 return null;
