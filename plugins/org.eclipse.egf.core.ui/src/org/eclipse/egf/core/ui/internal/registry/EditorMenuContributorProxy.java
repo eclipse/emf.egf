@@ -65,6 +65,9 @@ public class EditorMenuContributorProxy {
         if (menu != null) {
             return menu;
         }
+        if (_element.isValid() == false) {
+            return null;
+        }
         try {
             Object object = _element.createExecutableExtension(EditorMenuContributorRegistry.INVOKER_ATT_CLASS);
             if (object == null) {
@@ -80,6 +83,7 @@ public class EditorMenuContributorProxy {
             }
             menu = (EditorMenuContributor) object;
             menu.setParentContributor(parent);
+            _executables.put(parent, menu);
             return menu;
         } catch (CoreException e) {
             EGFCoreUIPlugin.getDefault().logError(e);
@@ -92,7 +96,7 @@ public class EditorMenuContributorProxy {
      * Returns the new proxy, or null if the element could not be created.
      */
     public static EditorMenuContributorProxy createProxy(IConfigurationElement element) {
-        if (element == null) {
+        if (element == null || element.isValid() == false) {
             return null;
         }
         // Store identifier
