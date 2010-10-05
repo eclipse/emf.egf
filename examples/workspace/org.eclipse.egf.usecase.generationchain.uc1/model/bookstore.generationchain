@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<generationChain:GenerationChain xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:generationChain="http://www.eclipse.org/egf/1.0.0/generationChain" name="bookstore" factoryComponentName="org.eclipse.egf.chain.bookstore">
+  <elements xsi:type="generationChain:GenerationChain" name="library">
+    <elements xsi:type="generationChain:DocumentationGeneration" name="- Emf Documentation for library" modelPath="/org.eclipse.egf.usecase.generationchain.uc1/model/library.ecore" pluginName="org.eclipse.egf.usecase.generationchain.uc1.doc" outputDirectoryPath="output"/>
+    <elements xsi:type="generationChain:EmfGeneration" name="- Emf Generation for library" modelPath="/org.eclipse.egf.usecase.generationchain.uc1/model/library.ecore" generateModel="true" generateEdit="true" pluginName="org.eclipse.egf.usecase.generationchain.uc1.library" basePackage="org.eclipse.egf.usecase.generationchain.uc1"/>
+  </elements>
+  <elements xsi:type="generationChain:GenerationChain" name="mybookstore">
+    <elements xsi:type="generationChain:DocumentationGeneration" name="- Emf Documentation for mybookstore" modelPath="/org.eclipse.egf.usecase.generationchain.uc1/model/mybookstore.ecore" pluginName="org.eclipse.egf.usecase.generationchain.uc1.doc" outputDirectoryPath="output"/>
+    <elements xsi:type="generationChain:EmfGeneration" name="- Emf Generation for mybookstore" modelPath="/org.eclipse.egf.usecase.generationchain.uc1/model/mybookstore.ecore" generateModel="true" generateEdit="true" generateEditor="true" pluginName="org.eclipse.egf.usecase.generationchain.uc1.mybookstore" basePackage="org.eclipse.egf.usecase.generationchain.uc1"/>
+  </elements>
+</generationChain:GenerationChain>
