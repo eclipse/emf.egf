@@ -47,162 +47,173 @@ import org.eclipse.emf.importer.ecore.EcoreImporter;
  * @author Thomas Guiu
  */
 public class EcoreImporterHelper {
-	protected static final BasicMonitor MONITOR = new BasicMonitor();
-	protected static final NullProgressMonitor NULL_PROGRESS_MONITOR = new NullProgressMonitor();
-	protected static final String GENMODEL_EXT = ".genmodel";
-	protected static final String FCORE_EXT = ".fcore";
-	protected static final String ECORE_EXT = ".ecore";
+    protected static final BasicMonitor MONITOR = new BasicMonitor();
+    protected static final NullProgressMonitor NULL_PROGRESS_MONITOR = new NullProgressMonitor();
+    protected static final String GENMODEL_EXT = ".genmodel";
+    protected static final String FCORE_EXT = ".fcore";
+    protected static final String ECORE_EXT = ".ecore";
 
-	public static EcoreImporter createDefaultEcoreImporter() throws Exception {
-		return new EcoreImporter();
-	}
+    private EcoreImporter importer;
 
-	public static EcoreImporter createEcoreImporter(IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
-		EcoreImporter ecoreImporter = new EcoreImporter() {
-			public ResourceSet createResourceSet() {
-				return new EGFResourceSet();
-			}
+    public static EcoreImporter createDefaultEcoreImporter() throws Exception {
+        return new EcoreImporter();
+    }
 
-			protected List<Resource> computeResourcesToBeSaved() {
-				List<Resource> resources = new UniqueEList.FastCompare<Resource>();
-				Resource genModelResource = getGenModel().eResource();
-				resources.add(genModelResource);
+    public static EcoreImporter createEcoreImporter(IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
+        return doCreateEcoreImporter(new EcoreImporterHelper(), containterPath, ecoreURI, model);
+    }
 
-				// Handle application genmodel stub
-				//
-				for (GenPackage genPackage : getGenModel().getUsedGenPackages()) {
-					if (genPackage.eResource() == genModelResource) {
-						resources.add(genPackage.getEcorePackage().eResource());
-					}
-				}
+    protected static EcoreImporter doCreateEcoreImporter(EcoreImporterHelper helper, IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
+        helper.importer = new EcoreImporter() {
+            public ResourceSet createResourceSet() {
+                return new EGFResourceSet();
+            }
 
-				return resources;
-			}
+            protected List<Resource> computeResourcesToBeSaved() {
+                List<Resource> resources = new UniqueEList.FastCompare<Resource>();
+                Resource genModelResource = getGenModel().eResource();
+                resources.add(genModelResource);
 
-		};
-		ecoreImporter.setGenModelContainerPath(containterPath);
-		String name = ecoreURI.lastSegment().replace(ECORE_EXT, GENMODEL_EXT);
-		ecoreImporter.setGenModelFileName(name);
-		ecoreImporter.setModelLocation(ecoreURI.toString());
+                // Handle application genmodel stub
+                //
+                for (GenPackage genPackage : getGenModel().getUsedGenPackages()) {
+                    if (genPackage.eResource() == genModelResource) {
+                        resources.add(genPackage.getEcorePackage().eResource());
+                    }
+                }
 
-		// ecoreImporter.computeEPackages(MONITOR);
-		// ecoreImporter.adjustEPackages(MONITOR);
-		ecoreImporter.computeDefaultGenModelFileName();
-		ecoreImporter.prepareGenModelAndEPackages(MONITOR);
-		EList<GenPackage> genPackages = ecoreImporter.getGenModel().getGenPackages();
-		addEPackages(containterPath, ecoreURI, ecoreImporter, model);
+                return resources;
+            }
 
-		ecoreImporter.saveGenModelAndEPackages(MONITOR);
-		return ecoreImporter;
-	}
+        };
+        helper.importer.setGenModelContainerPath(containterPath);
+        String name = ecoreURI.lastSegment().replace(ECORE_EXT, GENMODEL_EXT);
+        helper.importer.setGenModelFileName(name);
+        helper.importer.setModelLocation(ecoreURI.toString());
 
-	private static Map<String, EPackage> asMap(List<EPackage> packages) {
-		Map<String, EPackage> uri2package = new HashMap<String, EPackage>();
-		for (EPackage pack : packages)
-			uri2package.put(pack.getNsURI(), pack);
-		return uri2package;
-	}
+        // helper.importer.computeEPackages(MONITOR);
+        // helper.importer.adjustEPackages(MONITOR);
+        helper.importer.computeDefaultGenModelFileName();
+        helper.importer.prepareGenModelAndEPackages(MONITOR);
+        EList<GenPackage> genPackages = helper.importer.getGenModel().getGenPackages();
+        helper.addEPackages(containterPath, ecoreURI, helper.importer, model);
 
-	private static void addEPackages(IPath containterPath, URI ecoreURI, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
-		ResourceSet resourceSet = ecoreImporter.getGenModel().eResource().getResourceSet();
-		List<EPackage> ePackages = getOwnEPackages(resourceSet, ecoreURI);
+        helper.importer.saveGenModelAndEPackages(MONITOR);
+        return helper.importer;
+    }
 
-		GenModel genModel = ecoreImporter.getGenModel();
-		genModel.initialize(ePackages);
+    private static Map<String, EPackage> asMap(List<EPackage> packages) {
+        Map<String, EPackage> uri2package = new HashMap<String, EPackage>();
+        for (EPackage pack : packages)
+            uri2package.put(pack.getNsURI(), pack);
+        return uri2package;
+    }
 
-		ecoreImporter.computeEPackages(MONITOR);
-		ecoreImporter.adjustEPackages(MONITOR);
+    protected void addEPackages(IPath containterPath, URI ecoreURI, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
+        ResourceSet resourceSet = ecoreImporter.getGenModel().eResource().getResourceSet();
+        List<EPackage> ePackages = getOwnEPackages(resourceSet, ecoreURI);
 
-		List<EPackage> allEPackages = ecoreImporter.getEPackages();
-		Map<String, EPackage> requiredEPackages = asMap(allEPackages);
+        GenModel genModel = ecoreImporter.getGenModel();
+        genModel.initialize(ePackages);
 
-		for (EPackage ePackage : ePackages)
-			requiredEPackages.remove(ePackage.getNsURI());
+        ecoreImporter.computeEPackages(MONITOR);
+        ecoreImporter.adjustEPackages(MONITOR);
 
-		for (EPackage ePackage : requiredEPackages.values()) {
-			List<GenPackage> genModels = getPluginGenModel(ePackage);
-			if (genModels.isEmpty()) {
-				IPath ecorePath = new Path(ePackage.eResource().getURI().toString());
-				Resource resource = getGenModelResource(ecorePath, genModel, model);
+        List<EPackage> allEPackages = ecoreImporter.getEPackages();
+        Map<String, EPackage> requiredEPackages = asMap(allEPackages);
 
-				if (resource != null && !resource.getContents().isEmpty()) {
-					for (EObject obj : resource.getContents())
-						genModel.getUsedGenPackages().addAll(((GenModel) obj).getGenPackages());
-				} else
-					throw new RuntimeException("can't find genmodel for " + ecorePath);
+        for (EPackage ePackage : ePackages)
+            requiredEPackages.remove(ePackage.getNsURI());
 
-			} else
-				genModel.getUsedGenPackages().addAll(genModels);
-		}
-	}
+        for (EPackage ePackage : requiredEPackages.values()) {
+            List<GenPackage> genModels = getPluginGenModel(ePackage);
+            if (genModels.isEmpty()) {
+                IPath ecorePath = new Path(ePackage.eResource().getURI().toString());
+                Resource resource = getGenModelResource(ecorePath, genModel, model);
 
-	private static Resource getGenModelResource(IPath ecorePath, GenModel genModel, EmfGeneration model) {
-	    ResourceSet resourceSet = new EGFResourceSet();
-	    
-	    // try to find it closed to the ecore file
-		IPath path = ecorePath.removeFileExtension().addFileExtension("genmodel");
-		URI uri = URI.createURI(path.toString());
-		Resource resource = null;
-		try {
-			resource = resourceSet.getResource(uri, true);
-			if (resource != null && !resource.getContents().isEmpty())
-				return resource;
-		} catch (Exception e) {
-		}
+                if (resource != null && !resource.getContents().isEmpty()) {
+                    for (EObject obj : resource.getContents())
+                        genModel.getUsedGenPackages().addAll(((GenModel) obj).getGenPackages());
+                } else {
+                    handleMissingGenmodel(resourceSet, genModel, ecorePath);
+                }
 
-		// try to find corresponding genmodel in whole generationchain
+            } else
+                genModel.getUsedGenPackages().addAll(genModels);
+        }
+    }
+
+    protected void handleMissingGenmodel(ResourceSet resourceSet, GenModel genModel, IPath ecorePath) {
+        throw new RuntimeException("can't find genmodel for " + ecorePath);
+    }
+
+    private static Resource getGenModelResource(IPath ecorePath, GenModel genModel, EmfGeneration model) {
+        ResourceSet resourceSet = new EGFResourceSet();
+
+        // try to find it closed to the ecore file
+        IPath path = ecorePath.removeFileExtension().addFileExtension("genmodel");
+        URI uri = URI.createURI(path.toString());
+        Resource resource = null;
+        try {
+            resource = resourceSet.getResource(uri, true);
+            if (resource != null && !resource.getContents().isEmpty())
+                return resource;
+        } catch (Exception e) {
+        }
+
+        // try to find corresponding genmodel in whole generationchain
         IPath ecoreAbsolutePath = ecorePath.setDevice(null).removeFirstSegments(1).makeAbsolute();
-		
-		TreeIterator<Object> iterator = EcoreUtil.getAllContents(EcoreUtil.getRootContainer(model), false);
-		while (iterator.hasNext()) {
-			Object next = iterator.next();
-			if (next instanceof EmfGeneration) {
-				EmfGeneration emfGeneration = (EmfGeneration) next;
 
-				path = new Path(emfGeneration.getPluginName()).append(ecorePath.removeFirstSegments(2)).removeFileExtension().addFileExtension("genmodel");
-				uri = URI.createPlatformResourceURI(path.toString(), false);
+        TreeIterator<Object> iterator = EcoreUtil.getAllContents(EcoreUtil.getRootContainer(model), false);
+        while (iterator.hasNext()) {
+            Object next = iterator.next();
+            if (next instanceof EmfGeneration) {
+                EmfGeneration emfGeneration = (EmfGeneration) next;
 
-				if (emfGeneration.getModelPath().equals(ecoreAbsolutePath.toString())) {
-				    try {
-    					resource = resourceSet.getResource(uri, true);
-    					if (resource != null && !resource.getContents().isEmpty())
-    						return resource;
-    				} catch (Exception e1) {
-    				}
-				}
-			}
-		}
+                path = new Path(emfGeneration.getPluginName()).append(ecorePath.removeFirstSegments(2)).removeFileExtension().addFileExtension("genmodel");
+                uri = URI.createPlatformResourceURI(path.toString(), false);
 
-		return null;
-	}
+                if (emfGeneration.getModelPath().equals(ecoreAbsolutePath.toString())) {
+                    try {
+                        resource = resourceSet.getResource(uri, true);
+                        if (resource != null && !resource.getContents().isEmpty())
+                            return resource;
+                    } catch (Exception e1) {
+                    }
+                }
+            }
+        }
 
-	private static List<GenPackage> getPluginGenModel(EPackage ePackage) {
-		ResourceSet resourceSet = ePackage.eResource().getResourceSet();
+        return null;
+    }
 
-		Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-		for (Entry<String, URI> entry : ePackageNsURItoGenModelLocationMap.entrySet()) {
-			if (entry.getKey().equals(ePackage.getNsURI())) {
-				URI value = entry.getValue();
-				Resource resource = resourceSet.getResource(value, true);
-				GenModel eObject = (GenModel) resource.getContents().get(0);
-				return eObject.getGenPackages();
-			}
-		}
-		return Collections.emptyList();
-	}
+    private static List<GenPackage> getPluginGenModel(EPackage ePackage) {
+        ResourceSet resourceSet = ePackage.eResource().getResourceSet();
 
-	private static List<EPackage> getOwnEPackages(ResourceSet resourceSet, URI ecoreURI) {
-		List<EPackage> result = new ArrayList<EPackage>();
-		Resource resource = resourceSet.getResource(ecoreURI, true);
-		TreeIterator<EObject> allContents = resource.getAllContents();
-		while (allContents.hasNext()) {
-			EObject next = allContents.next();
-			if (next instanceof EPackage) {
-				EPackage ePackage = (EPackage) next;
-				result.add(ePackage);
-			}
-		}
-		return result;
-	}
+        Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+        for (Entry<String, URI> entry : ePackageNsURItoGenModelLocationMap.entrySet()) {
+            if (entry.getKey().equals(ePackage.getNsURI())) {
+                URI value = entry.getValue();
+                Resource resource = resourceSet.getResource(value, true);
+                GenModel eObject = (GenModel) resource.getContents().get(0);
+                return eObject.getGenPackages();
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    private static List<EPackage> getOwnEPackages(ResourceSet resourceSet, URI ecoreURI) {
+        List<EPackage> result = new ArrayList<EPackage>();
+        Resource resource = resourceSet.getResource(ecoreURI, true);
+        TreeIterator<EObject> allContents = resource.getAllContents();
+        while (allContents.hasNext()) {
+            EObject next = allContents.next();
+            if (next instanceof EPackage) {
+                EPackage ePackage = (EPackage) next;
+                result.add(ePackage);
+            }
+        }
+        return result;
+    }
 
 }
