@@ -19,7 +19,7 @@ import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
-import org.eclipse.egf.model.fcore.commands.SetInvocationInvokedActivityCommand;
+import org.eclipse.egf.model.fcore.commands.InvocationSetInvokedActivityCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -198,7 +198,7 @@ public class InvocationItemProvider extends NamedModelElementItemProvider implem
     switch (featureId) {
     case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
       if (value == null || value instanceof Activity) {
-        command = new SetInvocationInvokedActivityCommand(editingDomain, (Invocation) owner, (Activity) value);
+        command = new InvocationSetInvokedActivityCommand(editingDomain, (Invocation) owner, (Activity) value);
       }
       break;
     }
