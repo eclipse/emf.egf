@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.internal.processor;
+package org.eclipse.egf.core.internal.registry;
 
 import org.eclipse.core.internal.registry.Handle;
 import org.eclipse.core.runtime.CoreException;
@@ -40,7 +40,7 @@ public class FcoreProcessorProxy {
      * Returns the new proxy, or null if the element could not be created.
      */
     public static FcoreProcessorProxy createProxy(IConfigurationElement element) {
-        if (element == null) {
+        if (element == null || element.isValid() == false) {
             return null;
         }
         // Store identifier
@@ -86,7 +86,7 @@ public class FcoreProcessorProxy {
      * @return the _executable
      */
     public IFcoreProcessor getIFcoreProcessor() {
-        if (_executable == null) {
+        if (_executable == null && _element.isValid()) {
             try {
                 Object object = _element.createExecutableExtension(FcoreProcessorRegistry.INVOKER_ATT_CLASS);
                 if (object == null) {

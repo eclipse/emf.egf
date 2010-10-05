@@ -21,7 +21,7 @@ import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.internal.genmodel.PlatformGenModel;
-import org.eclipse.egf.core.internal.processor.FcoreProcessorRegistry;
+import org.eclipse.egf.core.internal.registry.FcoreProcessorRegistry;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.egf.core.platform.uri.PlatformURIConverter;

@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.internal.processor;
+package org.eclipse.egf.core.internal.registry;
 
 import java.util.ArrayList;
 import java.util.Iterator;
