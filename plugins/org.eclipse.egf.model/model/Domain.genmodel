@@ -36,7 +36,7 @@
       <genFeatures createChild="false" propertyCategory="Domain" propertySortChoices="true"
           ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainURI/domain"/>
       <genFeatures property="Readonly" createChild="false" propertyCategory="Data"
-          ecoreFeature="ecore:EAttribute Domain.ecore#//TypeDomainURI/value"/>
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainURI/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

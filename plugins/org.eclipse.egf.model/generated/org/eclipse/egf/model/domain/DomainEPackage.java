@@ -31,30 +31,31 @@ import org.eclipse.emf.ecore.EPackage;
  * @generated
  */
 public interface DomainEPackage extends Domain {
-  /**
-   * Returns the value of the '<em><b>EPackage</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>EPackage</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>EPackage</em>' reference.
-   * @see #setEPackage(EPackage)
-   * @see org.eclipse.egf.model.domain.DomainPackage#getDomainEPackage_EPackage()
-   * @model required="true"
-   * @generated
-   */
-  EPackage getEPackage();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainEPackage#getEPackage <em>EPackage</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>EPackage</em>' reference.
-   * @see #getEPackage()
-   * @generated
-   */
-  void setEPackage(EPackage value);
+    /**
+     * Returns the value of the '<em><b>EPackage</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>EPackage</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>EPackage</em>' reference.
+     * @see #setEPackage(EPackage)
+     * @see org.eclipse.egf.model.domain.DomainPackage#getDomainEPackage_EPackage()
+     * @model required="true"
+     * @generated
+     */
+    EPackage getEPackage();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainEPackage#getEPackage <em>EPackage</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>EPackage</em>' reference.
+     * @see #getEPackage()
+     * @generated
+     */
+    void setEPackage(EPackage value);
 
 } // DomainEPackage

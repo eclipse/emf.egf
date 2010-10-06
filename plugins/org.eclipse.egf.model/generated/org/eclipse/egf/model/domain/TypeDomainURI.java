@@ -13,7 +13,6 @@
 package org.eclipse.egf.model.domain;
 
 import org.eclipse.egf.model.types.TypeObject;
-import org.eclipse.emf.common.util.URI;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,45 +32,46 @@ import org.eclipse.emf.common.util.URI;
  * @generated
  */
 public interface TypeDomainURI extends TypeObject {
-  /**
-   * Returns the value of the '<em><b>Domain</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Domain</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Domain</em>' reference.
-   * @see #setDomain(DomainURI)
-   * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI_Domain()
-   * @model resolveProxies="false"
-   * @generated
-   */
-  DomainURI getDomain();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.TypeDomainURI#getDomain <em>Domain</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Domain</em>' reference.
-   * @see #getDomain()
-   * @generated
-   */
-  void setDomain(DomainURI value);
+    /**
+     * Returns the value of the '<em><b>Domain</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Domain</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Domain</em>' reference.
+     * @see #setDomain(DomainURI)
+     * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI_Domain()
+     * @model resolveProxies="false"
+     * @generated
+     */
+    DomainURI getDomain();
 
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI_Value()
-   * @model dataType="org.eclipse.egf.model.types.URI" transient="true" changeable="false" volatile="true" derived="true"
-   * @generated
-   */
-  URI getValue();
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.domain.TypeDomainURI#getDomain <em>Domain</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Domain</em>' reference.
+     * @see #getDomain()
+     * @generated
+     */
+    void setDomain(DomainURI value);
+
+    /**
+     * Returns the value of the '<em><b>Value</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Value</em>' reference.
+     * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI_Value()
+     * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true"
+     * @generated
+     */
+    DomainURI getValue();
 
 } // TypeDomainURI

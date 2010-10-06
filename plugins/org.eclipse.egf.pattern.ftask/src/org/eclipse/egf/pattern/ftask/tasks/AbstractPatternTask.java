@@ -19,13 +19,13 @@ import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
+import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.pattern.BundleAccessor;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.ExecutionContext;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.framework.Bundle;
@@ -69,12 +69,12 @@ public abstract class AbstractPatternTask implements ITaskProduction {
             Contract contract = (Contract) object;
             String name = contract.getName();
             if (PatternContext.DOMAIN_OBJECTS.equals(name)) {
-                URI uri = (URI) context.getInputValue(name, contract.getType().getType());
-                if (uri == null)
+                DomainURI domainURI = (DomainURI) context.getInputValue(name, contract.getType().getType());
+                if (domainURI == null || domainURI.getUri() == null)
                     continue; // Weird behavior: unfilled contracts are
                 // available ...
                 ResourceSet set = new EGFResourceSet();
-                domainResource = set.getResource(uri, true);
+                domainResource = set.getResource(domainURI.getUri(), true);
                 ctx.setValue(PatternContext.DOMAIN_OBJECTS, domainResource.getContents());
             } else
                 ctx.setValue(name, context.getInputValue(name, contract.getType().getType()));

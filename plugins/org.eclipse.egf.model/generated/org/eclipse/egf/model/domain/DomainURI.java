@@ -31,30 +31,31 @@ import org.eclipse.emf.common.util.URI;
  * @generated
  */
 public interface DomainURI extends Domain {
-  /**
-   * Returns the value of the '<em><b>Uri</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Uri</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Uri</em>' attribute.
-   * @see #setUri(URI)
-   * @see org.eclipse.egf.model.domain.DomainPackage#getDomainURI_Uri()
-   * @model dataType="org.eclipse.egf.model.types.URI" required="true"
-   * @generated
-   */
-  URI getUri();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainURI#getUri <em>Uri</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Uri</em>' attribute.
-   * @see #getUri()
-   * @generated
-   */
-  void setUri(URI value);
+    /**
+     * Returns the value of the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Uri</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Uri</em>' attribute.
+     * @see #setUri(URI)
+     * @see org.eclipse.egf.model.domain.DomainPackage#getDomainURI_Uri()
+     * @model dataType="org.eclipse.egf.model.types.URI" required="true"
+     * @generated
+     */
+    URI getUri();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainURI#getUri <em>Uri</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Uri</em>' attribute.
+     * @see #getUri()
+     * @generated
+     */
+    void setUri(URI value);
 
 } // DomainURI

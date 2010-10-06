@@ -23,66 +23,67 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface DomainFactory extends EFactory {
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  DomainFactory eINSTANCE = org.eclipse.egf.model.domain.impl.DomainFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Viewpoint</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Viewpoint</em>'.
-   * @generated
-   */
-  DomainViewpoint createDomainViewpoint();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    DomainFactory eINSTANCE = org.eclipse.egf.model.domain.impl.DomainFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>EPackage</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>EPackage</em>'.
-   * @generated
-   */
-  DomainEPackage createDomainEPackage();
+    /**
+     * Returns a new object of class '<em>Viewpoint</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Viewpoint</em>'.
+     * @generated
+     */
+    DomainViewpoint createDomainViewpoint();
 
-  /**
-   * Returns a new object of class '<em>Type Domain EPackage</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Domain EPackage</em>'.
-   * @generated
-   */
-  TypeDomainEPackage createTypeDomainEPackage();
+    /**
+     * Returns a new object of class '<em>EPackage</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>EPackage</em>'.
+     * @generated
+     */
+    DomainEPackage createDomainEPackage();
 
-  /**
-   * Returns a new object of class '<em>URI</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>URI</em>'.
-   * @generated
-   */
-  DomainURI createDomainURI();
+    /**
+     * Returns a new object of class '<em>Type Domain EPackage</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Domain EPackage</em>'.
+     * @generated
+     */
+    TypeDomainEPackage createTypeDomainEPackage();
 
-  /**
-   * Returns a new object of class '<em>Type Domain URI</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Domain URI</em>'.
-   * @generated
-   */
-  TypeDomainURI createTypeDomainURI();
+    /**
+     * Returns a new object of class '<em>URI</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>URI</em>'.
+     * @generated
+     */
+    DomainURI createDomainURI();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  DomainPackage getDomainPackage();
+    /**
+     * Returns a new object of class '<em>Type Domain URI</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Domain URI</em>'.
+     * @generated
+     */
+    TypeDomainURI createTypeDomainURI();
+
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    DomainPackage getDomainPackage();
 
 } // DomainFactory

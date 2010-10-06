@@ -32,20 +32,21 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface DomainViewpoint extends Viewpoint {
-  /**
-   * Returns the value of the '<em><b>Domains</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.domain.Domain}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Domains</em>' reference list isn't clear, there
-   * really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Domains</em>' containment reference list.
-   * @see org.eclipse.egf.model.domain.DomainPackage#getDomainViewpoint_Domains()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Domain> getDomains();
+
+    /**
+     * Returns the value of the '<em><b>Domains</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.domain.Domain}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Domains</em>' reference list isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Domains</em>' containment reference list.
+     * @see org.eclipse.egf.model.domain.DomainPackage#getDomainViewpoint_Domains()
+     * @model containment="true"
+     * @generated
+     */
+    EList<Domain> getDomains();
 
 } // DomainViewpoint

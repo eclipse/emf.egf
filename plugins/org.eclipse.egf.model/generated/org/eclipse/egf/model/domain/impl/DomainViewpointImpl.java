@@ -39,127 +39,129 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoint {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int flags = 0;
-  /**
-   * The cached value of the '{@link #getDomains() <em>Domains</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDomains()
-   * @generated
-   * @ordered
-   */
-  protected EList<Domain> domains;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DomainViewpointImpl() {
-    super();
-  }
+    /**
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return DomainPackage.Literals.DOMAIN_VIEWPOINT;
-  }
+    /**
+     * The cached value of the '{@link #getDomains() <em>Domains</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDomains()
+     * @generated
+     * @ordered
+     */
+    protected EList<Domain> domains;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Domain> getDomains() {
-    if (domains == null) {
-      domains = new EObjectContainmentEList<Domain>(Domain.class, this, DomainPackage.DOMAIN_VIEWPOINT__DOMAINS);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected DomainViewpointImpl() {
+        super();
     }
-    return domains;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-      return ((InternalEList<?>) getDomains()).basicRemove(otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return DomainPackage.Literals.DOMAIN_VIEWPOINT;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-      return getDomains();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Domain> getDomains() {
+        if (domains == null) {
+            domains = new EObjectContainmentEList<Domain>(Domain.class, this, DomainPackage.DOMAIN_VIEWPOINT__DOMAINS);
+        }
+        return domains;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-      getDomains().clear();
-      getDomains().addAll((Collection<? extends Domain>) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+                return ((InternalEList<?>) getDomains()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-      getDomains().clear();
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+                return getDomains();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-      return domains != null && !domains.isEmpty();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+                getDomains().clear();
+                getDomains().addAll((Collection<? extends Domain>) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+                getDomains().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+                return domains != null && !domains.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // DomainViewpointImpl

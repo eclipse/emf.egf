@@ -37,131 +37,132 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class DomainEPackageImpl extends DomainImpl implements DomainEPackage {
-  /**
-   * The cached value of the '{@link #getEPackage() <em>EPackage</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEPackage()
-   * @generated
-   * @ordered
-   */
-  protected EPackage ePackage;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected DomainEPackageImpl() {
-    super();
-  }
+    /**
+     * The cached value of the '{@link #getEPackage() <em>EPackage</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEPackage()
+     * @generated
+     * @ordered
+     */
+    protected EPackage ePackage;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return DomainPackage.Literals.DOMAIN_EPACKAGE;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected DomainEPackageImpl() {
+        super();
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EPackage getEPackage() {
-    if (ePackage != null && ePackage.eIsProxy()) {
-      InternalEObject oldEPackage = (InternalEObject) ePackage;
-      ePackage = (EPackage) eResolveProxy(oldEPackage);
-      if (ePackage != oldEPackage) {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return DomainPackage.Literals.DOMAIN_EPACKAGE;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EPackage getEPackage() {
+        if (ePackage != null && ePackage.eIsProxy()) {
+            InternalEObject oldEPackage = (InternalEObject) ePackage;
+            ePackage = (EPackage) eResolveProxy(oldEPackage);
+            if (ePackage != oldEPackage) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainPackage.DOMAIN_EPACKAGE__EPACKAGE, oldEPackage, ePackage));
+            }
+        }
+        return ePackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EPackage basicGetEPackage() {
+        return ePackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setEPackage(EPackage newEPackage) {
+        EPackage oldEPackage = ePackage;
+        ePackage = newEPackage;
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainPackage.DOMAIN_EPACKAGE__EPACKAGE, oldEPackage, ePackage));
-      }
+            eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN_EPACKAGE__EPACKAGE, oldEPackage, ePackage));
     }
-    return ePackage;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EPackage basicGetEPackage() {
-    return ePackage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setEPackage(EPackage newEPackage) {
-    EPackage oldEPackage = ePackage;
-    ePackage = newEPackage;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN_EPACKAGE__EPACKAGE, oldEPackage, ePackage));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
-      if (resolve)
-        return getEPackage();
-      return basicGetEPackage();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
+                if (resolve)
+                    return getEPackage();
+                return basicGetEPackage();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
-      setEPackage((EPackage) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
+                setEPackage((EPackage) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
-      setEPackage((EPackage) null);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
+                setEPackage((EPackage) null);
+                return;
+        }
+        super.eUnset(featureID);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
-      return ePackage != null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case DomainPackage.DOMAIN_EPACKAGE__EPACKAGE:
+                return ePackage != null;
+        }
+        return super.eIsSet(featureID);
     }
-    return super.eIsSet(featureID);
-  }
 
 } //DomainEPackageImpl

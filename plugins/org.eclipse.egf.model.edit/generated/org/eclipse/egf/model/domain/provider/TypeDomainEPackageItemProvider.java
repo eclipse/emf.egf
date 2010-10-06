@@ -43,137 +43,132 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypeDomainEPackageItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-    IItemColorProvider, IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public TypeDomainEPackageItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+        IItemColorProvider, IItemFontProvider {
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
-      addValuePropertyDescriptor(object);
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypeDomainEPackageItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds a property descriptor for the Value feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected void addValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeDomainEPackage_value_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeDomainEPackage_value_feature", "_UI_TypeDomainEPackage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__VALUE, true, false, false, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
-        null) {
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        TypeDomainEPackage typeDomainEPackage = (TypeDomainEPackage) current;
-        Collection<DomainEPackage> result = TypeDomainEPackageHelper.getAvailableDomainEPackage(typeDomainEPackage);
-        result.add(null);
-        return result;
-      }
-    });
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This returns TypeDomainEPackage.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeDomainEPackage")); //$NON-NLS-1$
-  }
-
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    TypeDomainEPackage typeDomainEPackage = (TypeDomainEPackage) object;
-    String uri = null;
-    if (typeDomainEPackage.getValue() != null && typeDomainEPackage.getValue().getEPackage() != null && typeDomainEPackage.getValue().getEPackage().getNsURI() != null) {
-      uri = "[" + typeDomainEPackage.getValue().getEPackage().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+            addValuePropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
     }
-    String label = "[" + getString("_UI_TypeDomainEPackage_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    if (uri != null) {
-      label = uri + " " + label; //$NON-NLS-1$
+
+    /**
+     * This adds a property descriptor for the Value feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    protected void addValuePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeDomainEPackage_value_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_TypeDomainEPackage_value_feature", "_UI_TypeDomainEPackage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__VALUE, true, false, false, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null) {
+
+            @Override
+            public Collection<?> getChoiceOfValues(Object current) {
+                TypeDomainEPackage typeDomainEPackage = (TypeDomainEPackage) current;
+                Collection<DomainEPackage> result = TypeDomainEPackageHelper.getAvailableDomainEPackage(typeDomainEPackage);
+                result.add(null);
+                return result;
+            }
+        });
     }
-    return label;
-  }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-
-    switch (notification.getFeatureID(TypeDomainEPackage.class)) {
-    case DomainPackage.TYPE_DOMAIN_EPACKAGE__VALUE:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+    /**
+     * This returns TypeDomainEPackage.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeDomainEPackage")); //$NON-NLS-1$
     }
-    super.notifyChanged(notification);
-  }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        TypeDomainEPackage typeDomainEPackage = (TypeDomainEPackage) object;
+        String uri = null;
+        if (typeDomainEPackage.getValue() != null && typeDomainEPackage.getValue().getEPackage() != null && typeDomainEPackage.getValue().getEPackage().getNsURI() != null) {
+            uri = "[" + typeDomainEPackage.getValue().getEPackage().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        }
+        String label = "[" + getString("_UI_TypeDomainEPackage_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (uri != null) {
+            label = uri + " " + label; //$NON-NLS-1$
+        }
+        return label;
+    }
 
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return EGFModelEditPlugin.INSTANCE;
-  }
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+
+        switch (notification.getFeatureID(TypeDomainEPackage.class)) {
+            case DomainPackage.TYPE_DOMAIN_EPACKAGE__VALUE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
+
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
+
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return EGFModelEditPlugin.INSTANCE;
+    }
 
 }

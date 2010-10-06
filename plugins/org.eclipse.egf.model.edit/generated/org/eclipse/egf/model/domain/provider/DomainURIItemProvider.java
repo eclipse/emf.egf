@@ -41,107 +41,108 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DomainURIItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-    IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public DomainURIItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+        IItemFontProvider {
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
-      addUriPropertyDescriptor(object);
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DomainURIItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds a property descriptor for the Uri feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainURI_uri_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_DomainURI_uri_feature", "_UI_DomainURI_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.DOMAIN_URI__URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
-        null));
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This returns DomainURI.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainURI")); //$NON-NLS-1$
-  }
-
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    DomainURI domainURI = (DomainURI) object;
-    String uri = null;
-    if (domainURI.getUri() != null) {
-      uri = "[" + domainURI.getUri() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+            addUriPropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
     }
-    String label = "[" + getString("_UI_DomainURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    if (uri != null) {
-      label = uri + " " + label; //$NON-NLS-1$
+
+    /**
+     * This adds a property descriptor for the Uri feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUriPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainURI_uri_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_DomainURI_uri_feature", "_UI_DomainURI_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                DomainPackage.Literals.DOMAIN_URI__URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
+                null));
     }
-    return label;
-  }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-
-    switch (notification.getFeatureID(DomainURI.class)) {
-    case DomainPackage.DOMAIN_URI__URI:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+    /**
+     * This returns DomainURI.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/DomainURI")); //$NON-NLS-1$
     }
-    super.notifyChanged(notification);
-  }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        DomainURI domainURI = (DomainURI) object;
+        String uri = null;
+        if (domainURI.getUri() != null) {
+            uri = "[" + domainURI.getUri() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        }
+        String label = "[" + getString("_UI_DomainURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (uri != null) {
+            label = uri + " " + label; //$NON-NLS-1$
+        }
+        return label;
+    }
+
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+
+        switch (notification.getFeatureID(DomainURI.class)) {
+            case DomainPackage.DOMAIN_URI__URI:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
+
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
 }

@@ -31,30 +31,31 @@ import org.eclipse.egf.model.types.TypeObject;
  * @generated
  */
 public interface TypeDomainEPackage extends TypeObject {
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Value</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' reference.
-   * @see #setValue(DomainEPackage)
-   * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainEPackage_Value()
-   * @model resolveProxies="false"
-   * @generated
-   */
-  DomainEPackage getValue();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.TypeDomainEPackage#getValue <em>Value</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' reference.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(DomainEPackage value);
+    /**
+     * Returns the value of the '<em><b>Value</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Value</em>' reference.
+     * @see #setValue(DomainEPackage)
+     * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainEPackage_Value()
+     * @model resolveProxies="false"
+     * @generated
+     */
+    DomainEPackage getValue();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.domain.TypeDomainEPackage#getValue <em>Value</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Value</em>' reference.
+     * @see #getValue()
+     * @generated
+     */
+    void setValue(DomainEPackage value);
 
 } // TypeDomainEPackage

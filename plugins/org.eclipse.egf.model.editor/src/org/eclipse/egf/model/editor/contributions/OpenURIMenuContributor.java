@@ -64,11 +64,16 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
             }
             URI uri = null;
             if (eObject instanceof DomainURI) {
-                uri = ((DomainURI) eObject).getUri();
+                DomainURI domainURI = (DomainURI) eObject;
+                uri = domainURI.getUri();
             } else if (eObject instanceof TypeDomainURI) {
-                uri = ((TypeDomainURI) eObject).getValue();
+                TypeDomainURI typeDomainURI = (TypeDomainURI) eObject;
+                if (typeDomainURI.getValue() != null) {
+                    uri = typeDomainURI.getValue().getUri();
+                }
             } else if (eObject instanceof TypeURI) {
-                uri = ((TypeURI) eObject).getValue();
+                TypeURI typeURI = (TypeURI) eObject;
+                uri = typeURI.getValue();
             }
             return uri;
         }

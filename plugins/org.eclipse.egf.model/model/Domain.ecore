@@ -31,7 +31,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//DomainURI"
         resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType Types.ecore#//URI"
-        changeable="false" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//DomainURI"
+        changeable="false" volatile="true" transient="true" derived="true" resolveProxies="false"/>
   </eClassifiers>
 </ecore:EPackage>

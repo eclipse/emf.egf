@@ -60,7 +60,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DomainItemProviderAdapterFactory extends DomainAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -69,7 +68,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected ComposedAdapterFactory parentAdapterFactory;
@@ -78,7 +76,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -87,7 +84,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -96,7 +92,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This constructs an instance.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public DomainItemProviderAdapterFactory() {
@@ -116,7 +111,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainViewpoint} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected DomainViewpointItemProvider domainViewpointItemProvider;
@@ -125,7 +119,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainViewpoint}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -141,7 +134,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainEPackage} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected DomainEPackageItemProvider domainEPackageItemProvider;
@@ -150,7 +142,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -166,7 +157,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainEPackage} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypeDomainEPackageItemProvider typeDomainEPackageItemProvider;
@@ -175,7 +165,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -191,7 +180,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected DomainURIItemProvider domainURIItemProvider;
@@ -200,7 +188,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURI}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -216,7 +203,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainURI} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypeDomainURIItemProvider typeDomainURIItemProvider;
@@ -225,7 +211,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -241,7 +226,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -252,7 +236,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This sets the composed adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -262,7 +245,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -274,7 +256,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This implementation substitutes the factory itself as the key for the adapter.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -285,7 +266,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -304,7 +284,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This adds a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -315,7 +294,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This removes a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -326,7 +304,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void fireNotifyChanged(Notification notification) {
@@ -338,10 +315,9 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     }
 
     /**
-     * This disposes all of the item providers created by this factory.
+     * This disposes all of the item providers created by this factory. 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void dispose() {
@@ -361,7 +337,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * A child creation extender for the {@link FcorePackage}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public static class FcoreChildCreationExtender implements IChildCreationExtender {
@@ -370,7 +345,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
          * The switch for creating child descriptors specific to each extended class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         protected static class CreationSwitch extends FcoreSwitch<Object> {
@@ -379,7 +353,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
              * The child descriptors being populated.
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             protected List<Object> newChildDescriptors;
@@ -388,7 +361,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
              * The domain in which to create the children.
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             protected EditingDomain editingDomain;
@@ -397,7 +369,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
              * Creates the a switch for populating child descriptors in the given domain.
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
@@ -408,7 +379,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             @Override
@@ -423,7 +393,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             @Override
@@ -436,7 +405,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             @Override
@@ -483,7 +451,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-             * 
              * @generated
              */
             protected CommandParameter createChildParameter(Object feature, Object child) {
@@ -495,7 +462,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
         /**
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
@@ -507,7 +473,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
         /**
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         public ResourceLocator getResourceLocator() {
