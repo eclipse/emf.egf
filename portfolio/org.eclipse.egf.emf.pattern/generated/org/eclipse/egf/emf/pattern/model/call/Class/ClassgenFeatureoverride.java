@@ -491,6 +491,8 @@ public class ClassgenFeatureoverride {
         if (genFeature.isGet() && (isImplementation || !genFeature.isSuppressedGetVisibility())) {
             stringBuffer.append(TEXT_69);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.getGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -514,6 +516,8 @@ public class ClassgenFeatureoverride {
         if (isImplementation && !genModel.isReflectiveDelegation() && genFeature.isBasicGet()) {
             stringBuffer.append(TEXT_70);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -537,6 +541,8 @@ public class ClassgenFeatureoverride {
         if (isImplementation && !genModel.isReflectiveDelegation() && genFeature.isBasicSet()) {
             stringBuffer.append(TEXT_71);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicSetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -560,6 +566,8 @@ public class ClassgenFeatureoverride {
         if (genFeature.isSet() && (isImplementation || !genFeature.isSuppressedSetVisibility())) {
             stringBuffer.append(TEXT_72);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.setGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -583,6 +591,8 @@ public class ClassgenFeatureoverride {
         if (isImplementation && !genModel.isReflectiveDelegation() && genFeature.isBasicUnset()) {
             stringBuffer.append(TEXT_73);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicUnsetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -606,6 +616,8 @@ public class ClassgenFeatureoverride {
         if (genFeature.isUnset() && (isImplementation || !genFeature.isSuppressedUnsetVisibility())) {
             stringBuffer.append(TEXT_74);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.unsetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -629,6 +641,8 @@ public class ClassgenFeatureoverride {
         if (genFeature.isIsSet() && (isImplementation || !genFeature.isSuppressedIsSetVisibility())) {
             stringBuffer.append(TEXT_75);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.isSetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -651,6 +665,8 @@ public class ClassgenFeatureoverride {
         }
         stringBuffer.append(TEXT_76);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.genFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
             callParameters.put("genClass", genClass);

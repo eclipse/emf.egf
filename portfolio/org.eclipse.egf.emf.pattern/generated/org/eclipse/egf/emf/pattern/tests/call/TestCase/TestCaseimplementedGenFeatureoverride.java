@@ -148,6 +148,8 @@ public class TestCaseimplementedGenFeatureoverride {
             if (genFeature.isGet() && !genFeature.isSuppressedGetVisibility()) {
                 stringBuffer.append(TEXT_2);
                 {
+                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
                     callParameters.put("genClass", genClass);
@@ -161,6 +163,8 @@ public class TestCaseimplementedGenFeatureoverride {
             if (genFeature.isSet() && !genFeature.isSuppressedSetVisibility()) {
                 stringBuffer.append(TEXT_3);
                 {
+                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
                     callParameters.put("genClass", genClass);
@@ -174,6 +178,8 @@ public class TestCaseimplementedGenFeatureoverride {
             if (genFeature.isUnset() && !genFeature.isSuppressedUnsetVisibility()) {
                 stringBuffer.append(TEXT_4);
                 {
+                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
                     callParameters.put("genClass", genClass);
@@ -187,6 +193,8 @@ public class TestCaseimplementedGenFeatureoverride {
             if (genFeature.isIsSet() && !genFeature.isSuppressedIsSetVisibility()) {
                 stringBuffer.append(TEXT_5);
                 {
+                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                     final Map<String, Object> callParameters = new HashMap<String, Object>();
                     callParameters.put("genFeature", genFeature);
                     callParameters.put("genClass", genClass);
@@ -200,6 +208,8 @@ public class TestCaseimplementedGenFeatureoverride {
         }
         stringBuffer.append(TEXT_6);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
             callParameters.put("genClass", genClass);

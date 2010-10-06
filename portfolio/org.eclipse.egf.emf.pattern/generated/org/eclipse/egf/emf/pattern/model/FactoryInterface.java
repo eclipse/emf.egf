@@ -238,7 +238,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
     protected final String TEXT_211 = NL + "\t\tfor (";
     protected final String TEXT_212 = " stringTokenizer = new ";
     protected final String TEXT_213 = "(initialValue); stringTokenizer.hasMoreTokens(); )";
-    protected final String TEXT_214 = NL + "\t\tfor (String item : split(literal))";
+    protected final String TEXT_214 = NL + "\t\tfor (String item : split(initialValue))";
     protected final String TEXT_215 = NL + "\t\t{";
     protected final String TEXT_216 = NL + "\t\t\tString item = stringTokenizer.nextToken();";
     protected final String TEXT_217 = NL + "\t\t\tresult.add(create";
@@ -588,6 +588,8 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
         String publicStaticFinalFlag = isImplementation ? "public static final " : "";
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);

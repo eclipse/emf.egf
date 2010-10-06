@@ -362,7 +362,7 @@ public interface <%=genPackage.getFactoryInterfaceName()%><%if (!genModel.isSupp
         <%if (genModel.getRuntimeVersion().getValue() < GenRuntimeVersion.EMF26_VALUE) {%>
 		for (<%=genModel.getImportedName("java.util.StringTokenizer")%> stringTokenizer = new <%=genModel.getImportedName("java.util.StringTokenizer")%>(initialValue); stringTokenizer.hasMoreTokens(); )
         <%} else {%>
-		for (String item : split(literal))
+		for (String item : split(initialValue))
         <%}%>
 		{
         <%if (genModel.getRuntimeVersion().getValue() < GenRuntimeVersion.EMF26_VALUE) {%>

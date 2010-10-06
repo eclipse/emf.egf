@@ -169,6 +169,8 @@ public class TestCaseimplementedGenOperationoverride {
         if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/genOperation.annotations.insert.javajetinc
             stringBuffer.append(TEXT_9);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.genOperation.annotations.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genOperation", genOperation);
                 callParameters.put("genClass", genClass);
@@ -179,11 +181,12 @@ public class TestCaseimplementedGenOperationoverride {
 
         }
         stringBuffer.append(TEXT_10);
-        stringBuffer.append(genModel.capName(genOperation.getName()));
-        stringBuffer.append(genOperation.getGenParameters().size() == 0 ? "" : "__" + genOperation.getParameterTypes("_", false));
+        stringBuffer.append(genClass.getUniqueName(genOperation));
         stringBuffer.append(TEXT_11);
         stringBuffer.append(TEXT_12);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.TODO.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genOperation", genOperation);
             callParameters.put("genClass", genClass);
@@ -196,6 +199,8 @@ public class TestCaseimplementedGenOperationoverride {
         stringBuffer.append(TEXT_13);
         stringBuffer.append(TEXT_14);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.insert" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genOperation", genOperation);
             callParameters.put("genClass", genClass);

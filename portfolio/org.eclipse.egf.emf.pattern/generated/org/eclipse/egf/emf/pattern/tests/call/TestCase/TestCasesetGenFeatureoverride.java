@@ -167,6 +167,8 @@ public class TestCasesetGenFeatureoverride {
         if (genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) { //TestCase/setGenFeature.annotations.insert.javajetinc
             stringBuffer.append(TEXT_9);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -181,6 +183,8 @@ public class TestCasesetGenFeatureoverride {
         stringBuffer.append(TEXT_11);
         stringBuffer.append(TEXT_12);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genFeature", genFeature);
             callParameters.put("genClass", genClass);
