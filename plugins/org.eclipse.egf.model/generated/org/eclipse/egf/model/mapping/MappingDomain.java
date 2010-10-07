@@ -32,56 +32,57 @@ import org.eclipse.egf.model.domain.Domain;
  * @generated
  */
 public interface MappingDomain extends Mapping {
-  /**
-   * Returns the value of the '<em><b>Source</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Source</em>' reference isn't clear, there really
-   * should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Source</em>' reference.
-   * @see #setSource(Domain)
-   * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain_Source()
-   * @model resolveProxies="false" required="true"
-   * @generated
-   */
-  Domain getSource();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.mapping.MappingDomain#getSource <em>Source</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Source</em>' reference.
-   * @see #getSource()
-   * @generated
-   */
-  void setSource(Domain value);
+    /**
+     * Returns the value of the '<em><b>Source</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Source</em>' reference isn't clear, there really
+     * should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Source</em>' reference.
+     * @see #setSource(Domain)
+     * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain_Source()
+     * @model resolveProxies="false" required="true"
+     * @generated
+     */
+    Domain getSource();
 
-  /**
-   * Returns the value of the '<em><b>Target</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Target</em>' reference isn't clear, there really
-   * should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Target</em>' reference.
-   * @see #setTarget(Domain)
-   * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain_Target()
-   * @model resolveProxies="false" required="true"
-   * @generated
-   */
-  Domain getTarget();
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.mapping.MappingDomain#getSource <em>Source</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Source</em>' reference.
+     * @see #getSource()
+     * @generated
+     */
+    void setSource(Domain value);
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.mapping.MappingDomain#getTarget <em>Target</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target</em>' reference.
-   * @see #getTarget()
-   * @generated
-   */
-  void setTarget(Domain value);
+    /**
+     * Returns the value of the '<em><b>Target</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Target</em>' reference isn't clear, there really
+     * should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Target</em>' reference.
+     * @see #setTarget(Domain)
+     * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain_Target()
+     * @model resolveProxies="false" required="true"
+     * @generated
+     */
+    Domain getTarget();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.mapping.MappingDomain#getTarget <em>Target</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Target</em>' reference.
+     * @see #getTarget()
+     * @generated
+     */
+    void setTarget(Domain value);
 
 } // MappingDomain

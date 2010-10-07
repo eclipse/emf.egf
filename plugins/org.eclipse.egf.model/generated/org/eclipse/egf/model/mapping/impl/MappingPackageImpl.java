@@ -31,237 +31,238 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass mappingViewpointEClass = null;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass mappingEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mappingViewpointEClass = null;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass mappingDomainEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mappingEClass = null;
 
-  /**
-   * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-   * package
-   * package URI value.
-   * <p>
-   * Note: the correct way to create the package is via the static factory
-   * method {@link #init init()}, which also performs initialization of the
-   * package, or returns the registered package, if one already exists. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see org.eclipse.egf.model.mapping.MappingPackage#eNS_URI
-   * @see #init()
-   * @generated
-   */
-  private MappingPackageImpl() {
-    super(eNS_URI, MappingFactory.eINSTANCE);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass mappingDomainEClass = null;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private static boolean isInited = false;
+    /**
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+     * package
+     * package URI value.
+     * <p>
+     * Note: the correct way to create the package is via the static factory
+     * method {@link #init init()}, which also performs initialization of the
+     * package, or returns the registered package, if one already exists. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see org.eclipse.egf.model.mapping.MappingPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
+    private MappingPackageImpl() {
+        super(eNS_URI, MappingFactory.eINSTANCE);
+    }
 
-  /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and
-   * for any others upon which it depends.
-   * 
-   * <p>
-   * This method is used to initialize {@link MappingPackage#eINSTANCE} when
-   * that field is accessed. Clients should not invoke it directly. Instead,
-   * they should simply access that field to obtain the package. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @see #eNS_URI
-   * @see #createPackageContents()
-   * @see #initializePackageContents()
-   * @generated
-   */
-  public static MappingPackage init() {
-    if (isInited)
-      return (MappingPackage) EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private static boolean isInited = false;
 
-    // Obtain or create and register package
-    MappingPackageImpl theMappingPackage = (MappingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MappingPackageImpl());
+    /**
+     * Creates, registers, and initializes the <b>Package</b> for this model, and
+     * for any others upon which it depends.
+     * 
+     * <p>
+     * This method is used to initialize {@link MappingPackage#eINSTANCE} when
+     * that field is accessed. Clients should not invoke it directly. Instead,
+     * they should simply access that field to obtain the package. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
+    public static MappingPackage init() {
+        if (isInited)
+            return (MappingPackage) EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
-    isInited = true;
+        // Obtain or create and register package
+        MappingPackageImpl theMappingPackage = (MappingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MappingPackageImpl());
 
-    // Initialize simple dependencies
-    DomainPackage.eINSTANCE.eClass();
+        isInited = true;
 
-    // Create package meta-data objects
-    theMappingPackage.createPackageContents();
+        // Initialize simple dependencies
+        DomainPackage.eINSTANCE.eClass();
 
-    // Initialize created meta-data
-    theMappingPackage.initializePackageContents();
+        // Create package meta-data objects
+        theMappingPackage.createPackageContents();
 
-    // Mark meta-data to indicate it can't be changed
-    theMappingPackage.freeze();
+        // Initialize created meta-data
+        theMappingPackage.initializePackageContents();
 
-    // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(MappingPackage.eNS_URI, theMappingPackage);
-    return theMappingPackage;
-  }
+        // Mark meta-data to indicate it can't be changed
+        theMappingPackage.freeze();
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getMappingViewpoint() {
-    return mappingViewpointEClass;
-  }
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(MappingPackage.eNS_URI, theMappingPackage);
+        return theMappingPackage;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMappingViewpoint_Mappings() {
-    return (EReference) mappingViewpointEClass.getEStructuralFeatures().get(0);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMappingViewpoint() {
+        return mappingViewpointEClass;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getMapping() {
-    return mappingEClass;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMappingViewpoint_Mappings() {
+        return (EReference) mappingViewpointEClass.getEStructuralFeatures().get(0);
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getMappingDomain() {
-    return mappingDomainEClass;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMapping() {
+        return mappingEClass;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMappingDomain_Source() {
-    return (EReference) mappingDomainEClass.getEStructuralFeatures().get(0);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getMappingDomain() {
+        return mappingDomainEClass;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMappingDomain_Target() {
-    return (EReference) mappingDomainEClass.getEStructuralFeatures().get(1);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMappingDomain_Source() {
+        return (EReference) mappingDomainEClass.getEStructuralFeatures().get(0);
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public MappingFactory getMappingFactory() {
-    return (MappingFactory) getEFactoryInstance();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMappingDomain_Target() {
+        return (EReference) mappingDomainEClass.getEStructuralFeatures().get(1);
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private boolean isCreated = false;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MappingFactory getMappingFactory() {
+        return (MappingFactory) getEFactoryInstance();
+    }
 
-  /**
-   * Creates the meta-model objects for the package.  This method is
-   * guarded to have no affect on any invocation but its first.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void createPackageContents() {
-    if (isCreated)
-      return;
-    isCreated = true;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isCreated = false;
 
-    // Create classes and their features
-    mappingViewpointEClass = createEClass(MAPPING_VIEWPOINT);
-    createEReference(mappingViewpointEClass, MAPPING_VIEWPOINT__MAPPINGS);
+    /**
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void createPackageContents() {
+        if (isCreated)
+            return;
+        isCreated = true;
 
-    mappingEClass = createEClass(MAPPING);
+        // Create classes and their features
+        mappingViewpointEClass = createEClass(MAPPING_VIEWPOINT);
+        createEReference(mappingViewpointEClass, MAPPING_VIEWPOINT__MAPPINGS);
 
-    mappingDomainEClass = createEClass(MAPPING_DOMAIN);
-    createEReference(mappingDomainEClass, MAPPING_DOMAIN__SOURCE);
-    createEReference(mappingDomainEClass, MAPPING_DOMAIN__TARGET);
-  }
+        mappingEClass = createEClass(MAPPING);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private boolean isInitialized = false;
+        mappingDomainEClass = createEClass(MAPPING_DOMAIN);
+        createEReference(mappingDomainEClass, MAPPING_DOMAIN__SOURCE);
+        createEReference(mappingDomainEClass, MAPPING_DOMAIN__TARGET);
+    }
 
-  /**
-   * Complete the initialization of the package and its meta-model.  This
-   * method is guarded to have no affect on any invocation but its first.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void initializePackageContents() {
-    if (isInitialized)
-      return;
-    isInitialized = true;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isInitialized = false;
 
-    // Initialize package
-    setName(eNAME);
-    setNsPrefix(eNS_PREFIX);
-    setNsURI(eNS_URI);
+    /**
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void initializePackageContents() {
+        if (isInitialized)
+            return;
+        isInitialized = true;
 
-    // Obtain other dependent packages
-    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
-    DomainPackage theDomainPackage = (DomainPackage) EPackage.Registry.INSTANCE.getEPackage(DomainPackage.eNS_URI);
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
 
-    // Create type parameters
+        // Obtain other dependent packages
+        FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
+        DomainPackage theDomainPackage = (DomainPackage) EPackage.Registry.INSTANCE.getEPackage(DomainPackage.eNS_URI);
 
-    // Set bounds for type parameters
+        // Create type parameters
 
-    // Add supertypes to classes
-    mappingViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
-    mappingEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
-    mappingDomainEClass.getESuperTypes().add(this.getMapping());
+        // Set bounds for type parameters
 
-    // Initialize classes and features; add operations and parameters
-    initEClass(mappingViewpointEClass, MappingViewpoint.class, "MappingViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getMappingViewpoint_Mappings(), this.getMappingDomain(), null, "mappings", null, 0, -1, MappingViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        // Add supertypes to classes
+        mappingViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
+        mappingEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
+        mappingDomainEClass.getESuperTypes().add(this.getMapping());
 
-    initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        // Initialize classes and features; add operations and parameters
+        initEClass(mappingViewpointEClass, MappingViewpoint.class, "MappingViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getMappingViewpoint_Mappings(), this.getMappingDomain(), null, "mappings", null, 0, -1, MappingViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(mappingDomainEClass, MappingDomain.class, "MappingDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getMappingDomain_Source(), theDomainPackage.getDomain(), null, "source", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getMappingDomain_Target(), theDomainPackage.getDomain(), null, "target", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    // Create resource
-    createResource(eNS_URI);
-  }
+        initEClass(mappingDomainEClass, MappingDomain.class, "MappingDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getMappingDomain_Source(), theDomainPackage.getDomain(), null, "source", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getMappingDomain_Target(), theDomainPackage.getDomain(), null, "target", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        // Create resource
+        createResource(eNS_URI);
+    }
 
 } // MappingPackageImpl

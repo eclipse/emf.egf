@@ -39,127 +39,129 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpoint {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int flags = 0;
-  /**
-   * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMappings()
-   * @generated
-   * @ordered
-   */
-  protected EList<MappingDomain> mappings;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected MappingViewpointImpl() {
-    super();
-  }
+    /**
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return MappingPackage.Literals.MAPPING_VIEWPOINT;
-  }
+    /**
+     * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getMappings()
+     * @generated
+     * @ordered
+     */
+    protected EList<MappingDomain> mappings;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<MappingDomain> getMappings() {
-    if (mappings == null) {
-      mappings = new EObjectContainmentEList<MappingDomain>(MappingDomain.class, this, MappingPackage.MAPPING_VIEWPOINT__MAPPINGS);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MappingViewpointImpl() {
+        super();
     }
-    return mappings;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
-      return ((InternalEList<?>) getMappings()).basicRemove(otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MappingPackage.Literals.MAPPING_VIEWPOINT;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
-      return getMappings();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<MappingDomain> getMappings() {
+        if (mappings == null) {
+            mappings = new EObjectContainmentEList<MappingDomain>(MappingDomain.class, this, MappingPackage.MAPPING_VIEWPOINT__MAPPINGS);
+        }
+        return mappings;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
-      getMappings().clear();
-      getMappings().addAll((Collection<? extends MappingDomain>) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
+                return ((InternalEList<?>) getMappings()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
-      getMappings().clear();
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
+                return getMappings();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
-      return mappings != null && !mappings.isEmpty();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
+                getMappings().clear();
+                getMappings().addAll((Collection<? extends MappingDomain>) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
+                getMappings().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case MappingPackage.MAPPING_VIEWPOINT__MAPPINGS:
+                return mappings != null && !mappings.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // MappingViewpointImpl

@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class TypeImpl extends TypeElementImpl implements Type {
@@ -31,7 +31,6 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypeImpl() {
@@ -41,7 +40,6 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -68,7 +66,6 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public <T extends Object> Class<T> getType() {
@@ -80,7 +77,6 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Object getValue() {

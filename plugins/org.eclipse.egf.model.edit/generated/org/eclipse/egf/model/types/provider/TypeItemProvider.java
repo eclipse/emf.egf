@@ -39,96 +39,92 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.types.Type} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypeItemProvider extends TypeElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-    IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public TypeItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+        IItemFontProvider {
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypeItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds an overlay to the given image if the object is controlled.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  protected Object overlayImage(Object object, Object image) {
-    Type type = (Type) object;
-    List<Object> images = new ArrayList<Object>(3);
-    images.add(image);
-    if (type.getValue() != null) {
-      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
+
+        }
+        return itemPropertyDescriptors;
     }
-    if (AdapterFactoryEditingDomain.isControlled(object)) {
-      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+
+    /**
+     * This adds an overlay to the given image if the object is controlled.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Object overlayImage(Object object, Object image) {
+        Type type = (Type) object;
+        List<Object> images = new ArrayList<Object>(3);
+        images.add(image);
+        if (type.getValue() != null) {
+            images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/NonNullValue")); //$NON-NLS-1$
+        }
+        if (AdapterFactoryEditingDomain.isControlled(object)) {
+            images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+        }
+        return new ComposedImage(images);
     }
-    return new ComposedImage(images);
-  }
 
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    return "[" + getString("_UI_Type_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-  }
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        return "[" + getString("_UI_Type_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-    super.notifyChanged(notification);
-  }
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+        super.notifyChanged(notification);
+    }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
 }

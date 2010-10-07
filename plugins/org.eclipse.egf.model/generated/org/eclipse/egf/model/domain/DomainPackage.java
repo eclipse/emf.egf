@@ -503,122 +503,122 @@ public interface DomainPackage extends EPackage {
     interface Literals {
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl <em>Viewpoint</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl <em>Viewpoint</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.domain.impl.DomainViewpointImpl
-        	 * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainViewpoint()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.domain.impl.DomainViewpointImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainViewpoint()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass DOMAIN_VIEWPOINT = eINSTANCE.getDomainViewpoint();
 
         /**
-        	 * The meta object literal for the '<em><b>Domains</b></em>' containment reference list feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Domains</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference DOMAIN_VIEWPOINT__DOMAINS = eINSTANCE.getDomainViewpoint_Domains();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainImpl <em>Domain</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainImpl <em>Domain</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.domain.impl.DomainImpl
-        	 * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomain()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.domain.impl.DomainImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomain()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass DOMAIN = eINSTANCE.getDomain();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainEPackageImpl <em>EPackage</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainEPackageImpl <em>EPackage</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.domain.impl.DomainEPackageImpl
-        	 * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainEPackage()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.domain.impl.DomainEPackageImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainEPackage()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass DOMAIN_EPACKAGE = eINSTANCE.getDomainEPackage();
 
         /**
-        	 * The meta object literal for the '<em><b>EPackage</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>EPackage</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference DOMAIN_EPACKAGE__EPACKAGE = eINSTANCE.getDomainEPackage_EPackage();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl <em>Type Domain EPackage</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl <em>Type Domain EPackage</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl
-        	 * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainEPackage()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainEPackage()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass TYPE_DOMAIN_EPACKAGE = eINSTANCE.getTypeDomainEPackage();
 
         /**
-        	 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference TYPE_DOMAIN_EPACKAGE__VALUE = eINSTANCE.getTypeDomainEPackage_Value();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainURIImpl <em>URI</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainURIImpl <em>URI</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.domain.impl.DomainURIImpl
-        	 * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainURI()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.domain.impl.DomainURIImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainURI()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass DOMAIN_URI = eINSTANCE.getDomainURI();
 
         /**
-        	 * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EAttribute DOMAIN_URI__URI = eINSTANCE.getDomainURI_Uri();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl <em>Type Domain URI</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl <em>Type Domain URI</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.domain.impl.TypeDomainURIImpl
-        	 * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainURI()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.domain.impl.TypeDomainURIImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainURI()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass TYPE_DOMAIN_URI = eINSTANCE.getTypeDomainURI();
 
         /**
-        	 * The meta object literal for the '<em><b>Domain</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Domain</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference TYPE_DOMAIN_URI__DOMAIN = eINSTANCE.getTypeDomainURI_Domain();
 
         /**
-        	 * The meta object literal for the '<em><b>Value</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Value</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference TYPE_DOMAIN_URI__VALUE = eINSTANCE.getTypeDomainURI_Value();
 

@@ -32,20 +32,21 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface MappingViewpoint extends Viewpoint {
-  /**
-   * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.mapping.MappingDomain}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Mappings</em>' containment reference list isn't
-   * clear, there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Mappings</em>' containment reference list.
-   * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingViewpoint_Mappings()
-   * @model containment="true"
-   * @generated
-   */
-  EList<MappingDomain> getMappings();
+
+    /**
+     * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.mapping.MappingDomain}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Mappings</em>' containment reference list isn't
+     * clear, there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Mappings</em>' containment reference list.
+     * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingViewpoint_Mappings()
+     * @model containment="true"
+     * @generated
+     */
+    EList<MappingDomain> getMappings();
 
 } // MappingViewpoint

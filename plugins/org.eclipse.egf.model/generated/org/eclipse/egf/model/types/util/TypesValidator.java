@@ -1,6 +1,6 @@
 /**
  * 
- * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+O * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -70,7 +70,6 @@ import org.eclipse.osgi.util.NLS;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesPackage
  * @generated
  */
@@ -80,7 +79,6 @@ public class TypesValidator extends EObjectValidator {
      * The cached model package
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -90,7 +88,6 @@ public class TypesValidator extends EObjectValidator {
      * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.emf.common.util.Diagnostic#getSource()
      * @see org.eclipse.emf.common.util.Diagnostic#getCode()
      * @generated
@@ -102,7 +99,6 @@ public class TypesValidator extends EObjectValidator {
      * A constant with a fixed name that can be used as the base value for additional hand written constants.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
@@ -111,7 +107,6 @@ public class TypesValidator extends EObjectValidator {
      * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -120,7 +115,6 @@ public class TypesValidator extends EObjectValidator {
      * Model Validation Service interface for batch validation of EMF elements.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     private final IBatchValidator batchValidator;
@@ -129,7 +123,6 @@ public class TypesValidator extends EObjectValidator {
      * Creates an instance of the switch.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public TypesValidator() {
@@ -144,7 +137,6 @@ public class TypesValidator extends EObjectValidator {
      * Returns the package of this validator switch.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -155,7 +147,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -166,10 +157,10 @@ public class TypesValidator extends EObjectValidator {
         // no point in validating if we can't report results
         if (diagnostics != null) {
             // if EMF Mode Validation Service already covered the sub-tree,
-            // which it does for efficient computation and error reporting,
-            // then don't repeat (the Diagnostician does the recursion
-            // externally). If there is no context map, then we can't
-            // help it
+            //    which it does for efficient computation and error reporting,
+            //    then don't repeat (the Diagnostician does the recursion
+            //    externally).  If there is no context map, then we can't
+            //    help it
             if (hasProcessed(eObject, context) == false) {
                 status = batchValidator.validate(eObject, new NullProgressMonitor());
                 processed(eObject, context, status);
@@ -183,7 +174,6 @@ public class TypesValidator extends EObjectValidator {
      * Calls <code>validateXXX</code> for the corresponding classifier of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -249,7 +239,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeElement(TypeElement typeElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -259,7 +248,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateType(Type type, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -269,10 +257,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeObject(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeObject, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeObject, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeObject, diagnostics, context);
@@ -320,10 +309,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeAbstractClass(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeAbstractClass, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeAbstractClass, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeAbstractClass, diagnostics, context);
@@ -402,10 +392,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeCollection(TypeCollection typeCollection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeCollection, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeCollection, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeCollection, diagnostics, context);
@@ -429,10 +420,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeList(TypeList typeList, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeList, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeList, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeList, diagnostics, context);
@@ -456,10 +448,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeSet(TypeSet typeSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeSet, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeSet, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeSet, diagnostics, context);
@@ -483,10 +476,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeClass(TypeClass typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeClass, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeClass, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeClass, diagnostics, context);
@@ -534,10 +528,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeMap(TypeMap typeMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeMap, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeMap, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeMap, diagnostics, context);
@@ -561,10 +556,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeBigDecimal(TypeBigDecimal typeBigDecimal, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeBigDecimal, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeBigDecimal, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeBigDecimal, diagnostics, context);
@@ -586,10 +582,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeBigInteger(TypeBigInteger typeBigInteger, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeBigInteger, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeBigInteger, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeBigInteger, diagnostics, context);
@@ -611,10 +608,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeBoolean(TypeBoolean typeBoolean, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeBoolean, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeBoolean, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeBoolean, diagnostics, context);
@@ -636,10 +634,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeByte(TypeByte typeByte, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeByte, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeByte, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeByte, diagnostics, context);
@@ -661,10 +660,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeCharacter(TypeCharacter typeCharacter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeCharacter, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeCharacter, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeCharacter, diagnostics, context);
@@ -686,10 +686,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeDate(TypeDate typeDate, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeDate, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeDate, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeDate, diagnostics, context);
@@ -711,10 +712,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeDouble(TypeDouble typeDouble, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeDouble, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeDouble, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeDouble, diagnostics, context);
@@ -736,10 +738,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeFloat(TypeFloat typeFloat, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeFloat, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeFloat, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeFloat, diagnostics, context);
@@ -761,10 +764,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeInteger(TypeInteger typeInteger, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeInteger, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeInteger, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeInteger, diagnostics, context);
@@ -786,10 +790,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeLong(TypeLong typeLong, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeLong, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeLong, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeLong, diagnostics, context);
@@ -811,10 +816,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeShort(TypeShort typeShort, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeShort, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeShort, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeShort, diagnostics, context);
@@ -836,10 +842,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeString(TypeString typeString, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeString, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeString, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeString, diagnostics, context);
@@ -861,10 +868,11 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateTypeURI(TypeURI typeURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeURI, diagnostics, context))
+            return false;
         boolean result = validate_EveryMultiplicityConforms(typeURI, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryDataValueConforms(typeURI, diagnostics, context);
@@ -925,7 +933,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateURI(URI uri, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -935,7 +942,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateCollection(Collection<?> collection, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -945,7 +951,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateList(List<?> list, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -955,7 +960,6 @@ public class TypesValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateSet(Set<?> set, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -966,7 +970,6 @@ public class TypesValidator extends EObjectValidator {
      * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -978,12 +981,9 @@ public class TypesValidator extends EObjectValidator {
      * If we have a context map, record this object's <code>status</code> in it
      * so that we will know later that we have processed it and its sub-tree.
      * 
-     * @param eObject
-     *            an element that we have validated
-     * @param context
-     *            the context (may be <code>null</code>)
-     * @param status
-     *            the element's validation status
+     * @param eObject an element that we have validated
+     * @param context the context (may be <code>null</code>)
+     * @param status the element's validation status
      *            <!-- begin-user-doc -->
      *            <!-- end-user-doc -->
      * @generated
@@ -996,16 +996,14 @@ public class TypesValidator extends EObjectValidator {
 
     /**
      * Determines whether we have processed this <code>eObject</code> before,
-     * by automatic recursion of the EMF Model Validation Service. This is
+     * by automatic recursion of the EMF Model Validation Service.  This is
      * only possible if we do, indeed, have a context.
      * 
-     * @param eObject
-     *            an element to be validated (we hope not)
-     * @param context
-     *            the context (may be <code>null</code>)
+     * @param eObject an element to be validated (we hope not)
+     * @param context the context (may be <code>null</code>)
      * @return <code>true</code> if the context is not <code>null</code> and
-     *         the <code>eObject</code> or one of its containers has already been
-     *         validated; <code>false</code>, otherwise
+     *     the <code>eObject</code> or one of its containers has already been
+     *     validated;  <code>false</code>, otherwise
      *         <!-- begin-user-doc -->
      *         <!-- end-user-doc -->
      * @generated
@@ -1029,10 +1027,8 @@ public class TypesValidator extends EObjectValidator {
     /**
      * Converts a status result from the EMF validation service to diagnostics.
      * 
-     * @param status
-     *            the EMF validation service's status result
-     * @param diagnostics
-     *            a diagnostic chain to accumulate results on
+     * @param status the EMF validation service's status result
+     * @param diagnostics a diagnostic chain to accumulate results on
      *            <!-- begin-user-doc -->
      *            <!-- end-user-doc -->
      * @generated

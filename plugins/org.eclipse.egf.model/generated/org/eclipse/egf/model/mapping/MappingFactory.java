@@ -23,39 +23,40 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface MappingFactory extends EFactory {
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  MappingFactory eINSTANCE = org.eclipse.egf.model.mapping.impl.MappingFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Viewpoint</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Viewpoint</em>'.
-   * @generated
-   */
-  MappingViewpoint createMappingViewpoint();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    MappingFactory eINSTANCE = org.eclipse.egf.model.mapping.impl.MappingFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Domain</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Domain</em>'.
-   * @generated
-   */
-  MappingDomain createMappingDomain();
+    /**
+     * Returns a new object of class '<em>Viewpoint</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Viewpoint</em>'.
+     * @generated
+     */
+    MappingViewpoint createMappingViewpoint();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  MappingPackage getMappingPackage();
+    /**
+     * Returns a new object of class '<em>Domain</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Domain</em>'.
+     * @generated
+     */
+    MappingDomain createMappingDomain();
+
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    MappingPackage getMappingPackage();
 
 } // MappingFactory

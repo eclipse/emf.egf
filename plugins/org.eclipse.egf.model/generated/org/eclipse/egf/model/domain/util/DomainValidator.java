@@ -218,8 +218,6 @@ public class DomainValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(domainEPackage, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(domainEPackage, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(domainEPackage, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(domainEPackage, diagnostics, context);
@@ -271,8 +269,6 @@ public class DomainValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(typeDomainEPackage, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(typeDomainEPackage, diagnostics, context);
-        if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(typeDomainEPackage, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_UniqueID(typeDomainEPackage, diagnostics, context);
@@ -298,8 +294,6 @@ public class DomainValidator extends EObjectValidator {
             result &= validate_EveryDataValueConforms(domainURI, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(domainURI, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(domainURI, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(domainURI, diagnostics, context);
         if (result || diagnostics != null)
@@ -363,8 +357,6 @@ public class DomainValidator extends EObjectValidator {
             result &= validate_EveryDataValueConforms(typeDomainURI, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryReferenceIsContained(typeDomainURI, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryBidirectionalReferenceIsPaired(typeDomainURI, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryProxyResolves(typeDomainURI, diagnostics, context);
         if (result || diagnostics != null)
