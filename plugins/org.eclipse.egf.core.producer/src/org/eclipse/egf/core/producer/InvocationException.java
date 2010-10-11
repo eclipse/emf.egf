@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.core.producer;
 
+import org.eclipse.emf.common.util.Diagnostic;
+
 /**
  * @author Guiu
  * 
@@ -22,8 +24,13 @@ package org.eclipse.egf.core.producer;
 public class InvocationException extends Exception {
 
     /**
-   * 
-   */
+     * Optional Diagnostic
+     */
+    private Diagnostic _diagnostic;
+
+    /**
+    * 
+    */
     private static final long serialVersionUID = -9002049838656655457L;
 
     /**
@@ -46,6 +53,20 @@ public class InvocationException extends Exception {
      */
     public InvocationException(Throwable cause) {
         this(null, cause);
+    }
+
+    /**
+     * @param diagnostic
+     */
+    public void setDiagnostic(Diagnostic diagnostic) {
+        _diagnostic = diagnostic;
+    }
+
+    /**
+     * @return _diagnostic
+     */
+    public Diagnostic getDiagnostic() {
+        return _diagnostic;
     }
 
 }
