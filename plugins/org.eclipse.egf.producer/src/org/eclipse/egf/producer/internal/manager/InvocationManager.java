@@ -25,32 +25,32 @@ import org.eclipse.egf.producer.manager.IModelElementManager;
  */
 public abstract class InvocationManager<P extends Orchestration, T extends Invocation> extends ModelElementManager<T, InvocationContract> {
 
-  public InvocationManager(IModelElementManager<P, OrchestrationParameter> parent, T invocation) throws InvocationException {
-    super(parent, invocation);
-  }
-
-  @Override
-  public void initializeContext() throws InvocationException {
-    // Get Context
-    ProductionContext<T, InvocationContract> context = getInternalProductionContext();
-    // Clear Context
-    context.clear();
-    // Set Context
-    for (InvocationContract invocationContract : getElement().getInvocationContracts()) {
-      // Nothing to process
-      if (invocationContract.getInvokedContract() == null) {
-        continue;
-      }
-      // Fetch Type and Value
-      Type type = invocationContract.getType() != null ? invocationContract.getType() : invocationContract.getInvokedContract().getType();
-      Object value = invocationContract.getType() != null ? invocationContract.getType().getValue() : null;
-      // Nothing to process
-      if (type == null) {
-        continue;
-      }
-      // Populate
-      ModelElementManager.populateContext(context, getBundle(), invocationContract, invocationContract.getInvokedMode(), type, value);
+    public InvocationManager(IModelElementManager<P, OrchestrationParameter> parent, T invocation) throws InvocationException {
+        super(parent, invocation);
     }
-  }
+
+    @Override
+    public void initializeContext() throws InvocationException {
+        // Get Context
+        ProductionContext<T, InvocationContract> context = getInternalProductionContext();
+        // Clear Context
+        context.clear();
+        // Set Context
+        for (InvocationContract invocationContract : getElement().getInvocationContracts()) {
+            // Nothing to process
+            if (invocationContract.getInvokedContract() == null) {
+                continue;
+            }
+            // Fetch Type and Value
+            Type type = invocationContract.getType() != null ? invocationContract.getType() : invocationContract.getInvokedContract().getType();
+            Object value = invocationContract.getType() != null ? invocationContract.getType().getValue() : null;
+            // Nothing to process
+            if (type == null) {
+                continue;
+            }
+            // Populate
+            ModelElementManager.populateContext(context, getBundle(), invocationContract, invocationContract.getInvokedMode(), type, value);
+        }
+    }
 
 }
