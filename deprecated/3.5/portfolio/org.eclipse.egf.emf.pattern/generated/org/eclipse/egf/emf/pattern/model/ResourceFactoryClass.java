@@ -176,6 +176,8 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
         GenModel genModel = genPackage.getGenModel();
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -239,6 +241,8 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
         stringBuffer.append(TEXT_28);
         stringBuffer.append(TEXT_29);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ResourceFactoryClass.ResourceFactoryClass.createResource.override" args="genPackage:genPackage,genModel:genModel"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genPackage", genPackage);
             callParameters.put("genModel", genModel);

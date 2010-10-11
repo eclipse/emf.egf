@@ -250,6 +250,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
         GenModel genModel = genPackage.getGenModel();
         stringBuffer.append(TEXT_1);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("argument", parameter);
             CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
@@ -314,6 +316,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
             stringBuffer.append(TEXT_25);
             stringBuffer.append(TEXT_26);
             {
+                //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.addPropertyDescriptor.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
+
                 final Map<String, Object> callParameters = new HashMap<String, Object>();
                 callParameters.put("genFeature", genFeature);
                 callParameters.put("genClass", genClass);
@@ -379,6 +383,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
         stringBuffer.append(TEXT_51);
         stringBuffer.append(TEXT_52);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.getText.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genClass", genClass);
             callParameters.put("genPackage", genPackage);
@@ -447,6 +453,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                         GenClass createClass = (GenClass) createClassifier;
                         stringBuffer.append(TEXT_76);
                         {
+                            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                             final Map<String, Object> callParameters = new HashMap<String, Object>();
                             callParameters.put("createClass", createClass);
                             callParameters.put("createFeature", createFeature);
@@ -464,6 +472,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                         GenDataType createDataType = (GenDataType) createClassifier;
                         stringBuffer.append(TEXT_77);
                         {
+                            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                             final Map<String, Object> callParameters = new HashMap<String, Object>();
                             callParameters.put("createDataType", createDataType);
                             callParameters.put("createFeature", createFeature);
@@ -482,6 +492,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                     GenClass createClass = (GenClass) createClassifier;
                     stringBuffer.append(TEXT_78);
                     {
+                        //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                         final Map<String, Object> callParameters = new HashMap<String, Object>();
                         callParameters.put("createClass", createClass);
                         callParameters.put("createFeature", createFeature);
@@ -499,6 +511,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                     GenDataType createDataType = (GenDataType) createClassifier;
                     stringBuffer.append(TEXT_79);
                     {
+                        //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
                         final Map<String, Object> callParameters = new HashMap<String, Object>();
                         callParameters.put("createDataType", createDataType);
                         callParameters.put("createFeature", createFeature);
@@ -565,6 +579,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
         }
         stringBuffer.append(TEXT_102);
         {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
+
             final Map<String, Object> callParameters = new HashMap<String, Object>();
             callParameters.put("genClass", genClass);
             callParameters.put("genPackage", genPackage);
