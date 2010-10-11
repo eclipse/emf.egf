@@ -131,16 +131,26 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
     }
 
     public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 100);
         // Check Input
         BasicDiagnostic diagnostic = checkInputElement(true);
+        // Do not further process if we are on error
         if (diagnostic.getSeverity() != Diagnostic.ERROR) {
             IModelElementManager<Orchestration, OrchestrationParameter> orchestrationManager = getOrchestrationManager();
             if (orchestrationManager != null) {
                 // Invoke
-                diagnostic.add(orchestrationManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
+                try {
+                    diagnostic.add(orchestrationManager.invoke(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE)));
+                } catch (InvocationException ie) {
+                    if (ie.getDiagnostic() != null) {
+                        diagnostic.add(ie.getDiagnostic());
+                    }
+                    ie.setDiagnostic(diagnostic);
+                    throw ie;
+                }
                 // Check Output
                 checkOutputElement(diagnostic);
+                // Monitor
                 if (monitor.isCanceled()) {
                     throw new OperationCanceledException();
                 }

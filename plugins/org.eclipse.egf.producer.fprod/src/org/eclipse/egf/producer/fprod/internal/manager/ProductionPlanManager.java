@@ -49,141 +49,149 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> {
 
-  private Map<ProductionPlanInvocation, ProductionPlanInvocationManager> _managers;
+    private Map<ProductionPlanInvocation, ProductionPlanInvocationManager> _managers;
 
-  public ProductionPlanManager(IActivityManager<FactoryComponent> parent, ProductionPlan productionPlan) throws InvocationException {
-    super(parent, productionPlan);
-  }
-
-  @Override
-  @SuppressWarnings("unchecked")
-  public ProductionContext<ProductionPlan, OrchestrationParameter> getInternalProductionContext() throws InvocationException {
-    if (_productionContext == null) {
-      _productionContext = ProducerFprodContextFactory.createContext((IProductionContext<FactoryComponent, Contract>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
+    public ProductionPlanManager(IActivityManager<FactoryComponent> parent, ProductionPlan productionPlan) throws InvocationException {
+        super(parent, productionPlan);
     }
-    return (ProductionContext<ProductionPlan, OrchestrationParameter>) _productionContext;
-  }
 
-  private Map<ProductionPlanInvocation, ProductionPlanInvocationManager> getProductionPlanManagers() throws InvocationException {
-    if (_managers == null && getElement().getInvocations() != null) {
-      _managers = new HashMap<ProductionPlanInvocation, ProductionPlanInvocationManager>(getElement().getInvocations().size());
-      for (ProductionPlanInvocation invocation : getElement().getInvocations()) {
-        _managers.put(invocation, new ProductionPlanInvocationManager(this, invocation));
-      }
-    }
-    return _managers;
-  }
-
-  @Override
-  public void dispose() throws InvocationException {
-    super.dispose();
-    Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-    if (managers != null) {
-      for (Invocation invocation : getElement().getInvocations()) {
-        managers.get(invocation).dispose();
-      }
-    }
-  }
-
-  @Override
-  public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = checkInputElement(false);
-    Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-    if (managers != null) {
-      for (Invocation invocation : getElement().getInvocations()) {
-        diagnostic.add(managers.get(invocation).canInvoke());
-      }
-    }
-    return diagnostic;
-  }
-
-  @Override
-  public void initializeContext() throws InvocationException {
-    super.initializeContext();
-    Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-    if (managers != null) {
-      for (Invocation invocation : getElement().getInvocations()) {
-        managers.get(invocation).initializeContext();
-      }
-    }
-  }
-
-  public int getSteps() throws InvocationException {
-    int steps = 0;
-    Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-    if (managers != null) {
-      for (Invocation invocation : getElement().getInvocations()) {
-        steps += managers.get(invocation).getSteps();
-      }
-    }
-    return steps;
-  }
-
-  public List<Activity> getActivities() throws InvocationException {
-    List<Activity> activities = new UniqueEList<Activity>();
-    Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-    if (managers != null) {
-      for (Invocation invocation : getElement().getInvocations()) {
-        activities.addAll(managers.get(invocation).getActivities());
-      }
-    }
-    return activities;
-  }
-
-  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = checkInputElement(true);
-    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
-      Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-      if (managers != null) {
-        int steps = getSteps();
-        SubMonitor subMonitor = SubMonitor.convert(monitor, null, steps * 900);
-        for (Invocation invocation : getElement().getInvocations()) {
-          ProductionPlanInvocationManager manager = managers.get(invocation);
-          // invoke
-          Diagnostic innerDiagnostic = manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
-          diagnostic.add(innerDiagnostic);
-          // Stop if any invocation diagnosis error are raised
-          if (innerDiagnostic.getSeverity() == Diagnostic.ERROR) {
-            break;
-          }
-          // populate target runtime context
-          populateTargetRuntimeContext(manager);
-          // Check subMonitor
-          if (subMonitor.isCanceled()) {
-            throw new OperationCanceledException();
-          }
+    @Override
+    @SuppressWarnings("unchecked")
+    public ProductionContext<ProductionPlan, OrchestrationParameter> getInternalProductionContext() throws InvocationException {
+        if (_productionContext == null) {
+            _productionContext = ProducerFprodContextFactory.createContext((IProductionContext<FactoryComponent, Contract>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
         }
-      }
+        return (ProductionContext<ProductionPlan, OrchestrationParameter>) _productionContext;
     }
-    return diagnostic;
-  }
 
-  private void populateTargetRuntimeContext(ProductionPlanInvocationManager manager) throws InvocationException {
-    for (InvocationContract contract : manager.getElement().getInvocationContracts(ContractMode.OUT)) {
-      // Target Contract
-      for (InvocationContract targetInvocationContract : contract.getTargetInvocationContract()) {
-        // Nothing to do
-        if (targetInvocationContract == null || targetInvocationContract.getInvocation() == null) {
-          continue;
+    private Map<ProductionPlanInvocation, ProductionPlanInvocationManager> getProductionPlanManagers() throws InvocationException {
+        if (_managers == null && getElement().getInvocations() != null) {
+            _managers = new HashMap<ProductionPlanInvocation, ProductionPlanInvocationManager>(getElement().getInvocations().size());
+            for (ProductionPlanInvocation invocation : getElement().getInvocations()) {
+                _managers.put(invocation, new ProductionPlanInvocationManager(this, invocation));
+            }
         }
-        // Locate target manager
-        ProductionPlanInvocationManager targetManager = getProductionPlanManagers().get(targetInvocationContract.getInvocation());
-        if (targetManager == null) {
-          throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(FprodProducerMessages.ProductionPlanManager_unknown_manager, EMFHelper.getText(targetInvocationContract.getInvocation())), null)));
-        }
-        // Populate value accordingly
-        Type type = contract.getType();
-        if (type == null) {
-          type = contract.getInvokedContract().getType();
-        }
-        Object value = manager.getProductionContext().getOutputValue(contract.getInvokedContract(), type.getType());
-        if (targetInvocationContract.getInvokedMode() == ContractMode.IN) {
-          targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
-        } else {
-          targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
-          targetManager.getInternalProductionContext().addOutputData(targetInvocationContract, type.getType(), value, false);
-        }
-      }
+        return _managers;
     }
-  }
+
+    @Override
+    public void dispose() throws InvocationException {
+        super.dispose();
+        Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
+        if (managers != null) {
+            for (Invocation invocation : getElement().getInvocations()) {
+                managers.get(invocation).dispose();
+            }
+        }
+    }
+
+    @Override
+    public Diagnostic canInvoke() throws InvocationException {
+        BasicDiagnostic diagnostic = checkInputElement(false);
+        Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
+        if (managers != null) {
+            for (Invocation invocation : getElement().getInvocations()) {
+                diagnostic.add(managers.get(invocation).canInvoke());
+            }
+        }
+        return diagnostic;
+    }
+
+    @Override
+    public void initializeContext() throws InvocationException {
+        super.initializeContext();
+        Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
+        if (managers != null) {
+            for (Invocation invocation : getElement().getInvocations()) {
+                managers.get(invocation).initializeContext();
+            }
+        }
+    }
+
+    public int getSteps() throws InvocationException {
+        int steps = 0;
+        Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
+        if (managers != null) {
+            for (Invocation invocation : getElement().getInvocations()) {
+                steps += managers.get(invocation).getSteps();
+            }
+        }
+        return steps;
+    }
+
+    public List<Activity> getActivities() throws InvocationException {
+        List<Activity> activities = new UniqueEList<Activity>();
+        Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
+        if (managers != null) {
+            for (Invocation invocation : getElement().getInvocations()) {
+                activities.addAll(managers.get(invocation).getActivities());
+            }
+        }
+        return activities;
+    }
+
+    public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, null, getSteps() * 100);
+        // Check Input
+        BasicDiagnostic diagnostic = checkInputElement(true);
+        // Do not further process if we are on error
+        if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+            Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
+            if (managers != null) {
+                for (Invocation invocation : getElement().getInvocations()) {
+                    ProductionPlanInvocationManager manager = managers.get(invocation);
+                    // Invoke
+                    try {
+                        diagnostic.add(manager.invoke(subMonitor.newChild(manager.getSteps() * 100, SubMonitor.SUPPRESS_NONE)));
+                    } catch (InvocationException ie) {
+                        if (ie.getDiagnostic() != null) {
+                            diagnostic.add(ie.getDiagnostic());
+                        }
+                        ie.setDiagnostic(diagnostic);
+                        throw ie;
+                    }
+                    // Do not further process if we are on error
+                    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+                        // populate target runtime context
+                        populateTargetRuntimeContext(manager);
+                    }
+                    // Monitor
+                    if (subMonitor.isCanceled()) {
+                        throw new OperationCanceledException();
+                    }
+                }
+            }
+        }
+        return diagnostic;
+    }
+
+    private void populateTargetRuntimeContext(ProductionPlanInvocationManager manager) throws InvocationException {
+        for (InvocationContract contract : manager.getElement().getInvocationContracts(ContractMode.OUT)) {
+            // Target Contract
+            for (InvocationContract targetInvocationContract : contract.getTargetInvocationContract()) {
+                // Nothing to do
+                if (targetInvocationContract == null || targetInvocationContract.getInvocation() == null) {
+                    continue;
+                }
+                // Locate target manager
+                ProductionPlanInvocationManager targetManager = getProductionPlanManagers().get(targetInvocationContract.getInvocation());
+                if (targetManager == null) {
+                    throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(FprodProducerMessages.ProductionPlanManager_unknown_manager, EMFHelper.getText(targetInvocationContract.getInvocation())), null)));
+                }
+                // Populate value accordingly
+                Type type = contract.getType();
+                if (type == null) {
+                    type = contract.getInvokedContract().getType();
+                }
+                Object value = manager.getProductionContext().getOutputValue(contract.getInvokedContract(), type.getType());
+                if (targetInvocationContract.getInvokedMode() == ContractMode.IN) {
+                    targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
+                } else {
+                    targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
+                    targetManager.getInternalProductionContext().addOutputData(targetInvocationContract, type.getType(), value, false);
+                }
+            }
+        }
+    }
+
 }

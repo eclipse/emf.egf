@@ -110,12 +110,24 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
     }
 
     public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 100);
+        // Check Input
         BasicDiagnostic diagnostic = checkInputElement(true);
+        // Do not further process if we are on error
         if (diagnostic.getSeverity() != Diagnostic.ERROR) {
             IActivityManager<Activity> activityManager = getActivityManager();
             if (activityManager != null) {
-                diagnostic.add(activityManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
+                // Invoke
+                try {
+                    diagnostic.add(activityManager.invoke(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE)));
+                } catch (InvocationException ie) {
+                    if (ie.getDiagnostic() != null) {
+                        diagnostic.add(ie.getDiagnostic());
+                    }
+                    ie.setDiagnostic(diagnostic);
+                    throw ie;
+                }
+                // Monitor
                 if (monitor.isCanceled()) {
                     throw new OperationCanceledException();
                 }
