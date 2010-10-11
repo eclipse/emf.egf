@@ -35,113 +35,117 @@ import org.osgi.framework.Bundle;
  */
 public abstract class ActivityManager<P extends Activity> extends ModelElementManager<P, Contract> implements IActivityManager<P> {
 
-  public ActivityManager(P activity) throws InvocationException {
-    super(activity);
-    // Diagnose Cycle
-    ActivityCycleFinder finder = new ActivityCycleFinder(activity);
-    ModelElement element = finder.getFirstRepetition();
-    if (element != null) {
-      throw new InvocationException(NLS.bind("Activity cycle detected in ''{0}''", EMFHelper.getText(element))); //$NON-NLS-1$
-    }
-  }
-
-  public ActivityManager(Bundle bundle, P activity) throws InvocationException {
-    super(bundle, activity);
-    // Diagnose Cycle
-    ActivityCycleFinder finder = new ActivityCycleFinder(activity);
-    ModelElement element = finder.getFirstRepetition();
-    if (element != null) {
-      throw new InvocationException(NLS.bind("Activity cycle detected in ''{0}''", EMFHelper.getText(element))); //$NON-NLS-1$
-    }
-  }
-
-  public <M extends Invocation> ActivityManager(IModelElementManager<M, InvocationContract> parent, P activity) throws InvocationException {
-    super(parent, activity);
-  }
-
-  @Override
-  protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
-    BasicDiagnostic diagnostic = getDiagnostic(getElement(), runtime);
-    BasicDiagnostic containerDiagnostic = null;
-    ProductionContext<P, Contract> context = getInternalProductionContext();
-    // Diagnose Mandatory In and In_Out Contract
-    for (Contract contract : getElement().getContracts(ContractMode.IN)) {
-      if (contract.isMandatory()) {
-        // Check whether or not we face a contract set at runtime
-        if (runtime == false && context.isSetAtRuntime(contract.getName())) {
-          continue;
+    public ActivityManager(P activity) throws InvocationException {
+        super(activity);
+        // Diagnose Cycle
+        ActivityCycleFinder finder = new ActivityCycleFinder(activity);
+        ModelElement element = finder.getFirstRepetition();
+        if (element != null) {
+            throw new InvocationException(NLS.bind("Activity cycle detected in ''{0}''", EMFHelper.getText(element))); //$NON-NLS-1$
         }
-        // Check Mandatory Value
-        Object value = null;
-        try {
-          value = context.getInputValue(contract.getName(), contract.getType().getType());
-        } catch (InvocationException ie) {
-          if (ie.getCause() != null) {
-            throw ie;
-          }
-        }
-        if (value == null) {
-          if (containerDiagnostic == null) {
-            containerDiagnostic = getDiagnostic(contract.getContractContainer(), runtime);
-          }
-          containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Value is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
-              new Object[] { contract }));
-        }
-      }
     }
-    // containerDiagnostic should be added at the end otherwise, the severity code is not propagated to the parent.
-    if (containerDiagnostic != null) {
-      diagnostic.add(containerDiagnostic);
-    }
-    return diagnostic;
-  }
 
-  @Override
-  protected BasicDiagnostic checkOutputElement(BasicDiagnostic diagnostic) throws InvocationException {
-    BasicDiagnostic containerDiagnostic = null;
-    ProductionContext<P, Contract> context = getInternalProductionContext();
-    // Diagnose Mandatory Out and In_Out Contract
-    for (Contract contract : getElement().getContracts(ContractMode.OUT)) {
-      if (contract.isMandatory()) {
-        // Check Mandatory Value
-        Object value = null;
-        try {
-          value = context.getOutputValue(contract.getName(), contract.getType().getType());
-        } catch (InvocationException ie) {
-          if (ie.getCause() != null) {
-            throw ie;
-          }
+    public ActivityManager(Bundle bundle, P activity) throws InvocationException {
+        super(bundle, activity);
+        // Diagnose Cycle
+        ActivityCycleFinder finder = new ActivityCycleFinder(activity);
+        ModelElement element = finder.getFirstRepetition();
+        if (element != null) {
+            throw new InvocationException(NLS.bind("Activity cycle detected in ''{0}''", EMFHelper.getText(element))); //$NON-NLS-1$
         }
-        if (value == null) {
-          if (containerDiagnostic == null) {
-            containerDiagnostic = getDiagnostic(contract.getContractContainer(), true);
-          }
-          containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind(ProducerMessages.ActivityManager_mandatory_value, EMFHelper.getText(contract)), new Object[] { contract }));
-        }
-      }
     }
-    // containerDiagnostic should be added at the end otherwise, the severity code is not propagated to the parent.
-    if (containerDiagnostic != null) {
-      diagnostic.add(containerDiagnostic);
-    }
-    return diagnostic;
-  }
 
-  @Override
-  public void initializeContext() throws InvocationException {
-    // Get Context
-    ProductionContext<P, Contract> context = getInternalProductionContext();
-    // Clear Context
-    context.clear();
-    // Set Context
-    for (Contract contract : getElement().getContracts()) {
-      // Should not happen, anyway ignore
-      if (contract.getType() == null) {
-        continue;
-      }
-      // Populate
-      ModelElementManager.populateContext(context, getBundle(), contract, contract.getMode(), contract.getType(), contract.getType().getValue());
+    public <M extends Invocation> ActivityManager(IModelElementManager<M, InvocationContract> parent, P activity) throws InvocationException {
+        super(parent, activity);
     }
-  }
+
+    @Override
+    protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
+        BasicDiagnostic diagnostic = getDiagnostic(getElement(), runtime);
+        BasicDiagnostic containerDiagnostic = null;
+        ProductionContext<P, Contract> context = getInternalProductionContext();
+        // Diagnose Mandatory In and In_Out Contract
+        for (Contract contract : getElement().getContracts(ContractMode.IN)) {
+            if (contract.isMandatory()) {
+                // Check whether or not we face a contract set at runtime
+                if (runtime == false && context.isSetAtRuntime(contract.getName())) {
+                    continue;
+                }
+                // Check Mandatory Value
+                Object value = null;
+                try {
+                    value = context.getInputValue(contract.getName(), contract.getType().getType());
+                } catch (InvocationException ie) {
+                    if (ie.getCause() != null) {
+                        throw ie;
+                    }
+                }
+                if (value == null) {
+                    if (containerDiagnostic == null) {
+                        containerDiagnostic = getDiagnostic(contract.getContractContainer(), runtime);
+                    }
+                    containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Value is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
+                            new Object[] {
+                                contract
+                            }));
+                }
+            }
+        }
+        // containerDiagnostic should be added at the end otherwise, the severity code is not propagated to the parent.
+        if (containerDiagnostic != null) {
+            diagnostic.add(containerDiagnostic);
+        }
+        return diagnostic;
+    }
+
+    @Override
+    protected BasicDiagnostic checkOutputElement(BasicDiagnostic diagnostic) throws InvocationException {
+        BasicDiagnostic containerDiagnostic = null;
+        ProductionContext<P, Contract> context = getInternalProductionContext();
+        // Diagnose Mandatory Out and In_Out Contract
+        for (Contract contract : getElement().getContracts(ContractMode.OUT)) {
+            if (contract.isMandatory()) {
+                // Check Mandatory Value
+                Object value = null;
+                try {
+                    value = context.getOutputValue(contract.getName(), contract.getType().getType());
+                } catch (InvocationException ie) {
+                    if (ie.getCause() != null) {
+                        throw ie;
+                    }
+                }
+                if (value == null) {
+                    if (containerDiagnostic == null) {
+                        containerDiagnostic = getDiagnostic(contract.getContractContainer(), true);
+                    }
+                    containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind(ProducerMessages.ActivityManager_mandatory_value, EMFHelper.getText(contract)), new Object[] {
+                        contract
+                    }));
+                }
+            }
+        }
+        // containerDiagnostic should be added at the end otherwise, the severity code is not propagated to the parent.
+        if (containerDiagnostic != null) {
+            diagnostic.add(containerDiagnostic);
+        }
+        return diagnostic;
+    }
+
+    @Override
+    public void initializeContext() throws InvocationException {
+        // Get Context
+        ProductionContext<P, Contract> context = getInternalProductionContext();
+        // Clear Context
+        context.clear();
+        // Set Context
+        for (Contract contract : getElement().getContracts()) {
+            // Should not happen, anyway ignore
+            if (contract.getType() == null) {
+                continue;
+            }
+            // Populate
+            ModelElementManager.populateContext(context, getBundle(), contract, contract.getMode(), contract.getType(), contract.getType().getValue());
+        }
+    }
 
 }
