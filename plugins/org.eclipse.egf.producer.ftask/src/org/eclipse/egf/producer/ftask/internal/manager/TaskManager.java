@@ -104,13 +104,16 @@ public class TaskManager extends ActivityManager<Task> {
 
     public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
         SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
+        // Check Input
         BasicDiagnostic diagnostic = checkInputElement(true);
         if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+            // Invoke
             EGFProducerFtaskPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE));
+            // Check Output
+            checkOutputElement(diagnostic);
             if (monitor.isCanceled()) {
                 throw new OperationCanceledException();
             }
-            checkOutputElement(diagnostic);
         }
         return diagnostic;
     }
