@@ -20,7 +20,6 @@ import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.types.provider.TypeItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.EMFEditPlugin;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -177,17 +176,6 @@ public class TypePatternSubstitutionItemProvider extends TypeItemProvider implem
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add(createChildParameter(PatternPackage.Literals.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS, PatternFactory.eINSTANCE.createSubstitution()));
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return EGFModelEditPlugin.INSTANCE;
     }
 
 }
