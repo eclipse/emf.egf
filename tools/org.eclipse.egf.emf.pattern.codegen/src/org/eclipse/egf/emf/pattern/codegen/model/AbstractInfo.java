@@ -18,8 +18,8 @@ package org.eclipse.egf.emf.pattern.codegen.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.emf.pattern.PartType;
 import org.eclipse.egf.emf.pattern.base.ContentType;
+import org.eclipse.egf.emf.pattern.util.PartType;
 
 /**
  * @author Matthieu Helleboid

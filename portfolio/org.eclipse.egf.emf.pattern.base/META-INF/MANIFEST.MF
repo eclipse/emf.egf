@@ -9,10 +9,11 @@ Bundle-Activator: org.eclipse.egf.emf.pattern.base.Activator
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
- org.eclipse.egf.emf.pattern.base
+ org.eclipse.egf.emf.pattern.base,
+ org.eclipse.egf.emf.pattern.util
 Require-Bundle: 
- org.eclipse.egf.common,
  org.eclipse.egf.pattern,
  org.eclipse.egf.model.ftask,
- org.eclipse.egf.pattern.ftask
+ org.eclipse.egf.pattern.ftask,
+ org.eclipse.egf.model.fprod
 Bundle-ActivationPolicy: lazy

@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.emf.pattern;
+package org.eclipse.egf.emf.pattern.util;
 
 /**
  * @author Matthieu Helleboid

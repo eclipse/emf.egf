@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.emf.pattern.PartType;
 import org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter;
 import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
+import org.eclipse.egf.emf.pattern.util.PartType;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;

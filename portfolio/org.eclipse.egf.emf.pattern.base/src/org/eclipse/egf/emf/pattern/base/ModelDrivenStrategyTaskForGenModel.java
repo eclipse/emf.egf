@@ -29,10 +29,10 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
  */
 public class ModelDrivenStrategyTaskForGenModel extends ModelDrivenStrategyTask {
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void readContext(ITaskProductionContext context, PatternContext ctx) throws InvocationException {
         super.readContext(context, ctx);
+        @SuppressWarnings("rawtypes")
         List objects = (List) ctx.getValue(PatternContext.DOMAIN_OBJECTS);
         for (Object object : objects) {
             if (object instanceof GenModel) {

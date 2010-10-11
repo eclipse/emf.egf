@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
-import org.eclipse.egf.emf.pattern.FcoreUtil;
+import org.eclipse.egf.emf.pattern.util.FcoreUtil;
 import org.eclipse.egf.model.fcore.presentation.FcoreModelWizard;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
