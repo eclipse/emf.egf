@@ -23,30 +23,31 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface FtaskFactory extends EFactory {
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  FtaskFactory eINSTANCE = org.eclipse.egf.model.ftask.impl.FtaskFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Task</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task</em>'.
-   * @generated
-   */
-  Task createTask();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    FtaskFactory eINSTANCE = org.eclipse.egf.model.ftask.impl.FtaskFactoryImpl.init();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  FtaskPackage getFtaskPackage();
+    /**
+     * Returns a new object of class '<em>Task</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Task</em>'.
+     * @generated
+     */
+    Task createTask();
+
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    FtaskPackage getFtaskPackage();
 
 } //FtaskFactory

@@ -32,24 +32,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getKind <em>Kind</em>}</li>
- * <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getImplementation <em>
- * Implementation</em>}</li>
- * <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getSuperTask <em>Super
- * Task</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getSuperTask <em>Super Task</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getImplementation <em>Implementation</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TaskImpl extends ActivityImpl implements Task {
 
     /**
-     * A set of bit flags representing the values of boolean attributes and
-     * whether unsettable features have been set.
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -59,7 +55,6 @@ public class TaskImpl extends ActivityImpl implements Task {
      * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getKind()
      * @generated
      * @ordered
@@ -70,7 +65,6 @@ public class TaskImpl extends ActivityImpl implements Task {
      * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getKind()
      * @generated
      * @ordered
@@ -78,35 +72,9 @@ public class TaskImpl extends ActivityImpl implements Task {
     protected String kind = KIND_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getImplementation()
-     * <em>Implementation</em>}' attribute.
+     * The cached value of the '{@link #getSuperTask() <em>Super Task</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @see #getImplementation()
-     * @generated
-     * @ordered
-     */
-    protected static final String IMPLEMENTATION_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getImplementation()
-     * <em>Implementation</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see #getImplementation()
-     * @generated
-     * @ordered
-     */
-    protected String implementation = IMPLEMENTATION_EDEFAULT;
-
-    /**
-     * The cached value of the '{@link #getSuperTask() <em>Super Task</em>}'
-     * reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
      * @see #getSuperTask()
      * @generated
      * @ordered
@@ -114,9 +82,28 @@ public class TaskImpl extends ActivityImpl implements Task {
     protected Task superTask;
 
     /**
+     * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
+     * @see #getImplementation()
+     * @generated
+     * @ordered
+     */
+    protected static final String IMPLEMENTATION_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getImplementation()
+     * @generated
+     * @ordered
+     */
+    protected String implementation = IMPLEMENTATION_EDEFAULT;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     protected TaskImpl() {
@@ -217,7 +204,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -228,7 +214,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getKind() {
@@ -238,7 +223,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setKind(String newKind) {
@@ -251,7 +235,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getImplementation() {
@@ -261,7 +244,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setImplementation(String newImplementation) {
@@ -274,7 +256,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Task getSuperTask() {
@@ -292,7 +273,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Task basicGetSuperTask() {
@@ -302,7 +282,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setSuperTask(Task newSuperTask) {
@@ -341,7 +320,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -349,12 +327,12 @@ public class TaskImpl extends ActivityImpl implements Task {
         switch (featureID) {
             case FtaskPackage.TASK__KIND:
                 return getKind();
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                return getImplementation();
             case FtaskPackage.TASK__SUPER_TASK:
                 if (resolve)
                     return getSuperTask();
                 return basicGetSuperTask();
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                return getImplementation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -362,7 +340,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -371,11 +348,11 @@ public class TaskImpl extends ActivityImpl implements Task {
             case FtaskPackage.TASK__KIND:
                 setKind((String) newValue);
                 return;
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                setImplementation((String) newValue);
-                return;
             case FtaskPackage.TASK__SUPER_TASK:
                 setSuperTask((Task) newValue);
+                return;
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                setImplementation((String) newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -384,7 +361,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -393,11 +369,11 @@ public class TaskImpl extends ActivityImpl implements Task {
             case FtaskPackage.TASK__KIND:
                 setKind(KIND_EDEFAULT);
                 return;
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                setImplementation(IMPLEMENTATION_EDEFAULT);
-                return;
             case FtaskPackage.TASK__SUPER_TASK:
                 setSuperTask((Task) null);
+                return;
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                setImplementation(IMPLEMENTATION_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -406,7 +382,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -414,10 +389,10 @@ public class TaskImpl extends ActivityImpl implements Task {
         switch (featureID) {
             case FtaskPackage.TASK__KIND:
                 return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
             case FtaskPackage.TASK__SUPER_TASK:
                 return superTask != null;
+            case FtaskPackage.TASK__IMPLEMENTATION:
+                return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
         }
         return super.eIsSet(featureID);
     }
@@ -425,7 +400,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
