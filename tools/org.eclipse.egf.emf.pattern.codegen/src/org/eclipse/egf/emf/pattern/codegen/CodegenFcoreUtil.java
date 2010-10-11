@@ -70,6 +70,8 @@ public class CodegenFcoreUtil {
     protected CodegenJetPatternHelper codegenJetPatternHelper;
 
     protected List<PatternInfo> patternInfos;
+    
+    protected CodegenVersionHelper codegenVersionHelper;
 
     protected class ClearCommand extends RecordingCommand {
 
@@ -146,6 +148,7 @@ public class CodegenFcoreUtil {
         if (!codegenProject.isOpen())
             throw new IllegalStateException("Project " + CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE + " is closed"); //$NON-NLS-1$ //$NON-NLS-2$
 
+        createCodegenVersionHelper();
         createCodegenPatternHelper();
         createCodegenEGFHelper(); //called with the newly created resource
         createCodegenJetPattenHelper();
@@ -155,7 +158,8 @@ public class CodegenFcoreUtil {
         computePatternInfoNames();
         computeMethodsContent(monitor);
         computePatternInfoDescription();
-
+        replaceManifestVersion();
+        
         // Add factory component to the contents.
         CreateCommand createCommand = new CreateCommand(editingDomain, monitor);
         editingDomain.getCommandStack().execute(createCommand);
@@ -184,6 +188,10 @@ public class CodegenFcoreUtil {
         }
 
         return;
+    }
+
+    protected void replaceManifestVersion() throws CoreException, IOException {
+        codegenVersionHelper.replaceManifestVersion();
     }
 
     protected void clearFcore(TransactionalEditingDomain editingDomain) throws Exception {
@@ -223,12 +231,16 @@ public class CodegenFcoreUtil {
         codegenJetPatternHelper = new CodegenJetPatternHelper(codegenPatternHelper, codegenProject, emfPatternBaseResource, emfPatternResource);
     }
 
+    public void createCodegenVersionHelper() {
+        codegenVersionHelper = new CodegenVersionHelper(codegenProject, fcoreProject);
+    }
+
     public void computePatternInfoNames() {
         new CodegenPatternNameResolver(codegenPatternHelper).computePatternName(patternInfos);
     }
 
     public void computePatternInfoDescription() throws Exception {
-        new CodegenPatternDescriptionHandler(codegenProject).computeDescription(patternInfos);
+        new CodegenPatternDescriptionHandler(codegenProject).computeDescription(patternInfos, codegenVersionHelper);
     }
 
     public void computeMethodsContent(IProgressMonitor monitor) {

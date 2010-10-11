@@ -17,16 +17,13 @@ package org.eclipse.egf.emf.pattern.codegen;
 
 import static org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil.N;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.emf.pattern.codegen.model.GIFPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.JetAbstractPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.JetPatternInfo;
@@ -34,7 +31,6 @@ import org.eclipse.egf.emf.pattern.codegen.model.JetSubPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.MethodInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
 import org.eclipse.egf.pattern.jet.JetTagsConstants;
-import org.osgi.framework.Constants;
 
 /**
  * @author Matthieu Helleboid
@@ -42,11 +38,7 @@ import org.osgi.framework.Constants;
  */
 public class CodegenPatternDescriptionHandler {
 
-    private static final String ORG_ECLIPSE_EMF_ECORE_VISIBILITY_REEXPORT_BUNDLE_VERSION = "org.eclipse.emf.ecore;visibility:=\"reexport\";bundle-version=\"["; //$NON-NLS-1$
-
-    private static final Pattern MANIFEST_REGEX = Pattern.compile("([a-zA-Z\\-]*):(.*)"); //$NON-NLS-1$
-
-    protected static final Pattern EGF_REGEX = Pattern.compile(".fcore#" + JetTagsConstants.LOGICAL_NAME + "=([^\\\"]*)\\\""); //$NON-NLS-1$ //$NON-NLS-2$
+    private static final Pattern EGF_REGEX = Pattern.compile(".fcore#" + JetTagsConstants.LOGICAL_NAME + "=([^\\\"]*)\\\""); //$NON-NLS-1$ //$NON-NLS-2$
 
     protected IProject codegenProject;
 
@@ -56,39 +48,16 @@ public class CodegenPatternDescriptionHandler {
         this.codegenProject = codegenProject;
     }
 
-    public void addCodegenEMFVersion(StringBuilder builder) throws Exception {
+    public void addCodegenEMFVersion(StringBuilder builder, CodegenVersionHelper codegenVersionHelper) throws Exception {
         if (codegenEMFVersion == null) {
             StringBuilder codegenEMFVersionBuilder = new StringBuilder();
-            BufferedReader bufferedReader = null;
-            try {
-                InputStream inputStream = codegenProject.getFile("META-INF/MANIFEST.MF").getContents(); //$NON-NLS-1$
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-                Map<String, String> map = new HashMap<String, String>();
-
-                String line;
-                String lastKey = ""; //$NON-NLS-1$
-                while ((line = bufferedReader.readLine()) != null) {
-                    Matcher matcher = MANIFEST_REGEX.matcher(line);
-                    if (matcher.matches()) {
-                        lastKey = matcher.group(1);
-                        map.put(lastKey, matcher.group(2).trim());
-                    } else {
-                        map.put(lastKey, map.get(lastKey) + line.trim());
-                    }
-                }
-
-                codegenEMFVersionBuilder.append(map.get(Constants.BUNDLE_VERSION));
-
-                int indexOf = map.get(Constants.REQUIRE_BUNDLE).indexOf(ORG_ECLIPSE_EMF_ECORE_VISIBILITY_REEXPORT_BUNDLE_VERSION);
-                if (indexOf > -1) {
-                    indexOf = indexOf + ORG_ECLIPSE_EMF_ECORE_VISIBILITY_REEXPORT_BUNDLE_VERSION.length();
-                    codegenEMFVersionBuilder.append(" from EMF "); //$NON-NLS-1$
-                    codegenEMFVersionBuilder.append(map.get(Constants.REQUIRE_BUNDLE).substring(indexOf, indexOf + 5));
-                }
-            } finally {
-                if (bufferedReader != null)
-                    bufferedReader.close();
+            
+            codegenEMFVersionBuilder.append(codegenVersionHelper.getEMFCodegenEcoreVersion());
+            
+            String emfEcoreVersion = codegenVersionHelper.getEMFEcoreVersion();
+            if (emfEcoreVersion != null) {
+                codegenEMFVersionBuilder.append(" from EMF "); //$NON-NLS-1$
+                codegenEMFVersionBuilder.append(emfEcoreVersion);
             }
 
             codegenEMFVersion = codegenEMFVersionBuilder.toString();
@@ -97,15 +66,17 @@ public class CodegenPatternDescriptionHandler {
         builder.append(codegenEMFVersion);
     }
 
-    public void computeDescription(List<PatternInfo> patternInfos) throws Exception {
+    
+
+    public void computeDescription(List<PatternInfo> patternInfos, CodegenVersionHelper codegenVersionHelper) throws Exception {
         for (PatternInfo patternInfo : patternInfos) {
-            computeDescription(patternInfo);
+            computeDescription(patternInfo, codegenVersionHelper);
         }
     }
 
-    protected void computeDescription(PatternInfo patternInfo) throws Exception {
+    protected void computeDescription(PatternInfo patternInfo, CodegenVersionHelper codegenVersionHelper) throws Exception {
         StringBuilder builder = new StringBuilder();
-        addGeneratedFrom(patternInfo, builder);
+        addGeneratedFrom(patternInfo, builder, codegenVersionHelper);
         builder.append(N);
         addCalls(patternInfo, builder);
 
@@ -135,14 +106,38 @@ public class CodegenPatternDescriptionHandler {
         }
     }
 
-    private void addGeneratedFrom(PatternInfo patternInfo, StringBuilder builder) throws Exception {
-        builder.append("This pattern was generated from "); //$NON-NLS-1$
-        addTemplatePath(builder, patternInfo);
-        builder.append("project "); //$NON-NLS-1$
+    protected void addGeneratedFrom(PatternInfo patternInfo, StringBuilder builder, CodegenVersionHelper codegenVersionHelper) throws Exception {
+        builder.append("This pattern was generated from : "); //$NON-NLS-1$
+
+        builder.append("\n"); //$NON-NLS-1$
+        builder.append("    * Bundle "); //$NON-NLS-1$
         builder.append(codegenProject.getName());
         builder.append(" "); //$NON-NLS-1$
-        addCodegenEMFVersion(builder);
-        builder.append("."); //$NON-NLS-1$
+        addCodegenEMFVersion(builder, codegenVersionHelper);
+        
+        builder.append("\n"); //$NON-NLS-1$
+        builder.append("    * "); //$NON-NLS-1$
+        addTemplatePath(builder, patternInfo);
+        
+        addTemplateVersion(builder, patternInfo, codegenVersionHelper);
+    }
+
+    protected void addTemplateVersion(StringBuilder builder, PatternInfo patternInfo, CodegenVersionHelper codegenVersionHelper) throws IOException, CoreException {
+        String templateVersion = null;
+        if (patternInfo instanceof JetPatternInfo) {
+            JetPatternInfo jetPatternInfo = (JetPatternInfo) patternInfo;
+            templateVersion = codegenVersionHelper.getTemplateVersion(jetPatternInfo.getJetTemplatePath());
+        } else if (patternInfo instanceof JetSubPatternInfo) {
+            JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
+            JetPatternInfo jetPatternInfo = (JetPatternInfo) jetSubPatternInfo.getSection().getRoot().getPatternInfo();
+            templateVersion = codegenVersionHelper.getTemplateVersion(jetPatternInfo.getJetTemplatePath());
+        }
+        
+        if (templateVersion != null)  {
+            builder.append("\n"); //$NON-NLS-1$
+            builder.append("    * Version "); //$NON-NLS-1$
+            builder.append(templateVersion);
+        }
     }
 
     protected void addTemplatePath(StringBuilder builder, PatternInfo patternInfo) {
@@ -150,9 +145,9 @@ public class CodegenPatternDescriptionHandler {
             return;
 
         if (patternInfo instanceof JetPatternInfo) {
-            builder.append("file \""); //$NON-NLS-1$
+            builder.append("Template \"templates/"); //$NON-NLS-1$
             builder.append(((JetPatternInfo) patternInfo).getJetTemplatePath());
-            builder.append("\" in "); //$NON-NLS-1$
+            builder.append("\""); //$NON-NLS-1$
         } else if (patternInfo instanceof JetSubPatternInfo) {
             JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
             JetAbstractPatternInfo rootPatternInfo = jetSubPatternInfo.getSection().getRoot().getPatternInfo();
