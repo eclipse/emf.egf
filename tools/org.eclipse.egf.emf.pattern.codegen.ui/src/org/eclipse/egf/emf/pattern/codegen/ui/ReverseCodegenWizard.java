@@ -60,8 +60,6 @@ public class ReverseCodegenWizard extends FcoreModelWizard {
             @Override
             public List<String> addDependencies() {
                 List<String> dependencies = new ArrayList<String>(1);
-                dependencies.add("org.eclipse.egf.pattern"); //$NON-NLS-1$
-                dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$
                 dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
                 dependencies.add("org.eclipse.egf.emf.pattern.base"); //$NON-NLS-1$
                 return dependencies;
@@ -70,7 +68,6 @@ public class ReverseCodegenWizard extends FcoreModelWizard {
             @Override
             public List<String> addSourceFolders() {
                 List<String> sourceFolders = new ArrayList<String>(1);
-                sourceFolders.add("src"); //$NON-NLS-1$
                 sourceFolders.add("generated"); //$NON-NLS-1$
                 return sourceFolders;
             }
