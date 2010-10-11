@@ -24,25 +24,25 @@ import org.eclipse.egf.producer.manager.IActivityManager;
  */
 public abstract class OrchestrationManager<P extends Orchestration> extends ModelElementManager<P, OrchestrationParameter> {
 
-  public OrchestrationManager(IActivityManager<FactoryComponent> parent, P orchestration) throws InvocationException {
-    super(parent, orchestration);
-  }
-
-  @Override
-  public void initializeContext() throws InvocationException {
-    // Get Context
-    ProductionContext<P, OrchestrationParameter> context = getInternalProductionContext();
-    // Clear Context
-    context.clear();
-    // Set Context
-    for (OrchestrationParameter orchestrationParameter : getElement().getOrchestrationParameters()) {
-      // Nothing to process
-      if (orchestrationParameter.getType() == null) {
-        continue;
-      }
-      // Populate
-      ModelElementManager.populateContext(context, getBundle(), orchestrationParameter, ContractMode.IN, orchestrationParameter.getType(), orchestrationParameter.getType().getValue());
+    public OrchestrationManager(IActivityManager<FactoryComponent> parent, P orchestration) throws InvocationException {
+        super(parent, orchestration);
     }
-  }
+
+    @Override
+    public void initializeContext() throws InvocationException {
+        // Get Context
+        ProductionContext<P, OrchestrationParameter> context = getInternalProductionContext();
+        // Clear Context
+        context.clear();
+        // Set Context
+        for (OrchestrationParameter orchestrationParameter : getElement().getOrchestrationParameters()) {
+            // Nothing to process
+            if (orchestrationParameter.getType() == null) {
+                continue;
+            }
+            // Populate
+            ModelElementManager.populateContext(context, getBundle(), orchestrationParameter, ContractMode.IN, orchestrationParameter.getType(), orchestrationParameter.getType().getValue());
+        }
+    }
 
 }
