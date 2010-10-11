@@ -45,11 +45,13 @@ public class ResourcesSelectionDialog extends FilteredResourcesSelectionDialog {
         @Override
         public boolean matchItem(Object item) {
             boolean match = super.matchItem(item);
-            if (!match || ("".equals(fileExtension) && match))
+            if (!match || ("".equals(fileExtension) && match)) { //$NON-NLS-1$
                 return match;
+            }
             String currentExtension = ((IResource) item).getFileExtension();
             return (!(currentExtension == null) && fileExtension.equals(currentExtension.toLowerCase()));
         }
 
     }
+
 }
