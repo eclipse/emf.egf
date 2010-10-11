@@ -5,6 +5,7 @@
 
 	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>_dropins">
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
+if (publishStep.getJob().isEnabled()) {
 String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";
 String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
 String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();%>
@@ -24,7 +25,7 @@ String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getN
 		<copy todir="${publish}/<%=aggregateStep.getName()%>/dropins/<%=aggregateStep.getName()%>/" >
 			<fileset file="${<%=propertyName2%>}"/>
 		</copy>
-<%}%>
+<%}}%>
 	</target>	
 
 	<target name="<%=new GenerationHelper().getPositionString(aggregateStep)%>_sitep2">
@@ -33,10 +34,11 @@ String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getN
 			<repository location="file:/${publish}/<%=aggregateStep.getName()%>/site.p2" name="repository aggregation" />
 			<source>
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
+if (publishStep.getJob().isEnabled()) {
 if (publishStep.getComponent() instanceof Feature) {
 String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";%>
 				<repository location="<%=location%>" />
-<%}}%>
+<%}}}%>
 <%for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {%>
 				<repository location="<%=updateSiteUrl%>" />
 <%}%>

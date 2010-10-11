@@ -127,30 +127,32 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         stringBuffer.append(new GenerationHelper().getPositionString(aggregateStep));
         stringBuffer.append(TEXT_5);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-            String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";
-            String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
-            String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();
-            stringBuffer.append(TEXT_6);
-            stringBuffer.append(propertyName);
-            stringBuffer.append(TEXT_7);
-            stringBuffer.append(location);
-            stringBuffer.append(TEXT_8);
-            stringBuffer.append(aggregateStep.getName());
-            stringBuffer.append(TEXT_9);
-            stringBuffer.append(aggregateStep.getName());
-            stringBuffer.append(TEXT_10);
-            stringBuffer.append(propertyName);
-            stringBuffer.append(TEXT_11);
-            stringBuffer.append(propertyName2);
-            stringBuffer.append(TEXT_12);
-            stringBuffer.append(location);
-            stringBuffer.append(TEXT_13);
-            stringBuffer.append(aggregateStep.getName());
-            stringBuffer.append(TEXT_14);
-            stringBuffer.append(aggregateStep.getName());
-            stringBuffer.append(TEXT_15);
-            stringBuffer.append(propertyName2);
-            stringBuffer.append(TEXT_16);
+            if (publishStep.getJob().isEnabled()) {
+                String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";
+                String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
+                String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();
+                stringBuffer.append(TEXT_6);
+                stringBuffer.append(propertyName);
+                stringBuffer.append(TEXT_7);
+                stringBuffer.append(location);
+                stringBuffer.append(TEXT_8);
+                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(TEXT_9);
+                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(TEXT_10);
+                stringBuffer.append(propertyName);
+                stringBuffer.append(TEXT_11);
+                stringBuffer.append(propertyName2);
+                stringBuffer.append(TEXT_12);
+                stringBuffer.append(location);
+                stringBuffer.append(TEXT_13);
+                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(TEXT_14);
+                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(TEXT_15);
+                stringBuffer.append(propertyName2);
+                stringBuffer.append(TEXT_16);
+            }
         }
         stringBuffer.append(TEXT_17);
         stringBuffer.append(new GenerationHelper().getPositionString(aggregateStep));
@@ -158,11 +160,13 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         stringBuffer.append(aggregateStep.getName());
         stringBuffer.append(TEXT_19);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-            if (publishStep.getComponent() instanceof Feature) {
-                String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";
-                stringBuffer.append(TEXT_20);
-                stringBuffer.append(location);
-                stringBuffer.append(TEXT_21);
+            if (publishStep.getJob().isEnabled()) {
+                if (publishStep.getComponent() instanceof Feature) {
+                    String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";
+                    stringBuffer.append(TEXT_20);
+                    stringBuffer.append(location);
+                    stringBuffer.append(TEXT_21);
+                }
             }
         }
         for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {
