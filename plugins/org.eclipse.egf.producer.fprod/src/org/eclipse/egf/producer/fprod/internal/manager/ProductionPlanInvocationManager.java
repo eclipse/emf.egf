@@ -41,87 +41,87 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ProductionPlanInvocationManager extends InvocationManager<ProductionPlan, ProductionPlanInvocation> {
 
-  private IActivityManager<Activity> _activityManager;
+    private IActivityManager<Activity> _activityManager;
 
-  public ProductionPlanInvocationManager(IModelElementManager<ProductionPlan, OrchestrationParameter> parent, ProductionPlanInvocation element) throws InvocationException {
-    super(parent, element);
-  }
-
-  @Override
-  @SuppressWarnings("unchecked")
-  public ProductionContext<ProductionPlanInvocation, InvocationContract> getInternalProductionContext() throws InvocationException {
-    if (_productionContext == null) {
-      _productionContext = ProducerFprodContextFactory.createContext((IProductionContext<ProductionPlan, OrchestrationParameter>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
+    public ProductionPlanInvocationManager(IModelElementManager<ProductionPlan, OrchestrationParameter> parent, ProductionPlanInvocation element) throws InvocationException {
+        super(parent, element);
     }
-    return (ProductionContext<ProductionPlanInvocation, InvocationContract>) _productionContext;
-  }
 
-  public IActivityManager<Activity> getActivityManager() throws InvocationException {
-    if (_activityManager == null && getElement().getInvokedActivity() != null) {
-      ActivityManagerProducer<Activity> producer = null;
-      try {
-        producer = EGFProducerPlugin.getActivityManagerProducer(getElement().getInvokedActivity());
-      } catch (Throwable t) {
-        throw new InvocationException(t);
-      }
-      _activityManager = producer.createActivityManager(this, getElement().getInvokedActivity());
-    }
-    return _activityManager;
-  }
-
-  @Override
-  public void dispose() throws InvocationException {
-    super.dispose();
-    if (getActivityManager() != null) {
-      getActivityManager().dispose();
-    }
-  }
-
-  @Override
-  public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = checkInputElement(false);
-    if (getActivityManager() != null) {
-      diagnostic.add(getActivityManager().canInvoke());
-    }
-    return diagnostic;
-  }
-
-  @Override
-  public void initializeContext() throws InvocationException {
-    super.initializeContext();
-    if (getActivityManager() != null) {
-      getActivityManager().initializeContext();
-    }
-  }
-
-  public int getSteps() throws InvocationException {
-    if (getActivityManager() != null) {
-      return getActivityManager().getSteps();
-    }
-    return 0;
-  }
-
-  public List<Activity> getActivities() throws InvocationException {
-    List<Activity> activities = new UniqueEList<Activity>();
-    if (getActivityManager() != null) {
-      activities.addAll(getActivityManager().getActivities());
-    }
-    return activities;
-  }
-
-  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
-    BasicDiagnostic diagnostic = checkInputElement(true);
-    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
-      IActivityManager<Activity> activityManager = getActivityManager();
-      if (activityManager != null) {
-        diagnostic.add(activityManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
-        if (monitor.isCanceled()) {
-          throw new OperationCanceledException();
+    @Override
+    @SuppressWarnings("unchecked")
+    public ProductionContext<ProductionPlanInvocation, InvocationContract> getInternalProductionContext() throws InvocationException {
+        if (_productionContext == null) {
+            _productionContext = ProducerFprodContextFactory.createContext((IProductionContext<ProductionPlan, OrchestrationParameter>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
         }
-      }
+        return (ProductionContext<ProductionPlanInvocation, InvocationContract>) _productionContext;
     }
-    return diagnostic;
-  }
+
+    public IActivityManager<Activity> getActivityManager() throws InvocationException {
+        if (_activityManager == null && getElement().getInvokedActivity() != null) {
+            ActivityManagerProducer<Activity> producer = null;
+            try {
+                producer = EGFProducerPlugin.getActivityManagerProducer(getElement().getInvokedActivity());
+            } catch (Throwable t) {
+                throw new InvocationException(t);
+            }
+            _activityManager = producer.createActivityManager(this, getElement().getInvokedActivity());
+        }
+        return _activityManager;
+    }
+
+    @Override
+    public void dispose() throws InvocationException {
+        super.dispose();
+        if (getActivityManager() != null) {
+            getActivityManager().dispose();
+        }
+    }
+
+    @Override
+    public Diagnostic canInvoke() throws InvocationException {
+        BasicDiagnostic diagnostic = checkInputElement(false);
+        if (getActivityManager() != null) {
+            diagnostic.add(getActivityManager().canInvoke());
+        }
+        return diagnostic;
+    }
+
+    @Override
+    public void initializeContext() throws InvocationException {
+        super.initializeContext();
+        if (getActivityManager() != null) {
+            getActivityManager().initializeContext();
+        }
+    }
+
+    public int getSteps() throws InvocationException {
+        if (getActivityManager() != null) {
+            return getActivityManager().getSteps();
+        }
+        return 0;
+    }
+
+    public List<Activity> getActivities() throws InvocationException {
+        List<Activity> activities = new UniqueEList<Activity>();
+        if (getActivityManager() != null) {
+            activities.addAll(getActivityManager().getActivities());
+        }
+        return activities;
+    }
+
+    public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
+        BasicDiagnostic diagnostic = checkInputElement(true);
+        if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+            IActivityManager<Activity> activityManager = getActivityManager();
+            if (activityManager != null) {
+                diagnostic.add(activityManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
+                if (monitor.isCanceled()) {
+                    throw new OperationCanceledException();
+                }
+            }
+        }
+        return diagnostic;
+    }
 
 }
