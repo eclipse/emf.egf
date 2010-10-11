@@ -206,6 +206,7 @@ public class RunActivityAction implements IObjectActionDelegate {
                                         public void run() {
                                             EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, diagnostic);
                                         }
+
                                     });
                                 }
                             }

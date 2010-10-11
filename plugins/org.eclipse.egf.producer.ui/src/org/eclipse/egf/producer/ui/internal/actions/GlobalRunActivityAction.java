@@ -151,6 +151,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                             public void run() {
                                 EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
                             }
+
                         });
                     }
                     if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
@@ -206,6 +207,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                                         public void run() {
                                             EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PostInvokeProblems_message, diagnostic);
                                         }
+
                                     });
                                 }
                             }
