@@ -27,34 +27,35 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class JetNatureImpl extends PatternNatureImpl implements JetNature {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected JetNatureImpl() {
-    super();
-    setName("JET"); //$NON-NLS-1$
-  }
+    /**
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return JetPatternPackage.Literals.JET_NATURE;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    protected JetNatureImpl() {
+        super();
+        setName("JET"); //$NON-NLS-1$
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return JetPatternPackage.Literals.JET_NATURE;
+    }
 
 } // JetNatureImpl
