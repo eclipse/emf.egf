@@ -145,13 +145,13 @@ public interface JavaPatternPackage extends EPackage {
     interface Literals {
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.javapattern.impl.JavaNatureImpl <em>Java Nature</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.javapattern.impl.JavaNatureImpl <em>Java Nature</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.javapattern.impl.JavaNatureImpl
-        	 * @see org.eclipse.egf.model.javapattern.impl.JavaPatternPackageImpl#getJavaNature()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.javapattern.impl.JavaNatureImpl
+         * @see org.eclipse.egf.model.javapattern.impl.JavaPatternPackageImpl#getJavaNature()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass JAVA_NATURE = eINSTANCE.getJavaNature();
 

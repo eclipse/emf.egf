@@ -40,13 +40,4 @@
       />
    </extension>
 
-  <extension 
-    point="org.eclipse.emf.edit.childCreationExtenders"
-  >
-    <extender
-      uri="http://www.eclipse.org/egf/1.0.0/pattern"
-      class="org.eclipse.egf.model.jetpattern.provider.JetPatternItemProviderAdapterFactory$PatternChildCreationExtender"
-    />
-  </extension>
-
 </plugin>

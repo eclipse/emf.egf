@@ -145,13 +145,13 @@ public interface JetPatternPackage extends EPackage {
     interface Literals {
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
-        	 * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
+         * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass JET_NATURE = eINSTANCE.getJetNature();
 
