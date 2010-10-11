@@ -23,26 +23,26 @@ import org.eclipse.ui.statushandlers.StatusManager;
  */
 public class ThrowableHandler {
 
-  private ThrowableHandler() {
-    // Prevent Instantiation
-  }
-
-  public static void handleThrowable(String pluginID, Throwable t) {
-    IStatus status = null;
-    if (t instanceof CoreException) {
-      CoreException ce = (CoreException) t;
-      status = ce.getStatus();
-    } else if (t instanceof InvocationTargetException) {
-      InvocationTargetException ite = (InvocationTargetException) t;
-      status = StatusHelper.newStatus(pluginID, IStatus.ERROR, ite.getClass().getSimpleName(), ite.getTargetException());
-    } else {
-      Throwable throwable = t;
-      if (throwable.getCause() != null) {
-        throwable = throwable.getCause();
-      }
-      status = StatusHelper.newStatus(pluginID, IStatus.ERROR, t.getClass().getSimpleName(), throwable);
+    private ThrowableHandler() {
+        // Prevent Instantiation
     }
-    StatusManager.getManager().handle(status, StatusManager.LOG | StatusManager.SHOW);
-  }
+
+    public static void handleThrowable(String pluginID, Throwable t) {
+        IStatus status = null;
+        if (t instanceof CoreException) {
+            CoreException ce = (CoreException) t;
+            status = ce.getStatus();
+        } else if (t instanceof InvocationTargetException) {
+            InvocationTargetException ite = (InvocationTargetException) t;
+            status = StatusHelper.newStatus(pluginID, IStatus.ERROR, ite.getClass().getSimpleName(), ite.getTargetException());
+        } else {
+            Throwable throwable = t;
+            if (throwable.getCause() != null) {
+                throwable = throwable.getCause();
+            }
+            status = StatusHelper.newStatus(pluginID, IStatus.ERROR, t.getClass().getSimpleName(), throwable);
+        }
+        StatusManager.getManager().handle(status, StatusManager.LOG | StatusManager.SHOW);
+    }
 
 }
