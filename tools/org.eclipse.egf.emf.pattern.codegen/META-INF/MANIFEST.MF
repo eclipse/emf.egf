@@ -13,7 +13,7 @@ Export-Package:
  org.eclipse.egf.emf.pattern.codegen.jet,
  org.eclipse.egf.emf.pattern.codegen.model
 Require-Bundle: 
- org.eclipse.egf.emf.pattern,
+ org.eclipse.egf.emf.pattern.base,
  org.eclipse.jdt.ui,
  org.eclipse.egf.model.fprod,
  org.eclipse.egf.pattern.jet,

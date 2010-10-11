@@ -11,7 +11,7 @@ Export-Package:
  org.eclipse.egf.emf.pattern.codegen.ui
 Require-Bundle: 
  org.eclipse.egf.emf.pattern.codegen,
- org.eclipse.egf.emf.pattern,
+ org.eclipse.egf.emf.pattern.base,
  org.eclipse.egf.model.editor,
  org.eclipse.egf.core.ui
 Bundle-Activator: org.eclipse.egf.emf.pattern.codegen.ui.Activator
