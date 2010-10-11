@@ -16,21 +16,21 @@ package org.eclipse.egf.common.helper;
  */
 public class ClassHelper {
 
-  private ClassHelper() {
-    // Prevent Instantiation
-  }
+    private ClassHelper() {
+        // Prevent Instantiation
+    }
 
-  public static boolean isSubClass(Class<?> clazz, Class<?> type) {
-    if (clazz == null || type == null) {
-      return false;
+    public static boolean isSubClass(Class<?> clazz, Class<?> type) {
+        if (clazz == null || type == null) {
+            return false;
+        }
+        // Type Checking
+        try {
+            clazz.asSubclass(type);
+        } catch (ClassCastException cce) {
+            return false;
+        }
+        return true;
     }
-    // Type Checking
-    try {
-      clazz.asSubclass(type);
-    } catch (ClassCastException cce) {
-      return false;
-    }
-    return true;
-  }
 
 }

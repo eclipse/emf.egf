@@ -19,12 +19,12 @@ import java.util.Collection;
  */
 public class CollectionHelper {
 
-  @SuppressWarnings("unchecked")
-  public static <T> T[] toArray(Collection<Object> collection, Class<T> clazz) {
-    if (clazz == null || collection == null) {
-      return null;
+    @SuppressWarnings("unchecked")
+    public static <T> T[] toArray(Collection<Object> collection, Class<T> clazz) {
+        if (clazz == null || collection == null) {
+            return null;
+        }
+        return collection.toArray((T[]) Array.newInstance(clazz, collection.size()));
     }
-    return collection.toArray((T[]) Array.newInstance(clazz, collection.size()));
-  }
 
 }
