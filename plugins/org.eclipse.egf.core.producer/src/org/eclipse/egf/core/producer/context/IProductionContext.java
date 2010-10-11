@@ -23,34 +23,34 @@ import org.osgi.framework.Bundle;
  */
 public interface IProductionContext<P extends Object, T extends Object> {
 
-  public String getName();
+    public String getName();
 
-  public P getElement();
+    public P getElement();
 
-  public boolean isSetAtRuntime(Object key) throws InvocationException;
+    public boolean isSetAtRuntime(Object key) throws InvocationException;
 
-  public IProductionContext<?, ?> getParent();
+    public IProductionContext<?, ?> getParent();
 
-  public Bundle getBundle(String id) throws InvocationException;
+    public Bundle getBundle(String id) throws InvocationException;
 
-  public Bundle getBundle(IProject project) throws InvocationException;
+    public Bundle getBundle(IProject project) throws InvocationException;
 
-  public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException;
+    public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException;
 
-  public void clear();
+    public void clear();
 
-  public Class<?> getInputValueType(Object key) throws InvocationException;
+    public Class<?> getInputValueType(Object key) throws InvocationException;
 
-  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException;
+    public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException;
 
-  public Collection<T> getInputValueKeys() throws InvocationException;
+    public Collection<T> getInputValueKeys() throws InvocationException;
 
-  public Class<?> getOutputValueType(Object key) throws InvocationException;
+    public Class<?> getOutputValueType(Object key) throws InvocationException;
 
-  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException;
+    public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException;
 
-  public Collection<T> getOutputValueKeys() throws InvocationException;
+    public Collection<T> getOutputValueKeys() throws InvocationException;
 
-  public void setOutputValue(Object key, Object value) throws InvocationException;
+    public void setOutputValue(Object key, Object value) throws InvocationException;
 
 }
