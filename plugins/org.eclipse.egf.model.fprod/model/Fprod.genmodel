@@ -11,7 +11,7 @@
     booleanFlagsField="flags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" editPluginID="org.eclipse.egf.model.fprod.edit" editorPluginID="org.eclipse.egf.model.fprod.editor"
     optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
-    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Types.genmodel#//types">
+    runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Types.genmodel#//types">
   <foreignModel>Fprod.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Fprod" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"

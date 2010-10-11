@@ -23,39 +23,40 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface FprodFactory extends EFactory {
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  FprodFactory eINSTANCE = org.eclipse.egf.model.fprod.impl.FprodFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Production Plan</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Production Plan</em>'.
-   * @generated
-   */
-  ProductionPlan createProductionPlan();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    FprodFactory eINSTANCE = org.eclipse.egf.model.fprod.impl.FprodFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Production Plan Invocation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Production Plan Invocation</em>'.
-   * @generated
-   */
-  ProductionPlanInvocation createProductionPlanInvocation();
+    /**
+     * Returns a new object of class '<em>Production Plan</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Production Plan</em>'.
+     * @generated
+     */
+    ProductionPlan createProductionPlan();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  FprodPackage getFprodPackage();
+    /**
+     * Returns a new object of class '<em>Production Plan Invocation</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Production Plan Invocation</em>'.
+     * @generated
+     */
+    ProductionPlanInvocation createProductionPlanInvocation();
+
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    FprodPackage getFprodPackage();
 
 } //FprodFactory

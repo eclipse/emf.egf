@@ -59,297 +59,160 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class FprodItemProviderAdapterFactory extends FprodAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
-  /**
-   * This keeps track of the root adapter factory that delegates to this adapter factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ComposedAdapterFactory parentAdapterFactory;
 
-  /**
-   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected IChangeNotifier changeNotifier = new ChangeNotifier();
-
-  /**
-   * This helps manage the child creation extenders.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFFprodEditPlugin.INSTANCE, FprodPackage.eNS_URI);
-
-  /**
-   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Collection<Object> supportedTypes = new ArrayList<Object>();
-
-  /**
-   * This constructs an instance.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FprodItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
-    supportedTypes.add(ITableItemLabelProvider.class);
-    supportedTypes.add(ITableItemColorProvider.class);
-    supportedTypes.add(ITableItemFontProvider.class);
-    supportedTypes.add(IItemColorProvider.class);
-    supportedTypes.add(IItemFontProvider.class);
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.ProductionPlan} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ProductionPlanItemProvider productionPlanItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlan}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createProductionPlanAdapter() {
-    if (productionPlanItemProvider == null) {
-      productionPlanItemProvider = new ProductionPlanItemProvider(this);
-    }
-
-    return productionPlanItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ProductionPlanInvocationItemProvider productionPlanInvocationItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createProductionPlanInvocationAdapter() {
-    if (productionPlanInvocationItemProvider == null) {
-      productionPlanInvocationItemProvider = new ProductionPlanInvocationItemProvider(this);
-    }
-
-    return productionPlanInvocationItemProvider;
-  }
-
-  /**
-   * This returns the root adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-  }
-
-  /**
-   * This sets the composed adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-    this.parentAdapterFactory = parentAdapterFactory;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
-  }
-
-  /**
-   * This implementation substitutes the factory itself as the key for the adapter.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter adapt(Notifier notifier, Object type) {
-    return super.adapt(notifier, this);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object adapt(Object object, Object type) {
-    if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
-        return adapter;
-      }
-    }
-
-    return null;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public List<IChildCreationExtender> getChildCreationExtenders() {
-    return childCreationExtenderManager.getChildCreationExtenders();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-    return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ResourceLocator getResourceLocator() {
-    return childCreationExtenderManager;
-  }
-
-  /**
-   * This adds a listener.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
-  }
-
-  /**
-   * This removes a listener.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
-  }
-
-  /**
-   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
-
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
-    }
-  }
-
-  /**
-   * This disposes all of the item providers created by this factory. 
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void dispose() {
-    if (productionPlanItemProvider != null)
-      productionPlanItemProvider.dispose();
-    if (productionPlanInvocationItemProvider != null)
-      productionPlanInvocationItemProvider.dispose();
-  }
-
-  /**
-   * A child creation extender for the {@link FcorePackage}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static class FcoreChildCreationExtender implements IChildCreationExtender {
     /**
-     * The switch for creating child descriptors specific to each extended class.
+     * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected static class CreationSwitch extends FcoreSwitch<Object> {
-      /**
-       * The child descriptors being populated.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected List<Object> newChildDescriptors;
+    protected ComposedAdapterFactory parentAdapterFactory;
 
-      /**
-       * The domain in which to create the children.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected EditingDomain editingDomain;
+    /**
+     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
-      /**
-       * Creates the a switch for populating child descriptors in the given domain.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-        this.newChildDescriptors = newChildDescriptors;
-        this.editingDomain = editingDomain;
-      }
+    /**
+     * This helps manage the child creation extenders.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFFprodEditPlugin.INSTANCE, FprodPackage.eNS_URI);
 
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseFactoryComponent(FactoryComponent object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, FprodFactory.eINSTANCE.createProductionPlan()));
+    /**
+     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected Collection<Object> supportedTypes = new ArrayList<Object>();
+
+    /**
+     * This constructs an instance.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FprodItemProviderAdapterFactory() {
+        supportedTypes.add(IEditingDomainItemProvider.class);
+        supportedTypes.add(IStructuredItemContentProvider.class);
+        supportedTypes.add(ITreeItemContentProvider.class);
+        supportedTypes.add(IItemLabelProvider.class);
+        supportedTypes.add(IItemPropertySource.class);
+        supportedTypes.add(ITableItemLabelProvider.class);
+        supportedTypes.add(ITableItemColorProvider.class);
+        supportedTypes.add(ITableItemFontProvider.class);
+        supportedTypes.add(IItemColorProvider.class);
+        supportedTypes.add(IItemFontProvider.class);
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.ProductionPlan} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ProductionPlanItemProvider productionPlanItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlan}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createProductionPlanAdapter() {
+        if (productionPlanItemProvider == null) {
+            productionPlanItemProvider = new ProductionPlanItemProvider(this);
+        }
+
+        return productionPlanItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ProductionPlanInvocationItemProvider productionPlanInvocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createProductionPlanInvocationAdapter() {
+        if (productionPlanInvocationItemProvider == null) {
+            productionPlanInvocationItemProvider = new ProductionPlanInvocationItemProvider(this);
+        }
+
+        return productionPlanInvocationItemProvider;
+    }
+
+    /**
+     * This returns the root adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ComposeableAdapterFactory getRootAdapterFactory() {
+        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    }
+
+    /**
+     * This sets the composed adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+        this.parentAdapterFactory = parentAdapterFactory;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean isFactoryForType(Object type) {
+        return supportedTypes.contains(type) || super.isFactoryForType(type);
+    }
+
+    /**
+     * This implementation substitutes the factory itself as the key for the adapter.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter adapt(Notifier notifier, Object type) {
+        return super.adapt(notifier, this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object adapt(Object object, Object type) {
+        if (isFactoryForType(type)) {
+            Object adapter = super.adapt(object, type);
+            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+                return adapter;
+            }
+        }
 
         return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected CommandParameter createChildParameter(Object feature, Object child) {
-        return new CommandParameter(null, feature, child);
-      }
-
     }
 
     /**
@@ -357,10 +220,17 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
      * <!-- end-user-doc -->
      * @generated
      */
-    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-      ArrayList<Object> result = new ArrayList<Object>();
-      new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-      return result;
+    public List<IChildCreationExtender> getChildCreationExtenders() {
+        return childCreationExtenderManager.getChildCreationExtenders();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+        return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
     }
 
     /**
@@ -369,8 +239,141 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
      * @generated
      */
     public ResourceLocator getResourceLocator() {
-      return EGFFprodEditPlugin.INSTANCE;
+        return childCreationExtenderManager;
     }
-  }
+
+    /**
+     * This adds a listener.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void addListener(INotifyChangedListener notifyChangedListener) {
+        changeNotifier.addListener(notifyChangedListener);
+    }
+
+    /**
+     * This removes a listener.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void removeListener(INotifyChangedListener notifyChangedListener) {
+        changeNotifier.removeListener(notifyChangedListener);
+    }
+
+    /**
+     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void fireNotifyChanged(Notification notification) {
+        changeNotifier.fireNotifyChanged(notification);
+
+        if (parentAdapterFactory != null) {
+            parentAdapterFactory.fireNotifyChanged(notification);
+        }
+    }
+
+    /**
+     * This disposes all of the item providers created by this factory. 
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void dispose() {
+        if (productionPlanItemProvider != null)
+            productionPlanItemProvider.dispose();
+        if (productionPlanInvocationItemProvider != null)
+            productionPlanInvocationItemProvider.dispose();
+    }
+
+    /**
+     * A child creation extender for the {@link FcorePackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static class FcoreChildCreationExtender implements IChildCreationExtender {
+
+        /**
+        	 * The switch for creating child descriptors specific to each extended class.
+        	 * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+        	 * @generated
+        	 */
+        protected static class CreationSwitch extends FcoreSwitch<Object> {
+
+            /**
+            	 * The child descriptors being populated.
+            	 * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+            	 * @generated
+            	 */
+            protected List<Object> newChildDescriptors;
+
+            /**
+            	 * The domain in which to create the children.
+            	 * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+            	 * @generated
+            	 */
+            protected EditingDomain editingDomain;
+
+            /**
+            	 * Creates the a switch for populating child descriptors in the given domain.
+            	 * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+            	 * @generated
+            	 */
+            CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+                this.newChildDescriptors = newChildDescriptors;
+                this.editingDomain = editingDomain;
+            }
+
+            /**
+            	 * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+            	 * @generated
+            	 */
+            @Override
+            public Object caseFactoryComponent(FactoryComponent object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, FprodFactory.eINSTANCE.createProductionPlan()));
+
+                return null;
+            }
+
+            /**
+            	 * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+            	 * @generated
+            	 */
+            protected CommandParameter createChildParameter(Object feature, Object child) {
+                return new CommandParameter(null, feature, child);
+            }
+
+        }
+
+        /**
+        	 * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+        	 * @generated
+        	 */
+        public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+            ArrayList<Object> result = new ArrayList<Object>();
+            new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+            return result;
+        }
+
+        /**
+        	 * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+        	 * @generated
+        	 */
+        public ResourceLocator getResourceLocator() {
+            return EGFFprodEditPlugin.INSTANCE;
+        }
+    }
 
 }

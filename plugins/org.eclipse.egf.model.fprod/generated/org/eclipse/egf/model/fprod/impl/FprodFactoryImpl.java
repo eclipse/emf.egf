@@ -29,89 +29,90 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * @generated
  */
 public class FprodFactoryImpl extends EFactoryImpl implements FprodFactory {
-  /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static FprodFactory init() {
-    try {
-      FprodFactory theFprodFactory = (FprodFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/fprod"); //$NON-NLS-1$ 
-      if (theFprodFactory != null) {
-        return theFprodFactory;
-      }
-    } catch (Exception exception) {
-      EcorePlugin.INSTANCE.log(exception);
+
+    /**
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static FprodFactory init() {
+        try {
+            FprodFactory theFprodFactory = (FprodFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/fprod"); //$NON-NLS-1$ 
+            if (theFprodFactory != null) {
+                return theFprodFactory;
+            }
+        } catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new FprodFactoryImpl();
     }
-    return new FprodFactoryImpl();
-  }
 
-  /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FprodFactoryImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-    case FprodPackage.PRODUCTION_PLAN:
-      return createProductionPlan();
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION:
-      return createProductionPlanInvocation();
-    default:
-      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FprodFactoryImpl() {
+        super();
     }
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ProductionPlan createProductionPlan() {
-    ProductionPlanImpl productionPlan = new ProductionPlanImpl();
-    return productionPlan;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public EObject create(EClass eClass) {
+        switch (eClass.getClassifierID()) {
+            case FprodPackage.PRODUCTION_PLAN:
+                return createProductionPlan();
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION:
+                return createProductionPlanInvocation();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ProductionPlanInvocation createProductionPlanInvocation() {
-    ProductionPlanInvocationImpl productionPlanInvocation = new ProductionPlanInvocationImpl();
-    return productionPlanInvocation;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProductionPlan createProductionPlan() {
+        ProductionPlanImpl productionPlan = new ProductionPlanImpl();
+        return productionPlan;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FprodPackage getFprodPackage() {
-    return (FprodPackage) getEPackage();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProductionPlanInvocation createProductionPlanInvocation() {
+        ProductionPlanInvocationImpl productionPlanInvocation = new ProductionPlanInvocationImpl();
+        return productionPlanInvocation;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
-  @Deprecated
-  public static FprodPackage getPackage() {
-    return FprodPackage.eINSTANCE;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FprodPackage getFprodPackage() {
+        return (FprodPackage) getEPackage();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @deprecated
+     * @generated
+     */
+    @Deprecated
+    public static FprodPackage getPackage() {
+        return FprodPackage.eINSTANCE;
+    }
 
 } //FprodFactoryImpl

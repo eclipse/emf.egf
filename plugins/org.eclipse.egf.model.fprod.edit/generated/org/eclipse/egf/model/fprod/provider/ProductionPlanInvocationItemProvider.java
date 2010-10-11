@@ -39,93 +39,94 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ProductionPlanInvocationItemProvider extends InvocationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-    IItemColorProvider, IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ProductionPlanInvocationItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+        IItemColorProvider, IItemFontProvider {
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProductionPlanInvocationItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This returns ProductionPlanInvocation.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/ProductionPlanInvocation")); //$NON-NLS-1$
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    ProductionPlanInvocation productionPlanInvocation = (ProductionPlanInvocation) object;
-    // Name
-    String name = productionPlanInvocation.getName();
-    // Invoked Activity
-    String invoked = null;
-    if (productionPlanInvocation.getInvokedActivity() != null) {
-      invoked = EMFHelper.getText(productionPlanInvocation.getInvokedActivity());
+        }
+        return itemPropertyDescriptors;
     }
-    String label = "[" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    if (name != null) {
-      label = name + " " + label; //$NON-NLS-1$ 
-    }
-    if (invoked != null) {
-      label = label + " -> " + invoked; //$NON-NLS-1$
-    }
-    return label;
-  }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-    super.notifyChanged(notification);
-  }
+    /**
+     * This returns ProductionPlanInvocation.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/ProductionPlanInvocation")); //$NON-NLS-1$
+    }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        ProductionPlanInvocation productionPlanInvocation = (ProductionPlanInvocation) object;
+        // Name
+        String name = productionPlanInvocation.getName();
+        // Invoked Activity
+        String invoked = null;
+        if (productionPlanInvocation.getInvokedActivity() != null) {
+            invoked = EMFHelper.getText(productionPlanInvocation.getInvokedActivity());
+        }
+        String label = "[" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (name != null) {
+            label = name + " " + label; //$NON-NLS-1$ 
+        }
+        if (invoked != null) {
+            label = label + " -> " + invoked; //$NON-NLS-1$
+        }
+        return label;
+    }
+
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+        super.notifyChanged(notification);
+    }
+
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
 }

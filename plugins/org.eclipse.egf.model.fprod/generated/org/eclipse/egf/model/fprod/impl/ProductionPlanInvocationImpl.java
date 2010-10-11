@@ -39,192 +39,193 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ProductionPlanInvocationImpl extends InvocationImpl implements ProductionPlanInvocation {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected ProductionPlanInvocationImpl() {
-    super();
-    new ProductionPlanInvocationAdapter(this);
-  }
+    /**
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected int flags = 0;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FprodPackage.Literals.PRODUCTION_PLAN_INVOCATION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public FactoryComponent getFactoryComponent() {
-    if (getProductionPlan() != null) {
-      return getProductionPlan().getFactoryComponent();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    protected ProductionPlanInvocationImpl() {
+        super();
+        new ProductionPlanInvocationAdapter(this);
     }
-    return null;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ProductionPlan getProductionPlan() {
-    if (eContainerFeatureID() != FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN)
-      return null;
-    return (ProductionPlan) eContainer();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetProductionPlan(ProductionPlan newProductionPlan, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject) newProductionPlan, FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN, msgs);
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setProductionPlan(ProductionPlan newProductionPlan) {
-    if (newProductionPlan != eInternalContainer() || (eContainerFeatureID() != FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN && newProductionPlan != null)) {
-      if (EcoreUtil.isAncestor(this, newProductionPlan))
-        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-      NotificationChain msgs = null;
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
-      if (newProductionPlan != null)
-        msgs = ((InternalEObject) newProductionPlan).eInverseAdd(this, FprodPackage.PRODUCTION_PLAN__INVOCATIONS, ProductionPlan.class, msgs);
-      msgs = basicSetProductionPlan(newProductionPlan, msgs);
-      if (msgs != null)
-        msgs.dispatch();
-    } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN, newProductionPlan, newProductionPlan));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetProductionPlan((ProductionPlan) otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return FprodPackage.Literals.PRODUCTION_PLAN_INVOCATION;
     }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      return basicSetProductionPlan(null, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public FactoryComponent getFactoryComponent() {
+        if (getProductionPlan() != null) {
+            return getProductionPlan().getFactoryComponent();
+        }
+        return null;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-    switch (eContainerFeatureID()) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      return eInternalContainer().eInverseRemove(this, FprodPackage.PRODUCTION_PLAN__INVOCATIONS, ProductionPlan.class, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ProductionPlan getProductionPlan() {
+        if (eContainerFeatureID() != FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN)
+            return null;
+        return (ProductionPlan) eContainer();
     }
-    return super.eBasicRemoveFromContainerFeature(msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      return getProductionPlan();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetProductionPlan(ProductionPlan newProductionPlan, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject) newProductionPlan, FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN, msgs);
+        return msgs;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      setProductionPlan((ProductionPlan) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setProductionPlan(ProductionPlan newProductionPlan) {
+        if (newProductionPlan != eInternalContainer() || (eContainerFeatureID() != FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN && newProductionPlan != null)) {
+            if (EcoreUtil.isAncestor(this, newProductionPlan))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newProductionPlan != null)
+                msgs = ((InternalEObject) newProductionPlan).eInverseAdd(this, FprodPackage.PRODUCTION_PLAN__INVOCATIONS, ProductionPlan.class, msgs);
+            msgs = basicSetProductionPlan(newProductionPlan, msgs);
+            if (msgs != null)
+                msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN, newProductionPlan, newProductionPlan));
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      setProductionPlan((ProductionPlan) null);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetProductionPlan((ProductionPlan) otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      return getProductionPlan() != null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                return basicSetProductionPlan(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+        switch (eContainerFeatureID()) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                return eInternalContainer().eInverseRemove(this, FprodPackage.PRODUCTION_PLAN__INVOCATIONS, ProductionPlan.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                return getProductionPlan();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                setProductionPlan((ProductionPlan) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                setProductionPlan((ProductionPlan) null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case FprodPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
+                return getProductionPlan() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // ProductionPlanInvocationImpl

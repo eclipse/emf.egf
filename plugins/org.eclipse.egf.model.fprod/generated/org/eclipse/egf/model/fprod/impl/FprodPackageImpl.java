@@ -29,204 +29,205 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass productionPlanEClass = null;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass productionPlanInvocationEClass = null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass productionPlanEClass = null;
 
-  /**
-   * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-   * package URI value.
-   * <p>Note: the correct way to create the package is via the static
-   * factory method {@link #init init()}, which also performs
-   * initialization of the package, or returns the registered package,
-   * if one already exists.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.emf.ecore.EPackage.Registry
-   * @see org.eclipse.egf.model.fprod.FprodPackage#eNS_URI
-   * @see #init()
-   * @generated
-   */
-  private FprodPackageImpl() {
-    super(eNS_URI, FprodFactory.eINSTANCE);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass productionPlanInvocationEClass = null;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private static boolean isInited = false;
+    /**
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see org.eclipse.egf.model.fprod.FprodPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
+    private FprodPackageImpl() {
+        super(eNS_URI, FprodFactory.eINSTANCE);
+    }
 
-  /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-   * 
-   * <p>This method is used to initialize {@link FprodPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #eNS_URI
-   * @see #createPackageContents()
-   * @see #initializePackageContents()
-   * @generated
-   */
-  public static FprodPackage init() {
-    if (isInited)
-      return (FprodPackage) EPackage.Registry.INSTANCE.getEPackage(FprodPackage.eNS_URI);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private static boolean isInited = false;
 
-    // Obtain or create and register package
-    FprodPackageImpl theFprodPackage = (FprodPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FprodPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FprodPackageImpl());
+    /**
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link FprodPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
+    public static FprodPackage init() {
+        if (isInited)
+            return (FprodPackage) EPackage.Registry.INSTANCE.getEPackage(FprodPackage.eNS_URI);
 
-    isInited = true;
+        // Obtain or create and register package
+        FprodPackageImpl theFprodPackage = (FprodPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FprodPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FprodPackageImpl());
 
-    // Initialize simple dependencies
-    FcorePackage.eINSTANCE.eClass();
+        isInited = true;
 
-    // Create package meta-data objects
-    theFprodPackage.createPackageContents();
+        // Initialize simple dependencies
+        FcorePackage.eINSTANCE.eClass();
 
-    // Initialize created meta-data
-    theFprodPackage.initializePackageContents();
+        // Create package meta-data objects
+        theFprodPackage.createPackageContents();
 
-    // Mark meta-data to indicate it can't be changed
-    theFprodPackage.freeze();
+        // Initialize created meta-data
+        theFprodPackage.initializePackageContents();
 
-    // Update the registry and return the package
-    EPackage.Registry.INSTANCE.put(FprodPackage.eNS_URI, theFprodPackage);
-    return theFprodPackage;
-  }
+        // Mark meta-data to indicate it can't be changed
+        theFprodPackage.freeze();
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getProductionPlan() {
-    return productionPlanEClass;
-  }
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(FprodPackage.eNS_URI, theFprodPackage);
+        return theFprodPackage;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getProductionPlan_Invocations() {
-    return (EReference) productionPlanEClass.getEStructuralFeatures().get(0);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getProductionPlan() {
+        return productionPlanEClass;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getProductionPlanInvocation() {
-    return productionPlanInvocationEClass;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getProductionPlan_Invocations() {
+        return (EReference) productionPlanEClass.getEStructuralFeatures().get(0);
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getProductionPlanInvocation_ProductionPlan() {
-    return (EReference) productionPlanInvocationEClass.getEStructuralFeatures().get(0);
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getProductionPlanInvocation() {
+        return productionPlanInvocationEClass;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FprodFactory getFprodFactory() {
-    return (FprodFactory) getEFactoryInstance();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getProductionPlanInvocation_ProductionPlan() {
+        return (EReference) productionPlanInvocationEClass.getEStructuralFeatures().get(0);
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private boolean isCreated = false;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FprodFactory getFprodFactory() {
+        return (FprodFactory) getEFactoryInstance();
+    }
 
-  /**
-   * Creates the meta-model objects for the package.  This method is
-   * guarded to have no affect on any invocation but its first.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void createPackageContents() {
-    if (isCreated)
-      return;
-    isCreated = true;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isCreated = false;
 
-    // Create classes and their features
-    productionPlanEClass = createEClass(PRODUCTION_PLAN);
-    createEReference(productionPlanEClass, PRODUCTION_PLAN__INVOCATIONS);
+    /**
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void createPackageContents() {
+        if (isCreated)
+            return;
+        isCreated = true;
 
-    productionPlanInvocationEClass = createEClass(PRODUCTION_PLAN_INVOCATION);
-    createEReference(productionPlanInvocationEClass, PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
-  }
+        // Create classes and their features
+        productionPlanEClass = createEClass(PRODUCTION_PLAN);
+        createEReference(productionPlanEClass, PRODUCTION_PLAN__INVOCATIONS);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private boolean isInitialized = false;
+        productionPlanInvocationEClass = createEClass(PRODUCTION_PLAN_INVOCATION);
+        createEReference(productionPlanInvocationEClass, PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
+    }
 
-  /**
-   * Complete the initialization of the package and its meta-model.  This
-   * method is guarded to have no affect on any invocation but its first.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void initializePackageContents() {
-    if (isInitialized)
-      return;
-    isInitialized = true;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isInitialized = false;
 
-    // Initialize package
-    setName(eNAME);
-    setNsPrefix(eNS_PREFIX);
-    setNsURI(eNS_URI);
+    /**
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void initializePackageContents() {
+        if (isInitialized)
+            return;
+        isInitialized = true;
 
-    // Obtain other dependent packages
-    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
 
-    // Create type parameters
+        // Obtain other dependent packages
+        FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
 
-    // Set bounds for type parameters
+        // Create type parameters
 
-    // Add supertypes to classes
-    productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
-    productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
+        // Set bounds for type parameters
 
-    // Initialize classes and features; add operations and parameters
-    initEClass(productionPlanEClass, ProductionPlan.class, "ProductionPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getProductionPlan_Invocations(), this.getProductionPlanInvocation(), this.getProductionPlanInvocation_ProductionPlan(),
-        "invocations", null, 1, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        // Add supertypes to classes
+        productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
+        productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
 
-    initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_Invocations(),
-        "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        // Initialize classes and features; add operations and parameters
+        initEClass(productionPlanEClass, ProductionPlan.class, "ProductionPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getProductionPlan_Invocations(), this.getProductionPlanInvocation(), this.getProductionPlanInvocation_ProductionPlan(),
+                "invocations", null, 1, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    addEOperation(productionPlanInvocationEClass, theFcorePackage.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_Invocations(),
+                "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    // Create resource
-    createResource(eNS_URI);
-  }
+        addEOperation(productionPlanInvocationEClass, theFcorePackage.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        // Create resource
+        createResource(eNS_URI);
+    }
 
 } // FprodPackageImpl

@@ -33,22 +33,22 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ProductionPlan extends Orchestration {
 
-  /**
-   * Returns the value of the '<em><b>Invocations</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Invocations</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Invocations</em>' containment reference list.
-   * @see org.eclipse.egf.model.fprod.FprodPackage#getProductionPlan_Invocations()
-   * @see org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan
-   * @model opposite="productionPlan" containment="true" required="true"
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  EList<ProductionPlanInvocation> getInvocations();
+    /**
+     * Returns the value of the '<em><b>Invocations</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Invocations</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Invocations</em>' containment reference list.
+     * @see org.eclipse.egf.model.fprod.FprodPackage#getProductionPlan_Invocations()
+     * @see org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan
+     * @model opposite="productionPlan" containment="true" required="true"
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    EList<ProductionPlanInvocation> getInvocations();
 } // ProductionPlan

@@ -33,39 +33,39 @@ import org.eclipse.egf.model.fcore.Invocation;
  */
 public interface ProductionPlanInvocation extends Invocation {
 
-  /**
-   * Returns the value of the '<em><b>Production Plan</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fprod.ProductionPlan#getInvocations <em>Invocations</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Production Plan</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Production Plan</em>' container reference.
-   * @see #setProductionPlan(ProductionPlan)
-   * @see org.eclipse.egf.model.fprod.FprodPackage#getProductionPlanInvocation_ProductionPlan()
-   * @see org.eclipse.egf.model.fprod.ProductionPlan#getInvocations
-   * @model opposite="invocations" resolveProxies="false" required="true" transient="false"
-   * @generated
-   */
-  ProductionPlan getProductionPlan();
+    /**
+     * Returns the value of the '<em><b>Production Plan</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fprod.ProductionPlan#getInvocations <em>Invocations</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Production Plan</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Production Plan</em>' container reference.
+     * @see #setProductionPlan(ProductionPlan)
+     * @see org.eclipse.egf.model.fprod.FprodPackage#getProductionPlanInvocation_ProductionPlan()
+     * @see org.eclipse.egf.model.fprod.ProductionPlan#getInvocations
+     * @model opposite="invocations" resolveProxies="false" required="true" transient="false"
+     * @generated
+     */
+    ProductionPlan getProductionPlan();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Production Plan</em>' container reference.
-   * @see #getProductionPlan()
-   * @generated
-   */
-  void setProductionPlan(ProductionPlan value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Production Plan</em>' container reference.
+     * @see #getProductionPlan()
+     * @generated
+     */
+    void setProductionPlan(ProductionPlan value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   * @generated
-   */
-  FactoryComponent getFactoryComponent();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" required="true"
+     * @generated
+     */
+    FactoryComponent getFactoryComponent();
 } // ProductionPlanInvocation
