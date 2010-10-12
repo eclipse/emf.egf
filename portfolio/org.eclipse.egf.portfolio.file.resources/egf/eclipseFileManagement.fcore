@@ -100,7 +100,7 @@
     </contractContainer>
   </ftask:Task>
   <ftask:Task xmi:id="_yen8kSIqEd-1iJf80lotFg" description="This task aims at deleting file"
-      name="eclipse.file.delete.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.DeleteFileTask">
+      name="eclipse.file.delete.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.EclipseDeleteFileTask">
     <contractContainer xmi:id="_7gygoCIqEd-1iJf80lotFg">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_7gygoSIqEd-1iJf80lotFg"
           description="Eclipse project name" name="projectName">

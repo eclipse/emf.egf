@@ -22,6 +22,9 @@
     <fcore
       id="egf/eclipseFileManagementExample.fcore"
     />
+    <fcore
+          id="egf/fileManagement.fcore">
+    </fcore>
   </extension>
 
 </plugin>

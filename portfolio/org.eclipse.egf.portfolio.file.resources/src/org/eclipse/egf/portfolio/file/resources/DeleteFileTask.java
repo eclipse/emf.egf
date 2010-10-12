@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- *  Copyright (c) 2010 Thales Corporate Services S.A.S.
+ *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -15,43 +15,41 @@
 
 package org.eclipse.egf.portfolio.file.resources;
 
-import org.eclipse.core.resources.IFile;
+import java.io.File;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 
-
 /**
- * @author Benoit Langlois
+ * @author Matthieu Helleboid
  *
  */
 public class DeleteFileTask implements ITaskProduction {
 
-	public void preExecute(ITaskProductionContext productionContext,
-			IProgressMonitor monitor) throws InvocationException {
-		// Nothing to do
-	}
+    public void preExecute(ITaskProductionContext productionContext,
+            IProgressMonitor monitor) throws InvocationException {
+        // Nothing to do
+    }
 
-	public void doExecute(ITaskProductionContext productionContext,
-			IProgressMonitor monitor) throws InvocationException {
-		String projectName = productionContext.getInputValue(FileConstants.PROJECT_NAME_CONTRACT, String.class);
-		String folder = productionContext.getInputValue(FileConstants.FOLDER_CONTRACT, String.class);
-		String fileName = productionContext.getInputValue(FileConstants.FILE_NAME_CONTRACT, String.class);
+    public void doExecute(ITaskProductionContext productionContext,
+            IProgressMonitor monitor) throws InvocationException {
+        String filePath = productionContext.getInputValue("filePath", String.class); //$NON-NLS-1$
 
-		try {
-			IFile file = FileUtil.getExistingFile(projectName, folder, fileName);
-			if (file.exists()) {
-				file.delete(false, true, null);
-			}
-		} catch (Exception e) {
-			EGFFileResourcesActivator.getDefault().logError(e);
-		}
-	}
+        try {
+            File file = new File(filePath);
+            if (file.exists()) {
+                file.delete();
+            }
+        } catch (Exception e) {
+            EGFFileResourcesActivator.getDefault().logError(e);
+        }
+    }
 
-	public void postExecute(ITaskProductionContext productionContext,
-			IProgressMonitor monitor) throws InvocationException {
-		// Nothing to do
-	}
+    public void postExecute(ITaskProductionContext productionContext,
+            IProgressMonitor monitor) throws InvocationException {
+        // Nothing to do
+    }
 
 }
