@@ -124,6 +124,8 @@ public class Messages extends NLS {
 
     public static String SpecificationPage_button_up;
 
+    public static String SpecificationPage_change_nature_title;
+
     public static String SpecificationPage_change_nature_type;
 
     public static String SpecificationPage_column_title_name;
@@ -274,6 +276,10 @@ public class Messages extends NLS {
     public static String ListBuilderDialog_searchPatternValue_label;
 
     public static String ListBuilderDialog_currentValue_label;
+
+    public static String PatternNature_update;
+
+    public static String PatternNature_update_execute_exception;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
 
