@@ -32,7 +32,6 @@ import org.eclipse.egf.core.workspace.EGFWorkspaceSynchronizer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 
@@ -167,9 +166,11 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 editingDomain.runExclusive(new Runnable() {
 
                     public void run() {
-                        for (Iterator<Resource> it = editingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+                        EGFResourceSet resourceSet = (EGFResourceSet) editingDomain.getResourceSet();
+                        for (Iterator<Resource> it = resourceSet.getResources().iterator(); it.hasNext();) {
                             Resource resource = it.next();
                             resource.unload();
+                            resourceSet.getResources().remove(resource);
                             it.remove();
                         }
                     }
@@ -191,7 +192,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             return true;
         }
 
-        public void removeResource(EditingDomain editingDomain, Resource resource) {
+        public void removeResource(Resource resource) {
             if (resource == null) {
                 throw new IllegalArgumentException();
             }
@@ -239,19 +240,21 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             }
         }
 
-        public void movedResource(TransactionalEditingDomain editingDomain, Resource movedResource, URI newURI) {
+        public void movedResource(Resource movedResource, URI newURI) {
             if (newURI == null) {
                 throw new IllegalArgumentException();
             }
+            final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
             // Lock __resourceEventManager
             synchronized (__lockResourceManager) {
-                Resource resource = editingDomain.getResourceSet().getResource(newURI, false);
+                EGFResourceSet resourceSet = (EGFResourceSet) editingDomain.getResourceSet();
+                Resource resource = resourceSet.getResource(newURI, false);
                 // Resource who can't open a physical resource raise exception but are loaded
                 // in the resource set, its flag is also set to isLoaded
                 // we need to unload it otherwise our resource set will be messy (two resources with the same URI)
                 if (resource != null && resource.getContents().size() == 0 && resource.getErrors().isEmpty() == false) {
                     resource.unload();
-                    resource.getResourceSet().getResources().remove(resource);
+                    resourceSet.getResources().remove(resource);
                     if (EGFCorePlugin.getDefault().isDebugging()) {
                         EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.movedResource(...) - discard loaded empty resource with errors ''{0}''", URIHelper.toString(newURI))); //$NON-NLS-1$           
                     }
@@ -388,7 +391,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 // Process Removed Fcores
                 if (deltaRemovedFcores.isEmpty() == false) {
                     for (Resource resource : deltaRemovedFcores.keySet()) {
-                        getResourceManager().removeResource(editingDomain, resource);
+                        getResourceManager().removeResource(resource);
                     }
                 }
 
@@ -444,7 +447,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 Resource resource = getEditingDomain().getResourceSet().getResource(movedResource.getURI(), false);
                 if (resource != null || getEditingDomain().getResourceSet().getResource(newURI, false) != null) {
                     // Notify moved resource
-                    getResourceManager().movedResource(getEditingDomain(), resource, newURI);
+                    getResourceManager().movedResource(resource, newURI);
                 }
             } else {
                 // an fcore has moved to a non fcore resource, process a remove
@@ -460,7 +463,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             // Either a non Fcore resource or an already processed deleted fcore from _platformListener
             if (fcore == null) {
                 // _platformListener has been called first, Process workspace removed fcores detected in _platformListener
-                getResourceManager().removeResource(getEditingDomain(), deletedResource);
+                getResourceManager().removeResource(deletedResource);
             }
             return true;
         }
