@@ -710,7 +710,6 @@ public class TemplateProcessor implements IFcoreProcessor {
                         return ((CoreException) t).getStatus();
                     }
                     return EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(EGFPatternMessages.Template_processor_fcore_execute_exception, fcore.getURI()), t);
-
                 } finally {
                     monitor.done();
                 }
