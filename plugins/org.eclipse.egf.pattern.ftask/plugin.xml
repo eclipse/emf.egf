@@ -22,6 +22,9 @@
       <fcore
             id="egf/Model_driven_validation_pattern_strategy_task.fcore">
       </fcore>
+      <fcore
+            id="egf/Model_driven_transformation_pattern_strategy_task.fcore">
+      </fcore>
    </extension>
 
 </plugin>
