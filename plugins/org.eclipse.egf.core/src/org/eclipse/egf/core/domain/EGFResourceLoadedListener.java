@@ -170,7 +170,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                         for (Iterator<Resource> it = resourceSet.getResources().iterator(); it.hasNext();) {
                             Resource resource = it.next();
                             resource.unload();
-                            resourceSet.getResources().remove(resource);
                             it.remove();
                         }
                     }
