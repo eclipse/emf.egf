@@ -17,7 +17,9 @@ package org.eclipse.egf.pattern.strategy.modeldriven;
 
 import java.util.List;
 
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * TODO: improve pattern selection: At present time, the selection is done via
@@ -38,4 +40,13 @@ public class EmfModelVisitor extends DefaultDomainVisitor {
         return EMPTY_LIST;
     }
 
+    @Override
+    protected List<Pattern> findPatterns(Object model) {
+        if (model instanceof EObject) {
+            String fullName = EcoreUtil.getURI(((EObject) model).eClass()).toString();
+            return type2patterns.get(fullName);
+        }
+
+        return super.findPatterns(model);
+    }
 }

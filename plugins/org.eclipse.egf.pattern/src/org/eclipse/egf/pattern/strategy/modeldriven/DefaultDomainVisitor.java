@@ -21,15 +21,13 @@ import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 
 public abstract class DefaultDomainVisitor implements DomainVisitor {
 
     protected static final List<Object> EMPTY_LIST = new ArrayList<Object>();
 
-    private final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
+    protected final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
 
     protected final Set<Object> visited = new HashSet<Object>();
 
@@ -51,12 +49,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     }
 
     protected List<Pattern> findPatterns(PatternContext context, Object model) throws PatternException {
-        List<Pattern> result = null;
-        if (model instanceof EObject) {
-            String fullName = EcoreUtil.getURI(((EObject) model).eClass()).toString();
-            result = type2patterns.get(fullName);
-        } else
-            throw new UnsupportedOperationException();
+        List<Pattern> result = findPatterns(model);
 
         if (result == null)
             return null;
@@ -64,8 +57,13 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
         return SubstitutionHelper.apply(context, result, parameterValues);
     }
 
+    protected List<Pattern> findPatterns(Object model) {
+        String fullName = model.getClass().getName();
+        return type2patterns.get(fullName);
+    }
+
     public void visit(PatternContext context, Object model) throws PatternException {
-        for (Object obj : getChildren(model)) {
+        for (Object obj : new ArrayList<Object>(getChildren(model))) {
             if (!hasBeenVisited(obj))
                 doProcess(context, obj);
             visit(context, obj);
