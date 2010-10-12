@@ -855,13 +855,37 @@
             <methods xmi:id="_sTvtQZVuEd-fvPvNnKEvJg" name="header" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtQZVuEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_sTvtQpVuEd-fvPvNnKEvJg" name="init" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtQpVuEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_sTvtQ5VuEd-fvPvNnKEvJg" name="preCondition" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtQ5VuEd-fvPvNnKEvJg.pt"/>
-            <methods xmi:id="_sTvtRJVuEd-fvPvNnKEvJg" name="body" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtRJVuEd-fvPvNnKEvJg.pt"/>
+            <methods xmi:id="_sTvtRJVuEd-fvPvNnKEvJg" name="computeStepName" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtRJVuEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_sTvtRZVuEd-fvPvNnKEvJg" name="footer" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtRZVuEd-fvPvNnKEvJg.pt"/>
+            <methods xmi:id="_d7QDMNXkEd-lsanF2JdPMA" name="begin" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._d7QDMNXkEd-lsanF2JdPMA.pt"/>
+            <methods xmi:id="_gveeUNXkEd-lsanF2JdPMA" name="echo" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._gveeUNXkEd-lsanF2JdPMA.pt"/>
+            <methods xmi:id="_ks-1sNXkEd-lsanF2JdPMA" name="installJRE" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._ks-1sNXkEd-lsanF2JdPMA.pt"/>
+            <methods xmi:id="_nW7TcNXkEd-lsanF2JdPMA" name="importTargetDefinition"
+                patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._nW7TcNXkEd-lsanF2JdPMA.pt"/>
+            <methods xmi:id="_p3VasNXkEd-lsanF2JdPMA" name="importWorkspace" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._p3VasNXkEd-lsanF2JdPMA.pt"/>
+            <methods xmi:id="_uOm88NXkEd-lsanF2JdPMA" name="build" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._uOm88NXkEd-lsanF2JdPMA.pt"/>
+            <methods xmi:id="_w_jakNXkEd-lsanF2JdPMA" name="end" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._w_jakNXkEd-lsanF2JdPMA.pt"/>
             <parameters xmi:id="_xF8Q8JVuEd-fvPvNnKEvJg" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_0eN0UJVuEd-fvPvNnKEvJg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_sTvtRpVuEd-fvPvNnKEvJg"/>
+            <variables xmi:id="_D2CN0NXkEd-lsanF2JdPMA" name="stepName" type="java.lang.String"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_ajutwNXkEd-lsanF2JdPMA"
+                called="#_sTvtRJVuEd-fvPvNnKEvJg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_illrYNXkEd-lsanF2JdPMA"
+                called="#_d7QDMNXkEd-lsanF2JdPMA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_i3wZcNXkEd-lsanF2JdPMA"
+                called="#_gveeUNXkEd-lsanF2JdPMA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_lf6ugNXkEd-lsanF2JdPMA"
+                called="#_ks-1sNXkEd-lsanF2JdPMA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_np_ZYNXkEd-lsanF2JdPMA"
+                called="#_nW7TcNXkEd-lsanF2JdPMA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_rNt-0NXkEd-lsanF2JdPMA"
+                called="#_p3VasNXkEd-lsanF2JdPMA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vMkaANXkEd-lsanF2JdPMA"
+                called="#_uOm88NXkEd-lsanF2JdPMA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_4vPDENXkEd-lsanF2JdPMA"
+                called="#_w_jakNXkEd-lsanF2JdPMA"/>
           </elements>
           <elements xmi:id="_Q9g78JVuEd-fvPvNnKEvJg" name="build.xml.testStep" superPattern="#_C_qLIJTYEd-fvPvNnKEvJg"
               headerMethod="#_Q9g78ZVuEd-fvPvNnKEvJg" conditionMethod="#_Q9g785VuEd-fvPvNnKEvJg"

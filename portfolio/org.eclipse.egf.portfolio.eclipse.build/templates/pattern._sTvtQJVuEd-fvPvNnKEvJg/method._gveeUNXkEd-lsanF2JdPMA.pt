@@ -1,0 +1,2 @@
+        <echo message="Importing projects into workspace ${workspace} and binaries into target platform" />
+

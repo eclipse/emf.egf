@@ -1,0 +1,7 @@
+        <buckminster command="importtargetdefinition">
+            <cmdargs>
+                <arg value="--active" />
+                <arg value="${basedir}/buckminster_<%=stepName%>/build.target" />
+            </cmdargs>
+        </buckminster>
+    	

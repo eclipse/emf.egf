@@ -1,0 +1,7 @@
+    	<buckminster command="installJRE">
+            <cmdargs>
+                <arg value="--location" />
+                <arg value="${env.JAVA_HOME}" />
+            </cmdargs>
+        </buckminster>
+
