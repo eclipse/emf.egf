@@ -36,8 +36,8 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.ui.Activator;
@@ -149,7 +149,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     private Combo combo;
 
-    private TableViewer tableViewer;
+    private TableViewer parametersViewer;
 
     private FormColors colors = new FormColors(Display.getDefault());
 
@@ -166,6 +166,14 @@ public class SpecificationPage extends PatternEditorPage {
     private static final String PARAMETER_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
 
     private int dragIndex = -1;
+
+    private ISelectionChangedListener changedListener;
+
+    private ParametersTableCellModifier modifier;
+
+    private TextCellEditor nameEditor;
+
+    private DialogCellEditor typeEditor;
 
     private ComboBoxViewerCellEditor queryEditor;
 
@@ -201,6 +209,17 @@ public class SpecificationPage extends PatternEditorPage {
         up.setEnabled(enabled);
         down.setEnabled(enabled);
         combo.setEnabled(enabled);
+        if (enabled) {
+            parametersViewer.addSelectionChangedListener(changedListener);
+            parametersViewer.setCellModifier(modifier);
+            parametersViewer.setCellEditors(new CellEditor[] {
+                    nameEditor, typeEditor, queryEditor
+            });
+        } else {
+            parametersViewer.removeSelectionChangedListener(changedListener);
+            parametersViewer.setCellModifier(null);
+            parametersViewer.setCellEditors(null);
+        }
     }
 
     protected void openParentPatternEditor() {
@@ -224,7 +243,6 @@ public class SpecificationPage extends PatternEditorPage {
 
         createInheritanceSection(toolkit, body);
         createPatternNatureSection(toolkit, body);
-
         createParametersSection(toolkit, body);
 
         form.reflow(true);
@@ -463,15 +481,15 @@ public class SpecificationPage extends PatternEditorPage {
         gd.widthHint = 100;
         table.setLayoutData(gd);
 
-        tableViewer = new TableViewer(table);
+        parametersViewer = new TableViewer(table);
         String[] colNames = {
                 Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query
         };
         int[] colWidths = {
                 100, 80, 80
         };
-        tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
-        tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+        parametersViewer.setContentProvider(new TableObservableListContentProvider(parametersViewer));
+        parametersViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 if (isReadOnly()) {
@@ -481,10 +499,10 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
         });
-        ColumnViewerToolTipSupport.enableFor(tableViewer, ToolTip.NO_RECREATE);
+        ColumnViewerToolTipSupport.enableFor(parametersViewer, ToolTip.NO_RECREATE);
         CellLabelProvider cellLabelProvider = new ParametersTableLabelProvider();
         for (int i = 0; i < colNames.length; i++) {
-            TableViewerColumn column = new TableViewerColumn(tableViewer, SWT.NONE);
+            TableViewerColumn column = new TableViewerColumn(parametersViewer, SWT.NONE);
             column.setLabelProvider(cellLabelProvider);
             column.getColumn().setWidth(colWidths[i]);
             column.getColumn().setText(colNames[i]);
@@ -501,34 +519,41 @@ public class SpecificationPage extends PatternEditorPage {
      * Add drag and drop listener to tableViewer.
      */
     private void addDragDrop() {
-        if (isReadOnly())
-            return;
-        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+
+        parametersViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
         }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
-                if (tableViewer.getSelection() == null) {
+                if (isReadOnly()) {
+                    event.doit = false;
+                } else if (parametersViewer.getSelection() == null) {
                     event.doit = false;
                 }
+                event.doit = true;
             }
 
             public void dragSetData(DragSourceEvent event) {
-                if (tableViewer.getSelection() != null) {
-                    dragIndex = tableViewer.getTable().getSelectionIndex();
+                if (parametersViewer.getSelection() != null) {
+                    dragIndex = parametersViewer.getTable().getSelectionIndex();
                 }
             }
 
             public void dragFinished(DragSourceEvent event) {
+                // Nothing to do
             }
+
         });
 
-        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
+        parametersViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
             LocalSelectionTransfer.getTransfer()
-        }, new ViewerDropAdapter(tableViewer) {
+        }, new ViewerDropAdapter(parametersViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
+                if (isReadOnly()) {
+                    return false;
+                }
                 return true;
             }
 
@@ -538,7 +563,9 @@ public class SpecificationPage extends PatternEditorPage {
                 executeChangeOrder(currentTarget);
                 return false;
             }
+
         });
+
     }
 
     /**
@@ -552,8 +579,8 @@ public class SpecificationPage extends PatternEditorPage {
         int targetIndex = 0;
         int index = 0;
         if (currentTarget == null) {
-            targetIndex = tableViewer.getTable().getItemCount() - 1;
-            currentTarget = tableViewer.getElementAt(targetIndex);
+            targetIndex = parametersViewer.getTable().getItemCount() - 1;
+            currentTarget = parametersViewer.getElementAt(targetIndex);
         } else {
             for (Object parameter : allParameters) {
                 if (currentTarget.equals(parameter)) {
@@ -578,7 +605,7 @@ public class SpecificationPage extends PatternEditorPage {
         }
 
         updateAllParameters(allParametersNew);
-        tableViewer.getTable().setSelection(targetIndex);
+        parametersViewer.getTable().setSelection(targetIndex);
         setButtonsStatus();
     }
 
@@ -615,7 +642,7 @@ public class SpecificationPage extends PatternEditorPage {
         edit.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                ISelection selection = tableViewer.getSelection();
+                ISelection selection = parametersViewer.getSelection();
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
                 if (selectItem instanceof PatternParameter) {
                     PatternParameter patternParameter = (PatternParameter) selectItem;
@@ -634,7 +661,7 @@ public class SpecificationPage extends PatternEditorPage {
                         editingDomain.getCommandStack().execute(cmd);
                     }
                 }
-                tableViewer.refresh();
+                parametersViewer.refresh();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -742,7 +769,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void setButtonsStatus() {
-        int selectIndex = tableViewer.getTable().getSelectionIndex();
+        int selectIndex = parametersViewer.getTable().getSelectionIndex();
         if (selectIndex == -1) {
             edit.setEnabled(false);
             remove.setEnabled(false);
@@ -750,7 +777,7 @@ public class SpecificationPage extends PatternEditorPage {
             down.setEnabled(false);
             return;
         }
-        int length = tableViewer.getTable().getItemCount();
+        int length = parametersViewer.getTable().getItemCount();
         if (length > 0) {
             remove.setEnabled(true);
             edit.setEnabled(true);
@@ -771,9 +798,9 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     protected void executeRemove() {
-        int index = tableViewer.getTable().getSelectionIndex();
+        int index = parametersViewer.getTable().getSelectionIndex();
         final Pattern pattern = getPattern();
-        ISelection selection = tableViewer.getSelection();
+        ISelection selection = parametersViewer.getSelection();
         final Object[] removeThem = ((IStructuredSelection) selection).toArray();
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
@@ -789,11 +816,11 @@ public class SpecificationPage extends PatternEditorPage {
         };
         editingDomain.getCommandStack().execute(cmd);
 
-        int len = tableViewer.getTable().getItemCount();
+        int len = parametersViewer.getTable().getItemCount();
         if (index < len) {
-            tableViewer.getTable().setSelection(index);
+            parametersViewer.getTable().setSelection(index);
         } else if (index >= len) {
-            tableViewer.getTable().setSelection(index - 1);
+            parametersViewer.getTable().setSelection(index - 1);
         }
         setButtonsStatus();
     }
@@ -812,19 +839,19 @@ public class SpecificationPage extends PatternEditorPage {
                 newPatternParameter.setName(PARAMETER_NAME_DEFAULT_VALUE);
                 newPatternParameter.setType(PARAMETER_TYPE_DEFAULT_VALUE);
                 pattern.getParameters().add(newPatternParameter);
-                PatternUIHelper.addAdapterForNewItem(tableViewer, newPatternParameter);
+                PatternUIHelper.addAdapterForNewItem(parametersViewer, newPatternParameter);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
 
         EList<PatternParameter> allParameters = pattern.getAllParameters();
         int len = allParameters.size();
-        tableViewer.getTable().setSelection(len - 1);
+        parametersViewer.getTable().setSelection(len - 1);
         setButtonsStatus();
     }
 
     private void executeUpOrDown(int num) {
-        int oldIndex = tableViewer.getTable().getSelectionIndex();
+        int oldIndex = parametersViewer.getTable().getSelectionIndex();
         int newIndex = oldIndex + num;
 
         EList<PatternParameter> allParameters = getPattern().getAllParameters();
@@ -839,7 +866,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         }
         updateAllParameters(allParametersNew);
-        tableViewer.getTable().setSelection(newIndex);
+        parametersViewer.getTable().setSelection(newIndex);
         setButtonsStatus();
     }
 
@@ -860,13 +887,17 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void initTableEditor() {
-        if (isReadOnly())
-            return;
-        tableViewer.setColumnProperties(new String[] {
+
+        // Column
+        parametersViewer.setColumnProperties(new String[] {
                 NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID
         });
-        final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
-        final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
+
+        // Name cell editor
+        nameEditor = new TextCellEditor(parametersViewer.getTable());
+
+        // Type cell editor
+        typeEditor = new DialogCellEditor(parametersViewer.getTable()) {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
@@ -886,16 +917,18 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
         };
-        queryEditor = new ComboBoxViewerCellEditor(tableViewer.getTable(), SWT.NONE);
+
+        // Query cell editor
+        queryEditor = new ComboBoxViewerCellEditor(parametersViewer.getTable(), SWT.NONE);
         queryEditor.setLabelProvider(new ComboListLabelProvider());
         queryEditor.setContenProvider(new CommonListContentProvider());
         setComboViewerInput();
-        tableViewer.setCellEditors(new CellEditor[] {
-                nameEditor, typeEditor, queryEditor
-        });
-        ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
-        tableViewer.setCellModifier(modifier);
-        tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+        // Cell modifier
+        modifier = new ParametersTableCellModifier(getEditingDomain(), parametersViewer);
+
+        // Changed listener
+        changedListener = new ISelectionChangedListener() {
 
             @SuppressWarnings("unchecked")
             public void selectionChanged(SelectionChangedEvent event) {
@@ -904,13 +937,21 @@ public class SpecificationPage extends PatternEditorPage {
                 queryEditor.setInput(availableQueries);
             }
 
-        });
+        };
+
+        if (isReadOnly() == false) {
+            parametersViewer.addSelectionChangedListener(changedListener);
+            parametersViewer.setCellModifier(modifier);
+            parametersViewer.setCellEditors(new CellEditor[] {
+                    nameEditor, typeEditor, queryEditor
+            });
+        }
 
     }
 
     private void updateType(final String selectType) {
         if (selectType != null && !"".equals(selectType)) { //$NON-NLS-1$
-            ISelection selection = tableViewer.getSelection();
+            ISelection selection = parametersViewer.getSelection();
             final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
             if (selectItem instanceof PatternParameter) {
                 TransactionalEditingDomain editingDomain = getEditingDomain();
@@ -920,9 +961,10 @@ public class SpecificationPage extends PatternEditorPage {
                     protected void doExecute() {
                         ((PatternParameter) selectItem).setType(selectType);
                     }
+
                 };
                 editingDomain.getCommandStack().execute(cmd);
-                tableViewer.refresh();
+                parametersViewer.refresh();
             }
         }
     }
@@ -938,8 +980,8 @@ public class SpecificationPage extends PatternEditorPage {
      * Get the type of selected pattern parameter.
      */
     private String getSelectItemType() {
-        int selectionIndex = tableViewer.getTable().getSelectionIndex();
-        Object selectItem = tableViewer.getElementAt(selectionIndex);
+        int selectionIndex = parametersViewer.getTable().getSelectionIndex();
+        Object selectItem = parametersViewer.getElementAt(selectionIndex);
         if (selectItem instanceof PatternParameter) {
             return ((PatternParameter) selectItem).getType();
         }
@@ -952,7 +994,7 @@ public class SpecificationPage extends PatternEditorPage {
             bindParent();
             bindNature();
             bindTableViewer();
-            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
+            parameterNameEmptyValidationAdapter = PatternUIHelper.addValidationAdapter(messageManager, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, parametersViewer.getTable());
         }
         checkReadOnlyModel();
     }
@@ -1054,10 +1096,10 @@ public class SpecificationPage extends PatternEditorPage {
 
     private void bindTableViewer() {
         Pattern pattern = getPattern();
-        if (pattern != null && tableViewer != null) {
+        if (pattern != null && parametersViewer != null) {
             IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__PARAMETERS);
             IObservableList observe = input.observe(pattern);
-            tableViewer.setInput(observe);
+            parametersViewer.setInput(observe);
         }
     }
 
