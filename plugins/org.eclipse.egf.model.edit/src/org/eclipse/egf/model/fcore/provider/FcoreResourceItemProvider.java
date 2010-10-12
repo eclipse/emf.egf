@@ -205,9 +205,6 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
         CompoundCommand removeCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
         removeCommand.append(new ResourceRemoveCommand(domain, resource, collection));
         for (Object object : collection) {
-            if (object instanceof EObject == false) {
-                continue;
-            }
             EObject eObject = (EObject) object;
             if (eObject.eContents().isEmpty() == false) {
                 removeCommand.append(domain.createCommand(RemoveCommand.class, new CommandParameter(eObject, null, eObject.eContents())));
