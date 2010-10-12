@@ -1,0 +1,15 @@
+List<EAttribute> eAllAttributes = eObject.eClass().getEAllAttributes();
+for (EAttribute eAttribute : eAllAttributes) {
+    if ("EString".equals(eAttribute.getEType().getName())) {
+        if (eAttribute.getUpperBound() == 1) {
+            String string = (String) eObject.eGet(eAttribute);
+            eObject.eSet(eAttribute, new GenerationHelper().replaceProperties(eObject, string));
+        } else {
+            List<String> stringList = (List<String>) eObject.eGet(eAttribute);
+            for (int i = 0; i < stringList.size(); i++) {
+                String string = stringList.get(i);
+                stringList.set(i, new GenerationHelper().replaceProperties(eObject, string));
+            }
+        }
+    }
+}

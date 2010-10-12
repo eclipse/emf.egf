@@ -1,1 +1,1 @@
-		<location path="<%=new GenerationHelper().replaceProperties(targetPlatformBuildLocation, targetPlatformBuildLocation.getPath())%>" type="Profile"/>
+		<location path="<%=targetPlatformBuildLocation.getPath()%>" type="Profile"/>

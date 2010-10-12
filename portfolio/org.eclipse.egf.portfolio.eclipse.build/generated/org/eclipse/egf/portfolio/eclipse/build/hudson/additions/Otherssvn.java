@@ -104,7 +104,7 @@ public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
             SVNLocation svnLocation = iterator.next();
             stringBuffer.append(TEXT_2);
             stringBuffer.append(svnLocation.getProtocol().getLiteral());
-            stringBuffer.append(new GenerationHelper().replaceProperties(svnLocation, svnLocation.getUrl()));
+            stringBuffer.append(svnLocation.getUrl());
             stringBuffer.append(TEXT_3);
             stringBuffer.append(new GenerationHelper().getStringIfNotNull(svnLocation.getLocalPath()));
             stringBuffer.append(TEXT_4);

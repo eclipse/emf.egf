@@ -95,7 +95,7 @@ public class buildtargettargetPlatform extends org.eclipse.egf.portfolio.eclipse
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().replaceProperties(targetPlatformBuildLocation, targetPlatformBuildLocation.getPath()));
+        stringBuffer.append(targetPlatformBuildLocation.getPath());
         stringBuffer.append(TEXT_2);
     }
 

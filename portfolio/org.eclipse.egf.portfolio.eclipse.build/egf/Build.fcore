@@ -8,7 +8,7 @@
   <fcore:FactoryComponent xmi:id="_N4pRwI6UEd-e7viTqNBNrA" name="Build">
     <contractContainer xmi:id="_ad5FkI6VEd-e7viTqNBNrA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ad5FkY6VEd-e7viTqNBNrA"
-          name="buildModelPath" mandatory="true" invocationContracts="#_kXzxso_tEd-ggNhbFv1Fiw #_jHMeYo_tEd-ggNhbFv1Fiw #_eHcvEq93Ed--tuq7x0NXVA">
+          name="buildModelPath" mandatory="true" invocationContracts="#_y3exVNU7Ed-sZ5ty9tQGtA">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_ad5Fko6VEd-e7viTqNBNrA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_npIcUJlgEd-cRYVfj6AwNg"
@@ -22,6 +22,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ahMPALzpEd-Ni-pzi_M0Ew"
           name="Model validation patterns" invocationContracts="#_9iziMLzqEd-Ni-pzi_M0Ew">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_fEqaMLzpEd-Ni-pzi_M0Ew"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_v8D6UNVBEd-sZ5ty9tQGtA"
+          name="Model transformation patterns" invocationContracts="#_y3exWdU7Ed-sZ5ty9tQGtA">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ziSaINVBEd-sZ5ty9tQGtA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mKZJoI_tEd-ggNhbFv1Fiw"
           name="Hudson pattern substitutions" invocationContracts="#_kXzxs4_tEd-ggNhbFv1Fiw">
@@ -137,12 +141,48 @@
                 called="#_d8VZVK95Ed--tuq7x0NXVA"/>
           </elements>
         </libraries>
+        <libraries xmi:id="_n0wcANVBEd-sZ5ty9tQGtA" name="org.eclipse.egf.portfolio.eclipse.build.transformation">
+          <elements xmi:id="_WM_acNVJEd-kLLLb0fKJog" name="replaceProperties" headerMethod="#_WM_actVJEd-kLLLb0fKJog"
+              conditionMethod="#_WM_adNVJEd-kLLLb0fKJog" initMethod="#_WM_ac9VJEd-kLLLb0fKJog"
+              footerMethod="#_WM_adtVJEd-kLLLb0fKJog">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_WM_acdVJEd-kLLLb0fKJog"
+                name="Java"/>
+            <methods xmi:id="_WM_actVJEd-kLLLb0fKJog" name="header" patternFilePath="templates/pattern._WM_acNVJEd-kLLLb0fKJog/method._WM_actVJEd-kLLLb0fKJog.pt"/>
+            <methods xmi:id="_WM_ac9VJEd-kLLLb0fKJog" name="init" patternFilePath="templates/pattern._WM_acNVJEd-kLLLb0fKJog/method._WM_ac9VJEd-kLLLb0fKJog.pt"/>
+            <methods xmi:id="_WM_adNVJEd-kLLLb0fKJog" name="preCondition" patternFilePath="templates/pattern._WM_acNVJEd-kLLLb0fKJog/method._WM_adNVJEd-kLLLb0fKJog.pt"/>
+            <methods xmi:id="_WM_addVJEd-kLLLb0fKJog" name="body" patternFilePath="templates/pattern._WM_acNVJEd-kLLLb0fKJog/method._WM_addVJEd-kLLLb0fKJog.pt"/>
+            <methods xmi:id="_WM_adtVJEd-kLLLb0fKJog" name="footer" patternFilePath="templates/pattern._WM_acNVJEd-kLLLb0fKJog/method._WM_adtVJEd-kLLLb0fKJog.pt"/>
+            <parameters xmi:id="_XtjOQNVJEd-kLLLb0fKJog" name="eObject" type="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="__l0j0NVJEd-kLLLb0fKJog"
+                called="#_WM_addVJEd-kLLLb0fKJog"/>
+          </elements>
+        </libraries>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_UQVXII6VEd-e7viTqNBNrA">
+      <invocations xmi:id="_y3exUNU7Ed-sZ5ty9tQGtA" description="" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_transformation_pattern_strategy_task.fcore#_fYaHUNK7Ed-Vedbz10IYAA">
+        <invocationContractContainer xmi:id="_y3exUdU7Ed-sZ5ty9tQGtA">
+          <invocationContracts xmi:id="_y3exUtU7Ed-sZ5ty9tQGtA" targetInvocationContract="#_eHcvEq93Ed--tuq7x0NXVA #_jHMeYo_tEd-ggNhbFv1Fiw #_kXzxso_tEd-ggNhbFv1Fiw"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_transformation_pattern_strategy_task.fcore#_vogRsNK7Ed-Vedbz10IYAA"/>
+          <invocationContracts xmi:id="_y3exU9U7Ed-sZ5ty9tQGtA" targetInvocationContract="#_gj-9EtVBEd-sZ5ty9tQGtA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_transformation_pattern_strategy_task.fcore#_2xrT0NK7Ed-Vedbz10IYAA"/>
+          <invocationContracts xmi:id="_y3exVNU7Ed-sZ5ty9tQGtA" factoryComponentContract="#_ad5FkY6VEd-e7viTqNBNrA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
+          <invocationContracts xmi:id="_y3exV9U7Ed-sZ5ty9tQGtA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_zJXimcAXOEd-ra8cys1-yIrg">
+            <type xmi:type="pattern:TypePatternDomainVisitor" xmi:id="_OoqVENVDEd-sZ5ty9tQGtA"
+                value="org.eclipse.egf.pattern.strategy.modeldriven.SubClassEmfModelVisitor"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_y3exWNU7Ed-sZ5ty9tQGtA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+            <type xmi:type="pattern:TypePatternList" xmi:id="_sd4jQNVBEd-sZ5ty9tQGtA"
+                elements="#_n0wcANVBEd-sZ5ty9tQGtA"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_y3exWdU7Ed-sZ5ty9tQGtA" factoryComponentContract="#_v8D6UNVBEd-sZ5ty9tQGtA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+        </invocationContractContainer>
+      </invocations>
       <invocations xmi:id="_eHcvEK93Ed--tuq7x0NXVA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_lIo_MKtsEd-IItjEL3Zf6g">
         <invocationContractContainer xmi:id="_eHcvEa93Ed--tuq7x0NXVA">
-          <invocationContracts xmi:id="_eHcvEq93Ed--tuq7x0NXVA" factoryComponentContract="#_ad5FkY6VEd-e7viTqNBNrA"
+          <invocationContracts xmi:id="_eHcvEq93Ed--tuq7x0NXVA" sourceInvocationContract="#_y3exUtU7Ed-sZ5ty9tQGtA"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
           <invocationContracts xmi:id="_0VnaYK93Ed--tuq7x0NXVA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_1awdgK93Ed--tuq7x0NXVA"
@@ -154,7 +194,7 @@
       </invocations>
       <invocations xmi:id="_kXzxsI_tEd-ggNhbFv1Fiw" invokedActivity="#_cUxUQY28Ed-Tlrutn5SzgA">
         <invocationContractContainer xmi:id="_kXzxsY_tEd-ggNhbFv1Fiw">
-          <invocationContracts xmi:id="_kXzxso_tEd-ggNhbFv1Fiw" factoryComponentContract="#_ad5FkY6VEd-e7viTqNBNrA"
+          <invocationContracts xmi:id="_kXzxso_tEd-ggNhbFv1Fiw" sourceInvocationContract="#_y3exUtU7Ed-sZ5ty9tQGtA"
               invokedContract="#_fLTcgI28Ed-Tlrutn5SzgA"/>
           <invocationContracts xmi:id="_3zH-sJlgEd-cRYVfj6AwNg" factoryComponentContract="#_npIcUJlgEd-cRYVfj6AwNg"
               invokedContract="#_9DJG0JlgEd-cRYVfj6AwNg"/>
@@ -168,7 +208,7 @@
       </invocations>
       <invocations xmi:id="_jHMeYI_tEd-ggNhbFv1Fiw" invokedActivity="#_dai5YI6UEd-e7viTqNBNrA">
         <invocationContractContainer xmi:id="_jHMeYY_tEd-ggNhbFv1Fiw">
-          <invocationContracts xmi:id="_jHMeYo_tEd-ggNhbFv1Fiw" factoryComponentContract="#_ad5FkY6VEd-e7viTqNBNrA"
+          <invocationContracts xmi:id="_jHMeYo_tEd-ggNhbFv1Fiw" sourceInvocationContract="#_y3exUtU7Ed-sZ5ty9tQGtA"
               invokedContract="#_QISjsY6VEd-e7viTqNBNrA"/>
           <invocationContracts xmi:id="_J06JIJlhEd-cRYVfj6AwNg" factoryComponentContract="#_npIcUJlgEd-cRYVfj6AwNg"
               invokedContract="#_ABkm0JlhEd-cRYVfj6AwNg"/>
@@ -178,6 +218,12 @@
               invokedContract="#_QISjs46VEd-e7viTqNBNrA"/>
           <invocationContracts xmi:id="_3eJzQJ5NEd-3wvN5SnesGA" factoryComponentContract="#_0Pe30J5NEd-3wvN5SnesGA"
               invokedContract="#_kTptQJ5NEd-3wvN5SnesGA"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_gj-9ENVBEd-sZ5ty9tQGtA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/fileManagement.fcore#_6Vc3YNU-Ed-sZ5ty9tQGtA">
+        <invocationContractContainer xmi:id="_gj-9EdVBEd-sZ5ty9tQGtA">
+          <invocationContracts xmi:id="_gj-9EtVBEd-sZ5ty9tQGtA" sourceInvocationContract="#_y3exU9U7Ed-sZ5ty9tQGtA"
+              invokedContract="platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/fileManagement.fcore#_crJDQNVBEd-sZ5ty9tQGtA"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
@@ -1175,8 +1221,8 @@
     </orchestration>
   </fcore:FactoryComponent>
   <ftask:Task xmi:id="_c0-ysJlfEd-cRYVfj6AwNg" description="" name="Build Generation Task"
-      kind="java" implementation="org.eclipse.egf.portfolio.eclipse.build.ModelDrivenGenerationTask"
-      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      kind="java" superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg"
+      implementation="org.eclipse.egf.portfolio.eclipse.build.ModelDrivenGenerationTask">
     <contractContainer xmi:id="_4PbVoJlfEd-cRYVfj6AwNg">
       <contracts xmi:id="_4qQQcJlfEd-cRYVfj6AwNg" name="generationPath" mandatory="true">
         <type xmi:type="types:TypeString" xmi:id="_6Nfk0JlfEd-cRYVfj6AwNg"/>
