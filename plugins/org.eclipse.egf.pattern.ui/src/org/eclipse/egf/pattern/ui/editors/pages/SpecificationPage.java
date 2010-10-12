@@ -23,11 +23,15 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternNature;
@@ -36,7 +40,6 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
@@ -92,6 +95,7 @@ import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceEvent;
@@ -147,7 +151,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     private Button removeParent;
 
-    private Combo combo;
+    private Combo natureCombo;
 
     private TableViewer parametersViewer;
 
@@ -181,11 +185,8 @@ public class SpecificationPage extends PatternEditorPage {
 
     private IMessageManager messageManager;
 
-    private int comboSelectIndex;
-
     public SpecificationPage(FormEditor editor) {
         super(editor, ID, Messages.SpecificationPage_title);
-
     }
 
     /**
@@ -208,7 +209,7 @@ public class SpecificationPage extends PatternEditorPage {
         remove.setEnabled(enabled);
         up.setEnabled(enabled);
         down.setEnabled(enabled);
-        combo.setEnabled(enabled);
+        natureCombo.setEnabled(enabled);
         if (enabled) {
             parametersViewer.addSelectionChangedListener(changedListener);
             parametersViewer.setCellModifier(modifier);
@@ -391,51 +392,45 @@ public class SpecificationPage extends PatternEditorPage {
         type.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
         type.setForeground(colors.getColor(IFormColors.TITLE));
 
-        combo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
+        natureCombo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
 
         for (String name : EGFPatternPlugin.getPatternNatures()) {
-            combo.add(name);
+            natureCombo.add(name);
         }
-        combo.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
+        natureCombo.setLayoutData(new TableWrapData(TableWrapData.FILL_GRAB));
 
-        combo.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                executeNatureChange(composite);
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-                // Nothing to do
-            }
-
-        });
-
-        combo.select(0);
+        natureCombo.select(0);
 
     }
 
-    private void executeNatureChange(Composite composite) {
-        String message = Messages.SpecificationPage_change_nature_type;
-        boolean openQuestion = MessageDialog.openQuestion(composite.getShell(), null, message);
-        if (openQuestion) {
-            // create template files
-            Pattern pattern = getPattern();
-            PatternLibrary library = pattern.getContainer();
-            IProject project = EMFHelper.getProject(library.eResource());
-            PatternInitializer initializer;
-            try {
-                initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
-                initializer.updateSpecialMethods(true);
-            } catch (PatternException e) {
-                e.printStackTrace();
-            } catch (MissingExtensionException e) {
-                e.printStackTrace();
+    private void updateNature() {
+        // create template files
+        final Pattern pattern = getPattern();
+        final PatternLibrary library = pattern.getContainer();
+        final IProject project = EMFHelper.getProject(library.eResource());
+        // Update templates
+        WorkspaceJob job = new WorkspaceJob(Messages.PatternNature_update) {
+
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+                PatternInitializer initializer;
+                try {
+                    initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
+                    initializer.updateSpecialMethods(true);
+                } catch (Throwable t) {
+                    if (t instanceof CoreException) {
+                        return ((CoreException) t).getStatus();
+                    }
+                    return EGFModelPlugin.getPlugin().newStatus(Status.ERROR, NLS.bind(Messages.PatternNature_update_execute_exception, EcoreUtil.getURI(getPattern())), t);
+                }
+                return Status.OK_STATUS;
             }
-            comboSelectIndex = combo.getSelectionIndex();
-        } else {
-            combo.select(comboSelectIndex);
-        }
-        getEditor().doSave(null);
+
+        };
+        job.setRule(project);
+        job.schedule();
+        // Save Resource
+        getEditor().doSave(new NullProgressMonitor());
     }
 
     private void createParametersSection(FormToolkit toolkit, Composite parent) {
@@ -1000,6 +995,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     protected void bindParent() {
+
         IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__SUPER_PATTERN);
         IWidgetValueProperty textProp = WidgetProperties.text();
         IObservableValue uiObs = textProp.observeDelayed(400, parentLink);
@@ -1012,6 +1008,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
         });
+
         UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
         modelToTarget.setConverter(new IConverter() {
 
@@ -1033,21 +1030,37 @@ public class SpecificationPage extends PatternEditorPage {
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
+
     }
 
-    void bindNature() {
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__NATURE);
-        IWidgetValueProperty comboProp = WidgetProperties.selection();
-        IObservableValue uiObs = comboProp.observeDelayed(400, combo);
-        IObservableValue mObs = mprop.observe(getPattern());
+    protected void bindNature() {
 
-        UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+        final IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__NATURE);
+        final IWidgetValueProperty comboProp = WidgetProperties.selection();
+        final IObservableValue uiObs = comboProp.observeDelayed(400, natureCombo);
+        final IObservableValue mObs = mprop.observe(getPattern());
+
+        UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy() {
+
+            @Override
+            protected IStatus doSet(IObservableValue observableValue, Object value) {
+                IStatus status = super.doSet(observableValue, value);
+                if (status.isOK()) {
+                    updateNature();
+                }
+                return status;
+            }
+        };
+
+        targetToModel.setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
+                updateNature();
                 return Status.OK_STATUS;
             }
 
         });
+
         targetToModel.setConverter(new IConverter() {
 
             public Object getToType() {
@@ -1059,17 +1072,55 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public Object convert(Object fromObject) {
-                if (fromObject == null || !(fromObject instanceof String)) {
-                    return ""; //$NON-NLS-1$
-                }
-                if (fromObject.equals(ExtensionHelper.getName(getPattern().getNature())))
+                // At this stage fromObject can't be null the targetToModel.setAfterGetValidator sent a CANCEL_STATUS 
+                if (fromObject.equals(ExtensionHelper.getName(getPattern().getNature()))) {
                     return getPattern().getNature();
+                }
                 return ExtensionHelper.createNature((String) fromObject);
             }
 
         });
 
-        UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
+        targetToModel = targetToModel.setAfterGetValidator(new IValidator() {
+
+            public IStatus validate(Object value) {
+                // Ignore
+                if (getPattern().getNature() == null) {
+                    return Status.OK_STATUS;
+                }
+                String currentNature = ExtensionHelper.getName(getPattern().getNature());
+                if (value == null) {
+                    natureCombo.setText(currentNature);
+                    return Status.CANCEL_STATUS;
+                }
+                // Nothing to do
+                if (value.equals(currentNature)) {
+                    return Status.CANCEL_STATUS;
+                }
+                // Confirm update
+                if (MessageDialog.openQuestion(getPartControl().getShell(), Messages.SpecificationPage_change_nature_title, Messages.SpecificationPage_change_nature_type)) {
+                    return Status.OK_STATUS;
+                }
+                natureCombo.setText(currentNature);
+                return Status.CANCEL_STATUS;
+            }
+
+        });
+
+        UpdateValueStrategy modelToTarget = new EMFUpdateValueStrategy();
+
+        modelToTarget.setAfterGetValidator(new IValidator() {
+
+            public IStatus validate(Object value) {
+                // Ignore
+                if (value == null || value instanceof PatternNature == false) {
+                    return Status.CANCEL_STATUS;
+                }
+                return Status.OK_STATUS;
+            }
+
+        });
+
         modelToTarget.setConverter(new IConverter() {
 
             public Object getToType() {
@@ -1081,17 +1132,13 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
             public Object convert(Object fromObject) {
-                if (fromObject == null || !(fromObject instanceof PatternNature)) {
-                    return ""; //$NON-NLS-1$
-                }
                 return ExtensionHelper.getName((PatternNature) fromObject);
             }
 
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
-        if (combo != null && !combo.isDisposed())
-            comboSelectIndex = combo.getSelectionIndex();
+
     }
 
     private void bindTableViewer() {
