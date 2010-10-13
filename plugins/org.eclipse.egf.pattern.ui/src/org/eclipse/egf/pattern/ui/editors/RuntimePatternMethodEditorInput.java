@@ -41,7 +41,7 @@ public class RuntimePatternMethodEditorInput extends AbstractPatternMethodEditor
 
         public InputStream getContents() throws CoreException {
             try {
-                return TemplateModelFileHelper.getInputStream(_method);
+                return TemplateModelFileHelper.getInputStream(getPatternMethod());
             } catch (IOException e) {
                 EGFPatternPlugin.getDefault().logError(e);
                 return new ByteArrayInputStream(e.toString().getBytes());

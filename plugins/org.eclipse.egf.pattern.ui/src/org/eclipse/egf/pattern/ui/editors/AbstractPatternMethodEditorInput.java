@@ -28,11 +28,8 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
 
     protected final Resource _resource;
 
-    protected final PatternMethod _method;
-
     public AbstractPatternMethodEditorInput(Resource resource, String fragment) {
         _resource = resource;
-        _method = (PatternMethod) resource.getEObject(fragment);
         _fragment = fragment;
     }
 
@@ -41,7 +38,7 @@ public class AbstractPatternMethodEditorInput implements IEditorInput {
     }
 
     public PatternMethod getPatternMethod() {
-        return _method;
+        return (PatternMethod) _resource.getEObject(_fragment);
     }
 
     public Resource getResource() {
