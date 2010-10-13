@@ -386,7 +386,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
 
         // Nothing to do
-        if (methodsToRestore.isEmpty()) {
+        if (methodsToDelete.isEmpty() && methodsToRestore.isEmpty()) {
             return;
         }
 
@@ -396,12 +396,16 @@ public class TemplateProcessor implements IFcoreProcessor {
             @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 
-                SubMonitor subMonitor = SubMonitor.convert(monitor, methodsToRestore.size() * 100);
-                subMonitor.beginTask(null, methodsToRestore.size() * 100);
+                int ticks = (methodsToDelete.size() * 100) + (methodsToRestore.size() * 100);
+                SubMonitor subMonitor = SubMonitor.convert(monitor, ticks);
+                subMonitor.beginTask(null, ticks);
 
                 try {
 
-                    // 1 - Restore templates if any 
+                    // 1 - Remove PatternMethods
+                    TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), methodsToDelete);
+
+                    // 2 - Restore templates if any 
                     if (methodsToRestore.isEmpty() == false) {
                         TemplateModelFileHelper.restoreTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, methodsToRestore);
                     }
@@ -668,8 +672,9 @@ public class TemplateProcessor implements IFcoreProcessor {
 
                 try {
 
-                    SubMonitor subMonitor = SubMonitor.convert(monitor, (deletedPatterns.size() * 200) + (methodsToDelete.size() * 100) + (updatedLibraries.size() * 100) + (updatedPatterns.size() * 100) + (patternsToUpdate.size() * 100));
-                    subMonitor.beginTask(null, (deletedPatterns.size() * 100) + (methodsToDelete.size() * 100) + (updatedLibraries.size() * 100) + (updatedPatterns.size() * 100) + (patternsToUpdate.size() * 100));
+                    int ticks = (deletedPatterns.size() * 200) + (methodsToDelete.size() * 100) + (updatedLibraries.size() * 100) + (updatedPatterns.size() * 100) + (patternsToUpdate.size() * 100);
+                    SubMonitor subMonitor = SubMonitor.convert(monitor, ticks);
+                    subMonitor.beginTask(null, ticks);
 
                     // 1 - Remove java resource and Pattern
                     for (Map.Entry<Pattern, PatternLibrary> entry : deletedPatterns.entrySet()) {
