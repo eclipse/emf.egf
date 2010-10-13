@@ -50,18 +50,21 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class LoadEcoreDialog extends ResourceDialog {
 
+    protected boolean _multi;
+
     protected EditingDomain _domain;
 
     private boolean _asEPackageNsURI;
 
     public LoadEcoreDialog(Shell parent, EditingDomain domain) {
-        this(parent, domain, false);
+        this(parent, domain, false, true);
     }
 
-    public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean asEPackageNsURI) {
-        super(parent, CoreUIMessages._UI_BrowseRegisteredPackages_title, SWT.OPEN | SWT.SINGLE);
+    public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean asEPackageNsURI, boolean multi) {
+        super(parent, CoreUIMessages._UI_BrowseRegisteredPackages_title, multi ? SWT.OPEN | SWT.MULTI : SWT.OPEN | SWT.SINGLE);
         _asEPackageNsURI = asEPackageNsURI;
         _domain = domain;
+        _multi = multi;
         title = CoreUIMessages._UI_BrowseRegisteredPackages_title;
     }
 
@@ -107,7 +110,7 @@ public class LoadEcoreDialog extends ResourceDialog {
 
             @Override
             public void widgetSelected(SelectionEvent event) {
-                PlatformPackageDialog dialog = new PlatformPackageDialog(getShell());
+                PlatformPackageDialog dialog = new PlatformPackageDialog(getShell(), _multi);
                 if (dialog.open() != Window.OK) {
                     return;
                 }

@@ -30,7 +30,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
  */
 public class PlatformPackageDialog extends ElementListSelectionDialog {
 
-    public PlatformPackageDialog(Shell parent) {
+    public PlatformPackageDialog(Shell parent, boolean multi) {
 
         super(parent, new LabelProvider() {
 
@@ -49,7 +49,7 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
 
         });
 
-        setMultipleSelection(false);
+        setMultipleSelection(multi);
         setMessage(CoreUIMessages._UI_SelectRegisteredPackageURI);
         setFilter("*"); //$NON-NLS-1$
         setTitle(CoreUIMessages._UI_RegisteredPackageSelection_label);

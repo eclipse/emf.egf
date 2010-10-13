@@ -57,7 +57,7 @@ public class DomainURIEditorContributor extends DefaultPropertyEditorContributor
 
             @Override
             protected Object openDialogBox(Control control) {
-                LoadEcoreDialog dialog = new LoadEcoreDialog(control.getShell(), editingDomain) {
+                LoadEcoreDialog dialog = new LoadEcoreDialog(control.getShell(), editingDomain, false, false) {
 
                     @Override
                     protected Control createDialogArea(Composite parent) {
