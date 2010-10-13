@@ -49,7 +49,7 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
 
         });
 
-        setMultipleSelection(true);
+        setMultipleSelection(false);
         setMessage(CoreUIMessages._UI_SelectRegisteredPackageURI);
         setFilter("*"); //$NON-NLS-1$
         setTitle(CoreUIMessages._UI_RegisteredPackageSelection_label);

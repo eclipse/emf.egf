@@ -21,7 +21,9 @@ import java.util.Map;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
+import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
+import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -29,7 +31,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.ui.action.LoadResourceAction.LoadResourceDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -46,7 +47,9 @@ import org.eclipse.swt.widgets.Shell;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public class LoadEcoreDialog extends LoadResourceDialog {
+public class LoadEcoreDialog extends ResourceDialog {
+
+    protected EditingDomain _domain;
 
     private boolean _asEPackageNsURI;
 
@@ -55,8 +58,30 @@ public class LoadEcoreDialog extends LoadResourceDialog {
     }
 
     public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean asEPackageNsURI) {
-        super(parent, domain);
+        super(parent, CoreUIMessages._UI_BrowseRegisteredPackages_title, SWT.OPEN | SWT.SINGLE);
         _asEPackageNsURI = asEPackageNsURI;
+        _domain = domain;
+        title = CoreUIMessages._UI_BrowseRegisteredPackages_title;
+    }
+
+    @Override
+    protected boolean processResources() {
+        if (_domain != null) {
+            for (URI uri : getURIs()) {
+                try {
+                    if (processResource(_domain.getResourceSet().getResource(uri, true)) == false) {
+                        return false;
+                    }
+                } catch (RuntimeException re) {
+                    EGFCoreUIPlugin.getDefault().logError(re);
+                }
+            }
+        }
+        return true;
+    }
+
+    protected boolean processResource(Resource resource) {
+        return true;
     }
 
     @Override

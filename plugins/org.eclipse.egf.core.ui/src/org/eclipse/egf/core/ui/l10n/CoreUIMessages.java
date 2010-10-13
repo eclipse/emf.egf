@@ -87,6 +87,8 @@ public class CoreUIMessages {
 
     public static String TypeSelectionDialog_dialogMessage;
 
+    public static String _UI_BrowseRegisteredPackages_title;
+
     public static String _UI_BrowseRegisteredPackages_label;
 
     public static String _UI_PackageSelection_label;
