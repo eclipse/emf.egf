@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009-2010 Thales Corporate Services S.A.S. and other
  * All rights reserved. This program and the accompanying materials
@@ -10,10 +9,9 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * XiaoRu Chen, Soyatec
+ * Xavier Maysonnave, Soyatec
  * 
- * </copyright>
  */
-
 package org.eclipse.egf.core.ui.dialogs;
 
 import java.util.Map;
@@ -23,6 +21,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
+import org.eclipse.emf.common.ui.CommonUIPlugin;
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -42,6 +41,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * 
@@ -50,22 +50,30 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class LoadEcoreDialog extends ResourceDialog {
 
+    protected boolean _workspace;
+
+    protected boolean _fileSystem;
+
     protected boolean _multi;
 
     protected EditingDomain _domain;
 
-    private boolean _asEPackageNsURI;
+    private boolean _packageNsURI;
+
+    private boolean _genmodelURI;
 
     public LoadEcoreDialog(Shell parent, EditingDomain domain) {
-        this(parent, domain, false, true);
+        this(parent, domain, false, false, true, true, true);
     }
 
-    public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean asEPackageNsURI, boolean multi) {
-        super(parent, CoreUIMessages._UI_BrowseRegisteredPackages_title, multi ? SWT.OPEN | SWT.MULTI : SWT.OPEN | SWT.SINGLE);
-        _asEPackageNsURI = asEPackageNsURI;
+    public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean packageNsURI, boolean genmodelURI, boolean multi, boolean workspace, boolean fileSystem) {
+        super(parent, packageNsURI ? CoreUIMessages._UI_BrowseRegisteredPackages_title : CoreUIMessages._UI_BrowseResource_title, multi ? SWT.OPEN | SWT.MULTI : SWT.OPEN | SWT.SINGLE);
+        _packageNsURI = packageNsURI;
         _domain = domain;
         _multi = multi;
-        title = CoreUIMessages._UI_BrowseRegisteredPackages_title;
+        _workspace = workspace;
+        _fileSystem = fileSystem;
+        _genmodelURI = genmodelURI;
     }
 
     @Override
@@ -91,6 +99,7 @@ public class LoadEcoreDialog extends ResourceDialog {
     @Override
     protected Control createDialogArea(Composite parent) {
         Composite composite = (Composite) super.createDialogArea(parent);
+        updateComposite(composite);
         Composite buttonComposite = (Composite) composite.getChildren()[0];
         Button browseRegisteredPackagesButton = new Button(buttonComposite, SWT.PUSH);
         browseRegisteredPackagesButton.setText(CoreUIMessages._UI_BrowseRegisteredPackages_label);
@@ -102,6 +111,32 @@ public class LoadEcoreDialog extends ResourceDialog {
             browseRegisteredPackagesButton.setLayoutData(data);
         }
         return composite;
+    }
+
+    private void updateComposite(Composite composite) {
+        for (Control control : composite.getChildren()) {
+            if (control instanceof Button) {
+                Button button = (Button) control;
+                if (CommonUIPlugin.INSTANCE.getString("_UI_BrowseFileSystem_label").equals(button.getText()) && _fileSystem == false) { //$NON-NLS-1$
+                    button.setVisible(false);
+                } else if (CommonUIPlugin.INSTANCE.getString("_UI_BrowseWorkspace_label").equals(button.getText()) && _workspace == false) { //$NON-NLS-1$
+                    button.setVisible(false);
+                }
+            } else if (control instanceof Text) {
+                Text text = (Text) control;
+                if (CommonUIPlugin.INSTANCE.getString(isMulti() ? "_UI_ResourceURIs_label" : "_UI_ResourceURI_label").equals(text.getText())) { //$NON-NLS-1$ //$NON-NLS-2$
+                    if (_packageNsURI) {
+                        if (_multi) {
+                            text.setText(CoreUIMessages._UI_PackageURIs_label);
+                        } else {
+                            text.setText(CoreUIMessages._UI_PackageURI_label);
+                        }
+                    }
+                }
+            } else if (control instanceof Composite) {
+                updateComposite((Composite) control);
+            }
+        }
     }
 
     protected void prepareBrowseRegisteredPackagesButton(Button browseRegisteredPackagesButton) {
@@ -118,15 +153,40 @@ public class LoadEcoreDialog extends ResourceDialog {
                 if (result == null) {
                     return;
                 }
-                ResourceSet resourceSet = new ResourceSetImpl();
-                resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
                 StringBuffer uris = new StringBuffer();
-                if (_asEPackageNsURI == false) {
+                if (_packageNsURI) {
+                    for (int i = 0, length = result.length; i < length; i++) {
+                        uris.append(result[i]);
+                        uris.append("  "); //$NON-NLS-1$
+                    }
+                    uriField.setText(""); //$NON-NLS-1$
+                    uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
+                } else if (_genmodelURI) {
                     Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
                     for (int i = 0, length = result.length; i < length; i++) {
                         IPlatformGenModel genmodel = (IPlatformGenModel) result[i];
-                        // TODO: nothing is done yet when no genmodel resource is associated
                         if (genmodel.getURI() == null) {
+                            EGFCoreUIPlugin.getDefault().logWarning(NLS.bind(CoreUIMessages._UI_No_Associated_GenModel, genmodel.getNamespace()));
+                            continue;
+                        }
+                        URI location = ePackageNsURItoGenModelLocationMap.get(genmodel.getURI().toString());
+                        if (location != null) {
+                            uris.append(location);
+                            uris.append("  "); //$NON-NLS-1$                            
+                        }
+                    }
+                    if (uris.length() != 0) {
+                        uriField.setText(""); //$NON-NLS-1$
+                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
+                    }
+                } else {
+                    ResourceSet resourceSet = new ResourceSetImpl();
+                    resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
+                    Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
+                    for (int i = 0, length = result.length; i < length; i++) {
+                        IPlatformGenModel genmodel = (IPlatformGenModel) result[i];
+                        if (genmodel.getURI() == null) {
+                            EGFCoreUIPlugin.getDefault().logWarning(NLS.bind(CoreUIMessages._UI_No_Associated_GenModel, genmodel.getNamespace()));
                             continue;
                         }
                         URI location = ePackageNsURItoGenModelLocationMap.get(genmodel.getURI().toString());
@@ -145,15 +205,10 @@ public class LoadEcoreDialog extends ResourceDialog {
                             }
                         }
                     }
-                    uriField.setText(""); //$NON-NLS-1$
-                    uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
-                } else {
-                    for (int i = 0, length = result.length; i < length; i++) {
-                        uris.append(result[i]);
-                        uris.append("  "); //$NON-NLS-1$
+                    if (uris.length() != 0) {
+                        uriField.setText(""); //$NON-NLS-1$
+                        uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
                     }
-                    uriField.setText(""); //$NON-NLS-1$
-                    uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
                 }
             }
 

@@ -87,6 +87,10 @@ public class CoreUIMessages {
 
     public static String TypeSelectionDialog_dialogMessage;
 
+    public static String _UI_No_Associated_GenModel;
+
+    public static String _UI_BrowseResource_title;
+
     public static String _UI_BrowseRegisteredPackages_title;
 
     public static String _UI_BrowseRegisteredPackages_label;
@@ -96,6 +100,10 @@ public class CoreUIMessages {
     public static String _UI_RegisteredPackageSelection_label;
 
     public static String _UI_SelectRegisteredPackageURI;
+
+    public static String _UI_PackageURIs_label;
+
+    public static String _UI_PackageURI_label;
 
     public static String ModelSelection_errorMessage;
 
