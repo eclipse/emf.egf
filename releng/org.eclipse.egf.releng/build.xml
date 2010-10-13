@@ -303,7 +303,36 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
 		</for>
 	</target>
 	
-	<target name="publish" depends="publish.site,publish.examples,publish.dropins" />
+	<target name="publish.javadoc">
+		<delete dir="${build.root}/../javadoc" />
+		<javadoc
+			destdir="${build.root}/../javadoc"
+			maxmemory="1024m"
+			source="1.5"
+			useexternalfile="true"
+			author="true"
+			version="true"
+			use="true"
+			windowtitle="Javadoc">
+ 
+			<link offline="false" href="http://download.oracle.com/javase/1.5.0/docs/api/"/> 
+			<link offline="false" href="http://www.osgi.org/javadoc/r4v42/"/> 
+			<link offline="false" href="http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/"/> 
+			<link offline="false" href="http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/"/>
+	
+			<fileset dir="${build.root}/sources/doc" defaultexcludes="true">
+				<include name="**/*.java"/>
+			</fileset>
+			<fileset dir="${build.root}/sources/plugins" defaultexcludes="true">
+				<include name="**/*.java"/>
+			</fileset>
+			<fileset dir="${build.root}/sources/portfolio" defaultexcludes="true">
+				<include name="**/*.java"/>
+			</fileset>
+		</javadoc>
+	</target>
+	
+	<target name="publish" depends="publish.site,publish.examples,publish.dropins,publish.javadoc" />
 	<target name="all" depends="clean.result,eclipse.build,site.p2,publish,test" />
 
     <target name="clean.tools">
