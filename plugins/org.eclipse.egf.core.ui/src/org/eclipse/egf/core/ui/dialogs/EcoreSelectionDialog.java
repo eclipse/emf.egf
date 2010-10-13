@@ -766,16 +766,25 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
     }
 
     protected void searchTypeModel(String uriText) {
+        if (uriText == null || uriText.trim().length() == 0) {
+            return;
+        }
         String[] uris = uriText.split("  "); //$NON-NLS-1$
         List<EObject> resources = new ArrayList<EObject>();
         for (String uri : uris) {
-            Resource resource = _editingDomain.loadResource(uri);
-            if (resource != null) {
-                resources.addAll(resource.getContents());
+            try {
+                Resource resource = _editingDomain.loadResource(uri);
+                if (resource != null) {
+                    resources.addAll(resource.getContents());
+                }
+            } catch (Throwable t) {
+                EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, uri));
             }
         }
-        _ecoreTypeTreeViewer.setInput(resources);
-        _ecoreTypeTreeViewer.expandToLevel(2);
+        if (resources.isEmpty() == false) {
+            _ecoreTypeTreeViewer.setInput(resources);
+            _ecoreTypeTreeViewer.expandToLevel(2);
+        }
     }
 
     /**

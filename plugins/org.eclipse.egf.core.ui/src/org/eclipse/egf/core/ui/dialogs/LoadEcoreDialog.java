@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -73,7 +74,7 @@ public class LoadEcoreDialog extends ResourceDialog {
                         return false;
                     }
                 } catch (RuntimeException re) {
-                    EGFCoreUIPlugin.getDefault().logError(re);
+                    EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, uri));
                 }
             }
         }

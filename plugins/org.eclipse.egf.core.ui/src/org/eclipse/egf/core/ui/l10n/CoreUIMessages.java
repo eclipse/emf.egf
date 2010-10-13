@@ -97,6 +97,8 @@ public class CoreUIMessages {
 
     public static String _UI_SelectRegisteredPackageURI;
 
+    public static String ModelSelection_errorMessage;
+
     public static String EcoreSelectionDialog_choose_model_button_title;
 
     public static String EcoreSelectionDialog_nItemsSelected;
