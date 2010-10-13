@@ -271,7 +271,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
             @Override
             protected void buttonSelected() {
-                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), null, false, true);
+                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), null);
                 if (chooseModelDialog.open() == Window.OK) {
                     String uri = chooseModelDialog.getURIText();
                     if (uri == null)
