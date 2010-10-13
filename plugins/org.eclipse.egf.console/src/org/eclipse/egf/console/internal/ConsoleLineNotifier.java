@@ -31,137 +31,147 @@ import org.eclipse.ui.console.TextConsole;
  */
 public class ConsoleLineNotifier implements IPatternMatchListener {
 
-  /**
-   * The console this notifier is tracking
-   */
-  private Console _console = null;
+    /**
+     * The console this notifier is tracking
+     */
+    private Console _console = null;
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * org.eclipse.ui.console.IPatternMatchListenerDelegate#connect(org.eclipse
-   * .ui.console.TextConsole)
-   */
-  public void connect(TextConsole console) {
-    if (console instanceof Console) {
-      _console = (Console) console;
-    }
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.console.IPatternMatchListener#disconnect()
-   */
-  public synchronized void disconnect() {
-    _console = null;
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * org.eclipse.ui.console.IPatternMatchListener#matchFound(org.eclipse.ui.
-   * console.PatternMatchEvent)
-   */
-  public void matchFound(PatternMatchEvent event) {
-    try {
-      int offset = event.getOffset();
-      int length = event.getLength();
-      String text = _console.getDocument().get(offset, length);
-      // Platform
-      //
-      int index = text.indexOf("platform:/"); //$NON-NLS-1$
-      if (index != -1) {
-        buildLink(text, offset, length, "platform:/"); //$NON-NLS-1$
-        return;
-      }
-      // Plugin
-      //      
-      index = text.indexOf("plugin:/"); //$NON-NLS-1$
-      if (index != -1) {
-        buildLink(text, offset, length, "plugin:/"); //$NON-NLS-1$
-        return;
-      }
-    } catch (BadLocationException e) {
-      // ignore
-    }
-  }
-
-  private void buildLink(String text, int offset, int length, String type) {
-    try {
-      int index = text.indexOf(type);
-      StringTokenizer tokenizer = new StringTokenizer(text, " "); //$NON-NLS-1$
-      while (tokenizer.hasMoreElements()) {
-        String elementName = tokenizer.nextToken();
-        if (elementName.startsWith(type)) {
-          URIHyperlink link = new URIHyperlink(URI.createURI(elementName));
-          _console.addHyperlink(link, offset + index, elementName.length());
-          return;
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.ui.console.IPatternMatchListenerDelegate#connect(org.eclipse
+     * .ui.console.TextConsole)
+     */
+    public void connect(TextConsole console) {
+        if (console instanceof Console) {
+            _console = (Console) console;
         }
-      }
-    } catch (Exception e) {
-      // ignore
-    }
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.console.IPatternMatchListener#getPattern()
-   */
-  public String getPattern() {
-    return ".*\\r(\\n?)|.*\\n"; //$NON-NLS-1$
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.console.IPatternMatchListener#getCompilerFlags()
-   */
-  public int getCompilerFlags() {
-    return 0;
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.eclipse.ui.console.IPatternMatchListener#getLineQualifier()
-   */
-  public String getLineQualifier() {
-    return "\\n|\\r"; //$NON-NLS-1$
-  }
-
-  private static class URIHyperlink implements IHyperlink {
-
-    private URI _uri;
-
-    public URIHyperlink(URI uri) {
-      _uri = uri;
     }
 
-    public void linkEntered() {
-      // Nothing to do
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.console.IPatternMatchListener#disconnect()
+     */
+    public synchronized void disconnect() {
+        _console = null;
     }
 
-    public void linkExited() {
-      // Nothing to do
-    }
-
-    public void linkActivated() {
-      try {
-        if (_uri != null) {
-          IEditorPart part = EditorHelper.openEditor(_uri);
-          if (part != null && part instanceof IEditingDomainProvider) {
-            EditorHelper.setSelectionToViewer(part, _uri);
-          }
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.ui.console.IPatternMatchListener#matchFound(org.eclipse.ui.
+     * console.PatternMatchEvent)
+     */
+    public void matchFound(PatternMatchEvent event) {
+        try {
+            int offset = event.getOffset();
+            int length = event.getLength();
+            String text = _console.getDocument().get(offset, length);
+            // Platform
+            int index = text.indexOf("platform:/"); //$NON-NLS-1$
+            if (index != -1) {
+                buildLink(text, offset, length, "platform:/"); //$NON-NLS-1$
+                return;
+            }
+            // Plugin      
+            index = text.indexOf("plugin:/"); //$NON-NLS-1$
+            if (index != -1) {
+                buildLink(text, offset, length, "plugin:/"); //$NON-NLS-1$
+                return;
+            }
+            // HTTP      
+            index = text.indexOf("http:/"); //$NON-NLS-1$
+            if (index != -1) {
+                buildLink(text, offset, length, "http:/"); //$NON-NLS-1$
+                return;
+            }
+            // Plugin      
+            index = text.indexOf("file:/"); //$NON-NLS-1$
+            if (index != -1) {
+                buildLink(text, offset, length, "file:/"); //$NON-NLS-1$
+                return;
+            }
+        } catch (BadLocationException e) {
+            // ignore
         }
-      } catch (PartInitException pie) {
-        EGFConsolePlugin.getDefault().logError(pie);
-      }
     }
 
-  }
+    private void buildLink(String text, int offset, int length, String type) {
+        try {
+            int index = text.indexOf(type);
+            StringTokenizer tokenizer = new StringTokenizer(text, " "); //$NON-NLS-1$
+            while (tokenizer.hasMoreElements()) {
+                String elementName = tokenizer.nextToken();
+                if (elementName.startsWith(type)) {
+                    URIHyperlink link = new URIHyperlink(URI.createURI(elementName));
+                    _console.addHyperlink(link, offset + index, elementName.length());
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.console.IPatternMatchListener#getPattern()
+     */
+    public String getPattern() {
+        return ".*\\r(\\n?)|.*\\n"; //$NON-NLS-1$
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.console.IPatternMatchListener#getCompilerFlags()
+     */
+    public int getCompilerFlags() {
+        return 0;
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.ui.console.IPatternMatchListener#getLineQualifier()
+     */
+    public String getLineQualifier() {
+        return "\\n|\\r"; //$NON-NLS-1$
+    }
+
+    private static class URIHyperlink implements IHyperlink {
+
+        private URI _uri;
+
+        public URIHyperlink(URI uri) {
+            _uri = uri;
+        }
+
+        public void linkEntered() {
+            // Nothing to do
+        }
+
+        public void linkExited() {
+            // Nothing to do
+        }
+
+        public void linkActivated() {
+            try {
+                if (_uri != null) {
+                    IEditorPart part = EditorHelper.openEditor(_uri);
+                    if (part != null && part instanceof IEditingDomainProvider) {
+                        EditorHelper.setSelectionToViewer(part, _uri);
+                    }
+                }
+            } catch (PartInitException pie) {
+                EGFConsolePlugin.getDefault().logError(pie);
+            }
+        }
+
+    }
 
 }
