@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.egf.core.ui.dialogs.LoadEcoreDialog;
@@ -69,384 +69,391 @@ import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
  */
 public class EcoreModelPage extends WizardPage implements ExtensionProperties, NodeTypes {
 
-	private abstract class MySelectionListener implements SelectionListener {
-		protected abstract void buttonSelected();
+    private abstract class MySelectionListener implements SelectionListener {
 
-		public void widgetSelected(SelectionEvent e) {
-			buttonSelected();
-			refreshButtons();
-		}
+        protected abstract void buttonSelected();
 
-		public void widgetDefaultSelected(SelectionEvent e) {
-		}
+        public void widgetSelected(SelectionEvent e) {
+            buttonSelected();
+            refreshButtons();
+        }
 
-	}
+        public void widgetDefaultSelected(SelectionEvent e) {
+        }
 
-	private Button addEcoreButton;
-	private Button deleteButton;
-	private Button upButton;
-	private Button downButton;
-	private final Node model;
-	protected ContainerCheckedTreeViewer viewer;
+    }
 
-	public EcoreModelPage(String pageName, Node model) {
-		super(pageName);
-		this.model = model;
-	}
+    private Button addEcoreButton;
 
-	public EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
-		this(pageName, model);
-		for (Object obj : selection.toArray()) {
-			if (obj instanceof IFile) {
-				IFile file = (IFile) obj;
-				if (file.getName().endsWith(".ecore"))//$NON-NLS-1$
-					addEcore(file.getFullPath().toString());
-			}
-		}
-	}
+    private Button deleteButton;
 
-	protected Node addEcore(String modelPath) {
-		return addEcore(modelPath, null);
-	}
+    private Button upButton;
 
-	protected Node addEcore(String modelPath, String project) {
-		String name = GenerationChainFactory.getModelName(modelPath);
-		String bundleName = GenerationChainFactory.getBundleName(modelPath);
-		Node chainNode = new Node(model, MODEL);
-		chainNode.setName(name);
-		model.getChildren().add(chainNode);
+    private Button downButton;
 
-		for (Entry<String, ExtensionHelper> entrySet : ExtensionHelper.getExtensionsAsMap().entrySet()) {
-			Node extensionNode = new Node(chainNode, EXTENSION);
-			Map<String, String> context = new HashMap<String, String>();
-			context.put(CONTEXT_CURRENT_PROJECT_NAME, project);
-			context.put(CONTEXT_PROJECT_NAME, bundleName);
-			context.put(CONTEXT_MODEL_NAME, name);
+    private final Node model;
 
-			extensionNode.getProperties().put(ID, entrySet.getKey());
-			extensionNode.getProperties().put(MODEL_PATH, modelPath);
-			extensionNode.getExtendedProperties().put(CONFLICT, entrySet.getValue().getConflictingExtensions());
-			extensionNode.setName(entrySet.getValue().getLabel());
-			chainNode.getChildren().add(extensionNode);
+    protected ContainerCheckedTreeViewer viewer;
 
-			for (Entry<EAttribute, String> prop : entrySet.getValue().getDefaultProperties(context).entrySet()) {
-				Node propertyNode = new Node(extensionNode, PROPERTY);
-				propertyNode.setName(prop.getKey().getName());
-				propertyNode.getProperties().put(PROPERTY_VALUE, prop.getValue());
-				propertyNode.getExtendedProperties().put(PROPERTY_EATTRIBUTE, prop.getKey());
-				extensionNode.getChildren().add(propertyNode);
-			}
-		}
-		return chainNode;
+    public EcoreModelPage(String pageName, Node model) {
+        super(pageName);
+        this.model = model;
+    }
 
-	}
+    public EcoreModelPage(String pageName, Node model, IStructuredSelection selection) {
+        this(pageName, model);
+        for (Object obj : selection.toArray()) {
+            if (obj instanceof IFile) {
+                IFile file = (IFile) obj;
+                if (file.getName().endsWith(".ecore"))//$NON-NLS-1$
+                    addEcore(file.getFullPath().toString());
+            }
+        }
+    }
 
-	private void createViewerControl(Composite container) {
+    protected Node addEcore(String modelPath) {
+        return addEcore(modelPath, null);
+    }
 
-		viewer = new ContainerCheckedTreeViewer(container, SWT.FULL_SELECTION | SWT.BORDER);
-		Tree tree = viewer.getTree();
-		tree.setHeaderVisible(true);
-		TreeColumn col1 = new TreeColumn(tree, SWT.FULL_SELECTION);
-		col1.setText("");//$NON-NLS-1$
-		col1.setResizable(true);
-		col1.setWidth(280);
+    protected Node addEcore(String modelPath, String project) {
+        String name = GenerationChainFactory.getModelName(modelPath);
+        String bundleName = GenerationChainFactory.getBundleName(modelPath);
+        Node chainNode = new Node(model, MODEL);
+        chainNode.setName(name);
+        model.getChildren().add(chainNode);
 
-		TreeColumn col2 = new TreeColumn(tree, SWT.FULL_SELECTION);
-		col2.setText(Messages.genchain_wizard_valueColumn_label);
-		col2.setResizable(true);
-		col2.setWidth(200);
+        for (Entry<String, ExtensionHelper> entrySet : ExtensionHelper.getExtensionsAsMap().entrySet()) {
+            Node extensionNode = new Node(chainNode, EXTENSION);
+            Map<String, String> context = new HashMap<String, String>();
+            context.put(CONTEXT_CURRENT_PROJECT_NAME, project);
+            context.put(CONTEXT_PROJECT_NAME, bundleName);
+            context.put(CONTEXT_MODEL_NAME, name);
 
-		TreeViewerColumn tcol2 = new TreeViewerColumn(viewer, col2);
-		tcol2.setEditingSupport(new EditingSupport(viewer) {
+            extensionNode.getProperties().put(ID, entrySet.getKey());
+            extensionNode.getProperties().put(MODEL_PATH, modelPath);
+            extensionNode.getExtendedProperties().put(CONFLICT, entrySet.getValue().getConflictingExtensions());
+            extensionNode.setName(entrySet.getValue().getLabel());
+            chainNode.getChildren().add(extensionNode);
 
-			private final TextCellEditor textEditor = new TextCellEditor(viewer.getTree());
-			private final ComboBoxViewerCellEditor booleanEditor = new ComboBoxViewerCellEditor(viewer.getTree());
-			{
-				booleanEditor.setLabelProvider(new LabelProvider());
-				booleanEditor.setContenProvider(new ListContentProvider());
-				booleanEditor.setInput(Arrays.asList("true", "false"));//$NON-NLS-1$ //$NON-NLS-2$
-				booleanEditor.getViewer().addDoubleClickListener(new IDoubleClickListener() {
+            for (Entry<EAttribute, String> prop : entrySet.getValue().getDefaultProperties(context).entrySet()) {
+                Node propertyNode = new Node(extensionNode, PROPERTY);
+                propertyNode.setName(prop.getKey().getName());
+                propertyNode.getProperties().put(PROPERTY_VALUE, prop.getValue());
+                propertyNode.getExtendedProperties().put(PROPERTY_EATTRIBUTE, prop.getKey());
+                extensionNode.getChildren().add(propertyNode);
+            }
+        }
+        return chainNode;
 
-					public void doubleClick(DoubleClickEvent event) {
-						try {
-							booleanEditor.getViewer().getCombo().setListVisible(true);
-						} catch (Exception e) {
-							// sometime on win32 getCombo() fails
-						}
-					}
-				});
-			}
+    }
 
-			@Override
-			protected void setValue(Object element, Object value) {
-				Node node = (Node) element;
-				node.getProperties().put(PROPERTY_VALUE, value.toString());
-				viewer.refresh(node);
-			}
+    private void createViewerControl(Composite container) {
 
-			@Override
-			protected Object getValue(Object element) {
-				Node node = (Node) element;
-				return node.getProperties().get(PROPERTY_VALUE);
-			}
+        viewer = new ContainerCheckedTreeViewer(container, SWT.FULL_SELECTION | SWT.BORDER);
+        Tree tree = viewer.getTree();
+        tree.setHeaderVisible(true);
+        TreeColumn col1 = new TreeColumn(tree, SWT.FULL_SELECTION);
+        col1.setText("");//$NON-NLS-1$
+        col1.setResizable(true);
+        col1.setWidth(280);
 
-			@Override
-			protected CellEditor getCellEditor(Object element) {
-				Node node = (Node) element;
-				EAttribute attr = (EAttribute) node.getExtendedProperties().get(PROPERTY_EATTRIBUTE);
-				if (attr == null)
-					return null;
-				final EClassifier eType = attr.getEType();
-				if (EcorePackage.eINSTANCE.getEBoolean().equals(eType))
-					return booleanEditor;
-				if (EcorePackage.eINSTANCE.getEString().equals(eType))
-					return textEditor;
-				return null;
-			}
+        TreeColumn col2 = new TreeColumn(tree, SWT.FULL_SELECTION);
+        col2.setText(Messages.genchain_wizard_valueColumn_label);
+        col2.setResizable(true);
+        col2.setWidth(200);
 
-			@Override
-			protected boolean canEdit(Object element) {
+        TreeViewerColumn tcol2 = new TreeViewerColumn(viewer, col2);
+        tcol2.setEditingSupport(new EditingSupport(viewer) {
 
-				return true;
-			}
-		});
+            private final TextCellEditor textEditor = new TextCellEditor(viewer.getTree());
 
-		viewer.setLabelProvider(new NodeLabelProvider());
-		viewer.setContentProvider(new NodeContentProvider());
-		viewer.setComparator(new ViewerComparator());
-		GridData gd = new GridData(GridData.FILL_BOTH);
-		viewer.getTree().setLayoutData(gd);
-		viewer.setInput(model);
-		viewer.addCheckStateListener(new ICheckStateListener() {
+            private final ComboBoxViewerCellEditor booleanEditor = new ComboBoxViewerCellEditor(viewer.getTree());
+            {
+                booleanEditor.setLabelProvider(new LabelProvider());
+                booleanEditor.setContenProvider(new ListContentProvider());
+                booleanEditor.setInput(Arrays.asList("true", "false"));//$NON-NLS-1$ //$NON-NLS-2$
+                booleanEditor.getViewer().addDoubleClickListener(new IDoubleClickListener() {
 
-			public void checkStateChanged(CheckStateChangedEvent event) {
-				Node node = (Node) event.getElement();
-				if (node.is(PROPERTY))
-					viewer.setChecked(node.getParent(), event.getChecked());
-			}
-		});
-		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+                    public void doubleClick(DoubleClickEvent event) {
+                        try {
+                            booleanEditor.getViewer().getCombo().setListVisible(true);
+                        } catch (Exception e) {
+                            // sometime on win32 getCombo() fails
+                        }
+                    }
+                });
+            }
 
-			public void selectionChanged(SelectionChangedEvent event) {
-				refreshButtons();
-			}
-		});
+            @Override
+            protected void setValue(Object element, Object value) {
+                Node node = (Node) element;
+                node.getProperties().put(PROPERTY_VALUE, value.toString());
+                viewer.refresh(node);
+            }
 
-	}
+            @Override
+            protected Object getValue(Object element) {
+                Node node = (Node) element;
+                return node.getProperties().get(PROPERTY_VALUE);
+            }
 
-	@Override
-	public boolean isPageComplete() {
-		if (viewer != null) {
-			final boolean complete = viewer.getVisibleExpandedElements().length == 0 || viewer.getCheckedElements().length != 0;
-			if (complete) {
-				setErrorMessage(null);
-			} else {
-				setErrorMessage(Messages.genchain_wizard_error1);
-			}
-			return complete;
-		}
-		return super.isPageComplete();
-	}
+            @Override
+            protected CellEditor getCellEditor(Object element) {
+                Node node = (Node) element;
+                EAttribute attr = (EAttribute) node.getExtendedProperties().get(PROPERTY_EATTRIBUTE);
+                if (attr == null)
+                    return null;
+                final EClassifier eType = attr.getEType();
+                if (EcorePackage.eINSTANCE.getEBoolean().equals(eType))
+                    return booleanEditor;
+                if (EcorePackage.eINSTANCE.getEString().equals(eType))
+                    return textEditor;
+                return null;
+            }
 
-	public void createButtonControl(Composite parent) {
-		parent = new Composite(parent, SWT.NONE);
-		GridData gd = new GridData(GridData.FILL_VERTICAL);
-		parent.setLayoutData(gd);
-		GridLayout layout = new GridLayout();
-		layout.marginWidth = 0;
-		parent.setFont(parent.getFont());
-		parent.setLayout(layout);
+            @Override
+            protected boolean canEdit(Object element) {
 
-		addEcoreButton = new Button(parent, SWT.PUSH);
-		addEcoreButton.setToolTipText(Messages.genchain_wizard_addButton_label);
-		addEcoreButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
-		addEcoreButton.addSelectionListener(new MySelectionListener() {
+                return true;
+            }
+        });
 
-			@Override
-			protected void buttonSelected() {
-				LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), null, false);
-				if (chooseModelDialog.open() == Window.OK) {
-					String uri = chooseModelDialog.getURIText();
-					if (uri == null)
-						return;
-					if (uri.startsWith("platform:/plugin"))//$NON-NLS-1$
-						uri = uri.substring("platform:/plugin".length());//$NON-NLS-1$
-					else if (uri.startsWith("platform:/resource"))//$NON-NLS-1$
-						uri = uri.substring("platform:/resource".length());//$NON-NLS-1$
-					else
-						return;
-					Node newNode = addEcore(uri);
-					newNodeAdded(newNode);
-				}
+        viewer.setLabelProvider(new NodeLabelProvider());
+        viewer.setContentProvider(new NodeContentProvider());
+        viewer.setComparator(new ViewerComparator());
+        GridData gd = new GridData(GridData.FILL_BOTH);
+        viewer.getTree().setLayoutData(gd);
+        viewer.setInput(model);
+        viewer.addCheckStateListener(new ICheckStateListener() {
 
-			}
-		});
+            public void checkStateChanged(CheckStateChangedEvent event) {
+                Node node = (Node) event.getElement();
+                if (node.is(PROPERTY))
+                    viewer.setChecked(node.getParent(), event.getChecked());
+            }
+        });
+        viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-		deleteButton = new Button(parent, SWT.PUSH);
-		deleteButton.setToolTipText(Messages.genchain_wizard_deleteButton_label);
-		deleteButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
-		deleteButton.addSelectionListener(new MySelectionListener() {
+            public void selectionChanged(SelectionChangedEvent event) {
+                refreshButtons();
+            }
+        });
 
-			@Override
-			protected void buttonSelected() {
-				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-				for (Object obj : selection.toArray()) {
-					if (obj instanceof Node) {
-						Node node = (Node) obj;
-						if (node.is(MODEL)) {
-							node.getParent().getChildren().remove(node);
-						}
-					}
-				}
-				viewer.refresh();
-			}
+    }
 
-		});
+    @Override
+    public boolean isPageComplete() {
+        if (viewer != null) {
+            final boolean complete = viewer.getVisibleExpandedElements().length == 0 || viewer.getCheckedElements().length != 0;
+            if (complete) {
+                setErrorMessage(null);
+            } else {
+                setErrorMessage(Messages.genchain_wizard_error1);
+            }
+            return complete;
+        }
+        return super.isPageComplete();
+    }
 
-		upButton = new Button(parent, SWT.PUSH);
-		upButton.setToolTipText(Messages.genchain_wizard_upButton_label);
-		upButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
-		upButton.addSelectionListener(new MySelectionListener() {
+    public void createButtonControl(Composite parent) {
+        parent = new Composite(parent, SWT.NONE);
+        GridData gd = new GridData(GridData.FILL_VERTICAL);
+        parent.setLayoutData(gd);
+        GridLayout layout = new GridLayout();
+        layout.marginWidth = 0;
+        parent.setFont(parent.getFont());
+        parent.setLayout(layout);
 
-			@Override
-			protected void buttonSelected() {
-				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-				if (selection.size() == 1) {
-					Node node = (Node) selection.getFirstElement();
-					final Node parent2 = node.getParent();
-					final int index = parent2.getChildren().indexOf(node);
-					if (index > 0) {
-						parent2.getChildren().remove(node);
-						parent2.getChildren().add(index - 1, node);
-					}
-				}
-				viewer.refresh();
-			}
+        addEcoreButton = new Button(parent, SWT.PUSH);
+        addEcoreButton.setToolTipText(Messages.genchain_wizard_addButton_label);
+        addEcoreButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
+        addEcoreButton.addSelectionListener(new MySelectionListener() {
 
-		});
+            @Override
+            protected void buttonSelected() {
+                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), null, false, true);
+                if (chooseModelDialog.open() == Window.OK) {
+                    String uri = chooseModelDialog.getURIText();
+                    if (uri == null)
+                        return;
+                    if (uri.startsWith("platform:/plugin"))//$NON-NLS-1$
+                        uri = uri.substring("platform:/plugin".length());//$NON-NLS-1$
+                    else if (uri.startsWith("platform:/resource"))//$NON-NLS-1$
+                        uri = uri.substring("platform:/resource".length());//$NON-NLS-1$
+                    else
+                        return;
+                    Node newNode = addEcore(uri);
+                    newNodeAdded(newNode);
+                }
 
-		downButton = new Button(parent, SWT.PUSH);
-		downButton.setToolTipText(Messages.genchain_wizard_downButton_label);
-		downButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
-		downButton.addSelectionListener(new MySelectionListener() {
+            }
+        });
 
-			@Override
-			protected void buttonSelected() {
-				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-				if (selection.size() == 1) {
-					Node node = (Node) selection.getFirstElement();
-					final Node parent2 = node.getParent();
-					final int index = parent2.getChildren().indexOf(node);
-					if (index < parent2.getChildren().size() - 1) {
-						parent2.getChildren().remove(node);
-						parent2.getChildren().add(index + 1, node);
-					}
-				}
-				viewer.refresh();
-			}
+        deleteButton = new Button(parent, SWT.PUSH);
+        deleteButton.setToolTipText(Messages.genchain_wizard_deleteButton_label);
+        deleteButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
+        deleteButton.addSelectionListener(new MySelectionListener() {
 
-		});
+            @Override
+            protected void buttonSelected() {
+                IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+                for (Object obj : selection.toArray()) {
+                    if (obj instanceof Node) {
+                        Node node = (Node) obj;
+                        if (node.is(MODEL)) {
+                            node.getParent().getChildren().remove(node);
+                        }
+                    }
+                }
+                viewer.refresh();
+            }
 
-	}
+        });
 
-	protected void newNodeAdded(Node newNode) {
-		viewer.refresh();
-		viewer.expandToLevel(newNode, 1);
-	}
+        upButton = new Button(parent, SWT.PUSH);
+        upButton.setToolTipText(Messages.genchain_wizard_upButton_label);
+        upButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
+        upButton.addSelectionListener(new MySelectionListener() {
 
-	public void createControl(Composite parent) {
-		Composite container = new Composite(parent, SWT.NONE);
-		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		container.setLayoutData(gd);
-		GridLayout layout = new GridLayout(1, false);
-		layout.numColumns = 2;
-		container.setFont(parent.getFont());
-		container.setLayout(layout);
+            @Override
+            protected void buttonSelected() {
+                IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+                if (selection.size() == 1) {
+                    Node node = (Node) selection.getFirstElement();
+                    final Node parent2 = node.getParent();
+                    final int index = parent2.getChildren().indexOf(node);
+                    if (index > 0) {
+                        parent2.getChildren().remove(node);
+                        parent2.getChildren().add(index - 1, node);
+                    }
+                }
+                viewer.refresh();
+            }
 
-		createViewerControl(container);
-		createButtonControl(container);
+        });
 
-		refreshButtons();
+        downButton = new Button(parent, SWT.PUSH);
+        downButton.setToolTipText(Messages.genchain_wizard_downButton_label);
+        downButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
+        downButton.addSelectionListener(new MySelectionListener() {
 
-		setControl(container);
+            @Override
+            protected void buttonSelected() {
+                IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+                if (selection.size() == 1) {
+                    Node node = (Node) selection.getFirstElement();
+                    final Node parent2 = node.getParent();
+                    final int index = parent2.getChildren().indexOf(node);
+                    if (index < parent2.getChildren().size() - 1) {
+                        parent2.getChildren().remove(node);
+                        parent2.getChildren().add(index + 1, node);
+                    }
+                }
+                viewer.refresh();
+            }
 
-		container.pack();
+        });
 
-		viewer.expandToLevel(2);
-		viewer.setCheckedElements(computeCheckedElements());
-	}
+    }
 
-	protected Object[] computeCheckedElements() {
-		Set<String> toDeselect = new HashSet<String>();
-		for (ExtensionHelper ext : ExtensionHelper.getExtensions())
-			toDeselect.addAll(ext.getConflictingExtensions());
-		List<Object> selected = new ArrayList<Object>();
-		for (Node ecoreNode : model.getChildren()) {
-			for (Node extNode : ecoreNode.getChildren()) {
-				final String id = extNode.getProperties().get(ID);
-				if (id != null && toDeselect.contains(id))
-					continue;
-				selected.add(extNode);
-			}
-		}
-		return selected.toArray();
-	}
+    protected void newNodeAdded(Node newNode) {
+        viewer.refresh();
+        viewer.expandToLevel(newNode, 1);
+    }
 
-	protected void refreshButtons() {
-		deleteButton.setEnabled(false);
-		upButton.setEnabled(false);
-		downButton.setEnabled(false);
-		IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
-		if (selection.size() == 1) {
-			Node node = (Node) selection.getFirstElement();
-			final Node parent2 = node.getParent();
-			final int index = parent2.getChildren().indexOf(node);
-			if (node.is(MODEL)) {
-				upButton.setEnabled(index > 0);
-				downButton.setEnabled(index < parent2.getChildren().size() - 1);
-			}
-		}
-		boolean enableDelete = false;
-		if (!selection.isEmpty()) {
-			enableDelete = true;
-			for (Object obj : selection.toArray()) {
-				if (obj instanceof Node) {
-					Node node = (Node) obj;
-					if (!node.is(MODEL)) {
-						enableDelete = false;
-						break;
-					}
-				}
-			}
-		}
-		deleteButton.setEnabled(enableDelete);
-		getContainer().updateButtons();
-	}
+    public void createControl(Composite parent) {
+        Composite container = new Composite(parent, SWT.NONE);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        container.setLayoutData(gd);
+        GridLayout layout = new GridLayout(1, false);
+        layout.numColumns = 2;
+        container.setFont(parent.getFont());
+        container.setLayout(layout);
 
-	public Set<Node> getCheckedElements() {
-		Set<Node> checkedElements = new HashSet<Node>();
-		for (Object obj : viewer.getCheckedElements())
-			checkedElements.add((Node) obj);
+        createViewerControl(container);
+        createButtonControl(container);
 
-		return checkedElements;
-	}
+        refreshButtons();
 
-	static private class ListContentProvider implements IStructuredContentProvider {
+        setControl(container);
 
-		public Object[] getElements(Object inputElement) {
-			if (inputElement instanceof List<?>)
-				return ((List<?>) inputElement).toArray();
-			return null;
-		}
+        container.pack();
 
-		public void dispose() {
-		}
+        viewer.expandToLevel(2);
+        viewer.setCheckedElements(computeCheckedElements());
+    }
 
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			if (newInput != null)
-				viewer.refresh();
-		}
+    protected Object[] computeCheckedElements() {
+        Set<String> toDeselect = new HashSet<String>();
+        for (ExtensionHelper ext : ExtensionHelper.getExtensions())
+            toDeselect.addAll(ext.getConflictingExtensions());
+        List<Object> selected = new ArrayList<Object>();
+        for (Node ecoreNode : model.getChildren()) {
+            for (Node extNode : ecoreNode.getChildren()) {
+                final String id = extNode.getProperties().get(ID);
+                if (id != null && toDeselect.contains(id))
+                    continue;
+                selected.add(extNode);
+            }
+        }
+        return selected.toArray();
+    }
 
-	}
+    protected void refreshButtons() {
+        deleteButton.setEnabled(false);
+        upButton.setEnabled(false);
+        downButton.setEnabled(false);
+        IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+        if (selection.size() == 1) {
+            Node node = (Node) selection.getFirstElement();
+            final Node parent2 = node.getParent();
+            final int index = parent2.getChildren().indexOf(node);
+            if (node.is(MODEL)) {
+                upButton.setEnabled(index > 0);
+                downButton.setEnabled(index < parent2.getChildren().size() - 1);
+            }
+        }
+        boolean enableDelete = false;
+        if (!selection.isEmpty()) {
+            enableDelete = true;
+            for (Object obj : selection.toArray()) {
+                if (obj instanceof Node) {
+                    Node node = (Node) obj;
+                    if (!node.is(MODEL)) {
+                        enableDelete = false;
+                        break;
+                    }
+                }
+            }
+        }
+        deleteButton.setEnabled(enableDelete);
+        getContainer().updateButtons();
+    }
+
+    public Set<Node> getCheckedElements() {
+        Set<Node> checkedElements = new HashSet<Node>();
+        for (Object obj : viewer.getCheckedElements())
+            checkedElements.add((Node) obj);
+
+        return checkedElements;
+    }
+
+    static private class ListContentProvider implements IStructuredContentProvider {
+
+        public Object[] getElements(Object inputElement) {
+            if (inputElement instanceof List<?>)
+                return ((List<?>) inputElement).toArray();
+            return null;
+        }
+
+        public void dispose() {
+        }
+
+        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+            if (newInput != null)
+                viewer.refresh();
+        }
+
+    }
 
 }
