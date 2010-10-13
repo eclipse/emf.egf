@@ -87,6 +87,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
             @Override
             public Collection<EPackage> getChoiceOfValues(Object current) {
                 Collection<EPackage> result = new UniqueEList<EPackage>();
+                // TODO: use the target platform epackage registry instead
                 for (Object innerObject : EPackage.Registry.INSTANCE.values().toArray(new Object[EPackage.Registry.INSTANCE.size()])) {
                     if (innerObject instanceof EPackage) {
                         result.add((EPackage) innerObject);
