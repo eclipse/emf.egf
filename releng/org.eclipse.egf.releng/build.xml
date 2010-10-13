@@ -124,13 +124,8 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
         <eclipse.launch app="director">
             <args>
                 <jvmarg value="-Declipse.p2.mirrors=false" />
-                <jvmarg value="-Dhttp.proxyHost=proxy.eclipse.org" />
-                <jvmarg value="-Dhttp.proxyPort=9898" />
-                <jvmarg value="-Dhttp.nonProxyHosts=*.eclipse.org" />
                 <arg value="-r" />
                 <arg value="${bm.headless.site}" />
-                <arg value="-r" />
-                <arg value="${bm.external.site}" />
                 <arg value="-d" />
                 <arg value="${tools}/buckminster" />
                 <arg value="-p" />
@@ -143,8 +138,6 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
                 <arg value="org.eclipse.buckminster.pde.headless.feature.feature.group" />
                 <arg value="-i" />
                 <arg value="org.eclipse.buckminster.cvs.headless.feature.feature.group" />
-                <arg value="-i" />
-                <arg value="org.eclipse.buckminster.subversive.headless.feature.feature.group" />
                 <arg value="-i" />
                 <arg value="org.eclipse.buckminster.emma.headless.feature.feature.group" />
             </args>
