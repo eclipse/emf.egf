@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
 import org.eclipse.egf.core.ui.dialogs.LoadEcoreDialog;
-import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
@@ -31,7 +30,6 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author Xavier Maysonnave
@@ -57,7 +55,7 @@ public class DomainURIEditorContributor extends DefaultPropertyEditorContributor
 
             @Override
             protected Object openDialogBox(Control control) {
-                LoadEcoreDialog dialog = new LoadEcoreDialog(control.getShell(), editingDomain, false, false) {
+                LoadEcoreDialog dialog = new LoadEcoreDialog(control.getShell(), editingDomain, false, true, false, true, true) {
 
                     @Override
                     protected Control createDialogArea(Composite parent) {
@@ -66,12 +64,6 @@ public class DomainURIEditorContributor extends DefaultPropertyEditorContributor
                             uriField.setText(domainURI.getUri().toString());
                         }
                         return innerControl;
-                    }
-
-                    @Override
-                    protected void configureShell(Shell shell) {
-                        title = CoreUIMessages._UI_PackageSelection_label;
-                        super.configureShell(shell);
                     }
 
                 };
