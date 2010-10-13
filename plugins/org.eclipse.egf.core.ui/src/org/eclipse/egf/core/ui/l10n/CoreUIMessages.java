@@ -95,10 +95,6 @@ public class CoreUIMessages {
 
     public static String _UI_SelectRegisteredPackageURI;
 
-    public static String _UI_TargetPlatform_label;
-
-    public static String _UI_RuntimeVersion_label;
-
     public static String EcoreSelectionDialog_choose_model_button_title;
 
     public static String EcoreSelectionDialog_nItemsSelected;

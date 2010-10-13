@@ -17,14 +17,8 @@ import org.eclipse.egf.common.ui.ICommonUIImages;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -35,8 +29,6 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
  * 
  */
 public class PlatformPackageDialog extends ElementListSelectionDialog {
-
-    protected boolean isTarget = true;
 
     public PlatformPackageDialog(Shell parent) {
 
@@ -64,17 +56,8 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
 
     }
 
-    public boolean isTarget() {
-        return isTarget;
-    }
-
     protected void updateElements() {
-        Object[] result = null;
-        if (isTarget) {
-            result = EGFCorePlugin.getPlatformGenModels();
-        } else {
-            result = EPackage.Registry.INSTANCE.keySet().toArray(new Object[EPackage.Registry.INSTANCE.size()]);
-        }
+        Object[] result = EGFCorePlugin.getPlatformGenModels();
         Arrays.sort(result);
         setListElements(result);
     }
@@ -82,24 +65,6 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
     @Override
     protected Control createDialogArea(Composite parent) {
         Composite result = (Composite) super.createDialogArea(parent);
-        Composite buttonGroup = new Composite(result, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        buttonGroup.setLayout(layout);
-        final Button targetButton = new Button(buttonGroup, SWT.RADIO);
-        targetButton.addSelectionListener(new SelectionAdapter() {
-
-            @Override
-            public void widgetSelected(SelectionEvent event) {
-                isTarget = targetButton.getSelection();
-                updateElements();
-            }
-
-        });
-        targetButton.setText(CoreUIMessages._UI_TargetPlatform_label);
-        Button runtimeTimeVersionButton = new Button(buttonGroup, SWT.RADIO);
-        runtimeTimeVersionButton.setText(CoreUIMessages._UI_RuntimeVersion_label);
-        targetButton.setSelection(true);
         updateElements();
         return result;
     }

@@ -92,7 +92,7 @@ public class LoadEcoreDialog extends LoadResourceDialog {
                 ResourceSet resourceSet = new ResourceSetImpl();
                 resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
                 StringBuffer uris = new StringBuffer();
-                if (dialog.isTarget() && _asEPackageNsURI == false) {
+                if (_asEPackageNsURI == false) {
                     Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
                     for (int i = 0, length = result.length; i < length; i++) {
                         IPlatformGenModel genmodel = (IPlatformGenModel) result[i];
