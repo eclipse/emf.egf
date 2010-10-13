@@ -36,7 +36,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
     <property name="publish" location="${result}/publish" />
     <property name="buckminster.output.root" location="${result}/output" />
     <property name="buckminster.temp.root" location="${result}/temp" />
-    <property name="eclipse.staging.area" location="${result}/signing" />
+    <property name="eclipse.staging.area" location="/shared/download-staging.priv/modeling/egf/" />
 
 	<!-- if we have defined a local target platform, we use it -->
     <condition property="targetPlatformPath" value="${localTargetPlatformPath}" else="${result}/tp">
