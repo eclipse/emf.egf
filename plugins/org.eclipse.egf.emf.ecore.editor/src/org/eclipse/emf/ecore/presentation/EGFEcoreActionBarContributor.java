@@ -70,7 +70,7 @@ public class EGFEcoreActionBarContributor extends EcoreActionBarContributor {
         protected boolean processResource(Resource resource) {
             // Put all static package in the package registry.
             //
-            ResourceSet resourceSet = domain.getResourceSet();
+            ResourceSet resourceSet = _domain.getResourceSet();
             if (resourceSet.getResources().contains(resource) == false) {
                 Registry packageRegistry = resourceSet.getPackageRegistry();
                 for (EPackage ePackage : EMFHelper.getAllPackages(resource)) {
