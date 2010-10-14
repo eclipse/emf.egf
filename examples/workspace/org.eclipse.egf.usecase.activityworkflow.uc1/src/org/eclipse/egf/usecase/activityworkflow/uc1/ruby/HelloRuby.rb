@@ -1,3 +1,14 @@
+##
+#  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+#  All rights reserved. This program and the accompanying materials
+#  are made available under the terms of the Eclipse Public License v1.0
+#  which accompanies this distribution, and is available at
+#  http://www.eclipse.org/legal/epl-v10.html
+# 
+#  Contributors:
+#      Thales Corporate Services S.A.S - initial API and implementation
+##
+
 # Import
 include_class "org.eclipse.egf.ftask.producer.invocation.TaskProductionForRuby"
 include_class "org.eclipse.egf.core.EGFCorePlugin"
@@ -9,6 +20,9 @@ end
 module JavaUtil
   include_package("java.util")
 end
+
+# author Benoit Langlois
+
 
 # To read input contract values and write output contract values, 
 # the class should extends the TaskProductionForRuby java class, 
