@@ -41,7 +41,8 @@ public class CodegenVersionHelper {
 
     private static final String ORG_ECLIPSE_EMF_ECORE = "org.eclipse.emf.ecore"; //$NON-NLS-1$
     private static final String META_INF_MANIFEST_MF = "META-INF/MANIFEST.MF"; //$NON-NLS-1$
-    private static final String QUALIFIER = ".qualifier"; //$NON-NLS-1$
+    private static final String DOT = "."; //$NON-NLS-1$
+    private static final String QUALIFIER = "qualifier"; //$NON-NLS-1$
     private static final Pattern MANIFEST_REGEX = Pattern.compile("([a-zA-Z\\-]*):(.*)"); //$NON-NLS-1$
 
     private IProject codegenProject;
@@ -106,10 +107,10 @@ public class CodegenVersionHelper {
             Map<String, String> manifestKeyValues = getManifestKeyValues(fcoreProject);
             String textToReplace = manifestKeyValues.get(Constants.BUNDLE_VERSION);
             String textReplacement = null;
-            int indexOf = textToReplace.indexOf(QUALIFIER);
+            int indexOf = textToReplace.lastIndexOf(DOT);
             if (indexOf > -1) {
                 String emfCodegenEcoreVersion = getEMFCodegenEcoreVersion().replace('.', '_'); //$NON-NLS-1$ //$NON-NLS-2$
-                textReplacement = textToReplace.substring(0, indexOf + QUALIFIER.length()) + "_" + emfCodegenEcoreVersion; //$NON-NLS-1$
+                textReplacement = textToReplace.substring(0, indexOf + 1) + emfCodegenEcoreVersion + "_" + QUALIFIER; //$NON-NLS-1$
             }
 
             StringBuilder buffer = new StringBuilder();
