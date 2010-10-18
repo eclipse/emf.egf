@@ -31,7 +31,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -67,11 +66,14 @@ public class EPackageHelper {
 
     public final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
 
-    private final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
+    private Map<String, String> nsuri2basePackage = null;
 
     private IPlatformExtensionPointListener _extensionPointListener = new IPlatformExtensionPointListener() {
 
         public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
+            if (nsuri2basePackage == null) {
+                init();
+            }
             for (IPlatformGenModel genModel : delta.getAddedPlatformExtensionPoints(IPlatformGenModel.class)) {
                 addEcoreModel(genModel);
             }
@@ -95,6 +97,10 @@ public class EPackageHelper {
     }
 
     private void init() {
+        if (nsuri2basePackage != null) {
+            return;
+        }
+        nsuri2basePackage = new HashMap<String, String>();
         for (IPlatformGenModel genModel : EGFCorePlugin.getPlatformGenModels()) {
             addEcoreModel(genModel);
         }
@@ -154,8 +160,9 @@ public class EPackageHelper {
     }
 
     public String getBasePackage(EPackage ePackage) {
-        if (nsuri2basePackage.isEmpty())
+        if (nsuri2basePackage == null) {
             init();
+        }
         String nsURI = ePackage.getNsURI();
         String name = nsuri2basePackage.get(nsURI);
         if (name == null)
