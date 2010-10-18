@@ -20,6 +20,8 @@ import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
+import org.eclipse.egf.model.domain.DomainFactory;
+import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,15 +34,16 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public class EmfDocProductionContextFromGenModel implements ITaskProduction {
 
     public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        URI genModelURI = productionContext.getInputValue("genModelURI", URI.class); //$NON-NLS-1$
+        URI genModelURI = productionContext.getInputValue("genModelURI", DomainURI.class).getUri(); //$NON-NLS-1$
 
         ResourceSet resourceSet = new EGFResourceSet();
         Resource genModelResource = resourceSet.getResource(genModelURI, true);
         GenModel genModel = (GenModel) genModelResource.getContents().get(0);
 
-        URI ecoreURI = genModelURI.trimSegments(1).appendSegment(genModel.getForeignModel().get(0));
+        DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+        domainURI.setUri(genModelURI.trimSegments(1).appendSegment(genModel.getForeignModel().get(0)));
 
-        productionContext.setOutputValue("docEcoreURI", ecoreURI); //$NON-NLS-1$
+        productionContext.setOutputValue("docEcoreURI", domainURI); //$NON-NLS-1$
         productionContext.setOutputValue("docProjectName", genModel.getModelPluginID() + ".doc"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
