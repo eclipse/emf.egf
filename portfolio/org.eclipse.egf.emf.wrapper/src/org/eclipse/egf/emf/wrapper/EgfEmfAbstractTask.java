@@ -18,12 +18,12 @@ import org.eclipse.egf.core.domain.EGFResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
+import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 
 public abstract class EgfEmfAbstractTask implements ITaskProduction {
@@ -37,7 +37,7 @@ public abstract class EgfEmfAbstractTask implements ITaskProduction {
     }
 
     public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        _resource = new EGFResourceSet().getResource(productionContext.getInputValue("genModelURI", URI.class), true); //$NON-NLS-1$
+        _resource = new EGFResourceSet().getResource(productionContext.getInputValue("genModelURI", DomainURI.class).getUri(), true); //$NON-NLS-1$
     }
 
     public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
