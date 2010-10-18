@@ -2,7 +2,7 @@
 <ftask:Task xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_pdABMIK4Ed-nE_aB6JA6Fw"
-    name="Task" kind="ruby" implementation="platform:/plugin/org.eclipse.egf.task/build.properties">
+    name="Task" kind="ruby" implementation="platform:/plugin/org.eclipse.egf.example.task.ruby/src/org/eclipse/egf/example/task/ruby/TaskProduction.rb">
   <contractContainer xmi:id="_ryXWEIK4Ed-nE_aB6JA6Fw">
     <contracts xmi:id="_2bvQwZLYEd-kL7M2ekzF_w" name="quantity">
       <type xmi:type="types:TypeInteger" xmi:id="_5WTkcJLYEd-kL7M2ekzF_w" value="100"/>
