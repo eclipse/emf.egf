@@ -171,6 +171,7 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
     <target name="provision" depends="init.checks,init.workspace,install.buckminster,init.build.properties">
         <echo message="Importing projects into workspace ${workspace} and binaries into target platform ${targetPlatformPath}" />
 
+		<echo message="Will use java home : ${env.JAVA_HOME}" />
     	<buckminster command="installJRE">
             <cmdargs>
                 <arg value="--location" />
@@ -195,9 +196,14 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
     </target>
 
     <target name="eclipse.build" depends="provision">
-        <echo message="Invoking all eclipse builders on workspace ${workspace}" />
-        <buckminster command="build" />
-    </target>
+        <echo message="Invoking all eclipse builders on workspace ${workspace} (with clean and thorough options)" />
+        <buckminster command="build" >
+            <cmdargs>
+                <arg value="--clean" />
+                <arg value="--thorough" />
+            </cmdargs>
+		</buckminster>
+	</target>
 	
 	<target name="test" depends="eclipse.build">
 	  <echo message="Running Junit tests and Emma code coverage" />
