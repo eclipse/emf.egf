@@ -21,23 +21,23 @@ import org.osgi.framework.Bundle;
  */
 public class BundleSessionHelper {
 
-  private BundleSessionHelper() {
-    // Prevent Instantiation
-  }
+    private BundleSessionHelper() {
+        // Prevent Instantiation
+    }
 
-  public static Bundle getBundle(ProjectBundleSession projectBundleSession, IPlatformExtensionPoint platformExtensionPoint) throws CoreException {
-    // Usual Tests
-    if (projectBundleSession == null || platformExtensionPoint == null) {
-      return null;
+    public static Bundle getBundle(ProjectBundleSession projectBundleSession, IPlatformExtensionPoint platformExtensionPoint) throws CoreException {
+        // Usual Tests
+        if (projectBundleSession == null || platformExtensionPoint == null) {
+            return null;
+        }
+        // Locate Bundle
+        Bundle bundle = null;
+        if (platformExtensionPoint.getPlatformBundle().isTarget()) {
+            bundle = platformExtensionPoint.getPlatformBundle().getBundle();
+        } else {
+            bundle = projectBundleSession.getBundle(platformExtensionPoint.getPlatformBundle().getProject());
+        }
+        return bundle;
     }
-    // Locate Bundle
-    Bundle bundle = null;
-    if (platformExtensionPoint.getPlatformBundle().isTarget()) {
-      bundle = platformExtensionPoint.getPlatformBundle().getBundle();
-    } else {
-      bundle = projectBundleSession.getBundle(platformExtensionPoint.getPlatformBundle().getProject());
-    }
-    return bundle;
-  }
 
 }
