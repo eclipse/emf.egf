@@ -38,6 +38,8 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
     <property name="buckminster.temp.root" location="${result}/temp" />
     <property name="eclipse.staging.area" location="/shared/download-staging.priv/modeling/egf/" />
 
+	<echoproperties/>
+
 	<!-- if we have defined a local target platform, we use it -->
     <condition property="targetPlatformPath" value="${localTargetPlatformPath}" else="${result}/tp">
         <isset property="localTargetPlatformPath" />
@@ -172,10 +174,11 @@ http://dev.eclipse.org/viewsvn/index.cgi/trunk/org.eclipse.buckminster.releng/bu
         <echo message="Importing projects into workspace ${workspace} and binaries into target platform ${targetPlatformPath}" />
 
 		<echo message="Will use java home : ${env.JAVA_HOME}" />
+		<echo message="Will use java home : ${JAVA_HOME}" />
     	<buckminster command="installJRE">
             <cmdargs>
                 <arg value="--location" />
-                <arg value="/shared/common/jdk-1.5.0_16" />
+                <arg value="/shared/common/jdk-1.5.0_22_x64" />
             </cmdargs>
         </buckminster>
 
