@@ -201,7 +201,11 @@
     <target name="clean.result">
         <delete dir="${result}" failonerror="true" quiet="true" />
     </target>
-    
+
+    <target name="clean.workspace">
+        <delete dir="${workspace}" failonerror="true" quiet="true" />
+    </target>
+
     <target name="init.workspace" unless="workspace.exists">
         <mkdir dir="${workspace}" />
     </target>
