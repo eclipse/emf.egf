@@ -24,23 +24,23 @@ import org.eclipse.egf.core.natures.EGFNatures;
 
 public class FcoreProject extends BaseProject {
 
-  /**
-   * FcoreNature constructor comment.
-   */
-  public FcoreProject() {
-    super();
-  }
+    /**
+     * FcoreNature constructor comment.
+     */
+    public FcoreProject() {
+        super();
+    }
 
-  public void configure() throws CoreException {
-    IProjectDescription description = getProject().getDescription();
-    EclipseBuilderHelper.addToFrontOfBuildSpec(description, EGFNatures.PATTERN_BUILDER_ID, new NullProgressMonitor());
-    getProject().setDescription(description, new NullProgressMonitor());
-  }
+    public void configure() throws CoreException {
+        IProjectDescription description = getProject().getDescription();
+        EclipseBuilderHelper.addToBuildSpec(description, EGFNatures.PATTERN_BUILDER_ID, new NullProgressMonitor());
+        getProject().setDescription(description, new NullProgressMonitor());
+    }
 
-  public void deconfigure() throws CoreException {
-    IProjectDescription description = getProject().getDescription();
-    EclipseBuilderHelper.removeFromBuildSpec(description, EGFNatures.PATTERN_BUILDER_ID, new NullProgressMonitor());
-    getProject().setDescription(description, new NullProgressMonitor());
-  }
+    public void deconfigure() throws CoreException {
+        IProjectDescription description = getProject().getDescription();
+        EclipseBuilderHelper.removeFromBuildSpec(description, EGFNatures.PATTERN_BUILDER_ID, new NullProgressMonitor());
+        getProject().setDescription(description, new NullProgressMonitor());
+    }
 
 }
