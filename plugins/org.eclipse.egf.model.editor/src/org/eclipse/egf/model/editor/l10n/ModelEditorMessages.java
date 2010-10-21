@@ -45,6 +45,8 @@ public class ModelEditorMessages {
 
     public static String URIMenuContributor_selectAction_label;
 
+    public static String AbstractTypeEditorContributor_unable_to_locate_type;
+
     public static String InvokeActivityWizard_Activity_title;
 
     public static String InvokeActivityWizard_Activity_description;
