@@ -250,11 +250,6 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         }
 
         // Builder Setup
-        if (_hasPatternBuilder == false && _createEGFNature) {
-            EclipseBuilderHelper.addToFrontOfBuildSpec(projectDescription, EGFNatures.PATTERN_BUILDER_ID, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-        } else {
-            subMonitor.worked(100);
-        }
         if (_hasJavaBuilder == false && _createJavaProject) {
             EclipseBuilderHelper.addToBuildSpec(projectDescription, JavaCore.BUILDER_ID, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
         } else {
@@ -267,6 +262,11 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         }
         if (_hasSchemaBuilder == false) {
             EclipseBuilderHelper.addToBuildSpec(projectDescription, PDE.SCHEMA_BUILDER_ID, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        } else {
+            subMonitor.worked(100);
+        }
+        if (_hasPatternBuilder == false && _createEGFNature) {
+            EclipseBuilderHelper.addToBuildSpec(projectDescription, EGFNatures.PATTERN_BUILDER_ID, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
         } else {
             subMonitor.worked(100);
         }
