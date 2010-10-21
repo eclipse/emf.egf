@@ -29,23 +29,24 @@ import org.eclipse.swt.graphics.Image;
  */
 public abstract class DefaultPropertyEditorContributor implements PropertyEditorContributor {
 
-  protected boolean checkFeature(Object object, IItemPropertyDescriptor descriptor, EStructuralFeature expectedFeature) {
-    return descriptor.getFeature(object).equals(expectedFeature);
-  }
+    protected boolean checkFeature(Object object, IItemPropertyDescriptor descriptor, EStructuralFeature expectedFeature) {
+        return descriptor.getFeature(object).equals(expectedFeature);
+    }
 
-  protected ILabelProvider getLabelProvider(Object object, IItemPropertyDescriptor descriptor) {
-    final IItemLabelProvider itemLabelProvider = descriptor.getLabelProvider(object);
-    return new LabelProvider() {
-      @Override
-      public String getText(Object innerObject) {
-        return itemLabelProvider.getText(innerObject);
-      }
+    protected ILabelProvider getLabelProvider(Object object, IItemPropertyDescriptor descriptor) {
+        final IItemLabelProvider itemLabelProvider = descriptor.getLabelProvider(object);
+        return new LabelProvider() {
 
-      @Override
-      public Image getImage(Object innerObject) {
-        return ExtendedImageRegistry.getInstance().getImage(itemLabelProvider.getImage(innerObject));
-      }
-    };
-  }
+            @Override
+            public String getText(Object innerObject) {
+                return itemLabelProvider.getText(innerObject);
+            }
+
+            @Override
+            public Image getImage(Object innerObject) {
+                return ExtendedImageRegistry.getInstance().getImage(itemLabelProvider.getImage(innerObject));
+            }
+        };
+    }
 
 }
