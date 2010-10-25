@@ -21,13 +21,13 @@ import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
  */
 public class ProducerContextFactory {
 
-  private ProducerContextFactory() {
-    // Prevent Instantiation
-  }
+    private ProducerContextFactory() {
+        // Prevent Instantiation
+    }
 
-  // FactoryComponent
-  public static IFactoryComponentProductionContext createContext(ProjectBundleSession projectBundleSession, FactoryComponent element) {
-    return new FactoryComponentProductionContext(projectBundleSession, element, EMFHelper.getText(element));
-  }
+    // FactoryComponent
+    public static IFactoryComponentProductionContext createContext(ProjectBundleSession projectBundleSession, FactoryComponent element) {
+        return new FactoryComponentProductionContext(projectBundleSession, element, EMFHelper.getText(element));
+    }
 
 }
