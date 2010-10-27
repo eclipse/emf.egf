@@ -10,57 +10,57 @@
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_BnCDEHOhEd-d5cqrgbkp6A">
       <libraries xmi:id="_fibf0HOhEd-d5cqrgbkp6A" name="org.eclipse.emf.examples.library.egf.model.call.Class">
-        <elements xmi:type="pattern:Pattern" xmi:id="_2TwikHOhEd-d5cqrgbkp6A" name="Writer_Name_Class_getGenFeature_TODO_override"
-            headerMethod="#_2TwikXOhEd-d5cqrgbkp6A" footerMethod="#_2TwilXOhEd-d5cqrgbkp6A"
+        <elements xmi:id="_2TwikHOhEd-d5cqrgbkp6A" name="Writer_Name_Class_getGenFeature_TODO_override"
             superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lbPAWJ-Ed-FqczH3ESmRw"
-            initMethod="#_2TwiknOhEd-d5cqrgbkp6A" conditionMethod="#_2Twik3OhEd-d5cqrgbkp6A">
+            headerMethod="#_2TwikXOhEd-d5cqrgbkp6A" conditionMethod="#_2Twik3OhEd-d5cqrgbkp6A"
+            initMethod="#_2TwiknOhEd-d5cqrgbkp6A" footerMethod="#_2TwilXOhEd-d5cqrgbkp6A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_2Twil3OhEd-d5cqrgbkp6A"
+              name="JET"/>
           <methods xmi:id="_2TwikXOhEd-d5cqrgbkp6A" name="header" patternFilePath="templates/pattern._2TwikHOhEd-d5cqrgbkp6A/method._2TwikXOhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_2TwiknOhEd-d5cqrgbkp6A" name="init" patternFilePath="templates/pattern._2TwikHOhEd-d5cqrgbkp6A/method._2TwiknOhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_2Twik3OhEd-d5cqrgbkp6A" name="preCondition" patternFilePath="templates/pattern._2TwikHOhEd-d5cqrgbkp6A/method._2Twik3OhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_2TwilHOhEd-d5cqrgbkp6A" name="doGenerate" patternFilePath="templates/pattern._2TwikHOhEd-d5cqrgbkp6A/method._2TwilHOhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_2TwilXOhEd-d5cqrgbkp6A" name="footer" patternFilePath="templates/pattern._2TwikHOhEd-d5cqrgbkp6A/method._2TwilXOhEd-d5cqrgbkp6A.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_2TwilnOhEd-d5cqrgbkp6A"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_2Twil3OhEd-d5cqrgbkp6A"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_6gbXUHOhEd-d5cqrgbkp6A" name="Writer_Name_Class_setGenFeature_TODO_override"
-            headerMethod="#_6gbXUXOhEd-d5cqrgbkp6A" footerMethod="#_6gbXVXOhEd-d5cqrgbkp6A"
+        <elements xmi:id="_6gbXUHOhEd-d5cqrgbkp6A" name="Writer_Name_Class_setGenFeature_TODO_override"
             superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qMaRWJ-Ed-FqczH3ESmRw"
-            initMethod="#_6gbXUnOhEd-d5cqrgbkp6A" conditionMethod="#_6gbXU3OhEd-d5cqrgbkp6A">
+            headerMethod="#_6gbXUXOhEd-d5cqrgbkp6A" conditionMethod="#_6gbXU3OhEd-d5cqrgbkp6A"
+            initMethod="#_6gbXUnOhEd-d5cqrgbkp6A" footerMethod="#_6gbXVXOhEd-d5cqrgbkp6A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_6gbXV3OhEd-d5cqrgbkp6A"
+              name="JET"/>
           <methods xmi:id="_6gbXUXOhEd-d5cqrgbkp6A" name="header" patternFilePath="templates/pattern._6gbXUHOhEd-d5cqrgbkp6A/method._6gbXUXOhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_6gbXUnOhEd-d5cqrgbkp6A" name="init" patternFilePath="templates/pattern._6gbXUHOhEd-d5cqrgbkp6A/method._6gbXUnOhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_6gbXU3OhEd-d5cqrgbkp6A" name="preCondition" patternFilePath="templates/pattern._6gbXUHOhEd-d5cqrgbkp6A/method._6gbXU3OhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_6gbXVHOhEd-d5cqrgbkp6A" name="doGenerate" patternFilePath="templates/pattern._6gbXUHOhEd-d5cqrgbkp6A/method._6gbXVHOhEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_6gbXVXOhEd-d5cqrgbkp6A" name="footer" patternFilePath="templates/pattern._6gbXUHOhEd-d5cqrgbkp6A/method._6gbXVXOhEd-d5cqrgbkp6A.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_6gbXVnOhEd-d5cqrgbkp6A"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_6gbXV3OhEd-d5cqrgbkp6A"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_A3OhUHOiEd-d5cqrgbkp6A" name="Library_Books_Class_getGenFeature_override"
-            headerMethod="#_A3OhUXOiEd-d5cqrgbkp6A" footerMethod="#_A3OhVXOiEd-d5cqrgbkp6A"
+        <elements xmi:id="_A3OhUHOiEd-d5cqrgbkp6A" name="Library_Books_Class_getGenFeature_override"
             superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0kh3EGJ-Ed-FqczH3ESmRw"
-            initMethod="#_A3OhUnOiEd-d5cqrgbkp6A" conditionMethod="#_A3OhU3OiEd-d5cqrgbkp6A">
+            headerMethod="#_A3OhUXOiEd-d5cqrgbkp6A" conditionMethod="#_A3OhU3OiEd-d5cqrgbkp6A"
+            initMethod="#_A3OhUnOiEd-d5cqrgbkp6A" footerMethod="#_A3OhVXOiEd-d5cqrgbkp6A">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_A3OhV3OiEd-d5cqrgbkp6A"
+              name="JET"/>
           <methods xmi:id="_A3OhUXOiEd-d5cqrgbkp6A" name="header" patternFilePath="templates/pattern._A3OhUHOiEd-d5cqrgbkp6A/method._A3OhUXOiEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_A3OhUnOiEd-d5cqrgbkp6A" name="init" patternFilePath="templates/pattern._A3OhUHOiEd-d5cqrgbkp6A/method._A3OhUnOiEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_A3OhU3OiEd-d5cqrgbkp6A" name="preCondition" patternFilePath="templates/pattern._A3OhUHOiEd-d5cqrgbkp6A/method._A3OhU3OiEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_A3OhVHOiEd-d5cqrgbkp6A" name="doGenerate" patternFilePath="templates/pattern._A3OhUHOiEd-d5cqrgbkp6A/method._A3OhVHOiEd-d5cqrgbkp6A.pt"/>
           <methods xmi:id="_A3OhVXOiEd-d5cqrgbkp6A" name="footer" patternFilePath="templates/pattern._A3OhUHOiEd-d5cqrgbkp6A/method._A3OhVXOiEd-d5cqrgbkp6A.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_A3OhVnOiEd-d5cqrgbkp6A"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_A3OhV3OiEd-d5cqrgbkp6A"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_0Lo9UXh0Ed-1nLW_IBnxTQ" name="Library_Stock_Class_getGenFeature_override"
-            headerMethod="#_0Lo9Unh0Ed-1nLW_IBnxTQ" footerMethod="#_0Lo9Vnh0Ed-1nLW_IBnxTQ"
+        <elements xmi:id="_0Lo9UXh0Ed-1nLW_IBnxTQ" name="Library_Stock_Class_getGenFeature_override"
             superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0kh3EGJ-Ed-FqczH3ESmRw"
-            initMethod="#_0Lo9U3h0Ed-1nLW_IBnxTQ" conditionMethod="#_0Lo9VHh0Ed-1nLW_IBnxTQ">
+            headerMethod="#_0Lo9Unh0Ed-1nLW_IBnxTQ" conditionMethod="#_0Lo9VHh0Ed-1nLW_IBnxTQ"
+            initMethod="#_0Lo9U3h0Ed-1nLW_IBnxTQ" footerMethod="#_0Lo9Vnh0Ed-1nLW_IBnxTQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_0Lo9WHh0Ed-1nLW_IBnxTQ"
+              name="JET"/>
           <methods xmi:id="_0Lo9Unh0Ed-1nLW_IBnxTQ" name="header" patternFilePath="templates/pattern._0Lo9UXh0Ed-1nLW_IBnxTQ/method._0Lo9Unh0Ed-1nLW_IBnxTQ.pt"/>
           <methods xmi:id="_0Lo9U3h0Ed-1nLW_IBnxTQ" name="init" patternFilePath="templates/pattern._0Lo9UXh0Ed-1nLW_IBnxTQ/method._0Lo9U3h0Ed-1nLW_IBnxTQ.pt"/>
           <methods xmi:id="_0Lo9VHh0Ed-1nLW_IBnxTQ" name="preCondition" patternFilePath="templates/pattern._0Lo9UXh0Ed-1nLW_IBnxTQ/method._0Lo9VHh0Ed-1nLW_IBnxTQ.pt"/>
           <methods xmi:id="_0Lo9VXh0Ed-1nLW_IBnxTQ" name="doGenerate" patternFilePath="templates/pattern._0Lo9UXh0Ed-1nLW_IBnxTQ/method._0Lo9VXh0Ed-1nLW_IBnxTQ.pt"/>
           <methods xmi:id="_0Lo9Vnh0Ed-1nLW_IBnxTQ" name="footer" patternFilePath="templates/pattern._0Lo9UXh0Ed-1nLW_IBnxTQ/method._0Lo9Vnh0Ed-1nLW_IBnxTQ.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_0Lo9V3h0Ed-1nLW_IBnxTQ"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_0Lo9WHh0Ed-1nLW_IBnxTQ"
-              name="JET"/>
         </elements>
       </libraries>
     </viewpoints>

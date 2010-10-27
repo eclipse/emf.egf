@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.emf.pattern.model.call.Class.ClassgetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized Library_Stock_Class_getGenFeature_override create(String lineSeparator) {
@@ -25,13 +26,24 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "    /**" + NL + "     * <!-- begin-user-doc -->" + NL + "     * <!-- end-user-doc -->" + NL + "     * @generated" + NL + "     */" + NL + "    public ";
+
     protected final String TEXT_2 = " ";
+
     protected final String TEXT_3 = "_";
+
     protected final String TEXT_4 = "() " + NL + "    {" + NL + "        if (stock == null) {" + NL + "            // create a custom list implementation that synchronizes its book" + NL + "            //    content with the \"books\" subset" + NL + "            stock = new ";
-    protected final String TEXT_5 = "<Item>(Item.class, this, EXTLibraryPackage.LIBRARY__STOCK) {" + NL + "                private static final long serialVersionUID = 1L;" + NL + "    " + NL + "                @Override" + NL + "                protected void didAdd(int index, Item newObject) {" + NL + "                    if ((newObject instanceof Book) && !getBooks().contains(newObject)) {" + NL + "                        // these lists are unordered, so index doesn't matter" + NL + "                        getBooks().add((Book)newObject);" + NL + "                    }" + NL + "                }" + NL + "    " + NL + "                @Override" + NL + "                protected void didRemove(int index, Item oldObject) {" + NL
-            + "                    if ((oldObject instanceof Book) && getBooks().contains(oldObject)) {" + NL + "                        // these lists are unordered, so index doesn't matter" + NL + "                        getBooks().remove(oldObject);" + NL + "                    }" + NL + "                }" + NL + "    " + NL + "                @Override" + NL + "                protected void didSet(int index, Item newObject, Item oldObject) {" + NL + "                    didRemove(index, oldObject);" + NL + "                    didAdd(index, newObject);" + NL + "                }" + NL + "            };" + NL + "        }" + NL + "        return stock;" + NL + "    }";
+
+    protected final String TEXT_5 = "<Item>(Item.class, this, EXTLibraryPackage.LIBRARY__STOCK) {" + NL + "                private static final long serialVersionUID = 1L;" + NL + "    " + NL + "                @Override" + NL + "                protected void didAdd(int index, Item newObject) {"
+            + NL + "                    if ((newObject instanceof Book) && !getBooks().contains(newObject)) {" + NL + "                        // these lists are unordered, so index doesn't matter" + NL + "                        getBooks().add((Book)newObject);" + NL + "                    }" + NL
+            + "                }" + NL + "    " + NL + "                @Override" + NL + "                protected void didRemove(int index, Item oldObject) {" + NL + "                    if ((oldObject instanceof Book) && getBooks().contains(oldObject)) {" + NL
+            + "                        // these lists are unordered, so index doesn't matter" + NL + "                        getBooks().remove(oldObject);" + NL + "                    }" + NL + "                }" + NL + "    " + NL + "                @Override" + NL
+            + "                protected void didSet(int index, Item newObject, Item oldObject) {" + NL + "                    didRemove(index, oldObject);" + NL + "                    didAdd(index, newObject);" + NL + "                }" + NL + "            };" + NL + "        }" + NL
+            + "        return stock;" + NL + "    }";
+
     protected final String TEXT_6 = NL;
+
     protected final String TEXT_7 = NL;
 
     public Library_Stock_Class_getGenFeature_override() {
@@ -63,6 +75,8 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> isImplementationList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        List<Object> isGWTList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> publicStaticFinalFlagList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> singleWildcardList = null;
@@ -70,6 +84,10 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
         List<Object> negativeOffsetCorrectionList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
         List<Object> positiveOffsetCorrectionList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        List<Object> negativeOperationOffsetCorrectionList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        List<Object> positiveOperationOffsetCorrectionList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
         for (Object genFeatureParameter : genFeatureList) {
@@ -79,26 +97,35 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
                         for (Object isJDK50Parameter : isJDK50List) {
                             for (Object isInterfaceParameter : isInterfaceList) {
                                 for (Object isImplementationParameter : isImplementationList) {
-                                    for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
-                                        for (Object singleWildcardParameter : singleWildcardList) {
-                                            for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
-                                                for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+                                    for (Object isGWTParameter : isGWTList) {
+                                        for (Object publicStaticFinalFlagParameter : publicStaticFinalFlagList) {
+                                            for (Object singleWildcardParameter : singleWildcardList) {
+                                                for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
+                                                    for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
+                                                        for (Object negativeOperationOffsetCorrectionParameter : negativeOperationOffsetCorrectionList) {
+                                                            for (Object positiveOperationOffsetCorrectionParameter : positiveOperationOffsetCorrectionList) {
 
-                                                    this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                                                    this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                                                    this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                                                    this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
-                                                    this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
-                                                    this.isInterface = (java.lang.Boolean) isInterfaceParameter;
-                                                    this.isImplementation = (java.lang.Boolean) isImplementationParameter;
-                                                    this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
-                                                    this.singleWildcard = (java.lang.String) singleWildcardParameter;
-                                                    this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
-                                                    this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                                this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+                                                                this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+                                                                this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+                                                                this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+                                                                this.isJDK50 = (java.lang.Boolean) isJDK50Parameter;
+                                                                this.isInterface = (java.lang.Boolean) isInterfaceParameter;
+                                                                this.isImplementation = (java.lang.Boolean) isImplementationParameter;
+                                                                this.isGWT = (java.lang.Boolean) isGWTParameter;
+                                                                this.publicStaticFinalFlag = (java.lang.String) publicStaticFinalFlagParameter;
+                                                                this.singleWildcard = (java.lang.String) singleWildcardParameter;
+                                                                this.negativeOffsetCorrection = (java.lang.String) negativeOffsetCorrectionParameter;
+                                                                this.positiveOffsetCorrection = (java.lang.String) positiveOffsetCorrectionParameter;
+                                                                this.negativeOperationOffsetCorrection = (java.lang.String) negativeOperationOffsetCorrectionParameter;
+                                                                this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
-                                                    if (preCondition())
-                                                        orchestration(ctx);
+                                                                if (preCondition())
+                                                                    orchestration(ctx);
 
+                                                            }
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -138,10 +165,13 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
             parameterValues.put("isJDK50", this.isJDK50);
             parameterValues.put("isInterface", this.isInterface);
             parameterValues.put("isImplementation", this.isImplementation);
+            parameterValues.put("isGWT", this.isGWT);
             parameterValues.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
             parameterValues.put("singleWildcard", this.singleWildcard);
             parameterValues.put("negativeOffsetCorrection", this.negativeOffsetCorrection);
             parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
+            parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
+            parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
             String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
             ictx.clearBuffer();
@@ -158,10 +188,13 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
         parameters.put("isJDK50", this.isJDK50);
         parameters.put("isInterface", this.isInterface);
         parameters.put("isImplementation", this.isImplementation);
+        parameters.put("isGWT", this.isGWT);
         parameters.put("publicStaticFinalFlag", this.publicStaticFinalFlag);
         parameters.put("singleWildcard", this.singleWildcard);
         parameters.put("negativeOffsetCorrection", this.negativeOffsetCorrection);
         parameters.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
+        parameters.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
+        parameters.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
         return parameters;
     }
 
