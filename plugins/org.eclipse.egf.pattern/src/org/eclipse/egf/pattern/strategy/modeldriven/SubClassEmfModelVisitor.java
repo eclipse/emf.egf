@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * 
- * An EMF model visitor to match all subclasses of an EMF parameter's eClass
+ * An EMF model visitor to also match all subclasses of an EMF parameter's eClass
  * 
  * @author Matthieu Helleboid
  * 
@@ -38,11 +38,7 @@ public class SubClassEmfModelVisitor extends EmfModelVisitor {
         if (model instanceof EObject) {
             List<Pattern> list = new ArrayList<Pattern>();
 
-            EClass eClass = ((EObject) model).eClass();
-            List<EClass> eAllSuperTypes = new ArrayList<EClass>(eClass.getEAllSuperTypes());
-            //also useful to match all eObjects 
-            eAllSuperTypes.add(EcorePackage.eINSTANCE.getEObject());
-            for (EClass superType : eAllSuperTypes) {
+            for (EClass superType : getSuperTypes(model)) {
                 String fullName = EcoreUtil.getURI(superType).toString();
                 List<Pattern> patterns = type2patterns.get(fullName);
                 if (patterns != null)
@@ -53,5 +49,14 @@ public class SubClassEmfModelVisitor extends EmfModelVisitor {
         }
 
         return super.findPatterns(model);
+    }
+
+    protected List<EClass> getSuperTypes(Object model) {
+        EClass eClass = ((EObject) model).eClass();
+        List<EClass> types = new ArrayList<EClass>(eClass.getEAllSuperTypes());
+        types.add(eClass);
+        //EObject is also an implicit super type
+        types.add(EcorePackage.eINSTANCE.getEObject());
+        return types;
     }
 }
