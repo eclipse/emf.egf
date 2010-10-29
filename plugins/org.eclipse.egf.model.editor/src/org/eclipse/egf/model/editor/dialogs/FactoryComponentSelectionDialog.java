@@ -28,15 +28,15 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class FactoryComponentSelectionDialog extends ActivitySelectionDialog {
 
-  public FactoryComponentSelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
-    super(shell, activity, multipleSelection);
-    setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, FactoryComponent.class.getSimpleName()));
-    setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, FactoryComponent.class.getSimpleName()));
-  }
+    public FactoryComponentSelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
+        super(shell, activity, multipleSelection);
+        setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, FactoryComponent.class.getSimpleName()));
+        setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, FactoryComponent.class.getSimpleName()));
+    }
 
-  @Override
-  protected boolean selectElement(EObject eObject) {
-    return eObject instanceof FactoryComponent;
-  }
+    @Override
+    protected boolean selectElement(EObject eObject) {
+        return eObject instanceof FactoryComponent;
+    }
 
 }

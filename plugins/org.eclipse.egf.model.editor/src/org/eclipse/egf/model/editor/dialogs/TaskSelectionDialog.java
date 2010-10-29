@@ -28,15 +28,15 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class TaskSelectionDialog extends ActivitySelectionDialog {
 
-  public TaskSelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
-    super(shell, activity, multipleSelection);
-    setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Task.class.getSimpleName()));
-    setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Task.class.getSimpleName()));
-  }
+    public TaskSelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
+        super(shell, activity, multipleSelection);
+        setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Task.class.getSimpleName()));
+        setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Task.class.getSimpleName()));
+    }
 
-  @Override
-  protected boolean selectElement(EObject eObject) {
-    return eObject instanceof Task;
-  }
+    @Override
+    protected boolean selectElement(EObject eObject) {
+        return eObject instanceof Task;
+    }
 
 }
