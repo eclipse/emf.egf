@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.platform.uri.PlatformXMLURIHandler;
@@ -132,7 +134,11 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
      */
     public IPlatformFcore getIPlatformFcore() {
         if (_fcore == null) {
-            _fcore = EGFCorePlugin.getPlatformFcore(this);
+            if (getResourceSet() instanceof TargetPlatformResourceSet) {
+                _fcore = EGFCorePlugin.getTargetPlatformFcore(this);
+            } else if (getResourceSet() instanceof RuntimePlatformResourceSet) {
+                _fcore = EGFCorePlugin.getRuntimePlatformFcore(this);
+            }
         }
         return _fcore;
     }
@@ -255,7 +261,7 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
             }
             if (changeDescription != null && (changeDescription.getResourceChanges().isEmpty() == false || changeDescription.getObjectsToAttach().isEmpty() == false || changeDescription.getObjectChanges().isEmpty() == false)) {
                 // Post-Processing
-                for (IFcoreProcessor processor : EGFCorePlugin.getIFcoreProcessors()) {
+                for (IFcoreProcessor processor : EGFCorePlugin.getFcoreProcessors()) {
                     processor.processPreUnload(this, changeDescription);
                 }
             }
@@ -294,7 +300,7 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
             }
             if (changeDescription != null && (changeDescription.getResourceChanges().isEmpty() == false || changeDescription.getObjectsToAttach().isEmpty() == false || changeDescription.getObjectChanges().isEmpty() == false)) {
                 // Post-Processing
-                for (IFcoreProcessor processor : EGFCorePlugin.getIFcoreProcessors()) {
+                for (IFcoreProcessor processor : EGFCorePlugin.getFcoreProcessors()) {
                     processor.processPostSave(this, changeDescription);
                 }
             }
