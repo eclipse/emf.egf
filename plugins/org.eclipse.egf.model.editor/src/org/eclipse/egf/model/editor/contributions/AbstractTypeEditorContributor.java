@@ -24,6 +24,7 @@ import org.eclipse.egf.core.ui.dialogs.SubTypeSelectionExtension;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
+import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -33,6 +34,7 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
@@ -71,6 +73,7 @@ public abstract class AbstractTypeEditorContributor extends DefaultPropertyEdito
                     return value;
                 }
                 if (type == null) {
+                    MessageDialog.openWarning(cellEditorWindow.getShell(), CoreUIMessages._UI_TypeSelection, NLS.bind(ModelEditorMessages.AbstractTypeEditorContributor_unable_to_locate_type, filteredType));
                     return value;
                 }
                 // Dialog
