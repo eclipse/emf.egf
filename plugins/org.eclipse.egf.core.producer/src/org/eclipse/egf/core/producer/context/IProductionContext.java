@@ -12,8 +12,6 @@ package org.eclipse.egf.core.producer.context;
 
 import java.util.Collection;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.osgi.framework.Bundle;
 
@@ -32,12 +30,6 @@ public interface IProductionContext<P extends Object, T extends Object> {
     public IProductionContext<?, ?> getParent();
 
     public Bundle getBundle(String id) throws InvocationException;
-
-    public Bundle getBundle(IProject project) throws InvocationException;
-
-    public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException;
-
-    public void clear();
 
     public Class<?> getInputValueType(Object key) throws InvocationException;
 
