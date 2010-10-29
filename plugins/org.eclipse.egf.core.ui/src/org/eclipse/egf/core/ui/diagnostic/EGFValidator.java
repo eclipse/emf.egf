@@ -23,13 +23,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
+import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
-import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -56,25 +54,23 @@ public class EGFValidator {
 
     private Map<Resource, UniqueEList<Diagnostic>> _diagnostics;
 
+    private IBundleClassLoader _defaultLoader;
+
     private List<? extends EObject> _eObjects = new ArrayList<EObject>();
 
-    private ProjectBundleSession _session;
-
     /**
-     * Standalone validator, a BundleSession will be initialized and disposed
+     * Standalone validator
      */
     public EGFValidator(List<? extends EObject> eObjects) {
         _eObjects = eObjects;
     }
 
     /**
-     * It's the responsability of the caller to manage a BundleSession
-     * In such case this validator will not initialized and dispose a BundleSession
+     * Validator with a default bundle class loader
      */
-    public EGFValidator(List<? extends EObject> eObjects, ProjectBundleSession session) {
-        Assert.isNotNull(session);
+    public EGFValidator(List<? extends EObject> eObjects, IBundleClassLoader defaultLoader) {
         _eObjects = eObjects;
-        _session = session;
+        _defaultLoader = defaultLoader;
     }
 
     public Diagnostic validate() {
@@ -170,24 +166,16 @@ public class EGFValidator {
         } else {
             context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.FALSE);
         }
-        // Bundle Session
-        ProjectBundleSession session = _session;
-        if (_session == null) {
-            session = new ProjectBundleSession(EGFCoreUIPlugin.getDefault().getBundle().getBundleContext());
+        // Default Bundle Class Loader
+        if (_defaultLoader != null) {
+            context.put(IBundleClassLoader.DEFAULT_BUNDLE_CLASS_LOADER, _defaultLoader);
         }
-        context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
+        // Bundle Class Loader Map
+        context.put(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP, new HashMap<Resource, IBundleClassLoader>());
         // Validation
         for (EObject eObject : _eObjects) {
             monitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject)})); //$NON-NLS-1$
             diagnostician.validate(eObject, diagnostic, context);
-        }
-        // Dispose Session
-        try {
-            if (_session == null) {
-                session.dispose();
-            }
-        } catch (CoreException ce) {
-            EGFCoreUIPlugin.getDefault().logError(ce);
         }
         // Populate diagnostics per Resource
         for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
