@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -37,7 +37,7 @@ public abstract class EgfEmfAbstractTask implements ITaskProduction {
     }
 
     public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        _resource = new EGFResourceSet().getResource(productionContext.getInputValue("genModelURI", DomainURI.class).getUri(), true); //$NON-NLS-1$
+        _resource = new TargetPlatformResourceSet().getResource(productionContext.getInputValue("genModelURI", DomainURI.class).getUri(), true); //$NON-NLS-1$
     }
 
     public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
