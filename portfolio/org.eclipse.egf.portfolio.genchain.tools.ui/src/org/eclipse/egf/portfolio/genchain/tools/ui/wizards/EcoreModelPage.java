@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.egf.core.ui.dialogs.LoadEcoreDialog;
+import org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreDialog;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.portfolio.genchain.extension.ExtensionHelper;
@@ -271,7 +271,7 @@ public class EcoreModelPage extends WizardPage implements ExtensionProperties, N
 
             @Override
             protected void buttonSelected() {
-                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), null);
+                TargetPlatformEcoreDialog chooseModelDialog = new TargetPlatformEcoreDialog(getShell());
                 if (chooseModelDialog.open() == Window.OK) {
                     String uri = chooseModelDialog.getURIText();
                     if (uri == null)
