@@ -804,10 +804,12 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             string2PatternListItemProvider.dispose();
         if (string2StringItemProvider != null)
             string2StringItemProvider.dispose();
-        if (typePatternExecutionReporterItemProvider != null)
-            typePatternExecutionReporterItemProvider.dispose();
         if (backCallItemProvider != null)
             backCallItemProvider.dispose();
+        if (substitutionItemProvider != null)
+            substitutionItemProvider.dispose();
+        if (typePatternExecutionReporterItemProvider != null)
+            typePatternExecutionReporterItemProvider.dispose();
         if (typePatternCallBackHandlerItemProvider != null)
             typePatternCallBackHandlerItemProvider.dispose();
         if (typePatternDomainVisitorItemProvider != null)
@@ -816,8 +818,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             typePatternListItemProvider.dispose();
         if (typePatternSubstitutionItemProvider != null)
             typePatternSubstitutionItemProvider.dispose();
-        if (substitutionItemProvider != null)
-            substitutionItemProvider.dispose();
     }
 
     /**
