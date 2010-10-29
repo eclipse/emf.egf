@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.Substitution;
@@ -43,7 +43,7 @@ public class MySampleExtension extends ExtensionHelper {
 
     @Override
     public List<Substitution> getSubstitutions() {
-        EGFResourceSet set = new EGFResourceSet();
+        TargetPlatformResourceSet set = new TargetPlatformResourceSet();
         List<Substitution> substitutions = new ArrayList<Substitution>();
         final Substitution substitution = PatternFactory.eINSTANCE.createSubstitution();
         final Pattern pattern = (Pattern) set.getEObject(PATTERN, true);
