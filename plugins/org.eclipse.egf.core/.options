@@ -1,2 +1,11 @@
 # Prints debug information
 org.eclipse.egf.core/debug=true
+
+# Reports package activity
+org.eclipse.egf.core/debug/package/cycle=true
+
+# Reports bundle session activity
+org.eclipse.egf.core/debug/bundle/session=true
+
+# Reports bundle listener activity
+org.eclipse.egf.core/debug/bundle/listener=true
