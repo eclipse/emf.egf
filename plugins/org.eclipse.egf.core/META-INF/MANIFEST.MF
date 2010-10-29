@@ -15,10 +15,11 @@ Require-Bundle:
  org.eclipse.emf.transaction;visibility:=reexport,
  org.eclipse.emf.workspace;visibility:=reexport, 
  org.eclipse.egf.common;visibility:=reexport,
- org.eclipse.egf.core.platform;visibility:=reexport 
+ org.eclipse.egf.core.platform;visibility:=reexport
 Export-Package: 
  org.eclipse.egf.core,
  org.eclipse.egf.core.domain,
+ org.eclipse.egf.core.epackage,
  org.eclipse.egf.core.fcore,
  org.eclipse.egf.core.genmodel,
  org.eclipse.egf.core.helper,
