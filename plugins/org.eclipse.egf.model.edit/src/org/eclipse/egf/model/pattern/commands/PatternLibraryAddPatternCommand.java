@@ -30,12 +30,14 @@ import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.helper.URIHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.edit.l10n.EGFModelEditMessages;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.emf.common.util.URI;
@@ -116,6 +118,15 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
     @Override
     public void doExecute() {
         super.doExecute();
+        // Check and update pattern name if not unique
+        IPlatformFcore fcore = null;
+        PatternLibrary library = (PatternLibrary) owner;
+        if (library.eResource() != null && library.eResource() instanceof IPlatformFcoreProvider) {
+            fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
+        }
+        for (Pattern pattern : _patterns) {
+            pattern.setName(PatternNameHelper.getNewPatternName(fcore, library));
+        }
         _copy = performCreatePatternTemplates(_resource, _methods);
     }
 
