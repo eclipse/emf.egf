@@ -35,8 +35,8 @@ public class ModelDrivenStrategyTask extends AbstractStrategyTask {
     @Override
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
         super.readContext(context, ctx);
-        PatternExecutionReporter reporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
-        ctx.setValue(PatternContext.PATTERN_REPORTER, this.reporter = new StrategyReporter(reporter));
+        PatternExecutionReporter innerReporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
+        ctx.setValue(PatternContext.PATTERN_REPORTER, this.reporter = new StrategyReporter(innerReporter));
     }
 
     @Override
