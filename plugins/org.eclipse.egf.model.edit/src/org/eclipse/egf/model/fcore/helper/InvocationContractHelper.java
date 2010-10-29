@@ -172,7 +172,7 @@ public class InvocationContractHelper {
                 if (innerType == null) {
                     innerType = innerInvocationContract.getInvokedContract().getType();
                 }
-                if (innerType.isCompatible(type)) {
+                if (type.isCompatible(innerType)) {
                     result.add(innerInvocationContract);
                 }
             }
