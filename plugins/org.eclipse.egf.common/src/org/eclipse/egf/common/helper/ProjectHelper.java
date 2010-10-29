@@ -280,7 +280,7 @@ public class ProjectHelper {
         if (projectName == null) {
             return result;
         }
-        IFile file = FileHelper.getPlatformFile(projectName + IEgfGeneratorConstants.PROJECT_ROOT_FILE);
+        IFile file = FileHelper.getFile(projectName + IEgfGeneratorConstants.PROJECT_ROOT_FILE);
         // Project already exists, stop here.
         if (file != null && file.exists()) {
             return ProjectExistenceStatus.ALREADY_EXISTS;

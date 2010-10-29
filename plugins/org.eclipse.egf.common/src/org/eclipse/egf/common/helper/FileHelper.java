@@ -342,8 +342,8 @@ public class FileHelper {
         if (sourceFileRelativePath == null || destinationFileRelativePath == null) {
             return false;
         }
-        IFile sourceFile = getPlatformFile(sourceFileRelativePath);
-        IPath destinationPath = getPlatformFile(destinationFileRelativePath).getFullPath();
+        IFile sourceFile = getFile(sourceFileRelativePath);
+        IPath destinationPath = getFile(destinationFileRelativePath).getFullPath();
         return moveResource(sourceFile, destinationPath);
     }
 
@@ -364,8 +364,8 @@ public class FileHelper {
         if (sourceFolderRelativePath == null || destinationFolderRelativePath == null) {
             return false;
         }
-        IFolder sourceFolder = getPlatformFolder(sourceFolderRelativePath);
-        IPath destinationPath = getPlatformFolder(destinationFolderRelativePath).getFullPath();
+        IFolder sourceFolder = getFolder(sourceFolderRelativePath);
+        IPath destinationPath = getFolder(destinationFolderRelativePath).getFullPath();
         return moveResource(sourceFolder, destinationPath);
     }
 
@@ -396,7 +396,7 @@ public class FileHelper {
      * @return boolean
      */
     public static boolean exists(String fileRelativePath) {
-        IFile file = getPlatformFile(fileRelativePath);
+        IFile file = getFile(fileRelativePath);
         return file != null ? file.exists() : false;
     }
 
@@ -469,7 +469,7 @@ public class FileHelper {
         if (path == null || path.trim().length() == 0) {
             return;
         }
-        deleteResource(monitor, getPlatformFile(path), false);
+        deleteResource(monitor, getFile(path), false);
     }
 
     /**
@@ -481,7 +481,7 @@ public class FileHelper {
         if (path == null || path.trim().length() == 0) {
             return;
         }
-        deleteResource(monitor, getPlatformFolder(path), false);
+        deleteResource(monitor, getFolder(path), false);
     }
 
     /**
@@ -532,12 +532,28 @@ public class FileHelper {
      *            See {@link #getFileFullUrl(String)} documentation.
      * @return IFile
      */
-    public static IFile getPlatformFile(String fileRelativePath) {
+    public static IFile getFile(String fileRelativePath) {
         // Precondition.
         if (fileRelativePath == null) {
             return null;
         }
         return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileRelativePath));
+    }
+
+    /**
+     * Get platform file as an {@link IResource} from its relative path.
+     * 
+     * @param fileRelativePath
+     *            File path relative to the plug-in, plug-in id included.<br>
+     *            See {@link #getFileFullUrl(String)} documentation.
+     * @return IFile
+     */
+    public static IFile getFile(IPath fileRelativePath) {
+        // Precondition.
+        if (fileRelativePath == null) {
+            return null;
+        }
+        return ResourcesPlugin.getWorkspace().getRoot().getFile(fileRelativePath);
     }
 
     /**
@@ -548,12 +564,28 @@ public class FileHelper {
      *            See {@link #getFileFullUrl(String)} documentation.
      * @return IFolder
      */
-    public static IFolder getPlatformFolder(String folderRelativePath) {
+    public static IFolder getFolder(String folderRelativePath) {
         // Precondition.
         if (folderRelativePath == null) {
             return null;
         }
         return ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(folderRelativePath));
+    }
+
+    /**
+     * Get platform folder as an {@link IResource} from its relative path.
+     * 
+     * @param folderRelativePath
+     *            Folder path relative to the plug-in, plug-in id included.<br>
+     *            See {@link #getFileFullUrl(String)} documentation.
+     * @return IFolder
+     */
+    public static IFolder getFolder(IPath folderRelativePath) {
+        // Precondition.
+        if (folderRelativePath == null) {
+            return null;
+        }
+        return ResourcesPlugin.getWorkspace().getRoot().getFolder(folderRelativePath);
     }
 
     /**
