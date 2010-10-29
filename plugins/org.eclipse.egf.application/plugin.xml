@@ -25,17 +25,19 @@
     </extension>
   
     <!-- ================================================================================= -->
-    <!-- Ant Taks                                                                          -->
+    <!-- Ant Task                                                                          -->
     <!-- ================================================================================= -->  
 
-    <extension 
+    <extension
+        id="egf.activities"
+        name="egf.activities" 
         point="org.eclipse.ant.core.antTasks"
     >
         <antTask 
-            library="ant_tasks/egf.ant.tasks.jar" 
-            name="egf.activities" 
-            headless="true" 
-            class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask" 
+            name="egf.activities"
+            class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask"
+            library="ant_tasks/egf.ant.tasks.jar"  
+            headless="true"  
         />
     </extension>
     
