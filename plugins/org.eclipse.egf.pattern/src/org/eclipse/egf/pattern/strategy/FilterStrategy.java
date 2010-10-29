@@ -38,6 +38,7 @@ public class FilterStrategy extends AbstractPatternStrategy {
 
         private final Set<Pattern> result;
 
+        @SuppressWarnings("unused")
         private final TypePatternSubstitution substitutions;
 
         private FilterSwitch(String filter, Set<Pattern> result, TypePatternSubstitution substitutions) {
