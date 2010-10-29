@@ -29,7 +29,11 @@ public class EGFCoreMessages {
 
     public static String EObject_no_Resource;
 
+    public static String EObject_no_Bundle;
+
     public static String Fcore_not_found;
+
+    public static String TargetPlatform_ExtensionPoint_no_bundle;
 
     public static String Production_Invoke;
 
