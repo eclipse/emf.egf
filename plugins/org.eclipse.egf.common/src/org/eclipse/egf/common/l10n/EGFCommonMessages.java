@@ -31,7 +31,7 @@ public class EGFCommonMessages {
 
     public static String Exception_unexpectedException;
 
-    public static String JavaHelper_AnalysingFailure;
+    public static String JavaProject_AnalysisFailure;
 
     public static String TypeClassHelper_classHierachy_JobName;
 
