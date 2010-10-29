@@ -28,8 +28,8 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -139,7 +139,7 @@ public class SubstitutionHelper {
             return;
         }
         for (Substitution substitution : input.getSubstitutions()) {
-            Substitution newSub = (Substitution) EcoreUtil.copy(substitution);
+            Substitution newSub = EcoreUtil.copy(substitution);
             result.getSubstitutions().add(newSub);
         }
     }
