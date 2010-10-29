@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,6 +30,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeClass} object.
@@ -102,6 +104,12 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(TypeClass.class)) {
+            case TypesPackage.TYPE_CLASS__TYPE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

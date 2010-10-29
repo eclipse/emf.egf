@@ -106,6 +106,7 @@ public class TypeAbstractClassItemProvider extends TypeItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(TypeAbstractClass.class)) {
+            case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
             case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
