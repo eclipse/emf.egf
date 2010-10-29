@@ -63,4 +63,8 @@ public class ModelEditorMessages {
 
     public static String _UI_InvokeCommand_description;
 
+    public static String _UI_TargetPlatformVersion_label;
+
+    public static String _UI_RuntimePlatformVersion_label;
+
 }
