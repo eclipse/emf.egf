@@ -23,7 +23,7 @@ import java.util.Map;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.egf.pattern.query.IQuery;
-import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
+import org.eclipse.egf.pattern.utils.RuntimeParameterTypeHelper;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
@@ -42,7 +42,7 @@ public class ContentQuery implements IQuery {
 
     public List<Object> execute(ParameterDescription parameter, Map<String, String> queryCtx, PatternContext context) {
         String type = parameter.getType();
-        Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
+        Object loadClass = RuntimeParameterTypeHelper.INSTANCE.loadClass(type);
         if (!(loadClass instanceof EClass))
             throw new IllegalStateException(EGFPatternMessages.query_error1);
 
