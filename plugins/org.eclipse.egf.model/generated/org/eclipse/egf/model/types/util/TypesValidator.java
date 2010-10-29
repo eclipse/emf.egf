@@ -22,6 +22,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
@@ -49,6 +50,7 @@ import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypeURI;
+import org.eclipse.egf.model.types.TypesException;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -231,6 +233,8 @@ public class TypesValidator extends EObjectValidator {
                 return validateCollection((Collection<?>) value, diagnostics, context);
             case TypesPackage.URI:
                 return validateURI((URI) value, diagnostics, context);
+            case TypesPackage.TYPES_EXCEPTION:
+                return validateTypesException((TypesException) value, diagnostics, context);
             default:
                 return true;
         }
@@ -331,6 +335,8 @@ public class TypesValidator extends EObjectValidator {
             result &= validateTypeAbstractClass_LoadableType(typeAbstractClass, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeAbstractClass_ValidValue(typeAbstractClass, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateTypeAbstractClass_ValidInstance(typeAbstractClass, diagnostics, context);
         return result;
     }
 
@@ -350,7 +356,7 @@ public class TypesValidator extends EObjectValidator {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
                         new Object[] {
-                                "LoadableType", getObjectLabel(typeAbstractClass, context), NLS.bind("Unable to load ''{0}''", typeAbstractClass.getValue())}, //$NON-NLS-1$ //$NON-NLS-2$
+                                "LoadableType", getObjectLabel(typeAbstractClass, context), NLS.bind("Unable to load Value ''{0}''", typeAbstractClass.getValue())}, //$NON-NLS-1$ //$NON-NLS-2$
                         new Object[] {
                             typeAbstractClass
                         }, context));
@@ -371,6 +377,7 @@ public class TypesValidator extends EObjectValidator {
         if (typeAbstractClass.getValue() == null || context == null || context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
             return true;
         }
+        // Type and value are the same
         if (typeAbstractClass instanceof TypeClass) {
             return true;
         }
@@ -379,7 +386,32 @@ public class TypesValidator extends EObjectValidator {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
                         new Object[] {
-                                "ValidValue", getObjectLabel(typeAbstractClass, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", typeAbstractClass.getType().getName(), typeAbstractClass.getValue())}, //$NON-NLS-1$ //$NON-NLS-2$
+                                "ValidValue", getObjectLabel(typeAbstractClass, context), NLS.bind("Type and Value mismatch ''{0}'' with ''{1}''", typeAbstractClass.getType().getName(), typeAbstractClass.getValue())}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            typeAbstractClass
+                        }, context));
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Validates the ValidInstance constraint of '<em>Type Abstract Class</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean validateTypeAbstractClass_ValidInstance(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (typeAbstractClass.getInstance() == null || typeAbstractClass.getValue() == null) {
+            return true;
+        }
+        // Valid Instance
+        if (ClassHelper.isSubClass(typeAbstractClass.getInstance().getClass(), typeAbstractClass.getType()) == false) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "ValidInstance", getObjectLabel(typeAbstractClass, context), NLS.bind("Type and Instance mismatch ''{0}'' with ''{1}''", typeAbstractClass.getType().getName(), typeAbstractClass.getInstance().getClass().getName())}, //$NON-NLS-1$ //$NON-NLS-2$
                         new Object[] {
                             typeAbstractClass
                         }, context));
@@ -414,6 +446,8 @@ public class TypesValidator extends EObjectValidator {
             result &= validateTypeAbstractClass_LoadableType(typeCollection, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeAbstractClass_ValidValue(typeCollection, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateTypeAbstractClass_ValidInstance(typeCollection, diagnostics, context);
         return result;
     }
 
@@ -442,6 +476,8 @@ public class TypesValidator extends EObjectValidator {
             result &= validateTypeAbstractClass_LoadableType(typeList, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeAbstractClass_ValidValue(typeList, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateTypeAbstractClass_ValidInstance(typeList, diagnostics, context);
         return result;
     }
 
@@ -470,6 +506,8 @@ public class TypesValidator extends EObjectValidator {
             result &= validateTypeAbstractClass_LoadableType(typeSet, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeAbstractClass_ValidValue(typeSet, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateTypeAbstractClass_ValidInstance(typeSet, diagnostics, context);
         return result;
     }
 
@@ -498,6 +536,8 @@ public class TypesValidator extends EObjectValidator {
             result &= validateTypeAbstractClass_LoadableType(typeClass, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeAbstractClass_ValidValue(typeClass, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateTypeAbstractClass_ValidInstance(typeClass, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeClass_MandatoryValue(typeClass, diagnostics, context);
         return result;
@@ -550,6 +590,8 @@ public class TypesValidator extends EObjectValidator {
             result &= validateTypeAbstractClass_LoadableType(typeMap, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateTypeAbstractClass_ValidValue(typeMap, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateTypeAbstractClass_ValidInstance(typeMap, diagnostics, context);
         return result;
     }
 
@@ -909,7 +951,7 @@ public class TypesValidator extends EObjectValidator {
         InputStream inputStream = null;
         // Try to open an InputStream
         try {
-            inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
+            inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
         } catch (IOException exception) {
             valid = false;
         }
@@ -936,6 +978,15 @@ public class TypesValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateURI(URI uri, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return true;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateTypesException(TypesException typesException, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return true;
     }
 
