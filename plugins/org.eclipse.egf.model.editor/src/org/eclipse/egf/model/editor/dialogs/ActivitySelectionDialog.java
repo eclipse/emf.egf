@@ -21,7 +21,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
@@ -29,6 +31,7 @@ import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.dialogs.AbstractFilteredItemsSelectionDialog;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
+import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
@@ -38,8 +41,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -50,7 +53,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -64,13 +72,25 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
 
     private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
 
+    private Button _targetButton;
+
+    private Button _runtimeButton;
+
+    private boolean _hasRuntimeSupport;
+
+    private boolean _isTargetPlatformVersion;
+
     private Activity _activity;
 
-    private EditingDomain _editingDomain;
+    private ResourceSet _resourceSet;
 
     private ComposedAdapterFactory _adapterFactory;
 
-    private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
+    private IPlatformFcore[] _content = null;
+
+    private IPlatformFcore[] _targetFcores = EGFCorePlugin.getTargetPlatformFcores();
+
+    private IPlatformFcore[] _runtimeFcores = EGFCorePlugin.getRuntimePlatformFcores();
 
     /**
      * <code>ActivitySelectionHistory</code> provides behavior specific to
@@ -78,6 +98,8 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
      * to/from XML (memento).
      */
     private class ActivitySelectionHistory extends SelectionHistory {
+
+        private static final String TAG_TARGET_PLATFORM = "target"; //$NON-NLS-1$
 
         private static final String TAG_URI = "path"; //$NON-NLS-1$
 
@@ -87,26 +109,37 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
 
         @Override
         protected Object restoreItemFromMemento(IMemento memento) {
-            // Restore
-            String tag = memento.getString(TAG_URI);
-            if (tag == null) {
+            // Memento analysis
+            String tagURI = memento.getString(TAG_URI);
+            // Nothing to restore
+            if (tagURI == null) {
                 return null;
             }
+            Boolean tagMode = memento.getBoolean(TAG_TARGET_PLATFORM);
+            // Nothing to restore
+            if (tagMode == null) {
+                return null;
+            }
+            // Update mode
+            if (_hasRuntimeSupport) {
+                _isTargetPlatformVersion = tagMode;
+                _targetButton.setSelection(_isTargetPlatformVersion);
+                _runtimeButton.setSelection(_isTargetPlatformVersion == false);
+                updateMode();
+            }
             try {
-                _activity = (Activity) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
+                Activity activity = (Activity) _resourceSet.getEObject(URI.createURI(tagURI), true);
                 // Check whether or not this activity belongs to our fcores
-                IPlatformFcore fcore = ((IPlatformFcoreProvider) _activity.eResource()).getIPlatformFcore();
+                IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
                 if (fcore != null) {
-                    for (IPlatformFcore innerFcore : _fcores) {
+                    for (IPlatformFcore innerFcore : _content) {
                         if (innerFcore.equals(fcore)) {
-                            return _activity;
+                            return activity;
                         }
                     }
                 }
             } catch (Exception e) {
                 // Just ignore, a retrieved activity could have been deleted,
-            } finally {
-                _activity = null;
             }
             return null;
         }
@@ -114,6 +147,11 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
         @Override
         protected void storeItemToMemento(Object item, IMemento element) {
             // Save
+            if (_hasRuntimeSupport) {
+                element.putString(TAG_TARGET_PLATFORM, Boolean.toString(_isTargetPlatformVersion));
+            } else {
+                element.putString(TAG_TARGET_PLATFORM, Boolean.toString(true));
+            }
             if (getReturnCode() == OK) {
                 Object[] items = getHistoryItems();
                 for (int i = 0; i < items.length; i++) {
@@ -153,7 +191,7 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
             if (super.isSubFilter(filter) == false) {
                 return false;
             }
-            if (filter instanceof ActivitySearchItemsFilter) {
+            if (filter instanceof ActivitySearchItemsFilter && filter == this) {
                 return true;
             }
             return false;
@@ -164,7 +202,7 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
             if (super.equalsFilter(filter) == false) {
                 return false;
             }
-            if (filter instanceof ActivitySearchItemsFilter) {
+            if (filter instanceof ActivitySearchItemsFilter && filter == this) {
                 return true;
             }
             return false;
@@ -276,13 +314,18 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
                 return _adapterFactoryLabelProvider.getText(activity);
             }
             // Retrieve Fcore
-            IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
+            IPlatformFcore fcore = null;
+            if (activity.eResource() instanceof IPlatformFcoreProvider) {
+                fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
+            }
             if (fcore == null) {
                 return _adapterFactoryLabelProvider.getText(activity);
             }
             StringBuffer buffer = new StringBuffer();
-            if (fcore.getPlatformBundle().isTarget()) {
+            if (fcore.isTarget()) {
                 buffer.append(" [Target]"); //$NON-NLS-1$
+            } else if (fcore.isRuntime()) {
+                buffer.append(" [Runtime]"); //$NON-NLS-1$                
             } else {
                 buffer.append(" [Workspace]"); //$NON-NLS-1$
             }
@@ -313,10 +356,14 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
 
     }
 
+    public ActivitySelectionDialog(Shell shell, boolean multipleSelection) {
+        this(shell, (Activity) null, multipleSelection);
+    }
+
     public ActivitySelectionDialog(Shell shell, IPlatformFcore fcore, boolean multipleSelection) {
         this(shell, multipleSelection);
         if (fcore != null) {
-            _fcores = new IPlatformFcore[] {
+            _targetFcores = new IPlatformFcore[] {
                 fcore
             };
             setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
@@ -324,11 +371,16 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
     }
 
     public ActivitySelectionDialog(Shell shell, Activity activity, boolean multipleSelection) {
+        this(shell, activity, multipleSelection, false);
+    }
+
+    public ActivitySelectionDialog(Shell shell, Activity activity, boolean multipleSelection, boolean runtime) {
         super(shell, multipleSelection);
-        // Retrieve our EditingDomain
-        _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+        // Default ResourceSet
+        _resourceSet = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID).getResourceSet();
+        _content = _targetFcores;
         if (activity != null) {
-            _activity = (Activity) _editingDomain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true);
+            _activity = (Activity) _resourceSet.getEObject(EcoreUtil.getURI(activity), true);
         }
         // Create an adapter factory that yields item providers.
         _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
@@ -336,22 +388,19 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
         _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
         _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
         _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-        setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Activity.class.getSimpleName()));
-        setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Activity.class.getSimpleName()));
+        _hasRuntimeSupport = runtime;
         setListLabelProvider(getLabelProvider());
         setListSelectionLabelDecorator(getSelectionLabelProvider());
         setDetailsLabelProvider(getDetailsLabelProvider());
         setSelectionHistory(new ActivitySelectionHistory());
-        if (_activity != null && _activity.eResource() != null) {
+        setTitle(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogTitle, Activity.class.getSimpleName()));
+        setMessage(NLS.bind(CoreUIMessages._UI_GenericSelectionDialog_dialogMessage, Activity.class.getSimpleName()));
+        if (_activity != null && _activity.eResource() != null && _activity.eResource() instanceof IPlatformFcoreProvider) {
             IPlatformFcore fcore = ((IPlatformFcoreProvider) _activity.eResource()).getIPlatformFcore();
             setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
         } else {
             setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
         }
-    }
-
-    public ActivitySelectionDialog(Shell shell, boolean multipleSelection) {
-        this(shell, (Activity) null, multipleSelection);
     }
 
     /**
@@ -419,7 +468,48 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
 
     @Override
     protected Control createExtendedContentArea(Composite parent) {
-        return null;
+        if (_hasRuntimeSupport) {
+            Composite buttonGroup = new Composite(parent, SWT.NONE);
+            GridLayout layout = new GridLayout();
+            layout.numColumns = 2;
+            buttonGroup.setLayout(layout);
+            _targetButton = new Button(buttonGroup, SWT.RADIO);
+            _targetButton.addSelectionListener(new SelectionAdapter() {
+
+                @Override
+                public void widgetSelected(SelectionEvent event) {
+                    _isTargetPlatformVersion = _targetButton.getSelection();
+                    updateMode();
+                    SelectionHistory history = getSelectionHistory();
+                    if (history != null) {
+                        for (Object object : history.getHistoryItems()) {
+                            history.remove(object);
+                        }
+                    }
+                    applyFilter();
+                }
+
+            });
+            _targetButton.setText(ModelEditorMessages._UI_TargetPlatformVersion_label);
+            _targetButton.setSelection(true);
+            _isTargetPlatformVersion = true;
+            _runtimeButton = new Button(buttonGroup, SWT.RADIO);
+            _runtimeButton.setText(ModelEditorMessages._UI_RuntimePlatformVersion_label);
+            _runtimeButton.setSelection(false);
+        }
+        return parent;
+    }
+
+    protected void updateMode() {
+        if (_isTargetPlatformVersion) {
+            _resourceSet = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID).getResourceSet();
+            _content = _targetFcores;
+            setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+        } else {
+            _resourceSet = new RuntimePlatformResourceSet();
+            _content = _runtimeFcores;
+            setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_runtimeSeparatorLabel);
+        }
     }
 
     @Override
@@ -428,14 +518,15 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
     }
 
     @Override
-    protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
+    protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor monitor) throws CoreException {
+        SubMonitor innerMonitor = SubMonitor.convert(monitor, null, _content.length * 100);
         try {
-            for (IPlatformFcore fc : _fcores) {
+            for (IPlatformFcore fcore : _content) {
                 // Load Fcore
                 Resource resource = null;
                 try {
                     // Retrieve the in-memory resource if any or load it from disk
-                    resource = _editingDomain.getResourceSet().getResource(fc.getURI(), true);
+                    resource = _resourceSet.getResource(fcore.getURI(), true);
                 } catch (OperationCanceledException e) {
                     return;
                 } catch (Exception e) {
@@ -463,12 +554,10 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
                         continue;
                     }
                 }
-                progressMonitor.worked(1);
+                innerMonitor.worked(100);
             }
         } catch (OperationCanceledException e) {
             return;
-        } finally {
-            progressMonitor.done();
         }
     }
 
