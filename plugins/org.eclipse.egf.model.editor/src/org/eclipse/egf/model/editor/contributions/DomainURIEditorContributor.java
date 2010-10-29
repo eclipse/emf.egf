@@ -18,7 +18,7 @@ package org.eclipse.egf.model.editor.contributions;
 import java.util.List;
 
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
-import org.eclipse.egf.core.ui.dialogs.LoadEcoreDialog;
+import org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreDialog;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
@@ -55,7 +55,7 @@ public class DomainURIEditorContributor extends DefaultPropertyEditorContributor
 
             @Override
             protected Object openDialogBox(Control control) {
-                LoadEcoreDialog dialog = new LoadEcoreDialog(control.getShell(), editingDomain, false, true, false, true, true) {
+                TargetPlatformEcoreDialog dialog = new TargetPlatformEcoreDialog(control.getShell(), false, true, false, true, true) {
 
                     @Override
                     protected Control createDialogArea(Composite parent) {
