@@ -1,4 +1,4 @@
-package fcore.builder.patterns;
+package PACKAGE;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,9 +28,9 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.core.resources.*;
 import org.eclipse.egf.core.domain.*;
 
-public class ModelGenmodelPattern {
+public class CLASS {
 
-	public ModelGenmodelPattern() {
+	public CLASS() {
 		//Here is the constructor
 	}
 

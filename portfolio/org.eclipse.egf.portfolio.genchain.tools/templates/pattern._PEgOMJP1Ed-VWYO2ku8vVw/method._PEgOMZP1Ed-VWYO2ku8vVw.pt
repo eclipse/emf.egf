@@ -1,4 +1,4 @@
-package fcore.builder.patterns;
+package PACKAGE;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,9 +16,9 @@ import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
 import org.eclipse.egf.portfolio.genchain.tools.utils.FCMatcher;
 
 
-public class GenerationChainPattern {
+public class CLASS {
 
-	public GenerationChainPattern() {
+	public CLASS() {
 		//Here is the constructor
 	}
 

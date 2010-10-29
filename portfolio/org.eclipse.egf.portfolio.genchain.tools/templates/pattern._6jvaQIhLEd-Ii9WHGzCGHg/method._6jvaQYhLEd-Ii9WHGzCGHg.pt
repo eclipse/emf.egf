@@ -1,4 +1,4 @@
-package fcore.builder.patterns;
+package PACKAGE;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +14,9 @@ import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
 import org.eclipse.egf.portfolio.genchain.tools.utils.DocumentationHelper;
 
 
-public class DocumentationPattern {
+public class CLASS {
 
-	public DocumentationPattern() {
+	public CLASS() {
 		//Here is the constructor
 	}
 

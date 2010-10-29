@@ -1,4 +1,4 @@
-		ResourceSet resourceSet = new EGFResourceSet();
+		ResourceSet resourceSet = new TargetPlatformResourceSet();
 		Resource resource = null;
 		
 		IPath ecorePath = new Path(parameter.getModelPath());
