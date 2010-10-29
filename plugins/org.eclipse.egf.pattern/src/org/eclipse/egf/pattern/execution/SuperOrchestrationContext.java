@@ -26,6 +26,8 @@ import org.osgi.framework.Bundle;
 public class SuperOrchestrationContext implements InternalPatternContext {
 
     private final InternalPatternContext delegate;
+
+    @SuppressWarnings("unused")
     private int index;
 
     public SuperOrchestrationContext(InternalPatternContext delegate) {
@@ -82,4 +84,5 @@ public class SuperOrchestrationContext implements InternalPatternContext {
     public StringBuffer getExecutionBuffer() {
         return delegate.getExecutionBuffer();
     }
+
 }
