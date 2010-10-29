@@ -196,7 +196,9 @@ public class TargetPlatformEcoreDialog extends ResourceDialog {
                         }
                         URI location = ePackageNsURItoGenModelLocationMap.get(result[i].getURI());
                         Resource resource = resourceSet.getResource(location, true);
-                        EcoreUtil.resolveAll(resource);
+                        if (resource != null) {
+                            EcoreUtil.resolveAll(resource);
+                        }
                     }
                     for (Resource resource : resourceSet.getResources()) {
                         LOOP: for (EPackage ePackage : EMFHelper.getAllPackages(resource)) {
