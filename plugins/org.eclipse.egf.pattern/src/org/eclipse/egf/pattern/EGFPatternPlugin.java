@@ -20,7 +20,6 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.model.pattern.PatternNature;
-import org.eclipse.egf.pattern.ecore.EPackageHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.internal.registry.PatternExtensionRegistry;
 import org.osgi.framework.BundleContext;
@@ -39,10 +38,6 @@ public class EGFPatternPlugin extends EGFAbstractPlugin {
 
     // The shared instance
     private static EGFPatternPlugin __plugin;
-
-    public static EPackageHelper getEPackageHelper() {
-        return EPackageHelper.getInstance();
-    }
 
     /**
      * Returns known PatternNatures
@@ -107,7 +102,6 @@ public class EGFPatternPlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        getEPackageHelper().dispose();
         if (__patternExtensionRegistry != null) {
             __patternExtensionRegistry.dispose();
             __patternExtensionRegistry = null;
