@@ -21,7 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.ui.dialogs.LoadEcoreDialog;
+import org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreDialog;
 import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -38,14 +38,14 @@ import org.eclipse.ui.PlatformUI;
 /**
  * This is the action bar contributor for the Ecore model editor.
  */
-public class EGFEcoreActionBarContributor extends EcoreActionBarContributor {
+public class TargetPlatformEcoreActionBarContributor extends EcoreActionBarContributor {
 
-    public static class EGFExtendedLoadResourceAction extends LoadResourceAction {
+    public static class ExtendedTargetPlatformLoadResourceAction extends LoadResourceAction {
 
         @Override
         public void run() {
             Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-            EGFExtendedLoadResourceDialog loadResourceDialog = new EGFExtendedLoadResourceDialog(shell, domain);
+            ExtendedTargetPlatformEcoreDialog loadResourceDialog = new ExtendedTargetPlatformEcoreDialog(shell, domain);
             if (loadResourceDialog.open() == Window.OK && loadResourceDialog.getRegisteredPackages().isEmpty() == false) {
                 String source = EcoreEditorPlugin.INSTANCE.getSymbolicName();
                 BasicDiagnostic diagnosic = new BasicDiagnostic(Diagnostic.INFO, source, 0, EcoreEditorPlugin.INSTANCE.getString("_UI_RuntimePackageDetail_message"), null); //$NON-NLS-1$
@@ -58,11 +58,11 @@ public class EGFEcoreActionBarContributor extends EcoreActionBarContributor {
 
     }
 
-    public static class EGFExtendedLoadResourceDialog extends LoadEcoreDialog {
+    public static class ExtendedTargetPlatformEcoreDialog extends TargetPlatformEcoreDialog {
 
         protected Set<EPackage> registeredPackages = new LinkedHashSet<EPackage>();
 
-        public EGFExtendedLoadResourceDialog(Shell parent, EditingDomain domain) {
+        public ExtendedTargetPlatformEcoreDialog(Shell parent, EditingDomain domain) {
             super(parent, domain);
         }
 
@@ -73,9 +73,11 @@ public class EGFEcoreActionBarContributor extends EcoreActionBarContributor {
             ResourceSet resourceSet = _domain.getResourceSet();
             if (resourceSet.getResources().contains(resource) == false) {
                 Registry packageRegistry = resourceSet.getPackageRegistry();
-                for (EPackage ePackage : EMFHelper.getAllPackages(resource)) {
-                    packageRegistry.put(ePackage.getNsURI(), ePackage);
-                    registeredPackages.add(ePackage);
+                if (packageRegistry != null) {
+                    for (EPackage ePackage : EMFHelper.getAllPackages(resource)) {
+                        packageRegistry.put(ePackage.getNsURI(), ePackage);
+                        registeredPackages.add(ePackage);
+                    }
                 }
             }
             return true;
@@ -89,9 +91,9 @@ public class EGFEcoreActionBarContributor extends EcoreActionBarContributor {
     /**
      * This creates an instance of the contributor.
      */
-    public EGFEcoreActionBarContributor() {
+    public TargetPlatformEcoreActionBarContributor() {
         super();
-        loadResourceAction = new EGFExtendedLoadResourceAction();
+        loadResourceAction = new ExtendedTargetPlatformLoadResourceAction();
     }
 
 }

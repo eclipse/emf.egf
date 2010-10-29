@@ -39,7 +39,7 @@ import org.eclipse.ui.IEditorSite;
  * This is an example of a target platform Ecore model editor.
  * 
  */
-public class EGFEcoreEditor extends EcoreEditor implements IPluginModelListener {
+public class TargetPlatformEcoreEditor extends EcoreEditor implements IPluginModelListener {
 
     /**
      * This is called during startup.
@@ -96,7 +96,7 @@ public class EGFEcoreEditor extends EcoreEditor implements IPluginModelListener 
                 public void run() {
                     removedResources.addAll(innerRemovedResources);
                     if (isDirty() == false) {
-                        getSite().getPage().closeEditor(EGFEcoreEditor.this, false);
+                        getSite().getPage().closeEditor(TargetPlatformEcoreEditor.this, false);
                     }
                 }
 
@@ -113,7 +113,7 @@ public class EGFEcoreEditor extends EcoreEditor implements IPluginModelListener 
             for (Iterator<EObject> i = editingDomain.getResourceSet().getResources().get(0).getAllContents(); i.hasNext();) {
                 EObject eObject = i.next();
                 if (eObject instanceof ETypeParameter || eObject instanceof EGenericType && ((EGenericType) eObject).getETypeArguments().isEmpty() == false) {
-                    ((EGFEcoreActionBarContributor) getActionBarContributor()).showGenerics(true);
+                    ((TargetPlatformEcoreActionBarContributor) getActionBarContributor()).showGenerics(true);
                     break;
                 }
             }
@@ -129,7 +129,7 @@ public class EGFEcoreEditor extends EcoreEditor implements IPluginModelListener 
         super.initializeEditingDomain();
         // Create the editing domain with a special command stack.
         //
-        editingDomain = new EGFAdapterFactoryEditingDomain(editingDomain.getAdapterFactory(), editingDomain.getCommandStack(), new HashMap<Resource, Boolean>());
+        editingDomain = new TargetPlatformAdapterFactoryEditingDomain(editingDomain.getAdapterFactory(), editingDomain.getCommandStack(), new HashMap<Resource, Boolean>());
     }
 
 }

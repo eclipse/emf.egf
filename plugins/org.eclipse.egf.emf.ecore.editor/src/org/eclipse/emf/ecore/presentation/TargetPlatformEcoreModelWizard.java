@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -45,7 +44,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * @author Xavier Maysonnave
  * 
  */
-public class EGFEcoreModelWizard extends EcoreModelWizard {
+public class TargetPlatformEcoreModelWizard extends EcoreModelWizard {
 
     /**
      * Do the work after everything is specified.
@@ -67,7 +66,7 @@ public class EGFEcoreModelWizard extends EcoreModelWizard {
                         // Create a resource set
                         //
                         ResourceSet resourceSet = new ResourceSetImpl();
-                        resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
+                        resourceSet.setURIConverter(EGFCorePlugin.getTargetPlatformURIConverter());
 
                         // Get the URI of the model file.
                         //
@@ -117,8 +116,7 @@ public class EGFEcoreModelWizard extends EcoreModelWizard {
             // Open an editor on the new file.
             //
             try {
-                IEditorDescriptor defaultEditor = workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString());
-                page.openEditor(new FileEditorInput(modelFile), defaultEditor == null ? "org.eclipse.emf.ecore.presentation.EGFEcoreEditorID" : defaultEditor.getId()); //$NON-NLS-1$
+                page.openEditor(new FileEditorInput(modelFile), "org.eclipse.emf.ecore.presentation.TargetPlatformEcoreEditorID"); //$NON-NLS-1$
             } catch (PartInitException exception) {
                 MessageDialog.openError(workbenchWindow.getShell(), EcoreEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage()); //$NON-NLS-1$
                 return false;
