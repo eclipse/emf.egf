@@ -95,7 +95,7 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
     }
     // TODO: We should handle relative path to its fcore resource
     try {
-      InputStream inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
+      InputStream inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
       inputStream.close();
     } catch (IOException ioe) {
       Activator.getDefault().logError(NLS.bind("Unable to locate URI ''{0}''", uri), ioe); //$NON-NLS-1$
