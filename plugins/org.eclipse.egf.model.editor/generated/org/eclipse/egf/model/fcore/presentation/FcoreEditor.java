@@ -38,9 +38,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
@@ -744,7 +744,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      */
     protected void handleChangedResource() {
         if (isDirty() == false || handleDirtyConflict()) {
-            EGFResourceLoadedListener.getResourceManager().reloadResource(getResource());
+            TargetPlatformResourceLoadedListener.getResourceManager().reloadResource(getResource());
         }
     }
 
@@ -1119,7 +1119,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             exception = e;
             resource = editingDomain.getResourceSet().getResource(uri, false);
         }
-        resourceHasBeenExternallyChanged = EGFResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(resource);
+        resourceHasBeenExternallyChanged = TargetPlatformResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(resource);
         Diagnostic diagnostic = ResourceHelper.analyzeResourceProblems(resource, exception, ID);
         if (diagnostic.getSeverity() != Diagnostic.OK) {
             resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
@@ -1449,7 +1449,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         if (getEditorInput() == null) {
             return super.getTitleToolTip();
         }
-        return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI()).toString();
+        return EGFCorePlugin.getTargetPlatformURIConverter().normalize(getResource().getURI()).toString();
     }
 
     /**
@@ -1665,9 +1665,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         site.setSelectionProvider(this);
         site.getPage().addPartListener(partListener);
         createModel();
-        EGFResourceLoadedListener.getResourceManager().addObserver(this);
+        TargetPlatformResourceLoadedListener.getResourceManager().addObserver(this);
         // populate operation history if applicable
-        EGFResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
+        TargetPlatformResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
     }
 
     /**
@@ -1869,7 +1869,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         getOperationHistory().dispose(getUndoContext(), true, true, true);
 
         // Remove observer
-        EGFResourceLoadedListener.getResourceManager().removeObserver(this);
+        TargetPlatformResourceLoadedListener.getResourceManager().removeObserver(this);
 
         // Remove our adapters
         editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
