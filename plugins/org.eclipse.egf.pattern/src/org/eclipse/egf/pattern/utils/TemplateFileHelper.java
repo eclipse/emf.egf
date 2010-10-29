@@ -87,7 +87,7 @@ public class TemplateFileHelper {
             return getFileContent(file);
         }
         URI uri = URIHelper.getPlatformPluginURI(pluginId, templatePath.toPortableString(), false);
-        return getContent(EGFCorePlugin.getPlatformURIConverter().createInputStream(uri));
+        return getContent(EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri));
     }
 
     /**
