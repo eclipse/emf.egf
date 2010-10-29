@@ -88,7 +88,7 @@ public interface IQuery {
 
         public List<QueryKind> getAvailableQueries() {
             List<QueryKind> queries = new ArrayList<QueryKind>(50);
-            for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
+            for (QueryKind kind : EGFPlatformPlugin.getTargetPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
                 queries.add(kind);
             }
             return queries;
@@ -97,7 +97,7 @@ public interface IQuery {
         public String getQueryClassName(String queryID) throws PatternException {
             if (queryID == null || "".equals(queryID)) //$NON-NLS-1$
                 throw new PatternException(EGFPatternMessages.query_error2);
-            for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
+            for (QueryKind kind : EGFPlatformPlugin.getTargetPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
                 if (queryID.equals(kind.getId())) {
                     if (kind.getClassName() == null || "".equals(kind.getClassName())) //$NON-NLS-1$
                         throw new PatternException(EGFPatternMessages.query_error5);
