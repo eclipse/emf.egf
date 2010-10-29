@@ -22,11 +22,13 @@ import org.eclipse.emf.ecore.EClass;
  *
  */
 public class EMFPatternHelper {
+
     public static boolean isSameEClass(EClass eClass1, EClass eClass2) {
         return getURI(eClass1).equals(getURI(eClass2));
     }
 
     public static String getURI(EClass eClass) {
-        return eClass.getEPackage().getNsURI() + "#" + eClass.getName();
+        return eClass.getEPackage().getNsURI() + "#" + eClass.getName(); //$NON-NLS-1$
     }
+
 }
