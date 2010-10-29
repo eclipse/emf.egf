@@ -14,6 +14,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.egf.core.test.factorycomponent.ContextFactoryComponent;
+import org.eclipse.egf.core.test.loader.ContextLoader;
 import org.eclipse.egf.core.test.model.validation.ModelValidation;
 import org.eclipse.egf.core.test.task.ContextTask;
 
@@ -23,15 +24,19 @@ import org.eclipse.egf.core.test.task.ContextTask;
  */
 public class AllTests {
 
-  public static Test suite() {
-    TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
+    public static Test suite() {
 
-    new ModelTestHelper().addModelTest(suite);
+        TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
 
-    suite.addTest(ModelValidation.suite());
-    suite.addTest(ContextFactoryComponent.suite());
-    suite.addTest(ContextTask.suite());
+        new ModelTestHelper().addModelTest(suite);
 
-    return suite;
-  }
+        suite.addTest(ModelValidation.suite());
+        suite.addTest(ContextFactoryComponent.suite());
+        suite.addTest(ContextTask.suite());
+        suite.addTest(ContextLoader.suite());
+
+        return suite;
+
+    }
+
 }

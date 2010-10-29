@@ -8,21 +8,23 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.factorycomponent;
+package org.eclipse.egf.core.test.loader;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.factorycomponent.memory.ContextFactoryComponentMemory;
-import org.eclipse.egf.core.test.factorycomponent.resource.ContextFactoryComponentResource;
+import org.eclipse.egf.core.test.loader.common.ContextJavaLoaderCommon;
+import org.eclipse.egf.core.test.loader.platform.ContextLoaderWorkspaceBundle;
+import org.eclipse.egf.core.test.loader.platform.ContextLoaderTargetBundle;
 
-public class ContextFactoryComponent extends TestCase {
+public class ContextLoader extends TestCase {
 
     public static Test suite() {
-        TestSuite suite = new TestSuite("EGF Core Context FactoryComponent Test Suite"); //$NON-NLS-1$
-        suite.addTest(ContextFactoryComponentMemory.suite());
-        suite.addTest(ContextFactoryComponentResource.suite());
+        TestSuite suite = new TestSuite("EGF Core Loader Test Suite"); //$NON-NLS-1$
+        suite.addTest(ContextJavaLoaderCommon.suite());
+        suite.addTest(ContextLoaderWorkspaceBundle.suite());
+        suite.addTest(ContextLoaderTargetBundle.suite());
         return suite;
     }
 

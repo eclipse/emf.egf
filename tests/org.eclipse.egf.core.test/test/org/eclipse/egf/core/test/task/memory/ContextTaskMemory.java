@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.context.task.memory;
+package org.eclipse.egf.core.test.task.memory;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -17,6 +17,7 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
+import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
@@ -34,14 +35,26 @@ import org.eclipse.egf.producer.ftask.manager.TaskManagerFactory;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.emf.codegen.merge.java.JMerger;
+import org.osgi.framework.Bundle;
 
 public class ContextTaskMemory extends TestCase {
+
+    private Bundle _bundle;
 
     public static Test suite() {
         return new TestSuite(ContextTaskMemory.class);
     }
 
+    @Override
+    protected void setUp() throws Exception {
+        assertNotNull(EGFCoreTestPlugin.getDefault());
+        _bundle = EGFCoreTestPlugin.getDefault().getBundle();
+        assertNotNull(_bundle);
+    }
+
     public void testContractH1() throws Exception {
+
+        WorkspaceHelper.closeWorkspaceProjects();
 
         Task task = FtaskFactory.eINSTANCE.createTask();
         task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
@@ -49,7 +62,7 @@ public class ContextTaskMemory extends TestCase {
 
         ActivityManagerProducer<Task> producer = EGFProducerPlugin.getActivityManagerProducer(task);
 
-        IActivityManager<?> manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+        IActivityManager<?> manager = producer.createActivityManager(_bundle, task);
         try {
             manager.initializeContext();
             manager.invoke(new NullProgressMonitor());
@@ -74,6 +87,8 @@ public class ContextTaskMemory extends TestCase {
     }
 
     public void testOutputContractClassNotTheSameH1() throws Exception {
+
+        WorkspaceHelper.closeWorkspaceProjects();
 
         Task task = FtaskFactory.eINSTANCE.createTask();
         task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
@@ -129,7 +144,7 @@ public class ContextTaskMemory extends TestCase {
         // Beware, we use the test plugin bundle here, the manifest should
         // import the bundle who contains the task
         // Otherwise it will fail to load it
-        IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+        IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(_bundle, task);
 
         JMerger defaultValue = null;
 
@@ -154,4 +169,5 @@ public class ContextTaskMemory extends TestCase {
         assertNotSame(manager.getProductionContext().getOutputValue("jmerger", JMerger.class), defaultValue); //$NON-NLS-1$
 
     }
+
 }

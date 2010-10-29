@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.context.factorycomponent.resource;
+package org.eclipse.egf.core.test.factorycomponent.resource;
 
 import java.util.Collection;
 
@@ -17,10 +17,13 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
+import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.types.TypeFloat;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.FactoryComponentManagerFactory;
@@ -37,9 +40,19 @@ public class ContextFactoryComponentResource extends TestCase {
         return new TestSuite(ContextFactoryComponentResource.class);
     }
 
+    @Override
+    protected void setUp() throws Exception {
+        WorkspaceHelper.closeWorkspaceProjects();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        WorkspaceHelper.openWorkspaceProjects();
+    }
+
     public void testInvokeFC1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
 
         // Load Resource
@@ -50,13 +63,11 @@ public class ContextFactoryComponentResource extends TestCase {
         EObject eObject = resource.getContents().get(0);
         assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
 
-        // Invoke Activity
         Activity activity = (Activity) eObject;
 
+        // Invoke Activity        
         ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
-
         IActivityManager<Activity> manager = producer.createActivityManager(activity);
-
         try {
             manager.initializeContext();
             manager.invoke(new NullProgressMonitor());
@@ -76,9 +87,9 @@ public class ContextFactoryComponentResource extends TestCase {
 
     }
 
-    public void testContractFC1() throws Exception {
+    public void testDefaultContractFC1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
 
         // Load Resource
@@ -89,9 +100,9 @@ public class ContextFactoryComponentResource extends TestCase {
         EObject eObject = resource.getContents().get(0);
         assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
 
-        // Invoke FactoryComponent
         FactoryComponent fc = (FactoryComponent) eObject;
 
+        // Invoke FactoryComponent        
         IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(fc);
         try {
             manager.initializeContext();
@@ -116,10 +127,9 @@ public class ContextFactoryComponentResource extends TestCase {
 
     }
 
-    @SuppressWarnings("unchecked")
-    public void testContractList() throws Exception {
+    public void testContractFC1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
 
         // Load Resource
@@ -130,9 +140,55 @@ public class ContextFactoryComponentResource extends TestCase {
         EObject eObject = resource.getContents().get(0);
         assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
 
-        // Invoke FactoryComponent
         FactoryComponent fc = (FactoryComponent) eObject;
 
+        // Set price contract
+        Contract contract = fc.getContract("price"); //$NON-NLS-1$
+        // One should know the effective contract type
+        ((TypeFloat) contract.getType()).setValue(new Float(22.0));
+
+        // Invoke FactoryComponent        
+        IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(fc);
+        try {
+            manager.initializeContext();
+            manager.invoke(new NullProgressMonitor());
+        } catch (Exception e) {
+            EGFCoreTestPlugin.getDefault().logError(e);
+            fail(e.getMessage());
+            return;
+        } finally {
+            try {
+                manager.dispose();
+            } catch (Exception e) {
+                EGFCoreTestPlugin.getDefault().logError(e);
+                fail(e.getMessage());
+                return;
+            }
+        }
+
+        Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
+
+        assertEquals(new Float("220"), amount); //$NON-NLS-1$
+
+    }
+
+    @SuppressWarnings("unchecked")
+    public void testContractList() throws Exception {
+
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
+        URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
+
+        // Load Resource
+        Resource resource = resourceSet.getResource(uri, true);
+        assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
+
+        // Fetch FactoryComponent
+        EObject eObject = resource.getContents().get(0);
+        assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
+
+        FactoryComponent fc = (FactoryComponent) eObject;
+
+        // Invoke FactoryComponent        
         IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(fc);
         try {
             manager.initializeContext();

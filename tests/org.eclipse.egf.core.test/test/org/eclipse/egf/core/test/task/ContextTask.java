@@ -14,16 +14,16 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.context.task.memory.ContextTaskMemory;
-import org.eclipse.egf.core.test.context.task.resource.ContextTaskResource;
+import org.eclipse.egf.core.test.task.memory.ContextTaskMemory;
+import org.eclipse.egf.core.test.task.resource.ContextTaskResource;
 
 public class ContextTask extends TestCase {
 
-  public static Test suite() {
-    TestSuite suite = new TestSuite("EGF Core Context Task Test Suite"); //$NON-NLS-1$
-    suite.addTest(ContextTaskResource.suite());
-    suite.addTest(ContextTaskMemory.suite());
-    return suite;
-  }
+    public static Test suite() {
+        TestSuite suite = new TestSuite("EGF Core Context Task Test Suite"); //$NON-NLS-1$
+        suite.addTest(ContextTaskResource.suite());
+        suite.addTest(ContextTaskMemory.suite());
+        return suite;
+    }
 
 }

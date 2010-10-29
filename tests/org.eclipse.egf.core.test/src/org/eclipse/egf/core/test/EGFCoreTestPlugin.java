@@ -39,8 +39,8 @@ public class EGFCoreTestPlugin extends EGFAbstractPlugin {
    */
   @Override
   public void stop(BundleContext context) throws Exception {
+        super.stop(context);
     __plugin = null;
-    super.stop(context);
   }
 
   /**

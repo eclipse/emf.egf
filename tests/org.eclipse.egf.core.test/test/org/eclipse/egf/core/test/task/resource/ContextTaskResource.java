@@ -8,15 +8,16 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.context.task.resource;
+package org.eclipse.egf.core.test.task.resource;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
+import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.producer.EGFProducerPlugin;
@@ -36,9 +37,19 @@ public class ContextTaskResource extends TestCase {
         return new TestSuite(ContextTaskResource.class);
     }
 
+    @Override
+    protected void setUp() throws Exception {
+        WorkspaceHelper.closeWorkspaceProjects();
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        WorkspaceHelper.openWorkspaceProjects();
+    }
+
     public void testInvokeH1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore"); //$NON-NLS-1$
 
         // Load Resource
@@ -77,7 +88,7 @@ public class ContextTaskResource extends TestCase {
 
     public void testContractH1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore"); //$NON-NLS-1$
 
         // Load Resource
@@ -118,7 +129,7 @@ public class ContextTaskResource extends TestCase {
 
     public void testOutputContractClassNotTheSameH1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore"); //$NON-NLS-1$
 
         // Load Resource

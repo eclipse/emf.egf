@@ -8,15 +8,16 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.context.factorycomponent.memory;
+package org.eclipse.egf.core.test.factorycomponent.memory;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
+import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
@@ -39,16 +40,28 @@ import org.eclipse.egf.producer.manager.FactoryComponentManagerFactory;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.osgi.framework.Bundle;
 
 public class ContextFactoryComponentMemory extends TestCase {
+
+    private Bundle _bundle;
 
     public static Test suite() {
         return new TestSuite(ContextFactoryComponentMemory.class);
     }
 
+    @Override
+    protected void setUp() throws Exception {
+        assertNotNull(EGFCoreTestPlugin.getDefault());
+        _bundle = EGFCoreTestPlugin.getDefault().getBundle();
+        assertNotNull(_bundle);
+    }
+
     public void testInvokeFC1() throws Exception {
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        WorkspaceHelper.closeWorkspaceProjects();
+
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
 
         FactoryComponent fc = FcoreFactory.eINSTANCE.createFactoryComponent();
         fc.setName("FC1"); //$NON-NLS-1$
@@ -119,7 +132,7 @@ public class ContextFactoryComponentMemory extends TestCase {
 
         // Beware, we use the test plugin bundle here, the manifest should import the bundle who contains the task
         // Otherwise it will fail to load it
-        IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), fc);
+        IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(_bundle, fc);
 
         try {
             manager.initializeContext();
