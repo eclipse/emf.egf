@@ -21,7 +21,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -76,7 +76,7 @@ public class PatternHelper {
 
     public Map<String, PatternElement> getPatternElements(Set<String> ids) {
         List<PatternElement> result = new ArrayList<PatternElement>(200);
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getTargetPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
             try {
@@ -102,7 +102,7 @@ public class PatternHelper {
             ids = new HashSet<String>();
         }
         List<Pattern> result = new ArrayList<Pattern>();
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores(project);
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getWorkspaceTargetPlatformFcores(project);
         for (IPlatformFcore platformFcore : platformFcores) {
             collectPatterns(platformFcore.getURI(), ids, result);
         }
@@ -114,7 +114,7 @@ public class PatternHelper {
      */
     public List<Pattern> getAllPatterns() {
         List<Pattern> result = new ArrayList<Pattern>(200);
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getTargetPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
             try {
@@ -131,7 +131,7 @@ public class PatternHelper {
      */
     public List<PatternLibrary> getAllLibraries() {
         List<PatternLibrary> result = new ArrayList<PatternLibrary>(200);
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getTargetPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
             try {
@@ -190,7 +190,7 @@ public class PatternHelper {
     public static final PatternHelper TRANSACTIONNAL_COLLECTOR = new PatternHelper(TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID));
 
     public static final PatternHelper createCollector() {
-        return new PatternHelper(new EGFResourceSet());
+        return new PatternHelper(new TargetPlatformResourceSet());
     }
 
 }
