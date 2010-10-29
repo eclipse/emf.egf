@@ -29,7 +29,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.dev.Activator;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -56,8 +56,8 @@ public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
     public void run(IAction action) {
 
         final List<Pattern> patterns = new ArrayList<Pattern>(200);
-        final IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
-        final ResourceSet resourceSet = new EGFResourceSet();
+        final IPlatformFcore[] platformFcores = EGFCorePlugin.getTargetPlatformFcores();
+        final ResourceSet resourceSet = new TargetPlatformResourceSet();
         List<IProject> projects = new UniqueEList<IProject>();
 
         // Collect Patterns
