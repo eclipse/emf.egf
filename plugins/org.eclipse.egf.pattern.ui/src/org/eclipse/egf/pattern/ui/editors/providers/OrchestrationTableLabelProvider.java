@@ -65,27 +65,33 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
             PatternInjectedCall patternInjectedCall = (PatternInjectedCall) element;
             Pattern pattern = patternInjectedCall.getCalled();
             InjectedContext injectCtx = patternInjectedCall.getContext();
-            return (pattern == null ? "" : pattern.getName() + " -> " + injectCtx.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
+            return (pattern == null ? "" : pattern.getName() + " -> " + injectCtx.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$ //$NON-NLS-2$
         } else if (element instanceof SuperCall) {
-            return Messages.OrchestrationTableLabelProvider_SuperPatternCall; //$NON-NLS-1$
+            return Messages.OrchestrationTableLabelProvider_SuperPatternCall;
         } else if (element instanceof BackCall) {
-            return Messages.OrchestrationTableLabelProvider_BackCall; //$NON-NLS-1$
+            return Messages.OrchestrationTableLabelProvider_BackCall;
         }
         return ""; //$NON-NLS-1$
     }
 
+    @Override
     public void addListener(ILabelProviderListener listener) {
+        // Nothing to do
     }
 
+    @Override
     public void dispose() {
+        // Nothing to do
     }
 
+    @Override
     public boolean isLabelProperty(Object element, String property) {
-
         return false;
     }
 
+    @Override
     public void removeListener(ILabelProviderListener listener) {
+        // Nothing to do
     }
 
 }

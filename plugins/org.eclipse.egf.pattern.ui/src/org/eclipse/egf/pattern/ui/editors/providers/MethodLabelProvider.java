@@ -59,10 +59,12 @@ public class MethodLabelProvider extends LabelProvider implements ITableLabelPro
             PatternMethod patternMethod = (PatternMethod) element;
             return patternMethod.getName();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
+    @Override
     public String getText(Object element) {
         return getColumnText(element, 0);
     }
+
 }

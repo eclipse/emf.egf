@@ -35,7 +35,7 @@ public class ComboListLabelProvider implements ILabelProvider {
         if (element instanceof QueryKind) {
             return ((QueryKind) element).getName();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     public void addListener(ILabelProviderListener listener) {

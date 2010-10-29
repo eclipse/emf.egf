@@ -16,21 +16,23 @@
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.epackage.EObjectWrapper;
+import org.eclipse.egf.core.epackage.ERootWrapper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
-import org.eclipse.egf.core.ui.dialogs.EcoreSelectionDialog;
 import org.eclipse.egf.core.ui.dialogs.ISelectionDialogListener;
+import org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreSelectionDialog;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -58,28 +60,25 @@ public class ChooseTypePage extends WizardPage {
 
     private Object[] _selectedEcoreType;
 
-    private EcoreSelectionDialog _ecoreDialog;
+    private TargetPlatformEcoreSelectionDialog _ecoreDialog;
 
     private TypeSelectionDialog _typeDialog;
 
     private TabFolder _tabFolder;
 
-    private EditingDomain _editingDomain;
-
     private String _currentType;
 
     private IJavaProject _javaProject;
 
-    public ChooseTypePage(EditingDomain editingDomain, String currentType) {
+    public ChooseTypePage(String currentType) {
         super(Messages.ChooseTypePage_title);
         setTitle(Messages.ChooseTypePage_title);
         setDescription(Messages.ChooseTypePage_description);
-        _editingDomain = editingDomain;
         _currentType = currentType;
     }
 
-    public ChooseTypePage(EditingDomain editingDomain, String currentType, EObject current) {
-        this(editingDomain, currentType);
+    public ChooseTypePage(String currentType, EObject current) {
+        this(currentType);
         if (current != null) {
             // IJavaProject lookup
             _javaProject = EMFHelper.getJavaProject(current.eResource());
@@ -126,7 +125,8 @@ public class ChooseTypePage extends WizardPage {
             }
 
         });
-        _ecoreDialog = new EcoreSelectionDialog(container.getShell(), _editingDomain) {
+
+        _ecoreDialog = new TargetPlatformEcoreSelectionDialog(container.getShell()) {
 
             /*
              * (non-Javadoc)
@@ -147,9 +147,17 @@ public class ChooseTypePage extends WizardPage {
                 } else {
                     nsURI = NSURI_GENMODEL;
                 }
-                Resource resource = _editingDomain.getResourceSet().getResource(nsURI, true);
-                _ecoreTypeTreeViewer.setInput(resource.getContents());
-                _ecoreTypeTreeViewer.expandToLevel(2);
+                ERootWrapper root = EGFCorePlugin.getTargetPlatformERootWrapper(nsURI);
+                if (root != null) {
+                    _ecoreTypeTreeViewer.setInput(root);
+                    _ecoreTypeTreeViewer.expandToLevel(2);
+                    if (_currentType != null) {
+                        EObjectWrapper wrapper = root.getEObjectWrapper(URI.createURI(_currentType));
+                        if (wrapper != null) {
+                            _ecoreTypeTreeViewer.setSelection(new StructuredSelection(wrapper));
+                        }
+                    }
+                }
                 return content;
             }
 
@@ -165,6 +173,7 @@ public class ChooseTypePage extends WizardPage {
             }
 
         };
+
         _ecoreDialog.createPage(compositeEcore);
         _ecoreDialog.addSelectionListeners(new ISelectionDialogListener() {
 
@@ -174,6 +183,7 @@ public class ChooseTypePage extends WizardPage {
             }
 
         });
+
         ecoreTabItem.setControl(compositeEcore);
 
         TabItem typeTabItem = new TabItem(_tabFolder, SWT.NONE);
@@ -189,6 +199,7 @@ public class ChooseTypePage extends WizardPage {
             }
 
         });
+
         _typeDialog = new TypeSelectionDialog(container.getShell(), false, PlatformUI.getWorkbench().getProgressService(), _javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE) {
 
             @Override
@@ -203,6 +214,7 @@ public class ChooseTypePage extends WizardPage {
             }
 
         };
+
         _typeDialog.createPage(compositeType);
         _typeDialog.addSelectionListeners(new ISelectionDialogListener() {
 
@@ -212,6 +224,7 @@ public class ChooseTypePage extends WizardPage {
             }
 
         });
+
         typeTabItem.setControl(compositeType);
 
     }
@@ -231,7 +244,7 @@ public class ChooseTypePage extends WizardPage {
     }
 
     public Object getSelectedEcoreType() {
-        return isPageComplete() ? _selectedEcoreType[0] : null;
+        return isPageComplete() ? _selectedEcoreType != null && _selectedEcoreType.length > 0 ? _selectedEcoreType[0] : null : null;
     }
 
     @Override
@@ -240,7 +253,7 @@ public class ChooseTypePage extends WizardPage {
     }
 
     public Object getSelectedJavaType() {
-        return isPageComplete() ? _selectedJavaType[0] : null;
+        return isPageComplete() ? _selectedJavaType != null && _selectedJavaType.length > 0 ? _selectedJavaType[0] : null : null;
     }
 
     public boolean isInCoreTab() {

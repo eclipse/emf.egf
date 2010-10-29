@@ -18,9 +18,9 @@ import java.util.Map;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -395,7 +395,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
         super.init(site, editorInput);
         patternInWorkspace = ((PatternEditorInput) getEditorInput()).getFile() != null;
         pattern = ((PatternEditorInput) getEditorInput()).getPattern();
-        EGFResourceLoadedListener.getResourceManager().addObserver(this);
+        TargetPlatformResourceLoadedListener.getResourceManager().addObserver(this);
         addPatternChangeAdapter();
         setPartName(pattern.getName());
     }
@@ -406,7 +406,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart implements Resour
         if (getEditorInput() != null && getEditorInput() instanceof PatternEditorInput) {
             removePatternChangeAdapter();
         }
-        EGFResourceLoadedListener.getResourceManager().removeObserver(this);
+        TargetPlatformResourceLoadedListener.getResourceManager().removeObserver(this);
         super.dispose();
     }
 

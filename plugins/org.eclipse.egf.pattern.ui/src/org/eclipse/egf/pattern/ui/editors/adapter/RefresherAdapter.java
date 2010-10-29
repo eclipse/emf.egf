@@ -13,6 +13,7 @@ public class RefresherAdapter extends AdapterImpl {
         this.tableViewer = tableViewer;
     }
 
+    @Override
     public void notifyChanged(org.eclipse.emf.common.notify.Notification msg) {
         if (msg.isTouch()) {
             return;
@@ -23,4 +24,5 @@ public class RefresherAdapter extends AdapterImpl {
             }
         }
     }
+
 }

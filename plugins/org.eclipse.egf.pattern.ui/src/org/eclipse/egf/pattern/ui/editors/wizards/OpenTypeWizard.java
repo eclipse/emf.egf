@@ -19,7 +19,6 @@ package org.eclipse.egf.pattern.ui.editors.wizards;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseTypePage;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -37,19 +36,15 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
 
     private Object _selectType;
 
-    private EditingDomain _editingDomain;
-
     private String _type;
 
     private EObject _current;
 
-    public OpenTypeWizard(EditingDomain editingDomain, String type) {
-        _editingDomain = editingDomain;
+    public OpenTypeWizard(String type) {
         _type = type;
     }
 
-    public OpenTypeWizard(EditingDomain editingDomain, String type, EObject current) {
-        _editingDomain = editingDomain;
+    public OpenTypeWizard(String type, EObject current) {
         _type = type;
         _current = current;
     }
@@ -85,7 +80,7 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
     @Override
     public void addPages() {
         setWindowTitle(Messages.OpenTypeWizard_window_title);
-        _chooseTypePage = new ChooseTypePage(_editingDomain, _type, _current);
+        _chooseTypePage = new ChooseTypePage(_type, _current);
         addPage(_chooseTypePage);
     }
 

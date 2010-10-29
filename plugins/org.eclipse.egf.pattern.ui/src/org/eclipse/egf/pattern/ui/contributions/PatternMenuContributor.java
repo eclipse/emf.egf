@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
@@ -35,6 +36,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.commands.PatternLibraryRemovePatternCommand;
@@ -95,11 +97,16 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     createChildMenuManager = new MenuManager(CoreUIMessages.MenuContributor_newChildGroup_label);
                     menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
                 }
+                PatternLibrary library = (PatternLibrary) selection2.getFirstElement();
+                IPlatformFcore fcore = null;
+                if (library.eResource() != null && library.eResource() instanceof IPlatformFcoreProvider) {
+                    fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
+                }
                 for (String name : EGFPatternPlugin.getPatternNatures()) {
                     try {
                         PatternExtension patternExtension = EGFPatternPlugin.getPatternExtension(name);
-                        CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern")); //$NON-NLS-1$
-                        CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, (PatternLibrary) selection2.getFirstElement());
+                        CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, PatternNameHelper.getNewPatternName(fcore, library)));
+                        CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, library);
                         createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, name));
                         createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
                         createChildMenuManager.add(createChildAction);

@@ -59,7 +59,7 @@ public class ParametersTableCellModifier extends EditingDomainCellModifier {
         } else if ((SpecificationPage.QUERY_COLUMN_ID).equals(property)) {
             if (element instanceof PatternParameter) {
                 Query patternQuery = ((PatternParameter) element).getQuery();
-                String query = patternQuery == null ? "" : patternQuery.getExtensionId();
+                String query = patternQuery == null ? "" : patternQuery.getExtensionId(); //$NON-NLS-1$
                 return query;
             }
         }
@@ -73,7 +73,7 @@ public class ParametersTableCellModifier extends EditingDomainCellModifier {
         if (element instanceof TableItem) {
             element = ((TableItem) element).getData();
         }
-        String text = "";
+        String text = ""; //$NON-NLS-1$
         if (value instanceof QueryKind) {
             text = ((QueryKind) value).getId();
         } else {
@@ -91,17 +91,18 @@ public class ParametersTableCellModifier extends EditingDomainCellModifier {
 
     private void executeModify(final int setFlag, final PatternParameter patternParameter, final String text) {
         Runnable cmd = new Runnable() {
+
             public void run() {
                 switch (setFlag) {
-                case 0:
-                    patternParameter.setName(text);
-                case 1:
-                    break;
-                case 2:
-                    modifyQuery(patternParameter, text);
-                    break;
-                default:
-                    return;
+                    case 0:
+                        patternParameter.setName(text);
+                    case 1:
+                        break;
+                    case 2:
+                        modifyQuery(patternParameter, text);
+                        break;
+                    default:
+                        return;
                 }
             }
         };
@@ -111,13 +112,13 @@ public class ParametersTableCellModifier extends EditingDomainCellModifier {
     protected void modifyQuery(PatternParameter patternParameter, String text) {
         Query query = patternParameter.getQuery();
         if (text != null) {
-            if (query == null && (text != null && !"".equals(text))) {
+            if (query == null && "".equals(text) == false) { //$NON-NLS-1$
                 Query createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
                 createBasicQuery.setExtensionId(text);
                 patternParameter.setQuery(createBasicQuery);
-            } else if (text != null && !"".equals(text)) {
+            } else if ("".equals(text) == false) { //$NON-NLS-1$
                 query.setExtensionId(text);
-            } else if ("".equals(text)) {
+            } else if ("".equals(text)) { //$NON-NLS-1$
                 patternParameter.setQuery(null);
             }
         }

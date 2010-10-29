@@ -4,6 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/jdt/internal/ui/dialogs/**"/>
+			<accessrule kind="accessible" pattern="org/eclipse/jface/internal/databinding/viewers/**"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/databinding/internal/**"/>
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>

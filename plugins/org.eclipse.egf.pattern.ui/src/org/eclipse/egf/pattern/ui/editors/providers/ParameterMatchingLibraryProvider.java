@@ -38,7 +38,7 @@ public class ParameterMatchingLibraryProvider implements ITableLabelProvider {
             Paramerter2ParameterMapImpl entry = (Paramerter2ParameterMapImpl) element;
             PatternParameter key = entry.getKey();
             PatternParameter value = entry.getValue();
-            return (value.getName() == null ? "" : value.getName()) + " -> " + (key.getName() == null ? "" : key.getName());
+            return (value.getName() == null ? "" : value.getName()) + " -> " + (key.getName() == null ? "" : key.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
         return null;
     }

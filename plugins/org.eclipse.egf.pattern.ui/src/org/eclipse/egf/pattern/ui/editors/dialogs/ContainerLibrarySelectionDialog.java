@@ -53,6 +53,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  */
 public class ContainerLibrarySelectionDialog extends PatternElementSelectionDialog {
+
     private TableViewer tableViewer;
 
     private Text text;
@@ -60,8 +61,6 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
     private PatternLibrary patternLibrary;
 
     private String librayName;
-
-    private List<PatternLibrary> containerLibrarys;
 
     public ContainerLibrarySelectionDialog(Shell shell, PatternLibrary patternLibrary) {
         super(shell);
@@ -71,11 +70,12 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
         }
     }
 
+    @Override
     protected Control createDialogArea(Composite parent) {
         checkContainerExist(librayName);
 
-        Composite dialogArea = (Composite) super.createDialogArea(parent);
-        Composite container = new Composite(dialogArea, SWT.NONE);
+        Composite composite = (Composite) super.createDialogArea(parent);
+        Composite container = new Composite(composite, SWT.NONE);
         GridLayout layout = new GridLayout();
         layout.marginWidth = 5;
         container.setLayout(layout);
@@ -90,7 +90,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 550;
         text.setLayoutData(gd);
-        text.setText("");
+        text.setText(""); //$NON-NLS-1$
         text.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
@@ -124,6 +124,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
         getSelectDefault(listAreaDisplay);
 
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection selection = (IStructuredSelection) event.getSelection();
                 if (selection.getFirstElement() instanceof PatternLibrary) {
@@ -148,7 +149,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
     }
 
     private void checkContainerExist(String name) {
-        IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null);
+        IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null); //$NON-NLS-1$
         IStatus fLastStatusOk = new Status(IStatus.OK, Policy.JFACE, IStatus.OK, Util.ZERO_LENGTH_STRING, null);
         if (getListAreaDisplay(name).size() > 0) {
             updateStatus(fLastStatusOk);

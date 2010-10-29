@@ -36,7 +36,6 @@ import org.eclipse.egf.pattern.ui.editors.modifiers.QueryContentTableCellModifie
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.QueryContentTableLabelProvider;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.Policy;
@@ -87,8 +86,8 @@ public class ParametersEditDialog extends VariablesEditDialog {
 
     private List<QueryContent> queryContents;
 
-    public ParametersEditDialog(Shell shell, PatternParameter selectItem, TransactionalEditingDomain editingDomain) {
-        super(shell, selectItem, editingDomain);
+    public ParametersEditDialog(Shell shell, PatternParameter selectItem) {
+        super(shell, selectItem);
         setDefaultQuery(selectItem);
     }
 
@@ -103,14 +102,15 @@ public class ParametersEditDialog extends VariablesEditDialog {
         }
     }
 
+    @Override
     protected Control createDialogArea(Composite parent) {
-        Composite dialogArea = (Composite) super.createDialogArea(parent);
+        Composite composite = (Composite) super.createDialogArea(parent);
         GridLayout layout = new GridLayout();
         layout.numColumns = 3;
-        dialogArea.setLayout(layout);
+        composite.setLayout(layout);
 
-        createLabel(dialogArea, Messages.ParametersEditDialog_Query);
-        queryCombo = new Combo(dialogArea, SWT.NONE | SWT.READ_ONLY);
+        createLabel(composite, Messages.ParametersEditDialog_Query);
+        queryCombo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         queryCombo.setLayoutData(gd);
@@ -132,7 +132,7 @@ public class ParametersEditDialog extends VariablesEditDialog {
             }
         });
         queryCombo.select(0);
-        setQueryContentArea(dialogArea);
+        setQueryContentArea(composite);
         setQueryContentAreaStatus();
         setButtonsStatus();
         return dialogArea;
@@ -326,8 +326,8 @@ public class ParametersEditDialog extends VariablesEditDialog {
                 combo.add(name);
             }
         }
-        if (query != null && !"".equals(query)) {
-            combo.add("");
+        if (query != null && !"".equals(query)) { //$NON-NLS-1$
+            combo.add(""); //$NON-NLS-1$
         }
     }
 
@@ -343,8 +343,8 @@ public class ParametersEditDialog extends VariablesEditDialog {
     }
 
     private void setQueryContentAreaStatus() {
-        String query = getQuery();
-        if (query != null && !"".equals(query)) { //$NON-NLS-1$
+        String innerQuery = getQuery();
+        if (innerQuery != null && !"".equals(innerQuery)) { //$NON-NLS-1$
             setQueryContentAreaEnable(true);
         } else {
             setQueryContentAreaEnable(false);

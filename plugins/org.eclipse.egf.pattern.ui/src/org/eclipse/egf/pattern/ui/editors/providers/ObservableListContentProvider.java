@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.TableItem;
 
 public class ObservableListContentProvider implements IStructuredContentProvider {
+
     private ObservableCollectionContentProvider impl;
 
     private static int patternMethodsCount = 0;
@@ -39,55 +40,71 @@ public class ObservableListContentProvider implements IStructuredContentProvider
     private static TableViewer tableViewer;
 
     private static class Impl extends ObservableCollectionContentProvider implements IListChangeListener {
+
         private Viewer viewer;
 
         Impl(IViewerUpdater explicitViewerUpdater) {
             super(explicitViewerUpdater);
         }
 
-        public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-            this.viewer = viewer;
-            super.inputChanged(viewer, oldInput, newInput);
+        @Override
+        public void inputChanged(Viewer innerViewer, Object oldInput, Object newInput) {
+            viewer = innerViewer;
+            super.inputChanged(innerViewer, oldInput, newInput);
         }
 
+        @Override
         protected void checkInput(Object input) {
             Assert.isTrue(input instanceof IObservableList, "This content provider only works with input of type IObservableList"); //$NON-NLS-1$
         }
 
+        @Override
         protected void addCollectionChangeListener(IObservableCollection collection) {
             ((IObservableList) collection).addListChangeListener(this);
         }
 
+        @Override
         protected void removeCollectionChangeListener(IObservableCollection collection) {
             ((IObservableList) collection).removeListChangeListener(this);
         }
 
+        @SuppressWarnings("unchecked")
         public void handleListChange(ListChangeEvent event) {
             if (isViewerDisposed())
                 return;
 
             // Determine which elements were added and removed
+            @SuppressWarnings("rawtypes")
             final Set knownElementAdditions = ViewerElementSet.withComparer(comparer);
+            @SuppressWarnings("rawtypes")
             final Set knownElementRemovals = ViewerElementSet.withComparer(comparer);
-            final boolean[] suspendRedraw = new boolean[] { false };
+            final boolean[] suspendRedraw = new boolean[] {
+                false
+            };
             event.diff.accept(new ListDiffVisitor() {
+
+                @Override
                 public void handleAdd(int index, Object element) {
                     knownElementAdditions.add(element);
                 }
 
+                @Override
                 public void handleRemove(int index, Object element) {
                     knownElementRemovals.add(element);
                 }
 
+                @Override
                 public void handleMove(int oldIndex, int newIndex, Object element) {
                     suspendRedraw[0] = true;
                     super.handleMove(oldIndex, newIndex, element);
                 }
 
+                @Override
                 public void handleReplace(int index, Object oldElement, Object newElement) {
                     suspendRedraw[0] = true;
                     super.handleReplace(index, oldElement, newElement);
                 }
+
             });
             knownElementAdditions.removeAll(knownElements);
             knownElementRemovals.removeAll(event.getObservableList());
@@ -101,25 +118,31 @@ public class ObservableListContentProvider implements IStructuredContentProvider
                 viewer.getControl().setRedraw(false);
             try {
                 event.diff.accept(new ListDiffVisitor() {
+
+                    @Override
                     public void handleAdd(int index, Object element) {
                         int indexInTable = getAddIndexInTable(index);
                         viewerUpdater.insert(element, indexInTable);
                     }
 
+                    @Override
                     public void handleRemove(int index, Object element) {
                         int indexInTable = getIndexInTable(element);
                         viewerUpdater.remove(element, indexInTable);
                     }
 
+                    @Override
                     public void handleReplace(int index, Object oldElement, Object newElement) {
                         viewerUpdater.replace(oldElement, newElement, index);
                     }
 
+                    @Override
                     public void handleMove(int oldIndex, int newIndex, Object element) {
                         int moveFormIndexInTable = getIndexInTable(element);
                         int moveToIndexInTable = getMoveToIndexInTable(newIndex);
                         viewerUpdater.move(element, moveFormIndexInTable, moveToIndexInTable);
                     }
+
                 });
             } finally {
                 if (suspendRedraw[0])
@@ -138,8 +161,8 @@ public class ObservableListContentProvider implements IStructuredContentProvider
      */
     public ObservableListContentProvider(int patternMethodsNum, TableViewer tableViewer) {
         this(null);
-        this.patternMethodsCount = patternMethodsNum;
-        this.tableViewer = tableViewer;
+        ObservableListContentProvider.patternMethodsCount = patternMethodsNum;
+        ObservableListContentProvider.tableViewer = tableViewer;
     }
 
     /**

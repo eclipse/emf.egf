@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.epackage.EObjectWrapper;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -61,8 +62,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -112,6 +111,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -874,15 +874,16 @@ public class ImplementationPage extends PatternEditorPage {
             IWorkbench workbench = PlatformUI.getWorkbench();
             IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
             IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-            IEditorPart[] editorParts = activePage.getEditors();
-            if (editorParts.length > 1) {
-                for (int i = editorParts.length - 1; i >= 0; i--) {
-                    if (editorParts[i] instanceof AbstractTemplateEditor) {
-                        Pattern templateEdtiorPattern = ((AbstractTemplateEditor) editorParts[i]).getPattern();
-                        if ((getPattern()).equals(templateEdtiorPattern)) {
+            IEditorReference[] editorReferences = activePage.getEditorReferences();
+            if (editorReferences.length > 1) {
+                for (int i = editorReferences.length - 1; i >= 0; i--) {
+                    IEditorPart editorPart = editorReferences[i].getEditor(true);
+                    if (editorPart instanceof AbstractTemplateEditor) {
+                        Pattern templateEditorPattern = ((AbstractTemplateEditor) editorPart).getPattern();
+                        if ((getPattern()).equals(templateEditorPattern)) {
                             // Switch to the already opened editor.
-                            activePage.activate(editorParts[i]);
-                            ((AbstractTemplateEditor) editorParts[i]).setActivePage(methodId);
+                            activePage.activate(editorPart);
+                            ((AbstractTemplateEditor) editorPart).setActivePage(methodId);
                             return;
                         }
                     }
@@ -1429,13 +1430,13 @@ public class ImplementationPage extends PatternEditorPage {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
-                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType(), getPattern());
+                OpenTypeWizard wizard = new OpenTypeWizard(getSelectItemType(), getPattern());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 if (dialog.open() == Window.OK) {
                     Object object = wizard.getSelectType();
-                    if (object instanceof EObject) {
-                        updateType(EcoreUtil.getURI((EObject) object).toString());
+                    if (object instanceof EObjectWrapper) {
+                        updateType(((EObjectWrapper) object).getNsURI().toString());
                     } else if (object instanceof IType) {
                         updateType(((IType) object).getFullyQualifiedName());
                     }
@@ -1538,7 +1539,7 @@ public class ImplementationPage extends PatternEditorPage {
             public void widgetSelected(SelectionEvent e) {
                 ISelection selection = variablesTableViewer.getSelection();
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-                final VariablesEditDialog dialog = new VariablesEditDialog(new Shell(), selectItem, getEditingDomain());
+                final VariablesEditDialog dialog = new VariablesEditDialog(getSite().getShell(), selectItem);
                 dialog.setTitle(Messages.ImplementationPage_variablesEditDialog_title);
                 if (dialog.open() == Window.OK) {
                     TransactionalEditingDomain editingDomain = getEditingDomain();

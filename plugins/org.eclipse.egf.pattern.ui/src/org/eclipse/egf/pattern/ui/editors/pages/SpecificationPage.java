@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.epackage.EObjectWrapper;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternFactory;
@@ -67,7 +68,6 @@ import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -113,7 +113,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.FormColors;
@@ -641,7 +640,7 @@ public class SpecificationPage extends PatternEditorPage {
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
                 if (selectItem instanceof PatternParameter) {
                     PatternParameter patternParameter = (PatternParameter) selectItem;
-                    final ParametersEditDialog dialog = new ParametersEditDialog(new Shell(), patternParameter, getEditingDomain());
+                    final ParametersEditDialog dialog = new ParametersEditDialog(getSite().getShell(), patternParameter);
                     dialog.setTitle(Messages.SpecificationPage_parametersEditDialog_title);
                     if (dialog.open() == Window.OK) {
                         TransactionalEditingDomain editingDomain = getEditingDomain();
@@ -896,13 +895,13 @@ public class SpecificationPage extends PatternEditorPage {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
-                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType(), getPattern());
+                OpenTypeWizard wizard = new OpenTypeWizard(getSelectItemType(), getPattern());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 if (dialog.open() == Window.OK) {
                     Object object = wizard.getSelectType();
-                    if (object instanceof EObject) {
-                        updateType(EcoreUtil.getURI((EObject) object).toString());
+                    if (object instanceof EObjectWrapper) {
+                        updateType(((EObjectWrapper) object).getNsURI().toString());
                     } else if (wizard.getSelectType() instanceof IType) {
                         updateType(((IType) object).getFullyQualifiedName());
                     }
@@ -927,6 +926,7 @@ public class SpecificationPage extends PatternEditorPage {
 
             @SuppressWarnings("unchecked")
             public void selectionChanged(SelectionChangedEvent event) {
+                @SuppressWarnings("rawtypes")
                 List availableQueries = IQuery.INSTANCE.getAvailableQueries();
                 availableQueries.add(0, ""); //$NON-NLS-1$
                 queryEditor.setInput(availableQueries);
@@ -966,6 +966,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     @SuppressWarnings("unchecked")
     private void setComboViewerInput() {
+        @SuppressWarnings("rawtypes")
         List availableQueries = IQuery.INSTANCE.getAvailableQueries();
         availableQueries.add(0, ""); //$NON-NLS-1$
         queryEditor.setInput(availableQueries);

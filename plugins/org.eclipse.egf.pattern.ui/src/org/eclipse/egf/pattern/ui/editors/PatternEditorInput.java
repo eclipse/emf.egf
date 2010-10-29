@@ -117,9 +117,9 @@ public class PatternEditorInput implements IEditorInput, IFileEditorInput {
 
     public URI getURI() {
         if (getPattern() != null) {
-            return EGFCorePlugin.getPlatformURIConverter().normalize(EcoreUtil.getURI(getPattern()));
+            return EGFCorePlugin.getTargetPlatformURIConverter().normalize(EcoreUtil.getURI(getPattern()));
         }
-        return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI());
+        return EGFCorePlugin.getTargetPlatformURIConverter().normalize(getResource().getURI());
     }
 
     public ImageDescriptor getImageDescriptor() {

@@ -26,9 +26,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
-import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.core.domain.TargetPlatformResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -360,7 +360,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      */
     protected void handleChangedResource() {
         if (isDirty() == false || handleDirtyConflict()) {
-            EGFResourceLoadedListener.getResourceManager().reloadResource(getResource());
+            TargetPlatformResourceLoadedListener.getResourceManager().reloadResource(getResource());
         }
     }
 
@@ -458,7 +458,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         if (getEditorInput() == null) {
             return super.getTitleToolTip();
         }
-        return EGFCorePlugin.getPlatformURIConverter().normalize(getResource().getURI()).toString();
+        return EGFCorePlugin.getTargetPlatformURIConverter().normalize(getResource().getURI()).toString();
     }
 
     @SuppressWarnings("rawtypes")
@@ -519,10 +519,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         site.getPage().addPartListener(partListener);
         pattern = ((PatternEditorInput) getEditorInput()).getPattern();
         partName = pattern.getName();
-        resourceHasBeenExternallyChanged = EGFResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
-        EGFResourceLoadedListener.getResourceManager().addObserver(this);
+        resourceHasBeenExternallyChanged = TargetPlatformResourceLoadedListener.getResourceManager().resourceHasBeenExternallyChanged(getResource());
+        TargetPlatformResourceLoadedListener.getResourceManager().addObserver(this);
         // populate operation history if applicable
-        EGFResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
+        TargetPlatformResourceLoadedListener.getResourceManager().populateUndoContext(getOperationHistory(), undoContext, getResource());
         addPatternChangeAdapter();
         setPartName(pattern.getName());
     }
@@ -542,7 +542,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             removePatternChangeAdapter();
         }
         // Initialized in initializeEditingDomain, if init failed, this must be disposed
-        EGFResourceLoadedListener.getResourceManager().removeObserver(this);
+        TargetPlatformResourceLoadedListener.getResourceManager().removeObserver(this);
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
         editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);

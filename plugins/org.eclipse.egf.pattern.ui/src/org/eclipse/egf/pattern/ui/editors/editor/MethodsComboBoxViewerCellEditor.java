@@ -87,6 +87,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
     /*
      * (non-Javadoc) Method declared on CellEditor.
      */
+    @Override
     protected Control createControl(Composite parent) {
         super.createControl(parent);
         comboBox = new CCombo(parent, getStyle());
@@ -94,17 +95,23 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         viewer = new ComboViewer(comboBox);
 
         comboBox.addKeyListener(new KeyAdapter() {
+
             // hook key pressed - see PR 14201
+            @Override
             public void keyPressed(KeyEvent e) {
                 keyReleaseOccured(e);
             }
+
         });
 
         comboBox.addSelectionListener(new SelectionAdapter() {
+
+            @Override
             public void widgetDefaultSelected(SelectionEvent event) {
-                applyEditorValueAndDeactivate();
+                localApplyEditorValueAndDeactivate();
             }
 
+            @Override
             public void widgetSelected(SelectionEvent event) {
                 ISelection selection = viewer.getSelection();
                 if (selection.isEmpty()) {
@@ -113,23 +120,29 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
                     selectedValue = ((IStructuredSelection) selection).getFirstElement();
                 }
             }
+
         });
 
         comboBox.addTraverseListener(new TraverseListener() {
+
             public void keyTraversed(TraverseEvent e) {
                 if (e.detail == SWT.TRAVERSE_ESCAPE || e.detail == SWT.TRAVERSE_RETURN) {
                     e.doit = false;
                 }
             }
+
         });
 
         comboBox.addFocusListener(new FocusAdapter() {
+
+            @Override
             public void focusLost(FocusEvent e) {
                 MethodsComboBoxViewerCellEditor.this.focusLost();
                 String text = comboBox.getText();
                 executeModifyMethod(text);
                 isModify = false;
             }
+
         });
 
         comboBox.addModifyListener(new ModifyListener() {
@@ -139,9 +152,10 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
                 isModify = true;
                 Button editButton = implementationPage.getEditButton();
                 if (editButton != null && !editButton.isDisposed()) {
-                    editButton.setEnabled(!PatternFactory.isSpecialMethod(text) && !("").equals(text));
+                    editButton.setEnabled(!PatternFactory.isSpecialMethod(text) && !("").equals(text)); //$NON-NLS-1$
                 }
             }
+
         });
 
         return comboBox;
@@ -151,16 +165,19 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * Update the method name while modify the comBox.
      */
     private void executeModifyMethod(final String newName) {
-        if (newName != null && !"".equals(newName) && isModify) {
+        if (newName != null && !"".equals(newName) && isModify) { //$NON-NLS-1$
             int selectionIndex = tableViewer.getTable().getSelectionIndex();
             if (selectionIndex < 0)
                 return;
             final PatternMethod method = (PatternMethod) tableViewer.getElementAt(selectionIndex);
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
+                @Override
                 protected void doExecute() {
                     method.setName(newName);
                     tableViewer.refresh();
                 }
+
             };
             editingDomain.getCommandStack().execute(cmd);
         }
@@ -174,6 +191,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * @return the zero-based index of the current selection wrapped as an
      *         <code>Integer</code>
      */
+    @Override
     protected Object doGetValue() {
         return selectedValue;
     }
@@ -181,6 +199,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
     /*
      * (non-Javadoc) Method declared on CellEditor.
      */
+    @Override
     protected void doSetFocus() {
         viewer.getControl().setFocus();
     }
@@ -193,6 +212,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * to make sure the arrow button and some text is visible. The list of
      * CCombo will be wide enough to show its longest item.
      */
+    @Override
     public LayoutData getLayoutData() {
         LayoutData layoutData = super.getLayoutData();
         if ((viewer.getControl() == null) || viewer.getControl().isDisposed()) {
@@ -212,6 +232,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * @param value
      *            the new value
      */
+    @Override
     protected void doSetValue(Object value) {
         Assert.isTrue(viewer != null);
         selectedValue = value;
@@ -245,6 +266,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      *            the label provider used
      * @see StructuredViewer#setLabelProvider(IBaseLabelProvider)
      */
+    @Override
     public void setLabelProvider(IBaseLabelProvider labelProvider) {
         viewer.setLabelProvider(labelProvider);
     }
@@ -254,6 +276,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      *            the content provider used
      * @see StructuredViewer#setContentProvider(IContentProvider)
      */
+    @Override
     public void setContenProvider(IStructuredContentProvider provider) {
         viewer.setContentProvider(provider);
     }
@@ -263,6 +286,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      *            the input used
      * @see StructuredViewer#setInput(Object)
      */
+    @Override
     public void setInput(Object input) {
         viewer.setInput(input);
     }
@@ -270,6 +294,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
     /**
      * @return get the viewer
      */
+    @Override
     public ComboViewer getViewer() {
         return viewer;
     }
@@ -277,7 +302,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
     /**
      * Applies the currently selected value and deactiavates the cell editor
      */
-    void applyEditorValueAndDeactivate() {
+    protected void localApplyEditorValueAndDeactivate() {
         // must set the selection before getting value
         ISelection selection = viewer.getSelection();
         if (selection.isEmpty()) {
@@ -292,7 +317,9 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         setValueValid(isValid);
 
         if (!isValid) {
-            MessageFormat.format(getErrorMessage(), new Object[] { selectedValue });
+            MessageFormat.format(getErrorMessage(), new Object[] {
+                selectedValue
+            });
         }
 
         fireApplyEditorValue();
@@ -305,9 +332,10 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * 
      * @see org.eclipse.jface.viewers.CellEditor#focusLost()
      */
+    @Override
     protected void focusLost() {
         if (isActivated()) {
-            applyEditorValueAndDeactivate();
+            localApplyEditorValueAndDeactivate();
         }
     }
 
@@ -318,16 +346,18 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * org.eclipse.jface.viewers.CellEditor#keyReleaseOccured(org.eclipse.swt
      * .events.KeyEvent)
      */
+    @Override
     protected void keyReleaseOccured(KeyEvent keyEvent) {
         if (keyEvent.character == '\u001b') { // Escape character
             fireCancelEditor();
         } else if (keyEvent.character == '\t') { // tab key
-            applyEditorValueAndDeactivate();
+            localApplyEditorValueAndDeactivate();
         } else if (keyEvent.keyCode == SWT.DEL) { // DEL key
             performDelete();
         }
     }
 
+    @Override
     public void performDelete() {
         Point selection = comboBox.getSelection();
         int x = selection.x;

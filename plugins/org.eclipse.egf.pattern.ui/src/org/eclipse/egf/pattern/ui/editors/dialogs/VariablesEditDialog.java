@@ -16,6 +16,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
+import org.eclipse.egf.core.epackage.EObjectWrapper;
 import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
@@ -23,9 +24,6 @@ import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -62,13 +60,10 @@ public class VariablesEditDialog extends SelectionStatusDialog {
 
     private String _type;
 
-    private EditingDomain _editingDomain;
-
     private EObject _current;
 
-    public VariablesEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
+    public VariablesEditDialog(Shell shell, Object selectItem) {
         super(shell);
-        _editingDomain = editingDomain;
         setDefaultValue(selectItem);
     }
 
@@ -131,13 +126,13 @@ public class VariablesEditDialog extends SelectionStatusDialog {
         typeButton.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                OpenTypeWizard wizard = new OpenTypeWizard(_editingDomain, _type, _current);
+                OpenTypeWizard wizard = new OpenTypeWizard(_type, _current);
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(getShell(), wizard);
                 if (dialog.open() == Window.OK) {
                     Object object = wizard.getSelectType();
-                    if (object instanceof EObject) {
-                        _type = EcoreUtil.getURI((EObject) object).toString();
+                    if (object instanceof EObjectWrapper) {
+                        _type = ((EObjectWrapper) object).getNsURI().toString();
                         _typeText.setText(ParametersTableLabelProvider.getType(_type));
                     } else if (object instanceof IType) {
                         _type = ((IType) object).getFullyQualifiedName();

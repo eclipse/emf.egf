@@ -65,7 +65,7 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
 
     private EditingDomain _editingDomain;
 
-    private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
+    private IPlatformFcore[] _fcores = EGFCorePlugin.getTargetPlatformFcores();
 
     protected ComposedAdapterFactory _adapterFactory;
 
@@ -274,13 +274,18 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
                 return _adapterFactoryLabelProvider.getText(pattern);
             }
             // Retrieve Fcore
-            IPlatformFcore fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+            IPlatformFcore fcore = null;
+            if (pattern.eResource() instanceof IPlatformFcoreProvider) {
+                fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+            }
             if (fcore == null) {
                 return _adapterFactoryLabelProvider.getText(pattern);
             }
             StringBuffer buffer = new StringBuffer(fcore.getURI() == null ? "" : URI.decode(fcore.getURI().toString())); //$NON-NLS-1$
-            if (fcore.getPlatformBundle().isTarget()) {
+            if (fcore.isTarget()) {
                 buffer.append(" [Target]"); //$NON-NLS-1$
+            } else if (fcore.isRuntime()) {
+                buffer.append(" [Runtime]"); //$NON-NLS-1$                
             } else {
                 buffer.append(" [Workspace]"); //$NON-NLS-1$
             }

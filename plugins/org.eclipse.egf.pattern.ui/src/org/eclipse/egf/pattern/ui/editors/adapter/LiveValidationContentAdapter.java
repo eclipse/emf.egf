@@ -28,6 +28,7 @@ import org.eclipse.ui.forms.IMessageManager;
  * 
  */
 public class LiveValidationContentAdapter extends EContentAdapter {
+
     private Control control;
 
     private IMessageManager mmng;
@@ -43,6 +44,7 @@ public class LiveValidationContentAdapter extends EContentAdapter {
         this.pattern = pattern;
     }
 
+    @Override
     public void notifyChanged(final Notification notification) {
         super.notifyChanged(notification);
 
@@ -53,4 +55,5 @@ public class LiveValidationContentAdapter extends EContentAdapter {
 
         PatternUIHelper.validationContent(mmng, pattern, key, control);
     }
+
 }

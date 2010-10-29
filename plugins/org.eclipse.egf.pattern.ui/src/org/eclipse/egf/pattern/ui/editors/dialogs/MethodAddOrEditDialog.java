@@ -56,14 +56,15 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
         this.oldName = oldName;
     }
 
+    @Override
     protected Control createDialogArea(Composite parent) {
         final IStatus fLastStatusOk = new Status(IStatus.OK, Policy.JFACE, IStatus.OK, Util.ZERO_LENGTH_STRING, null);
-        final IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null);
+        final IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null); //$NON-NLS-1$
         updateStatus(fLastStatusErr);
 
-        Composite dialogArea = (Composite) super.createDialogArea(parent);
+        Composite composite = (Composite) super.createDialogArea(parent);
 
-        combo = new Combo(dialogArea, SWT.DROP_DOWN);
+        combo = new Combo(composite, SWT.DROP_DOWN);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         combo.setLayoutData(gd);
         combo.setText(oldName);
@@ -87,7 +88,7 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
 
             public void modifyText(ModifyEvent e) {
                 name = combo.getText();
-                if ("".equals(name)) {
+                if ("".equals(name)) { //$NON-NLS-1$
                     updateStatus(fLastStatusErr);
                     return;
                 }
