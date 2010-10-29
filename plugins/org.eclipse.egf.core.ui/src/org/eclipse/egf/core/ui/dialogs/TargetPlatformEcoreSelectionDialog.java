@@ -18,21 +18,22 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.epackage.EClassWrapper;
+import org.eclipse.egf.core.epackage.EClassifierWrapper;
+import org.eclipse.egf.core.epackage.EDataTypeWrapper;
+import org.eclipse.egf.core.epackage.EObjectWrapper;
+import org.eclipse.egf.core.epackage.EPackageWrapper;
+import org.eclipse.egf.core.epackage.ERootWrapper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreSwitch;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -91,11 +92,13 @@ import org.eclipse.ui.handlers.IHandlerService;
  * @author Xavier Maysonnave
  * 
  */
-public class EcoreSelectionDialog extends SelectionStatusDialog {
+public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
 
-    private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.EcoreSelectionDialog"; //$NON-NLS-1$    
+    private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreSelectionDialog"; //$NON-NLS-1$    
 
     private static final String SHOW_STATUS_LINE = "ShowStatusLine"; //$NON-NLS-1$
+
+    private ExtendedImageRegistry registry = ExtendedImageRegistry.INSTANCE;
 
     private class ToggleStatusLineAction extends Action {
 
@@ -103,7 +106,7 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
          * Creates a new instance of the class.
          */
         public ToggleStatusLineAction() {
-            super(CoreUIMessages.EcoreSelectionDialog_toggleStatusAction, IAction.AS_CHECK_BOX);
+            super(CoreUIMessages.TargetPlatformEcoreSelectionDialog_toggleStatusAction, IAction.AS_CHECK_BOX);
         }
 
         @Override
@@ -146,11 +149,21 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         }
 
         public Image getColumnImage(Object element, int columnIndex) {
-            return _labelProvider.getImage(element);
+            if (element instanceof EPackageWrapper) {
+                return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage")); //$NON-NLS-1$
+            } else if (element instanceof EClassWrapper) {
+                return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EClass")); //$NON-NLS-1$
+            } else if (element instanceof EDataTypeWrapper) {
+                return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EDataType")); //$NON-NLS-1$
+            }
+            return null;
         }
 
         public String getColumnText(Object element, int columnIndex) {
-            return _labelProvider.getText(element);
+            if (element instanceof EObjectWrapper) {
+                return ((EObjectWrapper) element).getName();
+            }
+            return ""; //$NON-NLS-1$
         }
 
         public void addListener(ILabelProviderListener listener) {
@@ -198,25 +211,25 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         }
 
         public Object getParent(Object element) {
-            if (element instanceof EObject) {
-                return ((EObject) element).eContainer();
+            if (element instanceof EObjectWrapper) {
+                return ((EObjectWrapper) element).getParent();
             }
             return null;
         }
 
         public Object[] getChildren(Object parentElement) {
-            if (parentElement instanceof Resource) {
-                Resource res = (Resource) parentElement;
-                return res.getContents().toArray();
-            }
-            if (parentElement instanceof List<?>)
+            if (parentElement instanceof ERootWrapper) {
+                ERootWrapper wrapper = (ERootWrapper) parentElement;
+                return wrapper.getChildren().toArray();
+            } else if (parentElement instanceof EPackageWrapper) {
+                EPackageWrapper wrapper = (EPackageWrapper) parentElement;
+                return wrapper.getChildren().toArray();
+            } else if (parentElement instanceof List<?>) {
                 return ((List<?>) parentElement).toArray();
-            if (parentElement instanceof EPackage) {
-                EPackage ePackage = (EPackage) parentElement;
-                return ePackage.eContents().toArray();
             }
             return new Object[0];
         }
+
     }
 
     /**
@@ -387,14 +400,23 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
 
         @Override
         public Image getImage(Object element) {
-            return _labelProvider.getImage(element);
+            if (element instanceof EPackageWrapper) {
+                return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage")); //$NON-NLS-1$
+            } else if (element instanceof EClassWrapper) {
+                return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EClass")); //$NON-NLS-1$
+            } else if (element instanceof EDataTypeWrapper) {
+                return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EDataType")); //$NON-NLS-1$
+            }
+            return null;
         }
 
         @Override
         public String getText(Object element) {
-            return EcoreUtil.getURI((EObject) element).toString();
+            if (element instanceof EObjectWrapper) {
+                return ((EObjectWrapper) element).getNsURI().toString();
+            }
+            return ""; //$NON-NLS-1$
         }
-
     }
 
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$    
@@ -407,8 +429,6 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
 
     private boolean _multi;
 
-    private EditingDomain _editingDomain;
-
     protected TreeViewer _ecoreTypeTreeViewer;
 
     private IStatus _status;
@@ -420,8 +440,6 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
     private ToggleStatusLineAction _toggleStatusLineAction;
 
     private IHandlerActivation _showViewHandler;
-
-    private ILabelProvider _labelProvider;
 
     /**
      * It is a duplicate of a field in the CLabel class in DetailsContentViewer.
@@ -441,11 +459,9 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
      *            indicates whether dialog allows to select more than one
      *            position in its list of items
      */
-    public EcoreSelectionDialog(Shell shell, boolean multi, EditingDomain editingDomain) {
+    public TargetPlatformEcoreSelectionDialog(Shell shell, boolean multi) {
         super(shell);
         _multi = multi;
-        _editingDomain = editingDomain;
-        _labelProvider = new AdapterFactoryLabelProvider(new EcoreItemProviderAdapterFactory());
     }
 
     /**
@@ -455,8 +471,8 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
      * @param shell
      *            shell to parent the dialog on
      */
-    public EcoreSelectionDialog(Shell shell, EditingDomain editingDomain) {
-        this(shell, false, editingDomain);
+    public TargetPlatformEcoreSelectionDialog(Shell shell) {
+        this(shell, false);
     }
 
     /**
@@ -550,39 +566,31 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         _ecoreTypeTreeViewer.setLabelProvider(new EcoreLabelProvider());
         _ecoreTypeTreeViewer.setComparator(new ViewerComparator() {
 
-            private final EcoreSwitch<Integer> _switch = new EcoreSwitch<Integer>() {
-
-                @Override
-                public Integer caseEClassifier(EClassifier object) {
-                    return 2;
-                }
-
-                @Override
-                public Integer caseEPackage(EPackage object) {
-                    return 1;
-                }
-
-            };
-
             @Override
             public int category(Object element) {
-                if (element instanceof EObject) {
-                    return _switch.doSwitch((EObject) element);
+                if (element instanceof EObjectWrapper) {
+                    if (element instanceof EClassifierWrapper) {
+                        return 2;
+                    } else if (element instanceof EPackageWrapper) {
+                        return 1;
+                    }
                 }
                 return 10;
             }
 
         });
+
         _ecoreTypeTreeViewer.addFilter(new ViewerFilter() {
 
             @Override
             public boolean select(Viewer innerViewer, Object parentElement, Object element) {
                 // TODO at present time, we don't support DataType as type for
                 // PatternParameter
-                return element instanceof EClass || element instanceof EPackage;
+                return element instanceof ERootWrapper || element instanceof EClassWrapper || element instanceof EPackageWrapper;
             }
 
         });
+
         _ecoreTypeTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -601,11 +609,11 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         });
 
         Button button = new Button(viewer, SWT.PUSH);
-        button.setText(CoreUIMessages.EcoreSelectionDialog_choose_model_button_title);
+        button.setText(CoreUIMessages.TargetPlatformEcoreSelectionDialog_choose_model_button_title);
         button.addListener(SWT.Selection, new Listener() {
 
             public void handleEvent(Event event) {
-                LoadEcoreDialog chooseModelDialog = new LoadEcoreDialog(getShell(), _editingDomain, true, false, _multi, false, false);
+                TargetPlatformEcoreDialog chooseModelDialog = new TargetPlatformEcoreDialog(getShell(), true, false, _multi, false, false);
                 if (chooseModelDialog.open() == Window.OK) {
                     searchTypeModel(chooseModelDialog.getURIText());
                 }
@@ -642,7 +650,7 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         header.setLayout(layout);
 
         Label headerLabel = new Label(header, SWT.NONE);
-        headerLabel.setText((getMessage() != null && getMessage().trim().length() > 0) ? getMessage() : CoreUIMessages.EcoreSelectionDialog_select);
+        headerLabel.setText((getMessage() != null && getMessage().trim().length() > 0) ? getMessage() : CoreUIMessages.TargetPlatformEcoreSelectionDialog_select);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         headerLabel.setLayoutData(gd);
 
@@ -670,7 +678,7 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         });
 
         _toolItem.setImage(EGFCoreUIPlugin.getDefault().getImage(IEGFCoreUIImages.IMG_VIEW_MENU));
-        _toolItem.setToolTipText(CoreUIMessages.EcoreSelectionDialog_menu);
+        _toolItem.setToolTipText(CoreUIMessages.TargetPlatformEcoreSelectionDialog_menu);
         _toolItem.addSelectionListener(new SelectionAdapter() {
 
             @Override
@@ -769,20 +777,20 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
         if (uriText == null || uriText.trim().length() == 0) {
             return;
         }
-        String[] uris = uriText.split("  "); //$NON-NLS-1$
-        List<EObject> resources = new ArrayList<EObject>();
-        for (String uri : uris) {
+        String[] nsURIs = uriText.split("  "); //$NON-NLS-1$
+        ERootWrapper wrapper = null;
+        for (String nsURI : nsURIs) {
             try {
-                Resource resource = _editingDomain.loadResource(uri);
-                if (resource != null) {
-                    resources.addAll(resource.getContents());
+                wrapper = EGFCorePlugin.getTargetPlatformERootWrapper(URI.createURI(nsURI));
+                if (wrapper != null) {
+                    break;
                 }
             } catch (Throwable t) {
-                EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, uri));
+                EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, nsURI));
             }
         }
-        if (resources.isEmpty() == false) {
-            _ecoreTypeTreeViewer.setInput(resources);
+        if (wrapper != null) {
+            _ecoreTypeTreeViewer.setInput(wrapper);
             _ecoreTypeTreeViewer.expandToLevel(2);
         }
     }
@@ -896,7 +904,7 @@ public class EcoreSelectionDialog extends SelectionStatusDialog {
                 _details.setInput(selection.getFirstElement());
                 break;
             default:
-                _details.setInput(NLS.bind(CoreUIMessages.EcoreSelectionDialog_nItemsSelected, new Integer(selection.size())));
+                _details.setInput(NLS.bind(CoreUIMessages.TargetPlatformEcoreSelectionDialog_nItemsSelected, new Integer(selection.size())));
                 break;
         }
     }

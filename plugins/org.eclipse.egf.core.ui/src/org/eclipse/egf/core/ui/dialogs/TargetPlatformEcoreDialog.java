@@ -18,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
@@ -27,7 +28,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.window.Window;
@@ -48,7 +48,7 @@ import org.eclipse.swt.widgets.Text;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public class LoadEcoreDialog extends ResourceDialog {
+public class TargetPlatformEcoreDialog extends ResourceDialog {
 
     protected boolean _workspace;
 
@@ -62,11 +62,19 @@ public class LoadEcoreDialog extends ResourceDialog {
 
     private boolean _genmodelURI;
 
-    public LoadEcoreDialog(Shell parent, EditingDomain domain) {
+    public TargetPlatformEcoreDialog(Shell parent) {
+        this(parent, null, false, false, true, true, true);
+    }
+
+    public TargetPlatformEcoreDialog(Shell parent, EditingDomain domain) {
         this(parent, domain, false, false, true, true, true);
     }
 
-    public LoadEcoreDialog(Shell parent, EditingDomain domain, boolean packageNsURI, boolean genmodelURI, boolean multi, boolean workspace, boolean fileSystem) {
+    public TargetPlatformEcoreDialog(Shell parent, boolean packageNsURI, boolean genmodelURI, boolean multi, boolean workspace, boolean fileSystem) {
+        this(parent, null, packageNsURI, genmodelURI, multi, workspace, fileSystem);
+    }
+
+    public TargetPlatformEcoreDialog(Shell parent, EditingDomain domain, boolean packageNsURI, boolean genmodelURI, boolean multi, boolean workspace, boolean fileSystem) {
         super(parent, packageNsURI ? CoreUIMessages._UI_BrowseRegisteredPackages_title : CoreUIMessages._UI_BrowseResource_title, multi ? SWT.OPEN | SWT.MULTI : SWT.OPEN | SWT.SINGLE);
         _packageNsURI = packageNsURI;
         _domain = domain;
@@ -145,11 +153,11 @@ public class LoadEcoreDialog extends ResourceDialog {
 
             @Override
             public void widgetSelected(SelectionEvent event) {
-                PlatformPackageDialog dialog = new PlatformPackageDialog(getShell(), _multi);
+                TargetPlatformPackageDialog dialog = new TargetPlatformPackageDialog(getShell(), _multi);
                 if (dialog.open() != Window.OK) {
                     return;
                 }
-                Object[] result = dialog.getResult();
+                IPlatformGenModel[] result = dialog.getSelectedPlatformGenModels();
                 if (result == null) {
                     return;
                 }
@@ -162,14 +170,13 @@ public class LoadEcoreDialog extends ResourceDialog {
                     uriField.setText(""); //$NON-NLS-1$
                     uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
                 } else if (_genmodelURI) {
-                    Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
+                    Map<URI, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getTargetPlatformGenModelLocationMap();
                     for (int i = 0, length = result.length; i < length; i++) {
-                        IPlatformGenModel genmodel = (IPlatformGenModel) result[i];
-                        if (genmodel.getURI() == null) {
-                            EGFCoreUIPlugin.getDefault().logWarning(NLS.bind(CoreUIMessages._UI_No_Associated_GenModel, genmodel.getNamespace()));
+                        if (result[i].getURI() == null) {
+                            EGFCoreUIPlugin.getDefault().logWarning(NLS.bind(CoreUIMessages._UI_No_Associated_GenModel, result[i].getNsURI()));
                             continue;
                         }
-                        URI location = ePackageNsURItoGenModelLocationMap.get(genmodel.getURI().toString());
+                        URI location = ePackageNsURItoGenModelLocationMap.get(result[i].getURI());
                         if (location != null) {
                             uris.append(location);
                             uris.append("  "); //$NON-NLS-1$                            
@@ -180,23 +187,21 @@ public class LoadEcoreDialog extends ResourceDialog {
                         uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
                     }
                 } else {
-                    ResourceSet resourceSet = new ResourceSetImpl();
-                    resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
-                    Map<String, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getEPackageNsURIToGenModelLocationMap();
+                    ResourceSet resourceSet = new TargetPlatformResourceSet();
+                    Map<URI, URI> ePackageNsURItoGenModelLocationMap = EGFCorePlugin.getTargetPlatformGenModelLocationMap();
                     for (int i = 0, length = result.length; i < length; i++) {
-                        IPlatformGenModel genmodel = (IPlatformGenModel) result[i];
-                        if (genmodel.getURI() == null) {
-                            EGFCoreUIPlugin.getDefault().logWarning(NLS.bind(CoreUIMessages._UI_No_Associated_GenModel, genmodel.getNamespace()));
+                        if (result[i].getURI() == null) {
+                            EGFCoreUIPlugin.getDefault().logWarning(NLS.bind(CoreUIMessages._UI_No_Associated_GenModel, result[i].getNsURI()));
                             continue;
                         }
-                        URI location = ePackageNsURItoGenModelLocationMap.get(genmodel.getURI().toString());
+                        URI location = ePackageNsURItoGenModelLocationMap.get(result[i].getURI());
                         Resource resource = resourceSet.getResource(location, true);
                         EcoreUtil.resolveAll(resource);
                     }
                     for (Resource resource : resourceSet.getResources()) {
                         LOOP: for (EPackage ePackage : EMFHelper.getAllPackages(resource)) {
                             for (int i = 0, length = result.length; i < length; i++) {
-                                if (((IPlatformGenModel) result[i]).getId().compareTo(ePackage.getNsURI()) == 0) {
+                                if (result[i].getURI().toString().equals(ePackage.getNsURI())) {
                                     URI resourceUri = resource.getURI();
                                     uris.append(resourceUri);
                                     uris.append("  "); //$NON-NLS-1$

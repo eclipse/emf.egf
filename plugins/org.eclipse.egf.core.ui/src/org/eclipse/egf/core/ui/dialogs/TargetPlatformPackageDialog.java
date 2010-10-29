@@ -12,6 +12,7 @@ package org.eclipse.egf.core.ui.dialogs;
 
 import java.util.Arrays;
 
+import org.eclipse.egf.common.helper.CollectionHelper;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
 import org.eclipse.egf.common.ui.ICommonUIImages;
 import org.eclipse.egf.core.EGFCorePlugin;
@@ -28,9 +29,9 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
  * @author Xavier Maysonnave
  * 
  */
-public class PlatformPackageDialog extends ElementListSelectionDialog {
+public class TargetPlatformPackageDialog extends ElementListSelectionDialog {
 
-    public PlatformPackageDialog(Shell parent, boolean multi) {
+    public TargetPlatformPackageDialog(Shell parent, boolean multi) {
 
         super(parent, new LabelProvider() {
 
@@ -57,9 +58,9 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
     }
 
     protected void updateElements() {
-        Object[] result = EGFCorePlugin.getPlatformGenModels();
-        Arrays.sort(result);
-        setListElements(result);
+        IPlatformGenModel[] elements = EGFCorePlugin.getTargetPlatformGenModels();
+        Arrays.sort(elements);
+        setListElements(elements);
     }
 
     @Override
@@ -69,4 +70,11 @@ public class PlatformPackageDialog extends ElementListSelectionDialog {
         return result;
     }
 
+    public IPlatformGenModel[] getSelectedPlatformGenModels() {
+        Object[] objects = getResult();
+        if (objects != null) {
+            return CollectionHelper.toArray(Arrays.asList(objects), IPlatformGenModel.class);
+        }
+        return null;
+    }
 }
