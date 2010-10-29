@@ -4,8 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/osgi/baseadaptor/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/osgi/framework/internal/core/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/core/internal/registry/**"/>
+			<accessrule kind="accessible" pattern="org/eclipse/**/internal/**"/>
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
