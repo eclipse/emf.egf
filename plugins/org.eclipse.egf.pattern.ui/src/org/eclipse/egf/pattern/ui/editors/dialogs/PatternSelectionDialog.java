@@ -341,6 +341,9 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
      */
     @Override
     protected void handleSelected(StructuredSelection selection) {
+        if (selection == null || selection.isEmpty()) {
+            return;
+        }
         super.handleSelected(selection);
         if (selection.size() != 0) {
             List<Pattern> patterns = new UniqueEList<Pattern>();
