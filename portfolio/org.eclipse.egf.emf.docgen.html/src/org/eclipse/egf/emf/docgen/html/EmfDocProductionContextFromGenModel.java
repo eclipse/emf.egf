@@ -16,7 +16,7 @@
 package org.eclipse.egf.emf.docgen.html;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -36,7 +36,7 @@ public class EmfDocProductionContextFromGenModel implements ITaskProduction {
     public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
         URI genModelURI = productionContext.getInputValue("genModelURI", DomainURI.class).getUri(); //$NON-NLS-1$
 
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         Resource genModelResource = resourceSet.getResource(genModelURI, true);
         GenModel genModel = (GenModel) genModelResource.getContents().get(0);
 
