@@ -37,11 +37,15 @@ public class CoreUIMessages {
 
     public static String _UI_SelectRegisteredFcore;
 
+    public static String _UI_TypeSelection;
+
     public static String _UI_SelectType;
 
     public static String _UI_SelectTypes;
 
     public static String _UI_FilteredItemsSelectionDialog_separatorLabel;
+
+    public static String _UI_FilteredItemsSelectionDialog_runtimeSeparatorLabel;
 
     public static String _UI_FilteredItemsSelectionDialog_platformSeparatorLabel;
 
@@ -107,15 +111,15 @@ public class CoreUIMessages {
 
     public static String ModelSelection_errorMessage;
 
-    public static String EcoreSelectionDialog_choose_model_button_title;
+    public static String TargetPlatformEcoreSelectionDialog_choose_model_button_title;
 
-    public static String EcoreSelectionDialog_nItemsSelected;
+    public static String TargetPlatformEcoreSelectionDialog_nItemsSelected;
 
-    public static String EcoreSelectionDialog_toggleStatusAction;
+    public static String TargetPlatformEcoreSelectionDialog_toggleStatusAction;
 
-    public static String EcoreSelectionDialog_menu;
+    public static String TargetPlatformEcoreSelectionDialog_menu;
 
-    public static String EcoreSelectionDialog_select;
+    public static String TargetPlatformEcoreSelectionDialog_select;
 
     public static String _UI_FileConflict_label;
 
