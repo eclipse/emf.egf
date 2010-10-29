@@ -25,7 +25,7 @@ import java.util.Map.Entry;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -66,7 +66,7 @@ public class EcoreImporterHelper {
     protected static EcoreImporter doCreateEcoreImporter(EcoreImporterHelper helper, IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
         helper.importer = new EcoreImporter() {
             public ResourceSet createResourceSet() {
-                return new EGFResourceSet();
+                return new TargetPlatformResourceSet();
             }
 
             protected List<Resource> computeResourcesToBeSaved() {
@@ -148,7 +148,7 @@ public class EcoreImporterHelper {
     }
 
     private static Resource getGenModelResource(IPath ecorePath, GenModel genModel, EmfGeneration model) {
-        ResourceSet resourceSet = new EGFResourceSet();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
 
         // try to find it closed to the ecore file
         IPath path = ecorePath.removeFileExtension().addFileExtension("genmodel");
