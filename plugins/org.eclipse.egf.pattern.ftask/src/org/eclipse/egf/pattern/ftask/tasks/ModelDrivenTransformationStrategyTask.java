@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.domain.DomainFactory;
@@ -72,7 +72,7 @@ public class ModelDrivenTransformationStrategyTask extends ModelDrivenStrategyTa
             domainURI.setUri(uri);
             context.setOutputValue("outDomain", domainURI); //$NON-NLS-1$
 
-            EGFResourceSet set = new EGFResourceSet();
+            TargetPlatformResourceSet set = new TargetPlatformResourceSet();
             Resource resource = set.createResource(uri);
             resource.getContents().addAll(objects);
             resource.save(Collections.EMPTY_MAP);
