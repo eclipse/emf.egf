@@ -55,12 +55,4 @@ public interface TypePatternSubstitution extends Type {
      */
     <T extends Object> Class<T> getType();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model patternRequired="true"
-     * @generated
-     */
-    EList<Pattern> getSubstitutions(Pattern pattern);
-
 } // TypePatternSubstitution

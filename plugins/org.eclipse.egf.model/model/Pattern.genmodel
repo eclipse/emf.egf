@@ -157,9 +157,6 @@
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType">
         <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternSubstitution/getType/T"/>
       </genOperations>
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getSubstitutions">
-        <genParameters ecoreParameter="Pattern.ecore#//TypePatternSubstitution/getSubstitutions/pattern"/>
-      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
