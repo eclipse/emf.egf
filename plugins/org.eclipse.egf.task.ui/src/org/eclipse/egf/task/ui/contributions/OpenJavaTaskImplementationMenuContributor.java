@@ -20,6 +20,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
+import org.eclipse.egf.core.platform.loader.BundleClassLoaderFactory;
+import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.task.EGFTaskPlugin;
 import org.eclipse.egf.task.ui.EGFTaskUIPlugin;
@@ -93,14 +95,23 @@ public class OpenJavaTaskImplementationMenuContributor extends TaskMenuContribut
                     IJavaProject project = JavaCore.create(resource.getProject());
                     _type = project.findType(_fqn, monitor);
                 } else {
-                    // Target
-                    IPlatformFcore fcore = ((IPlatformFcoreProvider) _resource).getIPlatformFcore();
-                    Bundle fcoreBundle = fcore.getPlatformBundle().getBundle();
-                    if (fcoreBundle == null) {
+                    IPlatformFcore fcore = null;
+                    Bundle bundle = null;
+                    if (_resource instanceof IPlatformFcoreProvider) {
+                        fcore = ((IPlatformFcoreProvider) _resource).getIPlatformFcore();
+                    }
+                    if (fcore == null) {
                         throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_find_platform_fcore, _resource.getURI()), null)));
                     }
-                    // Class
-                    Class<?> clazz = fcoreBundle.loadClass(_fqn);
+                    // Load Class
+                    Class<?> clazz = null;
+                    bundle = fcore.getPlatformBundle().getBundle();
+                    if (bundle != null) {
+                        clazz = bundle.loadClass(_fqn);
+                    } else {
+                        IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(fcore.getPluginModelBase());
+                        clazz = loader.loadClass(_fqn);
+                    }
                     if (clazz == null) {
                         throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_load_class, _fqn), null)));
                     }
@@ -108,7 +119,7 @@ public class OpenJavaTaskImplementationMenuContributor extends TaskMenuContribut
                     String id = fcore.getPlatformBundle().getBundleId();
                     if (PDECore.getDefault().getSearchablePluginsManager().isInJavaSearch(id) == false) {
                         PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] {
-                            fcore.getPlatformBundle().getPluginModelBase()
+                            fcore.getPluginModelBase()
                         });
                     }
                     // Java Search
