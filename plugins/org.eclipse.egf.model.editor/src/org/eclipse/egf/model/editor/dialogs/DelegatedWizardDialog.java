@@ -18,14 +18,14 @@ import org.eclipse.swt.widgets.Shell;
  * @author Xavier Maysonnave
  * 
  */
-public class EGFWizardDialog extends WizardDialog {
+public class DelegatedWizardDialog extends WizardDialog {
 
-  public EGFWizardDialog(Shell parentShell, IWizard newWizard) {
-    super(parentShell, newWizard);
-  }
+    public DelegatedWizardDialog(Shell parentShell, IWizard newWizard) {
+        super(parentShell, newWizard);
+    }
 
-  public void finishDialog() {
-    finishPressed();
-  }
+    public void finishDialog() {
+        finishPressed();
+    }
 
 }

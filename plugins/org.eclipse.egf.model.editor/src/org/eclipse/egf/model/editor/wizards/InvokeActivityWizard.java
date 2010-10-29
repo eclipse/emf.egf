@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.commands.InvokeActivityCommand;
-import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
+import org.eclipse.egf.model.editor.dialogs.DelegatedWizardDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -96,8 +96,8 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
     }
 
     public void finishWizardDialog() {
-        if (getContainer() instanceof EGFWizardDialog) {
-            ((EGFWizardDialog) getContainer()).finishDialog();
+        if (getContainer() instanceof DelegatedWizardDialog) {
+            ((DelegatedWizardDialog) getContainer()).finishDialog();
         }
         // DO nothing
         return;
