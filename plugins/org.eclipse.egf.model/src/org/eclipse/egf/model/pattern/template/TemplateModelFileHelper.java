@@ -140,7 +140,7 @@ public class TemplateModelFileHelper {
         if (method == null) {
             throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
         }
-        return EGFCorePlugin.getPlatformURIConverter().createInputStream(getTemplateURI(method));
+        return EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(getTemplateURI(method));
 
     }
 
