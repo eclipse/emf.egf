@@ -45,7 +45,10 @@ public abstract class PatternEngine {
         if (pattern.eResource() == null) {
             throw new PatternException(NLS.bind(EGFCoreMessages.EObject_no_Resource, EcoreUtil.getURI(pattern)));
         }
-        IPlatformFcore fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+        IPlatformFcore fcore = null;
+        if (pattern.eResource() instanceof IPlatformFcoreProvider) {
+            fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+        }
         if (fcore == null) {
             throw new PatternException(NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(pattern).trimFragment()));
         }
