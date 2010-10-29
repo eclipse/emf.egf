@@ -261,6 +261,9 @@ public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
      */
     @Override
     protected void handleSelected(StructuredSelection selection) {
+        if (selection == null || selection.isEmpty()) {
+            return;
+        }
         super.handleSelected(selection);
         if (selection.size() != 0) {
             List<IPlatformFcore> fcores = new UniqueEList<IPlatformFcore>();
