@@ -19,12 +19,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
+import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
-import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.core.ui.contributor.IMenuEditorActionBarContributor;
@@ -241,19 +240,12 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
                 } else {
                     context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.FALSE);
                 }
-                // Bundle Session
-                ProjectBundleSession session = new ProjectBundleSession(EGFModelEditorPlugin.getPlugin().getBundle().getBundleContext());
-                context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
+                // Bundle Class Loader Map
+                context.put(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP, new HashMap<Resource, IBundleClassLoader>());
                 // Validation
                 for (EObject eObject : selectedObjects) {
                     progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject)})); //$NON-NLS-1$
                     diagnostician.validate(eObject, diagnostic, context);
-                }
-                // Dispose Session
-                try {
-                    session.dispose();
-                } catch (CoreException ce) {
-                    EGFModelEditorPlugin.getPlugin().logError(ce);
                 }
                 return diagnostic;
 
