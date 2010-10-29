@@ -40,7 +40,7 @@ public class TargetPlatformGenModelActionBarContributor extends GenModelActionBa
      */
     @Override
     public void contributeToMenu(IMenuManager menuManager) {
-        generateMenuManager = new MenuManager(GenModelEditPlugin.INSTANCE.getString("_UI_Generate_menu"), "org.eclipse.emf.codegen.ecore.genmodelMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
+        generateMenuManager = new MenuManager(GenModelEditPlugin.INSTANCE.getString("_UI_Generate_menu"), "org.eclipse.emf.codegen.ecore.targetPlatformGenmodelMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
         menuManager.insertAfter("additions", generateMenuManager); //$NON-NLS-1$
         generateMenuManager.add(new Separator("annotation-actions")); //$NON-NLS-1$
         generateMenuManager.add(showGenAnnotationsAction);
