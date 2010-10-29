@@ -46,12 +46,12 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
  * An implementation of a {@link URIHandler URI handler}.
  * 
  */
-public class PlatformURIHandlerImpl implements URIHandler {
+public class TargetPlatformURIHandlerImpl implements URIHandler {
 
     /**
      * Creates an instance.
      */
-    public PlatformURIHandlerImpl() {
+    public TargetPlatformURIHandlerImpl() {
         super();
     }
 

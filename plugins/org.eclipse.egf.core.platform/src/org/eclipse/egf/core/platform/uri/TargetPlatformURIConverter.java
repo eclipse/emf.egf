@@ -39,14 +39,14 @@ import org.eclipse.pde.internal.core.PluginModelDelta;
  * @author Xavier Maysonnave
  * 
  */
-public class PlatformURIConverter extends ExtensibleURIConverterImpl implements IPluginModelListener {
+public class TargetPlatformURIConverter extends ExtensibleURIConverterImpl implements IPluginModelListener {
 
     /**
      * The global default read only list of URI handlers.
      */
     private static List<URIHandler> getDefaultHandlers() {
         return Collections.unmodifiableList(Arrays.asList(new URIHandler[] {
-                new PlatformResourceURIHandlerImpl(), new FileURIHandlerImpl(), new EFSURIHandlerImpl(), new ArchiveURIHandlerImpl(), new PlatformURIHandlerImpl()
+                new PlatformResourceURIHandlerImpl(), new FileURIHandlerImpl(), new EFSURIHandlerImpl(), new ArchiveURIHandlerImpl(), new TargetPlatformURIHandlerImpl()
         }));
     }
 
@@ -54,7 +54,7 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
     // a lock against the PlatformManager instance
     private Object __lock = new Object();
 
-    public PlatformURIConverter() {
+    public TargetPlatformURIConverter() {
         super(getDefaultHandlers(), ContentHandler.Registry.INSTANCE.contentHandlers());
         PDECore.getDefault().getModelManager().addPluginModelListener(this);
         getURIMap().putAll(initializeURIMap());
