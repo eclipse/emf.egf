@@ -56,4 +56,12 @@ public interface TypePatternSubstitution extends Type {
     @SuppressWarnings("unchecked")
     Class<?> getType();
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model patternRequired="true"
+     * @generated
+     */
+    EList<Pattern> getSubstitutions(Pattern pattern);
+
 } // TypePatternSubstitution

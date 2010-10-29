@@ -141,6 +141,9 @@
       <genFeatures property="None" children="true" createChild="true" propertyCategory=""
           ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType"/>
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getSubstitutions">
+        <genParameters ecoreParameter="Pattern.ecore#//TypePatternSubstitution/getSubstitutions/pattern"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//Substitution">
       <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"

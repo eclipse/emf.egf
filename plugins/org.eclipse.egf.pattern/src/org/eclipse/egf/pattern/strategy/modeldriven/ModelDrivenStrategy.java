@@ -22,11 +22,11 @@ import org.eclipse.egf.model.pattern.DomainVisitor;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.strategy.AbstractStrategy;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * @author Thomas Guiu
@@ -41,11 +41,9 @@ public class ModelDrivenStrategy extends AbstractStrategy {
 
         TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
         if (substitutions != null) {
-            for (Substitution sub : substitutions.getSubstitutions()) {
-                //add all replacement patterns if replaced Element is null
-                if (sub.getReplacedElement() == null)
-                    result.addAll(sub.getReplacement());
-            }
+            EList<Pattern> additions = substitutions.getSubstitutions(null);
+            if (additions != null)
+                result.addAll(additions);
         }
         List<Object> model = (List<Object>) context.getValue(PatternContext.DOMAIN_OBJECTS);
 

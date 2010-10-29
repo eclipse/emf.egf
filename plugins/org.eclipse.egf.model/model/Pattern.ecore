@@ -193,6 +193,9 @@
         <eTypeArguments/>
       </eGenericType>
     </eOperations>
+    <eOperations name="getSubstitutions" upperBound="-1" eType="#//Pattern">
+      <eParameters name="pattern" lowerBound="1" eType="#//Pattern"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="substitutions" upperBound="-1"
         eType="#//Substitution" containment="true"/>
   </eClassifiers>
