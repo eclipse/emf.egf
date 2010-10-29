@@ -26,9 +26,9 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
  */
 public class TargetPlatformAdapterFactoryEditingDomain extends AdapterFactoryEditingDomain {
 
-    protected class EGFAdapterFactoryEditingDomainResourceSet extends TargetPlatformResourceSet implements IEditingDomainProvider {
+    protected class TargetPlatformAdapterFactoryEditingDomainResourceSet extends TargetPlatformResourceSet implements IEditingDomainProvider {
 
-        public EGFAdapterFactoryEditingDomainResourceSet() {
+        public TargetPlatformAdapterFactoryEditingDomainResourceSet() {
             super();
             // setResourceFactoryRegister(new ExtensibleContextResourceFactoryRegister());
             //EATM setResourceFactoryRegister(new ContextResourceFactoryRegister());
@@ -45,7 +45,7 @@ public class TargetPlatformAdapterFactoryEditingDomain extends AdapterFactoryEdi
      */
     public TargetPlatformAdapterFactoryEditingDomain(AdapterFactory adapterFactory, CommandStack commandStack) {
         super(adapterFactory, commandStack);
-        resourceSet = new EGFAdapterFactoryEditingDomainResourceSet();
+        resourceSet = new TargetPlatformAdapterFactoryEditingDomainResourceSet();
     }
 
     /**
@@ -53,7 +53,7 @@ public class TargetPlatformAdapterFactoryEditingDomain extends AdapterFactoryEdi
      */
     public TargetPlatformAdapterFactoryEditingDomain(AdapterFactory adapterFactory, CommandStack commandStack, Map<Resource, Boolean> resourceToReadOnlyMap) {
         super(adapterFactory, commandStack, resourceToReadOnlyMap);
-        resourceSet = new EGFAdapterFactoryEditingDomainResourceSet();
+        resourceSet = new TargetPlatformAdapterFactoryEditingDomainResourceSet();
     }
 
 }
