@@ -10,12 +10,15 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import java.net.URL;
+import java.util.Set;
+
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IPlatformExtensionPointFactory<T extends IPlatformExtensionPoint> {
+public interface IPlatformRuntimeRegistry {
 
-    public T createExtensionPoint(IPlatformBundle platformBundle, Object object);
+    public Set<URL> getPlatformRuntimeBundleURLs();
 
 }

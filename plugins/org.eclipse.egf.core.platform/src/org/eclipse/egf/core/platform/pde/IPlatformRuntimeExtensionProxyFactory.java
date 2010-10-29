@@ -10,12 +10,16 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IPlatformExtensionPointFactory<T extends IPlatformExtensionPoint> {
+public interface IPlatformRuntimeExtensionProxyFactory {
 
-    public T createExtensionPoint(IPlatformBundle platformBundle, Object object);
+    public IPlatformRuntimeExtensionProxy createPlatformRuntimeExtensionProxy(IConfigurationElement element);
+
+    public boolean isFromFactory(IPlatformRuntimeExtensionProxy extensionProxy);
 
 }

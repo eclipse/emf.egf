@@ -10,12 +10,14 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
-/**
- * @author Xavier Maysonnave
- * 
- */
-public interface IPlatformExtensionPointFactory<T extends IPlatformExtensionPoint> {
+public interface ITargetPlatformExtensionPointDelta extends IPlatformExtensionPointDelta {
 
-    public T createExtensionPoint(IPlatformBundle platformBundle, Object object);
+    public IPlatformExtensionPoint[] getTargetAddedPlatformExtensionPoints();
+
+    public IPlatformExtensionPoint[] getWorkspaceAddedPlatformExtensionPoints();
+
+    public IPlatformExtensionPoint[] getTargetRemovedPlatformExtensionPoints();
+
+    public IPlatformExtensionPoint[] getWorkspaceRemovedPlatformExtensionPoints();
 
 }

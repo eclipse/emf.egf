@@ -22,14 +22,16 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.core.platform.internal.pde.IManagerConstants;
-import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
+import org.eclipse.egf.core.platform.internal.pde.RuntimePlatformManager;
+import org.eclipse.egf.core.platform.internal.pde.TargetPlatformManager;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
-import org.eclipse.egf.core.platform.uri.PlatformURIConverter;
+import org.eclipse.egf.core.platform.pde.ITargetPlatformManager;
+import org.eclipse.egf.core.platform.uri.RuntimePlatformURIConverter;
+import org.eclipse.egf.core.platform.uri.TargetPlatformURIConverter;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.pde.core.plugin.IPluginElement;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -40,9 +42,13 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
 
     private static EGFPlatformPlugin __plugin;
 
-    private static PlatformManager __platformManager;
+    private static TargetPlatformManager __targetPlatformManager;
 
-    private static PlatformURIConverter __platformURIConverter;
+    private static TargetPlatformURIConverter __targetPlatformURIConverter;
+
+    private static RuntimePlatformManager __runtimePlatformManager;
+
+    private static RuntimePlatformURIConverter __runtimePlatformURIConverter;
 
     private static Map<String, IConfigurationElement> __managerExtensionPoints;
 
@@ -61,8 +67,8 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         return __plugin;
     }
 
-    public static IPlatformManager getPlatformManager() {
-        return __platformManager;
+    public static ITargetPlatformManager getTargetPlatformManager() {
+        return __targetPlatformManager;
     }
 
     /**
@@ -70,8 +76,21 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
      * 
      * @return an array of IPlatformFcore
      */
-    public static PlatformURIConverter getPlatformURIConverter() {
-        return __platformURIConverter;
+    public static TargetPlatformURIConverter getTargetPlatformURIConverter() {
+        return __targetPlatformURIConverter;
+    }
+
+    public static IPlatformManager getRuntimePlatformManager() {
+        return __runtimePlatformManager;
+    }
+
+    /**
+     * Returns a snapshot of known IPlatformFcore
+     * 
+     * @return an array of IPlatformFcore
+     */
+    public static RuntimePlatformURIConverter getRuntimePlatformURIConverter() {
+        return __runtimePlatformURIConverter;
     }
 
     /**
@@ -132,7 +151,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
                 Class<? extends IPlatformExtensionPoint> clazz = fetchReturnedTypeFromFactory(factory.getClass());
                 if (clazz == null) {
                     getDefault().logError(NLS.bind(EGFCommonMessages.Wrong_Class_Message, factory.getClass().getName()));
-                    getDefault().logInfo("Unable to find ''createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement)'' method."); //$NON-NLS-1$
+                    getDefault().logInfo("Unable to find ''createExtensionPoint(IPlatformBundle platformBundle, Object object)'' method."); //$NON-NLS-1$
                     getDefault().logInfo(NLS.bind(EGFCommonMessages.Bundle_Message, element.getContributor().getName()), 1);
                     getDefault().logInfo(NLS.bind(EGFCommonMessages.Extension_Point_Message, element.getName()), 1);
                     continue;
@@ -223,9 +242,9 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
     public static Class<? extends IPlatformExtensionPoint> fetchReturnedTypeFromFactory(Class<?> factory) {
         Method method = null;
         try {
-            method = factory.getDeclaredMethod("createExtensionPoint", IPlatformBundle.class, IPluginElement.class); //$NON-NLS-1$
+            method = factory.getDeclaredMethod("createExtensionPoint", IPlatformBundle.class, Object.class); //$NON-NLS-1$
         } catch (NoSuchMethodException nsme) {
-            // Just Ignore
+            getDefault().logError(nsme);
         }
         if (method == null) {
             return null;
@@ -234,7 +253,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         try {
             type = method.getGenericReturnType();
         } catch (Throwable t) {
-            // Just ignore
+            getDefault().logError(t);
         }
         if (type == null) {
             return null;
@@ -242,7 +261,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         try {
             return (Class<? extends IPlatformExtensionPoint>) type;
         } catch (ClassCastException cce) {
-            // Just Ignore
+            getDefault().logError(cce);
         }
         return null;
     }
@@ -256,8 +275,10 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         __plugin = this;
-        __platformURIConverter = new PlatformURIConverter();
-        __platformManager = new PlatformManager();
+        __targetPlatformManager = new TargetPlatformManager();
+        __targetPlatformURIConverter = new TargetPlatformURIConverter();
+        __runtimePlatformManager = new RuntimePlatformManager();
+        __runtimePlatformURIConverter = new RuntimePlatformURIConverter();
     }
 
     /**
@@ -266,10 +287,14 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        __platformManager.dispose();
-        __platformURIConverter.dispose();
-        __platformManager = null;
-        __platformURIConverter = null;
+        __runtimePlatformURIConverter.dispose();
+        __runtimePlatformManager.dispose();
+        __targetPlatformURIConverter.dispose();
+        __targetPlatformManager.dispose();
+        __runtimePlatformURIConverter = null;
+        __runtimePlatformManager = null;
+        __targetPlatformURIConverter = null;
+        __targetPlatformManager = null;
         __managerExtensionPoints = null;
         __platformExtensionPoints = null;
         __platformExtensionPointClasses = null;

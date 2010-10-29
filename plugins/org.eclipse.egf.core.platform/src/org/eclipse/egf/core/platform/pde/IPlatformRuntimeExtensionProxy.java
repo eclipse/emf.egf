@@ -10,12 +10,18 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import java.net.URL;
+
+import org.eclipse.core.runtime.IExtension;
+
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IPlatformExtensionPointFactory<T extends IPlatformExtensionPoint> {
+public interface IPlatformRuntimeExtensionProxy {
 
-    public T createExtensionPoint(IPlatformBundle platformBundle, Object object);
+    public boolean originatesFrom(IExtension extension);
+
+    public URL getBundleURL();
 
 }

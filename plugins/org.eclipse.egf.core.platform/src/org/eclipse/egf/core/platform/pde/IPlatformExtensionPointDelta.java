@@ -16,14 +16,6 @@ public interface IPlatformExtensionPointDelta {
 
     public IPlatformExtensionPoint[] getRemovedPlatformExtensionPoints();
 
-    public IPlatformExtensionPoint[] getTargetAddedPlatformExtensionPoints();
-
-    public IPlatformExtensionPoint[] getWorkspaceAddedPlatformExtensionPoints();
-
-    public IPlatformExtensionPoint[] getTargetRemovedPlatformExtensionPoints();
-
-    public IPlatformExtensionPoint[] getWorkspaceRemovedPlatformExtensionPoints();
-
     public <T extends IPlatformExtensionPoint> T[] getAddedPlatformExtensionPoints(Class<T> clazz);
 
     public <T extends IPlatformExtensionPoint> T[] getRemovedPlatformExtensionPoints(Class<T> clazz);

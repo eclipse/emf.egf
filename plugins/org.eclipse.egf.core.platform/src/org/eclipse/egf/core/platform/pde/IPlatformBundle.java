@@ -13,8 +13,6 @@ package org.eclipse.egf.core.platform.pde;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.service.resolver.BundleDescription;
-import org.eclipse.pde.core.plugin.IPluginBase;
-import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.Bundle;
 
@@ -36,17 +34,16 @@ public interface IPlatformBundle {
     public String getPreviousBundleId();
 
     /**
-     * Returns an IProject if this IPlatformBundle is associated with a
-     * workspace IProject.
+     * Returns an IProject if this IPlatformBundle is a workspace bundle.
      * 
      * @return an IProject if this IPlatformBundle is a workspace project,
-     *         or <code>null</code> if this IPlatformBundle is a target one.
+     *         or <code>null</code> if this IPlatformBundle is a runtime or a target bundle.
      * 
      */
     public IProject getProject();
 
     /**
-     * Returns a Bundle if this IPlatformBundle is a target bundle.
+     * Returns a Bundle if this IPlatformBundle is a runtime bundle.
      * 
      * @return a Bundle if this IPlatformBundle is a target bundle,
      *         or <code>null</code> if this IPlatformBundle is a workspace one.
@@ -55,14 +52,7 @@ public interface IPlatformBundle {
     public Bundle getBundle();
 
     /**
-     * Returns a top-level model object.
-     * 
-     * @return a top-level model object representing a plug-in or a fragment.
-     */
-    public IPluginBase getPluginBase();
-
-    /**
-     * Manifest file model associated with IPlatformBundle
+     * PDE model associated with IPlatformBundle if any
      * 
      * @return all plug-ins and (possibly) fragments in the workspace as well as
      *         all plug-ins and
@@ -80,12 +70,9 @@ public interface IPlatformBundle {
     public boolean isFragment();
 
     /**
-     * Returns the bundle description of the plug-in
-     * in case the plug-in uses the new OSGi bundle layout.
+     * Returns the bundle description of the plug-in.
      * 
-     * @return bundle description if this is an OSGi plug-in,
-     *         or <code>null</code> if the plug-in is in a classic
-     *         format.
+     * @return bundle description
      * 
      * @since 3.0
      */
@@ -99,6 +86,24 @@ public interface IPlatformBundle {
      * 
      */
     public boolean isTarget();
+
+    /**
+     * Whether or not this IPlatformBundle is a workspace IPlatformBundle.
+     * 
+     * @return true if this IPlatformBundle is a target bundle,
+     * false otherwise
+     * 
+     */
+    public boolean isWorkspace();
+
+    /**
+     * Whether or not this IPlatformBundle is a runtime IPlatformBundle.
+     * 
+     * @return true if this IPlatformBundle is a runtime bundle,
+     * false otherwise
+     * 
+     */
+    public boolean isRuntime();
 
     /**
      * Whether or not this IPlatformBundle has managed extension points
@@ -137,11 +142,5 @@ public interface IPlatformBundle {
     public boolean hasPlatformExtensionPoint(IPlatformExtensionPoint platformExtensionPoint);
 
     public boolean hasPlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint platformExtensionPoint);
-
-    public void addPlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPluginExtension extension);
-
-    public void addPlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint platformExtensionPoint);
-
-    public boolean removePlatformExtensionPoint(Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint platformExtensionPoint);
 
 }

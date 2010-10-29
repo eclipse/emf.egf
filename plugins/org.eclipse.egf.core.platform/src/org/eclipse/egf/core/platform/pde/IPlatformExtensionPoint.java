@@ -10,10 +10,27 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.osgi.framework.Bundle;
+
 public interface IPlatformExtensionPoint extends Comparable<IPlatformExtensionPoint> {
 
     public String getId();
 
+    public String getUniqueIdentifier();
+
+    public int getHandleId();
+
     public IPlatformBundle getPlatformBundle();
+
+    public boolean isWorkspace();
+
+    public boolean isTarget();
+
+    public boolean isRuntime();
+
+    public IPluginModelBase getPluginModelBase();
+
+    public Bundle getBundle();
 
 }

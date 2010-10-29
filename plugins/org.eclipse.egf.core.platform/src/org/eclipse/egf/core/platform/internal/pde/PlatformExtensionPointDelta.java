@@ -22,9 +22,9 @@ import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 
 public class PlatformExtensionPointDelta implements IPlatformExtensionPointDelta {
 
-    private Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> _added = new HashMap<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>>();
+    protected Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> _added = new HashMap<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>>();
 
-    private Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> _removed = new HashMap<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>>();
+    protected Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> _removed = new HashMap<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>>();
 
     public PlatformExtensionPointDelta() {
         // Nothing to do
@@ -38,20 +38,8 @@ public class PlatformExtensionPointDelta implements IPlatformExtensionPointDelta
         return extensionPoints.toArray(new IPlatformExtensionPoint[extensionPoints.size()]);
     }
 
-    protected static IPlatformExtensionPoint[] getPlatformExtensionPoints(Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> map, boolean isTarget) {
-        List<IPlatformExtensionPoint> extensionPoints = new ArrayList<IPlatformExtensionPoint>();
-        for (Map.Entry<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> entry : map.entrySet()) {
-            for (IPlatformExtensionPoint platformExtensionPoint : entry.getValue()) {
-                if (platformExtensionPoint.getPlatformBundle().isTarget() == isTarget) {
-                    extensionPoints.add(platformExtensionPoint);
-                }
-            }
-        }
-        return extensionPoints.toArray(new IPlatformExtensionPoint[extensionPoints.size()]);
-    }
-
     protected static boolean storePlatformExtensionPoint(Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> map, Class<? extends IPlatformExtensionPoint> clazz, IPlatformExtensionPoint extensionPoint) {
-        if (clazz == null || EGFPlatformPlugin.getPlatformExtensionPointClasses().contains(clazz) == false || extensionPoint == null) {
+        if (clazz == null || EGFPlatformPlugin.getPlatformExtensionPoints().values().contains(clazz) == false || extensionPoint == null) {
             return false;
         }
         List<IPlatformExtensionPoint> extensionPoints = map.get(clazz);
@@ -64,7 +52,7 @@ public class PlatformExtensionPointDelta implements IPlatformExtensionPointDelta
 
     protected static <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Map<Class<? extends IPlatformExtensionPoint>, List<IPlatformExtensionPoint>> map, Class<T> clazz) {
         List<Object> extensionPoints = new ArrayList<Object>();
-        if (clazz != null && EGFPlatformPlugin.getPlatformExtensionPointClasses().contains(clazz)) {
+        if (clazz != null && EGFPlatformPlugin.getPlatformExtensionPoints().values().contains(clazz)) {
             if (map.get(clazz) != null) {
                 extensionPoints.addAll(map.get(clazz));
             }
@@ -76,28 +64,12 @@ public class PlatformExtensionPointDelta implements IPlatformExtensionPointDelta
         return getPlatformExtensionPoints(_added);
     }
 
-    public IPlatformExtensionPoint[] getTargetAddedPlatformExtensionPoints() {
-        return getPlatformExtensionPoints(_added, true);
-    }
-
-    public IPlatformExtensionPoint[] getWorkspaceAddedPlatformExtensionPoints() {
-        return getPlatformExtensionPoints(_added, false);
-    }
-
     public <T extends IPlatformExtensionPoint> T[] getAddedPlatformExtensionPoints(Class<T> clazz) {
         return getPlatformExtensionPoints(_added, clazz);
     }
 
     public IPlatformExtensionPoint[] getRemovedPlatformExtensionPoints() {
         return getPlatformExtensionPoints(_removed);
-    }
-
-    public IPlatformExtensionPoint[] getTargetRemovedPlatformExtensionPoints() {
-        return getPlatformExtensionPoints(_removed, true);
-    }
-
-    public IPlatformExtensionPoint[] getWorkspaceRemovedPlatformExtensionPoints() {
-        return getPlatformExtensionPoints(_removed, false);
     }
 
     public <T extends IPlatformExtensionPoint> T[] getRemovedPlatformExtensionPoints(Class<T> clazz) {

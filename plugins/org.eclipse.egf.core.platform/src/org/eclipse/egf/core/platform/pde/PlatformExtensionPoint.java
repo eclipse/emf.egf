@@ -24,12 +24,27 @@ public abstract class PlatformExtensionPoint extends AbstractPlatformExtensionPo
         _id = id.trim();
     }
 
+    public PlatformExtensionPoint(IPlatformBundle bundle, String id, String uniqueIdentifier, int handleId) {
+        super(bundle, uniqueIdentifier, handleId);
+        Assert.isNotNull(id);
+        Assert.isLegal(id.trim().length() > 0);
+        _id = id.trim();
+    }
+
     public String getId() {
         return _id;
     }
 
+    public String getUniqueIdentifier() {
+        return _uniqueIdentifier;
+    }
+
+    public int getHandleId() {
+        return _handleId;
+    }
+
     public IPlatformBundle getPlatformBundle() {
-        return _bundle;
+        return _platformBundle;
     }
 
     public int compareTo(IPlatformExtensionPoint platformExtensionPoint) {
@@ -42,6 +57,9 @@ public abstract class PlatformExtensionPoint extends AbstractPlatformExtensionPo
         int result = 1;
         result = prime * result + getPlatformBundle().hashCode();
         result = prime * result + _id.hashCode();
+        if (_uniqueIdentifier != null) {
+            result = prime * result + _uniqueIdentifier.hashCode();
+        }
         return result;
     }
 
@@ -60,7 +78,16 @@ public abstract class PlatformExtensionPoint extends AbstractPlatformExtensionPo
         if (platformExtensionPoint.getPlatformBundle().equals(getPlatformBundle()) == false) {
             return false;
         }
-        return getId().compareTo(platformExtensionPoint.getId()) == 0;
+        if (getId().compareTo(platformExtensionPoint.getId()) != 0) {
+            return false;
+        }
+        if (getUniqueIdentifier() != null && platformExtensionPoint.getUniqueIdentifier() != null) {
+            if (getUniqueIdentifier().compareTo(platformExtensionPoint.getUniqueIdentifier()) != 0) {
+                return false;
+            }
+            return getHandleId() == platformExtensionPoint.getHandleId();
+        }
+        return true;
     }
 
     @Override
