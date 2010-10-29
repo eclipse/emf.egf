@@ -24,13 +24,23 @@ public class ClassHelper {
         if (clazz == null || type == null) {
             return false;
         }
-        // Type Checking
-        try {
-            clazz.asSubclass(type);
-        } catch (ClassCastException cce) {
-            return false;
+        // Same type
+        if (clazz.getName().equals(type.getName())) {
+            return true;
         }
-        return true;
+        // ClassLoader issues, String check
+        for (Class<?> innerClass : clazz.getInterfaces()) {
+            if (innerClass.getName().equals(type.getName())) {
+                return true;
+            }
+        }
+        // Parent Checking
+        if (clazz.getSuperclass() != null) {
+            if (isSubClass(clazz.getSuperclass(), type)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
