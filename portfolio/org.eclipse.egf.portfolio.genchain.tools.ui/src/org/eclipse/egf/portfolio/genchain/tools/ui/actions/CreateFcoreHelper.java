@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.domain.DomainFactory;
@@ -128,7 +128,7 @@ public class CreateFcoreHelper {
     }
 
     public WorkspaceJob createJob(URI fcoreURI, boolean run) {
-        final EGFResourceSet resourceSet = new EGFResourceSet();
+        final TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
         final GenerationChain generationChain = (GenerationChain) resourceSet.getResource(fcoreURI, true).getContents().get(0);
 
         return createJob(generationChain, run);
@@ -181,7 +181,7 @@ public class CreateFcoreHelper {
 
     private void runFcore(GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
         URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
-        EObject eObject = new EGFResourceSet().getResource(uri, true).getContents().get(0);
+        EObject eObject = new TargetPlatformResourceSet().getResource(uri, true).getContents().get(0);
         try {
             RunActivityHelper.run((Activity) eObject, monitor);
         } catch (InvocationException e) {
