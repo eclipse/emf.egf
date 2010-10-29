@@ -134,12 +134,14 @@ public class SubstitutionHelper {
         return result;
     }
 
+    @SuppressWarnings("cast")
     private static void copySubstitutions(TypePatternSubstitution input, TypePatternSubstitution result) {
         if (input == null) {
             return;
         }
         for (Substitution substitution : input.getSubstitutions()) {
-            Substitution newSub = EcoreUtil.copy(substitution);
+            // Preserve cast for backward compatibility
+            Substitution newSub = (Substitution) EcoreUtil.copy(substitution);
             result.getSubstitutions().add(newSub);
         }
     }
