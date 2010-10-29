@@ -23,6 +23,7 @@ Export-Package:
  org.eclipse.egf.common.cycle,
  org.eclipse.egf.common.generator,
  org.eclipse.egf.common.helper,
+ org.eclipse.egf.common.loader,
  org.eclipse.egf.common.l10n,
  org.eclipse.egf.common.log
 Bundle-ActivationPolicy: lazy

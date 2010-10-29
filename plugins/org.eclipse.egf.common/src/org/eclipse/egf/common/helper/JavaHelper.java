@@ -9,39 +9,25 @@
  */
 package org.eclipse.egf.common.helper;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLClassLoader;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.egf.common.EGFCommonPlugin;
-import org.eclipse.egf.common.constant.EGFCommonConstants;
-import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.osgi.util.NLS;
 
 public class JavaHelper {
 
@@ -74,17 +60,6 @@ public class JavaHelper {
             return value.replaceAll("\\W^" + except, ""); //$NON-NLS-1$ //$NON-NLS-2$
         }
         return dropNonWordCharacter(value);
-    }
-
-    private static IFolder findFolder(IPath path) {
-        if (path == null) {
-            return null;
-        }
-        IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(path);
-        if (resource == null || resource instanceof IFolder == false) {
-            return null;
-        }
-        return (IFolder) resource;
     }
 
     public static String getFileName(Class<?> clazz) {
@@ -123,94 +98,6 @@ public class JavaHelper {
         return null;
     }
 
-    public static ClassLoader getProjectClassLoader(IJavaProject project) throws CoreException {
-        final List<URL> urls = getProjectURLs(project, new HashSet<IJavaProject>());
-        return AccessController.doPrivileged(new PrivilegedAction<URLClassLoader>() {
-
-            public URLClassLoader run() {
-                return new URLClassLoader(urls.toArray(new URL[urls.size()]), JavaHelper.class.getClassLoader()) {
-
-                    @Override
-                    public final synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
-                        // First check if we have permission to access the package. This
-                        // should go away once we've added support for exported packages.
-                        SecurityManager sm = System.getSecurityManager();
-                        if (sm != null) {
-                            int i = name.lastIndexOf('.');
-                            if (i != -1) {
-                                sm.checkPackageAccess(name.substring(0, i));
-                            }
-                        }
-                        return super.loadClass(name, resolve);
-                    }
-                };
-            }
-        });
-    }
-
-    public static List<URL> getProjectURLs(IJavaProject javaProject, Set<IJavaProject> visited) throws CoreException {
-        List<URL> urls = new UniqueEList<URL>();
-        // Do we need to process this IJavaProject
-        if (visited.contains(javaProject)) {
-            return urls;
-        }
-        // Process current IJavaProject
-        visited.add(javaProject);
-        try {
-            // Default Output Location
-            IFolder folder = findFolder(javaProject.getOutputLocation());
-            if (folder != null) {
-                urls.add(new URL("file://" + folder.getLocation().toOSString() + EGFCommonConstants.SLASH_CHARACTER)); //$NON-NLS-1$
-            }
-            // Classpath Lookup
-            for (IClasspathEntry entry : javaProject.getResolvedClasspath(true)) {
-                if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-                    folder = findFolder(entry.getOutputLocation());
-                    if (folder != null) {
-                        urls.add(new URL("file://" + folder.getLocation().toOSString() + EGFCommonConstants.SLASH_CHARACTER)); //$NON-NLS-1$
-                    }
-                } else if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
-                    IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(entry.getPath().toString());
-                    IJavaProject innerJavaProject = JavaCore.create(project);
-                    if (project.exists()) {
-                        urls.addAll(getProjectURLs(innerJavaProject, visited));
-                    }
-                } else if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY || entry.getEntryKind() == IClasspathEntry.CPE_VARIABLE) {
-                    urls.add(getURL(entry.getPath()));
-                } else if (entry.getEntryKind() == IClasspathEntry.CPE_CONTAINER) {
-                    IClasspathContainer classpathContainer = JavaCore.getClasspathContainer(entry.getPath(), javaProject);
-                    if (classpathContainer != null) {
-                        for (IClasspathEntry classpathEntry : classpathContainer.getClasspathEntries()) {
-                            urls.add(getURL(classpathEntry.getPath()));
-                        }
-                    }
-                }
-            }
-        } catch (Throwable t) {
-            throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.JavaHelper_AnalysingFailure, javaProject.getProject().getName()), t));
-        }
-        return urls;
-    }
-
-    private static URL getURL(IPath entry) throws MalformedURLException {
-        String path = null;
-        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-        // workspace relative path
-        IPath location = root.getFile(entry).getLocation();
-        if (location != null) {
-            path = location.toOSString();
-        }
-        // absolute path
-        if (path == null) {
-            path = entry.toOSString();
-        }
-        // Check whether or not we face a folder or a file
-        if (entry.toFile() != null && entry.toFile().isDirectory() == false) {
-            return new URL("file://" + path); //$NON-NLS-1$
-        }
-        return new URL("file://" + path + EGFCommonConstants.SLASH_CHARACTER); //$NON-NLS-1$    
-    }
-
     /**
      * Get output folders.<br>
      * 
@@ -223,14 +110,14 @@ public class JavaHelper {
             return folders;
         }
         // Default Output Location
-        IFolder folder = findFolder(project.getOutputLocation());
+        IFolder folder = FileHelper.getFolder(project.getOutputLocation());
         if (folder != null) {
             folders.add(folder);
         }
         // Lookup in source folders
         for (IClasspathEntry entry : project.getResolvedClasspath(true)) {
             if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-                IFolder innerFolder = findFolder(entry.getOutputLocation());
+                IFolder innerFolder = FileHelper.getFolder(entry.getOutputLocation());
                 if (innerFolder != null) {
                     folders.add(innerFolder);
                 }
@@ -489,7 +376,7 @@ public class JavaHelper {
         // Lookup in source folders
         for (IClasspathEntry entry : project.getResolvedClasspath(true)) {
             if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-                IFolder innerFolder = findFolder(entry.getPath());
+                IFolder innerFolder = FileHelper.getFolder(entry.getPath());
                 if (innerFolder != null) {
                     folders.add(innerFolder);
                 }
