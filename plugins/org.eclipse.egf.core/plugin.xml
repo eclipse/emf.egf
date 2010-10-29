@@ -75,7 +75,7 @@
         point="org.eclipse.emf.transaction.editingDomains"
     >
         <editingDomain
-            factory="org.eclipse.egf.core.domain.EGFEditingDomainFactory"
+            factory="org.eclipse.egf.core.domain.TargetPlatformEditingDomainFactory"
             id="org.eclipse.egf.core.editing.domain"
         />
     </extension>     

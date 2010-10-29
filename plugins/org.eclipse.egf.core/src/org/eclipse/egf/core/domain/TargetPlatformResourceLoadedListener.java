@@ -39,9 +39,9 @@ import org.eclipse.osgi.util.NLS;
  * @author Thomas Guiu
  * 
  */
-public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Delegate {
+public final class TargetPlatformResourceLoadedListener implements EGFWorkspaceSynchronizer.Delegate {
 
-    private static volatile EGFResourceLoadedListener __resourceLoadedListener;
+    private static volatile TargetPlatformResourceLoadedListener __resourceLoadedListener;
 
     private static volatile ResourceManager __resourceManager;
 
@@ -64,11 +64,11 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
     // a lock against the EGFResourceLoadedListener instance
     private static Object __lockResourceLoadedListener = new Object();
 
-    public static EGFResourceLoadedListener getResourceLoadedListener() {
+    public static TargetPlatformResourceLoadedListener getResourceLoadedListener() {
         if (__resourceLoadedListener == null) {
             synchronized (__lockResourceLoadedListener) {
                 if (__resourceLoadedListener == null) {
-                    __resourceLoadedListener = new EGFResourceLoadedListener();
+                    __resourceLoadedListener = new TargetPlatformResourceLoadedListener();
                 }
             }
         }
@@ -166,7 +166,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
                 editingDomain.runExclusive(new Runnable() {
 
                     public void run() {
-                        EGFResourceSet resourceSet = (EGFResourceSet) editingDomain.getResourceSet();
+                        TargetPlatformResourceSet resourceSet = (TargetPlatformResourceSet) editingDomain.getResourceSet();
                         for (Iterator<Resource> it = resourceSet.getResources().iterator(); it.hasNext();) {
                             Resource resource = it.next();
                             resource.unload();
@@ -246,7 +246,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
             // Lock __resourceEventManager
             synchronized (__lockResourceManager) {
-                EGFResourceSet resourceSet = (EGFResourceSet) editingDomain.getResourceSet();
+                TargetPlatformResourceSet resourceSet = (TargetPlatformResourceSet) editingDomain.getResourceSet();
                 Resource resource = resourceSet.getResource(newURI, false);
                 // Resource who can't open a physical resource raise exception but are loaded
                 // in the resource set, its flag is also set to isLoaded
@@ -410,8 +410,8 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     private TransactionalEditingDomain _editingDomain;
 
-    private EGFResourceLoadedListener() {
-        EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
+    private TargetPlatformResourceLoadedListener() {
+        EGFPlatformPlugin.getTargetPlatformManager().addPlatformExtensionPointListener(_platformListener);
     }
 
     public TransactionalEditingDomain getEditingDomain() {
@@ -458,7 +458,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     public boolean handleResourceDeleted(Resource deletedResource) {
         synchronized (__lockResourceLoadedListener) {
-            IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(deletedResource);
+            IPlatformFcore fcore = EGFCorePlugin.getTargetPlatformFcore(deletedResource);
             // Either a non Fcore resource or an already processed deleted fcore from _platformListener
             if (fcore == null) {
                 // _platformListener has been called first, Process workspace removed fcores detected in _platformListener
@@ -509,7 +509,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     public void dispose() {
         synchronized (__lockResourceLoadedListener) {
-            EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
+            EGFPlatformPlugin.getTargetPlatformManager().removePlatformExtensionPointListener(_platformListener);
             getResourceManager().dispose();
             __resourceManager = null;
         }

@@ -23,15 +23,15 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * @author Xavier Maysonnave
  * 
  */
-public class EGFResourceSet extends ResourceSetImpl {
+public class TargetPlatformResourceSet extends ResourceSetImpl {
 
-    protected class EGFResourcesEList<E extends Object & Resource> extends ResourcesEList<E> {
+    protected class TargetResourcesEList<E extends Object & Resource> extends ResourcesEList<E> {
 
         private static final long serialVersionUID = 1L;
 
         private Map<URI, Resource> _uriResourceMap;
 
-        public EGFResourcesEList(Map<URI, Resource> uriResourceMap) {
+        public TargetResourcesEList(Map<URI, Resource> uriResourceMap) {
             super();
             _uriResourceMap = uriResourceMap;
         }
@@ -47,10 +47,10 @@ public class EGFResourceSet extends ResourceSetImpl {
 
     }
 
-    public EGFResourceSet() {
+    public TargetPlatformResourceSet() {
         super();
         setURIResourceMap(new HashMap<URI, Resource>());
-        setURIConverter(EGFCorePlugin.getPlatformURIConverter());
+        setURIConverter(EGFCorePlugin.getTargetPlatformURIConverter());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class EGFResourceSet extends ResourceSetImpl {
     @Override
     public EList<Resource> getResources() {
         if (resources == null) {
-            resources = new EGFResourcesEList<Resource>(getURIResourceMap());
+            resources = new TargetResourcesEList<Resource>(getURIResourceMap());
         }
         return resources;
     }

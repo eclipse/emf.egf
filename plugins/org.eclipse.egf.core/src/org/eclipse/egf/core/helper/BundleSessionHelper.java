@@ -11,8 +11,12 @@
 package org.eclipse.egf.core.helper;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
@@ -31,13 +35,13 @@ public class BundleSessionHelper {
             return null;
         }
         // Locate Bundle
-        Bundle bundle = null;
-        if (platformExtensionPoint.getPlatformBundle().isTarget()) {
-            bundle = platformExtensionPoint.getPlatformBundle().getBundle();
-        } else {
-            bundle = projectBundleSession.getBundle(platformExtensionPoint.getPlatformBundle().getProject());
+        if (platformExtensionPoint.isRuntime() || platformExtensionPoint.getBundle() != null) {
+            return platformExtensionPoint.getBundle();
+        } else if (platformExtensionPoint.isWorkspace()) {
+            return projectBundleSession.getBundle(platformExtensionPoint.getPlatformBundle().getProject());
         }
-        return bundle;
+        // Cannot associate a Bundle to a target platform extension point
+        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, platformExtensionPoint.getId()), null));
     }
 
 }

@@ -27,7 +27,7 @@ import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
  * @author Thomas Guiu
  * 
  */
-public class EGFEditingDomainFactory extends WorkspaceEditingDomainFactory {
+public class TargetPlatformEditingDomainFactory extends WorkspaceEditingDomainFactory {
 
     @Override
     public TransactionalEditingDomain createEditingDomain() {
@@ -56,7 +56,7 @@ public class EGFEditingDomainFactory extends WorkspaceEditingDomainFactory {
     public synchronized TransactionalEditingDomain createEditingDomain(IOperationHistory history) {
         WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
         stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
-        TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
+        TransactionalEditingDomain result = new TargetPlatformEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
         mapResourceSet(result);
         return result;
     }
@@ -76,7 +76,7 @@ public class EGFEditingDomainFactory extends WorkspaceEditingDomainFactory {
     public synchronized TransactionalEditingDomain createEditingDomain(ResourceSet rset, IOperationHistory history) {
         WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
         stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
-        TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
+        TransactionalEditingDomain result = new TargetPlatformEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
         mapResourceSet(result);
         return result;
     }
@@ -89,7 +89,7 @@ public class EGFEditingDomainFactory extends WorkspaceEditingDomainFactory {
      */
     protected void configure(final TransactionalEditingDomain domain) {
         // the listener depends on UI to ask the user to solve conflict
-        new EGFWorkspaceSynchronizer(domain, EGFResourceLoadedListener.getResourceLoadedListener());
+        new EGFWorkspaceSynchronizer(domain, TargetPlatformResourceLoadedListener.getResourceLoadedListener());
         // configure domain management
         configureResourceModificationManagement(domain);
     }

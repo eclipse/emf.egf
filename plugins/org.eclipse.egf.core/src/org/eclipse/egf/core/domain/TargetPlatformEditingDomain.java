@@ -32,7 +32,7 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
  * @author Xavier Maysonnave
  * 
  */
-public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImpl {
+public class TargetPlatformEditingDomain extends TransactionalEditingDomainImpl {
 
     /**
      * Initializes me with my adapter factory, command stack, and resource set.
@@ -44,9 +44,9 @@ public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImp
      * @param resourceSet
      *            my resource set
      */
-    public EGFTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
+    public TargetPlatformEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack, ResourceSet resourceSet) {
         super(adapterFactory, stack, resourceSet);
-        getResourceSet().setURIConverter(EGFCorePlugin.getPlatformURIConverter());
+        getResourceSet().setURIConverter(EGFCorePlugin.getTargetPlatformURIConverter());
     }
 
     /**
@@ -58,9 +58,9 @@ public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImp
      * @param stack
      *            my command stack
      */
-    public EGFTransactionalEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack) {
-        super(adapterFactory, stack, new EGFAdapterFactoryEditingDomainResourceSet());
-        ((EGFAdapterFactoryEditingDomainResourceSet) getResourceSet()).setEditingDomain(this);
+    public TargetPlatformEditingDomain(AdapterFactory adapterFactory, TransactionalCommandStack stack) {
+        super(adapterFactory, stack, new TargetPlatformEditingDomainAdapterFactory());
+        ((TargetPlatformEditingDomainAdapterFactory) getResourceSet()).setEditingDomain(this);
     }
 
     /**
@@ -72,9 +72,9 @@ public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImp
      * @param resourceSet
      *            my resource set
      */
-    public EGFTransactionalEditingDomain(AdapterFactory adapterFactory, ResourceSet resourceSet) {
+    public TargetPlatformEditingDomain(AdapterFactory adapterFactory, ResourceSet resourceSet) {
         super(adapterFactory, new TransactionalCommandStackImpl(), resourceSet);
-        getResourceSet().setURIConverter(EGFCorePlugin.getPlatformURIConverter());
+        getResourceSet().setURIConverter(EGFCorePlugin.getTargetPlatformURIConverter());
     }
 
     /**
@@ -84,9 +84,9 @@ public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImp
      * @param adapterFactory
      *            my adapter factory
      */
-    public EGFTransactionalEditingDomain(AdapterFactory adapterFactory) {
-        super(adapterFactory, new TransactionalCommandStackImpl(), new EGFAdapterFactoryEditingDomainResourceSet());
-        ((EGFAdapterFactoryEditingDomainResourceSet) getResourceSet()).setEditingDomain(this);
+    public TargetPlatformEditingDomain(AdapterFactory adapterFactory) {
+        super(adapterFactory, new TransactionalCommandStackImpl(), new TargetPlatformEditingDomainAdapterFactory());
+        ((TargetPlatformEditingDomainAdapterFactory) getResourceSet()).setEditingDomain(this);
     }
 
     @Override

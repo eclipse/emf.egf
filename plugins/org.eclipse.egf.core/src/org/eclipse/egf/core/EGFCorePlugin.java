@@ -18,17 +18,24 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.core.epackage.EObjectWrapper;
+import org.eclipse.egf.core.epackage.EPackageWrapper;
+import org.eclipse.egf.core.epackage.ERootWrapper;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
+import org.eclipse.egf.core.internal.epackage.ERootTargetPlatformManager;
 import org.eclipse.egf.core.internal.genmodel.PlatformGenModel;
 import org.eclipse.egf.core.internal.registry.FcoreProcessorRegistry;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
-import org.eclipse.egf.core.platform.uri.PlatformURIConverter;
+import org.eclipse.egf.core.platform.pde.ITargetPlatformManager;
+import org.eclipse.egf.core.platform.uri.RuntimePlatformURIConverter;
+import org.eclipse.egf.core.platform.uri.TargetPlatformURIConverter;
 import org.eclipse.egf.core.processor.IFcoreProcessor;
 import org.eclipse.egf.core.session.EGFBundleListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
@@ -53,6 +60,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * Keep track of the FcoreProcessorRegistry
      */
     private static FcoreProcessorRegistry __fcoreProcessorRegistry;
+
+    /**
+     * Keep track of the ERootTargetPlatformManager
+     */
+    private static ERootTargetPlatformManager __eRootTargetPlatformManager;
 
     /**
      * Plug-in unique instance.
@@ -81,11 +93,59 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
+     * Get a target platform base ERootWrapper object based on an emf model nsURI
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static ERootWrapper getTargetPlatformERootWrapper(URI nsURI) {
+        if (__eRootTargetPlatformManager == null) {
+            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+        }
+        return __eRootTargetPlatformManager.getTargetPlatformERootWrapper(nsURI);
+    }
+
+    /**
+     * Get a target platform base EPackageWrapper object based on an emf model nsURI
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static EPackageWrapper getTargetPlatformEPackageWrapper(URI nsURI) {
+        if (__eRootTargetPlatformManager == null) {
+            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+        }
+        return __eRootTargetPlatformManager.getTargetPlatformEPackageWrapper(nsURI);
+    }
+
+    /**
+     * Get a target platform base EObjectWrapper object based on an emf model nsURI
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static EObjectWrapper getTargetPlatformEObjectWrapper(URI nsURI) {
+        if (__eRootTargetPlatformManager == null) {
+            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+        }
+        return __eRootTargetPlatformManager.getTargetPlatformEObjectWrapper(nsURI);
+    }
+
+    /**
+     * Get a target platform base package based on an emf model nsURI
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static String getTargetPlatformBasePackage(URI nsURI) {
+        if (__eRootTargetPlatformManager == null) {
+            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+        }
+        return __eRootTargetPlatformManager.getTargetPlatformBasePackage(nsURI);
+    }
+
+    /**
      * Get fcore processor implementations.
      * 
      * @return an empty list if none could be found.
      */
-    public static List<IFcoreProcessor> getIFcoreProcessors() {
+    public static List<IFcoreProcessor> getFcoreProcessors() {
         if (__fcoreProcessorRegistry == null) {
             __fcoreProcessorRegistry = new FcoreProcessorRegistry();
         }
@@ -93,19 +153,35 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get the IPlatformManager
+     * Returns the runtime IPlatformManager singleton
      */
-    public static IPlatformManager getPlatformManager() {
-        return EGFPlatformPlugin.getPlatformManager();
+    public static IPlatformManager getRuntimePlatformManager() {
+        return EGFPlatformPlugin.getRuntimePlatformManager();
     }
 
     /**
-     * Returns a snapshot of known IPlatformFcore
+     * Returns the RuntimePlatformURIConverter singleton
      * 
      * @return an array of IPlatformFcore
      */
-    public static PlatformURIConverter getPlatformURIConverter() {
-        return EGFPlatformPlugin.getPlatformURIConverter();
+    public static RuntimePlatformURIConverter getRuntimePlatformURIConverter() {
+        return EGFPlatformPlugin.getRuntimePlatformURIConverter();
+    }
+
+    /**
+     * Returns the ITargetPlatformManager singleton
+     */
+    public static ITargetPlatformManager getTargetPlatformManager() {
+        return EGFPlatformPlugin.getTargetPlatformManager();
+    }
+
+    /**
+     * Returns the TargetPlatformURIConverter singleton
+     * 
+     * @return an array of IPlatformFcore
+     */
+    public static TargetPlatformURIConverter getTargetPlatformURIConverter() {
+        return EGFPlatformPlugin.getTargetPlatformURIConverter();
     }
 
     /**
@@ -116,7 +192,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      *         resource is null or not associated with an
      *         IPlatformFcore
      */
-    public static IPlatformFcore getPlatformFcore(Resource resource) {
+    public static IPlatformFcore getTargetPlatformFcore(Resource resource) {
         // a URI should be absolute, otherwise we are unable to analyse its
         // first segment
         if (resource == null || resource.getURI() == null || resource.getURI().isRelative()) {
@@ -129,7 +205,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
         }
         firstSegment = firstSegment.trim();
         // locate and return the first associated IPlatformFcore
-        for (IPlatformFcore fcore : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformFcore.class)) {
+        for (IPlatformFcore fcore : EGFPlatformPlugin.getTargetPlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformFcore.class)) {
             if (fcore.getURI().equals(resource.getURI())) {
                 return fcore;
             }
@@ -139,10 +215,47 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get the IPlatformFcore[] for given project.
+     * Get the IPlatformFcore for given EMF Resource.
+     * 
+     * @param resource
+     * @return an {@link IPlatformFcore} instance or null if the
+     *         resource is null or not associated with an
+     *         IPlatformFcore
      */
-    public static IPlatformFcore[] getPlatformFcores(IProject project) {
-        return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(project, IPlatformFcore.class);
+    public static IPlatformFcore getRuntimePlatformFcore(Resource resource) {
+        // a URI should be absolute, otherwise we are unable to analyse its
+        // first segment
+        if (resource == null || resource.getURI() == null || resource.getURI().isRelative()) {
+            return null;
+        }
+        // Project Name
+        String firstSegment = resource.getURI().segment(1);
+        if (firstSegment == null || firstSegment.trim().length() == 0) {
+            return null;
+        }
+        firstSegment = firstSegment.trim();
+        // locate and return the first associated IPlatformFcore
+        for (IPlatformFcore fcore : EGFPlatformPlugin.getRuntimePlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformFcore.class)) {
+            if (fcore.getURI().equals(resource.getURI())) {
+                return fcore;
+            }
+        }
+        // Nothing to retrieve
+        return null;
+    }
+
+    /**
+     * Get the IPlatformFcore[] for a given IPluginModelBase.
+     */
+    public static IPlatformFcore[] getTargetPlatformFcores(IPluginModelBase model) {
+        return getTargetPlatformManager().getPlatformExtensionPoints(model, IPlatformFcore.class);
+    }
+
+    /**
+     * Get the IPlatformFcore[] for a given project.
+     */
+    public static IPlatformFcore[] getWorkspaceTargetPlatformFcores(IProject project) {
+        return getTargetPlatformManager().getPlatformExtensionPoints(project, IPlatformFcore.class);
     }
 
     /**
@@ -150,8 +263,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * 
      * @return an array of IPlatformFcore
      */
-    public static IPlatformFcore[] getWorkspacePlatformFcores() {
-        return EGFPlatformPlugin.getPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformFcore.class);
+    public static IPlatformFcore[] getWorkspaceTargetPlatformFcores() {
+        return getTargetPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformFcore.class);
     }
 
     /**
@@ -159,8 +272,26 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * 
      * @return an array of IPlatformFcore
      */
-    public static IPlatformFcore[] getTargetPlatformFcores() {
-        return EGFPlatformPlugin.getPlatformManager().getTargetPlatformExtensionPoints(IPlatformFcore.class);
+    public static IPlatformFcore[] getNonWorkspaceTargetPlatformFcores() {
+        return getTargetPlatformManager().getTargetPlatformExtensionPoints(IPlatformFcore.class);
+    }
+
+    /**
+     * Returns a snapshot of known runtime IPlatformFcore
+     * 
+     * @return an array of IPlatformFcore
+     */
+    public static IPlatformFcore[] getRuntimePlatformFcores(Bundle bundle) {
+        return getRuntimePlatformManager().getPlatformExtensionPoints(bundle.getSymbolicName(), IPlatformFcore.class);
+    }
+
+    /**
+     * Returns a snapshot of known runtime IPlatformFcore
+     * 
+     * @return an array of IPlatformFcore
+     */
+    public static IPlatformFcore[] getRuntimePlatformFcores() {
+        return getRuntimePlatformManager().getPlatformExtensionPoints(IPlatformFcore.class);
     }
 
     /**
@@ -168,15 +299,17 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * 
      * @return an array of IPlatformFcore
      */
-    public static IPlatformFcore[] getPlatformFcores() {
-        return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformFcore.class);
+    public static IPlatformFcore[] getTargetPlatformFcores() {
+        return getTargetPlatformManager().getPlatformExtensionPoints(IPlatformFcore.class);
     }
 
     /**
-     * Get the IPlatformGenModel[] for given project.
+     * Get known IPlatformGenModel[] for given project.
+     * 
+     * @return an array of IPlatformGenModel 
      */
-    public static IPlatformGenModel[] getPlatformGenModels(IProject project) {
-        return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(project, IPlatformGenModel.class);
+    public static IPlatformGenModel[] getTargetPlatformGenModels(IProject project) {
+        return getTargetPlatformManager().getPlatformExtensionPoints(project, IPlatformGenModel.class);
     }
 
     /**
@@ -184,8 +317,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * 
      * @return an array of IPlatformGenModel
      */
-    public static IPlatformGenModel[] getWorkspacePlatformGenModels() {
-        return EGFPlatformPlugin.getPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformGenModel.class);
+    public static IPlatformGenModel[] getWorkspaceTargetPlatformGenModels() {
+        return getTargetPlatformManager().getWorkspacePlatformExtensionPoints(IPlatformGenModel.class);
     }
 
     /**
@@ -193,21 +326,62 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * 
      * @return an array of IPlatformGenModel
      */
-    public static IPlatformGenModel[] getTargetPlatformGenModels() {
-        return EGFPlatformPlugin.getPlatformManager().getTargetPlatformExtensionPoints(IPlatformGenModel.class);
+    public static IPlatformGenModel[] getNonWorkspaceTargetPlatformGenModels() {
+        return getTargetPlatformManager().getTargetPlatformExtensionPoints(IPlatformGenModel.class);
     }
 
     /**
-     * Returns a snapshot of known IPlatformGenModel
+     * Returns a snapshot of known runtime IPlatformGenModel
      * 
      * @return an array of IPlatformGenModel
      */
-    public static IPlatformGenModel[] getPlatformGenModels() {
-        return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformGenModel.class);
+    public static IPlatformGenModel[] getRuntimePlatformGenModels() {
+        return getRuntimePlatformManager().getPlatformExtensionPoints(IPlatformGenModel.class);
     }
 
-    public static Map<String, URI> getEPackageNsURIToGenModelLocationMap() {
-        return PlatformGenModel.getEPackageNsURIToGenModelLocationMap();
+    /**
+     * Returns a snapshot of known target platform IPlatformGenModel
+     * 
+     * @return an array of IPlatformGenModel
+     */
+    public static IPlatformGenModel[] getTargetPlatformGenModels() {
+        return getTargetPlatformManager().getPlatformExtensionPoints(IPlatformGenModel.class);
+    }
+
+    /**
+     * Get an IPlatformGenModel for a given NsURI
+     * 
+     * @return an IPlatformGenModel 
+     */
+    public static IPlatformGenModel getTargetPlatformGenModel(URI nsURI) {
+        return PlatformGenModel.getTargetPlatformGenModels().get(nsURI);
+    }
+
+    /**
+     * Get the platform IPlatformGenModel location map
+     * 
+     * @return a Map<URI, URI> 
+     */
+    public static Map<URI, URI> getTargetPlatformGenModelLocationMap() {
+        return PlatformGenModel.getTargetPlatformGenModelLocationMap();
+    }
+
+    /**
+     * Get an IPlatformGenModel for a given NsURI
+     * 
+     * @return an IPlatformGenModel 
+     */
+    public static IPlatformGenModel getRuntimePlatformGenModel(URI nsURI) {
+        return PlatformGenModel.getRuntimePlatformGenModels().get(nsURI);
+    }
+
+    /**
+     * Get the platform IPlatformGenModel location map
+     * 
+     * @return a Map<URI, URI> 
+     */
+    public static Map<URI, URI> getRuntimePlatformGenModelLocationMap() {
+        return PlatformGenModel.getRuntimePlatformGenModelLocationMap();
     }
 
     /**
@@ -238,6 +412,9 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
+        if (__eRootTargetPlatformManager != null) {
+            __eRootTargetPlatformManager = null;
+        }
         if (__fcoreProcessorRegistry != null) {
             __fcoreProcessorRegistry.dispose();
             __fcoreProcessorRegistry = null;

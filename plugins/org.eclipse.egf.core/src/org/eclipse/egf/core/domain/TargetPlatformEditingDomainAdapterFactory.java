@@ -17,11 +17,11 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
  * @author Xavier Maysonnave
  * 
  */
-public class EGFAdapterFactoryEditingDomainResourceSet extends EGFResourceSet implements IEditingDomainProvider {
+public class TargetPlatformEditingDomainAdapterFactory extends TargetPlatformResourceSet implements IEditingDomainProvider {
 
     private EditingDomain _editingDomain;
 
-    public EGFAdapterFactoryEditingDomainResourceSet() {
+    public TargetPlatformEditingDomainAdapterFactory() {
         super();
     }
 

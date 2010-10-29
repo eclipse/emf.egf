@@ -15,17 +15,28 @@
  */
 package org.eclipse.egf.core.genmodel;
 
+import org.eclipse.egf.core.epackage.EPackageWrapper;
+import org.eclipse.egf.core.epackage.ERootWrapper;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 
 public interface IPlatformGenModel extends IPlatformExtensionPointURI {
 
-    public String getNamespace();
+    public URI getNsURI();
 
     public String getGeneratedPackage();
 
     public String getGenModel();
 
     public URI getGenModelURI();
+
+    public String getBasePackage();
+
+    public EPackage getEPackage();
+
+    public EPackageWrapper getEPackageWrapper();
+
+    public ERootWrapper getERootWrapper();
 
 }

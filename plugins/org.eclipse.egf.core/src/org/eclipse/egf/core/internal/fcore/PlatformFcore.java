@@ -29,6 +29,11 @@ public final class PlatformFcore extends PlatformExtensionPointURI implements IP
         _name = new Path(getURI().lastSegment()).removeFileExtension().toString();
     }
 
+    public PlatformFcore(IPlatformBundle bundle, String id, String uniqueIdentifier, int handleId) {
+        super(bundle, id, uniqueIdentifier, handleId);
+        _name = new Path(getURI().lastSegment()).removeFileExtension().toString();
+    }
+
     public String getName() {
         return _name;
     }
