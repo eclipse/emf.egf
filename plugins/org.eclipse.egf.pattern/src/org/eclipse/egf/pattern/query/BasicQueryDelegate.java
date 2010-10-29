@@ -22,7 +22,6 @@ import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
-import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -37,9 +36,6 @@ public class BasicQueryDelegate implements IQuery {
 
     public List<Object> execute(ParameterDescription parameter, Map<String, String> queryCtx, PatternContext context) {
         String type = parameter.getType();
-        Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
-        if (!(loadClass instanceof EClass))
-            throw new IllegalStateException(EGFPatternMessages.query_error1);
 
         Collection<EObject> domain = getDomain(context);
         if (domain == null)
@@ -50,17 +46,16 @@ public class BasicQueryDelegate implements IQuery {
         TreeIterator<EObject> allContentsIterator = EcoreUtil.getAllContents(domain);
         while (allContentsIterator.hasNext()) {
             EObject eObject = allContentsIterator.next();
-            URI parameterTypeURI = EcoreUtil.getURI((EObject) loadClass);
 
             //same type
             URI eObjectClassURI = EcoreUtil.getURI(eObject.eClass());
-            if (eObjectClassURI.equals(parameterTypeURI))
+            if (eObjectClassURI.toString().equals(type))
                 result.add(eObject);
 
             //sub type
             for (EClass superClass : eObject.eClass().getEAllSuperTypes()) {
                 URI eSuperClassURI = EcoreUtil.getURI(superClass);
-                if (eSuperClassURI.equals(parameterTypeURI))
+                if (eSuperClassURI.toString().equals(type))
                     result.add(eObject);
             }
         }
