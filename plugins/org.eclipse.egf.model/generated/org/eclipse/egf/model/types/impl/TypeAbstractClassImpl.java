@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.types.impl.TypeAbstractClassImpl#getInstance <em>Instance</em>}</li>
  *   <li>{@link org.eclipse.egf.model.types.impl.TypeAbstractClassImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -32,6 +33,26 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbstractClass {
+
+    /**
+     * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInstance()
+     * @generated
+     * @ordered
+     */
+    protected static final Object INSTANCE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInstance()
+     * @generated
+     * @ordered
+     */
+    protected Object instance = INSTANCE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -77,6 +98,27 @@ public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbst
      * <!-- end-user-doc -->
      * @generated
      */
+    public Object getInstance() {
+        return instance;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInstance(Object newInstance) {
+        Object oldInstance = instance;
+        instance = newInstance;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE, oldInstance, instance));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public String getValue() {
         return value;
@@ -102,6 +144,8 @@ public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbst
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
+            case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
+                return getInstance();
             case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
                 return getValue();
         }
@@ -116,6 +160,9 @@ public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbst
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
+            case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
+                setInstance(newValue);
+                return;
             case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
                 setValue((String) newValue);
                 return;
@@ -131,6 +178,9 @@ public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbst
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
+            case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
+                setInstance(INSTANCE_EDEFAULT);
+                return;
             case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
                 setValue(VALUE_EDEFAULT);
                 return;
@@ -146,6 +196,8 @@ public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbst
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
+            case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
+                return INSTANCE_EDEFAULT == null ? instance != null : !INSTANCE_EDEFAULT.equals(instance);
             case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
@@ -163,7 +215,9 @@ public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbst
             return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: "); //$NON-NLS-1$
+        result.append(" (instance: "); //$NON-NLS-1$
+        result.append(instance);
+        result.append(", value: "); //$NON-NLS-1$
         result.append(value);
         result.append(')');
         return result.toString();

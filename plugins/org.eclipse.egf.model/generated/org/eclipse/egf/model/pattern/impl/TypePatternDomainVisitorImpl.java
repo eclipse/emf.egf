@@ -60,8 +60,8 @@ public class TypePatternDomainVisitorImpl extends TypeAbstractClassImpl implemen
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return org.eclipse.egf.model.pattern.DomainVisitor.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) org.eclipse.egf.model.pattern.DomainVisitor.class;
     }
 
 } // TypePatternDomainVisitorImpl

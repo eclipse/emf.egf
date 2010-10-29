@@ -323,7 +323,7 @@ public class DomainValidator extends EObjectValidator {
         InputStream inputStream = null;
         // Try to open an InputStream
         try {
-            inputStream = EGFCorePlugin.getPlatformURIConverter().createInputStream(uri);
+            inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
         } catch (IOException exception) {
             valid = false;
         }

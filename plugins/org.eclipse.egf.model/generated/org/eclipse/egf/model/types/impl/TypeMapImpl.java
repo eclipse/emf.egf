@@ -53,8 +53,8 @@ public class TypeMapImpl extends TypeAbstractClassImpl implements TypeMap {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return java.util.Map.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) java.util.Map.class;
     }
 
 } // TypeMapImpl

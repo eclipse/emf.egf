@@ -206,13 +206,22 @@ public interface TypesPackage extends EPackage {
     int TYPE_ABSTRACT_CLASS__DESCRIPTION = TYPE__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_ABSTRACT_CLASS__INSTANCE = TYPE_FEATURE_COUNT + 0;
+
+    /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TYPE_ABSTRACT_CLASS__VALUE = TYPE_FEATURE_COUNT + 0;
+    int TYPE_ABSTRACT_CLASS__VALUE = TYPE_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Type Abstract Class</em>' class.
@@ -221,7 +230,7 @@ public interface TypesPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TYPE_ABSTRACT_CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+    int TYPE_ABSTRACT_CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeCollectionImpl <em>Type Collection</em>}' class.
@@ -282,6 +291,15 @@ public interface TypesPackage extends EPackage {
     int TYPE_CLASS__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_CLASS__INSTANCE = TYPE_ABSTRACT_CLASS__INSTANCE;
+
+    /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -291,13 +309,22 @@ public interface TypesPackage extends EPackage {
     int TYPE_CLASS__VALUE = TYPE_ABSTRACT_CLASS__VALUE;
 
     /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_CLASS__TYPE = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Type Class</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TYPE_CLASS_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+    int TYPE_CLASS_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -316,6 +343,15 @@ public interface TypesPackage extends EPackage {
      * @ordered
      */
     int TYPE_COLLECTION__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_COLLECTION__INSTANCE = TYPE_ABSTRACT_CLASS__INSTANCE;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -354,6 +390,15 @@ public interface TypesPackage extends EPackage {
     int TYPE_LIST__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_LIST__INSTANCE = TYPE_ABSTRACT_CLASS__INSTANCE;
+
+    /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -388,6 +433,15 @@ public interface TypesPackage extends EPackage {
      * @ordered
      */
     int TYPE_SET__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_SET__INSTANCE = TYPE_ABSTRACT_CLASS__INSTANCE;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -434,6 +488,15 @@ public interface TypesPackage extends EPackage {
      * @ordered
      */
     int TYPE_MAP__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_MAP__INSTANCE = TYPE_ABSTRACT_CLASS__INSTANCE;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1062,6 +1125,16 @@ public interface TypesPackage extends EPackage {
     int URI = 25;
 
     /**
+     * The meta object id for the '<em>Exception</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.types.TypesException
+     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypesException()
+     * @generated
+     */
+    int TYPES_EXCEPTION = 26;
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1154,6 +1227,17 @@ public interface TypesPackage extends EPackage {
     EClass getTypeAbstractClass();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeAbstractClass#getInstance <em>Instance</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Instance</em>'.
+     * @see org.eclipse.egf.model.types.TypeAbstractClass#getInstance()
+     * @see #getTypeAbstractClass()
+     * @generated
+     */
+    EAttribute getTypeAbstractClass_Instance();
+
+    /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeAbstractClass#getValue <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1203,6 +1287,17 @@ public interface TypesPackage extends EPackage {
      * @generated
      */
     EClass getTypeClass();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeClass#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.eclipse.egf.model.types.TypeClass#getType()
+     * @see #getTypeClass()
+     * @generated
+     */
+    EAttribute getTypeClass_Type();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeMap <em>Type Map</em>}'.
@@ -1499,6 +1594,17 @@ public interface TypesPackage extends EPackage {
     EDataType getURI();
 
     /**
+     * Returns the meta object for data type '{@link org.eclipse.egf.model.types.TypesException <em>Exception</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Exception</em>'.
+     * @see org.eclipse.egf.model.types.TypesException
+     * @model instanceClass="org.eclipse.egf.model.types.TypesException"
+     * @generated
+     */
+    EDataType getTypesException();
+
+    /**
      * Returns the meta object for data type '{@link java.util.Collection <em>Collection</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1617,6 +1723,15 @@ public interface TypesPackage extends EPackage {
         EClass TYPE_ABSTRACT_CLASS = eINSTANCE.getTypeAbstractClass();
 
         /**
+         * The meta object literal for the '<em><b>Instance</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EAttribute TYPE_ABSTRACT_CLASS__INSTANCE = eINSTANCE.getTypeAbstractClass_Instance();
+
+        /**
          * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1668,6 +1783,15 @@ public interface TypesPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EClass TYPE_CLASS = eINSTANCE.getTypeClass();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EAttribute TYPE_CLASS__TYPE = eINSTANCE.getTypeClass_Type();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeMapImpl <em>Type Map</em>}' class.
@@ -1950,6 +2074,17 @@ public interface TypesPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EDataType URI = eINSTANCE.getURI();
+
+        /**
+         * The meta object literal for the '<em>Exception</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.types.TypesException
+         * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypesException()
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EDataType TYPES_EXCEPTION = eINSTANCE.getTypesException();
 
         /**
          * The meta object literal for the '<em>Collection</em>' data type.

@@ -95,10 +95,10 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Class<?> getType() {
-        return org.eclipse.egf.model.pattern.TypePatternSubstitution.class;
+    @SuppressWarnings("unchecked")
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) org.eclipse.egf.model.pattern.TypePatternSubstitution.class;
     }
 
     /**

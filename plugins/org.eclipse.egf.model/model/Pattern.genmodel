@@ -117,39 +117,49 @@
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//String2String/key"/>
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Pattern.ecore#//String2String/value"/>
     </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//TypePatternExecutionReporter">
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternExecutionReporter/getType"/>
-    </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//BackCall"/>
-    <genClasses ecoreClass="Pattern.ecore#//TypePatternCallBackHandler">
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternCallBackHandler/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//TypePatternDomainVisitor">
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternDomainVisitor/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//TypePatternList">
-      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternList/elements"/>
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternList/getType"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//InjectedContext">
       <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getType"/>
       <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getName"/>
       <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getPattern"/>
-    </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//TypePatternSubstitution">
-      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
-          ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType"/>
-      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getSubstitutions">
-        <genParameters ecoreParameter="Pattern.ecore#//TypePatternSubstitution/getSubstitutions/pattern"/>
-      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//Substitution">
       <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/replacedElement"/>
       <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Substitution/replacement"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternExecutionReporter">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternExecutionReporter/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternExecutionReporter/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternCallBackHandler">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternCallBackHandler/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternCallBackHandler/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternDomainVisitor">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternDomainVisitor/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternDomainVisitor/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternList">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternList/elements"/>
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternList/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternList/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternSubstitution">
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType">
+        <genTypeParameters ecoreTypeParameter="Pattern.ecore#//TypePatternSubstitution/getType/T"/>
+      </genOperations>
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getSubstitutions">
+        <genParameters ecoreParameter="Pattern.ecore#//TypePatternSubstitution/getSubstitutions/pattern"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

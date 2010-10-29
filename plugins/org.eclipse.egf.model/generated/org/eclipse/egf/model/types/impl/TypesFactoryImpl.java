@@ -145,6 +145,8 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
                 return createCollectionFromString(eDataType, initialValue);
             case TypesPackage.URI:
                 return createURIFromString(eDataType, initialValue);
+            case TypesPackage.TYPES_EXCEPTION:
+                return createTypesExceptionFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -166,6 +168,8 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
                 return convertCollectionToString(eDataType, instanceValue);
             case TypesPackage.URI:
                 return convertURIToString(eDataType, instanceValue);
+            case TypesPackage.TYPES_EXCEPTION:
+                return convertTypesExceptionToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -493,6 +497,42 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
      * @generated
      */
     public String convertURIToString(EDataType eDataType, Object instanceValue) {
+        return super.convertToString(eDataType, instanceValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypesException createTypesException(String literal) {
+        return (TypesException) super.createFromString(TypesPackage.Literals.TYPES_EXCEPTION, literal);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypesException createTypesExceptionFromString(EDataType eDataType, String initialValue) {
+        return (TypesException) super.createFromString(eDataType, initialValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTypesException(TypesException instanceValue) {
+        return super.convertToString(TypesPackage.Literals.TYPES_EXCEPTION, instanceValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTypesExceptionToString(EDataType eDataType, Object instanceValue) {
         return super.convertToString(eDataType, instanceValue);
     }
 

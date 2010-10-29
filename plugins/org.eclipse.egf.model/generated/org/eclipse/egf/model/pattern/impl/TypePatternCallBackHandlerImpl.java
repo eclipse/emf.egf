@@ -60,8 +60,8 @@ public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implem
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return org.eclipse.egf.model.pattern.CallBackHandler.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) org.eclipse.egf.model.pattern.CallBackHandler.class;
     }
 
 } // TypePatternCallBackHandlerImpl

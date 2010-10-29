@@ -53,7 +53,7 @@ public class TypeCollectionImpl extends TypeAbstractClassImpl implements TypeCol
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return java.util.Collection.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) java.util.Collection.class;
     }
 } // TypeCollectionImpl

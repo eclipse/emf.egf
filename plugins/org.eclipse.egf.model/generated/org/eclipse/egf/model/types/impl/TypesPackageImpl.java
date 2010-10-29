@@ -38,6 +38,7 @@ import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypeURI;
+import org.eclipse.egf.model.types.TypesException;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.egf.model.types.util.TypesValidator;
@@ -226,6 +227,13 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    private EDataType typesExceptionEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EDataType collectionEDataType = null;
 
     /**
@@ -373,8 +381,17 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getTypeAbstractClass_Value() {
+    public EAttribute getTypeAbstractClass_Instance() {
         return (EAttribute) typeAbstractClassEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTypeAbstractClass_Value() {
+        return (EAttribute) typeAbstractClassEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -411,6 +428,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
      */
     public EClass getTypeClass() {
         return typeClassEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getTypeClass_Type() {
+        return (EAttribute) typeClassEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -670,6 +696,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EDataType getTypesException() {
+        return typesExceptionEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EDataType getCollection() {
         return collectionEDataType;
     }
@@ -730,9 +765,11 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         typeObjectEClass = createEClass(TYPE_OBJECT);
 
         typeAbstractClassEClass = createEClass(TYPE_ABSTRACT_CLASS);
+        createEAttribute(typeAbstractClassEClass, TYPE_ABSTRACT_CLASS__INSTANCE);
         createEAttribute(typeAbstractClassEClass, TYPE_ABSTRACT_CLASS__VALUE);
 
         typeClassEClass = createEClass(TYPE_CLASS);
+        createEAttribute(typeClassEClass, TYPE_CLASS__TYPE);
 
         typeCollectionEClass = createEClass(TYPE_COLLECTION);
 
@@ -786,6 +823,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         listEDataType = createEDataType(LIST);
         collectionEDataType = createEDataType(COLLECTION);
         uriEDataType = createEDataType(URI);
+        typesExceptionEDataType = createEDataType(TYPES_EXCEPTION);
     }
 
     /**
@@ -878,45 +916,56 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         initEOperation(op, g1);
 
         initEClass(typeAbstractClassEClass, TypeAbstractClass.class, "TypeAbstractClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getTypeAbstractClass_Instance(), theEcorePackage.getEJavaObject(), "instance", null, 0, 1, TypeAbstractClass.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getTypeAbstractClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeAbstractClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(typeClassEClass, TypeClass.class, "TypeClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-        op = addEOperation(typeClassEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
-        initEOperation(op, g1);
+        initEAttribute(getTypeClass_Type(), g1, "type", null, 0, 1, TypeClass.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(typeCollectionEClass, TypeCollection.class, "TypeCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         op = addEOperation(typeCollectionEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
+        g2 = createEGenericType(t1);
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
         initEClass(typeListEClass, TypeList.class, "TypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         op = addEOperation(typeListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
+        g2 = createEGenericType(t1);
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
         initEClass(typeSetEClass, TypeSet.class, "TypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         op = addEOperation(typeSetEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
+        g2 = createEGenericType(t1);
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
         initEClass(typeMapEClass, TypeMap.class, "TypeMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         op = addEOperation(typeMapEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
+        g2 = createEGenericType(t1);
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
@@ -964,6 +1013,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
         initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEDataType(collectionEDataType, Collection.class, "Collection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEDataType(typesExceptionEDataType, TypesException.class, "TypesException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         // Create resource
         createResource(eNS_URI);
@@ -985,7 +1035,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
                 "constraints", "ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(typeAbstractClassEClass, source, new String[] {
-                "constraints", "LoadableType ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
+                "constraints", "LoadableType ValidValue ValidInstance" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(typeClassEClass, source, new String[] {
                 "constraints", "MandatoryValue" //$NON-NLS-1$ //$NON-NLS-2$

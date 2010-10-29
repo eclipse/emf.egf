@@ -53,8 +53,8 @@ public class TypeSetImpl extends TypeAbstractClassImpl implements TypeSet {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return java.util.Set.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) java.util.Set.class;
     }
 
 } // TypeSetImpl

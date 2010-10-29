@@ -60,8 +60,8 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) org.eclipse.egf.model.pattern.PatternExecutionReporter.class;
     }
 
 } // TypePatternExecutionReporterImpl

@@ -1373,43 +1373,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternExecutionReporter()
      * @generated
      */
-    int TYPE_PATTERN_EXECUTION_REPORTER = 21;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_EXECUTION_REPORTER__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_EXECUTION_REPORTER__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_EXECUTION_REPORTER__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
-
-    /**
-     * The number of structural features of the '<em>Type Pattern Execution Reporter</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_EXECUTION_REPORTER_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+    int TYPE_PATTERN_EXECUTION_REPORTER = 24;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.BackCallImpl <em>Back Call</em>}' class.
@@ -1419,7 +1383,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBackCall()
      * @generated
      */
-    int BACK_CALL = 22;
+    int BACK_CALL = 21;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1465,43 +1429,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternCallBackHandler()
      * @generated
      */
-    int TYPE_PATTERN_CALL_BACK_HANDLER = 23;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_CALL_BACK_HANDLER__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_CALL_BACK_HANDLER__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_CALL_BACK_HANDLER__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
-
-    /**
-     * The number of structural features of the '<em>Type Pattern Call Back Handler</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_CALL_BACK_HANDLER_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+    int TYPE_PATTERN_CALL_BACK_HANDLER = 25;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl <em>Type Pattern Domain Visitor</em>}' class.
@@ -1511,43 +1439,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternDomainVisitor()
      * @generated
      */
-    int TYPE_PATTERN_DOMAIN_VISITOR = 24;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_DOMAIN_VISITOR__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_DOMAIN_VISITOR__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_DOMAIN_VISITOR__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
-
-    /**
-     * The number of structural features of the '<em>Type Pattern Domain Visitor</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_DOMAIN_VISITOR_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+    int TYPE_PATTERN_DOMAIN_VISITOR = 26;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl <em>Type Pattern List</em>}' class.
@@ -1557,43 +1449,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternList()
      * @generated
      */
-    int TYPE_PATTERN_LIST = 25;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_LIST__ID = TypesPackage.TYPE__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_LIST__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_LIST__ELEMENTS = TypesPackage.TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>Type Pattern List</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_LIST_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
+    int TYPE_PATTERN_LIST = 27;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}' class.
@@ -1603,7 +1459,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getInjectedContext()
      * @generated
      */
-    int INJECTED_CONTEXT = 26;
+    int INJECTED_CONTEXT = 22;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1640,43 +1496,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternSubstitution()
      * @generated
      */
-    int TYPE_PATTERN_SUBSTITUTION = 27;
-
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_SUBSTITUTION__ID = TypesPackage.TYPE__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_SUBSTITUTION__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Substitutions</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS = TypesPackage.TYPE_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>Type Pattern Substitution</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TYPE_PATTERN_SUBSTITUTION_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
+    int TYPE_PATTERN_SUBSTITUTION = 28;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl <em>Substitution</em>}' class.
@@ -1686,7 +1506,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSubstitution()
      * @generated
      */
-    int SUBSTITUTION = 28;
+    int SUBSTITUTION = 23;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1732,6 +1552,213 @@ public interface PatternPackage extends EPackage {
      * @ordered
      */
     int SUBSTITUTION_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_EXECUTION_REPORTER__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_EXECUTION_REPORTER__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_EXECUTION_REPORTER__INSTANCE = TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_EXECUTION_REPORTER__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Execution Reporter</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_EXECUTION_REPORTER_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__INSTANCE = TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Call Back Handler</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__INSTANCE = TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Domain Visitor</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST__ID = TypesPackage.TYPE__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST__ELEMENTS = TypesPackage.TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern List</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_SUBSTITUTION__ID = TypesPackage.TYPE__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_SUBSTITUTION__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Substitutions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS = TypesPackage.TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Substitution</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_SUBSTITUTION_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '<em>Context</em>' data type.

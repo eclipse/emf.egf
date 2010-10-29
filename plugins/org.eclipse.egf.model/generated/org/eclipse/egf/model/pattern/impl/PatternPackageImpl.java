@@ -51,6 +51,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -1015,9 +1016,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         createEAttribute(string2StringEClass, STRING2_STRING__KEY);
         createEAttribute(string2StringEClass, STRING2_STRING__VALUE);
 
-        typePatternExecutionReporterEClass = createEClass(TYPE_PATTERN_EXECUTION_REPORTER);
-
         backCallEClass = createEClass(BACK_CALL);
+
+        injectedContextEClass = createEClass(INJECTED_CONTEXT);
+
+        substitutionEClass = createEClass(SUBSTITUTION);
+        createEReference(substitutionEClass, SUBSTITUTION__REPLACED_ELEMENT);
+        createEReference(substitutionEClass, SUBSTITUTION__REPLACEMENT);
+
+        typePatternExecutionReporterEClass = createEClass(TYPE_PATTERN_EXECUTION_REPORTER);
 
         typePatternCallBackHandlerEClass = createEClass(TYPE_PATTERN_CALL_BACK_HANDLER);
 
@@ -1026,14 +1033,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         typePatternListEClass = createEClass(TYPE_PATTERN_LIST);
         createEReference(typePatternListEClass, TYPE_PATTERN_LIST__ELEMENTS);
 
-        injectedContextEClass = createEClass(INJECTED_CONTEXT);
-
         typePatternSubstitutionEClass = createEClass(TYPE_PATTERN_SUBSTITUTION);
         createEReference(typePatternSubstitutionEClass, TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS);
-
-        substitutionEClass = createEClass(SUBSTITUTION);
-        createEReference(substitutionEClass, SUBSTITUTION__REPLACED_ELEMENT);
-        createEReference(substitutionEClass, SUBSTITUTION__REPLACEMENT);
 
         // Create data types
         patternContextEDataType = createEDataType(PATTERN_CONTEXT);
@@ -1096,14 +1097,14 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         customQueryEClass.getESuperTypes().add(this.getQuery());
         string2PatternListEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         string2StringEClass.getESuperTypes().add(theFcorePackage.getModelElement());
-        typePatternExecutionReporterEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         backCallEClass.getESuperTypes().add(this.getCall());
+        injectedContextEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+        substitutionEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+        typePatternExecutionReporterEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternCallBackHandlerEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternDomainVisitorEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternListEClass.getESuperTypes().add(theTypesPackage.getType());
-        injectedContextEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         typePatternSubstitutionEClass.getESuperTypes().add(theTypesPackage.getType());
-        substitutionEClass.getESuperTypes().add(theFcorePackage.getModelElement());
 
         // Initialize classes and features; add operations and parameters
         initEClass(patternNatureEClass, PatternNature.class, "PatternNature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1196,40 +1197,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEAttribute(getString2String_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getString2String_Value(), ecorePackage.getEString(), "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        initEClass(typePatternExecutionReporterEClass, TypePatternExecutionReporter.class, "TypePatternExecutionReporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-        op = addEOperation(typePatternExecutionReporterEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        EGenericType g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        EGenericType g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEOperation(op, g1);
-
         initEClass(backCallEClass, BackCall.class, "BackCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-        initEClass(typePatternCallBackHandlerEClass, TypePatternCallBackHandler.class, "TypePatternCallBackHandler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-        op = addEOperation(typePatternCallBackHandlerEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEOperation(op, g1);
-
-        initEClass(typePatternDomainVisitorEClass, TypePatternDomainVisitor.class, "TypePatternDomainVisitor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-        op = addEOperation(typePatternDomainVisitorEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEOperation(op, g1);
-
-        initEClass(typePatternListEClass, TypePatternList.class, "TypePatternList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getTypePatternList_Elements(), this.getPatternElement(), null, "elements", null, 0, -1, TypePatternList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-        op = addEOperation(typePatternListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
-        g1.getETypeArguments().add(g2);
-        initEOperation(op, g1);
 
         initEClass(injectedContextEClass, InjectedContext.class, "InjectedContext", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -1239,21 +1207,69 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         addEOperation(injectedContextEClass, this.getPattern(), "getPattern", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
+        initEClass(substitutionEClass, Substitution.class, "Substitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getSubstitution_ReplacedElement(), this.getPattern(), null, "replacedElement", null, 0, 1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getSubstitution_Replacement(), this.getPattern(), null, "replacement", null, 0, -1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        initEClass(typePatternExecutionReporterEClass, TypePatternExecutionReporter.class, "TypePatternExecutionReporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        op = addEOperation(typePatternExecutionReporterEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        ETypeParameter t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        EGenericType g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        EGenericType g2 = createEGenericType(t1);
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(typePatternCallBackHandlerEClass, TypePatternCallBackHandler.class, "TypePatternCallBackHandler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        op = addEOperation(typePatternCallBackHandlerEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType(t1);
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(typePatternDomainVisitorEClass, TypePatternDomainVisitor.class, "TypePatternDomainVisitor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        op = addEOperation(typePatternDomainVisitorEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType(t1);
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(typePatternListEClass, TypePatternList.class, "TypePatternList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getTypePatternList_Elements(), this.getPatternElement(), null, "elements", null, 0, -1, TypePatternList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(typePatternListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType(t1);
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
         initEClass(typePatternSubstitutionEClass, TypePatternSubstitution.class, "TypePatternSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getTypePatternSubstitution_Substitutions(), this.getSubstitution(), null, "substitutions", null, 0, -1, TypePatternSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(typePatternSubstitutionEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        g2 = createEGenericType();
+        g2 = createEGenericType(t1);
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
         op = addEOperation(typePatternSubstitutionEClass, this.getPattern(), "getSubstitutions", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         addEParameter(op, this.getPattern(), "pattern", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-        initEClass(substitutionEClass, Substitution.class, "Substitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getSubstitution_ReplacedElement(), this.getPattern(), null, "replacedElement", null, 0, 1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getSubstitution_Replacement(), this.getPattern(), null, "replacement", null, 0, -1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         // Initialize data types
         initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1282,7 +1298,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
                 "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(patternEClass, source, new String[] {
-                "constraints", "HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
+                "constraints", "UniqueName HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
         });
         addAnnotation(patternMethodEClass, source, new String[] {
                 "constraints", "MandatoryName ValidURI ValidPatternFilePath" //$NON-NLS-1$ //$NON-NLS-2$

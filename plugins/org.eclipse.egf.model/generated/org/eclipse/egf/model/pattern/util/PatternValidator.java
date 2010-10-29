@@ -18,7 +18,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.FileHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
+import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
@@ -231,22 +233,22 @@ public class PatternValidator extends EObjectValidator {
                 return validateString2PatternList((Map.Entry<?, ?>) value, diagnostics, context);
             case PatternPackage.STRING2_STRING:
                 return validateString2String((Map.Entry<?, ?>) value, diagnostics, context);
-            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
-                return validateTypePatternExecutionReporter((TypePatternExecutionReporter) value, diagnostics, context);
             case PatternPackage.BACK_CALL:
                 return validateBackCall((BackCall) value, diagnostics, context);
+            case PatternPackage.INJECTED_CONTEXT:
+                return validateInjectedContext((InjectedContext) value, diagnostics, context);
+            case PatternPackage.SUBSTITUTION:
+                return validateSubstitution((Substitution) value, diagnostics, context);
+            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
+                return validateTypePatternExecutionReporter((TypePatternExecutionReporter) value, diagnostics, context);
             case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
                 return validateTypePatternCallBackHandler((TypePatternCallBackHandler) value, diagnostics, context);
             case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
                 return validateTypePatternDomainVisitor((TypePatternDomainVisitor) value, diagnostics, context);
             case PatternPackage.TYPE_PATTERN_LIST:
                 return validateTypePatternList((TypePatternList) value, diagnostics, context);
-            case PatternPackage.INJECTED_CONTEXT:
-                return validateInjectedContext((InjectedContext) value, diagnostics, context);
             case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
                 return validateTypePatternSubstitution((TypePatternSubstitution) value, diagnostics, context);
-            case PatternPackage.SUBSTITUTION:
-                return validateSubstitution((Substitution) value, diagnostics, context);
             case PatternPackage.PATTERN_CONTEXT:
                 return validatePatternContext((PatternContext) value, diagnostics, context);
             case PatternPackage.PATTERN_EXCEPTION:
@@ -280,10 +282,36 @@ public class PatternValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validatePatternElement_MandatoryName(pattern, diagnostics, context);
         if (result || diagnostics != null)
+            result &= validatePattern_UniqueName(pattern, diagnostics, context);
+        if (result || diagnostics != null)
             result &= validatePattern_HeaderMethod(pattern, diagnostics, context);
         if (result || diagnostics != null)
             result &= validatePattern_FooterMethod(pattern, diagnostics, context);
         return result;
+    }
+
+    /**
+     * Validates the UniqueName constraint of '<em>Pattern</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean validatePattern_UniqueName(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (pattern.getName() == null || pattern.getName().trim().length() == 0 || pattern.eResource() == null || pattern.eResource() instanceof IPlatformFcoreProvider == false) {
+            return true;
+        }
+        if (ValidationHelper.isUniqueNameWithinBundle(((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore(), pattern.getContainer(), pattern) == false) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "UniqueName", getObjectLabel(pattern, context), NLS.bind("Pattern name ''{0}'' is not unique", pattern.getName())}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            pattern
+                        }, context));
+            }
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -863,6 +891,8 @@ public class PatternValidator extends EObjectValidator {
             result &= typesValidator.validateTypeAbstractClass_LoadableType(typePatternExecutionReporter, diagnostics, context);
         if (result || diagnostics != null)
             result &= typesValidator.validateTypeAbstractClass_ValidValue(typePatternExecutionReporter, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidInstance(typePatternExecutionReporter, diagnostics, context);
         return result;
     }
 
@@ -900,6 +930,8 @@ public class PatternValidator extends EObjectValidator {
             result &= typesValidator.validateTypeAbstractClass_LoadableType(typePatternCallBackHandler, diagnostics, context);
         if (result || diagnostics != null)
             result &= typesValidator.validateTypeAbstractClass_ValidValue(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidInstance(typePatternCallBackHandler, diagnostics, context);
         return result;
     }
 
@@ -928,6 +960,8 @@ public class PatternValidator extends EObjectValidator {
             result &= typesValidator.validateTypeAbstractClass_LoadableType(typePatternDomainVisitor, diagnostics, context);
         if (result || diagnostics != null)
             result &= typesValidator.validateTypeAbstractClass_ValidValue(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidInstance(typePatternDomainVisitor, diagnostics, context);
         return result;
     }
 

@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='HeaderMethod FooterMethod'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueName HeaderMethod FooterMethod'"
  * @generated
  */
 public interface Pattern extends PatternElement {

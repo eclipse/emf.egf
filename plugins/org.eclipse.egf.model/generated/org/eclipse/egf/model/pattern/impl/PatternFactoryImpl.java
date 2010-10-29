@@ -120,10 +120,12 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
                 return (EObject) createString2PatternList();
             case PatternPackage.STRING2_STRING:
                 return (EObject) createString2String();
-            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
-                return createTypePatternExecutionReporter();
             case PatternPackage.BACK_CALL:
                 return createBackCall();
+            case PatternPackage.SUBSTITUTION:
+                return createSubstitution();
+            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
+                return createTypePatternExecutionReporter();
             case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
                 return createTypePatternCallBackHandler();
             case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
@@ -132,8 +134,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
                 return createTypePatternList();
             case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
                 return createTypePatternSubstitution();
-            case PatternPackage.SUBSTITUTION:
-                return createSubstitution();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }

@@ -215,13 +215,23 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
-        public Adapter caseTypePatternExecutionReporter(TypePatternExecutionReporter object) {
-            return createTypePatternExecutionReporterAdapter();
+        public Adapter caseBackCall(BackCall object) {
+            return createBackCallAdapter();
         }
 
         @Override
-        public Adapter caseBackCall(BackCall object) {
-            return createBackCallAdapter();
+        public Adapter caseInjectedContext(InjectedContext object) {
+            return createInjectedContextAdapter();
+        }
+
+        @Override
+        public Adapter caseSubstitution(Substitution object) {
+            return createSubstitutionAdapter();
+        }
+
+        @Override
+        public Adapter caseTypePatternExecutionReporter(TypePatternExecutionReporter object) {
+            return createTypePatternExecutionReporterAdapter();
         }
 
         @Override
@@ -240,18 +250,8 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
-        public Adapter caseInjectedContext(InjectedContext object) {
-            return createInjectedContextAdapter();
-        }
-
-        @Override
         public Adapter caseTypePatternSubstitution(TypePatternSubstitution object) {
             return createTypePatternSubstitutionAdapter();
-        }
-
-        @Override
-        public Adapter caseSubstitution(Substitution object) {
-            return createSubstitutionAdapter();
         }
 
         @Override

@@ -27,11 +27,10 @@ public interface TypeList extends TypeAbstractClass {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.List.class;'"
+     * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Class<T>) java.util.List.class;'"
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    Class<?> getType();
+    <T extends Object> Class<T> getType();
 
 } // TypeList

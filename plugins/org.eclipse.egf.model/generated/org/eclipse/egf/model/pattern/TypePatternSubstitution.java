@@ -49,12 +49,11 @@ public interface TypePatternSubstitution extends Type {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" required="true"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.pattern.TypePatternSubstitution.class;'"
+     * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Class<T>) org.eclipse.egf.model.pattern.TypePatternSubstitution.class;'"
      * @generated
      */
-    @SuppressWarnings("unchecked")
-    Class<?> getType();
+    <T extends Object> Class<T> getType();
 
     /**
      * <!-- begin-user-doc -->

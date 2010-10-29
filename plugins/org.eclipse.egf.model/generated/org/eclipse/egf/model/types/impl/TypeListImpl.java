@@ -53,8 +53,8 @@ public class TypeListImpl extends TypeAbstractClassImpl implements TypeList {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return java.util.List.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) java.util.List.class;
     }
 
 } // TypeListImpl

@@ -102,8 +102,8 @@ public class TypePatternListImpl extends TypeImpl implements TypePatternList {
      */
     @Override
     @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return org.eclipse.egf.model.pattern.TypePatternList.class;
+    public <T extends Object> Class<T> getType() {
+        return (Class<T>) org.eclipse.egf.model.pattern.TypePatternList.class;
     }
 
     /**

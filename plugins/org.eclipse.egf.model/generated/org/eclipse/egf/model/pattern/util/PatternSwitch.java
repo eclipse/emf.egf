@@ -354,6 +354,35 @@ public class PatternSwitch<T> {
                     result = defaultCase(theEObject);
                 return result;
             }
+            case PatternPackage.BACK_CALL: {
+                BackCall backCall = (BackCall) theEObject;
+                T result = caseBackCall(backCall);
+                if (result == null)
+                    result = caseCall(backCall);
+                if (result == null)
+                    result = caseModelElement(backCall);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.INJECTED_CONTEXT: {
+                InjectedContext injectedContext = (InjectedContext) theEObject;
+                T result = caseInjectedContext(injectedContext);
+                if (result == null)
+                    result = caseModelElement(injectedContext);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case PatternPackage.SUBSTITUTION: {
+                Substitution substitution = (Substitution) theEObject;
+                T result = caseSubstitution(substitution);
+                if (result == null)
+                    result = caseModelElement(substitution);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
             case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER: {
                 TypePatternExecutionReporter typePatternExecutionReporter = (TypePatternExecutionReporter) theEObject;
                 T result = caseTypePatternExecutionReporter(typePatternExecutionReporter);
@@ -363,17 +392,6 @@ public class PatternSwitch<T> {
                     result = caseType(typePatternExecutionReporter);
                 if (result == null)
                     result = caseTypeElement(typePatternExecutionReporter);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case PatternPackage.BACK_CALL: {
-                BackCall backCall = (BackCall) theEObject;
-                T result = caseBackCall(backCall);
-                if (result == null)
-                    result = caseCall(backCall);
-                if (result == null)
-                    result = caseModelElement(backCall);
                 if (result == null)
                     result = defaultCase(theEObject);
                 return result;
@@ -415,15 +433,6 @@ public class PatternSwitch<T> {
                     result = defaultCase(theEObject);
                 return result;
             }
-            case PatternPackage.INJECTED_CONTEXT: {
-                InjectedContext injectedContext = (InjectedContext) theEObject;
-                T result = caseInjectedContext(injectedContext);
-                if (result == null)
-                    result = caseModelElement(injectedContext);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
             case PatternPackage.TYPE_PATTERN_SUBSTITUTION: {
                 TypePatternSubstitution typePatternSubstitution = (TypePatternSubstitution) theEObject;
                 T result = caseTypePatternSubstitution(typePatternSubstitution);
@@ -431,15 +440,6 @@ public class PatternSwitch<T> {
                     result = caseType(typePatternSubstitution);
                 if (result == null)
                     result = caseTypeElement(typePatternSubstitution);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case PatternPackage.SUBSTITUTION: {
-                Substitution substitution = (Substitution) theEObject;
-                T result = caseSubstitution(substitution);
-                if (result == null)
-                    result = caseModelElement(substitution);
                 if (result == null)
                     result = defaultCase(theEObject);
                 return result;

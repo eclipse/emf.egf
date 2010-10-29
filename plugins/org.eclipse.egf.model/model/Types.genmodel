@@ -26,6 +26,7 @@
       <genTypeParameters ecoreTypeParameter="Types.ecore#//Collection/E"/>
     </genDataTypes>
     <genDataTypes ecoreDataType="Types.ecore#//URI"/>
+    <genDataTypes ecoreDataType="Types.ecore#//TypesException"/>
     <genClasses image="false" ecoreClass="Types.ecore#//TypeElement">
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
           ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/iD"/>
@@ -46,22 +47,31 @@
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="Types.ecore#//TypeAbstractClass">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//TypeAbstractClass/instance"/>
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeAbstractClass/value"/>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeClass">
-      <genOperations ecoreOperation="Types.ecore#//TypeClass/getType"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//TypeClass/type"/>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeCollection" labelFeature="#//types/TypeElement/iD">
-      <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType">
+        <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeCollection/getType/T"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeList" labelFeature="#//types/TypeElement/iD">
-      <genOperations ecoreOperation="Types.ecore#//TypeList/getType"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeList/getType">
+        <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeList/getType/T"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeSet" labelFeature="#//types/TypeElement/iD">
-      <genOperations ecoreOperation="Types.ecore#//TypeSet/getType"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeSet/getType">
+        <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeSet/getType/T"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeMap" labelFeature="#//types/TypeElement/iD">
-      <genOperations ecoreOperation="Types.ecore#//TypeMap/getType"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeMap/getType">
+        <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeMap/getType/T"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeBigDecimal" labelFeature="#//types/TypeElement/iD">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBigDecimal/value"/>

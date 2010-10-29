@@ -17,6 +17,12 @@ package org.eclipse.egf.model.types;
  * A representation of the model object '<em><b>Type Class</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.eclipse.egf.model.types.TypeClass#getType <em>Type</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeClass()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryValue'"
@@ -25,12 +31,26 @@ package org.eclipse.egf.model.types;
 public interface TypeClass extends TypeAbstractClass {
 
     /**
+     * Returns the value of the '<em><b>Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation" required="true"
+     * @return the value of the '<em>Type</em>' attribute.
+     * @see #isSetType()
+     * @see org.eclipse.egf.model.types.TypesPackage#getTypeClass_Type()
+     * @model unsettable="true" transient="true" changeable="false" derived="true"
      * @generated
      */
     @SuppressWarnings("unchecked")
     Class<?> getType();
+
+    /**
+     * Returns whether the value of the '{@link org.eclipse.egf.model.types.TypeClass#getType <em>Type</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Type</em>' attribute is set.
+     * @see #getType()
+     * @generated
+     */
+    boolean isSetType();
 
 } // TypeClass
