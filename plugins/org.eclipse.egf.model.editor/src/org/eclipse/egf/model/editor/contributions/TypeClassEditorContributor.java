@@ -23,6 +23,7 @@ import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
@@ -49,8 +50,8 @@ public class TypeClassEditorContributor extends DefaultPropertyEditorContributor
         if (object instanceof TypeClass == false || ((TypeClass) object).eResource() == null) {
             return false;
         }
-        // Check Current Feature
-        if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && ((TypeClass) object).eContainer() instanceof Contract) {
+        // Check applicable Feature
+        if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && (((TypeClass) object).eContainer() instanceof Contract || ((TypeClass) object).eContainer() instanceof OrchestrationParameter)) {
             return true;
         }
         return false;

@@ -17,6 +17,7 @@ package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.model.types.TypeClass;
@@ -37,7 +38,7 @@ public class TypeEditorContributor extends AbstractTypeEditorContributor {
         // Check Current Feature
         if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) {
             // TypeClass has its own contributor see TypeClassEditorContributor
-            if (object instanceof TypeClass && ((TypeClass) object).eContainer() instanceof Contract) {
+            if (object instanceof TypeClass && (((TypeClass) object).eContainer() instanceof Contract || ((TypeClass) object).eContainer() instanceof OrchestrationParameter)) {
                 return false;
             }
             // TypeAbstractClass bound to an InvocationContract
