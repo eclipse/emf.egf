@@ -70,7 +70,7 @@ public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
             }
             URI uri = URI.createURI(tag);
             // TODO: We should have an index to improve such control
-            for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
+            for (IPlatformFcore fcore : EGFCorePlugin.getTargetPlatformFcores()) {
                 if (fcore.getURI().equals(uri)) {
                     _previous = fcore;
                     return fcore;
@@ -153,7 +153,7 @@ public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
     }
 
     private static IPlatformFcore[] getElements() {
-        return EGFCorePlugin.getPlatformFcores();
+        return EGFCorePlugin.getTargetPlatformFcores();
     }
 
     private ILabelProvider _labelProvider = new LabelProvider() {
@@ -220,14 +220,16 @@ public class FcoreSelectionDialog extends AbstractFilteredItemsSelectionDialog {
                 return super.getText(element);
             }
             StringBuffer buffer = new StringBuffer();
-            IPlatformFcore fc = (IPlatformFcore) element;
-            if (fc.getPlatformBundle().isTarget()) {
+            IPlatformFcore fcore = (IPlatformFcore) element;
+            if (fcore.isTarget()) {
                 buffer.append(" [Target]"); //$NON-NLS-1$
+            } else if (fcore.isRuntime()) {
+                buffer.append(" [Runtime]"); //$NON-NLS-1$                
             } else {
                 buffer.append(" [Workspace]"); //$NON-NLS-1$
             }
             buffer.append(" ["); //$NON-NLS-1$
-            buffer.append(fc.getPlatformBundle().getInstallLocation());
+            buffer.append(fcore.getPlatformBundle().getInstallLocation());
             buffer.append("]"); //$NON-NLS-1$      
             return buffer.toString();
         }
