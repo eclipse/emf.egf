@@ -15,7 +15,7 @@
 package org.eclipse.egf.pattern.ftask.tasks;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -73,14 +73,14 @@ public abstract class AbstractPatternTask implements ITaskProduction {
                 if (domainURI == null || domainURI.getUri() == null)
                     continue; // Weird behavior: unfilled contracts are
                 // available ...
-                ResourceSet set = new EGFResourceSet();
+                ResourceSet set = new TargetPlatformResourceSet();
                 domainResource = set.getResource(domainURI.getUri(), true);
                 ctx.setValue(PatternContext.DOMAIN_OBJECTS, domainResource.getContents());
             } else
                 ctx.setValue(name, context.getInputValue(name, contract.getType().getType()));
         }
         // add a resourcet to load pattern to be called
-        ctx.setValue(PatternContext.PATTERN_RESOURCESET, new EGFResourceSet());
+        ctx.setValue(PatternContext.PATTERN_RESOURCESET, new TargetPlatformResourceSet());
     }
 
     protected PatternContext createPatternContext(final ITaskProductionContext prodCtx) {
