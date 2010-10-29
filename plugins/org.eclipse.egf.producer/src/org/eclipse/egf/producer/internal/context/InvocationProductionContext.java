@@ -16,7 +16,6 @@ import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
-import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.Contract;
@@ -30,7 +29,7 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class InvocationProductionContext<P extends Invocation, T extends Orchestration> extends ProductionContext<P, InvocationContract> {
+public abstract class InvocationProductionContext<P extends Invocation, T extends Orchestration> extends ModelElementProductionContext<P, InvocationContract> {
 
     public InvocationProductionContext(ProjectBundleSession projectBundleSession, P element, String name) {
         super(projectBundleSession, element, name);

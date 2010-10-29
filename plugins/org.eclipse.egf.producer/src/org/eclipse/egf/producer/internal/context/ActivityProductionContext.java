@@ -15,7 +15,6 @@ import java.util.Collection;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
-import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.Activity;
@@ -29,7 +28,7 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityProductionContext<P extends Activity> extends ProductionContext<P, Contract> implements IActivityProductionContext<P> {
+public abstract class ActivityProductionContext<P extends Activity> extends ModelElementProductionContext<P, Contract> implements IActivityProductionContext<P> {
 
     public ActivityProductionContext(ProjectBundleSession projectBundleSession, P element, String name) {
         super(projectBundleSession, element, name);
