@@ -20,7 +20,6 @@ Export-Package:
  org.eclipse.egf.pattern,
  org.eclipse.egf.pattern.collector,
  org.eclipse.egf.pattern.common.java,
- org.eclipse.egf.pattern.ecore,
  org.eclipse.egf.pattern.engine,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,
