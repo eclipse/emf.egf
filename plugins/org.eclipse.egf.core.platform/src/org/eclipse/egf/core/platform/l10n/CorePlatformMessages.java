@@ -27,4 +27,6 @@ public class CorePlatformMessages {
 
     public static String PlatformManager_outOfSync;
 
+    public static String Bundle_AnalysisFailure;
+
 }
