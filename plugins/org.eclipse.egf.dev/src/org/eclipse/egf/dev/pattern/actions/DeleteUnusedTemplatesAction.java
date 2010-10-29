@@ -30,7 +30,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.pattern.PatternPreferences;
@@ -61,8 +61,8 @@ public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelega
         final List<Pattern> patterns = new ArrayList<Pattern>(200);
         Set<IFolder> folders = new HashSet<IFolder>();
 
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getWorkspacePlatformFcores();
-        ResourceSet resourceSet = new EGFResourceSet();
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getWorkspaceTargetPlatformFcores();
+        ResourceSet resourceSet = new TargetPlatformResourceSet();
         try {
             for (IPlatformFcore platformFcore : platformFcores) {
                 URI uri = platformFcore.getURI();
