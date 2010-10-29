@@ -16,13 +16,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.helper.BundleSessionHelper;
-import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -91,9 +88,9 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
 
     }
 
-    private String _name;
+    protected String _name;
 
-    private ProjectBundleSession _projectBundleSession;
+    protected ProjectBundleSession _projectBundleSession;
 
     protected P _element;
 
@@ -137,22 +134,6 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     public Bundle getBundle(String id) throws InvocationException {
         try {
             return _projectBundleSession.getBundle(id);
-        } catch (CoreException ce) {
-            throw new InvocationException(ce);
-        }
-    }
-
-    public Bundle getBundle(IProject project) throws InvocationException {
-        try {
-            return _projectBundleSession.getBundle(project);
-        } catch (CoreException ce) {
-            throw new InvocationException(ce);
-        }
-    }
-
-    public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException {
-        try {
-            return BundleSessionHelper.getBundle(_projectBundleSession, platformExtensionPoint);
         } catch (CoreException ce) {
             throw new InvocationException(ce);
         }
