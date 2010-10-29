@@ -30,60 +30,60 @@ import org.eclipse.emf.codegen.util.CodeGenUtil;
  */
 public abstract class EGFTask extends Task {
 
-  /**
-   * Throws a <tt>BuildException</tt> if <tt>expression</tt> is false.
-   * 
-   * @param message
-   * @param expression
-   * @throws BuildException
-   */
-  public static void assertTrue(String message, boolean expression) throws BuildException {
-    if (expression == false) {
-      throw new BuildException(message);
-    }
-  }
-
-  protected IProgressMonitor getProgressMonitor() {
-    try {
-      if (getProject() != null) {
-        IProgressMonitor progressMonitor = (IProgressMonitor) getProject().getReferences().get(AntCorePlugin.ECLIPSE_PROGRESS_MONITOR);
-        if (progressMonitor != null) {
-          return progressMonitor;
+    /**
+     * Throws a <tt>BuildException</tt> if <tt>expression</tt> is false.
+     * 
+     * @param message
+     * @param expression
+     * @throws BuildException
+     */
+    public static void assertTrue(String message, boolean expression) throws BuildException {
+        if (expression == false) {
+            throw new BuildException(message);
         }
-      }
-    } catch (Exception e) {
-      // Ignore
     }
-    return new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out);
-  }
 
-  @Override
-  public final void execute() throws BuildException {
-    checkAttributes();
-    try {
-      doExecute();
-    } catch (Exception e) {
-      if (e instanceof BuildException) {
-        throw (BuildException) e;
-      }
-      throw new BuildException(e);
+    protected IProgressMonitor getProgressMonitor() {
+        try {
+            if (getProject() != null) {
+                IProgressMonitor progressMonitor = (IProgressMonitor) getProject().getReferences().get(AntCorePlugin.ECLIPSE_PROGRESS_MONITOR);
+                if (progressMonitor != null) {
+                    return progressMonitor;
+                }
+            }
+        } catch (Exception e) {
+            // Ignore
+        }
+        return new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out);
     }
-  }
 
-  /**
-   * All the attribute checks should be performed in this method.
-   * 
-   * @throws BuildException
-   */
-  protected void checkAttributes() throws BuildException {
-    // Subclasses may override this method
-  }
+    @Override
+    public final void execute() throws BuildException {
+        checkAttributes();
+        try {
+            doExecute();
+        } catch (Exception e) {
+            if (e instanceof BuildException) {
+                throw (BuildException) e;
+            }
+            throw new BuildException(e);
+        }
+    }
 
-  /**
-   * Performs the task specific code.
-   * 
-   * @throws Exception
-   */
-  protected abstract void doExecute() throws Exception;
+    /**
+     * All the attribute checks should be performed in this method.
+     * 
+     * @throws BuildException
+     */
+    protected void checkAttributes() throws BuildException {
+        // Subclasses may override this method
+    }
+
+    /**
+     * Performs the task specific code.
+     * 
+     * @throws Exception
+     */
+    protected abstract void doExecute() throws Exception;
 
 }

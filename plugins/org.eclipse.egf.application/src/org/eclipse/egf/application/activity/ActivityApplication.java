@@ -21,100 +21,140 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.application.internal.activator.EGFApplicationPlugin;
 import org.eclipse.egf.application.internal.activity.ActivityRunner;
 import org.eclipse.egf.application.internal.l10n.ApplicationMessages;
-import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.osgi.util.NLS;
 
 public class ActivityApplication implements IApplication {
 
-  /**
-   * This is called with the command line arguments of a headless workbench invocation.
-   */
-  public Object run(Object object) throws Exception {
-    // Usual tests
-    if (object == null || object instanceof String[] == false || ((String[]) object).length < 2 || IApplicationConfigurationConstants.ACTIVITIES_PROGRAM_ARGUMENTS.equals(((String[]) object)[0]) == false) {
-      System.err.println(ApplicationMessages.ActivityApplication_Arguments_Usage);
-      return IApplicationConfigurationConstants.EXIT_ERROR;
-    }
-    // Retrieve our Editing Domain
-    TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-    // Build a list of activities if any
-    List<Activity> activities = new UniqueEList<Activity>();
-    for (int i = 1; i < ((String[]) object).length; i++) {
-      String activity = ((String[]) object)[i];
-      // Ignore null parameters
-      if (activity == null) {
-        continue;
-      }
-      URI uri = null;
-      try {
-        // Build a uri
-        uri = URI.createURI(activity);
-      } catch (Throwable t) {
-        EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_URI_Argument, i, activity), t)));
-        continue;
-      }
-      EObject eObject = null;
-      // Load it in our Editing Domain
-      try {
-        eObject = editingDomain.getResourceSet().getEObject(uri, true);
-      } catch (Throwable t) {
-        EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_EObject_Loading_Error, i, uri.toString()), t)));
-        continue;
-      }
-      // Verify if we face an Activity
-      if (eObject == null || eObject instanceof Activity == false) {
-        EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_Activity_Argument, i, uri.toString()), null)));
-        continue;
-      }
-      // to be runned activities
-      activities.add((Activity) eObject);
-    }
-    if (activities.isEmpty()) {
-      return IApplication.EXIT_OK;
-    }
-    return runHelper(activities);
-  }
-
-  public Object start(IApplicationContext context) throws Exception {
-    String[] args = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
-    // Usual tests
-    if (args == null || args.length < 2 || IApplicationConfigurationConstants.ACTIVITIES_PROGRAM_ARGUMENTS.equals(args[0]) == false) {
-      System.err.println(ApplicationMessages.ActivityApplication_Arguments_Usage);
-      return IApplicationConfigurationConstants.EXIT_ERROR;
-    }
-    return run(args);
-  }
-
-  public void stop() {
-    // Subclasses may override
-  }
-
-  public static Object runHelper(final List<Activity> activities) throws Exception {
-    try {
-      final IWorkspace workspace = ResourcesPlugin.getWorkspace();
-      IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
-        public void run(IProgressMonitor monitor) throws CoreException {
-          try {
-            ActivityRunner runner = new ActivityRunner(activities);
-            runner.run(monitor);
-          } finally {
-            monitor.done();
-          }
+    public Object start(IApplicationContext context) throws Exception {
+        // Retrieve arguments
+        String[] strings = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
+        // Usual tests
+        if (strings == null || strings.length < 2) {
+            System.err.println(ApplicationMessages.ActivityApplication_Arguments_Usage);
+            return IApplicationConfigurationConstants.EXIT_ERROR;
         }
-      };
-      workspace.run(runnable, new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out));
-    } catch (Exception e) {
-      throw e;
+        // Decode arguments
+        boolean hasActivitiesArgument = hasActivitiesArgument(strings);
+        if (hasActivitiesArgument == false) {
+            System.err.println(ApplicationMessages.ActivityApplication_Arguments_Usage);
+            return IApplicationConfigurationConstants.EXIT_ERROR;
+        }
+        List<URI> uris = getActivityURIs(strings);
+        // Nothing to process
+        if (uris.isEmpty()) {
+            return IApplication.EXIT_OK;
+        }
+        boolean isRuntime = isRuntime(strings);
+        ResourceSet resourceSet = null;
+        if (isRuntime) {
+            resourceSet = new RuntimePlatformResourceSet();
+        } else {
+            resourceSet = new TargetPlatformResourceSet();
+        }
+        // Build a list of activities if any
+        List<Activity> activities = new UniqueEList<Activity>();
+        for (int i = 0; i < uris.size(); i++) {
+            URI uri = resourceSet.getURIConverter().normalize(uris.get(i));
+            EObject eObject = null;
+            // Load it in our Editing Domain
+            try {
+                eObject = resourceSet.getEObject(uri, true);
+            } catch (Throwable t) {
+                EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_EObject_Loading_Error, i, uri), t)));
+                continue;
+            }
+            // Check if we face an Activity
+            if (eObject == null || eObject instanceof Activity == false) {
+                EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_Activity_Argument, i, uri), null)));
+                continue;
+            }
+            // to be runned activities
+            activities.add((Activity) eObject);
+        }
+        // Nothing to process
+        if (activities.isEmpty()) {
+            return IApplication.EXIT_OK;
+        }
+        // Run
+        return runHelper(activities);
     }
-    return IApplication.EXIT_OK;
-  }
 
+    public void stop() {
+        // Subclasses may override
+    }
+
+    public static Object runHelper(final List<Activity> activities) throws Exception {
+        try {
+            final IWorkspace workspace = ResourcesPlugin.getWorkspace();
+            IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+
+                public void run(IProgressMonitor monitor) throws CoreException {
+                    try {
+                        ActivityRunner runner = new ActivityRunner(activities);
+                        runner.run(monitor);
+                    } finally {
+                        monitor.done();
+                    }
+                }
+            };
+            workspace.run(runnable, new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out));
+        } catch (Exception e) {
+            throw e;
+        }
+        return IApplication.EXIT_OK;
+    }
+
+    protected boolean isRuntime(String[] objects) {
+        for (String string : objects) {
+            if (IApplicationConfigurationConstants.RUNTIME_PROGRAM_ARGUMENTS.equals(string)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected boolean hasActivitiesArgument(String[] objects) {
+        for (String string : objects) {
+            if (IApplicationConfigurationConstants.ACTIVITIES_PROGRAM_ARGUMENTS.equals(string)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected List<URI> getActivityURIs(String[] objects) {
+        List<URI> uris = new UniqueEList<URI>();
+        boolean next = false;
+        int position = 0;
+        for (String string : objects) {
+            if (IApplicationConfigurationConstants.ACTIVITIES_PROGRAM_ARGUMENTS.equals(string)) {
+                next = true;
+            } else if (IApplicationConfigurationConstants.RUNTIME_PROGRAM_ARGUMENTS.equals(string)) {
+                next = false;
+            } else if (next) {
+                URI uri = null;
+                position += 1;
+                try {
+                    // Build a uri
+                    uri = URI.createURI(string);
+                } catch (Throwable t) {
+                    EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_URI_Argument, position, string), t)));
+                }
+                if (uri != null) {
+                    uris.add(uri);
+                }
+            }
+        }
+        return uris;
+    }
 }

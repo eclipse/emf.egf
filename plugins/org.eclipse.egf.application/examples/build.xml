@@ -12,8 +12,7 @@
 <project name="MyActivities" default="processActivities" basedir=".">
     <target name="processActivities">
         <egf.activities>
-        	<activity uri="platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore#Ko39UWVuEd64TpQQ4RciWw"/>
-          <activity uri="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ"/>
+            <activity runtime="true" uri="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_2.fcore#_zpFW8HOfEd-d5cqrgbkp6A"/>
         </egf.activities>
     </target>
 </project>

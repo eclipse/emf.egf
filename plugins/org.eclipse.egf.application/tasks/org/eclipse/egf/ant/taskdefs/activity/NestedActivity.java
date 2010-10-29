@@ -22,28 +22,40 @@ import org.eclipse.osgi.util.NLS;
  */
 public class NestedActivity extends NestedElement {
 
-  private String _uri;
+    private boolean _isRuntime;
 
-  public NestedActivity() {
-    // Nothing to do
-  }
+    private String _uri;
 
-  public void setUri(String uri) {
-    _uri = uri;
-  }
-
-  public URI getUri() {
-    return URI.createURI(_uri);
-  }
-
-  @Override
-  public void checkAttributes() throws BuildException {
-    assertTrue("'uri' must be specified.", _uri != null); //$NON-NLS-1$
-    try {
-      getUri();
-    } catch (Throwable t) {
-      throw new BuildException(NLS.bind(ApplicationMessages.NestedActivity_Invalid_URI_Attribute, _uri), t);
+    public NestedActivity() {
+        // Nothing to do
     }
-  }
+
+    public void setRuntime(boolean isRuntime) {
+        _isRuntime = isRuntime;
+    }
+
+    public boolean isRuntime() {
+        return _isRuntime;
+    }
+
+    public void setUri(String uri) {
+        if (uri != null && uri.trim().length() != 0) {
+            _uri = uri.trim();
+        }
+    }
+
+    public URI getUri() {
+        return URI.createURI(_uri);
+    }
+
+    @Override
+    public void checkAttributes() throws BuildException {
+        assertTrue("Activity 'uri' must be specified.", _uri != null); //$NON-NLS-1$
+        try {
+            getUri();
+        } catch (Throwable t) {
+            throw new BuildException(NLS.bind(ApplicationMessages.NestedActivity_Invalid_URI_Attribute, _uri), t);
+        }
+    }
 
 }
