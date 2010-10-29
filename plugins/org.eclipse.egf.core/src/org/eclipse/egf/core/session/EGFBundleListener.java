@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.core.session;
 
+import org.eclipse.egf.core.EGFCoreDebug;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleEvent;
@@ -22,6 +23,9 @@ import org.osgi.framework.BundleListener;
 public class EGFBundleListener implements BundleListener {
 
     public void bundleChanged(BundleEvent event) {
+        if (EGFCorePlugin.getDefault() == null || EGFCoreDebug.isDebugBundleListener() == false) {
+            return;
+        }
         if (event.getType() == BundleEvent.STARTED) {
             EGFCorePlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}'' is starting...", event.getBundle().getSymbolicName())); //$NON-NLS-1$
         } else if (event.getType() == BundleEvent.STOPPED) {

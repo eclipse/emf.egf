@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.JavaHelper;
+import org.eclipse.egf.core.EGFCoreDebug;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -116,7 +117,7 @@ public final class ProjectBundleSession {
             // Store
             bundles.add(bundle);
             _projectBundles.put(location, bundle);
-            if (EGFCorePlugin.getDefault().isDebugging()) {
+            if (EGFCoreDebug.isDebugBundleSession()) {
                 EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
             }
         }
@@ -147,7 +148,7 @@ public final class ProjectBundleSession {
             // Store
             bundles.add(bundle);
             _uninstalled.add(bundle.getLocation());
-            if (EGFCorePlugin.getDefault().isDebugging()) {
+            if (EGFCoreDebug.isDebugBundleSession()) {
                 EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
             }
         }
@@ -379,7 +380,7 @@ public final class ProjectBundleSession {
         // Reinstall bundle collector
         final List<Bundle> bundlesToBeRefreshed = new UniqueEList<Bundle>(_uninstalled.size());
         // Tracing
-        if (EGFCorePlugin.getDefault().isDebugging()) {
+        if (EGFCoreDebug.isDebugBundleSession()) {
             if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
                 EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession."); //$NON-NLS-1$        
             }
@@ -389,7 +390,7 @@ public final class ProjectBundleSession {
             for (Bundle bundle : _projectBundles.values()) {
                 uninstallBundle(bundle);
                 // Tracing
-                if (EGFCorePlugin.getDefault().isDebugging()) {
+                if (EGFCoreDebug.isDebugBundleSession()) {
                     EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
                 }
             }
@@ -401,7 +402,7 @@ public final class ProjectBundleSession {
                 Bundle bundle = installBundle(location);
                 bundlesToBeRefreshed.add(bundle);
                 // Tracing
-                if (EGFCorePlugin.getDefault().isDebugging()) {
+                if (EGFCoreDebug.isDebugBundleSession()) {
                     EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
                 }
             }
