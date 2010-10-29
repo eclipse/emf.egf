@@ -87,7 +87,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         _validates = null;
 
         // 1 - Activity Selection
-        ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(_shell, false);
+        ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(_shell, (Activity) null, false, true);
         activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
         int result = activityDialog.open();
         if (result != IDialogConstants.OK_ID) {
@@ -125,7 +125,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                     return;
                 }
                 if (_validates != null && _validates.size() != 0) {
-                    EGFValidator validator = new EGFValidator(_validates, activityManager[0].getProjectBundleSession());
+                    EGFValidator validator = new EGFValidator(_validates);
                     Diagnostic validationDiag = validator.validate();
                     // Stop when an error is found
                     if (validationDiag.getSeverity() == Diagnostic.ERROR) {

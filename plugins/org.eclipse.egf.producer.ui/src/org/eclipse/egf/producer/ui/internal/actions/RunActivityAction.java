@@ -28,7 +28,7 @@ import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.domain.EGFResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
@@ -125,7 +125,7 @@ public class RunActivityAction implements IObjectActionDelegate {
                     return;
                 }
                 if (_validates != null && _validates.size() != 0) {
-                    EGFValidator validator = new EGFValidator(_validates, activityManager[0].getProjectBundleSession());
+                    EGFValidator validator = new EGFValidator(_validates);
                     Diagnostic validationDiag = validator.validate();
                     // Stop when an error is found
                     if (validationDiag.getSeverity() == Diagnostic.ERROR) {
@@ -284,7 +284,7 @@ public class RunActivityAction implements IObjectActionDelegate {
         if (selectedObject instanceof IResource) {
             // Load this IFile as an EMF Resource
             try {
-                ResourceSet resourceSet = new EGFResourceSet();
+                ResourceSet resourceSet = new TargetPlatformResourceSet();
                 Resource resource = resourceSet.getResource(URIHelper.getPlatformPluginURI((IResource) selectedObject), true);
                 IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
                 if (fcore != null) {
