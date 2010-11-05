@@ -126,7 +126,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         // ERootWrapepr
         ERootWrapper root = new ERootWrapper(genModel.getNsURI());
         // EPackageWrapper
-        EPackageWrapper wrapper = new EPackageWrapper(root, ePackage.getName(), URI.createURI(ePackage.getNsURI()));
+        EPackageWrapper wrapper = new EPackageWrapper(root, ePackage.getName(), genModel.getNsURI());
         root.getChildren().add(wrapper);
         // EClassifiers
         for (EClassifier eClassifier : ePackage.getEClassifiers()) {
@@ -184,8 +184,8 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
             _genModel = genModel.trim();
             _genModelURI = URIHelper.getPlatformPluginURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
             getTargetPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
-            getTargetPlatformGenModels().put(getNsURI(), this);
         }
+        getTargetPlatformGenModels().put(getNsURI(), this);
     }
 
     public PlatformGenModel(IPlatformBundle bundle, String uri, String uniqueIdentifier, int handleId, String className, String genModel) {
@@ -199,6 +199,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
             _genModelURI = URIHelper.getPlatformPluginURI(getPlatformBundle().getBundleId(), URI.decode(_genModel), false);
             getRuntimePlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
         }
+        getRuntimePlatformGenModels().put(getNsURI(), this);
     }
 
     public URI getNsURI() {
