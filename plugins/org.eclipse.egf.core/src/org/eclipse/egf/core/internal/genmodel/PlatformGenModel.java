@@ -152,7 +152,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         String nsURI = (String) method.invoke(object);
         method = clazz.getMethod("getName", new Class[] {}); //$NON-NLS-1$
         String name = (String) method.invoke(object);
-        // ERootWrapepr
+        // ERootWrapper
         ERootWrapper root = new ERootWrapper(URI.createURI(nsURI));
         // EPackageWrapper
         EPackageWrapper wrapper = new EPackageWrapper(root, name, URI.createURI(nsURI));
@@ -165,16 +165,19 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         return root;
     }
 
-    public static EClassifierWrapper buildEObjectWrapper(IBundleClassLoader loader, EPackageWrapper wrapper, Object object) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
-        Method method = object.getClass().getMethod("getName", new Class[] {}); //$NON-NLS-1$
-        String name = (String) method.invoke(object);
+    public static EClassifierWrapper buildEObjectWrapper(IBundleClassLoader loader, EPackageWrapper wrapper, Object object) throws IllegalArgumentException, IllegalAccessException, SecurityException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+        Method getName = object.getClass().getMethod("getName", new Class[] {}); //$NON-NLS-1$
+        String name = (String) getName.invoke(object);
         // Solve EClassifier URI against EcoreUtil
-        Class<?> clazz = loader.loadClass("org.eclipse.emf.ecore.util.EcoreUtil"); //$NON-NLS-1$
-        Field field = clazz.getField("getURI"); //$NON-NLS-1$
+        Class<?> ecoreUtil = loader.loadClass("org.eclipse.emf.ecore.util.EcoreUtil"); //$NON-NLS-1$
+        Class<?> eObject = loader.loadClass("org.eclipse.emf.ecore.EObject"); //$NON-NLS-1$
+        Method getUri = ecoreUtil.getMethod("getURI", new Class[] { eObject}); //$NON-NLS-1$
+        Object uri = getUri.invoke(ecoreUtil, eObject.cast(object));
+        // Build wrapper
         if ("org.eclipse.emf.ecore.impl.EClassImpl".equals(object.getClass().getName())) { //$NON-NLS-1$
-            return new EClassWrapper(wrapper, name, URI.createURI(wrapper.getNsURI() + "#//" + name)); //$NON-NLS-1$
+            return new EClassWrapper(wrapper, name, URI.createURI(uri.toString()));
         }
-        return new EDataTypeWrapper(wrapper, name, URI.createURI(wrapper.getNsURI() + "#//" + name)); //$NON-NLS-1$
+        return new EDataTypeWrapper(wrapper, name, URI.createURI(uri.toString()));
     }
 
     public PlatformGenModel(IPlatformBundle bundle, String uri, String className, String genModel) {
