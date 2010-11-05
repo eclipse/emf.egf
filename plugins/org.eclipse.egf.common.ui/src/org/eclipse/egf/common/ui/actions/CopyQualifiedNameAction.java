@@ -39,96 +39,110 @@ import org.eclipse.ui.part.ResourceTransfer;
 
 public abstract class CopyQualifiedNameAction extends Action implements IObjectActionDelegate {
 
-  protected IWorkbenchPart _part;
+    protected IWorkbenchPart _part;
 
-  public CopyQualifiedNameAction(String text, ImageDescriptor image) {
-    super(text, image);
-  }
-
-  public abstract void selectionChanged(IAction action, ISelection selection);
-
-  protected EObject getSelection(IStructuredSelection selection) {
-    Object selectedObject = selection.getFirstElement();
-    if (selectedObject != null) {
-      if (selectedObject instanceof EObject) {
-        return (EObject) selectedObject;
-      }
-      if (selectedObject instanceof IAdaptable) {
-        Object adaptedObj = ((IAdaptable) selectedObject).getAdapter(EObject.class);
-        if (adaptedObj != null && adaptedObj instanceof EObject) {
-          return (EObject) adaptedObj;
-        }
-      }
-      IAdapterManager adapterManager = Platform.getAdapterManager();
-      if (adapterManager.hasAdapter(selectedObject, EObject.class.getName())) {
-        Object adaptedObj = adapterManager.loadAdapter(selectedObject, EObject.class.getName());
-        if (adaptedObj instanceof EObject) {
-          return (EObject) adaptedObj;
-        }
-      }
-    }
-    return null;
-  }
-
-  public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-    _part = targetPart;
-  }
-
-  protected abstract URI getURI();
-
-  public void run(IAction action) {
-
-    URI uri = getURI();
-
-    if (uri == null || _part == null) {
-      return;
+    public CopyQualifiedNameAction(String text, ImageDescriptor image) {
+        super(text, image);
     }
 
-    try {
+    public abstract void selectionChanged(IAction action, ISelection selection);
 
-      Object[] data = null;
-      Transfer[] dataTypes = null;
-
-      // Build IResource if any
-      //
-      IResource resource = null;
-      if (uri.isPlatformResource()) {
-        String path = uri.toPlatformString(true);
-        resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-      }
-
-      if (resource != null) {
-        IPath location = resource.getLocation();
-        if (location != null) {
-          data = new Object[] { uri.toString(), resource, new String[] { location.toOSString() } };
-          dataTypes = new Transfer[] { TextTransfer.getInstance(), ResourceTransfer.getInstance(), FileTransfer.getInstance() };
-        } else {
-          data = new Object[] { uri.toString(), resource };
-          dataTypes = new Transfer[] { TextTransfer.getInstance(), ResourceTransfer.getInstance() };
+    protected EObject getSelection(IStructuredSelection selection) {
+        Object selectedObject = selection.getFirstElement();
+        if (selectedObject != null) {
+            if (selectedObject instanceof EObject) {
+                return (EObject) selectedObject;
+            }
+            if (selectedObject instanceof IAdaptable) {
+                Object adaptedObj = ((IAdaptable) selectedObject).getAdapter(EObject.class);
+                if (adaptedObj != null && adaptedObj instanceof EObject) {
+                    return (EObject) adaptedObj;
+                }
+            }
+            IAdapterManager adapterManager = Platform.getAdapterManager();
+            if (adapterManager.hasAdapter(selectedObject, EObject.class.getName())) {
+                Object adaptedObj = adapterManager.loadAdapter(selectedObject, EObject.class.getName());
+                if (adaptedObj instanceof EObject) {
+                    return (EObject) adaptedObj;
+                }
+            }
         }
-      } else {
-        data = new Object[] { uri.toString() };
-        dataTypes = new Transfer[] { TextTransfer.getInstance() };
-      }
-
-      Clipboard clipboard = new Clipboard(_part.getSite().getShell().getDisplay());
-      try {
-        clipboard.setContents(data, dataTypes);
-      } catch (SWTError e) {
-        if (e.code != DND.ERROR_CANNOT_SET_CLIPBOARD) {
-          throw e;
-        }
-        if (MessageDialog.openQuestion(_part.getSite().getShell(), EGFCommonUIMessages.CopyQualifiedNameAction_ErrorTitle, EGFCommonUIMessages.CopyQualifiedNameAction_ErrorDescription)) {
-          clipboard.setContents(data, dataTypes);
-        }
-      } finally {
-        clipboard.dispose();
-      }
-
-    } catch (Throwable t) {
-      EGFCommonUIPlugin.getDefault().logError("CopyQualifiedNameAction.run(..) _", t); //$NON-NLS-1$
+        return null;
     }
 
-  }
+    public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+        _part = targetPart;
+    }
+
+    protected abstract URI getURI();
+
+    public void run(IAction action) {
+
+        URI uri = getURI();
+
+        if (uri == null || _part == null) {
+            return;
+        }
+
+        try {
+
+            Object[] data = null;
+            Transfer[] dataTypes = null;
+
+            // Build IResource if any
+            //
+            IResource resource = null;
+            if (uri.isPlatformResource()) {
+                String path = uri.toPlatformString(true);
+                resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+            }
+
+            if (resource != null) {
+                IPath location = resource.getLocation();
+                if (location != null) {
+                    data = new Object[] {
+                            uri.toString(), resource, new String[] {
+                                location.toOSString()
+                            }
+                    };
+                    dataTypes = new Transfer[] {
+                            TextTransfer.getInstance(), ResourceTransfer.getInstance(), FileTransfer.getInstance()
+                    };
+                } else {
+                    data = new Object[] {
+                            uri.toString(), resource
+                    };
+                    dataTypes = new Transfer[] {
+                            TextTransfer.getInstance(), ResourceTransfer.getInstance()
+                    };
+                }
+            } else {
+                data = new Object[] {
+                    uri.toString()
+                };
+                dataTypes = new Transfer[] {
+                    TextTransfer.getInstance()
+                };
+            }
+
+            Clipboard clipboard = new Clipboard(_part.getSite().getShell().getDisplay());
+            try {
+                clipboard.setContents(data, dataTypes);
+            } catch (SWTError e) {
+                if (e.code != DND.ERROR_CANNOT_SET_CLIPBOARD) {
+                    throw e;
+                }
+                if (MessageDialog.openQuestion(_part.getSite().getShell(), EGFCommonUIMessages.CopyQualifiedNameAction_ErrorTitle, EGFCommonUIMessages.CopyQualifiedNameAction_ErrorDescription)) {
+                    clipboard.setContents(data, dataTypes);
+                }
+            } finally {
+                clipboard.dispose();
+            }
+
+        } catch (Throwable t) {
+            EGFCommonUIPlugin.getDefault().logError("CopyQualifiedNameAction.run(..) _", t); //$NON-NLS-1$
+        }
+
+    }
 
 }

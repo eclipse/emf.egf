@@ -36,10 +36,10 @@ public class CopyEObjectQualifiedNameAction extends CopyQualifiedNameAction {
     }
 
     @Override
-    public void selectionChanged(IAction action_p, ISelection selection_p) {
+    public void selectionChanged(IAction action, ISelection selection) {
         _eObject = null;
-        if (selection_p instanceof IStructuredSelection) {
-            _eObject = getSelection((IStructuredSelection) selection_p);
+        if (selection instanceof IStructuredSelection) {
+            _eObject = getSelection((IStructuredSelection) selection);
         }
     }
 

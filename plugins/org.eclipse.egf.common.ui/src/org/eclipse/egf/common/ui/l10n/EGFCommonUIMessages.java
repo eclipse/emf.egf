@@ -14,25 +14,29 @@ import org.eclipse.osgi.util.NLS;
 
 public class EGFCommonUIMessages {
 
-  private static final String BUNDLE_NAME = "org.eclipse.egf.common.ui.l10n.messages"; //$NON-NLS-1$
+    private static final String BUNDLE_NAME = "org.eclipse.egf.common.ui.l10n.messages"; //$NON-NLS-1$
 
-  private EGFCommonUIMessages() {
-    // Do not instantiate
-  }
+    private EGFCommonUIMessages() {
+        // Do not instantiate
+    }
 
-  static {
-    // load message values from bundle file
-    NLS.initializeMessages(BUNDLE_NAME, EGFCommonUIMessages.class);
-  }
+    static {
+        // load message values from bundle file
+        NLS.initializeMessages(BUNDLE_NAME, EGFCommonUIMessages.class);
+    }
 
-  public static String ThrowableHandler_Title;
+    public static String ThrowableHandler_Title;
 
-  public static String Unexpected_Error;
+    public static String Unexpected_Error;
 
-  public static String CopyEObjectQualifiedName_name;
-  public static String CopyEObjectMetaClassQualifiedName_name;
+    public static String CopyEObjectQualifiedName_name;
 
-  public static String CopyQualifiedNameAction_ErrorDescription;
-  public static String CopyQualifiedNameAction_ErrorTitle;
+    public static String CopyEObjectMetaClassQualifiedName_name;
+
+    public static String CopyEObjectStaticMetaClassQualifiedName_name;
+
+    public static String CopyQualifiedNameAction_ErrorDescription;
+
+    public static String CopyQualifiedNameAction_ErrorTitle;
 
 }
