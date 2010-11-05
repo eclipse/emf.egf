@@ -15,15 +15,15 @@ import org.eclipse.emf.common.util.URI;
 
 public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint implements IPlatformExtensionPointURI {
 
-    private URI _uri;
+    protected URI _uri;
 
     public PlatformExtensionPointURI(IPlatformBundle bundle, String uri) {
         super(bundle, uri);
         _uri = URIHelper.getPlatformPluginURI(bundle.getBundleId(), URI.decode(getId()), false);
     }
 
-    public PlatformExtensionPointURI(IPlatformBundle bundle, String id, String uniqueIdentifier, int handleId) {
-        super(bundle, id, uniqueIdentifier, handleId);
+    public PlatformExtensionPointURI(IPlatformBundle bundle, String uri, String uniqueIdentifier, int handleId) {
+        super(bundle, uri, uniqueIdentifier, handleId);
         _uri = URIHelper.getPlatformPluginURI(bundle.getBundleId(), URI.decode(getId()), false);
     }
 
