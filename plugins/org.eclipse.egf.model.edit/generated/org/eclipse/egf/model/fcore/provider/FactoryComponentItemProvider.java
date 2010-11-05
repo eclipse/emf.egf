@@ -15,6 +15,7 @@ import java.util.List;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.commands.FactoryComponentSetViewpointContainerCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -177,15 +178,19 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
      */
     @Override
     protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
-        CompoundCommand removeCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
-        removeCommand.append(super.createSetCommand(domain, owner, feature, value));
-        if (feature == FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER && value == SetCommand.UNSET_VALUE) {
+        CompoundCommand setCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
+        setCommand.append(super.createSetCommand(domain, owner, feature, value));
+        if (feature == FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER) {
             FactoryComponent factoryComponent = (FactoryComponent) owner;
-            if (factoryComponent.getViewpointContainer().getViewpoints().isEmpty() == false) {
-                removeCommand.append(domain.createCommand(RemoveCommand.class, new CommandParameter(factoryComponent.getViewpointContainer(), null, factoryComponent.getViewpointContainer().getViewpoints())));
+            if (value == SetCommand.UNSET_VALUE) {
+                if (factoryComponent.getViewpointContainer().getViewpoints().isEmpty() == false) {
+                    setCommand.append(domain.createCommand(RemoveCommand.class, new CommandParameter(factoryComponent.getViewpointContainer(), null, factoryComponent.getViewpointContainer().getViewpoints())));
+                }
+            } else {
+                setCommand.append(new FactoryComponentSetViewpointContainerCommand(domain, factoryComponent, value));
             }
         }
-        return removeCommand;
+        return setCommand;
     }
 
 }
