@@ -126,7 +126,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
                     workspace.run(new IWorkspaceRunnable() {
 
                         public void run(IProgressMonitor progress) throws CoreException {
-                            ISavedState savedState = workspace.addSaveParticipant(__plugin.getPluginID(), __plugin);
+                            ISavedState savedState = workspace.addSaveParticipant(__plugin, __plugin);
                             if (savedState != null) {
                                 // the event type coming from the saved state is always POST_BUILD
                                 // force it to be POST_CHANGE so that the delta processor can handle it
