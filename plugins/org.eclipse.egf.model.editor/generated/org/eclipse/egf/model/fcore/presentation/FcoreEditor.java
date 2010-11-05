@@ -46,9 +46,7 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
-import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
-import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
-import org.eclipse.egf.model.editor.adapter.TypeClassBundleAdapter;
+import org.eclipse.egf.model.editor.adapter.ModelElementBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
 import org.eclipse.egf.model.editor.provider.FcorePropertySheetPage;
 import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
@@ -1125,9 +1123,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
         }
         editingDomain.getResourceSet().eAdapters().add(editorResourceAdapter);
-        egfAdapters.add(new PatternBundleAdapter(resource, getSite()));
-        egfAdapters.add(new TaskBundleAdapter(resource, getSite()));
-        egfAdapters.add(new TypeClassBundleAdapter(resource, getSite()));
+        egfAdapters.add(new ModelElementBundleAdapter(resource, getSite()));
         getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
     }
 
