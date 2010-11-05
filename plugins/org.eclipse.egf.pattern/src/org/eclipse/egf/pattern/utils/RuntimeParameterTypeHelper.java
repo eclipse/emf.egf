@@ -15,18 +15,13 @@
 
 package org.eclipse.egf.pattern.utils;
 
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
@@ -75,27 +70,7 @@ public class RuntimeParameterTypeHelper {
         if (eObject == null) {
             throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, type));
         }
-        return getEPackage(eObject);
-    }
-
-    public EPackage getEPackage(EObject eObject) {
-        if (eObject == null) {
-            return null;
-        }
-        if (eObject instanceof EPackage) {
-            return (EPackage) eObject;
-        } else if (eObject instanceof EClassifier) {
-            return ((EClassifier) eObject).getEPackage();
-        } else if (eObject instanceof EOperation) {
-            return ((EOperation) eObject).getEContainingClass().getEPackage();
-        } else if (eObject instanceof EStructuralFeature) {
-            return ((EStructuralFeature) eObject).getEContainingClass().getEPackage();
-        } else if (eObject instanceof EAnnotation) {
-            return getEPackage(((EAnnotation) eObject).getEModelElement());
-        } else if (eObject instanceof EParameter) {
-            return getEPackage(((EParameter) eObject).getEOperation());
-        }
-        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
+        return EMFHelper.getEPackage(eObject);
     }
 
     private String getNsURI(String type, int index) {
