@@ -166,22 +166,34 @@ public class JavaHelper {
      * @param deleteParent
      */
     public static boolean deleteJavaResource(IProgressMonitor monitor, IProject project, String folderName, String packageName, String className, boolean deleteParent) throws CoreException {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, 200);
-        subMonitor.beginTask(null, 200);
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 300);
+        subMonitor.beginTask(null, 300);
         if (project == null || packageName == null) {
-            subMonitor.worked(200);
+            subMonitor.worked(300);
             return false;
         }
         // IJavaProject lookup
         IJavaProject javaProject = null;
         try {
-            if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+            // Exist
+            if (project.exists() == false) {
+                subMonitor.worked(300);
+                return false;
+            }
+            // Open if necessary
+            if (project.isAccessible() == false) {
+                project.open(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+            }
+            subMonitor.worked(100);
+            // JavaProject
+            if (project.hasNature(JavaCore.NATURE_ID)) {
                 javaProject = JavaCore.create(project);
             }
             if (javaProject == null) {
                 subMonitor.worked(200);
                 return false;
             }
+            // Source folder
             IFolder root = JavaHelper.getSourceFolder(javaProject, folderName);
             if (root == null) {
                 subMonitor.worked(200);
@@ -206,7 +218,9 @@ public class JavaHelper {
             subMonitor.worked(200);
         } finally {
             try {
-                javaProject.close();
+                if (javaProject != null) {
+                    javaProject.close();
+                }
             } catch (JavaModelException t) {
                 // Ignore
             }
@@ -229,22 +243,34 @@ public class JavaHelper {
      * @param deleteParent 
      */
     public static boolean moveJavaResource(IProgressMonitor monitor, IProject project, String folderName, String oldPackageName, String oldClassName, String newPackageName, String newClassName, boolean deleteParent) throws CoreException {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, 200);
-        subMonitor.beginTask(null, 200);
+        SubMonitor subMonitor = SubMonitor.convert(monitor, 300);
+        subMonitor.beginTask(null, 300);
         if (project == null || oldPackageName == null || newPackageName == null) {
-            subMonitor.worked(200);
+            subMonitor.worked(300);
             return false;
         }
         // IJavaProject lookup
         IJavaProject javaProject = null;
         try {
-            if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+            // Exist
+            if (project.exists() == false) {
+                subMonitor.worked(300);
+                return false;
+            }
+            // Open if necessary
+            if (project.isAccessible() == false) {
+                project.open(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+            }
+            subMonitor.worked(100);
+            // JavaProject
+            if (project.hasNature(JavaCore.NATURE_ID)) {
                 javaProject = JavaCore.create(project);
             }
             if (javaProject == null) {
                 subMonitor.worked(200);
                 return false;
             }
+            // Source folder
             IFolder root = JavaHelper.getSourceFolder(javaProject, folderName);
             if (root == null) {
                 subMonitor.worked(200);
@@ -285,7 +311,9 @@ public class JavaHelper {
             subMonitor.worked(100);
         } finally {
             try {
-                javaProject.close();
+                if (javaProject != null) {
+                    javaProject.close();
+                }
             } catch (JavaModelException t) {
                 // Ignore
             }
