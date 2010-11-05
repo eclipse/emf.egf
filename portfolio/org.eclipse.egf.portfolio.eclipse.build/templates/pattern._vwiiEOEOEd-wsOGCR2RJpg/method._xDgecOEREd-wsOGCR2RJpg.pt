@@ -1,0 +1,14 @@
+if (job.equals(newJob))
+	return;
+	
+if (job.getScms() != null && job.getScms().eClass().equals(BuildscmPackage.eINSTANCE.getSVN())) {
+	if (newJob.getScms() == null) 
+		newJob.setScms(BuildscmFactory.eINSTANCE.createSVN());
+	
+	SVN newScm = (SVN) newJob.getScms();
+	SVN scm = (SVN) job.getScms();
+	for (SVNLocation svnLocation : scm.getLocations()) {
+		svnLocation.setLocalPath(job.getName() + "_" + svnLocation.getLocalPath());
+	}
+	newScm.getLocations().addAll(scm.getLocations());
+}

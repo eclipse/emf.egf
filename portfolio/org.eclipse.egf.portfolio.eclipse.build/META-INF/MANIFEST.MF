@@ -32,6 +32,7 @@ Export-Package: org.eclipse.egf.portfolio.eclipse.build,
  org.eclipse.egf.portfolio.eclipse.build.hudson.additions,
  org.eclipse.egf.portfolio.eclipse.build.hudson.call,
  org.eclipse.egf.portfolio.eclipse.build.transformation,
+ org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job,
  org.eclipse.egf.portfolio.eclipse.build.validation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

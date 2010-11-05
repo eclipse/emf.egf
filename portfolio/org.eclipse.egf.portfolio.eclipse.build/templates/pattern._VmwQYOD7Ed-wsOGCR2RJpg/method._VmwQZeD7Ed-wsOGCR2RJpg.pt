@@ -1,0 +1,2 @@
+newJob = BuildcoreFactory.eINSTANCE.createJob();
+newJob.setName("all");

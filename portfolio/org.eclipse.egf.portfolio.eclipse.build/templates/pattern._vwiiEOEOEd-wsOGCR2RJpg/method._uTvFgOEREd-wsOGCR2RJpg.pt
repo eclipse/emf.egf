@@ -1,0 +1,4 @@
+if (job.equals(newJob))
+	return;
+	
+newJob.getProperties().addAll(job.getProperties());

@@ -20,11 +20,11 @@
         <type xmi:type="types:TypeBoolean" xmi:id="_nt5kkJmBEd-FyeHxc8pAZg"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ahMPALzpEd-Ni-pzi_M0Ew"
-          name="Model validation patterns" invocationContracts="#_9iziMLzqEd-Ni-pzi_M0Ew">
+          name="Model validation pattern substitutions" invocationContracts="#_9iziMLzqEd-Ni-pzi_M0Ew">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_fEqaMLzpEd-Ni-pzi_M0Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_v8D6UNVBEd-sZ5ty9tQGtA"
-          name="Model transformation patterns" invocationContracts="#_y3exWdU7Ed-sZ5ty9tQGtA">
+          name="Model transformation pattern substitutions" invocationContracts="#_y3exWdU7Ed-sZ5ty9tQGtA">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_ziSaINVBEd-sZ5ty9tQGtA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_mKZJoI_tEd-ggNhbFv1Fiw"
@@ -155,6 +155,89 @@
             <parameters xmi:id="_XtjOQNVJEd-kLLLb0fKJog" name="eObject" type="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="__l0j0NVJEd-kLLLb0fKJog"
                 called="#_WM_addVJEd-kLLLb0fKJog"/>
+          </elements>
+        </libraries>
+        <libraries xmi:id="_SrPhgOD7Ed-wsOGCR2RJpg" name="org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job">
+          <elements xmi:id="_VmwQYOD7Ed-wsOGCR2RJpg" name="chain" headerMethod="#_VmwQYuD7Ed-wsOGCR2RJpg"
+              conditionMethod="#_VmwQZOD7Ed-wsOGCR2RJpg" initMethod="#_VmwQY-D7Ed-wsOGCR2RJpg"
+              footerMethod="#_VmwQZuD7Ed-wsOGCR2RJpg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_VmwQYeD7Ed-wsOGCR2RJpg"
+                name="Java"/>
+            <methods xmi:id="_VmwQYuD7Ed-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQYuD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQY-D7Ed-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQY-D7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQZOD7Ed-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZOD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQZeD7Ed-wsOGCR2RJpg" name="createNewJob" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZeD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQZuD7Ed-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZuD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_bX9uIOEIEd-wsOGCR2RJpg" name="putNewJobInContext" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._bX9uIOEIEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_nJpvUOEPEd-wsOGCR2RJpg" name="addNewJobToChain" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._nJpvUOEPEd-wsOGCR2RJpg.pt"/>
+            <parameters xmi:id="_W2ARwOD7Ed-wsOGCR2RJpg" name="chain" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Chain"/>
+            <variables xmi:id="_ZChzsOD7Ed-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_gbw1oOD8Ed-wsOGCR2RJpg"
+                called="#_VmwQZeD7Ed-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_cUlAAOELEd-wsOGCR2RJpg"
+                called="#_bX9uIOEIEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_nbyoMOEPEd-wsOGCR2RJpg"
+                called="#_nJpvUOEPEd-wsOGCR2RJpg"/>
+          </elements>
+          <elements xmi:id="_vwiiEOEOEd-wsOGCR2RJpg" name="job" headerMethod="#_vwiiEuEOEd-wsOGCR2RJpg"
+              conditionMethod="#_vwiiFOEOEd-wsOGCR2RJpg" initMethod="#_vwiiE-EOEd-wsOGCR2RJpg"
+              footerMethod="#_vwiiFuEOEd-wsOGCR2RJpg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_vwiiEeEOEd-wsOGCR2RJpg"
+                name="Java"/>
+            <methods xmi:id="_vwiiEuEOEd-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiEuEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiE-EOEd-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiE-EOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiFOEOEd-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFOEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_EmnjoOEQEd-wsOGCR2RJpg" name="getNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._EmnjoOEQEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiFuEOEd-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFuEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_uTvFgOEREd-wsOGCR2RJpg" name="movePropertiesToNewJob"
+                patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uTvFgOEREd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_xDgecOEREd-wsOGCR2RJpg" name="moveScmToNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._xDgecOEREd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_y4r3YOEREd-wsOGCR2RJpg" name="moveStepsToNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._y4r3YOEREd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_uPvg4OESEd-wsOGCR2RJpg" name="moveTriggersToNewJob"
+                patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uPvg4OESEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiFeEOEd-wsOGCR2RJpg" name="removeJobFromChain" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFeEOEd-wsOGCR2RJpg.pt"/>
+            <parameters xmi:id="_xHGFUOEOEd-wsOGCR2RJpg" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <variables xmi:id="_FAbKwOEQEd-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Hy7uoOEQEd-wsOGCR2RJpg"
+                called="#_EmnjoOEQEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vgQjAOEREd-wsOGCR2RJpg"
+                called="#_uTvFgOEREd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_xWMJ4OEREd-wsOGCR2RJpg"
+                called="#_xDgecOEREd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_zQc3IOEREd-wsOGCR2RJpg"
+                called="#_y4r3YOEREd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_u7qywOESEd-wsOGCR2RJpg"
+                called="#_uPvg4OESEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_1UlZcOEOEd-wsOGCR2RJpg"
+                called="#_vwiiFeEOEd-wsOGCR2RJpg"/>
+          </elements>
+          <elements xmi:id="_z0UqIOEaEd-wsOGCR2RJpg" name="buildStep" headerMethod="#_z0UqIuEaEd-wsOGCR2RJpg"
+              conditionMethod="#_z0UqJOEaEd-wsOGCR2RJpg" initMethod="#_z0UqI-EaEd-wsOGCR2RJpg"
+              footerMethod="#_z0UqJuEaEd-wsOGCR2RJpg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_z0UqIeEaEd-wsOGCR2RJpg"
+                name="Java"/>
+            <methods xmi:id="_z0UqIuEaEd-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqIuEaEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_z0UqI-EaEd-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqI-EaEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_z0UqJOEaEd-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqJOEaEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_z0UqJeEaEd-wsOGCR2RJpg" name="handleCleanType" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqJeEaEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_z0UqJuEaEd-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqJuEaEd-wsOGCR2RJpg.pt"/>
+            <parameters xmi:id="_06pZAOEaEd-wsOGCR2RJpg" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_2heS0OGcEd-wsOGCR2RJpg"
+                called="#_z0UqJeEaEd-wsOGCR2RJpg"/>
+          </elements>
+          <elements xmi:id="_OhoQceGuEd-HBZoa4dfurg" name="cleanStep" headerMethod="#_OhoQc-GuEd-HBZoa4dfurg"
+              conditionMethod="#_OhoQdeGuEd-HBZoa4dfurg" initMethod="#_OhoQdOGuEd-HBZoa4dfurg"
+              footerMethod="#_OhoQd-GuEd-HBZoa4dfurg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_OhoQcuGuEd-HBZoa4dfurg"
+                name="Java"/>
+            <methods xmi:id="_OhoQc-GuEd-HBZoa4dfurg" name="header" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQc-GuEd-HBZoa4dfurg.pt"/>
+            <methods xmi:id="_OhoQdOGuEd-HBZoa4dfurg" name="init" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQdOGuEd-HBZoa4dfurg.pt"/>
+            <methods xmi:id="_OhoQdeGuEd-HBZoa4dfurg" name="preCondition" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQdeGuEd-HBZoa4dfurg.pt"/>
+            <methods xmi:id="_OhoQduGuEd-HBZoa4dfurg" name="removeCleanStep" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQduGuEd-HBZoa4dfurg.pt"/>
+            <methods xmi:id="_OhoQd-GuEd-HBZoa4dfurg" name="footer" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQd-GuEd-HBZoa4dfurg.pt"/>
+            <parameters xmi:id="_P2fxoOGuEd-HBZoa4dfurg" name="cleanStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//CleanStep"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_TJ6qMOGuEd-HBZoa4dfurg"
+                called="#_OhoQduGuEd-HBZoa4dfurg"/>
           </elements>
         </libraries>
       </viewpoints>
