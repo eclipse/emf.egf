@@ -160,14 +160,17 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         // EClassifiers
         method = clazz.getMethod("getEClassifiers", new Class[] {}); //$NON-NLS-1$
         for (Object innerObject : (List) method.invoke(object)) {
-            wrapper.getChildren().add(buildEObjectWrapper(wrapper, innerObject));
+            wrapper.getChildren().add(buildEObjectWrapper(loader, wrapper, innerObject));
         }
         return root;
     }
 
-    public static EClassifierWrapper buildEObjectWrapper(EPackageWrapper wrapper, Object object) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchMethodException, InvocationTargetException {
+    public static EClassifierWrapper buildEObjectWrapper(IBundleClassLoader loader, EPackageWrapper wrapper, Object object) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
         Method method = object.getClass().getMethod("getName", new Class[] {}); //$NON-NLS-1$
         String name = (String) method.invoke(object);
+        // Solve EClassifier URI against EcoreUtil
+        Class<?> clazz = loader.loadClass("org.eclipse.emf.ecore.util.EcoreUtil"); //$NON-NLS-1$
+        Field field = clazz.getField("getURI"); //$NON-NLS-1$
         if ("org.eclipse.emf.ecore.impl.EClassImpl".equals(object.getClass().getName())) { //$NON-NLS-1$
             return new EClassWrapper(wrapper, name, URI.createURI(wrapper.getNsURI() + "#//" + name)); //$NON-NLS-1$
         }
@@ -176,6 +179,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
 
     public PlatformGenModel(IPlatformBundle bundle, String uri, String className, String genModel) {
         super(bundle, uri);
+        _uri = URI.createURI(URI.decode(getId()));
         Assert.isNotNull(className);
         Assert.isLegal(className.trim().length() != 0);
         Assert.isLegal(bundle.isRuntime() == false);
@@ -190,6 +194,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
 
     public PlatformGenModel(IPlatformBundle bundle, String uri, String uniqueIdentifier, int handleId, String className, String genModel) {
         super(bundle, uri, uniqueIdentifier, handleId);
+        _uri = URI.createURI(URI.decode(getId()));
         Assert.isNotNull(className);
         Assert.isLegal(className.trim().length() != 0);
         Assert.isLegal(bundle.isRuntime());
