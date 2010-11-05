@@ -24,9 +24,12 @@ import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -54,6 +57,26 @@ public class EMFHelper {
 
     private EMFHelper() {
         // Prevent instantiation
+    }
+
+    public static EPackage getEPackage(EObject eObject) {
+        if (eObject == null) {
+            return null;
+        }
+        if (eObject instanceof EPackage) {
+            return (EPackage) eObject;
+        } else if (eObject instanceof EClassifier) {
+            return ((EClassifier) eObject).getEPackage();
+        } else if (eObject instanceof EOperation) {
+            return ((EOperation) eObject).getEContainingClass().getEPackage();
+        } else if (eObject instanceof EStructuralFeature) {
+            return ((EStructuralFeature) eObject).getEContainingClass().getEPackage();
+        } else if (eObject instanceof EAnnotation) {
+            return getEPackage(((EAnnotation) eObject).getEModelElement());
+        } else if (eObject instanceof EParameter) {
+            return getEPackage(((EParameter) eObject).getEOperation());
+        }
+        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
     }
 
     public static Collection<EPackage> getAllPackages(Resource resource) {
