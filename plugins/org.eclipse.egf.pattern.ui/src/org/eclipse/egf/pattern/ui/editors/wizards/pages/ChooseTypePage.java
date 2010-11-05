@@ -137,10 +137,10 @@ public class ChooseTypePage extends WizardPage {
             protected Control createDialogArea(Composite parent) {
                 Control content = super.createDialogArea(parent);
                 URI nsURI;
-                if (!"".equals(_currentType) && _currentType != null) { //$NON-NLS-1$
+                if ("".equals(_currentType) == false && _currentType != null) { //$NON-NLS-1$
                     int index = _currentType.indexOf("#//"); //$NON-NLS-1$
                     if (index != -1) {
-                        nsURI = URI.createURI(_currentType.substring(0, index));
+                        nsURI = URI.createURI(_currentType);
                     } else {
                         nsURI = NSURI_GENMODEL;
                     }
