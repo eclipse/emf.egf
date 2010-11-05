@@ -39,7 +39,7 @@ public abstract class AbstractPlatformExtensionPoint {
 
     protected void setPlatformBundle(IPlatformBundle bundle) {
         Assert.isNotNull(bundle);
-        Assert.isLegal(bundle.getBundleDescription() == _platformBundle.getBundleDescription());
+        Assert.isLegal(bundle.getPluginModelBase() == _platformBundle.getPluginModelBase());
         _platformBundle = bundle;
     }
 
