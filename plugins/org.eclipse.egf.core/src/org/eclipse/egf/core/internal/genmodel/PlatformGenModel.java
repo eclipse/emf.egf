@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.epackage.EClassWrapper;
@@ -38,6 +39,7 @@ import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -97,15 +99,30 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         return _nsURIToRuntimePlatformGenModel;
     }
 
-    public static URI getEPackageNsURI(URI nsURI) {
-        if (nsURI == null) {
+    public URI getEPackageNsURI(URI uri) {
+        if (uri == null) {
             return null;
         }
-        String uri = nsURI.toString();
-        if (uri.contains("#//") == false) { //$NON-NLS-1$
-            return nsURI;
+        // Load the static resource
+        URI innerUri = uri;
+        try {
+            if (getBundle() == null) {
+                IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
+            }
+            EPackage ePackage = getEPackage();
+            if (ePackage != null && uri.hasFragment()) {
+                EObject eObject = ePackage.eResource().getEObject(uri.fragment());
+                if (eObject != null) {
+                    ePackage = EMFHelper.getEPackage(eObject);
+                    if (ePackage != null) {
+                        innerUri = URI.createURI(ePackage.getNsURI());
+                    }
+                }
+            }
+        } catch (Throwable t) {
+            EGFCorePlugin.getDefault().logError(t);
         }
-        return URI.createURI(uri.substring(0, uri.indexOf("#//"))); //$NON-NLS-1$
+        return innerUri;
     }
 
     public static String getBasePackage(IPlatformGenModel genModel) {

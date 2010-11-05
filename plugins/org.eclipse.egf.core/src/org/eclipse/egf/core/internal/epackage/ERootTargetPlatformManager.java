@@ -28,6 +28,17 @@ public class ERootTargetPlatformManager {
         // Nothing to do
     }
 
+    public static URI getEPackageNsURI(URI nsURI) {
+        if (nsURI == null) {
+            return null;
+        }
+        String uri = nsURI.toString();
+        if (uri.contains("#//") == false) { //$NON-NLS-1$
+            return nsURI;
+        }
+        return URI.createURI(uri.substring(0, uri.indexOf("#//"))); //$NON-NLS-1$
+    }
+
     public EObjectWrapper getTargetPlatformEObjectWrapper(URI nsURI) {
         ERootWrapper wrapper = getTargetPlatformERootWrapper(nsURI);
         if (wrapper != null) {
@@ -44,36 +55,52 @@ public class ERootTargetPlatformManager {
         return null;
     }
 
-    public ERootWrapper getTargetPlatformERootWrapper(URI nsURI) {
+    public ERootWrapper getTargetPlatformERootWrapper(URI uri) {
         // Ignore
-        if (nsURI == null) {
+        if (uri == null) {
             return null;
         }
-        nsURI = PlatformGenModel.getEPackageNsURI(nsURI);
+        // Retrieve a root PlatformGenModel
+        URI packageNsURI = getEPackageNsURI(uri);
         // Locate an IPlatformGenModel
-        IPlatformGenModel genModel = EGFCorePlugin.getTargetPlatformGenModel(nsURI);
+        IPlatformGenModel packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(packageNsURI);
         // Not found
-        if (genModel == null) {
+        if (packageGenModel == null) {
+            return null;
+        }
+        // Try to address inner epackage
+        URI innerPackageNsURI = packageGenModel.getEPackageNsURI(uri);
+        packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(innerPackageNsURI);
+        // Not found
+        if (packageGenModel == null) {
             return null;
         }
         // Build an ERootWrapper
-        return genModel.getERootWrapper();
+        return packageGenModel.getERootWrapper();
     }
 
-    public String getTargetPlatformBasePackage(URI nsURI) {
+    public String getTargetPlatformBasePackage(URI uri) {
         // Ignore
-        if (nsURI == null) {
+        if (uri == null) {
             return null;
         }
-        nsURI = PlatformGenModel.getEPackageNsURI(nsURI);
+        // Retrieve a root PlatformGenModel
+        URI packageNsURI = getEPackageNsURI(uri);
         // Locate an IPlatformGenModel
-        IPlatformGenModel genModel = EGFCorePlugin.getTargetPlatformGenModel(nsURI);
+        IPlatformGenModel packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(packageNsURI);
         // Not found
-        if (genModel == null) {
+        if (packageGenModel == null) {
+            return null;
+        }
+        // Try to address inner epackage
+        URI innerPackageNsURI = packageGenModel.getEPackageNsURI(uri);
+        packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(innerPackageNsURI);
+        // Not found
+        if (packageGenModel == null) {
             return null;
         }
         // Done
-        return genModel.getBasePackage();
+        return packageGenModel.getBasePackage();
     }
 
     protected String getBasePackage(IPlatformGenModel genModel) {

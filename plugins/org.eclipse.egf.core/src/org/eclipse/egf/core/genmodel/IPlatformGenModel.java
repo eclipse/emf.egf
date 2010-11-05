@@ -39,4 +39,6 @@ public interface IPlatformGenModel extends IPlatformExtensionPointURI {
 
     public ERootWrapper getERootWrapper();
 
+    public URI getEPackageNsURI(URI uri);
+
 }
