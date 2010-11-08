@@ -15,6 +15,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
@@ -30,6 +31,7 @@ import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
  * @author Xavier Maysonnave
@@ -89,30 +91,32 @@ public class ValidationHelper {
     }
 
     @SuppressWarnings("unchecked")
-    protected static IBundleClassLoader getLoader(EObject eObject, Map<Object, Object> context) {
+    protected static IClassLoader getLoader(IPluginModelBase model, EObject eObject, Map<Object, Object> context) {
         if (eObject == null) {
             return null;
         }
         Resource resource = eObject.eResource();
         IPlatformFcore fcore = null;
-        IBundleClassLoader loader = null;
+        IClassLoader loader = null;
         // Locate an fcore
         if (resource != null && resource instanceof IPlatformFcoreProvider) {
             fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
         }
-        // Retrieve Bundle Class Loader Map if any
-        Map<Resource, IBundleClassLoader> loaders = (Map<Resource, IBundleClassLoader>) context.get(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP);
+        // Retrieve Class Loader Map if any
+        Map<IPluginModelBase, IClassLoader> loaders = (Map<IPluginModelBase, IClassLoader>) context.get(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP);
         // Use loaders
         if (loaders != null && fcore != null) {
-            loader = loaders.get(resource);
+            loader = loaders.get(fcore.getPluginModelBase());
             if (loader == null) {
                 try {
                     loader = BundleClassLoaderFactory.getBundleClassLoader(fcore.getPluginModelBase(), eObject.getClass().getClassLoader());
+                    if (loader != null) {
+                        loaders.put(fcore.getPluginModelBase(), loader);
+                    }
                 } catch (CoreException ce) {
                     EGFModelPlugin.getPlugin().logError(ce);
                     return null;
                 }
-                loaders.put(resource, loader);
             }
         } else {
             // Locate the default class loader
@@ -121,6 +125,9 @@ public class ValidationHelper {
                 // Build a default class loader
                 try {
                     loader = BundleClassLoaderFactory.getBundleClassLoader(fcore.getPluginModelBase(), eObject.getClass().getClassLoader());
+                    if (loaders != null && loader != null) {
+                        loaders.put(fcore.getPluginModelBase(), loader);
+                    }
                 } catch (CoreException ce) {
                     EGFModelPlugin.getPlugin().logError(ce);
                     return null;
@@ -132,18 +139,36 @@ public class ValidationHelper {
                 }
             }
         }
+        if (loader == null) {
+            try {
+                loader = BundleClassLoaderFactory.getBundleClassLoader(fcore.getPluginModelBase(), eObject.getClass().getClassLoader());
+                if (loaders != null && loader != null) {
+                    loaders.put(fcore.getPluginModelBase(), loader);
+                }
+            } catch (CoreException ce) {
+                EGFModelPlugin.getPlugin().logError(ce);
+                return null;
+            }
+        }
         return loader;
     }
 
     public static boolean isLoadableClass(EObject eObject, String value, Map<Object, Object> context) {
+
         if (context != null && context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
             return true;
         }
         if (eObject == null || eObject.eResource() == null || eObject.eResource() instanceof IPlatformFcoreProvider == false || value == null || value.trim().length() == 0) {
             return true;
         }
+
         // Retrieve fcore
         IPlatformFcore fcore = ((IPlatformFcoreProvider) eObject.eResource()).getIPlatformFcore();
+        // IClassLoader if any
+        IClassLoader loader = null;
+        if (fcore != null) {
+            loader = getLoader(fcore.getPluginModelBase(), eObject, context);
+        }
         // Load Class
         Class<?> clazz = null;
         // Runtime or memory
@@ -153,7 +178,12 @@ public class ValidationHelper {
                 if (fcore == null) {
                     clazz = Class.forName(value.trim());
                 } else {
-                    clazz = fcore.getBundle().loadClass(value.trim());
+                    if (loader != null) {
+                        clazz = loader.loadClass(value.trim());
+                    }
+                    if (clazz == null && fcore.getBundle() != null) {
+                        clazz = fcore.getBundle().loadClass(value.trim());
+                    }
                 }
             } catch (Throwable t) {
                 // Nothing to do
@@ -162,11 +192,11 @@ public class ValidationHelper {
         // Target or Workspace
         else {
             try {
-                if (fcore.getBundle() != null) {
-                    clazz = fcore.getBundle().loadClass(value.trim());
-                } else {
-                    IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(fcore.getPluginModelBase());
+                if (loader != null) {
                     clazz = loader.loadClass(value.trim());
+                }
+                if (clazz == null && fcore.getBundle() != null) {
+                    clazz = fcore.getBundle().loadClass(value.trim());
                 }
             } catch (Throwable t) {
                 // Nothing to do
