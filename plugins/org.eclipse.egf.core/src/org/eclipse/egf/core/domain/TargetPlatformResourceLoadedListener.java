@@ -255,7 +255,7 @@ public final class TargetPlatformResourceLoadedListener implements EGFWorkspaceS
                     resource.unload();
                     resourceSet.getResources().remove(resource);
                     if (EGFCorePlugin.getDefault().isDebugging()) {
-                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.movedResource(...) - discard loaded empty resource with errors ''{0}''", URIHelper.toString(newURI))); //$NON-NLS-1$           
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformResourceLoadedListener$ResourceManager.movedResource(...) - discard loaded empty resource with errors ''{0}''", URIHelper.toString(newURI))); //$NON-NLS-1$           
                     }
                     // Load it in our resource set
                     movedResource = editingDomain.getResourceSet().getResource(newURI, true);
@@ -370,7 +370,7 @@ public final class TargetPlatformResourceLoadedListener implements EGFWorkspaceS
                         resource.unload();
                         resource.getResourceSet().getResources().remove(resource);
                         if (EGFCorePlugin.getDefault().isDebugging()) {
-                            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", fcore.toString())); //$NON-NLS-1$           
+                            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", fcore.toString())); //$NON-NLS-1$           
                         }
                         // Load it in our resource set, beware the URIConverter should be updated accordingly
                         resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
