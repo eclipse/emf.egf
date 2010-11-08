@@ -18,12 +18,13 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.core.epackage.EObjectWrapper;
-import org.eclipse.egf.core.epackage.EPackageWrapper;
-import org.eclipse.egf.core.epackage.ERootWrapper;
+import org.eclipse.egf.common.loader.IClassLoader;
+import org.eclipse.egf.core.epackage.IProxyEObject;
+import org.eclipse.egf.core.epackage.IProxyEPackage;
+import org.eclipse.egf.core.epackage.IProxyERoot;
+import org.eclipse.egf.core.epackage.ProxyTargetPlatformFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
-import org.eclipse.egf.core.internal.epackage.ERootTargetPlatformManager;
 import org.eclipse.egf.core.internal.genmodel.PlatformGenModel;
 import org.eclipse.egf.core.internal.registry.FcoreProcessorRegistry;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
@@ -64,7 +65,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     /**
      * Keep track of the ERootTargetPlatformManager
      */
-    private static ERootTargetPlatformManager __eRootTargetPlatformManager;
+    private static ProxyTargetPlatformFactory __proxyTargetPlatformFactory;
 
     /**
      * Plug-in unique instance.
@@ -93,51 +94,75 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get a target platform base ERootWrapper object based on an emf model nsURI
+     * Get a target platform base ERootWrapper object based on a uri
      * 
      * @return an empty list if none could be found.
      */
-    public static ERootWrapper getTargetPlatformERootWrapper(URI nsURI) {
-        if (__eRootTargetPlatformManager == null) {
-            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+    public static IProxyERoot getTargetPlatformIProxyERoot(URI uri) {
+        if (__proxyTargetPlatformFactory == null) {
+            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
         }
-        return __eRootTargetPlatformManager.getTargetPlatformERootWrapper(nsURI);
+        return __proxyTargetPlatformFactory.getIProxyERoot(uri);
     }
 
     /**
-     * Get a target platform base EPackageWrapper object based on an emf model nsURI
+     * Get a target platform base ERootWrapper object based on a uri
      * 
      * @return an empty list if none could be found.
      */
-    public static EPackageWrapper getTargetPlatformEPackageWrapper(URI nsURI) {
-        if (__eRootTargetPlatformManager == null) {
-            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+    public static IProxyERoot getTargetPlatformIProxyERoot(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
+        if (__proxyTargetPlatformFactory == null) {
+            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
         }
-        return __eRootTargetPlatformManager.getTargetPlatformEPackageWrapper(nsURI);
+        return __proxyTargetPlatformFactory.getIProxyERoot(uri, loaders);
     }
 
     /**
-     * Get a target platform base EObjectWrapper object based on an emf model nsURI
+     * Get a target platform base EPackageWrapper object based on a uri
      * 
      * @return an empty list if none could be found.
      */
-    public static EObjectWrapper getTargetPlatformEObjectWrapper(URI nsURI) {
-        if (__eRootTargetPlatformManager == null) {
-            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+    public static IProxyEPackage getTargetPlatformIProxyEPackage(URI uri) {
+        if (__proxyTargetPlatformFactory == null) {
+            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
         }
-        return __eRootTargetPlatformManager.getTargetPlatformEObjectWrapper(nsURI);
+        return __proxyTargetPlatformFactory.getIProxyEPackage(uri);
     }
 
     /**
-     * Get a target platform base package based on an emf model nsURI
+     * Get a target platform base EPackageWrapper object based on a uri
      * 
      * @return an empty list if none could be found.
      */
-    public static String getTargetPlatformBasePackage(URI nsURI) {
-        if (__eRootTargetPlatformManager == null) {
-            __eRootTargetPlatformManager = new ERootTargetPlatformManager();
+    public static IProxyEPackage getTargetPlatformIProxyEPackage(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
+        if (__proxyTargetPlatformFactory == null) {
+            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
         }
-        return __eRootTargetPlatformManager.getTargetPlatformBasePackage(nsURI);
+        return __proxyTargetPlatformFactory.getIProxyEPackage(uri, loaders);
+    }
+
+    /**
+     * Get a target platform base EObjectWrapper object based on a uri
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static IProxyEObject getTargetPlatformIProxyEObject(URI uri) {
+        if (__proxyTargetPlatformFactory == null) {
+            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
+        }
+        return __proxyTargetPlatformFactory.getIProxyEObject(uri);
+    }
+
+    /**
+     * Get a target platform base EObjectWrapper object based on a uri
+     * 
+     * @return an empty list if none could be found.
+     */
+    public static IProxyEObject getTargetPlatformIProxyEObject(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
+        if (__proxyTargetPlatformFactory == null) {
+            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
+        }
+        return __proxyTargetPlatformFactory.getIProxyEObject(uri, loaders);
     }
 
     /**
@@ -349,12 +374,12 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get an IPlatformGenModel for a given NsURI
+     * Get an IPlatformGenModel for a given uri
      * 
      * @return an IPlatformGenModel 
      */
-    public static IPlatformGenModel getTargetPlatformGenModel(URI nsURI) {
-        return PlatformGenModel.getTargetPlatformGenModels().get(nsURI);
+    public static IPlatformGenModel getTargetPlatformGenModel(URI uri) {
+        return PlatformGenModel.getTargetPlatformGenModels().get(uri);
     }
 
     /**
@@ -371,8 +396,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      * 
      * @return an IPlatformGenModel 
      */
-    public static IPlatformGenModel getRuntimePlatformGenModel(URI nsURI) {
-        return PlatformGenModel.getRuntimePlatformGenModels().get(nsURI);
+    public static IPlatformGenModel getRuntimePlatformGenModel(URI uri) {
+        return PlatformGenModel.getRuntimePlatformGenModels().get(uri);
     }
 
     /**
@@ -412,8 +437,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
      */
     @Override
     public void stop(BundleContext context) throws Exception {
-        if (__eRootTargetPlatformManager != null) {
-            __eRootTargetPlatformManager = null;
+        if (__proxyTargetPlatformFactory != null) {
+            __proxyTargetPlatformFactory = null;
         }
         if (__fcoreProcessorRegistry != null) {
             __fcoreProcessorRegistry.dispose();
