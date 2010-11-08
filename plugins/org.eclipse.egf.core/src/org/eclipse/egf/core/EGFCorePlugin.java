@@ -28,6 +28,7 @@ import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.internal.genmodel.PlatformGenModel;
 import org.eclipse.egf.core.internal.registry.FcoreProcessorRegistry;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.egf.core.platform.pde.ITargetPlatformManager;
 import org.eclipse.egf.core.platform.uri.RuntimePlatformURIConverter;
@@ -237,6 +238,36 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
         }
         // Nothing to retrieve
         return null;
+    }
+
+    /**
+     * Get the IPlatformBundle given bundle id
+     * 
+     * @param id
+     * @return an {@link IPlatformBundle} instance or null if the
+     *         id is null or not associated with an
+     *         IPlatformBundle
+     */
+    public static IPlatformBundle getRuntimePlatformBundle(String id) {
+        if (id == null || id.trim().length() == 0) {
+            return null;
+        }
+        return EGFPlatformPlugin.getRuntimePlatformManager().getPlatformBundle(id.trim());
+    }
+
+    /**
+     * Get the IPlatformBundle given bundle id
+     * 
+     * @param id
+     * @return an {@link IPlatformBundle} instance or null if the
+     *         id is null or not associated with an
+     *         IPlatformBundle
+     */
+    public static IPlatformBundle getTargetPlatformBundle(String id) {
+        if (id == null || id.trim().length() == 0) {
+            return null;
+        }
+        return EGFPlatformPlugin.getTargetPlatformManager().getPlatformBundle(id.trim());
     }
 
     /**
