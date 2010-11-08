@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,6 +23,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
+import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -59,6 +62,132 @@ public class EMFHelper {
         // Prevent instantiation
     }
 
+    public static String getInstanceClassName(EPackage ePackage, URI uri) {
+        if (ePackage == null || uri == null) {
+            return null;
+        }
+        if (uri.hasFragment()) {
+            EObject eObject = ePackage.eResource().getEObject(uri.fragment());
+            if (eObject != null && eObject instanceof EClassifier) {
+                return ((EClassifier) eObject).getInstanceClassName();
+            }
+        }
+        return null;
+    }
+
+    public static String getInstanceClassName(IClassLoader loader, Object object, URI uri) throws IllegalArgumentException, IllegalAccessException, SecurityException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+        if (object == null || uri == null) {
+            return null;
+        }
+        Object ePackage = getEPackage(loader, object);
+        if (ePackage == null) {
+            return null;
+        }
+        if (uri.hasFragment()) {
+            object = ePackage.getClass().getMethod("eResource", new Class[] {}).invoke(ePackage); //$NON-NLS-1$
+            if (object != null) {
+                object = object.getClass().getMethod("getEObject", new Class[] { java.lang.String.class}).invoke(object, uri.fragment()); //$NON-NLS-1$
+                if (object != null) {
+                    // EClassifier
+                    Class<?> eClassifier = loader.loadClass("org.eclipse.emf.ecore.EClassifier"); //$NON-NLS-1$
+                    if (eClassifier.isInstance(object)) {
+                        return (String) object.getClass().getMethod("getInstanceClassName", new Class[] {}).invoke(object); //$NON-NLS-1$
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static URI getEPackageNsURI(EPackage ePackage, URI uri) {
+        if (ePackage == null || uri == null) {
+            return null;
+        }
+        if (uri.hasFragment()) {
+            EObject eObject = ePackage.eResource().getEObject(uri.fragment());
+            if (eObject != null) {
+                ePackage = getEPackage(eObject);
+                if (ePackage != null) {
+                    return URI.createURI(ePackage.getNsURI());
+                }
+            }
+        }
+        return URI.createURI(ePackage.getNsURI());
+    }
+
+    public static URI getEPackageNsURI(IClassLoader loader, String generatedPackage, URI uri) throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException, SecurityException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+        if (loader == null || generatedPackage == null || generatedPackage.trim().length() == 0 || uri == null) {
+            return null;
+        }
+        // EPackage
+        Class<?> eGeneratedPackage = loader.loadClass(generatedPackage.trim());
+        if (eGeneratedPackage != null && uri.hasFragment()) {
+            Object object = eGeneratedPackage.getField("eINSTANCE").get(null); //$NON-NLS-1$
+            if (object != null) {
+                object = eGeneratedPackage.getMethod("eResource", new Class[] {}).invoke(object); //$NON-NLS-1$
+                if (object != null) {
+                    object = object.getClass().getMethod("getEObject", new Class[] { java.lang.String.class}).invoke(object, uri.fragment()); //$NON-NLS-1$
+                    if (object != null) {
+                        object = EMFHelper.getEPackage(loader, object);
+                        if (object != null && loader.loadClass("org.eclipse.emf.ecore.EPackage").isInstance(object)) { //$NON-NLS-1$
+                            return URI.createURI(object.getClass().getMethod("getNsURI", new Class[] {}).invoke(object).toString()); //$NON-NLS-1$
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static Object getEPackage(IClassLoader loader, Object object) throws IllegalAccessException, InvocationTargetException, ClassNotFoundException, NoSuchMethodException {
+        if (loader == null || object == null) {
+            return null;
+        }
+        // EObject
+        Class<?> eObject = loader.loadClass("org.eclipse.emf.ecore.EObject"); //$NON-NLS-1$
+        if (eObject.isInstance(object) == false) {
+            return null;
+        }
+        // EPackage
+        Class<?> ePackage = loader.loadClass("org.eclipse.emf.ecore.EPackage"); //$NON-NLS-1$
+        if (ePackage.isInstance(object)) {
+            return object;
+        }
+        // EClassifier
+        Class<?> eClassifier = loader.loadClass("org.eclipse.emf.ecore.EClassifier"); //$NON-NLS-1$
+        if (eClassifier.isInstance(object)) {
+            return object.getClass().getMethod("getEPackage", new Class[] {}).invoke(object); //$NON-NLS-1$
+        }
+        // EOperation
+        Class<?> eOperation = loader.loadClass("org.eclipse.emf.ecore.EOperation"); //$NON-NLS-1$
+        if (eOperation.isInstance(object)) {
+            Method getEContainingClass = object.getClass().getMethod("getEContainingClass", new Class[] {}); //$NON-NLS-1$
+            object = getEContainingClass.invoke(object);
+            return object.getClass().getMethod("getEPackage", new Class[] {}).invoke(object); //$NON-NLS-1$
+        }
+        // EStructuralFeature
+        Class<?> eStructuralFeature = loader.loadClass("org.eclipse.emf.ecore.EStructuralFeature"); //$NON-NLS-1$
+        if (eStructuralFeature.isInstance(object)) {
+            Method getEContainingClass = object.getClass().getMethod("getEContainingClass", new Class[] {}); //$NON-NLS-1$
+            object = getEContainingClass.invoke(object);
+            return object.getClass().getMethod("getEPackage", new Class[] {}).invoke(object); //$NON-NLS-1$
+        }
+        // EAnnotation
+        Class<?> eAnnotation = loader.loadClass("org.eclipse.emf.ecore.EAnnotation"); //$NON-NLS-1$
+        if (eAnnotation.isInstance(object)) {
+            Method getEModelElement = object.getClass().getMethod("getEModelElement", new Class[] {}); //$NON-NLS-1$
+            return getEPackage(loader, getEModelElement.invoke(object));
+        }
+        // EParameter
+        Class<?> eParameter = loader.loadClass("org.eclipse.emf.ecore.EParameter"); //$NON-NLS-1$
+        if (eParameter.isInstance(object)) {
+            Method getEOperation = object.getClass().getMethod("getEOperation", new Class[] {}); //$NON-NLS-1$
+            return getEPackage(loader, getEOperation.invoke(object));
+        }
+        // Meta-Class analysis
+        return getEPackage(loader, object.getClass().getMethod("eClass", new Class[] {}).invoke(object)); //$NON-NLS-1$
+    }
+
     public static EPackage getEPackage(EObject eObject) {
         if (eObject == null) {
             return null;
@@ -76,7 +205,7 @@ public class EMFHelper {
         } else if (eObject instanceof EParameter) {
             return getEPackage(((EParameter) eObject).getEOperation());
         }
-        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", EcoreUtil.getURI(eObject))); //$NON-NLS-1$
+        return getEPackage(eObject.eClass());
     }
 
     public static Collection<EPackage> getAllPackages(Resource resource) {
