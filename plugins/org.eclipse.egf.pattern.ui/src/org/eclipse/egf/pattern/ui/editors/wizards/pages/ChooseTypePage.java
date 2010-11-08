@@ -161,11 +161,13 @@ public class ChooseTypePage extends WizardPage {
                 // Create a new one
                 if (root == null) {
                     root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri, _loaders);
-                    _roots.put(uri, root);
+                    if (root != null) {
+                        _roots.put(uri, root);
+                    }
                 }
                 _ecoreTypeTreeViewer.setInput(root);
                 _ecoreTypeTreeViewer.expandToLevel(2);
-                if (uri != null) {
+                if (root != null && uri != null) {
                     IProxyEObject proxy = root.getIProxyEObject(uri);
                     if (proxy != null) {
                         _ecoreTypeTreeViewer.setSelection(new StructuredSelection(proxy));
