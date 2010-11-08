@@ -15,11 +15,16 @@
 
 package org.eclipse.egf.pattern.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.epackage.EPackageWrapper;
+import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
  * 
@@ -30,6 +35,14 @@ public class ParameterTypeHelper {
 
     public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
 
+    private Map<URI, IProxyEObject> _proxies = new HashMap<URI, IProxyEObject>();
+
+    private Map<IPluginModelBase, IClassLoader> _loaders = new HashMap<IPluginModelBase, IClassLoader>();
+
+    private ParameterTypeHelper() {
+        // Prevent instantiation
+    }
+
     public String getSourceTypeLiteral(String type) {
         return getTypeLiteral(type, true);
     }
@@ -38,44 +51,40 @@ public class ParameterTypeHelper {
         return getTypeLiteral(type, false);
     }
 
+    public void clearProxies() {
+        _proxies.clear();
+        _loaders.clear();
+    }
+
     /**
      * Compute the literal value associated to the given type.<br/>
-     * It can be a java classname or an uri to an EObject.
-     * 
+     * It can be a java classname or an uri to an EObject. 
      * 
      */
     private String getTypeLiteral(String type, boolean handleInnerClass) {
         if (type == null || type.trim().length() == 0) {
             throw new IllegalArgumentException();
         }
+        // Java Type
         int index = type.indexOf('#');
         if (index == -1) {
             return handleInnerClass ? type.replace('$', '.') : type;
         }
-        String basePackage = EGFCorePlugin.getTargetPlatformBasePackage(URI.createURI(type));
-        if (basePackage == null) {
-            throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, type));
+        // Locate already loaded type
+        URI uri = URI.createURI(type.trim());
+        if (_proxies.containsKey(uri)) {
+            return _proxies.get(uri).getInstanceClassName();
         }
-        if (basePackage.trim().length() == 0) {
-            EPackageWrapper wrapper = EGFCorePlugin.getTargetPlatformEPackageWrapper(URI.createURI(type));
-            if (wrapper == null) {
-                throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, type));
-            }
-            return wrapper.getName() + "." + getClassName(type, index); //$NON-NLS-1$
+        // URI Type
+        IProxyEObject proxy = EGFCorePlugin.getTargetPlatformIProxyEObject(uri, _loaders);
+        if (proxy == null) {
+            throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, uri));
         }
-        return basePackage + "." + getClassName(type, index); //$NON-NLS-1$
-    }
-
-    public static String getClassName(String type, int index) {
-        String className = type.substring(index + 1);
-        if (className.startsWith("//")) { //$NON-NLS-1$
-            return className.substring(2);
+        if (proxy.getInstanceClassName() == null) {
+            throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, uri));
         }
-        return className;
-    }
-
-    private ParameterTypeHelper() {
-        // Prevent instantiation
+        _proxies.put(uri, proxy);
+        return proxy.getInstanceClassName();
     }
 
 }
