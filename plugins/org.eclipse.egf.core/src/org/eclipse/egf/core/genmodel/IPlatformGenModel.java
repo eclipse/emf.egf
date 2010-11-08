@@ -15,11 +15,15 @@
  */
 package org.eclipse.egf.core.genmodel;
 
-import org.eclipse.egf.core.epackage.EPackageWrapper;
-import org.eclipse.egf.core.epackage.ERootWrapper;
+import java.util.Map;
+
+import org.eclipse.egf.common.loader.IClassLoader;
+import org.eclipse.egf.core.epackage.IProxyEPackage;
+import org.eclipse.egf.core.epackage.IProxyERoot;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 public interface IPlatformGenModel extends IPlatformExtensionPointURI {
 
@@ -35,10 +39,16 @@ public interface IPlatformGenModel extends IPlatformExtensionPointURI {
 
     public EPackage getEPackage();
 
-    public EPackageWrapper getEPackageWrapper();
+    public IProxyEPackage getIProxyEPackage();
 
-    public ERootWrapper getERootWrapper();
+    public IProxyEPackage getIProxyEPackage(Map<IPluginModelBase, IClassLoader> loaders);
+
+    public IProxyERoot getIProxyERoot();
+
+    public IProxyERoot getIProxyERoot(Map<IPluginModelBase, IClassLoader> loaders);
 
     public URI getEPackageNsURI(URI uri);
+
+    public URI getEPackageNsURI(URI uri, Map<IPluginModelBase, IClassLoader> loaders);
 
 }
