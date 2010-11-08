@@ -14,13 +14,13 @@ import org.eclipse.egf.core.EGFCoreDebug;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleEvent;
-import org.osgi.framework.BundleListener;
+import org.osgi.framework.SynchronousBundleListener;
 
 /**
  * @author Xavier Maysonnave
  *
  */
-public class EGFBundleListener implements BundleListener {
+public class EGFBundleListener implements SynchronousBundleListener {
 
     public void bundleChanged(BundleEvent event) {
         if (EGFCorePlugin.getDefault() == null || EGFCoreDebug.isDebugBundleListener() == false) {
