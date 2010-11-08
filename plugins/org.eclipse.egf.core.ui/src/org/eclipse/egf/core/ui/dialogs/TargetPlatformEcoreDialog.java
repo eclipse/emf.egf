@@ -153,6 +153,7 @@ public class TargetPlatformEcoreDialog extends ResourceDialog {
 
             @Override
             public void widgetSelected(SelectionEvent event) {
+
                 TargetPlatformPackageDialog dialog = new TargetPlatformPackageDialog(getShell(), _multi);
                 if (dialog.open() != Window.OK) {
                     return;
@@ -217,6 +218,7 @@ public class TargetPlatformEcoreDialog extends ResourceDialog {
                         uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$
                     }
                 }
+
             }
 
         });

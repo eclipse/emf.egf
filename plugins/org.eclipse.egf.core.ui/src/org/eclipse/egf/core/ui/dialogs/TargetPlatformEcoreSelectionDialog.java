@@ -19,20 +19,18 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.epackage.EClassWrapper;
-import org.eclipse.egf.core.epackage.EClassifierWrapper;
-import org.eclipse.egf.core.epackage.EDataTypeWrapper;
-import org.eclipse.egf.core.epackage.EObjectWrapper;
-import org.eclipse.egf.core.epackage.EPackageWrapper;
-import org.eclipse.egf.core.epackage.ERootWrapper;
+import org.eclipse.egf.core.epackage.IProxyEClass;
+import org.eclipse.egf.core.epackage.IProxyEClassifier;
+import org.eclipse.egf.core.epackage.IProxyEDataType;
+import org.eclipse.egf.core.epackage.IProxyEObject;
+import org.eclipse.egf.core.epackage.IProxyEPackage;
+import org.eclipse.egf.core.epackage.IProxyERoot;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -149,19 +147,19 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
         }
 
         public Image getColumnImage(Object element, int columnIndex) {
-            if (element instanceof EPackageWrapper) {
+            if (element instanceof IProxyEPackage) {
                 return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage")); //$NON-NLS-1$
-            } else if (element instanceof EClassWrapper) {
+            } else if (element instanceof IProxyEClass) {
                 return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EClass")); //$NON-NLS-1$
-            } else if (element instanceof EDataTypeWrapper) {
+            } else if (element instanceof IProxyEDataType) {
                 return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EDataType")); //$NON-NLS-1$
             }
             return null;
         }
 
         public String getColumnText(Object element, int columnIndex) {
-            if (element instanceof EObjectWrapper) {
-                return ((EObjectWrapper) element).getName();
+            if (element instanceof IProxyEObject) {
+                return ((IProxyEObject) element).getName();
             }
             return ""; //$NON-NLS-1$
         }
@@ -211,19 +209,19 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
         }
 
         public Object getParent(Object element) {
-            if (element instanceof EObjectWrapper) {
-                return ((EObjectWrapper) element).getParent();
+            if (element instanceof IProxyEObject) {
+                return ((IProxyEObject) element).getParent();
             }
             return null;
         }
 
         public Object[] getChildren(Object parentElement) {
-            if (parentElement instanceof ERootWrapper) {
-                ERootWrapper wrapper = (ERootWrapper) parentElement;
-                return wrapper.getChildren().toArray();
-            } else if (parentElement instanceof EPackageWrapper) {
-                EPackageWrapper wrapper = (EPackageWrapper) parentElement;
-                return wrapper.getChildren().toArray();
+            if (parentElement instanceof IProxyERoot) {
+                IProxyERoot wrapper = (IProxyERoot) parentElement;
+                return wrapper.getChildren();
+            } else if (parentElement instanceof IProxyEPackage) {
+                IProxyEPackage wrapper = (IProxyEPackage) parentElement;
+                return wrapper.getChildren();
             } else if (parentElement instanceof List<?>) {
                 return ((List<?>) parentElement).toArray();
             }
@@ -400,11 +398,11 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
 
         @Override
         public Image getImage(Object element) {
-            if (element instanceof EPackageWrapper) {
+            if (element instanceof IProxyEPackage) {
                 return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage")); //$NON-NLS-1$
-            } else if (element instanceof EClassWrapper) {
+            } else if (element instanceof IProxyEClass) {
                 return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EClass")); //$NON-NLS-1$
-            } else if (element instanceof EDataTypeWrapper) {
+            } else if (element instanceof IProxyEDataType) {
                 return registry.getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EDataType")); //$NON-NLS-1$
             }
             return null;
@@ -412,11 +410,12 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
 
         @Override
         public String getText(Object element) {
-            if (element instanceof EObjectWrapper) {
-                return ((EObjectWrapper) element).getNsURI().toString();
+            if (element instanceof IProxyEObject) {
+                return ((IProxyEObject) element).getURI().toString();
             }
             return ""; //$NON-NLS-1$
         }
+
     }
 
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$    
@@ -568,10 +567,10 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
 
             @Override
             public int category(Object element) {
-                if (element instanceof EObjectWrapper) {
-                    if (element instanceof EClassifierWrapper) {
+                if (element instanceof IProxyEObject) {
+                    if (element instanceof IProxyEClassifier) {
                         return 2;
-                    } else if (element instanceof EPackageWrapper) {
+                    } else if (element instanceof IProxyEPackage) {
                         return 1;
                     }
                 }
@@ -586,7 +585,7 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
             public boolean select(Viewer innerViewer, Object parentElement, Object element) {
                 // TODO at present time, we don't support DataType as type for
                 // PatternParameter
-                return element instanceof ERootWrapper || element instanceof EClassWrapper || element instanceof EPackageWrapper;
+                return element instanceof IProxyERoot || element instanceof IProxyEClass || element instanceof IProxyEPackage;
             }
 
         });
@@ -699,7 +698,9 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
                 showViewMenu();
                 return null;
             }
+
         };
+
         _showViewHandler = service.activateHandler("org.eclipse.egf.core.ui.dialogs.EcoreSelectionDialog", handler, new ActiveShellExpression(getShell())); //$NON-NLS-1$
 
     }
@@ -763,8 +764,8 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
         List<Object> objectsToReturn = new ArrayList<Object>();
         for (Object object : selectedElements) {
             URI uri = null;
-            if (object instanceof EObject) {
-                uri = EcoreUtil.getURI((EObject) object);
+            if (object instanceof IProxyEObject) {
+                uri = ((IProxyEObject) object).getURI();
             }
             if (uri != null && uri.isEmpty() == false && "#//".equals(uri.toString()) == false) { //$NON-NLS-1$
                 objectsToReturn.add(uri.toString());
@@ -773,24 +774,28 @@ public class TargetPlatformEcoreSelectionDialog extends SelectionStatusDialog {
         setResult(objectsToReturn);
     }
 
-    protected void searchTypeModel(String uriText) {
-        if (uriText == null || uriText.trim().length() == 0) {
+    protected void searchTypeModel(String buffer) {
+        if (buffer == null || buffer.trim().length() == 0) {
             return;
         }
-        String[] nsURIs = uriText.split("  "); //$NON-NLS-1$
-        ERootWrapper wrapper = null;
-        for (String nsURI : nsURIs) {
+        String[] textUris = buffer.split("  "); //$NON-NLS-1$
+        IProxyERoot root = null;
+        for (String textUri : textUris) {
             try {
-                wrapper = EGFCorePlugin.getTargetPlatformERootWrapper(URI.createURI(nsURI));
-                if (wrapper != null) {
+                if (textUri == null || textUri.trim().length() == 0) {
+                    continue;
+                }
+                URI uri = URI.createURI(textUri.trim());
+                root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri);
+                if (root != null) {
                     break;
                 }
             } catch (Throwable t) {
-                EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, nsURI));
+                EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, textUri));
             }
         }
-        if (wrapper != null) {
-            _ecoreTypeTreeViewer.setInput(wrapper);
+        if (root != null) {
+            _ecoreTypeTreeViewer.setInput(root);
             _ecoreTypeTreeViewer.expandToLevel(2);
         }
     }

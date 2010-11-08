@@ -77,4 +77,5 @@ public class TargetPlatformPackageDialog extends ElementListSelectionDialog {
         }
         return null;
     }
+
 }

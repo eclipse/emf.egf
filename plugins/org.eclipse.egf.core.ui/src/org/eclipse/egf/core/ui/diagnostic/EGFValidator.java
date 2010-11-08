@@ -45,6 +45,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 
@@ -171,7 +172,7 @@ public class EGFValidator {
             context.put(IBundleClassLoader.DEFAULT_BUNDLE_CLASS_LOADER, _defaultLoader);
         }
         // Bundle Class Loader Map
-        context.put(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP, new HashMap<Resource, IBundleClassLoader>());
+        context.put(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP, new HashMap<IPluginModelBase, IBundleClassLoader>());
         // Validation
         for (EObject eObject : _eObjects) {
             monitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject)})); //$NON-NLS-1$
