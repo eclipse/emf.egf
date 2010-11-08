@@ -13,9 +13,11 @@ package org.eclipse.egf.producer.internal.context;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.producer.context.ProductionContext;
@@ -52,10 +54,24 @@ public abstract class ModelElementProductionContext<P extends ModelElement, T ex
             if (fcore == null) {
                 throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.Fcore_not_found, EcoreUtil.getURI(modelElement).trimFragment()), null)));
             }
+            // Runtime
             if (fcore.isRuntime()) {
                 return Platform.getBundle(id);
             }
-            return _projectBundleSession.getBundle(id);
+            // Target or workspace
+            IPlatformBundle bundle = EGFCorePlugin.getTargetPlatformBundle(id);
+            if (bundle != null) {
+                // Workspace
+                if (bundle.isWorkspace()) {
+                    return _projectBundleSession.getBundle(id);
+                }
+                // Target associated with a runtime bundle
+                else if (bundle.getBundle() != null) {
+                    return bundle.getBundle();
+                }
+            }
+            // Cannot associate a runtime bundle to a target bundle
+            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, id), null)));
         } catch (CoreException ce) {
             throw new InvocationException(ce);
         }
