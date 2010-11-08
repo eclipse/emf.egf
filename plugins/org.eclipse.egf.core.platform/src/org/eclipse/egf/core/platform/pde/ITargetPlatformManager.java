@@ -31,4 +31,12 @@ public interface ITargetPlatformManager extends IPlatformManager {
 
     public <T extends IPlatformExtensionPoint> T[] getTargetPlatformExtensionPoints(Class<T> clazz);
 
+    public int getPlatformBundleSize();
+
+    public int getPlatformExtensionPointSize();
+
+    public int getWorkspacePlatformExtensionPointSize();
+
+    public int getTargetPlatformExtensionPointSize();
+
 }

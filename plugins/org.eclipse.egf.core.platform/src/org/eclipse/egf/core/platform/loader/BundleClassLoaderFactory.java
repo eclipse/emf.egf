@@ -29,7 +29,9 @@ import org.eclipse.egf.common.loader.JavaClassLoaderFactory;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.internal.loader.BundleClassLoader;
 import org.eclipse.egf.core.platform.internal.pde.DirectoryBuildModel;
-import org.eclipse.egf.core.platform.internal.pde.EGFRequiredPluginsClasspathContainer;
+import org.eclipse.egf.core.platform.internal.pde.PlatformClasspathContainer;
+import org.eclipse.egf.core.platform.internal.pde.PlatformClasspathContainer.Rule;
+import org.eclipse.egf.core.platform.internal.pde.PlatformRequiredPluginsClasspathContainer;
 import org.eclipse.egf.core.platform.l10n.CorePlatformMessages;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.IClasspathContainer;
@@ -67,24 +69,13 @@ public class BundleClassLoaderFactory {
         // Check whether or not we face a directory or a file
         IPath location = new Path(model.getInstallLocation());
         if (project == null && location.toFile() != null && location.toFile().isDirectory()) {
-            // Process External Entries
-            IClasspathEntry[] entries = PDEClasspathContainer.getExternalEntries(model);
-            if (entries != null) {
-                classpathEntries.addAll(Arrays.asList(entries));
-            }
-            // Try to locate a build.properties
-            location = location.append(ICoreConstants.BUILD_FILENAME_DESCRIPTOR);
-            if (location.toFile() != null) {
-                IClasspathContainer classpathContainer = new EGFRequiredPluginsClasspathContainer(model, new DirectoryBuildModel(location.toFile()).getBuild());
-                // Process Required plugins entries
-                entries = classpathContainer.getClasspathEntries();
-                if (entries != null) {
-                    classpathEntries.addAll(Arrays.asList(entries));
-                }
+            // Add a IClasspathEntry to this directory
+            if (location.toFile() != null && location.toFile().exists()) {
+                PlatformClasspathContainer.addLibraryEntry(location, null, new Rule[0], PlatformClasspathContainer.getClasspathAttributes(model), classpathEntries);
             }
         } else {
             // Create a classpathContainer
-            IClasspathContainer classpathContainer = new EGFRequiredPluginsClasspathContainer(model);
+            IClasspathContainer classpathContainer = new PlatformRequiredPluginsClasspathContainer(model);
             // Process Required plugins entries
             IClasspathEntry[] entries = classpathContainer.getClasspathEntries();
             if (entries != null) {
@@ -118,15 +109,19 @@ public class BundleClassLoaderFactory {
         // Check whether or not we face a directory or a file
         IPath location = new Path(model.getInstallLocation());
         if (project == null && location.toFile() != null && location.toFile().isDirectory()) {
+            // Add a IClasspathEntry to this directory
+            if (location.toFile() != null && location.toFile().exists()) {
+                PlatformClasspathContainer.addLibraryEntry(location, null, new Rule[0], PlatformClasspathContainer.getClasspathAttributes(model), classpathEntries);
+            }
             // Process External Entries
             IClasspathEntry[] entries = PDEClasspathContainer.getExternalEntries(model);
             if (entries != null) {
                 classpathEntries.addAll(Arrays.asList(entries));
             }
-            // Try to locate a build.properties
+            // build.properties analysis
             location = location.append(ICoreConstants.BUILD_FILENAME_DESCRIPTOR);
-            if (location.toFile() != null) {
-                IClasspathContainer classpathContainer = new EGFRequiredPluginsClasspathContainer(model, new DirectoryBuildModel(location.toFile()).getBuild());
+            if (location.toFile() != null && location.toFile().exists()) {
+                IClasspathContainer classpathContainer = new PlatformRequiredPluginsClasspathContainer(model, new DirectoryBuildModel(location.toFile()).getBuild());
                 // Process Required plugins entries
                 entries = classpathContainer.getClasspathEntries();
                 if (entries != null) {
@@ -135,7 +130,7 @@ public class BundleClassLoaderFactory {
             }
         } else {
             // Create a classpathContainer
-            IClasspathContainer classpathContainer = new EGFRequiredPluginsClasspathContainer(model);
+            IClasspathContainer classpathContainer = new PlatformRequiredPluginsClasspathContainer(model);
             // Process Required plugins entries
             IClasspathEntry[] entries = classpathContainer.getClasspathEntries();
             if (entries != null) {

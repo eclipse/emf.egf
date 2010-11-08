@@ -120,7 +120,7 @@ class PlatformBundle implements IPlatformBundle {
         if (isRuntime() == false) {
             return _base;
         }
-        // Runtime analysis
+        // PDE analysis
         IPluginModelBase base = PluginRegistry.findModel(getBundleId());
         if (base == null) {
             return null;
@@ -158,10 +158,14 @@ class PlatformBundle implements IPlatformBundle {
      * @return null if the bundle is a target or a workspace bundle.
      */
     public Bundle getBundle() {
+        // Process known use cases
+        if (isWorkspace()) {
+            return null;
+        }
         if (isRuntime()) {
             return _bundle;
         }
-        // Runtime analysis
+        // Target matching analysis
         Bundle bundle = Platform.getBundle(getBundleId());
         if (bundle == null) {
             return null;

@@ -32,7 +32,7 @@ import org.eclipse.pde.internal.core.ClasspathUtilCore;
 import org.eclipse.pde.internal.core.JavadocLocationManager;
 import org.eclipse.pde.internal.core.PDECore;
 
-public class EGFPDEClasspathContainer {
+public class PlatformClasspathContainer {
 
     public class Rule {
 
@@ -42,8 +42,9 @@ public class EGFPDEClasspathContainer {
 
         @Override
         public boolean equals(Object other) {
-            if (!(other instanceof Rule))
+            if (other instanceof Rule == false) {
                 return false;
+            }
             return discouraged == ((Rule) other).discouraged && path.equals(((Rule) other).path);
         }
 
@@ -82,40 +83,46 @@ public class EGFPDEClasspathContainer {
     }
 
     protected static void addExternalPlugin(IPluginModelBase model, Rule[] rules, List<IClasspathEntry> entries) {
-        if (new File(model.getInstallLocation()).isFile()) {
+        // Check whether or not we face a directory or a file
+        IPath location = new Path(model.getInstallLocation());
+        if (location.toFile() != null && location.toFile().isDirectory() == false) {
             IPath srcPath = ClasspathUtilCore.getSourceAnnotation(model, "."); //$NON-NLS-1$
             if (srcPath == null) {
                 srcPath = new Path(model.getInstallLocation());
             }
             addLibraryEntry(new Path(model.getInstallLocation()), srcPath, rules, getClasspathAttributes(model), entries);
         } else {
+            // Process Libraries
             IPluginLibrary[] libraries = model.getPluginBase().getLibraries();
             for (int i = 0; i < libraries.length; i++) {
-                if (IPluginLibrary.RESOURCE.equals(libraries[i].getType()))
+                if (IPluginLibrary.RESOURCE.equals(libraries[i].getType())) {
                     continue;
+                }
+                // Analyse
                 model = (IPluginModelBase) libraries[i].getModel();
                 String name = libraries[i].getName();
                 String expandedName = ClasspathUtilCore.expandLibraryName(name);
                 IPath path = ClasspathUtilCore.getPath(model, expandedName);
-                if (path == null && !model.isFragmentModel() && ClasspathUtilCore.containsVariables(name)) {
+                if (path == null && model.isFragmentModel() == false && ClasspathUtilCore.containsVariables(name)) {
                     model = resolveLibraryInFragments(model, expandedName);
                     if (model != null && model.isEnabled())
                         path = ClasspathUtilCore.getPath(model, expandedName);
                 }
-                if (path != null)
+                if (path != null) {
                     addLibraryEntry(path, ClasspathUtilCore.getSourceAnnotation(model, expandedName), rules, getClasspathAttributes(model), entries);
+                }
             }
         }
     }
 
-    protected static void addLibraryEntry(IPath path, IPath srcPath, Rule[] rules, IClasspathAttribute[] attributes, List<IClasspathEntry> entries) {
+    public static void addLibraryEntry(IPath path, IPath srcPath, Rule[] rules, IClasspathAttribute[] attributes, List<IClasspathEntry> entries) {
         IClasspathEntry entry = null;
         if (rules != null) {
             entry = JavaCore.newLibraryEntry(path, srcPath, null, getAccessRules(rules), attributes, false);
         } else {
             entry = JavaCore.newLibraryEntry(path, srcPath, null, new IAccessRule[0], attributes, false);
         }
-        if (!entries.contains(entry)) {
+        if (entries.contains(entry) == false) {
             entries.add(entry);
         }
     }
@@ -130,7 +137,7 @@ public class EGFPDEClasspathContainer {
         return accessRules;
     }
 
-    private static synchronized IAccessRule getAccessibleRule(IPath path) {
+    public static synchronized IAccessRule getAccessibleRule(IPath path) {
         IAccessRule rule = ACCESSIBLE_RULES.get(path);
         if (rule == null) {
             rule = JavaCore.newAccessRule(path, IAccessRule.K_ACCESSIBLE);
@@ -139,11 +146,12 @@ public class EGFPDEClasspathContainer {
         return rule;
     }
 
-    private static IClasspathAttribute[] getClasspathAttributes(IPluginModelBase model) {
+    public static IClasspathAttribute[] getClasspathAttributes(IPluginModelBase model) {
         JavadocLocationManager manager = PDECore.getDefault().getJavadocLocationManager();
         String location = manager.getJavadocLocation(model);
-        if (location == null)
+        if (location == null) {
             return new IClasspathAttribute[0];
+        }
         return new IClasspathAttribute[] {
             JavaCore.newClasspathAttribute(IClasspathAttribute.JAVADOC_LOCATION_ATTRIBUTE_NAME, location)
         };
@@ -163,8 +171,9 @@ public class EGFPDEClasspathContainer {
         if (desc != null) {
             BundleDescription[] fragments = desc.getFragments();
             for (int i = 0; i < fragments.length; i++) {
-                if (new File(fragments[i].getLocation(), libraryName).exists())
+                if (new File(fragments[i].getLocation(), libraryName).exists()) {
                     return PluginRegistry.findModel(fragments[i]);
+                }
             }
         }
         return null;

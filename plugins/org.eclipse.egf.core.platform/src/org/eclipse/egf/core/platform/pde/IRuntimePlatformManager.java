@@ -14,22 +14,10 @@ package org.eclipse.egf.core.platform.pde;
  * @author Xavier Maysonnave
  * 
  */
-public interface IPlatformManager {
+public interface IRuntimePlatformManager extends IPlatformManager {
 
-    public IPlatformBundle[] getPlatformBundles();
-
-    public IPlatformBundle getPlatformBundle(String id);
+    public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String string, Class<T> clazz);
 
     public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz);
-
-    public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String id, Class<T> clazz);
-
-    public void addPlatformExtensionPointListener(IPlatformExtensionPointListener listener);
-
-    public void removePlatformExtensionPointListener(IPlatformExtensionPointListener listener);
-
-    public int getPlatformBundleSize();
-
-    public int getPlatformExtensionPointSize();
 
 }

@@ -20,18 +20,25 @@ import java.util.Set;
 import org.eclipse.core.internal.registry.Handle;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IContributor;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IRegistryEventListener;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.RegistryFactory;
+import org.eclipse.core.runtime.spi.RegistryContributor;
+import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.CollectionHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
+import org.eclipse.egf.core.platform.pde.IRuntimePlatformManager;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 /**
  * PlatformManager manage factory components extension point based on PDE
@@ -41,7 +48,7 @@ import org.osgi.framework.Bundle;
  * 
  * @since 1.0
  */
-public final class RuntimePlatformManager extends AbstractPlatformManager {
+public final class RuntimePlatformManager extends AbstractPlatformManager implements IRuntimePlatformManager {
 
     private class RuntimeRegistryListener implements IRegistryEventListener {
 
@@ -161,6 +168,18 @@ public final class RuntimePlatformManager extends AbstractPlatformManager {
         }
     }
 
+    public int getPlatformBundleSize() {
+        return _bundleRegistry.size();
+    }
+
+    public int getPlatformExtensionPointSize() {
+        int size = 0;
+        for (Map.Entry<Class<?>, Set<Object>> entry : _runtimeRegistry.entrySet()) {
+            size += entry.getValue().size();
+        }
+        return size;
+    }
+
     @Override
     public void dispose() {
         // Lock PlatformManager
@@ -227,10 +246,15 @@ public final class RuntimePlatformManager extends AbstractPlatformManager {
         // Debug
         long endRuntimeTime = System.currentTimeMillis();
         if (EGFPlatformPlugin.getDefault().isDebugging()) {
-            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("RuntimePlatformManager _ found {0} Platform Bundle{1} in ''{2}'' ms", //$NON-NLS-1$ 
+            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("RuntimePlatformManager _ found {0} Platform Bundle{1}, " //$NON-NLS-1$ 
+                    + "''{2}'' Runtime Extension Point{3}," //$NON-NLS-1$ 
+                    + "in " //$NON-NLS-1$
+                    + "''{4}'' ms", //$NON-NLS-1$ 
                     new Object[] {
-                            _runtimeRegistry.size(), _runtimeRegistry.size() < 2 ? "" : "s", (endRuntimeTime - startRuntimeTime)}//$NON-NLS-1$  //$NON-NLS-2$
-                    ));
+                            getPlatformBundleSize(), getPlatformBundleSize() < 2 ? "" : "s", //$NON-NLS-1$ //$NON-NLS-2$
+                            getPlatformExtensionPointSize(), getPlatformExtensionPointSize() < 2 ? "" : "s", //$NON-NLS-1$ //$NON-NLS-2$                                                                        
+                            (endRuntimeTime - startRuntimeTime)
+                    }));
             for (Class<?> clazz : EGFPlatformPlugin.getPlatformExtensionPoints().values()) {
                 Set<Object> runtimeObjects = _runtimeRegistry.get(clazz);
                 int extension = runtimeObjects != null ? runtimeObjects.size() : 0;
@@ -264,9 +288,33 @@ public final class RuntimePlatformManager extends AbstractPlatformManager {
 
     protected void addElement(IConfigurationElement element, Class<? extends IPlatformExtensionPoint> clazz, PlatformExtensionPointDelta delta) {
         Bundle bundle = BundleHelper.getBundle(element.getDeclaringExtension().getContributor());
-        if (bundle == null) {
-            EGFPlatformPlugin.getDefault().logWarning(NLS.bind("RuntimePlatformManager.initializeRegistry(..) _ Unable to locate Bundle ''{0}''.", //$NON-NLS-1$
-                    element.getDeclaringExtension().getNamespaceIdentifier()));
+        // No bundle but valid
+        if (bundle == null && element.isValid()) {
+            IContributor contributor = element.getDeclaringExtension().getContributor();
+            if (contributor instanceof RegistryContributor) {
+                try {
+                    long id = Long.parseLong(((RegistryContributor) contributor).getActualId());
+                    BundleContext context = EGFCommonPlugin.getDefault().getBundle().getBundleContext();
+                    if (context != null) {
+                        bundle = context.getBundle(id);
+                        if (bundle == null) {
+                            bundle = Platform.getBundle(contributor.getName());
+                            if (bundle != null) {
+                                try {
+                                    bundle.start(Bundle.START_TRANSIENT);
+                                } catch (BundleException e) {
+                                    EGFPlatformPlugin.getDefault().logError(e);
+                                }
+                            }
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    // try using the name of the contributor below
+                }
+            }
+        }
+        // Nothing to do        
+        if (bundle == null || element.isValid() == false) {
             return;
         }
         // Create a PlatformBundle if necessary

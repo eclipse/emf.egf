@@ -50,7 +50,7 @@ import org.eclipse.pde.internal.core.PDECoreMessages;
 import org.eclipse.pde.internal.core.TargetPlatformHelper;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
 
-public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContainer implements IClasspathContainer {
+public class PlatformRequiredPluginsClasspathContainer extends PlatformClasspathContainer implements IClasspathContainer {
 
     private IPluginModelBase fModel;
 
@@ -67,11 +67,11 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
     /**
      * Constructor for RequiredPluginsClasspathContainer.
      */
-    public EGFRequiredPluginsClasspathContainer(IPluginModelBase model) {
+    public PlatformRequiredPluginsClasspathContainer(IPluginModelBase model) {
         this(model, null);
     }
 
-    public EGFRequiredPluginsClasspathContainer(IPluginModelBase model, IBuild build) {
+    public PlatformRequiredPluginsClasspathContainer(IPluginModelBase model, IBuild build) {
         fModel = model;
         fBuild = build;
     }
@@ -182,8 +182,9 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
             while (iter.hasNext()) {
                 BundleDescription bundle = iter.next();
                 IPluginModelBase model = PluginRegistry.findModel(bundle);
-                if (model != null && model.isEnabled())
+                if (model != null && model.isEnabled()) {
                     addDependencyViaImportPackage(model.getBundleDescription(), added, map, entries);
+                }
             }
 
             if (fBuild != null) {
@@ -209,8 +210,9 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
     }
 
     private void addVisiblePackagesFromState(StateHelper helper, BundleDescription desc, Map<BundleDescription, List<Rule>> visiblePackages) {
-        if (desc == null)
+        if (desc == null) {
             return;
+        }
         ExportPackageDescription[] exports = helper.getVisiblePackages(desc);
         for (int i = 0; i < exports.length; i++) {
             BundleDescription exporter = exports[i].getExporter();
@@ -248,8 +250,9 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
         if (hasExtensibleAPI(desc) && desc.getContainingState() != null) {
             BundleDescription[] fragments = desc.getFragments();
             for (int i = 0; i < fragments.length; i++) {
-                if (fragments[i].isResolved())
+                if (fragments[i].isResolved()) {
                     addDependencyViaImportPackage(fragments[i], added, map, entries);
+                }
             }
         }
 
@@ -260,6 +263,7 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
     }
 
     private void addDependency(BundleDescription desc, Set<BundleDescription> added, Map<BundleDescription, List<Rule>> map, List<IClasspathEntry> entries, boolean useInclusion) throws CoreException {
+
         if (desc == null || added.add(desc) == false) {
             return;
         }
@@ -277,7 +281,7 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
 
         // add fragments that are not patches after the host
         for (int i = 0; i < fragments.length; i++) {
-            if (fragments[i].isResolved() && !ClasspathUtilCore.isPatchFragment(fragments[i])) {
+            if (fragments[i].isResolved() && ClasspathUtilCore.isPatchFragment(fragments[i]) == false) {
                 addDependency(fragments[i], added, map, entries, useInclusion);
             }
         }
@@ -288,6 +292,7 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
                 addDependency((BundleDescription) required[i].getSupplier(), added, map, entries, useInclusion);
             }
         }
+
     }
 
     private boolean addPlugin(BundleDescription desc, boolean useInclusions, Map<BundleDescription, List<Rule>> map, List<IClasspathEntry> entries) throws CoreException {
@@ -301,6 +306,14 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
             addProjectEntry(resource.getProject(), rules, entries);
         } else {
             addExternalPlugin(model, rules, entries);
+            // Check whether or not we face a directory
+            IPath location = new Path(model.getInstallLocation());
+            if (location.toFile() == null || location.toFile().isDirectory()) {
+                // Add a IClasspathEntry to this directory
+                if (location.toFile() != null && location.toFile().exists()) {
+                    addLibraryEntry(location, null, rules, getClasspathAttributes(model), entries);
+                }
+            }
         }
         return true;
     }
@@ -326,9 +339,11 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
     }
 
     private void addHostPlugin(HostSpecification hostSpec, Set<BundleDescription> added, Map<BundleDescription, List<Rule>> map, List<IClasspathEntry> entries) throws CoreException {
+
         BaseDescription desc = hostSpec.getSupplier();
 
         if (desc instanceof BundleDescription) {
+
             BundleDescription host = (BundleDescription) desc;
 
             // add host plug-in
@@ -347,7 +362,9 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
                     }
                 }
             }
+
         }
+
     }
 
     private boolean hasExtensibleAPI(BundleDescription desc) {
@@ -366,9 +383,12 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
     }
 
     protected void addExtraClasspathEntries(Set<BundleDescription> added, List<IClasspathEntry> entries, String[] tokens) {
+
         for (int i = 0; i < tokens.length; i++) {
+
             IPath path = Path.fromPortableString(tokens[i]);
-            if (!path.isAbsolute()) {
+
+            if (path.isAbsolute() == false) {
                 File file = new File(fModel.getInstallLocation(), path.toString());
                 if (file.exists()) {
                     IFile resource = PDECore.getWorkspace().getRoot().getFileForLocation(new Path(file.getAbsolutePath()));
@@ -385,14 +405,15 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
                 }
             }
 
-            if (!path.toPortableString().startsWith("platform:")) { //$NON-NLS-1$
+            if (path.toPortableString().startsWith("platform:") == false) { //$NON-NLS-1$
                 addExtraLibrary(path, null, entries);
             } else {
                 int count = path.getDevice() == null ? 4 : 3;
                 if (path.segmentCount() >= count) {
                     String pluginID = path.segment(count - 2);
-                    if (added.contains(pluginID))
+                    if (added.contains(pluginID)) {
                         continue;
+                    }
                     IPluginModelBase model = PluginRegistry.findModel(pluginID);
                     if (model != null && model.isEnabled()) {
                         path = path.setDevice(null);
@@ -412,7 +433,9 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
                     }
                 }
             }
+
         }
+
     }
 
     private void addSecondaryDependencies(BundleDescription desc, Set<BundleDescription> added, List<IClasspathEntry> entries) {
@@ -455,15 +478,16 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
                     rules.add(rule);
                 }
                 map.put(bdesc, rules);
-
                 // Look at re-exported Require-Bundles for any other exported packages
                 BundleSpecification[] requiredBundles = bdesc.getRequiredBundles();
-                for (int i = 0; i < requiredBundles.length; i++)
+                for (int i = 0; i < requiredBundles.length; i++) {
                     if (requiredBundles[i].isExported()) {
                         BaseDescription bd = requiredBundles[i].getSupplier();
-                        if (bd != null && bd instanceof BundleDescription)
+                        if (bd != null && bd instanceof BundleDescription) {
                             stack.add((BundleDescription) bd);
+                        }
                     }
+                }
             }
         }
     }
@@ -490,11 +514,14 @@ public class EGFRequiredPluginsClasspathContainer extends EGFPDEClasspathContain
         } else {
             String filename = ClasspathUtilCore.getSourceZipName(path.lastSegment());
             IPath candidate = path.removeLastSegments(1).append(filename);
-            if (PDECore.getWorkspace().getRoot().getFile(candidate).exists())
+            if (PDECore.getWorkspace().getRoot().getFile(candidate).exists()) {
                 srcPath = candidate;
+            }
         }
         IClasspathEntry clsEntry = JavaCore.newLibraryEntry(path, srcPath, null);
-        if (!entries.contains(clsEntry))
+        if (entries.contains(clsEntry) == false) {
             entries.add(clsEntry);
+        }
     }
+
 }

@@ -100,6 +100,37 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
         PDECore.getDefault().getModelManager().addExtensionDeltaListener(this);
     }
 
+    public int getPlatformBundleSize() {
+        return _platformRegistry.size();
+    }
+
+    public int getPlatformExtensionPointSize() {
+        int size = 0;
+        for (Map.Entry<Class<?>, Set<Object>> entry : _workspaceRegistry.entrySet()) {
+            size += entry.getValue().size();
+        }
+        for (Map.Entry<Class<?>, Set<Object>> entry : _targetRegistry.entrySet()) {
+            size += entry.getValue().size();
+        }
+        return size;
+    }
+
+    public int getWorkspacePlatformExtensionPointSize() {
+        int size = 0;
+        for (Map.Entry<Class<?>, Set<Object>> entry : _workspaceRegistry.entrySet()) {
+            size += entry.getValue().size();
+        }
+        return size;
+    }
+
+    public int getTargetPlatformExtensionPointSize() {
+        int size = 0;
+        for (Map.Entry<Class<?>, Set<Object>> entry : _targetRegistry.entrySet()) {
+            size += entry.getValue().size();
+        }
+        return size;
+    }
+
     @Override
     public void dispose() {
         // Lock PlatformManager
@@ -239,10 +270,17 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
         // Debug
         long endTargetTime = System.currentTimeMillis();
         if (EGFPlatformPlugin.getDefault().isDebugging()) {
-            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformManager _ found {0} Platform Bundle{1} in ''{2}'' ms", //$NON-NLS-1$ 
+            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformManager _ found {0} Platform Bundle{1}, " //$NON-NLS-1$ 
+                    + "''{2}'' Workspace Extension Point{3}," //$NON-NLS-1$ 
+                    + "''{4}'' Target Extension Point{5}," //$NON-NLS-1$
+                    + "in " //$NON-NLS-1$
+                    + "''{6}'' ms", //$NON-NLS-1$ 
                     new Object[] {
-                            _platformRegistry.size(), _platformRegistry.size() < 2 ? "" : "s", (endTargetTime - startTargetTime)}//$NON-NLS-1$  //$NON-NLS-2$
-                    ));
+                            getPlatformBundleSize(), getPlatformBundleSize() < 2 ? "" : "s", //$NON-NLS-1$ //$NON-NLS-2$
+                            getWorkspacePlatformExtensionPointSize(), getWorkspacePlatformExtensionPointSize() < 2 ? "" : "s", //$NON-NLS-1$ //$NON-NLS-2$                                    
+                            getTargetPlatformExtensionPointSize(), getTargetPlatformExtensionPointSize() < 2 ? "" : "s", //$NON-NLS-1$ //$NON-NLS-2$                                    
+                            (endTargetTime - startTargetTime)
+                    }));
             for (Class<?> clazz : EGFPlatformPlugin.getPlatformExtensionPoints().values()) {
                 Set<Object> targetObjects = _targetRegistry.get(clazz);
                 Set<Object> workspaceObjects = _workspaceRegistry.get(clazz);
@@ -289,10 +327,15 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
         }
         // Check an existing one
         PlatformBundle platformBundle = (PlatformBundle) _platformRegistry.get(BundleHelper.getBundleId(base));
-        if (base.isEnabled()) {
-            if (platformBundle != null && base == platformBundle.getPluginModelBase()) {
+        if (platformBundle == null) {
+            if (base.isEnabled()) {
+                addPlatformBundle(createPlatformBundle(base), delta);
+            }
+        } else if (base.isEnabled()) {
+            if (base == platformBundle.getPluginModelBase()) {
                 mergePlatformBundle(platformBundle, createPlatformBundle(base), delta);
             } else {
+                removePlatformBundle(platformBundle, delta);
                 addPlatformBundle(createPlatformBundle(base), delta);
             }
         } else {
