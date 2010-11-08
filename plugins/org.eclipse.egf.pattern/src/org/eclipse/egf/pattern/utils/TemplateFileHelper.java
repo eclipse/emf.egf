@@ -51,7 +51,7 @@ public class TemplateFileHelper {
         setContent(file, new ByteArrayInputStream(source.getBytes()), keepHistory);
     }
 
-    private static void setContent(IFile file, InputStream source, boolean keepHistory) throws CoreException {
+    public static void setContent(IFile file, InputStream source, boolean keepHistory) throws CoreException {
         if (file.exists()) {
             file.setContents(source, true, keepHistory, null);
         } else {
@@ -60,7 +60,7 @@ public class TemplateFileHelper {
         }
     }
 
-    private static void createParentfolders(IProject project, IPath folderPath) throws CoreException {
+    public static void createParentfolders(IProject project, IPath folderPath) throws CoreException {
         if (folderPath.isEmpty()) {
             return;
         }
