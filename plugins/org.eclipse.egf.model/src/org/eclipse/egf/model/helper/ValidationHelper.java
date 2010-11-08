@@ -217,6 +217,11 @@ public class ValidationHelper {
         }
         // Retrieve fcore
         IPlatformFcore fcore = ((IPlatformFcoreProvider) eObject.eResource()).getIPlatformFcore();
+        // IClassLoader if any
+        IClassLoader loader = null;
+        if (fcore != null) {
+            loader = getLoader(fcore.getPluginModelBase(), eObject, context);
+        }
         // Load Class
         Class<?> clazz = null;
         // Runtime or memory        
@@ -226,7 +231,12 @@ public class ValidationHelper {
                 if (fcore == null) {
                     clazz = Class.forName(value.trim());
                 } else {
-                    clazz = fcore.getBundle().loadClass(value.trim());
+                    if (loader != null) {
+                        clazz = loader.loadClass(value.trim());
+                    }
+                    if (clazz == null && fcore.getBundle() != null) {
+                        clazz = fcore.getBundle().loadClass(value.trim());
+                    }
                 }
                 if (clazz == null) {
                     return false;
@@ -242,11 +252,11 @@ public class ValidationHelper {
         // Target or Workspace
         else {
             try {
-                if (fcore.getBundle() != null) {
-                    clazz = fcore.getBundle().loadClass(value.trim());
-                } else {
-                    IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(fcore.getPluginModelBase());
+                if (loader != null) {
                     clazz = loader.loadClass(value.trim());
+                }
+                if (clazz == null && fcore.getBundle() != null) {
+                    clazz = fcore.getBundle().loadClass(value.trim());
                 }
                 if (clazz == null) {
                     return false;
