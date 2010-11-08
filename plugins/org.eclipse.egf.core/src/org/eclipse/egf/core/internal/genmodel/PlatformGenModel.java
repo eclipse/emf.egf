@@ -160,6 +160,24 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         getRuntimePlatformGenModels().put(getNsURI(), this);
     }
 
+    @Override
+    protected void setPlatformBundle(IPlatformBundle bundle) {
+        super.setPlatformBundle(bundle);
+        // when merged, the previous discarded one could clean the registry
+        if (_genModelURI != null) {
+            if (isRuntime()) {
+                getRuntimePlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+            } else {
+                getTargetPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+            }
+        }
+        if (isRuntime()) {
+            getRuntimePlatformGenModels().put(getNsURI(), this);
+        } else {
+            getTargetPlatformGenModels().put(getNsURI(), this);
+        }
+    }
+
     public URI getNsURI() {
         return getURI();
     }
@@ -252,12 +270,12 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
 
     @Override
     protected void dispose() {
-        if (isTarget() || isWorkspace()) {
-            getTargetPlatformGenModelLocationMap().remove(getNsURI());
-            getTargetPlatformGenModels().remove(getNsURI());
-        } else {
+        if (isRuntime()) {
             getRuntimePlatformGenModelLocationMap().remove(getNsURI());
             getRuntimePlatformGenModels().remove(getNsURI());
+        } else {
+            getTargetPlatformGenModelLocationMap().remove(getNsURI());
+            getTargetPlatformGenModels().remove(getNsURI());
         }
     }
 
