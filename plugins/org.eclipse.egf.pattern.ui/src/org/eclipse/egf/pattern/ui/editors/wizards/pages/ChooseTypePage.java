@@ -15,15 +15,20 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.epackage.EObjectWrapper;
-import org.eclipse.egf.core.epackage.ERootWrapper;
+import org.eclipse.egf.core.epackage.IProxyEObject;
+import org.eclipse.egf.core.epackage.IProxyERoot;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
 import org.eclipse.egf.core.ui.dialogs.ISelectionDialogListener;
 import org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreSelectionDialog;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -37,6 +42,8 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -69,6 +76,10 @@ public class ChooseTypePage extends WizardPage {
     private String _currentType;
 
     private IJavaProject _javaProject;
+
+    private Map<URI, IProxyERoot> _roots = new HashMap<URI, IProxyERoot>();
+
+    private Map<IPluginModelBase, IClassLoader> _loaders = new HashMap<IPluginModelBase, IClassLoader>();
 
     public ChooseTypePage(String currentType) {
         super(Messages.ChooseTypePage_title);
@@ -136,26 +147,28 @@ public class ChooseTypePage extends WizardPage {
             @Override
             protected Control createDialogArea(Composite parent) {
                 Control content = super.createDialogArea(parent);
-                URI nsURI;
-                if ("".equals(_currentType) == false && _currentType != null) { //$NON-NLS-1$
-                    int index = _currentType.indexOf("#//"); //$NON-NLS-1$
-                    if (index != -1) {
-                        nsURI = URI.createURI(_currentType);
-                    } else {
-                        nsURI = NSURI_GENMODEL;
-                    }
+                URI uri = null;
+                if (_currentType != null && _currentType.trim().length() != 0 && _currentType.equals("#//") == false) { //$NON-NLS-1$
+                    uri = URI.createURI(_currentType.trim());
                 } else {
-                    nsURI = NSURI_GENMODEL;
+                    uri = NSURI_GENMODEL;
                 }
-                ERootWrapper root = EGFCorePlugin.getTargetPlatformERootWrapper(nsURI);
-                if (root != null) {
-                    _ecoreTypeTreeViewer.setInput(root);
-                    _ecoreTypeTreeViewer.expandToLevel(2);
-                    if (_currentType != null) {
-                        EObjectWrapper wrapper = root.getEObjectWrapper(URI.createURI(_currentType));
-                        if (wrapper != null) {
-                            _ecoreTypeTreeViewer.setSelection(new StructuredSelection(wrapper));
-                        }
+                // Locate already loaded root
+                IProxyERoot root = null;
+                if (_roots.containsKey(uri)) {
+                    root = _roots.get(uri);
+                }
+                // Create a new one
+                if (root == null) {
+                    root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri, _loaders);
+                    _roots.put(uri, root);
+                }
+                _ecoreTypeTreeViewer.setInput(root);
+                _ecoreTypeTreeViewer.expandToLevel(2);
+                if (uri != null) {
+                    IProxyEObject proxy = root.getIProxyEObject(uri);
+                    if (proxy != null) {
+                        _ecoreTypeTreeViewer.setSelection(new StructuredSelection(proxy));
                     }
                 }
                 return content;
@@ -169,6 +182,40 @@ public class ChooseTypePage extends WizardPage {
                 IWizardContainer wizardContainer = wizard.getContainer();
                 if (wizardContainer instanceof WizardDialog) {
                     ((WizardDialog) wizardContainer).close();
+                }
+            }
+
+            @Override
+            protected void searchTypeModel(String buffer) {
+                if (buffer == null || buffer.trim().length() == 0) {
+                    return;
+                }
+                String[] textUris = buffer.split("  "); //$NON-NLS-1$
+                IProxyERoot root = null;
+                for (String textUri : textUris) {
+                    try {
+                        if (textUri == null || textUri.trim().length() == 0) {
+                            continue;
+                        }
+                        URI uri = URI.createURI(textUri.trim());
+                        // Locate already loaded type
+                        if (_roots.containsKey(uri)) {
+                            root = _roots.get(uri);
+                        }
+                        if (root == null) {
+                            root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri, _loaders);
+                            _roots.put(uri, root);
+                        }
+                        if (root != null) {
+                            break;
+                        }
+                    } catch (Throwable t) {
+                        EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, textUri));
+                    }
+                }
+                if (root != null) {
+                    _ecoreTypeTreeViewer.setInput(root);
+                    _ecoreTypeTreeViewer.expandToLevel(2);
                 }
             }
 
