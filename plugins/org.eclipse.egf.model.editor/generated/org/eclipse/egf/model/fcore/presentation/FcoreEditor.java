@@ -792,13 +792,15 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                     EGFModelEditorPlugin.INSTANCE.log(exception);
                 }
             }
-            if (markerHelper.hasMarkers(getResource())) {
-                markerHelper.deleteMarkers(getResource());
-                if (diagnostic.getSeverity() != Diagnostic.OK) {
-                    try {
-                        markerHelper.createMarkers(diagnostic);
-                    } catch (CoreException exception) {
-                        EGFModelEditorPlugin.INSTANCE.log(exception);
+            if (getResource() != null && getResource().getResourceSet() != null) {
+                if (markerHelper.hasMarkers(getResource())) {
+                    markerHelper.deleteMarkers(getResource());
+                    if (diagnostic.getSeverity() != Diagnostic.OK) {
+                        try {
+                            markerHelper.createMarkers(diagnostic);
+                        } catch (CoreException exception) {
+                            EGFModelEditorPlugin.INSTANCE.log(exception);
+                        }
                     }
                 }
             }
