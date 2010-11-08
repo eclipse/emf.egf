@@ -261,7 +261,9 @@ public class ContextJavaLoaderCommon extends TestCase {
             assertNotNull(stream);
 
             try {
-                stream.close();
+                if (stream != null) {
+                    stream.close();
+                }
             } catch (IOException ioe) {
                 // Just ignore
             }
@@ -308,6 +310,14 @@ public class ContextJavaLoaderCommon extends TestCase {
             // Load resource            
             stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
             assertNull(stream);
+
+            try {
+                if (stream != null) {
+                    stream.close();
+                }
+            } catch (IOException ioe) {
+                // Just ignore
+            }
 
         } finally {
 

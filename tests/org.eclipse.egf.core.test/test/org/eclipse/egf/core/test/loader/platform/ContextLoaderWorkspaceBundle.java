@@ -157,8 +157,11 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
         // Load resource            
         stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
         assertNotNull(stream);
+
         try {
-            stream.close();
+            if (stream != null) {
+                stream.close();
+            }
         } catch (IOException ioe) {
             // Just ignore
         }
@@ -183,8 +186,11 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
         // Load resource from dependent h1            
         stream = clazz.getClassLoader().getResourceAsStream("egf/task_h1.fcore"); //$NON-NLS-1$
         assertNotNull(stream);
+
         try {
-            stream.close();
+            if (stream != null) {
+                stream.close();
+            }
         } catch (IOException ioe) {
             // Just ignore
         }

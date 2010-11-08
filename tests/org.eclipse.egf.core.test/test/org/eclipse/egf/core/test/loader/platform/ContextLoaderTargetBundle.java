@@ -122,7 +122,9 @@ public class ContextLoaderTargetBundle extends TestCase {
         assertNotNull(stream);
 
         try {
-            stream.close();
+            if (stream != null) {
+                stream.close();
+            }
         } catch (IOException ioe) {
             // Just ignore
         }
@@ -148,7 +150,9 @@ public class ContextLoaderTargetBundle extends TestCase {
         assertNotNull(stream);
 
         try {
-            stream.close();
+            if (stream != null) {
+                stream.close();
+            }
         } catch (IOException ioe) {
             // Just ignore
         }
