@@ -84,6 +84,7 @@ public abstract class AbstractPatternTask implements ITaskProduction {
     }
 
     protected PatternContext createPatternContext(final ITaskProductionContext prodCtx) {
+
         return new ExecutionContext(new BundleAccessor() {
 
             public Bundle getBundle(String id) throws PatternException {
@@ -97,7 +98,9 @@ public abstract class AbstractPatternTask implements ITaskProduction {
                     throw new PatternException(e);
                 }
             }
+
         });
+
     }
 
 }
