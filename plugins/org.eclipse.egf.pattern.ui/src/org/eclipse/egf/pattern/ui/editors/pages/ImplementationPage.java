@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.epackage.EObjectWrapper;
+import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -1435,8 +1435,8 @@ public class ImplementationPage extends PatternEditorPage {
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 if (dialog.open() == Window.OK) {
                     Object object = wizard.getSelectType();
-                    if (object instanceof EObjectWrapper) {
-                        updateType(((EObjectWrapper) object).getNsURI().toString());
+                    if (object instanceof IProxyEObject) {
+                        updateType(((IProxyEObject) object).getURI().toString());
                     } else if (object instanceof IType) {
                         updateType(((IType) object).getFullyQualifiedName());
                     }
