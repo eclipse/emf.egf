@@ -16,10 +16,14 @@ import org.eclipse.emf.common.util.URI;
  * @author Xavier Maysonnave
  *
  */
-public abstract class EClassifierWrapper extends EObjectWrapper {
+public interface IProxyEObject extends Cloneable {
 
-    public EClassifierWrapper(EPackageWrapper parent, String name, URI nsURI) {
-        super(parent, name, nsURI);
-    }
+    public String getName();
+
+    public URI getURI();
+
+    public String getInstanceClassName();
+
+    public IProxyEObject getParent();
 
 }

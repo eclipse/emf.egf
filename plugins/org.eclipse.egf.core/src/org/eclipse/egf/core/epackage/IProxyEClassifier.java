@@ -10,16 +10,10 @@
  */
 package org.eclipse.egf.core.epackage;
 
-import org.eclipse.emf.common.util.URI;
-
 /**
  * @author Xavier Maysonnave
  *
  */
-public class EDataTypeWrapper extends EClassifierWrapper {
-
-    public EDataTypeWrapper(EPackageWrapper parent, String name, URI nsURI) {
-        super(parent, name, nsURI);
-    }
-
+public interface IProxyEClassifier extends IProxyEObject {
+    // Nothing to do
 }
