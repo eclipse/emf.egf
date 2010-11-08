@@ -32,6 +32,7 @@ import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 
 /**
  * Performs pattern translation each time a pt file is changed.
@@ -107,6 +108,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
             // if (patternIds != null && patterns.size() != patternIds.size())
             // Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
             // Translate
+            ParameterTypeHelper.INSTANCE.clearProxies();
             if (delta != null) {
                 TranslationHelper.translate(monitor, patterns);
             } else {
@@ -125,6 +127,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
             if (patterns != null) {
                 patterns.clear();
             }
+            ParameterTypeHelper.INSTANCE.clearProxies();
         }
         return null;
     }
