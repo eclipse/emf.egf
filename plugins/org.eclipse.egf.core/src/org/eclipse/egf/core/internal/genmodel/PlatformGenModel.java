@@ -15,33 +15,25 @@
  */
 package org.eclipse.egf.core.internal.genmodel;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.URIHelper;
+import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.epackage.EClassWrapper;
-import org.eclipse.egf.core.epackage.EClassifierWrapper;
-import org.eclipse.egf.core.epackage.EDataTypeWrapper;
-import org.eclipse.egf.core.epackage.EPackageWrapper;
-import org.eclipse.egf.core.epackage.ERootWrapper;
+import org.eclipse.egf.core.epackage.IProxyEPackage;
+import org.eclipse.egf.core.epackage.IProxyERoot;
+import org.eclipse.egf.core.epackage.ProxyFactory;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.egf.core.platform.loader.BundleClassLoaderFactory;
-import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 public final class PlatformGenModel extends PlatformExtensionPointURI implements IPlatformGenModel {
 
@@ -100,29 +92,33 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
     }
 
     public URI getEPackageNsURI(URI uri) {
+        return getEPackageNsURI(uri, null);
+    }
+
+    public URI getEPackageNsURI(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
         if (uri == null) {
             return null;
         }
         // Load the static resource
-        URI innerUri = uri;
         try {
             if (getBundle() == null) {
-                IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
-            }
-            EPackage ePackage = getEPackage();
-            if (ePackage != null && uri.hasFragment()) {
-                EObject eObject = ePackage.eResource().getEObject(uri.fragment());
-                if (eObject != null) {
-                    ePackage = EMFHelper.getEPackage(eObject);
-                    if (ePackage != null) {
-                        innerUri = URI.createURI(ePackage.getNsURI());
+                IClassLoader loader = null;
+                if (loaders != null) {
+                    loader = loaders.get(getPluginModelBase());
+                    if (loader == null) {
+                        loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
+                        loaders.put(getPluginModelBase(), loader);
                     }
+                } else {
+                    loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
                 }
+                return EMFHelper.getEPackageNsURI(loader, getGeneratedPackage(), uri);
             }
+            return EMFHelper.getEPackageNsURI(getEPackage(), uri);
         } catch (Throwable t) {
             EGFCorePlugin.getDefault().logError(t);
         }
-        return innerUri;
+        return null;
     }
 
     public static String getBasePackage(IPlatformGenModel genModel) {
@@ -132,69 +128,6 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
             return null;
         }
         return classname.substring(0, index);
-    }
-
-    public static ERootWrapper buildERootWrapper(IPlatformGenModel genModel) {
-        // EPackage
-        EPackage ePackage = genModel.getEPackage();
-        if (ePackage == null) {
-            return null;
-        }
-        // ERootWrapepr
-        ERootWrapper root = new ERootWrapper(genModel.getNsURI());
-        // EPackageWrapper
-        EPackageWrapper wrapper = new EPackageWrapper(root, ePackage.getName(), genModel.getNsURI());
-        root.getChildren().add(wrapper);
-        // EClassifiers
-        for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-            wrapper.getChildren().add(buildEObjectWrapper(wrapper, eClassifier));
-        }
-        return root;
-    }
-
-    public static EClassifierWrapper buildEObjectWrapper(EPackageWrapper wrapper, EClassifier eClassifier) {
-        if (eClassifier instanceof EClass) {
-            return new EClassWrapper(wrapper, eClassifier.getName(), EcoreUtil.getURI(eClassifier));
-        }
-        return new EDataTypeWrapper(wrapper, eClassifier.getName(), EcoreUtil.getURI(eClassifier));
-    }
-
-    @SuppressWarnings("rawtypes")
-    public static ERootWrapper buildERootWrapper(IBundleClassLoader loader, IPlatformGenModel genModel) throws IllegalArgumentException, IllegalAccessException, SecurityException, NoSuchFieldException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
-        // EPackage
-        Class<?> clazz = loader.loadClass(genModel.getGeneratedPackage());
-        Field field = clazz.getField("eINSTANCE"); //$NON-NLS-1$
-        Object object = field.get(null);
-        Method method = clazz.getMethod("getNsURI", new Class[] {}); //$NON-NLS-1$
-        String nsURI = (String) method.invoke(object);
-        method = clazz.getMethod("getName", new Class[] {}); //$NON-NLS-1$
-        String name = (String) method.invoke(object);
-        // ERootWrapper
-        ERootWrapper root = new ERootWrapper(URI.createURI(nsURI));
-        // EPackageWrapper
-        EPackageWrapper wrapper = new EPackageWrapper(root, name, URI.createURI(nsURI));
-        root.getChildren().add(wrapper);
-        // EClassifiers
-        method = clazz.getMethod("getEClassifiers", new Class[] {}); //$NON-NLS-1$
-        for (Object innerObject : (List) method.invoke(object)) {
-            wrapper.getChildren().add(buildEObjectWrapper(loader, wrapper, innerObject));
-        }
-        return root;
-    }
-
-    public static EClassifierWrapper buildEObjectWrapper(IBundleClassLoader loader, EPackageWrapper wrapper, Object object) throws IllegalArgumentException, IllegalAccessException, SecurityException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
-        Method getName = object.getClass().getMethod("getName", new Class[] {}); //$NON-NLS-1$
-        String name = (String) getName.invoke(object);
-        // Solve EClassifier URI against EcoreUtil
-        Class<?> ecoreUtil = loader.loadClass("org.eclipse.emf.ecore.util.EcoreUtil"); //$NON-NLS-1$
-        Class<?> eObject = loader.loadClass("org.eclipse.emf.ecore.EObject"); //$NON-NLS-1$
-        Method getUri = ecoreUtil.getMethod("getURI", new Class[] { eObject}); //$NON-NLS-1$
-        Object uri = getUri.invoke(ecoreUtil, eObject.cast(object));
-        // Build wrapper
-        if ("org.eclipse.emf.ecore.impl.EClassImpl".equals(object.getClass().getName())) { //$NON-NLS-1$
-            return new EClassWrapper(wrapper, name, URI.createURI(uri.toString()));
-        }
-        return new EDataTypeWrapper(wrapper, name, URI.createURI(uri.toString()));
     }
 
     public PlatformGenModel(IPlatformBundle bundle, String uri, String className, String genModel) {
@@ -271,22 +204,39 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         return getBasePackage(this);
     }
 
-    public EPackageWrapper getEPackageWrapper() {
-        ERootWrapper wrapper = getERootWrapper();
-        if (wrapper != null && wrapper.getChildren().size() == 1) {
-            return wrapper.getChildren().get(0);
+    public IProxyEPackage getIProxyEPackage() {
+        return getIProxyEPackage(null);
+    }
+
+    public IProxyEPackage getIProxyEPackage(Map<IPluginModelBase, IClassLoader> loaders) {
+        IProxyERoot wrapper = getIProxyERoot(loaders);
+        if (wrapper != null && wrapper.getChildren().length == 1) {
+            return wrapper.getChildren()[0];
         }
         return null;
     }
 
-    public ERootWrapper getERootWrapper() {
+    public IProxyERoot getIProxyERoot() {
+        return getIProxyERoot(null);
+    }
+
+    public IProxyERoot getIProxyERoot(Map<IPluginModelBase, IClassLoader> loaders) {
         // Load the static resource
         try {
             if (getBundle() == null) {
-                IBundleClassLoader loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
-                return buildERootWrapper(loader, this);
+                IClassLoader loader = null;
+                if (loaders != null) {
+                    loader = loaders.get(getPluginModelBase());
+                    if (loader == null) {
+                        loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
+                        loaders.put(getPluginModelBase(), loader);
+                    }
+                } else {
+                    loader = BundleClassLoaderFactory.getBundleClassLoader(getPluginModelBase());
+                }
+                return ProxyFactory.buildIProxyERoot(loader, this);
             }
-            return buildERootWrapper(this);
+            return ProxyFactory.buildIProxyERoot(this);
         } catch (Throwable t) {
             EGFCorePlugin.getDefault().logError(t);
         }
@@ -297,7 +247,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         if (getBundle() != null) {
             return EPackage.Registry.INSTANCE.getEPackage(getNsURI().toString());
         }
-        return null;
+        throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", getNsURI())); //$NON-NLS-1$
     }
 
     @Override
