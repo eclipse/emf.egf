@@ -201,7 +201,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
                 }
             }
             // Cannot associate a Bundle to a target platform fcore
-            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, _fcore.getURI()), null)));
+            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, _fcore.getPlatformBundle().getBundleId()), null)));
         }
         // Memory takes its bundle from its parent
         if (getParent() != null) {
