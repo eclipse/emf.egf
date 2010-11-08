@@ -66,6 +66,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISharedImages;
@@ -241,7 +242,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
                     context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.FALSE);
                 }
                 // Bundle Class Loader Map
-                context.put(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP, new HashMap<Resource, IBundleClassLoader>());
+                context.put(IBundleClassLoader.BUNDLE_CLASS_LOADER_MAP, new HashMap<IPluginModelBase, IBundleClassLoader>());
                 // Validation
                 for (EObject eObject : selectedObjects) {
                     progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject)})); //$NON-NLS-1$
