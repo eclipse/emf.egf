@@ -39,6 +39,7 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -151,8 +152,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     protected Map<String, EClass> roots = new HashMap<String, EClass>();
 
     /**
-   * 
-   */
+    * 
+    */
     protected FcoreResourceItemProviderAdapterFactory factory;
 
     /**
@@ -236,6 +237,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                 return sourceFolders;
             }
         };
+
         try {
             getContainer().run(false, false, convertOperation);
         } catch (Throwable t) {
@@ -244,6 +246,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
 
         // Save resource
         if (throwable[0] == null) {
+
             WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 
                 @Override
@@ -252,8 +255,15 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                     // Retrieve our editing domain
                     final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
                     try {
+                        // Clear previous on error resources
+                        URI uri = URIHelper.getPlatformPluginURI(modelFile.getFullPath());
+                        Resource previousResource = editingDomain.getResourceSet().getResource(uri, false);
+                        if (previousResource != null && previousResource.getContents().size() == 0 && previousResource.getErrors().isEmpty() == false) {
+                            previousResource.unload();
+                            previousResource.getResourceSet().getResources().remove(previousResource);
+                        }
                         // Create a resource for this file.
-                        final Resource resource = editingDomain.getResourceSet().createResource(URIHelper.getPlatformPluginURI(modelFile.getFullPath()));
+                        final Resource resource = editingDomain.getResourceSet().createResource(uri);
                         // Add the initial model object to the contents.
                         if (rootObject != null) {
                             editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
@@ -262,6 +272,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                                 protected void doExecute() {
                                     resource.getContents().add(rootObject);
                                 }
+
                             });
                         }
                         editingDomain.runExclusive(new Runnable() {
@@ -273,17 +284,20 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                                     throwable[0] = t;
                                 }
                             }
+
                         });
                     } catch (InterruptedException ie) {
                         throwable[0] = ie;
                     }
                 }
             };
+
             try {
                 getContainer().run(false, true, operation);
             } catch (Throwable t) {
                 throwable[0] = t;
             }
+
         }
 
         // Select the new file resource in the current view.
@@ -298,6 +312,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                     public void run() {
                         ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
                     }
+
                 });
             }
             // Open an editor on the new file.
