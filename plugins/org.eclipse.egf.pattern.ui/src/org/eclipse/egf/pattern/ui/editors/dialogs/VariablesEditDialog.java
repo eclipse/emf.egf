@@ -16,7 +16,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
-import org.eclipse.egf.core.epackage.EObjectWrapper;
+import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
@@ -131,8 +131,8 @@ public class VariablesEditDialog extends SelectionStatusDialog {
                 WizardDialog dialog = new WizardDialog(getShell(), wizard);
                 if (dialog.open() == Window.OK) {
                     Object object = wizard.getSelectType();
-                    if (object instanceof EObjectWrapper) {
-                        _type = ((EObjectWrapper) object).getNsURI().toString();
+                    if (object instanceof IProxyEObject) {
+                        _type = ((IProxyEObject) object).getURI().toString();
                         _typeText.setText(ParametersTableLabelProvider.getType(_type));
                     } else if (object instanceof IType) {
                         _type = ((IType) object).getFullyQualifiedName();
