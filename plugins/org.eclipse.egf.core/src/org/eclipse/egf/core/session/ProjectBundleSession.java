@@ -99,7 +99,7 @@ public final class ProjectBundleSession {
         // Gather target bundles to uninstall including base
         List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(base);
         // Uninstall target bundles if any
-        uninstallTargetBundle(workspaceModels);
+        uninstallWorkspaceBundle(workspaceModels);
         // Install workspace bundle
         List<Bundle> bundles = new UniqueEList<Bundle>();
         for (IPluginModelBase workspaceModel : workspaceModels) {
@@ -129,7 +129,7 @@ public final class ProjectBundleSession {
         return Platform.getBundle(BundleHelper.getBundleId(base));
     }
 
-    private void uninstallTargetBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
+    private void uninstallWorkspaceBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
         List<Bundle> bundles = new UniqueEList<Bundle>();
         // Uninstall Target Bundle
         for (IPluginModelBase workspaceModel : workspaceModels) {
@@ -149,7 +149,7 @@ public final class ProjectBundleSession {
             bundles.add(bundle);
             _uninstalled.add(bundle.getLocation());
             if (EGFCoreDebug.isDebugBundleSession()) {
-                EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
+                EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
             }
         }
         // Refresh uninstalled target bundles if any
@@ -403,7 +403,7 @@ public final class ProjectBundleSession {
                 bundlesToBeRefreshed.add(bundle);
                 // Tracing
                 if (EGFCoreDebug.isDebugBundleSession()) {
-                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
                 }
             }
             refreshPackages(bundlesToBeRefreshed.toArray(new Bundle[bundlesToBeRefreshed.size()]));
