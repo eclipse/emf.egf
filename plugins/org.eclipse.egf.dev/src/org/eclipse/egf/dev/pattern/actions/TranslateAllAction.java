@@ -36,6 +36,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -81,6 +82,7 @@ public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
                 MultiStatus statii = new MultiStatus(Activator.getDefault().getPluginID(), IStatus.ERROR, EGFPatternMessages.PatternTranslation_exception, null);
                 try {
+                    ParameterTypeHelper.INSTANCE.clearProxies();
                     TranslationHelper.translate(monitor, patterns);
                 } catch (OperationCanceledException oce) {
                     throw oce;
@@ -92,11 +94,14 @@ public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
                     }
                 } finally {
                     monitor.done();
+                    ParameterTypeHelper.INSTANCE.clearProxies();
                 }
                 return statii.getChildren().length != 0 ? statii : Status.OK_STATUS;
 
             }
+
         };
+
         job.setRule(ProjectHelper.getRule(projects));
         job.schedule();
 
