@@ -30,7 +30,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.epackage.EObjectWrapper;
+import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternFactory;
@@ -900,8 +900,8 @@ public class SpecificationPage extends PatternEditorPage {
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 if (dialog.open() == Window.OK) {
                     Object object = wizard.getSelectType();
-                    if (object instanceof EObjectWrapper) {
-                        updateType(((EObjectWrapper) object).getNsURI().toString());
+                    if (object instanceof IProxyEObject) {
+                        updateType(((IProxyEObject) object).getURI().toString());
                     } else if (wizard.getSelectType() instanceof IType) {
                         updateType(((IType) object).getFullyQualifiedName());
                     }
