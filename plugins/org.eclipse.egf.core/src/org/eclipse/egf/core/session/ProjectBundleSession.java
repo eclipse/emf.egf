@@ -92,14 +92,14 @@ public final class ProjectBundleSession {
      *          Model of the bundle to be installed.
      */
     private Bundle installBundle(IPluginModelBase base) throws CoreException {
-        // In case we face a target bundle, we do nothing
+        // We only load workspace model
         if (getLocation(base) == null) {
             return null;
         }
-        // Gather target bundles to uninstall including base
+        // Gather runtime bundles to uninstall including base
         List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(base);
-        // Uninstall target bundles if any
-        uninstallWorkspaceBundle(workspaceModels);
+        // Uninstall runtime bundles if any
+        uninstallRuntimeBundle(workspaceModels);
         // Install workspace bundle
         List<Bundle> bundles = new UniqueEList<Bundle>();
         for (IPluginModelBase workspaceModel : workspaceModels) {
@@ -117,27 +117,29 @@ public final class ProjectBundleSession {
             // Store
             bundles.add(bundle);
             _projectBundles.put(location, bundle);
-            if (EGFCoreDebug.isDebugBundleSession()) {
-                EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
-            }
         }
         // Refresh installed workspace bundles if any
         if (bundles.isEmpty() == false) {
-            refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+            refreshPackages(null);
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                for (Bundle bundle : bundles) {
+                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
+                }
+            }
         }
         // Return our base bundle
         return Platform.getBundle(BundleHelper.getBundleId(base));
     }
 
-    private void uninstallWorkspaceBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
+    private void uninstallRuntimeBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
         List<Bundle> bundles = new UniqueEList<Bundle>();
-        // Uninstall Target Bundle
+        // Uninstall Runtime Bundle
         for (IPluginModelBase workspaceModel : workspaceModels) {
             // Ignore already uninstalled bundle
             if (_projectBundles.get(getLocation(workspaceModel)) != null) {
                 continue;
             }
-            // Uninstall
+            // Uninstall Runtime if any
             Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(workspaceModel));
             if (bundle == null) {
                 continue;
@@ -148,13 +150,15 @@ public final class ProjectBundleSession {
             // Store
             bundles.add(bundle);
             _uninstalled.add(bundle.getLocation());
-            if (EGFCoreDebug.isDebugBundleSession()) {
-                EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
-            }
         }
-        // Refresh uninstalled target bundles if any
+        // Refresh uninstalled runtime bundles if any
         if (bundles.isEmpty() == false) {
-            refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+            refreshPackages(null);
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                for (Bundle bundle : bundles) {
+                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
+                }
+            }
         }
         return;
     }
@@ -185,10 +189,13 @@ public final class ProjectBundleSession {
             }
         }
 
-        if (isTargetBundlePriority())
-            for (IPluginModelBase iPluginModelBase : new ArrayList<IPluginModelBase>(dependencies))
-                if (Platform.getBundle(iPluginModelBase.getBundleDescription().getSymbolicName()) != null)
-                    dependencies.remove(iPluginModelBase);
+        if (isTargetBundlePriority()) {
+            for (IPluginModelBase innerBase : new ArrayList<IPluginModelBase>(dependencies)) {
+                if (Platform.getBundle(innerBase.getBundleDescription().getSymbolicName()) != null) {
+                    dependencies.remove(innerBase);
+                }
+            }
+        }
 
         return dependencies;
     }
@@ -346,6 +353,7 @@ public final class ProjectBundleSession {
                         }
                     }
                 }
+
             };
             _context.addFrameworkListener(listener);
             packageAdmin.refreshPackages(bundles);
@@ -378,7 +386,7 @@ public final class ProjectBundleSession {
      */
     public void dispose() throws CoreException {
         // Reinstall bundle collector
-        final List<Bundle> bundlesToBeRefreshed = new UniqueEList<Bundle>(_uninstalled.size());
+        final List<Bundle> uninstalledBundles = new UniqueEList<Bundle>(_uninstalled.size());
         // Tracing
         if (EGFCoreDebug.isDebugBundleSession()) {
             if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
@@ -386,27 +394,35 @@ public final class ProjectBundleSession {
             }
         }
         // Uninstall workspace bundle
-        if (_projectBundles.isEmpty() == false) {
-            for (Bundle bundle : _projectBundles.values()) {
-                uninstallBundle(bundle);
-                // Tracing
-                if (EGFCoreDebug.isDebugBundleSession()) {
-                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+        if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
+            // Uninstall bundle
+            if (_projectBundles.isEmpty() == false) {
+                for (Bundle bundle : _projectBundles.values()) {
+                    uninstallBundle(bundle);
+                }
+                // Refresh Packages
+                refreshPackages(null);
+            }
+            if (_uninstalled.isEmpty() == false) {
+                for (String location : _uninstalled) {
+                    uninstalledBundles.add(installBundle(location));
+                }
+                // Refresh Packages
+                refreshPackages(null);
+            }
+            // Tracing            
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                if (_projectBundles.isEmpty() == false) {
+                    for (Bundle bundle : _projectBundles.values()) {
+                        EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+                    }
+                }
+                if (_uninstalled.isEmpty() == false) {
+                    for (Bundle bundle : uninstalledBundles) {
+                        EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+                    }
                 }
             }
-            refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
-        }
-        // Install target bundles
-        if (_uninstalled.isEmpty() == false) {
-            for (String location : _uninstalled) {
-                Bundle bundle = installBundle(location);
-                bundlesToBeRefreshed.add(bundle);
-                // Tracing
-                if (EGFCoreDebug.isDebugBundleSession()) {
-                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
-                }
-            }
-            refreshPackages(bundlesToBeRefreshed.toArray(new Bundle[bundlesToBeRefreshed.size()]));
         }
         // Final
         _projectBundles.clear();
