@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class InvocationContractContainerImpl extends ModelElementImpl implements InvocationContractContainer {
+
     /**
      * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' containment reference list.
      * <!-- begin-user-doc -->
@@ -149,12 +150,12 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetInvocation((Invocation) otherEnd, msgs);
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetInvocation((Invocation) otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -167,10 +168,10 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            return basicSetInvocation(null, msgs);
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-            return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                return basicSetInvocation(null, msgs);
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+                return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -183,8 +184,8 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER, Invocation.class, msgs);
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER, Invocation.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -197,10 +198,10 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            return getInvocation();
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-            return getInvocationContracts();
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                return getInvocation();
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+                return getInvocationContracts();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -214,13 +215,13 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            setInvocation((Invocation) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-            getInvocationContracts().clear();
-            getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
-            return;
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                setInvocation((Invocation) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+                getInvocationContracts().clear();
+                getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -233,12 +234,12 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            setInvocation((Invocation) null);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-            getInvocationContracts().clear();
-            return;
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                setInvocation((Invocation) null);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+                getInvocationContracts().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -251,10 +252,10 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
-            return getInvocation() != null;
-        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-            return invocationContracts != null && !invocationContracts.isEmpty();
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION:
+                return getInvocation() != null;
+            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+                return invocationContracts != null && !invocationContracts.isEmpty();
         }
         return super.eIsSet(featureID);
     }

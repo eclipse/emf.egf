@@ -269,42 +269,42 @@ public interface FprodPackage extends EPackage {
     interface Literals {
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.fprod.impl.ProductionPlanImpl <em>Production Plan</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.fprod.impl.ProductionPlanImpl <em>Production Plan</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.fprod.impl.ProductionPlanImpl
-        	 * @see org.eclipse.egf.model.fprod.impl.FprodPackageImpl#getProductionPlan()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.fprod.impl.ProductionPlanImpl
+         * @see org.eclipse.egf.model.fprod.impl.FprodPackageImpl#getProductionPlan()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass PRODUCTION_PLAN = eINSTANCE.getProductionPlan();
 
         /**
-        	 * The meta object literal for the '<em><b>Invocations</b></em>' containment reference list feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Invocations</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference PRODUCTION_PLAN__INVOCATIONS = eINSTANCE.getProductionPlan_Invocations();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.fprod.impl.ProductionPlanInvocationImpl <em>Production Plan Invocation</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.fprod.impl.ProductionPlanInvocationImpl <em>Production Plan Invocation</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.fprod.impl.ProductionPlanInvocationImpl
-        	 * @see org.eclipse.egf.model.fprod.impl.FprodPackageImpl#getProductionPlanInvocation()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.fprod.impl.ProductionPlanInvocationImpl
+         * @see org.eclipse.egf.model.fprod.impl.FprodPackageImpl#getProductionPlanInvocation()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass PRODUCTION_PLAN_INVOCATION = eINSTANCE.getProductionPlanInvocation();
 
         /**
-        	 * The meta object literal for the '<em><b>Production Plan</b></em>' container reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Production Plan</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN = eINSTANCE.getProductionPlanInvocation_ProductionPlan();
 

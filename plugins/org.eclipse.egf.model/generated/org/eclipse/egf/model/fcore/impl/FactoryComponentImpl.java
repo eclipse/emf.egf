@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
+
     /**
      * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -176,6 +178,23 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public EList<Resource> getResources() {
+        UniqueEList<Resource> resources = new UniqueEList<Resource>();
+        if (eResource() != null) {
+            resources.add(eResource());
+        }
+        if (getOrchestration() != null) {
+            resources.addAll(getOrchestration().getResources());
+        }
+        return resources;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -251,14 +270,14 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            if (viewpointContainer != null)
-                msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
-            return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
-        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-            if (orchestration != null)
-                msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
-            return basicSetOrchestration((Orchestration) otherEnd, msgs);
+            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+                if (viewpointContainer != null)
+                    msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
+                return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
+            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+                if (orchestration != null)
+                    msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
+                return basicSetOrchestration((Orchestration) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -271,10 +290,10 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            return basicSetViewpointContainer(null, msgs);
-        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-            return basicSetOrchestration(null, msgs);
+            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+                return basicSetViewpointContainer(null, msgs);
+            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+                return basicSetOrchestration(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -287,10 +306,10 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            return getViewpointContainer();
-        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-            return getOrchestration();
+            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+                return getViewpointContainer();
+            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+                return getOrchestration();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -303,12 +322,12 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            setViewpointContainer((ViewpointContainer) newValue);
-            return;
-        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-            setOrchestration((Orchestration) newValue);
-            return;
+            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+                setViewpointContainer((ViewpointContainer) newValue);
+                return;
+            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+                setOrchestration((Orchestration) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -321,12 +340,12 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            setViewpointContainer((ViewpointContainer) null);
-            return;
-        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-            setOrchestration((Orchestration) null);
-            return;
+            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+                setViewpointContainer((ViewpointContainer) null);
+                return;
+            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+                setOrchestration((Orchestration) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -339,10 +358,10 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            return viewpointContainer != null;
-        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-            return orchestration != null;
+            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+                return viewpointContainer != null;
+            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+                return orchestration != null;
         }
         return super.eIsSet(featureID);
     }

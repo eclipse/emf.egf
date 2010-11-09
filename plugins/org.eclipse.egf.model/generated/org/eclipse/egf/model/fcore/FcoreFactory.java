@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface FcoreFactory extends EFactory {
+
     /**
      * The singleton instance of the factory.
      * <!-- begin-user-doc -->

@@ -51,6 +51,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -222,6 +223,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
         // Register package validator
         EValidator.Registry.INSTANCE.put(theFcorePackage, new EValidator.Descriptor() {
+
             public EValidator getEValidator() {
                 return FcoreValidator.INSTANCE;
             }
@@ -835,15 +837,22 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         initEAttribute(getModelElement_ID(), theEcorePackage.getEString(), "iD", null, 0, 1, ModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getModelElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+        EOperation op = addEOperation(modelElementEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        EGenericType g1 = createEGenericType(theEcorePackage.getEEList());
+        EGenericType g2 = createEGenericType(theEcorePackage.getEResource());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
         initEClass(namedModelElementEClass, NamedModelElement.class, "NamedModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEAttribute(getNamedModelElement_Name(), theEcorePackage.getEString(), "name", null, 0, 1, NamedModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(activityEClass, Activity.class, "Activity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getActivity_ContractContainer(), this.getContractContainer(), this.getContractContainer_Activity(), "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getActivity_ContractContainer(), this.getContractContainer(), this.getContractContainer_Activity(),
+                "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-        EOperation op = addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        op = addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -857,7 +866,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getContract_ContractContainer(), this.getContractContainer(), this.getContractContainer_Contracts(), "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getContract_ContractContainer(), this.getContractContainer(), this.getContractContainer_Contracts(),
+                "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getContract_Mandatory(), theEcorePackage.getEBoolean(), "mandatory", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getContract_Mode(), this.getContractMode(), "mode", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getContract_Type(), theTypesPackage.getType(), null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -877,8 +887,16 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(factoryComponentEClass, FactoryComponent.class, "FactoryComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getFactoryComponent_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_FactoryComponent(), "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getFactoryComponent_Orchestration(), this.getOrchestration(), this.getOrchestration_FactoryComponent(), "orchestration", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getFactoryComponent_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_FactoryComponent(),
+                "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getFactoryComponent_Orchestration(), this.getOrchestration(), this.getOrchestration_FactoryComponent(),
+                "orchestration", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(factoryComponentEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEEList());
+        g2 = createEGenericType(theEcorePackage.getEResource());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
 
         addEOperation(factoryComponentEClass, this.getInvocationContract(), "getInvocationContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
@@ -907,24 +925,30 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(factoryComponentContractEClass, FactoryComponentContract.class, "FactoryComponentContract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getFactoryComponentContract_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_FactoryComponentContract(), "invocationContracts", null, 0, -1, FactoryComponentContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getFactoryComponentContract_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_FactoryComponentContract(),
+                "invocationContracts", null, 0, -1, FactoryComponentContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(viewpointContainerEClass, ViewpointContainer.class, "ViewpointContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getViewpointContainer_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_ViewpointContainer(), "factoryComponent", null, 1, 1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getViewpointContainer_Viewpoints(), this.getViewpoint(), this.getViewpoint_ViewpointContainer(), "viewpoints", null, 0, -1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getViewpointContainer_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_ViewpointContainer(),
+                "factoryComponent", null, 1, 1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getViewpointContainer_Viewpoints(), this.getViewpoint(), this.getViewpoint_ViewpointContainer(),
+                "viewpoints", null, 0, -1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(viewpointContainerEClass, this.getViewpoint(), "getViewpoint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        EGenericType g1 = createEGenericType(theEcorePackage.getEJavaClass());
-        EGenericType g2 = createEGenericType();
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(viewpointEClass, Viewpoint.class, "Viewpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getViewpoint_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_Viewpoints(), "viewpointContainer", null, 1, 1, Viewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getViewpoint_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_Viewpoints(),
+                "viewpointContainer", null, 1, 1, Viewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(orchestrationEClass, Orchestration.class, "Orchestration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getOrchestration_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_Orchestration(), "factoryComponent", null, 1, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getOrchestration_OrchestrationParameterContainer(), this.getOrchestrationParameterContainer(), this.getOrchestrationParameterContainer_Orchestration(), "orchestrationParameterContainer", null, 0, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getOrchestration_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_Orchestration(),
+                "factoryComponent", null, 1, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getOrchestration_OrchestrationParameterContainer(), this.getOrchestrationParameterContainer(), this.getOrchestrationParameterContainer_Orchestration(),
+                "orchestrationParameterContainer", null, 0, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(orchestrationEClass, null, "getInvocations", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         ETypeParameter t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
@@ -951,8 +975,10 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(orchestrationParameterContainerEClass, OrchestrationParameterContainer.class, "OrchestrationParameterContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getOrchestrationParameterContainer_Orchestration(), this.getOrchestration(), this.getOrchestration_OrchestrationParameterContainer(), "orchestration", null, 1, 1, OrchestrationParameterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getOrchestrationParameterContainer_OrchestrationParameters(), this.getOrchestrationParameter(), this.getOrchestrationParameter_OrchestrationParameterContainer(), "orchestrationParameters", null, 0, -1, OrchestrationParameterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getOrchestrationParameterContainer_Orchestration(), this.getOrchestration(), this.getOrchestration_OrchestrationParameterContainer(),
+                "orchestration", null, 1, 1, OrchestrationParameterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getOrchestrationParameterContainer_OrchestrationParameters(), this.getOrchestrationParameter(), this.getOrchestrationParameter_OrchestrationParameterContainer(),
+                "orchestrationParameters", null, 0, -1, OrchestrationParameterContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(orchestrationParameterContainerEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
@@ -960,8 +986,10 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(orchestrationParameterEClass, OrchestrationParameter.class, "OrchestrationParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getOrchestrationParameter_OrchestrationParameterContainer(), this.getOrchestrationParameterContainer(), this.getOrchestrationParameterContainer_OrchestrationParameters(), "orchestrationParameterContainer", null, 1, 1, OrchestrationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getOrchestrationParameter_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_OrchestrationParameter(), "invocationContracts", null, 0, -1, OrchestrationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getOrchestrationParameter_OrchestrationParameterContainer(), this.getOrchestrationParameterContainer(), this.getOrchestrationParameterContainer_OrchestrationParameters(),
+                "orchestrationParameterContainer", null, 1, 1, OrchestrationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getOrchestrationParameter_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_OrchestrationParameter(),
+                "invocationContracts", null, 0, -1, OrchestrationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getOrchestrationParameter_Type(), theTypesPackage.getType(), null, "type", null, 1, 1, OrchestrationParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(orchestrationParameterEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -969,7 +997,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEOperation(orchestrationParameterEClass, this.getOrchestration(), "getOrchestration", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(invocationEClass, Invocation.class, "Invocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getInvocation_InvocationContractContainer(), this.getInvocationContractContainer(), this.getInvocationContractContainer_Invocation(), "invocationContractContainer", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocation_InvocationContractContainer(), this.getInvocationContractContainer(), this.getInvocationContractContainer_Invocation(),
+                "invocationContractContainer", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getInvocation_InvokedActivity(), this.getActivity(), null, "invokedActivity", null, 1, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(invocationEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -999,17 +1028,24 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(invocationContractContainerEClass, InvocationContractContainer.class, "InvocationContractContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getInvocationContractContainer_Invocation(), this.getInvocation(), this.getInvocation_InvocationContractContainer(), "invocation", null, 1, 1, InvocationContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getInvocationContractContainer_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_InvocationContractContainer(), "invocationContracts", null, 0, -1, InvocationContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContractContainer_Invocation(), this.getInvocation(), this.getInvocation_InvocationContractContainer(),
+                "invocation", null, 1, 1, InvocationContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContractContainer_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_InvocationContractContainer(),
+                "invocationContracts", null, 0, -1, InvocationContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         addEOperation(invocationContractContainerEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(invocationContractEClass, InvocationContract.class, "InvocationContract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getInvocationContract_InvocationContractContainer(), this.getInvocationContractContainer(), this.getInvocationContractContainer_InvocationContracts(), "invocationContractContainer", null, 1, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getInvocationContract_FactoryComponentContract(), this.getFactoryComponentContract(), this.getFactoryComponentContract_InvocationContracts(), "factoryComponentContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getInvocationContract_OrchestrationParameter(), this.getOrchestrationParameter(), this.getOrchestrationParameter_InvocationContracts(), "orchestrationParameter", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getInvocationContract_SourceInvocationContract(), this.getInvocationContract(), this.getInvocationContract_TargetInvocationContract(), "sourceInvocationContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getInvocationContract_TargetInvocationContract(), this.getInvocationContract(), this.getInvocationContract_SourceInvocationContract(), "targetInvocationContract", null, 0, -1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContract_InvocationContractContainer(), this.getInvocationContractContainer(), this.getInvocationContractContainer_InvocationContracts(),
+                "invocationContractContainer", null, 1, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContract_FactoryComponentContract(), this.getFactoryComponentContract(), this.getFactoryComponentContract_InvocationContracts(),
+                "factoryComponentContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContract_OrchestrationParameter(), this.getOrchestrationParameter(), this.getOrchestrationParameter_InvocationContracts(),
+                "orchestrationParameter", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContract_SourceInvocationContract(), this.getInvocationContract(), this.getInvocationContract_TargetInvocationContract(),
+                "sourceInvocationContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getInvocationContract_TargetInvocationContract(), this.getInvocationContract(), this.getInvocationContract_SourceInvocationContract(),
+                "targetInvocationContract", null, 0, -1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getInvocationContract_InvokedContract(), this.getContract(), null, "invokedContract", null, 1, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getInvocationContract_Type(), theTypesPackage.getType(), null, "type", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -1041,22 +1077,33 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(activityEClass, source, new String[] { "constraints", "MandatoryName ActivityCycle" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(activityEClass, source, new String[] {
+                "constraints", "MandatoryName ActivityCycle" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(contractEClass, source, new String[] { "constraints", "UniqueName UselessMandatoryMode" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(contractEClass, source, new String[] {
+                "constraints", "UniqueName UselessMandatoryMode" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(contractContainerEClass, source, new String[] { "constraints", "FactoryComponentContract" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(contractContainerEClass, source, new String[] {
+                "constraints", "FactoryComponentContract" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(factoryComponentContractEClass, source, new String[] { "constraints", "UselessFactoryComponentContract OutModeIsRestricted" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(factoryComponentContractEClass, source, new String[] {
+                "constraints", "UselessFactoryComponentContract OutModeIsRestricted" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(orchestrationParameterContainerEClass, source, new String[] { "constraints", "UselessOrchestrationParameterContainer" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(orchestrationParameterContainerEClass, source, new String[] {
+                "constraints", "UselessOrchestrationParameterContainer" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(orchestrationParameterEClass, source, new String[] { "constraints", "UselessOrchestrationParameter" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(orchestrationParameterEClass, source, new String[] {
+                "constraints", "UselessOrchestrationParameter" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(invocationEClass, source, new String[] { "constraints", "MandatoryInvokedContract" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(invocationEClass, source, new String[] {
+                "constraints", "MandatoryInvokedContract" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(invocationContractEClass, source, new String[] { "constraints", "ValidInvokedContract ValidInvokedContractType ValidFactoryComponentContract ValidFactoryComponentContractType ValidOrchestrationParameter ValidOrchestrationParameterType ValidSourceInvocationContract ValidSourceInvocationContractType UselessTypeValue UselessInvocationContract" //$NON-NLS-1$ //$NON-NLS-2$
-        });
+        addAnnotation(
+                invocationContractEClass,
+                source,
+                new String[] {
+                        "constraints", "ValidInvokedContract ValidInvokedContractType ValidFactoryComponentContract ValidFactoryComponentContractType ValidOrchestrationParameter ValidOrchestrationParameterType ValidSourceInvocationContract ValidSourceInvocationContractType UselessTypeValue UselessInvocationContract" //$NON-NLS-1$ //$NON-NLS-2$
+                });
     }
 
 } // FcorePackageImpl

@@ -203,12 +203,12 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetActivity((Activity) otherEnd, msgs);
-        case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getContracts()).basicAdd(otherEnd, msgs);
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetActivity((Activity) otherEnd, msgs);
+            case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getContracts()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -221,10 +221,10 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            return basicSetActivity(null, msgs);
-        case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
-            return ((InternalEList<?>) getContracts()).basicRemove(otherEnd, msgs);
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                return basicSetActivity(null, msgs);
+            case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
+                return ((InternalEList<?>) getContracts()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -237,8 +237,8 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.ACTIVITY__CONTRACT_CONTAINER, Activity.class, msgs);
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.ACTIVITY__CONTRACT_CONTAINER, Activity.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -251,10 +251,10 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            return getActivity();
-        case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
-            return getContracts();
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                return getActivity();
+            case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
+                return getContracts();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -268,13 +268,13 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            setActivity((Activity) newValue);
-            return;
-        case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
-            getContracts().clear();
-            getContracts().addAll((Collection<? extends Contract>) newValue);
-            return;
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                setActivity((Activity) newValue);
+                return;
+            case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
+                getContracts().clear();
+                getContracts().addAll((Collection<? extends Contract>) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -287,12 +287,12 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            setActivity((Activity) null);
-            return;
-        case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
-            getContracts().clear();
-            return;
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                setActivity((Activity) null);
+                return;
+            case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
+                getContracts().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -305,10 +305,10 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
-            return getActivity() != null;
-        case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
-            return contracts != null && !contracts.isEmpty();
+            case FcorePackage.CONTRACT_CONTAINER__ACTIVITY:
+                return getActivity() != null;
+            case FcorePackage.CONTRACT_CONTAINER__CONTRACTS:
+                return contracts != null && !contracts.isEmpty();
         }
         return super.eIsSet(featureID);
     }

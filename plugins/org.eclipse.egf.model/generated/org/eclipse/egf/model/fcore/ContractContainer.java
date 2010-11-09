@@ -34,6 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ContractContainer extends ModelElement {
+
     /**
      * Returns the value of the '<em><b>Activity</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>Contract Container</em>}'.

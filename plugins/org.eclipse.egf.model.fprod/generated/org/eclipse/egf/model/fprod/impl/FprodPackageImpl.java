@@ -18,8 +18,11 @@ import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -206,6 +209,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
 
         // Obtain other dependent packages
         FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
+        EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
         // Create type parameters
 
@@ -220,9 +224,21 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
         initEReference(getProductionPlan_Invocations(), this.getProductionPlanInvocation(), this.getProductionPlanInvocation_ProductionPlan(),
                 "invocations", null, 1, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+        EOperation op = addEOperation(productionPlanEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        EGenericType g1 = createEGenericType(theEcorePackage.getEEList());
+        EGenericType g2 = createEGenericType(theEcorePackage.getEResource());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
         initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_Invocations(),
                 "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(productionPlanInvocationEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEEList());
+        g2 = createEGenericType(theEcorePackage.getEResource());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
 
         addEOperation(productionPlanInvocationEClass, theFcorePackage.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 

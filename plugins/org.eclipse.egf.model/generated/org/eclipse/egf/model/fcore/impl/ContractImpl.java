@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ContractImpl extends NamedModelElementImpl implements Contract {
+
     /**
      * The default value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -352,10 +353,10 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetContractContainer((ContractContainer) otherEnd, msgs);
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetContractContainer((ContractContainer) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -368,10 +369,10 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            return basicSetContractContainer(null, msgs);
-        case FcorePackage.CONTRACT__TYPE:
-            return basicSetType(null, msgs);
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                return basicSetContractContainer(null, msgs);
+            case FcorePackage.CONTRACT__TYPE:
+                return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -384,8 +385,8 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.CONTRACT_CONTAINER__CONTRACTS, ContractContainer.class, msgs);
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.CONTRACT_CONTAINER__CONTRACTS, ContractContainer.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -398,14 +399,14 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            return getContractContainer();
-        case FcorePackage.CONTRACT__MANDATORY:
-            return isMandatory();
-        case FcorePackage.CONTRACT__MODE:
-            return getMode();
-        case FcorePackage.CONTRACT__TYPE:
-            return getType();
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                return getContractContainer();
+            case FcorePackage.CONTRACT__MANDATORY:
+                return isMandatory();
+            case FcorePackage.CONTRACT__MODE:
+                return getMode();
+            case FcorePackage.CONTRACT__TYPE:
+                return getType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -418,18 +419,18 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            setContractContainer((ContractContainer) newValue);
-            return;
-        case FcorePackage.CONTRACT__MANDATORY:
-            setMandatory((Boolean) newValue);
-            return;
-        case FcorePackage.CONTRACT__MODE:
-            setMode((ContractMode) newValue);
-            return;
-        case FcorePackage.CONTRACT__TYPE:
-            setType((Type) newValue);
-            return;
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                setContractContainer((ContractContainer) newValue);
+                return;
+            case FcorePackage.CONTRACT__MANDATORY:
+                setMandatory((Boolean) newValue);
+                return;
+            case FcorePackage.CONTRACT__MODE:
+                setMode((ContractMode) newValue);
+                return;
+            case FcorePackage.CONTRACT__TYPE:
+                setType((Type) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -442,18 +443,18 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            setContractContainer((ContractContainer) null);
-            return;
-        case FcorePackage.CONTRACT__MANDATORY:
-            setMandatory(MANDATORY_EDEFAULT);
-            return;
-        case FcorePackage.CONTRACT__MODE:
-            setMode(MODE_EDEFAULT);
-            return;
-        case FcorePackage.CONTRACT__TYPE:
-            setType((Type) null);
-            return;
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                setContractContainer((ContractContainer) null);
+                return;
+            case FcorePackage.CONTRACT__MANDATORY:
+                setMandatory(MANDATORY_EDEFAULT);
+                return;
+            case FcorePackage.CONTRACT__MODE:
+                setMode(MODE_EDEFAULT);
+                return;
+            case FcorePackage.CONTRACT__TYPE:
+                setType((Type) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -466,14 +467,14 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
-            return getContractContainer() != null;
-        case FcorePackage.CONTRACT__MANDATORY:
-            return ((flags & MANDATORY_EFLAG) != 0) != MANDATORY_EDEFAULT;
-        case FcorePackage.CONTRACT__MODE:
-            return (flags & MODE_EFLAG) != MODE_EFLAG_DEFAULT;
-        case FcorePackage.CONTRACT__TYPE:
-            return type != null;
+            case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
+                return getContractContainer() != null;
+            case FcorePackage.CONTRACT__MANDATORY:
+                return ((flags & MANDATORY_EFLAG) != 0) != MANDATORY_EDEFAULT;
+            case FcorePackage.CONTRACT__MODE:
+                return (flags & MODE_EFLAG) != MODE_EFLAG_DEFAULT;
+            case FcorePackage.CONTRACT__TYPE:
+                return type != null;
         }
         return super.eIsSet(featureID);
     }

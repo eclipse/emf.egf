@@ -45,6 +45,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
+
     /**
      * The cached value of the '{@link #getOrchestrationParameterContainer() <em>Orchestration Parameter Container</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -271,14 +272,14 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
-        case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
-            if (orchestrationParameterContainer != null)
-                msgs = ((InternalEObject) orchestrationParameterContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER, null, msgs);
-            return basicSetOrchestrationParameterContainer((OrchestrationParameterContainer) otherEnd, msgs);
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
+            case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
+                if (orchestrationParameterContainer != null)
+                    msgs = ((InternalEObject) orchestrationParameterContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER, null, msgs);
+                return basicSetOrchestrationParameterContainer((OrchestrationParameterContainer) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -291,10 +292,10 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            return basicSetFactoryComponent(null, msgs);
-        case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
-            return basicSetOrchestrationParameterContainer(null, msgs);
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                return basicSetFactoryComponent(null, msgs);
+            case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
+                return basicSetOrchestrationParameterContainer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -307,8 +308,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, FactoryComponent.class, msgs);
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, FactoryComponent.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -321,10 +322,10 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            return getFactoryComponent();
-        case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
-            return getOrchestrationParameterContainer();
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                return getFactoryComponent();
+            case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
+                return getOrchestrationParameterContainer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -337,12 +338,12 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            setFactoryComponent((FactoryComponent) newValue);
-            return;
-        case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
-            setOrchestrationParameterContainer((OrchestrationParameterContainer) newValue);
-            return;
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                setFactoryComponent((FactoryComponent) newValue);
+                return;
+            case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
+                setOrchestrationParameterContainer((OrchestrationParameterContainer) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -355,12 +356,12 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            setFactoryComponent((FactoryComponent) null);
-            return;
-        case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
-            setOrchestrationParameterContainer((OrchestrationParameterContainer) null);
-            return;
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                setFactoryComponent((FactoryComponent) null);
+                return;
+            case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
+                setOrchestrationParameterContainer((OrchestrationParameterContainer) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -373,10 +374,10 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
-            return getFactoryComponent() != null;
-        case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
-            return orchestrationParameterContainer != null;
+            case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
+                return getFactoryComponent() != null;
+            case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
+                return orchestrationParameterContainer != null;
         }
         return super.eIsSet(featureID);
     }

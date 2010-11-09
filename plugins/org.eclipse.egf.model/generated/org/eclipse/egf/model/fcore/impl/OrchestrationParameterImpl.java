@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class OrchestrationParameterImpl extends NamedModelElementImpl implements OrchestrationParameter {
+
     /**
      * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' reference list.
      * <!-- begin-user-doc -->
@@ -221,12 +222,12 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetOrchestrationParameterContainer((OrchestrationParameterContainer) otherEnd, msgs);
-        case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOrchestrationParameterContainer((OrchestrationParameterContainer) otherEnd, msgs);
+            case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -239,12 +240,12 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            return basicSetOrchestrationParameterContainer(null, msgs);
-        case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
-            return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
-        case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
-            return basicSetType(null, msgs);
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                return basicSetOrchestrationParameterContainer(null, msgs);
+            case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
+                return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
+            case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
+                return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -257,8 +258,8 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER__ORCHESTRATION_PARAMETERS, OrchestrationParameterContainer.class, msgs);
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER__ORCHESTRATION_PARAMETERS, OrchestrationParameterContainer.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -271,12 +272,12 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            return getOrchestrationParameterContainer();
-        case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
-            return getInvocationContracts();
-        case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
-            return getType();
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                return getOrchestrationParameterContainer();
+            case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
+                return getInvocationContracts();
+            case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
+                return getType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -290,16 +291,16 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            setOrchestrationParameterContainer((OrchestrationParameterContainer) newValue);
-            return;
-        case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
-            getInvocationContracts().clear();
-            getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
-            return;
-        case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
-            setType((Type) newValue);
-            return;
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                setOrchestrationParameterContainer((OrchestrationParameterContainer) newValue);
+                return;
+            case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
+                getInvocationContracts().clear();
+                getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
+                return;
+            case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
+                setType((Type) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -312,15 +313,15 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            setOrchestrationParameterContainer((OrchestrationParameterContainer) null);
-            return;
-        case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
-            getInvocationContracts().clear();
-            return;
-        case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
-            setType((Type) null);
-            return;
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                setOrchestrationParameterContainer((OrchestrationParameterContainer) null);
+                return;
+            case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
+                getInvocationContracts().clear();
+                return;
+            case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
+                setType((Type) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -333,12 +334,12 @@ public class OrchestrationParameterImpl extends NamedModelElementImpl implements
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
-            return getOrchestrationParameterContainer() != null;
-        case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
-            return invocationContracts != null && !invocationContracts.isEmpty();
-        case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
-            return type != null;
+            case FcorePackage.ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER:
+                return getOrchestrationParameterContainer() != null;
+            case FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS:
+                return invocationContracts != null && !invocationContracts.isEmpty();
+            case FcorePackage.ORCHESTRATION_PARAMETER__TYPE:
+                return type != null;
         }
         return super.eIsSet(featureID);
     }

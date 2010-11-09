@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class FactoryComponentContractImpl extends ContractImpl implements FactoryComponentContract {
+
     /**
      * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' reference list.
      * <!-- begin-user-doc -->
@@ -88,8 +89,8 @@ public class FactoryComponentContractImpl extends ContractImpl implements Factor
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContracts()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -102,8 +103,8 @@ public class FactoryComponentContractImpl extends ContractImpl implements Factor
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-            return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                return ((InternalEList<?>) getInvocationContracts()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -116,8 +117,8 @@ public class FactoryComponentContractImpl extends ContractImpl implements Factor
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-            return getInvocationContracts();
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                return getInvocationContracts();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -131,10 +132,10 @@ public class FactoryComponentContractImpl extends ContractImpl implements Factor
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-            getInvocationContracts().clear();
-            getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
-            return;
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                getInvocationContracts().clear();
+                getInvocationContracts().addAll((Collection<? extends InvocationContract>) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -147,9 +148,9 @@ public class FactoryComponentContractImpl extends ContractImpl implements Factor
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-            getInvocationContracts().clear();
-            return;
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                getInvocationContracts().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -162,8 +163,8 @@ public class FactoryComponentContractImpl extends ContractImpl implements Factor
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-            return invocationContracts != null && !invocationContracts.isEmpty();
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                return invocationContracts != null && !invocationContracts.isEmpty();
         }
         return super.eIsSet(featureID);
     }

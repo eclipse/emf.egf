@@ -26,6 +26,7 @@
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
           ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
       <genFeatures createChild="false" propertyCategory="Documentation" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
+      <genOperations ecoreOperation="Fcore.ecore#//ModelElement/getResources"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//NamedModelElement">
       <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//NamedModelElement/name"/>
@@ -68,6 +69,7 @@
     <genClasses ecoreClass="Fcore.ecore#//FactoryComponent">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/viewpointContainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/orchestration"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getResources"/>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getInvocationContracts"/>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getInvocationContracts.1">
         <genParameters ecoreParameter="Fcore.ecore#//FactoryComponent/getInvocationContracts.1/type"/>

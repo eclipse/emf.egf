@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Contract extends NamedModelElement {
+
     /**
      * Returns the value of the '<em><b>Contract Container</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContractContainer#getContracts <em>Contracts</em>}'.

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoint {
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -105,10 +106,10 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -121,8 +122,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            return basicSetViewpointContainer(null, msgs);
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                return basicSetViewpointContainer(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -135,8 +136,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -149,8 +150,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            return getViewpointContainer();
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                return getViewpointContainer();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -163,9 +164,9 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            setViewpointContainer((ViewpointContainer) newValue);
-            return;
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                setViewpointContainer((ViewpointContainer) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -178,9 +179,9 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            setViewpointContainer((ViewpointContainer) null);
-            return;
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                setViewpointContainer((ViewpointContainer) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -193,8 +194,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
-            return getViewpointContainer() != null;
+            case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+                return getViewpointContainer() != null;
         }
         return super.eIsSet(featureID);
     }

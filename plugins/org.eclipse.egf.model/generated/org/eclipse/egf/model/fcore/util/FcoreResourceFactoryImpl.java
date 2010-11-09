@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * @generated
  */
 public class FcoreResourceFactoryImpl extends ResourceFactoryImpl {
+
     /**
      * Creates an instance of the resource factory.
      * <!-- begin-user-doc -->

@@ -20,9 +20,12 @@ import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.model.fprod.adapter.ProductionPlanInvocationAdapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -68,6 +71,23 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
     @Override
     protected EClass eStaticClass() {
         return FprodPackage.Literals.PRODUCTION_PLAN_INVOCATION;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public EList<Resource> getResources() {
+        UniqueEList<Resource> resources = new UniqueEList<Resource>();
+        if (eResource() != null) {
+            resources.add(eResource());
+        }
+        if (getInvokedActivity() != null) {
+            resources.addAll(getInvokedActivity().getResources());
+        }
+        return resources;
     }
 
     /**

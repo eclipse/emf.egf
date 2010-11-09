@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface FactoryComponentContract extends Contract {
+
     /**
      * Returns the value of the '<em><b>Invocation Contracts</b></em>' reference list.
      * The list contents are of type {@link org.eclipse.egf.model.fcore.InvocationContract}.

@@ -14,14 +14,17 @@ package org.eclipse.egf.model.fprod.impl;
 
 import java.util.Collection;
 
+import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.impl.OrchestrationImpl;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -76,6 +79,23 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
     @Override
     protected EClass eStaticClass() {
         return FprodPackage.Literals.PRODUCTION_PLAN;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public EList<Resource> getResources() {
+        UniqueEList<Resource> resources = new UniqueEList<Resource>();
+        if (eResource() != null) {
+            resources.add(eResource());
+        }
+        for (Invocation invocation : getInvocations()) {
+            resources.addAll(invocation.getResources());
+        }
+        return resources;
     }
 
     /**

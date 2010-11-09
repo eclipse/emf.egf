@@ -29,6 +29,7 @@ package org.eclipse.egf.model.fcore;
  * @generated
  */
 public interface Viewpoint extends ModelElement {
+
     /**
      * Returns the value of the '<em><b>Viewpoint Container</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ViewpointContainer#getViewpoints <em>Viewpoints</em>}'.

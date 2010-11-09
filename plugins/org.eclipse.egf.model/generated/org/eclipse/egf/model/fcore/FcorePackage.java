@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EReference;
  * @generated
  */
 public interface FcorePackage extends EPackage {
+
     /**
      * The package name.
      * <!-- begin-user-doc -->
@@ -1574,6 +1575,7 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     interface Literals {
+
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl <em>Model Element</em>}' class.
          * <!-- begin-user-doc -->

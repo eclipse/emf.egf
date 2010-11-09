@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public abstract class NamedModelElementImpl extends ModelElementImpl implements NamedModelElement {
+
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -103,8 +104,8 @@ public abstract class NamedModelElementImpl extends ModelElementImpl implements 
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
-            return getName();
+            case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
+                return getName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -117,9 +118,9 @@ public abstract class NamedModelElementImpl extends ModelElementImpl implements 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
-            setName((String) newValue);
-            return;
+            case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
+                setName((String) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -132,9 +133,9 @@ public abstract class NamedModelElementImpl extends ModelElementImpl implements 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
-            setName(NAME_EDEFAULT);
-            return;
+            case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
+                setName(NAME_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -147,8 +148,8 @@ public abstract class NamedModelElementImpl extends ModelElementImpl implements 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
-            return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case FcorePackage.NAMED_MODEL_ELEMENT__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
         }
         return super.eIsSet(featureID);
     }

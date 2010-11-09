@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fprod;
 
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,4 +52,12 @@ public interface ProductionPlan extends Orchestration {
      */
     @SuppressWarnings("unchecked")
     EList<ProductionPlanInvocation> getInvocations();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
+    EList<Resource> getResources();
 } // ProductionPlan

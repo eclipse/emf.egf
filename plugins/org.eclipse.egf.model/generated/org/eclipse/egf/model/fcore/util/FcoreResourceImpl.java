@@ -95,9 +95,7 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
      * Creates an instance of the resource.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @param uri
-     *        the URI of the new resource.
+     * @param uri the URI of the new resource.
      * @generated
      */
     public FcoreResourceImpl(URI uri) {
@@ -167,14 +165,15 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
 
     /**
      * Called when the object is unloaded.
-     * This implementation {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+     * This implementation
+     * {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
      * and clears the {@link #eAdapters adapters}.
      * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
      * Fix available in HEAD: 2.6.0.I200911020144
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
-     * @generated
+     * @generated	 
      */
     @Override
     protected void unloaded(InternalEObject internalEObject) {
@@ -198,7 +197,7 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
         setTrackingModification(true);
         setEncoding("UTF-8"); //$NON-NLS-1$
         setXMIVersion("2.1"); //$NON-NLS-1$
-        // Save Options
+        // Save Options		
         getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
         getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
         getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
@@ -217,7 +216,7 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
         getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformXMLURIHandler());
         getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
         getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-        // Load Options
+        // Load Options		
         getDefaultLoadOptions().put(XMLResource.OPTION_URI_HANDLER, new PlatformXMLURIHandler());
         getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.FALSE);
         getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.FALSE);

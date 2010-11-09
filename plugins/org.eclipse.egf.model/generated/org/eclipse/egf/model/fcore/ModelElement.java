@@ -12,7 +12,9 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ModelElement extends EObject {
+
     /**
      * Returns the value of the '<em><b>ID</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -83,5 +86,13 @@ public interface ModelElement extends EObject {
      * @generated
      */
     void setDescription(String value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
+    EList<Resource> getResources();
 
 } // ModelElement

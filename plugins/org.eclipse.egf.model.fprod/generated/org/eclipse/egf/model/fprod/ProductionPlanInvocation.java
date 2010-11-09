@@ -14,6 +14,8 @@ package org.eclipse.egf.model.fprod;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,6 +62,14 @@ public interface ProductionPlanInvocation extends Invocation {
      * @generated
      */
     void setProductionPlan(ProductionPlan value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
+    EList<Resource> getResources();
 
     /**
      * <!-- begin-user-doc -->

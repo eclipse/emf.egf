@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface InvocationContract extends ModelElement {
+
     /**
      * Returns the value of the '<em><b>Invocation Contract Container</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContractContainer#getInvocationContracts <em>Invocation Contracts</em>}'.

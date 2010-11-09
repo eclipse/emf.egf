@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
@@ -41,7 +40,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
      * Creates the default factory implementation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public static FcoreFactory init() {
@@ -60,7 +58,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
      * Creates an instance of the factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public FcoreFactoryImpl() {
@@ -70,7 +67,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -102,7 +98,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -118,7 +113,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -134,7 +128,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Contract createContract() {
@@ -145,7 +138,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public FactoryComponent createFactoryComponent() {
@@ -156,7 +148,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ContractContainer createContractContainer() {
@@ -167,7 +158,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public FactoryComponentContract createFactoryComponentContract() {
@@ -178,7 +168,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ViewpointContainer createViewpointContainer() {
@@ -189,7 +178,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public OrchestrationParameterContainer createOrchestrationParameterContainer() {
@@ -200,7 +188,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public OrchestrationParameter createOrchestrationParameter() {
@@ -211,7 +198,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public InvocationContractContainer createInvocationContractContainer() {
@@ -222,7 +208,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public InvocationContract createInvocationContract() {
@@ -233,7 +218,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ContractMode createContractMode(String literal) {
@@ -246,7 +230,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public ContractMode createContractModeFromString(EDataType eDataType, String initialValue) {
@@ -256,7 +239,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String convertContractMode(ContractMode instanceValue) {
@@ -266,7 +248,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String convertContractModeToString(EDataType eDataType, Object instanceValue) {
@@ -286,7 +267,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public FcorePackage getFcorePackage() {
@@ -296,7 +276,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @deprecated
      * @generated
      */

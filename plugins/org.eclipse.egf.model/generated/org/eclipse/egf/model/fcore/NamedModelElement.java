@@ -29,6 +29,7 @@ package org.eclipse.egf.model.fcore;
  * @generated
  */
 public interface NamedModelElement extends ModelElement {
+
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->

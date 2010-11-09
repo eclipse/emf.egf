@@ -34,6 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Invocation extends NamedModelElement {
+
     /**
      * Returns the value of the '<em><b>Invocation Contract Container</b></em>' containment reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContractContainer#getInvocation <em>Invocation</em>}'.

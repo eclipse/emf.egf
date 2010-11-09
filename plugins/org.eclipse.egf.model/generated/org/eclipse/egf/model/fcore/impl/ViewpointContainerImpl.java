@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ViewpointContainerImpl extends ModelElementImpl implements ViewpointContainer {
+
     /**
      * The cached value of the '{@link #getViewpoints() <em>Viewpoints</em>}' containment reference list.
      * <!-- begin-user-doc -->
@@ -150,12 +151,12 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
-        case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getViewpoints()).basicAdd(otherEnd, msgs);
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
+            case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getViewpoints()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -168,10 +169,10 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            return basicSetFactoryComponent(null, msgs);
-        case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
-            return ((InternalEList<?>) getViewpoints()).basicRemove(otherEnd, msgs);
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                return basicSetFactoryComponent(null, msgs);
+            case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+                return ((InternalEList<?>) getViewpoints()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -184,8 +185,8 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, FactoryComponent.class, msgs);
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, FactoryComponent.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -198,10 +199,10 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            return getFactoryComponent();
-        case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
-            return getViewpoints();
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                return getFactoryComponent();
+            case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+                return getViewpoints();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -215,13 +216,13 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            setFactoryComponent((FactoryComponent) newValue);
-            return;
-        case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
-            getViewpoints().clear();
-            getViewpoints().addAll((Collection<? extends Viewpoint>) newValue);
-            return;
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                setFactoryComponent((FactoryComponent) newValue);
+                return;
+            case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+                getViewpoints().clear();
+                getViewpoints().addAll((Collection<? extends Viewpoint>) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -234,12 +235,12 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            setFactoryComponent((FactoryComponent) null);
-            return;
-        case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
-            getViewpoints().clear();
-            return;
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                setFactoryComponent((FactoryComponent) null);
+                return;
+            case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+                getViewpoints().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -252,10 +253,10 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
-            return getFactoryComponent() != null;
-        case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
-            return viewpoints != null && !viewpoints.isEmpty();
+            case FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+                return getFactoryComponent() != null;
+            case FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+                return viewpoints != null && !viewpoints.isEmpty();
         }
         return super.eIsSet(featureID);
     }

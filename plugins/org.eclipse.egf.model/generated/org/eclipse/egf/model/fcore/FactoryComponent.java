@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fcore;
 
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface FactoryComponent extends Activity {
+
     /**
      * Returns the value of the '<em><b>Viewpoint Container</b></em>' containment reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ViewpointContainer#getFactoryComponent <em>Factory Component</em>}'.
@@ -88,6 +90,14 @@ public interface FactoryComponent extends Activity {
      * @generated
      */
     void setOrchestration(Orchestration value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
+    EList<Resource> getResources();
 
     /**
      * <!-- begin-user-doc -->

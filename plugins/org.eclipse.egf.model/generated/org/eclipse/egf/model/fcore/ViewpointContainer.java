@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ViewpointContainer extends ModelElement {
+
     /**
      * Returns the value of the '<em><b>Factory Component</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}'.

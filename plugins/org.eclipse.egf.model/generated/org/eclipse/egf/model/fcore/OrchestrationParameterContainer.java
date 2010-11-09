@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface OrchestrationParameterContainer extends ModelElement {
+
     /**
      * Returns the value of the '<em><b>Orchestration</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Orchestration#getOrchestrationParameterContainer <em>Orchestration Parameter Container</em>}'.

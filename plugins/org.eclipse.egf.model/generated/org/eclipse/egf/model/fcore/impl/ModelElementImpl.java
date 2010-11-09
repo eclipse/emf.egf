@@ -15,9 +15,12 @@ package org.eclipse.egf.model.fcore.impl;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
@@ -35,6 +38,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * @generated
  */
 public abstract class ModelElementImpl extends Container implements ModelElement {
+
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
@@ -137,15 +141,28 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public EList<Resource> getResources() {
+        UniqueEList<Resource> resources = new UniqueEList<Resource>();
+        if (eResource() != null) {
+            resources.add(eResource());
+        }
+        return resources;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.MODEL_ELEMENT__ID:
-            return getID();
-        case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
-            return getDescription();
+            case FcorePackage.MODEL_ELEMENT__ID:
+                return getID();
+            case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
+                return getDescription();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -158,9 +175,9 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
-            setDescription((String) newValue);
-            return;
+            case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
+                setDescription((String) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -173,9 +190,9 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
-            setDescription(DESCRIPTION_EDEFAULT);
-            return;
+            case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
+                setDescription(DESCRIPTION_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -188,10 +205,10 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.MODEL_ELEMENT__ID:
-            return isSetID();
-        case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
-            return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
+            case FcorePackage.MODEL_ELEMENT__ID:
+                return isSetID();
+            case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
+                return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
         }
         return super.eIsSet(featureID);
     }

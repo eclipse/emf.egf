@@ -54,6 +54,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class InvocationContractImpl extends ModelElementImpl implements InvocationContract {
+
     /**
      * The cached value of the '{@link #getFactoryComponentContract() <em>Factory Component Contract</em>}' reference.
      * <!-- begin-user-doc -->
@@ -459,24 +460,24 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetInvocationContractContainer((InvocationContractContainer) otherEnd, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            if (factoryComponentContract != null)
-                msgs = ((InternalEObject) factoryComponentContract).eInverseRemove(this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, FactoryComponentContract.class, msgs);
-            return basicSetFactoryComponentContract((FactoryComponentContract) otherEnd, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            if (orchestrationParameter != null)
-                msgs = ((InternalEObject) orchestrationParameter).eInverseRemove(this, FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS, OrchestrationParameter.class, msgs);
-            return basicSetOrchestrationParameter((OrchestrationParameter) otherEnd, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            if (sourceInvocationContract != null)
-                msgs = ((InternalEObject) sourceInvocationContract).eInverseRemove(this, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, InvocationContract.class, msgs);
-            return basicSetSourceInvocationContract((InvocationContract) otherEnd, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            return ((InternalEList<InternalEObject>) (InternalEList<?>) getTargetInvocationContract()).basicAdd(otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetInvocationContractContainer((InvocationContractContainer) otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+                if (factoryComponentContract != null)
+                    msgs = ((InternalEObject) factoryComponentContract).eInverseRemove(this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, FactoryComponentContract.class, msgs);
+                return basicSetFactoryComponentContract((FactoryComponentContract) otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+                if (orchestrationParameter != null)
+                    msgs = ((InternalEObject) orchestrationParameter).eInverseRemove(this, FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS, OrchestrationParameter.class, msgs);
+                return basicSetOrchestrationParameter((OrchestrationParameter) otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+                if (sourceInvocationContract != null)
+                    msgs = ((InternalEObject) sourceInvocationContract).eInverseRemove(this, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, InvocationContract.class, msgs);
+                return basicSetSourceInvocationContract((InvocationContract) otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getTargetInvocationContract()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -489,18 +490,18 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            return basicSetInvocationContractContainer(null, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            return basicSetFactoryComponentContract(null, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            return basicSetOrchestrationParameter(null, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            return basicSetSourceInvocationContract(null, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            return ((InternalEList<?>) getTargetInvocationContract()).basicRemove(otherEnd, msgs);
-        case FcorePackage.INVOCATION_CONTRACT__TYPE:
-            return basicSetType(null, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                return basicSetInvocationContractContainer(null, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+                return basicSetFactoryComponentContract(null, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+                return basicSetOrchestrationParameter(null, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+                return basicSetSourceInvocationContract(null, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+                return ((InternalEList<?>) getTargetInvocationContract()).basicRemove(otherEnd, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__TYPE:
+                return basicSetType(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -513,8 +514,8 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS, InvocationContractContainer.class, msgs);
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS, InvocationContractContainer.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -527,22 +528,22 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            return getInvocationContractContainer();
-        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            return getFactoryComponentContract();
-        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            return getOrchestrationParameter();
-        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            return getSourceInvocationContract();
-        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            return getTargetInvocationContract();
-        case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
-            if (resolve)
-                return getInvokedContract();
-            return basicGetInvokedContract();
-        case FcorePackage.INVOCATION_CONTRACT__TYPE:
-            return getType();
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                return getInvocationContractContainer();
+            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+                return getFactoryComponentContract();
+            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+                return getOrchestrationParameter();
+            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+                return getSourceInvocationContract();
+            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+                return getTargetInvocationContract();
+            case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
+                if (resolve)
+                    return getInvokedContract();
+                return basicGetInvokedContract();
+            case FcorePackage.INVOCATION_CONTRACT__TYPE:
+                return getType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -556,28 +557,28 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            setInvocationContractContainer((InvocationContractContainer) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            setFactoryComponentContract((FactoryComponentContract) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            setOrchestrationParameter((OrchestrationParameter) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            setSourceInvocationContract((InvocationContract) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            getTargetInvocationContract().clear();
-            getTargetInvocationContract().addAll((Collection<? extends InvocationContract>) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
-            setInvokedContract((Contract) newValue);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__TYPE:
-            setType((Type) newValue);
-            return;
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                setInvocationContractContainer((InvocationContractContainer) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+                setFactoryComponentContract((FactoryComponentContract) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+                setOrchestrationParameter((OrchestrationParameter) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+                setSourceInvocationContract((InvocationContract) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+                getTargetInvocationContract().clear();
+                getTargetInvocationContract().addAll((Collection<? extends InvocationContract>) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
+                setInvokedContract((Contract) newValue);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__TYPE:
+                setType((Type) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -590,27 +591,27 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            setInvocationContractContainer((InvocationContractContainer) null);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            setFactoryComponentContract((FactoryComponentContract) null);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            setOrchestrationParameter((OrchestrationParameter) null);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            setSourceInvocationContract((InvocationContract) null);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            getTargetInvocationContract().clear();
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
-            setInvokedContract((Contract) null);
-            return;
-        case FcorePackage.INVOCATION_CONTRACT__TYPE:
-            setType((Type) null);
-            return;
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                setInvocationContractContainer((InvocationContractContainer) null);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+                setFactoryComponentContract((FactoryComponentContract) null);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+                setOrchestrationParameter((OrchestrationParameter) null);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+                setSourceInvocationContract((InvocationContract) null);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+                getTargetInvocationContract().clear();
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
+                setInvokedContract((Contract) null);
+                return;
+            case FcorePackage.INVOCATION_CONTRACT__TYPE:
+                setType((Type) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -623,20 +624,20 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
-            return getInvocationContractContainer() != null;
-        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            return factoryComponentContract != null;
-        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            return orchestrationParameter != null;
-        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            return sourceInvocationContract != null;
-        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            return targetInvocationContract != null && !targetInvocationContract.isEmpty();
-        case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
-            return invokedContract != null;
-        case FcorePackage.INVOCATION_CONTRACT__TYPE:
-            return type != null;
+            case FcorePackage.INVOCATION_CONTRACT__INVOCATION_CONTRACT_CONTAINER:
+                return getInvocationContractContainer() != null;
+            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+                return factoryComponentContract != null;
+            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+                return orchestrationParameter != null;
+            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+                return sourceInvocationContract != null;
+            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+                return targetInvocationContract != null && !targetInvocationContract.isEmpty();
+            case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
+                return invokedContract != null;
+            case FcorePackage.INVOCATION_CONTRACT__TYPE:
+                return type != null;
         }
         return super.eIsSet(featureID);
     }

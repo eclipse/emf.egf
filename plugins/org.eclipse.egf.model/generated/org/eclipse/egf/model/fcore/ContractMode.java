@@ -110,7 +110,9 @@ public enum ContractMode implements Enumerator {
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final ContractMode[] VALUES_ARRAY = new ContractMode[] { IN, OUT, IN_OUT, };
+    private static final ContractMode[] VALUES_ARRAY = new ContractMode[] {
+            IN, OUT, IN_OUT,
+    };
 
     /**
      * A public read-only list of all the '<em><b>Contract Mode</b></em>' enumerators.
@@ -160,12 +162,12 @@ public enum ContractMode implements Enumerator {
      */
     public static ContractMode get(int value) {
         switch (value) {
-        case IN_VALUE:
-            return IN;
-        case OUT_VALUE:
-            return OUT;
-        case IN_OUT_VALUE:
-            return IN_OUT;
+            case IN_VALUE:
+                return IN;
+            case OUT_VALUE:
+                return OUT;
+            case IN_OUT_VALUE:
+                return IN_OUT;
         }
         return null;
     }
