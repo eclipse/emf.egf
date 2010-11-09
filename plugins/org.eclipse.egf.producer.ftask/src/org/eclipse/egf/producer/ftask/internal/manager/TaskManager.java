@@ -111,12 +111,16 @@ public class TaskManager extends ActivityManager<Task> {
             // Invoke
             try {
                 EGFProducerFtaskPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-            } catch (InvocationException ie) {
-                if (ie.getDiagnostic() != null) {
-                    diagnostic.add(ie.getDiagnostic());
+            } catch (Throwable t) {
+                if (t instanceof InvocationException) {
+                    InvocationException ie = (InvocationException) t;
+                    if (ie.getDiagnostic() != null) {
+                        diagnostic.add(ie.getDiagnostic());
+                    }
+                    ie.setDiagnostic(diagnostic);
+                    throw ie;
                 }
-                ie.setDiagnostic(diagnostic);
-                throw ie;
+                throw new InvocationException(t);
             }
             // Check Output
             checkOutputElement(diagnostic);
