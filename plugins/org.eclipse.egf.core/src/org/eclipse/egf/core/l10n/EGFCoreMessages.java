@@ -49,6 +49,8 @@ public class EGFCoreMessages {
 
     public static String ProjectBundleSession_URLFailure;
 
+    public static String ProjectBundleSession_StartFailure;
+
     public static String ConvertProjectOperation_converter;
 
     public static String ConvertProjectOperation_setupClasspath;
