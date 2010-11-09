@@ -116,6 +116,11 @@ public final class ProjectBundleSession {
             addOutputFoldersToBundleClasspath(project, bundle);
             // Store
             bundles.add(bundle);
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                if (_projectBundles.size() == 0) {
+                    EGFCorePlugin.getDefault().logInfo("Start ProjectBundleSession..."); //$NON-NLS-1$
+                }
+            }
             _projectBundles.put(location, bundle);
         }
         // Refresh installed workspace bundles if any
@@ -390,7 +395,7 @@ public final class ProjectBundleSession {
         // Tracing
         if (EGFCoreDebug.isDebugBundleSession()) {
             if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
-                EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession."); //$NON-NLS-1$        
+                EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession..."); //$NON-NLS-1$        
             }
         }
         // Uninstall workspace bundle
@@ -402,6 +407,14 @@ public final class ProjectBundleSession {
                 }
                 // Refresh Packages
                 refreshPackages(null);
+                // Tracing            
+                if (EGFCoreDebug.isDebugBundleSession()) {
+                    if (_projectBundles.isEmpty() == false) {
+                        for (Bundle bundle : _projectBundles.values()) {
+                            EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+                        }
+                    }
+                }
             }
             if (_uninstalled.isEmpty() == false) {
                 for (String location : _uninstalled) {
@@ -409,17 +422,12 @@ public final class ProjectBundleSession {
                 }
                 // Refresh Packages
                 refreshPackages(null);
-            }
-            // Tracing            
-            if (EGFCoreDebug.isDebugBundleSession()) {
-                if (_projectBundles.isEmpty() == false) {
-                    for (Bundle bundle : _projectBundles.values()) {
-                        EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
-                    }
-                }
-                if (_uninstalled.isEmpty() == false) {
-                    for (Bundle bundle : uninstalledBundles) {
-                        EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+                // Tracing            
+                if (EGFCoreDebug.isDebugBundleSession()) {
+                    if (_uninstalled.isEmpty() == false) {
+                        for (Bundle bundle : uninstalledBundles) {
+                            EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is installed.", bundle.getSymbolicName()), 1); //$NON-NLS-1$
+                        }
                     }
                 }
             }
