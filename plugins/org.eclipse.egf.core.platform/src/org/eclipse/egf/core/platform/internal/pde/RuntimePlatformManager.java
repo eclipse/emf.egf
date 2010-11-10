@@ -34,7 +34,9 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
 import org.eclipse.egf.core.platform.pde.IRuntimePlatformManager;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -110,7 +112,7 @@ public final class RuntimePlatformManager extends AbstractPlatformManager implem
                 // Process                
                 for (IExtension extension : extensions) {
                     for (IConfigurationElement element : extension.getConfigurationElements()) {
-                        addElement(element, _clazz, delta);
+                        addElement(element, _clazz, delta, false);
                     }
                 }
             }
@@ -281,12 +283,12 @@ public final class RuntimePlatformManager extends AbstractPlatformManager implem
                 continue;
             }
             for (IConfigurationElement element : elements) {
-                addElement(element, entry.getValue(), null);
+                addElement(element, entry.getValue(), null, true);
             }
         }
     }
 
-    protected void addElement(IConfigurationElement element, Class<? extends IPlatformExtensionPoint> clazz, PlatformExtensionPointDelta delta) {
+    protected void addElement(IConfigurationElement element, Class<? extends IPlatformExtensionPoint> clazz, PlatformExtensionPointDelta delta, boolean init) {
         Bundle bundle = BundleHelper.getBundle(element.getDeclaringExtension().getContributor());
         // No bundle but valid
         if (bundle == null && element.isValid()) {
@@ -327,6 +329,9 @@ public final class RuntimePlatformManager extends AbstractPlatformManager implem
         if (extensionPoint == null) {
             return;
         }
+        if (init == false && extensionPoint instanceof AbstractPlatformExtensionPoint) {
+            ((AbstractPlatformExtensionPoint) extensionPoint).setPlatformBundle(platformBundle);
+        }
         // Fill registries
         _bundleRegistry.put(bundle.getSymbolicName(), platformBundle);
         Set<Object> objects = _runtimeRegistry.get(clazz);
@@ -350,6 +355,13 @@ public final class RuntimePlatformManager extends AbstractPlatformManager implem
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("RuntimePlatformManager removed {0} Extension{1}.", //$NON-NLS-1$ 
                         runtime.length, runtime.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
                 ));
+                for (IPlatformExtensionPoint extensionPoint : removed) {
+                    if (extensionPoint instanceof IPlatformExtensionPointURI) {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Removed {0}", URI.encode(((IPlatformExtensionPointURI) extensionPoint).getURI().toString())), 1); //$NON-NLS-1$
+                    } else {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Removed {0}", extensionPoint.getId()), 1); //$NON-NLS-1$
+                    }
+                }
             }
         }
         if (added.length != 0) {
@@ -358,6 +370,13 @@ public final class RuntimePlatformManager extends AbstractPlatformManager implem
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("RuntimePlatformManager added {0} Extension{1}.", //$NON-NLS-1$ 
                         runtime.length, runtime.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
                 ));
+                for (IPlatformExtensionPoint extensionPoint : added) {
+                    if (extensionPoint instanceof IPlatformExtensionPointURI) {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Added {0}", URI.encode(((IPlatformExtensionPointURI) extensionPoint).getURI().toString())), 1); //$NON-NLS-1$
+                    } else {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Added {0}", extensionPoint.getId()), 1); //$NON-NLS-1$
+                    }
+                }
             }
         }
     }
