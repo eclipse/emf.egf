@@ -37,6 +37,8 @@ public class EGFCoreMessages {
 
     public static String Production_Invoke;
 
+    public static String Production_Load_Bundle;
+
     public static String ProjectBundleSession_IllegalBundleState;
 
     public static String ProjectBundleSession_InstallationFailure;
