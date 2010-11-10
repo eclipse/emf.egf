@@ -15,7 +15,7 @@
 package org.eclipse.egf.pattern.ftask.tasks;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -40,9 +40,11 @@ public abstract class AbstractPatternTask implements ITaskProduction {
     private Resource domainResource;
 
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+        // Nothing to do
     }
 
     public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+        // Nothing to do
     }
 
     public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
@@ -73,14 +75,14 @@ public abstract class AbstractPatternTask implements ITaskProduction {
                 if (domainURI == null || domainURI.getUri() == null)
                     continue; // Weird behavior: unfilled contracts are
                 // available ...
-                ResourceSet set = new TargetPlatformResourceSet();
+                ResourceSet set = new RuntimePlatformResourceSet();
                 domainResource = set.getResource(domainURI.getUri(), true);
                 ctx.setValue(PatternContext.DOMAIN_OBJECTS, domainResource.getContents());
             } else
                 ctx.setValue(name, context.getInputValue(name, contract.getType().getType()));
         }
         // add a resourcet to load pattern to be called
-        ctx.setValue(PatternContext.PATTERN_RESOURCESET, new TargetPlatformResourceSet());
+        ctx.setValue(PatternContext.PATTERN_RESOURCESET, new RuntimePlatformResourceSet());
     }
 
     protected PatternContext createPatternContext(final ITaskProductionContext prodCtx) {
