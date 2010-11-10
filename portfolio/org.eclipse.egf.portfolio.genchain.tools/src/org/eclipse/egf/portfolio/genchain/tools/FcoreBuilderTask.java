@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -39,12 +39,15 @@ import org.eclipse.emf.ecore.resource.Resource;
  * @author Thomas Guiu
  */
 public class FcoreBuilderTask extends ModelDrivenStrategyTask {
+
+    @Override
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
+
         super.readContext(context, ctx);
         // Create FC
         String name = (String) ctx.getValue(FcoreBuilderConstants.NAME);
 
-        TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
+        RuntimePlatformResourceSet resourceSet = new RuntimePlatformResourceSet();
 
         Collection<FactoryComponent> unusedFC = new ArrayList<FactoryComponent>();
         URI fcoreUri = URI.createPlatformResourceURI((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH), true);
@@ -70,7 +73,7 @@ public class FcoreBuilderTask extends ModelDrivenStrategyTask {
         }
 
         if (mainFC == null) {
-            mainFC = ActivityInvocationHelper.createDefaultFC(name + " Launcher");
+            mainFC = ActivityInvocationHelper.createDefaultFC(name + " Launcher"); //$NON-NLS-1$
             resource.getContents().add(mainFC);
         }
 
@@ -82,5 +85,7 @@ public class FcoreBuilderTask extends ModelDrivenStrategyTask {
         ctx.setValue(FcoreBuilderConstants.GENMODEL_URIS, new HashMap<EmfGeneration, URI>());
         ctx.setValue(FcoreBuilderConstants.UNUSED_FCORE, unusedFC);
         ctx.setValue(FcoreBuilderConstants.RESOURCE_SET, resourceSet);
+
     }
+
 }
