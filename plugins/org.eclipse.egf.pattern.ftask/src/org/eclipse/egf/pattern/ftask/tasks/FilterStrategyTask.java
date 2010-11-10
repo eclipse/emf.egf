@@ -35,4 +35,5 @@ public class FilterStrategyTask extends AbstractStrategyTask {
         super.preExecute(context, monitor);
         parameter = context.getInputValue(FILTER_NAME_PARAMETER, String.class);
     }
+
 }
