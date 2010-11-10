@@ -44,7 +44,10 @@ public class BundleHelper {
                 long id = Long.parseLong(((RegistryContributor) contributor).getActualId());
                 BundleContext context = EGFCommonPlugin.getDefault().getBundle().getBundleContext();
                 if (context != null) {
-                    return context.getBundle(id);
+                    Bundle bundle = context.getBundle(id);
+                    if (bundle != null) {
+                        return bundle;
+                    }
                 }
             } catch (NumberFormatException e) {
                 // try using the name of the contributor below
