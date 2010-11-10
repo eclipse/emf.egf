@@ -14,6 +14,7 @@ Require-Bundle:
  org.eclipse.egf.core.ui,
  org.eclipse.egf.producer,
  org.eclipse.emf.edit,
+ org.eclipse.egf.model.ftask,
  org.eclipse.egf.model.fprod.edit,
  org.eclipse.egf.model.editor
 Bundle-ActivationPolicy: lazy
