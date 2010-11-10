@@ -15,6 +15,7 @@
  */
 package org.eclipse.egf.core.internal.genmodel;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,9 @@ import org.eclipse.egf.core.platform.loader.BundleClassLoaderFactory;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 
@@ -167,12 +170,14 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
         if (_genModelURI != null) {
             if (isRuntime()) {
                 getRuntimePlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
+                EcorePlugin.getEPackageNsURIToGenModelLocationMap().put(getNsURI().toString(), _genModelURI);
             } else {
                 getTargetPlatformGenModelLocationMap().put(getNsURI(), _genModelURI);
             }
         }
         if (isRuntime()) {
             getRuntimePlatformGenModels().put(getNsURI(), this);
+            EPackage.Registry.INSTANCE.put(getNsURI().toString(), getEPackage());
         } else {
             getTargetPlatformGenModels().put(getNsURI(), this);
         }
@@ -263,7 +268,25 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
 
     public EPackage getEPackage() {
         if (getBundle() != null) {
-            return EPackage.Registry.INSTANCE.getEPackage(getNsURI().toString());
+            EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(getNsURI().toString());
+            if (ePackage == null) {
+                try {
+                    Class<?> javaClass = getBundle().loadClass(_generatedPackage);
+                    Field field = javaClass.getField("eINSTANCE"); //$NON-NLS-1$
+                    Object result = field.get(null);
+                    ePackage = (EPackage) result;
+                    if (ePackage != null) {
+                        EPackage.Registry.INSTANCE.put(getNsURI().toString(), ePackage);
+                    }
+                } catch (ClassNotFoundException e) {
+                    throw new WrappedException(e);
+                } catch (IllegalAccessException e) {
+                    throw new WrappedException(e);
+                } catch (NoSuchFieldException e) {
+                    throw new WrappedException(e);
+                }
+            }
+            return ePackage;
         }
         throw new UnsupportedOperationException(NLS.bind("EPackage couldn't be resolved ''{0}''", getNsURI())); //$NON-NLS-1$
     }
@@ -271,6 +294,7 @@ public final class PlatformGenModel extends PlatformExtensionPointURI implements
     @Override
     protected void dispose() {
         if (isRuntime()) {
+            // Clean local registry
             getRuntimePlatformGenModelLocationMap().remove(getNsURI());
             getRuntimePlatformGenModels().remove(getNsURI());
         } else {
