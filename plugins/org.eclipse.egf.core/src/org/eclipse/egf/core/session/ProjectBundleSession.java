@@ -21,8 +21,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IRegistryEventListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.RegistryFactory;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.core.EGFCoreDebug;
@@ -65,6 +69,61 @@ public final class ProjectBundleSession {
 
     private Boolean targetBundlePriority;
 
+    private class ExtensionsEventThread extends Thread {
+
+        // build a listener to wait asynchronous extensions notifications
+        private IRegistryEventListener _registryListener = new IRegistryEventListener() {
+
+            public void removed(IExtension[] extensions) {
+                // Nothing to do
+            }
+
+            public void added(IExtension[] extensions) {
+                // Process                
+                for (IExtension extension : extensions) {
+                    _modelsWithExtensionPoints.remove(extension.getContributor().getName());
+                }
+            }
+
+            public void added(IExtensionPoint[] extensionPoints) {
+                // Nothing to do
+            }
+
+            public void removed(IExtensionPoint[] extensionPoints) {
+                // Nothing to do
+            }
+
+        };
+
+        private List<String> _modelsWithExtensionPoints;
+
+        private boolean[] _flag;
+
+        public ExtensionsEventThread(boolean[] flag, List<String> modelsWithExtensionPoints) {
+            super("Extensions Event Listener Thread"); //$NON-NLS-1$
+            setDaemon(false);
+            _flag = flag;
+            _modelsWithExtensionPoints = modelsWithExtensionPoints;
+            RegistryFactory.getRegistry().addListener(_registryListener);
+        }
+
+        @Override
+        public void run() {
+            while (_modelsWithExtensionPoints != null && _modelsWithExtensionPoints.isEmpty() == false) {
+                // Nothing to do
+            }
+            synchronized (_flag) {
+                _flag[0] = true;
+                _flag.notifyAll();
+            }
+        }
+
+        public void dispose() {
+            RegistryFactory.getRegistry().removeListener(_registryListener);
+        }
+
+    }
+
     public static String getLocation(IPluginModelBase base) throws CoreException {
         IResource resource = base.getUnderlyingResource();
         if (resource == null) {
@@ -85,23 +144,11 @@ public final class ProjectBundleSession {
         _context = context;
     }
 
-    /**
-     * Installs the bundle corresponding to the model.
-     * 
-     * @param model
-     *          Model of the bundle to be installed.
-     */
-    private Bundle installBundle(IPluginModelBase base) throws CoreException {
-        // We only load workspace model
-        if (getLocation(base) == null) {
-            return null;
+    private void installWorkspaceModels(List<Bundle> bundles, List<IPluginModelBase> workspaceModels) throws CoreException {
+        if (bundles == null || workspaceModels == null || workspaceModels.size() == 0) {
+            return;
         }
-        // Gather runtime bundles to uninstall including base
-        List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(base);
-        // Uninstall runtime bundles if any
-        uninstallRuntimeBundle(workspaceModels);
-        // Install workspace bundle
-        List<Bundle> bundles = new UniqueEList<Bundle>();
+        // Install Workspace models
         for (IPluginModelBase workspaceModel : workspaceModels) {
             // Ignore already installed bundle
             if (_projectBundles.get(getLocation(workspaceModel)) != null) {
@@ -117,28 +164,123 @@ public final class ProjectBundleSession {
             // Store
             bundles.add(bundle);
             if (EGFCoreDebug.isDebugBundleSession()) {
-                if (_projectBundles.size() == 0) {
+                if (_uninstalled.size() == 0 && _projectBundles.size() == 0) {
                     EGFCorePlugin.getDefault().logInfo("Start ProjectBundleSession..."); //$NON-NLS-1$
                 }
             }
             _projectBundles.put(location, bundle);
         }
-        // Refresh installed workspace bundles if any
-        if (bundles.isEmpty() == false) {
-            refreshPackages(null);
-            if (EGFCoreDebug.isDebugBundleSession()) {
-                for (Bundle bundle : bundles) {
-                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
-                }
+    }
+
+    /**
+     * Installs the bundle corresponding to the model.
+     * 
+     * @param model
+     *          Model of the bundle to be installed.
+     */
+    private Bundle installBundle(IPluginModelBase base) throws CoreException {
+
+        // We only load workspace model
+        if (getLocation(base) == null) {
+            return null;
+        }
+
+        // Gather workspace bundles to install
+        final List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(base);
+
+        // Check whether or not such workspace models have extension points
+        final List<String> modelsWithExtensionPoints = new UniqueEList<String>();
+        for (IPluginModelBase model : workspaceModels) {
+            if (model.getPluginBase().getExtensions() != null && model.getPluginBase().getExtensions().length > 0) {
+                modelsWithExtensionPoints.add(BundleHelper.getBundleId(model));
             }
         }
-        // Return our base bundle
-        return Platform.getBundle(BundleHelper.getBundleId(base));
+        final boolean[] flag = new boolean[] {
+            false
+        };
+        // Start a thread when extensions points need to be synchronized
+        ExtensionsEventThread eventThread = null;
+        if (modelsWithExtensionPoints.isEmpty() == false) {
+            eventThread = new ExtensionsEventThread(flag, modelsWithExtensionPoints);
+            eventThread.start();
+        }
+
+        try {
+
+            // Install workspace bundle
+            final List<Bundle> bundles = new UniqueEList<Bundle>();
+
+            // Either we need or not to wait for extensions point synchronizations
+            internalInstallBundle(bundles, workspaceModels);
+
+            // Wait for extensions notifications if applicable
+            if (modelsWithExtensionPoints.isEmpty() == false) {
+                synchronized (flag) {
+                    while (flag[0] == false) {
+                        try {
+                            flag.wait();
+                        } catch (InterruptedException e) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // Trace
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                for (Bundle bundle : bundles) {
+                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is started.", bundle.getSymbolicName())); //$NON-NLS-1$
+                }
+            }
+
+            // Return our base bundle
+            return Platform.getBundle(BundleHelper.getBundleId(base));
+
+        } finally {
+
+            if (eventThread != null) {
+                eventThread.dispose();
+                eventThread.interrupt();
+                eventThread = null;
+            }
+
+        }
+
+    }
+
+    private void internalInstallBundle(List<Bundle> bundles, List<IPluginModelBase> workspaceModels) throws CoreException {
+
+        // Uninstall runtime bundles if any
+        uninstallRuntimeBundle(workspaceModels);
+        final List<Bundle> workspaceBundles = new ArrayList<Bundle>(bundles);
+        // Install Workspace models
+        installWorkspaceModels(bundles, workspaceModels);
+        // Refresh installed workspace bundles if any
+        if (bundles.isEmpty() == false) {
+            refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+        }
+        for (Bundle bundle : bundles) {
+            try {
+                if (bundle.getState() != Bundle.ACTIVE) {
+                    bundle.start(Bundle.START_TRANSIENT);
+                } else {
+                    workspaceBundles.remove(bundle);
+                }
+            } catch (Throwable t) {
+                throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_StartFailure, bundle), t));
+            }
+        }
     }
 
     private void uninstallRuntimeBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
-        List<Bundle> bundles = new UniqueEList<Bundle>();
+
+        List<IPluginModelBase> models = new UniqueEList<IPluginModelBase>();
+        if (workspaceModels == null || workspaceModels.size() == 0) {
+            return;
+        }
+
         // Uninstall Runtime Bundle
+        List<Bundle> bundles = new UniqueEList<Bundle>();
         for (IPluginModelBase workspaceModel : workspaceModels) {
             // Ignore already uninstalled bundle
             if (_projectBundles.get(getLocation(workspaceModel)) != null) {
@@ -153,19 +295,28 @@ public final class ProjectBundleSession {
                 uninstallBundle(bundle);
             }
             // Store
-            bundles.add(bundle);
+            models.add(workspaceModel);
             _uninstalled.add(bundle.getLocation());
-        }
-        // Refresh uninstalled runtime bundles if any
-        if (bundles.isEmpty() == false) {
-            refreshPackages(null);
+            bundles.add(bundle);
             if (EGFCoreDebug.isDebugBundleSession()) {
-                for (Bundle bundle : bundles) {
-                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
+                if (_uninstalled.size() == 0) {
+                    EGFCorePlugin.getDefault().logInfo("Start ProjectBundleSession..."); //$NON-NLS-1$
                 }
             }
         }
+
+        // Refresh uninstalled runtime bundles if any
+        if (models.isEmpty() == false) {
+            refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                for (IPluginModelBase model : models) {
+                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Runtime Bundle ''{0}'' is uninstalled.", BundleHelper.getBundleId(model))); //$NON-NLS-1$
+                }
+            }
+        }
+
         return;
+
     }
 
     private List<IPluginModelBase> getWorkspaceModelDependencies(IPluginModelBase base) throws CoreException {
@@ -331,53 +482,63 @@ public final class ProjectBundleSession {
      *          Bundles which exported packages are to be refreshed.
      */
     private void refreshPackages(Bundle[] bundles) throws CoreException {
+
         ServiceReference packageAdminReference = _context.getServiceReference(PackageAdmin.class.getName());
         PackageAdmin packageAdmin = null;
         if (packageAdminReference != null) {
             packageAdmin = (PackageAdmin) _context.getService(packageAdminReference);
         }
-        if (packageAdmin != null) {
-            final boolean[] flag = new boolean[] {
-                false
-            };
-            final Throwable[] throwable = new Throwable[1];
-            FrameworkListener listener = new FrameworkListener() {
 
-                public void frameworkEvent(FrameworkEvent event) {
-                    if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED || event.getType() == FrameworkEvent.ERROR) {
-                        if (event.getType() == FrameworkEvent.ERROR) {
-                            throwable[0] = event.getThrowable();
-                        }
-                        synchronized (flag) {
-                            flag[0] = true;
-                            flag.notifyAll();
-                        }
-                    } else if (event.getType() == FrameworkEvent.WARNING) {
-                        if (event.getThrowable() != null) {
-                            EGFCorePlugin.getDefault().logWarning(event.getThrowable());
-                        }
+        if (packageAdmin == null) {
+            return;
+        }
+
+        final boolean[] flag = new boolean[] {
+            false
+        };
+        final Throwable[] throwable = new Throwable[1];
+
+        // Listener
+        FrameworkListener listener = new FrameworkListener() {
+
+            public void frameworkEvent(FrameworkEvent event) {
+                if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED || event.getType() == FrameworkEvent.ERROR) {
+                    if (event.getType() == FrameworkEvent.ERROR) {
+                        throwable[0] = event.getThrowable();
                     }
-                }
-
-            };
-            _context.addFrameworkListener(listener);
-            packageAdmin.refreshPackages(bundles);
-            synchronized (flag) {
-                while (flag[0] == false) {
-                    try {
-                        flag.wait();
-                    } catch (InterruptedException e) {
-                        break;
+                    synchronized (flag) {
+                        flag[0] = true;
+                        flag.notifyAll();
+                    }
+                } else if (event.getType() == FrameworkEvent.WARNING) {
+                    if (event.getThrowable() != null) {
+                        EGFCorePlugin.getDefault().logWarning(event.getThrowable());
                     }
                 }
             }
-            _context.removeFrameworkListener(listener);
-            _context.ungetService(packageAdminReference);
-            // Throw a CoreException
-            if (throwable[0] != null) {
-                throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, EGFCoreMessages.ProjectBundleSession_PackageRefreshFailure, throwable[0]));
+
+        };
+        _context.addFrameworkListener(listener);
+
+        // Refresh packages
+        packageAdmin.refreshPackages(bundles);
+        synchronized (flag) {
+            while (flag[0] == false) {
+                try {
+                    flag.wait();
+                } catch (InterruptedException e) {
+                    break;
+                }
             }
         }
+        _context.removeFrameworkListener(listener);
+        _context.ungetService(packageAdminReference);
+
+        // Throw a CoreException
+        if (throwable[0] != null) {
+            throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, EGFCoreMessages.ProjectBundleSession_PackageRefreshFailure, throwable[0]));
+        }
+
     }
 
     /**
@@ -392,21 +553,21 @@ public final class ProjectBundleSession {
     public void dispose() throws CoreException {
         // Reinstall bundle collector
         final List<Bundle> uninstalledBundles = new UniqueEList<Bundle>(_uninstalled.size());
-        // Tracing
-        if (EGFCoreDebug.isDebugBundleSession()) {
-            if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
-                EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession..."); //$NON-NLS-1$        
-            }
-        }
         // Uninstall workspace bundle
         if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
+            // Tracing
+            if (EGFCoreDebug.isDebugBundleSession()) {
+                if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
+                    EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession..."); //$NON-NLS-1$        
+                }
+            }
             // Uninstall bundle
             if (_projectBundles.isEmpty() == false) {
                 for (Bundle bundle : _projectBundles.values()) {
                     uninstallBundle(bundle);
                 }
                 // Refresh Packages
-                refreshPackages(null);
+                refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.size()]));
                 // Tracing            
                 if (EGFCoreDebug.isDebugBundleSession()) {
                     if (_projectBundles.isEmpty() == false) {
@@ -421,7 +582,7 @@ public final class ProjectBundleSession {
                     uninstalledBundles.add(installBundle(location));
                 }
                 // Refresh Packages
-                refreshPackages(null);
+                refreshPackages(uninstalledBundles.toArray(new Bundle[uninstalledBundles.size()]));
                 // Tracing            
                 if (EGFCoreDebug.isDebugBundleSession()) {
                     if (_uninstalled.isEmpty() == false) {
