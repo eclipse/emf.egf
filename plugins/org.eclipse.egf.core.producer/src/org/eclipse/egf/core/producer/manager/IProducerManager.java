@@ -23,24 +23,26 @@ import org.osgi.framework.Bundle;
  */
 public interface IProducerManager<P extends Object, T extends Object> {
 
-  public P getElement();
+    public P getElement();
 
-  public IProducerManager<?, ?> getParent();
+    public IProducerManager<?, ?> getParent();
 
-  public Diagnostic canInvoke() throws InvocationException;
+    public Diagnostic canInvoke() throws InvocationException;
 
-  public IProductionContext<P, T> getProductionContext() throws InvocationException;
+    public IProductionContext<P, T> getProductionContext() throws InvocationException;
 
-  public ProjectBundleSession getProjectBundleSession();
+    public ProjectBundleSession getProjectBundleSession();
 
-  public Bundle getBundle() throws InvocationException;
+    public void setProjectBundleSession(ProjectBundleSession session);
 
-  public void initializeContext() throws InvocationException;
+    public Bundle getBundle() throws InvocationException;
 
-  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException;
+    public void initializeContext() throws InvocationException;
 
-  public int getSteps() throws InvocationException;
+    public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException;
 
-  public void dispose() throws InvocationException;
+    public int getSteps() throws InvocationException;
+
+    public void dispose() throws InvocationException;
 
 }
