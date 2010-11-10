@@ -11,7 +11,6 @@
 package org.eclipse.egf.producer.fprod.internal.manager;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -23,7 +22,6 @@ import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.producer.context.ProductionContext;
-import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -40,7 +38,6 @@ import org.eclipse.egf.producer.internal.manager.OrchestrationManager;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -117,17 +114,6 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
             }
         }
         return steps;
-    }
-
-    public List<Activity> getActivities() throws InvocationException {
-        List<Activity> activities = new UniqueEList<Activity>();
-        Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
-        if (managers != null) {
-            for (Invocation invocation : getElement().getInvocations()) {
-                activities.addAll(managers.get(invocation).getActivities());
-            }
-        }
-        return activities;
     }
 
     public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {

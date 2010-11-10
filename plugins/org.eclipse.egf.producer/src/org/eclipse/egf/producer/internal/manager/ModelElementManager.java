@@ -221,6 +221,15 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
         return _session;
     }
 
+    public void setProjectBundleSession(ProjectBundleSession session) {
+        if (getParent() != null) {
+            getParent().setProjectBundleSession(session);
+        } else {
+            _session = session;
+        }
+
+    }
+
     @SuppressWarnings("unused")
     protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
         return getDiagnostic(getElement(), runtime);

@@ -10,8 +10,6 @@
  */
 package org.eclipse.egf.producer.fprod.internal.manager;
 
-import java.util.List;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
@@ -32,7 +30,6 @@ import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -99,14 +96,6 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
             return getActivityManager().getSteps();
         }
         return 0;
-    }
-
-    public List<Activity> getActivities() throws InvocationException {
-        List<Activity> activities = new UniqueEList<Activity>();
-        if (getActivityManager() != null) {
-            activities.addAll(getActivityManager().getActivities());
-        }
-        return activities;
     }
 
     public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {

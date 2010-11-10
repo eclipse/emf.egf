@@ -10,11 +10,7 @@
  */
 package org.eclipse.egf.producer.manager;
 
-import java.util.List;
-
-import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.manager.IProducerManager;
-import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ModelElement;
 
 /**
@@ -22,7 +18,5 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * 
  */
 public interface IModelElementManager<P extends ModelElement, T extends ModelElement> extends IProducerManager<P, T> {
-
-  public List<Activity> getActivities() throws InvocationException;
-
+    // Nothing to do
 }

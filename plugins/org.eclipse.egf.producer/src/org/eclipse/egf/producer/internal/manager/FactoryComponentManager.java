@@ -10,15 +10,12 @@
  */
 package org.eclipse.egf.producer.internal.manager;
 
-import java.util.List;
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
-import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
@@ -31,7 +28,6 @@ import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.egf.producer.manager.OrchestrationManagerProducer;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -85,16 +81,6 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
             _orchestrationManager = producer.createOrchestrationManager(this, getElement().getOrchestration());
         }
         return _orchestrationManager;
-    }
-
-    public List<Activity> getActivities() throws InvocationException {
-        // Retrieve Activities
-        List<Activity> activities = new UniqueEList<Activity>();
-        activities.add(getElement());
-        if (getOrchestrationManager() != null) {
-            activities.addAll(getOrchestrationManager().getActivities());
-        }
-        return activities;
     }
 
     @Override
