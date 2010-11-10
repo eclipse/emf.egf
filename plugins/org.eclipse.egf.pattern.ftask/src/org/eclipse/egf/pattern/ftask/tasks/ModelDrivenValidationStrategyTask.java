@@ -62,4 +62,5 @@ public class ModelDrivenValidationStrategyTask extends ModelDrivenStrategyTask {
         if (diagnostic.getSeverity() == Diagnostic.ERROR)
             throw new RuntimeException(diagnostic.getMessage());
     }
+
 }
