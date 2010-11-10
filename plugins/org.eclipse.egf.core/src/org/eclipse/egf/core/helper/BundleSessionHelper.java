@@ -29,19 +29,19 @@ public class BundleSessionHelper {
         // Prevent Instantiation
     }
 
-    public static Bundle getBundle(ProjectBundleSession projectBundleSession, IPlatformExtensionPoint platformExtensionPoint) throws CoreException {
+    public static Bundle getBundle(ProjectBundleSession session, IPlatformExtensionPoint extensionPoint) throws CoreException {
         // Usual Tests
-        if (projectBundleSession == null || platformExtensionPoint == null) {
+        if (session == null || extensionPoint == null) {
             return null;
         }
         // Locate Bundle
-        if (platformExtensionPoint.isRuntime() || platformExtensionPoint.getBundle() != null) {
-            return platformExtensionPoint.getBundle();
-        } else if (platformExtensionPoint.isWorkspace()) {
-            return projectBundleSession.getBundle(platformExtensionPoint.getPlatformBundle().getProject());
+        if (extensionPoint.isRuntime() || extensionPoint.getBundle() != null) {
+            return extensionPoint.getBundle();
+        } else if (extensionPoint.isWorkspace()) {
+            return session.getBundle(extensionPoint.getPlatformBundle().getProject());
         }
         // Cannot associate a Bundle to a target platform extension point
-        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, platformExtensionPoint.getId()), null));
+        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, extensionPoint.getId()), null));
     }
 
 }
