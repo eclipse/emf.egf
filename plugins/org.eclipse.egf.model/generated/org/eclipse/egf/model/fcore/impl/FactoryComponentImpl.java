@@ -184,8 +184,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     @Override
     public EList<Activity> getActivities() {
         // Retrieve Activities
-        EList<Activity> activities = new UniqueEList<Activity>();
-        activities.add(this);
+        EList<Activity> activities = super.getActivities();
         if (getOrchestration() != null) {
             activities.addAll(getOrchestration().getActivities());
         }

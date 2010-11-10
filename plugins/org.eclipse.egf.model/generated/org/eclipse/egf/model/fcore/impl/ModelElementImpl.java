@@ -16,6 +16,7 @@ import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
@@ -145,7 +146,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
      * @generated NOT
      */
     public EList<Activity> getActivities() {
-        return new UniqueEList<Activity>();
+        return new BasicEList<Activity>();
     }
 
     /**
