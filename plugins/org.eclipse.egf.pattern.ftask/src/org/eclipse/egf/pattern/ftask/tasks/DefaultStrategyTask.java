@@ -33,4 +33,5 @@ public class DefaultStrategyTask extends AbstractStrategyTask {
         super.preExecute(context, monitor);
         parameter = this; // must be non null
     }
+
 }
