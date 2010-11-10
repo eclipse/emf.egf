@@ -231,13 +231,6 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         return __platformExtensionPointFactories;
     }
 
-    /**
-     * The constructor
-     */
-    public EGFPlatformPlugin() {
-        super();
-    }
-
     @SuppressWarnings("unchecked")
     public static Class<? extends IPlatformExtensionPoint> fetchReturnedTypeFromFactory(Class<?> factory) {
         Method method = null;
@@ -264,6 +257,13 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
             getDefault().logError(cce);
         }
         return null;
+    }
+
+    /**
+     * The constructor
+     */
+    public EGFPlatformPlugin() {
+        super();
     }
 
     /**
@@ -299,8 +299,8 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         __platformExtensionPoints = null;
         __platformExtensionPointClasses = null;
         __platformExtensionPointFactories = null;
-        __plugin = null;
         super.stop(context);
+        __plugin = null;
     }
 
 }
