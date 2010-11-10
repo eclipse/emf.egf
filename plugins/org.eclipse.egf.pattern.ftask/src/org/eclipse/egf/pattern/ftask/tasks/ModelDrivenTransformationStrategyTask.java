@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.domain.DomainFactory;
@@ -50,34 +50,35 @@ public class ModelDrivenTransformationStrategyTask extends ModelDrivenStrategyTa
         uri = domainURI.getUri();
 
         super.readContext(context, ctx);
-        
+
         List<EObject> objects = (List<EObject>) ctx.getValue(PatternContext.DOMAIN_OBJECTS);
         objects = (List<EObject>) EcoreUtil.copyAll(objects);
         ctx.setValue(PatternContext.DOMAIN_OBJECTS, objects);
     }
-    
-    @SuppressWarnings("unchecked")
+
     @Override
+    @SuppressWarnings("unchecked")
     protected void writeContext(ITaskProductionContext context, PatternContext ctx) throws InvocationException {
         super.writeContext(context, ctx);
 
         List<EObject> objects = (List<EObject>) ctx.getValue(PatternContext.DOMAIN_OBJECTS);
-        
+
         try {
             String outDomainPath = File.createTempFile("eclipseegf", "." + uri.fileExtension()).getAbsolutePath(); //$NON-NLS-1$ //$NON-NLS-2$
             context.setOutputValue("outDomainPath", outDomainPath); //$NON-NLS-1$
-            
+
             uri = URI.createFileURI(outDomainPath);
             DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
             domainURI.setUri(uri);
             context.setOutputValue("outDomain", domainURI); //$NON-NLS-1$
 
-            TargetPlatformResourceSet set = new TargetPlatformResourceSet();
+            RuntimePlatformResourceSet set = new RuntimePlatformResourceSet();
             Resource resource = set.createResource(uri);
             resource.getContents().addAll(objects);
             resource.save(Collections.EMPTY_MAP);
         } catch (IOException e) {
-            throw new InvocationException(e);   
+            throw new InvocationException(e);
         }
     }
+
 }
