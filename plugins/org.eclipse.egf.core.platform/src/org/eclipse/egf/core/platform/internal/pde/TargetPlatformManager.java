@@ -23,9 +23,11 @@ import org.eclipse.egf.common.helper.CollectionHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
 import org.eclipse.egf.core.platform.pde.ITargetPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.ITargetPlatformManager;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
@@ -544,12 +546,26 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformManager removed {0} target Extension{1}.", //$NON-NLS-1$ 
                         target.length, target.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
                 ));
+                for (IPlatformExtensionPoint extensionPoint : target) {
+                    if (extensionPoint instanceof IPlatformExtensionPointURI) {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Target Removed {0}", URI.encode(((IPlatformExtensionPointURI) extensionPoint).getURI().toString())), 1); //$NON-NLS-1$
+                    } else {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Target Removed {0}", extensionPoint.getId()), 1); //$NON-NLS-1$
+                    }
+                }
             }
             IPlatformExtensionPoint[] workspace = delta.getWorkspaceRemovedPlatformExtensionPoints();
             if (workspace.length != 0) {
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformManager removed {0} workspace Extension{1}.", //$NON-NLS-1$ 
                         workspace.length, workspace.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
                 ));
+                for (IPlatformExtensionPoint extensionPoint : workspace) {
+                    if (extensionPoint instanceof IPlatformExtensionPointURI) {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Workspace Removed {0}", URI.encode(((IPlatformExtensionPointURI) extensionPoint).getURI().toString())), 1); //$NON-NLS-1$
+                    } else {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Workspace Removed {0}", extensionPoint.getId()), 1); //$NON-NLS-1$
+                    }
+                }
             }
         }
         if (added.length != 0) {
@@ -558,12 +574,26 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformManager added {0} target Extension{1}.", //$NON-NLS-1$ 
                         target.length, target.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
                 ));
+                for (IPlatformExtensionPoint extensionPoint : target) {
+                    if (extensionPoint instanceof IPlatformExtensionPointURI) {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Target Added {0}", URI.encode(((IPlatformExtensionPointURI) extensionPoint).getURI().toString())), 1); //$NON-NLS-1$
+                    } else {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Target Added {0}", extensionPoint.getId()), 1); //$NON-NLS-1$
+                    }
+                }
             }
             IPlatformExtensionPoint[] workspace = delta.getWorkspaceAddedPlatformExtensionPoints();
             if (workspace.length != 0) {
                 EGFPlatformPlugin.getDefault().logInfo(NLS.bind("TargetPlatformManager added {0} workspace Extension{1}.", //$NON-NLS-1$ 
                         workspace.length, workspace.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
                 ));
+                for (IPlatformExtensionPoint extensionPoint : workspace) {
+                    if (extensionPoint instanceof IPlatformExtensionPointURI) {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Workspace Added {0}", URI.encode(((IPlatformExtensionPointURI) extensionPoint).getURI().toString())), 1); //$NON-NLS-1$
+                    } else {
+                        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("Workspace Added {0}", extensionPoint.getId()), 1); //$NON-NLS-1$
+                    }
+                }
             }
         }
     }
