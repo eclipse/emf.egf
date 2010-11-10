@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ant
+Bundle-SymbolicName: org.eclipselabs.egf.portfolio.task.ant;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.eclipselabs.egf.portfolio.task.ant.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.egf.model.ftask,
+ org.junit,
+ org.eclipse.egf.producer.ftask
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipselabs.egf.portfolio.task.ant.engine
