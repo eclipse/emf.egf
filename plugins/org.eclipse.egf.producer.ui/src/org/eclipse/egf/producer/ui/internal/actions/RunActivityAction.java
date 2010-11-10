@@ -308,9 +308,7 @@ public class RunActivityAction implements IObjectActionDelegate {
                     return Status.OK_STATUS;
 
                 } finally {
-                    if (monitor != null) {
-                        monitor.done();
-                    }
+                    monitor.done();
                 }
 
             }
