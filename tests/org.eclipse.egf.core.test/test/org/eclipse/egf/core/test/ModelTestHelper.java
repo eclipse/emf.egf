@@ -12,7 +12,7 @@ package org.eclipse.egf.core.test;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -51,7 +51,7 @@ public class ModelTestHelper {
             uri = URI.createURI(modelPath);
         else
             uri = URI.createURI(PLATFORM_PLUGIN + contributorName + "/" + modelPath); //$NON-NLS-1$
-        Resource resource = new TargetPlatformResourceSet().getResource(uri, true);
+        Resource resource = new RuntimePlatformResourceSet().getResource(uri, true);
         return resource;
     }
 
