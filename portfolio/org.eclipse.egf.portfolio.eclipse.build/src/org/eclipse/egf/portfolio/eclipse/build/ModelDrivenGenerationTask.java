@@ -21,5 +21,5 @@ import org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask;
  *
  */
 public class ModelDrivenGenerationTask extends ModelDrivenStrategyTask {
-
+    // Nothing to do
 }
