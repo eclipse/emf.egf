@@ -65,6 +65,14 @@ public interface Activity extends NamedModelElement {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
+    EList<Activity> getActivities();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @model kind="operation"
      * @generated
      */

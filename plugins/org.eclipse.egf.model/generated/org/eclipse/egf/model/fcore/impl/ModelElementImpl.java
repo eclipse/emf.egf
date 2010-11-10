@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.notify.Notification;
@@ -136,6 +137,15 @@ public abstract class ModelElementImpl extends Container implements ModelElement
         description = newDescription;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.MODEL_ELEMENT__DESCRIPTION, oldDescription, description));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public EList<Activity> getActivities() {
+        return new UniqueEList<Activity>();
     }
 
     /**

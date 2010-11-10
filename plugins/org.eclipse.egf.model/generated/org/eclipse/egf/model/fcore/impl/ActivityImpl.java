@@ -187,6 +187,18 @@ public abstract class ActivityImpl extends NamedModelElementImpl implements Acti
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public EList<Activity> getActivities() {
+        EList<Activity> activities = super.getActivities();
+        activities.add(this);
+        return activities;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     @Override

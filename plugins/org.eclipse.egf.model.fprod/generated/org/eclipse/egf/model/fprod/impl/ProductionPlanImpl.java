@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fprod.impl;
 
 import java.util.Collection;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.impl.OrchestrationImpl;
 import org.eclipse.egf.model.fprod.FprodPackage;
@@ -21,7 +22,6 @@ import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -87,11 +87,22 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
      * @generated NOT
      */
     @Override
-    public EList<Resource> getResources() {
-        UniqueEList<Resource> resources = new UniqueEList<Resource>();
-        if (eResource() != null) {
-            resources.add(eResource());
+    public EList<Activity> getActivities() {
+        EList<Activity> activities = super.getActivities();
+        for (Invocation invocation : getInvocations()) {
+            activities.addAll(invocation.getActivities());
         }
+        return activities;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public EList<Resource> getResources() {
+        EList<Resource> resources = super.getResources();
         for (Invocation invocation : getInvocations()) {
             resources.addAll(invocation.getResources());
         }

@@ -4,6 +4,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fcore"
     nsURI="http://www.eclipse.org/egf/1.0.0/fcore" nsPrefix="fcore">
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true">
+    <eOperations name="getActivities">
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+        <eTypeArguments eClassifier="#//Activity"/>
+      </eGenericType>
+    </eOperations>
     <eOperations name="getResources">
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EResource"/>
@@ -20,6 +25,11 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="MandatoryName ActivityCycle"/>
     </eAnnotations>
+    <eOperations name="getActivities">
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+        <eTypeArguments eClassifier="#//Activity"/>
+      </eGenericType>
+    </eOperations>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract">
       <eParameters name="type" eType="ecore:EClass Types.ecore#//Type"/>
@@ -61,6 +71,11 @@
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FactoryComponent" eSuperTypes="#//Activity">
+    <eOperations name="getActivities">
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+        <eTypeArguments eClassifier="#//Activity"/>
+      </eGenericType>
+    </eOperations>
     <eOperations name="getResources">
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EResource"/>

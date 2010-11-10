@@ -20,10 +20,12 @@
       fileExtensions="fprod" ecorePackage="Fprod.ecore#/">
     <genClasses ecoreClass="Fprod.ecore#//ProductionPlan">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//ProductionPlan/invocations"/>
+      <genOperations ecoreOperation="Fprod.ecore#//ProductionPlan/getActivities"/>
       <genOperations ecoreOperation="Fprod.ecore#//ProductionPlan/getResources"/>
     </genClasses>
     <genClasses ecoreClass="Fprod.ecore#//ProductionPlanInvocation">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fprod.ecore#//ProductionPlanInvocation/productionPlan"/>
+      <genOperations ecoreOperation="Fprod.ecore#//ProductionPlanInvocation/getActivities"/>
       <genOperations ecoreOperation="Fprod.ecore#//ProductionPlanInvocation/getResources"/>
       <genOperations ecoreOperation="Fprod.ecore#//ProductionPlanInvocation/getFactoryComponent"/>
     </genClasses>

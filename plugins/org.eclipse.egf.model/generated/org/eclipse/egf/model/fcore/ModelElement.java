@@ -93,6 +93,14 @@ public interface ModelElement extends EObject {
      * @model kind="operation" many="false"
      * @generated
      */
+    EList<Activity> getActivities();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
     EList<Resource> getResources();
 
 } // ModelElement

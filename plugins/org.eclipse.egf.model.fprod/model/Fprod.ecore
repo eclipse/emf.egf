@@ -4,6 +4,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fprod"
     nsURI="http://www.eclipse.org/egf/1.0.0/fprod" nsPrefix="fprod">
   <eClassifiers xsi:type="ecore:EClass" name="ProductionPlan" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Orchestration">
+    <eOperations name="getActivities">
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Activity"/>
+      </eGenericType>
+    </eOperations>
     <eOperations name="getResources">
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EResource"/>
@@ -14,6 +19,11 @@
         eOpposite="#//ProductionPlanInvocation/productionPlan"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductionPlanInvocation" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Invocation">
+    <eOperations name="getActivities">
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Activity"/>
+      </eGenericType>
+    </eOperations>
     <eOperations name="getResources">
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EResource"/>

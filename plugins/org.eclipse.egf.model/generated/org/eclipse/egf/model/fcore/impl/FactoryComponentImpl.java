@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -181,11 +182,24 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
      * @generated NOT
      */
     @Override
-    public EList<Resource> getResources() {
-        UniqueEList<Resource> resources = new UniqueEList<Resource>();
-        if (eResource() != null) {
-            resources.add(eResource());
+    public EList<Activity> getActivities() {
+        // Retrieve Activities
+        EList<Activity> activities = new UniqueEList<Activity>();
+        activities.add(this);
+        if (getOrchestration() != null) {
+            activities.addAll(getOrchestration().getActivities());
         }
+        return activities;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public EList<Resource> getResources() {
+        EList<Resource> resources = super.getResources();
         if (getOrchestration() != null) {
             resources.addAll(getOrchestration().getResources());
         }

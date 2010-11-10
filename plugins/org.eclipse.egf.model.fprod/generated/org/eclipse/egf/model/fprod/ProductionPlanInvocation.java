@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fprod;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.emf.common.util.EList;
@@ -62,6 +63,14 @@ public interface ProductionPlanInvocation extends Invocation {
      * @generated
      */
     void setProductionPlan(ProductionPlan value);
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation" many="false"
+     * @generated
+     */
+    EList<Activity> getActivities();
 
     /**
      * <!-- begin-user-doc -->

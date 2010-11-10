@@ -837,9 +837,15 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         initEAttribute(getModelElement_ID(), theEcorePackage.getEString(), "iD", null, 0, 1, ModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEAttribute(getModelElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        EOperation op = addEOperation(modelElementEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        EOperation op = addEOperation(modelElementEClass, null, "getActivities", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         EGenericType g1 = createEGenericType(theEcorePackage.getEEList());
-        EGenericType g2 = createEGenericType(theEcorePackage.getEResource());
+        EGenericType g2 = createEGenericType(this.getActivity());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        op = addEOperation(modelElementEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEEList());
+        g2 = createEGenericType(theEcorePackage.getEResource());
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
@@ -849,6 +855,12 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         initEClass(activityEClass, Activity.class, "Activity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getActivity_ContractContainer(), this.getContractContainer(), this.getContractContainer_Activity(),
                 "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(activityEClass, null, "getActivities", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEEList());
+        g2 = createEGenericType(this.getActivity());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
 
         addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
@@ -891,6 +903,12 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
                 "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getFactoryComponent_Orchestration(), this.getOrchestration(), this.getOrchestration_FactoryComponent(),
                 "orchestration", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(factoryComponentEClass, null, "getActivities", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEEList());
+        g2 = createEGenericType(this.getActivity());
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
 
         op = addEOperation(factoryComponentEClass, null, "getResources", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(theEcorePackage.getEEList());

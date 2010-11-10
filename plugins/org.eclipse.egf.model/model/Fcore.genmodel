@@ -26,6 +26,7 @@
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
           ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
       <genFeatures createChild="false" propertyCategory="Documentation" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
+      <genOperations ecoreOperation="Fcore.ecore#//ModelElement/getActivities"/>
       <genOperations ecoreOperation="Fcore.ecore#//ModelElement/getResources"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//NamedModelElement">
@@ -33,6 +34,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Activity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Activity/contractContainer"/>
+      <genOperations ecoreOperation="Fcore.ecore#//Activity/getActivities"/>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getContracts"/>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getContracts.1">
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getContracts.1/type"/>
@@ -69,6 +71,7 @@
     <genClasses ecoreClass="Fcore.ecore#//FactoryComponent">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/viewpointContainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/orchestration"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getActivities"/>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getResources"/>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getInvocationContracts"/>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getInvocationContracts.1">
