@@ -28,8 +28,8 @@ import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 
 /**
@@ -73,4 +73,5 @@ public class PatternTask extends AbstractPatternTask {
         super.postExecute(context, monitor);
         patterns.clear();
     }
+
 }
