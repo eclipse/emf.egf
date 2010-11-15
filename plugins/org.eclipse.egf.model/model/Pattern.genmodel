@@ -13,10 +13,10 @@
     fontProviders="true" runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
   <foreignModel>Pattern.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
-  <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" resource="XMI"
-      disposableProviderFactory="true" generateExampleClass="false" dataTypeConverters="true"
-      multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true"
-      contentTypeIdentifier="" ecorePackage="Pattern.ecore#/">
+  <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
+      ecorePackage="Pattern.ecore#/">
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternContext"/>
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternException"/>
     <genClasses image="false" ecoreClass="Pattern.ecore#//PatternNature"/>

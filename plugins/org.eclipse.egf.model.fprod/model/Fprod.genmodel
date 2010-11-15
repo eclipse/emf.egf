@@ -14,7 +14,7 @@
     runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Types.genmodel#//types">
   <foreignModel>Fprod.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
-  <genPackages prefix="Fprod" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
+  <genPackages prefix="Fprod" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
       generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
       extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
       fileExtensions="fprod" ecorePackage="Fprod.ecore#/">

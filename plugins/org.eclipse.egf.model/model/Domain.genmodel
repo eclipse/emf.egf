@@ -14,10 +14,9 @@
     runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
   <foreignModel>Domain.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
-  <genPackages prefix="Domain" basePackage="org.eclipse.egf.model" resource="XMI"
-      disposableProviderFactory="true" generateExampleClass="false" dataTypeConverters="true"
-      multipleEditorPages="false" childCreationExtenders="true" contentTypeIdentifier=""
-      ecorePackage="Domain.ecore#/">
+  <genPackages prefix="Domain" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Domain.ecore#/">
     <genClasses ecoreClass="Domain.ecore#//DomainViewpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domain.ecore#//DomainViewpoint/domains"/>
     </genClasses>

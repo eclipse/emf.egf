@@ -13,7 +13,7 @@
     fontProviders="true" runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>Types.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
-  <genPackages prefix="Types" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
+  <genPackages prefix="Types" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
       generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
       extensibleProviderFactory="true" contentTypeIdentifier="" ecorePackage="Types.ecore#/">
     <genDataTypes ecoreDataType="Types.ecore#//Set">
