@@ -137,6 +137,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
             }
         }
 
+        // Prepare our activity job
         WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
 
             @Override
@@ -315,6 +316,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
         };
 
+        // Lock all the workspace        
         activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
         activityJob.setProperty(IProgressConstants.ICON_PROPERTY, IProducerUIImages.EGF_RUN_ACTIVITY);
         activityJob.setPriority(Job.LONG);

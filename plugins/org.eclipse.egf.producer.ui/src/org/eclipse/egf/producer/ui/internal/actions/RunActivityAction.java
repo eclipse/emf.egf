@@ -131,6 +131,7 @@ public class RunActivityAction implements IObjectActionDelegate {
             }
         }
 
+        // Prepare our activity job
         WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
 
             @Override
@@ -315,6 +316,7 @@ public class RunActivityAction implements IObjectActionDelegate {
 
         };
 
+        // Lock all the workspace
         activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
         activityJob.setProperty(IProgressConstants.ICON_PROPERTY, IProducerUIImages.EGF_RUN_ACTIVITY);
         activityJob.setPriority(Job.LONG);
