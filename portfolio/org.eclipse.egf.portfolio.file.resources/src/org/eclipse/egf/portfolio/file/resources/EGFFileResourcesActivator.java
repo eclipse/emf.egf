@@ -23,36 +23,36 @@ import org.osgi.framework.BundleContext;
  */
 public class EGFFileResourcesActivator extends EGFAbstractPlugin {
 
-	/**
-	   * Plug-in unique instance.
-	   */
-	  private static EGFFileResourcesActivator __plugin;
+    /**
+       * Plug-in unique instance.
+       */
+    private static EGFFileResourcesActivator __plugin;
 
-	  /**
-	   * Get activator shared instance.
-	   * 
-	   * @return
-	   */
-	  public static EGFFileResourcesActivator getDefault() {
-	    return __plugin;
-	  }
+    /**
+     * Get activator shared instance.
+     * 
+     * @return EGFFileResourcesActivator
+     */
+    public static EGFFileResourcesActivator getDefault() {
+        return __plugin;
+    }
 
-	  /**
-	   * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
-	   */
-	  @Override
-	  public void start(BundleContext context) throws Exception {
-	    super.start(context);
-	    __plugin = this;
-	  }
+    /**
+     * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        __plugin = this;
+    }
 
-	  /**
-	   * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-	   */
-	  @Override
-	  public void stop(BundleContext context) throws Exception {
-	    __plugin = null;
-	    super.stop(context);
-	  }
+    /**
+     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void stop(BundleContext context) throws Exception {
+        super.stop(context);
+        __plugin = null;
+    }
 
 }
