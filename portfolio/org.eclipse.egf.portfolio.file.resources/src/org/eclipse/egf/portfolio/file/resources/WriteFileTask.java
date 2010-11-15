@@ -21,6 +21,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -32,7 +33,7 @@ import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 public class WriteFileTask implements ITaskProduction {
 
     public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        // Nothing done
+        // Nothing to do
     }
 
     public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
@@ -48,12 +49,13 @@ public class WriteFileTask implements ITaskProduction {
             IFile file = FileUtil.getNewFile(projectName, folder, fileName);
             if (file.exists()) {
                 if (appendMode == true) {
-                    file.appendContents(fileContents, false, false, null);
+                    file.appendContents(fileContents, false, false, monitor);
                 } else {
-                    file.setContents(fileContents, true, false, null);
+                    file.setContents(fileContents, true, false, monitor);
                 }
             } else {
-                file.create(fileContents, true, null);
+                FileHelper.createContainers(monitor, file);
+                file.create(fileContents, true, monitor);
             }
         } catch (Throwable t) {
             if (t instanceof CoreException) {
@@ -65,7 +67,7 @@ public class WriteFileTask implements ITaskProduction {
     }
 
     public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        // Nothing done
+        // Nothing to do
     }
 
 }
