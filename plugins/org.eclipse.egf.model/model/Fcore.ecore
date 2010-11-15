@@ -23,7 +23,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true" eSuperTypes="#//NamedModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MandatoryName ActivityCycle"/>
+      <details key="constraints" value="PlatformFcore MandatoryName ActivityCycle"/>
     </eAnnotations>
     <eOperations name="getActivities">
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">

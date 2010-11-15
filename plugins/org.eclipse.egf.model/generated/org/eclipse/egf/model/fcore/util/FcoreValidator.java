@@ -14,6 +14,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;
@@ -239,10 +240,36 @@ public class FcoreValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryMapEntryUnique(activity, diagnostics, context);
         if (result || diagnostics != null)
+            result &= validateActivity_PlatformFcore(activity, diagnostics, context);
+        if (result || diagnostics != null)
             result &= validateActivity_MandatoryName(activity, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateActivity_ActivityCycle(activity, diagnostics, context);
         return result;
+    }
+
+    /**
+     * Validates the PlatformFcore constraint of '<em>Activity</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public boolean validateActivity_PlatformFcore(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (activity.eResource() == null || activity.eResource() instanceof IPlatformFcoreProvider == false) {
+            return true;
+        }
+        if (((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore() == null) {
+            if (diagnostics != null) {
+                diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                        new Object[] {
+                                "PlatformFcore", getObjectLabel(activity, context), "There is no 'org.eclipse.egf.core.fcore' extension-point associated with this activity fcore resource"}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            activity
+                        }, context));
+            }
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -340,6 +367,8 @@ public class FcoreValidator extends EObjectValidator {
             result &= validate_EveryKeyUnique(factoryComponent, diagnostics, context);
         if (result || diagnostics != null)
             result &= validate_EveryMapEntryUnique(factoryComponent, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validateActivity_PlatformFcore(factoryComponent, diagnostics, context);
         if (result || diagnostics != null)
             result &= validateActivity_MandatoryName(factoryComponent, diagnostics, context);
         if (result || diagnostics != null)
