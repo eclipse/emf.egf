@@ -171,6 +171,7 @@ class PlatformBundle implements IPlatformBundle {
             return null;
         }
         // Target Bundle and Runtime Bundle are compatible
+        // TODO: should be enhanced to match compatible bundle rather than strict version equality
         if (_base.getPluginBase().getVersion() != null && _base.getPluginBase().getVersion().equals(bundle.getVersion().toString())) {
             return bundle;
         }
