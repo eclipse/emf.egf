@@ -13,6 +13,7 @@ package org.eclipse.egf.core.platform.internal.pde;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
 import org.eclipse.egf.core.platform.pde.ITargetPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.ITargetPlatformManager;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -73,6 +75,24 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
             }
         }
         return platformBundle;
+    }
+
+    protected static List<IPluginModelBase> getExtensionPointModels(ModelEntry entry) {
+        List<IPluginModelBase> plugins = new UniqueEList<IPluginModelBase>();
+        // workspace models are always processed first, pde and jdt default behaviour
+        LOOP: for (IPluginModelBase model : entry.hasWorkspaceModels() ? entry.getWorkspaceModels() : entry.getExternalModels()) {
+            if (model.getExtensions(false) == null || model.getExtensions(false).getExtensions() == null) {
+                continue;
+            }
+            for (IPluginExtension extension : model.getExtensions(false).getExtensions()) {
+                Class<? extends IPlatformExtensionPoint> clazz = EGFPlatformPlugin.getPlatformExtensionPoints().get(extension.getPoint());
+                if (clazz != null) {
+                    plugins.add(model);
+                    continue LOOP;
+                }
+            }
+        }
+        return plugins;
     }
 
     public TargetPlatformManager() {
@@ -390,7 +410,7 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
             if ((event.getKind() & PluginModelDelta.REMOVED) != 0) {
                 // Process Removed Entries
                 for (ModelEntry entry : event.getRemovedEntries()) {
-                    for (IPluginModelBase base : entry.hasWorkspaceModels() ? entry.getWorkspaceModels() : entry.getExternalModels()) {
+                    for (IPluginModelBase base : getExtensionPointModels(entry)) {
                         IPlatformBundle platformBundle = _platformRegistry.get(BundleHelper.getBundleId(base));
                         if (platformBundle != null && base.equals(platformBundle.getPluginModelBase())) {
                             removePlatformBundle(platformBundle, delta);
@@ -402,7 +422,7 @@ public final class TargetPlatformManager extends AbstractPlatformManager impleme
             if ((event.getKind() & PluginModelDelta.ADDED) != 0) {
                 // Process Added Entries
                 for (ModelEntry entry : event.getAddedEntries()) {
-                    for (IPluginModelBase base : entry.hasWorkspaceModels() ? entry.getWorkspaceModels() : entry.getExternalModels()) {
+                    for (IPluginModelBase base : getExtensionPointModels(entry)) {
                         IPlatformBundle platformBundle = _platformRegistry.get(BundleHelper.getBundleId(base));
                         if (platformBundle != null && base.equals(platformBundle.getPluginModelBase()) == false) {
                             removePlatformBundle(platformBundle, delta);
