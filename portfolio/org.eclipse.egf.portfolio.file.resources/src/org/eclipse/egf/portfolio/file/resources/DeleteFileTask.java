@@ -17,7 +17,9 @@ package org.eclipse.egf.portfolio.file.resources;
 
 import java.io.File;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -28,27 +30,26 @@ import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
  */
 public class DeleteFileTask implements ITaskProduction {
 
-    public void preExecute(ITaskProductionContext productionContext,
-            IProgressMonitor monitor) throws InvocationException {
+    public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
         // Nothing to do
     }
 
-    public void doExecute(ITaskProductionContext productionContext,
-            IProgressMonitor monitor) throws InvocationException {
+    public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
         String filePath = productionContext.getInputValue("filePath", String.class); //$NON-NLS-1$
-
         try {
             File file = new File(filePath);
             if (file.exists()) {
                 file.delete();
             }
-        } catch (Exception e) {
-            EGFFileResourcesActivator.getDefault().logError(e);
+        } catch (Throwable t) {
+            if (t instanceof CoreException) {
+                throw new InvocationException(t);
+            }
+            throw new InvocationException(new CoreException(EGFFileResourcesActivator.getDefault().newStatus(IStatus.ERROR, "Unexpected Exception", t))); //$NON-NLS-1$
         }
     }
 
-    public void postExecute(ITaskProductionContext productionContext,
-            IProgressMonitor monitor) throws InvocationException {
+    public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
         // Nothing to do
     }
 
