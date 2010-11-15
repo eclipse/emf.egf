@@ -67,65 +67,13 @@ public final class ProjectBundleSession {
 
     private List<String> _uninstalled = new UniqueEList<String>();
 
-    private Boolean targetBundlePriority;
+    private Boolean runtimeBundlePriority;
 
-    private class ExtensionsEventThread extends Thread {
-
-        // build a listener to wait asynchronous extensions notifications
-        private IRegistryEventListener _registryListener = new IRegistryEventListener() {
-
-            public void removed(IExtension[] extensions) {
-                // Nothing to do
-            }
-
-            public void added(IExtension[] extensions) {
-                // Process                
-                for (IExtension extension : extensions) {
-                    _modelsWithExtensionPoints.remove(extension.getContributor().getName());
-                }
-            }
-
-            public void added(IExtensionPoint[] extensionPoints) {
-                // Nothing to do
-            }
-
-            public void removed(IExtensionPoint[] extensionPoints) {
-                // Nothing to do
-            }
-
-        };
-
-        private List<String> _modelsWithExtensionPoints;
-
-        private boolean[] _flag;
-
-        public ExtensionsEventThread(boolean[] flag, List<String> modelsWithExtensionPoints) {
-            super("Extensions Event Listener Thread"); //$NON-NLS-1$
-            setDaemon(false);
-            _flag = flag;
-            _modelsWithExtensionPoints = modelsWithExtensionPoints;
-            RegistryFactory.getRegistry().addListener(_registryListener);
+    public static String getLocation(IPluginModelBase model) throws CoreException {
+        if (model == null) {
+            return null;
         }
-
-        @Override
-        public void run() {
-            while (_modelsWithExtensionPoints != null && _modelsWithExtensionPoints.isEmpty() == false) {
-                // Nothing to do
-            }
-            synchronized (_flag) {
-                _flag[0] = true;
-                _flag.notifyAll();
-            }
-        }
-
-        public void dispose() {
-            RegistryFactory.getRegistry().removeListener(_registryListener);
-        }
-
-    }
-
-    public static String getLocation(IPluginModelBase base) throws CoreException {
-        IResource resource = base.getUnderlyingResource();
+        IResource resource = model.getUnderlyingResource();
         if (resource == null) {
             return null;
         }
@@ -178,73 +126,103 @@ public final class ProjectBundleSession {
      * @param model
      *          Model of the bundle to be installed.
      */
-    private Bundle installBundle(IPluginModelBase base) throws CoreException {
+    private Bundle installBundle(IPluginModelBase model) throws CoreException {
 
         // We only load workspace model
-        if (getLocation(base) == null) {
+        if (getLocation(model) == null) {
+            return null;
+        }
+
+        final String bundleId = BundleHelper.getBundleId(model);
+        if (bundleId == null) {
             return null;
         }
 
         // Gather workspace bundles to install
-        final List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(base);
+        final List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(model);
 
         // Check whether or not such workspace models have extension points
-        final List<String> modelsWithExtensionPoints = new UniqueEList<String>();
-        for (IPluginModelBase model : workspaceModels) {
-            if (model.getPluginBase().getExtensions() != null && model.getPluginBase().getExtensions().length > 0) {
-                modelsWithExtensionPoints.add(BundleHelper.getBundleId(model));
+        final List<String> registryContributors = new UniqueEList<String>();
+        for (IPluginModelBase workspaceModel : workspaceModels) {
+            if (workspaceModel.getPluginBase().getExtensions() != null && workspaceModel.getPluginBase().getExtensions().length > 0) {
+                String workspaceBundleId = BundleHelper.getBundleId(workspaceModel);
+                if (workspaceBundleId != null) {
+                    registryContributors.add(workspaceBundleId);
+                }
             }
         }
-        final boolean[] flag = new boolean[] {
+
+        // State for thread synchronization
+        final boolean[] session = new boolean[] {
             false
         };
-        // Start a thread when extensions points need to be synchronized
-        ExtensionsEventThread eventThread = null;
-        if (modelsWithExtensionPoints.isEmpty() == false) {
-            eventThread = new ExtensionsEventThread(flag, modelsWithExtensionPoints);
-            eventThread.start();
-        }
 
-        try {
+        // build a listener to wait for asynchronous extensions notifications
+        IRegistryEventListener registryListener = null;
+        if (registryContributors.isEmpty() == false) {
 
-            // Install workspace bundle
-            final List<Bundle> bundles = new UniqueEList<Bundle>();
+            registryListener = new IRegistryEventListener() {
 
-            // Either we need or not to wait for extensions point synchronizations
-            internalInstallBundle(bundles, workspaceModels);
+                public void removed(IExtension[] extensions) {
+                    // Nothing to do
+                }
 
-            // Wait for extensions notifications if applicable
-            if (modelsWithExtensionPoints.isEmpty() == false) {
-                synchronized (flag) {
-                    while (flag[0] == false) {
-                        try {
-                            flag.wait();
-                        } catch (InterruptedException e) {
-                            break;
+                public void added(IExtension[] extensions) {
+                    // Process                
+                    for (IExtension extension : extensions) {
+                        registryContributors.remove(extension.getContributor().getName());
+                        if (registryContributors.isEmpty()) {
+                            synchronized (session) {
+                                session[0] = true;
+                                session.notifyAll();
+                            }
                         }
                     }
                 }
-            }
 
-            // Trace
-            if (EGFCoreDebug.isDebugBundleSession()) {
-                for (Bundle bundle : bundles) {
-                    EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is started.", bundle.getSymbolicName())); //$NON-NLS-1$
+                public void added(IExtensionPoint[] extensionPoints) {
+                    // Nothing to do
                 }
-            }
 
-            // Return our base bundle
-            return Platform.getBundle(BundleHelper.getBundleId(base));
+                public void removed(IExtensionPoint[] extensionPoints) {
+                    // Nothing to do
+                }
 
-        } finally {
+            };
 
-            if (eventThread != null) {
-                eventThread.dispose();
-                eventThread.interrupt();
-                eventThread = null;
-            }
+            // Register
+            RegistryFactory.getRegistry().addListener(registryListener);
 
         }
+
+        // Install workspace bundles
+        final List<Bundle> bundles = new UniqueEList<Bundle>();
+        internalInstallBundle(bundles, workspaceModels);
+
+        // Wait for extensions notifications if applicable
+        if (registryListener != null) {
+            synchronized (session) {
+                while (session[0] == false) {
+                    try {
+                        session.wait();
+                    } catch (InterruptedException e) {
+                        break;
+                    }
+                }
+            }
+            // Unregister
+            RegistryFactory.getRegistry().removeListener(registryListener);
+        }
+
+        // Trace
+        if (EGFCoreDebug.isDebugBundleSession()) {
+            for (Bundle bundle : bundles) {
+                EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is started.", bundle.getSymbolicName())); //$NON-NLS-1$
+            }
+        }
+
+        // Return our new bundle
+        return Platform.getBundle(bundleId);
 
     }
 
@@ -252,13 +230,14 @@ public final class ProjectBundleSession {
 
         // Uninstall runtime bundles if any
         uninstallRuntimeBundle(workspaceModels);
+        // Install workspace bundles
         final List<Bundle> workspaceBundles = new ArrayList<Bundle>(bundles);
-        // Install Workspace models
         installWorkspaceModels(bundles, workspaceModels);
         // Refresh installed workspace bundles if any
         if (bundles.isEmpty() == false) {
             refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
         }
+        // Start them
         for (Bundle bundle : bundles) {
             try {
                 if (bundle.getState() != Bundle.ACTIVE) {
@@ -270,39 +249,50 @@ public final class ProjectBundleSession {
                 throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_StartFailure, bundle), t));
             }
         }
+
     }
 
     private void uninstallRuntimeBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
 
-        List<IPluginModelBase> models = new UniqueEList<IPluginModelBase>();
-        if (workspaceModels == null || workspaceModels.size() == 0) {
+        if (workspaceModels == null || workspaceModels.isEmpty()) {
             return;
         }
+        List<IPluginModelBase> models = new UniqueEList<IPluginModelBase>();
 
         // Uninstall Runtime Bundle
         List<Bundle> bundles = new UniqueEList<Bundle>();
         for (IPluginModelBase workspaceModel : workspaceModels) {
+
             // Ignore already uninstalled bundle
             if (_projectBundles.get(getLocation(workspaceModel)) != null) {
                 continue;
             }
+
             // Uninstall Runtime if any
-            Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(workspaceModel));
+            String bundleId = BundleHelper.getBundleId(workspaceModel);
+            if (bundleId == null) {
+                continue;
+            }
+            Bundle bundle = Platform.getBundle(bundleId);
             if (bundle == null) {
                 continue;
             }
             if (bundle.getState() == Bundle.INSTALLED || bundle.getState() == Bundle.RESOLVED || bundle.getState() == Bundle.STARTING || bundle.getState() == Bundle.STOPPING || bundle.getState() == Bundle.ACTIVE) {
                 uninstallBundle(bundle);
             }
+
             // Store
             models.add(workspaceModel);
             _uninstalled.add(bundle.getLocation());
             bundles.add(bundle);
+
+            // Trace
             if (EGFCoreDebug.isDebugBundleSession()) {
                 if (_uninstalled.size() == 0) {
                     EGFCorePlugin.getDefault().logInfo("Start ProjectBundleSession..."); //$NON-NLS-1$
                 }
             }
+
         }
 
         // Refresh uninstalled runtime bundles if any
@@ -321,7 +311,9 @@ public final class ProjectBundleSession {
 
     private List<IPluginModelBase> getWorkspaceModelDependencies(IPluginModelBase base) throws CoreException {
         List<IPluginModelBase> dependencies = new UniqueEList<IPluginModelBase>();
+        // Store base
         dependencies.add(base);
+        // Analyse base
         BundleDescription description = base.getBundleDescription();
         if (description == null) {
             return dependencies;
@@ -344,15 +336,13 @@ public final class ProjectBundleSession {
                 }
             }
         }
-
-        if (isTargetBundlePriority()) {
+        if (isRuntimeBundlePriority()) {
             for (IPluginModelBase innerBase : new ArrayList<IPluginModelBase>(dependencies)) {
                 if (Platform.getBundle(innerBase.getBundleDescription().getSymbolicName()) != null) {
                     dependencies.remove(innerBase);
                 }
             }
         }
-
         return dependencies;
     }
 
@@ -425,13 +415,16 @@ public final class ProjectBundleSession {
      *         <code>null</code> otherwise.
      */
     public Bundle getBundle(String id) throws CoreException {
-        IPluginModelBase model = PluginRegistry.findModel(id);
+        if (id == null || id.trim().length() == 0) {
+            return null;
+        }
+        IPluginModelBase model = PluginRegistry.findModel(id.trim());
         if (model == null) {
             return null;
         }
         // Check if we face a non workspace model
-        if (model.getUnderlyingResource() == null || isTargetBundlePriority()) {
-            return Platform.getBundle(BundleHelper.getBundleId(model));
+        if (model.getUnderlyingResource() == null || isRuntimeBundlePriority()) {
+            return Platform.getBundle(id.trim());
         }
         String location = getLocation(model);
         if (location == null) {
@@ -454,14 +447,21 @@ public final class ProjectBundleSession {
      *         <code>null</code> otherwise.
      */
     public Bundle getBundle(IProject project) throws CoreException {
-        IPluginModelBase model = PluginRegistry.findModel(project);
-        if (isTargetBundlePriority()) {
-            Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(model));
-            if (bundle != null)
-                return bundle;
+        if (project == null) {
+            return null;
         }
+        IPluginModelBase model = PluginRegistry.findModel(project);
         if (model == null) {
             return null;
+        }
+        if (isRuntimeBundlePriority()) {
+            String id = BundleHelper.getBundleId(model);
+            if (id != null) {
+                Bundle bundle = Platform.getBundle(id);
+                if (bundle != null) {
+                    return bundle;
+                }
+            }
         }
         String location = getLocation(model);
         if (location == null) {
@@ -493,9 +493,11 @@ public final class ProjectBundleSession {
             return;
         }
 
-        final boolean[] flag = new boolean[] {
+        // State for thread synchronization        
+        final boolean[] framework = new boolean[] {
             false
         };
+        // Storage for thread framework exception
         final Throwable[] throwable = new Throwable[1];
 
         // Listener
@@ -506,9 +508,9 @@ public final class ProjectBundleSession {
                     if (event.getType() == FrameworkEvent.ERROR) {
                         throwable[0] = event.getThrowable();
                     }
-                    synchronized (flag) {
-                        flag[0] = true;
-                        flag.notifyAll();
+                    synchronized (framework) {
+                        framework[0] = true;
+                        framework.notifyAll();
                     }
                 } else if (event.getType() == FrameworkEvent.WARNING) {
                     if (event.getThrowable() != null) {
@@ -522,10 +524,10 @@ public final class ProjectBundleSession {
 
         // Refresh packages
         packageAdmin.refreshPackages(bundles);
-        synchronized (flag) {
-            while (flag[0] == false) {
+        synchronized (framework) {
+            while (framework[0] == false) {
                 try {
-                    flag.wait();
+                    framework.wait();
                 } catch (InterruptedException e) {
                     break;
                 }
@@ -551,17 +553,21 @@ public final class ProjectBundleSession {
      * @noreference This method is not intended to be referenced by clients.
      */
     public void dispose() throws CoreException {
-        // Reinstall bundle collector
+
+        // shallow copy our bundle collector
         final List<Bundle> uninstalledBundles = new UniqueEList<Bundle>(_uninstalled.size());
+
         // Uninstall workspace bundle
         if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
-            // Tracing
+
+            // Trace
             if (EGFCoreDebug.isDebugBundleSession()) {
                 if (_projectBundles.isEmpty() == false || _uninstalled.isEmpty() == false) {
                     EGFCorePlugin.getDefault().logInfo("Dispose ProjectBundleSession..."); //$NON-NLS-1$        
                 }
             }
-            // Uninstall bundle
+
+            // Uninstall workspace bundle
             if (_projectBundles.isEmpty() == false) {
                 for (Bundle bundle : _projectBundles.values()) {
                     uninstallBundle(bundle);
@@ -577,6 +583,8 @@ public final class ProjectBundleSession {
                     }
                 }
             }
+
+            // Install runtime bundle
             if (_uninstalled.isEmpty() == false) {
                 for (String location : _uninstalled) {
                     uninstalledBundles.add(installBundle(location));
@@ -592,14 +600,17 @@ public final class ProjectBundleSession {
                     }
                 }
             }
+
         }
+
         // Final
         _projectBundles.clear();
         _uninstalled.clear();
+
     }
 
     /**
-     * Uninstalls the given bundle from the context.
+     * Uninstall the given bundle from the context.
      * 
      * @param bundle
      *          The bundle that is to be uninstalled.
@@ -614,12 +625,13 @@ public final class ProjectBundleSession {
         }
     }
 
-    private boolean isTargetBundlePriority() {
-        if (targetBundlePriority == null) {
+    // TODO: not sure if we still need this support while we have now runtime and target platform support
+    private boolean isRuntimeBundlePriority() {
+        if (runtimeBundlePriority == null) {
             String property = System.getProperty(EGF_TARGET_BUNDLE_PRIORITY);
-            targetBundlePriority = Boolean.TRUE.toString().equals(property);
+            runtimeBundlePriority = Boolean.TRUE.toString().equals(property);
         }
-        return targetBundlePriority;
+        return runtimeBundlePriority;
     }
 
 }
