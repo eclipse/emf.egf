@@ -44,28 +44,22 @@ class PlatformBundle implements IPlatformBundle {
 
     private IPluginModelBase _base;
 
-    private BundleDescription _bundleDescription;
-
     private String _previousBundleId;
 
     private Map<Class<?>, Map<String, Object>> _extensions = new HashMap<Class<?>, Map<String, Object>>();
 
     public PlatformBundle(IPluginModelBase base) {
         Assert.isNotNull(base);
-        Assert.isNotNull(base.getBundleDescription());
         Assert.isNotNull(BundleHelper.getBundleId(base));
         _base = base;
-        _bundleDescription = base.getBundleDescription();
         _previousBundleId = BundleHelper.getBundleId(base);
     }
 
     public PlatformBundle(Bundle bundle) {
         Assert.isNotNull(bundle);
         Assert.isLegal(bundle instanceof AbstractBundle);
-        Assert.isNotNull(((AbstractBundle) bundle).getBundleDescription());
         Assert.isNotNull(bundle.getSymbolicName());
         _bundle = bundle;
-        _bundleDescription = ((AbstractBundle) bundle).getBundleDescription();
         _previousBundleId = bundle.getSymbolicName();
     }
 
@@ -80,7 +74,6 @@ class PlatformBundle implements IPlatformBundle {
         int result = 1;
         result = prime * result + ((_base == null) ? 0 : _base.hashCode());
         result = prime * result + ((_bundle == null) ? 0 : _bundle.hashCode());
-        result = prime * result + ((_bundleDescription == null) ? 0 : _bundleDescription.hashCode());
         result = prime * result + ((_previousBundleId == null) ? 0 : _previousBundleId.hashCode());
         return result;
     }
@@ -126,6 +119,7 @@ class PlatformBundle implements IPlatformBundle {
             return null;
         }
         // Runtime Bundle and Target Bundle are compatible
+        // TODO: should be enhanced to match compatible bundle rather than strict version equality
         if (base.getPluginBase().getVersion() != null && base.getPluginBase().getVersion().equals(_bundle.getVersion().toString())) {
             return base;
         }
@@ -179,7 +173,10 @@ class PlatformBundle implements IPlatformBundle {
     }
 
     public BundleDescription getBundleDescription() {
-        return _bundleDescription;
+        if (isRuntime()) {
+            return ((AbstractBundle) getBundle()).getBundleDescription();
+        }
+        return getPluginModelBase().getBundleDescription();
     }
 
     public boolean isRuntime() {
@@ -356,7 +353,10 @@ class PlatformBundle implements IPlatformBundle {
     public String toString() {
         String id = getBundleId();
         String previousId = getPreviousBundleId();
-        String version = getBundleDescription().getVersion().toString();
+        String version = null;
+        if (getBundleDescription() != null) {
+            version = getBundleDescription().getVersion().toString();
+        }
         StringBuilder text = new StringBuilder();
         if (version != null && version.length() > 0) {
             text.append(id).append(" ").append(version); //$NON-NLS-1$
