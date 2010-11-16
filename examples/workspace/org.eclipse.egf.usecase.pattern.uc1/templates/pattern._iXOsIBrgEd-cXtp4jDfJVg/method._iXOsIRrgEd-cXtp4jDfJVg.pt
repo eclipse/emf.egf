@@ -1,4 +1,4 @@
-package egf.uc1_6.pattern.java;
+package PACKAGE;
 
 import java.util.*;
 import org.eclipse.emf.ecore.*;
@@ -7,9 +7,9 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.core.EGFCorePlugin;
 
-public class JavaPattern {
+public class CLASS {
 
-	public JavaPattern() {
+	public CLASS() {
 		//Here is the constructor
 	}
 

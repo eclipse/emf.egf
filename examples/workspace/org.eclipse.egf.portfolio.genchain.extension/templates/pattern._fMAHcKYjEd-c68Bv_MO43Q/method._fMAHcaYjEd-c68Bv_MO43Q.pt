@@ -1,4 +1,4 @@
-package sample.lib;
+package PACKAGE;
 
 import java.util.*;
 
@@ -15,9 +15,9 @@ import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
 
 
-public class SampleElementPattern {
+public class CLASS {
 
-	public SampleElementPattern() {
+	public CLASS() {
 		//Here is the constructor
 	}
 

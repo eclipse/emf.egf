@@ -7,81 +7,87 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Hello {
-	protected static String nl;
 
-	public static synchronized Hello create(String lineSeparator) {
-		nl = lineSeparator;
-		Hello result = new Hello();
-		nl = null;
-		return result;
-	}
+    protected static String nl;
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "//default content";
-	protected final String TEXT_2 = NL + "Hello";
-	protected final String TEXT_3 = "!";
-	protected final String TEXT_4 = NL;
-	protected final String TEXT_5 = NL;
+    public static synchronized Hello create(String lineSeparator) {
+        nl = lineSeparator;
+        Hello result = new Hello();
+        nl = null;
+        return result;
+    }
 
-	public Hello() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 
-		// add initialisation of the pattern variables (declaration has been already done).
+    protected final String TEXT_1 = "//default content";
 
-	}
+    protected final String TEXT_2 = NL + "Hello";
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    protected final String TEXT_3 = "!";
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
+    protected final String TEXT_4 = NL;
 
-		orchestration(ctx);
+    protected final String TEXT_5 = NL;
 
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
-		}
+    public Hello() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		stringBuffer.append(TEXT_4);
-		stringBuffer.append(TEXT_5);
-		return stringBuffer.toString();
-	}
+        // add initialisation of the pattern variables (declaration has been already done).
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+    }
 
-		method_body(ictx.getBuffer(), ictx);
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			ictx.clearBuffer();
-		}
-		return loop;
-	}
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		return parameters;
-	}
+        orchestration(ctx);
 
-	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
 
-		stringBuffer.append(TEXT_1);
-	}
+        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_5);
+        return stringBuffer.toString();
+    }
 
-	protected void method_SayHello(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
 
-		stringBuffer.append(TEXT_2);
-	}
+        method_body(ictx.getBuffer(), ictx);
 
-	protected void method_finish(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
 
-		stringBuffer.append(TEXT_3);
-	}
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        return parameters;
+    }
+
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_1);
+    }
+
+    protected void method_SayHello(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_2);
+    }
+
+    protected void method_finish(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_3);
+    }
 }

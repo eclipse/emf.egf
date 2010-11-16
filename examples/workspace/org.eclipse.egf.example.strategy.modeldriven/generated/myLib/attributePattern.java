@@ -7,6 +7,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class attributePattern {
+
     protected static String nl;
 
     public static synchronized attributePattern create(String lineSeparator) {
@@ -17,8 +18,11 @@ public class attributePattern {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + NL;
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL;
 
     public attributePattern() {

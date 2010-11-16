@@ -57,7 +57,9 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 
     protected void method_checkAttributes(final StringBuffer out, final PatternContext ctx) throws Exception {
         if (eClass.getEAllAttributes().isEmpty()) {
-            BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.example.strategy.modeldriven", 0, "eClass " + eClass.getName() + " doesn't have any attribute", new Object[] { eClass });
+            BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.example.strategy.modeldriven", 0, "eClass " + eClass.getName() + " doesn't have any attribute", new Object[] {
+                eClass
+            });
             diagnosticChain.add(diagnostic);
         }
     }

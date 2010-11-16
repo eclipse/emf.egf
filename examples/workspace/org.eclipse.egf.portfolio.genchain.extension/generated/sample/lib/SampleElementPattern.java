@@ -1,27 +1,24 @@
 package sample.lib;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.pattern.execution.InternalPatternContext;
-import org.eclipse.egf.pattern.query.IQuery;
+import org.eclipse.egf.model.pattern.*;
+import org.eclipse.egf.pattern.execution.*;
+import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
 import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 public class SampleElementPattern {
 
     public SampleElementPattern() {
-        // Here is the constructor
-        // add initialisation of the pattern variables (declaration has been
-        // already done).
+        //Here is the constructor
+        // add initialisation of the pattern variables (declaration has been already done).
     }
 
     public void generate(Object argument) throws Exception {
@@ -29,8 +26,7 @@ public class SampleElementPattern {
         IQuery.ParameterDescription paramDesc = null;
         Map<String, String> queryCtx = null;
         List<Object> parameterList = null;
-        // this pattern can only be called by another (i.e. it's not an entry
-        // point in execution)
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
         for (Object parameterParameter : parameterList) {
 

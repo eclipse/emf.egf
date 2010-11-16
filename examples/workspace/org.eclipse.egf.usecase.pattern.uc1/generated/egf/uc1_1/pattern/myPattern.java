@@ -7,91 +7,96 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class myPattern {
-	protected static String nl;
 
-	public static synchronized myPattern create(String lineSeparator) {
-		nl = lineSeparator;
-		myPattern result = new myPattern();
-		nl = null;
-		return result;
-	}
+    protected static String nl;
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL + "  - ";
-	protected final String TEXT_2 = " attribute";
-	protected final String TEXT_3 = NL;
-	protected final String TEXT_4 = NL;
+    public static synchronized myPattern create(String lineSeparator) {
+        nl = lineSeparator;
+        myPattern result = new myPattern();
+        nl = null;
+        return result;
+    }
 
-	public myPattern() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 
-		// add initialisation of the pattern variables (declaration has been already done).
+    protected final String TEXT_1 = NL + "  - ";
 
-	}
+    protected final String TEXT_2 = " attribute";
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    protected final String TEXT_3 = NL;
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
+    protected final String TEXT_4 = NL;
 
-		List<Object> anAttributeList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+    public myPattern() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		for (Object anAttributeParameter : anAttributeList) {
+        // add initialisation of the pattern variables (declaration has been already done).
 
-			this.anAttribute = (org.eclipse.emf.ecore.EAttribute) anAttributeParameter;
+    }
 
-			orchestration(ctx);
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
-		}
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
 
-		stringBuffer.append(TEXT_3);
-		stringBuffer.append(TEXT_4);
-		return stringBuffer.toString();
-	}
+        List<Object> anAttributeList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+        for (Object anAttributeParameter : anAttributeList) {
 
-		method_body(ictx.getBuffer(), ictx);
+            this.anAttribute = (org.eclipse.emf.ecore.EAttribute) anAttributeParameter;
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("anAttribute", this.anAttribute);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
-		}
-		return loop;
-	}
+            orchestration(ctx);
 
-	protected org.eclipse.emf.ecore.EAttribute anAttribute = null;
+        }
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
 
-	public void set_anAttribute(org.eclipse.emf.ecore.EAttribute object) {
-		this.anAttribute = object;
-	}
+        stringBuffer.append(TEXT_3);
+        stringBuffer.append(TEXT_4);
+        return stringBuffer.toString();
+    }
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("anAttribute", this.anAttribute);
-		return parameters;
-	}
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
 
-	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+        method_body(ictx.getBuffer(), ictx);
 
-		stringBuffer.append(TEXT_1);
-		stringBuffer.append(anAttribute.getName());
-		stringBuffer.append(TEXT_2);
-	}
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            Map<String, Object> parameterValues = new HashMap<String, Object>();
+            parameterValues.put("anAttribute", this.anAttribute);
+            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
+
+    protected org.eclipse.emf.ecore.EAttribute anAttribute = null;
+
+    public void set_anAttribute(org.eclipse.emf.ecore.EAttribute object) {
+        this.anAttribute = object;
+    }
+
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("anAttribute", this.anAttribute);
+        return parameters;
+    }
+
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        stringBuffer.append(TEXT_1);
+        stringBuffer.append(anAttribute.getName());
+        stringBuffer.append(TEXT_2);
+    }
 }

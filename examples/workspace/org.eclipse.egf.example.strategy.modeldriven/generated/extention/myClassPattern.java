@@ -8,6 +8,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class myClassPattern extends myLib.classPattern {
+
     protected static String nl;
 
     public static synchronized myClassPattern create(String lineSeparator) {
@@ -18,8 +19,11 @@ public class myClassPattern extends myLib.classPattern {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "[extension]";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL;
 
     public myClassPattern() {
