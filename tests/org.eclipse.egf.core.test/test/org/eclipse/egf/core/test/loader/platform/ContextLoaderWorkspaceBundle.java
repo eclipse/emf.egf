@@ -19,7 +19,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.core.platform.loader.BundleClassLoaderFactory;
 import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
@@ -43,22 +42,15 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
         IProject h1 = ProjectHelper.getProject("org.eclipse.egf.example.task.h1"); //$NON-NLS-1$
         assertNotNull(h1);
         assertTrue(h1.exists());
-        // Open it if necessary
-        if (h1.isOpen() == false) {
-            h1.open(new NullProgressMonitor());
-        }
         assertTrue(h1.isOpen());
         // Find model
         _h1 = PluginRegistry.findModel(h1);
         assertNotNull(_h1);
+
         // Setup project
         IProject h2 = ProjectHelper.getProject("org.eclipse.egf.example.task.h2"); //$NON-NLS-1$
         assertNotNull(h2);
         assertTrue(h2.exists());
-        // Open it if necessary
-        if (h2.isOpen() == false) {
-            h2.open(new NullProgressMonitor());
-        }
         assertTrue(h2.isOpen());
         // Find model
         _h2 = PluginRegistry.findModel(h2);

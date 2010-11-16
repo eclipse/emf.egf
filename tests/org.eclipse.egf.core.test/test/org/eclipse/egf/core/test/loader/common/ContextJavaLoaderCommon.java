@@ -43,20 +43,13 @@ public class ContextJavaLoaderCommon extends TestCase {
         IProject h1 = ProjectHelper.getProject("org.eclipse.egf.example.task.h1"); //$NON-NLS-1$
         assertNotNull(h1);
         assertTrue(h1.exists());
-        // Open it if necessary
-        if (h1.isOpen() == false) {
-            h1.open(new NullProgressMonitor());
-        }
         assertTrue(h1.isOpen());
         _h1 = h1;
+
         // Setup project
         IProject h2 = ProjectHelper.getProject("org.eclipse.egf.example.task.h2"); //$NON-NLS-1$
         assertNotNull(h2);
         assertTrue(h2.exists());
-        // Open it if necessary
-        if (h2.isOpen() == false) {
-            h2.open(new NullProgressMonitor());
-        }
         assertTrue(h2.isOpen());
         _h2 = h2;
 
