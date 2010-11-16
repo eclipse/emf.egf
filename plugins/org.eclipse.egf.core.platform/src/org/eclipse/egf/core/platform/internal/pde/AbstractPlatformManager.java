@@ -67,7 +67,7 @@ public abstract class AbstractPlatformManager implements IPlatformManager {
             extensions.put(clazz, extensionPoints);
         }
         if (extensionPoints.add(extensionPoint) == false) {
-            EGFPlatformPlugin.getDefault().logError(NLS.bind("AbstractPlatformManager.addExtensionPoint(..) _ ''{0}'' unable to add Extension Point.", //$NON-NLS-1$
+            EGFPlatformPlugin.getDefault().logWarning(NLS.bind("AbstractPlatformManager.addExtensionPoint(..) _ ''{0}'' already added Extension Point.", //$NON-NLS-1$
                     extensionPoint.getId()));
         } else {
             // Update delta
