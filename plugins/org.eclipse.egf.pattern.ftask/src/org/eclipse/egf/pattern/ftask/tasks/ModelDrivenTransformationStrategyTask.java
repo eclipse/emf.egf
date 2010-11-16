@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.domain.DomainFactory;
@@ -29,6 +28,8 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -72,7 +73,10 @@ public class ModelDrivenTransformationStrategyTask extends ModelDrivenStrategyTa
             domainURI.setUri(uri);
             context.setOutputValue("outDomain", domainURI); //$NON-NLS-1$
 
-            RuntimePlatformResourceSet set = new RuntimePlatformResourceSet();
+            // Create a standard resource set
+            // we just need to save a copy of existing domain objects in a temporary file
+            // no runtime or target platform specific strategy here
+            ResourceSet set = new ResourceSetImpl();
             Resource resource = set.createResource(uri);
             resource.getContents().addAll(objects);
             resource.save(Collections.EMPTY_MAP);
