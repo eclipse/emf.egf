@@ -134,7 +134,7 @@ public class URIHelper {
             }
             return result.toString();
         }
-        return null;
+        return uri != null ? uri.toString() : null;
     }
 
 }
