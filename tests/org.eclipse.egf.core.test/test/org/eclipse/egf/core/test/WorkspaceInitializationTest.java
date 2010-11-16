@@ -24,16 +24,27 @@ import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceDescription;
 import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
 import org.eclipse.ui.wizards.datatransfer.FileSystemStructureProvider;
+import org.eclipse.ui.wizards.datatransfer.IImportStructureProvider;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.osgi.framework.Bundle;
 
@@ -41,56 +52,143 @@ import org.osgi.framework.Bundle;
  * @author Matthieu Helleboid
  * 
  */
-public class WorkspaceInitializationTest extends TestCase implements IOverwriteQuery {
+public class WorkspaceInitializationTest extends TestCase {
 
     public List<String> _projectNames = new UniqueEList<String>();
 
     @Override
     protected void setUp() throws Exception {
 
+        // State for thread synchronization
+        final boolean[] init = new boolean[] {
+            false
+        };
+
+        class Import extends ImportOperation {
+
+            public Import(IPath containerPath, Object source, IImportStructureProvider provider, IOverwriteQuery overwriteImplementor, List<?> filesToImport) {
+                super(containerPath, source, provider, overwriteImplementor, filesToImport);
+            }
+
+            public void process(IProgressMonitor monitor) {
+                execute(monitor);
+            }
+
+        }
+
+        // Prepare our init job
+        class InitJob extends WorkspaceJob implements IOverwriteQuery {
+
+            private boolean[] _init;
+
+            public InitJob(boolean[] innerInit) {
+                super("WorkspaceInitializationTest"); //$NON-NLS-1$
+                _init = innerInit;
+            }
+
+            public String queryOverwrite(String pathString) {
+                return IOverwriteQuery.YES;
+            }
+
+            @Override
+            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+
+                try {
+
+                    IWorkspace workspace = ResourcesPlugin.getWorkspace();
+                    IWorkspaceRoot workspaceRoot = workspace.getRoot();
+
+                    // Clean previous workspace
+                    for (IProject project : workspaceRoot.getProjects()) {
+                        project.delete(true, true, monitor);
+                    }
+
+                    try {
+
+                        // Initialize workspace
+                        Bundle bundle = EGFCoreTestPlugin.getDefault().getBundle();
+                        URL resourcesURL = FileLocator.find(bundle, new Path("resources"), Collections.EMPTY_MAP); //$NON-NLS-1$
+                        URL resourcesFileURL = FileLocator.toFileURL(resourcesURL);
+                        File resourcesFile = new File(resourcesFileURL.getPath());
+                        for (File file : resourcesFile.listFiles()) {
+                            if (file.isDirectory() == false) {
+                                continue;
+                            }
+                            if (new File(file, ".project").exists() == false) { //$NON-NLS-1$
+                                continue;
+                            }
+                            String projectName = file.getName();
+                            IProject project = workspaceRoot.getProject(projectName);
+                            IProjectDescription description = workspace.newProjectDescription(projectName);
+                            description.setLocationURI(null);
+                            project.create(description, monitor);
+                            project.open(monitor);
+                            // import project from location copying files
+                            // use default project location for this workspace
+                            List<?> filesToImport = FileSystemStructureProvider.INSTANCE.getChildren(file);
+                            Import operation = new Import(project.getFullPath(), file, FileSystemStructureProvider.INSTANCE, this, filesToImport);
+                            operation.setContext(null);
+                            operation.setOverwriteResources(true);
+                            operation.setCreateContainerStructure(false);
+                            operation.process(monitor);
+                            // Refresh
+                            project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
+                            // Store
+                            _projectNames.add(projectName);
+                        }
+
+                    } catch (Throwable t) {
+                        return Status.CANCEL_STATUS;
+                    }
+
+                    return Status.OK_STATUS;
+
+                } finally {
+
+                    synchronized (_init) {
+                        _init[0] = true;
+                        _init.notifyAll();
+                    }
+
+                }
+
+            }
+
+        }
+
+        // Turn off auto-build
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        IWorkspaceRoot workspaceRoot = workspace.getRoot();
-
-        // Clean previous workspace
-        NullProgressMonitor monitor = new NullProgressMonitor();
-        for (IProject project : workspaceRoot.getProjects()) {
-            project.delete(true, true, monitor);
+        IWorkspaceDescription description = workspace.getDescription();
+        if (description.isAutoBuilding()) {
+            description.setAutoBuilding(false);
+            workspace.setDescription(description);
         }
 
-        // Initialize workspace
-        Bundle bundle = EGFCoreTestPlugin.getDefault().getBundle();
-        URL resourcesURL = FileLocator.find(bundle, new Path("resources"), Collections.EMPTY_MAP); //$NON-NLS-1$
-        URL resourcesFileURL = FileLocator.toFileURL(resourcesURL);
-        File resourcesFile = new File(resourcesFileURL.getPath());
-        for (File file : resourcesFile.listFiles()) {
-            if (file.isDirectory() == false) {
-                continue;
+        // Lock all the workspace and import resources
+        WorkspaceJob initJob = new InitJob(init);
+        initJob.setRule(workspace.getRuleFactory().buildRule());
+        initJob.setPriority(Job.LONG);
+        initJob.setUser(true);
+        initJob.setSystem(false);
+        initJob.schedule();
+
+        // Let the job run
+        synchronized (init) {
+            while (init[0] == false) {
+                try {
+                    init.wait();
+                } catch (InterruptedException e) {
+                    break;
+                }
             }
-            if (new File(file, ".project").exists() == false) { //$NON-NLS-1$
-                continue;
-            }
-            String projectName = file.getName();
-            IProject project = workspaceRoot.getProject(projectName);
-            IProjectDescription description = workspace.newProjectDescription(projectName);
-            description.setLocationURI(null);
-            project.create(description, monitor);
-            project.open(monitor);
-            // import project from location copying files
-            // use default project location for this workspace
-            List<?> filesToImport = FileSystemStructureProvider.INSTANCE.getChildren(file);
-            ImportOperation operation = new ImportOperation(project.getFullPath(), file, FileSystemStructureProvider.INSTANCE, this, filesToImport);
-            operation.setContext(null);
-            operation.setOverwriteResources(true);
-            operation.setCreateContainerStructure(false);
-            operation.run(monitor);
-            // Store
-            _projectNames.add(projectName);
         }
 
-    }
+        // Build
+        workspace.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
 
-    public String queryOverwrite(String pathString) {
-        return IOverwriteQuery.YES;
+        // Wait for build completion
+        Job.getJobManager().join(ResourcesPlugin.FAMILY_AUTO_BUILD, new NullProgressMonitor());
+
     }
 
     public void testProjectsExists() {
