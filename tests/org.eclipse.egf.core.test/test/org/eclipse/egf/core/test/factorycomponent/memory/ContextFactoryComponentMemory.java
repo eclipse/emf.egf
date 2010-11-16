@@ -15,9 +15,8 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
-import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
@@ -59,9 +58,7 @@ public class ContextFactoryComponentMemory extends TestCase {
 
     public void testInvokeFC1() throws Exception {
 
-        WorkspaceHelper.closeWorkspaceProjects();
-
-        ResourceSet resourceSet = new TargetPlatformResourceSet();
+        ResourceSet resourceSet = new RuntimePlatformResourceSet();
 
         FactoryComponent fc = FcoreFactory.eINSTANCE.createFactoryComponent();
         fc.setName("FC1"); //$NON-NLS-1$

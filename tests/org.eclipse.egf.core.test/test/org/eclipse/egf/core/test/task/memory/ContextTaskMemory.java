@@ -17,7 +17,6 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
-import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
@@ -54,8 +53,6 @@ public class ContextTaskMemory extends TestCase {
 
     public void testContractH1() throws Exception {
 
-        WorkspaceHelper.closeWorkspaceProjects();
-
         Task task = FtaskFactory.eINSTANCE.createTask();
         task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
         task.setKind("java"); //$NON-NLS-1$
@@ -87,8 +84,6 @@ public class ContextTaskMemory extends TestCase {
     }
 
     public void testOutputContractClassNotTheSameH1() throws Exception {
-
-        WorkspaceHelper.closeWorkspaceProjects();
 
         Task task = FtaskFactory.eINSTANCE.createTask();
         task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$

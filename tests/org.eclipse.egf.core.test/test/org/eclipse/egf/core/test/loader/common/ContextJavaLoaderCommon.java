@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.loader.IJavaClassLoader;
 import org.eclipse.egf.common.loader.JavaClassLoaderFactory;
-import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 
@@ -39,7 +38,7 @@ public class ContextJavaLoaderCommon extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
-        WorkspaceHelper.openWorkspaceProjects();
+
         // Setup project
         IProject h1 = ProjectHelper.getProject("org.eclipse.egf.example.task.h1"); //$NON-NLS-1$
         assertNotNull(h1);
@@ -60,6 +59,7 @@ public class ContextJavaLoaderCommon extends TestCase {
         }
         assertTrue(h2.isOpen());
         _h2 = h2;
+
     }
 
     public void testLoadClassH1() throws Exception {

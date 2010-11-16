@@ -20,7 +20,6 @@ import junit.framework.TestSuite;
 
 import org.eclipse.egf.core.platform.loader.BundleClassLoaderFactory;
 import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
-import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -36,7 +35,6 @@ public class ContextLoaderTargetBundle extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
-        WorkspaceHelper.openWorkspaceProjects();
         // Find codegenecore pde model
         _codegenecore = PluginRegistry.findModel("org.eclipse.emf.codegen.ecore"); //$NON-NLS-1$
         assertNotNull(_codegenecore);

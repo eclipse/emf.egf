@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.core.platform.loader.BundleClassLoaderFactory;
 import org.eclipse.egf.core.platform.loader.IBundleClassLoader;
-import org.eclipse.egf.core.test.WorkspaceHelper;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -39,7 +38,7 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
 
     @Override
     protected void setUp() throws Exception {
-        WorkspaceHelper.openWorkspaceProjects();
+
         // Setup project
         IProject h1 = ProjectHelper.getProject("org.eclipse.egf.example.task.h1"); //$NON-NLS-1$
         assertNotNull(h1);
@@ -64,6 +63,7 @@ public class ContextLoaderWorkspaceBundle extends TestCase {
         // Find model
         _h2 = PluginRegistry.findModel(h2);
         assertNotNull(_h2);
+
     }
 
     public void testLoadClassH1() throws Exception {
