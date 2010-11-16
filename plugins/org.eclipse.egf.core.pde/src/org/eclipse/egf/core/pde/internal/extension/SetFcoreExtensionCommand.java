@@ -22,21 +22,21 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public class SetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
 
-  /**
-   * Constructor.
-   * 
-   * @param path
-   */
-  public SetFcoreExtensionCommand(IPath path) throws CoreException {
-    super(path);
-  }
+    /**
+     * Constructor.
+     * 
+     * @param path
+     */
+    public SetFcoreExtensionCommand(IPath path) throws CoreException {
+        super(path);
+    }
 
-  /**
-   * @see org.eclipse.egf.core.pde.plugin.AbstractChangesCommand#doExecute(org.eclipse.core.runtime.IProgressMonitor)
-   */
-  @Override
-  public void doExecute(IProgressMonitor monitor) throws CoreException {
-    createExtensionElement();
-  }
+    /**
+     * @see org.eclipse.egf.core.pde.plugin.AbstractChangesCommand#doExecute(org.eclipse.core.runtime.IProgressMonitor)
+     */
+    @Override
+    public void doExecute(IProgressMonitor monitor) throws CoreException {
+        createExtensionElement();
+    }
 
 }

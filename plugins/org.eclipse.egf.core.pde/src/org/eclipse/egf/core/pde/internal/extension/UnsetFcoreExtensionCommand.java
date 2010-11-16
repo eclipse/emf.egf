@@ -21,18 +21,18 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public class UnsetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
 
-  /**
-   * Constructor.
-   * 
-   * @param path
-   */
-  public UnsetFcoreExtensionCommand(IPath path) throws CoreException {
-    super(path);
-  }
+    /**
+     * Constructor.
+     * 
+     * @param path
+     */
+    public UnsetFcoreExtensionCommand(IPath path) throws CoreException {
+        super(path);
+    }
 
-  @Override
-  public void doExecute(IProgressMonitor monitor) throws CoreException {
-    removeExtensionElement();
-  }
+    @Override
+    public void doExecute(IProgressMonitor monitor) throws CoreException {
+        removeExtensionElement();
+    }
 
 }

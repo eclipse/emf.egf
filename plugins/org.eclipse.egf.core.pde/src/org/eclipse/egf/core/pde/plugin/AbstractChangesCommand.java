@@ -32,95 +32,95 @@ import org.eclipse.pde.internal.core.plugin.WorkspacePluginModelBase;
  */
 public abstract class AbstractChangesCommand implements IPluginChangesCommand {
 
-  private String _bundleId;
+    private String _bundleId;
 
-  private IPluginModelBase _pluginModelBase;
+    private IPluginModelBase _pluginModelBase;
 
-  private IProject _project;
+    private IProject _project;
 
-  public AbstractChangesCommand(IProject project) throws CoreException {
-    Assert.isNotNull(project);
-    _project = project;
-    IPluginModelBase fakeModel = BundleHelper.getPluginModelBase(_project);
-    if (fakeModel == null) {
-      throw new CoreException(EGFPDEPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind("AbstractChangesCommand(..) _ project ''{0}'' is not a bundle project.", _project.getModificationStamp()), null)); //$NON-NLS-1$
+    public AbstractChangesCommand(IProject project) throws CoreException {
+        Assert.isNotNull(project);
+        _project = project;
+        IPluginModelBase fakeModel = BundleHelper.getPluginModelBase(_project);
+        if (fakeModel == null) {
+            throw new CoreException(EGFPDEPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind("AbstractChangesCommand(..) _ project ''{0}'' is not a bundle project.", _project.getModificationStamp()), null)); //$NON-NLS-1$
+        }
     }
-  }
 
-  /**
-   * Get the plug-in model id
-   * 
-   * @return the bundleId
-   */
-  public String getBundleId() {
-    if (_bundleId == null) {
-      if (_pluginModelBase != null) {
-        _bundleId = BundleHelper.getBundleId(_pluginModelBase);
-      }
-    }
-    return _bundleId;
-  }
-
-  /**
-   * Get the plug-in model that this command is performed against.
-   * 
-   * @return the pluginModelBase
-   */
-  public IPluginModelBase getPluginModelBase() {
-    return _pluginModelBase;
-  }
-
-  /**
-   * @see org.eclipse.egf.core.pde.plugin.IPluginChangesCommand#execute(org.eclipse.core.runtime.IProgressMonitor)
-   */
-  public void execute(IProgressMonitor monitor) throws CoreException {
-    if (_project.getFile(PDEModelUtility.F_PLUGIN).exists()) {
-      modifyExistingPlugin(monitor);
-    } else {
-      createNewPlugin(monitor);
-    }
-  }
-
-  private void createNewPlugin(IProgressMonitor monitor) throws CoreException {
-    IPluginModelBase fakeModel = BundleHelper.getPluginModelBase(_project);
-    if (fakeModel == null) {
-      throw new CoreException(EGFPDEPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind("AbstractChangesCommand.createNewPlugin(..) _ project ''{0}'' is not a bundle project.", _project.getModificationStamp()), null)); //$NON-NLS-1$
-    }
-    WorkspacePluginModelBase pluginModel = PluginHelper.createWorkspacePluginModelBase(fakeModel);
-    if (pluginModel == null) {
-      return;
-    }
-    _pluginModelBase = pluginModel;
-    doExecute(monitor);
-    pluginModel.save();
-    PluginHelper.updateBuildFile(pluginModel);
-  }
-
-  private void modifyExistingPlugin(final IProgressMonitor monitor) {
-    EGFPDEPlugin.getDisplay().syncExec(new Runnable() {
-
-      public void run() {
-        // Create an update operation that deals with modifying extensions.
-        ModelModification updateOperation = new ModelModification(_project.getFile(PDEModelUtility.F_PLUGIN)) {
-
-          @Override
-          protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
-            if (model == null) {
-              return;
+    /**
+     * Get the plug-in model id
+     * 
+     * @return the bundleId
+     */
+    public String getBundleId() {
+        if (_bundleId == null) {
+            if (_pluginModelBase != null) {
+                _bundleId = BundleHelper.getBundleId(_pluginModelBase);
             }
-            if (model instanceof IPluginModelBase == false) {
-              return;
-            }
-            _pluginModelBase = (IPluginModelBase) model;
-            doExecute(innerMonitor);
-          }
-        };
-        // Let's update the file.
-        PDEModelUtility.modifyModel(updateOperation, monitor);
-      }
-    });
-  }
+        }
+        return _bundleId;
+    }
 
-  protected abstract void doExecute(IProgressMonitor monitor) throws CoreException;
+    /**
+     * Get the plug-in model that this command is performed against.
+     * 
+     * @return the pluginModelBase
+     */
+    public IPluginModelBase getPluginModelBase() {
+        return _pluginModelBase;
+    }
+
+    /**
+     * @see org.eclipse.egf.core.pde.plugin.IPluginChangesCommand#execute(org.eclipse.core.runtime.IProgressMonitor)
+     */
+    public void execute(IProgressMonitor monitor) throws CoreException {
+        if (_project.getFile(PDEModelUtility.F_PLUGIN).exists()) {
+            modifyExistingPlugin(monitor);
+        } else {
+            createNewPlugin(monitor);
+        }
+    }
+
+    private void createNewPlugin(IProgressMonitor monitor) throws CoreException {
+        IPluginModelBase fakeModel = BundleHelper.getPluginModelBase(_project);
+        if (fakeModel == null) {
+            throw new CoreException(EGFPDEPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind("AbstractChangesCommand.createNewPlugin(..) _ project ''{0}'' is not a bundle project.", _project.getModificationStamp()), null)); //$NON-NLS-1$
+        }
+        WorkspacePluginModelBase pluginModel = PluginHelper.createWorkspacePluginModelBase(fakeModel);
+        if (pluginModel == null) {
+            return;
+        }
+        _pluginModelBase = pluginModel;
+        doExecute(monitor);
+        pluginModel.save();
+        PluginHelper.updateBuildFile(pluginModel);
+    }
+
+    private void modifyExistingPlugin(final IProgressMonitor monitor) {
+        EGFPDEPlugin.getDisplay().syncExec(new Runnable() {
+
+            public void run() {
+                // Create an update operation that deals with modifying extensions.
+                ModelModification updateOperation = new ModelModification(_project.getFile(PDEModelUtility.F_PLUGIN)) {
+
+                    @Override
+                    protected void modifyModel(IBaseModel model, IProgressMonitor innerMonitor) throws CoreException {
+                        if (model == null) {
+                            return;
+                        }
+                        if (model instanceof IPluginModelBase == false) {
+                            return;
+                        }
+                        _pluginModelBase = (IPluginModelBase) model;
+                        doExecute(innerMonitor);
+                    }
+                };
+                // Let's update the file.
+                PDEModelUtility.modifyModel(updateOperation, monitor);
+            }
+        });
+    }
+
+    protected abstract void doExecute(IProgressMonitor monitor) throws CoreException;
 
 }
