@@ -22,22 +22,29 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
  */
 public interface IPluginChangesCommand {
 
-  /**
-   * get the plug-in model that this command is performed against.
-   * 
-   */
-  public IPluginModelBase getPluginModelBase();
+    /**
+     * get the plug-in model that this command is performed against.
+     * 
+     */
+    public IPluginModelBase getPluginModelBase();
 
-  /**
-   * Performs changes on the underlying plug-in.
-   */
-  public void execute(IProgressMonitor monitor) throws CoreException;
+    /**
+     * Performs changes on the underlying plug-in.
+     */
+    public void execute(IProgressMonitor monitor) throws CoreException;
 
-  /**
-   * get the plug-in model id
-   * 
-   * @return String
-   */
-  public String getBundleId();
+    /**
+     * get the plug-in model id
+     * 
+     * @return String
+     */
+    public String getBundleId();
+
+    /**
+     * check whether or not this command has something to do
+     * 
+     * @return boolean
+     */
+    public boolean exists();
 
 }
