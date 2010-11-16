@@ -604,22 +604,24 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             resourceHasBeenExternallyChanged = false;
             resourceHasBeenRemoved = false;
             userHasSavedResource = false;
-            getSite().getShell().getDisplay().asyncExec(new Runnable() {
+            if (currentViewerPane != null && currentViewerPane.getControl().isDisposed() == false) {
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
 
-                public void run() {
-                    if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
-                        setSelection(StructuredSelection.EMPTY);
+                    public void run() {
+                        if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+                            setSelection(StructuredSelection.EMPTY);
+                        }
+                        selectionViewer.setSelection(new StructuredSelection(movedResource), true);
+                        if (currentViewerPane != null && currentViewerPane.getControl().isDisposed() == false) {
+                            currentViewerPane.setTitle(movedResource);
+                        }
+                        setPartName(movedResource.getURI().lastSegment());
+                        setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(movedResource.getURI())));
+                        firePropertyChange(PROP_TITLE);
                     }
-                    selectionViewer.setSelection(new StructuredSelection(movedResource), true);
-                    if (currentViewerPane != null) {
-                        currentViewerPane.setTitle(movedResource);
-                    }
-                    setPartName(movedResource.getURI().lastSegment());
-                    setInputWithNotify(EditorHelper.getEditorInput(editingDomain.getResourceSet().getURIConverter().normalize(movedResource.getURI())));
-                    firePropertyChange(PROP_TITLE);
-                }
 
-            });
+                });
+            }
         }
     }
 
