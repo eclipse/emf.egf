@@ -22,36 +22,36 @@ import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
  */
 public class FcoreExtensionFactory implements IFcoreExtensionFactory {
 
-  /**
-   * Unique reference.
-   */
-  private static FcoreExtensionFactory __instance;
+    /**
+     * Unique reference.
+     */
+    private static FcoreExtensionFactory __instance;
 
-  /**
-   * Private constructor to implement singleton pattern.
-   */
-  private FcoreExtensionFactory() {
-    // Do nothing.
-  }
-
-  /**
-   * Get the unique instance.
-   * 
-   * @return __instance
-   */
-  public static FcoreExtensionFactory getInstance() {
-    if (__instance == null) {
-      __instance = new FcoreExtensionFactory();
+    /**
+     * Private constructor to implement singleton pattern.
+     */
+    private FcoreExtensionFactory() {
+        // Do nothing.
     }
-    return __instance;
-  }
 
-  public IPluginChangesCommand setFcoreExtension(IPath path) throws CoreException {
-    return new SetFcoreExtensionCommand(path);
-  }
+    /**
+     * Get the unique instance.
+     * 
+     * @return __instance
+     */
+    public static FcoreExtensionFactory getInstance() {
+        if (__instance == null) {
+            __instance = new FcoreExtensionFactory();
+        }
+        return __instance;
+    }
 
-  public IPluginChangesCommand unsetFcoreExtension(IPath path) throws CoreException {
-    return new UnsetFcoreExtensionCommand(path);
-  }
+    public IPluginChangesCommand setFcoreExtension(IPath path) throws CoreException {
+        return new SetFcoreExtensionCommand(path);
+    }
+
+    public IPluginChangesCommand unsetFcoreExtension(IPath path) throws CoreException {
+        return new UnsetFcoreExtensionCommand(path);
+    }
 
 }
