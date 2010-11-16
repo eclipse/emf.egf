@@ -51,10 +51,6 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
         if (pluginExtensions == null) {
             return;
         }
-        // Check whether or not we have something to remove
-        if (exists() == false) {
-            return;
-        }
         for (IPluginExtension pluginExtension : pluginExtensions) {
             boolean removed = false;
             IPluginElement[] pluginElements = ExtensionHelper.getPluginElement(pluginExtension, getExtensionChildName());
@@ -81,31 +77,6 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
         }
     }
 
-    public boolean exists() {
-        // Get the extension.
-        IPluginExtension[] pluginExtensions = ExtensionHelper.getPluginExtension(getExtensions(), getExtensionPointId());
-        if (pluginExtensions == null) {
-            return false;
-        }
-        // Check if an extension is already containing the searched element?
-        // Loop over retrieved extensions to seek for a plug-in element with specified id attribute and id value.
-        // We stop when the first one is found
-        for (IPluginExtension pluginExtension : pluginExtensions) {
-            // Retrieve contained element.
-            IPluginElement[] pluginElements = ExtensionHelper.getPluginElement(pluginExtension, getExtensionChildName());
-            if (pluginElements != null) {
-                for (IPluginElement innerPluginElement : pluginElements) {
-                    // Look up for the one related to given element name.
-                    IPluginAttribute pluginAttribute = innerPluginElement.getAttribute(getExtensionChildAttribute());
-                    if (pluginAttribute != null && matchValue(pluginAttribute.getValue())) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     /**
      * Get a child for given id in extension matching {@link #getExtensionPointId()}, {@link #getExtensionChildName()} and {@link #getExtensionChildIdAttribute()}.
      * 
@@ -119,11 +90,29 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
         if (pluginExtensions == null) {
             return null;
         }
-        // Check whether or not we have something to create
-        if (exists() == false) {
+        // Check if an extension is already containing the searched element?
+        // Loop over retrieved extensions to seek for a plug-in element with specified id attribute and id value.
+        // We stop when the first one is found
+        LOOP: for (int i = 0; i < pluginExtensions.length; i++) {
+            // Retrieve contained element.
+            IPluginElement[] pluginElements = ExtensionHelper.getPluginElement(pluginExtensions[i], getExtensionChildName());
+            if (pluginElements != null) {
+                for (IPluginElement innerPluginElement : pluginElements) {
+                    // Look up for the one related to given element name.
+                    IPluginAttribute pluginAttribute = innerPluginElement.getAttribute(getExtensionChildAttribute());
+                    if (pluginAttribute != null && matchValue(pluginAttribute.getValue())) {
+                        pluginElement = innerPluginElement;
+                        break LOOP;
+                    }
+                }
+            }
+        }
+        // If the plug-in element is not found, create a new extension with its
+        // extension element.
+        if (pluginElement == null) {
             // Extension doesn't exist yet, let's create it.
             IPluginExtension extension = null;
-            if (pluginExtensions.length > 0) {
+            if (pluginExtensions != null && pluginExtensions.length > 0) {
                 extension = pluginExtensions[0];
             }
             if (extension == null) {

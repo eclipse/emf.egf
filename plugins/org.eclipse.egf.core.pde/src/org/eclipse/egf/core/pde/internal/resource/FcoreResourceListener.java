@@ -300,22 +300,18 @@ public class FcoreResourceListener implements IResourceChangeListener {
                     if (BundleHelper.getPluginModelBase(path) != null) {
                         // Delete command
                         IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
-                        if (unsetCommand.exists()) {
-                            unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
-                            if (monitor.isCanceled()) {
-                                throw new InterruptedException();
-                            }
+                        unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+                        if (monitor.isCanceled()) {
+                            throw new InterruptedException();
                         }
                     }
                     // Ignore non Bundle project
                     if (BundleHelper.getPluginModelBase(_movedFcores.get(path)) != null) {
                         // Create command
                         IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(_movedFcores.get(path));
-                        if (createCommand.exists() == false) {
-                            createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
-                            if (monitor.isCanceled()) {
-                                throw new InterruptedException();
-                            }
+                        createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+                        if (monitor.isCanceled()) {
+                            throw new InterruptedException();
                         }
                     }
                 }

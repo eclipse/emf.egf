@@ -40,11 +40,4 @@ public interface IPluginChangesCommand {
      */
     public String getBundleId();
 
-    /**
-     * check whether or not this command has something to do
-     * 
-     * @return boolean
-     */
-    public boolean exists();
-
 }
