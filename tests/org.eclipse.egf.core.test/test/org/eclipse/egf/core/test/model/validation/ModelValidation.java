@@ -18,10 +18,10 @@ import org.eclipse.egf.core.test.model.validation.fprod.FprodContractValidation;
 
 public class ModelValidation extends TestCase {
 
-  public static Test suite() {
-    TestSuite suite = new TestSuite("EGF Model Test Suite"); //$NON-NLS-1$
-    suite.addTest(FprodContractValidation.suite());
-    return suite;
-  }
+    public static Test suite() {
+        TestSuite suite = new TestSuite("EGF Model Test Suite"); //$NON-NLS-1$
+        suite.addTest(FprodContractValidation.suite());
+        return suite;
+    }
 
 }
