@@ -21,13 +21,13 @@ package org.eclipse.egf.emf.pattern.util;
  */
 public enum PartType {
 
-  Model, Edit, Editor, Tests, All;
+    Model, Edit, Editor, Tests, All;
 
-  public static String getFactoryComponentName(PartType partType) {
-    if (partType == null) {
-      return "EMF Pattern"; //$NON-NLS-1$
+    public static String getFactoryComponentName(PartType partType) {
+        if (partType == null) {
+            return "EMF Pattern"; //$NON-NLS-1$
+        }
+        return "EMF " + partType.toString() + " Pattern"; //$NON-NLS-1$ //$NON-NLS-2$
     }
-    return "EMF " + partType.toString() + " Pattern"; //$NON-NLS-1$ //$NON-NLS-2$
-  }
 
 }
