@@ -46,11 +46,15 @@ import org.eclipse.emf.codegen.jet.JETMark;
 public class CodegenJetCompiler extends JETCompiler {
 
     protected InternalSection currentSection;
+
     protected CodegenJetTemplateSection parentSection;
 
     protected List<InternalSection> allSections = new ArrayList<InternalSection>();
+
     protected StringBuffer javaBuffer = new StringBuffer();
+
     protected StringBuffer originalBuffer = new StringBuffer();
+
     protected IProject codegenProject;
 
     public CodegenJetCompiler(IProject codegenProject, String templateURI) throws JETException {
@@ -158,7 +162,7 @@ public class CodegenJetCompiler extends JETCompiler {
         javaBuffer.append(CodegenJetConstants.MARK_STATEMENT);
     }
 
-    protected void exitSection() throws JETException {
+    protected void exitSection() {
         currentSection.endJavaOffset = javaBuffer.length();
         javaBuffer.append(CodegenJetConstants.MARK_STATEMENT);
 
@@ -175,9 +179,9 @@ public class CodegenJetCompiler extends JETCompiler {
 
             for (int i = begin; i < end; i++) {
                 char myChar = javaBuffer.charAt(i);
-                if (myChar == '{') //$NON-NLS-1$
+                if (myChar == '{')
                     open++;
-                if (myChar == '}') //$NON-NLS-1$
+                if (myChar == '}')
                     close++;
             }
         }
@@ -192,14 +196,14 @@ public class CodegenJetCompiler extends JETCompiler {
             buffer.append("  missing "); //$NON-NLS-1$
             if (open > close)
                 buffer.append("}"); //$NON-NLS-1$
-            else 
+            else
                 buffer.append("{"); //$NON-NLS-1$
-            
+
             int line = 0;
             BufferedReader bufferedReader = new BufferedReader(new StringReader(originalBuffer.toString()));
             try {
-                while (bufferedReader.readLine() != null) 
-                    line ++;
+                while (bufferedReader.readLine() != null)
+                    line++;
                 bufferedReader.close();
             } catch (IOException e) {
                 //ignore me
@@ -212,7 +216,7 @@ public class CodegenJetCompiler extends JETCompiler {
             }
             buffer.append("at line "); //$NON-NLS-1$
             buffer.append(String.valueOf(line));
-            
+
             System.out.println(buffer.toString());
         }
     }
