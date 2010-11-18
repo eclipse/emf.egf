@@ -39,7 +39,7 @@ public class CodegenPatternInitializer {
             this.patternInfo = patternInfo;
         }
 
-        protected String getContent(PatternMethod method) throws PatternException {
+        protected String getContent(PatternMethod method) {
             for (MethodInfo methodInfo : patternInfo.getMethods()) {
                 if (methodInfo.getName() != null && methodInfo.getName().equals(method.getName()))
                     return methodInfo.getContent();
@@ -64,7 +64,7 @@ public class CodegenPatternInitializer {
                 return content;
             return super.getConditionContent(method);
         }
-        
+
         @Override
         protected String getDefaultContent(PatternMethod method) throws PatternException {
             String content = contentProvider.getContent(method);
