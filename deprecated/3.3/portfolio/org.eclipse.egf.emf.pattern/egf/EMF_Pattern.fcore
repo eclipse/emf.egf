@@ -3243,7 +3243,7 @@
           </invocationContracts>
           <invocationContracts xmi:id="_HJ1dv_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_OVsagFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_HJ_OsPMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_OsfMsEd-6tr0C8ZV8Ew"
+          <invocationContracts xmi:id="_HJ_OsPMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_RcQCMPI7Ed-Pp8S8RvVOuQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_JWI2sPI7Ed-Pp8S8RvVOuQ"/>
           <invocationContracts xmi:id="_HJ_Os_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_sluXsVLLEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
@@ -3736,7 +3736,7 @@
           </invocationContracts>
           <invocationContracts xmi:id="_HJ_OxfMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_UCnhEFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_HJ_OyPMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_OyfMsEd-6tr0C8ZV8Ew"
+          <invocationContracts xmi:id="_HJ_OyPMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_dgkvsPI7Ed-Pp8S8RvVOuQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_JWI2sPI7Ed-Pp8S8RvVOuQ"/>
           <invocationContracts xmi:id="_HJ_Oy_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
@@ -4142,7 +4142,7 @@
           </invocationContracts>
           <invocationContracts xmi:id="_HJ_O3fMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_Y3EukFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_HJ_O4PMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_O4fMsEd-6tr0C8ZV8Ew"
+          <invocationContracts xmi:id="_HJ_O4PMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_NcZ6I_MqEd-6tr0C8ZV8Ew"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_JWI2sPI7Ed-Pp8S8RvVOuQ"/>
           <invocationContracts xmi:id="_HJ_O4_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
@@ -4753,7 +4753,7 @@
           </invocationContracts>
           <invocationContracts xmi:id="_HJ_O9fMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_eYFgEFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
-          <invocationContracts xmi:id="_HJ_O-PMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_O-fMsEd-6tr0C8ZV8Ew"
+          <invocationContracts xmi:id="_HJ_O-PMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_NcjD0vMqEd-6tr0C8ZV8Ew"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_JWI2sPI7Ed-Pp8S8RvVOuQ"/>
           <invocationContracts xmi:id="_HJ_O-_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"
               invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
@@ -4793,8 +4793,8 @@
               invokedContract="#_WRxYEFIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_HJ_PC_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
               invokedContract="#_OVsagFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_HJ_PDvMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_PDPMsEd-6tr0C8ZV8Ew"
-              invokedContract="#_HJ_OsfMsEd-6tr0C8ZV8Ew"/>
+          <invocationContracts xmi:id="_HJ_PDvMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_k-TskPI7Ed-Pp8S8RvVOuQ"
+              invokedContract="#_RcQCMPI7Ed-Pp8S8RvVOuQ"/>
           <invocationContracts xmi:id="_HJ_PEfMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
               invokedContract="#_sluXsVLLEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
@@ -4807,8 +4807,8 @@
               invokedContract="#_jzYi8FIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_HJ_PFvMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
               invokedContract="#_UCnhEFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_HJ_PF_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_PDPMsEd-6tr0C8ZV8Ew"
-              invokedContract="#_HJ_OyfMsEd-6tr0C8ZV8Ew"/>
+          <invocationContracts xmi:id="_HJ_PF_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_k-TskPI7Ed-Pp8S8RvVOuQ"
+              invokedContract="#_dgkvsPI7Ed-Pp8S8RvVOuQ"/>
           <invocationContracts xmi:id="_HJ_PGPMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
               invokedContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
@@ -4821,8 +4821,8 @@
               invokedContract="#_pCqEMFIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_HJ_PHfMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
               invokedContract="#_Y3EukFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_HJ_PHvMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_PDPMsEd-6tr0C8ZV8Ew"
-              invokedContract="#_HJ_O4fMsEd-6tr0C8ZV8Ew"/>
+          <invocationContracts xmi:id="_HJ_PHvMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_k-TskPI7Ed-Pp8S8RvVOuQ"
+              invokedContract="#_NcZ6I_MqEd-6tr0C8ZV8Ew"/>
           <invocationContracts xmi:id="_HJ_PH_MsEd-6tr0C8ZV8Ew" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
               invokedContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
@@ -4835,8 +4835,8 @@
               invokedContract="#_tvg04FIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_HJ_PJPMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_JBH151eTEd-ExtSXfVloug"
               invokedContract="#_eYFgEFHVEd-dr9AWwNwIMQ"/>
-          <invocationContracts xmi:id="_HJ_PJfMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_HJ_PDPMsEd-6tr0C8ZV8Ew"
-              invokedContract="#_HJ_O-fMsEd-6tr0C8ZV8Ew"/>
+          <invocationContracts xmi:id="_HJ_PJfMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_k-TskPI7Ed-Pp8S8RvVOuQ"
+              invokedContract="#_NcjD0vMqEd-6tr0C8ZV8Ew"/>
           <invocationContracts xmi:id="_HJ_PJvMsEd-6tr0C8ZV8Ew" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
               invokedContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
