@@ -70,7 +70,9 @@ public class CodegenEGFHelper {
     protected Resource emfPatternResource;
 
     private Map<Key, Object> createdObjects = new HashMap<Key, Object>();
+
     private Map<Key, String> xmiIds = new HashMap<Key, String>();
+
     private Map<String, Integer> patternElementOrder = new LinkedHashMap<String, Integer>();
 
     public CodegenEGFHelper(Resource emfPatternResource, CodegenEGFHelper oldCodegenEGFHelper) {
@@ -98,26 +100,27 @@ public class CodegenEGFHelper {
         }
 
         Collections.sort(activitiesKeys, new Comparator<Key>() {
+
             public int compare(Key key1, Key key2) {
                 return key1.partType.compareTo(key2.partType);
             }
         });
 
         ProductionPlan allProductionPlan = getProductionPlan(null);
-        
+
         for (Key key : activitiesKeys) {
             ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
             productionPlanInvocation.setProductionPlan(allProductionPlan);
             productionPlanInvocation.setInvokedActivity((Activity) createdObjects.get(key));
-            
+
             InvocationContractContainer invocationContractContainer = FcoreFactory.eINSTANCE.createInvocationContractContainer();
             productionPlanInvocation.setInvocationContractContainer(invocationContractContainer);
-            
+
             for (FactoryComponentContractType fccType : FactoryComponentContractType.values()) {
                 //do not expose pattern.ids for All
                 if (fccType == FactoryComponentContractType.patternIds)
                     continue;
-                
+
                 FactoryComponentContract allFactoryComponentContract = getFactoryComponentContract(null, fccType);
 
                 InvocationContract invocationContract = FcoreFactory.eINSTANCE.createInvocationContract();
@@ -127,7 +130,7 @@ public class CodegenEGFHelper {
             }
         }
     }
-    
+
     public void createOrchestration(Resource emfPatternBaseResource, Resource mdpstResource, Collection<PatternInfo> patternInfos, IProgressMonitor monitor, CodegenPatternHelper codegenPatternHelper) {
         List<PartType> partsDone = new ArrayList<PartType>();
         for (PatternInfo patternInfo : patternInfos) {
@@ -169,7 +172,13 @@ public class CodegenEGFHelper {
             Contract patternSubstitutions = (Contract) mdpstResource.getEObject("_NFhJ4UMgEd-Ixul1H5ANhg"); //$NON-NLS-1$
             InvocationContract patternSubstitutionsContractInvocation = createInvocationContract(contractContainer, patternSubstitutions);
             getFactoryComponentContract(partType, FactoryComponentContractType.patternSubstitutions).getInvocationContracts().add(patternSubstitutionsContractInvocation);
-            
+
+            if (partType == PartType.Model || partType == PartType.Edit) {
+                Contract usedGenPackages = (Contract) emfPatternBaseResource.getEObject("_JWI2sPI7Ed-Pp8S8RvVOuQ"); //$NON-NLS-1$
+                InvocationContract usedGenPackagesContractInvocation = createInvocationContract(contractContainer, usedGenPackages);
+                getFactoryComponentContract(partType, FactoryComponentContractType.usedGenPackages).getInvocationContracts().add(usedGenPackagesContractInvocation);
+            }
+
             Contract mergeRulesURI = (Contract) emfPatternBaseResource.getEObject("_vtlEAFLMEd-ZSLMRjxSbVQ"); //$NON-NLS-1$
             InvocationContract mergeRulesURIContractInvocation = createInvocationContract(contractContainer, mergeRulesURI);
             getFactoryComponentContract(partType, FactoryComponentContractType.mergeRulesURI).getInvocationContracts().add(mergeRulesURIContractInvocation);
@@ -182,7 +191,7 @@ public class CodegenEGFHelper {
         InvocationContract domainContractInvocation = FcoreFactory.eINSTANCE.createInvocationContract();
         contractContainer.getInvocationContracts().add(domainContractInvocation);
         domainContractInvocation.setInvokedContract(domainContract);
-        
+
         return domainContractInvocation;
     }
 
@@ -218,13 +227,15 @@ public class CodegenEGFHelper {
     }
 
     private enum FactoryComponentContractType {
-        genModelURI("genModelURI", true),  //$NON-NLS-1$
+        genModelURI("genModelURI", true), //$NON-NLS-1$
         patternExecutionReporter("pattern.execution.reporter", false), //$NON-NLS-1$
         patternIds("pattern.ids", false), //$NON-NLS-1$
-        patternSubstitutions("pattern.substitutions", false),  //$NON-NLS-1$
+        patternSubstitutions("pattern.substitutions", false), //$NON-NLS-1$
+        usedGenPackages("usedGenPackages", false), //$NON-NLS-1$
         mergeRulesURI("mergeRulesURI", false); //$NON-NLS-1$
 
         String name;
+
         boolean mandatory;
 
         FactoryComponentContractType(String name, boolean mandatory) {
@@ -243,23 +254,26 @@ public class CodegenEGFHelper {
             contract.setMandatory(fccType.mandatory);
             contract.setName(fccType.name);
             contract.setDescription(PartType.getFactoryComponentName(partType));
-            
+
             switch (fccType) {
-            case genModelURI:
-                contract.setType(DomainFactory.eINSTANCE.createTypeDomainURI());
-                break;
-            case mergeRulesURI:
-                contract.setType(TypesFactory.eINSTANCE.createTypeURI());
-                break;
-            case patternSubstitutions:
-                contract.setType(PatternFactory.eINSTANCE.createTypePatternSubstitution());
-                break;
-            case patternExecutionReporter:
-                contract.setType(PatternFactory.eINSTANCE.createTypePatternExecutionReporter());
-                break;
-            case patternIds:
-                contract.setType(PatternFactory.eINSTANCE.createTypePatternList());
-                break;
+                case genModelURI:
+                    contract.setType(DomainFactory.eINSTANCE.createTypeDomainURI());
+                    break;
+                case usedGenPackages:
+                    contract.setType(DomainFactory.eINSTANCE.createTypeDomainGenPackages());
+                    break;
+                case mergeRulesURI:
+                    contract.setType(TypesFactory.eINSTANCE.createTypeURI());
+                    break;
+                case patternSubstitutions:
+                    contract.setType(PatternFactory.eINSTANCE.createTypePatternSubstitution());
+                    break;
+                case patternExecutionReporter:
+                    contract.setType(PatternFactory.eINSTANCE.createTypePatternExecutionReporter());
+                    break;
+                case patternIds:
+                    contract.setType(PatternFactory.eINSTANCE.createTypePatternList());
+                    break;
             }
 
             createdObjects.put(key, contract);
@@ -326,8 +340,11 @@ public class CodegenEGFHelper {
     }
 
     private static class Key {
+
         private EClass eClass;
+
         private PartType partType;
+
         private String name;
 
         public Key(EClass eClass, PartType partType, String name) {
@@ -481,7 +498,6 @@ public class CodegenEGFHelper {
     protected XMIResource getXMIResource() {
         if (emfPatternResource instanceof XMIResource)
             return (XMIResource) emfPatternResource;
-        else
-            throw new IllegalStateException(emfPatternResource + " should be a xmi resource"); //$NON-NLS-1$
+        throw new IllegalStateException(emfPatternResource + " should be a xmi resource"); //$NON-NLS-1$
     }
 }
