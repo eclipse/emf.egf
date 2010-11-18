@@ -50,6 +50,7 @@ import org.eclipse.jdt.core.dom.VariableDeclarationStatement;
 public class CodegenJetVariablesResolver {
 
     protected CodegenJetCompiler codegenJetCompiler;
+
     protected IProject codegenProject;
 
     public CodegenJetVariablesResolver(CodegenJetCompiler codegenJetCompiler, IProject codegenProject) {
@@ -117,6 +118,7 @@ public class CodegenJetVariablesResolver {
     protected class VariablesScopeVisitor extends ASTVisitor {
 
         private ASTNode finalNode;
+
         private List<VariableInfo> variables;
 
         public VariablesScopeVisitor(ASTNode finalNode, List<VariableInfo> variables) {
@@ -168,10 +170,11 @@ public class CodegenJetVariablesResolver {
             return false;
         }
 
+        @Override
         public boolean visit(MethodDeclaration node) {
             return false;
-        };
-        
+        }
+
         @Override
         public boolean visit(Initializer node) {
             return false;
