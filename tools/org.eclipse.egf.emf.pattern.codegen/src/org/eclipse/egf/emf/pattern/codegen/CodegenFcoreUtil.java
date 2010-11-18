@@ -70,7 +70,7 @@ public class CodegenFcoreUtil {
     protected CodegenJetPatternHelper codegenJetPatternHelper;
 
     protected List<PatternInfo> patternInfos;
-    
+
     protected CodegenVersionHelper codegenVersionHelper;
 
     protected class ClearCommand extends RecordingCommand {
@@ -159,7 +159,7 @@ public class CodegenFcoreUtil {
         computeMethodsContent(monitor);
         computePatternInfoDescription();
         replaceManifestVersion();
-        
+
         // Add factory component to the contents.
         CreateCommand createCommand = new CreateCommand(editingDomain, monitor);
         editingDomain.getCommandStack().execute(createCommand);
@@ -201,7 +201,7 @@ public class CodegenFcoreUtil {
             throw clearCommand.exception;
     }
 
-    protected void keepPreviousFcoreIdsAndOrder(IFile fcore, TransactionalEditingDomain editingDomain, URI platformPluginURI) throws CoreException {
+    protected void keepPreviousFcoreIdsAndOrder(IFile fcore, TransactionalEditingDomain editingDomain, URI platformPluginURI) {
         // Try to keep xmi ids if fcore exists
         createCodegenEGFHelper(); //called with old resource
         codegenEGFHelper.populateXmiIds();
