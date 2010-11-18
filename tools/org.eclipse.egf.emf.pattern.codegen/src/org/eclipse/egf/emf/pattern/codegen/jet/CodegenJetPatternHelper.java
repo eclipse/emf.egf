@@ -25,7 +25,6 @@ import static org.eclipse.egf.pattern.jet.JetTagsConstants.LOGICAL_NAME;
 import static org.eclipse.egf.pattern.jet.JetTagsConstants.MATCH_SEPARATOR;
 import static org.eclipse.egf.pattern.jet.JetTagsConstants.PATTERN_ID;
 
-import java.net.MalformedURLException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +53,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 public class CodegenJetPatternHelper {
 
     protected CodegenPatternHelper codegenPatternHelper;
+
     protected IProject codegenProject;
+
     protected Resource emfPatternBaseResource;
+
     protected Resource emfPatternResource;
 
     public CodegenJetPatternHelper(CodegenPatternHelper codegenPatternHelper, IProject codegenProject, Resource emfPatternBaseResource, Resource emfPatternResource) {
@@ -127,9 +129,9 @@ public class CodegenJetPatternHelper {
     protected String getTestContent(CodegenJetTemplateSection section) {
         StringBuilder buffer = new StringBuilder();
         for (CodegenJetTemplateSection subSection : section.getSections()) {
-            for (int i =0; i < subSection.templateBuffer.length() ; i++) {
+            for (int i = 0; i < subSection.templateBuffer.length(); i++) {
                 char charAt = subSection.templateBuffer.charAt(i);
-                if (charAt != ' ' && charAt != '\n' && charAt != '\r'  && charAt != '\t' )
+                if (charAt != ' ' && charAt != '\n' && charAt != '\r' && charAt != '\t')
                     buffer.append(charAt);
             }
         }
@@ -165,7 +167,7 @@ public class CodegenJetPatternHelper {
         section.fileAttribute = newPath.toString();
     }
 
-    protected String getTemplateURI(String templateRelativePath) throws MalformedURLException {
+    protected String getTemplateURI(String templateRelativePath) {
         IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE);
         IResource member = project.findMember(new Path("templates").append(templateRelativePath)); //$NON-NLS-1$
         return member.getLocationURI().toString();
