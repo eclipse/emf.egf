@@ -70,18 +70,27 @@ import org.eclipse.jdt.internal.corext.refactoring.structure.ASTNodeSearchUtil;
 public class CodegenASTHelper {
 
     protected static final String GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME = ".generator.AbstractGeneratorAdapter"; //$NON-NLS-1$
+
     protected static final String JET_EMITTER_DESCRIPTORS = "JET_EMITTER_DESCRIPTORS"; //$NON-NLS-1$
+
     protected static final String INPUT_PATH_NAMES = "INPUT_PATH_NAMES"; //$NON-NLS-1$
+
     protected static final String GENERATE = "generate"; //$NON-NLS-1$
 
     protected static final String TYPE_GIF_EMITTER = "QGIFEmitter;"; //$NON-NLS-1$
+
     protected static final String TYPE_JET_EMITTER = "QJETEmitter;"; //$NON-NLS-1$
+
     protected static final String TYPE_MONITOR = "QMonitor;"; //$NON-NLS-1$
 
     protected static final String CONDITION_BEGIN = "("; //$NON-NLS-1$
+
     protected static final String CONDITION_END = ")"; //$NON-NLS-1$
+
     protected static final String CONDITION_NOT_BEGIN = "(!("; //$NON-NLS-1$
+
     protected static final String CONDITION_NOT_END = "))"; //$NON-NLS-1$
+
     protected static final String CONDITION_AND = " && "; //$NON-NLS-1$
 
     protected CodegenCompilationUnitHelper compilationUnitHelper = new CodegenCompilationUnitHelper();
@@ -138,6 +147,7 @@ public class CodegenASTHelper {
             return;
 
         ASTVisitor astVisitor = new ASTVisitor() {
+
             @SuppressWarnings("unchecked")
             @Override
             public boolean visit(VariableDeclarationStatement node) {
@@ -168,12 +178,12 @@ public class CodegenASTHelper {
         return buffer.toString();
     }
 
-    protected PartType computePartType(IMethod partMethod) throws CoreException {
+    protected PartType computePartType(IMethod partMethod) {
         String partTypeString = getNameWithoutGenerate(partMethod);
         return PartType.valueOf(partTypeString);
     }
 
-    protected PatternInfo createPatternInfo(IMethod contentMethod) throws JavaModelException {
+    protected PatternInfo createPatternInfo(IMethod contentMethod) {
         String contentString = getNameWithoutGenerate(contentMethod);
         ContentType contentType = ContentType.valueOf(contentString);
 
@@ -325,6 +335,7 @@ public class CodegenASTHelper {
         final List<MethodInvocation> invocations = new ArrayList<MethodInvocation>();
 
         ASTVisitor astVisitor = new ASTVisitor() {
+
             @Override
             public boolean visit(MethodInvocation node) {
                 if (node.getStartPosition() == searchMatch.getOffset() && node.getLength() == searchMatch.getLength()) {
@@ -354,10 +365,13 @@ public class CodegenASTHelper {
 
     protected Map<SearchMatch, IMethod> computeCallingMethods(final IMethod method) throws CoreException {
         final Map<SearchMatch, IMethod> callingMethods = new HashMap<SearchMatch, IMethod>();
-        IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[] { method.getJavaProject() }, IJavaSearchScope.SOURCES);
+        IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaProject[] {
+            method.getJavaProject()
+        }, IJavaSearchScope.SOURCES);
         SearchPattern pattern = SearchPattern.createPattern(method, IJavaSearchConstants.REFERENCES);
         SearchRequestor requestor = new SearchRequestor() {
 
+            @Override
             public void acceptSearchMatch(SearchMatch match) throws CoreException {
                 Object element = match.getElement();
                 if (element instanceof IMethod) {
@@ -365,8 +379,11 @@ public class CodegenASTHelper {
                     callingMethods.put(match, callingMethod);
                 }
             }
+
         };
-        new SearchEngine().search(pattern, new SearchParticipant[] { new JavaSearchParticipant() }, scope, requestor, null);
+        new SearchEngine().search(pattern, new SearchParticipant[] {
+            new JavaSearchParticipant()
+        }, scope, requestor, null);
         return callingMethods;
     }
 
