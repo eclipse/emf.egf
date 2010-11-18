@@ -28,7 +28,9 @@ public class AllTests {
 
         TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
 
-        suite.addTest(new TestSuite(WorkspaceInitializationTest.class));
+        TestSuite init = new TestSuite("EGF Core Test Initialization"); //$NON-NLS-1$
+        init.addTest(WorkspaceInitializationTest.suite());
+        suite.addTest(init);
 
         new ModelTestHelper().addModelTest(suite);
 

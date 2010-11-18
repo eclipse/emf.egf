@@ -20,7 +20,9 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -56,8 +58,17 @@ public class WorkspaceInitializationTest extends TestCase {
 
     public List<String> _projectNames = new UniqueEList<String>();
 
+    public static Test suite() {
+        return new TestSuite(WorkspaceInitializationTest.class);
+    }
+
     @Override
     protected void setUp() throws Exception {
+
+        // Error
+        final Throwable[] error = new Throwable[] {
+            null
+        };
 
         // State for thread synchronization
         final boolean[] init = new boolean[] {
@@ -79,10 +90,13 @@ public class WorkspaceInitializationTest extends TestCase {
         // Prepare our init job
         class InitJob extends WorkspaceJob implements IOverwriteQuery {
 
+            private Throwable[] _error;
+
             private boolean[] _init;
 
-            public InitJob(boolean[] innerInit) {
+            public InitJob(Throwable[] innerError, boolean[] innerInit) {
                 super("WorkspaceInitializationTest"); //$NON-NLS-1$
+                _error = innerError;
                 _init = innerInit;
             }
 
@@ -138,7 +152,9 @@ public class WorkspaceInitializationTest extends TestCase {
                         }
 
                     } catch (Throwable t) {
-                        return Status.CANCEL_STATUS;
+
+                        _error[0] = t;
+
                     }
 
                     return Status.OK_STATUS;
@@ -165,7 +181,7 @@ public class WorkspaceInitializationTest extends TestCase {
         }
 
         // Lock all the workspace and import resources
-        WorkspaceJob initJob = new InitJob(init);
+        WorkspaceJob initJob = new InitJob(error, init);
         initJob.setRule(workspace.getRuleFactory().buildRule());
         initJob.setPriority(Job.LONG);
         initJob.setUser(true);
@@ -182,6 +198,9 @@ public class WorkspaceInitializationTest extends TestCase {
                 }
             }
         }
+
+        // Error checking
+        assertNull(error[0]);
 
         // Build
         workspace.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
