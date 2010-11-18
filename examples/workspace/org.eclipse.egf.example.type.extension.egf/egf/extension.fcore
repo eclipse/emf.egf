@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_y0HpQfGgEd-v-ZiZH4Kvlw"
+    name="Extension Type Example">
+  <viewpointContainer xmi:id="_6sFEAPGgEd-v-ZiZH4Kvlw">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_6-ZjEPGgEd-v-ZiZH4Kvlw">
+      <domains xmi:type="domain:DomainURI" xmi:id="_7ZhY0PGgEd-v-ZiZH4Kvlw" uri="platform:/resource/org.eclipse.egf.example.type.extension/model/extension.genmodel"/>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_z8rz0PGgEd-v-ZiZH4Kvlw">
+    <invocations xmi:id="_3xzrQPGgEd-v-ZiZH4Kvlw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.egf/egf/EGF_Type.fcore#_sQFSAfL0Ed-FKtLe6G-YfQ">
+      <invocationContractContainer xmi:id="_Ki_SUPGhEd-v-ZiZH4Kvlw">
+        <invocationContracts xmi:id="_K2XhUPGhEd-v-ZiZH4Kvlw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.egf/egf/EGF_Type.fcore#_wX1KgfL0Ed-FKtLe6G-YfQ">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_XCE70PL3Ed-Tg_CuoVrSwA" domain="#_7ZhY0PGgEd-v-ZiZH4Kvlw"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>
