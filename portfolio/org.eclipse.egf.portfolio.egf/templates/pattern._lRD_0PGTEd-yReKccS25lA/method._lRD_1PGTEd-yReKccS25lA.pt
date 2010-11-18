@@ -1,0 +1,4 @@
+if (createClass.isMapEntry() == false && FcorePackage.Literals.INVOCATION_CONTRACT == EMFHelper.solveAgainstStaticPackage(genClass.getEcoreClass())) {
+    return true;
+}
+return false;
