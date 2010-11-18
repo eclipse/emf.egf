@@ -40,12 +40,17 @@ import org.osgi.framework.Constants;
 public class CodegenVersionHelper {
 
     private static final String ORG_ECLIPSE_EMF_ECORE = "org.eclipse.emf.ecore"; //$NON-NLS-1$
+
     private static final String META_INF_MANIFEST_MF = "META-INF/MANIFEST.MF"; //$NON-NLS-1$
+
     private static final String DOT = "."; //$NON-NLS-1$
+
     private static final String QUALIFIER = "qualifier"; //$NON-NLS-1$
+
     private static final Pattern MANIFEST_REGEX = Pattern.compile("([a-zA-Z\\-]*):(.*)"); //$NON-NLS-1$
 
     private IProject codegenProject;
+
     private IProject fcoreProject;
 
     public CodegenVersionHelper(IProject codegenProject, IProject fcoreProject) {
@@ -109,7 +114,7 @@ public class CodegenVersionHelper {
             String textReplacement = null;
             int indexOf = textToReplace.lastIndexOf(DOT);
             if (indexOf > -1) {
-                String emfCodegenEcoreVersion = getEMFCodegenEcoreVersion().replace('.', '_'); //$NON-NLS-1$ //$NON-NLS-2$
+                String emfCodegenEcoreVersion = getEMFCodegenEcoreVersion().replace('.', '_');
                 textReplacement = textToReplace.substring(0, indexOf + 1) + emfCodegenEcoreVersion + "_" + QUALIFIER; //$NON-NLS-1$
             }
 
@@ -136,8 +141,8 @@ public class CodegenVersionHelper {
             bufferedReader = new BufferedReader(new InputStreamReader(file.getContents()));
 
             String firstline = bufferedReader.readLine();
-            if (firstline.contains("jet,"))  //$NON-NLS-1$
-                result = firstline.substring(firstline.indexOf("jet,") + 4 , firstline.length() - 10); //$NON-NLS-1$
+            if (firstline.contains("jet,")) //$NON-NLS-1$
+                result = firstline.substring(firstline.indexOf("jet,") + 4, firstline.length() - 10); //$NON-NLS-1$
         } finally {
             if (bufferedReader != null)
                 bufferedReader.close();
