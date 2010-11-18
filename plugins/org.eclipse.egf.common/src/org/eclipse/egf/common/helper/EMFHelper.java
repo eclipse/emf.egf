@@ -24,9 +24,12 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.loader.IClassLoader;
+import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -212,7 +215,7 @@ public class EMFHelper {
         if (resource == null) {
             return null;
         }
-        List<EPackage> result = new ArrayList<EPackage>();
+        List<EPackage> result = new UniqueEList<EPackage>();
         for (TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
 
             private static final long serialVersionUID = 1L;
@@ -226,6 +229,29 @@ public class EMFHelper {
             Object content = j.next();
             if (content instanceof EPackage) {
                 result.add((EPackage) content);
+            }
+        }
+        return result;
+    }
+
+    public static Collection<GenPackage> getAllGenPackages(Resource resource) {
+        if (resource == null) {
+            return null;
+        }
+        List<GenPackage> result = new UniqueEList<GenPackage>();
+        for (TreeIterator<?> j = new EcoreUtil.ContentTreeIterator<Object>(resource.getContents()) {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected Iterator<? extends EObject> getEObjectChildren(EObject eObject) {
+                return eObject instanceof GenModel ? ((GenModel) eObject).getGenPackages().iterator() : eObject instanceof GenPackage ? ((GenPackage) eObject).getSubGenPackages().iterator() : Collections.<EObject> emptyList().iterator();
+            }
+
+        }; j.hasNext();) {
+            Object content = j.next();
+            if (content instanceof GenPackage) {
+                result.add((GenPackage) content);
             }
         }
         return result;
