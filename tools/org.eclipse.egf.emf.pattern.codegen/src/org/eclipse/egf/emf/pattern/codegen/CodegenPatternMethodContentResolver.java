@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.emf.pattern.codegen;
 
+import static org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil.N;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -30,8 +32,6 @@ import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.VariableInfo;
 import org.eclipse.emf.ecore.resource.Resource;
 
-import static org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil.N;
-
 /**
  * @author Matthieu Helleboid
  * 
@@ -41,16 +41,25 @@ public class CodegenPatternMethodContentResolver {
     public static final String DO_GENERATE = "doGenerate"; //$NON-NLS-1$
 
     protected static final String SET_REPORTER_VARIABLES = "setReporterVariables"; //$NON-NLS-1$
+
     protected static final String PRE_CONDITION = "preCondition"; //$NON-NLS-1$
+
     protected static final String SET_ARGUMENT = "setArgument"; //$NON-NLS-1$
+
     protected static final String ENSURE_PROJECT_EXISTS = "ensureProjectExists"; //$NON-NLS-1$
+
     protected static final String PRE_GENERATE = "preGenerate"; //$NON-NLS-1$
+
     protected static final String POST_GENERATE = "postGenerate"; //$NON-NLS-1$
+
     protected static final String ARGUMENTS = "arguments"; //$NON-NLS-1$
-    
+
     protected IProject codegenProject;
+
     protected CodegenPatternHelper codegenPatternHelper;
+
     protected Resource emfPatternBaseResource;
+
     protected CodegenJetPatternHelper codegenJetPatternHelper;
 
     public CodegenPatternMethodContentResolver(IProject codegenProject, CodegenPatternHelper codegenPatternHelper, Resource emfPatternBaseResource, CodegenJetPatternHelper codegenJetPatternHelper) {
@@ -92,6 +101,7 @@ public class CodegenPatternMethodContentResolver {
     }
 
     protected class JetSubContentProvider extends ContentProvider {
+
         protected JetSubPatternInfo jetSubPatternInfo;
 
         public JetSubContentProvider(JetSubPatternInfo jetSubPatternInfo) {
@@ -308,11 +318,11 @@ public class CodegenPatternMethodContentResolver {
             StringBuffer buffer = new StringBuffer();
             addParameterDeclaration(buffer);
             buffer.append(N);
-            buffer.append("genModel = parameter.getGenModel();");
+            buffer.append("genModel = parameter.getGenModel();"); //$NON-NLS-1$
             buffer.append(N);
             addCanGenerateAssigment(buffer);
             buffer.append(N);
-            buffer.append("return canGenerate;");
+            buffer.append("return canGenerate;"); //$NON-NLS-1$
             String content = buffer.toString();
 
             content = replaceAbstractGeneratorAdapterCalls(content);
