@@ -16,6 +16,7 @@ package org.eclipse.egf.pattern.ftask.tasks;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -75,7 +76,16 @@ public abstract class AbstractPatternTask implements ITaskProduction {
                 if (domainURI == null || domainURI.getUri() == null)
                     continue; // Weird behavior: unfilled contracts are
                 // available ...
-                ResourceSet set = new RuntimePlatformResourceSet();
+                // Solve the domain URI against the right context
+                ResourceSet set = null;
+                // Runtime
+                if (domainURI.getUri().isPlatformPlugin()) {
+                    set = new RuntimePlatformResourceSet();
+                }
+                // platform:/resource scheme or file:/ are against the target platform 
+                else {
+                    set = new TargetPlatformResourceSet();
+                }
                 domainResource = set.getResource(domainURI.getUri(), true);
                 ctx.setValue(PatternContext.DOMAIN_OBJECTS, domainResource.getContents());
             } else
