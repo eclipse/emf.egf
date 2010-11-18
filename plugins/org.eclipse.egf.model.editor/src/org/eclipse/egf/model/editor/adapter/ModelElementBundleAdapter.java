@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -82,11 +83,11 @@ public class ModelElementBundleAdapter extends EContentAdapter {
                 return;
             }
             // Check whether or not we have Pattern in this new element
-            Collection<EObject> patterns = EMFHelper.getAllProperContents(PatternPackage.eINSTANCE.getPattern(), modelElement);
+            Collection<EObject> patterns = EMFHelper.getAllProperContents(PatternPackage.eINSTANCE.getPattern(), EcoreUtil.getRootContainer(modelElement, true));
             // Check whether or not we a new task in this new element
-            Collection<EObject> tasks = EMFHelper.getAllProperContents(FtaskPackage.eINSTANCE.getTask(), modelElement);
+            Collection<EObject> tasks = EMFHelper.getAllProperContents(FtaskPackage.eINSTANCE.getTask(), EcoreUtil.getRootContainer(modelElement, true));
             // Check whether or not we have a new TypeClass in this new element
-            Collection<EObject> typeClasses = EMFHelper.getAllProperContents(TypesPackage.eINSTANCE.getTypeClass(), modelElement);
+            Collection<EObject> typeClasses = EMFHelper.getAllProperContents(TypesPackage.eINSTANCE.getTypeClass(), EcoreUtil.getRootContainer(modelElement, true));
             // Project converter
             IRunnableWithProgress operation = null;
             if (patterns.isEmpty() && tasks.isEmpty()) {
