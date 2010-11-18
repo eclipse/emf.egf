@@ -173,11 +173,9 @@ public class CodegenEGFHelper {
             InvocationContract patternSubstitutionsContractInvocation = createInvocationContract(contractContainer, patternSubstitutions);
             getFactoryComponentContract(partType, FactoryComponentContractType.patternSubstitutions).getInvocationContracts().add(patternSubstitutionsContractInvocation);
 
-            if (partType == PartType.Model || partType == PartType.Edit) {
-                Contract usedGenPackages = (Contract) emfPatternBaseResource.getEObject("_JWI2sPI7Ed-Pp8S8RvVOuQ"); //$NON-NLS-1$
-                InvocationContract usedGenPackagesContractInvocation = createInvocationContract(contractContainer, usedGenPackages);
-                getFactoryComponentContract(partType, FactoryComponentContractType.usedGenPackages).getInvocationContracts().add(usedGenPackagesContractInvocation);
-            }
+            Contract usedGenPackages = (Contract) emfPatternBaseResource.getEObject("_JWI2sPI7Ed-Pp8S8RvVOuQ"); //$NON-NLS-1$
+            InvocationContract usedGenPackagesContractInvocation = createInvocationContract(contractContainer, usedGenPackages);
+            getFactoryComponentContract(partType, FactoryComponentContractType.usedGenPackages).getInvocationContracts().add(usedGenPackagesContractInvocation);
 
             Contract mergeRulesURI = (Contract) emfPatternBaseResource.getEObject("_vtlEAFLMEd-ZSLMRjxSbVQ"); //$NON-NLS-1$
             InvocationContract mergeRulesURIContractInvocation = createInvocationContract(contractContainer, mergeRulesURI);
