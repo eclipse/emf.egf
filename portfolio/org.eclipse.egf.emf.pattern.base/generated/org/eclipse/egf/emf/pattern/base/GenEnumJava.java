@@ -8,105 +8,108 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class GenEnumJava extends org.eclipse.egf.emf.pattern.base.GenBaseJava {
-	protected static String nl;
 
-	public static synchronized GenEnumJava create(String lineSeparator) {
-		nl = lineSeparator;
-		GenEnumJava result = new GenEnumJava();
-		nl = null;
-		return result;
-	}
+    protected static String nl;
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "";
-	protected final String TEXT_2 = NL;
+    public static synchronized GenEnumJava create(String lineSeparator) {
+        nl = lineSeparator;
+        GenEnumJava result = new GenEnumJava();
+        nl = null;
+        return result;
+    }
 
-	public GenEnumJava() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 
-		// add initialisation of the pattern variables (declaration has been already done).
+    protected final String TEXT_1 = "";
 
-	}
+    protected final String TEXT_2 = NL;
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    public GenEnumJava() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
+        // add initialisation of the pattern variables (declaration has been already done).
 
-		List<Object> parameterList = null;
-		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+    }
 
-		for (Object parameterParameter : parameterList) {
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-			this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenEnum) parameterParameter;
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
 
-			if (preCondition())
-				orchestration(ctx);
+        List<Object> parameterList = null;
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-		}
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
-		}
+        for (Object parameterParameter : parameterList) {
 
-		stringBuffer.append(TEXT_1);
-		stringBuffer.append(TEXT_2);
-		return stringBuffer.toString();
-	}
+            this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenEnum) parameterParameter;
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+            if (preCondition())
+                orchestration(ctx);
 
-		super.orchestration(new SuperOrchestrationContext(ictx));
+        }
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
-		}
-		return loop;
-	}
+        stringBuffer.append(TEXT_1);
+        stringBuffer.append(TEXT_2);
+        return stringBuffer.toString();
+    }
 
-	protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
 
-	public void set_genPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
-		this.genPackage = object;
-	}
+        super.orchestration(new SuperOrchestrationContext(ictx));
 
-	protected org.eclipse.emf.codegen.ecore.genmodel.GenEnum parameter = null;
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            Map<String, Object> parameterValues = new HashMap<String, Object>();
+            parameterValues.put("parameter", this.parameter);
+            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
 
-	public void set_parameter(org.eclipse.emf.codegen.ecore.genmodel.GenEnum object) {
-		this.parameter = object;
-	}
+    protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("parameter", this.parameter);
-		return parameters;
-	}
+    public void set_genPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
+        this.genPackage = object;
+    }
 
-	protected void method_setGenModel(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    protected org.eclipse.emf.codegen.ecore.genmodel.GenEnum parameter = null;
 
-		genModel = parameter.getGenModel();
+    public void set_parameter(org.eclipse.emf.codegen.ecore.genmodel.GenEnum object) {
+        this.parameter = object;
+    }
 
-	}
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("parameter", this.parameter);
+        return parameters;
+    }
 
-	protected void method_setChildVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    protected void method_setGenModel(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		genPackage = parameter.getGenPackage();
+        genModel = parameter.getGenModel();
 
-	}
+    }
 
-	public boolean preCondition() throws Exception {
-		return super.preCondition();
-	}
+    protected void method_setChildVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        genPackage = parameter.getGenPackage();
+
+    }
+
+    public boolean preCondition() throws Exception {
+        return super.preCondition();
+    }
 }
