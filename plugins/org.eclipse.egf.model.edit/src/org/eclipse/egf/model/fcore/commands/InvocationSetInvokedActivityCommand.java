@@ -106,7 +106,7 @@ public final class InvocationSetInvokedActivityCommand extends SetCommand {
                             continue;
                         }
                         // Valid OrchestrationParameter Type
-                        if (invocationContract.getOrchestrationParameter() != null && invocationContract.getOrchestrationParameter().getType() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() != null) {
+                        if (invocationContract.getOrchestrationParameter() != null && invocationContract.getOrchestrationParameter().getType() != null) {
                             if (invokedContract.getType().isCompatible(invocationContract.getOrchestrationParameter().getType()) == false) {
                                 contracts[1] = invokedContract;
                                 continue LOOP;
