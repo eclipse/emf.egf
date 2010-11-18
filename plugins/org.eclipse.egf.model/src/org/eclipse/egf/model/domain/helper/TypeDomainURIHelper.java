@@ -13,8 +13,9 @@ package org.eclipse.egf.model.domain.helper;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -29,14 +30,11 @@ public class TypeDomainURIHelper {
         // Prevent Instantiation
     }
 
-    public static Collection<DomainURI> getAvailableDomainURI(TypeDomainURI typeDomainURI) {
+    public static Collection<DomainURI> getAvailableDomainURI(EObject eObject) {
         Collection<DomainURI> result = new UniqueEList<DomainURI>();
-        if (typeDomainURI != null) {
-            for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainURI, true), true); iterator.hasNext();) {
-                EObject eObject = iterator.next();
-                if (eObject instanceof DomainURI) {
-                    result.add((DomainURI) eObject);
-                }
+        if (eObject != null) {
+            for (Iterator<EObject> iterator = EMFHelper.getAllProperContents(DomainPackage.eINSTANCE.getDomainURI(), EcoreUtil.getRootContainer(eObject, true)).iterator(); iterator.hasNext();) {
+                result.add((DomainURI) iterator.next());
             }
         }
         return result;

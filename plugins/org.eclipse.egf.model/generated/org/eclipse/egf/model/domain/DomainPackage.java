@@ -253,6 +253,98 @@ public interface DomainPackage extends EPackage {
     int TYPE_DOMAIN_EPACKAGE_FEATURE_COUNT = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainGenPackageImpl <em>Gen Package</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.domain.impl.DomainGenPackageImpl
+     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainGenPackage()
+     * @generated
+     */
+    int DOMAIN_GEN_PACKAGE = 4;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOMAIN_GEN_PACKAGE__ID = DOMAIN__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOMAIN_GEN_PACKAGE__DESCRIPTION = DOMAIN__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Gen Package</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOMAIN_GEN_PACKAGE__GEN_PACKAGE = DOMAIN_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Gen Package</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOMAIN_GEN_PACKAGE_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainGenPackagesImpl <em>Type Domain Gen Packages</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.domain.impl.TypeDomainGenPackagesImpl
+     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainGenPackages()
+     * @generated
+     */
+    int TYPE_DOMAIN_GEN_PACKAGES = 5;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_DOMAIN_GEN_PACKAGES__ID = TypesPackage.TYPE__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_DOMAIN_GEN_PACKAGES__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS = TypesPackage.TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Type Domain Gen Packages</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_DOMAIN_GEN_PACKAGES_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainURIImpl <em>URI</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -260,7 +352,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainURI()
      * @generated
      */
-    int DOMAIN_URI = 4;
+    int DOMAIN_URI = 6;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -306,7 +398,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainURI()
      * @generated
      */
-    int TYPE_DOMAIN_URI = 5;
+    int TYPE_DOMAIN_URI = 7;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -425,6 +517,48 @@ public interface DomainPackage extends EPackage {
      * @generated
      */
     EReference getTypeDomainEPackage_Value();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.domain.DomainGenPackage <em>Gen Package</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Gen Package</em>'.
+     * @see org.eclipse.egf.model.domain.DomainGenPackage
+     * @generated
+     */
+    EClass getDomainGenPackage();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.domain.DomainGenPackage#getGenPackage <em>Gen Package</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Gen Package</em>'.
+     * @see org.eclipse.egf.model.domain.DomainGenPackage#getGenPackage()
+     * @see #getDomainGenPackage()
+     * @generated
+     */
+    EReference getDomainGenPackage_GenPackage();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.domain.TypeDomainGenPackages <em>Type Domain Gen Packages</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Type Domain Gen Packages</em>'.
+     * @see org.eclipse.egf.model.domain.TypeDomainGenPackages
+     * @generated
+     */
+    EClass getTypeDomainGenPackages();
+
+    /**
+     * Returns the meta object for the reference list '{@link org.eclipse.egf.model.domain.TypeDomainGenPackages#getElements <em>Elements</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Elements</em>'.
+     * @see org.eclipse.egf.model.domain.TypeDomainGenPackages#getElements()
+     * @see #getTypeDomainGenPackages()
+     * @generated
+     */
+    EReference getTypeDomainGenPackages_Elements();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.domain.DomainURI <em>URI</em>}'.
@@ -572,6 +706,46 @@ public interface DomainPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EReference TYPE_DOMAIN_EPACKAGE__VALUE = eINSTANCE.getTypeDomainEPackage_Value();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainGenPackageImpl <em>Gen Package</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.domain.impl.DomainGenPackageImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainGenPackage()
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EClass DOMAIN_GEN_PACKAGE = eINSTANCE.getDomainGenPackage();
+
+        /**
+         * The meta object literal for the '<em><b>Gen Package</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EReference DOMAIN_GEN_PACKAGE__GEN_PACKAGE = eINSTANCE.getDomainGenPackage_GenPackage();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainGenPackagesImpl <em>Type Domain Gen Packages</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.domain.impl.TypeDomainGenPackagesImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainGenPackages()
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EClass TYPE_DOMAIN_GEN_PACKAGES = eINSTANCE.getTypeDomainGenPackages();
+
+        /**
+         * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @SuppressWarnings("hiding")
+        EReference TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS = eINSTANCE.getTypeDomainGenPackages_Elements();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainURIImpl <em>URI</em>}' class.

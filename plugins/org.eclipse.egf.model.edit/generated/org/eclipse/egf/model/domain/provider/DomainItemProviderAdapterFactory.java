@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.TypeDomainGenPackages;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
@@ -177,6 +178,52 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainGenPackage} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected DomainGenPackageItemProvider domainGenPackageItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainGenPackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createDomainGenPackageAdapter() {
+        if (domainGenPackageItemProvider == null) {
+            domainGenPackageItemProvider = new DomainGenPackageItemProvider(this);
+        }
+
+        return domainGenPackageItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainGenPackages} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypeDomainGenPackagesItemProvider typeDomainGenPackagesItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainGenPackages}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createTypeDomainGenPackagesAdapter() {
+        if (typeDomainGenPackagesItemProvider == null) {
+            typeDomainGenPackagesItemProvider = new TypeDomainGenPackagesItemProvider(this);
+        }
+
+        return typeDomainGenPackagesItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -327,6 +374,10 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             domainEPackageItemProvider.dispose();
         if (typeDomainEPackageItemProvider != null)
             typeDomainEPackageItemProvider.dispose();
+        if (domainGenPackageItemProvider != null)
+            domainGenPackageItemProvider.dispose();
+        if (typeDomainGenPackagesItemProvider != null)
+            typeDomainGenPackagesItemProvider.dispose();
         if (domainURIItemProvider != null)
             domainURIItemProvider.dispose();
         if (typeDomainURIItemProvider != null)
@@ -385,6 +436,8 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             public Object caseContract(Contract object) {
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
 
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainGenPackages()));
+
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
 
                 return null;
@@ -411,6 +464,8 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             public Object caseOrchestrationParameter(OrchestrationParameter object) {
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
 
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainGenPackages()));
+
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
 
                 return null;
@@ -433,6 +488,13 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
 
                 {
                     TypeDomainEPackage type = DomainFactory.eINSTANCE.createTypeDomainEPackage();
+                    if (invokedContractType.isCompatible(type)) {
+                        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
+                    }
+                }
+
+                {
+                    TypeDomainGenPackages type = DomainFactory.eINSTANCE.createTypeDomainGenPackages();
                     if (invokedContractType.isCompatible(type)) {
                         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
                     }

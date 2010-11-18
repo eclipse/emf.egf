@@ -11,7 +11,7 @@
     testsDirectory="/org.eclipse.egf.model.tests/generated" booleanFlagsField="flags"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
-    runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
+    runtimeVersion="2.5" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel Types.genmodel#//types">
   <foreignModel>Domain.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Domain" basePackage="org.eclipse.egf.model" disposableProviderFactory="true"
@@ -27,6 +27,17 @@
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//TypeDomainEPackage">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//DomainGenPackage">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainGenPackage/genPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//TypeDomainGenPackages">
+      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainGenPackages/elements"/>
+      <genOperations ecoreOperation="Domain.ecore#//TypeDomainGenPackages/getType">
+        <genTypeParameters ecoreTypeParameter="Domain.ecore#//TypeDomainGenPackages/getType/T"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainURI">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURI/uri"/>

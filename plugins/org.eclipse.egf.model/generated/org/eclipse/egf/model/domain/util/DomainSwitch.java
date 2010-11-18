@@ -14,6 +14,7 @@ package org.eclipse.egf.model.domain.util;
 
 import java.util.List;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -145,6 +146,28 @@ public class DomainSwitch<T> {
                     result = defaultCase(theEObject);
                 return result;
             }
+            case DomainPackage.DOMAIN_GEN_PACKAGE: {
+                DomainGenPackage domainGenPackage = (DomainGenPackage) theEObject;
+                T result = caseDomainGenPackage(domainGenPackage);
+                if (result == null)
+                    result = caseDomain(domainGenPackage);
+                if (result == null)
+                    result = caseModelElement(domainGenPackage);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
+            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES: {
+                TypeDomainGenPackages typeDomainGenPackages = (TypeDomainGenPackages) theEObject;
+                T result = caseTypeDomainGenPackages(typeDomainGenPackages);
+                if (result == null)
+                    result = caseType(typeDomainGenPackages);
+                if (result == null)
+                    result = caseTypeElement(typeDomainGenPackages);
+                if (result == null)
+                    result = defaultCase(theEObject);
+                return result;
+            }
             case DomainPackage.DOMAIN_URI: {
                 DomainURI domainURI = (DomainURI) theEObject;
                 T result = caseDomainURI(domainURI);
@@ -231,6 +254,36 @@ public class DomainSwitch<T> {
      * @generated
      */
     public T caseTypeDomainEPackage(TypeDomainEPackage object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Gen Package</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Gen Package</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseDomainGenPackage(DomainGenPackage object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Type Domain Gen Packages</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Type Domain Gen Packages</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTypeDomainGenPackages(TypeDomainGenPackages object) {
         return null;
     }
 

@@ -1268,9 +1268,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
 
-        op = addEOperation(typePatternSubstitutionEClass, this.getPattern(), "getSubstitutions", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-        addEParameter(op, this.getPattern(), "pattern", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
         // Initialize data types
         initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEDataType(patternExceptionEDataType, PatternException.class, "PatternException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

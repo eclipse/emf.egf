@@ -88,11 +88,11 @@ public final class EGFFprodEditPlugin extends EMFPlugin {
     public static class Implementation extends EGFEclipsePlugin {
 
         /**
-        	 * Creates an instance.
-        	 * <!-- begin-user-doc -->
+         * Creates an instance.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         public Implementation() {
             super();
 

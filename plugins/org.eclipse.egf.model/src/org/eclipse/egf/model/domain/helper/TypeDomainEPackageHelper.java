@@ -13,8 +13,9 @@ package org.eclipse.egf.model.domain.helper;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.domain.DomainEPackage;
-import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -25,21 +26,18 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class TypeDomainEPackageHelper {
 
-  private TypeDomainEPackageHelper() {
-    // Prevent Instantiation
-  }
-
-  public static Collection<DomainEPackage> getAvailableDomainEPackage(TypeDomainEPackage typeDomainEPackage) {
-    Collection<DomainEPackage> result = new UniqueEList<DomainEPackage>();
-    if (typeDomainEPackage != null) {
-      for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(EcoreUtil.getRootContainer(typeDomainEPackage, true), true); iterator.hasNext();) {
-        EObject eObject = iterator.next();
-        if (eObject instanceof DomainEPackage) {
-          result.add((DomainEPackage) eObject);
-        }
-      }
+    private TypeDomainEPackageHelper() {
+        // Prevent Instantiation
     }
-    return result;
-  }
+
+    public static Collection<DomainEPackage> getAvailableDomainEPackage(EObject eObject) {
+        Collection<DomainEPackage> result = new UniqueEList<DomainEPackage>();
+        if (eObject != null) {
+            for (Iterator<EObject> iterator = EMFHelper.getAllProperContents(DomainPackage.eINSTANCE.getDomainEPackage(), EcoreUtil.getRootContainer(eObject, true)).iterator(); iterator.hasNext();) {
+                result.add((DomainEPackage) iterator.next());
+            }
+        }
+        return result;
+    }
 
 }

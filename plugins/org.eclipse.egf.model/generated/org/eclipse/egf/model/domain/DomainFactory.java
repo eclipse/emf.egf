@@ -60,6 +60,24 @@ public interface DomainFactory extends EFactory {
     TypeDomainEPackage createTypeDomainEPackage();
 
     /**
+     * Returns a new object of class '<em>Gen Package</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Gen Package</em>'.
+     * @generated
+     */
+    DomainGenPackage createDomainGenPackage();
+
+    /**
+     * Returns a new object of class '<em>Type Domain Gen Packages</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Domain Gen Packages</em>'.
+     * @generated
+     */
+    TypeDomainGenPackages createTypeDomainGenPackages();
+
+    /**
      * Returns a new object of class '<em>URI</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

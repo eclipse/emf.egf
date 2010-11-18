@@ -132,12 +132,12 @@ public interface FtaskPackage extends EPackage {
     int TASK__SUPER_TASK = FcorePackage.ACTIVITY_FEATURE_COUNT + 1;
 
     /**
-    	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-    	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Implementation</b></em>' attribute.
+     * <!-- begin-user-doc -->
        * <!-- end-user-doc -->
-    	 * @generated
-    	 * @ordered
-    	 */
+     * @generated
+     * @ordered
+     */
     int TASK__IMPLEMENTATION = FcorePackage.ACTIVITY_FEATURE_COUNT + 2;
 
     /**
@@ -216,40 +216,40 @@ public interface FtaskPackage extends EPackage {
     interface Literals {
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.ftask.impl.TaskImpl <em>Task</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.ftask.impl.TaskImpl <em>Task</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.ftask.impl.TaskImpl
-        	 * @see org.eclipse.egf.model.ftask.impl.FtaskPackageImpl#getTask()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.ftask.impl.TaskImpl
+         * @see org.eclipse.egf.model.ftask.impl.FtaskPackageImpl#getTask()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass TASK = eINSTANCE.getTask();
 
         /**
-        	 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EAttribute TASK__KIND = eINSTANCE.getTask_Kind();
 
         /**
-        	 * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EAttribute TASK__IMPLEMENTATION = eINSTANCE.getTask_Implementation();
 
         /**
-        	 * The meta object literal for the '<em><b>Super Task</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Super Task</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference TASK__SUPER_TASK = eINSTANCE.getTask_SuperTask();
 

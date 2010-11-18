@@ -44,154 +44,150 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FactoryComponentContractItemProvider extends ContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-    IItemColorProvider, IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public FactoryComponentContractItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+        IItemColorProvider, IItemFontProvider {
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
-
-      addInvocationContractsPropertyDescriptor(object);
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FactoryComponentContractItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
     }
-    return itemPropertyDescriptors;
-  }
 
-  /**
-   * This adds a property descriptor for the Invocation Contracts feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected void addInvocationContractsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FactoryComponentContract_invocationContracts_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_FactoryComponentContract_invocationContracts_feature", "_UI_FactoryComponentContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, true, false, true, null, getString("_UI_InvocationContractsPropertyCategory"), null) { //$NON-NLS-1$
-          @Override
-          public Collection<?> getChoiceOfValues(Object current) {
-            return FactoryComponentContractHelper.getAvailableInvocationContracts((FactoryComponentContract) current);
-          }
-        });
-  }
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-  /**
-   * This adds an overlay to the given image if the object is controlled.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  protected Object overlayImage(Object object, Object image) {
-    FactoryComponentContract factoryComponentContract = (FactoryComponentContract) object;
-    List<Object> images = new ArrayList<Object>(3);
-    images.add(image);
-    if (factoryComponentContract.getInvocationContracts() == null || factoryComponentContract.getInvocationContracts().size() == 0) {
-      images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/IsNotUsed")); //$NON-NLS-1$
+            addInvocationContractsPropertyDescriptor(object);
+        }
+        return itemPropertyDescriptors;
     }
-    if (factoryComponentContract.isMandatory()) {
-      images.add(getResourceLocator().getImage("full/ovr16/Mandatory")); //$NON-NLS-1$
-    }
-    if (AdapterFactoryEditingDomain.isControlled(object)) {
-      images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
-    }
-    return new ComposedImage(images);
-  }
 
-  /**
-   * This returns FactoryComponentContract.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/FactoryComponentContract")); //$NON-NLS-1$    
-  }
+    /**
+     * This adds a property descriptor for the Invocation Contracts feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    protected void addInvocationContractsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FactoryComponentContract_invocationContracts_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_FactoryComponentContract_invocationContracts_feature", "_UI_FactoryComponentContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, true, false, true, null, getString("_UI_InvocationContractsPropertyCategory"), null) { //$NON-NLS-1$
 
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public String getText(Object object) {
-    FactoryComponentContract contract = (FactoryComponentContract) object;
-    String label = contract.getName();
-    String mode = null;
-    if (contract.getMode() != null) {
-      mode = "[" + contract.getMode().getLiteral() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+                    @Override
+                    public Collection<?> getChoiceOfValues(Object current) {
+                        return FactoryComponentContractHelper.getAvailableInvocationContracts((FactoryComponentContract) current);
+                    }
+                });
     }
-    if (label == null || label.length() == 0) {
-      label = "[" + getString("_UI_FactoryComponentContract_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      if (mode != null) {
-        label = mode + " " + label; //$NON-NLS-1$
-      }
-    } else {
-      if (mode != null) {
-        label = label + " " + mode + " [" + getString("_UI_FactoryComponentContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-      } else {
-        label = label + " [" + getString("_UI_FactoryComponentContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      }
+
+    /**
+     * This adds an overlay to the given image if the object is controlled.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    protected Object overlayImage(Object object, Object image) {
+        FactoryComponentContract factoryComponentContract = (FactoryComponentContract) object;
+        List<Object> images = new ArrayList<Object>(3);
+        images.add(image);
+        if (factoryComponentContract.getInvocationContracts() == null || factoryComponentContract.getInvocationContracts().size() == 0) {
+            images.add(EGFModelEditPlugin.INSTANCE.getImage("full/ovr16/IsNotUsed")); //$NON-NLS-1$
+        }
+        if (factoryComponentContract.isMandatory()) {
+            images.add(getResourceLocator().getImage("full/ovr16/Mandatory")); //$NON-NLS-1$
+        }
+        if (AdapterFactoryEditingDomain.isControlled(object)) {
+            images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/ControlledObject")); //$NON-NLS-1$
+        }
+        return new ComposedImage(images);
     }
-    return label;
-  }
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
-
-    switch (notification.getFeatureID(FactoryComponentContract.class)) {
-    case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
+    /**
+     * This returns FactoryComponentContract.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/FactoryComponentContract")); //$NON-NLS-1$
     }
-    super.notifyChanged(notification);
-  }
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        FactoryComponentContract contract = (FactoryComponentContract) object;
+        String label = contract.getName();
+        String mode = null;
+        if (contract.getMode() != null) {
+            mode = "[" + contract.getMode().getLiteral() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+        }
+        if (label == null || label.length() == 0) {
+            label = "[" + getString("_UI_FactoryComponentContract_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            if (mode != null) {
+                label = mode + " " + label; //$NON-NLS-1$
+            }
+        } else {
+            if (mode != null) {
+                label = label + " " + mode + " [" + getString("_UI_FactoryComponentContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+            } else {
+                label = label + " [" + getString("_UI_FactoryComponentContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            }
+        }
+        return label;
+    }
+
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
+
+        switch (notification.getFeatureID(FactoryComponentContract.class)) {
+            case FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
+
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
 }

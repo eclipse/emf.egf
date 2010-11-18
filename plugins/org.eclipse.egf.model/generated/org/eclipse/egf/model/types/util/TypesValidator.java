@@ -25,6 +25,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.helper.ValidationHelper;
@@ -951,7 +953,16 @@ public class TypesValidator extends EObjectValidator {
         InputStream inputStream = null;
         // Try to open an InputStream
         try {
-            inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
+            if (typeURI.eResource() != null && typeURI.eResource() instanceof IPlatformFcoreProvider) {
+                IPlatformFcore fcore = ((IPlatformFcoreProvider) typeURI.eResource()).getIPlatformFcore();
+                if (fcore.isRuntime()) {
+                    inputStream = EGFCorePlugin.getRuntimePlatformURIConverter().createInputStream(uri);
+                } else {
+                    inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
+                }
+            } else {
+                inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
+            }
         } catch (IOException exception) {
             valid = false;
         }

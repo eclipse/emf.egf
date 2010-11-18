@@ -191,6 +191,8 @@ public class FtaskValidator extends EObjectValidator {
         if (result || diagnostics != null)
             result &= validate_EveryMapEntryUnique(task, diagnostics, context);
         if (result || diagnostics != null)
+            result &= fcoreValidator.validateActivity_PlatformFcore(task, diagnostics, context);
+        if (result || diagnostics != null)
             result &= fcoreValidator.validateActivity_MandatoryName(task, diagnostics, context);
         if (result || diagnostics != null)
             result &= fcoreValidator.validateActivity_ActivityCycle(task, diagnostics, context);

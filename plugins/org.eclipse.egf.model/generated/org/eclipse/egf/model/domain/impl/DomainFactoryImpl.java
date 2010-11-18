@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.domain.impl;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -75,6 +76,10 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
                 return createDomainEPackage();
             case DomainPackage.TYPE_DOMAIN_EPACKAGE:
                 return createTypeDomainEPackage();
+            case DomainPackage.DOMAIN_GEN_PACKAGE:
+                return createDomainGenPackage();
+            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
+                return createTypeDomainGenPackages();
             case DomainPackage.DOMAIN_URI:
                 return createDomainURI();
             case DomainPackage.TYPE_DOMAIN_URI:
@@ -112,6 +117,26 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     public TypeDomainEPackage createTypeDomainEPackage() {
         TypeDomainEPackageImpl typeDomainEPackage = new TypeDomainEPackageImpl();
         return typeDomainEPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public DomainGenPackage createDomainGenPackage() {
+        DomainGenPackageImpl domainGenPackage = new DomainGenPackageImpl();
+        return domainGenPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypeDomainGenPackages createTypeDomainGenPackages() {
+        TypeDomainGenPackagesImpl typeDomainGenPackages = new TypeDomainGenPackagesImpl();
+        return typeDomainGenPackages;
     }
 
     /**

@@ -318,62 +318,62 @@ public interface MappingPackage extends EPackage {
     interface Literals {
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl <em>Viewpoint</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl <em>Viewpoint</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.mapping.impl.MappingViewpointImpl
-        	 * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingViewpoint()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.mapping.impl.MappingViewpointImpl
+         * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingViewpoint()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass MAPPING_VIEWPOINT = eINSTANCE.getMappingViewpoint();
 
         /**
-        	 * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference MAPPING_VIEWPOINT__MAPPINGS = eINSTANCE.getMappingViewpoint_Mappings();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingImpl <em>Mapping</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingImpl <em>Mapping</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.mapping.impl.MappingImpl
-        	 * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMapping()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.mapping.impl.MappingImpl
+         * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMapping()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass MAPPING = eINSTANCE.getMapping();
 
         /**
-        	 * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl <em>Domain</em>}' class.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl <em>Domain</em>}' class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @see org.eclipse.egf.model.mapping.impl.MappingDomainImpl
-        	 * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingDomain()
-        	 * @generated
-        	 */
+         * @see org.eclipse.egf.model.mapping.impl.MappingDomainImpl
+         * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingDomain()
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EClass MAPPING_DOMAIN = eINSTANCE.getMappingDomain();
 
         /**
-        	 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference MAPPING_DOMAIN__SOURCE = eINSTANCE.getMappingDomain_Source();
 
         /**
-        	 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
-        	 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         @SuppressWarnings("hiding")
         EReference MAPPING_DOMAIN__TARGET = eINSTANCE.getMappingDomain_Target();
 

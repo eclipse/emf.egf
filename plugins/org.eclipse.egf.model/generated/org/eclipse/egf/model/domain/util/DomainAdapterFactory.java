@@ -12,6 +12,7 @@ O * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  */
 package org.eclipse.egf.model.domain.util;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -106,6 +107,16 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
         @Override
         public Adapter caseTypeDomainEPackage(TypeDomainEPackage object) {
             return createTypeDomainEPackageAdapter();
+        }
+
+        @Override
+        public Adapter caseDomainGenPackage(DomainGenPackage object) {
+            return createDomainGenPackageAdapter();
+        }
+
+        @Override
+        public Adapter caseTypeDomainGenPackages(TypeDomainGenPackages object) {
+            return createTypeDomainGenPackagesAdapter();
         }
 
         @Override
@@ -219,6 +230,34 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createTypeDomainEPackageAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainGenPackage <em>Gen Package</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.domain.DomainGenPackage
+     * @generated
+     */
+    public Adapter createDomainGenPackageAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.TypeDomainGenPackages <em>Type Domain Gen Packages</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.domain.TypeDomainGenPackages
+     * @generated
+     */
+    public Adapter createTypeDomainGenPackagesAdapter() {
         return null;
     }
 

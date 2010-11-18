@@ -298,45 +298,45 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
     public static class FcoreChildCreationExtender implements IChildCreationExtender {
 
         /**
-        	 * The switch for creating child descriptors specific to each extended class.
-        	 * <!-- begin-user-doc -->
+         * The switch for creating child descriptors specific to each extended class.
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         protected static class CreationSwitch extends FcoreSwitch<Object> {
 
             /**
-            	 * The child descriptors being populated.
-            	 * <!-- begin-user-doc -->
+             * The child descriptors being populated.
+             * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-            	 * @generated
-            	 */
+             * @generated
+             */
             protected List<Object> newChildDescriptors;
 
             /**
-            	 * The domain in which to create the children.
-            	 * <!-- begin-user-doc -->
+             * The domain in which to create the children.
+             * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-            	 * @generated
-            	 */
+             * @generated
+             */
             protected EditingDomain editingDomain;
 
             /**
-            	 * Creates the a switch for populating child descriptors in the given domain.
-            	 * <!-- begin-user-doc -->
+             * Creates the a switch for populating child descriptors in the given domain.
+             * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-            	 * @generated
-            	 */
+             * @generated
+             */
             CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
                 this.newChildDescriptors = newChildDescriptors;
                 this.editingDomain = editingDomain;
             }
 
             /**
-            	 * <!-- begin-user-doc -->
+             * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-            	 * @generated
-            	 */
+             * @generated
+             */
             @Override
             public Object caseFactoryComponent(FactoryComponent object) {
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, FprodFactory.eINSTANCE.createProductionPlan()));
@@ -345,10 +345,10 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
             }
 
             /**
-            	 * <!-- begin-user-doc -->
+             * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
-            	 * @generated
-            	 */
+             * @generated
+             */
             protected CommandParameter createChildParameter(Object feature, Object child) {
                 return new CommandParameter(null, feature, child);
             }
@@ -356,10 +356,10 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
         }
 
         /**
-        	 * <!-- begin-user-doc -->
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
             ArrayList<Object> result = new ArrayList<Object>();
             new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
@@ -367,10 +367,10 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
         }
 
         /**
-        	 * <!-- begin-user-doc -->
+         * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-        	 * @generated
-        	 */
+         * @generated
+         */
         public ResourceLocator getResourceLocator() {
             return EGFFprodEditPlugin.INSTANCE;
         }
