@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackageJava {
+
     protected static String nl;
 
     public static synchronized PackageInterface create(String lineSeparator) {
@@ -25,693 +26,1395 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";";
+
     protected final String TEXT_4 = NL + "package ";
+
     protected final String TEXT_5 = ";";
+
     protected final String TEXT_6 = NL;
-    protected final String TEXT_7 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Package</b> for the model." + NL + " * It contains accessors for the meta objects to represent" + NL + " * <ul>" + NL + " *   <li>each class,</li>" + NL + " *   <li>each feature of each class,</li>";
+
+    protected final String TEXT_7 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Package</b> for the model." + NL + " * It contains accessors for the meta objects to represent" + NL + " * <ul>" + NL + " *   <li>each class,</li>" + NL
+            + " *   <li>each feature of each class,</li>";
+
     protected final String TEXT_8 = NL + " *   <li>each operation of each class,</li>";
+
     protected final String TEXT_9 = NL + " *   <li>each enum,</li>" + NL + " *   <li>and each data type</li>" + NL + " * </ul>" + NL + " * <!-- end-user-doc -->";
+
     protected final String TEXT_10 = NL + " * <!-- begin-model-doc -->" + NL + " * ";
+
     protected final String TEXT_11 = NL + " * <!-- end-model-doc -->";
+
     protected final String TEXT_12 = NL + " * @see ";
+
     protected final String TEXT_13 = NL + " * @model ";
+
     protected final String TEXT_14 = NL + " *        ";
+
     protected final String TEXT_15 = NL + " * @model";
+
     protected final String TEXT_16 = NL + " * @generated" + NL + " */";
+
     protected final String TEXT_17 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * An implementation of the model <b>Package</b>." + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */";
+
     protected final String TEXT_18 = NL + "public class ";
+
     protected final String TEXT_19 = " extends ";
+
     protected final String TEXT_20 = " implements ";
+
     protected final String TEXT_21 = NL + "public interface ";
+
     protected final String TEXT_22 = " extends ";
+
     protected final String TEXT_23 = NL + "{";
+
     protected final String TEXT_24 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_25 = " copyright = ";
+
     protected final String TEXT_26 = ";";
+
     protected final String TEXT_27 = NL;
+
     protected final String TEXT_28 = NL + "\t/**" + NL + "\t * The package name." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_29 = " eNAME = \"";
+
     protected final String TEXT_30 = "\";";
+
     protected final String TEXT_31 = NL + NL + "\t/**" + NL + "\t * The package namespace URI." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_32 = " eNS_URI = \"";
+
     protected final String TEXT_33 = "\";";
+
     protected final String TEXT_34 = NL + NL + "\t/**" + NL + "\t * The package namespace name." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_35 = " eNS_PREFIX = \"";
+
     protected final String TEXT_36 = "\";";
+
     protected final String TEXT_37 = NL + NL + "\t/**" + NL + "\t * The package content type ID." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_38 = " eCONTENT_TYPE = \"";
+
     protected final String TEXT_39 = "\";";
+
     protected final String TEXT_40 = NL + NL + "\t/**" + NL + "\t * The singleton instance of the package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_41 = " eINSTANCE = ";
+
     protected final String TEXT_42 = ".init();" + NL;
+
     protected final String TEXT_43 = NL + "\t/**";
+
     protected final String TEXT_44 = NL + "\t * The meta object id for the '{@link ";
+
     protected final String TEXT_45 = " <em>";
+
     protected final String TEXT_46 = "</em>}' class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see ";
+
     protected final String TEXT_47 = NL + "\t * The meta object id for the '{@link ";
+
     protected final String TEXT_48 = " <em>";
+
     protected final String TEXT_49 = "</em>}' class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see ";
+
     protected final String TEXT_50 = NL + "\t * The meta object id for the '{@link ";
+
     protected final String TEXT_51 = " <em>";
+
     protected final String TEXT_52 = "</em>}' enum." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see ";
+
     protected final String TEXT_53 = NL + "\t * The meta object id for the '<em>";
+
     protected final String TEXT_54 = "</em>' data type." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->";
+
     protected final String TEXT_55 = NL + "\t * @see ";
+
     protected final String TEXT_56 = NL + "\t * @see ";
+
     protected final String TEXT_57 = "#get";
+
     protected final String TEXT_58 = "()" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_59 = "int ";
+
     protected final String TEXT_60 = " = ";
+
     protected final String TEXT_61 = ";" + NL;
+
     protected final String TEXT_62 = NL + "\t/**" + NL + "\t * The feature id for the '<em><b>";
+
     protected final String TEXT_63 = "</b></em>' ";
+
     protected final String TEXT_64 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_65 = "int ";
+
     protected final String TEXT_66 = " = ";
+
     protected final String TEXT_67 = ";" + NL;
+
     protected final String TEXT_68 = NL + "\t/**" + NL + "\t * The number of structural features of the '<em>";
+
     protected final String TEXT_69 = "</em>' class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_70 = "int ";
+
     protected final String TEXT_71 = " = ";
+
     protected final String TEXT_72 = ";" + NL;
+
     protected final String TEXT_73 = NL + "\t/**" + NL + "\t * The operation id for the '<em>";
+
     protected final String TEXT_74 = "</em>' operation." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_75 = "int ";
+
     protected final String TEXT_76 = " = ";
+
     protected final String TEXT_77 = ";" + NL;
+
     protected final String TEXT_78 = NL + "\t/**" + NL + "\t * The number of operations of the '<em>";
+
     protected final String TEXT_79 = "</em>' class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_80 = "int ";
+
     protected final String TEXT_81 = " = ";
+
     protected final String TEXT_82 = ";" + NL;
+
     protected final String TEXT_83 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected String packageFilename = \"";
+
     protected final String TEXT_84 = "\";";
+
     protected final String TEXT_85 = NL;
+
     protected final String TEXT_86 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate ";
+
     protected final String TEXT_87 = " ";
+
     protected final String TEXT_88 = " = null;" + NL;
-    protected final String TEXT_89 = NL + "\t/**" + NL + "\t * Creates an instance of the model <b>Package</b>, registered with" + NL + "\t * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package" + NL + "\t * package URI value." + NL + "\t * <p>Note: the correct way to create the package is via the static" + NL + "\t * factory method {@link #init init()}, which also performs" + NL + "\t * initialization of the package, or returns the registered package," + NL + "\t * if one already exists." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see org.eclipse.emf.ecore.EPackage.Registry" + NL + "\t * @see ";
+
+    protected final String TEXT_89 = NL + "\t/**" + NL + "\t * Creates an instance of the model <b>Package</b>, registered with" + NL + "\t * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package" + NL + "\t * package URI value." + NL
+            + "\t * <p>Note: the correct way to create the package is via the static" + NL + "\t * factory method {@link #init init()}, which also performs" + NL + "\t * initialization of the package, or returns the registered package," + NL + "\t * if one already exists." + NL
+            + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see org.eclipse.emf.ecore.EPackage.Registry" + NL + "\t * @see ";
+
     protected final String TEXT_90 = "#eNS_URI" + NL + "\t * @see #init()" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate ";
+
     protected final String TEXT_91 = "()" + NL + "\t{" + NL + "\t\tsuper(eNS_URI, ";
-    protected final String TEXT_92 = ");" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static boolean isInited = false;" + NL + "" + NL + "\t/**" + NL + "\t * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends." + NL + "\t * " + NL + "\t * <p>This method is used to initialize {@link ";
-    protected final String TEXT_93 = "#eINSTANCE} when that field is accessed." + NL + "\t * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #eNS_URI";
+
+    protected final String TEXT_92 = ");" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static boolean isInited = false;" + NL + "" + NL + "\t/**" + NL
+            + "\t * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends." + NL + "\t * " + NL + "\t * <p>This method is used to initialize {@link ";
+
+    protected final String TEXT_93 = "#eINSTANCE} when that field is accessed." + NL + "\t * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+            + "\t * @see #eNS_URI";
+
     protected final String TEXT_94 = NL + "\t * @see #createPackageContents()" + NL + "\t * @see #initializePackageContents()";
+
     protected final String TEXT_95 = NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
+
     protected final String TEXT_96 = " init()" + NL + "\t{" + NL + "\t\tif (isInited) return (";
+
     protected final String TEXT_97 = ")";
+
     protected final String TEXT_98 = ".Registry.INSTANCE.getEPackage(";
+
     protected final String TEXT_99 = ".eNS_URI);" + NL;
+
     protected final String TEXT_100 = NL + "\t\tinitializeRegistryHelpers();" + NL;
+
     protected final String TEXT_101 = NL + "\t\t// Obtain or create and register package" + NL + "\t\t";
+
     protected final String TEXT_102 = " the";
+
     protected final String TEXT_103 = " = (";
+
     protected final String TEXT_104 = ")(";
+
     protected final String TEXT_105 = ".Registry.INSTANCE.get(eNS_URI) instanceof ";
+
     protected final String TEXT_106 = " ? ";
+
     protected final String TEXT_107 = ".Registry.INSTANCE.get(eNS_URI) : new ";
+
     protected final String TEXT_108 = "());" + NL + "" + NL + "\t\tisInited = true;" + NL;
+
     protected final String TEXT_109 = NL + "\t\t// Initialize simple dependencies";
+
     protected final String TEXT_110 = NL + "\t\t";
+
     protected final String TEXT_111 = ".eINSTANCE.eClass();";
+
     protected final String TEXT_112 = NL;
+
     protected final String TEXT_113 = NL + "\t\t// Obtain or create and register interdependencies";
+
     protected final String TEXT_114 = NL + "\t\t";
+
     protected final String TEXT_115 = " ";
+
     protected final String TEXT_116 = " = (";
+
     protected final String TEXT_117 = ")(";
+
     protected final String TEXT_118 = ".Registry.INSTANCE.getEPackage(";
+
     protected final String TEXT_119 = ".eNS_URI) instanceof ";
+
     protected final String TEXT_120 = " ? ";
+
     protected final String TEXT_121 = ".Registry.INSTANCE.getEPackage(";
+
     protected final String TEXT_122 = ".eNS_URI) : ";
+
     protected final String TEXT_123 = ".eINSTANCE);";
+
     protected final String TEXT_124 = NL;
+
     protected final String TEXT_125 = NL + "\t\t// Load packages";
+
     protected final String TEXT_126 = NL + "\t\tthe";
+
     protected final String TEXT_127 = ".loadPackage();";
+
     protected final String TEXT_128 = NL + "\t\t";
+
     protected final String TEXT_129 = ".loadPackage();";
+
     protected final String TEXT_130 = NL;
+
     protected final String TEXT_131 = NL + "\t\t// Create package meta-data objects";
+
     protected final String TEXT_132 = NL + "\t\tthe";
+
     protected final String TEXT_133 = ".createPackageContents();";
+
     protected final String TEXT_134 = NL + "\t\t";
+
     protected final String TEXT_135 = ".createPackageContents();";
+
     protected final String TEXT_136 = NL + NL + "\t\t// Initialize created meta-data";
+
     protected final String TEXT_137 = NL + "\t\tthe";
+
     protected final String TEXT_138 = ".initializePackageContents();";
+
     protected final String TEXT_139 = NL + "\t\t";
+
     protected final String TEXT_140 = ".initializePackageContents();";
+
     protected final String TEXT_141 = NL;
+
     protected final String TEXT_142 = NL + "\t\t// Fix loaded packages";
+
     protected final String TEXT_143 = NL + "\t\tthe";
+
     protected final String TEXT_144 = ".fixPackageContents();";
+
     protected final String TEXT_145 = NL + "\t\t";
+
     protected final String TEXT_146 = ".fixPackageContents();";
+
     protected final String TEXT_147 = NL;
+
     protected final String TEXT_148 = NL + "\t\t// Register package validator" + NL + "\t\t";
+
     protected final String TEXT_149 = ".Registry.INSTANCE.put" + NL + "\t\t\t(the";
+
     protected final String TEXT_150 = ", " + NL + "\t\t\t new ";
+
     protected final String TEXT_151 = ".Descriptor()" + NL + "\t\t\t {" + NL + "\t\t\t\t public ";
+
     protected final String TEXT_152 = " getEValidator()" + NL + "\t\t\t\t {" + NL + "\t\t\t\t\t return ";
+
     protected final String TEXT_153 = ".INSTANCE;" + NL + "\t\t\t\t }" + NL + "\t\t\t });" + NL;
+
     protected final String TEXT_154 = NL + "\t\t// Mark meta-data to indicate it can't be changed" + NL + "\t\tthe";
+
     protected final String TEXT_155 = ".freeze();" + NL;
+
     protected final String TEXT_156 = NL + "  " + NL + "\t\t// Update the registry and return the package" + NL + "\t\t";
+
     protected final String TEXT_157 = ".Registry.INSTANCE.put(";
+
     protected final String TEXT_158 = ".eNS_URI, the";
+
     protected final String TEXT_159 = ");" + NL + "\t\treturn the";
+
     protected final String TEXT_160 = ";" + NL + "\t}";
+
     protected final String TEXT_161 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static void initializeRegistryHelpers()" + NL + "\t{";
+
     protected final String TEXT_162 = NL + "\t\t";
+
     protected final String TEXT_163 = ".register" + NL + "\t\t\t(";
+
     protected final String TEXT_164 = ".class, " + NL + "\t\t\t new ";
+
     protected final String TEXT_165 = ".Helper() " + NL + "\t\t\t {" + NL + "\t\t\t\t public boolean isInstance(Object instance)" + NL + "\t\t\t\t {" + NL + "\t\t\t\t\t return instance instanceof ";
+
     protected final String TEXT_166 = ";" + NL + "\t\t\t\t }" + NL + "" + NL + "\t\t\t\t public Object newArrayInstance(int size)" + NL + "\t\t\t\t {" + NL + "\t\t\t\t\t return new ";
+
     protected final String TEXT_167 = "[size];" + NL + "\t\t\t\t }" + NL + "\t\t\t });";
+
     protected final String TEXT_168 = NL + "\t\t";
+
     protected final String TEXT_169 = ".register" + NL + "\t\t\t(";
+
     protected final String TEXT_170 = ".class, " + NL + "\t\t\t new ";
+
     protected final String TEXT_171 = ".Helper() " + NL + "\t\t\t {" + NL + "\t\t\t\t public boolean isInstance(Object instance)" + NL + "\t\t\t\t {" + NL + "\t\t\t\t\t return instance instanceof ";
+
     protected final String TEXT_172 = ";" + NL + "\t\t\t\t }" + NL + "" + NL + "\t\t\t\t public Object newArrayInstance(int size)" + NL + "\t\t\t\t {";
+
     protected final String TEXT_173 = NL + "\t\t\t\t\t return new ";
+
     protected final String TEXT_174 = "[size]";
+
     protected final String TEXT_175 = ";";
+
     protected final String TEXT_176 = NL + "\t\t\t\t\t return new ";
+
     protected final String TEXT_177 = "[size];";
+
     protected final String TEXT_178 = NL + "\t\t\t\t }" + NL + "\t\t});";
+
     protected final String TEXT_179 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static class WhiteList implements ";
+
     protected final String TEXT_180 = NL + "\t{";
+
     protected final String TEXT_181 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
+
     protected final String TEXT_182 = " ";
+
     protected final String TEXT_183 = ";" + NL;
+
     protected final String TEXT_184 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
+
     protected final String TEXT_185 = " ";
+
     protected final String TEXT_186 = ";" + NL;
+
     protected final String TEXT_187 = NL + "\t}";
+
     protected final String TEXT_188 = NL;
+
     protected final String TEXT_189 = NL;
+
     protected final String TEXT_190 = NL + "\t/**";
+
     protected final String TEXT_191 = NL + "\t * Returns the meta object for class '{@link ";
+
     protected final String TEXT_192 = " <em>";
+
     protected final String TEXT_193 = "</em>}'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the meta object for class '<em>";
+
     protected final String TEXT_194 = "</em>'." + NL + "\t * @see ";
+
     protected final String TEXT_195 = NL + "\t * @model ";
+
     protected final String TEXT_196 = NL + "\t *        ";
+
     protected final String TEXT_197 = NL + "\t * @model";
+
     protected final String TEXT_198 = NL + "\t * Returns the meta object for enum '{@link ";
+
     protected final String TEXT_199 = " <em>";
+
     protected final String TEXT_200 = "</em>}'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the meta object for enum '<em>";
+
     protected final String TEXT_201 = "</em>'." + NL + "\t * @see ";
+
     protected final String TEXT_202 = NL + "\t * Returns the meta object for data type '<em>";
+
     protected final String TEXT_203 = "</em>'.";
+
     protected final String TEXT_204 = NL + "\t * Returns the meta object for data type '{@link ";
+
     protected final String TEXT_205 = " <em>";
+
     protected final String TEXT_206 = "</em>}'.";
+
     protected final String TEXT_207 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the meta object for data type '<em>";
+
     protected final String TEXT_208 = "</em>'.";
+
     protected final String TEXT_209 = NL + "\t * @see ";
+
     protected final String TEXT_210 = NL + "\t * @model ";
+
     protected final String TEXT_211 = NL + "\t *        ";
+
     protected final String TEXT_212 = NL + "\t * @model";
+
     protected final String TEXT_213 = NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_214 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_215 = NL + "\tpublic ";
+
     protected final String TEXT_216 = " get";
+
     protected final String TEXT_217 = "()" + NL + "\t{";
+
     protected final String TEXT_218 = NL + "\t\tif (";
+
     protected final String TEXT_219 = " == null)" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_220 = " = (";
+
     protected final String TEXT_221 = ")";
+
     protected final String TEXT_222 = ".Registry.INSTANCE.getEPackage(";
+
     protected final String TEXT_223 = ".eNS_URI).getEClassifiers().get(";
+
     protected final String TEXT_224 = ");" + NL + "\t\t}";
+
     protected final String TEXT_225 = NL + "\t\treturn ";
+
     protected final String TEXT_226 = ";" + NL + "\t}" + NL;
+
     protected final String TEXT_227 = NL + "\t";
+
     protected final String TEXT_228 = " get";
+
     protected final String TEXT_229 = "();" + NL;
+
     protected final String TEXT_230 = NL + "\t/**" + NL + "\t * Returns the meta object for the ";
+
     protected final String TEXT_231 = " '{@link ";
+
     protected final String TEXT_232 = "#";
+
     protected final String TEXT_233 = " <em>";
+
     protected final String TEXT_234 = "</em>}'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the meta object for the ";
+
     protected final String TEXT_235 = " '<em>";
+
     protected final String TEXT_236 = "</em>'." + NL + "\t * @see ";
+
     protected final String TEXT_237 = "#";
+
     protected final String TEXT_238 = "()";
+
     protected final String TEXT_239 = NL + "\t * @see #get";
+
     protected final String TEXT_240 = "()" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_241 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_242 = NL + "\tpublic ";
+
     protected final String TEXT_243 = " get";
+
     protected final String TEXT_244 = "()" + NL + "\t{";
+
     protected final String TEXT_245 = NL + "\t\treturn (";
+
     protected final String TEXT_246 = ")";
+
     protected final String TEXT_247 = ".getEStructuralFeatures().get(";
+
     protected final String TEXT_248 = ");";
+
     protected final String TEXT_249 = NL + "        return (";
+
     protected final String TEXT_250 = ")get";
+
     protected final String TEXT_251 = "().getEStructuralFeatures().get(";
+
     protected final String TEXT_252 = ");";
+
     protected final String TEXT_253 = NL + "\t}";
+
     protected final String TEXT_254 = NL + "\t";
+
     protected final String TEXT_255 = " get";
+
     protected final String TEXT_256 = "();";
+
     protected final String TEXT_257 = NL;
+
     protected final String TEXT_258 = NL + "\t/**" + NL + "\t * Returns the meta object for the '{@link ";
+
     protected final String TEXT_259 = "#";
+
     protected final String TEXT_260 = "(";
+
     protected final String TEXT_261 = ") <em>";
+
     protected final String TEXT_262 = "</em>}' operation." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the meta object for the '<em>";
+
     protected final String TEXT_263 = "</em>' operation." + NL + "\t * @see ";
+
     protected final String TEXT_264 = "#";
+
     protected final String TEXT_265 = "(";
+
     protected final String TEXT_266 = ")" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_267 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_268 = NL + "\tpublic ";
+
     protected final String TEXT_269 = " get";
+
     protected final String TEXT_270 = "()" + NL + "\t{";
+
     protected final String TEXT_271 = NL + "\t\treturn ";
+
     protected final String TEXT_272 = ".getEOperations().get(";
+
     protected final String TEXT_273 = ");";
+
     protected final String TEXT_274 = NL + "        return get";
+
     protected final String TEXT_275 = "().getEOperations().get(";
+
     protected final String TEXT_276 = ");";
+
     protected final String TEXT_277 = NL + "\t}";
+
     protected final String TEXT_278 = NL + "\t";
+
     protected final String TEXT_279 = " get";
+
     protected final String TEXT_280 = "();";
+
     protected final String TEXT_281 = NL;
-    protected final String TEXT_282 = NL + "\t/**" + NL + "\t * Returns the factory that creates the instances of the model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the factory that creates the instances of the model." + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_282 = NL + "\t/**" + NL + "\t * Returns the factory that creates the instances of the model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the factory that creates the instances of the model." + NL + "\t * @generated"
+            + NL + "\t */";
+
     protected final String TEXT_283 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_284 = NL + "\tpublic ";
+
     protected final String TEXT_285 = " get";
+
     protected final String TEXT_286 = "()" + NL + "\t{" + NL + "\t\treturn (";
+
     protected final String TEXT_287 = ")getEFactoryInstance();" + NL + "\t}";
+
     protected final String TEXT_288 = NL + "\t";
+
     protected final String TEXT_289 = " get";
+
     protected final String TEXT_290 = "();";
+
     protected final String TEXT_291 = NL;
-    protected final String TEXT_292 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isCreated = false;" + NL + "" + NL + "\t/**" + NL + "\t * Creates the meta-model objects for the package.  This method is" + NL + "\t * guarded to have no affect on any invocation but its first." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void createPackageContents()" + NL + "\t{" + NL + "\t\tif (isCreated) return;" + NL + "\t\tisCreated = true;";
+
+    protected final String TEXT_292 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isCreated = false;" + NL + "" + NL + "\t/**" + NL
+            + "\t * Creates the meta-model objects for the package.  This method is" + NL + "\t * guarded to have no affect on any invocation but its first." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tpublic void createPackageContents()" + NL + "\t{" + NL + "\t\tif (isCreated) return;" + NL + "\t\tisCreated = true;";
+
     protected final String TEXT_293 = NL + NL + "\t\t// Create classes and their features";
+
     protected final String TEXT_294 = NL + "\t\t";
+
     protected final String TEXT_295 = " = create";
+
     protected final String TEXT_296 = "(";
+
     protected final String TEXT_297 = ");";
+
     protected final String TEXT_298 = NL + "\t\tcreate";
+
     protected final String TEXT_299 = "(";
+
     protected final String TEXT_300 = ", ";
+
     protected final String TEXT_301 = ");";
+
     protected final String TEXT_302 = NL + "\t\tcreateEOperation(";
+
     protected final String TEXT_303 = ", ";
+
     protected final String TEXT_304 = ");";
+
     protected final String TEXT_305 = NL;
+
     protected final String TEXT_306 = NL + NL + "\t\t// Create enums";
+
     protected final String TEXT_307 = NL + "\t\t";
+
     protected final String TEXT_308 = " = createEEnum(";
+
     protected final String TEXT_309 = ");";
+
     protected final String TEXT_310 = NL + NL + "\t\t// Create data types";
+
     protected final String TEXT_311 = NL + "\t\t";
+
     protected final String TEXT_312 = " = createEDataType(";
+
     protected final String TEXT_313 = ");";
+
     protected final String TEXT_314 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isInitialized = false;" + NL;
-    protected final String TEXT_315 = NL + "\t/**" + NL + "\t * Complete the initialization of the package and its meta-model.  This" + NL + "\t * method is guarded to have no affect on any invocation but its first." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void initializePackageContents()" + NL + "\t{" + NL + "\t\tif (isInitialized) return;" + NL + "\t\tisInitialized = true;" + NL + "" + NL + "\t\t// Initialize package" + NL + "\t\tsetName(eNAME);" + NL + "\t\tsetNsPrefix(eNS_PREFIX);" + NL + "\t\tsetNsURI(eNS_URI);";
+
+    protected final String TEXT_315 = NL + "\t/**" + NL + "\t * Complete the initialization of the package and its meta-model.  This" + NL + "\t * method is guarded to have no affect on any invocation but its first." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+            + "\t * @generated" + NL + "\t */" + NL + "\tpublic void initializePackageContents()" + NL + "\t{" + NL + "\t\tif (isInitialized) return;" + NL + "\t\tisInitialized = true;" + NL + "" + NL + "\t\t// Initialize package" + NL + "\t\tsetName(eNAME);" + NL + "\t\tsetNsPrefix(eNS_PREFIX);"
+            + NL + "\t\tsetNsURI(eNS_URI);";
+
     protected final String TEXT_316 = NL + NL + "\t\t// Obtain other dependent packages";
+
     protected final String TEXT_317 = NL + "\t\t";
+
     protected final String TEXT_318 = " ";
+
     protected final String TEXT_319 = " = (";
+
     protected final String TEXT_320 = ")";
+
     protected final String TEXT_321 = ".Registry.INSTANCE.getEPackage(";
+
     protected final String TEXT_322 = ".eNS_URI);";
+
     protected final String TEXT_323 = NL + NL + "\t\t// Add subpackages";
+
     protected final String TEXT_324 = NL + "\t\tgetESubpackages().add(";
+
     protected final String TEXT_325 = ");";
+
     protected final String TEXT_326 = NL + NL + "\t\t// Create type parameters";
+
     protected final String TEXT_327 = NL + "\t\t";
+
     protected final String TEXT_328 = " ";
+
     protected final String TEXT_329 = "_";
+
     protected final String TEXT_330 = " = addETypeParameter(";
+
     protected final String TEXT_331 = ", \"";
+
     protected final String TEXT_332 = "\");";
+
     protected final String TEXT_333 = NL + "\t\taddETypeParameter(";
+
     protected final String TEXT_334 = ", \"";
+
     protected final String TEXT_335 = "\");";
+
     protected final String TEXT_336 = NL + NL + "\t\t// Set bounds for type parameters";
+
     protected final String TEXT_337 = NL + "\t\t";
+
     protected final String TEXT_338 = "g";
+
     protected final String TEXT_339 = " = createEGenericType(";
+
     protected final String TEXT_340 = ");";
+
     protected final String TEXT_341 = NL + "\t\tg";
+
     protected final String TEXT_342 = ".";
+
     protected final String TEXT_343 = "(g";
+
     protected final String TEXT_344 = ");";
+
     protected final String TEXT_345 = NL + "\t\t";
+
     protected final String TEXT_346 = "_";
+
     protected final String TEXT_347 = ".getEBounds().add(g1);";
+
     protected final String TEXT_348 = NL + NL + "\t\t// Add supertypes to classes";
+
     protected final String TEXT_349 = NL + "\t\t";
+
     protected final String TEXT_350 = ".getESuperTypes().add(";
+
     protected final String TEXT_351 = ".get";
+
     protected final String TEXT_352 = "());";
+
     protected final String TEXT_353 = NL + "\t\t";
+
     protected final String TEXT_354 = "g";
+
     protected final String TEXT_355 = " = createEGenericType(";
+
     protected final String TEXT_356 = ");";
+
     protected final String TEXT_357 = NL + "\t\tg";
+
     protected final String TEXT_358 = ".";
+
     protected final String TEXT_359 = "(g";
+
     protected final String TEXT_360 = ");";
+
     protected final String TEXT_361 = NL + "\t\t";
+
     protected final String TEXT_362 = ".getEGenericSuperTypes().add(g1);";
+
     protected final String TEXT_363 = NL + NL + "\t\t// Initialize classes";
+
     protected final String TEXT_364 = ", features, and operations; add parameters";
+
     protected final String TEXT_365 = " and features; add operations and parameters";
+
     protected final String TEXT_366 = NL + "\t\tinitEClass(";
+
     protected final String TEXT_367 = ", ";
+
     protected final String TEXT_368 = "null";
+
     protected final String TEXT_369 = ".class";
+
     protected final String TEXT_370 = ", \"";
+
     protected final String TEXT_371 = "\", ";
+
     protected final String TEXT_372 = ", ";
+
     protected final String TEXT_373 = ", ";
+
     protected final String TEXT_374 = ", \"";
+
     protected final String TEXT_375 = "\"";
+
     protected final String TEXT_376 = ");";
+
     protected final String TEXT_377 = NL + "\t\t";
+
     protected final String TEXT_378 = "g";
+
     protected final String TEXT_379 = " = createEGenericType(";
+
     protected final String TEXT_380 = ");";
+
     protected final String TEXT_381 = NL + "\t\tg";
+
     protected final String TEXT_382 = ".";
+
     protected final String TEXT_383 = "(g";
+
     protected final String TEXT_384 = ");";
+
     protected final String TEXT_385 = NL + "\t\tinitEReference(get";
+
     protected final String TEXT_386 = "(), ";
+
     protected final String TEXT_387 = "g1";
+
     protected final String TEXT_388 = ".get";
+
     protected final String TEXT_389 = "()";
+
     protected final String TEXT_390 = ", ";
+
     protected final String TEXT_391 = ", \"";
+
     protected final String TEXT_392 = "\", ";
+
     protected final String TEXT_393 = ", ";
+
     protected final String TEXT_394 = ", ";
+
     protected final String TEXT_395 = ", ";
+
     protected final String TEXT_396 = ", ";
+
     protected final String TEXT_397 = ", ";
+
     protected final String TEXT_398 = ", ";
+
     protected final String TEXT_399 = ", ";
+
     protected final String TEXT_400 = ", ";
+
     protected final String TEXT_401 = ", ";
+
     protected final String TEXT_402 = ", ";
+
     protected final String TEXT_403 = ", ";
+
     protected final String TEXT_404 = ", ";
+
     protected final String TEXT_405 = ");";
+
     protected final String TEXT_406 = NL + "\t\tget";
+
     protected final String TEXT_407 = "().getEKeys().add(";
+
     protected final String TEXT_408 = ".get";
+
     protected final String TEXT_409 = "());";
+
     protected final String TEXT_410 = NL + "\t\tinitEAttribute(get";
+
     protected final String TEXT_411 = "(), ";
+
     protected final String TEXT_412 = "g1";
+
     protected final String TEXT_413 = ".get";
+
     protected final String TEXT_414 = "()";
+
     protected final String TEXT_415 = ", \"";
+
     protected final String TEXT_416 = "\", ";
+
     protected final String TEXT_417 = ", ";
+
     protected final String TEXT_418 = ", ";
+
     protected final String TEXT_419 = ", ";
+
     protected final String TEXT_420 = ", ";
+
     protected final String TEXT_421 = ", ";
+
     protected final String TEXT_422 = ", ";
+
     protected final String TEXT_423 = ", ";
+
     protected final String TEXT_424 = ", ";
+
     protected final String TEXT_425 = ", ";
+
     protected final String TEXT_426 = ", ";
+
     protected final String TEXT_427 = ", ";
+
     protected final String TEXT_428 = ");";
+
     protected final String TEXT_429 = NL;
+
     protected final String TEXT_430 = NL + "\t\t";
+
     protected final String TEXT_431 = "initEOperation(get";
+
     protected final String TEXT_432 = "()";
+
     protected final String TEXT_433 = "addEOperation(";
+
     protected final String TEXT_434 = ", ";
+
     protected final String TEXT_435 = "null";
+
     protected final String TEXT_436 = ".get";
+
     protected final String TEXT_437 = "()";
+
     protected final String TEXT_438 = ", \"";
+
     protected final String TEXT_439 = "\", ";
+
     protected final String TEXT_440 = ", ";
+
     protected final String TEXT_441 = ", ";
+
     protected final String TEXT_442 = ", ";
+
     protected final String TEXT_443 = ");";
+
     protected final String TEXT_444 = NL + "\t\t";
+
     protected final String TEXT_445 = "initEOperation(get";
+
     protected final String TEXT_446 = "()";
+
     protected final String TEXT_447 = "addEOperation(";
+
     protected final String TEXT_448 = ", ";
+
     protected final String TEXT_449 = ".get";
+
     protected final String TEXT_450 = "(), \"";
+
     protected final String TEXT_451 = "\", ";
+
     protected final String TEXT_452 = ", ";
+
     protected final String TEXT_453 = ", ";
+
     protected final String TEXT_454 = ", ";
+
     protected final String TEXT_455 = ");";
+
     protected final String TEXT_456 = NL + "\t\t";
+
     protected final String TEXT_457 = "initEOperation(get";
+
     protected final String TEXT_458 = "()";
+
     protected final String TEXT_459 = "addEOperation(";
+
     protected final String TEXT_460 = ", ";
+
     protected final String TEXT_461 = ".get";
+
     protected final String TEXT_462 = "(), \"";
+
     protected final String TEXT_463 = "\", ";
+
     protected final String TEXT_464 = ", ";
+
     protected final String TEXT_465 = ");";
+
     protected final String TEXT_466 = NL + "\t\t";
+
     protected final String TEXT_467 = "initEOperation(get";
+
     protected final String TEXT_468 = "()";
+
     protected final String TEXT_469 = "addEOperation(";
+
     protected final String TEXT_470 = ", null, \"";
+
     protected final String TEXT_471 = "\");";
+
     protected final String TEXT_472 = NL + "\t\t";
+
     protected final String TEXT_473 = "addETypeParameter(op, \"";
+
     protected final String TEXT_474 = "\");";
+
     protected final String TEXT_475 = NL + "\t\t";
+
     protected final String TEXT_476 = "g";
+
     protected final String TEXT_477 = " = createEGenericType(";
+
     protected final String TEXT_478 = ");";
+
     protected final String TEXT_479 = NL + "\t\tg";
+
     protected final String TEXT_480 = ".";
+
     protected final String TEXT_481 = "(g";
+
     protected final String TEXT_482 = ");";
+
     protected final String TEXT_483 = NL + "\t\tt";
+
     protected final String TEXT_484 = ".getEBounds().add(g1);";
+
     protected final String TEXT_485 = NL + "\t\t";
+
     protected final String TEXT_486 = "g";
+
     protected final String TEXT_487 = " = createEGenericType(";
+
     protected final String TEXT_488 = ");";
+
     protected final String TEXT_489 = NL + "\t\tg";
+
     protected final String TEXT_490 = ".";
+
     protected final String TEXT_491 = "(g";
+
     protected final String TEXT_492 = ");";
+
     protected final String TEXT_493 = NL + "\t\taddEParameter(op, ";
+
     protected final String TEXT_494 = "g1";
+
     protected final String TEXT_495 = ".get";
+
     protected final String TEXT_496 = "()";
+
     protected final String TEXT_497 = ", \"";
+
     protected final String TEXT_498 = "\", ";
+
     protected final String TEXT_499 = ", ";
+
     protected final String TEXT_500 = ", ";
+
     protected final String TEXT_501 = ", ";
+
     protected final String TEXT_502 = ");";
+
     protected final String TEXT_503 = NL + "\t\taddEParameter(op, ";
+
     protected final String TEXT_504 = "g1";
+
     protected final String TEXT_505 = ".get";
+
     protected final String TEXT_506 = "()";
+
     protected final String TEXT_507 = ", \"";
+
     protected final String TEXT_508 = "\", ";
+
     protected final String TEXT_509 = ", ";
+
     protected final String TEXT_510 = ", ";
+
     protected final String TEXT_511 = ", ";
+
     protected final String TEXT_512 = ");";
+
     protected final String TEXT_513 = NL + "\t\taddEParameter(op, ";
+
     protected final String TEXT_514 = "g1";
+
     protected final String TEXT_515 = ".get";
+
     protected final String TEXT_516 = "()";
+
     protected final String TEXT_517 = ", \"";
+
     protected final String TEXT_518 = "\", ";
+
     protected final String TEXT_519 = ", ";
+
     protected final String TEXT_520 = ");";
+
     protected final String TEXT_521 = NL + "\t\t";
+
     protected final String TEXT_522 = "g";
+
     protected final String TEXT_523 = " = createEGenericType(";
+
     protected final String TEXT_524 = ");";
+
     protected final String TEXT_525 = NL + "\t\tg";
+
     protected final String TEXT_526 = ".";
+
     protected final String TEXT_527 = "(g";
+
     protected final String TEXT_528 = ");";
+
     protected final String TEXT_529 = NL + "\t\taddEException(op, g";
+
     protected final String TEXT_530 = ");";
+
     protected final String TEXT_531 = NL + "\t\taddEException(op, ";
+
     protected final String TEXT_532 = ".get";
+
     protected final String TEXT_533 = "());";
+
     protected final String TEXT_534 = NL + "\t\t";
+
     protected final String TEXT_535 = "g";
+
     protected final String TEXT_536 = " = createEGenericType(";
+
     protected final String TEXT_537 = ");";
+
     protected final String TEXT_538 = NL + "\t\tg";
+
     protected final String TEXT_539 = ".";
+
     protected final String TEXT_540 = "(g";
+
     protected final String TEXT_541 = ");";
+
     protected final String TEXT_542 = NL + "\t\tinitEOperation(op, g1);";
+
     protected final String TEXT_543 = NL;
+
     protected final String TEXT_544 = NL + NL + "\t\t// Initialize enums and add enum literals";
+
     protected final String TEXT_545 = NL + "\t\tinitEEnum(";
+
     protected final String TEXT_546 = ", ";
+
     protected final String TEXT_547 = ".class, \"";
+
     protected final String TEXT_548 = "\");";
+
     protected final String TEXT_549 = NL + "\t\taddEEnumLiteral(";
+
     protected final String TEXT_550 = ", ";
+
     protected final String TEXT_551 = ".";
+
     protected final String TEXT_552 = ");";
+
     protected final String TEXT_553 = NL;
+
     protected final String TEXT_554 = NL + NL + "\t\t// Initialize data types";
+
     protected final String TEXT_555 = NL + "\t\tinitEDataType(";
+
     protected final String TEXT_556 = ", ";
+
     protected final String TEXT_557 = ".class, \"";
+
     protected final String TEXT_558 = "\", ";
+
     protected final String TEXT_559 = ", ";
+
     protected final String TEXT_560 = ", \"";
+
     protected final String TEXT_561 = "\"";
+
     protected final String TEXT_562 = ");";
+
     protected final String TEXT_563 = NL + NL + "\t\t// Create resource" + NL + "\t\tcreateResource(eNS_URI);";
+
     protected final String TEXT_564 = NL + NL + "\t\t// Create annotations";
+
     protected final String TEXT_565 = NL + "\t\t// ";
+
     protected final String TEXT_566 = NL + "\t\tcreate";
+
     protected final String TEXT_567 = "Annotations();";
+
     protected final String TEXT_568 = NL + "\t}" + NL;
+
     protected final String TEXT_569 = NL + "\t/**" + NL + "\t * Initializes the annotations for <b>";
+
     protected final String TEXT_570 = "</b>." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected void create";
+
     protected final String TEXT_571 = "Annotations()" + NL + "\t{" + NL + "\t\tString source = ";
+
     protected final String TEXT_572 = "null;";
+
     protected final String TEXT_573 = "\"";
+
     protected final String TEXT_574 = "\";";
+
     protected final String TEXT_575 = "\t";
+
     protected final String TEXT_576 = "\t" + NL + "\t\taddAnnotation" + NL + "\t\t  (";
+
     protected final String TEXT_577 = ", " + NL + "\t\t   source, " + NL + "\t\t   new String[] " + NL + "\t\t   {";
+
     protected final String TEXT_578 = NL + "\t\t\t ";
+
     protected final String TEXT_579 = ", ";
+
     protected final String TEXT_580 = NL + "\t\t   }";
+
     protected final String TEXT_581 = ");";
+
     protected final String TEXT_582 = ",";
+
     protected final String TEXT_583 = NL + "\t\t   new ";
+
     protected final String TEXT_584 = "[] " + NL + "\t\t   {";
+
     protected final String TEXT_585 = NL + "\t\t\t ";
+
     protected final String TEXT_586 = ".createURI(";
+
     protected final String TEXT_587 = ".";
+
     protected final String TEXT_588 = "eNS_URI).appendFragment(\"";
+
     protected final String TEXT_589 = "\")";
+
     protected final String TEXT_590 = ",";
+
     protected final String TEXT_591 = NL + "\t\t   });";
+
     protected final String TEXT_592 = NL + "\t\taddAnnotation" + NL + "\t\t  (";
+
     protected final String TEXT_593 = ", " + NL + "\t\t   ";
+
     protected final String TEXT_594 = "," + NL + "\t\t   ";
+
     protected final String TEXT_595 = "null,";
+
     protected final String TEXT_596 = "\"";
+
     protected final String TEXT_597 = "\",";
+
     protected final String TEXT_598 = NL + "\t\t   new String[] " + NL + "\t\t   {";
+
     protected final String TEXT_599 = NL + "\t\t\t ";
+
     protected final String TEXT_600 = ", ";
+
     protected final String TEXT_601 = NL + "\t\t   }";
+
     protected final String TEXT_602 = ");";
+
     protected final String TEXT_603 = ",";
+
     protected final String TEXT_604 = NL + "\t\t   new ";
+
     protected final String TEXT_605 = "[] " + NL + "\t\t   {";
+
     protected final String TEXT_606 = NL + "\t\t\t ";
+
     protected final String TEXT_607 = ".createURI(";
+
     protected final String TEXT_608 = ".";
+
     protected final String TEXT_609 = "eNS_URI).appendFragment(\"";
+
     protected final String TEXT_610 = "\")";
+
     protected final String TEXT_611 = ",";
+
     protected final String TEXT_612 = NL + "\t\t   });";
+
     protected final String TEXT_613 = NL + "\t}" + NL;
-    protected final String TEXT_614 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isLoaded = false;" + NL + "" + NL + "\t/**" + NL + "\t * Laods the package and any sub-packages from their serialized form." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void loadPackage()" + NL + "\t{" + NL + "\t\tif (isLoaded) return;" + NL + "\t\tisLoaded = true;" + NL + "" + NL + "\t\t";
+
+    protected final String TEXT_614 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isLoaded = false;" + NL + "" + NL + "\t/**" + NL
+            + "\t * Laods the package and any sub-packages from their serialized form." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void loadPackage()" + NL + "\t{" + NL + "\t\tif (isLoaded) return;" + NL
+            + "\t\tisLoaded = true;" + NL + "" + NL + "\t\t";
+
     protected final String TEXT_615 = " url = getClass().getResource(packageFilename);" + NL + "\t\tif (url == null)" + NL + "\t\t{" + NL + "\t\t\tthrow new RuntimeException(\"Missing serialized package: \" + packageFilename);";
+
     protected final String TEXT_616 = NL + "\t\t}" + NL + "\t\t";
+
     protected final String TEXT_617 = " uri = ";
+
     protected final String TEXT_618 = ".createURI(url.toString());" + NL + "\t\t";
+
     protected final String TEXT_619 = " resource = new ";
+
     protected final String TEXT_620 = "().createResource(uri);" + NL + "\t\ttry" + NL + "\t\t{" + NL + "\t\t\tresource.load(null);" + NL + "\t\t}" + NL + "\t\tcatch (";
+
     protected final String TEXT_621 = " exception)" + NL + "\t\t{" + NL + "\t\t\tthrow new ";
+
     protected final String TEXT_622 = "(exception);" + NL + "\t\t}" + NL + "\t\tinitializeFromLoadedEPackage(this, (";
+
     protected final String TEXT_623 = ")resource.getContents().get(0));" + NL + "\t\tcreateResource(eNS_URI);" + NL + "\t}" + NL;
-    protected final String TEXT_624 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isFixed = false;" + NL + "" + NL + "\t/**" + NL + "\t * Fixes up the loaded package, to make it appear as if it had been programmatically built." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void fixPackageContents()" + NL + "\t{" + NL + "\t\tif (isFixed) return;" + NL + "\t\tisFixed = true;" + NL + "\t\tfixEClassifiers();" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Sets the instance class on the given classifier." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+
+    protected final String TEXT_624 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate boolean isFixed = false;" + NL + "" + NL + "\t/**" + NL
+            + "\t * Fixes up the loaded package, to make it appear as if it had been programmatically built." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void fixPackageContents()" + NL + "\t{" + NL
+            + "\t\tif (isFixed) return;" + NL + "\t\tisFixed = true;" + NL + "\t\tfixEClassifiers();" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Sets the instance class on the given classifier." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
             + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_625 = NL + "\t@Override";
+
     protected final String TEXT_626 = NL + "\tprotected void fixInstanceClass(";
+
     protected final String TEXT_627 = " eClassifier)" + NL + "\t{" + NL + "\t\tif (eClassifier.getInstanceClassName() == null)" + NL + "\t\t{";
+
     protected final String TEXT_628 = NL + "\t\t\teClassifier.setInstanceClassName(\"";
+
     protected final String TEXT_629 = ".\" + eClassifier.getName());";
+
     protected final String TEXT_630 = NL + "\t\t\tsetGeneratedClassName(eClassifier);";
+
     protected final String TEXT_631 = NL + "\t\t\tswitch (eClassifier.getClassifierID())" + NL + "\t\t\t{";
+
     protected final String TEXT_632 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_633 = ":";
+
     protected final String TEXT_634 = NL + "\t\t\t\t{" + NL + "\t\t\t\t\tbreak;" + NL + "\t\t\t\t}" + NL + "\t\t\t\tdefault:" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\teClassifier.setInstanceClassName(\"";
+
     protected final String TEXT_635 = ".\" + eClassifier.getName());";
+
     protected final String TEXT_636 = NL + "\t\t\t\t\tsetGeneratedClassName(eClassifier);" + NL + "\t\t\t\t\tbreak;" + NL + "\t\t\t\t}" + NL + "\t\t\t}";
+
     protected final String TEXT_637 = NL + "\t\t}" + NL + "\t}" + NL;
+
     protected final String TEXT_638 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_639 = " addEOperation(";
+
     protected final String TEXT_640 = " owner, ";
+
     protected final String TEXT_641 = " type, String name, int lowerBound, int upperBound, boolean isUnique, boolean isOrdered)" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_642 = " o = addEOperation(owner, type, name, lowerBound, upperBound);" + NL + "\t\to.setUnique(isUnique);" + NL + "\t\to.setOrdered(isOrdered);" + NL + "\t\treturn o;" + NL + "\t}" + NL + "\t";
+
     protected final String TEXT_643 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_644 = " addEParameter(";
+
     protected final String TEXT_645 = " owner, ";
+
     protected final String TEXT_646 = " type, String name, int lowerBound, int upperBound, boolean isUnique, boolean isOrdered)" + NL + "\t{" + NL + "\t\t";
-    protected final String TEXT_647 = " p = ecoreFactory.createEParameter();" + NL + "\t\tp.setEType(type);" + NL + "\t\tp.setName(name);" + NL + "\t\tp.setLowerBound(lowerBound);" + NL + "\t\tp.setUpperBound(upperBound);" + NL + "\t\tp.setUnique(isUnique);" + NL + "\t\tp.setOrdered(isOrdered);" + NL + "\t\towner.getEParameters().add(p);" + NL + "\t\treturn p;" + NL + "\t}" + NL + "\t";
+
+    protected final String TEXT_647 = " p = ecoreFactory.createEParameter();" + NL + "\t\tp.setEType(type);" + NL + "\t\tp.setName(name);" + NL + "\t\tp.setLowerBound(lowerBound);" + NL + "\t\tp.setUpperBound(upperBound);" + NL + "\t\tp.setUnique(isUnique);" + NL + "\t\tp.setOrdered(isOrdered);"
+            + NL + "\t\towner.getEParameters().add(p);" + NL + "\t\treturn p;" + NL + "\t}" + NL + "\t";
+
     protected final String TEXT_648 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * Defines literals for the meta objects that represent" + NL + "\t * <ul>" + NL + "\t *   <li>each class,</li>" + NL + "\t *   <li>each feature of each class,</li>";
+
     protected final String TEXT_649 = NL + "\t *   <li>each operation of each class,</li>";
+
     protected final String TEXT_650 = NL + "\t *   <li>each enum,</li>" + NL + "\t *   <li>and each data type</li>" + NL + "\t * </ul>" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_651 = "public ";
+
     protected final String TEXT_652 = "interface Literals" + NL + "\t{";
+
     protected final String TEXT_653 = NL + "\t\t/**";
+
     protected final String TEXT_654 = NL + "\t\t * The meta object literal for the '{@link ";
+
     protected final String TEXT_655 = " <em>";
+
     protected final String TEXT_656 = "</em>}' class." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @see ";
+
     protected final String TEXT_657 = NL + "\t\t * The meta object literal for the '{@link ";
+
     protected final String TEXT_658 = " <em>";
+
     protected final String TEXT_659 = "</em>}' class." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @see ";
+
     protected final String TEXT_660 = NL + "\t\t * The meta object literal for the '{@link ";
+
     protected final String TEXT_661 = " <em>";
+
     protected final String TEXT_662 = "</em>}' enum." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @see ";
+
     protected final String TEXT_663 = NL + "\t\t * The meta object literal for the '<em>";
+
     protected final String TEXT_664 = "</em>' data type." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->";
+
     protected final String TEXT_665 = NL + "\t\t * @see ";
+
     protected final String TEXT_666 = NL + "\t\t * @see ";
+
     protected final String TEXT_667 = "#get";
+
     protected final String TEXT_668 = "()" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\t";
+
     protected final String TEXT_669 = " ";
+
     protected final String TEXT_670 = " = eINSTANCE.get";
+
     protected final String TEXT_671 = "();" + NL;
+
     protected final String TEXT_672 = NL + "\t\t/**" + NL + "\t\t * The meta object literal for the '<em><b>";
+
     protected final String TEXT_673 = "</b></em>' ";
+
     protected final String TEXT_674 = " feature." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\t";
+
     protected final String TEXT_675 = " ";
+
     protected final String TEXT_676 = " = eINSTANCE.get";
+
     protected final String TEXT_677 = "();" + NL;
+
     protected final String TEXT_678 = NL + "\t\t/**" + NL + "\t\t * The meta object literal for the '<em><b>";
+
     protected final String TEXT_679 = "</b></em>' operation." + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\t";
+
     protected final String TEXT_680 = " ";
+
     protected final String TEXT_681 = " = eINSTANCE.get";
+
     protected final String TEXT_682 = "();" + NL;
+
     protected final String TEXT_683 = NL + "\t}" + NL;
+
     protected final String TEXT_684 = NL + "} //";
+
     protected final String TEXT_685 = NL;
+
     protected final String TEXT_686 = NL;
+
     protected final String TEXT_687 = NL;
 
     public PackageInterface() {
@@ -800,7 +1503,11 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
     protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenPackage genPackage = parameter;
-        argument = ((Object[]) new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } })[0];
+        argument = ((Object[]) new Object[] {
+            new Object[] {
+                    genPackage, Boolean.TRUE, Boolean.FALSE
+            }
+        })[0];
 
     }
 
@@ -1627,14 +2334,19 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 
                 ///////////////////////
                 class Information {
+
                     @SuppressWarnings("unused")
                     EGenericType eGenericType;
+
                     int depth;
+
                     String type;
+
                     String accessor;
                 }
 
                 class InformationIterator {
+
                     Iterator<?> iterator;
 
                     InformationIterator(EGenericType eGenericType) {

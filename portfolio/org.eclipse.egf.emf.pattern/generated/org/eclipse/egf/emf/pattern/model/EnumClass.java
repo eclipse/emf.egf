@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
+
     protected static String nl;
 
     public static synchronized EnumClass create(String lineSeparator) {
@@ -25,119 +26,237 @@ public class EnumClass extends org.eclipse.egf.emf.pattern.base.GenEnumJava {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A representation of the literals of the enumeration '<em><b>";
+
     protected final String TEXT_5 = "</b></em>'," + NL + " * and utility methods for working with them." + NL + " * <!-- end-user-doc -->";
+
     protected final String TEXT_6 = NL + " * <!-- begin-model-doc -->" + NL + " * ";
+
     protected final String TEXT_7 = NL + " * <!-- end-model-doc -->";
+
     protected final String TEXT_8 = NL + " * @see ";
+
     protected final String TEXT_9 = "#get";
+
     protected final String TEXT_10 = "()";
+
     protected final String TEXT_11 = NL + " * @model ";
+
     protected final String TEXT_12 = NL + " *        ";
+
     protected final String TEXT_13 = NL + " * @model";
+
     protected final String TEXT_14 = NL + " * @generated" + NL + " */" + NL + "public ";
+
     protected final String TEXT_15 = "enum";
+
     protected final String TEXT_16 = "final class";
+
     protected final String TEXT_17 = " ";
+
     protected final String TEXT_18 = " ";
+
     protected final String TEXT_19 = "implements";
+
     protected final String TEXT_20 = "extends";
+
     protected final String TEXT_21 = " ";
+
     protected final String TEXT_22 = NL + "{";
+
     protected final String TEXT_23 = NL + "\t;" + NL;
+
     protected final String TEXT_24 = NL + "\t/**" + NL + "\t * The '<em><b>";
+
     protected final String TEXT_25 = "</b></em>' literal object." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_26 = NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_27 = "(";
+
     protected final String TEXT_28 = ", \"";
+
     protected final String TEXT_29 = "\", ";
+
     protected final String TEXT_30 = ")";
+
     protected final String TEXT_31 = ",";
+
     protected final String TEXT_32 = ";";
+
     protected final String TEXT_33 = NL;
+
     protected final String TEXT_34 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_35 = " copyright = ";
+
     protected final String TEXT_36 = ";";
+
     protected final String TEXT_37 = NL;
+
     protected final String TEXT_38 = NL + "\t/**" + NL + "\t * The '<em><b>";
+
     protected final String TEXT_39 = "</b></em>' literal value." + NL + "\t * <!-- begin-user-doc -->";
+
     protected final String TEXT_40 = NL + "\t * <p>" + NL + "\t * If the meaning of '<em><b>";
+
     protected final String TEXT_41 = "</b></em>' literal object isn't clear," + NL + "\t * there really should be more of a description here..." + NL + "\t * </p>";
+
     protected final String TEXT_42 = NL + "\t * <!-- end-user-doc -->";
+
     protected final String TEXT_43 = NL + "\t * <!-- begin-model-doc -->" + NL + "\t * ";
+
     protected final String TEXT_44 = NL + "\t * <!-- end-model-doc -->";
+
     protected final String TEXT_45 = NL + "\t * @see #";
+
     protected final String TEXT_46 = NL + "\t * @model ";
+
     protected final String TEXT_47 = NL + "\t *        ";
+
     protected final String TEXT_48 = NL + "\t * @model";
+
     protected final String TEXT_49 = NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tpublic static final int ";
+
     protected final String TEXT_50 = " = ";
+
     protected final String TEXT_51 = ";" + NL;
+
     protected final String TEXT_52 = NL + "\t/**" + NL + "\t * The '<em><b>";
+
     protected final String TEXT_53 = "</b></em>' literal object." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_54 = NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_55 = " ";
+
     protected final String TEXT_56 = " = new ";
+
     protected final String TEXT_57 = "(";
+
     protected final String TEXT_58 = ", \"";
+
     protected final String TEXT_59 = "\", ";
+
     protected final String TEXT_60 = ");";
+
     protected final String TEXT_61 = NL;
+
     protected final String TEXT_62 = NL + "\t/**" + NL + "\t * An array of all the '<em><b>";
+
     protected final String TEXT_63 = "</b></em>' enumerators." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final ";
+
     protected final String TEXT_64 = "[] VALUES_ARRAY =" + NL + "\t\tnew ";
+
     protected final String TEXT_65 = "[]" + NL + "\t\t{";
+
     protected final String TEXT_66 = NL + "\t\t\t";
+
     protected final String TEXT_67 = ",";
+
     protected final String TEXT_68 = NL + "\t\t};" + NL + "" + NL + "\t/**" + NL + "\t * A public read-only list of all the '<em><b>";
+
     protected final String TEXT_69 = "</b></em>' enumerators." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final List";
+
     protected final String TEXT_70 = "<";
+
     protected final String TEXT_71 = ">";
+
     protected final String TEXT_72 = " VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));" + NL + "" + NL + "\t/**" + NL + "\t * Returns the '<em><b>";
+
     protected final String TEXT_73 = "</b></em>' literal with the specified literal value." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
+
     protected final String TEXT_74 = " get(";
+
     protected final String TEXT_75 = " literal)" + NL + "\t{" + NL + "\t\tfor (int i = 0; i < VALUES_ARRAY.length; ++i)" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_76 = " result = VALUES_ARRAY[i];" + NL + "\t\t\tif (result.toString().equals(literal))" + NL + "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the '<em><b>";
+
     protected final String TEXT_77 = "</b></em>' literal with the specified name." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
+
     protected final String TEXT_78 = " getByName(";
+
     protected final String TEXT_79 = " name)" + NL + "\t{" + NL + "\t\tfor (int i = 0; i < VALUES_ARRAY.length; ++i)" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_80 = " result = VALUES_ARRAY[i];" + NL + "\t\t\tif (result.getName().equals(name))" + NL + "\t\t\t{" + NL + "\t\t\t\treturn result;" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the '<em><b>";
+
     protected final String TEXT_81 = "</b></em>' literal with the specified integer value." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
+
     protected final String TEXT_82 = " get(int value)" + NL + "\t{" + NL + "\t\tswitch (value)" + NL + "\t\t{";
+
     protected final String TEXT_83 = NL + "\t\t\tcase ";
+
     protected final String TEXT_84 = ": return ";
+
     protected final String TEXT_85 = ";";
+
     protected final String TEXT_86 = NL + "\t\t}" + NL + "\t\treturn null;" + NL + "\t}" + NL;
-    protected final String TEXT_87 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate final int value;" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate final ";
+
+    protected final String TEXT_87 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate final int value;" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->"
+            + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate final ";
+
     protected final String TEXT_88 = " name;" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate final ";
+
     protected final String TEXT_89 = " literal;" + NL;
+
     protected final String TEXT_90 = NL + "\t/**" + NL + "\t * Only this class can construct instances." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate ";
+
     protected final String TEXT_91 = "(int value, ";
+
     protected final String TEXT_92 = " name, ";
+
     protected final String TEXT_93 = " literal)" + NL + "\t{";
+
     protected final String TEXT_94 = NL + "\t\tthis.value = value;" + NL + "\t\tthis.name = name;" + NL + "\t\tthis.literal = literal;";
+
     protected final String TEXT_95 = NL + "\t\tsuper(value, name, literal);";
+
     protected final String TEXT_96 = NL + "\t}" + NL;
-    protected final String TEXT_97 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic int getValue()" + NL + "\t{" + NL + "\t  return value;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
+    protected final String TEXT_97 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic int getValue()" + NL + "\t{" + NL + "\t  return value;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL
+            + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_98 = " getName()" + NL + "\t{" + NL + "\t  return name;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_99 = " getLiteral()" + NL + "\t{" + NL + "\t  return literal;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the literal value of the enumerator, which is its string representation." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_99 = " getLiteral()" + NL + "\t{" + NL + "\t  return literal;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the literal value of the enumerator, which is its string representation." + NL + "\t * <!-- begin-user-doc -->" + NL
+            + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_100 = NL + "\t@Override";
+
     protected final String TEXT_101 = NL + "\tpublic ";
+
     protected final String TEXT_102 = " toString()" + NL + "\t{" + NL + "\t\treturn literal;" + NL + "\t}" + NL + "\t";
+
     protected final String TEXT_103 = NL + "} //";
+
     protected final String TEXT_104 = NL;
+
     protected final String TEXT_105 = NL + "/**" + NL + " * A private implementation interface used to hide the inheritance from Enumerator." + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "interface Internal";
+
     protected final String TEXT_106 = " extends org.eclipse.emf.common.util.Enumerator" + NL + "{" + NL + "\t// Empty " + NL + "}";
+
     protected final String TEXT_107 = NL + "/**" + NL + " * A private implementation class to construct the instances." + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "class Internal";
-    protected final String TEXT_108 = " extends org.eclipse.emf.common.util.AbstractEnumerator" + NL + "{" + NL + "\t/**" + NL + "\t * Only this class can construct instances." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected Internal";
+
+    protected final String TEXT_108 = " extends org.eclipse.emf.common.util.AbstractEnumerator" + NL + "{" + NL + "\t/**" + NL + "\t * Only this class can construct instances." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tprotected Internal";
+
     protected final String TEXT_109 = "(int value, ";
+
     protected final String TEXT_110 = " name, ";
+
     protected final String TEXT_111 = " literal)" + NL + "\t{" + NL + "\t\tsuper(value, name, literal);" + NL + "\t}" + NL + "}";
+
     protected final String TEXT_112 = NL;
+
     protected final String TEXT_113 = NL;
+
     protected final String TEXT_114 = NL;
 
     public EnumClass() {

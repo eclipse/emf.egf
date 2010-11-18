@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
+
     protected static String nl;
 
     public static synchronized ManifestMF create(String lineSeparator) {
@@ -25,24 +26,43 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "Manifest-Version: 1.0" + NL + "Bundle-ManifestVersion: 2" + NL + "Bundle-Name: %pluginName" + NL + "Bundle-SymbolicName: ";
+
     protected final String TEXT_2 = ";singleton:=true" + NL + "Bundle-Version: 1.0.0" + NL + "Bundle-ClassPath: ";
+
     protected final String TEXT_3 = ".jar";
+
     protected final String TEXT_4 = ".";
+
     protected final String TEXT_5 = NL + "Bundle-Vendor: %providerName" + NL + "Bundle-Localization: plugin";
+
     protected final String TEXT_6 = NL + "Bundle-RequiredExecutionEnvironment: J2SE-1.5";
+
     protected final String TEXT_7 = NL + "Bundle-RequiredExecutionEnvironment: JavaSE-1.6";
+
     protected final String TEXT_8 = NL + "Export-Package: ";
+
     protected final String TEXT_9 = ",";
+
     protected final String TEXT_10 = NL + " ";
+
     protected final String TEXT_11 = NL + "Require-Bundle: ";
+
     protected final String TEXT_12 = ";visibility:=reexport";
+
     protected final String TEXT_13 = ",";
+
     protected final String TEXT_14 = NL + " ";
+
     protected final String TEXT_15 = ";visibility:=reexport";
+
     protected final String TEXT_16 = NL + "Eclipse-LazyStart: true";
+
     protected final String TEXT_17 = NL + "Bundle-ActivationPolicy: lazy" + NL;
+
     protected final String TEXT_18 = NL;
+
     protected final String TEXT_19 = NL;
 
     public ManifestMF() {

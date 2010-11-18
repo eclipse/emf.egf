@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ItemProvideraddPropertyDescriptoroverride {
+
     protected static String nl;
 
     public static synchronized ItemProvideraddPropertyDescriptoroverride create(String lineSeparator) {
@@ -25,37 +26,69 @@ public class ItemProvideraddPropertyDescriptoroverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t\titemPropertyDescriptors.add" + NL + "\t\t\t(createItemPropertyDescriptor" + NL + "\t\t\t\t(((";
+
     protected final String TEXT_2 = ")adapterFactory).getRootAdapterFactory()," + NL + "\t\t\t\t getResourceLocator()," + NL + "\t\t\t\t getString(\"_UI_";
+
     protected final String TEXT_3 = "_";
+
     protected final String TEXT_4 = "_feature\"),";
+
     protected final String TEXT_5 = NL + "\t\t\t\t getString(\"_UI_PropertyDescriptor_description\", \"_UI_";
+
     protected final String TEXT_6 = "_";
+
     protected final String TEXT_7 = "_feature\", \"_UI_";
+
     protected final String TEXT_8 = "_type\"),";
+
     protected final String TEXT_9 = NL + "\t\t\t\t getString(\"_UI_";
+
     protected final String TEXT_10 = "_";
+
     protected final String TEXT_11 = "_description\"),";
+
     protected final String TEXT_12 = NL + "\t\t\t\t ";
+
     protected final String TEXT_13 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_14 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_15 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_16 = ",";
+
     protected final String TEXT_17 = NL + "\t\t\t\t null,";
+
     protected final String TEXT_18 = NL + "\t\t\t\t ";
+
     protected final String TEXT_19 = ".";
+
     protected final String TEXT_20 = ",";
+
     protected final String TEXT_21 = NL + "\t\t\t\t null,";
+
     protected final String TEXT_22 = NL + "\t\t\t\t getString(\"";
+
     protected final String TEXT_23 = "\"),";
+
     protected final String TEXT_24 = NL + "\t\t\t\t null));";
+
     protected final String TEXT_25 = NL + "\t\t\t\t new String[] {";
+
     protected final String TEXT_26 = NL + "\t\t\t\t\t\"";
+
     protected final String TEXT_27 = "\"";
+
     protected final String TEXT_28 = ",";
+
     protected final String TEXT_29 = NL + "\t\t\t\t }));";
+
     protected final String TEXT_30 = NL;
+
     protected final String TEXT_31 = NL;
+
     protected final String TEXT_32 = NL;
 
     public ItemProvideraddPropertyDescriptoroverride() {

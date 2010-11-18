@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class EditoraddItemProviderFactoriesoverride {
+
     protected static String nl;
 
     public static synchronized EditoraddItemProviderFactoriesoverride create(String lineSeparator) {
@@ -25,14 +26,23 @@ public class EditoraddItemProviderFactoriesoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
+
     protected final String TEXT_3 = "());";
+
     protected final String TEXT_4 = NL + "\t\tadapterFactory.addAdapterFactory(new ";
+
     protected final String TEXT_5 = "());";
+
     protected final String TEXT_6 = NL;
+
     protected final String TEXT_7 = NL;
+
     protected final String TEXT_8 = NL;
+
     protected final String TEXT_9 = NL;
 
     public EditoraddItemProviderFactoriesoverride() {

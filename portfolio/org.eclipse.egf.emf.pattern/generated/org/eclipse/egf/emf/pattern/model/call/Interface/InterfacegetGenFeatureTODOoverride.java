@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacegetGenFeatureTODOoverride {
+
     protected static String nl;
 
     public static synchronized InterfacegetGenFeatureTODOoverride create(String lineSeparator) {
@@ -25,16 +26,27 @@ public class InterfacegetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t\t// TODO: implement this method to return the '";
+
     protected final String TEXT_2 = "' ";
+
     protected final String TEXT_3 = NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT";
+
     protected final String TEXT_4 = NL + "\t\t// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting" + NL + "\t\t// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.";
+
     protected final String TEXT_5 = "EcoreEMap";
+
     protected final String TEXT_6 = "BasicFeatureMap";
+
     protected final String TEXT_7 = "EcoreEList";
+
     protected final String TEXT_8 = " should be used.";
+
     protected final String TEXT_9 = NL + "\t\tthrow new UnsupportedOperationException();" + NL;
+
     protected final String TEXT_10 = NL;
+
     protected final String TEXT_11 = NL;
 
     public InterfacegetGenFeatureTODOoverride() {

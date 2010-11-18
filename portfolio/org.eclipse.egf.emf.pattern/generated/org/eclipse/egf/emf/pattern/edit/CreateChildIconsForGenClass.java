@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class CreateChildIconsForGenClass extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
+
     protected static String nl;
 
     public static synchronized CreateChildIconsForGenClass create(String lineSeparator) {
@@ -25,7 +26,9 @@ public class CreateChildIconsForGenClass extends org.eclipse.egf.emf.pattern.bas
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL;
 
     public CreateChildIconsForGenClass() {

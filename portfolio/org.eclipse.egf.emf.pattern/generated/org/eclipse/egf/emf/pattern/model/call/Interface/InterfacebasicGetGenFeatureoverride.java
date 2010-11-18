@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacebasicGetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized InterfacebasicGetGenFeatureoverride create(String lineSeparator) {
@@ -25,45 +26,85 @@ public class InterfacebasicGetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + "\tpublic ";
+
     protected final String TEXT_4 = " basicGet";
+
     protected final String TEXT_5 = "()" + NL + "\t{";
+
     protected final String TEXT_6 = NL;
+
     protected final String TEXT_7 = NL + "\t\treturn (";
+
     protected final String TEXT_8 = ")eDynamicGet(";
+
     protected final String TEXT_9 = ", ";
+
     protected final String TEXT_10 = ", false, ";
+
     protected final String TEXT_11 = ");";
+
     protected final String TEXT_12 = NL + "\t\treturn ";
+
     protected final String TEXT_13 = "(";
+
     protected final String TEXT_14 = "(";
+
     protected final String TEXT_15 = ")";
+
     protected final String TEXT_16 = "__ESETTING_DELEGATE.dynamicGet(this, null, 0, false, false)";
+
     protected final String TEXT_17 = ").";
+
     protected final String TEXT_18 = "()";
+
     protected final String TEXT_19 = ";";
+
     protected final String TEXT_20 = NL + "\t\tif (eContainerFeatureID() != ";
+
     protected final String TEXT_21 = ") return null;" + NL + "\t\treturn (";
+
     protected final String TEXT_22 = ")eInternalContainer();";
+
     protected final String TEXT_23 = NL + "\t\treturn (";
+
     protected final String TEXT_24 = ")eVirtualGet(";
+
     protected final String TEXT_25 = ");";
+
     protected final String TEXT_26 = NL + "\t\treturn ";
+
     protected final String TEXT_27 = ";";
+
     protected final String TEXT_28 = NL + "\t\treturn (";
+
     protected final String TEXT_29 = ")((";
+
     protected final String TEXT_30 = ".Internal.Wrapper)get";
+
     protected final String TEXT_31 = "()).featureMap().get(";
+
     protected final String TEXT_32 = ", false);";
+
     protected final String TEXT_33 = NL + "\t\treturn (";
+
     protected final String TEXT_34 = ")get";
+
     protected final String TEXT_35 = "().get(";
+
     protected final String TEXT_36 = ", false);";
+
     protected final String TEXT_37 = NL;
+
     protected final String TEXT_38 = NL + "\t}" + NL + NL;
+
     protected final String TEXT_39 = NL;
+
     protected final String TEXT_40 = NL;
 
     public InterfacebasicGetGenFeatureoverride() {

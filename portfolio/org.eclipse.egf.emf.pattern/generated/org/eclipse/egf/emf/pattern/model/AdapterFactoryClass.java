@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava {
+
     protected static String nl;
 
     public static synchronized AdapterFactoryClass create(String lineSeparator) {
@@ -25,46 +26,94 @@ public class AdapterFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPac
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Adapter Factory</b> for the model." + NL + " * It provides an adapter <code>createXXX</code> method for each class of the model." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
+
     protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
+
     protected final String TEXT_6 = " extends AdapterFactoryImpl" + NL + "{";
+
     protected final String TEXT_7 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_8 = " copyright = ";
+
     protected final String TEXT_9 = ";";
+
     protected final String TEXT_10 = NL;
+
     protected final String TEXT_11 = NL + "\t/**" + NL + "\t * The cached model package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static ";
+
     protected final String TEXT_12 = " modelPackage;" + NL + "" + NL + "\t/**" + NL + "\t * Creates an instance of the adapter factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_13 = "()" + NL + "\t{" + NL + "\t\tif (modelPackage == null)" + NL + "\t\t{" + NL + "\t\t\tmodelPackage = ";
-    protected final String TEXT_14 = ".eINSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns whether this factory is applicable for the type of the object." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return whether this factory is applicable for the type of the object." + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_14 = ".eINSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns whether this factory is applicable for the type of the object." + NL + "\t * <!-- begin-user-doc -->" + NL
+            + "\t * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return whether this factory is applicable for the type of the object." + NL + "\t * @generated"
+            + NL + "\t */";
+
     protected final String TEXT_15 = NL + "\t@Override";
-    protected final String TEXT_16 = NL + "\tpublic boolean isFactoryForType(Object object)" + NL + "\t{" + NL + "\t\tif (object == modelPackage)" + NL + "\t\t{" + NL + "\t\t\treturn true;" + NL + "\t\t}" + NL + "\t\tif (object instanceof EObject)" + NL + "\t\t{" + NL + "\t\t\treturn ((EObject)object).eClass().getEPackage() == modelPackage;" + NL + "\t\t}" + NL + "\t\treturn false;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * The switch that delegates to the <code>createXXX</code> methods." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
+    protected final String TEXT_16 = NL + "\tpublic boolean isFactoryForType(Object object)" + NL + "\t{" + NL + "\t\tif (object == modelPackage)" + NL + "\t\t{" + NL + "\t\t\treturn true;" + NL + "\t\t}" + NL + "\t\tif (object instanceof EObject)" + NL + "\t\t{" + NL
+            + "\t\t\treturn ((EObject)object).eClass().getEPackage() == modelPackage;" + NL + "\t\t}" + NL + "\t\treturn false;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * The switch that delegates to the <code>createXXX</code> methods." + NL + "\t * <!-- begin-user-doc -->" + NL
+            + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_17 = " modelSwitch =" + NL + "\t\tnew ";
+
     protected final String TEXT_18 = "()" + NL + "\t\t{";
+
     protected final String TEXT_19 = NL + "\t\t\t@Override";
+
     protected final String TEXT_20 = NL + "\t\t\tpublic ";
+
     protected final String TEXT_21 = " case";
+
     protected final String TEXT_22 = "(";
+
     protected final String TEXT_23 = " object)" + NL + "\t\t\t{" + NL + "\t\t\t\treturn create";
+
     protected final String TEXT_24 = "Adapter();" + NL + "\t\t\t}";
+
     protected final String TEXT_25 = NL + "\t\t\t@Override";
+
     protected final String TEXT_26 = NL + "\t\t\tpublic ";
+
     protected final String TEXT_27 = " defaultCase(EObject object)" + NL + "\t\t\t{" + NL + "\t\t\t\treturn create";
-    protected final String TEXT_28 = "Adapter();" + NL + "\t\t\t}" + NL + "\t\t};" + NL + "" + NL + "\t/**" + NL + "\t * Creates an adapter for the <code>target</code>." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param target the object to adapt." + NL + "\t * @return the adapter for the <code>target</code>." + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_28 = "Adapter();" + NL + "\t\t\t}" + NL + "\t\t};" + NL + "" + NL + "\t/**" + NL + "\t * Creates an adapter for the <code>target</code>." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param target the object to adapt." + NL
+            + "\t * @return the adapter for the <code>target</code>." + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_29 = NL + "\t@Override";
+
     protected final String TEXT_30 = NL + "\tpublic Adapter createAdapter(Notifier target)" + NL + "\t{" + NL + "\t\treturn ";
+
     protected final String TEXT_31 = "modelSwitch.doSwitch((EObject)target);" + NL + "\t}" + NL;
+
     protected final String TEXT_32 = NL + NL + "\t/**" + NL + "\t * Creates a new adapter for an object of class '{@link ";
+
     protected final String TEXT_33 = " <em>";
-    protected final String TEXT_34 = "</em>}'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This default implementation returns null so that we can easily ignore cases;" + NL + "\t * it's useful to ignore a case when inheritance will catch all the cases anyway." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the new adapter." + NL + "\t * @see ";
+
+    protected final String TEXT_34 = "</em>}'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This default implementation returns null so that we can easily ignore cases;" + NL + "\t * it's useful to ignore a case when inheritance will catch all the cases anyway." + NL
+            + "\t * <!-- end-user-doc -->" + NL + "\t * @return the new adapter." + NL + "\t * @see ";
+
     protected final String TEXT_35 = NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic Adapter create";
+
     protected final String TEXT_36 = "Adapter()" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}";
-    protected final String TEXT_37 = NL + NL + "\t/**" + NL + "\t * Creates a new adapter for the default case." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This default implementation returns null." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the new adapter." + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic Adapter create";
+
+    protected final String TEXT_37 = NL + NL + "\t/**" + NL + "\t * Creates a new adapter for the default case." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This default implementation returns null." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the new adapter." + NL
+            + "\t * @generated" + NL + "\t */" + NL + "\tpublic Adapter create";
+
     protected final String TEXT_38 = "Adapter()" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "} //";
+
     protected final String TEXT_39 = NL;
+
     protected final String TEXT_40 = NL;
+
     protected final String TEXT_41 = NL;
 
     public AdapterFactoryClass() {

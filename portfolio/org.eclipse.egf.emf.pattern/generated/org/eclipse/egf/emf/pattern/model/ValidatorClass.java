@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava {
+
     protected static String nl;
 
     public static synchronized ValidatorClass create(String lineSeparator) {
@@ -25,609 +26,1222 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Validator</b> for the model." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
+
     protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
+
     protected final String TEXT_6 = " extends ";
+
     protected final String TEXT_7 = NL + "{";
+
     protected final String TEXT_8 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_9 = " copyright = ";
+
     protected final String TEXT_10 = ";";
+
     protected final String TEXT_11 = NL;
+
     protected final String TEXT_12 = NL + "\t/**" + NL + "\t * The cached model package" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_13 = " INSTANCE = new ";
-    protected final String TEXT_14 = "();" + NL + "" + NL + "\t/**" + NL + "\t * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see org.eclipse.emf.common.util.Diagnostic#getSource()" + NL + "\t * @see org.eclipse.emf.common.util.Diagnostic#getCode()" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final String DIAGNOSTIC_SOURCE = \"";
+
+    protected final String TEXT_14 = "();" + NL + "" + NL + "\t/**" + NL + "\t * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package." + NL
+            + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see org.eclipse.emf.common.util.Diagnostic#getSource()" + NL + "\t * @see org.eclipse.emf.common.util.Diagnostic#getCode()" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tpublic static final String DIAGNOSTIC_SOURCE = \"";
+
     protected final String TEXT_15 = "\";";
+
     protected final String TEXT_16 = NL;
+
     protected final String TEXT_17 = NL + "\t/**" + NL + "\t * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint '";
+
     protected final String TEXT_18 = "' of '";
+
     protected final String TEXT_19 = "'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final int ";
+
     protected final String TEXT_20 = " = ";
+
     protected final String TEXT_21 = ";" + NL;
-    protected final String TEXT_22 = NL + "\t/**" + NL + "\t * A constant with a fixed name that can be used as the base value for additional hand written constants." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final int GENERATED_DIAGNOSTIC_CODE_COUNT = ";
-    protected final String TEXT_23 = ";" + NL + "" + NL + "\t/**" + NL + "\t * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;" + NL;
+
+    protected final String TEXT_22 = NL + "\t/**" + NL + "\t * A constant with a fixed name that can be used as the base value for additional hand written constants." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tprivate static final int GENERATED_DIAGNOSTIC_CODE_COUNT = ";
+
+    protected final String TEXT_23 = ";" + NL + "" + NL + "\t/**" + NL + "\t * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+            + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;" + NL;
+
     protected final String TEXT_24 = NL + "\t/**" + NL + "\t * The cached base package validator." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_25 = " ";
+
     protected final String TEXT_26 = "Validator;" + NL;
-    protected final String TEXT_27 = NL + "\t/**" + NL + "\t * Delegates evaluation of the given invariant expression against the object in the given context." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static boolean validate(";
+
+    protected final String TEXT_27 = NL + "\t/**" + NL + "\t * Delegates evaluation of the given invariant expression against the object in the given context." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tpublic static boolean validate(";
+
     protected final String TEXT_28 = " eClass, ";
+
     protected final String TEXT_29 = " eObject, DiagnosticChain diagnostics, ";
+
     protected final String TEXT_30 = " context, ";
+
     protected final String TEXT_31 = " validationDelegate, ";
+
     protected final String TEXT_32 = " invariant, ";
+
     protected final String TEXT_33 = " expression, int severity, ";
+
     protected final String TEXT_34 = " source, int code)" + NL + "\t{" + NL + "\t\treturn ";
+
     protected final String TEXT_35 = ".validate(eClass, eObject, diagnostics, context, validationDelegate, invariant, expression, severity, source, code);" + NL + "\t}" + NL;
+
     protected final String TEXT_36 = NL + "\t/**" + NL + "\t * Creates an instance of the switch." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_37 = "()" + NL + "\t{" + NL + "\t\tsuper();";
+
     protected final String TEXT_38 = NL + "\t\t";
+
     protected final String TEXT_39 = "Validator = ";
+
     protected final String TEXT_40 = ".INSTANCE;";
+
     protected final String TEXT_41 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Returns the package of this validator switch." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_42 = NL + "\t@Override";
+
     protected final String TEXT_43 = NL + "\tprotected EPackage getEPackage()" + NL + "\t{" + NL + "\t  return ";
+
     protected final String TEXT_44 = ".eINSTANCE;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Calls <code>validateXXX</code> for the corresponding classifier of the model." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_45 = NL + "\t@Override";
+
     protected final String TEXT_46 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_47 = NL + "\tprotected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, ";
+
     protected final String TEXT_48 = " context)" + NL + "\t{" + NL + "\t\tswitch (classifierID)" + NL + "\t\t{";
+
     protected final String TEXT_49 = NL + "\t\t\tcase ";
+
     protected final String TEXT_50 = ".";
+
     protected final String TEXT_51 = ":";
+
     protected final String TEXT_52 = NL + "\t\t\t\treturn validate";
+
     protected final String TEXT_53 = "(((";
+
     protected final String TEXT_54 = ")value).";
+
     protected final String TEXT_55 = "(), diagnostics, context);";
+
     protected final String TEXT_56 = NL + "\t\t\t\treturn validate";
+
     protected final String TEXT_57 = "((";
+
     protected final String TEXT_58 = ")value, diagnostics, context);";
+
     protected final String TEXT_59 = NL + "\t\t\t\treturn validate";
+
     protected final String TEXT_60 = "(value, diagnostics, context);";
+
     protected final String TEXT_61 = NL + "\t\t\t\treturn validate";
+
     protected final String TEXT_62 = "((";
+
     protected final String TEXT_63 = ")value, diagnostics, context);";
+
     protected final String TEXT_64 = NL + "\t\t\t\treturn validate";
+
     protected final String TEXT_65 = "((";
+
     protected final String TEXT_66 = ")value, diagnostics, context);";
+
     protected final String TEXT_67 = NL + "\t\t\tdefault:" + NL + "\t\t\t\treturn true;" + NL + "\t\t}" + NL + "\t}" + NL;
+
     protected final String TEXT_68 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic boolean validate";
+
     protected final String TEXT_69 = "(";
+
     protected final String TEXT_70 = " ";
+
     protected final String TEXT_71 = ", DiagnosticChain ";
+
     protected final String TEXT_72 = ", ";
+
     protected final String TEXT_73 = " ";
+
     protected final String TEXT_74 = ")" + NL + "\t{";
+
     protected final String TEXT_75 = NL + "\t\treturn true;";
+
     protected final String TEXT_76 = NL + "\t\treturn validate_EveryDefaultConstraint(";
+
     protected final String TEXT_77 = "(";
+
     protected final String TEXT_78 = ")";
+
     protected final String TEXT_79 = ", ";
+
     protected final String TEXT_80 = ", ";
+
     protected final String TEXT_81 = ");";
+
     protected final String TEXT_82 = NL + "\t\tif (!validate_NoCircularContainment(";
+
     protected final String TEXT_83 = "(";
+
     protected final String TEXT_84 = ")";
+
     protected final String TEXT_85 = ", ";
+
     protected final String TEXT_86 = ", ";
+
     protected final String TEXT_87 = ")) return false;";
+
     protected final String TEXT_88 = NL + "\t\tboolean ";
+
     protected final String TEXT_89 = " = ";
+
     protected final String TEXT_90 = "validate";
+
     protected final String TEXT_91 = "_";
+
     protected final String TEXT_92 = "(";
+
     protected final String TEXT_93 = ", ";
+
     protected final String TEXT_94 = ", ";
+
     protected final String TEXT_95 = ");";
+
     protected final String TEXT_96 = NL + "\t\tif (";
+
     protected final String TEXT_97 = " || ";
+
     protected final String TEXT_98 = " != null) result &= ";
+
     protected final String TEXT_99 = "validate";
+
     protected final String TEXT_100 = "_";
+
     protected final String TEXT_101 = "(";
+
     protected final String TEXT_102 = ", ";
+
     protected final String TEXT_103 = ", ";
+
     protected final String TEXT_104 = ");";
+
     protected final String TEXT_105 = NL + "\t\treturn ";
+
     protected final String TEXT_106 = ";";
+
     protected final String TEXT_107 = NL + "\t}" + NL;
+
     protected final String TEXT_108 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @see #validate";
+
     protected final String TEXT_109 = "_";
+
     protected final String TEXT_110 = NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_111 = " ";
+
     protected final String TEXT_112 = "__VALUE = ";
+
     protected final String TEXT_113 = ";" + NL;
+
     protected final String TEXT_114 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @see #validate";
+
     protected final String TEXT_115 = "_";
+
     protected final String TEXT_116 = NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_117 = " ";
+
     protected final String TEXT_118 = "__VALUE = ";
+
     protected final String TEXT_119 = ";" + NL;
+
     protected final String TEXT_120 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @see #validate";
+
     protected final String TEXT_121 = "_";
+
     protected final String TEXT_122 = NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_123 = " ";
+
     protected final String TEXT_124 = "__UPPER_BOUND = ";
+
     protected final String TEXT_125 = ";" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @see #validate";
+
     protected final String TEXT_126 = "_";
+
     protected final String TEXT_127 = NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_128 = " ";
+
     protected final String TEXT_129 = "__LOWER_BOUND = ";
+
     protected final String TEXT_130 = ";" + NL;
+
     protected final String TEXT_131 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @see #validate";
+
     protected final String TEXT_132 = "_";
+
     protected final String TEXT_133 = NL + "\t */" + NL + "\tpublic static final  PatternMatcher [][] ";
+
     protected final String TEXT_134 = "__VALUES =" + NL + "\t\tnew PatternMatcher [][]" + NL + "\t\t{";
+
     protected final String TEXT_135 = NL + "\t\t\tnew PatternMatcher []" + NL + "\t\t\t{";
+
     protected final String TEXT_136 = NL + "\t\t\t\t";
+
     protected final String TEXT_137 = ".createPatternMatcher(";
+
     protected final String TEXT_138 = ")";
+
     protected final String TEXT_139 = NL + "\t\t\t}";
+
     protected final String TEXT_140 = NL + "\t\t};" + NL;
+
     protected final String TEXT_141 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @see #validate";
+
     protected final String TEXT_142 = "_";
+
     protected final String TEXT_143 = NL + "\t */";
+
     protected final String TEXT_144 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_145 = NL + "\tpublic static final ";
+
     protected final String TEXT_146 = " ";
+
     protected final String TEXT_147 = "__VALUES =" + NL + "\t\twrapEnumerationValues" + NL + "\t\t\t(new Object[]" + NL + "\t\t\t {";
+
     protected final String TEXT_148 = NL + "\t\t\t\t ";
+
     protected final String TEXT_149 = "new ";
+
     protected final String TEXT_150 = "(";
+
     protected final String TEXT_151 = ")";
+
     protected final String TEXT_152 = NL + "\t\t\t });" + NL;
+
     protected final String TEXT_153 = NL + "\t/**" + NL + "\t * The cached validation expression for the ";
+
     protected final String TEXT_154 = " constraint of '<em>";
+
     protected final String TEXT_155 = "</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final ";
+
     protected final String TEXT_156 = " ";
+
     protected final String TEXT_157 = "__";
+
     protected final String TEXT_158 = "__EEXPRESSION = \"";
+
     protected final String TEXT_159 = "\";";
+
     protected final String TEXT_160 = NL;
+
     protected final String TEXT_161 = NL + "\t/**" + NL + "\t * Validates the ";
+
     protected final String TEXT_162 = " constraint of '<em>";
+
     protected final String TEXT_163 = "</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic boolean validate";
+
     protected final String TEXT_164 = "_";
+
     protected final String TEXT_165 = "(";
+
     protected final String TEXT_166 = " ";
+
     protected final String TEXT_167 = ", DiagnosticChain ";
+
     protected final String TEXT_168 = ", ";
+
     protected final String TEXT_169 = " ";
+
     protected final String TEXT_170 = ")" + NL + "\t{";
+
     protected final String TEXT_171 = NL + "\t\tboolean ";
+
     protected final String TEXT_172 = " = true;" + NL + "\t\tfor (";
+
     protected final String TEXT_173 = " i = ";
+
     protected final String TEXT_174 = ".iterator(); i.hasNext() && (result || diagnostics != null); )" + NL + "\t\t{" + NL + "\t\t\tObject item = i.next();";
+
     protected final String TEXT_175 = NL + "\t\t\tif (";
+
     protected final String TEXT_176 = ".isInstance(item))" + NL + "\t\t\t{" + NL + "\t\t\t\tresult &= ";
+
     protected final String TEXT_177 = "validate";
+
     protected final String TEXT_178 = "(";
+
     protected final String TEXT_179 = "(";
+
     protected final String TEXT_180 = "(";
+
     protected final String TEXT_181 = ")";
+
     protected final String TEXT_182 = ").";
+
     protected final String TEXT_183 = "()";
+
     protected final String TEXT_184 = ", ";
+
     protected final String TEXT_185 = ", ";
+
     protected final String TEXT_186 = ");" + NL + "\t\t\t}" + NL + "\t\t\telse";
+
     protected final String TEXT_187 = NL + "\t\t\tif (!";
+
     protected final String TEXT_188 = ".isInstance(item))";
+
     protected final String TEXT_189 = NL + "\t\t\t{" + NL + "\t\t\t\tresult = false;" + NL + "\t\t\t\treportDataValueTypeViolation(";
+
     protected final String TEXT_190 = ", item, ";
+
     protected final String TEXT_191 = ", ";
+
     protected final String TEXT_192 = ");" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn result;";
+
     protected final String TEXT_193 = NL + "\t\tif (diagnostics != null)" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_194 = " tempDiagnostics = new BasicDiagnostic();";
+
     protected final String TEXT_195 = NL + "\t\t\tif (";
+
     protected final String TEXT_196 = "validate";
+
     protected final String TEXT_197 = "(";
+
     protected final String TEXT_198 = ", tempDiagnostics, ";
+
     protected final String TEXT_199 = ")) return true;";
+
     protected final String TEXT_200 = NL + "\t\t\tif (";
+
     protected final String TEXT_201 = ".isInstance(";
+
     protected final String TEXT_202 = "))" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_203 = "if (";
+
     protected final String TEXT_204 = "validate";
+
     protected final String TEXT_205 = "(";
+
     protected final String TEXT_206 = "(";
+
     protected final String TEXT_207 = "(";
+
     protected final String TEXT_208 = ")";
+
     protected final String TEXT_209 = ").";
+
     protected final String TEXT_210 = "()";
+
     protected final String TEXT_211 = ", tempDiagnostics, ";
+
     protected final String TEXT_212 = ")) ";
+
     protected final String TEXT_213 = "return true;" + NL + "\t\t\t}";
+
     protected final String TEXT_214 = NL + "\t\t\tfor (";
+
     protected final String TEXT_215 = " diagnostic : tempDiagnostics.getChildren())" + NL + "\t\t\t{" + NL + "\t\t\t\tdiagnostics.add(diagnostic);" + NL + "\t\t\t}";
+
     protected final String TEXT_216 = NL + "\t\t\t";
+
     protected final String TEXT_217 = " children = tempDiagnostics.getChildren();" + NL + "\t\t\tfor (int i = 0; i < children.size(); i++)" + NL + "\t\t\t{" + NL + "\t\t\t\tdiagnostics.add((";
+
     protected final String TEXT_218 = ")children.get(i));" + NL + "\t\t\t}";
+
     protected final String TEXT_219 = NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{";
+
     protected final String TEXT_220 = NL + "\t\t\tif (";
+
     protected final String TEXT_221 = "validate";
+
     protected final String TEXT_222 = "(";
+
     protected final String TEXT_223 = ", null, ";
+
     protected final String TEXT_224 = ")) return true;";
+
     protected final String TEXT_225 = NL + "\t\t\tif (";
+
     protected final String TEXT_226 = ".isInstance(";
+
     protected final String TEXT_227 = "))" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_228 = "if (";
+
     protected final String TEXT_229 = "validate";
+
     protected final String TEXT_230 = "(";
+
     protected final String TEXT_231 = "(";
+
     protected final String TEXT_232 = "(";
+
     protected final String TEXT_233 = ")";
+
     protected final String TEXT_234 = ").";
+
     protected final String TEXT_235 = "()";
+
     protected final String TEXT_236 = ", null, ";
+
     protected final String TEXT_237 = ")) ";
+
     protected final String TEXT_238 = "return true;" + NL + "\t\t\t}";
+
     protected final String TEXT_239 = NL + "\t\t}" + NL + "\t\treturn false;";
+
     protected final String TEXT_240 = NL + "\t\treturn validatePattern(";
+
     protected final String TEXT_241 = ", ";
+
     protected final String TEXT_242 = "new ";
+
     protected final String TEXT_243 = "(";
+
     protected final String TEXT_244 = ")";
+
     protected final String TEXT_245 = ", ";
+
     protected final String TEXT_246 = "__VALUES, ";
+
     protected final String TEXT_247 = ", ";
+
     protected final String TEXT_248 = ");";
+
     protected final String TEXT_249 = NL + "\t\t";
+
     protected final String TEXT_250 = " ";
+
     protected final String TEXT_251 = " = new ";
+
     protected final String TEXT_252 = "(";
+
     protected final String TEXT_253 = ");";
+
     protected final String TEXT_254 = NL + "\t\tboolean ";
+
     protected final String TEXT_255 = " = ";
+
     protected final String TEXT_256 = "__VALUES.contains(";
+
     protected final String TEXT_257 = ");" + NL + "\t\tif (!";
+
     protected final String TEXT_258 = " && ";
+
     protected final String TEXT_259 = " != null)" + NL + "\t\t\treportEnumerationViolation(";
+
     protected final String TEXT_260 = ", ";
+
     protected final String TEXT_261 = ", ";
+
     protected final String TEXT_262 = "__VALUES, ";
+
     protected final String TEXT_263 = ", ";
+
     protected final String TEXT_264 = ");" + NL + "\t\treturn ";
+
     protected final String TEXT_265 = ";";
+
     protected final String TEXT_266 = NL + "\t\tboolean ";
+
     protected final String TEXT_267 = " = ";
+
     protected final String TEXT_268 = " ";
+
     protected final String TEXT_269 = " ";
+
     protected final String TEXT_270 = "__VALUE;" + NL + "\t\tif (!";
+
     protected final String TEXT_271 = " && ";
+
     protected final String TEXT_272 = " != null)";
+
     protected final String TEXT_273 = NL + "\t\t\treportMinViolation(";
+
     protected final String TEXT_274 = ", new ";
+
     protected final String TEXT_275 = "(";
+
     protected final String TEXT_276 = "), new ";
+
     protected final String TEXT_277 = "(";
+
     protected final String TEXT_278 = "__VALUE), ";
+
     protected final String TEXT_279 = ", ";
+
     protected final String TEXT_280 = ", ";
+
     protected final String TEXT_281 = ");";
+
     protected final String TEXT_282 = NL + "\t\t\treportMinViolation(";
+
     protected final String TEXT_283 = ", ";
+
     protected final String TEXT_284 = ", ";
+
     protected final String TEXT_285 = "__VALUE, ";
+
     protected final String TEXT_286 = ", ";
+
     protected final String TEXT_287 = ", ";
+
     protected final String TEXT_288 = ");";
+
     protected final String TEXT_289 = NL + "\t\treturn ";
+
     protected final String TEXT_290 = ";";
+
     protected final String TEXT_291 = NL + "\t\tint ";
+
     protected final String TEXT_292 = " = ";
+
     protected final String TEXT_293 = ".compareCalendar(";
+
     protected final String TEXT_294 = ", ";
+
     protected final String TEXT_295 = "__VALUE);" + NL + "\t\tboolean ";
+
     protected final String TEXT_296 = " = ";
+
     protected final String TEXT_297 = " == 0 || ";
+
     protected final String TEXT_298 = " == 1;";
+
     protected final String TEXT_299 = NL + "\t\tint ";
+
     protected final String TEXT_300 = " = ";
+
     protected final String TEXT_301 = ".compareDuration(";
+
     protected final String TEXT_302 = ", ";
+
     protected final String TEXT_303 = "__VALUE);" + NL + "\t\tboolean ";
+
     protected final String TEXT_304 = " = ";
+
     protected final String TEXT_305 = " == 0 || ";
+
     protected final String TEXT_306 = " == 1;";
+
     protected final String TEXT_307 = NL + "\t\tboolean ";
+
     protected final String TEXT_308 = " = ";
+
     protected final String TEXT_309 = ".compareTo(";
+
     protected final String TEXT_310 = "__VALUE) ";
+
     protected final String TEXT_311 = " 0;";
+
     protected final String TEXT_312 = NL + "\t\tif (!";
+
     protected final String TEXT_313 = " && ";
+
     protected final String TEXT_314 = " != null)" + NL + "\t\t\treportMinViolation(";
+
     protected final String TEXT_315 = ", ";
+
     protected final String TEXT_316 = ", ";
+
     protected final String TEXT_317 = "__VALUE, ";
+
     protected final String TEXT_318 = ", ";
+
     protected final String TEXT_319 = ", ";
+
     protected final String TEXT_320 = ");" + NL + "\t\treturn ";
+
     protected final String TEXT_321 = ";";
+
     protected final String TEXT_322 = NL + "\t\tboolean ";
+
     protected final String TEXT_323 = " = ";
+
     protected final String TEXT_324 = " ";
+
     protected final String TEXT_325 = " ";
+
     protected final String TEXT_326 = "__VALUE;" + NL + "\t\tif (!";
+
     protected final String TEXT_327 = " && ";
+
     protected final String TEXT_328 = " != null)";
+
     protected final String TEXT_329 = NL + "\t\t\treportMaxViolation(";
+
     protected final String TEXT_330 = ", new ";
+
     protected final String TEXT_331 = "(";
+
     protected final String TEXT_332 = "), new ";
+
     protected final String TEXT_333 = "(";
+
     protected final String TEXT_334 = "__VALUE), ";
+
     protected final String TEXT_335 = ", ";
+
     protected final String TEXT_336 = ", ";
+
     protected final String TEXT_337 = ");";
+
     protected final String TEXT_338 = NL + "\t\t\treportMaxViolation(";
+
     protected final String TEXT_339 = ", ";
+
     protected final String TEXT_340 = ", ";
+
     protected final String TEXT_341 = "__VALUE, ";
+
     protected final String TEXT_342 = ", ";
+
     protected final String TEXT_343 = ", ";
+
     protected final String TEXT_344 = ");";
+
     protected final String TEXT_345 = NL + "\t\treturn ";
+
     protected final String TEXT_346 = ";";
+
     protected final String TEXT_347 = NL + "\t\tint ";
+
     protected final String TEXT_348 = " = ";
+
     protected final String TEXT_349 = ".compareCalendar(";
+
     protected final String TEXT_350 = ", ";
+
     protected final String TEXT_351 = "__VALUE);" + NL + "\t\tboolean ";
+
     protected final String TEXT_352 = " = ";
+
     protected final String TEXT_353 = " == 0 || ";
+
     protected final String TEXT_354 = " == -1;";
+
     protected final String TEXT_355 = NL + "\t\tint ";
+
     protected final String TEXT_356 = " = ";
+
     protected final String TEXT_357 = ".compareDuration(";
+
     protected final String TEXT_358 = ", ";
+
     protected final String TEXT_359 = "__VALUE);" + NL + "\t\tboolean ";
+
     protected final String TEXT_360 = " = ";
+
     protected final String TEXT_361 = " == 0 || ";
+
     protected final String TEXT_362 = " == -1;";
+
     protected final String TEXT_363 = NL + "\t\tboolean ";
+
     protected final String TEXT_364 = " = ";
+
     protected final String TEXT_365 = ".compareTo(";
+
     protected final String TEXT_366 = "__VALUE) ";
+
     protected final String TEXT_367 = " 0;";
+
     protected final String TEXT_368 = NL + "\t\tif (!";
+
     protected final String TEXT_369 = " && ";
+
     protected final String TEXT_370 = " != null)" + NL + "\t\t\treportMaxViolation(";
+
     protected final String TEXT_371 = ", ";
+
     protected final String TEXT_372 = ", ";
+
     protected final String TEXT_373 = "__VALUE, ";
+
     protected final String TEXT_374 = ", ";
+
     protected final String TEXT_375 = ", ";
+
     protected final String TEXT_376 = ");" + NL + "\t\treturn ";
+
     protected final String TEXT_377 = ";";
+
     protected final String TEXT_378 = NL + "\t\tint length = ";
+
     protected final String TEXT_379 = ".";
+
     protected final String TEXT_380 = ";" + NL + "\t\tboolean ";
+
     protected final String TEXT_381 = " = length >= ";
+
     protected final String TEXT_382 = ";" + NL + "\t\tif (!";
+
     protected final String TEXT_383 = " && ";
+
     protected final String TEXT_384 = " != null)" + NL + "\t\t\treportMinLengthViolation(";
+
     protected final String TEXT_385 = ", ";
+
     protected final String TEXT_386 = ", length, ";
+
     protected final String TEXT_387 = ", ";
+
     protected final String TEXT_388 = ", ";
+
     protected final String TEXT_389 = ");" + NL + "\t\treturn ";
+
     protected final String TEXT_390 = ";";
+
     protected final String TEXT_391 = NL + "\t\tint length = ";
+
     protected final String TEXT_392 = ".";
+
     protected final String TEXT_393 = ";" + NL + "\t\tboolean ";
+
     protected final String TEXT_394 = " = length <= ";
+
     protected final String TEXT_395 = ";" + NL + "\t\tif (!";
+
     protected final String TEXT_396 = " && ";
+
     protected final String TEXT_397 = " != null)" + NL + "\t\t\treportMaxLengthViolation(";
+
     protected final String TEXT_398 = ", ";
+
     protected final String TEXT_399 = ", length, ";
+
     protected final String TEXT_400 = ", ";
+
     protected final String TEXT_401 = ", ";
+
     protected final String TEXT_402 = ");" + NL + "\t\treturn ";
+
     protected final String TEXT_403 = ";";
+
     protected final String TEXT_404 = NL + "\t\tboolean ";
+
     protected final String TEXT_405 = " = ";
+
     protected final String TEXT_406 = " > ";
+
     protected final String TEXT_407 = "__LOWER_BOUND && ";
+
     protected final String TEXT_408 = " < ";
+
     protected final String TEXT_409 = "__UPPER_BOUND;" + NL + "\t\tif (!";
+
     protected final String TEXT_410 = " && ";
+
     protected final String TEXT_411 = " != null)";
+
     protected final String TEXT_412 = NL + "\t\t\treportTotalDigitsViolation(";
+
     protected final String TEXT_413 = ", new ";
+
     protected final String TEXT_414 = "(";
+
     protected final String TEXT_415 = "), ";
+
     protected final String TEXT_416 = ", ";
+
     protected final String TEXT_417 = ", ";
+
     protected final String TEXT_418 = ");";
+
     protected final String TEXT_419 = NL + "\t\t\treportTotalDigitsViolation(";
+
     protected final String TEXT_420 = ", ";
+
     protected final String TEXT_421 = ", ";
+
     protected final String TEXT_422 = ", ";
+
     protected final String TEXT_423 = ", ";
+
     protected final String TEXT_424 = ");";
+
     protected final String TEXT_425 = NL + "\t\tboolean ";
+
     protected final String TEXT_426 = " = ";
+
     protected final String TEXT_427 = ".unscaledValue().abs().toString().length() <= ";
+
     protected final String TEXT_428 = ";" + NL + "\t\tif (!";
+
     protected final String TEXT_429 = " && ";
+
     protected final String TEXT_430 = " != null)" + NL + "\t\t\treportTotalDigitsViolation(";
+
     protected final String TEXT_431 = ", ";
+
     protected final String TEXT_432 = ", ";
+
     protected final String TEXT_433 = ", ";
+
     protected final String TEXT_434 = ", ";
+
     protected final String TEXT_435 = ");";
+
     protected final String TEXT_436 = NL + "\t\tboolean ";
+
     protected final String TEXT_437 = " = ";
+
     protected final String TEXT_438 = ".compareTo(";
+
     protected final String TEXT_439 = "__LOWER_BOUND) > 0 && ";
+
     protected final String TEXT_440 = ".compareTo(";
+
     protected final String TEXT_441 = "__UPPER_BOUND) < 0;" + NL + "\t\tif (!";
+
     protected final String TEXT_442 = " && ";
+
     protected final String TEXT_443 = " != null)" + NL + "\t\t\treportTotalDigitsViolation(";
+
     protected final String TEXT_444 = ", ";
+
     protected final String TEXT_445 = ", ";
+
     protected final String TEXT_446 = ", ";
+
     protected final String TEXT_447 = ", ";
+
     protected final String TEXT_448 = ");";
+
     protected final String TEXT_449 = NL + "\t\treturn ";
+
     protected final String TEXT_450 = ";";
+
     protected final String TEXT_451 = NL + "\t\tboolean ";
+
     protected final String TEXT_452 = " = ";
+
     protected final String TEXT_453 = ".scale() <= ";
+
     protected final String TEXT_454 = ";" + NL + "\t\tif (!";
+
     protected final String TEXT_455 = " && ";
+
     protected final String TEXT_456 = " != null)" + NL + "\t\t\treportFractionDigitsViolation(";
+
     protected final String TEXT_457 = ", ";
+
     protected final String TEXT_458 = ", ";
+
     protected final String TEXT_459 = ", ";
+
     protected final String TEXT_460 = ", ";
+
     protected final String TEXT_461 = ");" + NL + "\t\treturn ";
+
     protected final String TEXT_462 = ";";
-    protected final String TEXT_463 = NL + "\t\t// TODO override the constraint, if desired" + NL + "\t\t// -> uncomment the scaffolding" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
+    protected final String TEXT_463 = NL + "\t\t// TODO override the constraint, if desired" + NL + "\t\t// -> uncomment the scaffolding" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message"
+            + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
     protected final String TEXT_464 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_465 = ".add";
+
     protected final String TEXT_466 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_467 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
+
     protected final String TEXT_468 = NL + "\t\t\t\t\t\t new Object[] { \"";
+
     protected final String TEXT_469 = "\", getValueLabel(";
+
     protected final String TEXT_470 = ", ";
+
     protected final String TEXT_471 = ", ";
+
     protected final String TEXT_472 = ") },";
+
     protected final String TEXT_473 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_474 = " }," + NL + "\t\t\t\t\t\t context));";
+
     protected final String TEXT_475 = NL + "\t\t\t\t\t(new ";
+
     protected final String TEXT_476 = NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_477 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_478 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+
     protected final String TEXT_479 = "\", getValueLabel(";
+
     protected final String TEXT_480 = ", ";
+
     protected final String TEXT_481 = ", ";
+
     protected final String TEXT_482 = ") }),";
+
     protected final String TEXT_483 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_484 = " }));";
+
     protected final String TEXT_485 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn ";
+
     protected final String TEXT_486 = "validate";
+
     protected final String TEXT_487 = "_";
+
     protected final String TEXT_488 = "(";
+
     protected final String TEXT_489 = ", ";
+
     protected final String TEXT_490 = ", ";
+
     protected final String TEXT_491 = ");";
+
     protected final String TEXT_492 = NL + "\t\treturn" + NL + "\t\t\tvalidate" + NL + "\t\t\t\t(";
+
     protected final String TEXT_493 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_494 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_495 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_496 = "," + NL + "\t\t\t\t \"";
+
     protected final String TEXT_497 = "\",";
+
     protected final String TEXT_498 = NL + "\t\t\t\t \"";
+
     protected final String TEXT_499 = "\",";
+
     protected final String TEXT_500 = NL + "\t\t\t\t ";
+
     protected final String TEXT_501 = "__";
+
     protected final String TEXT_502 = "__EEXPRESSION," + NL + "\t\t\t\t ";
+
     protected final String TEXT_503 = ".ERROR," + NL + "\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t 0);";
-    protected final String TEXT_504 = NL + "\t\t// TODO implement the constraint" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
+    protected final String TEXT_504 = NL + "\t\t// TODO implement the constraint" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL
+            + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
     protected final String TEXT_505 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_506 = ".add";
+
     protected final String TEXT_507 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_508 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
+
     protected final String TEXT_509 = NL + "\t\t\t\t\t\t new Object[] { \"";
+
     protected final String TEXT_510 = "\", getValueLabel(";
+
     protected final String TEXT_511 = ", ";
+
     protected final String TEXT_512 = ", ";
+
     protected final String TEXT_513 = ") },";
+
     protected final String TEXT_514 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_515 = " }," + NL + "\t\t\t\t\t\t context));";
+
     protected final String TEXT_516 = NL + "\t\t\t\t\t(new ";
+
     protected final String TEXT_517 = NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_518 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_519 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+
     protected final String TEXT_520 = "\", getValueLabel(";
+
     protected final String TEXT_521 = ", ";
+
     protected final String TEXT_522 = ", ";
+
     protected final String TEXT_523 = ") }),";
+
     protected final String TEXT_524 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_525 = " }));";
+
     protected final String TEXT_526 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn true;";
-    protected final String TEXT_527 = NL + "\t\t// TODO override the constraint, if desired" + NL + "\t\t// -> uncomment the scaffolding" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
+    protected final String TEXT_527 = NL + "\t\t// TODO override the constraint, if desired" + NL + "\t\t// -> uncomment the scaffolding" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message"
+            + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
     protected final String TEXT_528 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_529 = ".add";
+
     protected final String TEXT_530 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_531 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
+
     protected final String TEXT_532 = NL + "\t\t\t\t\t\t new Object[] { \"";
+
     protected final String TEXT_533 = "\", getObjectLabel(";
+
     protected final String TEXT_534 = ", ";
+
     protected final String TEXT_535 = ") },";
+
     protected final String TEXT_536 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_537 = " }," + NL + "\t\t\t\t\t\t context));";
+
     protected final String TEXT_538 = NL + "\t\t\t\t\t(new ";
+
     protected final String TEXT_539 = NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_540 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_541 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+
     protected final String TEXT_542 = "\", getObjectLabel(";
+
     protected final String TEXT_543 = ", ";
+
     protected final String TEXT_544 = ") }),";
+
     protected final String TEXT_545 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_546 = " }));";
+
     protected final String TEXT_547 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn ";
+
     protected final String TEXT_548 = "validate";
+
     protected final String TEXT_549 = "_";
+
     protected final String TEXT_550 = "(";
+
     protected final String TEXT_551 = ", ";
+
     protected final String TEXT_552 = ", ";
+
     protected final String TEXT_553 = ");";
+
     protected final String TEXT_554 = NL + "\t\treturn ";
+
     protected final String TEXT_555 = ".";
+
     protected final String TEXT_556 = "(";
+
     protected final String TEXT_557 = ", ";
+
     protected final String TEXT_558 = ");";
+
     protected final String TEXT_559 = NL + "\t\treturn" + NL + "\t\t\tvalidate" + NL + "\t\t\t\t(";
+
     protected final String TEXT_560 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_561 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_562 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_563 = "," + NL + "\t\t\t\t \"";
+
     protected final String TEXT_564 = "\",";
+
     protected final String TEXT_565 = NL + "\t\t\t\t \"";
+
     protected final String TEXT_566 = "\",";
+
     protected final String TEXT_567 = NL + "\t\t\t\t ";
+
     protected final String TEXT_568 = "__";
+
     protected final String TEXT_569 = "__EEXPRESSION," + NL + "\t\t\t\t ";
+
     protected final String TEXT_570 = ".ERROR," + NL + "\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t 0);";
-    protected final String TEXT_571 = NL + "\t\t// TODO implement the constraint" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
+    protected final String TEXT_571 = NL + "\t\t// TODO implement the constraint" + NL + "\t\t// -> specify the condition that violates the constraint" + NL + "\t\t// -> verify the diagnostic details, including severity, code, and message" + NL
+            + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
     protected final String TEXT_572 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_573 = ".add";
+
     protected final String TEXT_574 = NL + "\t\t\t\t\t(createDiagnostic" + NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_575 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t \"_UI_GenericConstraint_diagnostic\",";
+
     protected final String TEXT_576 = NL + "\t\t\t\t\t\t new Object[] { \"";
+
     protected final String TEXT_577 = "\", getObjectLabel(";
+
     protected final String TEXT_578 = ", ";
+
     protected final String TEXT_579 = ") },";
+
     protected final String TEXT_580 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_581 = " }," + NL + "\t\t\t\t\t\t context));";
+
     protected final String TEXT_582 = NL + "\t\t\t\t\t(new ";
+
     protected final String TEXT_583 = NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_584 = ".ERROR," + NL + "\t\t\t\t\t\t DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t 0," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_585 = ".INSTANCE.getString(\"_UI_GenericConstraint_diagnostic\", new Object[] { \"";
+
     protected final String TEXT_586 = "\", getObjectLabel(";
+
     protected final String TEXT_587 = ", ";
+
     protected final String TEXT_588 = ") }),";
+
     protected final String TEXT_589 = NL + "\t\t\t\t\t\t new Object[] { ";
+
     protected final String TEXT_590 = " }));";
+
     protected final String TEXT_591 = NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn true;";
+
     protected final String TEXT_592 = NL + "\t}" + NL;
+
     protected final String TEXT_593 = NL + "\t/**" + NL + "\t * Returns the resource locator that will be used to fetch messages for this validator's diagnostics." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_594 = NL + "\t@Override";
+
     protected final String TEXT_595 = NL + "\tpublic ";
+
     protected final String TEXT_596 = " getResourceLocator()" + NL + "\t{";
+
     protected final String TEXT_597 = NL + "\t\treturn ";
+
     protected final String TEXT_598 = ".INSTANCE;";
+
     protected final String TEXT_599 = NL + "\t\t// TODO" + NL + "\t\t// Specialize this to return a resource locator for messages specific to this validator." + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\treturn super.getResourceLocator();";
+
     protected final String TEXT_600 = NL + "\t}" + NL;
+
     protected final String TEXT_601 = NL + "} //";
+
     protected final String TEXT_602 = NL;
+
     protected final String TEXT_603 = NL;
+
     protected final String TEXT_604 = NL;
 
     public ValidatorClass() {
@@ -951,7 +1565,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
                     GenClassifier constraintImplementor = genClassifier.getConstraintImplementor(constraint);
                     String delegate = constraintImplementor == null || constraintImplementor.getGenPackage() == genPackage ? "" : genPackage.getValidatorPackageUniqueSafeName(constraintImplementor.getGenPackage()) + "Validator.";
                     String cast = constraintImplementor == null && genClassifier instanceof GenClass && !((GenClass) genClassifier).isEObjectExtension() ? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
-                    String accessor = constraintImplementor != null && genClassifier instanceof GenDataType && !((GenDataType) genClassifier).isPrimitiveType() && ((GenDataType) constraintImplementor).isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "." + ((GenDataType) constraintImplementor).getPrimitiveValueFunction() + "()" : "";
+                    String accessor = constraintImplementor != null && genClassifier instanceof GenDataType && !((GenDataType) genClassifier).isPrimitiveType() && ((GenDataType) constraintImplementor).isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "."
+                            + ((GenDataType) constraintImplementor).getPrimitiveValueFunction() + "()" : "";
                     if ("NoCircularContainment".equals(constraint)) {
                         stringBuffer.append(TEXT_82);
                         if (!((GenClass) genClassifier).isEObjectExtension()) {
@@ -1016,7 +1631,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
                 String constant = genClassifier.getClassifierID() + "__" + CodeGenUtil.format(constraint, '_', null, false, false).toUpperCase(genClassifier.getGenModel().getLocale());
                 String delegate = constraintDelegate == null || constraintDelegate.getGenPackage() == genPackage ? "" : genPackage.getValidatorPackageUniqueSafeName(constraintDelegate.getGenPackage()) + "Validator.";
                 String cast = constraintDelegate == null && genClassifier instanceof GenClass && !((GenClass) genClassifier).isEObjectExtension() ? "(" + genModel.getImportedName("org.eclipse.emf.ecore.EObject") + ")" : "";
-                String accessor = constraintDelegate != null && genClassifier instanceof GenDataType && !((GenDataType) genClassifier).isPrimitiveType() && ((GenDataType) constraintDelegate).isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "." + ((GenDataType) constraintDelegate).getPrimitiveValueFunction() + "()" : "";
+                String accessor = constraintDelegate != null && genClassifier instanceof GenDataType && !((GenDataType) genClassifier).isPrimitiveType() && ((GenDataType) constraintDelegate).isPrimitiveType() && genModel.getComplianceLevel().getValue() < GenJDKLevel.JDK50 ? "."
+                        + ((GenDataType) constraintDelegate).getPrimitiveValueFunction() + "()" : "";
                 if (genClassifier instanceof GenDataType) {
                     GenDataType genDataType = (GenDataType) genClassifier;
                     if (constraint.equals("Min") && genDataType.getMinLiteral() != null) {

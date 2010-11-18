@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
+
     protected static String nl;
 
     public static synchronized Class create(String lineSeparator) {
@@ -25,490 +26,979 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";";
+
     protected final String TEXT_4 = NL + "package ";
+
     protected final String TEXT_5 = ";";
+
     protected final String TEXT_6 = NL;
+
     protected final String TEXT_7 = NL;
+
     protected final String TEXT_8 = NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A representation of the model object '<em><b>";
+
     protected final String TEXT_9 = "</b></em>'." + NL + " * <!-- end-user-doc -->";
+
     protected final String TEXT_10 = NL + " *" + NL + " * <!-- begin-model-doc -->" + NL + " * ";
+
     protected final String TEXT_11 = NL + " * <!-- end-model-doc -->";
+
     protected final String TEXT_12 = NL + " *";
+
     protected final String TEXT_13 = NL + " * <p>" + NL + " * The following features are supported:" + NL + " * <ul>";
+
     protected final String TEXT_14 = NL + " *   <li>{@link ";
+
     protected final String TEXT_15 = "#";
+
     protected final String TEXT_16 = " <em>";
+
     protected final String TEXT_17 = "</em>}</li>";
+
     protected final String TEXT_18 = NL + " * </ul>" + NL + " * </p>";
+
     protected final String TEXT_19 = NL + " *";
+
     protected final String TEXT_20 = NL + " * @see ";
+
     protected final String TEXT_21 = "#get";
+
     protected final String TEXT_22 = "()";
+
     protected final String TEXT_23 = NL + " * @model ";
+
     protected final String TEXT_24 = NL + " *        ";
+
     protected final String TEXT_25 = NL + " * @model";
+
     protected final String TEXT_26 = NL + " * @extends ";
+
     protected final String TEXT_27 = NL + " * @generated" + NL + " */";
+
     protected final String TEXT_28 = NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * An implementation of the model object '<em><b>";
+
     protected final String TEXT_29 = "</b></em>'." + NL + " * <!-- end-user-doc -->" + NL + " * <p>";
+
     protected final String TEXT_30 = NL + " * The following features are implemented:" + NL + " * <ul>";
+
     protected final String TEXT_31 = NL + " *   <li>{@link ";
+
     protected final String TEXT_32 = "#";
+
     protected final String TEXT_33 = " <em>";
+
     protected final String TEXT_34 = "</em>}</li>";
+
     protected final String TEXT_35 = NL + " * </ul>";
+
     protected final String TEXT_36 = NL + " * </p>" + NL + " *" + NL + " * @generated" + NL + " */";
+
     protected final String TEXT_37 = NL + "public";
+
     protected final String TEXT_38 = " abstract";
+
     protected final String TEXT_39 = " class ";
+
     protected final String TEXT_40 = NL + "public interface ";
+
     protected final String TEXT_41 = NL + "{";
+
     protected final String TEXT_42 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_43 = " copyright = ";
+
     protected final String TEXT_44 = ";";
+
     protected final String TEXT_45 = NL;
+
     protected final String TEXT_46 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_47 = " mofDriverNumber = \"";
+
     protected final String TEXT_48 = "\";";
+
     protected final String TEXT_49 = NL;
+
     protected final String TEXT_50 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final long serialVersionUID = 1L;" + NL;
+
     protected final String TEXT_51 = NL + "\t/**" + NL + "\t * An array of objects representing the values of non-primitive features." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_52 = NL + "\t@";
+
     protected final String TEXT_53 = NL + "\tprotected Object[] ";
+
     protected final String TEXT_54 = ";" + NL;
+
     protected final String TEXT_55 = NL + "\t/**" + NL + "\t * A bit field representing the indices of non-primitive feature values." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_56 = NL + "\t@";
+
     protected final String TEXT_57 = NL + "\tprotected int ";
+
     protected final String TEXT_58 = ";" + NL;
-    protected final String TEXT_59 = NL + "\t/**" + NL + "\t * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
+    protected final String TEXT_59 = NL + "\t/**" + NL + "\t * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered"
+            + NL + "\t */";
+
     protected final String TEXT_60 = NL + "\t@";
+
     protected final String TEXT_61 = NL + "\tprotected int ";
+
     protected final String TEXT_62 = " = 0;" + NL;
+
     protected final String TEXT_63 = NL;
+
     protected final String TEXT_64 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final int ";
+
     protected final String TEXT_65 = " = ";
+
     protected final String TEXT_66 = ".getFeatureID(";
+
     protected final String TEXT_67 = ") - ";
+
     protected final String TEXT_68 = ";" + NL;
+
     protected final String TEXT_69 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final int ";
+
     protected final String TEXT_70 = " = ";
+
     protected final String TEXT_71 = ".getFeatureID(";
+
     protected final String TEXT_72 = ") - ";
+
     protected final String TEXT_73 = ";" + NL;
+
     protected final String TEXT_74 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprivate static final int \"EOPERATION_OFFSET_CORRECTION\" = ";
+
     protected final String TEXT_75 = ".getOperationID(";
+
     protected final String TEXT_76 = ") - ";
+
     protected final String TEXT_77 = ";" + NL;
+
     protected final String TEXT_78 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t";
+
     protected final String TEXT_79 = "public";
+
     protected final String TEXT_80 = "protected";
+
     protected final String TEXT_81 = " ";
+
     protected final String TEXT_82 = "()" + NL + "\t{" + NL + "\t\tsuper();";
+
     protected final String TEXT_83 = NL + "\t\t";
+
     protected final String TEXT_84 = " |= ";
+
     protected final String TEXT_85 = "_EFLAG";
+
     protected final String TEXT_86 = "_DEFAULT";
+
     protected final String TEXT_87 = ";";
+
     protected final String TEXT_88 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_89 = NL + "\t@Override";
+
     protected final String TEXT_90 = NL + "\tprotected ";
+
     protected final String TEXT_91 = " eStaticClass()" + NL + "\t{" + NL + "\t\treturn ";
+
     protected final String TEXT_92 = ";" + NL + "\t}" + NL;
+
     protected final String TEXT_93 = NL;
+
     protected final String TEXT_94 = NL;
+
     protected final String TEXT_95 = NL;
+
     protected final String TEXT_96 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_97 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_98 = NL + "\t@Override";
+
     protected final String TEXT_99 = NL + "\tpublic ";
+
     protected final String TEXT_100 = " eInverseAdd(";
+
     protected final String TEXT_101 = " otherEnd, int featureID, ";
+
     protected final String TEXT_102 = " msgs)" + NL + "\t{" + NL + "\t\tswitch (featureID";
+
     protected final String TEXT_103 = ")" + NL + "\t\t{";
+
     protected final String TEXT_104 = NL + "\t\t\tcase ";
+
     protected final String TEXT_105 = ":";
+
     protected final String TEXT_106 = NL + "\t\t\t\treturn ((";
+
     protected final String TEXT_107 = "(";
+
     protected final String TEXT_108 = ".InternalMapView";
+
     protected final String TEXT_109 = ")";
+
     protected final String TEXT_110 = "()).eMap()).basicAdd(otherEnd, msgs);";
+
     protected final String TEXT_111 = NL + "\t\t\t\treturn (";
+
     protected final String TEXT_112 = "()).basicAdd(otherEnd, msgs);";
+
     protected final String TEXT_113 = NL + "\t\t\t\tif (eInternalContainer() != null)" + NL + "\t\t\t\t\tmsgs = eBasicRemoveFromContainer(msgs);";
+
     protected final String TEXT_114 = NL + "\t\t\t\treturn basicSet";
+
     protected final String TEXT_115 = "((";
+
     protected final String TEXT_116 = ")otherEnd, msgs);";
+
     protected final String TEXT_117 = NL + "\t\t\t\treturn eBasicSetContainer(otherEnd, ";
+
     protected final String TEXT_118 = ", msgs);";
+
     protected final String TEXT_119 = NL + "\t\t\t\t";
+
     protected final String TEXT_120 = " ";
+
     protected final String TEXT_121 = " = (";
+
     protected final String TEXT_122 = ")eVirtualGet(";
+
     protected final String TEXT_123 = ");";
+
     protected final String TEXT_124 = NL + "\t\t\t\t";
+
     protected final String TEXT_125 = " ";
+
     protected final String TEXT_126 = " = ";
+
     protected final String TEXT_127 = "basicGet";
+
     protected final String TEXT_128 = "();";
+
     protected final String TEXT_129 = NL + "\t\t\t\tif (";
+
     protected final String TEXT_130 = " != null)";
+
     protected final String TEXT_131 = NL + "\t\t\t\t\tmsgs = ((";
+
     protected final String TEXT_132 = ")";
+
     protected final String TEXT_133 = ").eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ";
+
     protected final String TEXT_134 = ", null, msgs);";
+
     protected final String TEXT_135 = NL + "\t\t\t\t\tmsgs = ((";
+
     protected final String TEXT_136 = ")";
+
     protected final String TEXT_137 = ").eInverseRemove(this, ";
+
     protected final String TEXT_138 = ", ";
+
     protected final String TEXT_139 = ".class, msgs);";
+
     protected final String TEXT_140 = NL + "\t\t\t\treturn basicSet";
+
     protected final String TEXT_141 = "((";
+
     protected final String TEXT_142 = ")otherEnd, msgs);";
+
     protected final String TEXT_143 = NL + "\t\t}";
+
     protected final String TEXT_144 = NL + "\t\treturn super.eInverseAdd(otherEnd, featureID, msgs);";
+
     protected final String TEXT_145 = NL + "\t\treturn eDynamicInverseAdd(otherEnd, featureID, msgs);";
+
     protected final String TEXT_146 = NL + "\t}" + NL;
+
     protected final String TEXT_147 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_148 = NL + "\t@Override";
+
     protected final String TEXT_149 = NL + "\tpublic ";
+
     protected final String TEXT_150 = " eInverseRemove(";
+
     protected final String TEXT_151 = " otherEnd, int featureID, ";
+
     protected final String TEXT_152 = " msgs)" + NL + "\t{" + NL + "\t\tswitch (featureID";
+
     protected final String TEXT_153 = ")" + NL + "\t\t{";
+
     protected final String TEXT_154 = NL + "\t\t\tcase ";
+
     protected final String TEXT_155 = ":";
+
     protected final String TEXT_156 = NL + "\t\t\t\treturn ((";
+
     protected final String TEXT_157 = ")((";
+
     protected final String TEXT_158 = ".InternalMapView";
+
     protected final String TEXT_159 = ")";
+
     protected final String TEXT_160 = "()).eMap()).basicRemove(otherEnd, msgs);";
+
     protected final String TEXT_161 = NL + "\t\t\t\treturn ((";
+
     protected final String TEXT_162 = ")((";
+
     protected final String TEXT_163 = ".Internal.Wrapper)";
+
     protected final String TEXT_164 = "()).featureMap()).basicRemove(otherEnd, msgs);";
+
     protected final String TEXT_165 = NL + "\t\t\t\treturn ((";
+
     protected final String TEXT_166 = ")";
+
     protected final String TEXT_167 = "()).basicRemove(otherEnd, msgs);";
+
     protected final String TEXT_168 = NL + "\t\t\t\treturn eBasicSetContainer(null, ";
+
     protected final String TEXT_169 = ", msgs);";
+
     protected final String TEXT_170 = NL + "\t\t\t\treturn basicUnset";
+
     protected final String TEXT_171 = "(msgs);";
+
     protected final String TEXT_172 = NL + "\t\t\t\treturn basicSet";
+
     protected final String TEXT_173 = "(null, msgs);";
+
     protected final String TEXT_174 = NL + "\t\t}";
+
     protected final String TEXT_175 = NL + "\t\treturn super.eInverseRemove(otherEnd, featureID, msgs);";
+
     protected final String TEXT_176 = NL + "\t\treturn eDynamicInverseRemove(otherEnd, featureID, msgs);";
+
     protected final String TEXT_177 = NL + "\t}" + NL;
+
     protected final String TEXT_178 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_179 = NL + "\t@Override";
+
     protected final String TEXT_180 = NL + "\tpublic ";
+
     protected final String TEXT_181 = " eBasicRemoveFromContainerFeature(";
+
     protected final String TEXT_182 = " msgs)" + NL + "\t{" + NL + "\t\tswitch (eContainerFeatureID()";
+
     protected final String TEXT_183 = ")" + NL + "\t\t{";
+
     protected final String TEXT_184 = NL + "\t\t\tcase ";
+
     protected final String TEXT_185 = ":" + NL + "\t\t\t\treturn eInternalContainer().eInverseRemove(this, ";
+
     protected final String TEXT_186 = ", ";
+
     protected final String TEXT_187 = ".class, msgs);";
+
     protected final String TEXT_188 = NL + "\t\t}";
+
     protected final String TEXT_189 = NL + "\t\treturn super.eBasicRemoveFromContainerFeature(msgs);";
+
     protected final String TEXT_190 = NL + "\t\treturn eDynamicBasicRemoveFromContainer(msgs);";
+
     protected final String TEXT_191 = NL + "\t}" + NL;
+
     protected final String TEXT_192 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_193 = NL + "\t@Override";
+
     protected final String TEXT_194 = NL + "\tpublic Object eGet(int featureID, boolean resolve, boolean coreType)" + NL + "\t{" + NL + "\t\tswitch (featureID";
+
     protected final String TEXT_195 = ")" + NL + "\t\t{";
+
     protected final String TEXT_196 = NL + "\t\t\tcase ";
+
     protected final String TEXT_197 = ":";
+
     protected final String TEXT_198 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_199 = "();";
+
     protected final String TEXT_200 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_201 = "() ? Boolean.TRUE : Boolean.FALSE;";
+
     protected final String TEXT_202 = NL + "\t\t\t\treturn new ";
+
     protected final String TEXT_203 = "(";
+
     protected final String TEXT_204 = "());";
+
     protected final String TEXT_205 = NL + "\t\t\t\tif (resolve) return ";
+
     protected final String TEXT_206 = "();" + NL + "\t\t\t\treturn basicGet";
+
     protected final String TEXT_207 = "();";
+
     protected final String TEXT_208 = NL + "\t\t\t\tif (coreType) return ((";
+
     protected final String TEXT_209 = ".InternalMapView";
+
     protected final String TEXT_210 = ")";
+
     protected final String TEXT_211 = "()).eMap();" + NL + "\t\t\t\telse return ";
+
     protected final String TEXT_212 = "();";
+
     protected final String TEXT_213 = NL + "\t\t\t\tif (coreType) return ";
+
     protected final String TEXT_214 = "();" + NL + "\t\t\t\telse return ";
+
     protected final String TEXT_215 = "().map();";
+
     protected final String TEXT_216 = NL + "\t\t\t\tif (coreType) return ((";
+
     protected final String TEXT_217 = ".Internal.Wrapper)";
+
     protected final String TEXT_218 = "()).featureMap();" + NL + "\t\t\t\treturn ";
+
     protected final String TEXT_219 = "();";
+
     protected final String TEXT_220 = NL + "\t\t\t\tif (coreType) return ";
+
     protected final String TEXT_221 = "();" + NL + "\t\t\t\treturn ((";
+
     protected final String TEXT_222 = ".Internal)";
+
     protected final String TEXT_223 = "()).getWrapper();";
+
     protected final String TEXT_224 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_225 = "();";
+
     protected final String TEXT_226 = NL + "\t\t}";
+
     protected final String TEXT_227 = NL + "\t\treturn super.eGet(featureID, resolve, coreType);";
+
     protected final String TEXT_228 = NL + "\t\treturn eDynamicGet(featureID, resolve, coreType);";
+
     protected final String TEXT_229 = NL + "\t}" + NL;
+
     protected final String TEXT_230 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_231 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_232 = NL + "\t@Override";
+
     protected final String TEXT_233 = NL + "\tpublic void eSet(int featureID, Object newValue)" + NL + "\t{" + NL + "\t\tswitch (featureID";
+
     protected final String TEXT_234 = ")" + NL + "\t\t{";
+
     protected final String TEXT_235 = NL + "\t\t\tcase ";
+
     protected final String TEXT_236 = ":";
+
     protected final String TEXT_237 = NL + "\t\t\t\t((";
+
     protected final String TEXT_238 = ".Internal)((";
+
     protected final String TEXT_239 = ".Internal.Wrapper)";
+
     protected final String TEXT_240 = "()).featureMap()).set(newValue);";
+
     protected final String TEXT_241 = NL + "\t\t\t\t((";
+
     protected final String TEXT_242 = ".Internal)";
+
     protected final String TEXT_243 = "()).set(newValue);";
+
     protected final String TEXT_244 = NL + "\t\t\t\t((";
+
     protected final String TEXT_245 = ".Setting)((";
+
     protected final String TEXT_246 = ".InternalMapView";
+
     protected final String TEXT_247 = ")";
+
     protected final String TEXT_248 = "()).eMap()).set(newValue);";
+
     protected final String TEXT_249 = NL + "\t\t\t\t((";
+
     protected final String TEXT_250 = ".Setting)";
+
     protected final String TEXT_251 = "()).set(newValue);";
+
     protected final String TEXT_252 = NL + "\t\t\t\t";
+
     protected final String TEXT_253 = "().clear();" + NL + "\t\t\t\t";
+
     protected final String TEXT_254 = "().addAll((";
+
     protected final String TEXT_255 = "<? extends ";
+
     protected final String TEXT_256 = ">";
+
     protected final String TEXT_257 = ")newValue);";
+
     protected final String TEXT_258 = NL + "\t\t\t\tset";
+
     protected final String TEXT_259 = "(((";
+
     protected final String TEXT_260 = ")newValue).";
+
     protected final String TEXT_261 = "());";
+
     protected final String TEXT_262 = NL + "\t\t\t\tset";
+
     protected final String TEXT_263 = "(";
+
     protected final String TEXT_264 = "(";
+
     protected final String TEXT_265 = ")";
+
     protected final String TEXT_266 = "newValue);";
+
     protected final String TEXT_267 = NL + "\t\t\t\treturn;";
+
     protected final String TEXT_268 = NL + "\t\t}";
+
     protected final String TEXT_269 = NL + "\t\tsuper.eSet(featureID, newValue);";
+
     protected final String TEXT_270 = NL + "\t\teDynamicSet(featureID, newValue);";
+
     protected final String TEXT_271 = NL + "\t}" + NL;
+
     protected final String TEXT_272 = NL;
+
     protected final String TEXT_273 = NL;
+
     protected final String TEXT_274 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_275 = NL + "\t@Override";
+
     protected final String TEXT_276 = NL + "\tpublic int eBaseStructuralFeatureID(int derivedFeatureID, Class";
+
     protected final String TEXT_277 = " baseClass)" + NL + "\t{";
+
     protected final String TEXT_278 = NL + "\t\tif (baseClass == ";
+
     protected final String TEXT_279 = ".class)" + NL + "\t\t{" + NL + "\t\t\tswitch (derivedFeatureID";
+
     protected final String TEXT_280 = ")" + NL + "\t\t\t{";
+
     protected final String TEXT_281 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_282 = ": return ";
+
     protected final String TEXT_283 = ";";
+
     protected final String TEXT_284 = NL + "\t\t\t\tdefault: return -1;" + NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_285 = NL + "\t\treturn super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);" + NL + "\t}";
+
     protected final String TEXT_286 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_287 = NL + "\t@Override";
+
     protected final String TEXT_288 = NL + "\tpublic int eDerivedStructuralFeatureID(int baseFeatureID, Class";
+
     protected final String TEXT_289 = " baseClass)" + NL + "\t{";
+
     protected final String TEXT_290 = NL + "\t\tif (baseClass == ";
+
     protected final String TEXT_291 = ".class)" + NL + "\t\t{" + NL + "\t\t\tswitch (baseFeatureID)" + NL + "\t\t\t{";
+
     protected final String TEXT_292 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_293 = ": return ";
+
     protected final String TEXT_294 = ";";
+
     protected final String TEXT_295 = NL + "\t\t\t\tdefault: return -1;" + NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_296 = NL + "\t\tif (baseClass == ";
+
     protected final String TEXT_297 = ".class)" + NL + "\t\t{" + NL + "\t\t\tswitch (baseFeatureID";
+
     protected final String TEXT_298 = ")" + NL + "\t\t\t{";
+
     protected final String TEXT_299 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_300 = ": return ";
+
     protected final String TEXT_301 = ";";
+
     protected final String TEXT_302 = NL + "\t\t\t\tdefault: return -1;" + NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_303 = NL + "\t\treturn super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);" + NL + "\t}" + NL;
+
     protected final String TEXT_304 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_305 = NL + "\t@Override";
+
     protected final String TEXT_306 = NL + "\tpublic int eDerivedOperationID(int baseOperationID, Class";
+
     protected final String TEXT_307 = " baseClass)" + NL + "\t{";
+
     protected final String TEXT_308 = NL + "\t\tif (baseClass == ";
+
     protected final String TEXT_309 = ".class)" + NL + "\t\t{" + NL + "\t\t\tswitch (baseOperationID)" + NL + "\t\t\t{";
+
     protected final String TEXT_310 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_311 = ": return ";
+
     protected final String TEXT_312 = ";";
+
     protected final String TEXT_313 = NL + "\t\t\t\tdefault: return super.eDerivedOperationID(baseOperationID, baseClass);" + NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_314 = NL + "\t\tif (baseClass == ";
+
     protected final String TEXT_315 = ".class)" + NL + "\t\t{" + NL + "\t\t\tswitch (baseOperationID)" + NL + "\t\t\t{";
+
     protected final String TEXT_316 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_317 = ": return ";
+
     protected final String TEXT_318 = ";";
+
     protected final String TEXT_319 = NL + "\t\t\t\tdefault: return -1;" + NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_320 = NL + "\t\tif (baseClass == ";
+
     protected final String TEXT_321 = ".class)" + NL + "\t\t{" + NL + "\t\t\tswitch (baseOperationID";
+
     protected final String TEXT_322 = ")" + NL + "\t\t\t{";
+
     protected final String TEXT_323 = NL + "\t\t\t\tcase ";
+
     protected final String TEXT_324 = ": return ";
+
     protected final String TEXT_325 = ";";
+
     protected final String TEXT_326 = NL + "\t\t\t\tdefault: return -1;" + NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_327 = NL + "\t\treturn super.eDerivedOperationID(baseOperationID, baseClass);" + NL + "\t}" + NL;
+
     protected final String TEXT_328 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_329 = NL + "\t@Override";
+
     protected final String TEXT_330 = NL + "\tprotected Object[] eVirtualValues()" + NL + "\t{" + NL + "\t\treturn ";
+
     protected final String TEXT_331 = ";" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_332 = NL + "\t@Override";
+
     protected final String TEXT_333 = NL + "\tprotected void eSetVirtualValues(Object[] newValues)" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_334 = " = newValues;" + NL + "\t}" + NL;
+
     protected final String TEXT_335 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_336 = NL + "\t@Override";
+
     protected final String TEXT_337 = NL + "\tprotected int eVirtualIndexBits(int offset)" + NL + "\t{" + NL + "\t\tswitch (offset)" + NL + "\t\t{";
+
     protected final String TEXT_338 = NL + "\t\t\tcase ";
+
     protected final String TEXT_339 = " :" + NL + "\t\t\t\treturn ";
+
     protected final String TEXT_340 = ";";
+
     protected final String TEXT_341 = NL + "\t\t\tdefault :" + NL + "\t\t\t\tthrow new IndexOutOfBoundsException();" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_342 = NL + "\t@Override";
+
     protected final String TEXT_343 = NL + "\tprotected void eSetVirtualIndexBits(int offset, int newIndexBits)" + NL + "\t{" + NL + "\t\tswitch (offset)" + NL + "\t\t{";
+
     protected final String TEXT_344 = NL + "\t\t\tcase ";
+
     protected final String TEXT_345 = " :" + NL + "\t\t\t\t";
+
     protected final String TEXT_346 = " = newIndexBits;" + NL + "\t\t\t\tbreak;";
+
     protected final String TEXT_347 = NL + "\t\t\tdefault :" + NL + "\t\t\t\tthrow new IndexOutOfBoundsException();" + NL + "\t\t}" + NL + "\t}" + NL;
+
     protected final String TEXT_348 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_349 = NL + "\t@Override";
+
     protected final String TEXT_350 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_351 = NL + "\tpublic Object eInvoke(int operationID, ";
+
     protected final String TEXT_352 = " arguments) throws ";
+
     protected final String TEXT_353 = NL + "\t{" + NL + "\t\tswitch (operationID";
+
     protected final String TEXT_354 = ")" + NL + "\t\t{";
+
     protected final String TEXT_355 = NL + "\t\t\tcase ";
+
     protected final String TEXT_356 = ":";
+
     protected final String TEXT_357 = NL + "\t\t\t\t";
+
     protected final String TEXT_358 = "(";
+
     protected final String TEXT_359 = "(";
+
     protected final String TEXT_360 = "(";
+
     protected final String TEXT_361 = ")";
+
     protected final String TEXT_362 = "arguments.get(";
+
     protected final String TEXT_363 = ")";
+
     protected final String TEXT_364 = ").";
+
     protected final String TEXT_365 = "()";
+
     protected final String TEXT_366 = ", ";
+
     protected final String TEXT_367 = ");" + NL + "\t\t\t\treturn null;";
+
     protected final String TEXT_368 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_369 = "new ";
+
     protected final String TEXT_370 = "(";
+
     protected final String TEXT_371 = "(";
+
     protected final String TEXT_372 = "(";
+
     protected final String TEXT_373 = "(";
+
     protected final String TEXT_374 = ")";
+
     protected final String TEXT_375 = "arguments.get(";
+
     protected final String TEXT_376 = ")";
+
     protected final String TEXT_377 = ").";
+
     protected final String TEXT_378 = "()";
+
     protected final String TEXT_379 = ", ";
+
     protected final String TEXT_380 = ")";
+
     protected final String TEXT_381 = ")";
+
     protected final String TEXT_382 = ";";
+
     protected final String TEXT_383 = NL + "\t\t}";
+
     protected final String TEXT_384 = NL + "\t\treturn super.eInvoke(operationID, arguments);";
+
     protected final String TEXT_385 = NL + "\t\treturn eDynamicInvoke(operationID, arguments);";
+
     protected final String TEXT_386 = NL + "\t}" + NL;
+
     protected final String TEXT_387 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_388 = NL + "\t@Override";
+
     protected final String TEXT_389 = NL + "\tpublic String toString()" + NL + "\t{" + NL + "\t\tif (eIsProxy()) return super.toString();" + NL + "" + NL + "\t\tStringBuffer result = new StringBuffer(super.toString());";
+
     protected final String TEXT_390 = NL + "\t\tresult.append(\" (";
+
     protected final String TEXT_391 = ": \");";
+
     protected final String TEXT_392 = NL + "\t\tresult.append(\", ";
+
     protected final String TEXT_393 = ": \");";
+
     protected final String TEXT_394 = NL + "\t\tif (eVirtualIsSet(";
+
     protected final String TEXT_395 = ")) result.append(eVirtualGet(";
+
     protected final String TEXT_396 = ")); else result.append(\"<unset>\");";
+
     protected final String TEXT_397 = NL + "\t\tif (";
+
     protected final String TEXT_398 = "(";
+
     protected final String TEXT_399 = " & ";
+
     protected final String TEXT_400 = "_ESETFLAG) != 0";
+
     protected final String TEXT_401 = "ESet";
+
     protected final String TEXT_402 = ") result.append((";
+
     protected final String TEXT_403 = " & ";
+
     protected final String TEXT_404 = "_EFLAG) != 0); else result.append(\"<unset>\");";
+
     protected final String TEXT_405 = NL + "\t\tif (";
+
     protected final String TEXT_406 = "(";
+
     protected final String TEXT_407 = " & ";
+
     protected final String TEXT_408 = "_ESETFLAG) != 0";
+
     protected final String TEXT_409 = "ESet";
+
     protected final String TEXT_410 = ") result.append(";
+
     protected final String TEXT_411 = "_EFLAG_VALUES[(";
+
     protected final String TEXT_412 = " & ";
+
     protected final String TEXT_413 = "_EFLAG) >>> ";
+
     protected final String TEXT_414 = "_EFLAG_OFFSET]); else result.append(\"<unset>\");";
+
     protected final String TEXT_415 = NL + "\t\tif (";
+
     protected final String TEXT_416 = "(";
+
     protected final String TEXT_417 = " & ";
+
     protected final String TEXT_418 = "_ESETFLAG) != 0";
+
     protected final String TEXT_419 = "ESet";
+
     protected final String TEXT_420 = ") result.append(";
+
     protected final String TEXT_421 = "); else result.append(\"<unset>\");";
+
     protected final String TEXT_422 = NL + "\t\tresult.append(eVirtualGet(";
+
     protected final String TEXT_423 = ", ";
+
     protected final String TEXT_424 = "));";
+
     protected final String TEXT_425 = NL + "\t\tresult.append((";
+
     protected final String TEXT_426 = " & ";
+
     protected final String TEXT_427 = "_EFLAG) != 0);";
+
     protected final String TEXT_428 = NL + "\t\tresult.append(";
+
     protected final String TEXT_429 = "_EFLAG_VALUES[(";
+
     protected final String TEXT_430 = " & ";
+
     protected final String TEXT_431 = "_EFLAG) >>> ";
+
     protected final String TEXT_432 = "_EFLAG_OFFSET]);";
+
     protected final String TEXT_433 = NL + "\t\tresult.append(";
+
     protected final String TEXT_434 = ");";
+
     protected final String TEXT_435 = NL + "\t\tresult.append(')');" + NL + "\t\treturn result.toString();" + NL + "\t}" + NL;
+
     protected final String TEXT_436 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_437 = NL + "\t@";
-    protected final String TEXT_438 = NL + "\tprotected int hash = -1;" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic int getHash()" + NL + "\t{" + NL + "\t\tif (hash == -1)" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_439 = " theKey = getKey();" + NL + "\t\t\thash = (theKey == null ? 0 : theKey.hashCode());" + NL + "\t\t}" + NL + "\t\treturn hash;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void setHash(int hash)" + NL + "\t{" + NL + "\t\tthis.hash = hash;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
+    protected final String TEXT_438 = NL + "\tprotected int hash = -1;" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic int getHash()" + NL + "\t{" + NL + "\t\tif (hash == -1)" + NL + "\t\t{"
+            + NL + "\t\t\t";
+
+    protected final String TEXT_439 = " theKey = getKey();" + NL + "\t\t\thash = (theKey == null ? 0 : theKey.hashCode());" + NL + "\t\t}" + NL + "\t\treturn hash;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+            + "\t * @generated" + NL + "\t */" + NL + "\tpublic void setHash(int hash)" + NL + "\t{" + NL + "\t\tthis.hash = hash;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tpublic ";
+
     protected final String TEXT_440 = " getKey()" + NL + "\t{";
+
     protected final String TEXT_441 = NL + "\t\treturn new ";
+
     protected final String TEXT_442 = "(getTypedKey());";
+
     protected final String TEXT_443 = NL + "\t\treturn getTypedKey();";
+
     protected final String TEXT_444 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic void setKey(";
+
     protected final String TEXT_445 = " key)" + NL + "\t{";
+
     protected final String TEXT_446 = NL + "\t\tgetTypedKey().addAll(";
+
     protected final String TEXT_447 = "(";
+
     protected final String TEXT_448 = ")";
+
     protected final String TEXT_449 = "key);";
+
     protected final String TEXT_450 = NL + "\t\tsetTypedKey(key);";
+
     protected final String TEXT_451 = NL + "\t\tsetTypedKey(((";
+
     protected final String TEXT_452 = ")key).";
+
     protected final String TEXT_453 = "());";
+
     protected final String TEXT_454 = NL + "\t\tsetTypedKey((";
+
     protected final String TEXT_455 = ")key);";
+
     protected final String TEXT_456 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_457 = " getValue()" + NL + "\t{";
+
     protected final String TEXT_458 = NL + "\t\treturn new ";
+
     protected final String TEXT_459 = "(getTypedValue());";
+
     protected final String TEXT_460 = NL + "\t\treturn getTypedValue();";
+
     protected final String TEXT_461 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_462 = " setValue(";
+
     protected final String TEXT_463 = " value)" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_464 = " oldValue = getValue();";
+
     protected final String TEXT_465 = NL + "\t\tgetTypedValue().clear();" + NL + "\t\tgetTypedValue().addAll(";
+
     protected final String TEXT_466 = "(";
+
     protected final String TEXT_467 = ")";
+
     protected final String TEXT_468 = "value);";
+
     protected final String TEXT_469 = NL + "\t\tsetTypedValue(value);";
+
     protected final String TEXT_470 = NL + "\t\tsetTypedValue(((";
+
     protected final String TEXT_471 = ")value).";
+
     protected final String TEXT_472 = "());";
+
     protected final String TEXT_473 = NL + "\t\tsetTypedValue((";
+
     protected final String TEXT_474 = ")value);";
+
     protected final String TEXT_475 = NL + "\t\treturn oldValue;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_476 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_477 = NL + "\tpublic ";
+
     protected final String TEXT_478 = " getEMap()" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_479 = " container = eContainer();" + NL + "\t\treturn container == null ? null : (";
+
     protected final String TEXT_480 = ")container.eGet(eContainmentFeature());" + NL + "\t}" + NL;
+
     protected final String TEXT_481 = NL;
+
     protected final String TEXT_482 = NL + "} //";
+
     protected final String TEXT_483 = NL;
+
     protected final String TEXT_484 = NL;
+
     protected final String TEXT_485 = NL;
 
     public Class() {
@@ -597,7 +1087,11 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         GenClass genClass = parameter;
-        argument = ((Object[]) new Object[] { new Object[] { genClass, genClass.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } })[0];
+        argument = ((Object[]) new Object[] {
+            new Object[] {
+                    genClass, genClass.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE
+            }
+        })[0];
 
     }
 
@@ -929,6 +1423,7 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 
         //Class/reflectiveDelegation.override.javajetinc
         new Runnable() {
+
             public void run() {
                 for (GenFeature genFeature : (isImplementation ? genClass.getImplementedGenFeatures() : genClass.getDeclaredGenFeatures())) {
                     stringBuffer.append(TEXT_94);
@@ -1009,7 +1504,8 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
                 stringBuffer.append(genClass.getQualifiedFeatureID(genFeature));
                 stringBuffer.append(TEXT_105);
                 if (genFeature.isListType()) {
-                    String cast = "(" + genModel.getImportedName("org.eclipse.emf.ecore.util.InternalEList") + (!genModel.useGenerics() ? ")" : "<" + genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject") + ">)(" + genModel.getImportedName("org.eclipse.emf.ecore.util.InternalEList") + "<?>)");
+                    String cast = "(" + genModel.getImportedName("org.eclipse.emf.ecore.util.InternalEList")
+                            + (!genModel.useGenerics() ? ")" : "<" + genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject") + ">)(" + genModel.getImportedName("org.eclipse.emf.ecore.util.InternalEList") + "<?>)");
                     if (genFeature.isMapType() && genFeature.isEffectiveSuppressEMFTypes()) {
                         stringBuffer.append(TEXT_106);
                         stringBuffer.append(cast);
@@ -1502,7 +1998,8 @@ public class Class extends org.eclipse.egf.emf.pattern.base.GenClassJava {
             }
             stringBuffer.append(TEXT_303);
         }
-        if (genModel.isOperationReflection() && isImplementation && (!genClass.getMixinGenOperations().isEmpty() || !genClass.getOverrideGenOperations(genClass.getExtendedGenOperations(), genClass.getImplementedGenOperations()).isEmpty() || genClass.hasOffsetCorrection() && !genClass.getGenOperations().isEmpty())) {
+        if (genModel.isOperationReflection() && isImplementation
+                && (!genClass.getMixinGenOperations().isEmpty() || !genClass.getOverrideGenOperations(genClass.getExtendedGenOperations(), genClass.getImplementedGenOperations()).isEmpty() || genClass.hasOffsetCorrection() && !genClass.getGenOperations().isEmpty())) {
             stringBuffer.append(TEXT_304);
             if (genModel.useClassOverrideAnnotation()) {
                 stringBuffer.append(TEXT_305);

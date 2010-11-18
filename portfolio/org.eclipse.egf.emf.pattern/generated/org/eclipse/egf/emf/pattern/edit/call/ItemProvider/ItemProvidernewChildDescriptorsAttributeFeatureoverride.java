@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
+
     protected static String nl;
 
     public static synchronized ItemProvidernewChildDescriptorsAttributeFeatureoverride create(String lineSeparator) {
@@ -25,20 +26,35 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + NL + "\t\tnewChildDescriptors.add" + NL + "\t\t\t(createChildParameter" + NL + "\t\t\t\t(";
+
     protected final String TEXT_2 = ",";
+
     protected final String TEXT_3 = NL + "\t\t\t\t ";
+
     protected final String TEXT_4 = "));";
+
     protected final String TEXT_5 = NL + "\t\t\t\t ";
+
     protected final String TEXT_6 = "));";
+
     protected final String TEXT_7 = NL + "\t\t\t\t ";
+
     protected final String TEXT_8 = ".createFromString(";
+
     protected final String TEXT_9 = ", ";
+
     protected final String TEXT_10 = ")));";
+
     protected final String TEXT_11 = " // TODO: ensure this is a valid literal value";
+
     protected final String TEXT_12 = NL;
+
     protected final String TEXT_13 = NL;
+
     protected final String TEXT_14 = NL;
+
     protected final String TEXT_15 = NL;
 
     public ItemProvidernewChildDescriptorsAttributeFeatureoverride() {

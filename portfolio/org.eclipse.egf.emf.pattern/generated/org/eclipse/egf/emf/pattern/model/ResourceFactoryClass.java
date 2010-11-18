@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava {
+
     protected static String nl;
 
     public static synchronized ResourceFactoryClass create(String lineSeparator) {
@@ -25,38 +26,71 @@ public class ResourceFactoryClass extends org.eclipse.egf.emf.pattern.base.GenPa
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Resource Factory</b> associated with the package." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
+
     protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
+
     protected final String TEXT_6 = " extends ";
+
     protected final String TEXT_7 = NL + "{";
+
     protected final String TEXT_8 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_9 = " copyright = ";
+
     protected final String TEXT_10 = ";";
+
     protected final String TEXT_11 = NL;
+
     protected final String TEXT_12 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_13 = " extendedMetaData;" + NL;
+
     protected final String TEXT_14 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_15 = " xmlMap = new ";
+
     protected final String TEXT_16 = "();" + NL;
+
     protected final String TEXT_17 = NL + "\t/**" + NL + "\t * Creates an instance of the resource factory." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_18 = "()" + NL + "\t{" + NL + "\t\tsuper();";
+
     protected final String TEXT_19 = NL + "\t\textendedMetaData = new ";
+
     protected final String TEXT_20 = "(new ";
+
     protected final String TEXT_21 = "(";
+
     protected final String TEXT_22 = ".Registry.INSTANCE));" + NL + "\t\textendedMetaData.putPackage(null, ";
+
     protected final String TEXT_23 = ".eINSTANCE);";
+
     protected final String TEXT_24 = NL + "\t\txmlMap.setNoNamespacePackage(";
+
     protected final String TEXT_25 = ".eINSTANCE);";
+
     protected final String TEXT_26 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Creates an instance of the resource." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_27 = NL + "\t@Override";
+
     protected final String TEXT_28 = NL + "\tpublic Resource createResource(URI uri)" + NL + "\t{";
+
     protected final String TEXT_29 = NL;
+
     protected final String TEXT_30 = NL + "\t}" + NL + "" + NL + "} //";
+
     protected final String TEXT_31 = NL;
+
     protected final String TEXT_32 = NL;
+
     protected final String TEXT_33 = NL;
 
     public ResourceFactoryClass() {

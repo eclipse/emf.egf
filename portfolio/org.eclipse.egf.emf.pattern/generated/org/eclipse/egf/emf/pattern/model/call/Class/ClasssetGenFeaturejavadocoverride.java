@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClasssetGenFeaturejavadocoverride {
+
     protected static String nl;
 
     public static synchronized ClasssetGenFeaturejavadocoverride create(String lineSeparator) {
@@ -25,23 +26,41 @@ public class ClasssetGenFeaturejavadocoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * Sets the value of the '{@link ";
+
     protected final String TEXT_2 = "#";
+
     protected final String TEXT_3 = " <em>";
+
     protected final String TEXT_4 = "</em>}' ";
+
     protected final String TEXT_5 = ".";
+
     protected final String TEXT_6 = NL;
+
     protected final String TEXT_7 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param value the new value of the '<em>";
+
     protected final String TEXT_8 = "</em>' ";
+
     protected final String TEXT_9 = ".";
+
     protected final String TEXT_10 = NL + "\t * @see ";
+
     protected final String TEXT_11 = NL + "\t * @see #isSet";
+
     protected final String TEXT_12 = "()";
+
     protected final String TEXT_13 = NL + "\t * @see #unset";
+
     protected final String TEXT_14 = "()";
+
     protected final String TEXT_15 = NL + "\t * @see #";
+
     protected final String TEXT_16 = "()" + NL + "\t * @generated" + NL + "\t */" + NL;
+
     protected final String TEXT_17 = NL;
+
     protected final String TEXT_18 = NL;
 
     public ClasssetGenFeaturejavadocoverride() {

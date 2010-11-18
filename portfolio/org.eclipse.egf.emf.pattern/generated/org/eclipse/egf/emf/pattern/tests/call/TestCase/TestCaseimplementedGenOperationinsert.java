@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCaseimplementedGenOperationinsert {
+
     protected static String nl;
 
     public static synchronized TestCaseimplementedGenOperationinsert create(String lineSeparator) {
@@ -25,7 +26,9 @@ public class TestCaseimplementedGenOperationinsert {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL;
 
     public TestCaseimplementedGenOperationinsert() {

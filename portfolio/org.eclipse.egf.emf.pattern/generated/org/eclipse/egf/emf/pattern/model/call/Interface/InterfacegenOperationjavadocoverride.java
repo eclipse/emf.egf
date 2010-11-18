@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacegenOperationjavadocoverride {
+
     protected static String nl;
 
     public static synchronized InterfacegenOperationjavadocoverride create(String lineSeparator) {
@@ -25,21 +26,37 @@ public class InterfacegenOperationjavadocoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->";
+
     protected final String TEXT_4 = NL + "\t * <!-- begin-model-doc -->";
+
     protected final String TEXT_5 = NL + "\t * ";
+
     protected final String TEXT_6 = NL + "\t * @param ";
+
     protected final String TEXT_7 = NL + "\t *   ";
+
     protected final String TEXT_8 = NL + "\t * @param ";
+
     protected final String TEXT_9 = " ";
+
     protected final String TEXT_10 = NL + "\t * <!-- end-model-doc -->";
+
     protected final String TEXT_11 = NL + "\t * @model ";
+
     protected final String TEXT_12 = NL + "\t *        ";
+
     protected final String TEXT_13 = NL + "\t * @model";
+
     protected final String TEXT_14 = NL + "\t * @generated" + NL + "\t */" + NL;
+
     protected final String TEXT_15 = NL;
+
     protected final String TEXT_16 = NL;
 
     public InterfacegenOperationjavadocoverride() {

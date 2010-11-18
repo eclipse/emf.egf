@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfaceeIsSetoverride {
+
     protected static String nl;
 
     public static synchronized InterfaceeIsSetoverride create(String lineSeparator) {
@@ -25,92 +26,179 @@ public class InterfaceeIsSetoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_2 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_3 = NL + "\t@Override";
+
     protected final String TEXT_4 = NL + "\tpublic boolean eIsSet(int featureID)" + NL + "\t{" + NL + "\t\tswitch (featureID";
+
     protected final String TEXT_5 = ")" + NL + "\t\t{";
+
     protected final String TEXT_6 = NL + "\t\t\tcase ";
+
     protected final String TEXT_7 = ":";
+
     protected final String TEXT_8 = NL + "\t\t\t\treturn isSet";
+
     protected final String TEXT_9 = "();";
+
     protected final String TEXT_10 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_11 = "__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);";
+
     protected final String TEXT_12 = NL + "\t\t\t\treturn !((";
+
     protected final String TEXT_13 = ".Internal.Wrapper)";
+
     protected final String TEXT_14 = "()).featureMap().isEmpty();";
+
     protected final String TEXT_15 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_16 = " != null && !";
+
     protected final String TEXT_17 = ".featureMap().isEmpty();";
+
     protected final String TEXT_18 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_19 = " != null && !";
+
     protected final String TEXT_20 = ".isEmpty();";
+
     protected final String TEXT_21 = NL + "\t\t\t\t";
+
     protected final String TEXT_22 = " ";
+
     protected final String TEXT_23 = " = (";
+
     protected final String TEXT_24 = ")eVirtualGet(";
+
     protected final String TEXT_25 = ");" + NL + "\t\t\t\treturn ";
+
     protected final String TEXT_26 = " != null && !";
+
     protected final String TEXT_27 = ".isEmpty();";
+
     protected final String TEXT_28 = NL + "\t\t\t\treturn !";
+
     protected final String TEXT_29 = "().isEmpty();";
+
     protected final String TEXT_30 = NL + "\t\t\t\treturn isSet";
+
     protected final String TEXT_31 = "();";
+
     protected final String TEXT_32 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_33 = " != null;";
+
     protected final String TEXT_34 = NL + "\t\t\t\treturn eVirtualGet(";
+
     protected final String TEXT_35 = ") != null;";
+
     protected final String TEXT_36 = NL + "\t\t\t\treturn basicGet";
+
     protected final String TEXT_37 = "() != null;";
+
     protected final String TEXT_38 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_39 = " != null;";
+
     protected final String TEXT_40 = NL + "\t\t\t\treturn eVirtualGet(";
+
     protected final String TEXT_41 = ") != null;";
+
     protected final String TEXT_42 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_43 = "() != null;";
+
     protected final String TEXT_44 = NL + "\t\t\t\treturn ((";
+
     protected final String TEXT_45 = " & ";
+
     protected final String TEXT_46 = "_EFLAG) != 0) != ";
+
     protected final String TEXT_47 = ";";
+
     protected final String TEXT_48 = NL + "\t\t\t\treturn (";
+
     protected final String TEXT_49 = " & ";
+
     protected final String TEXT_50 = "_EFLAG) != ";
+
     protected final String TEXT_51 = "_EFLAG_DEFAULT;";
+
     protected final String TEXT_52 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_53 = " != ";
+
     protected final String TEXT_54 = ";";
+
     protected final String TEXT_55 = NL + "\t\t\t\treturn eVirtualGet(";
+
     protected final String TEXT_56 = ", ";
+
     protected final String TEXT_57 = ") != ";
+
     protected final String TEXT_58 = ";";
+
     protected final String TEXT_59 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_60 = "() != ";
+
     protected final String TEXT_61 = ";";
+
     protected final String TEXT_62 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_63 = " == null ? ";
+
     protected final String TEXT_64 = " != null : !";
+
     protected final String TEXT_65 = ".equals(";
+
     protected final String TEXT_66 = ");";
+
     protected final String TEXT_67 = NL + "\t\t\t\t";
+
     protected final String TEXT_68 = " ";
+
     protected final String TEXT_69 = " = (";
+
     protected final String TEXT_70 = ")eVirtualGet(";
+
     protected final String TEXT_71 = ", ";
+
     protected final String TEXT_72 = ");" + NL + "\t\t\t\treturn ";
+
     protected final String TEXT_73 = " == null ? ";
+
     protected final String TEXT_74 = " != null : !";
+
     protected final String TEXT_75 = ".equals(";
+
     protected final String TEXT_76 = ");";
+
     protected final String TEXT_77 = NL + "\t\t\t\treturn ";
+
     protected final String TEXT_78 = " == null ? ";
+
     protected final String TEXT_79 = "() != null : !";
+
     protected final String TEXT_80 = ".equals(";
+
     protected final String TEXT_81 = "());";
+
     protected final String TEXT_82 = NL + "\t\t}";
+
     protected final String TEXT_83 = NL + "\t\treturn super.eIsSet(featureID);";
+
     protected final String TEXT_84 = NL + "\t\treturn eDynamicIsSet(featureID);";
+
     protected final String TEXT_85 = NL + "\t}" + NL + NL;
+
     protected final String TEXT_86 = NL;
+
     protected final String TEXT_87 = NL;
 
     public InterfaceeIsSetoverride() {

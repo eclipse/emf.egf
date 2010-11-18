@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
+
     protected static String nl;
 
     public static synchronized ManifestMF create(String lineSeparator) {
@@ -25,27 +26,51 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "Manifest-Version: 1.0" + NL + "Bundle-ManifestVersion: 2" + NL + "Bundle-Name: %pluginName" + NL + "Bundle-SymbolicName: ";
+
     protected final String TEXT_2 = ";singleton:=true" + NL + "Bundle-Version: 1.0.0" + NL + "Bundle-ClassPath: ";
+
     protected final String TEXT_3 = ".jar";
+
     protected final String TEXT_4 = ".";
+
     protected final String TEXT_5 = NL + "Bundle-Activator: ";
+
     protected final String TEXT_6 = "$Implementation" + NL + "Bundle-Vendor: %providerName" + NL + "Bundle-Localization: plugin";
+
     protected final String TEXT_7 = NL + "Bundle-RequiredExecutionEnvironment: J2SE-1.5";
+
     protected final String TEXT_8 = NL + "Bundle-RequiredExecutionEnvironment: JavaSE-1.6";
+
     protected final String TEXT_9 = NL + "Export-Package: ";
+
     protected final String TEXT_10 = ",";
+
     protected final String TEXT_11 = NL + " ";
+
     protected final String TEXT_12 = NL + "Require-Bundle: ";
+
     protected final String TEXT_13 = ";visibility:=reexport";
+
     protected final String TEXT_14 = ",";
+
     protected final String TEXT_15 = NL + " ";
+
     protected final String TEXT_16 = ";visibility:=reexport";
-    protected final String TEXT_17 = NL + "Import-Package: org.eclipse.emf.common.ui," + NL + " org.eclipse.emf.common.ui.action," + NL + " org.eclipse.emf.common.ui.dialogs," + NL + " org.eclipse.emf.common.ui.editor," + NL + " org.eclipse.emf.common.ui.viewer," + NL + " org.eclipse.emf.edit.ui," + NL + " org.eclipse.emf.edit.ui.action," + NL + " org.eclipse.emf.edit.ui.celleditor," + NL + " org.eclipse.emf.edit.ui.dnd," + NL + " org.eclipse.emf.edit.ui.provider," + NL + " org.eclipse.emf.edit.ui.util," + NL + " org.eclipse.emf.edit.ui.view," + NL + " org.eclipse.jface.action," + NL + " org.eclipse.jface.dialogs," + NL + " org.eclipse.jface.operation," + NL + " org.eclipse.jface.viewers," + NL + " org.eclipse.jface.window," + NL + " org.eclipse.jface.wizard," + NL + " org.eclipse.swt,"
-            + NL + " org.eclipse.swt.custom," + NL + " org.eclipse.swt.dnd," + NL + " org.eclipse.swt.events," + NL + " org.eclipse.swt.graphics," + NL + " org.eclipse.swt.layout," + NL + " org.eclipse.swt.widgets," + NL + " org.eclipse.ui;ui.workbench=\"split\"," + NL + " org.eclipse.ui.actions;ui.workbench=\"split\"," + NL + " org.eclipse.ui.application," + NL + " org.eclipse.ui.part;ui.workbench=\"split\"," + NL + " org.eclipse.ui.views," + NL + " org.eclipse.ui.views.contentoutline," + NL + " org.eclipse.ui.views.properties;ui.views=\"split\"";
+
+    protected final String TEXT_17 = NL + "Import-Package: org.eclipse.emf.common.ui," + NL + " org.eclipse.emf.common.ui.action," + NL + " org.eclipse.emf.common.ui.dialogs," + NL + " org.eclipse.emf.common.ui.editor," + NL + " org.eclipse.emf.common.ui.viewer," + NL + " org.eclipse.emf.edit.ui,"
+            + NL + " org.eclipse.emf.edit.ui.action," + NL + " org.eclipse.emf.edit.ui.celleditor," + NL + " org.eclipse.emf.edit.ui.dnd," + NL + " org.eclipse.emf.edit.ui.provider," + NL + " org.eclipse.emf.edit.ui.util," + NL + " org.eclipse.emf.edit.ui.view," + NL + " org.eclipse.jface.action,"
+            + NL + " org.eclipse.jface.dialogs," + NL + " org.eclipse.jface.operation," + NL + " org.eclipse.jface.viewers," + NL + " org.eclipse.jface.window," + NL + " org.eclipse.jface.wizard," + NL + " org.eclipse.swt," + NL + " org.eclipse.swt.custom," + NL + " org.eclipse.swt.dnd," + NL
+            + " org.eclipse.swt.events," + NL + " org.eclipse.swt.graphics," + NL + " org.eclipse.swt.layout," + NL + " org.eclipse.swt.widgets," + NL + " org.eclipse.ui;ui.workbench=\"split\"," + NL + " org.eclipse.ui.actions;ui.workbench=\"split\"," + NL + " org.eclipse.ui.application," + NL
+            + " org.eclipse.ui.part;ui.workbench=\"split\"," + NL + " org.eclipse.ui.views," + NL + " org.eclipse.ui.views.contentoutline," + NL + " org.eclipse.ui.views.properties;ui.views=\"split\"";
+
     protected final String TEXT_18 = NL + "Eclipse-LazyStart: true";
+
     protected final String TEXT_19 = NL + "Bundle-ActivationPolicy: lazy" + NL;
+
     protected final String TEXT_20 = NL;
+
     protected final String TEXT_21 = NL;
 
     public ManifestMF() {

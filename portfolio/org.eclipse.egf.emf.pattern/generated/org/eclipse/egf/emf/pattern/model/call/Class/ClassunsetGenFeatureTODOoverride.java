@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassunsetGenFeatureTODOoverride {
+
     protected static String nl;
 
     public static synchronized ClassunsetGenFeatureTODOoverride create(String lineSeparator) {
@@ -25,10 +26,15 @@ public class ClassunsetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t\t// TODO: implement this method to unset the '";
+
     protected final String TEXT_2 = "' ";
+
     protected final String TEXT_3 = NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tthrow new UnsupportedOperationException();" + NL;
+
     protected final String TEXT_4 = NL;
+
     protected final String TEXT_5 = NL;
 
     public ClassunsetGenFeatureTODOoverride() {

@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassbasicSetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized ClassbasicSetGenFeatureoverride create(String lineSeparator) {
@@ -25,94 +26,183 @@ public class ClassbasicSetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + "\tpublic ";
+
     protected final String TEXT_4 = " basicSet";
+
     protected final String TEXT_5 = "(";
+
     protected final String TEXT_6 = " new";
+
     protected final String TEXT_7 = ", ";
+
     protected final String TEXT_8 = " msgs)" + NL + "\t{";
+
     protected final String TEXT_9 = NL;
+
     protected final String TEXT_10 = NL + "\t\tmsgs = eBasicSetContainer((";
+
     protected final String TEXT_11 = ")new";
+
     protected final String TEXT_12 = ", ";
+
     protected final String TEXT_13 = ", msgs);";
+
     protected final String TEXT_14 = NL;
+
     protected final String TEXT_15 = NL + "\t\treturn msgs;";
+
     protected final String TEXT_16 = NL;
+
     protected final String TEXT_17 = NL + "\t\tmsgs = eDynamicInverseAdd((";
+
     protected final String TEXT_18 = ")new";
+
     protected final String TEXT_19 = ", ";
+
     protected final String TEXT_20 = ", msgs);";
+
     protected final String TEXT_21 = NL;
+
     protected final String TEXT_22 = NL + "\t\treturn msgs;";
+
     protected final String TEXT_23 = NL;
+
     protected final String TEXT_24 = NL + "\t\tObject old";
+
     protected final String TEXT_25 = " = eVirtualSet(";
+
     protected final String TEXT_26 = ", new";
+
     protected final String TEXT_27 = ");";
+
     protected final String TEXT_28 = NL + "\t\t";
+
     protected final String TEXT_29 = " old";
+
     protected final String TEXT_30 = " = ";
+
     protected final String TEXT_31 = ";" + NL + "\t\t";
+
     protected final String TEXT_32 = " = new";
+
     protected final String TEXT_33 = ";";
+
     protected final String TEXT_34 = NL + "\t\tboolean isSetChange = old";
+
     protected final String TEXT_35 = " == EVIRTUAL_NO_VALUE;";
+
     protected final String TEXT_36 = NL + "\t\tboolean old";
+
     protected final String TEXT_37 = "ESet = (";
+
     protected final String TEXT_38 = " & ";
+
     protected final String TEXT_39 = "_ESETFLAG) != 0;";
+
     protected final String TEXT_40 = NL + "\t\t";
+
     protected final String TEXT_41 = " |= ";
+
     protected final String TEXT_42 = "_ESETFLAG;";
+
     protected final String TEXT_43 = NL + "\t\tboolean old";
+
     protected final String TEXT_44 = "ESet = ";
+
     protected final String TEXT_45 = "ESet;";
+
     protected final String TEXT_46 = NL + "\t\t";
+
     protected final String TEXT_47 = "ESet = true;";
+
     protected final String TEXT_48 = NL + "\t\tif (eNotificationRequired())" + NL + "\t\t{";
+
     protected final String TEXT_49 = NL + "\t\t\t";
+
     protected final String TEXT_50 = " notification = new ";
+
     protected final String TEXT_51 = "(this, ";
+
     protected final String TEXT_52 = ".SET, ";
+
     protected final String TEXT_53 = ", ";
+
     protected final String TEXT_54 = "isSetChange ? null : old";
+
     protected final String TEXT_55 = "old";
+
     protected final String TEXT_56 = ", new";
+
     protected final String TEXT_57 = ", ";
+
     protected final String TEXT_58 = "isSetChange";
+
     protected final String TEXT_59 = "!old";
+
     protected final String TEXT_60 = "ESet";
+
     protected final String TEXT_61 = ");";
+
     protected final String TEXT_62 = NL + "\t\t\t";
+
     protected final String TEXT_63 = " notification = new ";
+
     protected final String TEXT_64 = "(this, ";
+
     protected final String TEXT_65 = ".SET, ";
+
     protected final String TEXT_66 = ", ";
+
     protected final String TEXT_67 = "old";
+
     protected final String TEXT_68 = " == EVIRTUAL_NO_VALUE ? null : old";
+
     protected final String TEXT_69 = "old";
+
     protected final String TEXT_70 = ", new";
+
     protected final String TEXT_71 = ");";
+
     protected final String TEXT_72 = NL + "\t\t\tif (msgs == null) msgs = notification; else msgs.add(notification);" + NL + "\t\t}";
+
     protected final String TEXT_73 = NL;
+
     protected final String TEXT_74 = NL + "\t\treturn msgs;";
+
     protected final String TEXT_75 = NL + "\t\treturn ((";
+
     protected final String TEXT_76 = ".Internal)((";
+
     protected final String TEXT_77 = ".Internal.Wrapper)get";
+
     protected final String TEXT_78 = "()).featureMap()).basicAdd(";
+
     protected final String TEXT_79 = ", new";
+
     protected final String TEXT_80 = ", msgs);";
+
     protected final String TEXT_81 = NL + "\t\treturn ((";
+
     protected final String TEXT_82 = ".Internal)get";
+
     protected final String TEXT_83 = "()).basicAdd(";
+
     protected final String TEXT_84 = ", new";
+
     protected final String TEXT_85 = ", msgs);";
+
     protected final String TEXT_86 = NL;
+
     protected final String TEXT_87 = NL + "\t}" + NL + NL;
+
     protected final String TEXT_88 = NL;
+
     protected final String TEXT_89 = NL;
 
     public ClassbasicSetGenFeatureoverride() {

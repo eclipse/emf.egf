@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCaseimplementedGenFeatureinsert {
+
     protected static String nl;
 
     public static synchronized TestCaseimplementedGenFeatureinsert create(String lineSeparator) {
@@ -25,7 +26,9 @@ public class TestCaseimplementedGenFeatureinsert {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL;
 
     public TestCaseimplementedGenFeatureinsert() {

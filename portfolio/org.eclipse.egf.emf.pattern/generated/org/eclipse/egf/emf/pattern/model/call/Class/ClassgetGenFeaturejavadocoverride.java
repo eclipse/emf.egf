@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassgetGenFeaturejavadocoverride {
+
     protected static String nl;
 
     public static synchronized ClassgetGenFeaturejavadocoverride create(String lineSeparator) {
@@ -25,60 +26,115 @@ public class ClassgetGenFeaturejavadocoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * Returns the value of the '<em><b>";
+
     protected final String TEXT_2 = "</b></em>' ";
+
     protected final String TEXT_3 = ".";
+
     protected final String TEXT_4 = NL + "\t * The key is of type ";
+
     protected final String TEXT_5 = "list of {@link ";
+
     protected final String TEXT_6 = "}";
+
     protected final String TEXT_7 = "{@link ";
+
     protected final String TEXT_8 = "}";
+
     protected final String TEXT_9 = "," + NL + "\t * and the value is of type ";
+
     protected final String TEXT_10 = "list of {@link ";
+
     protected final String TEXT_11 = "}";
+
     protected final String TEXT_12 = "{@link ";
+
     protected final String TEXT_13 = "}";
+
     protected final String TEXT_14 = ",";
+
     protected final String TEXT_15 = NL + "\t * The list contents are of type {@link ";
+
     protected final String TEXT_16 = "}";
+
     protected final String TEXT_17 = ".";
+
     protected final String TEXT_18 = NL + "\t * The default value is <code>";
+
     protected final String TEXT_19 = "</code>.";
+
     protected final String TEXT_20 = NL + "\t * The literals are from the enumeration {@link ";
+
     protected final String TEXT_21 = "}.";
+
     protected final String TEXT_22 = NL + "\t * It is bidirectional and its opposite is '{@link ";
+
     protected final String TEXT_23 = "#";
+
     protected final String TEXT_24 = " <em>";
+
     protected final String TEXT_25 = "</em>}'.";
+
     protected final String TEXT_26 = NL;
+
     protected final String TEXT_27 = NL + "\t * <!-- begin-user-doc -->";
+
     protected final String TEXT_28 = NL + "\t * <p>" + NL + "\t * If the meaning of the '<em>";
+
     protected final String TEXT_29 = "</em>' ";
+
     protected final String TEXT_30 = " isn't clear," + NL + "\t * there really should be more of a description here..." + NL + "\t * </p>";
+
     protected final String TEXT_31 = NL + "\t * <!-- end-user-doc -->";
+
     protected final String TEXT_32 = NL + "\t * <!-- begin-model-doc -->" + NL + "\t * ";
+
     protected final String TEXT_33 = NL + "\t * <!-- end-model-doc -->";
+
     protected final String TEXT_34 = NL + "\t * @return the value of the '<em>";
+
     protected final String TEXT_35 = "</em>' ";
+
     protected final String TEXT_36 = ".";
+
     protected final String TEXT_37 = NL + "\t * @see ";
+
     protected final String TEXT_38 = NL + "\t * @see #isSet";
+
     protected final String TEXT_39 = "()";
+
     protected final String TEXT_40 = NL + "\t * @see #unset";
+
     protected final String TEXT_41 = "()";
+
     protected final String TEXT_42 = NL + "\t * @see #set";
+
     protected final String TEXT_43 = "(";
+
     protected final String TEXT_44 = ")";
+
     protected final String TEXT_45 = NL + "\t * @see ";
+
     protected final String TEXT_46 = "#get";
+
     protected final String TEXT_47 = "()";
+
     protected final String TEXT_48 = NL + "\t * @see ";
+
     protected final String TEXT_49 = "#";
+
     protected final String TEXT_50 = NL + "\t * @model ";
+
     protected final String TEXT_51 = NL + "\t *        ";
+
     protected final String TEXT_52 = NL + "\t * @model";
+
     protected final String TEXT_53 = NL + "\t * @generated" + NL + "\t */" + NL;
+
     protected final String TEXT_54 = NL;
+
     protected final String TEXT_55 = NL;
 
     public ClassgetGenFeaturejavadocoverride() {

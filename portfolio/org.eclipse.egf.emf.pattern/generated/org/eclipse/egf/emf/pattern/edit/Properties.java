@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Properties extends org.eclipse.egf.emf.pattern.base.GenModelJava {
+
     protected static String nl;
 
     public static synchronized Properties create(String lineSeparator) {
@@ -25,50 +26,101 @@ public class Properties extends org.eclipse.egf.emf.pattern.base.GenModelJava {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public interface ";
+
     protected final String TEXT_5 = "Properties extends ";
+
     protected final String TEXT_6 = NL + "{";
-    protected final String TEXT_7 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text\")" + NL + "\t@DefaultMessage(\"{0}\")" + NL + "\tString createChildText(Object type);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text2\")" + NL + "\t@DefaultMessage(\"{1} ";
+
+    protected final String TEXT_7 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text\")" + NL + "\t@DefaultMessage(\"{0}\")" + NL + "\tString createChildText(Object type);" + NL + ""
+            + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text2\")" + NL + "\t@DefaultMessage(\"{1} ";
+
     protected final String TEXT_8 = "| ";
-    protected final String TEXT_9 = "{0}\")" + NL + "\tString createChildText2(Object type, Object feature);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text3\")" + NL + "\t@DefaultMessage(\"{0}\")" + NL + "\tString createChildText3(Object feature);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_tooltip\")" + NL + "\t@DefaultMessage(\"Create New {0} Under {1} Feature\")" + NL + "\tString createChildTooltip(Object type, Object feature);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
-            + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_description\")" + NL + "\t@DefaultMessage(\"Create a new child of type {0} for the {1} feature of the selected {2}.\")" + NL + "\tString createChildDescripition(Object type, Object feature, Object selection);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateSibling_description\")" + NL + "\t@DefaultMessage(\"Create a new sibling of type {0} for the selected {2}, under the {1} feature of their parent.\")" + NL + "\tString createSiblingDescription(Object type, Object feature, Object selection);" + NL;
-    protected final String TEXT_10 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_PropertyDescriptor_description\")" + NL + "\t@DefaultMessage(\"The {0} of the {1}\")" + NL + "\tString propertyDescriptorDescription(Object feature, Object type);" + NL;
+
+    protected final String TEXT_9 = "{0}\")" + NL + "\tString createChildText2(Object type, Object feature);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_text3\")" + NL
+            + "\t@DefaultMessage(\"{0}\")" + NL + "\tString createChildText3(Object feature);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateChild_tooltip\")" + NL
+            + "\t@DefaultMessage(\"Create New {0} Under {1} Feature\")" + NL + "\tString createChildTooltip(Object type, Object feature);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\t@Key(\"_UI_CreateChild_description\")" + NL + "\t@DefaultMessage(\"Create a new child of type {0} for the {1} feature of the selected {2}.\")" + NL + "\tString createChildDescripition(Object type, Object feature, Object selection);" + NL + "" + NL + "\t/**" + NL
+            + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_CreateSibling_description\")" + NL + "\t@DefaultMessage(\"Create a new sibling of type {0} for the selected {2}, under the {1} feature of their parent.\")"
+            + NL + "\tString createSiblingDescription(Object type, Object feature, Object selection);" + NL;
+
+    protected final String TEXT_10 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_PropertyDescriptor_description\")" + NL + "\t@DefaultMessage(\"The {0} of the {1}\")" + NL
+            + "\tString propertyDescriptorDescription(Object feature, Object type);" + NL;
+
     protected final String TEXT_11 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_";
+
     protected final String TEXT_12 = "_type\")" + NL + "\t@DefaultMessage(\"";
+
     protected final String TEXT_13 = "\")" + NL + "\tString ";
+
     protected final String TEXT_14 = "Type();" + NL;
-    protected final String TEXT_15 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_type\")" + NL + "\t@DefaultMessage(\"Object\")" + NL + "\tString unknownType();" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_datatype\")" + NL + "\t@DefaultMessage(\"Value\")" + NL + "\tString unknownDatatype();" + NL;
+
+    protected final String TEXT_15 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_type\")" + NL + "\t@DefaultMessage(\"Object\")" + NL + "\tString unknownType();" + NL + "" + NL + "\t/**"
+            + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_datatype\")" + NL + "\t@DefaultMessage(\"Value\")" + NL + "\tString unknownDatatype();" + NL;
+
     protected final String TEXT_16 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_";
+
     protected final String TEXT_17 = "_";
+
     protected final String TEXT_18 = "_feature\")" + NL + "\t@DefaultMessage(\"";
+
     protected final String TEXT_19 = "\")" + NL + "\tString ";
+
     protected final String TEXT_20 = "_";
+
     protected final String TEXT_21 = "Feature();" + NL;
+
     protected final String TEXT_22 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_";
+
     protected final String TEXT_23 = "_";
+
     protected final String TEXT_24 = "_description\")" + NL + "\t@DefaultMessage(\"";
+
     protected final String TEXT_25 = "\")" + NL + "\tString ";
+
     protected final String TEXT_26 = "_";
+
     protected final String TEXT_27 = "Description();" + NL;
+
     protected final String TEXT_28 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_Unknown_feature\")" + NL + "\t@DefaultMessage(\"Unspecified\")" + NL + "\tString unknownFeature();" + NL;
+
     protected final String TEXT_29 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"_UI_";
+
     protected final String TEXT_30 = "_";
+
     protected final String TEXT_31 = "_literal\")" + NL + "\t@DefaultMessage(\"";
+
     protected final String TEXT_32 = "\")" + NL + "\tString ";
+
     protected final String TEXT_33 = "_";
+
     protected final String TEXT_34 = "Literal();" + NL;
+
     protected final String TEXT_35 = NL;
+
     protected final String TEXT_36 = " = ";
+
     protected final String TEXT_37 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Key(\"";
+
     protected final String TEXT_38 = "\")" + NL + "\t@DefaultMessage(\"";
+
     protected final String TEXT_39 = "\")" + NL + "\tString ";
+
     protected final String TEXT_40 = "();" + NL;
+
     protected final String TEXT_41 = NL + "}";
+
     protected final String TEXT_42 = NL;
+
     protected final String TEXT_43 = NL;
+
     protected final String TEXT_44 = NL;
 
     public Properties() {

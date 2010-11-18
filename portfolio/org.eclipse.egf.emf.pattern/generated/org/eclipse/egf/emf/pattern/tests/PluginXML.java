@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
+
     protected static String nl;
 
     public static synchronized PluginXML create(String lineSeparator) {
@@ -25,23 +26,41 @@ public class PluginXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + NL + "<?eclipse version=\"3.0\"?>" + NL;
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL;
+
     protected final String TEXT_4 = NL + "<plugin>";
+
     protected final String TEXT_5 = NL + "<plugin" + NL + "      name=\"%pluginName\"" + NL + "      id=\"";
+
     protected final String TEXT_6 = "\"" + NL + "      version=\"1.0.0\"" + NL + "      provider-name=\"%providerName\">" + NL + "" + NL + "   <requires>";
+
     protected final String TEXT_7 = NL + "      <import plugin=\"";
+
     protected final String TEXT_8 = "\"";
+
     protected final String TEXT_9 = " export=\"true\"";
+
     protected final String TEXT_10 = "/>";
+
     protected final String TEXT_11 = NL + "   </requires>" + NL + "" + NL + "   <runtime>";
+
     protected final String TEXT_12 = NL + "      <library name=\"";
+
     protected final String TEXT_13 = ".jar\">";
+
     protected final String TEXT_14 = NL + "      <library name=\".\">";
+
     protected final String TEXT_15 = NL + "         <export name=\"*\"/>" + NL + "      </library>" + NL + "   </runtime>" + NL;
+
     protected final String TEXT_16 = NL + "</plugin>" + NL;
+
     protected final String TEXT_17 = NL;
+
     protected final String TEXT_18 = NL;
 
     public PluginXML() {

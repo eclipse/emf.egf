@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText {
+
     protected static String nl;
 
     public static synchronized ModuleGWTXML create(String lineSeparator) {
@@ -25,15 +26,25 @@ public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText 
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + NL + "<!DOCTYPE module PUBLIC \"-//Google Inc.//DTD Google Web Toolkit 2.0.1//EN\" \"http://google-web-toolkit.googlecode.com/svn/tags/2.0.1/distro-source/core/src/gwt-module.dtd\">" + NL;
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + NL + "<module>";
+
     protected final String TEXT_4 = NL + "  <inherits name=\"";
+
     protected final String TEXT_5 = "\" />";
+
     protected final String TEXT_6 = NL + "  <source path=\"";
+
     protected final String TEXT_7 = "\"/>";
+
     protected final String TEXT_8 = NL + "</module>";
+
     protected final String TEXT_9 = NL;
+
     protected final String TEXT_10 = NL;
 
     public ModuleGWTXML() {

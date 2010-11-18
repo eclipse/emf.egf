@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassgenOperationoverride {
+
     protected static String nl;
 
     public static synchronized ClassgenOperationoverride create(String lineSeparator) {
@@ -25,98 +26,192 @@ public class ClassgenOperationoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t/**" + NL + "\t * The cached validation expression for the '{@link #";
+
     protected final String TEXT_3 = "(";
+
     protected final String TEXT_4 = ") <em>";
+
     protected final String TEXT_5 = "</em>}' invariant operation." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_6 = "(";
+
     protected final String TEXT_7 = ")" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final ";
+
     protected final String TEXT_8 = " ";
+
     protected final String TEXT_9 = "__EEXPRESSION = \"";
+
     protected final String TEXT_10 = "\";";
+
     protected final String TEXT_11 = NL;
+
     protected final String TEXT_12 = NL + "\t/**" + NL + "\t * The cached invocation delegate for the '{@link #";
+
     protected final String TEXT_13 = "(";
+
     protected final String TEXT_14 = ") <em>";
+
     protected final String TEXT_15 = "</em>}' operation." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_16 = "(";
+
     protected final String TEXT_17 = ")" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final ";
+
     protected final String TEXT_18 = ".Internal.InvocationDelegate ";
+
     protected final String TEXT_19 = "__EINVOCATION_DELEGATE = ((";
+
     protected final String TEXT_20 = ".Internal)";
+
     protected final String TEXT_21 = ").getInvocationDelegate();" + NL;
+
     protected final String TEXT_22 = NL;
+
     protected final String TEXT_23 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_24 = NL;
+
     protected final String TEXT_25 = NL + "\t";
+
     protected final String TEXT_26 = " ";
+
     protected final String TEXT_27 = "(";
+
     protected final String TEXT_28 = ")";
+
     protected final String TEXT_29 = ";" + NL;
+
     protected final String TEXT_30 = NL + "\tpublic ";
+
     protected final String TEXT_31 = " ";
+
     protected final String TEXT_32 = "(";
+
     protected final String TEXT_33 = ")";
+
     protected final String TEXT_34 = NL + "\t{";
+
     protected final String TEXT_35 = NL + "\t\t";
+
     protected final String TEXT_36 = NL + "\t\treturn" + NL + "\t\t\t";
+
     protected final String TEXT_37 = ".validate" + NL + "\t\t\t\t(";
+
     protected final String TEXT_38 = "," + NL + "\t\t\t\t this," + NL + "\t\t\t\t ";
+
     protected final String TEXT_39 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_40 = "," + NL + "\t\t\t\t \"";
+
     protected final String TEXT_41 = "\",";
+
     protected final String TEXT_42 = NL + "\t\t\t\t ";
+
     protected final String TEXT_43 = "," + NL + "\t\t\t\t ";
+
     protected final String TEXT_44 = "__EEXPRESSION," + NL + "\t\t\t\t ";
+
     protected final String TEXT_45 = ".ERROR," + NL + "\t\t\t\t ";
+
     protected final String TEXT_46 = ".DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t ";
+
     protected final String TEXT_47 = ".";
+
     protected final String TEXT_48 = ");";
-    protected final String TEXT_49 = NL + "\t\t// TODO: implement this method" + NL + "\t\t// -> specify the condition that violates the invariant" + NL + "\t\t// -> verify the details of the diagnostic, including severity and message" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
+    protected final String TEXT_49 = NL + "\t\t// TODO: implement this method" + NL + "\t\t// -> specify the condition that violates the invariant" + NL + "\t\t// -> verify the details of the diagnostic, including severity and message" + NL
+            + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tif (false)" + NL + "\t\t{" + NL + "\t\t\tif (";
+
     protected final String TEXT_50 = " != null)" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+
     protected final String TEXT_51 = ".add" + NL + "\t\t\t\t\t(new ";
+
     protected final String TEXT_52 = NL + "\t\t\t\t\t\t(";
+
     protected final String TEXT_53 = ".ERROR," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_54 = ".DIAGNOSTIC_SOURCE," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_55 = ".";
+
     protected final String TEXT_56 = "," + NL + "\t\t\t\t\t\t ";
+
     protected final String TEXT_57 = ".INSTANCE.getString(\"_UI_GenericInvariant_diagnostic\", new Object[] { \"";
+
     protected final String TEXT_58 = "\", ";
+
     protected final String TEXT_59 = ".getObjectLabel(this, ";
+
     protected final String TEXT_60 = ") }),";
+
     protected final String TEXT_61 = NL + "\t\t\t\t\t\t new Object [] { this }));" + NL + "\t\t\t}" + NL + "\t\t\treturn false;" + NL + "\t\t}" + NL + "\t\treturn true;";
+
     protected final String TEXT_62 = NL + "\t\ttry" + NL + "\t\t{";
+
     protected final String TEXT_63 = NL + "\t\t\t";
+
     protected final String TEXT_64 = "__EINVOCATION_DELEGATE.dynamicInvoke(this, ";
+
     protected final String TEXT_65 = "new ";
+
     protected final String TEXT_66 = ".UnmodifiableEList<Object>(";
+
     protected final String TEXT_67 = ", ";
+
     protected final String TEXT_68 = ")";
+
     protected final String TEXT_69 = "null";
+
     protected final String TEXT_70 = ");";
+
     protected final String TEXT_71 = NL + "\t\t\treturn ";
+
     protected final String TEXT_72 = "(";
+
     protected final String TEXT_73 = "(";
+
     protected final String TEXT_74 = ")";
+
     protected final String TEXT_75 = "__EINVOCATION_DELEGATE.dynamicInvoke(this, ";
+
     protected final String TEXT_76 = "new ";
+
     protected final String TEXT_77 = ".UnmodifiableEList<Object>(";
+
     protected final String TEXT_78 = ", ";
+
     protected final String TEXT_79 = ")";
+
     protected final String TEXT_80 = "null";
+
     protected final String TEXT_81 = ")";
+
     protected final String TEXT_82 = ").";
+
     protected final String TEXT_83 = "()";
+
     protected final String TEXT_84 = ";";
+
     protected final String TEXT_85 = NL + "\t\t}" + NL + "\t\tcatch (";
+
     protected final String TEXT_86 = " ite)" + NL + "\t\t{" + NL + "\t\t\tthrow new ";
+
     protected final String TEXT_87 = "(ite);" + NL + "\t\t}";
+
     protected final String TEXT_88 = NL;
+
     protected final String TEXT_89 = NL + "\t}" + NL;
+
     protected final String TEXT_90 = NL;
+
     protected final String TEXT_91 = NL;
+
     protected final String TEXT_92 = NL;
+
     protected final String TEXT_93 = NL;
 
     public ClassgenOperationoverride() {

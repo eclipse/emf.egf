@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCasegetGenFeatureTODOoverride {
+
     protected static String nl;
 
     public static synchronized TestCasegetGenFeatureTODOoverride create(String lineSeparator) {
@@ -25,8 +26,11 @@ public class TestCasegetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t\t// TODO: implement this feature getter test method" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tfail();" + NL;
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL;
 
     public TestCasegetGenFeatureTODOoverride() {

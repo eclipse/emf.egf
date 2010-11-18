@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassreflectiveDelegationoverride {
+
     protected static String nl;
 
     public static synchronized ClassreflectiveDelegationoverride create(String lineSeparator) {
@@ -25,13 +26,21 @@ public class ClassreflectiveDelegationoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_3 = NL + "\t@Override";
+
     protected final String TEXT_4 = NL + "\tprotected int eStaticFeatureCount()" + NL + "\t{" + NL + "\t\treturn ";
+
     protected final String TEXT_5 = ";" + NL + "\t}" + NL;
+
     protected final String TEXT_6 = NL;
+
     protected final String TEXT_7 = NL;
+
     protected final String TEXT_8 = NL;
 
     public ClassreflectiveDelegationoverride() {
@@ -260,7 +269,8 @@ public class ClassreflectiveDelegationoverride {
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        if (isImplementation && (genModel.getFeatureDelegation() == GenDelegationKind.REFLECTIVE_LITERAL || genModel.isDynamicDelegation()) && (genClass.getClassExtendsGenClass() == null || (genClass.getClassExtendsGenClass().getGenModel().getFeatureDelegation() != GenDelegationKind.REFLECTIVE_LITERAL && !genClass.getClassExtendsGenClass().getGenModel().isDynamicDelegation()))) {
+        if (isImplementation && (genModel.getFeatureDelegation() == GenDelegationKind.REFLECTIVE_LITERAL || genModel.isDynamicDelegation())
+                && (genClass.getClassExtendsGenClass() == null || (genClass.getClassExtendsGenClass().getGenModel().getFeatureDelegation() != GenDelegationKind.REFLECTIVE_LITERAL && !genClass.getClassExtendsGenClass().getGenModel().isDynamicDelegation()))) {
             stringBuffer.append(TEXT_2);
             if (genModel.useClassOverrideAnnotation()) {
                 stringBuffer.append(TEXT_3);

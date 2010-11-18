@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfaceeUnsetoverride {
+
     protected static String nl;
 
     public static synchronized InterfaceeUnsetoverride create(String lineSeparator) {
@@ -25,31 +26,57 @@ public class InterfaceeUnsetoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_2 = NL + "\t@Override";
+
     protected final String TEXT_3 = NL + "\tpublic void eUnset(int featureID)" + NL + "\t{" + NL + "\t\tswitch (featureID";
+
     protected final String TEXT_4 = ")" + NL + "\t\t{";
+
     protected final String TEXT_5 = NL + "\t\t\tcase ";
+
     protected final String TEXT_6 = ":";
+
     protected final String TEXT_7 = NL + "\t\t\t\t((";
+
     protected final String TEXT_8 = ".Internal.Wrapper)";
+
     protected final String TEXT_9 = "()).featureMap().clear();";
+
     protected final String TEXT_10 = NL + "\t\t\t\t";
+
     protected final String TEXT_11 = "().clear();";
+
     protected final String TEXT_12 = NL + "\t\t\t\tunset";
+
     protected final String TEXT_13 = "();";
+
     protected final String TEXT_14 = NL + "\t\t\t\tset";
+
     protected final String TEXT_15 = "((";
+
     protected final String TEXT_16 = ")null);";
+
     protected final String TEXT_17 = NL + "\t\t\t\tset";
+
     protected final String TEXT_18 = "(";
+
     protected final String TEXT_19 = ");";
+
     protected final String TEXT_20 = NL + "\t\t\t\treturn;";
+
     protected final String TEXT_21 = NL + "\t\t}";
+
     protected final String TEXT_22 = NL + "\t\tsuper.eUnset(featureID);";
+
     protected final String TEXT_23 = NL + "\t\teDynamicUnset(featureID);";
+
     protected final String TEXT_24 = NL + "\t}" + NL + NL;
+
     protected final String TEXT_25 = NL;
+
     protected final String TEXT_26 = NL;
 
     public InterfaceeUnsetoverride() {

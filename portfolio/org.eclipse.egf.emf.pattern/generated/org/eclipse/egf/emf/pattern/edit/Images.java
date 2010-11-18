@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
+
     protected static String nl;
 
     public static synchronized Images create(String lineSeparator) {
@@ -25,19 +26,33 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public interface ";
+
     protected final String TEXT_5 = "Images extends ";
+
     protected final String TEXT_6 = NL + "{";
+
     protected final String TEXT_7 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Source(\"";
+
     protected final String TEXT_8 = "\")" + NL + "\t";
+
     protected final String TEXT_9 = " ";
+
     protected final String TEXT_10 = "();" + NL;
+
     protected final String TEXT_11 = NL + "}";
+
     protected final String TEXT_12 = NL;
+
     protected final String TEXT_13 = NL;
+
     protected final String TEXT_14 = NL;
 
     public Images() {

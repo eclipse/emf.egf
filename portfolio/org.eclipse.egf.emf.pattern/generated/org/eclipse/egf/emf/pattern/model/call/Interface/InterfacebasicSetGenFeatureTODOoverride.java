@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacebasicSetGenFeatureTODOoverride {
+
     protected static String nl;
 
     public static synchronized InterfacebasicSetGenFeatureTODOoverride create(String lineSeparator) {
@@ -25,10 +26,16 @@ public class InterfacebasicSetGenFeatureTODOoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t\t// TODO: implement this method to set the contained '";
+
     protected final String TEXT_2 = "' ";
-    protected final String TEXT_3 = NL + "\t\t// -> this method is automatically invoked to keep the containment relationship in synch" + NL + "\t\t// -> do not modify other features" + NL + "\t\t// -> return msgs, after adding any generated Notification to it (if it is null, a NotificationChain object must be created first)" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tthrow new UnsupportedOperationException();" + NL;
+
+    protected final String TEXT_3 = NL + "\t\t// -> this method is automatically invoked to keep the containment relationship in synch" + NL + "\t\t// -> do not modify other features" + NL
+            + "\t\t// -> return msgs, after adding any generated Notification to it (if it is null, a NotificationChain object must be created first)" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tthrow new UnsupportedOperationException();" + NL;
+
     protected final String TEXT_4 = NL;
+
     protected final String TEXT_5 = NL;
 
     public InterfacebasicSetGenFeatureTODOoverride() {

@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelProperties {
+
     protected static String nl;
 
     public static synchronized PluginProperties create(String lineSeparator) {
@@ -25,46 +26,92 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + NL + "pluginName = ";
+
     protected final String TEXT_3 = " Editor" + NL + "providerName = www.example.org" + NL;
+
     protected final String TEXT_4 = NL + "_UI_";
+
     protected final String TEXT_5 = "_menu = &";
+
     protected final String TEXT_6 = " Editor";
+
     protected final String TEXT_7 = NL;
+
     protected final String TEXT_8 = NL + "_UI_CreateChild_menu_item = &New Child" + NL + "_UI_CreateSibling_menu_item = N&ew Sibling" + NL;
+
     protected final String TEXT_9 = NL + "_UI_ShowPropertiesView_menu_item = Show &Properties View" + NL + "_UI_RefreshViewer_menu_item = &Refresh" + NL + "" + NL + "_UI_SelectionPage_label = Selection";
-    protected final String TEXT_10 = NL + "_UI_ParentPage_label = Parent" + NL + "_UI_ListPage_label = List" + NL + "_UI_TreePage_label = Tree" + NL + "_UI_TablePage_label = Table" + NL + "_UI_TreeWithColumnsPage_label = Tree with Columns" + NL + "_UI_ObjectColumn_label = Object" + NL + "_UI_SelfColumn_label = Self";
-    protected final String TEXT_11 = NL + NL + "_UI_NoObjectSelected = Selected Nothing" + NL + "_UI_SingleObjectSelected = Selected Object: {0}" + NL + "_UI_MultiObjectSelected = Selected {0} Objects" + NL + "" + NL + "_UI_OpenEditorError_label = Open Editor" + NL + "" + NL + "_UI_Wizard_category = Example EMF Model Creation Wizards" + NL + "" + NL + "_UI_CreateModelError_message = Problems encountered in file \"{0}\"" + NL;
+
+    protected final String TEXT_10 = NL + "_UI_ParentPage_label = Parent" + NL + "_UI_ListPage_label = List" + NL + "_UI_TreePage_label = Tree" + NL + "_UI_TablePage_label = Table" + NL + "_UI_TreeWithColumnsPage_label = Tree with Columns" + NL + "_UI_ObjectColumn_label = Object" + NL
+            + "_UI_SelfColumn_label = Self";
+
+    protected final String TEXT_11 = NL + NL + "_UI_NoObjectSelected = Selected Nothing" + NL + "_UI_SingleObjectSelected = Selected Object: {0}" + NL + "_UI_MultiObjectSelected = Selected {0} Objects" + NL + "" + NL + "_UI_OpenEditorError_label = Open Editor" + NL + "" + NL
+            + "_UI_Wizard_category = Example EMF Model Creation Wizards" + NL + "" + NL + "_UI_CreateModelError_message = Problems encountered in file \"{0}\"" + NL;
+
     protected final String TEXT_12 = NL + "_UI_";
+
     protected final String TEXT_13 = "_label = ";
+
     protected final String TEXT_14 = " Model" + NL + "_UI_";
+
     protected final String TEXT_15 = "_description = Create a new ";
+
     protected final String TEXT_16 = " model" + NL;
+
     protected final String TEXT_17 = NL + "_UI_";
+
     protected final String TEXT_18 = "_label = ";
+
     protected final String TEXT_19 = " Model Editor" + NL + "" + NL + "_UI_";
+
     protected final String TEXT_20 = "FilenameDefaultBase = My" + NL + "_UI_";
+
     protected final String TEXT_21 = "FilenameExtensions = ";
+
     protected final String TEXT_22 = NL;
-    protected final String TEXT_23 = NL + "_UI_Wizard_label = New" + NL + "" + NL + "_WARN_FilenameExtension = The file name must end in ''.{0}''" + NL + "_WARN_FilenameExtensions = The file name must have one of the following extensions: {0}" + NL + "" + NL + "_UI_ModelObject = &Model Object" + NL + "_UI_XMLEncoding = &XML Encoding" + NL + "_UI_XMLEncodingChoices = ";
+
+    protected final String TEXT_23 = NL + "_UI_Wizard_label = New" + NL + "" + NL + "_WARN_FilenameExtension = The file name must end in ''.{0}''" + NL + "_WARN_FilenameExtensions = The file name must have one of the following extensions: {0}" + NL + "" + NL + "_UI_ModelObject = &Model Object" + NL
+            + "_UI_XMLEncoding = &XML Encoding" + NL + "_UI_XMLEncodingChoices = ";
+
     protected final String TEXT_24 = NL + "_UI_Wizard_initial_object_description = Specify a file name and select a model object to create";
+
     protected final String TEXT_25 = NL + "_UI_Wizard_initial_object_description = Select a model object to create";
+
     protected final String TEXT_26 = NL + NL + "_UI_FileConflict_label = File Conflict" + NL + "_WARN_FileConflict = There are unsaved changes that conflict with changes made outside the editor.  Do you wish to discard this editor's changes?" + NL;
+
     protected final String TEXT_27 = NL + "_UI_";
+
     protected final String TEXT_28 = "_ActionSet_label = ";
+
     protected final String TEXT_29 = " Action Set" + NL + "_UI_Perspective_label = ";
-    protected final String TEXT_30 = NL + NL + "_UI_Browse_label = &Browse..." + NL + "_UI_File_label = &File" + NL + "_UI_Question_title = Question" + NL + "_WARN_FileConflict = The file \"{0}\" already exists.  Do you want to replace the existing file?" + NL + "_UI_Error_title = Error" + NL + "_WARN_No_Editor = There is no editor registered for the file \"{0}\"." + NL + "" + NL + "_UI_Application_title = ";
-    protected final String TEXT_31 = " Application" + NL + "_UI_Menu_File_label = &File" + NL + "_UI_Menu_New_label = &New" + NL + "_UI_Menu_Open_label = &Open..." + NL + "_UI_Menu_Open_description = Opens a model object file" + NL + "_UI_Menu_OpenURI_label = &Open URI..." + NL + "_UI_Menu_OpenURI_description = Opens a model object loading it from a URI" + NL + "_UI_Menu_Edit_label = &Edit" + NL + "_UI_Menu_Window_label = &Window" + NL + "_UI_Menu_Help_label = &Help" + NL + "_UI_Menu_About_label = ";
+
+    protected final String TEXT_30 = NL + NL + "_UI_Browse_label = &Browse..." + NL + "_UI_File_label = &File" + NL + "_UI_Question_title = Question" + NL + "_WARN_FileConflict = The file \"{0}\" already exists.  Do you want to replace the existing file?" + NL + "_UI_Error_title = Error" + NL
+            + "_WARN_No_Editor = There is no editor registered for the file \"{0}\"." + NL + "" + NL + "_UI_Application_title = ";
+
+    protected final String TEXT_31 = " Application" + NL + "_UI_Menu_File_label = &File" + NL + "_UI_Menu_New_label = &New" + NL + "_UI_Menu_Open_label = &Open..." + NL + "_UI_Menu_Open_description = Opens a model object file" + NL + "_UI_Menu_OpenURI_label = &Open URI..." + NL
+            + "_UI_Menu_OpenURI_description = Opens a model object loading it from a URI" + NL + "_UI_Menu_Edit_label = &Edit" + NL + "_UI_Menu_Window_label = &Window" + NL + "_UI_Menu_Help_label = &Help" + NL + "_UI_Menu_About_label = ";
+
     protected final String TEXT_32 = " &About..." + NL + "_UI_About_title = ";
+
     protected final String TEXT_33 = " Application" + NL + "_UI_About_text = ";
+
     protected final String TEXT_34 = " Application about box goes here." + NL;
+
     protected final String TEXT_35 = NL + "_UI_";
+
     protected final String TEXT_36 = "_ActionSet_label = ";
+
     protected final String TEXT_37 = " Model Action Set";
+
     protected final String TEXT_38 = NL;
+
     protected final String TEXT_39 = NL;
+
     protected final String TEXT_40 = NL;
+
     protected final String TEXT_41 = NL;
 
     public PluginProperties() {

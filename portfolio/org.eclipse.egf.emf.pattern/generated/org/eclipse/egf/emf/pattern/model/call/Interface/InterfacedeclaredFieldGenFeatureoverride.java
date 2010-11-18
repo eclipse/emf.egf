@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacedeclaredFieldGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized InterfacedeclaredFieldGenFeatureoverride create(String lineSeparator) {
@@ -25,118 +26,233 @@ public class InterfacedeclaredFieldGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t/**" + NL + "\t * The cached setting delegate for the '{@link #";
+
     protected final String TEXT_3 = "() <em>";
+
     protected final String TEXT_4 = "</em>}' ";
+
     protected final String TEXT_5 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_6 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_7 = NL + "\t@";
+
     protected final String TEXT_8 = NL + "\tprotected ";
+
     protected final String TEXT_9 = ".Internal.SettingDelegate ";
+
     protected final String TEXT_10 = "__ESETTING_DELEGATE = ((";
+
     protected final String TEXT_11 = ".Internal)";
+
     protected final String TEXT_12 = ").getSettingDelegate();" + NL;
+
     protected final String TEXT_13 = NL + "\t/**" + NL + "\t * The cached value of the '{@link #";
+
     protected final String TEXT_14 = "() <em>";
+
     protected final String TEXT_15 = "</em>}' ";
+
     protected final String TEXT_16 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_17 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_18 = NL + "\t@";
+
     protected final String TEXT_19 = NL + "\tprotected ";
+
     protected final String TEXT_20 = " ";
+
     protected final String TEXT_21 = ";" + NL;
+
     protected final String TEXT_22 = NL + "\t/**" + NL + "\t * The empty value for the '{@link #";
+
     protected final String TEXT_23 = "() <em>";
+
     protected final String TEXT_24 = "</em>}' array accessor." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_25 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_26 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_27 = NL + "\tprotected static final ";
+
     protected final String TEXT_28 = "[] ";
+
     protected final String TEXT_29 = "_EEMPTY_ARRAY = new ";
+
     protected final String TEXT_30 = " [0]";
+
     protected final String TEXT_31 = ";" + NL;
+
     protected final String TEXT_32 = NL + "\t/**" + NL + "\t * The default value of the '{@link #";
+
     protected final String TEXT_33 = "() <em>";
+
     protected final String TEXT_34 = "</em>}' ";
+
     protected final String TEXT_35 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_36 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_37 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_38 = NL + "\tprotected static final ";
+
     protected final String TEXT_39 = " ";
+
     protected final String TEXT_40 = "; // TODO The default value literal \"";
+
     protected final String TEXT_41 = "\" is not valid.";
+
     protected final String TEXT_42 = " = ";
+
     protected final String TEXT_43 = ";";
+
     protected final String TEXT_44 = NL;
-    protected final String TEXT_45 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
+    protected final String TEXT_45 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
+            + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_46 = NL + "\t@";
+
     protected final String TEXT_47 = NL + "\tprotected int ";
+
     protected final String TEXT_48 = " = 0;" + NL;
+
     protected final String TEXT_49 = NL + "\t/**" + NL + "\t * The offset of the flags representing the value of the '{@link #";
+
     protected final String TEXT_50 = "() <em>";
+
     protected final String TEXT_51 = "</em>}' ";
+
     protected final String TEXT_52 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
+
     protected final String TEXT_53 = "_EFLAG_OFFSET = ";
+
     protected final String TEXT_54 = ";" + NL + "" + NL + "\t/**" + NL + "\t * The flags representing the default value of the '{@link #";
+
     protected final String TEXT_55 = "() <em>";
+
     protected final String TEXT_56 = "</em>}' ";
+
     protected final String TEXT_57 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
+
     protected final String TEXT_58 = "_EFLAG_DEFAULT = ";
+
     protected final String TEXT_59 = ".ordinal()";
+
     protected final String TEXT_60 = ".VALUES.indexOf(";
+
     protected final String TEXT_61 = ")";
+
     protected final String TEXT_62 = " << ";
+
     protected final String TEXT_63 = "_EFLAG_OFFSET;" + NL + "" + NL + "\t/**" + NL + "\t * The array of enumeration values for '{@link ";
+
     protected final String TEXT_64 = " ";
+
     protected final String TEXT_65 = "}'" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprivate static final ";
+
     protected final String TEXT_66 = "[] ";
+
     protected final String TEXT_67 = "_EFLAG_VALUES = ";
+
     protected final String TEXT_68 = ".values()";
+
     protected final String TEXT_69 = "(";
+
     protected final String TEXT_70 = "[])";
+
     protected final String TEXT_71 = ".VALUES.toArray(new ";
+
     protected final String TEXT_72 = "[";
+
     protected final String TEXT_73 = ".VALUES.size()])";
+
     protected final String TEXT_74 = ";" + NL;
+
     protected final String TEXT_75 = NL + "\t/**" + NL + "\t * The flag";
+
     protected final String TEXT_76 = " representing the value of the '{@link #";
+
     protected final String TEXT_77 = "() <em>";
+
     protected final String TEXT_78 = "</em>}' ";
+
     protected final String TEXT_79 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_80 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
+
     protected final String TEXT_81 = "_EFLAG = ";
+
     protected final String TEXT_82 = " << ";
+
     protected final String TEXT_83 = "_EFLAG_OFFSET";
+
     protected final String TEXT_84 = ";" + NL;
+
     protected final String TEXT_85 = NL + "\t/**" + NL + "\t * The cached value of the '{@link #";
+
     protected final String TEXT_86 = "() <em>";
+
     protected final String TEXT_87 = "</em>}' ";
+
     protected final String TEXT_88 = "." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
+
     protected final String TEXT_89 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_90 = NL + "\t@";
+
     protected final String TEXT_91 = NL + "\tprotected ";
+
     protected final String TEXT_92 = " ";
+
     protected final String TEXT_93 = " = ";
+
     protected final String TEXT_94 = ";" + NL;
-    protected final String TEXT_95 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
+    protected final String TEXT_95 = NL + "\t/**" + NL + "\t * An additional set of bit flags representing the values of boolean attributes and whether unsettable features have been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL
+            + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_96 = NL + "\t@";
+
     protected final String TEXT_97 = NL + "\tprotected int ";
+
     protected final String TEXT_98 = " = 0;" + NL;
+
     protected final String TEXT_99 = NL + "\t/**" + NL + "\t * The flag representing whether the ";
+
     protected final String TEXT_100 = " ";
+
     protected final String TEXT_101 = " has been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */" + NL + "\tprotected static final int ";
+
     protected final String TEXT_102 = "_ESETFLAG = 1 << ";
+
     protected final String TEXT_103 = ";" + NL;
+
     protected final String TEXT_104 = NL + "\t/**" + NL + "\t * This is true if the ";
+
     protected final String TEXT_105 = " ";
+
     protected final String TEXT_106 = " has been set." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
+
     protected final String TEXT_107 = NL + "\t@";
+
     protected final String TEXT_108 = NL + "\tprotected boolean ";
+
     protected final String TEXT_109 = "ESet;" + NL;
+
     protected final String TEXT_110 = NL;
+
     protected final String TEXT_111 = NL;
+
     protected final String TEXT_112 = NL;
+
     protected final String TEXT_113 = NL;
 
     public InterfacedeclaredFieldGenFeatureoverride() {

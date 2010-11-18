@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava {
+
     protected static String nl;
 
     public static synchronized ResourceClass create(String lineSeparator) {
@@ -25,204 +26,414 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Resource </b> associated with the package." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
+
     protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
+
     protected final String TEXT_6 = " extends ";
+
     protected final String TEXT_7 = NL + "{";
+
     protected final String TEXT_8 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_9 = " copyright = ";
+
     protected final String TEXT_10 = ";";
+
     protected final String TEXT_11 = NL;
+
     protected final String TEXT_12 = NL + "\t/**" + NL + "\t * Creates an instance of the resource." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param uri the URI of the new resource." + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_13 = "(URI uri)" + NL + "\t{" + NL + "\t\tsuper(uri);";
+
     protected final String TEXT_14 = NL + "\t}" + NL;
-    protected final String TEXT_15 = NL + "\t/**" + NL + "\t * A load option that turns of the use of the generate data converters." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final String OPTION_USE_DATA_CONVERTER = \"USE_DATA_CONVERTER\";" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_15 = NL + "\t/**" + NL + "\t * A load option that turns of the use of the generate data converters." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tpublic static final String OPTION_USE_DATA_CONVERTER = \"USE_DATA_CONVERTER\";" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_16 = NL + "\t@Override";
+
     protected final String TEXT_17 = NL + "\tpublic void doLoad(InputStream inputStream, ";
-    protected final String TEXT_18 = " options) throws IOException" + NL + "\t{" + NL + "\t\tif (options != null && Boolean.TRUE.equals(options.get(OPTION_USE_DATA_CONVERTER)))" + NL + "\t\t{" + NL + "\t\t  getContents().add" + NL + "\t\t\t (load" + NL + "\t\t\t\t (new InputSource(inputStream), " + NL + "\t\t\t\t  (";
+
+    protected final String TEXT_18 = " options) throws IOException" + NL + "\t{" + NL + "\t\tif (options != null && Boolean.TRUE.equals(options.get(OPTION_USE_DATA_CONVERTER)))" + NL + "\t\t{" + NL + "\t\t  getContents().add" + NL + "\t\t\t (load" + NL + "\t\t\t\t (new InputSource(inputStream), "
+            + NL + "\t\t\t\t  (";
+
     protected final String TEXT_19 = ")options.get(XMLResource.OPTION_PARSER_FEATURES), " + NL + "\t\t\t\t  (";
-    protected final String TEXT_20 = ")options.get(XMLResource.OPTION_PARSER_PROPERTIES), " + NL + "\t\t\t\t  Boolean.TRUE.equals(options.get(XMLResource.OPTION_USE_LEXICAL_HANDLER))).eContainer());" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{  " + NL + "\t\t\tsuper.doLoad(inputStream, options);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_20 = ")options.get(XMLResource.OPTION_PARSER_PROPERTIES), " + NL + "\t\t\t\t  Boolean.TRUE.equals(options.get(XMLResource.OPTION_USE_LEXICAL_HANDLER))).eContainer());" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{  " + NL
+            + "\t\t\tsuper.doLoad(inputStream, options);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_21 = NL + "\t@Override";
+
     protected final String TEXT_22 = NL + "\tpublic void doLoad(InputSource inputSource, ";
-    protected final String TEXT_23 = " options) throws IOException" + NL + "\t{" + NL + "\t\tif (options != null && Boolean.TRUE.equals(options.get(OPTION_USE_DATA_CONVERTER)))" + NL + "\t\t{" + NL + "\t\t  getContents().add" + NL + "\t\t\t (load" + NL + "\t\t\t\t (inputSource," + NL + "\t\t\t\t  (";
+
+    protected final String TEXT_23 = " options) throws IOException" + NL + "\t{" + NL + "\t\tif (options != null && Boolean.TRUE.equals(options.get(OPTION_USE_DATA_CONVERTER)))" + NL + "\t\t{" + NL + "\t\t  getContents().add" + NL + "\t\t\t (load" + NL + "\t\t\t\t (inputSource," + NL
+            + "\t\t\t\t  (";
+
     protected final String TEXT_24 = ")options.get(XMLResource.OPTION_PARSER_FEATURES), " + NL + "\t\t\t\t  (";
-    protected final String TEXT_25 = ")options.get(XMLResource.OPTION_PARSER_PROPERTIES), " + NL + "\t\t\t\t  Boolean.TRUE.equals(options.get(XMLResource.OPTION_USE_LEXICAL_HANDLER))).eContainer());" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{  " + NL + "\t\t\tsuper.doLoad(inputSource, options);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static final XMLParserPool parserPool = new XMLParserPoolImpl();" + NL + "" + NL + "\t/**" + NL + "\t * Loads an instance from the input." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param inputSource the input from which to load." + NL
-            + "\t * @param features a map of the parser features and their values." + NL + "\t * @param properties a map of a parser properties and their values." + NL + "\t * @param useLexicalHandler whether a lexical handler should be used during loading." + NL + "\t * @return the root object; for the case of a document root, the child of that document root is return." + NL + "\t * @throws ParserConfigurationException" + NL + "\t * @throws SAXException" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static EObject load(InputSource inputSource, ";
+
+    protected final String TEXT_25 = ")options.get(XMLResource.OPTION_PARSER_PROPERTIES), " + NL + "\t\t\t\t  Boolean.TRUE.equals(options.get(XMLResource.OPTION_USE_LEXICAL_HANDLER))).eContainer());" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{  " + NL
+            + "\t\t\tsuper.doLoad(inputSource, options);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL
+            + "\tprotected static final XMLParserPool parserPool = new XMLParserPoolImpl();" + NL + "" + NL + "\t/**" + NL + "\t * Loads an instance from the input." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+            + "\t * @param inputSource the input from which to load." + NL + "\t * @param features a map of the parser features and their values." + NL + "\t * @param properties a map of a parser properties and their values." + NL
+            + "\t * @param useLexicalHandler whether a lexical handler should be used during loading." + NL + "\t * @return the root object; for the case of a document root, the child of that document root is return." + NL + "\t * @throws ParserConfigurationException" + NL
+            + "\t * @throws SAXException" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static EObject load(InputSource inputSource, ";
+
     protected final String TEXT_26 = " features, ";
+
     protected final String TEXT_27 = " properties, boolean useLexicalHandler) throws IOException" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_28 = " requiredFeatures = new ";
-    protected final String TEXT_29 = "();" + NL + "\t\trequiredFeatures.put(\"http://xml.org/sax/features/namespaces\", Boolean.TRUE); " + NL + "\t\tif (features != null)" + NL + "\t\t{" + NL + "\t\t\trequiredFeatures.putAll(features);" + NL + "\t\t}" + NL + "\t\t" + NL + "\t\tif (properties == null)" + NL + "\t\t{" + NL + "\t\t\tproperties = Collections.";
+
+    protected final String TEXT_29 = "();" + NL + "\t\trequiredFeatures.put(\"http://xml.org/sax/features/namespaces\", Boolean.TRUE); " + NL + "\t\tif (features != null)" + NL + "\t\t{" + NL + "\t\t\trequiredFeatures.putAll(features);" + NL + "\t\t}" + NL + "\t\t" + NL
+            + "\t\tif (properties == null)" + NL + "\t\t{" + NL + "\t\t\tproperties = Collections.";
+
     protected final String TEXT_30 = "emptyMap()";
+
     protected final String TEXT_31 = "EMPTY_MAP";
-    protected final String TEXT_32 = ";" + NL + "\t\t}" + NL + "\t\t" + NL + "\t\tSAXParser saxParser = null;" + NL + "\t\ttry" + NL + "\t\t{" + NL + "\t\t\tsaxParser = parserPool.get(requiredFeatures, properties, useLexicalHandler);" + NL + "\t\t\tfinal FrameFactory.DocumentRootStackFrame documentRoot = FrameFactory.INSTANCE.pushDocumentRoot(null, null);" + NL + "\t\t\tXMLTypeResourceImpl.Handler handler = new XMLTypeResourceImpl.Handler(documentRoot);" + NL + "\t\t\tsaxParser.parse(inputSource, handler);";
+
+    protected final String TEXT_32 = ";" + NL + "\t\t}" + NL + "\t\t" + NL + "\t\tSAXParser saxParser = null;" + NL + "\t\ttry" + NL + "\t\t{" + NL + "\t\t\tsaxParser = parserPool.get(requiredFeatures, properties, useLexicalHandler);" + NL
+            + "\t\t\tfinal FrameFactory.DocumentRootStackFrame documentRoot = FrameFactory.INSTANCE.pushDocumentRoot(null, null);" + NL + "\t\t\tXMLTypeResourceImpl.Handler handler = new XMLTypeResourceImpl.Handler(documentRoot);" + NL + "\t\t\tsaxParser.parse(inputSource, handler);";
+
     protected final String TEXT_33 = NL + "\t\t\treturn (EObject)((EObject)FrameFactory.INSTANCE.popDocumentRoot(documentRoot)).eContents().get(0);";
+
     protected final String TEXT_34 = NL + "\t\t\treturn FrameFactory.INSTANCE.popDocumentRoot(documentRoot).eContents().get(0);";
-    protected final String TEXT_35 = NL + "\t\t}" + NL + "\t\tcatch (Exception exception)" + NL + "\t\t{" + NL + "\t\t\tthrow new IOWrappedException(exception);" + NL + "\t\t}" + NL + "\t\tfinally" + NL + "\t\t{" + NL + "\t\t\tparserPool.release(saxParser, requiredFeatures, properties, useLexicalHandler);" + NL + "\t\t}" + NL + "\t}" + NL;
-    protected final String TEXT_36 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic final static class FrameFactory" + NL + "\t{" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic static final FrameFactory INSTANCE = new FrameFactory();" + NL + "\t";
+
+    protected final String TEXT_35 = NL + "\t\t}" + NL + "\t\tcatch (Exception exception)" + NL + "\t\t{" + NL + "\t\t\tthrow new IOWrappedException(exception);" + NL + "\t\t}" + NL + "\t\tfinally" + NL + "\t\t{" + NL
+            + "\t\t\tparserPool.release(saxParser, requiredFeatures, properties, useLexicalHandler);" + NL + "\t\t}" + NL + "\t}" + NL;
+
+    protected final String TEXT_36 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic final static class FrameFactory" + NL + "\t{" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL
+            + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic static final FrameFactory INSTANCE = new FrameFactory();" + NL + "\t";
+
     protected final String TEXT_37 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
+
     protected final String TEXT_38 = "StackFrame ";
+
     protected final String TEXT_39 = ";" + NL;
+
     protected final String TEXT_40 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
+
     protected final String TEXT_41 = " ";
+
     protected final String TEXT_42 = ";" + NL;
+
     protected final String TEXT_43 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+
     protected final String TEXT_44 = "StackFrame push";
+
     protected final String TEXT_45 = "(";
+
     protected final String TEXT_46 = " previous, Attributes attributes)" + NL + "\t\t{" + NL + "\t\t\t ";
+
     protected final String TEXT_47 = "StackFrame result";
+
     protected final String TEXT_48 = " = ";
+
     protected final String TEXT_49 = " == null ? new ";
+
     protected final String TEXT_50 = "StackFrame() : ";
+
     protected final String TEXT_51 = ";" + NL + "\t\t\t ";
+
     protected final String TEXT_52 = " = null;" + NL + "\t\t\t result";
+
     protected final String TEXT_53 = ".pushOnto(previous);" + NL + "\t\t\t result";
+
     protected final String TEXT_54 = ".handleAttributes(attributes);" + NL + "\t\t\t return result";
+
     protected final String TEXT_55 = ";" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+
     protected final String TEXT_56 = " pop";
+
     protected final String TEXT_57 = "(";
+
     protected final String TEXT_58 = "StackFrame ";
+
     protected final String TEXT_59 = ")" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_60 = " result";
+
     protected final String TEXT_61 = "Value = ";
+
     protected final String TEXT_62 = ".pop";
+
     protected final String TEXT_63 = "();" + NL + "\t\t\tthis.";
+
     protected final String TEXT_64 = " = ";
+
     protected final String TEXT_65 = ";" + NL + "\t\t\treturn result";
+
     protected final String TEXT_66 = "Value;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic static class ";
+
     protected final String TEXT_67 = "StackFrame extends ";
+
     protected final String TEXT_68 = NL + "\t\t{" + NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
+
     protected final String TEXT_69 = " the";
+
     protected final String TEXT_70 = ";" + NL + "\t\t";
+
     protected final String TEXT_71 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
+
     protected final String TEXT_72 = ".FrameFactory.";
+
     protected final String TEXT_73 = "StackFrame ";
+
     protected final String TEXT_74 = ";" + NL;
+
     protected final String TEXT_75 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
+
     protected final String TEXT_76 = " ";
+
     protected final String TEXT_77 = ";" + NL + "\t\t";
+
     protected final String TEXT_78 = NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */";
+
     protected final String TEXT_79 = NL + "\t\t\t@Override";
+
     protected final String TEXT_80 = NL + "\t\t\tpublic void handleAttributes(Attributes attributes)" + NL + "\t\t\t{";
+
     protected final String TEXT_81 = NL + "\t\t\t\tString theValue = attributes.getValue(";
+
     protected final String TEXT_82 = ", \"";
+
     protected final String TEXT_83 = "\");";
+
     protected final String TEXT_84 = NL + "\t\t\t\ttheValue = attributes.getValue(";
+
     protected final String TEXT_85 = ", \"";
+
     protected final String TEXT_86 = "\");";
+
     protected final String TEXT_87 = NL + "\t\t\t\tif (theValue != null)" + NL + "\t\t\t\t{";
+
     protected final String TEXT_88 = NL + "\t\t\t\t\tthe";
+
     protected final String TEXT_89 = ".set";
+
     protected final String TEXT_90 = "(";
+
     protected final String TEXT_91 = ".create";
+
     protected final String TEXT_92 = "(theValue));";
+
     protected final String TEXT_93 = NL + "\t\t\t\t\tthe";
+
     protected final String TEXT_94 = ".set";
+
     protected final String TEXT_95 = "((";
+
     protected final String TEXT_96 = ")";
+
     protected final String TEXT_97 = ".createFromString(";
+
     protected final String TEXT_98 = ", theValue));";
+
     protected final String TEXT_99 = NL + "\t\t\t\t}";
+
     protected final String TEXT_100 = NL + "\t\t\t\t// There are attributes to handle.";
+
     protected final String TEXT_101 = NL + "\t\t\t}" + NL + "\t\t" + NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */";
+
     protected final String TEXT_102 = NL + "\t\t\t@Override";
+
     protected final String TEXT_103 = NL + "\t\t\tpublic ";
+
     protected final String TEXT_104 = " startElement(String namespace, String localName, String qName, Attributes attributes) throws SAXException" + NL + "\t\t\t{";
+
     protected final String TEXT_105 = NL + "\t\t\t\t";
+
     protected final String TEXT_106 = "else ";
+
     protected final String TEXT_107 = "if (\"";
+
     protected final String TEXT_108 = "\".equals(localName) && ";
+
     protected final String TEXT_109 = ".equals(namespace))" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\treturn ";
+
     protected final String TEXT_110 = " = ";
+
     protected final String TEXT_111 = ".FrameFactory.INSTANCE.push";
+
     protected final String TEXT_112 = "(this, attributes);" + NL + "\t\t\t\t}";
+
     protected final String TEXT_113 = NL + "\t\t\t\treturn super.startElement(namespace, localName, qName, attributes);";
+
     protected final String TEXT_114 = NL + "\t\t\t\telse" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\treturn super.startElement(namespace, localName, qName, attributes);" + NL + "\t\t\t\t}";
+
     protected final String TEXT_115 = NL + "\t\t\t}" + NL + "" + NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */";
+
     protected final String TEXT_116 = NL + "\t\t\t@Override";
+
     protected final String TEXT_117 = NL + "\t\t\tpublic void endElement(";
+
     protected final String TEXT_118 = " child) throws SAXException" + NL + "\t\t\t{";
+
     protected final String TEXT_119 = NL + "\t\t\t\t";
+
     protected final String TEXT_120 = "else ";
+
     protected final String TEXT_121 = "if (child == ";
+
     protected final String TEXT_122 = ")" + NL + "\t\t\t\t{";
+
     protected final String TEXT_123 = NL + "\t\t\t\t\tthe";
+
     protected final String TEXT_124 = ".";
+
     protected final String TEXT_125 = "().add(";
+
     protected final String TEXT_126 = ".FrameFactory.INSTANCE.pop";
+
     protected final String TEXT_127 = "(";
+
     protected final String TEXT_128 = "));";
+
     protected final String TEXT_129 = NL + "\t\t\t\t\tthe";
+
     protected final String TEXT_130 = ".set";
+
     protected final String TEXT_131 = "(";
+
     protected final String TEXT_132 = ".FrameFactory.INSTANCE.pop";
+
     protected final String TEXT_133 = "(";
+
     protected final String TEXT_134 = "));";
+
     protected final String TEXT_135 = NL + "\t\t\t\t\t";
+
     protected final String TEXT_136 = " = null;" + NL + "\t\t\t\t}";
+
     protected final String TEXT_137 = NL + "\t\t\t\tsuper.endElement(child);";
+
     protected final String TEXT_138 = NL + "\t\t\t\telse" + NL + "\t\t\t\t{" + NL + "\t\t\t\t\tsuper.endElement(child);" + NL + "\t\t\t\t}";
+
     protected final String TEXT_139 = NL + "\t\t\t}" + NL + "" + NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */";
+
     protected final String TEXT_140 = NL + "\t\t\t@Override";
+
     protected final String TEXT_141 = NL + "\t\t\tpublic void create()" + NL + "\t\t\t{" + NL + "\t\t\t\tthe";
+
     protected final String TEXT_142 = " = ";
+
     protected final String TEXT_143 = ".create";
+
     protected final String TEXT_144 = "();" + NL + "\t\t\t}" + NL + "\t\t" + NL + "\t\t\t/**" + NL + "\t\t\t * <!-- begin-user-doc -->" + NL + "\t\t\t * <!-- end-user-doc -->" + NL + "\t\t\t * @generated" + NL + "\t\t\t */" + NL + "\t\t\tprotected ";
+
     protected final String TEXT_145 = " pop";
+
     protected final String TEXT_146 = "()" + NL + "\t\t\t{" + NL + "\t\t\t\tpop();" + NL + "\t\t\t\t";
+
     protected final String TEXT_147 = " result";
+
     protected final String TEXT_148 = "Value = the";
+
     protected final String TEXT_149 = ";" + NL + "\t\t\t\tthe";
+
     protected final String TEXT_150 = " = null;" + NL + "\t\t\t\treturn result";
+
     protected final String TEXT_151 = "Value;" + NL + "\t\t\t}" + NL + "\t\t" + NL + "\t\t}" + NL;
+
     protected final String TEXT_152 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+
     protected final String TEXT_153 = " push";
+
     protected final String TEXT_154 = "(";
+
     protected final String TEXT_155 = " previous, Attributes attributes)" + NL + "\t\t{" + NL + "\t\t\t ";
+
     protected final String TEXT_156 = " result";
+
     protected final String TEXT_157 = " = ";
+
     protected final String TEXT_158 = " == null ? new ";
+
     protected final String TEXT_159 = "() : ";
+
     protected final String TEXT_160 = ";" + NL + "\t\t\t ";
+
     protected final String TEXT_161 = " = null;" + NL + "\t\t\t result";
+
     protected final String TEXT_162 = ".pushOnto(previous);" + NL + "\t\t\t result";
+
     protected final String TEXT_163 = ".handleAttributes(attributes);" + NL + "\t\t\t return result";
+
     protected final String TEXT_164 = ";" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+
     protected final String TEXT_165 = " pop";
+
     protected final String TEXT_166 = "(";
+
     protected final String TEXT_167 = " ";
+
     protected final String TEXT_168 = ")" + NL + "\t\t{";
+
     protected final String TEXT_169 = NL + "\t\t\t";
+
     protected final String TEXT_170 = " result";
+
     protected final String TEXT_171 = "Value = ";
+
     protected final String TEXT_172 = ".create";
+
     protected final String TEXT_173 = "(";
+
     protected final String TEXT_174 = ".popValue());";
+
     protected final String TEXT_175 = NL + "\t\t\t";
+
     protected final String TEXT_176 = " result";
+
     protected final String TEXT_177 = "Value = ((";
+
     protected final String TEXT_178 = ")";
+
     protected final String TEXT_179 = ".createFromString(";
+
     protected final String TEXT_180 = ", ";
+
     protected final String TEXT_181 = ".popValue())).";
+
     protected final String TEXT_182 = "();";
+
     protected final String TEXT_183 = NL + "\t\t\t";
+
     protected final String TEXT_184 = " result";
+
     protected final String TEXT_185 = "Value = (";
+
     protected final String TEXT_186 = ")";
+
     protected final String TEXT_187 = ".createFromString(";
+
     protected final String TEXT_188 = ", ";
+
     protected final String TEXT_189 = ".popValue());";
+
     protected final String TEXT_190 = NL + "\t\t\tthis.";
+
     protected final String TEXT_191 = " = ";
+
     protected final String TEXT_192 = ";" + NL + "\t\t\treturn result";
+
     protected final String TEXT_193 = "Value;" + NL + "\t\t}" + NL;
+
     protected final String TEXT_194 = NL + "\t}" + NL;
+
     protected final String TEXT_195 = NL + "} //";
+
     protected final String TEXT_196 = NL;
+
     protected final String TEXT_197 = NL;
+
     protected final String TEXT_198 = NL;
 
     public ResourceClass() {

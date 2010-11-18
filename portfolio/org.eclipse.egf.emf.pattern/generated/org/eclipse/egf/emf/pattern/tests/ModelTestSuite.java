@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJava {
+
     protected static String nl;
 
     public static synchronized ModelTestSuite create(String lineSeparator) {
@@ -25,28 +26,51 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A test suite for the '<em><b>";
+
     protected final String TEXT_5 = "</b></em>' model." + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public class ";
+
     protected final String TEXT_6 = " extends ";
+
     protected final String TEXT_7 = NL + "{";
+
     protected final String TEXT_8 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_9 = " copyright = ";
+
     protected final String TEXT_10 = ";";
+
     protected final String TEXT_11 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static void main(String[] args)" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_12 = ".run(suite());" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static ";
+
     protected final String TEXT_13 = " suite()" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_14 = " suite = new ";
+
     protected final String TEXT_15 = "(\"";
+
     protected final String TEXT_16 = " Tests\");";
+
     protected final String TEXT_17 = NL + "\t\tsuite.addTest(";
+
     protected final String TEXT_18 = ".suite());";
+
     protected final String TEXT_19 = NL + "\t\treturn suite;" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_20 = "(String name)" + NL + "\t{" + NL + "\t\tsuper(name);" + NL + "\t}" + NL + "" + NL + "} //";
+
     protected final String TEXT_21 = NL;
+
     protected final String TEXT_22 = NL;
+
     protected final String TEXT_23 = NL;
 
     public ModelTestSuite() {

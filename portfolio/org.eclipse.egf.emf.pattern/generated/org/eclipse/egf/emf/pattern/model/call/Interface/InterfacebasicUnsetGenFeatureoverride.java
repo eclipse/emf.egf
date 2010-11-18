@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacebasicUnsetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized InterfacebasicUnsetGenFeatureoverride create(String lineSeparator) {
@@ -25,57 +26,109 @@ public class InterfacebasicUnsetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + "\tpublic ";
+
     protected final String TEXT_4 = " basicUnset";
+
     protected final String TEXT_5 = "(";
+
     protected final String TEXT_6 = " msgs)" + NL + "\t{";
+
     protected final String TEXT_7 = NL + "\t\treturn eDynamicInverseRemove((";
+
     protected final String TEXT_8 = ")";
+
     protected final String TEXT_9 = "basicGet";
+
     protected final String TEXT_10 = "(), ";
+
     protected final String TEXT_11 = ", msgs);";
+
     protected final String TEXT_12 = "Object old";
+
     protected final String TEXT_13 = " = ";
+
     protected final String TEXT_14 = "eVirtualUnset(";
+
     protected final String TEXT_15 = ");";
+
     protected final String TEXT_16 = NL + "\t\t";
+
     protected final String TEXT_17 = " old";
+
     protected final String TEXT_18 = " = ";
+
     protected final String TEXT_19 = ";";
+
     protected final String TEXT_20 = NL + "\t\t";
+
     protected final String TEXT_21 = " = null;";
+
     protected final String TEXT_22 = NL + "\t\tboolean isSetChange = old";
+
     protected final String TEXT_23 = " != EVIRTUAL_NO_VALUE;";
+
     protected final String TEXT_24 = NL + "\t\tboolean old";
+
     protected final String TEXT_25 = "ESet = (";
+
     protected final String TEXT_26 = " & ";
+
     protected final String TEXT_27 = "_ESETFLAG) != 0;";
+
     protected final String TEXT_28 = NL + "\t\t";
+
     protected final String TEXT_29 = " &= ~";
+
     protected final String TEXT_30 = "_ESETFLAG;";
+
     protected final String TEXT_31 = NL + "\t\tboolean old";
+
     protected final String TEXT_32 = "ESet = ";
+
     protected final String TEXT_33 = "ESet;";
+
     protected final String TEXT_34 = NL + "\t\t";
+
     protected final String TEXT_35 = "ESet = false;";
+
     protected final String TEXT_36 = NL + "\t\tif (eNotificationRequired())" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_37 = " notification = new ";
+
     protected final String TEXT_38 = "(this, ";
+
     protected final String TEXT_39 = ".UNSET, ";
+
     protected final String TEXT_40 = ", ";
+
     protected final String TEXT_41 = "isSetChange ? old";
+
     protected final String TEXT_42 = " : null";
+
     protected final String TEXT_43 = "old";
+
     protected final String TEXT_44 = ", null, ";
+
     protected final String TEXT_45 = "isSetChange";
+
     protected final String TEXT_46 = "old";
+
     protected final String TEXT_47 = "ESet";
+
     protected final String TEXT_48 = ");" + NL + "\t\t\tif (msgs == null) msgs = notification; else msgs.add(notification);" + NL + "\t\t}" + NL + "\t\treturn msgs;";
+
     protected final String TEXT_49 = NL;
+
     protected final String TEXT_50 = NL + "\t}" + NL + NL;
+
     protected final String TEXT_51 = NL;
+
     protected final String TEXT_52 = NL;
 
     public InterfacebasicUnsetGenFeatureoverride() {

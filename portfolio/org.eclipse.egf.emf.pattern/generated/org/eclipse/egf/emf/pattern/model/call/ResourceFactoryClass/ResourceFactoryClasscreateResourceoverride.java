@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ResourceFactoryClasscreateResourceoverride {
+
     protected static String nl;
 
     public static synchronized ResourceFactoryClasscreateResourceoverride create(String lineSeparator) {
@@ -25,33 +26,61 @@ public class ResourceFactoryClasscreateResourceoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t\t";
+
     protected final String TEXT_3 = " result = new ";
+
     protected final String TEXT_4 = "(uri);" + NL + "\t\tresult.getDefaultSaveOptions().put(";
+
     protected final String TEXT_5 = ".OPTION_EXTENDED_META_DATA, ";
+
     protected final String TEXT_6 = "Boolean.TRUE";
+
     protected final String TEXT_7 = "extendedMetaData";
+
     protected final String TEXT_8 = ");" + NL + "\t\tresult.getDefaultLoadOptions().put(";
+
     protected final String TEXT_9 = ".OPTION_EXTENDED_META_DATA, ";
+
     protected final String TEXT_10 = "Boolean.TRUE";
+
     protected final String TEXT_11 = "extendedMetaData";
+
     protected final String TEXT_12 = ");" + NL + "" + NL + "\t\tresult.getDefaultSaveOptions().put(";
+
     protected final String TEXT_13 = ".OPTION_SCHEMA_LOCATION, Boolean.TRUE);" + NL + "" + NL + "\t\tresult.getDefaultLoadOptions().put(";
+
     protected final String TEXT_14 = ".OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);" + NL + "\t\tresult.getDefaultSaveOptions().put(";
+
     protected final String TEXT_15 = ".OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);" + NL + "" + NL + "\t\tresult.getDefaultLoadOptions().put(";
+
     protected final String TEXT_16 = ".OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE);";
+
     protected final String TEXT_17 = NL + "\t\tresult.getDefaultLoadOptions().put(";
+
     protected final String TEXT_18 = ".OPTION_USE_DATA_CONVERTER, Boolean.TRUE);";
+
     protected final String TEXT_19 = NL + "\t\t";
+
     protected final String TEXT_20 = " result = new ";
+
     protected final String TEXT_21 = "(uri);" + NL + "\t\tresult.getDefaultSaveOptions().put(";
+
     protected final String TEXT_22 = ".OPTION_XML_MAP, xmlMap);" + NL + "\t\tresult.getDefaultLoadOptions().put(";
+
     protected final String TEXT_23 = ".OPTION_XML_MAP, xmlMap);";
+
     protected final String TEXT_24 = NL + "\t\tResource result = new ";
+
     protected final String TEXT_25 = "(uri);";
+
     protected final String TEXT_26 = NL + "\t\treturn result;" + NL;
+
     protected final String TEXT_27 = NL;
+
     protected final String TEXT_28 = NL;
 
     public ResourceFactoryClasscreateResourceoverride() {

@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassisSetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized ClassisSetGenFeatureoverride create(String lineSeparator) {
@@ -25,53 +26,101 @@ public class ClassisSetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_4 = NL;
+
     protected final String TEXT_5 = NL + "\tboolean isSet";
+
     protected final String TEXT_6 = "();" + NL;
+
     protected final String TEXT_7 = NL + "\tpublic boolean isSet";
+
     protected final String TEXT_8 = "_";
+
     protected final String TEXT_9 = "()" + NL + "\t{";
+
     protected final String TEXT_10 = NL + "\t\treturn eDynamicIsSet(";
+
     protected final String TEXT_11 = ", ";
+
     protected final String TEXT_12 = ");";
+
     protected final String TEXT_13 = NL + "\t\treturn eIsSet(";
+
     protected final String TEXT_14 = ");";
+
     protected final String TEXT_15 = NL + "\t\treturn ";
+
     protected final String TEXT_16 = "__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);";
+
     protected final String TEXT_17 = NL + "\t\t";
+
     protected final String TEXT_18 = " ";
+
     protected final String TEXT_19 = " = (";
+
     protected final String TEXT_20 = ")eVirtualGet(";
+
     protected final String TEXT_21 = ");";
+
     protected final String TEXT_22 = NL + "\t\treturn ";
+
     protected final String TEXT_23 = " != null && ((";
+
     protected final String TEXT_24 = ".Unsettable";
+
     protected final String TEXT_25 = ")";
+
     protected final String TEXT_26 = ").isSet();";
+
     protected final String TEXT_27 = NL + "\t\treturn eVirtualIsSet(";
+
     protected final String TEXT_28 = ");";
+
     protected final String TEXT_29 = NL + "\t\treturn (";
+
     protected final String TEXT_30 = " & ";
+
     protected final String TEXT_31 = "_ESETFLAG) != 0;";
+
     protected final String TEXT_32 = NL + "\t\treturn ";
+
     protected final String TEXT_33 = "ESet;";
+
     protected final String TEXT_34 = NL + "\t\treturn !((";
+
     protected final String TEXT_35 = ".Internal)((";
+
     protected final String TEXT_36 = ".Internal.Wrapper)get";
+
     protected final String TEXT_37 = "()).featureMap()).isEmpty(";
+
     protected final String TEXT_38 = ");";
+
     protected final String TEXT_39 = NL + "\t\treturn !((";
+
     protected final String TEXT_40 = ".Internal)get";
+
     protected final String TEXT_41 = "()).isEmpty(";
+
     protected final String TEXT_42 = ");";
+
     protected final String TEXT_43 = NL + "\t\t";
+
     protected final String TEXT_44 = NL;
+
     protected final String TEXT_45 = NL + "\t}" + NL;
+
     protected final String TEXT_46 = NL;
+
     protected final String TEXT_47 = NL;
+
     protected final String TEXT_48 = NL;
 
     public ClassisSetGenFeatureoverride() {

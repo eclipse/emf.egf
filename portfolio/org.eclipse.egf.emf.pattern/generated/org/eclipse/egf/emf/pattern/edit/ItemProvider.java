@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava {
+
     protected static String nl;
 
     public static synchronized ItemProvider create(String lineSeparator) {
@@ -25,114 +26,228 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * This is the item provider adapter for a {@link ";
+
     protected final String TEXT_5 = "} object." + NL + " * <!-- begin-user-doc -->" + NL + " * <!-- end-user-doc -->" + NL + " * @generated" + NL + " */" + NL + "public class ";
+
     protected final String TEXT_6 = NL + "\textends ";
+
     protected final String TEXT_7 = NL + "\timplements";
+
     protected final String TEXT_8 = NL + "\t\t";
+
     protected final String TEXT_9 = ",";
+
     protected final String TEXT_10 = NL + "{";
+
     protected final String TEXT_11 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_12 = " copyright = ";
+
     protected final String TEXT_13 = ";";
+
     protected final String TEXT_14 = NL;
+
     protected final String TEXT_15 = NL + "\t/**" + NL + "\t * This constructs an instance from a factory and a notifier." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_16 = "(AdapterFactory adapterFactory)" + NL + "\t{" + NL + "\t\tsuper(adapterFactory);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This returns the property descriptors for the adapted class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_16 = "(AdapterFactory adapterFactory)" + NL + "\t{" + NL + "\t\tsuper(adapterFactory);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This returns the property descriptors for the adapted class." + NL + "\t * <!-- begin-user-doc -->" + NL
+            + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_17 = NL + "\t@Override";
+
     protected final String TEXT_18 = NL + "\tpublic ";
+
     protected final String TEXT_19 = " getPropertyDescriptors(Object object)" + NL + "\t{" + NL + "\t\tif (itemPropertyDescriptors == null)" + NL + "\t\t{" + NL + "\t\t\tsuper.getPropertyDescriptors(object);" + NL;
+
     protected final String TEXT_20 = NL + "\t\t\tadd";
+
     protected final String TEXT_21 = "PropertyDescriptor(object);";
+
     protected final String TEXT_22 = NL + "\t\t}" + NL + "\t\treturn itemPropertyDescriptors;" + NL + "\t}" + NL;
+
     protected final String TEXT_23 = NL + "\t/**" + NL + "\t * This adds a property descriptor for the ";
+
     protected final String TEXT_24 = " feature." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected void add";
+
     protected final String TEXT_25 = "PropertyDescriptor(Object object)" + NL + "\t{";
+
     protected final String TEXT_26 = NL;
+
     protected final String TEXT_27 = NL + "\t}" + NL;
-    protected final String TEXT_28 = NL + "\t/**" + NL + "\t * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an" + NL + "\t * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or" + NL + "\t * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_28 = NL + "\t/**" + NL + "\t * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an" + NL + "\t * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or" + NL
+            + "\t * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_29 = NL + "\t@Override";
+
     protected final String TEXT_30 = NL + "\tpublic ";
+
     protected final String TEXT_31 = " getChildrenFeatures(Object object)" + NL + "\t{" + NL + "\t\tif (childrenFeatures == null)" + NL + "\t\t{" + NL + "\t\t\tsuper.getChildrenFeatures(object);";
+
     protected final String TEXT_32 = NL + "\t\t\tchildrenFeatures.add(";
+
     protected final String TEXT_33 = ");";
+
     protected final String TEXT_34 = NL + "\t\t}" + NL + "\t\treturn childrenFeatures;" + NL + "\t}" + NL;
+
     protected final String TEXT_35 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_36 = NL + "\t@Override";
+
     protected final String TEXT_37 = NL + "\tprotected ";
-    protected final String TEXT_38 = " getChildFeature(Object object, Object child)" + NL + "\t{" + NL + "\t\t// Check the type of the specified child object and return the proper feature to use for" + NL + "\t\t// adding (see {@link AddCommand}) it as a child." + NL + "" + NL + "\t\treturn super.getChildFeature(object, child);" + NL + "\t}" + NL;
+
+    protected final String TEXT_38 = " getChildFeature(Object object, Object child)" + NL + "\t{" + NL + "\t\t// Check the type of the specified child object and return the proper feature to use for" + NL + "\t\t// adding (see {@link AddCommand}) it as a child." + NL + "" + NL
+            + "\t\treturn super.getChildFeature(object, child);" + NL + "\t}" + NL;
+
     protected final String TEXT_39 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_40 = NL + "\t@Override";
+
     protected final String TEXT_41 = NL + "\tpublic boolean hasChildren(Object object)" + NL + "\t{" + NL + "\t\treturn hasChildren(object, ";
+
     protected final String TEXT_42 = ");" + NL + "\t}" + NL;
+
     protected final String TEXT_43 = NL + "\t/**" + NL + "\t * This returns ";
+
     protected final String TEXT_44 = ".gif." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_45 = NL + "\t@Override";
+
     protected final String TEXT_46 = NL + "\tpublic Object getImage(Object object)" + NL + "\t{" + NL + "\t\treturn overlayImage(object, getResourceLocator().getImage(\"full/obj16/";
+
     protected final String TEXT_47 = "\"));";
+
     protected final String TEXT_48 = NL + "\t}" + NL;
+
     protected final String TEXT_49 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_50 = NL + "\t@Override";
+
     protected final String TEXT_51 = NL + "\tprotected boolean shouldComposeCreationImage() " + NL + "\t{" + NL + "\t\treturn true;" + NL + "\t}" + NL;
+
     protected final String TEXT_52 = NL + "\t/**" + NL + "\t * This returns the label text for the adapted class." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_53 = NL + "\t@Override";
+
     protected final String TEXT_54 = NL + "\tpublic String getText(Object object)" + NL + "\t{";
+
     protected final String TEXT_55 = NL;
-    protected final String TEXT_56 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This handles model notifications by calling {@link #updateChildren} to update any cached" + NL + "\t * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_56 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * This handles model notifications by calling {@link #updateChildren} to update any cached" + NL + "\t * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}." + NL
+            + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_57 = NL + "\t@Override";
+
     protected final String TEXT_58 = NL + "\tpublic void notifyChanged(Notification notification)" + NL + "\t{" + NL + "\t\tupdateChildren(notification);";
+
     protected final String TEXT_59 = NL + NL + "\t\tswitch (notification.getFeatureID(";
+
     protected final String TEXT_60 = ".class))" + NL + "\t\t{";
+
     protected final String TEXT_61 = NL + "\t\t\tcase ";
+
     protected final String TEXT_62 = ":";
+
     protected final String TEXT_63 = NL + "\t\t\t\tfireNotifyChanged(new ";
+
     protected final String TEXT_64 = "(notification, notification.getNotifier(), false, true));" + NL + "\t\t\t\treturn;";
+
     protected final String TEXT_65 = NL + "\t\t\tcase ";
+
     protected final String TEXT_66 = ":";
+
     protected final String TEXT_67 = NL + "\t\t\t\tfireNotifyChanged(new ";
+
     protected final String TEXT_68 = "(notification, notification.getNotifier(), true, false));" + NL + "\t\t\t\treturn;";
+
     protected final String TEXT_69 = NL + "\t\t\tcase ";
+
     protected final String TEXT_70 = ":";
+
     protected final String TEXT_71 = NL + "\t\t\t\tfireNotifyChanged(new ";
+
     protected final String TEXT_72 = "(notification, notification.getNotifier(), true, true));" + NL + "\t\t\t\treturn;";
+
     protected final String TEXT_73 = NL + "\t\t}";
+
     protected final String TEXT_74 = NL + "\t\tsuper.notifyChanged(notification);" + NL + "\t}" + NL;
-    protected final String TEXT_75 = NL + "\t/**" + NL + "\t * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children" + NL + "\t * that can be created under this object." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
+    protected final String TEXT_75 = NL + "\t/**" + NL + "\t * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children" + NL + "\t * that can be created under this object." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL
+            + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_76 = NL + "\t@Override";
+
     protected final String TEXT_77 = NL + "\tprotected void collectNewChildDescriptors(";
+
     protected final String TEXT_78 = " newChildDescriptors, Object object)" + NL + "\t{" + NL + "\t\tsuper.collectNewChildDescriptors(newChildDescriptors, object);";
+
     protected final String TEXT_79 = NL;
+
     protected final String TEXT_80 = NL;
+
     protected final String TEXT_81 = NL;
+
     protected final String TEXT_82 = NL;
+
     protected final String TEXT_83 = NL + "\t}" + NL;
+
     protected final String TEXT_84 = NL + "\t/**" + NL + "\t * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_85 = NL + "\t@Override";
+
     protected final String TEXT_86 = NL + "\tpublic String getCreateChildText(Object owner, Object feature, Object child, ";
+
     protected final String TEXT_87 = " selection)" + NL + "\t{" + NL + "\t\tObject childFeature = feature;" + NL + "\t\tObject childObject = child;" + NL;
+
     protected final String TEXT_88 = NL + "\t\tif (childFeature instanceof ";
+
     protected final String TEXT_89 = " && ";
+
     protected final String TEXT_90 = ".isFeatureMap((EStructuralFeature)childFeature))" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_91 = ".Entry entry = (FeatureMap.Entry)childObject;" + NL + "\t\t\tchildFeature = entry.getEStructuralFeature();" + NL + "\t\t\tchildObject = entry.getValue();" + NL + "\t\t}" + NL;
+
     protected final String TEXT_92 = NL + "\t\tboolean qualify =";
+
     protected final String TEXT_93 = NL + "\t\t\tchildFeature == ";
+
     protected final String TEXT_94 = NL + NL + "\t\tif (qualify)" + NL + "\t\t{" + NL + "\t\t\treturn getString" + NL + "\t\t\t\t(\"_UI_CreateChild_text2\",";
+
     protected final String TEXT_95 = NL + "\t\t\t\t new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });" + NL + "\t\t}" + NL + "\t\treturn super.getCreateChildText(owner, feature, child, selection);" + NL + "\t}" + NL;
+
     protected final String TEXT_96 = NL + "\t/**" + NL + "\t * Return the resource locator for this item provider's resources." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_97 = NL + "\t@Override";
+
     protected final String TEXT_98 = NL + "\tpublic ";
+
     protected final String TEXT_99 = " getResourceLocator()" + NL + "\t{";
+
     protected final String TEXT_100 = NL + "\t\treturn ((";
+
     protected final String TEXT_101 = ")adapterFactory).getResourceLocator();";
+
     protected final String TEXT_102 = NL + "\t\treturn ";
+
     protected final String TEXT_103 = ".INSTANCE;";
+
     protected final String TEXT_104 = NL + "\t}" + NL;
+
     protected final String TEXT_105 = NL;
+
     protected final String TEXT_106 = NL + "}";
+
     protected final String TEXT_107 = NL;
+
     protected final String TEXT_108 = NL;
+
     protected final String TEXT_109 = NL;
 
     public ItemProvider() {
@@ -568,7 +683,8 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
                 stringBuffer.append(TEXT_95);
             }
         }
-        if (genClass.getProviderExtendsGenClass() == null || genClass.getProviderExtendsGenClass().getGenPackage() != genPackage && (!genPackage.isExtensibleProviderFactory() || genClass.getProviderExtendsGenClass().getGenPackage().isExtensibleProviderFactory() != genPackage.isExtensibleProviderFactory())) {
+        if (genClass.getProviderExtendsGenClass() == null || genClass.getProviderExtendsGenClass().getGenPackage() != genPackage
+                && (!genPackage.isExtensibleProviderFactory() || genClass.getProviderExtendsGenClass().getGenPackage().isExtensibleProviderFactory() != genPackage.isExtensibleProviderFactory())) {
             stringBuffer.append(TEXT_96);
             if (genModel.useClassOverrideAnnotation()) {
                 stringBuffer.append(TEXT_97);

@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
+
     protected static String nl;
 
     public static synchronized TestCase create(String lineSeparator) {
@@ -25,80 +26,155 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "package ";
+
     protected final String TEXT_3 = ";" + NL;
+
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * A test case for the model object '<em><b>";
+
     protected final String TEXT_5 = "</b></em>'." + NL + " * <!-- end-user-doc -->";
+
     protected final String TEXT_6 = NL + " * <p>" + NL + " * The following features are tested:" + NL + " * <ul>";
+
     protected final String TEXT_7 = NL + " *   <li>{@link ";
+
     protected final String TEXT_8 = "#";
+
     protected final String TEXT_9 = "() <em>";
+
     protected final String TEXT_10 = "</em>}</li>";
+
     protected final String TEXT_11 = NL + " * </ul>" + NL + " * </p>";
+
     protected final String TEXT_12 = NL + " * <p>" + NL + " * The following operations are tested:" + NL + " * <ul>";
+
     protected final String TEXT_13 = NL + " *   <li>{@link ";
+
     protected final String TEXT_14 = "#";
+
     protected final String TEXT_15 = "(";
+
     protected final String TEXT_16 = ") <em>";
+
     protected final String TEXT_17 = "</em>}</li>";
+
     protected final String TEXT_18 = NL + " * </ul>" + NL + " * </p>";
+
     protected final String TEXT_19 = NL + " * @generated" + NL + " */" + NL + "public";
+
     protected final String TEXT_20 = " abstract";
+
     protected final String TEXT_21 = " class ";
+
     protected final String TEXT_22 = " extends ";
+
     protected final String TEXT_23 = NL + "{";
+
     protected final String TEXT_24 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_25 = " copyright = ";
+
     protected final String TEXT_26 = ";";
+
     protected final String TEXT_27 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+
     protected final String TEXT_28 = " mofDriverNumber = \"";
+
     protected final String TEXT_29 = "\";";
+
     protected final String TEXT_30 = NL + NL + "\t/**" + NL + "\t * The fixture for this ";
+
     protected final String TEXT_31 = " test case." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+
     protected final String TEXT_32 = " fixture = null;";
+
     protected final String TEXT_33 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static void main(String[] args)" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_34 = ".run(";
+
     protected final String TEXT_35 = ".class);" + NL + "\t}";
+
     protected final String TEXT_36 = NL + NL + "\t/**" + NL + "\t * Constructs a new ";
+
     protected final String TEXT_37 = " test case with the given name." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+
     protected final String TEXT_38 = "(String name)" + NL + "\t{" + NL + "\t\tsuper(name);" + NL + "\t}";
+
     protected final String TEXT_39 = NL + NL + "\t/**" + NL + "\t * Sets the fixture for this ";
+
     protected final String TEXT_40 = " test case." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected void setFixture(";
+
     protected final String TEXT_41 = " fixture)" + NL + "\t{" + NL + "\t\tthis.fixture = fixture;" + NL + "\t}";
+
     protected final String TEXT_42 = NL + NL + "\t/**" + NL + "\t * Returns the fixture for this ";
+
     protected final String TEXT_43 = " test case." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_44 = NL + "\t@Override";
+
     protected final String TEXT_45 = NL + "\t";
+
     protected final String TEXT_46 = "protected";
+
     protected final String TEXT_47 = "private";
+
     protected final String TEXT_48 = " ";
+
     protected final String TEXT_49 = " getFixture()" + NL + "\t{";
+
     protected final String TEXT_50 = NL + "\t\treturn fixture;";
+
     protected final String TEXT_51 = NL + "\t\treturn (";
+
     protected final String TEXT_52 = ")fixture;";
+
     protected final String TEXT_53 = NL + "\t}";
+
     protected final String TEXT_54 = NL + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see junit.framework.TestCase#setUp()" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_55 = NL + "\t@Override";
+
     protected final String TEXT_56 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_57 = NL + "\tprotected void setUp() throws Exception" + NL + "\t{";
+
     protected final String TEXT_58 = NL + "\t\tsetFixture((";
+
     protected final String TEXT_59 = ")";
+
     protected final String TEXT_60 = ".create(";
+
     protected final String TEXT_61 = "));";
+
     protected final String TEXT_62 = NL + "\t\tsetFixture(";
+
     protected final String TEXT_63 = ".create";
+
     protected final String TEXT_64 = "());";
+
     protected final String TEXT_65 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see junit.framework.TestCase#tearDown()" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_66 = NL + "\t@Override";
+
     protected final String TEXT_67 = NL + "\tprotected void tearDown() throws Exception" + NL + "\t{" + NL + "\t\tsetFixture(null);" + NL + "\t}";
+
     protected final String TEXT_68 = NL;
+
     protected final String TEXT_69 = NL;
+
     protected final String TEXT_70 = NL;
+
     protected final String TEXT_71 = NL;
+
     protected final String TEXT_72 = NL + "} //";
+
     protected final String TEXT_73 = NL;
+
     protected final String TEXT_74 = NL;
+
     protected final String TEXT_75 = NL;
 
     public TestCase() {

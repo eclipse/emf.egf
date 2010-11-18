@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelText {
+
     protected static String nl;
 
     public static synchronized BuildProperties create(String lineSeparator) {
@@ -25,17 +26,29 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + NL + "bin.includes = ";
+
     protected final String TEXT_3 = ",\\";
+
     protected final String TEXT_4 = NL + "               META-INF/,\\";
+
     protected final String TEXT_5 = NL + "               plugin.xml,\\";
+
     protected final String TEXT_6 = NL + "               plugin.properties" + NL + "jars.compile.order = ";
+
     protected final String TEXT_7 = NL + "source.";
+
     protected final String TEXT_8 = " = ";
+
     protected final String TEXT_9 = NL + "output.";
+
     protected final String TEXT_10 = " = bin/" + NL;
+
     protected final String TEXT_11 = NL;
+
     protected final String TEXT_12 = NL;
 
     public BuildProperties() {

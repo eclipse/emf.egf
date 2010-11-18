@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelProperties {
+
     protected static String nl;
 
     public static synchronized PluginProperties create(String lineSeparator) {
@@ -25,15 +26,25 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + NL + "pluginName = ";
+
     protected final String TEXT_3 = " Model" + NL + "providerName = www.example.org";
+
     protected final String TEXT_4 = NL;
+
     protected final String TEXT_5 = NL + "_UI_";
+
     protected final String TEXT_6 = "_content_type = ";
+
     protected final String TEXT_7 = " File";
+
     protected final String TEXT_8 = NL;
+
     protected final String TEXT_9 = NL;
+
     protected final String TEXT_10 = NL;
 
     public PluginProperties() {

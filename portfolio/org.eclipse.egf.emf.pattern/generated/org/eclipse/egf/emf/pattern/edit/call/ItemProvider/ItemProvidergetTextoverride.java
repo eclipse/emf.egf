@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ItemProvidergetTextoverride {
+
     protected static String nl;
 
     public static synchronized ItemProvidergetTextoverride create(String lineSeparator) {
@@ -25,55 +26,105 @@ public class ItemProvidergetTextoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t\t";
+
     protected final String TEXT_3 = "<?, ?>";
+
     protected final String TEXT_4 = " ";
+
     protected final String TEXT_5 = " = (";
+
     protected final String TEXT_6 = "<?, ?>";
+
     protected final String TEXT_7 = ")object;";
+
     protected final String TEXT_8 = NL + "\t\treturn \"\" + ";
+
     protected final String TEXT_9 = ".getKey() + \" -> \" + ";
+
     protected final String TEXT_10 = ".getValue();";
+
     protected final String TEXT_11 = NL + "\t\tString key = crop(\"\" + ";
+
     protected final String TEXT_12 = ".getKey());";
+
     protected final String TEXT_13 = NL + "\t\tString key = \"\" + ";
+
     protected final String TEXT_14 = ".getKey();";
+
     protected final String TEXT_15 = NL + "\t\tString value = crop(\"\" + ";
+
     protected final String TEXT_16 = ".getValue());";
+
     protected final String TEXT_17 = NL + "\t\tString value = \"\" + ";
+
     protected final String TEXT_18 = ".getValue();";
+
     protected final String TEXT_19 = NL + "\t\treturn key + \" -> \" + value;";
+
     protected final String TEXT_20 = NL + "\t\t";
+
     protected final String TEXT_21 = " ";
+
     protected final String TEXT_22 = " = (";
+
     protected final String TEXT_23 = ")object;" + NL + "\t\treturn getString(\"_UI_";
+
     protected final String TEXT_24 = "_type\") + \" \" + ";
+
     protected final String TEXT_25 = ".";
+
     protected final String TEXT_26 = "();";
+
     protected final String TEXT_27 = NL + "\t\tString label = crop(((";
+
     protected final String TEXT_28 = ")object).";
+
     protected final String TEXT_29 = "());";
+
     protected final String TEXT_30 = NL + "\t\tString label = ((";
+
     protected final String TEXT_31 = ")object).";
+
     protected final String TEXT_32 = "();";
+
     protected final String TEXT_33 = NL + "\t\t";
+
     protected final String TEXT_34 = " labelValue = ((";
+
     protected final String TEXT_35 = ")object).eGet(";
+
     protected final String TEXT_36 = ");";
+
     protected final String TEXT_37 = NL + "\t\t";
+
     protected final String TEXT_38 = " labelValue = ((";
+
     protected final String TEXT_39 = ")object).";
+
     protected final String TEXT_40 = "();";
+
     protected final String TEXT_41 = NL + "\t\tString label = labelValue == null ? null : labelValue.toString();";
+
     protected final String TEXT_42 = NL + "\t\treturn label == null || label.length() == 0 ?" + NL + "\t\t\tgetString(\"_UI_";
+
     protected final String TEXT_43 = "_type\") :";
+
     protected final String TEXT_44 = NL + "\t\t\tgetString(\"_UI_";
+
     protected final String TEXT_45 = "_type\") + \" \" + label;";
+
     protected final String TEXT_46 = NL + "\t\treturn getString(\"_UI_";
+
     protected final String TEXT_47 = "_type\");";
+
     protected final String TEXT_48 = NL;
+
     protected final String TEXT_49 = NL;
+
     protected final String TEXT_50 = NL;
 
     public ItemProvidergetTextoverride() {

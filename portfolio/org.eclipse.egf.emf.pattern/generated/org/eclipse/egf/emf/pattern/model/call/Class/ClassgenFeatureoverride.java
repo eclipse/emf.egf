@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class ClassgenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized ClassgenFeatureoverride create(String lineSeparator) {
@@ -25,84 +26,163 @@ public class ClassgenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_3 = NL + "\t";
+
     protected final String TEXT_4 = "[] ";
+
     protected final String TEXT_5 = "();" + NL;
+
     protected final String TEXT_6 = NL + "\tpublic ";
+
     protected final String TEXT_7 = "[] ";
+
     protected final String TEXT_8 = "()" + NL + "\t{";
+
     protected final String TEXT_9 = NL + "\t\t";
+
     protected final String TEXT_10 = " list = (";
+
     protected final String TEXT_11 = ")";
+
     protected final String TEXT_12 = "();" + NL + "\t\tif (list.isEmpty()) return ";
+
     protected final String TEXT_13 = "(";
+
     protected final String TEXT_14 = "[])";
+
     protected final String TEXT_15 = "_EEMPTY_ARRAY;";
+
     protected final String TEXT_16 = NL + "\t\tif (";
+
     protected final String TEXT_17 = " == null || ";
+
     protected final String TEXT_18 = ".isEmpty()) return ";
+
     protected final String TEXT_19 = "(";
+
     protected final String TEXT_20 = "[])";
+
     protected final String TEXT_21 = "_EEMPTY_ARRAY;" + NL + "\t\t";
+
     protected final String TEXT_22 = " list = (";
+
     protected final String TEXT_23 = ")";
+
     protected final String TEXT_24 = ";";
+
     protected final String TEXT_25 = NL + "\t\tlist.shrink();" + NL + "\t\treturn (";
+
     protected final String TEXT_26 = "[])list.data();" + NL + "\t}" + NL;
+
     protected final String TEXT_27 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_28 = NL + "\t";
+
     protected final String TEXT_29 = " get";
+
     protected final String TEXT_30 = "(int index);" + NL;
+
     protected final String TEXT_31 = NL + "\tpublic ";
+
     protected final String TEXT_32 = " get";
+
     protected final String TEXT_33 = "(int index)" + NL + "\t{" + NL + "\t\treturn ";
+
     protected final String TEXT_34 = "(";
+
     protected final String TEXT_35 = ")";
+
     protected final String TEXT_36 = "().get(index);" + NL + "\t}" + NL;
+
     protected final String TEXT_37 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_38 = NL + "\tint get";
+
     protected final String TEXT_39 = "Length();" + NL;
+
     protected final String TEXT_40 = NL + "\tpublic int get";
+
     protected final String TEXT_41 = "Length()" + NL + "\t{";
+
     protected final String TEXT_42 = NL + "\t\treturn ";
+
     protected final String TEXT_43 = "().size();";
+
     protected final String TEXT_44 = NL + "\t\treturn ";
+
     protected final String TEXT_45 = " == null ? 0 : ";
+
     protected final String TEXT_46 = ".size();";
+
     protected final String TEXT_47 = NL + "\t}" + NL;
+
     protected final String TEXT_48 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_49 = NL + "\tvoid set";
+
     protected final String TEXT_50 = "(";
+
     protected final String TEXT_51 = "[] new";
+
     protected final String TEXT_52 = ");" + NL;
+
     protected final String TEXT_53 = NL + "\tpublic void set";
+
     protected final String TEXT_54 = "(";
+
     protected final String TEXT_55 = "[] new";
+
     protected final String TEXT_56 = ")" + NL + "\t{" + NL + "\t\t((";
+
     protected final String TEXT_57 = ")";
+
     protected final String TEXT_58 = "()).setData(new";
+
     protected final String TEXT_59 = ".length, new";
+
     protected final String TEXT_60 = ");" + NL + "\t}" + NL;
+
     protected final String TEXT_61 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_62 = NL + "\tvoid set";
+
     protected final String TEXT_63 = "(int index, ";
+
     protected final String TEXT_64 = " element);" + NL;
+
     protected final String TEXT_65 = NL + "\tpublic void set";
+
     protected final String TEXT_66 = "(int index, ";
+
     protected final String TEXT_67 = " element)" + NL + "\t{" + NL + "\t\t";
+
     protected final String TEXT_68 = "().set(index, element);" + NL + "\t}" + NL;
+
     protected final String TEXT_69 = NL;
+
     protected final String TEXT_70 = NL;
+
     protected final String TEXT_71 = NL;
+
     protected final String TEXT_72 = NL;
+
     protected final String TEXT_73 = NL;
+
     protected final String TEXT_74 = NL;
+
     protected final String TEXT_75 = NL;
+
     protected final String TEXT_76 = NL;
+
     protected final String TEXT_77 = NL;
+
     protected final String TEXT_78 = NL;
+
     protected final String TEXT_79 = NL;
 
     public ClassgenFeatureoverride() {

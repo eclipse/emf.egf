@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class InterfacegetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized InterfacegetGenFeatureoverride create(String lineSeparator) {
@@ -25,185 +26,365 @@ public class InterfacegetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = "";
+
     protected final String TEXT_2 = NL;
+
     protected final String TEXT_3 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_4 = NL;
+
     protected final String TEXT_5 = NL + "\t";
+
     protected final String TEXT_6 = " ";
+
     protected final String TEXT_7 = "();" + NL;
+
     protected final String TEXT_8 = NL + "\t@SuppressWarnings(\"unchecked\")";
+
     protected final String TEXT_9 = NL + "\tpublic ";
+
     protected final String TEXT_10 = " ";
+
     protected final String TEXT_11 = "_";
+
     protected final String TEXT_12 = "()" + NL + "\t{";
+
     protected final String TEXT_13 = NL;
+
     protected final String TEXT_14 = NL + "\t\treturn ";
+
     protected final String TEXT_15 = "(";
+
     protected final String TEXT_16 = "(";
+
     protected final String TEXT_17 = ")eDynamicGet(";
+
     protected final String TEXT_18 = ", ";
+
     protected final String TEXT_19 = ", true, ";
+
     protected final String TEXT_20 = ")";
+
     protected final String TEXT_21 = ").";
+
     protected final String TEXT_22 = "()";
+
     protected final String TEXT_23 = ";";
+
     protected final String TEXT_24 = NL + "\t\treturn ";
+
     protected final String TEXT_25 = "(";
+
     protected final String TEXT_26 = "(";
+
     protected final String TEXT_27 = ")eGet(";
+
     protected final String TEXT_28 = ", true)";
+
     protected final String TEXT_29 = ").";
+
     protected final String TEXT_30 = "()";
+
     protected final String TEXT_31 = ";";
+
     protected final String TEXT_32 = NL + "\t\treturn ";
+
     protected final String TEXT_33 = "(";
+
     protected final String TEXT_34 = "(";
+
     protected final String TEXT_35 = ")";
+
     protected final String TEXT_36 = "__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false)";
+
     protected final String TEXT_37 = ").";
+
     protected final String TEXT_38 = "()";
+
     protected final String TEXT_39 = ";";
+
     protected final String TEXT_40 = NL + "\t\t";
+
     protected final String TEXT_41 = " ";
+
     protected final String TEXT_42 = " = (";
+
     protected final String TEXT_43 = ")eVirtualGet(";
+
     protected final String TEXT_44 = ");";
+
     protected final String TEXT_45 = NL + "\t\tif (";
+
     protected final String TEXT_46 = " == null)" + NL + "\t\t{";
+
     protected final String TEXT_47 = NL + "\t\t\teVirtualSet(";
+
     protected final String TEXT_48 = ", ";
+
     protected final String TEXT_49 = " = new ";
+
     protected final String TEXT_50 = ");";
+
     protected final String TEXT_51 = NL + "\t\t\t";
+
     protected final String TEXT_52 = " = new ";
+
     protected final String TEXT_53 = ";";
+
     protected final String TEXT_54 = NL + "\t\t}" + NL + "\t\treturn ";
+
     protected final String TEXT_55 = ";";
+
     protected final String TEXT_56 = NL + "\t\tif (eContainerFeatureID() != ";
+
     protected final String TEXT_57 = ") return null;" + NL + "\t\treturn (";
+
     protected final String TEXT_58 = ")eContainer();";
+
     protected final String TEXT_59 = NL + "\t\t";
+
     protected final String TEXT_60 = " ";
+
     protected final String TEXT_61 = " = (";
+
     protected final String TEXT_62 = ")eVirtualGet(";
+
     protected final String TEXT_63 = ", ";
+
     protected final String TEXT_64 = ");";
+
     protected final String TEXT_65 = NL + "\t\tif (";
+
     protected final String TEXT_66 = " != null && ";
+
     protected final String TEXT_67 = ".eIsProxy())" + NL + "\t\t{" + NL + "\t\t\t";
+
     protected final String TEXT_68 = " old";
+
     protected final String TEXT_69 = " = (";
+
     protected final String TEXT_70 = ")";
+
     protected final String TEXT_71 = ";" + NL + "\t\t\t";
+
     protected final String TEXT_72 = " = ";
+
     protected final String TEXT_73 = "eResolveProxy(old";
+
     protected final String TEXT_74 = ");" + NL + "\t\t\tif (";
+
     protected final String TEXT_75 = " != old";
+
     protected final String TEXT_76 = ")" + NL + "\t\t\t{";
+
     protected final String TEXT_77 = NL + "\t\t\t\t";
+
     protected final String TEXT_78 = " new";
+
     protected final String TEXT_79 = " = (";
+
     protected final String TEXT_80 = ")";
+
     protected final String TEXT_81 = ";";
+
     protected final String TEXT_82 = NL + "\t\t\t\t";
+
     protected final String TEXT_83 = " msgs = old";
+
     protected final String TEXT_84 = ".eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ";
+
     protected final String TEXT_85 = ", null, null);";
+
     protected final String TEXT_86 = NL + "\t\t\t\t";
+
     protected final String TEXT_87 = " msgs =  old";
+
     protected final String TEXT_88 = ".eInverseRemove(this, ";
+
     protected final String TEXT_89 = ", ";
+
     protected final String TEXT_90 = ".class, null);";
+
     protected final String TEXT_91 = NL + "\t\t\t\tif (new";
+
     protected final String TEXT_92 = ".eInternalContainer() == null)" + NL + "\t\t\t\t{";
+
     protected final String TEXT_93 = NL + "\t\t\t\t\tmsgs = new";
+
     protected final String TEXT_94 = ".eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ";
+
     protected final String TEXT_95 = ", null, msgs);";
+
     protected final String TEXT_96 = NL + "\t\t\t\t\tmsgs =  new";
+
     protected final String TEXT_97 = ".eInverseAdd(this, ";
+
     protected final String TEXT_98 = ", ";
+
     protected final String TEXT_99 = ".class, msgs);";
+
     protected final String TEXT_100 = NL + "\t\t\t\t}" + NL + "\t\t\t\tif (msgs != null) msgs.dispatch();";
+
     protected final String TEXT_101 = NL + "\t\t\t\teVirtualSet(";
+
     protected final String TEXT_102 = ", ";
+
     protected final String TEXT_103 = ");";
+
     protected final String TEXT_104 = NL + "\t\t\t\tif (eNotificationRequired())" + NL + "\t\t\t\t\teNotify(new ";
+
     protected final String TEXT_105 = "(this, ";
+
     protected final String TEXT_106 = ".RESOLVE, ";
+
     protected final String TEXT_107 = ", old";
+
     protected final String TEXT_108 = ", ";
+
     protected final String TEXT_109 = "));";
+
     protected final String TEXT_110 = NL + "\t\t\t}" + NL + "\t\t}";
+
     protected final String TEXT_111 = NL + "\t\treturn (";
+
     protected final String TEXT_112 = ")eVirtualGet(";
+
     protected final String TEXT_113 = ", ";
+
     protected final String TEXT_114 = ");";
+
     protected final String TEXT_115 = NL + "\t\treturn (";
+
     protected final String TEXT_116 = " & ";
+
     protected final String TEXT_117 = "_EFLAG) != 0;";
+
     protected final String TEXT_118 = NL + "\t\treturn ";
+
     protected final String TEXT_119 = "_EFLAG_VALUES[(";
+
     protected final String TEXT_120 = " & ";
+
     protected final String TEXT_121 = "_EFLAG) >>> ";
+
     protected final String TEXT_122 = "_EFLAG_OFFSET];";
+
     protected final String TEXT_123 = NL + "\t\treturn ";
+
     protected final String TEXT_124 = ";";
+
     protected final String TEXT_125 = NL + "\t\t";
+
     protected final String TEXT_126 = " ";
+
     protected final String TEXT_127 = " = basicGet";
+
     protected final String TEXT_128 = "();" + NL + "\t\treturn ";
+
     protected final String TEXT_129 = " != null && ";
+
     protected final String TEXT_130 = ".eIsProxy() ? ";
+
     protected final String TEXT_131 = "eResolveProxy((";
+
     protected final String TEXT_132 = ")";
+
     protected final String TEXT_133 = ") : ";
+
     protected final String TEXT_134 = ";";
+
     protected final String TEXT_135 = NL + "\t\treturn new ";
+
     protected final String TEXT_136 = "((";
+
     protected final String TEXT_137 = ".Internal)((";
+
     protected final String TEXT_138 = ".Internal.Wrapper)get";
+
     protected final String TEXT_139 = "()).featureMap().";
+
     protected final String TEXT_140 = "list(";
+
     protected final String TEXT_141 = "));";
+
     protected final String TEXT_142 = NL + "\t\treturn (";
+
     protected final String TEXT_143 = ")get";
+
     protected final String TEXT_144 = "().";
+
     protected final String TEXT_145 = "list(";
+
     protected final String TEXT_146 = ");";
+
     protected final String TEXT_147 = NL + "\t\treturn ((";
+
     protected final String TEXT_148 = ".Internal.Wrapper)get";
+
     protected final String TEXT_149 = "()).featureMap().list(";
+
     protected final String TEXT_150 = ");";
+
     protected final String TEXT_151 = NL + "\t\treturn get";
+
     protected final String TEXT_152 = "().list(";
+
     protected final String TEXT_153 = ");";
+
     protected final String TEXT_154 = NL + "\t\treturn ";
+
     protected final String TEXT_155 = "(";
+
     protected final String TEXT_156 = "(";
+
     protected final String TEXT_157 = ")";
+
     protected final String TEXT_158 = "((";
+
     protected final String TEXT_159 = ".Internal.Wrapper)get";
+
     protected final String TEXT_160 = "()).featureMap().get(";
+
     protected final String TEXT_161 = ", true)";
+
     protected final String TEXT_162 = ").";
+
     protected final String TEXT_163 = "()";
+
     protected final String TEXT_164 = ";";
+
     protected final String TEXT_165 = NL + "\t\treturn ";
+
     protected final String TEXT_166 = "(";
+
     protected final String TEXT_167 = "(";
+
     protected final String TEXT_168 = ")";
+
     protected final String TEXT_169 = "get";
+
     protected final String TEXT_170 = "().get(";
+
     protected final String TEXT_171 = ", true)";
+
     protected final String TEXT_172 = ").";
+
     protected final String TEXT_173 = "()";
+
     protected final String TEXT_174 = ";";
+
     protected final String TEXT_175 = NL + "\t\t";
+
     protected final String TEXT_176 = NL;
+
     protected final String TEXT_177 = NL + "\t}" + NL;
+
     protected final String TEXT_178 = NL;
+
     protected final String TEXT_179 = NL;
+
     protected final String TEXT_180 = NL;
 
     public InterfacegetGenFeatureoverride() {
@@ -503,7 +684,9 @@ public class InterfacegetGenFeatureoverride {
             stringBuffer.append(genFeature.getGetAccessor());
             stringBuffer.append(TEXT_7);
         } else {
-            if (genModel.useGenerics() && ((genFeature.isContainer() || genFeature.isResolveProxies()) && !genFeature.isListType() && !(genModel.isReflectiveDelegation() && genModel.isDynamicDelegation()) && genFeature.isUncheckedCast(genClass) || genFeature.isListType() && !genFeature.isFeatureMapType() && (genModel.isReflectiveDelegation() || genModel.isVirtualDelegation() || genModel.isDynamicDelegation()) || genFeature.isListDataType() && genFeature.hasDelegateFeature() || genFeature.isListType() && genFeature.hasSettingDelegate())) {
+            if (genModel.useGenerics()
+                    && ((genFeature.isContainer() || genFeature.isResolveProxies()) && !genFeature.isListType() && !(genModel.isReflectiveDelegation() && genModel.isDynamicDelegation()) && genFeature.isUncheckedCast(genClass) || genFeature.isListType() && !genFeature.isFeatureMapType()
+                            && (genModel.isReflectiveDelegation() || genModel.isVirtualDelegation() || genModel.isDynamicDelegation()) || genFeature.isListDataType() && genFeature.hasDelegateFeature() || genFeature.isListType() && genFeature.hasSettingDelegate())) {
                 stringBuffer.append(TEXT_8);
             }
             stringBuffer.append(TEXT_9);

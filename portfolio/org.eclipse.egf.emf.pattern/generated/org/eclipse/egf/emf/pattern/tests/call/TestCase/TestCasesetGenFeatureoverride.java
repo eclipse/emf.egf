@@ -15,6 +15,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCasesetGenFeatureoverride {
+
     protected static String nl;
 
     public static synchronized TestCasesetGenFeatureoverride create(String lineSeparator) {
@@ -25,20 +26,35 @@ public class TestCasesetGenFeatureoverride {
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+
     protected final String TEXT_1 = NL + NL + "\t/**" + NL + "\t * Tests the '{@link ";
+
     protected final String TEXT_2 = "#set";
+
     protected final String TEXT_3 = "(";
+
     protected final String TEXT_4 = ") <em>";
+
     protected final String TEXT_5 = "</em>}' feature setter." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see ";
+
     protected final String TEXT_6 = "#set";
+
     protected final String TEXT_7 = "(";
+
     protected final String TEXT_8 = ")" + NL + "\t * @generated" + NL + "\t */";
+
     protected final String TEXT_9 = NL;
+
     protected final String TEXT_10 = NL + "\tpublic void testSet";
+
     protected final String TEXT_11 = "()" + NL + "\t{";
+
     protected final String TEXT_12 = NL;
+
     protected final String TEXT_13 = NL + "\t}" + NL;
+
     protected final String TEXT_14 = NL;
+
     protected final String TEXT_15 = NL;
 
     public TestCasesetGenFeatureoverride() {
