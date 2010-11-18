@@ -144,7 +144,6 @@ public class RunActivityAction implements IObjectActionDelegate {
 
                 // Prepare a dynamic bundle session
                 ProjectBundleSession session = new ProjectBundleSession(EGFProducerUIPlugin.getDefault().getBundle().getBundleContext());
-                List<Throwable> throwables = new ArrayList<Throwable>();
                 IActivityManager<?> activityManager = null;
                 SubMonitor subMonitor = null;
 
@@ -163,154 +162,94 @@ public class RunActivityAction implements IObjectActionDelegate {
                             continue;
                         }
                         // Cannot associate a Bundle to a target platform fcore
-                        throwables.add(new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, fcore.getPlatformBundle().getBundleId()), null))));
+                        throw new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.TargetPlatform_ExtensionPoint_no_bundle, fcore.getPlatformBundle().getBundleId()), null));
                     }
                 }
 
-                if (throwables.size() == 0) {
-                    subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(_activity)), (100 * fcores.size()) + (1000 * tasks.size()));
-                }
+                subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(_activity)), (100 * fcores.size()) + (1000 * tasks.size()));
 
                 try {
 
-                    if (throwables.size() == 0) {
-                        // 4 - Load workspace bundles in runtime
-                        for (IPlatformFcore fcore : fcores) {
-                            SubMonitor childSubMonitor = subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE);
-                            childSubMonitor = SubMonitor.convert(childSubMonitor, NLS.bind(EGFCoreMessages.Production_Load_Bundle, fcore.getPlatformBundle().getBundleId()), 100);
-                            try {
-                                session.getBundle(fcore.getPlatformBundle().getProject());
-                            } catch (Throwable t) {
-                                throwables.add(new InvocationException(t));
-                            }
-                        }
+                    // 4 - Load workspace bundles in runtime
+                    for (IPlatformFcore fcore : fcores) {
+                        SubMonitor childSubMonitor = subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE);
+                        childSubMonitor = SubMonitor.convert(childSubMonitor, NLS.bind(EGFCoreMessages.Production_Load_Bundle, fcore.getPlatformBundle().getBundleId()), 100);
+                        session.getBundle(fcore.getPlatformBundle().getProject());
                     }
 
                     // 5 - Switch to runtime mode
                     ResourceSet resourceSet = new RuntimePlatformResourceSet();
-                    Activity activity = null;
-                    if (throwables.size() == 0) {
-                        if (throwables.size() == 0) {
-                            try {
-                                activity = (Activity) resourceSet.getEObject(EcoreUtil.getURI(_activity), true);
-                            } catch (Throwable t) {
-                                throwables.add(t);
-                            }
-                        }
-                    }
+                    Activity activity = (Activity) resourceSet.getEObject(EcoreUtil.getURI(_activity), true);
 
                     // 6 - Locate an ActivityManagerProducer and create an ActivityManager
-                    if (throwables.size() == 0) {
-                        try {
-                            ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
-                            // Create a Manager
-                            activityManager = producer.createActivityManager(activity);
-                            // Assign a ProjectBundleSession
-                            activityManager.setProjectBundleSession(session);
-                        } catch (Throwable t) {
-                            throwables.add(t);
+                    ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
+                    activityManager = producer.createActivityManager(activity);
+                    // Assign a ProjectBundleSession
+                    activityManager.setProjectBundleSession(session);
+
+                    // 7 - Initialize Context
+                    activityManager.initializeContext();
+
+                    // 8 - PreInvoke Validation
+                    final Diagnostic preInvokeDiag = activityManager.canInvoke();
+                    if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
+                        if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+                            EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+
+                                public void run() {
+                                    EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
+                                }
+
+                            });
+                        }
+                        if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
+                            return Status.OK_STATUS;
                         }
                     }
 
-                    // 7 - PreInvoke Validation
-                    if (throwables.size() == 0) {
-                        try {
-                            // Initialize Context
-                            activityManager.initializeContext();
-                            // Check if activity could be invoked
-                            final Diagnostic preInvokeDiag = activityManager.canInvoke();
-                            if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
-                                if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
-                                    EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+                    // 9 - Run activity
+                    if (EGFProducerUIPlugin.getDefault().isDebugging()) {
+                        if (tasks.size() == 1) {
+                            EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity)));
+                        } else {
+                            EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity), tasks.size()));
+                        }
+                    }
+                    final Diagnostic diagnostic = activityManager.invoke(subMonitor.newChild(1000 * tasks.size(), SubMonitor.SUPPRESS_NONE));
+                    if (subMonitor.isCanceled()) {
+                        throw new OperationCanceledException();
+                    }
 
-                                        public void run() {
-                                            EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
-                                        }
+                    // 10 - Post Invoke Validation
+                    if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
+                        if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+                            EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
 
-                                    });
+                                public void run() {
+                                    EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, diagnostic);
                                 }
-                                if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
-                                    return Status.OK_STATUS;
-                                }
-                            }
-                        } catch (InvocationException ie) {
-                            throwables.add(ie);
+
+                            });
                         }
                     }
 
-                    // 8 - Run activity
-                    if (throwables.size() == 0) {
-
-                        try {
-                            if (EGFProducerUIPlugin.getDefault().isDebugging()) {
-                                if (tasks.size() == 1) {
-                                    EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity)));
-                                } else {
-                                    EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity), tasks.size()));
-                                }
-                            }
-                            final Diagnostic diagnostic = activityManager.invoke(subMonitor.newChild(1000 * tasks.size(), SubMonitor.SUPPRESS_NONE));
-                            if (subMonitor.isCanceled()) {
-                                throw new OperationCanceledException();
-                            }
-                            // Post Invoke Validation
-                            if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
-                                if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
-                                    EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
-
-                                        public void run() {
-                                            EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, diagnostic);
-                                        }
-
-                                    });
-                                }
-                            }
-                        } catch (InvocationException ie) {
-                            if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
-                                throw (CoreException) ie.getCause();
-                            }
-                            ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
-                        } catch (Throwable t) {
-                            throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
-                        } finally {
-                            try {
-                                activityManager.dispose();
-                            } catch (InvocationException ie) {
-                                if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
-                                    throw (CoreException) ie.getCause();
-                                }
-                                ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
-                            } catch (Throwable t) {
-                                throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
-                            }
-                        }
-
+                } catch (InvocationException ie) {
+                    if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
+                        throw (CoreException) ie.getCause();
                     }
-
-                    if (throwables.size() != 0) {
-                        // In trouble case, try to dispose the manager
-                        try {
-                            if (activityManager != null) {
-                                activityManager.dispose();
-                            } else {
-                                session.dispose();
-                            }
-                        } catch (Throwable t) {
-                            throwables.add(t);
-                        }
-                        // Display Throwable
-                        for (Throwable throwable : throwables) {
-                            if (throwable instanceof InterruptedException == false) {
-                                ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
-                            }
-                        }
-                    }
-
-                    return Status.OK_STATUS;
-
+                    ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
+                } catch (Throwable t) {
+                    throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
                 } finally {
                     monitor.done();
+                    try {
+                        activityManager.dispose();
+                    } catch (Throwable t) {
+                        EGFProducerUIPlugin.getDefault().logError(t);
+                    }
                 }
+
+                return Status.OK_STATUS;
 
             }
 
