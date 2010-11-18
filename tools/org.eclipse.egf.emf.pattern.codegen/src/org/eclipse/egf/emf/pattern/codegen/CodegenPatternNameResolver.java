@@ -100,6 +100,7 @@ public class CodegenPatternNameResolver {
     }
 
     protected class JetClassNameResolver extends NameResolver {
+
         @Override
         public boolean canResolve(PatternInfo patternInfo) {
             if (patternInfo instanceof JetPatternInfo) {
@@ -109,10 +110,12 @@ public class CodegenPatternNameResolver {
             return false;
         }
 
+        @Override
         public String getName(PatternInfo patternInfo) {
             JetPatternInfo jetPatternInfo = (JetPatternInfo) patternInfo;
             return jetPatternInfo.getJetClassName().substring(jetPatternInfo.getJetClassName().lastIndexOf(".") + 1); //$NON-NLS-1$
         }
+
     }
 
     protected class MethodNameForParameterTypeNameResolver extends NameResolver {
@@ -122,9 +125,11 @@ public class CodegenPatternNameResolver {
             return patternInfo.getMethodName() != null && patternInfo.getParameterType() != null;
         }
 
+        @Override
         public String getName(PatternInfo patternInfo) {
             return patternInfo.getMethodName() + "For" + patternInfo.getParameterType(); //$NON-NLS-1$
         }
+
     }
 
     protected class MethodNameResolver extends NameResolver {
@@ -134,9 +139,11 @@ public class CodegenPatternNameResolver {
             return patternInfo.getMethodName() != null;
         }
 
+        @Override
         public String getName(PatternInfo patternInfo) {
             return patternInfo.getMethodName();
         }
+
     }
 
     protected class FileAttributeNameResolver extends NameResolver {
@@ -155,6 +162,7 @@ public class CodegenPatternNameResolver {
             return false;
         }
 
+        @Override
         public String getName(PatternInfo patternInfo) {
             JetSubPatternInfo jetSubPatternInfo = (JetSubPatternInfo) patternInfo;
             Path path = new Path(jetSubPatternInfo.getSection().getFileAttribute());
