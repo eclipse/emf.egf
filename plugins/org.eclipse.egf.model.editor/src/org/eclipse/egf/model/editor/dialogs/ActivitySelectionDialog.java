@@ -285,7 +285,7 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
             }
             // In memory activity, in case of...
             Activity activity = (Activity) element;
-            if (activity.eResource() == null) {
+            if (activity.eResource() == null || activity.eResource() instanceof IPlatformFcoreProvider == false) {
                 return _adapterFactoryLabelProvider.getImage(activity);
             }
             // Retrieve Fcore
@@ -310,14 +310,11 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
             }
             // In memory activity, in case of...
             Activity activity = (Activity) element;
-            if (activity.eResource() == null) {
+            if (activity.eResource() == null || activity.eResource() instanceof IPlatformFcoreProvider == false) {
                 return _adapterFactoryLabelProvider.getText(activity);
             }
             // Retrieve Fcore
-            IPlatformFcore fcore = null;
-            if (activity.eResource() instanceof IPlatformFcoreProvider) {
-                fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
-            }
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
             if (fcore == null) {
                 return _adapterFactoryLabelProvider.getText(activity);
             }
