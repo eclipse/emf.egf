@@ -955,7 +955,7 @@ public class TypesValidator extends EObjectValidator {
         try {
             if (typeURI.eResource() != null && typeURI.eResource() instanceof IPlatformFcoreProvider) {
                 IPlatformFcore fcore = ((IPlatformFcoreProvider) typeURI.eResource()).getIPlatformFcore();
-                if (fcore.isRuntime()) {
+                if (fcore != null && fcore.isRuntime()) {
                     inputStream = EGFCorePlugin.getRuntimePlatformURIConverter().createInputStream(uri);
                 } else {
                     inputStream = EGFCorePlugin.getTargetPlatformURIConverter().createInputStream(uri);
