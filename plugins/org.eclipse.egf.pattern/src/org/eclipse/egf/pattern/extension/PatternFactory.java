@@ -502,7 +502,7 @@ public abstract class PatternFactory {
     }
 
     public URI createURI(PatternMethod method) {
-        if (method.getID() == null)
+        if (method.getID() == null || method.eResource() == null || method.eResource() instanceof IPlatformFcoreProvider == false)
             return null;
         return TemplateModelFileHelper.computeFileURI(((IPlatformFcoreProvider) method.eResource()).getIPlatformFcore(), method);
     }
