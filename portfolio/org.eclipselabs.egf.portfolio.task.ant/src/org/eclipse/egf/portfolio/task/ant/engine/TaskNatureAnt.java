@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.eclipselabs.egf.portfolio.task.ant.engine;
+package org.eclipse.egf.portfolio.task.ant.engine;
 
 import java.util.Map;
 

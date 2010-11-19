@@ -19,7 +19,7 @@
 	<extension point="org.eclipse.egf.model.ftask.task">
 	    <nature 
 	    	kind="ant"    
-	      	class="org.eclipselabs.egf.portfolio.task.ant.engine.TaskNatureAnt"/>
+	      	class="org.eclipse.egf.portfolio.task.ant.engine.TaskNatureAnt"/>
 	</extension>  
 </plugin>
   

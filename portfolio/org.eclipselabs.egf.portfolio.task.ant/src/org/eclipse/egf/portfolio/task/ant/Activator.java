@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.eclipselabs.egf.portfolio.task.ant;
+package org.eclipse.egf.portfolio.task.ant;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.osgi.framework.BundleContext;
