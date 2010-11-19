@@ -62,7 +62,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
             if (notification.getEventType() == Notification.SET) {
                 switch (notification.getFeatureID(Resource.class)) {
                     case Resource.RESOURCE__URI: {
-                        if (_productionPlanInvocation.eResource() != null) {
+                        if (_productionPlanInvocation.eResource() != null && _productionPlanInvocation.eResource() instanceof IPlatformFcoreProvider) {
                             final ResourceImpl resource = (ResourceImpl) _productionPlanInvocation.eResource();
                             IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
                             // target fcore can't be modified, give a chance to read only workspace resource to do something
