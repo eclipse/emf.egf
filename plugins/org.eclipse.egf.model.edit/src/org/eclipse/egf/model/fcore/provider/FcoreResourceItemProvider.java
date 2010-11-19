@@ -138,16 +138,18 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
     public String getText(Object object) {
         Resource resource = (Resource) object;
         StringBuffer buffer = new StringBuffer(resource.getURI() == null ? "" : URI.decode(resource.getURI().toString())); //$NON-NLS-1$
-        IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
-        if (fcore != null) {
-            if (fcore.getPlatformBundle().isTarget()) {
-                buffer.append(" [Target]"); //$NON-NLS-1$
-            } else {
-                buffer.append(" [Workspace]"); //$NON-NLS-1$
+        if (resource instanceof IPlatformFcoreProvider) {
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
+            if (fcore != null) {
+                if (fcore.getPlatformBundle().isTarget()) {
+                    buffer.append(" [Target]"); //$NON-NLS-1$
+                } else {
+                    buffer.append(" [Workspace]"); //$NON-NLS-1$
+                }
+                buffer.append(" ["); //$NON-NLS-1$
+                buffer.append(fcore.getPlatformBundle().getInstallLocation());
+                buffer.append("]"); //$NON-NLS-1$
             }
-            buffer.append(" ["); //$NON-NLS-1$
-            buffer.append(fcore.getPlatformBundle().getInstallLocation());
-            buffer.append("]"); //$NON-NLS-1$
         }
         return buffer.toString();
     }
