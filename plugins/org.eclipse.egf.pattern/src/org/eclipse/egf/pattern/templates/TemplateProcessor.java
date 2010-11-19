@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.pattern.PatternPreferences;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.processor.IFcoreProcessor;
@@ -35,7 +36,6 @@ import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
-import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -262,12 +262,12 @@ public class TemplateProcessor implements IFcoreProcessor {
     public void processPreUnload(Resource resource, ChangeDescription changeDescription) {
 
         // Nothing to process
-        if (changeDescription == null || resource instanceof FcoreResourceImpl == false) {
+        if (changeDescription == null || resource instanceof IPlatformFcoreProvider == false) {
             return;
         }
 
         // Not a project
-        final IPlatformFcore fcore = ((FcoreResourceImpl) resource).getIPlatformFcore();
+        final IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
         if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
             return;
         }
@@ -439,12 +439,12 @@ public class TemplateProcessor implements IFcoreProcessor {
     public void processPostSave(Resource resource, ChangeDescription changeDescription) {
 
         // Nothing to process
-        if (changeDescription == null || resource instanceof FcoreResourceImpl == false) {
+        if (changeDescription == null || resource instanceof IPlatformFcoreProvider == false) {
             return;
         }
 
         // Not a project
-        final IPlatformFcore fcore = ((FcoreResourceImpl) resource).getIPlatformFcore();
+        final IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
         if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
             return;
         }
