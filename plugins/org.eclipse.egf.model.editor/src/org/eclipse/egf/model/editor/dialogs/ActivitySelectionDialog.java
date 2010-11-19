@@ -130,11 +130,13 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
             try {
                 Activity activity = (Activity) _resourceSet.getEObject(URI.createURI(tagURI), true);
                 // Check whether or not this activity belongs to our fcores
-                IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
-                if (fcore != null) {
-                    for (IPlatformFcore innerFcore : _content) {
-                        if (innerFcore.equals(fcore)) {
-                            return activity;
+                if (activity.eResource() instanceof IPlatformFcoreProvider) {
+                    IPlatformFcore fcore = ((IPlatformFcoreProvider) activity.eResource()).getIPlatformFcore();
+                    if (fcore != null) {
+                        for (IPlatformFcore innerFcore : _content) {
+                            if (innerFcore.equals(fcore)) {
+                                return activity;
+                            }
                         }
                     }
                 }
