@@ -126,11 +126,11 @@ public class PatternMenuContributor extends EditorMenuContributor {
 
     private final class CreatePatternAction extends CreateChildAction {
 
-        private final PatternLibrary library;
+        private final PatternLibrary _library;
 
         public CreatePatternAction(IEditorPart editorPart, ISelection selection, Object descriptor, PatternLibrary library) {
             super(editorPart, selection, descriptor);
-            this.library = library;
+            _library = library;
         }
 
         @Override
@@ -147,6 +147,21 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 protected Collection<Pattern> _patterns;
 
                 @Override
+                public boolean canExecute() {
+                    if (super.canExecute() == false) {
+                        return false;
+                    }
+                    if (_library.eResource() == null || _library.eResource() instanceof IPlatformFcoreProvider == false) {
+                        return false;
+                    }
+                    IPlatformFcore fcore = ((IPlatformFcoreProvider) _library.eResource()).getIPlatformFcore();
+                    if (fcore == null) {
+                        return false;
+                    }
+                    return true;
+                }
+
+                @Override
                 protected boolean prepare() {
                     return true;
                 }
@@ -156,11 +171,12 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     Pattern pattern = (Pattern) affectedObjects.iterator().next();
                     _patterns = Collections.singletonList(pattern);
                     // update method file URIs
+                    IPlatformFcore fcore = ((IPlatformFcoreProvider) _library.eResource()).getIPlatformFcore();
                     for (PatternMethod method : pattern.getMethods()) {
-                        method.setPatternFilePath(TemplateModelFileHelper.computeFileURI(((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore(), method));
+                        method.setPatternFilePath(TemplateModelFileHelper.computeFileURI(fcore, method));
                     }
                     // create template files
-                    IProject project = EMFHelper.getProject(library.eResource());
+                    IProject project = EMFHelper.getProject(_library.eResource());
                     try {
                         PatternInitializer initializer = ExtensionHelper.getExtension(pattern.getNature()).createInitializer(project, pattern);
                         initializer.initContent();
@@ -173,11 +189,11 @@ public class PatternMenuContributor extends EditorMenuContributor {
 
                 @Override
                 public void undo() {
-                    PatternLibraryRemovePatternCommand.performDeletePatterns(library.eResource(), _patterns);
+                    PatternLibraryRemovePatternCommand.performDeletePatterns(_library.eResource(), _patterns);
                 }
 
                 public void redo() {
-                    PatternLibraryRemovePatternCommand.performRestorePatterns(library.eResource(), _patterns);
+                    PatternLibraryRemovePatternCommand.performRestorePatterns(_library.eResource(), _patterns);
                 }
 
             });
