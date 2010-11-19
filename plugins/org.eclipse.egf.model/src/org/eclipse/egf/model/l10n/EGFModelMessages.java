@@ -37,6 +37,8 @@ public class EGFModelMessages {
 
     public static String fileHelper_error8;
 
+    public static String fileHelper_error20;
+
     // filename management
     public static String PatternFilename_error1;
 

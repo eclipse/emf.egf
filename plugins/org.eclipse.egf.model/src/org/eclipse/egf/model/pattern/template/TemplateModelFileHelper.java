@@ -62,6 +62,9 @@ public class TemplateModelFileHelper {
     }
 
     public static URI computeFileURI(IPlatformFcore fcore, PatternMethod method) {
+        if (fcore == null) {
+            throw new IllegalArgumentException(EGFModelMessages.fileHelper_error20);
+        }
         if (method == null) {
             throw new IllegalArgumentException(EGFModelMessages.fileHelper_error4);
         }
