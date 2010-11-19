@@ -89,7 +89,11 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
             return false;
         }
         PatternLibrary library = (PatternLibrary) owner;
-        if (library.eResource() == null || EMFHelper.getProject(library.eResource()) == null) {
+        if (library.eResource() == null || EMFHelper.getProject(library.eResource()) == null || library.eResource() instanceof IPlatformFcoreProvider == false) {
+            return false;
+        }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
+        if (fcore == null) {
             return false;
         }
         // Populate
@@ -119,11 +123,8 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
     public void doExecute() {
         super.doExecute();
         // Check and update pattern name if not unique
-        IPlatformFcore fcore = null;
         PatternLibrary library = (PatternLibrary) owner;
-        if (library.eResource() != null && library.eResource() instanceof IPlatformFcoreProvider) {
-            fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
-        }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
         for (Pattern pattern : _patterns) {
             pattern.setName(PatternNameHelper.getNewPatternName(fcore, library));
         }
@@ -148,7 +149,7 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
 
     public static boolean performCreatePatternTemplates(final Resource resource, final Map<PatternMethod, URI[]> methods) {
 
-        if (resource == null || methods == null || methods.isEmpty()) {
+        if (resource == null || methods == null || methods.isEmpty() || resource instanceof IPlatformFcoreProvider == false) {
             return false;
         }
         boolean copy = false;

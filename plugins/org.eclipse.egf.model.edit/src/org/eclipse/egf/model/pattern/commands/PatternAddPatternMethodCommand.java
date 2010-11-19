@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -49,7 +50,11 @@ public class PatternAddPatternMethodCommand extends AddCommand {
             return false;
         }
         Pattern pattern = (Pattern) owner;
-        if (pattern.eResource() == null || EMFHelper.getProject(pattern.eResource()) == null) {
+        if (pattern.eResource() == null || EMFHelper.getProject(pattern.eResource()) == null || pattern.eResource() instanceof IPlatformFcoreProvider == false) {
+            return false;
+        }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+        if (fcore == null) {
             return false;
         }
         _methods = new UniqueEList<PatternMethod>();

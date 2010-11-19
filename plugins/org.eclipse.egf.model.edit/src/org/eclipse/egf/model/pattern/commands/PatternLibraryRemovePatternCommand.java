@@ -61,7 +61,7 @@ public class PatternLibraryRemovePatternCommand extends RemoveCommand {
             return false;
         }
         PatternLibrary library = (PatternLibrary) owner;
-        if (library.eResource() == null) {
+        if (library.eResource() == null || library.eResource() instanceof IPlatformFcoreProvider == false) {
             return false;
         }
         _patterns = new UniqueEList<Pattern>();
@@ -119,7 +119,7 @@ public class PatternLibraryRemovePatternCommand extends RemoveCommand {
     }
 
     public static void performRestorePatterns(final Resource resource, final Collection<Pattern> patterns) {
-        if (resource == null || patterns == null || patterns.isEmpty()) {
+        if (resource == null || patterns == null || patterns.isEmpty() || resource instanceof IPlatformFcoreProvider == false) {
             return;
         }
         WorkspaceJob job = new WorkspaceJob(EGFModelEditMessages.RestorePatternCommand_execute) {
