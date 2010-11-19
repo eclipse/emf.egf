@@ -76,29 +76,31 @@ public class InvocationContractAdapter extends AdapterImpl {
                     case Resource.RESOURCE__URI: {
                         if (_invocationContract.eResource() != null) {
                             final ResourceImpl resource = (ResourceImpl) _invocationContract.eResource();
-                            IPlatformFcore fcore = ((IPlatformFcoreProvider) _invocationContract.eResource()).getIPlatformFcore();
-                            // target fcore can't be modified, give a chance to read only workspace resource to do something
-                            if (fcore != null && fcore.getPlatformBundle().isTarget() == false) {
-                                resource.setModified(true);
-                                if (resource.eNotificationRequired()) {
-                                    Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
+                            if (resource != null && resource instanceof IPlatformFcoreProvider) {
+                                IPlatformFcore fcore = ((IPlatformFcoreProvider) _invocationContract.eResource()).getIPlatformFcore();
+                                // target fcore can't be modified, give a chance to read only workspace resource to do something
+                                if (fcore != null && fcore.getPlatformBundle().isTarget() == false) {
+                                    resource.setModified(true);
+                                    if (resource.eNotificationRequired()) {
+                                        Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
 
-                                        @Override
-                                        public Object getFeature() {
-                                            return notification.getNotifier();
-                                        }
+                                            @Override
+                                            public Object getFeature() {
+                                                return notification.getNotifier();
+                                            }
 
-                                        @Override
-                                        public Object getNotifier() {
-                                            return resource;
-                                        }
+                                            @Override
+                                            public Object getNotifier() {
+                                                return resource;
+                                            }
 
-                                        @Override
-                                        public int getFeatureID(Class<?> expectedClass) {
-                                            return Resource.RESOURCE__URI;
-                                        }
-                                    };
-                                    resource.eNotify(innerNotification);
+                                            @Override
+                                            public int getFeatureID(Class<?> expectedClass) {
+                                                return Resource.RESOURCE__URI;
+                                            }
+                                        };
+                                        resource.eNotify(innerNotification);
+                                    }
                                 }
                             }
                         }
