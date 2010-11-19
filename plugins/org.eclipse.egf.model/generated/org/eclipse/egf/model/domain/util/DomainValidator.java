@@ -335,7 +335,7 @@ public class DomainValidator extends EObjectValidator {
         URI uri = EcoreUtil.getURI(domainGenPackage.getGenPackage());
         Resource resource = null;
         // Try to load this uri
-        if (domainGenPackage.eResource() != null) {
+        if (domainGenPackage.eResource() != null && domainGenPackage.eResource() instanceof IPlatformFcoreProvider) {
             IPlatformFcore fcore = ((IPlatformFcoreProvider) domainGenPackage.eResource()).getIPlatformFcore();
             if (fcore.isRuntime()) {
                 ResourceSet resourceSet = new RuntimePlatformResourceSet();
