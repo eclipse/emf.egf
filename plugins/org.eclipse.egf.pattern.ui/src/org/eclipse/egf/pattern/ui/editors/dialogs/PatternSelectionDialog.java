@@ -132,12 +132,14 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
             }
             try {
                 _pattern = (Pattern) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
-                // Check whether or not this activity belongs to our fcores
-                IPlatformFcore fcore = ((IPlatformFcoreProvider) _pattern.eResource()).getIPlatformFcore();
-                if (fcore != null) {
-                    for (IPlatformFcore innerFcore : _fcores) {
-                        if (innerFcore.equals(fcore)) {
-                            return _pattern;
+                if (_pattern.eResource() instanceof IPlatformFcoreProvider) {
+                    // Check whether or not this pattern belongs to our fcores
+                    IPlatformFcore fcore = ((IPlatformFcoreProvider) _pattern.eResource()).getIPlatformFcore();
+                    if (fcore != null) {
+                        for (IPlatformFcore innerFcore : _fcores) {
+                            if (innerFcore.equals(fcore)) {
+                                return _pattern;
+                            }
                         }
                     }
                 }
@@ -270,14 +272,11 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
             }
             // In memory pattern, in case of...
             Pattern pattern = (Pattern) element;
-            if (pattern.eResource() == null) {
+            if (pattern.eResource() == null || pattern.eResource() instanceof IPlatformFcoreProvider == false) {
                 return _adapterFactoryLabelProvider.getText(pattern);
             }
             // Retrieve Fcore
-            IPlatformFcore fcore = null;
-            if (pattern.eResource() instanceof IPlatformFcoreProvider) {
-                fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
-            }
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
             if (fcore == null) {
                 return _adapterFactoryLabelProvider.getText(pattern);
             }
@@ -325,9 +324,13 @@ public class PatternSelectionDialog extends AbstractFilteredItemsSelectionDialog
         setListSelectionLabelDecorator(getSelectionLabelProvider());
         setDetailsLabelProvider(getDetailsLabelProvider());
         setSelectionHistory(new PatternSelectionHistory());
-        if (_pattern != null && _pattern.eResource() != null) {
+        if (_pattern != null && _pattern.eResource() != null && _pattern.eResource() instanceof IPlatformFcoreProvider) {
             IPlatformFcore fcore = ((IPlatformFcoreProvider) _pattern.eResource()).getIPlatformFcore();
-            setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
+            if (fcore != null) {
+                setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
+            } else {
+                setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+            }
         } else {
             setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
         }
