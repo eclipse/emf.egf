@@ -6,8 +6,10 @@
     <property environment="env" />
     <property file="build.properties" />
 
+	<property name"relengDir" value="${basedir}"/>
+
     <!-- if we are not running in Hudson, we some up with a reasonable default -->
-    <condition property="build.root" value="${env.WORKSPACE}" else="${basedir}/../workspace">
+    <condition property="build.root" value="${env.WORKSPACE}" else="${relengDir}/../workspace">
         <isset property="env.WORKSPACE" />
     </condition>
 

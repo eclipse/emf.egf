@@ -8,15 +8,13 @@
 	<searchPath name="buckminster">
 		<!-- buckminster provider for windows -->
 		<provider componentTypes="buckminster" readerType="local" source="true">
-			<uri format="file:/{0}/{1}/buckminster_<%=buildStepName%>">
-				<bc:propertyRef key="build.root" />
+			<uri format="file:/{0}/buckminster_<%=buildStepName%>">
 				<bc:propertyRef key="relengDir" />
 			</uri>
 		</provider>
 		<!-- buckminster provider for unix -->
 		<provider componentTypes="buckminster" readerType="local" source="true">
-			<uri format="file://{0}/{1}/buckminster_<%=buildStepName%>">
-				<bc:propertyRef key="build.root" />
+			<uri format="file://{0}/buckminster_<%=buildStepName%>">
 				<bc:propertyRef key="relengDir" />
 			</uri>
 		</provider>
