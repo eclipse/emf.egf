@@ -65,7 +65,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.model.ftask.task.TaskNature"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.model.ftask.task.ITaskNature"/>
                </appInfo>
             </annotation>
          </attribute>
