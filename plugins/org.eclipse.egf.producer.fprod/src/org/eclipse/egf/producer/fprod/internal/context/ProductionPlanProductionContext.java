@@ -15,20 +15,21 @@ import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fprod.ProductionPlan;
+import org.eclipse.egf.producer.fprod.context.IProductionPlanProductionContext;
 import org.eclipse.egf.producer.internal.context.OrchestrationProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class ProductionPlanProductionContext extends OrchestrationProductionContext<ProductionPlan> {
+public class ProductionPlanProductionContext extends OrchestrationProductionContext<ProductionPlan> implements IProductionPlanProductionContext<ProductionPlan> {
 
-  public ProductionPlanProductionContext(ProjectBundleSession projectBundleSession, ProductionPlan element, String name) {
-    super(projectBundleSession, element, name);
-  }
+    public ProductionPlanProductionContext(ProjectBundleSession projectBundleSession, ProductionPlan element, String name) {
+        super(projectBundleSession, element, name);
+    }
 
-  public ProductionPlanProductionContext(IProductionContext<FactoryComponent, Contract> parent, ProjectBundleSession projectBundleSession, ProductionPlan element, String name) {
-    super(parent, projectBundleSession, element, name);
-  }
+    public ProductionPlanProductionContext(IProductionContext<FactoryComponent, Contract> parent, ProjectBundleSession projectBundleSession, ProductionPlan element, String name) {
+        super(parent, projectBundleSession, element, name);
+    }
 
 }

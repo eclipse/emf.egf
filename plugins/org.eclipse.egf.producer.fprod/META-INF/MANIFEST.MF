@@ -13,5 +13,6 @@ Require-Bundle:
  org.eclipse.egf.producer;visibility:=reexport,
  org.eclipse.egf.model.fprod;visibility:=reexport
 Export-Package: 
- org.eclipse.egf.producer.fprod
+ org.eclipse.egf.producer.fprod,
+ org.eclipse.egf.producer.fprod.context
 Bundle-ActivationPolicy: lazy

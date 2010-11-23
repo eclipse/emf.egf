@@ -23,13 +23,14 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
+import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class OrchestrationProductionContext<P extends Orchestration> extends ModelElementProductionContext<P, OrchestrationParameter> {
+public abstract class OrchestrationProductionContext<P extends Orchestration> extends ModelElementProductionContext<P, OrchestrationParameter> implements IOrchestrationProductionContext<P> {
 
     public OrchestrationProductionContext(ProjectBundleSession projectBundleSession, P element, String name) {
         super(projectBundleSession, element, name);
