@@ -6,7 +6,7 @@
     name="EOperation">
   <viewpointContainer xmi:id="_J6aUkOytEd-lLqwh4uV7KQ">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_KV4voOytEd-lLqwh4uV7KQ">
-      <domains xmi:type="domain:DomainURI" xmi:id="_K3JCkOytEd-lLqwh4uV7KQ" uri="platform:/resource/org.eclipse.egf.usecase.emf.generation.customization/model/World.genmodel"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_K3JCkOytEd-lLqwh4uV7KQ" uri="platform:/resource/org.eclipse.egf.usecase.emf.generation.customization/model/World.genmodel"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_QNZ8oOytEd-lLqwh4uV7KQ">
       <libraries xmi:id="_RCNdsOytEd-lLqwh4uV7KQ" name="default_package">
@@ -41,7 +41,7 @@
     <invocations xmi:id="_hwmtoOytEd-lLqwh4uV7KQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prz3UDG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="_hwnUsOytEd-lLqwh4uV7KQ">
         <invocationContracts xmi:id="_hwnUseytEd-lLqwh4uV7KQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prz3UjG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_T1BuIOyuEd-lLqwh4uV7KQ" domain="#_K3JCkOytEd-lLqwh4uV7KQ"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_T1BuIOyuEd-lLqwh4uV7KQ" domain="#_K3JCkOytEd-lLqwh4uV7KQ"/>
         </invocationContracts>
         <invocationContracts xmi:id="_hwnUsuytEd-lLqwh4uV7KQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_JBH151eTEd-ExtSXfVloug">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_XS7JoOy0Ed-xXODWk48b3g">

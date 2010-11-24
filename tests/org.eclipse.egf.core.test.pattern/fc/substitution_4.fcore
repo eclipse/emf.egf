@@ -7,7 +7,7 @@
     name="substitution_4">
   <viewpointContainer xmi:id="_UgW1wGlqEd-AhuXDVJhj5w">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_XMxYsGlqEd-AhuXDVJhj5w">
-      <domains xmi:type="domain:DomainURI" xmi:id="_XMxYsWlqEd-AhuXDVJhj5w" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_XMxYsWlqEd-AhuXDVJhj5w" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_Xt_2cGlqEd-AhuXDVJhj5w">
       <libraries xmi:id="_Y5sNgGlqEd-AhuXDVJhj5w" name="substitution_4">
@@ -79,7 +79,7 @@
               elements="#_hQMlcGlqEd-AhuXDVJhj5w"/>
         </invocationContracts>
         <invocationContracts xmi:id="_4Revw2lqEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Default_pattern_strategy_task.fcore#_DgB2IP6fEd64XYPo3s6esPg">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_7uBIEGlqEd-AhuXDVJhj5w" domain="#_XMxYsWlqEd-AhuXDVJhj5w"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_7uBIEGlqEd-AhuXDVJhj5w" domain="#_XMxYsWlqEd-AhuXDVJhj5w"/>
         </invocationContracts>
         <invocationContracts xmi:id="_4RevxWlqEd-AhuXDVJhj5w" sourceInvocationContract="#_0DK8Q2lqEd-AhuXDVJhj5w"
             invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Default_pattern_strategy_task.fcore#_ftnnoEhpEd-A7KV9v5yLhw"/>
@@ -110,7 +110,7 @@
               elements="#_hQMlcGlqEd-AhuXDVJhj5w"/>
         </invocationContracts>
         <invocationContracts xmi:id="_WRowvWlrEd-AhuXDVJhj5w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Default_pattern_strategy_task.fcore#_DgB2IP6fEd64XYPo3s6esPg">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_WRowvmlrEd-AhuXDVJhj5w" domain="#_XMxYsWlqEd-AhuXDVJhj5w"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_WRowvmlrEd-AhuXDVJhj5w" domain="#_XMxYsWlqEd-AhuXDVJhj5w"/>
         </invocationContracts>
         <invocationContracts xmi:id="_WRowv2lrEd-AhuXDVJhj5w" sourceInvocationContract="#_WRowuGlrEd-AhuXDVJhj5w"
             invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Default_pattern_strategy_task.fcore#_ftnnoEhpEd-A7KV9v5yLhw"/>

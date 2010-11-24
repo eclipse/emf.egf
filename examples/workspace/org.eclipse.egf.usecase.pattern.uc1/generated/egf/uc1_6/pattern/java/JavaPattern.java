@@ -9,69 +9,69 @@ import org.eclipse.egf.core.EGFCorePlugin;
 
 public class JavaPattern {
 
-    public JavaPattern() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
-    }
+	public JavaPattern() {
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
+	}
 
-    public void generate(Object argument) throws Exception {
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        IQuery.ParameterDescription paramDesc = null;
-        Map<String, String> queryCtx = null;
-        List<Object> aClassList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+	public void generate(Object argument) throws Exception {
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		IQuery.ParameterDescription paramDesc = null;
+		Map<String, String> queryCtx = null;
+		List<Object> aClassList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-        for (Object aClassParameter : aClassList) {
+		for (Object aClassParameter : aClassList) {
 
-            this.aClass = (org.eclipse.emf.ecore.EClass) aClassParameter;
+			this.aClass = (org.eclipse.emf.ecore.EClass) aClassParameter;
 
-            orchestration((PatternContext) argument);
+			orchestration((PatternContext) argument);
 
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
-    }
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
-        method_body(ictx.getBuffer(), ictx);
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
+		method_body(ictx.getBuffer(), ictx);
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("aClass", this.aClass);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("aClass", this.aClass);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-    protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 
-        // Message on the default console
-        System.out.println("Java: " + aClass.getName()); //$NON-NLS-1$
+		// Message on the default console
+		System.out.println("Java: " + aClass.getName()); //$NON-NLS-1$
 
-        // Message on the EGF console
-        EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());
+		// Message on the EGF console
+		EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());
 
-    }
+	}
 
-    protected org.eclipse.emf.ecore.EClass aClass;
+	protected org.eclipse.emf.ecore.EClass aClass;
 
-    public void set_aClass(org.eclipse.emf.ecore.EClass aClass) {
-        this.aClass = aClass;
-    }
+	public void set_aClass(org.eclipse.emf.ecore.EClass aClass) {
+		this.aClass = aClass;
+	}
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("aClass", this.aClass);
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("aClass", this.aClass);
+		return parameters;
+	}
 
 }

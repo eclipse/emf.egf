@@ -23,7 +23,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_vW-xcIhMEd-Ii9WHGzCGHg"
           name="domain" mandatory="true" invocationContracts="#_lL42c4hMEd-Ii9WHGzCGHg">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_yOE6YIhMEd-Ii9WHGzCGHg"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_yOE6YIhMEd-Ii9WHGzCGHg"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_txgzAIhNEd-Ii9WHGzCGHg"
           name="pattern.execution.reporter" mandatory="true" invocationContracts="#_lL42dIhMEd-Ii9WHGzCGHg">

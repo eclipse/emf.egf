@@ -8,7 +8,7 @@
     <contractContainer xmi:id="_5kGpEEebEd-o3oTHnj_3Dw">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_51YmUEebEd-o3oTHnj_3Dw"
           name="genModelURI" mandatory="true" invocationContracts="#_4B52gEebEd-o3oTHnj_3Dw">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_7pK4IEebEd-o3oTHnj_3Dw"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_7pK4IEebEd-o3oTHnj_3Dw"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_rdQsQGQNEd-ZRKoL5olDIg"
           name="pattern.substitutions" invocationContracts="#_HdyF02QQEd-ZRKoL5olDIg">
@@ -89,7 +89,7 @@
     <contractContainer xmi:id="_wX1KgPL0Ed-FKtLe6G-YfQ">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wX1KgfL0Ed-FKtLe6G-YfQ"
           name="genModelURI" mandatory="true" invocationContracts="#_wX1KkvL0Ed-FKtLe6G-YfQ #_0CInIPL2Ed-Tg_CuoVrSwA">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_wX1KgvL0Ed-FKtLe6G-YfQ"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_wX1KgvL0Ed-FKtLe6G-YfQ"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wX1Kg_L0Ed-FKtLe6G-YfQ"
           name="model.pattern.substitutions" invocationContracts="#_1LKEsPL2Ed-Tg_CuoVrSwA">

@@ -13,7 +13,7 @@
     </contractContainer>
     <viewpointContainer xmi:id="_RukcUHecEd-ent-ImclT8w">
       <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_R1b5UHecEd-ent-ImclT8w">
-        <domains xmi:type="domain:DomainURI" xmi:id="_R1b5UXecEd-ent-ImclT8w" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+        <domains xmi:type="domain:EMFDomain" xmi:id="_R1b5UXecEd-ent-ImclT8w" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
       </viewpoints>
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_SSgP0HecEd-ent-ImclT8w">
         <libraries xmi:id="_TvB4MHecEd-ent-ImclT8w" name="substitution5">
@@ -63,7 +63,7 @@
                 elements="#_V6LhIHecEd-ent-ImclT8w"/>
           </invocationContracts>
           <invocationContracts xmi:id="_8UQaY3ecEd-ent-ImclT8w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
-            <type xmi:type="domain:TypeDomainURI" xmi:id="__8eeQHecEd-ent-ImclT8w"
+            <type xmi:type="domain:TypeDomain" xmi:id="__8eeQHecEd-ent-ImclT8w"
                 domain="#_R1b5UXecEd-ent-ImclT8w"/>
           </invocationContracts>
           <invocationContracts xmi:id="_8UQaZHecEd-ent-ImclT8w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
@@ -118,7 +118,7 @@
     </contractContainer>
     <viewpointContainer xmi:id="_ZU3IIHh0Ed-ESZ0E4UoGEA">
       <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_aeEy8Hh0Ed-ESZ0E4UoGEA">
-        <domains xmi:type="domain:DomainURI" xmi:id="_aeFaAHh0Ed-ESZ0E4UoGEA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+        <domains xmi:type="domain:EMFDomain" xmi:id="_aeFaAHh0Ed-ESZ0E4UoGEA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
       </viewpoints>
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_bYUNoHh0Ed-ESZ0E4UoGEA">
         <libraries xmi:id="_b6-10Hh0Ed-ESZ0E4UoGEA" name="patternCall.Condition.extension3">
@@ -144,7 +144,7 @@
       <invocations xmi:id="_ntO74Hh0Ed-ESZ0E4UoGEA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
         <invocationContractContainer xmi:id="_ntO74Xh0Ed-ESZ0E4UoGEA">
           <invocationContracts xmi:id="_ntO74nh0Ed-ESZ0E4UoGEA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
-            <type xmi:type="domain:TypeDomainURI" xmi:id="_rLXPoHh0Ed-ESZ0E4UoGEA"
+            <type xmi:type="domain:TypeDomain" xmi:id="_rLXPoHh0Ed-ESZ0E4UoGEA"
                 domain="#_aeFaAHh0Ed-ESZ0E4UoGEA"/>
           </invocationContracts>
           <invocationContracts xmi:id="_ntO743h0Ed-ESZ0E4UoGEA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
@@ -205,7 +205,7 @@
     </contractContainer>
     <viewpointContainer xmi:id="_K9SuMHiLEd-ESZ0E4UoGEA">
       <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_LM-wAHiLEd-ESZ0E4UoGEA">
-        <domains xmi:type="domain:DomainURI" xmi:id="_LM-wAXiLEd-ESZ0E4UoGEA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+        <domains xmi:type="domain:EMFDomain" xmi:id="_LM-wAXiLEd-ESZ0E4UoGEA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
       </viewpoints>
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_L5w9gHiLEd-ESZ0E4UoGEA">
         <libraries xmi:id="_MqJ4oHiLEd-ESZ0E4UoGEA" name="patternCall.Condition.extension4">
@@ -275,7 +275,7 @@
                 elements="#_7EB6AHiLEd-ESZ0E4UoGEA"/>
           </invocationContracts>
           <invocationContracts xmi:id="_SrgPsniOEd-ESZ0E4UoGEA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
-            <type xmi:type="domain:TypeDomainURI" xmi:id="_UCkwUHiOEd-ESZ0E4UoGEA"
+            <type xmi:type="domain:TypeDomain" xmi:id="_UCkwUHiOEd-ESZ0E4UoGEA"
                 domain="#_LM-wAXiLEd-ESZ0E4UoGEA"/>
           </invocationContracts>
           <invocationContracts xmi:id="_SrgPs3iOEd-ESZ0E4UoGEA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">

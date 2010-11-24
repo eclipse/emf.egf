@@ -12,7 +12,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_5TcNcEh4Ed-A7KV9v5yLhw"
           name="domain" invocationContracts="#_6nIC4Eh4Ed-A7KV9v5yLhw">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_8jH1gEh4Ed-A7KV9v5yLhw"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_8jH1gEh4Ed-A7KV9v5yLhw"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_en2KAEh3Ed-A7KV9v5yLhw">
@@ -138,14 +138,14 @@
   <fcore:FactoryComponent xmi:id="_oxalkEh4Ed-A7KV9v5yLhw" name="basic run 2">
     <viewpointContainer xmi:id="_xB9fcEh4Ed-A7KV9v5yLhw">
       <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_xYB2EEh4Ed-A7KV9v5yLhw">
-        <domains xmi:type="domain:DomainURI" xmi:id="_xzPycEh4Ed-A7KV9v5yLhw" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+        <domains xmi:type="domain:EMFDomain" xmi:id="_xzPycEh4Ed-A7KV9v5yLhw" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_yuvxYEh4Ed-A7KV9v5yLhw">
       <invocations xmi:id="_zOzKcEh4Ed-A7KV9v5yLhw" invokedActivity="#_bg3K8Eh3Ed-A7KV9v5yLhw">
         <invocationContractContainer xmi:id="_oXYfgEh5Ed-A7KV9v5yLhw">
           <invocationContracts xmi:id="_o5Jv0Eh5Ed-A7KV9v5yLhw" invokedContract="#_5TcNcEh4Ed-A7KV9v5yLhw">
-            <type xmi:type="domain:TypeDomainURI" xmi:id="_q0TN4Eh5Ed-A7KV9v5yLhw"
+            <type xmi:type="domain:TypeDomain" xmi:id="_q0TN4Eh5Ed-A7KV9v5yLhw"
                 domain="#_xzPycEh4Ed-A7KV9v5yLhw"/>
           </invocationContracts>
         </invocationContractContainer>

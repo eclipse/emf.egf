@@ -1,0 +1,66 @@
+package org.eclipse.egf.pattern.validation;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
+import org.eclipse.egf.pattern.query.IQuery;
+import org.eclipse.emf.common.util.DiagnosticChain;
+
+public class AbstractValidationPattern {
+
+    public AbstractValidationPattern() {
+        // Here is the constructor
+        // add initialisation of the pattern variables (declaration has been
+        // already done).
+    }
+
+    public void generate(Object argument) throws Exception {
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        IQuery.ParameterDescription paramDesc = null;
+        Map<String, String> queryCtx = null;
+
+        if (preCondition())
+            orchestration((PatternContext) argument);
+
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
+    }
+
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
+        method_getDiagnosticChainFromContext(ictx.getBuffer(), ictx);
+
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
+
+    protected void method_getDiagnosticChainFromContext(final StringBuffer out, final PatternContext ctx) throws Exception {
+        diagnosticChain = (DiagnosticChain) ctx.getValue("diagnostic");
+    }
+
+    public boolean preCondition() throws Exception {
+        return true;
+    }
+
+    protected org.eclipse.emf.common.util.DiagnosticChain diagnosticChain;
+
+    public void set_diagnosticChain(org.eclipse.emf.common.util.DiagnosticChain diagnosticChain) {
+        this.diagnosticChain = diagnosticChain;
+    }
+
+    public Map<String, Object> getParameters() {
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        return parameters;
+    }
+
+}

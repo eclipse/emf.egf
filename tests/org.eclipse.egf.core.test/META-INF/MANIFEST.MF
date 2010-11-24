@@ -12,6 +12,7 @@ Require-Bundle:
  org.eclipse.core.runtime,
  org.junit,
  org.eclipse.egf.core.pde,
+ org.eclipse.egf.domain, 
  org.eclipse.egf.model.fprod, 
  org.eclipse.egf.producer.ftask,
  org.eclipse.egf.core.test.model,

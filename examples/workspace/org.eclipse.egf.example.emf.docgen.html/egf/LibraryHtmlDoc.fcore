@@ -6,7 +6,7 @@
     name="LibraryHtmlDoc">
   <viewpointContainer xmi:id="_N71eYQprEd-7fqY_JLtg2w">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_OdNtIAprEd-7fqY_JLtg2w">
-      <domains xmi:type="domain:DomainURI" xmi:id="_SUbPQAprEd-7fqY_JLtg2w" uri="platform:/plugin/org.eclipse.egf.example.emf.docgen.html/model/library.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_SUbPQAprEd-7fqY_JLtg2w" uri="platform:/plugin/org.eclipse.egf.example.emf.docgen.html/model/library.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_8VyS4ApYEd-pyqf4uNW3tw">
@@ -14,7 +14,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore#_BxjIkAG0Ed-7fNNmMjB2jQ">
       <invocationContractContainer xmi:id="_vVEUIAqQEd-o4MG7iLHReg">
         <invocationContracts xmi:id="_wFpcgAqQEd-o4MG7iLHReg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore#_Yp4VcAprEd-7fqY_JLtg2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_yuVWAAqQEd-o4MG7iLHReg" domain="#_SUbPQAprEd-7fqY_JLtg2w"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_yuVWAAqQEd-o4MG7iLHReg" domain="#_SUbPQAprEd-7fqY_JLtg2w"/>
         </invocationContracts>
         <invocationContracts xmi:id="_Rrl4YAqREd-o4MG7iLHReg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore#_7NKWkApbEd-pyqf4uNW3tw">
           <type xmi:type="types:TypeString" xmi:id="_T3qHUAqREd-o4MG7iLHReg" description=""

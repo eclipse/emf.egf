@@ -58,7 +58,7 @@
       </libraries>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_lt5zMCIWEd-XdOucj2euiQ">
-      <domains xmi:type="domain:DomainURI" xmi:id="_oniSwCIWEd-XdOucj2euiQ" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_oniSwCIWEd-XdOucj2euiQ" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_n7RgICIKEd-l6L0LIketyw">
@@ -73,7 +73,7 @@
               value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
         </invocationContracts>
         <invocationContracts xmi:id="_hOQioCIXEd-XdOucj2euiQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_ij4RwCIXEd-XdOucj2euiQ" domain="#_oniSwCIWEd-XdOucj2euiQ"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_ij4RwCIXEd-XdOucj2euiQ" domain="#_oniSwCIWEd-XdOucj2euiQ"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

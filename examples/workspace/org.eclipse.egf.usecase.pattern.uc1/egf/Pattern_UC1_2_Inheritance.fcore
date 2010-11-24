@@ -43,14 +43,14 @@
       </libraries>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_GkXM8BVgEd-JoY-b5_Vpcw">
-      <domains xmi:type="domain:DomainURI" xmi:id="_HZMjMBVgEd-JoY-b5_Vpcw" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_HZMjMBVgEd-JoY-b5_Vpcw" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_hXtToBVgEd-JoY-b5_Vpcw">
     <invocations xmi:id="_h65gQBVgEd-JoY-b5_Vpcw" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
       <invocationContractContainer xmi:id="_kb6EcBVgEd-JoY-b5_Vpcw">
         <invocationContracts xmi:id="_lC1hkBVgEd-JoY-b5_Vpcw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_m8hnEBVgEd-JoY-b5_Vpcw" description=""
+          <type xmi:type="domain:TypeDomain" xmi:id="_m8hnEBVgEd-JoY-b5_Vpcw" description=""
               domain="#_HZMjMBVgEd-JoY-b5_Vpcw"/>
         </invocationContracts>
         <invocationContracts xmi:id="_sV44cBVgEd-JoY-b5_Vpcw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">

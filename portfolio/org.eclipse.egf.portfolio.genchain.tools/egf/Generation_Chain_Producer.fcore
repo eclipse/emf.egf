@@ -7,7 +7,7 @@
   <contractContainer xmi:id="_e5UQQI2eEd-EUL5-4Nq41g">
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_fqpmkI2eEd-EUL5-4Nq41g"
         name="genChain model" mandatory="true" invocationContracts="#__6CUE4hMEd-Ii9WHGzCGHg">
-      <type xmi:type="domain:TypeDomainURI" xmi:id="_ozah4I2eEd-EUL5-4Nq41g"/>
+      <type xmi:type="domain:TypeDomain" xmi:id="_ozah4I2eEd-EUL5-4Nq41g"/>
     </contracts>
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tmoZQI2eEd-EUL5-4Nq41g"
         name="generation plugin name" mandatory="true">

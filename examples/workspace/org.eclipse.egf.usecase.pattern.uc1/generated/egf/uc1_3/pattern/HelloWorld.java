@@ -7,103 +7,99 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized HelloWorld create(String lineSeparator) {
+		nl = lineSeparator;
+		HelloWorld result = new HelloWorld();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized HelloWorld create(String lineSeparator) {
-        nl = lineSeparator;
-        HelloWorld result = new HelloWorld();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = " ";
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public HelloWorld() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = " ";
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = NL;
+	}
 
-    protected final String TEXT_3 = NL;
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    public HelloWorld() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		List<Object> aClassList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-    }
+		for (Object aClassParameter : aClassList) {
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+			this.aClass = (org.eclipse.emf.ecore.EClass) aClassParameter;
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+			orchestration(ctx);
 
-        List<Object> aClassList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-        for (Object aClassParameter : aClassList) {
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
+		return stringBuffer.toString();
+	}
 
-            this.aClass = (org.eclipse.emf.ecore.EClass) aClassParameter;
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-            orchestration(ctx);
+		method_SayHello(ictx.getBuffer(), ictx);
 
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		method_body(ictx.getBuffer(), ictx);
+		{
+			final Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("element", this.aClass);
+			ExecutionContext ctx_local = new ExecutionContext(ictx);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw", ctx_local, parameters);
+		}
 
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(TEXT_3);
-        return stringBuffer.toString();
-    }
+		method_finish(ictx.getBuffer(), ictx);
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("aClass", this.aClass);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-        method_SayHello(ictx.getBuffer(), ictx);
+	protected org.eclipse.emf.ecore.EClass aClass = null;
 
-        method_body(ictx.getBuffer(), ictx);
-        {
-            final Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("element", this.aClass);
-            ExecutionContext ctx_local = new ExecutionContext(ictx);
-            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw", ctx_local, parameters);
-        }
+	public void set_aClass(org.eclipse.emf.ecore.EClass object) {
+		this.aClass = object;
+	}
 
-        method_finish(ictx.getBuffer(), ictx);
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("aClass", this.aClass);
+		return parameters;
+	}
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("aClass", this.aClass);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-    protected org.eclipse.emf.ecore.EClass aClass = null;
-
-    public void set_aClass(org.eclipse.emf.ecore.EClass object) {
-        this.aClass = object;
-    }
-
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("aClass", this.aClass);
-        return parameters;
-    }
-
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(aClass.getName());
-    }
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(aClass.getName());
+	}
 }

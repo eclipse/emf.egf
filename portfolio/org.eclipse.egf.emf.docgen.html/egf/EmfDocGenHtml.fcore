@@ -9,7 +9,7 @@
     <contractContainer xmi:id="_6hXAgApbEd-pyqf4uNW3tw">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Yp4VcAprEd-7fqY_JLtg2w"
           description="Ecore domain model" name="domain" mandatory="true" invocationContracts="#_bk2SAAnMEd-O5f4UVi0CIA">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_gHUXYAprEd-7fqY_JLtg2w"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_gHUXYAprEd-7fqY_JLtg2w"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_7NKWkApbEd-pyqf4uNW3tw"
           description="Project where the result of the emf document generation is located"
@@ -305,11 +305,11 @@
       kind="java" implementation="org.eclipse.egf.emf.docgen.html.EmfDocProductionContextFromGenModel">
     <contractContainer xmi:id="_AZaCEBusEd-jaIqWGhF8eQ">
       <contracts xmi:id="_A4ZrMBusEd-jaIqWGhF8eQ" name="genModelURI" mandatory="true">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_C-NhIBusEd-jaIqWGhF8eQ"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_C-NhIBusEd-jaIqWGhF8eQ"/>
       </contracts>
       <contracts xmi:id="_Do1LcBusEd-jaIqWGhF8eQ" name="docEcoreURI" mandatory="true"
           mode="Out">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_IUx9MBusEd-jaIqWGhF8eQ"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_IUx9MBusEd-jaIqWGhF8eQ"/>
       </contracts>
       <contracts xmi:id="_EAYIwBusEd-jaIqWGhF8eQ" name="docProjectName" mandatory="true"
           mode="Out">

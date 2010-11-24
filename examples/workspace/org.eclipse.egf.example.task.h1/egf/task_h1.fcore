@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ftask:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
-    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
     description="" name="H1" kind="java" implementation="org.eclipse.egf.example.task.h1.H1">
   <contractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
     <contracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
@@ -21,12 +21,6 @@
     </contracts>
     <contracts xmi:id="_Z65BAdA5Ed6LbMEN-DBMtQ" name="stock">
       <type xmi:type="types:TypeInteger" xmi:id="_a-1xUNA5Ed6LbMEN-DBMtQ" value="100"/>
-    </contracts>
-    <contracts xmi:id="_M2YOIdqHEd6xR_hM8cx7GA" name="model">
-      <type xmi:type="domain:TypeDomainEPackage" xmi:id="_sbQNUNqLEd6V9pdModnIUQ"/>
-    </contracts>
-    <contracts xmi:id="_TwNMsNqHEd6xR_hM8cx7GA" name="reference">
-      <type xmi:type="domain:TypeDomainURI" xmi:id="_rF3uwNqLEd6V9pdModnIUQ"/>
     </contracts>
     <contracts xmi:id="_yEOccTJ5Ed-JWMmof-srJA" name="jmerger" mode="In_Out">
       <type xmi:type="types:TypeClass" xmi:id="_yab9ADJ5Ed-JWMmof-srJA" value="org.eclipse.emf.codegen.merge.java.JMerger"/>

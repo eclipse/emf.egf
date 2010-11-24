@@ -13,7 +13,7 @@
   </contractContainer>
   <viewpointContainer xmi:id="_zaxPoFnsEd-nCN8bxVd2Rg">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_znbyoFnsEd-nCN8bxVd2Rg">
-      <domains xmi:type="domain:DomainURI" xmi:id="_znbyoVnsEd-nCN8bxVd2Rg" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_znbyoVnsEd-nCN8bxVd2Rg" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_0lR68FnsEd-nCN8bxVd2Rg">
       <libraries xmi:id="_-nql4FnsEd-nCN8bxVd2Rg" name="egf.uc2_2.substitution.merge">
@@ -68,7 +68,7 @@
     <invocations xmi:id="_QfRZQFnwEd-yhOrMHI1JRQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_9tinYVklEd-JQcaBMLZCWg">
       <invocationContractContainer xmi:id="_QfRZQVnwEd-yhOrMHI1JRQ">
         <invocationContracts xmi:id="_QfRZQlnwEd-yhOrMHI1JRQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_9rXyQlknEd-nZ9GSBuVMNQ">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_UILZoFnwEd-yhOrMHI1JRQ" domain="#_znbyoVnsEd-nCN8bxVd2Rg"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_UILZoFnwEd-yhOrMHI1JRQ" domain="#_znbyoVnsEd-nCN8bxVd2Rg"/>
         </invocationContracts>
         <invocationContracts xmi:id="_QfRZQ1nwEd-yhOrMHI1JRQ" sourceInvocationContract="#_bxxTJVnuEd-yhOrMHI1JRQ"
             invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/egf/Pattern_UC2_1_SinglePatternSubstitution.fcore#_9rXyRFknEd-nZ9GSBuVMNQ"/>

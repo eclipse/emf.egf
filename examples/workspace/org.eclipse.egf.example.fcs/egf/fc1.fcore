@@ -18,24 +18,9 @@
         invocationContexts="#_aC43cNXAEd6mBObdoXlr9g">
       <type xmi:type="types:TypeCollection" xmi:id="_i0XSYRciEd-OuMrFXG3KCA"/>
     </contracts>
-    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_LCgnUNgXEd6eJbYEYJAYWw"
-        name="fcore" invocationContracts="#_Pnj8UNqHEd6xR_hM8cx7GA">
-      <type xmi:type="domain:TypeDomainEPackage" xmi:id="_U3jScdqLEd6V9pdModnIUQ"
-          domain="#_IlmgAdgXEd6eJbYEYJAYWw" name="fcore"/>
-    </contracts>
-    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_zb0TwNgfEd6na6OAqTVobQ"
-        name="fc1" invocationContracts="#_WXZRYNqHEd6xR_hM8cx7GA">
-      <type xmi:type="domain:TypeDomainURI" xmi:id="_HB5igdggEd6uy82Dcq20PA" domain="#_J1bPgdgfEd6na6OAqTVobQ"
-          name="fc1"/>
-    </contracts>
   </contractContainer>
   <viewpointContainer xmi:id="_iBhWMdgWEd6Q4-VfEsR1iA">
-    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_iiANENgWEd6Q4-VfEsR1iA">
-      <domains xmi:type="domain:DomainEPackage" xmi:id="_IlmgAdgXEd6eJbYEYJAYWw" ePackage="http://www.eclipse.org/egf/1.0.0/fcore#/"
-          name="fcore"/>
-      <domains xmi:type="domain:DomainURI" xmi:id="_J1bPgdgfEd6na6OAqTVobQ" uri="platform:/resource/org.eclipse.egf.example.fcs/egf/fc1.fcore"
-          name="fc1"/>
-    </viewpoints>
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_iiANENgWEd6Q4-VfEsR1iA"/>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
     <orchestrationParameterContainer xmi:id="_I6TxYcVjEd6ngr_25dSdnQ">
@@ -55,10 +40,6 @@
             invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
         <invocationContracts xmi:id="_aC43cNXAEd6mBObdoXlr9g" factoryComponentContract="#_ih5EENXAEd6mBObdoXlr9g"
             invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_l2A5kdT3Ed6Pk6ruhJpBtQ"/>
-        <invocationContracts xmi:id="_Pnj8UNqHEd6xR_hM8cx7GA" factoryComponentContract="#_LCgnUNgXEd6eJbYEYJAYWw"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_M2YOIdqHEd6xR_hM8cx7GA"/>
-        <invocationContracts xmi:id="_WXZRYNqHEd6xR_hM8cx7GA" factoryComponentContract="#_zb0TwNgfEd6na6OAqTVobQ"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_TwNMsNqHEd6xR_hM8cx7GA"/>
       </invocationContractContainer>
     </invocations>
   </orchestration>

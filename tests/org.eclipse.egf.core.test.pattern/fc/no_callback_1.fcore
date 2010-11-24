@@ -7,7 +7,7 @@
     name="no_callback_1">
   <viewpointContainer xmi:id="_hBsegCLhEd-F8rS2HRRtPA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_hhKBsCLhEd-F8rS2HRRtPA">
-      <domains xmi:type="domain:DomainURI" xmi:id="_isPUwCLhEd-F8rS2HRRtPA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_isPUwCLhEd-F8rS2HRRtPA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_jQWHYCLhEd-F8rS2HRRtPA">
       <libraries xmi:id="_kq4LsCLhEd-F8rS2HRRtPA" name="no_callback.strategy">
@@ -57,7 +57,7 @@
     <invocations xmi:id="_UUsK8CLiEd-F8rS2HRRtPA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
       <invocationContractContainer xmi:id="_VdLdACLiEd-F8rS2HRRtPA">
         <invocationContracts xmi:id="_Vu-XoCLiEd-F8rS2HRRtPA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_Wpk-sCLiEd-F8rS2HRRtPA" domain="#_isPUwCLhEd-F8rS2HRRtPA"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_Wpk-sCLiEd-F8rS2HRRtPA" domain="#_isPUwCLhEd-F8rS2HRRtPA"/>
         </invocationContracts>
         <invocationContracts xmi:id="_X-yeICLiEd-F8rS2HRRtPA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ZNRqgCLiEd-F8rS2HRRtPA"

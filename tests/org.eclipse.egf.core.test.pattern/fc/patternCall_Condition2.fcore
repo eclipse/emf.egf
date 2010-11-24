@@ -7,7 +7,7 @@
     name="patternCall_Condition2">
   <viewpointContainer xmi:id="_LUMXsHeNEd-eFrQyPU1i3Q">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_Le1hcHeNEd-eFrQyPU1i3Q">
-      <domains xmi:type="domain:DomainURI" xmi:id="_Le1hcXeNEd-eFrQyPU1i3Q" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_Le1hcXeNEd-eFrQyPU1i3Q" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_XCBQwHeNEd-eFrQyPU1i3Q">
       <libraries xmi:id="_XSumQHeNEd-eFrQyPU1i3Q" name="pattern.call.condition2">
@@ -60,7 +60,7 @@
               elements="#_ra9_gHeQEd-ent-ImclT8w"/>
         </invocationContracts>
         <invocationContracts xmi:id="_NOSs43eNEd-eFrQyPU1i3Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_RVbhYHeNEd-eFrQyPU1i3Q" domain="#_Le1hcXeNEd-eFrQyPU1i3Q"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_RVbhYHeNEd-eFrQyPU1i3Q" domain="#_Le1hcXeNEd-eFrQyPU1i3Q"/>
         </invocationContracts>
         <invocationContracts xmi:id="_jOpB0HeREd-ent-ImclT8w" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_kug5IHeREd-ent-ImclT8w"

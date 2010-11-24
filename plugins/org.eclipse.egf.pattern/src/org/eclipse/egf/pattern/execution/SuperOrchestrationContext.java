@@ -27,9 +27,6 @@ public class SuperOrchestrationContext implements InternalPatternContext {
 
     private final InternalPatternContext delegate;
 
-    @SuppressWarnings("unused")
-    private int index;
-
     public SuperOrchestrationContext(InternalPatternContext delegate) {
         super();
         this.delegate = delegate;
