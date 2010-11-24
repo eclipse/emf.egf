@@ -43,8 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainViewpointItemProvider extends ViewpointItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class DomainViewpointItemProvider extends ViewpointItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -136,9 +135,9 @@ public class DomainViewpointItemProvider extends ViewpointItemProvider implement
         updateChildren(notification);
 
         switch (notification.getFeatureID(DomainViewpoint.class)) {
-            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }
@@ -154,11 +153,15 @@ public class DomainViewpointItemProvider extends ViewpointItemProvider implement
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
-        newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createDomainEPackage()));
-
         newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createDomainGenPackage()));
 
         newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createDomainURI()));
+
+        newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createEMFDomain()));
+
+        newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createFilesystemDomain()));
+
+        newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createWorkspaceDomain()));
     }
 
     /**

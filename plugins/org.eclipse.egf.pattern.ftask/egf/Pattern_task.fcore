@@ -8,7 +8,7 @@
       <type xmi:type="pattern:TypePatternList" xmi:id="_u5WAkBe5Ed-O0P2188kAmA"/>
     </contracts>
     <contracts xmi:id="_4ngvABe5Ed-O0P2188kAmA" name="domain">
-      <type xmi:type="domain:TypeDomainURI" xmi:id="_7GM_ABe5Ed-O0P2188kAmA"/>
+      <type xmi:type="domain:TypeDomain" xmi:id="_DS62cPPwEd-w6d2MxPzhJw"/>
     </contracts>
     <contracts xmi:id="_7-xlwBe5Ed-O0P2188kAmA" name="pattern.execution.reporter">
       <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_-UgHABe5Ed-O0P2188kAmA"/>

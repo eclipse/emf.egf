@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.TypeDomainGenPackages;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
@@ -132,49 +132,49 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainEPackage} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected DomainEPackageItemProvider domainEPackageItemProvider;
+    protected DomainURIItemProvider domainURIItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}.
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURI}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createDomainEPackageAdapter() {
-        if (domainEPackageItemProvider == null) {
-            domainEPackageItemProvider = new DomainEPackageItemProvider(this);
+    public Adapter createDomainURIAdapter() {
+        if (domainURIItemProvider == null) {
+            domainURIItemProvider = new DomainURIItemProvider(this);
         }
 
-        return domainEPackageItemProvider;
+        return domainURIItemProvider;
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainEPackage} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainURI} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected TypeDomainEPackageItemProvider typeDomainEPackageItemProvider;
+    protected TypeDomainURIItemProvider typeDomainURIItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage}.
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createTypeDomainEPackageAdapter() {
-        if (typeDomainEPackageItemProvider == null) {
-            typeDomainEPackageItemProvider = new TypeDomainEPackageItemProvider(this);
+    public Adapter createTypeDomainURIAdapter() {
+        if (typeDomainURIItemProvider == null) {
+            typeDomainURIItemProvider = new TypeDomainURIItemProvider(this);
         }
 
-        return typeDomainEPackageItemProvider;
+        return typeDomainURIItemProvider;
     }
 
     /**
@@ -224,49 +224,95 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.EMFDomain} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected DomainURIItemProvider domainURIItemProvider;
+    protected EMFDomainItemProvider emfDomainItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURI}.
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.EMFDomain}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createDomainURIAdapter() {
-        if (domainURIItemProvider == null) {
-            domainURIItemProvider = new DomainURIItemProvider(this);
+    public Adapter createEMFDomainAdapter() {
+        if (emfDomainItemProvider == null) {
+            emfDomainItemProvider = new EMFDomainItemProvider(this);
         }
 
-        return domainURIItemProvider;
+        return emfDomainItemProvider;
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomainURI} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.TypeDomain} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected TypeDomainURIItemProvider typeDomainURIItemProvider;
+    protected TypeDomainItemProvider typeDomainItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI}.
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.TypeDomain}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createTypeDomainURIAdapter() {
-        if (typeDomainURIItemProvider == null) {
-            typeDomainURIItemProvider = new TypeDomainURIItemProvider(this);
+    public Adapter createTypeDomainAdapter() {
+        if (typeDomainItemProvider == null) {
+            typeDomainItemProvider = new TypeDomainItemProvider(this);
         }
 
-        return typeDomainURIItemProvider;
+        return typeDomainItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.FilesystemDomain} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FilesystemDomainItemProvider filesystemDomainItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.FilesystemDomain}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createFilesystemDomainAdapter() {
+        if (filesystemDomainItemProvider == null) {
+            filesystemDomainItemProvider = new FilesystemDomainItemProvider(this);
+        }
+
+        return filesystemDomainItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.WorkspaceDomain} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected WorkspaceDomainItemProvider workspaceDomainItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.domain.WorkspaceDomain}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createWorkspaceDomainAdapter() {
+        if (workspaceDomainItemProvider == null) {
+            workspaceDomainItemProvider = new WorkspaceDomainItemProvider(this);
+        }
+
+        return workspaceDomainItemProvider;
     }
 
     /**
@@ -370,10 +416,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
     public void dispose() {
         if (domainViewpointItemProvider != null)
             domainViewpointItemProvider.dispose();
-        if (domainEPackageItemProvider != null)
-            domainEPackageItemProvider.dispose();
-        if (typeDomainEPackageItemProvider != null)
-            typeDomainEPackageItemProvider.dispose();
         if (domainGenPackageItemProvider != null)
             domainGenPackageItemProvider.dispose();
         if (typeDomainGenPackagesItemProvider != null)
@@ -382,6 +424,14 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             domainURIItemProvider.dispose();
         if (typeDomainURIItemProvider != null)
             typeDomainURIItemProvider.dispose();
+        if (emfDomainItemProvider != null)
+            emfDomainItemProvider.dispose();
+        if (typeDomainItemProvider != null)
+            typeDomainItemProvider.dispose();
+        if (filesystemDomainItemProvider != null)
+            filesystemDomainItemProvider.dispose();
+        if (workspaceDomainItemProvider != null)
+            workspaceDomainItemProvider.dispose();
     }
 
     /**
@@ -434,11 +484,11 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
              */
             @Override
             public Object caseContract(Contract object) {
-                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
-
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainGenPackages()));
 
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomain()));
 
                 return null;
             }
@@ -462,11 +512,11 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
              */
             @Override
             public Object caseOrchestrationParameter(OrchestrationParameter object) {
-                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
-
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainGenPackages()));
 
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomain()));
 
                 return null;
             }
@@ -487,7 +537,7 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
                 Type invokedContractType = object.getInvokedContract().getType();
 
                 {
-                    TypeDomainEPackage type = DomainFactory.eINSTANCE.createTypeDomainEPackage();
+                    TypeDomain type = DomainFactory.eINSTANCE.createTypeDomain();
                     if (invokedContractType.isCompatible(type)) {
                         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
                     }

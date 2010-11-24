@@ -42,22 +42,22 @@ public interface DomainFactory extends EFactory {
     DomainViewpoint createDomainViewpoint();
 
     /**
-     * Returns a new object of class '<em>EPackage</em>'.
+     * Returns a new object of class '<em>URI</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>EPackage</em>'.
+     * @return a new object of class '<em>URI</em>'.
      * @generated
      */
-    DomainEPackage createDomainEPackage();
+    DomainURI createDomainURI();
 
     /**
-     * Returns a new object of class '<em>Type Domain EPackage</em>'.
+     * Returns a new object of class '<em>Type Domain URI</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Type Domain EPackage</em>'.
+     * @return a new object of class '<em>Type Domain URI</em>'.
      * @generated
      */
-    TypeDomainEPackage createTypeDomainEPackage();
+    TypeDomainURI createTypeDomainURI();
 
     /**
      * Returns a new object of class '<em>Gen Package</em>'.
@@ -78,22 +78,40 @@ public interface DomainFactory extends EFactory {
     TypeDomainGenPackages createTypeDomainGenPackages();
 
     /**
-     * Returns a new object of class '<em>URI</em>'.
+     * Returns a new object of class '<em>EMF Domain</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>URI</em>'.
+     * @return a new object of class '<em>EMF Domain</em>'.
      * @generated
      */
-    DomainURI createDomainURI();
+    EMFDomain createEMFDomain();
 
     /**
-     * Returns a new object of class '<em>Type Domain URI</em>'.
+     * Returns a new object of class '<em>Type Domain</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Type Domain URI</em>'.
+     * @return a new object of class '<em>Type Domain</em>'.
      * @generated
      */
-    TypeDomainURI createTypeDomainURI();
+    TypeDomain createTypeDomain();
+
+    /**
+     * Returns a new object of class '<em>Filesystem Domain</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Filesystem Domain</em>'.
+     * @generated
+     */
+    FilesystemDomain createFilesystemDomain();
+
+    /**
+     * Returns a new object of class '<em>Workspace Domain</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Workspace Domain</em>'.
+     * @generated
+     */
+    WorkspaceDomain createWorkspaceDomain();
 
     /**
      * Returns the package supported by this factory.

@@ -16,13 +16,18 @@ import java.util.List;
 
 import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
-import org.eclipse.egf.model.domain.DomainEPackage;
+import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.FilesystemDomain;
+import org.eclipse.egf.model.domain.TypeDomain;
+import org.eclipse.egf.model.domain.TypeDomainGenPackages;
 import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.WorkspaceDomain;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypeElement;
@@ -102,98 +107,132 @@ public class DomainSwitch<T> {
      */
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case DomainPackage.DOMAIN_VIEWPOINT: {
-                DomainViewpoint domainViewpoint = (DomainViewpoint) theEObject;
-                T result = caseDomainViewpoint(domainViewpoint);
-                if (result == null)
-                    result = caseViewpoint(domainViewpoint);
-                if (result == null)
-                    result = caseModelElement(domainViewpoint);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.DOMAIN: {
-                Domain domain = (Domain) theEObject;
-                T result = caseDomain(domain);
-                if (result == null)
-                    result = caseModelElement(domain);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.DOMAIN_EPACKAGE: {
-                DomainEPackage domainEPackage = (DomainEPackage) theEObject;
-                T result = caseDomainEPackage(domainEPackage);
-                if (result == null)
-                    result = caseDomain(domainEPackage);
-                if (result == null)
-                    result = caseModelElement(domainEPackage);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.TYPE_DOMAIN_EPACKAGE: {
-                TypeDomainEPackage typeDomainEPackage = (TypeDomainEPackage) theEObject;
-                T result = caseTypeDomainEPackage(typeDomainEPackage);
-                if (result == null)
-                    result = caseTypeObject(typeDomainEPackage);
-                if (result == null)
-                    result = caseType(typeDomainEPackage);
-                if (result == null)
-                    result = caseTypeElement(typeDomainEPackage);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.DOMAIN_GEN_PACKAGE: {
-                DomainGenPackage domainGenPackage = (DomainGenPackage) theEObject;
-                T result = caseDomainGenPackage(domainGenPackage);
-                if (result == null)
-                    result = caseDomain(domainGenPackage);
-                if (result == null)
-                    result = caseModelElement(domainGenPackage);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES: {
-                TypeDomainGenPackages typeDomainGenPackages = (TypeDomainGenPackages) theEObject;
-                T result = caseTypeDomainGenPackages(typeDomainGenPackages);
-                if (result == null)
-                    result = caseType(typeDomainGenPackages);
-                if (result == null)
-                    result = caseTypeElement(typeDomainGenPackages);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.DOMAIN_URI: {
-                DomainURI domainURI = (DomainURI) theEObject;
-                T result = caseDomainURI(domainURI);
-                if (result == null)
-                    result = caseDomain(domainURI);
-                if (result == null)
-                    result = caseModelElement(domainURI);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            case DomainPackage.TYPE_DOMAIN_URI: {
-                TypeDomainURI typeDomainURI = (TypeDomainURI) theEObject;
-                T result = caseTypeDomainURI(typeDomainURI);
-                if (result == null)
-                    result = caseTypeObject(typeDomainURI);
-                if (result == null)
-                    result = caseType(typeDomainURI);
-                if (result == null)
-                    result = caseTypeElement(typeDomainURI);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            default:
-                return defaultCase(theEObject);
+        case DomainPackage.DOMAIN_VIEWPOINT: {
+            DomainViewpoint domainViewpoint = (DomainViewpoint) theEObject;
+            T result = caseDomainViewpoint(domainViewpoint);
+            if (result == null)
+                result = caseViewpoint(domainViewpoint);
+            if (result == null)
+                result = caseModelElement(domainViewpoint);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.DOMAIN: {
+            Domain domain = (Domain) theEObject;
+            T result = caseDomain(domain);
+            if (result == null)
+                result = caseNamedModelElement(domain);
+            if (result == null)
+                result = caseModelElement(domain);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.DOMAIN_GEN_PACKAGE: {
+            DomainGenPackage domainGenPackage = (DomainGenPackage) theEObject;
+            T result = caseDomainGenPackage(domainGenPackage);
+            if (result == null)
+                result = caseDomain(domainGenPackage);
+            if (result == null)
+                result = caseNamedModelElement(domainGenPackage);
+            if (result == null)
+                result = caseModelElement(domainGenPackage);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES: {
+            TypeDomainGenPackages typeDomainGenPackages = (TypeDomainGenPackages) theEObject;
+            T result = caseTypeDomainGenPackages(typeDomainGenPackages);
+            if (result == null)
+                result = caseType(typeDomainGenPackages);
+            if (result == null)
+                result = caseTypeElement(typeDomainGenPackages);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.DOMAIN_URI: {
+            DomainURI domainURI = (DomainURI) theEObject;
+            T result = caseDomainURI(domainURI);
+            if (result == null)
+                result = caseDomain(domainURI);
+            if (result == null)
+                result = caseNamedModelElement(domainURI);
+            if (result == null)
+                result = caseModelElement(domainURI);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.TYPE_DOMAIN_URI: {
+            TypeDomainURI typeDomainURI = (TypeDomainURI) theEObject;
+            T result = caseTypeDomainURI(typeDomainURI);
+            if (result == null)
+                result = caseTypeObject(typeDomainURI);
+            if (result == null)
+                result = caseType(typeDomainURI);
+            if (result == null)
+                result = caseTypeElement(typeDomainURI);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.EMF_DOMAIN: {
+            EMFDomain emfDomain = (EMFDomain) theEObject;
+            T result = caseEMFDomain(emfDomain);
+            if (result == null)
+                result = caseDomain(emfDomain);
+            if (result == null)
+                result = caseNamedModelElement(emfDomain);
+            if (result == null)
+                result = caseModelElement(emfDomain);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.TYPE_DOMAIN: {
+            TypeDomain typeDomain = (TypeDomain) theEObject;
+            T result = caseTypeDomain(typeDomain);
+            if (result == null)
+                result = caseTypeObject(typeDomain);
+            if (result == null)
+                result = caseType(typeDomain);
+            if (result == null)
+                result = caseTypeElement(typeDomain);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.FILESYSTEM_DOMAIN: {
+            FilesystemDomain filesystemDomain = (FilesystemDomain) theEObject;
+            T result = caseFilesystemDomain(filesystemDomain);
+            if (result == null)
+                result = caseDomain(filesystemDomain);
+            if (result == null)
+                result = caseNamedModelElement(filesystemDomain);
+            if (result == null)
+                result = caseModelElement(filesystemDomain);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case DomainPackage.WORKSPACE_DOMAIN: {
+            WorkspaceDomain workspaceDomain = (WorkspaceDomain) theEObject;
+            T result = caseWorkspaceDomain(workspaceDomain);
+            if (result == null)
+                result = caseDomain(workspaceDomain);
+            if (result == null)
+                result = caseNamedModelElement(workspaceDomain);
+            if (result == null)
+                result = caseModelElement(workspaceDomain);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        default:
+            return defaultCase(theEObject);
         }
     }
 
@@ -228,32 +267,32 @@ public class DomainSwitch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>EPackage</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>URI</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>EPackage</em>'.
+     * @return the result of interpreting the object as an instance of '<em>URI</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseDomainEPackage(DomainEPackage object) {
+    public T caseDomainURI(DomainURI object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Type Domain EPackage</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Type Domain URI</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Type Domain EPackage</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Type Domain URI</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseTypeDomainEPackage(TypeDomainEPackage object) {
+    public T caseTypeDomainURI(TypeDomainURI object) {
         return null;
     }
 
@@ -288,32 +327,62 @@ public class DomainSwitch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>URI</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>EMF Domain</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>URI</em>'.
+     * @return the result of interpreting the object as an instance of '<em>EMF Domain</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseDomainURI(DomainURI object) {
+    public T caseEMFDomain(EMFDomain object) {
         return null;
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Type Domain URI</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Type Domain</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Type Domain URI</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Type Domain</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseTypeDomainURI(TypeDomainURI object) {
+    public T caseTypeDomain(TypeDomain object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Filesystem Domain</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Filesystem Domain</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseFilesystemDomain(FilesystemDomain object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Workspace Domain</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Workspace Domain</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseWorkspaceDomain(WorkspaceDomain object) {
         return null;
     }
 
@@ -344,6 +413,21 @@ public class DomainSwitch<T> {
      * @generated
      */
     public T caseViewpoint(Viewpoint object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Named Model Element</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Named Model Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseNamedModelElement(NamedModelElement object) {
         return null;
     }
 
@@ -396,7 +480,8 @@ public class DomainSwitch<T> {
      * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
-     * returning a non-null result will terminate the switch, but this is the last
+     * returning a non-null result will terminate the switch, but this is the
+     * last
      * case anyway.
      * <!-- end-user-doc -->
      * @param object the target of the switch.

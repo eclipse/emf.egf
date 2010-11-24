@@ -117,10 +117,10 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
-                return getDomain();
-            case DomainPackage.TYPE_DOMAIN_URI__VALUE:
-                return getValue();
+        case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
+            return getDomain();
+        case DomainPackage.TYPE_DOMAIN_URI__VALUE:
+            return getValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -133,9 +133,9 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
-                setDomain((DomainURI) newValue);
-                return;
+        case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
+            setDomain((DomainURI) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -148,9 +148,9 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
-                setDomain((DomainURI) null);
-                return;
+        case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
+            setDomain((DomainURI) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -163,10 +163,10 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
-                return domain != null;
-            case DomainPackage.TYPE_DOMAIN_URI__VALUE:
-                return getValue() != null;
+        case DomainPackage.TYPE_DOMAIN_URI__DOMAIN:
+            return domain != null;
+        case DomainPackage.TYPE_DOMAIN_URI__VALUE:
+            return getValue() != null;
         }
         return super.eIsSet(featureID);
     }

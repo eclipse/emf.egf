@@ -5,7 +5,7 @@
     name="Model Driven Pattern Strategy Task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask">
   <contractContainer xmi:id="_9xfmAP6eEd64XYPo3as6sPg">
     <contracts xmi:id="_DgB2IP6fEd64XaYPo3s6sPg" name="domain" mandatory="true">
-      <type xmi:type="domain:TypeDomainURI" xmi:id="_D_W2cPa6fEd64XYPo3s6sPg"/>
+      <type xmi:type="domain:TypeDomain" xmi:id="_9CYFcfPvEd-w6d2MxPzhJw"/>
     </contracts>
     <contracts xmi:id="_L6JSwAHAEd-4faJMEplCjxw" name="pattern.execution.reporter">
       <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_NlkSwaAHAEd-4fJMEplCjxw"/>

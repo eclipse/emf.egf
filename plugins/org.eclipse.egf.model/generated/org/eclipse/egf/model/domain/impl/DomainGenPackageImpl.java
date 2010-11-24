@@ -114,10 +114,10 @@ public class DomainGenPackageImpl extends DomainImpl implements DomainGenPackage
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
-                if (resolve)
-                    return getGenPackage();
-                return basicGetGenPackage();
+        case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
+            if (resolve)
+                return getGenPackage();
+            return basicGetGenPackage();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -130,9 +130,9 @@ public class DomainGenPackageImpl extends DomainImpl implements DomainGenPackage
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
-                setGenPackage((GenPackage) newValue);
-                return;
+        case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
+            setGenPackage((GenPackage) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -145,9 +145,9 @@ public class DomainGenPackageImpl extends DomainImpl implements DomainGenPackage
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
-                setGenPackage((GenPackage) null);
-                return;
+        case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
+            setGenPackage((GenPackage) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -160,8 +160,8 @@ public class DomainGenPackageImpl extends DomainImpl implements DomainGenPackage
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
-                return genPackage != null;
+        case DomainPackage.DOMAIN_GEN_PACKAGE__GEN_PACKAGE:
+            return genPackage != null;
         }
         return super.eIsSet(featureID);
     }

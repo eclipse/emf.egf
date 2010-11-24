@@ -13,13 +13,15 @@
 package org.eclipse.egf.model.domain.impl;
 
 import org.eclipse.egf.model.domain.*;
-import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.FilesystemDomain;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.WorkspaceDomain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -70,22 +72,26 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case DomainPackage.DOMAIN_VIEWPOINT:
-                return createDomainViewpoint();
-            case DomainPackage.DOMAIN_EPACKAGE:
-                return createDomainEPackage();
-            case DomainPackage.TYPE_DOMAIN_EPACKAGE:
-                return createTypeDomainEPackage();
-            case DomainPackage.DOMAIN_GEN_PACKAGE:
-                return createDomainGenPackage();
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
-                return createTypeDomainGenPackages();
-            case DomainPackage.DOMAIN_URI:
-                return createDomainURI();
-            case DomainPackage.TYPE_DOMAIN_URI:
-                return createTypeDomainURI();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case DomainPackage.DOMAIN_VIEWPOINT:
+            return createDomainViewpoint();
+        case DomainPackage.DOMAIN_GEN_PACKAGE:
+            return createDomainGenPackage();
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
+            return createTypeDomainGenPackages();
+        case DomainPackage.DOMAIN_URI:
+            return createDomainURI();
+        case DomainPackage.TYPE_DOMAIN_URI:
+            return createTypeDomainURI();
+        case DomainPackage.EMF_DOMAIN:
+            return createEMFDomain();
+        case DomainPackage.TYPE_DOMAIN:
+            return createTypeDomain();
+        case DomainPackage.FILESYSTEM_DOMAIN:
+            return createFilesystemDomain();
+        case DomainPackage.WORKSPACE_DOMAIN:
+            return createWorkspaceDomain();
+        default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -97,26 +103,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     public DomainViewpoint createDomainViewpoint() {
         DomainViewpointImpl domainViewpoint = new DomainViewpointImpl();
         return domainViewpoint;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public DomainEPackage createDomainEPackage() {
-        DomainEPackageImpl domainEPackage = new DomainEPackageImpl();
-        return domainEPackage;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TypeDomainEPackage createTypeDomainEPackage() {
-        TypeDomainEPackageImpl typeDomainEPackage = new TypeDomainEPackageImpl();
-        return typeDomainEPackage;
     }
 
     /**
@@ -157,6 +143,46 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     public TypeDomainURI createTypeDomainURI() {
         TypeDomainURIImpl typeDomainURI = new TypeDomainURIImpl();
         return typeDomainURI;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EMFDomain createEMFDomain() {
+        EMFDomainImpl emfDomain = new EMFDomainImpl();
+        return emfDomain;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypeDomain createTypeDomain() {
+        TypeDomainImpl typeDomain = new TypeDomainImpl();
+        return typeDomain;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilesystemDomain createFilesystemDomain() {
+        FilesystemDomainImpl filesystemDomain = new FilesystemDomainImpl();
+        return filesystemDomain;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public WorkspaceDomain createWorkspaceDomain() {
+        WorkspaceDomainImpl workspaceDomain = new WorkspaceDomainImpl();
+        return workspaceDomain;
     }
 
     /**

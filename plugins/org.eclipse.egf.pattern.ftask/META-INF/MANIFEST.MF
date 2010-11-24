@@ -10,7 +10,8 @@ Require-Bundle:
  org.eclipse.core.runtime,
  org.eclipse.egf.pattern,
  org.eclipse.egf.core.producer,
- org.eclipse.egf.model.ftask
+ org.eclipse.egf.model.ftask,
+ org.eclipse.egf.domain;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

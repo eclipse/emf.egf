@@ -98,8 +98,8 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-                return ((InternalEList<?>) getDomains()).basicRemove(otherEnd, msgs);
+        case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+            return ((InternalEList<?>) getDomains()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -112,8 +112,8 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-                return getDomains();
+        case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+            return getDomains();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -127,10 +127,10 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-                getDomains().clear();
-                getDomains().addAll((Collection<? extends Domain>) newValue);
-                return;
+        case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+            getDomains().clear();
+            getDomains().addAll((Collection<? extends Domain>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -143,9 +143,9 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-                getDomains().clear();
-                return;
+        case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+            getDomains().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -158,8 +158,8 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
-                return domains != null && !domains.isEmpty();
+        case DomainPackage.DOMAIN_VIEWPOINT__DOMAINS:
+            return domains != null && !domains.isEmpty();
         }
         return super.eIsSet(featureID);
     }

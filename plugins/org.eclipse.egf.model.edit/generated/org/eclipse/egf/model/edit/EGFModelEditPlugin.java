@@ -15,9 +15,10 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
- * This is the central singleton for the Pattern edit plugin.
+ * This is the central singleton for the Domain edit plugin.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class EGFModelEditPlugin extends EMFPlugin {
@@ -26,6 +27,7 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * Keep track of the singleton.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public static final EGFModelEditPlugin INSTANCE = new EGFModelEditPlugin();
@@ -34,6 +36,7 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * Keep track of the singleton.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     private static Implementation plugin;
@@ -46,18 +49,20 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * @generated NOT
      */
     public EGFModelEditPlugin() {
-        // TODO: EMF try to generate a delegated resource locator to the current plugin
-        // however that one should be ignore eg: EGFModelsEditPlugin.INSTANCE is null
-        // super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
-        super(new ResourceLocator[] {
-            EcoreEditPlugin.INSTANCE,
-        });
+        // TODO: EMF try to generate a delegated resource locator to the current
+        // plugin
+        // however that one should be ignore eg: EGFModelsEditPlugin.INSTANCE is
+        // null
+        // super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
+        // EGFModelsEditPlugin.INSTANCE, });
+        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
     }
 
     /**
      * Returns the singleton instance of the Eclipse plugin.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @return the singleton instance.
      * @generated
      */
@@ -70,6 +75,7 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * Returns the singleton instance of the Eclipse plugin.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @return the singleton instance.
      * @generated
      */
@@ -81,6 +87,7 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * The actual implementation of the Eclipse <b>Plugin</b>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public static class Implementation extends EGFEclipsePlugin {
@@ -89,6 +96,7 @@ public final class EGFModelEditPlugin extends EMFPlugin {
          * Creates an instance.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
+         * 
          * @generated
          */
         public Implementation() {

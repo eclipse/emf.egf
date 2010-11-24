@@ -117,8 +117,8 @@ public class TypeDomainGenPackagesImpl extends TypeImpl implements TypeDomainGen
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
-                return getElements();
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
+            return getElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -132,10 +132,10 @@ public class TypeDomainGenPackagesImpl extends TypeImpl implements TypeDomainGen
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
-                getElements().clear();
-                getElements().addAll((Collection<? extends DomainGenPackage>) newValue);
-                return;
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
+            getElements().clear();
+            getElements().addAll((Collection<? extends DomainGenPackage>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -148,9 +148,9 @@ public class TypeDomainGenPackagesImpl extends TypeImpl implements TypeDomainGen
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
-                getElements().clear();
-                return;
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
+            getElements().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -163,8 +163,8 @@ public class TypeDomainGenPackagesImpl extends TypeImpl implements TypeDomainGen
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
-                return elements != null && !elements.isEmpty();
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
+            return elements != null && !elements.isEmpty();
         }
         return super.eIsSet(featureID);
     }
