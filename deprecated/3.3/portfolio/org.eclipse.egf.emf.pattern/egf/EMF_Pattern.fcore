@@ -8,7 +8,7 @@
     <contractContainer xmi:id="_Prg8ZDG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8ZTG0Ed-kc8dEZsdm2w"
           description="EMF Model Pattern" name="genModelURI" mandatory="true" invocationContracts="#_HJ1ds_MsEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_HJ1dtvMsEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_HJ1dtvMsEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_WRxYEFIIEd-eGOdO3WtsxA"
           description="EMF Model Pattern" name="pattern.execution.reporter" invocationContracts="#_HJ1dt_MsEd-6tr0C8ZV8Ew">
@@ -3255,7 +3255,7 @@
     <contractContainer xmi:id="_Prg8bzG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8cDG0Ed-kc8dEZsdm2w"
           description="EMF Edit Pattern" name="genModelURI" mandatory="true" invocationContracts="#_HJ_OufMsEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_HJ_OvPMsEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_HJ_OvPMsEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_jzYi8FIIEd-eGOdO3WtsxA"
           description="EMF Edit Pattern" name="pattern.execution.reporter" invocationContracts="#_HJ_OvfMsEd-6tr0C8ZV8Ew">
@@ -3748,7 +3748,7 @@
     <contractContainer xmi:id="_Prg8ejG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8ezG0Ed-kc8dEZsdm2w"
           description="EMF Editor Pattern" name="genModelURI" mandatory="true" invocationContracts="#_HJ_O0fMsEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_HJ_O1PMsEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_HJ_O1PMsEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_pCqEMFIIEd-eGOdO3WtsxA"
           description="EMF Editor Pattern" name="pattern.execution.reporter" invocationContracts="#_HJ_O1fMsEd-6tr0C8ZV8Ew">
@@ -4154,7 +4154,7 @@
     <contractContainer xmi:id="_Prg8hTG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8hjG0Ed-kc8dEZsdm2w"
           description="EMF Tests Pattern" name="genModelURI" mandatory="true" invocationContracts="#_HJ_O6fMsEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_HJ_O7PMsEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_HJ_O7PMsEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tvg04FIIEd-eGOdO3WtsxA"
           description="EMF Tests Pattern" name="pattern.execution.reporter" invocationContracts="#_HJ_O7fMsEd-6tr0C8ZV8Ew">
@@ -4765,7 +4765,7 @@
     <contractContainer xmi:id="_Prz3UTG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prz3UjG0Ed-kc8dEZsdm2w"
           description="EMF Pattern" name="genModelURI" mandatory="true" invocationContracts="#_HJ_PBfMsEd-6tr0C8ZV8Ew #_HJ_PFPMsEd-6tr0C8ZV8Ew #_HJ_PG_MsEd-6tr0C8ZV8Ew #_HJ_PIvMsEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_HJ_PBPMsEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_HJ_PBPMsEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_yqrHUFIIEd-eGOdO3WtsxA"
           description="EMF Pattern" name="pattern.execution.reporter" invocationContracts="#_HJ_PCPMsEd-6tr0C8ZV8Ew #_HJ_PFfMsEd-6tr0C8ZV8Ew #_HJ_PHPMsEd-6tr0C8ZV8Ew #_HJ_PI_MsEd-6tr0C8ZV8Ew">
