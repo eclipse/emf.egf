@@ -5,7 +5,7 @@
     name="BuildCore.genmodel EMF Pattern">
   <viewpointContainer xmi:id="_nSpF8Y2OEd-vRqSMFuBJBQ">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_nSpF8o2OEd-vRqSMFuBJBQ">
-      <domains xmi:type="domain:DomainURI" xmi:id="_nSpF842OEd-vRqSMFuBJBQ" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.genmodel"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_nSpF842OEd-vRqSMFuBJBQ" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.genmodel"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_nSpF9I2OEd-vRqSMFuBJBQ">
@@ -13,7 +13,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="_nSpF9o2OEd-vRqSMFuBJBQ">
         <invocationContracts xmi:id="_nSpF942OEd-vRqSMFuBJBQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_nSpF-I2OEd-vRqSMFuBJBQ" domain="#_nSpF842OEd-vRqSMFuBJBQ"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_nSpF-I2OEd-vRqSMFuBJBQ" domain="#_nSpF842OEd-vRqSMFuBJBQ"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>
@@ -21,7 +21,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="_nSpF-o2OEd-vRqSMFuBJBQ">
         <invocationContracts xmi:id="_nSpF-42OEd-vRqSMFuBJBQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_nSpF_I2OEd-vRqSMFuBJBQ" domain="#_nSpF842OEd-vRqSMFuBJBQ"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_nSpF_I2OEd-vRqSMFuBJBQ" domain="#_nSpF842OEd-vRqSMFuBJBQ"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>
@@ -29,7 +29,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PkqGcDG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="_nSpF_o2OEd-vRqSMFuBJBQ">
         <invocationContracts xmi:id="_nSpF_42OEd-vRqSMFuBJBQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ezG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="_nSpGAI2OEd-vRqSMFuBJBQ" domain="#_nSpF842OEd-vRqSMFuBJBQ"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="_nSpGAI2OEd-vRqSMFuBJBQ" domain="#_nSpF842OEd-vRqSMFuBJBQ"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

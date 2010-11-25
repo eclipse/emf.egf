@@ -39,14 +39,14 @@
         <genTypeParameters ecoreTypeParameter="Domain.ecore#//TypeDomainGenPackages/getType/T"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//DomainURI">
-      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURI/uri"/>
+    <genClasses ecoreClass="Domain.ecore#//EMFDomain">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Domain.ecore#//EMFDomain/uri"/>
     </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//TypeDomainURI">
+    <genClasses ecoreClass="Domain.ecore#//TypeDomain">
       <genFeatures createChild="false" propertyCategory="Domain" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainURI/domain"/>
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/domain"/>
       <genFeatures property="Readonly" createChild="false" propertyCategory="Data"
-          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainURI/value"/>
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

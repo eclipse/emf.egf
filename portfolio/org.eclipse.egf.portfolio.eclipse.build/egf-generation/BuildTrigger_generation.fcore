@@ -5,7 +5,7 @@
     name="BuildTrigger.genmodel EMF Pattern">
   <viewpointContainer xmi:id="__j9E8Y5jEd-Tlrutn5SzgA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="__j9E8o5jEd-Tlrutn5SzgA">
-      <domains xmi:type="domain:DomainURI" xmi:id="__j9E845jEd-Tlrutn5SzgA" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildTrigger.genmodel"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="__j9E845jEd-Tlrutn5SzgA" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildTrigger.genmodel"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="__j9E9I5jEd-Tlrutn5SzgA">
@@ -13,7 +13,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="__j9E9o5jEd-Tlrutn5SzgA">
         <invocationContracts xmi:id="__j9E945jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E-I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="__j9E-I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>
@@ -21,7 +21,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="__j9E-o5jEd-Tlrutn5SzgA">
         <invocationContracts xmi:id="__j9E-45jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E_I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="__j9E_I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

@@ -9,7 +9,7 @@
     <contractContainer xmi:id="_ad5FkI6VEd-e7viTqNBNrA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ad5FkY6VEd-e7viTqNBNrA"
           name="buildModelPath" mandatory="true" invocationContracts="#_y3exVNU7Ed-sZ5ty9tQGtA">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_ad5Fko6VEd-e7viTqNBNrA"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_ad5Fko6VEd-e7viTqNBNrA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_npIcUJlgEd-cRYVfj6AwNg"
           name="generationPath" mandatory="true" invocationContracts="#_3zH-sJlgEd-cRYVfj6AwNg #_J06JIJlhEd-cRYVfj6AwNg">
@@ -315,7 +315,7 @@
     <contractContainer xmi:id="_e0zoEI28Ed-Tlrutn5SzgA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_fLTcgI28Ed-Tlrutn5SzgA"
           name="buildModelPath" mandatory="true" invocationContracts="#_sMlhgo28Ed-Tlrutn5SzgA">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_x1k7kI3CEd-Tlrutn5SzgA"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_x1k7kI3CEd-Tlrutn5SzgA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9DJG0JlgEd-cRYVfj6AwNg"
           name="generationPath" invocationContracts="#_FiuiQJlhEd-cRYVfj6AwNg">
@@ -666,7 +666,7 @@
     <contractContainer xmi:id="_QISjsI6VEd-e7viTqNBNrA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_QISjsY6VEd-e7viTqNBNrA"
           name="buildModelPath" mandatory="true" invocationContracts="#_QISjuI6VEd-e7viTqNBNrA">
-        <type xmi:type="domain:TypeDomainURI" xmi:id="_QISjso6VEd-e7viTqNBNrA"/>
+        <type xmi:type="domain:TypeDomain" xmi:id="_QISjso6VEd-e7viTqNBNrA"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ABkm0JlhEd-cRYVfj6AwNg"
           name="generationPath" invocationContracts="#_CR0LIJlhEd-cRYVfj6AwNg">

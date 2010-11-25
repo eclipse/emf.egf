@@ -6,7 +6,7 @@
     name="BuildStep.genmodel EMF Pattern">
   <viewpointContainer xmi:id="__j9E8Y5jEd-Tlrutn5SzgA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="__j9E8o5jEd-Tlrutn5SzgA">
-      <domains xmi:type="domain:DomainURI" xmi:id="__j9E845jEd-Tlrutn5SzgA" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="__j9E845jEd-Tlrutn5SzgA" uri="platform:/resource/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_tG_5kK9hEd-9ZMYZexsxtg">
       <libraries xmi:id="_uCvwIK9hEd-9ZMYZexsxtg" name="org.eclipse.egf.portfolio.eclipse.build.buildstep.edit">
@@ -31,7 +31,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="__j9E9o5jEd-Tlrutn5SzgA">
         <invocationContracts xmi:id="__j9E945jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E-I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="__j9E-I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>
@@ -39,7 +39,7 @@
         invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
       <invocationContractContainer xmi:id="__j9E-o5jEd-Tlrutn5SzgA">
         <invocationContracts xmi:id="__j9E-45jEd-Tlrutn5SzgA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
-          <type xmi:type="domain:TypeDomainURI" xmi:id="__j9E_I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
+          <type xmi:type="domain:TypeDomain" xmi:id="__j9E_I5jEd-Tlrutn5SzgA" domain="#__j9E845jEd-Tlrutn5SzgA"/>
         </invocationContracts>
         <invocationContracts xmi:id="_zPpS0K9hEd-9ZMYZexsxtg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_UCnhEFHVEd-dr9AWwNwIMQ">
           <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1QPRkK9hEd-9ZMYZexsxtg">
