@@ -8,94 +8,89 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class all2 {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized all2 create(String lineSeparator) {
+		nl = lineSeparator;
+		all2 result = new all2();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized all2 create(String lineSeparator) {
-        nl = lineSeparator;
-        all2 result = new all2();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "c";
+	protected final String TEXT_2 = "d";
+	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public all2() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = "c";
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = "d";
+	}
 
-    protected final String TEXT_3 = NL;
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_4 = NL;
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-    public all2() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+		orchestration(ctx);
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-    }
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
+		return stringBuffer.toString();
+	}
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+		{
+			final Map<String, Object> parameters = new HashMap<String, Object>();
+			ExecutionContext ctx_local = new ExecutionContext(ictx);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx_local, parameters);
+		}
 
-        orchestration(ctx);
+		{
+			final Map<String, Object> parameters = new HashMap<String, Object>();
+			ExecutionContext ctx_local = new ExecutionContext(ictx);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx_local, parameters);
+		}
 
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		method_d(ictx.getBuffer(), ictx);
 
-        stringBuffer.append(TEXT_3);
-        stringBuffer.append(TEXT_4);
-        return stringBuffer.toString();
-    }
+		method_c(ictx.getBuffer(), ictx);
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-        {
-            final Map<String, Object> parameters = new HashMap<String, Object>();
-            ExecutionContext ctx_local = new ExecutionContext(ictx);
-            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_id8LsF3JEd-mZb1ihLU3ug", ctx_local, parameters);
-        }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		return parameters;
+	}
 
-        {
-            final Map<String, Object> parameters = new HashMap<String, Object>();
-            ExecutionContext ctx_local = new ExecutionContext(ictx);
-            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/linefeed.fcore#_sv0rMF3JEd-mZb1ihLU3ug", ctx_local, parameters);
-        }
+	protected void method_c(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        method_d(ictx.getBuffer(), ictx);
+		stringBuffer.append(TEXT_1);
+	}
 
-        method_c(ictx.getBuffer(), ictx);
+	protected void method_d(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
-
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        return parameters;
-    }
-
-    protected void method_c(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_1);
-    }
-
-    protected void method_d(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_2);
-    }
+		stringBuffer.append(TEXT_2);
+	}
 }

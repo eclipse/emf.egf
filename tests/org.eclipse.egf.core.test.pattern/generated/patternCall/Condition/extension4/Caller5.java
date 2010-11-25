@@ -8,114 +8,109 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class Caller5 {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized Caller5 create(String lineSeparator) {
+		nl = lineSeparator;
+		Caller5 result = new Caller5();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized Caller5 create(String lineSeparator) {
-        nl = lineSeparator;
-        Caller5 result = new Caller5();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "Caller on ";
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public Caller5() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = "Caller on ";
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = NL;
+	}
 
-    protected final String TEXT_3 = NL;
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_4 = NL;
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-    public Caller5() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+		queryCtx = new HashMap<String, String>();
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		for (Object parameterParameter : parameterList) {
 
-    }
+			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+			if (preCondition())
+				orchestration(ctx);
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-        paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
-        queryCtx = new HashMap<String, String>();
-        List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
+		return stringBuffer.toString();
+	}
 
-        for (Object parameterParameter : parameterList) {
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-            this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
+		method_body(ictx.getBuffer(), ictx);
+		{
+			final Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("parameter", this.parameter);
+			ExecutionContext ctx_local = new ExecutionContext(ictx);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition_extension.fcore#_7EB6AHiLEd-ESZ0E4UoGEA", ctx_local, parameters);
+		}
 
-            if (preCondition())
-                orchestration(ctx);
+		{
+			ExecutionContext ctx_local = new ExecutionContext(ictx);
+			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, parameter);
+			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition_extension.fcore#_GDn-oHiNEd-ESZ0E4UoGEA", ctx_local);
+		}
 
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("parameter", this.parameter);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-        stringBuffer.append(TEXT_3);
-        stringBuffer.append(TEXT_4);
-        return stringBuffer.toString();
-    }
+	protected org.eclipse.emf.ecore.EClass parameter = null;
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	public void set_parameter(org.eclipse.emf.ecore.EClass object) {
+		this.parameter = object;
+	}
 
-        method_body(ictx.getBuffer(), ictx);
-        {
-            final Map<String, Object> parameters = new HashMap<String, Object>();
-            parameters.put("parameter", this.parameter);
-            ExecutionContext ctx_local = new ExecutionContext(ictx);
-            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition_extension.fcore#_7EB6AHiLEd-ESZ0E4UoGEA", ctx_local, parameters);
-        }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("parameter", this.parameter);
+		return parameters;
+	}
 
-        {
-            ExecutionContext ctx_local = new ExecutionContext(ictx);
-            ctx_local.setValue(PatternContext.INJECTED_CONTEXT, parameter);
-            CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition_extension.fcore#_GDn-oHiNEd-ESZ0E4UoGEA", ctx_local);
-        }
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("parameter", this.parameter);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(parameter.getName());
+		stringBuffer.append(TEXT_2);
+	}
 
-    protected org.eclipse.emf.ecore.EClass parameter = null;
-
-    public void set_parameter(org.eclipse.emf.ecore.EClass object) {
-        this.parameter = object;
-    }
-
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("parameter", this.parameter);
-        return parameters;
-    }
-
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(parameter.getName());
-        stringBuffer.append(TEXT_2);
-    }
-
-    public boolean preCondition() throws Exception {
-        return true;
-    }
+	public boolean preCondition() throws Exception {
+		return true;
+	}
 }

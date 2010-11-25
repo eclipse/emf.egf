@@ -9,68 +9,68 @@ import org.eclipse.egf.common.helper.*;
 
 public class CalleeInjected {
 
-    public CalleeInjected() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
-    }
+	public CalleeInjected() {
+		//Here is the constructor
+		// add initialisation of the pattern variables (declaration has been already done).
+	}
 
-    public void generate(Object argument) throws Exception {
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        IQuery.ParameterDescription paramDesc = null;
-        Map<String, String> queryCtx = null;
-        paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
-        queryCtx = new HashMap<String, String>();
-        List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+	public void generate(Object argument) throws Exception {
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		IQuery.ParameterDescription paramDesc = null;
+		Map<String, String> queryCtx = null;
+		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+		queryCtx = new HashMap<String, String>();
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object parameterParameter : parameterList) {
+		for (Object parameterParameter : parameterList) {
 
-            this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
+			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-            orchestration((PatternContext) argument);
+			orchestration((PatternContext) argument);
 
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
-    }
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
-        method_body(ictx.getBuffer(), ictx);
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
+		method_body(ictx.getBuffer(), ictx);
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("parameter", this.parameter);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("parameter", this.parameter);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-    protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-        out.append("CalleeInjected : ");
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+		out.append("CalleeInjected : ");
 
-        out.append("className=");
-        if (parameter != null)
-            out.append(parameter.getName());
-    }
+		out.append("className=");
+		if (parameter != null)
+			out.append(parameter.getName());
+	}
 
-    protected org.eclipse.emf.ecore.EClass parameter;
+	protected org.eclipse.emf.ecore.EClass parameter;
 
-    public void set_parameter(org.eclipse.emf.ecore.EClass parameter) {
-        this.parameter = parameter;
-    }
+	public void set_parameter(org.eclipse.emf.ecore.EClass parameter) {
+		this.parameter = parameter;
+	}
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("parameter", this.parameter);
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("parameter", this.parameter);
+		return parameters;
+	}
 
 }
