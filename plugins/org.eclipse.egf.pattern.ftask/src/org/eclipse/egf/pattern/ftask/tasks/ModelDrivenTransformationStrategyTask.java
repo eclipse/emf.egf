@@ -23,7 +23,7 @@ import java.util.List;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -46,8 +46,8 @@ public class ModelDrivenTransformationStrategyTask extends ModelDrivenStrategyTa
     @Override
     @SuppressWarnings("unchecked")
     protected void readContext(ITaskProductionContext context, PatternContext ctx) throws InvocationException {
-        Class<Object> type = DomainFactory.eINSTANCE.createTypeDomainURI().getType();
-        DomainURI domainURI = (DomainURI) context.getInputValue(PatternContext.DOMAIN_OBJECTS, type);
+        Class<Object> type = DomainFactory.eINSTANCE.createTypeDomain().getType();
+        EMFDomain domainURI = (EMFDomain) context.getInputValue(PatternContext.DOMAIN_OBJECTS, type);
         uri = domainURI.getUri();
 
         super.readContext(context, ctx);
@@ -69,7 +69,7 @@ public class ModelDrivenTransformationStrategyTask extends ModelDrivenStrategyTa
             context.setOutputValue("outDomainPath", outDomainPath); //$NON-NLS-1$
 
             uri = URI.createFileURI(outDomainPath);
-            DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+            EMFDomain domainURI = DomainFactory.eINSTANCE.createEMFDomain();
             domainURI.setUri(uri);
             context.setOutputValue("outDomain", domainURI); //$NON-NLS-1$
 

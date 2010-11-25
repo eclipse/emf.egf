@@ -77,12 +77,4 @@ public interface Domain extends NamedModelElement {
      */
     void setHelperImplementation(String value);
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model kind="operation"
-     * @generated
-     */
-    String getHelperImplementationValue();
-
 } // Domain

@@ -16,8 +16,8 @@
 package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.core.ui.contributor.EditorListenerContributor;
-import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.types.TypeURI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
@@ -45,7 +45,7 @@ public class OpenURIListenerContributor extends EditorListenerContributor {
                     return;
                 }
                 final Object object = ((IStructuredSelection) event.getSelection()).getFirstElement();
-                if (object instanceof DomainURI || object instanceof TypeDomainURI || object instanceof TypeURI) {
+                if (object instanceof EMFDomain || object instanceof TypeDomain || object instanceof TypeURI) {
                     OpenURIMenuContributor menu = new OpenURIMenuContributor();
                     Action openAction = menu.new URIOpenAction() {
 

@@ -15,8 +15,8 @@
 
 package org.eclipse.egf.model.editor.contributions;
 
-import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.types.TypeURI;
 import org.eclipse.emf.common.util.URI;
@@ -50,7 +50,7 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
                 return null;
             }
             Object object = ((IStructuredSelection) _selection).getFirstElement();
-            if (object instanceof DomainURI || object instanceof TypeDomainURI || object instanceof TypeURI) {
+            if (object instanceof EMFDomain || object instanceof TypeDomain || object instanceof TypeURI) {
                 return (EObject) object;
             }
             return null;
@@ -63,14 +63,11 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
                 return null;
             }
             URI uri = null;
-            if (eObject instanceof DomainURI) {
-                DomainURI domainURI = (DomainURI) eObject;
+            if (eObject instanceof EMFDomain) {
+                EMFDomain domainURI = (EMFDomain) eObject;
                 uri = domainURI.getUri();
-            } else if (eObject instanceof TypeDomainURI) {
-                TypeDomainURI typeDomainURI = (TypeDomainURI) eObject;
-                if (typeDomainURI.getValue() != null) {
-                    uri = typeDomainURI.getValue().getUri();
-                }
+            } else if (eObject instanceof TypeDomain) {
+                throw new UnsupportedOperationException("TODO");
             } else if (eObject instanceof TypeURI) {
                 TypeURI typeURI = (TypeURI) eObject;
                 uri = typeURI.getValue();

@@ -20,11 +20,8 @@ import java.util.List;
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
 import org.eclipse.egf.core.ui.dialogs.TargetPlatformEcoreDialog;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.window.Window;
@@ -32,26 +29,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * @author Xavier Maysonnave
+ * @author Thomas Guiu
  * 
  */
-public class DomainURIEditorContributor extends DefaultPropertyEditorContributor {
+public class EMFDomainEditorContributor extends DefaultPropertyEditorContributor {
 
     public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-        return checkFeature(object, descriptor, DomainPackage.Literals.DOMAIN_URI__URI) && object instanceof DomainURI;
+        return checkFeature(object, descriptor, DomainPackage.Literals.EMF_DOMAIN__URI) && object instanceof EMFDomain;
     }
 
     public CellEditor createPropertyEditor(Composite composite, Object object, IItemPropertyDescriptor descriptor) {
 
-        final DomainURI domainURI = (DomainURI) object;
+        final EMFDomain domain = (EMFDomain) object;
 
-        // Current Editing Domain
-        final EditingDomain editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(domainURI);
-        if (editingDomain == null) {
-            return null;
-        }
-
-        return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
+        return new NullableDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
 
             @Override
             protected Object openDialogBox(Control control) {
@@ -60,8 +51,8 @@ public class DomainURIEditorContributor extends DefaultPropertyEditorContributor
                     @Override
                     protected Control createDialogArea(Composite parent) {
                         Control innerControl = super.createDialogArea(parent);
-                        if (domainURI.getUri() != null) {
-                            uriField.setText(domainURI.getUri().toString());
+                        if (domain.getUri() != null) {
+                            uriField.setText(domain.getUri().toString());
                         }
                         return innerControl;
                     }
@@ -75,18 +66,8 @@ public class DomainURIEditorContributor extends DefaultPropertyEditorContributor
                     // Empty URI are processed to null in doSetValue
                     return URI.createURI(""); //$NON-NLS-1$
                 }
-                return domainURI.getUri();
+                return domain.getUri();
             }
-
-            @Override
-            protected void doSetValue(Object value) {
-                if (value != null && "".equals(value.toString())) { //$NON-NLS-1$
-                    super.doSetValue(null);
-                } else {
-                    super.doSetValue(value);
-                }
-            }
-
         };
 
     }

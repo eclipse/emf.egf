@@ -21,9 +21,9 @@ import java.util.Map.Entry;
 
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
@@ -87,16 +87,16 @@ public class ActivityInvocationHelper {
         addInvocation(pp, activity, contract2type, new HashMap<String, OrchestrationParameter>());
     }
 
-    public static DomainURI getDomain(DomainViewpoint dvp, URI uri) {
+    public static EMFDomain getDomain(DomainViewpoint dvp, URI uri) {
         for (Domain domain : dvp.getDomains()) {
-            if (domain instanceof DomainURI) {
-                DomainURI domainUri = (DomainURI) domain;
+            if (domain instanceof EMFDomain) {
+                EMFDomain domainUri = (EMFDomain) domain;
                 if (uri.equals(domainUri.getUri())) {
                     return domainUri;
                 }
             }
         }
-        DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+        EMFDomain domainURI = DomainFactory.eINSTANCE.createEMFDomain();
         domainURI.setUri(uri);
         dvp.getDomains().add(domainURI);
         return domainURI;
@@ -129,7 +129,7 @@ public class ActivityInvocationHelper {
 
     }
 
-    public static void addInvocation(ProductionPlan pp, DomainURI genModelDomainURI, Activity activity) {
+    public static void addInvocation(ProductionPlan pp, EMFDomain genModelEMFDomain, Activity activity) {
         ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
         productionPlanInvocation.setName(activity.getName() + " invocation");
         productionPlanInvocation.setProductionPlan(pp);
@@ -143,12 +143,12 @@ public class ActivityInvocationHelper {
         // invocationContract.setInvocationContractContainer(invocationContractContainer);
         invocationContract.setInvokedContract(activity.getContracts().get(0));
 
-        TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
-        typeDomainURI.setDomain(genModelDomainURI);
-        invocationContract.setType(typeDomainURI);
+        TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+        typeEMFDomain.setDomain(genModelEMFDomain);
+        invocationContract.setType(typeEMFDomain);
     }
 
-    public static void addEEFInvocation(ProductionPlan pp, DomainURI genModelDomainURI, DomainURI eefDomainURI, Activity activity, String invocationName) {
+    public static void addEEFInvocation(ProductionPlan pp, EMFDomain genModelEMFDomain, EMFDomain eefEMFDomain, Activity activity, String invocationName) {
         ProductionPlanInvocation eefGen = FprodFactory.eINSTANCE.createProductionPlanInvocation();
         eefGen.setName(invocationName);
         eefGen.setProductionPlan(pp);
@@ -161,17 +161,17 @@ public class ActivityInvocationHelper {
         invocationContract.setInvocationContractContainer(invocationContractContainer);
         invocationContract.setInvokedContract(activity.getContracts().get(0));
 
-        TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
-        typeDomainURI.setDomain(genModelDomainURI);
-        invocationContract.setType(typeDomainURI);
+        TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+        typeEMFDomain.setDomain(genModelEMFDomain);
+        invocationContract.setType(typeEMFDomain);
 
         InvocationContract inContract = FcoreFactory.eINSTANCE.createInvocationContract();
         inContract.setInvocationContractContainer(invocationContractContainer);
         inContract.setInvokedContract(activity.getContracts().get(1));
 
-        typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
-        typeDomainURI.setDomain(eefDomainURI);
-        inContract.setType(typeDomainURI);
+        typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+        typeEMFDomain.setDomain(eefEMFDomain);
+        inContract.setType(typeEMFDomain);
     }
 
 }

@@ -26,11 +26,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.EMFDomainImpl#getUri <em>Uri
- * </em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.EMFDomainImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class EMFDomainImpl extends DomainImpl implements EMFDomain {
@@ -38,7 +37,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
      * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getUri()
      * @generated
      * @ordered
@@ -49,7 +47,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
      * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getUri()
      * @generated
      * @ordered
@@ -70,7 +67,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -81,7 +77,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public URI getUri() {
@@ -91,7 +86,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setUri(URI newUri) {
@@ -104,7 +98,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -119,7 +112,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -135,7 +127,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -151,7 +142,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -166,7 +156,6 @@ public class EMFDomainImpl extends DomainImpl implements EMFDomain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

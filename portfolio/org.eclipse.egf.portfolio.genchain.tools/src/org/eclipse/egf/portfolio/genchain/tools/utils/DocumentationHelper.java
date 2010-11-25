@@ -19,9 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -49,11 +49,11 @@ public class DocumentationHelper {
 
         DomainViewpoint dvp = (DomainViewpoint) mainFC.getViewpointContainer().getViewpoint(DomainViewpoint.class);
         URI uri = URI.createPlatformPluginURI(ecorePath, false);
-        DomainURI domain = ActivityInvocationHelper.getDomain(dvp, uri);
+        EMFDomain domain = ActivityInvocationHelper.getDomain(dvp, uri);
 
-        TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
-        typeDomainURI.setDomain(domain);
-        contract2type.put("domain", typeDomainURI);
+        TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+        typeEMFDomain.setDomain(domain);
+        contract2type.put("domain", typeEMFDomain);
 
         TypeString typeString = TypesFactory.eINSTANCE.createTypeString();
         typeString.setValue(outputDirectoryPath);

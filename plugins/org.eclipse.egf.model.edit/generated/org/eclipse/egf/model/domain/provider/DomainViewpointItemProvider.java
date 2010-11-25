@@ -155,8 +155,6 @@ public class DomainViewpointItemProvider extends ViewpointItemProvider implement
 
         newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createDomainGenPackage()));
 
-        newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createDomainURI()));
-
         newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createEMFDomain()));
 
         newChildDescriptors.add(createChildParameter(DomainPackage.Literals.DOMAIN_VIEWPOINT__DOMAINS, DomainFactory.eINSTANCE.createFilesystemDomain()));

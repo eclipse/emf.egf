@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.URI;
  * </p>
  *
  * @see org.eclipse.egf.model.domain.DomainPackage#getEMFDomain()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidURI'"
  * @generated
  */
 public interface EMFDomain extends Domain {

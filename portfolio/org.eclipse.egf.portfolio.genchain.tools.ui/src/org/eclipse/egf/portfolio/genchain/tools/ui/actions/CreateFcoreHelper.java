@@ -29,8 +29,8 @@ import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.Substitution;
@@ -158,12 +158,12 @@ public class CreateFcoreHelper {
 
     protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
         FactoryComponent fc = (FactoryComponent) generationChain.eResource().getResourceSet().getEObject(getGeneratorURI(), true);
-        DomainURI domainURI = DomainFactory.eINSTANCE.createDomainURI();
+        EMFDomain domain = DomainFactory.eINSTANCE.createEMFDomain();
         final URI uri = generationChain.eResource().getURI();
-        domainURI.setUri(uri);
+        domain.setUri(uri);
 
         ((TypePatternSubstitution) (fc.getContract("pattern substitutions").getType())).getSubstitutions().addAll(computeSubstitutions());
-        ((TypeDomainURI) (fc.getContract("genChain model").getType())).setDomain(domainURI);
+        ((TypeDomain) (fc.getContract("genChain model").getType())).setDomain(domain);
         ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
         ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
         ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);

@@ -25,11 +25,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.FilesystemDomainImpl#getPath
- * <em>Path</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.FilesystemDomainImpl#getPath <em>Path</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain {
@@ -37,7 +36,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
      * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getPath()
      * @generated
      * @ordered
@@ -48,7 +46,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
      * The cached value of the '{@link #getPath() <em>Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getPath()
      * @generated
      * @ordered
@@ -69,7 +66,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -80,7 +76,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getPath() {
@@ -90,7 +85,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setPath(String newPath) {
@@ -103,7 +97,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -118,7 +111,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -134,7 +126,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -150,7 +141,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -165,7 +155,6 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

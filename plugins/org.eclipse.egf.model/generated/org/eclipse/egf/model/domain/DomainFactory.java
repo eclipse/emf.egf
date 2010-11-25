@@ -42,24 +42,6 @@ public interface DomainFactory extends EFactory {
     DomainViewpoint createDomainViewpoint();
 
     /**
-     * Returns a new object of class '<em>URI</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>URI</em>'.
-     * @generated
-     */
-    DomainURI createDomainURI();
-
-    /**
-     * Returns a new object of class '<em>Type Domain URI</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Type Domain URI</em>'.
-     * @generated
-     */
-    TypeDomainURI createTypeDomainURI();
-
-    /**
      * Returns a new object of class '<em>Gen Package</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

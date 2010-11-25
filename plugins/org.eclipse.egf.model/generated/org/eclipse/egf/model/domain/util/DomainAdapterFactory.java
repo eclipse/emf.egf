@@ -15,12 +15,12 @@ package org.eclipse.egf.model.domain.util;
 import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.NamedModelElement;
@@ -109,16 +109,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
         @Override
         public Adapter caseTypeDomainGenPackages(TypeDomainGenPackages object) {
             return createTypeDomainGenPackagesAdapter();
-        }
-
-        @Override
-        public Adapter caseDomainURI(DomainURI object) {
-            return createDomainURIAdapter();
-        }
-
-        @Override
-        public Adapter caseTypeDomainURI(TypeDomainURI object) {
-            return createTypeDomainURIAdapter();
         }
 
         @Override
@@ -219,38 +209,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createDomainAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainURI <em>URI</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore
-     * cases;
-     * it's useful to ignore a case when inheritance will catch all the cases
-     * anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.egf.model.domain.DomainURI
-     * @generated
-     */
-    public Adapter createDomainURIAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.TypeDomainURI <em>Type Domain URI</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore
-     * cases;
-     * it's useful to ignore a case when inheritance will catch all the cases
-     * anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.egf.model.domain.TypeDomainURI
-     * @generated
-     */
-    public Adapter createTypeDomainURIAdapter() {
         return null;
     }
 

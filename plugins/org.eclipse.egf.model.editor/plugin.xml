@@ -21,19 +21,16 @@
   <!-- ================================================================================= -->
 
   <extension 
-    point="org.eclipse.ui.newWizards"
-  >
+    point="org.eclipse.ui.newWizards">
     <category
       id="org.eclipse.egf.category.wizards"
-      name="%_UI_EGF_Wizard_Category"
-    />
+      name="%_UI_EGF_Wizard_Category"/>
     <wizard
       id="org.eclipse.egf.model.fcore.presentation.FcoreModelWizardID"
       name="%_UI_FcoreModelWizard_label"
       class="org.eclipse.egf.model.fcore.presentation.FcoreModelWizard"
       category="org.eclipse.egf.category.wizards"
-      icon="$nl$/icons/full/ctool16/Fcore.gif"
-    >
+      icon="$nl$/icons/full/ctool16/Fcore.gif">
       <description>%_UI_FcoreModelWizard_description</description>
       <selection class="org.eclipse.core.resources.IResource"/>
     </wizard>
@@ -44,8 +41,7 @@
   <!-- ================================================================================= -->  
 
   <extension 
-    point="org.eclipse.ui.editors"
-  >
+    point="org.eclipse.ui.editors">
     <editor
       id="org.eclipse.egf.model.fcore.presentation.fcore.editor.id"
       name="%_UI_FcoreEditor_label"
@@ -53,8 +49,7 @@
       extensions="fcore"
       class="org.eclipse.egf.model.fcore.presentation.FcoreEditor"
       contributorClass="org.eclipse.egf.model.fcore.presentation.FcoreActionBarContributor"
-      default="true"
-    />
+      default="true"/>
   </extension>
   
   <!-- ================================================================================= -->
@@ -62,23 +57,17 @@
   <!-- ================================================================================= -->  
   
   <extension 
-    point="org.eclipse.egf.core.ui.editor.menu.contributor"
-  >
+    point="org.eclipse.egf.core.ui.editor.menu.contributor">
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenActivityMenuContributor"
-    />
+      class="org.eclipse.egf.model.editor.contributions.OpenActivityMenuContributor"/>
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractMenuContributor"
-    />    
+      class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractMenuContributor"/>    
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenURIMenuContributor"
-    />
+      class="org.eclipse.egf.model.editor.contributions.OpenURIMenuContributor"/>
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenSuperTaskMenuContributor"
-    />    
+      class="org.eclipse.egf.model.editor.contributions.OpenSuperTaskMenuContributor"/>    
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.InvokeActivityMenuContributor"
-    />    
+      class="org.eclipse.egf.model.editor.contributions.InvokeActivityMenuContributor"/>    
   </extension>
   
   <!-- ================================================================================= -->
@@ -86,17 +75,13 @@
   <!-- ================================================================================= -->  
   
   <extension 
-    point="org.eclipse.egf.core.ui.editor.listener.contributor"
-  >
+    point="org.eclipse.egf.core.ui.editor.listener.contributor">
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenActivityListenerContributor"
-    />
+      class="org.eclipse.egf.model.editor.contributions.OpenActivityListenerContributor"/>
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractListenerContributor"
-    />
+      class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractListenerContributor"/>
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.OpenURIListenerContributor"
-    />
+      class="org.eclipse.egf.model.editor.contributions.OpenURIListenerContributor"/>
   </extension>  
   
   <!-- ================================================================================= -->
@@ -104,25 +89,15 @@
   <!-- ================================================================================= -->    
   
 	<extension 
-	 point="org.eclipse.egf.core.ui.editor.property.contributor"
-  >
-    <contribution 
-      class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"
-    />
-    <contribution 
-      class="org.eclipse.egf.model.editor.contributions.TypeURIEditorContributor"
-    />
-    <contribution 
-      class="org.eclipse.egf.model.editor.contributions.DomainURIEditorContributor"
-    />    
-    <contribution
-      class="org.eclipse.egf.model.editor.contributions.TypeClassEditorContributor"
-    />    
-    <contribution 
-      class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"
-    />
-	<contribution 
-    	class="org.eclipse.egf.model.editor.contributions.SuperTaskEditorContributor"/>
+	 point="org.eclipse.egf.core.ui.editor.property.contributor">
+    <contribution class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"/>
+    <contribution class="org.eclipse.egf.model.editor.contributions.TypeURIEditorContributor"/>
+    <contribution class="org.eclipse.egf.model.editor.contributions.FilesystemDomainEditorContributor"/>    
+    <contribution class="org.eclipse.egf.model.editor.contributions.EMFDomainEditorContributor"/>    
+    <contribution class="org.eclipse.egf.model.editor.contributions.WorkspaceDomainEditorContributor"/>    
+    <contribution class="org.eclipse.egf.model.editor.contributions.TypeClassEditorContributor"/>    
+    <contribution class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"/>
+	<contribution class="org.eclipse.egf.model.editor.contributions.SuperTaskEditorContributor"/>
   </extension>
     
   <!-- ================================================================================= -->
@@ -130,15 +105,13 @@
   <!-- ================================================================================= -->  
   
   <extension
-    point="org.eclipse.ui.actionSets"
-  >
+    point="org.eclipse.ui.actionSets">
   
     <actionSet
       label="%EGFActivityActionSet_label"
       description="%EGFActivityActionSet_description"
       visible="true"
-      id="org.eclipse.egf.model.editor.activity.actionSet"
-    >
+      id="org.eclipse.egf.model.editor.activity.actionSet">
                         
       <action
         toolbarPath="org.eclipse.search.searchActionSet/Search"
@@ -148,8 +121,7 @@
         class="org.eclipse.egf.model.editor.actions.OpenActivityAction"
         tooltip="%openActivity.description"
         menubarPath="navigate/open.ext4"        
-        id="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action"
-      />       
+        id="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action"/>       
       
     </actionSet>
     
@@ -160,15 +132,13 @@
   <!-- ================================================================================= -->
   
   <extension
-    point="org.eclipse.ui.commands"
-  >  
+    point="org.eclipse.ui.commands">  
             
     <command
       name="%ActionDefinition_openActivity_name"
       description="%ActionDefinition_openActivity_description"
       categoryId="org.eclipse.ui.category.file"
-      id="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action.definition"
-    />
+      id="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action.definition"/>
       
   </extension>  
   
@@ -177,8 +147,7 @@
   <!-- ================================================================================= -->  
   
   <extension
-    point="org.eclipse.ui.bindings"
-  >
+    point="org.eclipse.ui.bindings">
   
   <!-- ================================================================================= -->
   <!-- win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-                                        -->
@@ -192,8 +161,7 @@
     <key
       sequence="M1+M3+Q"
       commandId="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action.definition"
-      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-    />    
+      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>    
     
   </extension>           
     

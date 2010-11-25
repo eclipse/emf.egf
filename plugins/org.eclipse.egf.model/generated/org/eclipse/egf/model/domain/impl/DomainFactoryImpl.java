@@ -15,12 +15,12 @@ package org.eclipse.egf.model.domain.impl;
 import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -78,10 +78,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
             return createDomainGenPackage();
         case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
             return createTypeDomainGenPackages();
-        case DomainPackage.DOMAIN_URI:
-            return createDomainURI();
-        case DomainPackage.TYPE_DOMAIN_URI:
-            return createTypeDomainURI();
         case DomainPackage.EMF_DOMAIN:
             return createEMFDomain();
         case DomainPackage.TYPE_DOMAIN:
@@ -123,26 +119,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     public TypeDomainGenPackages createTypeDomainGenPackages() {
         TypeDomainGenPackagesImpl typeDomainGenPackages = new TypeDomainGenPackagesImpl();
         return typeDomainGenPackages;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public DomainURI createDomainURI() {
-        DomainURIImpl domainURI = new DomainURIImpl();
-        return domainURI;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public TypeDomainURI createTypeDomainURI() {
-        TypeDomainURIImpl typeDomainURI = new TypeDomainURIImpl();
-        return typeDomainURI;
     }
 
     /**
