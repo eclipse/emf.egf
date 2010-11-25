@@ -23,9 +23,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.domain.TypeDomainURI;
+import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.InvocationContract;
@@ -54,7 +54,7 @@ public class FcoreUtil {
 
   protected URI _genModelURI;
 
-  protected DomainURI _genModelDomainURI;
+  protected EMFDomain _genModelEMFDomain;
 
   protected ProductionPlan _productionPlan;
 
@@ -89,9 +89,9 @@ public class FcoreUtil {
       viewpointContainer.getViewpoints().add(domainViewpoint);
 
       // Create Genmodel domain
-      _genModelDomainURI = DomainFactory.eINSTANCE.createDomainURI();
-      _genModelDomainURI.setUri(_genModelURI);
-      domainViewpoint.getDomains().add(_genModelDomainURI);
+      _genModelEMFDomain = DomainFactory.eINSTANCE.createEMFDomain();
+      _genModelEMFDomain.setUri(_genModelURI);
+      domainViewpoint.getDomains().add(_genModelEMFDomain);
 
       // Create production plan
       _productionPlan = FprodFactory.eINSTANCE.createProductionPlan();
@@ -115,9 +115,9 @@ public class FcoreUtil {
               invocationContract.setInvocationContractContainer(invocationContractContainer);
               invocationContract.setInvokedContract(targetFactoryComponent.getContracts().get(0));
 
-              TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
-              typeDomainURI.setDomain(_genModelDomainURI);
-              invocationContract.setType(typeDomainURI);
+              TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+              typeEMFDomain.setDomain(_genModelEMFDomain);
+              invocationContract.setType(typeEMFDomain);
             }
           }
         }
