@@ -59,17 +59,21 @@ public class PatternCustomItemProvider extends PatternItemProvider {
         // Name
         String name = pattern.getName();
         // Build label
-        String label = "[" + getString("_UI_Pattern_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        StringBuilder label = new StringBuilder();
         if (name != null && name.trim().length() != 0) {
-            label = name + " " + label; //$NON-NLS-1$
+            label.append(name.trim());
         }
         if (library != null && library.trim().length() != 0) {
-            label = library + " -> " + label; //$NON-NLS-1$
+            label.append(" <- ").append(library.trim()); //$NON-NLS-1$
         }
         if (activity != null && activity.trim().length() != 0) {
-            label = activity + " -> " + label; //$NON-NLS-1$
+            label.append(" <- ").append(activity.trim()); //$NON-NLS-1$
         }
-        return label;
+        if (label.length() > 0) {
+            label.append(" "); //$NON-NLS-1$
+        }
+        label.append("[").append(getString("_UI_Pattern_type")).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return label.toString();
     }
 
 }
