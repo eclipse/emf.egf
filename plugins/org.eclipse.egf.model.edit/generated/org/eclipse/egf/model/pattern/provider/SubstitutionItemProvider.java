@@ -147,17 +147,22 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
             // Outgoing Replaced Element
             name = substitution.getReplacedElement().getName();
         }
-        String label = "[" + getString("_UI_Substitution_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        StringBuilder label = new StringBuilder();
         if (name != null && name.trim().length() != 0) {
-            label = name + " " + label; //$NON-NLS-1$
+            label.append(name.trim());
         }
         if (container != null && container.trim().length() != 0) {
-            label = container + " -> " + label; //$NON-NLS-1$
+            label.append(" <- ").append(container.trim()); //$NON-NLS-1$
         }
         if (activity != null && activity.trim().length() != 0) {
-            label = activity + " -> " + label; //$NON-NLS-1$
+            label.append(" <- ").append(activity.trim()); //$NON-NLS-1$
         }
-        return label;
+        if (label.length() > 0) {
+            label.append(" [").append(getString("_UI_Substitution_type")).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
+        } else {
+            label.append("[").append(getString("_UI_Substitution_type")).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
+        return label.toString();
     }
 
     /**
