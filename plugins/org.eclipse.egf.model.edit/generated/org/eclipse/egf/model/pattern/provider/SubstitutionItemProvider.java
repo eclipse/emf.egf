@@ -158,10 +158,9 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
             label.append(" <- ").append(activity.trim()); //$NON-NLS-1$
         }
         if (label.length() > 0) {
-            label.append(" [").append(getString("_UI_Substitution_type")).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
-        } else {
-            label.append("[").append(getString("_UI_Substitution_type")).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+            label.append(" "); //$NON-NLS-1$
         }
+        label.append("[").append(getString("_UI_Substitution_type")).append("]"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         return label.toString();
     }
 
