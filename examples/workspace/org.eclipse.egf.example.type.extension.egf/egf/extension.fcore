@@ -5,7 +5,8 @@
     name="Extension Type Example">
   <viewpointContainer xmi:id="_6sFEAPGgEd-v-ZiZH4Kvlw">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_6-ZjEPGgEd-v-ZiZH4Kvlw">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_7ZhY0PGgEd-v-ZiZH4Kvlw" uri="platform:/resource/org.eclipse.egf.example.type.extension/model/extension.genmodel"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_7ZhY0PGgEd-v-ZiZH4Kvlw" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.example.type.extension/model/extension.genmodel"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_z8rz0PGgEd-v-ZiZH4Kvlw">
