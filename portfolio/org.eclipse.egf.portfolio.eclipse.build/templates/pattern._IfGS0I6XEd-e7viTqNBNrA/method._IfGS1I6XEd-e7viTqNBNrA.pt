@@ -11,6 +11,7 @@ director.url=${buckminster.download.url}/products/director_latest.zip
 buckminster.release=3.6
 bm.headless.site=${buckminster.download.url}/headless-${buckminster.release}
 bm.external.site=http://download.cloudsmith.com/buckminster/external-${buckminster.release}
+polarion.site=http://community.polarion.com/projects/subversive/download/eclipse/2.0/update-site/
 
 #egf installation
 #TODO change url site
