@@ -98,20 +98,22 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
                 }
                 PatternLibrary library = (PatternLibrary) selection2.getFirstElement();
-                IPlatformFcore fcore = null;
-                if (library.eResource() != null && library.eResource() instanceof IPlatformFcoreProvider) {
-                    fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
-                }
-                for (String name : EGFPatternPlugin.getPatternNatures()) {
-                    try {
-                        PatternExtension patternExtension = EGFPatternPlugin.getPatternExtension(name);
-                        CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, PatternNameHelper.getNewPatternName(fcore, library)));
-                        CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, library);
-                        createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, name));
-                        createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
-                        createChildMenuManager.add(createChildAction);
-                    } catch (CoreException ce) {
-                        Activator.getDefault().logError(ce);
+                if (library != null) {
+                    IPlatformFcore fcore = null;
+                    if (library.eResource() != null && library.eResource() instanceof IPlatformFcoreProvider) {
+                        fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
+                    }
+                    for (String name : EGFPatternPlugin.getPatternNatures()) {
+                        try {
+                            PatternExtension patternExtension = EGFPatternPlugin.getPatternExtension(name);
+                            CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, PatternNameHelper.getNewPatternName(fcore, library)));
+                            CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor);
+                            createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, name));
+                            createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
+                            createChildMenuManager.add(createChildAction);
+                        } catch (CoreException ce) {
+                            Activator.getDefault().logError(ce);
+                        }
                     }
                 }
                 // menuManager.insertBefore("edit", createChildAction);
@@ -126,20 +128,23 @@ public class PatternMenuContributor extends EditorMenuContributor {
 
     private final class CreatePatternAction extends CreateChildAction {
 
-        private final PatternLibrary _library;
+        private PatternLibrary _library;
 
-        public CreatePatternAction(IEditorPart editorPart, ISelection selection, Object descriptor, PatternLibrary library) {
+        public CreatePatternAction(IEditorPart editorPart, ISelection selection, Object descriptor) {
             super(editorPart, selection, descriptor);
-            _library = library;
         }
 
         @Override
-        protected Command createActionCommand(EditingDomain innerEditingDomain, Collection<?> collection) {
+        protected Command createActionCommand(final EditingDomain innerEditingDomain, final Collection<?> collection) {
 
             final Command createActionCommand = super.createActionCommand(innerEditingDomain, collection);
 
             if (UnexecutableCommand.INSTANCE.equals(createActionCommand)) {
                 return UnexecutableCommand.INSTANCE;
+            }
+
+            if (collection != null && collection.size() == 1 && collection.iterator().next() instanceof PatternLibrary) {
+                _library = (PatternLibrary) collection.iterator().next();
             }
 
             return createActionCommand.chain(new AbstractCommand() {
@@ -149,6 +154,9 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 @Override
                 public boolean canExecute() {
                     if (super.canExecute() == false) {
+                        return false;
+                    }
+                    if (_library == null) {
                         return false;
                     }
                     if (_library.eResource() == null || _library.eResource() instanceof IPlatformFcoreProvider == false) {
