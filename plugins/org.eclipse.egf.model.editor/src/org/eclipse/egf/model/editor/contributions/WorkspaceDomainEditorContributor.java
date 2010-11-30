@@ -15,17 +15,17 @@
 
 package org.eclipse.egf.model.editor.contributions;
 
-import java.util.List;
-
+import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
-import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -47,14 +47,16 @@ public class WorkspaceDomainEditorContributor extends DefaultPropertyEditorContr
 
             @Override
             protected Object openDialogBox(Control control) {
-                ResourceDialog dialog = new ResourceDialog(control.getShell(), "test", SWT.OPEN | SWT.SINGLE);
-                if (dialog.open() == Window.OK) {
-                    List<URI> results = dialog.getURIs();
-                    if (results != null && results.size() > 0) {
-                        return results.get(0).toString();
-                    }
-                    // Empty URI are processed to null in doSetValue
-                    return URI.createURI(""); //$NON-NLS-1$
+                Object[] initialSelection = null;
+                if (domain.getPath() != null) {
+                    final IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(domain.getPath()));
+                    initialSelection = new Object[] { folder };
+                }
+                String title = ModelEditorMessages.FolderSelectionDialogTitle;
+                String message = ModelEditorMessages.FolderSelectionDialogMessage;
+                final IContainer[] folders = WorkspaceResourceDialog.openFolderSelection(control.getShell(), title, message, false, initialSelection, null);
+                if (folders.length == 1) {
+                    return folders[0].getFullPath().toString();
                 }
                 return domain.getPath();
             }

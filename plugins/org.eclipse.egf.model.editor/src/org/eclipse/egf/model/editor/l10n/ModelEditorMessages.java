@@ -67,4 +67,7 @@ public class ModelEditorMessages {
 
     public static String _UI_RuntimePlatformVersion_label;
 
+    public static String FolderSelectionDialogTitle;
+    public static String FolderSelectionDialogMessage;
+
 }

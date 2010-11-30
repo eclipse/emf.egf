@@ -44,6 +44,8 @@ public class FilesystemDomainEditorContributor extends DefaultPropertyEditorCont
             @Override
             protected Object openDialogBox(Control control) {
                 DirectoryDialog dialog = new DirectoryDialog(control.getShell(), SWT.OPEN | SWT.SINGLE);
+                if (domain.getPath() != null)
+                    dialog.setFilterPath(domain.getPath());
                 return dialog.open();
             }
 
