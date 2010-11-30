@@ -90,11 +90,8 @@ public class WorkspaceInitializationTest extends TestCase {
         // Prepare our init job
         class InitJob extends WorkspaceJob implements IOverwriteQuery {
 
-            private Throwable[] _error;
-
-            public InitJob(Throwable[] innerError) {
+            public InitJob() {
                 super("WorkspaceInitializationTest"); //$NON-NLS-1$
-                _error = innerError;
             }
 
             public String queryOverwrite(String pathString) {
@@ -150,7 +147,7 @@ public class WorkspaceInitializationTest extends TestCase {
 
                     } catch (Throwable t) {
 
-                        _error[0] = t;
+                        error[0] = t;
 
                     }
 
@@ -178,7 +175,7 @@ public class WorkspaceInitializationTest extends TestCase {
         }
 
         // Lock all the workspace and import resources
-        WorkspaceJob initJob = new InitJob(error);
+        WorkspaceJob initJob = new InitJob();
         initJob.setRule(workspace.getRuleFactory().buildRule());
         initJob.setPriority(Job.LONG);
         initJob.setUser(true);
