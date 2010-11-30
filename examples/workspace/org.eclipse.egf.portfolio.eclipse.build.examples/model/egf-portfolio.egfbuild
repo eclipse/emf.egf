@@ -6,10 +6,9 @@
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_PvKRUfPHEd-1PJ4PFWU1aA" url="http://download.eclipse.org/releases/indigo/"/>
     <components xsi:type="buildstep:Feature" xmi:id="_NY650LnLEd-kW7hdsg_Neg" name="org.eclipselabs.egf.portfolio.task.ruby"/>
   </steps>
-  <steps xsi:type="buildstep:TestStep" xmi:id="_9nbsILnMEd-kW7hdsg_Neg" launchConfigurationPath="org.eclipselabs.egf.portfolio.task.ruby/jRuby_Tests.launch"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_SuJ5ILnLEd-kW7hdsg_Neg" component="_NY650LnLEd-kW7hdsg_Neg"/>
   <scms xsi:type="buildscm:SVN" xmi:id="_YK7LhZY3Ed-1d-ajyQS7wg">
-    <locations xmi:id="_yRsxsLnGEd-jZJSljMRr8Q" protocol="https://" url="svn.codespot.com/a/eclipselabs.org/egf-portfolio/branches/0.3.0" localPath="svn_eclipselabs"/>
+    <locations xmi:id="_yRsxsLnGEd-jZJSljMRr8Q" protocol="https://" url="svn.codespot.com/a/eclipselabs.org/egf-portfolio/trunk" localPath="svn_eclipselabs"/>
   </scms>
   <triggers xsi:type="buildtrigger:SCMTrigger" xmi:id="_X3hcUZ8UEd-mn_fYntlw8w" planning="00 04 * * *"/>
 </buildcore:Job>
