@@ -14,8 +14,7 @@
       <type xmi:type="types:TypeFloat" xmi:id="_BV5T0MLpEd6YQfrk65kDFw" value="11.0"/>
     </contracts>
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ih5EENXAEd6mBObdoXlr9g"
-        name="parameters" mode="In_Out" invocationContracts="#_aC43cNXAEd6mBObdoXlr9g"
-        invocationContexts="#_aC43cNXAEd6mBObdoXlr9g">
+        name="parameters" mode="In_Out" invocationContracts="#_aC43cNXAEd6mBObdoXlr9g">
       <type xmi:type="types:TypeCollection" xmi:id="_i0XSYRciEd-OuMrFXG3KCA"/>
     </contracts>
   </contractContainer>
