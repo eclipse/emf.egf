@@ -92,12 +92,9 @@ public class WorkspaceInitializationTest extends TestCase {
 
             private Throwable[] _error;
 
-            private boolean[] _init;
-
-            public InitJob(Throwable[] innerError, boolean[] innerInit) {
+            public InitJob(Throwable[] innerError) {
                 super("WorkspaceInitializationTest"); //$NON-NLS-1$
                 _error = innerError;
-                _init = innerInit;
             }
 
             public String queryOverwrite(String pathString) {
@@ -161,9 +158,9 @@ public class WorkspaceInitializationTest extends TestCase {
 
                 } finally {
 
-                    synchronized (_init) {
-                        _init[0] = true;
-                        _init.notifyAll();
+                    synchronized (init) {
+                        init[0] = true;
+                        init.notifyAll();
                     }
 
                 }
@@ -181,7 +178,7 @@ public class WorkspaceInitializationTest extends TestCase {
         }
 
         // Lock all the workspace and import resources
-        WorkspaceJob initJob = new InitJob(error, init);
+        WorkspaceJob initJob = new InitJob(error);
         initJob.setRule(workspace.getRuleFactory().buildRule());
         initJob.setPriority(Job.LONG);
         initJob.setUser(true);
