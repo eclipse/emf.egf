@@ -39,14 +39,14 @@ public class WorkspaceDomainHelper implements DomainHelper {
         if (domain instanceof WorkspaceDomain) {
             WorkspaceDomain myDomain = (WorkspaceDomain) domain;
             final String path = myDomain.getPath();
-            if (path == null || "".equals(path)) {
+            if (path == null || "".equals(path)) { //$NON-NLS-1$
                 Activator.getDefault().logWarning(Messages.bind(Messages.Load_WorkspaceDomain_error1, domain.getName()));
                 return true;
             }
 
             if (!myDomain.getContent().isEmpty())
                 throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
-            if (".".equals(path)) {
+            if (".".equals(path)) { //$NON-NLS-1$
                 myDomain.getContent().addAll(Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects()));
                 return true;
             }

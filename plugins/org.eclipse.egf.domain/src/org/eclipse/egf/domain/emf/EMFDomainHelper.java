@@ -38,7 +38,7 @@ public class EMFDomainHelper implements DomainHelper {
             EMFDomain myDomain = (EMFDomain) domain;
             ResourceSet set = new RuntimePlatformResourceSet();
             final URI uri = myDomain.getUri();
-            if (uri == null || "".equals(uri.toString())) {
+            if (uri == null || "".equals(uri.toString())) { //$NON-NLS-1$
                 Activator.getDefault().logWarning(Messages.bind(Messages.Load_EMFDomain_error1, domain.getName()));
                 return true;
             }

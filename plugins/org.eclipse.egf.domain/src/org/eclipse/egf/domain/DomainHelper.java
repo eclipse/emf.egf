@@ -38,7 +38,7 @@ public interface DomainHelper {
         public void loadDomains(FactoryComponent fc, Bundle bundle) throws DomainException {
             for (Domain domain : getDomains(fc)) {
                 final String helperImplementation = domain.getHelperImplementation();
-                if (helperImplementation == null || "".equals(helperImplementation))
+                if (helperImplementation == null || "".equals(helperImplementation)) //$NON-NLS-1$
                     continue;
                 // throw new DomainException(Messages.Load_Domain_error2);
 
@@ -50,7 +50,7 @@ public interface DomainHelper {
         public void unLoadDomains(FactoryComponent fc, Bundle bundle) throws DomainException {
             for (Domain domain : getDomains(fc)) {
                 final String helperImplementation = domain.getHelperImplementation();
-                if (helperImplementation == null || "".equals(helperImplementation))
+                if (helperImplementation == null || "".equals(helperImplementation)) //$NON-NLS-1$
                     continue;
                 // throw new DomainException(Messages.Load_Domain_error2);
                 DomainHelper helper = loadHelper(helperImplementation, bundle);
@@ -60,7 +60,7 @@ public interface DomainHelper {
 
         protected DomainHelper loadHelper(String helperImplementation, Bundle bundle) throws DomainException {
             try {
-                final Class loadClass = bundle.loadClass(helperImplementation);
+                final Class<?> loadClass = bundle.loadClass(helperImplementation);
                 return (DomainHelper) loadClass.newInstance();
             } catch (Exception e) {
                 throw new DomainException(e);

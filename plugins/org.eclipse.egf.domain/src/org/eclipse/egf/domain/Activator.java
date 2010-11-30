@@ -26,14 +26,16 @@ public class Activator extends EGFAbstractPlugin {
 
     private static Activator plugin;
 
+    @Override
     public void start(BundleContext context) throws Exception {
         super.start(context);
-        Activator.plugin = this;
+        plugin = this;
     }
 
+    @Override
     public void stop(BundleContext context) throws Exception {
         super.stop(context);
-        Activator.plugin = null;
+        plugin = null;
     }
 
     public static Activator getDefault() {
