@@ -8,7 +8,7 @@
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_SuJ5ILnLEd-kW7hdsg_Neg" component="_NY650LnLEd-kW7hdsg_Neg"/>
   <scms xsi:type="buildscm:SVN" xmi:id="_YK7LhZY3Ed-1d-ajyQS7wg">
-    <locations xmi:id="_yRsxsLnGEd-jZJSljMRr8Q" protocol="https://" url="svn.codespot.com/a/eclipselabs.org/egf-portfolio/trunk" localPath="svn_eclipselabs"/>
+    <locations xmi:id="_yRsxsLnGEd-jZJSljMRr8Q" url="svn.codespot.com/a/eclipselabs.org/egf-portfolio/trunk" localPath="svn_eclipselabs"/>
   </scms>
   <triggers xsi:type="buildtrigger:SCMTrigger" xmi:id="_X3hcUZ8UEd-mn_fYntlw8w" planning="00 04 * * *"/>
 </buildcore:Job>
