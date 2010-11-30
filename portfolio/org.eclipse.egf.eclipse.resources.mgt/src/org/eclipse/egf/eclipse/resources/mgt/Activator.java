@@ -32,23 +32,22 @@ public class Activator extends EGFAbstractPlugin {
     /**
      * Get shared instance.
      * 
-     * @return
+     * @return __plugin
      */
     public static EGFAbstractPlugin getDefault() {
-      return __plugin;
+        return __plugin;
     }
 
     @Override
     public void start(BundleContext context_p) throws Exception {
-      super.start(context_p);
-      __plugin = this;
+        super.start(context_p);
+        __plugin = this;
     }
 
     @Override
     public void stop(BundleContext context_p) throws Exception {
-      __plugin = null;
-      super.stop(context_p);
+        super.stop(context_p);
+        __plugin = null;
     }
-
 
 }
