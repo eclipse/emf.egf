@@ -386,7 +386,7 @@ public class TemplateProcessor implements IFcoreProcessor {
         }
 
         // Nothing to do
-        if (methodsToDelete.isEmpty() && methodsToRestore.isEmpty()) {
+        if (deletedPatterns.isEmpty() && methodsToDelete.isEmpty() && methodsToRestore.isEmpty()) {
             return;
         }
 
@@ -396,16 +396,20 @@ public class TemplateProcessor implements IFcoreProcessor {
             @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 
-                int ticks = (methodsToDelete.size() * 100) + (methodsToRestore.size() * 100);
+                int ticks = (deletedPatterns.size() * 100) + (methodsToDelete.size() * 100) + (methodsToRestore.size() * 100);
                 SubMonitor subMonitor = SubMonitor.convert(monitor, ticks);
                 subMonitor.beginTask(null, ticks);
 
                 try {
 
                     // 1 - Remove PatternMethods
-                    TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), methodsToDelete);
-
-                    // 2 - Restore templates if any 
+                    for (Pattern pattern : deletedPatterns) {
+                        TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), pattern.getMethods());
+                    }
+                    if (methodsToDelete.isEmpty() == false) {
+                        TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), methodsToDelete);
+                    }
+                    // 2 - Restore templates 
                     if (methodsToRestore.isEmpty() == false) {
                         TemplateModelFileHelper.restoreTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore, methodsToRestore);
                     }
