@@ -40,8 +40,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OrchestrationParameterContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
-        ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class OrchestrationParameterContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -133,9 +132,9 @@ public class OrchestrationParameterContainerItemProvider extends ModelElementIte
         updateChildren(notification);
 
         switch (notification.getFeatureID(OrchestrationParameterContainer.class)) {
-            case FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER__ORCHESTRATION_PARAMETERS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case FcorePackage.ORCHESTRATION_PARAMETER_CONTAINER__ORCHESTRATION_PARAMETERS:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

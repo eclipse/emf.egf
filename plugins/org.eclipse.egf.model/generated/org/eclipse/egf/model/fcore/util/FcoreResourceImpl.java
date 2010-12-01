@@ -203,7 +203,6 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
         getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
         getDefaultSaveOptions().put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
         getDefaultSaveOptions().put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
-
             public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
                 return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
             }
@@ -224,7 +223,6 @@ public class FcoreResourceImpl extends XMIResourceImpl implements IPlatformFcore
         getDefaultLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
         getDefaultLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
         getDefaultLoadOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-        // getDefaultLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
         getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     }
 

@@ -76,7 +76,8 @@ public class EMFDomainItemProvider extends DomainItemProvider implements IEditin
     protected void addUriPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EMFDomain_uri_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_EMFDomain_uri_feature", "_UI_EMFDomain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                DomainPackage.Literals.EMF_DOMAIN__URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                DomainPackage.Literals.EMF_DOMAIN__URI, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_InfoPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**

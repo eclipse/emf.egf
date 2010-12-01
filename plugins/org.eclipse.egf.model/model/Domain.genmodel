@@ -20,13 +20,9 @@
     <genClasses ecoreClass="Domain.ecore#//DomainViewpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domain.ecore#//DomainViewpoint/domains"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Domain.ecore#//Domain"/>
-    <genClasses ecoreClass="Domain.ecore#//DomainEPackage">
-      <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackage/ePackage"/>
-    </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//TypeDomainEPackage">
-      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/value"/>
+    <genClasses image="false" ecoreClass="Domain.ecore#//Domain">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Domain.ecore#//Domain/content"/>
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//Domain/helperImplementation"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainGenPackage">
       <genFeatures createChild="false" propertyCategory="Data" propertySortChoices="true"
@@ -40,13 +36,19 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//EMFDomain">
-      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Domain.ecore#//EMFDomain/uri"/>
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//EMFDomain/uri"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//TypeDomain">
-      <genFeatures createChild="false" propertyCategory="Domain" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/domain"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Data"
+      <genFeatures createChild="false" propertyCategory="Info" propertyDescription=""
+          propertySortChoices="true" ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/domain"/>
+      <genFeatures property="None" createChild="false" propertyCategory="Info" propertyDescription=""
           ecoreFeature="ecore:EReference Domain.ecore#//TypeDomain/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//FilesystemDomain">
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//FilesystemDomain/path"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//WorkspaceDomain">
+      <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//WorkspaceDomain/path"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

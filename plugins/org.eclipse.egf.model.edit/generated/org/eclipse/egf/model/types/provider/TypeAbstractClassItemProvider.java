@@ -40,8 +40,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeAbstractClassItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class TypeAbstractClassItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -106,10 +105,10 @@ public class TypeAbstractClassItemProvider extends TypeItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(TypeAbstractClass.class)) {
-            case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
-            case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case TypesPackage.TYPE_ABSTRACT_CLASS__INSTANCE:
+        case TypesPackage.TYPE_ABSTRACT_CLASS__VALUE:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }

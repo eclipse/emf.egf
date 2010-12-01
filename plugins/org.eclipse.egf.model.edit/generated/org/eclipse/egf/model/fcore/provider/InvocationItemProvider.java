@@ -46,8 +46,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvocationItemProvider extends NamedModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class InvocationItemProvider extends NamedModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -154,12 +153,12 @@ public class InvocationItemProvider extends NamedModelElementItemProvider implem
         updateChildren(notification);
 
         switch (notification.getFeatureID(Invocation.class)) {
-            case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }
@@ -197,11 +196,11 @@ public class InvocationItemProvider extends NamedModelElementItemProvider implem
         // Get the feature id to switch on the right stuff.
         int featureId = feature.getFeatureID();
         switch (featureId) {
-            case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-                if (value == null || value instanceof Activity) {
-                    command = new InvocationSetInvokedActivityCommand(editingDomain, (Invocation) owner, (Activity) value);
-                }
-                break;
+        case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+            if (value == null || value instanceof Activity) {
+                command = new InvocationSetInvokedActivityCommand(editingDomain, (Invocation) owner, (Activity) value);
+            }
+            break;
         }
         return command;
     }

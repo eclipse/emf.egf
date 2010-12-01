@@ -44,8 +44,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvocationContractContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class InvocationContractContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -137,9 +136,9 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
         updateChildren(notification);
 
         switch (notification.getFeatureID(InvocationContractContainer.class)) {
-            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }
@@ -176,9 +175,9 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
         // Get the feature id to switch on the right stuff.
         int featureId = feature.getFeatureID();
         switch (featureId) {
-            case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
-                command = new RemoveInvocationContractContainerInvocationContracts(editingDomain, (InvocationContractContainer) modelElement, (Collection<?>) collection);
-                break;
+        case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+            command = new RemoveInvocationContractContainerInvocationContracts(editingDomain, (InvocationContractContainer) modelElement, (Collection<?>) collection);
+            break;
         }
         return command;
     }

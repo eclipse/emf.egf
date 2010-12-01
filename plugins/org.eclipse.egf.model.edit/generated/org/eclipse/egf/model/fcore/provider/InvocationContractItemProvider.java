@@ -69,8 +69,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -322,16 +321,16 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         updateChildren(notification);
 
         switch (notification.getFeatureID(InvocationContract.class)) {
-            case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
-            case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
-            case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-            case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-            case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case FcorePackage.INVOCATION_CONTRACT__TYPE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+        case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+        case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+        case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+        case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        case FcorePackage.INVOCATION_CONTRACT__TYPE:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

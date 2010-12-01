@@ -28,9 +28,9 @@
     <genDataTypes ecoreDataType="Types.ecore#//URI"/>
     <genDataTypes ecoreDataType="Types.ecore#//TypesException"/>
     <genClasses image="false" ecoreClass="Types.ecore#//TypeElement">
-      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Overview"
           ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/iD"/>
-      <genFeatures createChild="false" propertyCategory="Documentation" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
+      <genFeatures createChild="false" propertyCategory="Overview" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Types.ecore#//Type">
       <genOperations ecoreOperation="Types.ecore#//Type/isCompatible">

@@ -23,14 +23,14 @@
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/In_Out"/>
     </genEnums>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ModelElement">
-      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
-          ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
-      <genFeatures createChild="false" propertyCategory="Documentation" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Overview"
+          propertyDescription="" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
+      <genFeatures createChild="false" propertyCategory="Overview" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
       <genOperations ecoreOperation="Fcore.ecore#//ModelElement/getActivities"/>
       <genOperations ecoreOperation="Fcore.ecore#//ModelElement/getResources"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//NamedModelElement">
-      <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//NamedModelElement/name"/>
+      <genFeatures createChild="false" propertyCategory="Overview" ecoreFeature="ecore:EAttribute Fcore.ecore#//NamedModelElement/name"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Activity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Activity/contractContainer"/>

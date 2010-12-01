@@ -45,8 +45,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FactoryComponentItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class FactoryComponentItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -140,10 +139,10 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
         updateChildren(notification);
 
         switch (notification.getFeatureID(FactoryComponent.class)) {
-            case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-            case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

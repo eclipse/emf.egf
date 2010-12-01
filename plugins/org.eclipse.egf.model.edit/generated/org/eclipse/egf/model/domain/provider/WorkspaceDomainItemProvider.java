@@ -76,7 +76,8 @@ public class WorkspaceDomainItemProvider extends DomainItemProvider implements I
     protected void addPathPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_WorkspaceDomain_path_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_WorkspaceDomain_path_feature", "_UI_WorkspaceDomain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                DomainPackage.Literals.WORKSPACE_DOMAIN__PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+                DomainPackage.Literals.WORKSPACE_DOMAIN__PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_InfoPropertyCategory"), //$NON-NLS-1$
+                null));
     }
 
     /**
