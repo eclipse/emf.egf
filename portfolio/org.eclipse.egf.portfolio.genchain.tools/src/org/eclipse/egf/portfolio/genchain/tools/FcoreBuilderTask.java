@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -47,7 +47,7 @@ public class FcoreBuilderTask extends ModelDrivenStrategyTask {
         // Create FC
         String name = (String) ctx.getValue(FcoreBuilderConstants.NAME);
 
-        RuntimePlatformResourceSet resourceSet = new RuntimePlatformResourceSet();
+        TargetPlatformResourceSet resourceSet = new TargetPlatformResourceSet();
 
         Collection<FactoryComponent> unusedFC = new ArrayList<FactoryComponent>();
         URI fcoreUri = URI.createPlatformResourceURI((String) ctx.getValue(FcoreBuilderConstants.FCORE_OUTPUT_PATH), true);
