@@ -28,6 +28,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.emf.EMFDomainHelper;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
@@ -167,9 +169,15 @@ public class CreateFcoreHelper {
         ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
         ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
         ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
+        DomainHelper helper = new EMFDomainHelper();
         try {
-            RunActivityHelper.run(fc, monitor);
-        } catch (InvocationException e) {
+            try {
+                if (helper.loadDomain(domain))
+                    RunActivityHelper.run(fc, monitor);
+            } finally {
+                helper.unLoadDomain(domain);
+            }
+        } catch (Exception e) {
             throw new CoreException(new Status(IStatus.ERROR, Activator.getDefault().getPluginID(), e.getMessage(), e));
         }
         IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(generationChain.getFactoryComponentName());
