@@ -90,16 +90,16 @@ public class ActivityInvocationHelper {
     public static EMFDomain getDomain(DomainViewpoint dvp, URI uri) {
         for (Domain domain : dvp.getDomains()) {
             if (domain instanceof EMFDomain) {
-                EMFDomain domainUri = (EMFDomain) domain;
-                if (uri.equals(domainUri.getUri())) {
-                    return domainUri;
+                EMFDomain emfDomain = (EMFDomain) domain;
+                if (uri.equals(emfDomain.getUri())) {
+                    return emfDomain;
                 }
             }
         }
-        EMFDomain domainURI = DomainFactory.eINSTANCE.createEMFDomain();
-        domainURI.setUri(uri);
-        dvp.getDomains().add(domainURI);
-        return domainURI;
+        EMFDomain emfDomain = DomainFactory.eINSTANCE.createEMFDomain();
+        emfDomain.setUri(uri);
+        dvp.getDomains().add(emfDomain);
+        return emfDomain;
     }
 
     public static void addInvocation(ProductionPlan pp, Activity activity, Map<String, Type> contract2type, Map<String, OrchestrationParameter> contract2parameter) {

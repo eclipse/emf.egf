@@ -64,8 +64,8 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
             }
             URI uri = null;
             if (eObject instanceof EMFDomain) {
-                EMFDomain domainURI = (EMFDomain) eObject;
-                uri = domainURI.getUri();
+                EMFDomain domain = (EMFDomain) eObject;
+                uri = domain.getUri();
             } else if (eObject instanceof TypeDomain) {
                 throw new UnsupportedOperationException("TODO");
             } else if (eObject instanceof TypeURI) {
