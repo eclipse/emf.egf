@@ -60,10 +60,15 @@ public interface DomainHelper {
 
         protected DomainHelper loadHelper(String helperImplementation, Bundle bundle) throws DomainException {
             try {
-                final Class<?> loadClass = bundle.loadClass(helperImplementation);
-                return (DomainHelper) loadClass.newInstance();
-            } catch (Exception e) {
-                throw new DomainException(e);
+                final Class<?> clazz = Class.forName(helperImplementation);
+                return (DomainHelper) clazz.newInstance();
+            } catch (Exception e1) {
+                try {
+                    final Class<?> loadClass = bundle.loadClass(helperImplementation);
+                    return (DomainHelper) loadClass.newInstance();
+                } catch (Exception e) {
+                    throw new DomainException(e);
+                }
             }
         }
 
