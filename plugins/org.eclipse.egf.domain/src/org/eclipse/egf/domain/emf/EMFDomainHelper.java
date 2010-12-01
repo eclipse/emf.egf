@@ -15,7 +15,7 @@
 
 package org.eclipse.egf.domain.emf;
 
-import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.domain.Activator;
 import org.eclipse.egf.domain.DomainException;
 import org.eclipse.egf.domain.DomainHelper;
@@ -36,7 +36,8 @@ public class EMFDomainHelper implements DomainHelper {
     public boolean loadDomain(Domain domain) throws DomainException {
         if (domain instanceof EMFDomain) {
             EMFDomain myDomain = (EMFDomain) domain;
-            ResourceSet set = new RuntimePlatformResourceSet();
+            // ResourceSet set = new RuntimePlatformResourceSet();
+            ResourceSet set = new TargetPlatformResourceSet();
             final URI uri = myDomain.getUri();
             if (uri == null || "".equals(uri.toString())) { //$NON-NLS-1$
                 Activator.getDefault().logWarning(Messages.bind(Messages.Load_EMFDomain_error1, domain.getName()));
