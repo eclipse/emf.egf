@@ -56,6 +56,8 @@ import org.osgi.framework.Bundle;
  */
 public class WorkspaceInitializationTest extends TestCase {
 
+    public static final Object INIT_JOB_FAMILY = new Object();
+
     public List<String> _projectNames = new UniqueEList<String>();
 
     public static Test suite() {
@@ -68,11 +70,6 @@ public class WorkspaceInitializationTest extends TestCase {
         // Error
         final Throwable[] error = new Throwable[] {
             null
-        };
-
-        // State for thread synchronization
-        final boolean[] init = new boolean[] {
-            false
         };
 
         class Import extends ImportOperation {
@@ -99,68 +96,62 @@ public class WorkspaceInitializationTest extends TestCase {
             }
 
             @Override
+            public boolean belongsTo(Object family) {
+                return family == INIT_JOB_FAMILY;
+            }
+
+            @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+
+                IWorkspace workspace = ResourcesPlugin.getWorkspace();
+                IWorkspaceRoot workspaceRoot = workspace.getRoot();
+
+                // Clean previous workspace
+                for (IProject project : workspaceRoot.getProjects()) {
+                    project.delete(true, true, monitor);
+                }
 
                 try {
 
-                    IWorkspace workspace = ResourcesPlugin.getWorkspace();
-                    IWorkspaceRoot workspaceRoot = workspace.getRoot();
-
-                    // Clean previous workspace
-                    for (IProject project : workspaceRoot.getProjects()) {
-                        project.delete(true, true, monitor);
-                    }
-
-                    try {
-
-                        // Initialize workspace
-                        Bundle bundle = EGFCoreTestPlugin.getDefault().getBundle();
-                        URL resourcesURL = FileLocator.find(bundle, new Path("resources"), Collections.EMPTY_MAP); //$NON-NLS-1$
-                        URL resourcesFileURL = FileLocator.toFileURL(resourcesURL);
-                        File resourcesFile = new File(resourcesFileURL.getPath());
-                        for (File file : resourcesFile.listFiles()) {
-                            if (file.isDirectory() == false) {
-                                continue;
-                            }
-                            if (new File(file, ".project").exists() == false) { //$NON-NLS-1$
-                                continue;
-                            }
-                            String projectName = file.getName();
-                            IProject project = workspaceRoot.getProject(projectName);
-                            IProjectDescription description = workspace.newProjectDescription(projectName);
-                            description.setLocationURI(null);
-                            project.create(description, monitor);
-                            project.open(monitor);
-                            // import project from location copying files
-                            // use default project location for this workspace
-                            List<?> filesToImport = FileSystemStructureProvider.INSTANCE.getChildren(file);
-                            Import operation = new Import(project.getFullPath(), file, FileSystemStructureProvider.INSTANCE, this, filesToImport);
-                            operation.setContext(null);
-                            operation.setOverwriteResources(true);
-                            operation.setCreateContainerStructure(false);
-                            operation.process(monitor);
-                            // Refresh
-                            project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-                            // Store
-                            _projectNames.add(projectName);
+                    // Initialize workspace
+                    Bundle bundle = EGFCoreTestPlugin.getDefault().getBundle();
+                    URL resourcesURL = FileLocator.find(bundle, new Path("resources"), Collections.EMPTY_MAP); //$NON-NLS-1$
+                    URL resourcesFileURL = FileLocator.toFileURL(resourcesURL);
+                    File resourcesFile = new File(resourcesFileURL.getPath());
+                    for (File file : resourcesFile.listFiles()) {
+                        if (file.isDirectory() == false) {
+                            continue;
                         }
-
-                    } catch (Throwable t) {
-
-                        error[0] = t;
-
+                        if (new File(file, ".project").exists() == false) { //$NON-NLS-1$
+                            continue;
+                        }
+                        String projectName = file.getName();
+                        IProject project = workspaceRoot.getProject(projectName);
+                        IProjectDescription description = workspace.newProjectDescription(projectName);
+                        description.setLocationURI(null);
+                        project.create(description, monitor);
+                        project.open(monitor);
+                        // import project from location copying files
+                        // use default project location for this workspace
+                        List<?> filesToImport = FileSystemStructureProvider.INSTANCE.getChildren(file);
+                        Import operation = new Import(project.getFullPath(), file, FileSystemStructureProvider.INSTANCE, this, filesToImport);
+                        operation.setContext(null);
+                        operation.setOverwriteResources(true);
+                        operation.setCreateContainerStructure(false);
+                        operation.process(monitor);
+                        // Refresh
+                        project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
+                        // Store
+                        _projectNames.add(projectName);
                     }
 
-                    return Status.OK_STATUS;
+                } catch (Throwable t) {
 
-                } finally {
-
-                    synchronized (init) {
-                        init[0] = true;
-                        init.notifyAll();
-                    }
+                    error[0] = t;
 
                 }
+
+                return Status.OK_STATUS;
 
             }
 
@@ -182,16 +173,8 @@ public class WorkspaceInitializationTest extends TestCase {
         initJob.setSystem(false);
         initJob.schedule();
 
-        // Let the job run
-        synchronized (init) {
-            while (init[0] == false) {
-                try {
-                    init.wait();
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
+        // Wait for init job completion
+        Job.getJobManager().join(INIT_JOB_FAMILY, new NullProgressMonitor());
 
         // Error checking
         assertNull(error[0]);
