@@ -830,6 +830,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EAttribute DOMAIN__CONTENT = eINSTANCE.getDomain_Content();
 
         /**
@@ -838,6 +839,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EAttribute DOMAIN__HELPER_IMPLEMENTATION = eINSTANCE.getDomain_HelperImplementation();
 
         /**
@@ -888,6 +890,7 @@ public interface DomainPackage extends EPackage {
          * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getEMFDomain()
          * @generated
          */
+        @SuppressWarnings("hiding")
         EClass EMF_DOMAIN = eINSTANCE.getEMFDomain();
 
         /**
@@ -896,6 +899,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EAttribute EMF_DOMAIN__URI = eINSTANCE.getEMFDomain_Uri();
 
         /**
@@ -906,6 +910,7 @@ public interface DomainPackage extends EPackage {
          * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomain()
          * @generated
          */
+        @SuppressWarnings("hiding")
         EClass TYPE_DOMAIN = eINSTANCE.getTypeDomain();
 
         /**
@@ -914,6 +919,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EReference TYPE_DOMAIN__DOMAIN = eINSTANCE.getTypeDomain_Domain();
 
         /**
@@ -922,6 +928,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EReference TYPE_DOMAIN__VALUE = eINSTANCE.getTypeDomain_Value();
 
         /**
@@ -932,6 +939,7 @@ public interface DomainPackage extends EPackage {
          * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getFilesystemDomain()
          * @generated
          */
+        @SuppressWarnings("hiding")
         EClass FILESYSTEM_DOMAIN = eINSTANCE.getFilesystemDomain();
 
         /**
@@ -940,6 +948,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EAttribute FILESYSTEM_DOMAIN__PATH = eINSTANCE.getFilesystemDomain_Path();
 
         /**
@@ -950,6 +959,7 @@ public interface DomainPackage extends EPackage {
          * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getWorkspaceDomain()
          * @generated
          */
+        @SuppressWarnings("hiding")
         EClass WORKSPACE_DOMAIN = eINSTANCE.getWorkspaceDomain();
 
         /**
@@ -958,6 +968,7 @@ public interface DomainPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
+        @SuppressWarnings("hiding")
         EAttribute WORKSPACE_DOMAIN__PATH = eINSTANCE.getWorkspaceDomain_Path();
 
     }

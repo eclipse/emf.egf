@@ -13,7 +13,6 @@
 package org.eclipse.egf.model.domain;
 
 import org.eclipse.egf.model.fcore.NamedModelElement;
-import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.util.EList;
 
 /**

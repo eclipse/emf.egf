@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain {
+
     /**
      * The default value of the '{@link #getPath() <em>Path</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -60,7 +61,7 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
      */
     protected FilesystemDomainImpl() {
         super();
-        setHelperImplementation("org.eclipse.egf.domain.file.FilesystemDomainHelper");
+        setHelperImplementation("org.eclipse.egf.domain.file.FilesystemDomainHelper"); //$NON-NLS-1$
     }
 
     /**
@@ -102,8 +103,8 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case DomainPackage.FILESYSTEM_DOMAIN__PATH:
-            return getPath();
+            case DomainPackage.FILESYSTEM_DOMAIN__PATH:
+                return getPath();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -116,9 +117,9 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case DomainPackage.FILESYSTEM_DOMAIN__PATH:
-            setPath((String) newValue);
-            return;
+            case DomainPackage.FILESYSTEM_DOMAIN__PATH:
+                setPath((String) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -131,9 +132,9 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case DomainPackage.FILESYSTEM_DOMAIN__PATH:
-            setPath(PATH_EDEFAULT);
-            return;
+            case DomainPackage.FILESYSTEM_DOMAIN__PATH:
+                setPath(PATH_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -146,8 +147,8 @@ public class FilesystemDomainImpl extends DomainImpl implements FilesystemDomain
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case DomainPackage.FILESYSTEM_DOMAIN__PATH:
-            return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+            case DomainPackage.FILESYSTEM_DOMAIN__PATH:
+                return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
         }
         return super.eIsSet(featureID);
     }

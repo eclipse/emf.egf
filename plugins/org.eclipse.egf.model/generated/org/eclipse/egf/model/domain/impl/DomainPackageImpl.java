@@ -16,13 +16,11 @@ import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.TypeDomainGenPackages;
-import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
 import org.eclipse.egf.model.domain.util.DomainValidator;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -166,6 +164,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
 
         // Register package validator
         EValidator.Registry.INSTANCE.put(theDomainPackage, new EValidator.Descriptor() {
+
             public EValidator getEValidator() {
                 return DomainValidator.INSTANCE;
             }
@@ -493,11 +492,14 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(domainGenPackageEClass, source, new String[] { "constraints", "ValidGenPackage" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(domainGenPackageEClass, source, new String[] {
+                "constraints", "ValidGenPackage" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(typeDomainGenPackagesEClass, source, new String[] { "constraints", "ValidDomainGenPackages" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(typeDomainGenPackagesEClass, source, new String[] {
+                "constraints", "ValidDomainGenPackages" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(emfDomainEClass, source, new String[] { "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(emfDomainEClass, source, new String[] {
+                "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
         });
     }
 

@@ -12,15 +12,14 @@ O * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  */
 package org.eclipse.egf.model.domain.util;
 
-import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
+import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
-import org.eclipse.egf.model.domain.TypeDomain;
+import org.eclipse.egf.model.domain.TypeDomainGenPackages;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.NamedModelElement;
@@ -91,6 +90,7 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     protected DomainSwitch<Adapter> modelSwitch = new DomainSwitch<Adapter>() {
+
         @Override
         public Adapter caseDomainViewpoint(DomainViewpoint object) {
             return createDomainViewpointAdapter();
