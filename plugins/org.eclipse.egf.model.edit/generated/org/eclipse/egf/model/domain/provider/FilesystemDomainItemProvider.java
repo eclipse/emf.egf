@@ -40,7 +40,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FilesystemDomainItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class FilesystemDomainItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+        IItemColorProvider, IItemFontProvider {
+
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -102,9 +104,9 @@ public class FilesystemDomainItemProvider extends DomainItemProvider implements 
     public String getText(Object object) {
         FilesystemDomain domain = (FilesystemDomain) object;
         String name = null;
-        if (domain.getName() != null && !"".equals(domain.getName())) {
+        if (domain.getName() != null && !"".equals(domain.getName())) { //$NON-NLS-1$
             name = domain.getName();
-        } else if (domain.getPath() != null && !"".equals(domain.getPath())) {
+        } else if (domain.getPath() != null && !"".equals(domain.getPath())) { //$NON-NLS-1$
             name = "[" + domain.getPath() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
         }
         String label = "[" + getString("_UI_FilesystemDomain_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -126,9 +128,9 @@ public class FilesystemDomainItemProvider extends DomainItemProvider implements 
         updateChildren(notification);
 
         switch (notification.getFeatureID(FilesystemDomain.class)) {
-        case DomainPackage.FILESYSTEM_DOMAIN__PATH:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
+            case DomainPackage.FILESYSTEM_DOMAIN__PATH:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
         }
         super.notifyChanged(notification);
     }

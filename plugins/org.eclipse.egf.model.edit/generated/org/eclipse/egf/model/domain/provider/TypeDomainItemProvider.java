@@ -50,7 +50,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * 
  * @generated
  */
-public class TypeDomainItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeDomainItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
+        IItemFontProvider {
+
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -129,10 +131,10 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
     @Override
     public String getText(Object object) {
         TypeDomain type = ((TypeDomain) object);
-        String label = "";
+        String label = ""; //$NON-NLS-1$
         if (type.getDomain() != null) {
             final String name = type.getDomain().getName();
-            if (name == null || "".equals(name))
+            if (name == null || "".equals(name)) //$NON-NLS-1$
                 label = type.getDomain().eClass().getName();
             else
                 label = name;
@@ -155,10 +157,10 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
         updateChildren(notification);
 
         switch (notification.getFeatureID(TypeDomain.class)) {
-        case DomainPackage.TYPE_DOMAIN__DOMAIN:
-        case DomainPackage.TYPE_DOMAIN__VALUE:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
+            case DomainPackage.TYPE_DOMAIN__DOMAIN:
+            case DomainPackage.TYPE_DOMAIN__VALUE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
         }
         super.notifyChanged(notification);
     }
