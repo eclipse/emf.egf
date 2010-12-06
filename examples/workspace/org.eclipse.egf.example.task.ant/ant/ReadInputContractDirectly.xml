@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<project name="WriteOutputContractTask" default="main" basedir="..">
+
+	<!-- 
+		 You can read the value of input contracts in script directly by use TaskProductionForAnt. And we will convert the value to 'String'
+		 and set it into the porperty with the contract name, you can get the value from the porperty.
+		 eg:
+		 	<ReadIN name="the name of the contract" type="the type of the contract"/>
+
+		   =>If you didn't set the type of the contract in the script, it will find the type of the contract automaticly.
+		 	<ReadIN name="the name of the contract">
+		 	
+		 	Then you can get it by use '${the name of the contract}'.
+		 	
+		 Now the TaskProductionForAnt class can support following types:
+		 	 String             => type="type:string"
+		 	 Boolean | boolean  => type="type:boolean"
+		 	 Long               => type="type:long"
+		 	 Integer            => type="type:integer"
+		 	 BigInteger         => type="type:bigInteger"
+		 	 BigDecimal         => type="type:bigDecimal"
+		 	 Float              => type="type:float"
+		 	 Byte               => type="type:byte"
+		 	 Short              => type="type:short"
+		 	 Double             => type="type:double"
+		 	 Character          => type="type:character"
+		 	 Date               => type="type:date"   (Now suppoert the simple fomate: 'yyyy-MM-dd' and 'yyyy/MM/dd')
+		 	 Type URI           => type="type:uri"    (org.eclipse.emf.common.util.URI)
+		 If you want use ant script to read other complex type, you can write a sub task class which extends 'TaskProductionForAnt.java',
+		 and read the input contract in the execute() method. You can get the TaskProductionContext from the ant task by use getContext() method
+		 (See 'WriteAndReadContractByTask.xml').
+	 -->
+
+	<!-- Define the ant tasks -->
+	<taskdef name="taskProductionForAnt" description="Read input contracts in script directly." classname="org.eclipse.egf.portfolio.task.ant.engine.TaskProductionForAnt">
+		<classpath>
+			<pathelement location="${basedir}/bin" />
+		</classpath>
+	</taskdef>
+
+	<!-- Exectute the task -->
+	<target name="main">
+		<!-- Write output contracts in script directly -->
+		<taskProductionForAnt>
+			<ReadIN name="input_parameter_string" type="type:string" />
+			<ReadIN name="input_parameter_boolean" type="type:boolean" />
+			<ReadIN name="input_parameter_long" type="type:long" />
+			<ReadIN name="input_parameter_integer" type="type:integer" />
+			<ReadIN name="input_parameter_bigInteger" type="type:bigInteger" />
+			<ReadIN name="input_parameter_double" type="type:double" />
+			<ReadIN name="input_parameter_float" type="type:float" />
+			<!-- You also can not to set the type -->
+			<ReadIN name="input_parameter_short" />
+			<ReadIN name="input_parameter_character" type="type:character" />
+			<ReadIN name="input_parameter_byte" type="type:byte" />
+			<ReadIN name="input_parameter_bigDecimal" type="type:bigDecimal" />
+			<ReadIN name="input_parameter_date" type="type:date" />
+			<ReadIN name="input_parameter_uri" type="type:uri" />
+		</taskProductionForAnt>
+
+		<!-- The read value of input contract can be used in script by property name ( ${the name of contract} ) -->
+		<echo message="${input_parameter_string}" />
+		<echo message="${input_parameter_boolean}" />
+		<echo message="${input_parameter_long}" />
+		<echo message="${input_parameter_integer}" />
+		<echo message="${input_parameter_bigInteger}" />
+		<echo message="${input_parameter_double}" />
+		<echo message="${input_parameter_float}" />
+		<echo message="${input_parameter_short}" />
+		<echo message="${input_parameter_character}" />
+		<echo message="${input_parameter_byte}" />
+		<echo message="${input_parameter_boolean}" />
+		<echo message="${input_parameter_bigDecimal}" />
+		<echo message="${input_parameter_boolean}" />
+		<echo message="${input_parameter_date}" />
+		<echo message="${input_parameter_uri}" />
+	</target>
+
+</project>

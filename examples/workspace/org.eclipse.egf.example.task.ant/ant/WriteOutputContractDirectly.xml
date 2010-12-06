@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+
+<project name="WriteOutputContractTask" default="main" basedir="..">
+
+	<!-- 
+		 You can write output contracts in script directly by use TaskProductionForAnt.
+		 eg:
+		 	<WriteOUT name="the name of the contract" value="the new value of the contract" type="the type of the contract"/>
+
+		   =>If you didn't set the type of the contract in the script, it will find the type of the contract automaticly.
+		 	<WriteOUT name="the name of the contract" value="the new value of the contract">
+		 	
+		 Now the TaskProductionForAnt class can support following types:
+		 	 String             => type="type:string"
+		 	 Boolean | boolean  => type="type:boolean"
+		 	 Long               => type="type:long"
+		 	 Integer            => type="type:integer"
+		 	 BigInteger         => type="type:bigInteger"
+		 	 BigDecimal         => type="type:bigDecimal"
+		 	 Float              => type="type:float"
+		 	 Byte               => type="type:byte"
+		 	 Short              => type="type:short"
+		 	 Double             => type="type:double"
+		 	 Character          => type="type:character"
+		 	 Date               => type="type:date"   (Now suppoert the simple fomate: 'yyyy-MM-dd' and 'yyyy/MM/dd')
+		 	 Type URI           => type="type:uri"    (org.eclipse.emf.common.util.URI)
+		 If you want use ant script to write other complex type, you can write a sub task class which extends 'TaskProductionForAnt.java',
+		 and rewrite the execute() method. You can get the TaskProductionContext from the ant task by use getContext() method(See 
+		 'WriteAndReadContractByTask.xml').
+	 -->
+
+	<!-- Define the ant tasks -->
+	<taskdef name="taskProductionForAnt" description="Write output contracts in script directly." classname="org.eclipse.egf.portfolio.task.ant.engine.TaskProductionForAnt">
+		<classpath>
+			<pathelement location="${basedir}/bin" />
+		</classpath>
+	</taskdef>
+
+	<!-- Exectute the task -->
+	<target name="main">
+		<!-- Write output contracts in script directly -->
+		<taskProductionForAnt>
+			<WriteOUT name="output_parameter_string" value="hello" type="type:string" />
+			<WriteOUT name="output_parameter_boolean" value="true" type="type:boolean" />
+			<WriteOUT name="output_parameter_long" value="1000000000" type="type:long" />
+			<WriteOUT name="output_parameter_integer" value="99" type="type:integer" />
+			<WriteOUT name="output_parameter_bigInteger" value="50" type="type:bigInteger" />
+			<WriteOUT name="output_parameter_double" value="2.01" type="type:double" />
+			<WriteOUT name="output_parameter_float" value="1.0" type="type:float" />
+			<WriteOUT name="output_parameter_short" value="3" type="type:short" />
+			<WriteOUT name="output_parameter_character" value="a" type="type:character" />
+			<WriteOUT name="output_parameter_byte" value="1" type="type:byte" />
+			<WriteOUT name="output_parameter_bigDecimal" value="2.015" />
+			<WriteOUT name="output_parameter_date" value="2011-12-30T00:00:00.000+0800" type="type:date" />
+			<WriteOUT name="output_parameter_date" value="2011-11-11" />
+			<!-- You also can not to set the type -->
+			<WriteOUT name="output_parameter_uri" value="platform:/resource/org.eclipse.egf.example.task.ant/plugin.xml" type="type:uri" />
+		</taskProductionForAnt>
+	</target>
+
+</project>
