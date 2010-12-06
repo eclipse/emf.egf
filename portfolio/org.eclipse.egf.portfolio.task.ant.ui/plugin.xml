@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.egf.core.ui.editor.menu.contributor">
+      <contribution
+            class="org.eclipse.egf.portfolio.task.ant.ui.contributions.OpenAntTaskImplementationMenuContributor">
+      </contribution>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.ui.editor.listener.contributor">
+      <contribution
+            class="org.eclipse.egf.portfolio.task.ant.ui.contributions.OpenAntTaskImplementationListenerContributor">
+      </contribution>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.ui.editor.property.contributor">
+      <contribution
+            class="org.eclipse.egf.portfolio.task.ant.ui.contributions.TaskAntEditorContributor">
+      </contribution>
+   </extension>
+
+</plugin>
