@@ -20,11 +20,6 @@
     <!-- ================================================================================= -->
 
 
-    <extension
-        point="org.eclipse.egf.core.test">
-        <EGFTestModel
-            modelPath="test/Task.test" />
-    </extension>
 
     <extension
         point="org.eclipse.egf.core.fcore">
