@@ -51,9 +51,7 @@ public final class EGFFtaskEditPlugin extends EMFPlugin {
      * @generated
      */
     public EGFFtaskEditPlugin() {
-        super(new ResourceLocator[] {
-                EcoreEditPlugin.INSTANCE, EGFModelEditPlugin.INSTANCE,
-        });
+        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelEditPlugin.INSTANCE, });
     }
 
     /**

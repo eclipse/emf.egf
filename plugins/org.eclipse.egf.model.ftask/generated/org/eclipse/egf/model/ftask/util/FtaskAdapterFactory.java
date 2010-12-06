@@ -81,7 +81,6 @@ public class FtaskAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     protected FtaskSwitch<Adapter> modelSwitch = new FtaskSwitch<Adapter>() {
-
         @Override
         public Adapter caseTask(Task object) {
             return createTaskAdapter();

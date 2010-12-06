@@ -325,14 +325,14 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case FtaskPackage.TASK__KIND:
-                return getKind();
-            case FtaskPackage.TASK__SUPER_TASK:
-                if (resolve)
-                    return getSuperTask();
-                return basicGetSuperTask();
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                return getImplementation();
+        case FtaskPackage.TASK__KIND:
+            return getKind();
+        case FtaskPackage.TASK__SUPER_TASK:
+            if (resolve)
+                return getSuperTask();
+            return basicGetSuperTask();
+        case FtaskPackage.TASK__IMPLEMENTATION:
+            return getImplementation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -345,15 +345,15 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case FtaskPackage.TASK__KIND:
-                setKind((String) newValue);
-                return;
-            case FtaskPackage.TASK__SUPER_TASK:
-                setSuperTask((Task) newValue);
-                return;
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                setImplementation((String) newValue);
-                return;
+        case FtaskPackage.TASK__KIND:
+            setKind((String) newValue);
+            return;
+        case FtaskPackage.TASK__SUPER_TASK:
+            setSuperTask((Task) newValue);
+            return;
+        case FtaskPackage.TASK__IMPLEMENTATION:
+            setImplementation((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -366,15 +366,15 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case FtaskPackage.TASK__KIND:
-                setKind(KIND_EDEFAULT);
-                return;
-            case FtaskPackage.TASK__SUPER_TASK:
-                setSuperTask((Task) null);
-                return;
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                setImplementation(IMPLEMENTATION_EDEFAULT);
-                return;
+        case FtaskPackage.TASK__KIND:
+            setKind(KIND_EDEFAULT);
+            return;
+        case FtaskPackage.TASK__SUPER_TASK:
+            setSuperTask((Task) null);
+            return;
+        case FtaskPackage.TASK__IMPLEMENTATION:
+            setImplementation(IMPLEMENTATION_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -387,12 +387,12 @@ public class TaskImpl extends ActivityImpl implements Task {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case FtaskPackage.TASK__KIND:
-                return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
-            case FtaskPackage.TASK__SUPER_TASK:
-                return superTask != null;
-            case FtaskPackage.TASK__IMPLEMENTATION:
-                return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
+        case FtaskPackage.TASK__KIND:
+            return KIND_EDEFAULT == null ? kind != null : !KIND_EDEFAULT.equals(kind);
+        case FtaskPackage.TASK__SUPER_TASK:
+            return superTask != null;
+        case FtaskPackage.TASK__IMPLEMENTATION:
+            return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
         }
         return super.eIsSet(featureID);
     }

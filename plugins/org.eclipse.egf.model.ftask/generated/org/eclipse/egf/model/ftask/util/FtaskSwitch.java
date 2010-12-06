@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.NamedModelElement;
+import org.eclipse.egf.model.ftask.*;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.emf.ecore.EClass;
@@ -94,21 +95,21 @@ public class FtaskSwitch<T> {
      */
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
-            case FtaskPackage.TASK: {
-                Task task = (Task) theEObject;
-                T result = caseTask(task);
-                if (result == null)
-                    result = caseActivity(task);
-                if (result == null)
-                    result = caseNamedModelElement(task);
-                if (result == null)
-                    result = caseModelElement(task);
-                if (result == null)
-                    result = defaultCase(theEObject);
-                return result;
-            }
-            default:
-                return defaultCase(theEObject);
+        case FtaskPackage.TASK: {
+            Task task = (Task) theEObject;
+            T result = caseTask(task);
+            if (result == null)
+                result = caseActivity(task);
+            if (result == null)
+                result = caseNamedModelElement(task);
+            if (result == null)
+                result = caseModelElement(task);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        default:
+            return defaultCase(theEObject);
         }
     }
 

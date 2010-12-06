@@ -21,6 +21,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.fcore.util.FcoreValidator;
+import org.eclipse.egf.model.ftask.*;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.ftask.helper.TaskValidationHelper;
@@ -162,10 +163,10 @@ public class FtaskValidator extends EObjectValidator {
     @Override
     protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
-            case FtaskPackage.TASK:
-                return validateTask((Task) value, diagnostics, context);
-            default:
-                return true;
+        case FtaskPackage.TASK:
+            return validateTask((Task) value, diagnostics, context);
+        default:
+            return true;
         }
     }
 
@@ -220,11 +221,8 @@ public class FtaskValidator extends EObjectValidator {
         if (task.getKindValue() == null || task.getKindValue().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "MandatoryKind", getObjectLabel(task, context), "Task kind is a mandatory value"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            task
-                        }, context));
+                        new Object[] { "MandatoryKind", getObjectLabel(task, context), "Task kind is a mandatory value" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { task }, context));
             }
             return false;
         }
@@ -245,11 +243,8 @@ public class FtaskValidator extends EObjectValidator {
         if (TaskValidationHelper.isValidKind(task.getKindValue()) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "ValidKind", getObjectLabel(task, context), NLS.bind("This Task has an unknown kind ''{0}''", task.getKindValue().trim())}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            task
-                        }, context));
+                        new Object[] { "ValidKind", getObjectLabel(task, context), NLS.bind("This Task has an unknown kind ''{0}''", task.getKindValue().trim()) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { task }, context));
             }
             return false;
         }
@@ -267,11 +262,8 @@ public class FtaskValidator extends EObjectValidator {
         if (task.getImplementationValue() == null || task.getImplementationValue().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "UselessTask", getObjectLabel(task, context), "This Task has no implementation"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            task
-                        }, context));
+                        new Object[] { "UselessTask", getObjectLabel(task, context), "This Task has no implementation" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { task }, context));
             }
             return false;
         }
@@ -298,11 +290,8 @@ public class FtaskValidator extends EObjectValidator {
         if (taskNature.isLoadableImplementation(task, context) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "LoadableImplementation", getObjectLabel(task, context), NLS.bind("Unable to load ''{0}''", task.getImplementationValue())}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            task
-                        }, context));
+                        new Object[] { "LoadableImplementation", getObjectLabel(task, context), NLS.bind("Unable to load ''{0}''", task.getImplementationValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { task }, context));
             }
             return false;
         }
@@ -330,11 +319,8 @@ public class FtaskValidator extends EObjectValidator {
         if (taskNature.isValidImplementation(task, context) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "ValidImplementation", getObjectLabel(task, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", ITaskProduction.class.getName(), task.getImplementationValue())}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            task
-                        }, context));
+                        new Object[] { "ValidImplementation", getObjectLabel(task, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", ITaskProduction.class.getName(), task.getImplementationValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { task }, context));
             }
             return false;
         }

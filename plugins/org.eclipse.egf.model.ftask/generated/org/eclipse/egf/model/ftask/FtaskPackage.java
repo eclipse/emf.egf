@@ -134,7 +134,7 @@ public interface FtaskPackage extends EPackage {
     /**
      * The feature id for the '<em><b>Implementation</b></em>' attribute.
      * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
