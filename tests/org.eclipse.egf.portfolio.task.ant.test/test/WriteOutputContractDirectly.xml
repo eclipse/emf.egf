@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<project name="WriteOutputContractTask" default="main" basedir="..">
+
+	<!-- 
+		 You can write output contracts in script directly by use TaskProductionForAnt.
+		 eg:
+		 	<WriteOUT name="the name of the contract" value="the new value of the contract" type="the type of the contract"/>
+
+		   =>If you didn't set the type of the contract in the script, it will find the type of the contract automaticly.
+		 	<WriteOUT name="the name of the contract" value="the new value of the contract">
+		 	
+		 Now the TaskProductionForAnt class can support following types:
+		 	 String             => type="type:string"
+		 	 Boolean | boolean  => type="type:boolean"
+		 	 Long               => type="type:long"
+		 	 Integer            => type="type:integer"
+		 	 BigInteger         => type="type:bigInteger"
+		 	 BigDecimal         => type="type:bigDecimal"
+		 	 Float              => type="type:float"
+		 	 Byte               => type="type:byte"
+		 	 Short              => type="type:short"
+		 	 Double             => type="type:double"
+		 	 Character          => type="type:character"
+		 	 Date               => type="type:date"   (Now suppoert the simple fomate: 'yyyy-MM-dd' and 'yyyy/MM/dd')
+		 	 Type URI           => type="type:uri"    (org.eclipse.emf.common.util.URI)
+		 If you want use ant script to write other complex type, you can write a sub task class which extends 'TaskProductionForAnt.java',
+		 and rewrite the execute() method. You can get the TaskProductionContext from the ant task by use getContext() method(See 
+		 'WriteAndReadContractByTask.xml').
+	 -->
+
+	<!-- Define the ant tasks -->
+	<taskdef name="taskProductionForAnt" description="Write output contracts in script directly." classname="org.eclipse.egf.portfolio.task.ant.engine.TaskProductionForAnt">
+		<classpath>
+			<pathelement location="${basedir}/bin" />
+		</classpath>
+	</taskdef>
+
+	<!-- Exectute the task -->
+	<target name="main">
+		<!-- Write output contracts in script directly -->
+		<taskProductionForAnt>
+			<WriteOUT name="output_parameter" value="hello" type="type:string" />
+		</taskProductionForAnt>
+	</target>
+
+</project>

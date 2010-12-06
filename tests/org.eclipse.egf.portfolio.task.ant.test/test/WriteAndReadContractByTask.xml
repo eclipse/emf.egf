@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<project name="WriteOutputContractTask" default="main" basedir="..">
+
+	<!-- You can write a sub task class which extends 'TaskProductionForAnt.java',and rewrite the execute() method.
+		 You can get the TaskProductionContext from the ant task by use getContext() method.
+	 -->
+	
+	<!-- Define the ant tasks -->
+	<taskdef name="writeAndReadContractInTask" description="Write output contracts use ant task." 
+		classname="org.eclipse.egf.portfolio.task.ant.test.task.WriteAndReadContractInTask">
+		<classpath>
+			<pathelement location="${basedir}/bin" />
+		</classpath>
+	</taskdef>
+	
+	<!-- Exectute the task -->
+	<target name="main">
+		<!-- 
+		Extends the 'TaskProductionForAnt.java' to write or read contracts by rewriting 'execute()' method.
+		See 'WriteAndReadContractInTask.java'.
+		-->
+		<writeAndReadContractInTask>
+		</writeAndReadContractInTask>
+	</target>
+	
+</project>
