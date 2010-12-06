@@ -20,6 +20,6 @@
 	    <nature 
 	    	kind="ant"    
 	      	class="org.eclipse.egf.portfolio.task.ant.engine.TaskNatureAnt"/>
-	</extension>  
+	</extension>
 </plugin>
   
