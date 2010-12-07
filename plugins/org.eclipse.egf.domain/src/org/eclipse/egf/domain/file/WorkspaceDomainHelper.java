@@ -76,6 +76,7 @@ public class WorkspaceDomainHelper implements DomainHelper {
         if (domain instanceof WorkspaceDomain) {
             WorkspaceDomain myDomain = (WorkspaceDomain) domain;
             myDomain.getContent().clear();
+            myDomain.setLoaded(false);
             return true;
         }
         return false;

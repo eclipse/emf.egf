@@ -72,6 +72,7 @@ public class EMFDomainHelper implements DomainHelper {
                 if (eResource != null)
                     eResource.unload();
                 myDomain.getContent().clear();
+                myDomain.setLoaded(false);
             }
             return true;
         }
