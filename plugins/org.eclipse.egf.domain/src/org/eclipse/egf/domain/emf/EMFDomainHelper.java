@@ -36,6 +36,9 @@ public class EMFDomainHelper implements DomainHelper {
     public boolean loadDomain(Domain domain) throws DomainException {
         if (domain instanceof EMFDomain) {
             EMFDomain myDomain = (EMFDomain) domain;
+            if (myDomain.isLoaded())
+                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
+            myDomain.setLoaded(true);
             // ResourceSet set = new RuntimePlatformResourceSet();
             ResourceSet set = new TargetPlatformResourceSet();
             final URI uri = myDomain.getUri();

@@ -30,6 +30,10 @@ public class FilesystemDomainHelper implements DomainHelper {
     public boolean loadDomain(Domain domain) throws DomainException {
         if (domain instanceof FilesystemDomain) {
             FilesystemDomain myDomain = (FilesystemDomain) domain;
+            if (myDomain.isLoaded())
+                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
+            myDomain.setLoaded(true);
+
             // TODO
             if (!myDomain.getContent().isEmpty())
                 throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));

@@ -39,6 +39,10 @@ public class WorkspaceDomainHelper implements DomainHelper {
         if (domain instanceof WorkspaceDomain) {
             WorkspaceDomain myDomain = (WorkspaceDomain) domain;
             final String path = myDomain.getPath();
+            if (myDomain.isLoaded())
+                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
+            myDomain.setLoaded(true);
+
             if (path == null || "".equals(path)) { //$NON-NLS-1$
                 Activator.getDefault().logWarning(Messages.bind(Messages.Load_WorkspaceDomain_error1, domain.getName()));
                 return true;
