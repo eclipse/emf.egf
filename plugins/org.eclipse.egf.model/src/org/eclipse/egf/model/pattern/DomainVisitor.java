@@ -20,7 +20,7 @@ import java.util.List;
  */
 public interface DomainVisitor {
 
-    List<?> getChildren(Object model);
+    Object[] getChildren(Object model);
 
     void setPatterns(List<Pattern> patterns) throws PatternException;
 

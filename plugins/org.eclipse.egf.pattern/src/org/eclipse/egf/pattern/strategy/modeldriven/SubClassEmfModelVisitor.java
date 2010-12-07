@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @author Matthieu Helleboid
  * 
  */
-public class SubClassEmfModelVisitor extends EmfModelVisitor {
+public class SubClassEmfModelVisitor extends DefaultDomainVisitor {
 
     @Override
     protected List<Pattern> findPatterns(Object model) {
