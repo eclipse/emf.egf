@@ -28,7 +28,7 @@ package org.eclipse.egf.model.domain;
  * @model
  * @generated
  */
-public interface WorkspaceDomain extends Domain {
+public interface WorkspaceDomain extends LoadableDomain {
     /**
      * Returns the value of the '<em><b>Path</b></em>' attribute.
      * <!-- begin-user-doc -->

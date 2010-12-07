@@ -317,69 +317,6 @@ public interface DomainPackage extends EPackage {
     int EMF_DOMAIN = 4;
 
     /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN__ID = DOMAIN__ID;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN__DESCRIPTION = DOMAIN__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN__NAME = DOMAIN__NAME;
-
-    /**
-     * The feature id for the '<em><b>Content</b></em>' attribute list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN__CONTENT = DOMAIN__CONTENT;
-
-    /**
-     * The feature id for the '<em><b>Helper Implementation</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN__HELPER_IMPLEMENTATION = DOMAIN__HELPER_IMPLEMENTATION;
-
-    /**
-     * The feature id for the '<em><b>Uri</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN__URI = DOMAIN_FEATURE_COUNT + 0;
-
-    /**
-     * The number of structural features of the '<em>EMF Domain</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EMF_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
-
-    /**
      * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.TypeDomainImpl <em>Type Domain</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -388,6 +325,171 @@ public interface DomainPackage extends EPackage {
      * @generated
      */
     int TYPE_DOMAIN = 5;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.FilesystemDomainImpl <em>Filesystem Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.domain.impl.FilesystemDomainImpl
+     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getFilesystemDomain()
+     * @generated
+     */
+    int FILESYSTEM_DOMAIN = 6;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.WorkspaceDomainImpl <em>Workspace Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.domain.impl.WorkspaceDomainImpl
+     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getWorkspaceDomain()
+     * @generated
+     */
+    int WORKSPACE_DOMAIN = 7;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.LoadableDomainImpl <em>Loadable Domain</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.domain.impl.LoadableDomainImpl
+     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getLoadableDomain()
+     * @generated
+     */
+    int LOADABLE_DOMAIN = 8;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN__ID = DOMAIN__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN__DESCRIPTION = DOMAIN__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN__NAME = DOMAIN__NAME;
+
+    /**
+     * The feature id for the '<em><b>Content</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN__CONTENT = DOMAIN__CONTENT;
+
+    /**
+     * The feature id for the '<em><b>Helper Implementation</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN__HELPER_IMPLEMENTATION = DOMAIN__HELPER_IMPLEMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Loaded</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN__LOADED = DOMAIN_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Loadable Domain</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int LOADABLE_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__ID = LOADABLE_DOMAIN__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__DESCRIPTION = LOADABLE_DOMAIN__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__NAME = LOADABLE_DOMAIN__NAME;
+
+    /**
+     * The feature id for the '<em><b>Content</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__CONTENT = LOADABLE_DOMAIN__CONTENT;
+
+    /**
+     * The feature id for the '<em><b>Helper Implementation</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__HELPER_IMPLEMENTATION = LOADABLE_DOMAIN__HELPER_IMPLEMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Loaded</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__LOADED = LOADABLE_DOMAIN__LOADED;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN__URI = LOADABLE_DOMAIN_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>EMF Domain</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_DOMAIN_FEATURE_COUNT = LOADABLE_DOMAIN_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -435,23 +537,13 @@ public interface DomainPackage extends EPackage {
     int TYPE_DOMAIN_FEATURE_COUNT = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 2;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.FilesystemDomainImpl <em>Filesystem Domain</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.domain.impl.FilesystemDomainImpl
-     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getFilesystemDomain()
-     * @generated
-     */
-    int FILESYSTEM_DOMAIN = 6;
-
-    /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN__ID = DOMAIN__ID;
+    int FILESYSTEM_DOMAIN__ID = LOADABLE_DOMAIN__ID;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -460,7 +552,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN__DESCRIPTION = DOMAIN__DESCRIPTION;
+    int FILESYSTEM_DOMAIN__DESCRIPTION = LOADABLE_DOMAIN__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -469,7 +561,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN__NAME = DOMAIN__NAME;
+    int FILESYSTEM_DOMAIN__NAME = LOADABLE_DOMAIN__NAME;
 
     /**
      * The feature id for the '<em><b>Content</b></em>' attribute list.
@@ -478,7 +570,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN__CONTENT = DOMAIN__CONTENT;
+    int FILESYSTEM_DOMAIN__CONTENT = LOADABLE_DOMAIN__CONTENT;
 
     /**
      * The feature id for the '<em><b>Helper Implementation</b></em>' attribute.
@@ -487,7 +579,16 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN__HELPER_IMPLEMENTATION = DOMAIN__HELPER_IMPLEMENTATION;
+    int FILESYSTEM_DOMAIN__HELPER_IMPLEMENTATION = LOADABLE_DOMAIN__HELPER_IMPLEMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Loaded</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILESYSTEM_DOMAIN__LOADED = LOADABLE_DOMAIN__LOADED;
 
     /**
      * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -496,7 +597,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN__PATH = DOMAIN_FEATURE_COUNT + 0;
+    int FILESYSTEM_DOMAIN__PATH = LOADABLE_DOMAIN_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Filesystem Domain</em>' class.
@@ -505,17 +606,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FILESYSTEM_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.WorkspaceDomainImpl <em>Workspace Domain</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.domain.impl.WorkspaceDomainImpl
-     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getWorkspaceDomain()
-     * @generated
-     */
-    int WORKSPACE_DOMAIN = 7;
+    int FILESYSTEM_DOMAIN_FEATURE_COUNT = LOADABLE_DOMAIN_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -524,7 +615,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN__ID = DOMAIN__ID;
+    int WORKSPACE_DOMAIN__ID = LOADABLE_DOMAIN__ID;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -533,7 +624,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN__DESCRIPTION = DOMAIN__DESCRIPTION;
+    int WORKSPACE_DOMAIN__DESCRIPTION = LOADABLE_DOMAIN__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -542,7 +633,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN__NAME = DOMAIN__NAME;
+    int WORKSPACE_DOMAIN__NAME = LOADABLE_DOMAIN__NAME;
 
     /**
      * The feature id for the '<em><b>Content</b></em>' attribute list.
@@ -551,7 +642,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN__CONTENT = DOMAIN__CONTENT;
+    int WORKSPACE_DOMAIN__CONTENT = LOADABLE_DOMAIN__CONTENT;
 
     /**
      * The feature id for the '<em><b>Helper Implementation</b></em>' attribute.
@@ -560,7 +651,16 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN__HELPER_IMPLEMENTATION = DOMAIN__HELPER_IMPLEMENTATION;
+    int WORKSPACE_DOMAIN__HELPER_IMPLEMENTATION = LOADABLE_DOMAIN__HELPER_IMPLEMENTATION;
+
+    /**
+     * The feature id for the '<em><b>Loaded</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKSPACE_DOMAIN__LOADED = LOADABLE_DOMAIN__LOADED;
 
     /**
      * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -569,7 +669,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN__PATH = DOMAIN_FEATURE_COUNT + 0;
+    int WORKSPACE_DOMAIN__PATH = LOADABLE_DOMAIN_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Workspace Domain</em>' class.
@@ -578,7 +678,7 @@ public interface DomainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int WORKSPACE_DOMAIN_FEATURE_COUNT = DOMAIN_FEATURE_COUNT + 1;
+    int WORKSPACE_DOMAIN_FEATURE_COUNT = LOADABLE_DOMAIN_FEATURE_COUNT + 1;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.domain.DomainViewpoint <em>Viewpoint</em>}'.
@@ -769,6 +869,27 @@ public interface DomainPackage extends EPackage {
      * @generated
      */
     EAttribute getWorkspaceDomain_Path();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.domain.LoadableDomain <em>Loadable Domain</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Loadable Domain</em>'.
+     * @see org.eclipse.egf.model.domain.LoadableDomain
+     * @generated
+     */
+    EClass getLoadableDomain();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.domain.LoadableDomain#isLoaded <em>Loaded</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Loaded</em>'.
+     * @see org.eclipse.egf.model.domain.LoadableDomain#isLoaded()
+     * @see #getLoadableDomain()
+     * @generated
+     */
+    EAttribute getLoadableDomain_Loaded();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -970,6 +1091,24 @@ public interface DomainPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EAttribute WORKSPACE_DOMAIN__PATH = eINSTANCE.getWorkspaceDomain_Path();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.LoadableDomainImpl <em>Loadable Domain</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.domain.impl.LoadableDomainImpl
+         * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getLoadableDomain()
+         * @generated
+         */
+        EClass LOADABLE_DOMAIN = eINSTANCE.getLoadableDomain();
+
+        /**
+         * The meta object literal for the '<em><b>Loaded</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute LOADABLE_DOMAIN__LOADED = eINSTANCE.getLoadableDomain_Loaded();
 
     }
 

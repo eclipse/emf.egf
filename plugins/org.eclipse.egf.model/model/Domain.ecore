@@ -39,7 +39,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//DomainGenPackage" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EMFDomain" eSuperTypes="#//Domain">
+  <eClassifiers xsi:type="ecore:EClass" name="EMFDomain" eSuperTypes="#//LoadableDomain">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ValidURI"/>
     </eAnnotations>
@@ -49,10 +49,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//Domain"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Domain"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FilesystemDomain" eSuperTypes="#//Domain">
+  <eClassifiers xsi:type="ecore:EClass" name="FilesystemDomain" eSuperTypes="#//LoadableDomain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="WorkspaceDomain" eSuperTypes="#//Domain">
+  <eClassifiers xsi:type="ecore:EClass" name="WorkspaceDomain" eSuperTypes="#//LoadableDomain">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadableDomain" abstract="true" eSuperTypes="#//Domain">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loaded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        transient="true"/>
   </eClassifiers>
 </ecore:EPackage>

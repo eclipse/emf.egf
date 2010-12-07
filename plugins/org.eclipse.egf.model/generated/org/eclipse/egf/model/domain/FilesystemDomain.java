@@ -28,7 +28,7 @@ package org.eclipse.egf.model.domain;
  * @model
  * @generated
  */
-public interface FilesystemDomain extends Domain {
+public interface FilesystemDomain extends LoadableDomain {
     /**
      * Returns the value of the '<em><b>Path</b></em>' attribute.
      * <!-- begin-user-doc -->

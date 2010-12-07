@@ -12,47 +12,47 @@
  */
 package org.eclipse.egf.model.domain.impl;
 
+import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.LoadableDomain;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>EMF Domain</b></em>'.
+ * An implementation of the model object '<em><b>Loadable Domain</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.domain.impl.EMFDomainImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.LoadableDomainImpl#isLoaded <em>Loaded</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
-
+public abstract class LoadableDomainImpl extends DomainImpl implements LoadableDomain {
     /**
-     * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
+     * The default value of the '{@link #isLoaded() <em>Loaded</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUri()
+     * @see #isLoaded()
      * @generated
      * @ordered
      */
-    protected static final URI URI_EDEFAULT = null;
+    protected static final boolean LOADED_EDEFAULT = false;
 
     /**
-     * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
+     * The flag representing the value of the '{@link #isLoaded() <em>Loaded</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getUri()
+     * @see #isLoaded()
      * @generated
      * @ordered
      */
-    protected URI uri = URI_EDEFAULT;
+    protected static final int LOADED_EFLAG = 1 << 0;
 
     /**
      * <!-- begin-user-doc -->
@@ -60,9 +60,9 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
      * 
      * @generated NOT
      */
-    protected EMFDomainImpl() {
+    protected LoadableDomainImpl() {
         super();
-        setHelperImplementation("org.eclipse.egf.domain.emf.EMFDomainHelper"); //$NON-NLS-1$
+        setLoaded(false);
     }
 
     /**
@@ -72,7 +72,7 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
      */
     @Override
     protected EClass eStaticClass() {
-        return DomainPackage.Literals.EMF_DOMAIN;
+        return DomainPackage.Literals.LOADABLE_DOMAIN;
     }
 
     /**
@@ -80,8 +80,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
      * <!-- end-user-doc -->
      * @generated
      */
-    public URI getUri() {
-        return uri;
+    public boolean isLoaded() {
+        return (flags & LOADED_EFLAG) != 0;
     }
 
     /**
@@ -89,11 +89,21 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setUri(URI newUri) {
-        URI oldUri = uri;
-        uri = newUri;
+    public void setLoaded(boolean newLoaded) {
+        boolean oldLoaded = (flags & LOADED_EFLAG) != 0;
+        if (newLoaded)
+            flags |= LOADED_EFLAG;
+        else
+            flags &= ~LOADED_EFLAG;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.EMF_DOMAIN__URI, oldUri, uri));
+            eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.LOADABLE_DOMAIN__LOADED, oldLoaded, newLoaded));
+    }
+
+    @Override
+    public EList<Object> getContent() {
+        if (!isLoaded())
+            throw new IllegalStateException(EGFModelPlugin.INSTANCE.getString("_DomainLoad_error"));
+        return super.getContent();
     }
 
     /**
@@ -104,8 +114,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            return getUri();
+        case DomainPackage.LOADABLE_DOMAIN__LOADED:
+            return isLoaded();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -118,8 +128,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            setUri((URI) newValue);
+        case DomainPackage.LOADABLE_DOMAIN__LOADED:
+            setLoaded((Boolean) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -133,8 +143,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            setUri(URI_EDEFAULT);
+        case DomainPackage.LOADABLE_DOMAIN__LOADED:
+            setLoaded(LOADED_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
@@ -148,8 +158,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+        case DomainPackage.LOADABLE_DOMAIN__LOADED:
+            return ((flags & LOADED_EFLAG) != 0) != LOADED_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -165,10 +175,10 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
             return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (uri: "); //$NON-NLS-1$
-        result.append(uri);
+        result.append(" (loaded: "); //$NON-NLS-1$
+        result.append((flags & LOADED_EFLAG) != 0);
         result.append(')');
         return result.toString();
     }
 
-} // EMFDomainImpl
+} // LoadableDomainImpl

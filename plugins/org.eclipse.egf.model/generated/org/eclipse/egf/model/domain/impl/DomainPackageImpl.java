@@ -19,6 +19,7 @@ import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
+import org.eclipse.egf.model.domain.LoadableDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.domain.TypeDomainGenPackages;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
@@ -102,6 +103,13 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     private EClass workspaceDomainEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass loadableDomainEClass = null;
+
+    /**
      * Creates an instance of the model <b>Package</b>, registered with
      * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
      * package
@@ -164,7 +172,6 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
 
         // Register package validator
         EValidator.Registry.INSTANCE.put(theDomainPackage, new EValidator.Descriptor() {
-
             public EValidator getEValidator() {
                 return DomainValidator.INSTANCE;
             }
@@ -345,6 +352,24 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getLoadableDomain() {
+        return loadableDomainEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getLoadableDomain_Loaded() {
+        return (EAttribute) loadableDomainEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public DomainFactory getDomainFactory() {
         return (DomainFactory) getEFactoryInstance();
     }
@@ -394,6 +419,9 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
 
         workspaceDomainEClass = createEClass(WORKSPACE_DOMAIN);
         createEAttribute(workspaceDomainEClass, WORKSPACE_DOMAIN__PATH);
+
+        loadableDomainEClass = createEClass(LOADABLE_DOMAIN);
+        createEAttribute(loadableDomainEClass, LOADABLE_DOMAIN__LOADED);
     }
 
     /**
@@ -435,10 +463,11 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
         domainEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         domainGenPackageEClass.getESuperTypes().add(this.getDomain());
         typeDomainGenPackagesEClass.getESuperTypes().add(theTypesPackage.getType());
-        emfDomainEClass.getESuperTypes().add(this.getDomain());
+        emfDomainEClass.getESuperTypes().add(this.getLoadableDomain());
         typeDomainEClass.getESuperTypes().add(theTypesPackage.getTypeObject());
-        filesystemDomainEClass.getESuperTypes().add(this.getDomain());
-        workspaceDomainEClass.getESuperTypes().add(this.getDomain());
+        filesystemDomainEClass.getESuperTypes().add(this.getLoadableDomain());
+        workspaceDomainEClass.getESuperTypes().add(this.getLoadableDomain());
+        loadableDomainEClass.getESuperTypes().add(this.getDomain());
 
         // Initialize classes and features; add operations and parameters
         initEClass(domainViewpointEClass, DomainViewpoint.class, "DomainViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -476,6 +505,9 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
         initEClass(workspaceDomainEClass, WorkspaceDomain.class, "WorkspaceDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEAttribute(getWorkspaceDomain_Path(), ecorePackage.getEString(), "path", null, 1, 1, WorkspaceDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+        initEClass(loadableDomainEClass, LoadableDomain.class, "LoadableDomain", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getLoadableDomain_Loaded(), ecorePackage.getEBoolean(), "loaded", null, 0, 1, LoadableDomain.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
         // Create resource
         createResource(eNS_URI);
 
@@ -492,14 +524,11 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(domainGenPackageEClass, source, new String[] {
-                "constraints", "ValidGenPackage" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(domainGenPackageEClass, source, new String[] { "constraints", "ValidGenPackage" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(typeDomainGenPackagesEClass, source, new String[] {
-                "constraints", "ValidDomainGenPackages" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(typeDomainGenPackagesEClass, source, new String[] { "constraints", "ValidDomainGenPackages" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(emfDomainEClass, source, new String[] {
-                "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(emfDomainEClass, source, new String[] { "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
         });
     }
 

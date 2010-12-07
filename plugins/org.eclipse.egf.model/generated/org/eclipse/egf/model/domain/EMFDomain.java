@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.URI;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidURI'"
  * @generated
  */
-public interface EMFDomain extends Domain {
+public interface EMFDomain extends LoadableDomain {
     /**
      * Returns the value of the '<em><b>Uri</b></em>' attribute.
      * <!-- begin-user-doc -->

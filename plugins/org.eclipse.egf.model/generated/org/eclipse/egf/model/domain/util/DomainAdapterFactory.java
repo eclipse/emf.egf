@@ -12,6 +12,7 @@ O * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  */
 package org.eclipse.egf.model.domain.util;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -90,7 +91,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     protected DomainSwitch<Adapter> modelSwitch = new DomainSwitch<Adapter>() {
-
         @Override
         public Adapter caseDomainViewpoint(DomainViewpoint object) {
             return createDomainViewpointAdapter();
@@ -129,6 +129,11 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
         @Override
         public Adapter caseWorkspaceDomain(WorkspaceDomain object) {
             return createWorkspaceDomainAdapter();
+        }
+
+        @Override
+        public Adapter caseLoadableDomain(LoadableDomain object) {
+            return createLoadableDomainAdapter();
         }
 
         @Override
@@ -305,6 +310,20 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createWorkspaceDomainAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.LoadableDomain <em>Loadable Domain</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.domain.LoadableDomain
+     * @generated
+     */
+    public Adapter createLoadableDomainAdapter() {
         return null;
     }
 

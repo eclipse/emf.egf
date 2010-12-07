@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.domain.impl;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -71,22 +72,22 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case DomainPackage.DOMAIN_VIEWPOINT:
-                return createDomainViewpoint();
-            case DomainPackage.DOMAIN_GEN_PACKAGE:
-                return createDomainGenPackage();
-            case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
-                return createTypeDomainGenPackages();
-            case DomainPackage.EMF_DOMAIN:
-                return createEMFDomain();
-            case DomainPackage.TYPE_DOMAIN:
-                return createTypeDomain();
-            case DomainPackage.FILESYSTEM_DOMAIN:
-                return createFilesystemDomain();
-            case DomainPackage.WORKSPACE_DOMAIN:
-                return createWorkspaceDomain();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case DomainPackage.DOMAIN_VIEWPOINT:
+            return createDomainViewpoint();
+        case DomainPackage.DOMAIN_GEN_PACKAGE:
+            return createDomainGenPackage();
+        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
+            return createTypeDomainGenPackages();
+        case DomainPackage.EMF_DOMAIN:
+            return createEMFDomain();
+        case DomainPackage.TYPE_DOMAIN:
+            return createTypeDomain();
+        case DomainPackage.FILESYSTEM_DOMAIN:
+            return createFilesystemDomain();
+        case DomainPackage.WORKSPACE_DOMAIN:
+            return createWorkspaceDomain();
+        default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 

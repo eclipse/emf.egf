@@ -138,10 +138,10 @@ public abstract class DomainImpl extends NamedModelElementImpl implements Domain
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DomainPackage.DOMAIN__CONTENT:
-                return getContent();
-            case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
-                return getHelperImplementation();
+        case DomainPackage.DOMAIN__CONTENT:
+            return getContent();
+        case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
+            return getHelperImplementation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -155,13 +155,13 @@ public abstract class DomainImpl extends NamedModelElementImpl implements Domain
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DomainPackage.DOMAIN__CONTENT:
-                getContent().clear();
-                getContent().addAll((Collection<? extends Object>) newValue);
-                return;
-            case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
-                setHelperImplementation((String) newValue);
-                return;
+        case DomainPackage.DOMAIN__CONTENT:
+            getContent().clear();
+            getContent().addAll((Collection<? extends Object>) newValue);
+            return;
+        case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
+            setHelperImplementation((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -174,12 +174,12 @@ public abstract class DomainImpl extends NamedModelElementImpl implements Domain
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DomainPackage.DOMAIN__CONTENT:
-                getContent().clear();
-                return;
-            case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
-                setHelperImplementation(HELPER_IMPLEMENTATION_EDEFAULT);
-                return;
+        case DomainPackage.DOMAIN__CONTENT:
+            getContent().clear();
+            return;
+        case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
+            setHelperImplementation(HELPER_IMPLEMENTATION_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -192,10 +192,10 @@ public abstract class DomainImpl extends NamedModelElementImpl implements Domain
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DomainPackage.DOMAIN__CONTENT:
-                return content != null && !content.isEmpty();
-            case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
-                return HELPER_IMPLEMENTATION_EDEFAULT == null ? helperImplementation != null : !HELPER_IMPLEMENTATION_EDEFAULT.equals(helperImplementation);
+        case DomainPackage.DOMAIN__CONTENT:
+            return content != null && !content.isEmpty();
+        case DomainPackage.DOMAIN__HELPER_IMPLEMENTATION:
+            return HELPER_IMPLEMENTATION_EDEFAULT == null ? helperImplementation != null : !HELPER_IMPLEMENTATION_EDEFAULT.equals(helperImplementation);
         }
         return super.eIsSet(featureID);
     }

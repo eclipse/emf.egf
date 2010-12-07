@@ -43,21 +43,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.domain.TypeDomain} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomain} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class TypeDomainItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class TypeDomainItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public TypeDomainItemProvider(AdapterFactory adapterFactory) {
@@ -68,7 +64,6 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -113,7 +108,6 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
      * This returns TypeDomain.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -143,13 +137,10 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to
-     * update any cached
-     * children and by creating a viewer notification, which it passes to
-     * {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to update any cached
+     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -157,21 +148,19 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
         updateChildren(notification);
 
         switch (notification.getFeatureID(TypeDomain.class)) {
-            case DomainPackage.TYPE_DOMAIN__DOMAIN:
-            case DomainPackage.TYPE_DOMAIN__VALUE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case DomainPackage.TYPE_DOMAIN__DOMAIN:
+        case DomainPackage.TYPE_DOMAIN__VALUE:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
-     * describing the children
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -183,7 +172,6 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

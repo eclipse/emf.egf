@@ -50,5 +50,8 @@
     <genClasses ecoreClass="Domain.ecore#//WorkspaceDomain">
       <genFeatures createChild="false" propertyCategory="Info" ecoreFeature="ecore:EAttribute Domain.ecore#//WorkspaceDomain/path"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Domain.ecore#//LoadableDomain">
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute Domain.ecore#//LoadableDomain/loaded"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
