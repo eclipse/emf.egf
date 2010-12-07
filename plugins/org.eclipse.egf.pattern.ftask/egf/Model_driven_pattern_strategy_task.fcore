@@ -16,7 +16,7 @@
     </contracts>
     <contracts xmi:id="_zJXimcAXOEd-ra8cys1-yIrg" name="pattern.modeldriven.visitor">
       <type xmi:type="pattern:TypePatternDomainVisitor" xmi:id="_zQvrcMQXsPEd-3-vQYulrkBQ"
-          value="org.eclipse.egf.pattern.strategy.modeldriven.EmfModelVisitor"/>
+          value="org.eclipse.egf.pattern.strategy.modeldriven.DefaultDomainVisitor"/>
     </contracts>
     <contracts xmi:id="_nz1HkSCaEd-Sse0r9LJWbA" name="pattern.ids" mandatory="true">
       <type xmi:type="pattern:TypePatternList" xmi:id="_pNtroCCaEd-Sse0r9LJWbA"/>
