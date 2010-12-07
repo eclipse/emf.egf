@@ -28,6 +28,7 @@ public class Messages extends NLS {
     public static String Load_EMFDomain_error1;
     public static String Load_Domain_error1;
     public static String Load_Domain_error2;
+    public static String Load_FilesystemDomain_error1;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.domain.Messages"; //$NON-NLS-1$
 
