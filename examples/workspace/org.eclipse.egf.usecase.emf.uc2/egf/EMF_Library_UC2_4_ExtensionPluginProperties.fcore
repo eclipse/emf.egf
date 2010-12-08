@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Wei_wPmAEd-zmoGbvPxJpg"
+    description="The factory component the edit/editor plugin.properties and generates the model, edit, editor API"
+    name="EMF_Library_UC2_4_ExtensionPluginProperties">
+  <viewpointContainer xmi:id="_hsOZIPmAEd-zmoGbvPxJpg">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_ismRAPmAEd-zmoGbvPxJpg">
+      <domains xmi:type="domain:EMFDomain" xmi:id="_ismRAfmAEd-zmoGbvPxJpg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.usecase.emf.uc1/model/extlibrary.genmodel"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_mj9kIPmAEd-zmoGbvPxJpg">
+      <libraries xmi:id="_X194IPmgEd-ZwLLHlMEVVQ" name="org.eclipse.emf.examples.library.egf.edit.pluginproperties">
+        <elements xmi:id="_azXdYPmgEd-ZwLLHlMEVVQ" description="This pattern generates the contents of the Edit plugin.properties file.&#xD;&#xA;&#xD;&#xA;It overloads the Edit &quot;PluginProperties&quot; pattern.&#xD;&#xA;It introduces a new pattern method &quot;doGenerateAppendPart&quot; integrated at the end of ths pattern orchestration.&#xD;&#xA;As a consequence, its contents is added at the end of the standard plugin.properties file contents."
+            name="EditPluginPropertiesExtension-AppendSolution" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pi39wDG0Ed-kc8dEZsdm2w"
+            headerMethod="#_azXdYvmgEd-ZwLLHlMEVVQ" conditionMethod="#_azXdZPmgEd-ZwLLHlMEVVQ"
+            initMethod="#_azXdY_mgEd-ZwLLHlMEVVQ" footerMethod="#_azXdZvmgEd-ZwLLHlMEVVQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_azXdYfmgEd-ZwLLHlMEVVQ"
+              name="JET"/>
+          <methods xmi:id="_azXdYvmgEd-ZwLLHlMEVVQ" name="header" patternFilePath="templates/pattern._azXdYPmgEd-ZwLLHlMEVVQ/method._azXdYvmgEd-ZwLLHlMEVVQ.pt"/>
+          <methods xmi:id="_azXdY_mgEd-ZwLLHlMEVVQ" name="init" patternFilePath="templates/pattern._azXdYPmgEd-ZwLLHlMEVVQ/method._azXdY_mgEd-ZwLLHlMEVVQ.pt"/>
+          <methods xmi:id="_azXdZPmgEd-ZwLLHlMEVVQ" name="preCondition" patternFilePath="templates/pattern._azXdYPmgEd-ZwLLHlMEVVQ/method._azXdZPmgEd-ZwLLHlMEVVQ.pt"/>
+          <methods xmi:id="_azXdZfmgEd-ZwLLHlMEVVQ" name="doGenerateAppendPart" patternFilePath="templates/pattern._azXdYPmgEd-ZwLLHlMEVVQ/method._azXdZfmgEd-ZwLLHlMEVVQ.pt"/>
+          <methods xmi:id="_azXdZvmgEd-ZwLLHlMEVVQ" name="footer" patternFilePath="templates/pattern._azXdYPmgEd-ZwLLHlMEVVQ/method._azXdZvmgEd-ZwLLHlMEVVQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_azXdZ_mgEd-ZwLLHlMEVVQ"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_34gnkPmgEd-ZwLLHlMEVVQ"
+              called="#_azXdZfmgEd-ZwLLHlMEVVQ"/>
+        </elements>
+      </libraries>
+      <libraries xmi:id="_m5H70PmAEd-zmoGbvPxJpg" name="org.eclipse.emf.examples.library.egf.editor.pluginproperties">
+        <elements xmi:id="_B80LoPmBEd-zmoGbvPxJpg" description="This pattern generates the contents of the Editor plugin.properties file.&#xD;&#xA;&#xD;&#xA;It overloads the Editor &quot;PluginProperties&quot; pattern.&#xD;&#xA;Contrarily to the Edit PluginProperties pattern, this one does not introduce a new method.&#xD;&#xA;The contents of the super-pattern method &quot;doGenerate&quot; is copied in the method &quot;doGenerate&quot; of this pattern.&#xD;&#xA;By polymorphism, this new contents is integrated during the generation.&#xD;&#xA;&#xD;&#xA;Pro: ability to accurately modify the contents&#xD;&#xA;Con: maintenance"
+            name="EditorPluginPropertiesExtension-RedefinitionSolution" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PljeUDG0Ed-kc8dEZsdm2w"
+            headerMethod="#_B80LovmBEd-zmoGbvPxJpg" conditionMethod="#_B80LpPmBEd-zmoGbvPxJpg"
+            initMethod="#_B80Lo_mBEd-zmoGbvPxJpg" footerMethod="#_B80LpvmBEd-zmoGbvPxJpg">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_B80LofmBEd-zmoGbvPxJpg"
+              name="JET"/>
+          <methods xmi:id="_B80LovmBEd-zmoGbvPxJpg" name="header" patternFilePath="templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._B80LovmBEd-zmoGbvPxJpg.pt"/>
+          <methods xmi:id="_B80Lo_mBEd-zmoGbvPxJpg" name="init" patternFilePath="templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._B80Lo_mBEd-zmoGbvPxJpg.pt"/>
+          <methods xmi:id="_B80LpPmBEd-zmoGbvPxJpg" name="preCondition" patternFilePath="templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._B80LpPmBEd-zmoGbvPxJpg.pt"/>
+          <methods xmi:id="_B80LpvmBEd-zmoGbvPxJpg" name="footer" patternFilePath="templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._B80LpvmBEd-zmoGbvPxJpg.pt"/>
+          <methods xmi:id="_2c5EUPmDEd-zmoGbvPxJpg" name="doGenerate" patternFilePath="templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._2c5EUPmDEd-zmoGbvPxJpg.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_B80Lp_mBEd-zmoGbvPxJpg"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Ij9pUPmCEd-zmoGbvPxJpg">
+    <invocations xmi:id="_Ij9pUfmCEd-zmoGbvPxJpg" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="_Ij9pUvmCEd-zmoGbvPxJpg">
+        <invocationContracts xmi:id="_Ij9pU_mCEd-zmoGbvPxJpg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomain" xmi:id="_Ij9pVPmCEd-zmoGbvPxJpg" domain="#_ismRAfmAEd-zmoGbvPxJpg"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_Ij9pWPmCEd-zmoGbvPxJpg" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="_Ij9pWfmCEd-zmoGbvPxJpg">
+        <invocationContracts xmi:id="_Ij9pWvmCEd-zmoGbvPxJpg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomain" xmi:id="_Ij9pW_mCEd-zmoGbvPxJpg" domain="#_ismRAfmAEd-zmoGbvPxJpg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_63PpkPmgEd-ZwLLHlMEVVQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_UCnhEFHVEd-dr9AWwNwIMQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_8JNAsPmgEd-ZwLLHlMEVVQ">
+            <substitutions xmi:id="_8vWasPmgEd-ZwLLHlMEVVQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pi39wDG0Ed-kc8dEZsdm2w"
+                replacement="#_azXdYPmgEd-ZwLLHlMEVVQ"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_Ij9pXPmCEd-zmoGbvPxJpg" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PkqGcDG0Ed-kc8dEZsdm2w">
+      <invocationContractContainer xmi:id="_Ij9pXfmCEd-zmoGbvPxJpg">
+        <invocationContracts xmi:id="_Ij9pXvmCEd-zmoGbvPxJpg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ezG0Ed-kc8dEZsdm2w">
+          <type xmi:type="domain:TypeDomain" xmi:id="_Ij9pX_mCEd-zmoGbvPxJpg" domain="#_ismRAfmAEd-zmoGbvPxJpg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_QGuxAfmfEd-ZwLLHlMEVVQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Y3EukFHVEd-dr9AWwNwIMQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_Sy1K4PmfEd-ZwLLHlMEVVQ">
+            <substitutions xmi:id="_TVGxgPmfEd-ZwLLHlMEVVQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PljeUDG0Ed-kc8dEZsdm2w"
+                replacement="#_B80LoPmBEd-zmoGbvPxJpg"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

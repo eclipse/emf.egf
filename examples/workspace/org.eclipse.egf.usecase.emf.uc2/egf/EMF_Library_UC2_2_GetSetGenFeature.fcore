@@ -3,10 +3,11 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_zpFW8HOfEd-d5cqrgbkp6A"
-    name="EMF_Library_UC1_2">
+    name="EMF_Library_UC2_2_GetSetGenFeature">
   <viewpointContainer xmi:id="_04DrgHOfEd-d5cqrgbkp6A">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_04DrgXOfEd-d5cqrgbkp6A">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_04DrgnOfEd-d5cqrgbkp6A" uri="platform:/resource/org.eclipse.emf.examples.library/model/extlibrary.genmodel"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_04DrgnOfEd-d5cqrgbkp6A" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.usecase.emf.uc1/model/extlibrary.genmodel"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_BnCDEHOhEd-d5cqrgbkp6A">
       <libraries xmi:id="_fibf0HOhEd-d5cqrgbkp6A" name="org.eclipse.emf.examples.library.egf.model.call.Class">

@@ -1,12 +1,5 @@
-package org.eclipse.emf.examples.library.egf.model.call.Class;
+package org.eclipse.emf.examples.library.egf.model.operation;
 
-import org.eclipse.egf.emf.pattern.base.*;
-import org.eclipse.emf.codegen.ecore.genmodel.*;
-import org.eclipse.emf.codegen.ecore.genmodel.impl.*;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.*;
-import org.eclipse.emf.codegen.util.*;
-import org.eclipse.emf.ecore.util.*;
-import org.eclipse.emf.common.util.*;
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
 import org.eclipse.emf.ecore.*;
@@ -14,91 +7,25 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class Library_Stock_Class_getGenFeature_override extends
-		org.eclipse.egf.emf.pattern.model.call.Class.ClassgetGenFeatureoverride {
+public class FullNameOperation
+		extends
+		org.eclipse.egf.emf.pattern.model.call.Class.ClassimplementedGenOperationTODOoverride {
 	protected static String nl;
 
-	public static synchronized Library_Stock_Class_getGenFeature_override create(
-			String lineSeparator) {
+	public static synchronized FullNameOperation create(String lineSeparator) {
 		nl = lineSeparator;
-		Library_Stock_Class_getGenFeature_override result = new Library_Stock_Class_getGenFeature_override();
+		FullNameOperation result = new FullNameOperation();
 		nl = null;
 		return result;
 	}
 
 	public final String NL = nl == null ? (System.getProperties()
 			.getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "    /**" + NL
-			+ "     * <!-- begin-user-doc -->" + NL
-			+ "     * <!-- end-user-doc -->" + NL + "     * @generated" + NL
-			+ "     */" + NL + "    public ";
-	protected final String TEXT_2 = " ";
-	protected final String TEXT_3 = "_";
-	protected final String TEXT_4 = "() "
-			+ NL
-			+ "    {"
-			+ NL
-			+ "        if (stock == null) {"
-			+ NL
-			+ "            // create a custom list implementation that synchronizes its book"
-			+ NL + "            //    content with the \"books\" subset" + NL
-			+ "            stock = new ";
-	protected final String TEXT_5 = "<Item>(Item.class, this, EXTLibraryPackage.LIBRARY__STOCK) {"
-			+ NL
-			+ "                private static final long serialVersionUID = 1L;"
-			+ NL
-			+ "    "
-			+ NL
-			+ "                @Override"
-			+ NL
-			+ "                protected void didAdd(int index, Item newObject) {"
-			+ NL
-			+ "                    if ((newObject instanceof Book) && !getBooks().contains(newObject)) {"
-			+ NL
-			+ "                        // these lists are unordered, so index doesn't matter"
-			+ NL
-			+ "                        getBooks().add((Book)newObject);"
-			+ NL
-			+ "                    }"
-			+ NL
-			+ "                }"
-			+ NL
-			+ "    "
-			+ NL
-			+ "                @Override"
-			+ NL
-			+ "                protected void didRemove(int index, Item oldObject) {"
-			+ NL
-			+ "                    if ((oldObject instanceof Book) && getBooks().contains(oldObject)) {"
-			+ NL
-			+ "                        // these lists are unordered, so index doesn't matter"
-			+ NL
-			+ "                        getBooks().remove(oldObject);"
-			+ NL
-			+ "                    }"
-			+ NL
-			+ "                }"
-			+ NL
-			+ "    "
-			+ NL
-			+ "                @Override"
-			+ NL
-			+ "                protected void didSet(int index, Item newObject, Item oldObject) {"
-			+ NL
-			+ "                    didRemove(index, oldObject);"
-			+ NL
-			+ "                    didAdd(index, newObject);"
-			+ NL
-			+ "                }"
-			+ NL
-			+ "            };"
-			+ NL
-			+ "        }"
-			+ NL + "        return stock;" + NL + "    }";
-	protected final String TEXT_6 = NL;
-	protected final String TEXT_7 = NL;
+	protected final String TEXT_1 = "\t\treturn lastName + \" \" + firstName; ";
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
-	public Library_Stock_Class_getGenFeature_override() {
+	public FullNameOperation() {
 		//Here is the constructor
 		StringBuffer stringBuffer = new StringBuffer();
 
@@ -113,7 +40,7 @@ public class Library_Stock_Class_getGenFeature_override extends
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
 
-		List<Object> genFeatureList = null;
+		List<Object> genOperationList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> genClassList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -136,7 +63,7 @@ public class Library_Stock_Class_getGenFeature_override extends
 		List<Object> positiveOffsetCorrectionList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-		for (Object genFeatureParameter : genFeatureList) {
+		for (Object genOperationParameter : genOperationList) {
 			for (Object genClassParameter : genClassList) {
 				for (Object genPackageParameter : genPackageList) {
 					for (Object genModelParameter : genModelList) {
@@ -148,7 +75,7 @@ public class Library_Stock_Class_getGenFeature_override extends
 											for (Object negativeOffsetCorrectionParameter : negativeOffsetCorrectionList) {
 												for (Object positiveOffsetCorrectionParameter : positiveOffsetCorrectionList) {
 
-													this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+													this.genOperation = (org.eclipse.emf.codegen.ecore.genmodel.GenOperation) genOperationParameter;
 													this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
 													this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
 													this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
@@ -180,8 +107,8 @@ public class Library_Stock_Class_getGenFeature_override extends
 			ctx.clearBuffer();
 		}
 
-		stringBuffer.append(TEXT_6);
-		stringBuffer.append(TEXT_7);
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
 		return stringBuffer.toString();
 	}
 
@@ -199,7 +126,7 @@ public class Library_Stock_Class_getGenFeature_override extends
 									ictx.getExecutionCurrentIndex()));
 			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
-			parameterValues.put("genFeature", this.genFeature);
+			parameterValues.put("genOperation", this.genOperation);
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
@@ -224,7 +151,7 @@ public class Library_Stock_Class_getGenFeature_override extends
 
 	public Map<String, Object> getParameters() {
 		final Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("genFeature", this.genFeature);
+		parameters.put("genOperation", this.genOperation);
 		parameters.put("genClass", this.genClass);
 		parameters.put("genPackage", this.genPackage);
 		parameters.put("genModel", this.genModel);
@@ -244,25 +171,9 @@ public class Library_Stock_Class_getGenFeature_override extends
 			final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
-		stringBuffer.append(genFeature.getImportedType(genClass));
-		stringBuffer.append(TEXT_2);
-		stringBuffer.append(genFeature.getGetAccessor());
-		if (genClass.hasCollidingGetAccessorOperation(genFeature)) {
-			stringBuffer.append(TEXT_3);
-		}
-		stringBuffer.append(TEXT_4);
-		stringBuffer
-				.append(genModel
-						.getImportedName("org.eclipse.emf.ecore.util.EObjectContainmentEList"));
-		stringBuffer.append(TEXT_5);
 	}
 
 	public boolean preCondition() throws Exception {
-		if ("Library"
-				.equals(genFeature.getGenClass().getEcoreClass().getName())
-				&& "stock".equals(genFeature.getName())) {
-			return true;
-		}
-		return false;
+		return "getFullName".equals(genOperation.getName());
 	}
 }
