@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_gWD4sPjWEd-zmoGbvPxJpg" description="This factory component is the launcher of EMF_Library_UC3_2_CustomizedLibraryGeneration"
+      name="EMF_Library_UC3_2_CustomizedLibraryGeneration_Launcher">
+    <viewpointContainer xmi:id="_jqQNUPjWEd-zmoGbvPxJpg">
+      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_jqQNUfjWEd-zmoGbvPxJpg">
+        <domains xmi:type="domain:EMFDomain" xmi:id="_jqQNUvjWEd-zmoGbvPxJpg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+            uri="platform:/resource/org.eclipse.egf.usecase.emf.uc1/model/extlibrary.genmodel"/>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_kUk8sPjWEd-zmoGbvPxJpg">
+      <invocations xmi:id="_m6bkoPjWEd-zmoGbvPxJpg" invokedActivity="#_XE99QfjVEd-zmoGbvPxJpg">
+        <invocationContractContainer xmi:id="_m6bkofjWEd-zmoGbvPxJpg">
+          <invocationContracts xmi:id="_m6bkovjWEd-zmoGbvPxJpg" invokedContract="#_8OJ2YfjVEd-zmoGbvPxJpg">
+            <type xmi:type="domain:TypeDomain" xmi:id="_oYTQ0PjWEd-zmoGbvPxJpg" domain="#_jqQNUvjWEd-zmoGbvPxJpg"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_XE99QfjVEd-zmoGbvPxJpg" description="This factory component redefines the EMF generation specialized for Library"
+      name="EMF_Library_UC3_2_CustomizedLibraryGeneration">
+    <contractContainer xmi:id="_8OJ2YPjVEd-zmoGbvPxJpg">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_8OJ2YfjVEd-zmoGbvPxJpg"
+          name="domain" mandatory="true" invocationContracts="#_TZtXAvjWEd-zmoGbvPxJpg">
+        <type xmi:type="domain:TypeDomain" xmi:id="_8OJ2YvjVEd-zmoGbvPxJpg"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_8OJ2Y_jVEd-zmoGbvPxJpg"
+          name="pattern.substitutions">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_8OJ2ZPjVEd-zmoGbvPxJpg"/>
+      </contracts>
+    </contractContainer>
+    <viewpointContainer xmi:id="___jEYPjVEd-zmoGbvPxJpg">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_OkzdkPjWEd-zmoGbvPxJpg">
+        <libraries xmi:id="_1cPSIPjfEd-zmoGbvPxJpg" name="org.eclipse.emf.examples.library.egf.model.operation.customization.uc3">
+          <elements xmi:id="_1cPSIfjfEd-zmoGbvPxJpg" description="This pattern generates the method body for the &quot;getFullName&quot; operation.&#xD;&#xA;&#xD;&#xA;It overloads the &quot;Class.implementedGenOperation.TODO.override&quot; pattern.&#xD;&#xA;It is applied when the pattern precondition is satisfied, i.e. the operation to be implemented equals &quot;getFullName&quot;.&#xD;&#xA;By polymorphism, the super-method &quot;doGenerate&quot; is implemented in this pattern and taken into account in the super-pattern orchestration."
+              name="FullNameOperation-UC3" superPattern="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0t7DoGJ-Ed-FqczH3ESmRw"
+              headerMethod="#_1cPSI_jfEd-zmoGbvPxJpg" conditionMethod="#_1cPSJfjfEd-zmoGbvPxJpg"
+              initMethod="#_1cPSJPjfEd-zmoGbvPxJpg" footerMethod="#_1cPSJvjfEd-zmoGbvPxJpg">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_1cPSIvjfEd-zmoGbvPxJpg"
+                name="JET"/>
+            <methods xmi:id="_1cPSI_jfEd-zmoGbvPxJpg" name="header" patternFilePath="templates/pattern._1cPSIfjfEd-zmoGbvPxJpg/method._1cPSI_jfEd-zmoGbvPxJpg.pt"/>
+            <methods xmi:id="_1cPSJPjfEd-zmoGbvPxJpg" name="init" patternFilePath="templates/pattern._1cPSIfjfEd-zmoGbvPxJpg/method._1cPSJPjfEd-zmoGbvPxJpg.pt"/>
+            <methods xmi:id="_1cPSJfjfEd-zmoGbvPxJpg" name="preCondition" patternFilePath="templates/pattern._1cPSIfjfEd-zmoGbvPxJpg/method._1cPSJfjfEd-zmoGbvPxJpg.pt"/>
+            <methods xmi:id="_1cPSJvjfEd-zmoGbvPxJpg" name="footer" patternFilePath="templates/pattern._1cPSIfjfEd-zmoGbvPxJpg/method._1cPSJvjfEd-zmoGbvPxJpg.pt"/>
+            <methods xmi:id="_1cPSJ_jfEd-zmoGbvPxJpg" name="doGenerate" patternFilePath="templates/pattern._1cPSIfjfEd-zmoGbvPxJpg/method._1cPSJ_jfEd-zmoGbvPxJpg.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_1cPSKPjfEd-zmoGbvPxJpg"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_BqY1kPjWEd-zmoGbvPxJpg">
+      <invocations xmi:id="_TZtXAPjWEd-zmoGbvPxJpg" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.emf.uc3/egf/EMF_Library_UC3_1_StandardLibraryGeneration.fcore#_-tlC4PfoEd-N956HW8c6uQ">
+        <invocationContractContainer xmi:id="_TZtXAfjWEd-zmoGbvPxJpg">
+          <invocationContracts xmi:id="_TZtXAvjWEd-zmoGbvPxJpg" factoryComponentContract="#_8OJ2YfjVEd-zmoGbvPxJpg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.emf.uc3/egf/EMF_Library_UC3_1_StandardLibraryGeneration.fcore#_aLKZUfitEd-N956HW8c6uQ"/>
+          <invocationContracts xmi:id="_TZtXA_jWEd-zmoGbvPxJpg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.emf.uc3/egf/EMF_Library_UC3_1_StandardLibraryGeneration.fcore#_aLKZU_itEd-N956HW8c6uQ">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_hPl9MPjgEd-zmoGbvPxJpg">
+              <substitutions xmi:id="_iF1osPjgEd-zmoGbvPxJpg" replacedElement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_3_OperationImplementation.fcore#_2gDsAffhEd-N956HW8c6uQ"
+                  replacement="#_1cPSIfjfEd-zmoGbvPxJpg"/>
+            </type>
+          </invocationContracts>
+          <invocationContracts xmi:id="_V3VqEPllEd-zmoGbvPxJpg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.usecase.emf.uc3/egf/EMF_Library_UC3_1_StandardLibraryGeneration.fcore#_iB9GcPldEd-zmoGbvPxJpg">
+            <type xmi:type="types:TypeString" xmi:id="_e7xfAPllEd-zmoGbvPxJpg" value="This API is a customized library generation"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>

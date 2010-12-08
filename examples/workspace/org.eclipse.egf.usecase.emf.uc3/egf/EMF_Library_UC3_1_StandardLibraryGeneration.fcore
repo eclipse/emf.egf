@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="__9LNAPitEd-N956HW8c6uQ" description="This factory component is the launcher of EMF_Library_UC3_1_StandardLibraryGeneration"
+      name="EMF_Library_UC3_1_StandardLibraryGeneration_Launcher">
+    <viewpointContainer xmi:id="_FiqO0PiuEd-N956HW8c6uQ">
+      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_FiqO0fiuEd-N956HW8c6uQ">
+        <domains xmi:type="domain:EMFDomain" xmi:id="_FiqO0viuEd-N956HW8c6uQ" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+            uri="platform:/resource/org.eclipse.egf.usecase.emf.uc1/model/extlibrary.genmodel"/>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_J011sPiuEd-N956HW8c6uQ">
+      <invocations xmi:id="_PbNoUPiuEd-N956HW8c6uQ" invokedActivity="#_-tlC4PfoEd-N956HW8c6uQ">
+        <invocationContractContainer xmi:id="_PbNoUfiuEd-N956HW8c6uQ">
+          <invocationContracts xmi:id="_PbNoUviuEd-N956HW8c6uQ" invokedContract="#_aLKZUfitEd-N956HW8c6uQ">
+            <type xmi:type="domain:TypeDomain" xmi:id="_Ult-UPiuEd-N956HW8c6uQ" domain="#_FiqO0viuEd-N956HW8c6uQ"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_-tlC4PfoEd-N956HW8c6uQ" description="This factory component defines a new standard EMF generation specialized for Library"
+      name="EMF_Library_UC3_1_StandardLibraryGeneration">
+    <contractContainer xmi:id="_aLKZUPitEd-N956HW8c6uQ">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_aLKZUfitEd-N956HW8c6uQ"
+          name="domain" mandatory="true" invocationContracts="#_t9WU8viuEd-N956HW8c6uQ #_t9WU_PiuEd-N956HW8c6uQ #_t9WVAPiuEd-N956HW8c6uQ">
+        <type xmi:type="domain:TypeDomain" xmi:id="_aLKZUvitEd-N956HW8c6uQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_aLKZU_itEd-N956HW8c6uQ"
+          name="pattern.substitutions" invocationContracts="#_agQRBvjYEd-zmoGbvPxJpg #_S4mUWfmiEd-ZwLLHlMEVVQ #_1CJMhfmiEd-ZwLLHlMEVVQ">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aLKZVPitEd-N956HW8c6uQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_iB9GcPldEd-zmoGbvPxJpg"
+          name="readmeFileContents" invocationContracts="#_2mEStfi4Ed-N956HW8c6uQ #_oCNLNvi5Ed-N956HW8c6uQ #_ob-9Jvi5Ed-N956HW8c6uQ">
+        <type xmi:type="types:TypeString" xmi:id="_wK-2oPldEd-zmoGbvPxJpg" value="This API is a standard library generation"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_a_gK4PiuEd-N956HW8c6uQ">
+      <invocations xmi:id="_agQRAPjYEd-zmoGbvPxJpg" name="Model - Merge of [Integrated patterns] and [Patterns as parameter]"
+          invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+        <invocationContractContainer xmi:id="_agQRAfjYEd-zmoGbvPxJpg">
+          <invocationContracts xmi:id="_agQRAvjYEd-zmoGbvPxJpg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_agQRA_jYEd-zmoGbvPxJpg">
+              <substitutions xmi:id="_uiDycPjYEd-zmoGbvPxJpg" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0lbPAWJ-Ed-FqczH3ESmRw"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_2_GetSetGenFeature.fcore#_2TwikHOhEd-d5cqrgbkp6A"/>
+              <substitutions xmi:id="_uiDycfjYEd-zmoGbvPxJpg" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0qMaRWJ-Ed-FqczH3ESmRw"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_2_GetSetGenFeature.fcore#_6gbXUHOhEd-d5cqrgbkp6A"/>
+              <substitutions xmi:id="_uiDycvjYEd-zmoGbvPxJpg" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0kh3EGJ-Ed-FqczH3ESmRw"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_2_GetSetGenFeature.fcore#_A3OhUHOiEd-d5cqrgbkp6A"/>
+              <substitutions xmi:id="_uiDyc_jYEd-zmoGbvPxJpg" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0kh3EGJ-Ed-FqczH3ESmRw"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_2_GetSetGenFeature.fcore#_0Lo9UXh0Ed-1nLW_IBnxTQ"/>
+              <substitutions xmi:id="_uiDydPjYEd-zmoGbvPxJpg" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0t7DoGJ-Ed-FqczH3ESmRw"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_3_OperationImplementation.fcore#_2gDsAffhEd-N956HW8c6uQ"/>
+            </type>
+          </invocationContracts>
+          <invocationContracts xmi:id="_agQRBvjYEd-zmoGbvPxJpg" factoryComponentContract="#_aLKZU_itEd-N956HW8c6uQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
+          <invocationContracts xmi:id="_agQRB_jYEd-zmoGbvPxJpg" targetInvocationContract="#_UjhUAPiwEd-N956HW8c6uQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_t9WU8PiuEd-N956HW8c6uQ" name="Library Model - API Generation"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_t9WU8fiuEd-N956HW8c6uQ">
+          <invocationContracts xmi:id="_t9WU8viuEd-N956HW8c6uQ" factoryComponentContract="#_aLKZUfitEd-N956HW8c6uQ"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ZTG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_UjhUAPiwEd-N956HW8c6uQ" sourceInvocationContract="#_agQRB_jYEd-zmoGbvPxJpg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_OVsagFHVEd-dr9AWwNwIMQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_2mESsPi4Ed-N956HW8c6uQ" name="Library Model - Creation of readme.txt"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_gYv1wCH9Ed-c_qcjB49Qng">
+        <invocationContractContainer xmi:id="_2mESsfi4Ed-N956HW8c6uQ">
+          <invocationContracts xmi:id="_2mESsvi4Ed-N956HW8c6uQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_JqxnACITEd-c_qcjB49Qng">
+            <type xmi:type="types:TypeString" xmi:id="_-gGKAPi4Ed-N956HW8c6uQ" value="org.eclipse.egf.examples.library"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_2mEStPi4Ed-N956HW8c6uQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_XPODcCITEd-c_qcjB49Qng">
+            <type xmi:type="types:TypeString" xmi:id="_BRG5EPi5Ed-N956HW8c6uQ" value="readme.txt"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_2mEStfi4Ed-N956HW8c6uQ" factoryComponentContract="#_iB9GcPldEd-zmoGbvPxJpg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_0rJLYCISEd-c_qcjB49Qng"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_S4mUUPmiEd-ZwLLHlMEVVQ" name="Edit - Merge of [Integrated patterns] and [Patterns as parameter]"
+          invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+        <invocationContractContainer xmi:id="_S4mUUfmiEd-ZwLLHlMEVVQ">
+          <invocationContracts xmi:id="_S4mUUvmiEd-ZwLLHlMEVVQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_S4mUU_miEd-ZwLLHlMEVVQ">
+              <substitutions xmi:id="_aLmn4PmiEd-ZwLLHlMEVVQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pi39wDG0Ed-kc8dEZsdm2w"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_4_ExtensionPluginProperties.fcore#_azXdYPmgEd-ZwLLHlMEVVQ"/>
+            </type>
+          </invocationContracts>
+          <invocationContracts xmi:id="_S4mUWfmiEd-ZwLLHlMEVVQ" factoryComponentContract="#_aLKZU_itEd-N956HW8c6uQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
+          <invocationContracts xmi:id="_S4mUWvmiEd-ZwLLHlMEVVQ" targetInvocationContract="#_0mHKIPjZEd-zmoGbvPxJpg"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_t9WU-viuEd-N956HW8c6uQ" name="Library Edit - API Generation"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_t9WU-_iuEd-N956HW8c6uQ">
+          <invocationContracts xmi:id="_t9WU_PiuEd-N956HW8c6uQ" factoryComponentContract="#_aLKZUfitEd-N956HW8c6uQ"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8cDG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_0mHKIPjZEd-zmoGbvPxJpg" sourceInvocationContract="#_S4mUWvmiEd-ZwLLHlMEVVQ"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_UCnhEFHVEd-dr9AWwNwIMQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_oCNLMPi5Ed-N956HW8c6uQ" name="Library Edit - Creation of readme.txt"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_gYv1wCH9Ed-c_qcjB49Qng">
+        <invocationContractContainer xmi:id="_oCNLMfi5Ed-N956HW8c6uQ">
+          <invocationContracts xmi:id="_oCNLMvi5Ed-N956HW8c6uQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_JqxnACITEd-c_qcjB49Qng">
+            <type xmi:type="types:TypeString" xmi:id="_oCNLM_i5Ed-N956HW8c6uQ" value="org.eclipse.egf.examples.library.edit"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_oCNLNPi5Ed-N956HW8c6uQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_XPODcCITEd-c_qcjB49Qng">
+            <type xmi:type="types:TypeString" xmi:id="_oCNLNfi5Ed-N956HW8c6uQ" value="readme.txt"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_oCNLNvi5Ed-N956HW8c6uQ" factoryComponentContract="#_iB9GcPldEd-zmoGbvPxJpg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_0rJLYCISEd-c_qcjB49Qng"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_1CJMgPmiEd-ZwLLHlMEVVQ" name="Editor - Merge of [Integrated patterns] and [Patterns as parameter]"
+          invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+        <invocationContractContainer xmi:id="_1CJMgfmiEd-ZwLLHlMEVVQ">
+          <invocationContracts xmi:id="_1CJMgvmiEd-ZwLLHlMEVVQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1CJMg_miEd-ZwLLHlMEVVQ">
+              <substitutions xmi:id="_5oJHQPmiEd-ZwLLHlMEVVQ" replacedElement="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PljeUDG0Ed-kc8dEZsdm2w"
+                  replacement="platform:/plugin/org.eclipse.egf.usecase.emf.uc2/egf/EMF_Library_UC2_4_ExtensionPluginProperties.fcore#_B80LoPmBEd-zmoGbvPxJpg"/>
+            </type>
+          </invocationContracts>
+          <invocationContracts xmi:id="_1CJMhfmiEd-ZwLLHlMEVVQ" factoryComponentContract="#_aLKZU_itEd-N956HW8c6uQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
+          <invocationContracts xmi:id="_1CJMhvmiEd-ZwLLHlMEVVQ" targetInvocationContract="#_NwEe0PmjEd-ZwLLHlMEVVQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_t9WU_viuEd-N956HW8c6uQ" name="Library Editor - API Generation"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PkqGcDG0Ed-kc8dEZsdm2w">
+        <invocationContractContainer xmi:id="_t9WU__iuEd-N956HW8c6uQ">
+          <invocationContracts xmi:id="_t9WVAPiuEd-N956HW8c6uQ" factoryComponentContract="#_aLKZUfitEd-N956HW8c6uQ"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Prg8ezG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_NwEe0PmjEd-ZwLLHlMEVVQ" sourceInvocationContract="#_1CJMhvmiEd-ZwLLHlMEVVQ"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Y3EukFHVEd-dr9AWwNwIMQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_ob-9IPi5Ed-N956HW8c6uQ" name="Library Editor - Creation of readme.txt"
+          invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_gYv1wCH9Ed-c_qcjB49Qng">
+        <invocationContractContainer xmi:id="_ob-9Ifi5Ed-N956HW8c6uQ">
+          <invocationContracts xmi:id="_ob-9Ivi5Ed-N956HW8c6uQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_JqxnACITEd-c_qcjB49Qng">
+            <type xmi:type="types:TypeString" xmi:id="_ob-9I_i5Ed-N956HW8c6uQ" value="org.eclipse.egf.examples.library.editor"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_ob-9JPi5Ed-N956HW8c6uQ" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_XPODcCITEd-c_qcjB49Qng">
+            <type xmi:type="types:TypeString" xmi:id="_ob-9Jfi5Ed-N956HW8c6uQ" value="readme.txt"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_ob-9Jvi5Ed-N956HW8c6uQ" factoryComponentContract="#_iB9GcPldEd-zmoGbvPxJpg"
+              invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_0rJLYCISEd-c_qcjB49Qng"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>

@@ -1,0 +1,1 @@
+return "getFullName".equals(genOperation.getName());
