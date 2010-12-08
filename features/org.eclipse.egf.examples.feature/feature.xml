@@ -80,6 +80,13 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.egf.usecase.emf.uc3"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.egf.usecase.fc.uc1"
          download-size="0"
          install-size="0"
