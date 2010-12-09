@@ -42,7 +42,7 @@ public class AntScriptEngine {
 
     public void executeAntTask(String value, ITaskProductionContext context, SubMonitor monitor) throws Exception {
         // Create a ant project
-        Project p = new Project();
+        AntProject p = new AntProject();
         // Create a default log listeners
         AntTaskBuildLogger consoleLogger = new AntTaskBuildLogger();
         consoleLogger.setErrorPrintStream(System.err);
