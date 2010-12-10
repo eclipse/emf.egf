@@ -10,7 +10,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Domain" abstract="true" eSuperTypes="Fcore.ecore#//NamedModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
-        transient="true"/>
+        transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="helperImplementation" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
