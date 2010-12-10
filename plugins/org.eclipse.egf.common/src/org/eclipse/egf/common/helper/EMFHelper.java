@@ -262,6 +262,9 @@ public class EMFHelper {
         if (eClassifier == null || owner == null) {
             return result;
         }
+        if (eClassifier.isInstance(owner)) {
+            result.add(owner);
+        }
         for (TreeIterator<EObject> j = EcoreUtil.getAllProperContents(owner, false); j.hasNext();) {
             EObject eObject = j.next();
             if (eClassifier.isInstance(eObject)) {
