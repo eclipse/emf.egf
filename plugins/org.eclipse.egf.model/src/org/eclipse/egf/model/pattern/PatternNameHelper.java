@@ -19,25 +19,23 @@ import org.eclipse.egf.model.helper.ValidationHelper;
  */
 public class PatternNameHelper {
 
-    private static final String DEFAULT_PATTERN_NAME = "myPattern"; //$NON-NLS-1$ 
+    public static final String DEFAULT_PATTERN_NAME = "myPattern"; //$NON-NLS-1$ 
 
     private PatternNameHelper() {
         // Prevent instantiation
     }
 
-    public static String getNewPatternName(IPlatformFcore fcore, PatternLibrary library) {
-        if (fcore == null || library == null) {
-            return DEFAULT_PATTERN_NAME;
+    public static void setUniquePatternName(IPlatformFcore fcore, Pattern pattern) {
+        if (fcore == null || pattern == null || pattern.getContainer() == null) {
+            return;
         }
-        // Fake a new pattern to get a unique name
-        Pattern pattern = PatternFactory.eINSTANCE.createPattern();
         for (int i = 0;; i++) {
-            pattern.setName(i == 0 ? DEFAULT_PATTERN_NAME : DEFAULT_PATTERN_NAME + "_" + i); //$NON-NLS-1$
-            if (ValidationHelper.isUniqueNameWithinBundle(fcore, library, pattern)) {
+            if (ValidationHelper.isUniqueNameWithinBundle(fcore, pattern.getContainer(), pattern)) {
                 break;
             }
+            pattern.setName(i == 0 ? DEFAULT_PATTERN_NAME : DEFAULT_PATTERN_NAME + "_" + i); //$NON-NLS-1$
         }
-        return pattern.getName();
+        return;
     }
 
 }

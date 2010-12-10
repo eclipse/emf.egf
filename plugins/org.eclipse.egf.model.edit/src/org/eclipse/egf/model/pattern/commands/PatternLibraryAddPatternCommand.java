@@ -121,12 +121,13 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
 
     @Override
     public void doExecute() {
+        // Add
         super.doExecute();
         // Check and update pattern name if not unique
         PatternLibrary library = (PatternLibrary) owner;
         IPlatformFcore fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
         for (Pattern pattern : _patterns) {
-            pattern.setName(PatternNameHelper.getNewPatternName(fcore, library));
+            PatternNameHelper.setUniquePatternName(fcore, pattern);
         }
         _copy = performCreatePatternTemplates(_resource, _methods);
     }
