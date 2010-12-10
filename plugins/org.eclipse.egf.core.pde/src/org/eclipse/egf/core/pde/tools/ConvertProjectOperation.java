@@ -636,6 +636,16 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         String pluginVersion = bundle.getHeader(Constants.BUNDLE_VERSION);
         String complianceLevel = bundle.getHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT);
 
+        // Strip singleton keyword to avoid redundancy
+        if (pluginId != null && pluginId.indexOf(';') != -1) {
+            pluginId = pluginId.substring(0, pluginId.indexOf(';'));
+        }
+
+        // Avoid empty string
+        if (pluginId != null && pluginId.trim().length() == 0) {
+            pluginId = null;
+        }
+
         boolean missingInfo = (pluginId == null || pluginName == null || pluginVersion == null);
 
         // If no ID exists, create one
@@ -661,9 +671,12 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
             if (symbolic.getId() == null || symbolic.getId().trim().length() == 0) {
                 symbolic.setId(pluginId);
             }
-            if (symbolic.isSingleton() == false) {
-                symbolic.setSingleton(true);
-            }
+            // This will clean the header if multiple singleton exists
+            // If multiple singleton exists like ;singleton:=true;singleton:=true
+            // PDE is broken, typically the Plug-in Dependencies classpath container is missing
+            // and/or the plugin.xml could display a message like 
+            // 'A plug-in manifest must contain at least one extension or extension point'
+            bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, pluginId + ";singleton:=true"); //$NON-NLS-1$
         } else {
             bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, pluginId + ";singleton:=true"); //$NON-NLS-1$
         }
