@@ -165,7 +165,7 @@ public class ModelElementBundleAdapter extends EContentAdapter {
             // asynchronous operation
             try {
                 if (operation != null) {
-                    new ProgressMonitorDialog(_shell).run(false, false, operation);
+                	EGFModelEditorPlugin.getActiveWorkbenchWindow().run(false, false, operation);
                 }
             } catch (InterruptedException ie) {
                 // Nothing to do
