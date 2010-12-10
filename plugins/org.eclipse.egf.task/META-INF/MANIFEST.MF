@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-SymbolicName: org.eclipse.egf.task;singleton:=true
 Bundle-Activator: org.eclipse.egf.task.EGFTaskPlugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
