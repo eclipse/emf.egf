@@ -32,10 +32,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.IWorkbenchWindow;
 
 /**
  * @author Xavier Maysonnave
@@ -45,15 +44,15 @@ public class ModelElementBundleAdapter extends EContentAdapter {
 
     private Resource _resource;
 
-    private Shell _shell;
+    private IWorkbenchWindow _window;
 
     public ModelElementBundleAdapter(Resource resource) {
-        _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
+        _window = EGFModelEditorPlugin.getActiveWorkbenchWindow();
         _resource = resource;
     }
 
     public ModelElementBundleAdapter(Resource resource, IWorkbenchPartSite site) {
-        _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
+        _window = site != null ? site.getWorkbenchWindow() : EGFModelEditorPlugin.getActiveWorkbenchWindow();
         _resource = resource;
     }
 
@@ -162,10 +161,11 @@ public class ModelElementBundleAdapter extends EContentAdapter {
                 };
 
             }
-            // asynchronous operation
+            // synchronous operation, runned in thread UI
             try {
                 if (operation != null) {
-                	EGFModelEditorPlugin.getActiveWorkbenchWindow().run(false, false, operation);
+                    _window.run(false, false, operation);
+                    _window.getWorkbench().getDisplay().readAndDispatch();
                 }
             } catch (InterruptedException ie) {
                 // Nothing to do
