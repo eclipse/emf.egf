@@ -97,23 +97,16 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     createChildMenuManager = new MenuManager(CoreUIMessages.MenuContributor_newChildGroup_label);
                     menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
                 }
-                PatternLibrary library = (PatternLibrary) selection2.getFirstElement();
-                if (library != null) {
-                    IPlatformFcore fcore = null;
-                    if (library.eResource() != null && library.eResource() instanceof IPlatformFcoreProvider) {
-                        fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
-                    }
-                    for (String name : EGFPatternPlugin.getPatternNatures()) {
-                        try {
-                            PatternExtension patternExtension = EGFPatternPlugin.getPatternExtension(name);
-                            CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, PatternNameHelper.getNewPatternName(fcore, library)));
-                            CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor);
-                            createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, name));
-                            createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
-                            createChildMenuManager.add(createChildAction);
-                        } catch (CoreException ce) {
-                            Activator.getDefault().logError(ce);
-                        }
+                for (String name : EGFPatternPlugin.getPatternNatures()) {
+                    try {
+                        PatternExtension patternExtension = EGFPatternPlugin.getPatternExtension(name);
+                        CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, PatternNameHelper.DEFAULT_PATTERN_NAME));
+                        CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor);
+                        createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, name));
+                        createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
+                        createChildMenuManager.add(createChildAction);
+                    } catch (CoreException ce) {
+                        Activator.getDefault().logError(ce);
                     }
                 }
                 // menuManager.insertBefore("edit", createChildAction);
