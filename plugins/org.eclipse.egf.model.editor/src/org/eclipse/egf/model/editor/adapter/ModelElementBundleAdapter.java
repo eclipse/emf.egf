@@ -14,10 +14,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.fcore.ModelElement;
@@ -75,11 +74,8 @@ public class ModelElementBundleAdapter extends EContentAdapter {
             if (resource != _resource || ((ResourceImpl) resource).isLoading()) {
                 return;
             }
-            if (resource instanceof IPlatformFcoreProvider == false) {
-                return;
-            }
-            final IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
-            if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
+            IProject project = EMFHelper.getProject(resource);
+            if (project == null) {
                 return;
             }
             // Check whether or not we have Pattern in this new element
@@ -96,7 +92,7 @@ public class ModelElementBundleAdapter extends EContentAdapter {
                 if (typeClasses.isEmpty() == false) {
 
                     // Do not convert if we already belong to a bundle java project
-                    IJavaProject javaProject = JavaCore.create(fcore.getPlatformBundle().getProject());
+                    IJavaProject javaProject = JavaCore.create(project);
                     if (javaProject != null && javaProject.exists()) {
                         try {
                             javaProject.close();
@@ -106,7 +102,7 @@ public class ModelElementBundleAdapter extends EContentAdapter {
                         return;
                     }
 
-                    operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
+                    operation = new ConvertProjectOperation(project, true, true) {
 
                         @Override
                         public List<String> addDependencies() {
@@ -127,7 +123,7 @@ public class ModelElementBundleAdapter extends EContentAdapter {
 
             } else if (patterns.isEmpty() && tasks.isEmpty() == false) {
 
-                operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
+                operation = new ConvertProjectOperation(project, true, true) {
 
                     @Override
                     public List<String> addDependencies() {
@@ -146,7 +142,7 @@ public class ModelElementBundleAdapter extends EContentAdapter {
 
             } else {
 
-                operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
+                operation = new ConvertProjectOperation(project, true, true) {
 
                     @Override
                     public List<String> addDependencies() {
