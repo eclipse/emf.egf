@@ -525,7 +525,7 @@ public class TemplateProcessor implements IFcoreProcessor {
             else if (entry.getKey() instanceof PatternLibrary) {
                 PatternLibrary library = (PatternLibrary) entry.getKey();
                 for (FeatureChange change : entry.getValue()) {
-                    // Process name update
+                    // Process name
                     if (change.getFeature() == FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME) {
                         updatedLibraries.put(library, change);
                         // Process PatternLibrary Content
@@ -694,8 +694,10 @@ public class TemplateProcessor implements IFcoreProcessor {
 
                     // 3 - Updated Name PatternLibrary
                     for (Map.Entry<PatternLibrary, FeatureChange> entry : updatedLibraries.entrySet()) {
-                        JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getValue().getDataValue()), null,
-                                BaseJavaAssemblyHelper.getPackageName(entry.getKey()), null, true);
+                        for (Pattern pattern : entry.getKey().getElements()) {
+                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getValue().getDataValue()),
+                                    BaseJavaAssemblyHelper.getClassName(pattern), BaseJavaAssemblyHelper.getPackageName(entry.getKey()), BaseJavaAssemblyHelper.getClassName(pattern), true);
+                        }
                     }
 
                     // 4 - Move generated java artifacts if any
