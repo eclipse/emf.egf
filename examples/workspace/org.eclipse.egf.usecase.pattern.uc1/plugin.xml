@@ -46,7 +46,7 @@
       <query
             class="org.eclipse.egf.usecase.pattern.uc1.query.ContentQuery"
             id="org.eclipse.egf.usecase.pattern.uc1.query1"
-            name="ContentQuery">
+            name="UC1.8 Sample query">
       </query>
    </extension>
 </plugin>
