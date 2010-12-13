@@ -15,11 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.commands.PatternLibraryAddPatternCommand;
 import org.eclipse.egf.model.pattern.commands.PatternLibraryRemovePatternCommand;
@@ -70,7 +74,12 @@ public class FactoryComponentSetViewpointContainerCommand extends SetCommand {
             return false;
         }
         FactoryComponent factoryComponent = (FactoryComponent) owner;
-        if (factoryComponent.eResource() == null || EMFHelper.getProject(factoryComponent.eResource()) == null) {
+        Resource resource = factoryComponent.eResource();
+        if (resource == null || EMFHelper.getProject(resource) == null || resource instanceof IPlatformFcoreProvider == false) {
+            return false;
+        }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
+        if (fcore == null) {
             return false;
         }
         // Populate
@@ -104,6 +113,16 @@ public class FactoryComponentSetViewpointContainerCommand extends SetCommand {
 
     @Override
     public void doExecute() {
+        // Check and update pattern name if not unique
+        FactoryComponent factoryComponent = (FactoryComponent) owner;
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) factoryComponent.eResource()).getIPlatformFcore();
+        for (Map.Entry<PatternLibrary, List<Pattern>> entry : _patterns.entrySet()) {
+            List<String> names = ValidationHelper.getPatternNameWithinBundle(fcore, entry.getKey(), null);
+            for (Pattern pattern : entry.getValue()) {
+                PatternNameHelper.setUniquePatternName(fcore, pattern, names);
+                names.add(pattern.getName());
+            }
+        }
         super.doExecute();
         _copy = PatternLibraryAddPatternCommand.performCreatePatternTemplates(_resource, _methods);
     }

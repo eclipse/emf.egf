@@ -17,10 +17,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
+import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.commands.PatternLibraryAddPatternCommand;
 import org.eclipse.egf.model.pattern.commands.PatternLibraryRemovePatternCommand;
@@ -118,6 +122,10 @@ public class FcoreResourceAddCommand extends AddCommand {
         if (_resource == null || EMFHelper.getProject(_resource) == null) {
             return false;
         }
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) _resource).getIPlatformFcore();
+        if (fcore == null) {
+            return false;
+        }
         // Populate
         _patterns = new HashMap<PatternLibrary, List<Pattern>>();
         _methods = new HashMap<PatternMethod, URI[]>();
@@ -150,6 +158,15 @@ public class FcoreResourceAddCommand extends AddCommand {
 
     @Override
     public void doExecute() {
+        // Check and update pattern name if not unique
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) _resource).getIPlatformFcore();
+        for (Map.Entry<PatternLibrary, List<Pattern>> entry : _patterns.entrySet()) {
+            List<String> names = ValidationHelper.getPatternNameWithinBundle(fcore, entry.getKey(), null);
+            for (Pattern pattern : entry.getValue()) {
+                PatternNameHelper.setUniquePatternName(fcore, pattern, names);
+                names.add(pattern.getName());
+            }
+        }
         super.doExecute();
         _copy = PatternLibraryAddPatternCommand.performCreatePatternTemplates(_resource, _methods);
     }

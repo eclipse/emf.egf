@@ -300,7 +300,7 @@ public class PatternValidator extends EObjectValidator {
         if (pattern.getName() == null || pattern.getName().trim().length() == 0 || pattern.eResource() == null || pattern.eResource() instanceof IPlatformFcoreProvider == false) {
             return true;
         }
-        if (ValidationHelper.isUniqueNameWithinBundle(((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore(), pattern.getContainer(), pattern) == false) {
+        if (ValidationHelper.getPatternNameWithinBundle(((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore(), pattern.getContainer(), pattern).contains(pattern.getName())) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
                         new Object[] {

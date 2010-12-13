@@ -34,6 +34,7 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.edit.l10n.EGFModelEditMessages;
+import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -89,10 +90,11 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
             return false;
         }
         PatternLibrary library = (PatternLibrary) owner;
-        if (library.eResource() == null || EMFHelper.getProject(library.eResource()) == null || library.eResource() instanceof IPlatformFcoreProvider == false) {
+        Resource resource = library.eResource();
+        if (resource == null || EMFHelper.getProject(resource) == null || resource instanceof IPlatformFcoreProvider == false) {
             return false;
         }
-        IPlatformFcore fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
         if (fcore == null) {
             return false;
         }
@@ -121,14 +123,16 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
 
     @Override
     public void doExecute() {
-        // Add
-        super.doExecute();
         // Check and update pattern name if not unique
         PatternLibrary library = (PatternLibrary) owner;
         IPlatformFcore fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
+        List<String> names = ValidationHelper.getPatternNameWithinBundle(fcore, library, null);
         for (Pattern pattern : _patterns) {
-            PatternNameHelper.setUniquePatternName(fcore, pattern);
+            PatternNameHelper.setUniquePatternName(fcore, pattern, names);
+            names.add(pattern.getName());
         }
+        // Add
+        super.doExecute();
         _copy = performCreatePatternTemplates(_resource, _methods);
     }
 

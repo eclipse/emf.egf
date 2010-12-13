@@ -50,10 +50,11 @@ public class PatternAddPatternMethodCommand extends AddCommand {
             return false;
         }
         Pattern pattern = (Pattern) owner;
-        if (pattern.eResource() == null || EMFHelper.getProject(pattern.eResource()) == null || pattern.eResource() instanceof IPlatformFcoreProvider == false) {
+        Resource resource = pattern.eResource();
+        if (resource == null || EMFHelper.getProject(resource) == null || resource instanceof IPlatformFcoreProvider == false) {
             return false;
         }
-        IPlatformFcore fcore = ((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore();
+        IPlatformFcore fcore = ((IPlatformFcoreProvider) resource).getIPlatformFcore();
         if (fcore == null) {
             return false;
         }

@@ -10,8 +10,9 @@
  */
 package org.eclipse.egf.model.pattern;
 
+import java.util.List;
+
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.model.helper.ValidationHelper;
 
 /**
  * @author Xavier Maysonnave
@@ -25,12 +26,12 @@ public class PatternNameHelper {
         // Prevent instantiation
     }
 
-    public static void setUniquePatternName(IPlatformFcore fcore, Pattern pattern) {
-        if (fcore == null || pattern == null || pattern.getContainer() == null) {
+    public static void setUniquePatternName(IPlatformFcore fcore, Pattern pattern, List<String> names) {
+        if (fcore == null || pattern == null || names == null) {
             return;
         }
         for (int i = 0;; i++) {
-            if (ValidationHelper.isUniqueNameWithinBundle(fcore, pattern.getContainer(), pattern)) {
+            if (names.contains(pattern.getName()) == false) {
                 break;
             }
             pattern.setName(i == 0 ? DEFAULT_PATTERN_NAME : DEFAULT_PATTERN_NAME + "_" + i); //$NON-NLS-1$

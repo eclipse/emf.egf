@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.model.helper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -28,6 +29,7 @@ import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -45,9 +47,10 @@ public class ValidationHelper {
         // Prevent Instantiation
     }
 
-    public static boolean isUniqueNameWithinBundle(IPlatformFcore fcore, PatternLibrary library, Pattern pattern) {
-        if (fcore == null || pattern == null || library == null || pattern.getName() == null || pattern.getName().trim().length() == 0) {
-            return true;
+    public static List<String> getPatternNameWithinBundle(IPlatformFcore fcore, PatternLibrary library, Pattern pattern) {
+        List<String> names = new UniqueEList<String>();
+        if (fcore == null || library == null) {
+            return names;
         }
         ResourceSet resourceSet = null;
         if (library.eResource() != null) {
@@ -68,26 +71,16 @@ public class ValidationHelper {
         }
         for (IPlatformFcore innerFcore : fcores) {
             Resource resource = resourceSet.getResource(innerFcore.getURI(), true);
-            for (EObject eObject : resource.getContents()) {
-                if (isUniqueNameWithinLibrary(eObject, library, pattern) == false) {
-                    return false;
+            for (EObject root : resource.getContents()) {
+                for (EObject innerEObject : EMFHelper.getAllProperContents(PatternPackage.eINSTANCE.getPattern(), root)) {
+                    Pattern innerPattern = (Pattern) innerEObject;
+                    if (pattern != innerPattern && innerPattern.getContainer().getName().equals(library.getName()) && innerPattern.getName() != null && innerPattern.getName().trim().length() != 0) {
+                        names.add(innerPattern.getName());
+                    }
                 }
             }
         }
-        return true;
-    }
-
-    private static boolean isUniqueNameWithinLibrary(EObject root, PatternLibrary library, Pattern pattern) {
-        for (EObject innerEObject : EMFHelper.getAllProperContents(PatternPackage.eINSTANCE.getPattern(), root)) {
-            Pattern innerPattern = (Pattern) innerEObject;
-            // Library name should be identical
-            if (innerPattern.getContainer().getName() != null && innerPattern.getContainer().getName().equals(library.getName())) {
-                if (innerPattern != pattern && pattern.getName().equals(innerPattern.getName())) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return names;
     }
 
     @SuppressWarnings("unchecked")
