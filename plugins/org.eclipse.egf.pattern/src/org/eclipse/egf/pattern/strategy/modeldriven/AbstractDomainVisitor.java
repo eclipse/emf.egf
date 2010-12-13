@@ -77,7 +77,30 @@ public abstract class AbstractDomainVisitor implements DomainVisitor {
     }
 
     protected List<Pattern> findPatterns(Object model) {
-        String fullName = model.getClass().getName();
+        final Class<?> clazz = model.getClass();
+        final List<Pattern> patterns = findPatternFromClass(clazz);
+        if (patterns != null && !patterns.isEmpty())
+            return patterns;
+        final Class<?> superclass = clazz.getSuperclass();
+        if (superclass == null)
+            return null;
+        return findPatternFromClass(superclass);
+    }
+
+    private List<Pattern> findPatternFromClass(Class<?> clazz) {
+        List<Pattern> result = getPatterns(clazz);
+        if (result == null || result.isEmpty()) {
+            for (Class cls : clazz.getInterfaces()) {
+                result = getPatterns(cls);
+                if (result != null && !result.isEmpty())
+                    return result;
+            }
+        }
+        return null;
+    }
+
+    private List<Pattern> getPatterns(Class<?> clazz) {
+        String fullName = clazz.getName();
         return type2patterns.get(fullName);
     }
 
