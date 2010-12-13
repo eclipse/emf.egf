@@ -33,7 +33,7 @@
 <h2 class="Head">1. Creation of factory component and task</h2>
 
 <h3 class="Head">1.1. Comprehension</h3>
-<p class="Para"><i>Generation activities</i>. A generation can be decomposed into generation stages down to the generation leaves which realize the effective generation tasks, such as producing an API. In EGF, this corresponds to <b>factory components</b> that delegate their generations, by an activity invocation, to other factory components until <b>tasks</b> that realizes a generation task. EGF proposes a task implementation in the Java language.</p>
+<p class="Para"><i>Generation activities</i>. A generation can be decomposed into generation stages down to the generation leaves which realize the effective generation tasks, such as producing an API. In EGF, this corresponds to <b>factory components</b> which delegate their generations, by an activity invocation, to other factory components until <b>tasks</b> which realize a generation task. A task is implemented in a language, such as Java or Ant.</p>
 <p class="Para"><i>Storage</i>. Factory components and tasks are stored in <b>fcore</b> files.</p>
 
 <p align="center">
@@ -54,7 +54,7 @@
     <li CLASS="Item">Set the factory component name in the <i>Properties</i> view to better identify it later</li>
 </ul>
 
-<p class="Para">The sequence of actions is the same for creating a task: select <i>Task</i> as model object instead of <i>Factory Component</i>.</p>
+<p class="Para">The sequence of actions is the same for a task creation: select <i>Task</i> as model object instead of <i>Factory Component</i>.</p>
 
 <p class="Para">A fcore file is a resource able to contain several activities, i.e. several factory components or tasks. In order to add a new activity in the same fcore file:</p>
 <ul CLASS="UnorderedList">
@@ -84,7 +84,7 @@
 </p>
 <p align="center"><i>Figure 3. Activity Contracts</i></p>  
 
-<p class="Para"><i>Task declaration and implementation</i>. A task realizes an effective work. It is necessary to differentiate the task declaration, defined in a fcore model, from the task implementation, defined in a Java class. After its declaration, a task can be invoked by different factory components. The task implementation is the means to execute any tool, or any code in Java. The Java class implements an <i>ITaskProduction</i> interface. It can implement three methods: preExecute, doExecute, postExecute. The task methods have a context parameter to get, set and work with the task contracts. The link between the Task and the task Java class is realized at the task level.</p>
+<p class="Para"><i>Task declaration and implementation</i>. A task realizes an effective work. It is necessary to differentiate the task declaration, defined in a fcore model, from the task implementation, written in a language such as Java. After its declaration, a task can be invoked by different factory components. The task implementation is the means to execute any tool, or any code in the given language. The Java class implements an <i>ITaskProduction</i> interface. It can implement three methods: preExecute, doExecute, postExecute. The task methods have a context parameter to get, set and work with the task contracts. The link between the Task and the implementation class is realized at the task level.</p>
 
 <p align="center">
   <img src="./images/egf_tut_fc_1_4.png" alt="Java Task and Java Task implementation"/>
@@ -116,7 +116,7 @@
 <ul CLASS="UnorderedList">
     <li CLASS="Item">Create a Class which implements the <i>ITaskProduction</i> Interface</li>
     <li CLASS="Item">Implement the task class</li>
-    <li CLASS="Item">Declare the (fcore) task as a Java Task - Command: on the [Task], set the <i>Task/kind</i> property to <i>java</i></li>
+    <li CLASS="Item">In the fcore of the task, declare the task as a Java Task - Command: on the [Task], set the <i>Task/kind</i> property to <i>java</i></li>
     <li CLASS="Item">Associate the task with the task Java class - Command: on the [Task], on the <i>Implementation</i> property, select a Java task class</li>
 </ul>
 
@@ -124,6 +124,8 @@
   <img src="./images/egf_tut_fc_1_6.png" alt="Java Task / Java class association"/>
 </p>
 <p align="center"><i>Figure 6. Java Task / Java class association</i></p>  
+<p class="Para">At this stage, the task is executable. Cf. section 4.</p>
+
 
 <h3 class="Head">2.5. Application</h3>
 <p class="Para">Create a Java class <i>HelloWorld</i> that displays an parameterized Hello message. Example of code:</p>
@@ -137,7 +139,6 @@ import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 
 public class HelloWorld implements ITaskProduction {
 
-	@Override
 	public void doExecute(ITaskProductionContext productionContext,
 			IProgressMonitor monitor) throws InvocationException {
 		String value  = productionContext.getInputValue("value", String.class);
@@ -148,14 +149,12 @@ public class HelloWorld implements ITaskProduction {
 	    EGFCorePlugin.getDefault().logInfo(outputMessage); 		  
 	}
 
-	@Override
-	  public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+	public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	  public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+	public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
 		// TODO Auto-generated method stub
 
 	}
@@ -170,7 +169,7 @@ public class HelloWorld implements ITaskProduction {
 <h2 class="Head">3. Task invocation in a factory component</h2>
 
 <h3 class="Head">3.1. Comprehension</h3>
-<p class="Para"><i>Orchestration</i>. The same task / factory component can be invoked by different factory components; the same factory component can invoke several factory component and/or tasks. Invocations to factory components and tasks are defined in an orchestration. EGF proposes a simple orchestration type named <b>production plan</b>. A production plan is a sorted list of activity invocations. A <b>task invocation</b> calls a task with the values required by the task contracts. The following figure details the first figure.</p>
+<p class="Para"><i>Orchestration</i>. The same task / factory component can be invoked by different factory components; the same factory component can invoke several factory component and/or tasks. Invocations to factory components and tasks are defined in an orchestration. EGF proposes a simple orchestration type named <b>production plan</b>. A production plan is a sorted list of activity invocations. A <b>task invocation</b> calls a task with the values required by the task contracts.</p>
 
 <p align="center">
   <img src="./images/egf_tut_fc_1_7.png" alt="Factory Component Orchestration"/>

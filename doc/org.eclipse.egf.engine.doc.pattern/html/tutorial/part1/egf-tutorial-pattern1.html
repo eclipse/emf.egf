@@ -33,7 +33,7 @@
 <h2 class="Head">1. Creation of pattern</h2>
 
 <h3 class="Head">1.1. Comprehension</h3>
-<p class="Para"><i>Pattern organization</i>. Patterns are organized by pattern libraries. A <b>pattern library</b> contains a set of patterns and a set of pattern libraries.</p>
+<p class="Para"><i>Pattern organization</i>. Patterns are organized by pattern libraries. A <b>pattern library</b> contains a set of patterns.</p>
 <p class="Para"><i>Pattern nature</i>. A <b>pattern nature</b> indicates which language the pattern implementation conforms to (e.g. Java, Jet).</p>
 <p class="Para"><i>Pattern views</i>. A pattern is visualized with three different folders: 1) Overview, 2) <b>Specification</b> which represents the external view of a pattern, 3) <b>Implementation</b> which represents the internal view of a pattern and where the pattern is implemented.</p>
 
@@ -64,9 +64,9 @@
 
 <h3 class="Head">2.1. Comprehension</h3>
 
-<p class="Para"><i>Specification view</i>. This view enables to set 1) the super-pattern of the current pattern when pattern inheritance is needed, 2) the pattern nature already set during the pattern creation, 3) the pattern parameters.</p>
-<p class="Para"><i>Pattern query and parameter</i>. The pattern applies queries over a resource that the pattern consumes, for instance a model. Each query record is successively associated to a parameter. This record is processed by the description defined in the pattern implementation.</p>
-<p class="Para"><i>Pattern query</i>. EGF proposes a default model query. The query list is extensible.</p>
+<p class="Para"><i>Specification view</i>. This view enables to set 1) the super-pattern of the current pattern for pattern inheritance, 2) the pattern nature already set during the pattern creation, 3) the pattern parameters.</p>
+<p class="Para"><i>Pattern query and parameter</i>. The pattern applies queries over a resource that the pattern consumes, for instance a model. Each query record is successively associated to a parameter. This record is processed by the pattern implementation.</p>
+<p class="Para"><i>Pattern query</i>. EGF proposes a default query. The query list is extensible.</p>
 <p class="Para"><i>Pattern parameter</i>. The pattern type is either a class defined in an ecore model or a Java type (class or interface).</p>
 
 
@@ -79,7 +79,7 @@
 </ul>
 
 <h3 class="Head">2.3. Application</h3>
-<p class="Para">Create an EClass parameter with the <i>Basic query</i> to navigate over the model.</p>
+<p class="Para">Create an EClass parameter. The default name of a pattern parameter is <i>parameter</i>. In the example, it is renamed <i>aClass</i>. The default is empty but it corresponds to the <i>Domain query</i>.</p>
 
 <p align="left">
   <img src="./images/egf_tut_pattern_1_2.png" alt="Pattern Specification View"/>
@@ -93,11 +93,11 @@
 <h3 class="Head">3.1. Comprehension</h3>
 
 <p class="Para"><i>Implementation view</i>. This view enables to define pattern methods, the method orchestration, and local variables.</p>
-<p class="Para"><i>Pattern methods</i>. Four methods are predefined: header, init, preCondition and footer. Header is used for instance to declare the Jet declaration, init for the initialization of local variables (cf. explanation below), preCondition to filter records onto a query result. The user creates as many as methods s/he wants to implement the pattern. Each pattern method contents is supposed to conform to the pattern nature, for instance Jet-based code.</p>
+<p class="Para"><i>Pattern methods</i>. Four methods are predefined: header, init, preCondition and footer. <i>Header</i> is used for instance to declare the Jet declaration or the import in Java, <i>init</i> for the initialization of local variables (cf. explanation below), <i>preCondition</i> to filter records onto a query result. The user creates as many as methods s/he wants to implement the pattern. Each pattern method contents is supposed to conform to the pattern nature, for instance Jet-based code.</p>
 <p class="Para"><i>Pattern method orchestration</i>. The method orchestration defines the order to call available methods and patterns: methods local to the current pattern, methods from the super-patterns, pattern call with parameter context passing, pattern call with injection.</p>
 <p class="Para"><i>Pattern variables</i>. The pattern variables are accessible by any method of the current pattern. The type is either a class defined in an ecore model or a Java type (class or interface). Pattern variables can be initialized in the <i>init</i> method, update and used in the pattern methods.</p>
-<p class="Para"><i>Precondition</i>. A pattern is applied over a resource. A parameter type is a first restriction to apply or not a pattern. A precondition is another restriction. The precondition body conforms to the pattern nature and is expressed without the <i>if/endif</i> syntax. Example in Java: <i>return true</i>.</p>
-<p class="Para"><i>Header</i>. The header is a header for generation. In Jet, it is used to set general parameters, such the package where Java classes are generated, the imports.</p>
+<p class="Para"><i>Precondition</i>. A pattern is applied over a resource. The precondition body in written in Java, returns a boolean, and selects whether the current record for resource query is applicable or not.</p>
+<p class="Para"><i>Header</i>. The header is an header for generation. In Jet, it is used to set general parameters, such the package where Java classes are generated, the imports.</p>
 
 
 <h3 class="Head">3.2. Practice</h3>
@@ -121,11 +121,13 @@
     <li CLASS="Item">For a super-method call, after clicking on <i>+</i>, choose the <i>method call</i> option, and next select the super-method.</li>
 </ul>
 
+<p class="Para">As explained in section 5 (Pattern translation), the pattern is translated to be executed. Save (Ctrl-s) the pattern method and the pattern to have the pattern translated.</p>
+
 
 <h3 class="Head">3.3. Application</h3>
 <p class="Para">Implement the default body method. Add the following Jet code:</p>
 				<font color="777777"><pre>
-Hello &lt;%= parameter.getName() %&gt;!
+Hello &lt;%= aClass.getName() %&gt;!
 				</pre></font>
 <p class="Para">Drag and drop the method in the pattern orchestration part.</p>
 
@@ -142,7 +144,7 @@ Hello &lt;%= parameter.getName() %&gt;!
 </p>
 <p align="left"><i>Figure 3. Pattern Execution</i></p>  
 
-<p class="Para"><i>Pattern strategies</i>. A pattern strategy indicates how to apply patterns onto a resource. For instance, a pattern-oriented strategy successively applies a set of patterns onto a resource; a model-oriented strategy applies a set of patterns successively onto each model element. The model-driven strategy takes care of the model element order while the pattern-oriented strategy does not.</p>
+<p class="Para"><i>Pattern strategies</i>. A pattern strategy indicates how to navigate over a resource and how to apply patterns. For instance, a pattern-oriented strategy successively applies a set of patterns onto a resource; on the contrary, a model-oriented strategy applies a set of patterns successively onto each model element. Those two strategies are proposed by default with EGF.</p>
 <p class="Para"><i>Tasks to execute patterns</i>. A task must be introduced in order to put in action all the elements described. This task must know:
   <ol CLASS="UnorderedList">
     <li> The resource applied on the patterns, for instance a model,</li>
@@ -155,7 +157,7 @@ Hello &lt;%= parameter.getName() %&gt;!
 
 <p class="Para"><i>Pattern execution engines</i>. Patterns have a nature (e.g., Jet, Java). Then, at execution time, an engine executes a pattern according its nature. On the pattern flow, different pattern execution engines can be activated.</p>
 
-<p class="Para"><i>Reporter</i>. A reporter is typically useful for model-to-text transformation. Each pattern provides an output result that must be consolidated in one or several files. A reporter serves to report the result of the pattern implementation, for instance on the console or in a file.</p>
+<p class="Para"><i>Reporter</i>. A reporter is responsible for the rendering and persistence of the pattern results. It is typically useful for model-to-text transformation. Each pattern provides an output result that must be consolidated in one or several files. A reporter serves to report the result of the pattern implementation, for instance on the console or in a file.</p>
 <br/>
 
 <h3 class="Head">4.2. Practice</h3>
@@ -165,16 +167,17 @@ Hello &lt;%= parameter.getName() %&gt;!
     <li CLASS="Item"><i>Domain creation</i>. This step can be reused independently of the pattern usage.</li>
     <ul CLASS="UnorderedList">
             <li CLASS="Item">Creation of the domain viewpoint where domains are declared - On the Viewpoint Container, Command: [New Child][Domain Viewpoint]</li>
-            <li CLASS="Item">Creation of a domain reference - On the Domain Viewpoint, Command: [New Child][Domain URI]. Next, in the Uri property, providing a Uri like <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i></li>
+            <li CLASS="Item">Creation of a domain reference - On the Domain Viewpoint, for EMF, Command: [New Child][EMF Domain]. Next, in the Uri property, providing an ecore Uri like <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i></li>
     </ul>
     <br/>
     <li CLASS="Item"><i>Configuration of the pattern call</i>.</li>
     <ul CLASS="UnorderedList">
-        <li CLASS="Item">Create of production plan in the factory component</li>
-        <li CLASS="Item">Creation of the pattern execution task - On the Production Plan node, Command: [Right-Click][Invoke Activity], and choose the <i>Model driven pattern strategy task [Task Java]</i></li>
+        <li CLASS="Item">Create of production plan in the factory component - On the Factory Component, Command: [New Child][Production Plan] 
+        </li>
+        <li CLASS="Item">Creation of the pattern execution task - On the Production Plan node, Command: [Right-Click][Invoke Activity], and choose the <i>Domain driven pattern strategy task [Task Java]</i></li>
         <li CLASS="Item">Click on <i>Next</i> and select only <i>domain</i> and <i>pattern.ids</i>. Click on <i>Finish</i>.</li>
-        <li CLASS="Item">Set the domain - On the new Activity / Invocation Contract Container / domain Invocation Contract, Command: 1) [Right-Click][New Child][Type Domain URI], 2) Set the <i>Domain</i> property of this Domain URI with domain URI declared in the Domain viewpoint</li>
-        <li CLASS="Item">Set the pattern library - On the new Activity / Invocation Contract Container / pattern.ids Invocation Contract, Command: [New Child][Type Pattern List]; Next, [Click on the Elements Property], select the pattern library newly created</li>
+        <li CLASS="Item">Set the domain - On the new Activity / Invocation Contract Container / domain Invocation Contract, Command: 1) [Right-Click][New Child][Type Domain], 2) Set the <i>Domain</i> property of this Domain URI with domain URI declared in the Domain viewpoint</li>
+        <li CLASS="Item">Set the pattern library - On the new Activity / Invocation Contract Container / pattern.ids Invocation Contract, Command: [New Child][Type Pattern List]; Next, click on the [Elements] property, select the pattern library newly created</li>
     </ul>
 </ul>
 
@@ -192,8 +195,8 @@ Hello &lt;%= parameter.getName() %&gt;!
 <h3 class="Head">4.4. Fixing pattern method errors</h3>
 <p class="Para">Patterns to be compiled are compiled when a pattern is saved. Errors may be raised and, as a consequence, the pattern execution would fail. Then:</p>
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">At anytime, it is possible to regenerate all pattern classes and methods: 1) delete the packages under the project <i>generated</i> folder, 2) right-click on the Pattern viewpoint, and apply the [Update generated elements] command on the Pattern viewpoint.</li>
-    <li CLASS="Item">Fixing the errors. Locate the errors in the generated methods, update the pattern methods accordingly, and save the pattern methods.</li>
+    <li CLASS="Item">At anytime, it is possible to regenerate all pattern classes and methods: right-click on the Pattern viewpoint, and apply the [Generate Patterns] command on the Pattern viewpoint.</li>
+    <li CLASS="Item">Fixing the errors. In the Eclipse Package Explorer, locate the errors in the generated methods, update the pattern methods accordingly, and save the pattern methods.</li>
 </ul>
 
 <br/>
@@ -251,7 +254,7 @@ public class MyReporter implements PatternExecutionReporter{
 <p class="Para">Patterns are translated on the fly. One case requires to manually force pattern rebuild: pattern inheritance. Indeed, children are not notified that a super-pattern in the hierarchy is update. To force this translation:</p>
 
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">On the <i>Pattern viewpoint</i> which contains all the pattern libraries - Command: <i>[Right-Click][Update generated elements]</i> </li>
+    <li CLASS="Item">On the <i>Pattern viewpoint</i> which contains all the pattern libraries - Command: <i>[Right-Click][Generate Patterns]</i> </li>
 </ul>
 
 
