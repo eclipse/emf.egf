@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -295,9 +296,10 @@ public class JavaHelper {
             // Move the resource
             if (newClassName != null) {
                 IPath targetPath = new Path(FileHelper.convertPackageNameToFolderPath(newPackageName)).append(newClassName + ".java"); //$NON-NLS-1$ 
-                IResource targetResource = root.findMember(targetPath);
-                if (targetResource == null || targetResource.exists() == false) {
-                    resourceToMove.move(root.getFullPath().append(targetPath), false, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+                IResource targetResource = root.getFile(targetPath);
+                if (targetResource.exists() == false) {
+                    FileHelper.createContainers(new NullProgressMonitor(), targetResource);
+                    resourceToMove.move(targetResource.getFullPath(), false, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
                 } else {
                     return FileHelper.deleteIResource(subMonitor.newChild(200, SubMonitor.SUPPRESS_NONE), root, resourceToMove, deleteParent);
                 }
