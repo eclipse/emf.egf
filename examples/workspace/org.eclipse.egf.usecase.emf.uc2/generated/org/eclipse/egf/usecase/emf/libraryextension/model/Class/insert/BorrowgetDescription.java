@@ -18,7 +18,7 @@ public class BorrowgetDescription extends org.eclipse.egf.emf.pattern.model.call
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "//INJECTED-CODE-BEGIN : BorrowImpl#getDescription()" + NL + "public String getDescription() {" + NL + "\tString result= \"\";" + NL + "" + NL + "\tString descrFormat = getDescriptionFormat();" + NL + "\tif (null!=descrFormat)" + NL + "\t\tresult= result + descrFormat;" + NL + "" + NL + "\tString items = \"\";" + NL + "\tEList<CirculatingItem> myItems = getItem();" + NL + "" + NL + "\tfor (CirculatingItem circulatingItem : myItems) {" + NL + "\t\tif (items.length()>0){" + NL + "\t\t\titems= items + (\";\");" + NL + "\t\t}" + NL + "\t\tif (circulatingItem instanceof Book)" + NL + "\t\t\titems= items + (((Book)circulatingItem).getTitle());" + NL + "" + NL + "\t\tif (circulatingItem instanceof BookOnTape)" + NL
+    protected final String TEXT_1 = "//INJECTED-CODE-BEGIN : BorrowImpl#getDescription()" + NL + "@Override" + NL + "public String getDescription() {" + NL + "\tString result= \"\";" + NL + "" + NL + "\tString descrFormat = getDescriptionFormat();" + NL + "\tif (null!=descrFormat)" + NL + "\t\tresult= result + descrFormat;" + NL + "" + NL + "\tString items = \"\";" + NL + "\tEList<CirculatingItem> myItems = getItem();" + NL + "" + NL + "\tfor (CirculatingItem circulatingItem : myItems) {" + NL + "\t\tif (items.length()>0){" + NL + "\t\t\titems= items + (\";\");" + NL + "\t\t}" + NL + "\t\tif (circulatingItem instanceof Book)" + NL + "\t\t\titems= items + (((Book)circulatingItem).getTitle());" + NL + "" + NL + "\t\tif (circulatingItem instanceof BookOnTape)" + NL
             + "\t\t\titems= items + ((BookOnTape)circulatingItem).getTitle();" + NL + "" + NL + "\t\tif (circulatingItem instanceof VideoCassette)" + NL + "\t\t\titems= items + (((VideoCassette)circulatingItem).getTitle());" + NL + "\t}" + NL + "" + NL + "\tString borrowerName = getBorrower().getFirstName() +\" \"+getBorrower().getLastName();" + NL + "" + NL + "\tif (isFinished())" + NL + "\t\tresult = result + \"[RETURNED] items [\";" + NL + "\telse" + NL + "\t\tresult = result + \"[WAITING] items [\";" + NL + "" + NL + "\tresult=result + items;" + NL + "\tresult=result + (\"] from [\");" + NL + "\tresult=result + (borrowerName);" + NL + "\tresult=result + (\"]\");" + NL + "" + NL + "\treturn result;" + NL + "}" + NL + "//INJECTED-CODE-END : BorrowImpl#getDescription()" + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
@@ -169,6 +169,13 @@ public class BorrowgetDescription extends org.eclipse.egf.emf.pattern.model.call
     }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        // add java imports
+        genModel.getImportedName("org.eclipse.emf.common.util.EList");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Book");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.BookOnTape");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.VideoCassette");
 
         stringBuffer.append(TEXT_1);
     }

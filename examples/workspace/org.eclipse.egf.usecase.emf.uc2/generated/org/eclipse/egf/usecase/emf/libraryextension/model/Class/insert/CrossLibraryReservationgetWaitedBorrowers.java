@@ -18,8 +18,8 @@ public class CrossLibraryReservationgetWaitedBorrowers extends org.eclipse.egf.e
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t// INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getWaitedBorrowers()" + NL + "\t@Override" + NL + "\tpublic EList<Borrower> getWaitedBorrowers() {" + NL + "" + NL + "\t\tBasicEList<Borrower> waitedBorrowers = new BasicEList<Borrower>();" + NL + "\t\tEList<CirculatingItem> wantedItems = getItem();" + NL + "" + NL + "\t\tEList<EquippedLibrary> libraries = getInvolvedLibraries();" + NL + "\t\tlibraries.add((EquippedLibrary) (eContainer().eContainer()));" + NL + "" + NL + "\t\tfor (EquippedLibrary currentLibrary : libraries) {" + NL + "\t\t\t// get the borrows of the current Library" + NL + "\t\t\tEList<Borrow> currentLibraryBorrows = currentLibrary" + NL + "\t\t\t\t\t.getBorrowingSystem().getActiveBorrows();" + NL + "" + NL
-            + "\t\t\tfor (Borrow currentBorrow : currentLibraryBorrows) {" + NL + "\t\t\t\tfor (CirculatingItem currentWantedItem : wantedItems) {" + NL + "\t\t\t\t\tif (currentBorrow.getItem().contains(currentWantedItem)) {" + NL + "\t\t\t\t\t\tBorrower incriminatedBorrower = currentBorrow" + NL + "\t\t\t\t\t\t\t\t.getBorrower();" + NL + "\t\t\t\t\t\tif (!waitedBorrowers.contains(incriminatedBorrower))" + NL + "\t\t\t\t\t\t\twaitedBorrowers.add(currentBorrow.getBorrower());" + NL + "\t\t\t\t\t}" + NL + "" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "" + NL + "\t\treturn waitedBorrowers;" + NL + "\t}" + NL + "\t// INJECTED-CODE-END : CrossLibraryReservationImpl#getWaitedBorrowers()";
+    protected final String TEXT_1 = "\t//INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getWaitedBorrowers()" + NL + "\t@Override" + NL + "\tpublic EList<Borrower> getWaitedBorrowers() {" + NL + "" + NL + "\t\tBasicEList<Borrower> waitedBorrowers = new BasicEList<Borrower>();" + NL + "\t\tEList<CirculatingItem> wantedItems = getItem();" + NL + "" + NL + "\t\tEList<EquippedLibrary> libraries = getInvolvedLibraries();" + NL + "\t\tlibraries.add((EquippedLibrary) (eContainer().eContainer()));" + NL + "" + NL + "\t\tfor (EquippedLibrary currentLibrary : libraries) {" + NL + "\t\t\t// get the borrows of the current Library" + NL + "\t\t\tEList<Borrow> currentLibraryBorrows = currentLibrary" + NL + "\t\t\t\t\t.getBorrowingSystem().getActiveBorrows();" + NL + "" + NL
+            + "\t\t\tfor (Borrow currentBorrow : currentLibraryBorrows) {" + NL + "\t\t\t\tfor (CirculatingItem currentWantedItem : wantedItems) {" + NL + "\t\t\t\t\tif (currentBorrow.getItem().contains(currentWantedItem)) {" + NL + "\t\t\t\t\t\tBorrower incriminatedBorrower = currentBorrow" + NL + "\t\t\t\t\t\t\t\t.getBorrower();" + NL + "\t\t\t\t\t\tif (!waitedBorrowers.contains(incriminatedBorrower))" + NL + "\t\t\t\t\t\t\twaitedBorrowers.add(currentBorrow.getBorrower());" + NL + "\t\t\t\t\t}" + NL + "" + NL + "\t\t\t\t}" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "" + NL + "\t\treturn waitedBorrowers;" + NL + "\t}" + NL + "\t//INJECTED-CODE-END : CrossLibraryReservationImpl#getWaitedBorrowers()";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
@@ -169,6 +169,14 @@ public class CrossLibraryReservationgetWaitedBorrowers extends org.eclipse.egf.e
     }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        // add java imports
+        genModel.getImportedName("org.eclipse.emf.common.util.EList");
+        genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+        genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrow");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Borrower");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.EquippedLibrary");
 
         stringBuffer.append(TEXT_1);
     }

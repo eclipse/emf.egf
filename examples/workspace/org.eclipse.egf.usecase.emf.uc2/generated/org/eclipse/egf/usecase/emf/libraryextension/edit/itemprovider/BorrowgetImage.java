@@ -18,7 +18,7 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "//\tINJECTED-CODE-BEGIN : Borrow#overlayImage()" + NL + "/**" + NL + "* This adds an overlay to the given image if the object is controlled." + NL + "*/" + NL + "protected Object overlayImage(Object object, Object image)" + NL + "{" + NL + "\treturn super.overlayImage(object, image);" + NL + "}" + NL + "//INJECTED-CODE-END : Borrow#overlayImage()" + NL + "  ";
+    protected final String TEXT_1 = "//INJECTED-CODE-BEGIN : Borrow#overlayImage()" + NL + "/**" + NL + "* This adds an overlay to the given image if the object is controlled." + NL + "*/" + NL + "@Override" + NL + "protected Object overlayImage(Object object, Object image)" + NL + "{" + NL + "\treturn super.overlayImage(object, image);" + NL + "}" + NL + "//INJECTED-CODE-END : Borrow#overlayImage()" + NL + "  ";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 

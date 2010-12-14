@@ -1,4 +1,9 @@
-		// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+%>
+		//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()
 		EList<RecordType> temp_records = getRecords();
 
 		// should be an unmodifiable list
@@ -8,4 +13,4 @@
 				borrows.add((Borrow) recordType);
 		}
 		return borrows;
-		// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()
+		//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()

@@ -1,4 +1,13 @@
-	// INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getWaitedBorrowers()
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrow");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Borrower");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.EquippedLibrary");
+%>
+	//INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getWaitedBorrowers()
 	@Override
 	public EList<Borrower> getWaitedBorrowers() {
 
@@ -28,4 +37,4 @@
 
 		return waitedBorrowers;
 	}
-	// INJECTED-CODE-END : CrossLibraryReservationImpl#getWaitedBorrowers()
+	//INJECTED-CODE-END : CrossLibraryReservationImpl#getWaitedBorrowers()

@@ -18,7 +18,7 @@ public class BorrowingSystemgetActiveBorrows extends org.eclipse.egf.emf.pattern
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\t// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()" + NL + "\t\tEList<RecordType> temp_records = getRecords();" + NL + "" + NL + "\t\t// should be an unmodifiable list" + NL + "\t\tBasicEList<Borrow> borrows = new BasicEList<Borrow>();" + NL + "\t\tfor (RecordType recordType : temp_records) {" + NL + "\t\t\tif (recordType instanceof Borrow)" + NL + "\t\t\t\tborrows.add((Borrow) recordType);" + NL + "\t\t}" + NL + "\t\treturn borrows;" + NL + "\t\t// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()" + NL;
+    protected final String TEXT_1 = "\t\t//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()" + NL + "\t\tEList<RecordType> temp_records = getRecords();" + NL + "" + NL + "\t\t// should be an unmodifiable list" + NL + "\t\tBasicEList<Borrow> borrows = new BasicEList<Borrow>();" + NL + "\t\tfor (RecordType recordType : temp_records) {" + NL + "\t\t\tif (recordType instanceof Borrow)" + NL + "\t\t\t\tborrows.add((Borrow) recordType);" + NL + "\t\t}" + NL + "\t\treturn borrows;" + NL + "\t\t//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()" + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
@@ -175,6 +175,10 @@ public class BorrowingSystemgetActiveBorrows extends org.eclipse.egf.emf.pattern
     }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        // add java imports
+        genModel.getImportedName("org.eclipse.emf.common.util.EList");
+        genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
 
         stringBuffer.append(TEXT_1);
     }

@@ -1,7 +1,8 @@
-//	INJECTED-CODE-BEGIN : Borrow#overlayImage()
+//INJECTED-CODE-BEGIN : Borrow#overlayImage()
 /**
 * This adds an overlay to the given image if the object is controlled.
 */
+@Override
 protected Object overlayImage(Object object, Object image)
 {
 	return super.overlayImage(object, image);

@@ -1,4 +1,13 @@
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Book");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.BookOnTape");
+genModel.getImportedName("org.eclipse.egf.examples.extlibrary.VideoCassette");
+%>
 //INJECTED-CODE-BEGIN : BorrowImpl#getDescription()
+@Override
 public String getDescription() {
 	String result= "";
 

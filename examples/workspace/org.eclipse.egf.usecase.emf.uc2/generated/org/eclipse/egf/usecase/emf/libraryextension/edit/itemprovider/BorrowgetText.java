@@ -18,7 +18,7 @@ public class BorrowgetText extends org.eclipse.egf.emf.pattern.edit.call.ItemPro
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t//\tINJECTED-CODE-BEGIN : Borrow#getText()" + NL + "\tBorrow borrow = (Borrow)object;" + NL + "\treturn getString(\"_UI_Borrow_type\") + \" \" + borrow.isFinished();" + NL + "\t//INJECTED-CODE-END : Borrow#getText()";
+    protected final String TEXT_1 = "\t//INJECTED-CODE-BEGIN : Borrow#getText()" + NL + "\tBorrow borrow = (Borrow)object;" + NL + "\treturn getString(\"_UI_Borrow_type\") + \" \" + borrow.isFinished();" + NL + "\t//INJECTED-CODE-END : Borrow#getText()";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
@@ -105,6 +105,9 @@ public class BorrowgetText extends org.eclipse.egf.emf.pattern.edit.call.ItemPro
     }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        // add java imports
+        genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrow");
 
         stringBuffer.append(TEXT_1);
     }

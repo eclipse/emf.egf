@@ -18,7 +18,7 @@ public class BorrowingSystemgetActiveReservations extends org.eclipse.egf.emf.pa
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\t// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()" + NL + "\t\tEList<RecordType> temp_records = getRecords();" + NL + "" + NL + "\t\t// should be an unmodifiable list" + NL + "\t\tBasicEList<Reservation> reservations = new BasicEList<Reservation>();" + NL + "\t\tfor (RecordType recordType : temp_records) {" + NL + "\t\t\tif (recordType instanceof Reservation)" + NL + "\t\t\t\treservations.add((Reservation) recordType);" + NL + "\t\t}" + NL + "" + NL + "\t\treturn reservations;" + NL + "\t\t// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()";
+    protected final String TEXT_1 = "\t\t//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()" + NL + "\t\tEList<RecordType> temp_records = getRecords();" + NL + "" + NL + "\t\t// should be an unmodifiable list" + NL + "\t\tBasicEList<Reservation> reservations = new BasicEList<Reservation>();" + NL + "\t\tfor (RecordType recordType : temp_records) {" + NL + "\t\t\tif (recordType instanceof Reservation)" + NL + "\t\t\t\treservations.add((Reservation) recordType);" + NL + "\t\t}" + NL + "" + NL + "\t\treturn reservations;" + NL + "\t\t//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
@@ -175,6 +175,10 @@ public class BorrowingSystemgetActiveReservations extends org.eclipse.egf.emf.pa
     }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        // add java imports
+        genModel.getImportedName("org.eclipse.emf.common.util.EList");
+        genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
 
         stringBuffer.append(TEXT_1);
     }

@@ -1,4 +1,9 @@
-		// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()
+<%
+// add java imports
+genModel.getImportedName("org.eclipse.emf.common.util.EList");
+genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+%>
+		//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()
 		EList<RecordType> temp_records = getRecords();
 
 		// should be an unmodifiable list
@@ -9,4 +14,4 @@
 		}
 
 		return reservations;
-		// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()
+		//INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveReservations()

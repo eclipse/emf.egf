@@ -18,8 +18,8 @@ public class ReservationgetWaitedBorrowers extends org.eclipse.egf.emf.pattern.m
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\t// INJECTED-CODE-BEGIN : ReservationImpl#getWaitedBorrowers()" + NL + "\t\t// Test" + NL + "\t\tBasicEList<Borrower> waitedBorrowers = new BasicEList<Borrower>();" + NL + "\t\tEList<CirculatingItem> wantedItems = getItem();" + NL + "\t\tEList<Borrow> borrows = ((BorrowingSystem) eContainer)" + NL + "\t\t\t\t.getActiveBorrows();" + NL + "" + NL + "\t\tfor (Borrow currentBorrow : borrows) {" + NL + "\t\t\tfor (CirculatingItem currentWantedItem : wantedItems) {" + NL + "\t\t\t\tif (currentBorrow.getItem().contains(currentWantedItem)) {" + NL + "\t\t\t\t\tBorrower incriminatedBorrower = currentBorrow.getBorrower();" + NL + "\t\t\t\t\tif (!waitedBorrowers.contains(incriminatedBorrower))" + NL
-            + "\t\t\t\t\t\twaitedBorrowers.add(currentBorrow.getBorrower());" + NL + "\t\t\t\t}" + NL + "" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn waitedBorrowers;" + NL + "\t\t// INJECTED-CODE-END : ReservationImpl#getWaitedBorrowers()" + NL + NL;
+    protected final String TEXT_1 = "\t\t//INJECTED-CODE-BEGIN : ReservationImpl#getWaitedBorrowers()" + NL + "\t\t// Test" + NL + "\t\tBasicEList<Borrower> waitedBorrowers = new BasicEList<Borrower>();" + NL + "\t\tEList<CirculatingItem> wantedItems = getItem();" + NL + "\t\tEList<Borrow> borrows = ((BorrowingSystem) eContainer)" + NL + "\t\t\t\t.getActiveBorrows();" + NL + "" + NL + "\t\tfor (Borrow currentBorrow : borrows) {" + NL + "\t\t\tfor (CirculatingItem currentWantedItem : wantedItems) {" + NL + "\t\t\t\tif (currentBorrow.getItem().contains(currentWantedItem)) {" + NL + "\t\t\t\t\tBorrower incriminatedBorrower = currentBorrow.getBorrower();" + NL + "\t\t\t\t\tif (!waitedBorrowers.contains(incriminatedBorrower))" + NL
+            + "\t\t\t\t\t\twaitedBorrowers.add(currentBorrow.getBorrower());" + NL + "\t\t\t\t}" + NL + "" + NL + "\t\t\t}" + NL + "\t\t}" + NL + "\t\treturn waitedBorrowers;" + NL + "\t\t//INJECTED-CODE-END : ReservationImpl#getWaitedBorrowers()" + NL + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
@@ -176,6 +176,15 @@ public class ReservationgetWaitedBorrowers extends org.eclipse.egf.emf.pattern.m
     }
 
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        // add java imports
+        genModel.getImportedName("org.eclipse.emf.common.util.EList");
+        genModel.getImportedName("org.eclipse.emf.common.util.BasicEList");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.Borrower");
+        genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
+        genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrow");
+        genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.Borrower");
+        genModel.getImportedName("org.eclipse.egf.examples.LibraryExtension.BorrowingSystem");
 
         stringBuffer.append(TEXT_1);
     }
