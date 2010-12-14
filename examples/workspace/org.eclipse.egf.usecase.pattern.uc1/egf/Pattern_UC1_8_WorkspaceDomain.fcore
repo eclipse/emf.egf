@@ -43,19 +43,6 @@
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_L0tG8AK6EeCbJtlATdOycQ"
               called="#_5JlrpQK5EeCbJtlATdOycQ"/>
         </elements>
-        <elements xmi:id="_fqkEgQaTEeCoTNnO_86Svw" name="myPattern" headerMethod="#_fqkrkAaTEeCoTNnO_86Svw"
-            conditionMethod="#_fqkrkgaTEeCoTNnO_86Svw" initMethod="#_fqkrkQaTEeCoTNnO_86Svw"
-            footerMethod="#_fqkrlAaTEeCoTNnO_86Svw">
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_fqkEggaTEeCoTNnO_86Svw"
-              name="JET"/>
-          <methods xmi:id="_fqkrkAaTEeCoTNnO_86Svw" name="header" patternFilePath="templates/pattern._fqkEgQaTEeCoTNnO_86Svw/method._fqkrkAaTEeCoTNnO_86Svw.pt"/>
-          <methods xmi:id="_fqkrkQaTEeCoTNnO_86Svw" name="init" patternFilePath="templates/pattern._fqkEgQaTEeCoTNnO_86Svw/method._fqkrkQaTEeCoTNnO_86Svw.pt"/>
-          <methods xmi:id="_fqkrkgaTEeCoTNnO_86Svw" name="preCondition" patternFilePath="templates/pattern._fqkEgQaTEeCoTNnO_86Svw/method._fqkrkgaTEeCoTNnO_86Svw.pt"/>
-          <methods xmi:id="_fqkrkwaTEeCoTNnO_86Svw" name="body" patternFilePath="templates/pattern._fqkEgQaTEeCoTNnO_86Svw/method._fqkrkwaTEeCoTNnO_86Svw.pt"/>
-          <methods xmi:id="_fqkrlAaTEeCoTNnO_86Svw" name="footer" patternFilePath="templates/pattern._fqkEgQaTEeCoTNnO_86Svw/method._fqkrlAaTEeCoTNnO_86Svw.pt"/>
-          <parameters xmi:id="_jClwQAaTEeCoTNnO_86Svw" name="pipo" type="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
-          <orchestration xmi:type="pattern:SuperCall" xmi:id="_fqkrlQaTEeCoTNnO_86Svw"/>
-        </elements>
       </libraries>
     </viewpoints>
   </viewpointContainer>
