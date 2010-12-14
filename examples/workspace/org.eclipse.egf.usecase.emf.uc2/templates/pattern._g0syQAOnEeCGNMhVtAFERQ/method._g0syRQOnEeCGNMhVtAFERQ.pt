@@ -1,0 +1,40 @@
+//	INJECTED-CODE-BEGIN : ReservationImpl#getDescription()
+public String getDescription() {
+	String result= "";
+
+	String descrFormat = getDescriptionFormat();
+	if (null!=descrFormat)
+		result= result + descrFormat;
+
+	String items = "";
+	EList<CirculatingItem> myItems = getItem();
+
+	for (CirculatingItem circulatingItem : myItems) {
+		if (items.length()>0){
+			items= items + (";");
+		}
+		if (circulatingItem instanceof Book)
+			items= items + (((Book)circulatingItem).getTitle());
+
+		if (circulatingItem instanceof BookOnTape)
+			items= items + ((BookOnTape)circulatingItem).getTitle();
+
+		if (circulatingItem instanceof VideoCassette)
+			items= items + (((VideoCassette)circulatingItem).getTitle());
+	}
+
+	String borrowerName = getBorrower().getFirstName() +" "+getBorrower().getLastName();
+
+	if (isFinished())
+		result = result + "[DONE] items [";
+	else
+		result = result + "[TODO] items [";
+
+	result=result + items;
+	result=result + ("] for [");
+	result=result + (borrowerName);
+	result=result + ("]");
+
+	return result;
+}
+//INJECTED-CODE-END : ReservationImpl#getDescription()

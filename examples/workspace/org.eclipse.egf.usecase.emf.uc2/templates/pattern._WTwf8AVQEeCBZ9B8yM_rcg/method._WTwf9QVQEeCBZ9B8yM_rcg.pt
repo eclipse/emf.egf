@@ -1,0 +1,11 @@
+		// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()
+		EList<RecordType> temp_records = getRecords();
+
+		// should be an unmodifiable list
+		BasicEList<Borrow> borrows = new BasicEList<Borrow>();
+		for (RecordType recordType : temp_records) {
+			if (recordType instanceof Borrow)
+				borrows.add((Borrow) recordType);
+		}
+		return borrows;
+		// INJECTED-CODE-BEGIN : BorrowingSystemImpl#getActiveBorrows()

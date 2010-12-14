@@ -1,0 +1,69 @@
+	// INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getDescription()
+	public String getDescription() {
+
+		String result = "";
+
+		String descrFormat = getDescriptionFormat();
+		if (null != descrFormat)
+			result = result + descrFormat;
+
+		String items = "";
+		EList<CirculatingItem> myItems = getItem();
+
+		for (CirculatingItem circulatingItem : myItems) {
+			if (items.length() > 0) {
+				items = items + (";");
+			}
+			if (circulatingItem instanceof Book)
+				items = items + (((Book) circulatingItem).getTitle());
+
+			if (circulatingItem instanceof BookOnTape)
+				items = items + ((BookOnTape) circulatingItem).getTitle();
+
+			if (circulatingItem instanceof VideoCassette)
+				items = items + (((VideoCassette) circulatingItem).getTitle());
+		}
+
+		Borrower reservationBorrower = getBorrower();
+		String borrowerName = "";
+
+		if (null != reservationBorrower)
+			if (null != reservationBorrower.getFirstName())
+				if (null != reservationBorrower.getLastName())
+					borrowerName = reservationBorrower.getFirstName() + " "
+							+ reservationBorrower.getLastName();
+
+		String waitedBorrowerNames = "";
+		String involvedLibrariesString = "";
+
+		for (Borrower currentBorrower : getWaitedBorrowers()) {
+			if (waitedBorrowerNames.length() > 0) {
+				waitedBorrowerNames += ";";
+			}
+			waitedBorrowerNames += currentBorrower.getFirstName() + " "
+					+ currentBorrower.getLastName();
+		}
+
+		for (EquippedLibrary currentLibrary : getInvolvedLibraries()) {
+			if (involvedLibrariesString.length() > 0) {
+				involvedLibrariesString += ";";
+			}
+			involvedLibrariesString += currentLibrary.getName();
+		}
+
+		if (isFinished())
+			result = result + "[DONE] items [";
+		else
+			result = result + "[TODO] items [";
+
+		result = result + items;
+		result = result + ("] for [");
+		result = result + (borrowerName);
+		result = result + ("] waiting these borrowers [");
+		result = result + waitedBorrowerNames;
+		result = result + "] from these libraries [";
+		result = result + involvedLibrariesString;
+		result = result + "]";
+		return result;
+	}
+	// INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getDescription()

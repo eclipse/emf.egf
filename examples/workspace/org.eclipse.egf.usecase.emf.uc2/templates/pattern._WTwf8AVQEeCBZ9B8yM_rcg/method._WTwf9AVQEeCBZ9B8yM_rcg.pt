@@ -1,0 +1,1 @@
+return "BorrowingSystem".equals(genClass.getName()) && "activeBorrows".equals(genFeature.getName());

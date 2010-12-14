@@ -1,0 +1,40 @@
+//INJECTED-CODE-BEGIN : BorrowImpl#getDescription()
+public String getDescription() {
+	String result= "";
+
+	String descrFormat = getDescriptionFormat();
+	if (null!=descrFormat)
+		result= result + descrFormat;
+
+	String items = "";
+	EList<CirculatingItem> myItems = getItem();
+
+	for (CirculatingItem circulatingItem : myItems) {
+		if (items.length()>0){
+			items= items + (";");
+		}
+		if (circulatingItem instanceof Book)
+			items= items + (((Book)circulatingItem).getTitle());
+
+		if (circulatingItem instanceof BookOnTape)
+			items= items + ((BookOnTape)circulatingItem).getTitle();
+
+		if (circulatingItem instanceof VideoCassette)
+			items= items + (((VideoCassette)circulatingItem).getTitle());
+	}
+
+	String borrowerName = getBorrower().getFirstName() +" "+getBorrower().getLastName();
+
+	if (isFinished())
+		result = result + "[RETURNED] items [";
+	else
+		result = result + "[WAITING] items [";
+
+	result=result + items;
+	result=result + ("] from [");
+	result=result + (borrowerName);
+	result=result + ("]");
+
+	return result;
+}
+//INJECTED-CODE-END : BorrowImpl#getDescription()

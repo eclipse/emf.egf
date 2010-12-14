@@ -1,0 +1,1 @@
+return "Borrow".equals(genClass.getName());

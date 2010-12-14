@@ -1,0 +1,4 @@
+	//	INJECTED-CODE-BEGIN : Borrow#getText()
+	Borrow borrow = (Borrow)object;
+	return getString("_UI_Borrow_type") + " " + borrow.isFinished();
+	//INJECTED-CODE-END : Borrow#getText()

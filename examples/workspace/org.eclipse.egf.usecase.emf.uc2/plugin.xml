@@ -16,16 +16,31 @@
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
+            id="egf/EMF_UC2_1_Library.fcore">
+      </fcore>
+      <fcore
+            id="egf/EMF_UC2_2_Library_ClassGetSetGenFeature.fcore">
+      </fcore>
+      <fcore
+            id="egf/EMF_UC2_3_Library_ClassImplementedOperation.fcore">
+      </fcore>
+      <fcore
+            id="egf/EMF_UC2_4_LibraryExtension_ClassInsert_ItemProvider.fcore">
+      </fcore>
+      <fcore
+            id="egf/EMF_UC2_5_DomainIndependent_PluginProperties.fcore">
+      </fcore>
+      <fcore
             id="egf/EMF_Library_UC2_1.fcore">
+      </fcore>
+      <fcore
+            id="egf/EMF_Library_UC2_2_GetSetGenFeature.fcore">
       </fcore>
       <fcore
             id="egf/EMF_Library_UC2_3_OperationImplementation.fcore">
       </fcore>
       <fcore
             id="egf/EMF_Library_UC2_4_ExtensionPluginProperties.fcore">
-      </fcore>
-      <fcore
-            id="egf/EMF_Library_UC2_2_GetSetGenFeature.fcore">
       </fcore>
    </extension>
 

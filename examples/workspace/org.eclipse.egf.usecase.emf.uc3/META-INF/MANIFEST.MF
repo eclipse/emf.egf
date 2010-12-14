@@ -8,4 +8,8 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.pattern.ftask;visibility:=reexport,
  org.eclipse.egf.emf.pattern,
- org.eclipse.egf.usecase.emf.uc2;bundle-version="0.3.0"
+ org.eclipse.egf.usecase.emf.uc2,
+ org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.portfolio.file.resources
+Export-Package: org.eclipse.egf.usecase.emf.library.customized.model.Class.implementedoperation,
+ org.eclipse.egf.usecase.emf.uc3
