@@ -126,11 +126,8 @@ public class BorrowingSystemgetActiveReservations extends org.eclipse.egf.emf.pa
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern BorrowingSystem.getActiveReservations\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern BorrowingSystem.getActiveReservations\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

@@ -122,11 +122,8 @@ public class BorrowgetDescription extends org.eclipse.egf.emf.pattern.model.call
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern Borrow.getDescription\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern Borrow.getDescription\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

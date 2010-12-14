@@ -138,11 +138,8 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern Library_Books_Class_getGenFeature_override\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern Library_Books_Class_getGenFeature_override\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

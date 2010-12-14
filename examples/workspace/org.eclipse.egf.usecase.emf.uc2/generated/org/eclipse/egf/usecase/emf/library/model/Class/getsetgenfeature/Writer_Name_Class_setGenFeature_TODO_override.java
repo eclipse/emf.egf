@@ -138,11 +138,8 @@ public class Writer_Name_Class_setGenFeature_TODO_override extends org.eclipse.e
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern Writer_Name_Class_setGenFeature_TODO_override\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern Writer_Name_Class_setGenFeature_TODO_override\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

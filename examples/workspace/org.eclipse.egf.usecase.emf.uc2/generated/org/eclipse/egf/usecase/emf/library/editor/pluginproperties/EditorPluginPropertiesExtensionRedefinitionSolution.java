@@ -100,11 +100,8 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern EditorPluginPropertiesExtension-RedefinitionSolution\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern EditorPluginPropertiesExtension-RedefinitionSolution\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

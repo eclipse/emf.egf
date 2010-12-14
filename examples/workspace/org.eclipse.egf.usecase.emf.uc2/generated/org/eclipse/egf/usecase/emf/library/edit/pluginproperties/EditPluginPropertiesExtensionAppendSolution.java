@@ -61,12 +61,10 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern EditPluginPropertiesExtension-AppendSolution\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
 
         method_doGenerateAppendPart(ictx.getBuffer(), ictx);
-        ictx.getBuffer().append("// End pattern EditPluginPropertiesExtension-AppendSolution\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

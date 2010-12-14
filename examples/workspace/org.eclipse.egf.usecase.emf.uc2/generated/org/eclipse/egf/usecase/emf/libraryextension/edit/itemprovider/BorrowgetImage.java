@@ -76,11 +76,8 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern Borrow.getImage\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern Borrow.getImage\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

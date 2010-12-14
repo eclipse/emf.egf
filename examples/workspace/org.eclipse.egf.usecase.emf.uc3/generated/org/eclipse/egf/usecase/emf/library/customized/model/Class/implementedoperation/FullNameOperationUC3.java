@@ -126,11 +126,8 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern FullNameOperation-UC3\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern FullNameOperation-UC3\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {

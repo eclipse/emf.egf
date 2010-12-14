@@ -122,11 +122,8 @@ public class ReservationgetDescription extends org.eclipse.egf.emf.pattern.model
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
-        ictx.getBuffer().append("// begin pattern Reservation.getDescription\n");
 
         super.orchestration(new SuperOrchestrationContext(ictx));
-
-        ictx.getBuffer().append("// End pattern Reservation.getDescription\n");
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {
