@@ -7,6 +7,11 @@ genModel.getImportedName("org.eclipse.egf.examples.extlibrary.BookOnTape");
 genModel.getImportedName("org.eclipse.egf.examples.extlibrary.VideoCassette");
 %>
 //INJECTED-CODE-BEGIN : BorrowImpl#getDescription()
+/**
+ * <!-- begin-user-doc -->
+ * <!-- end-user-doc -->
+ * @generated
+ */
 @Override
 public String getDescription() {
 	String result= "";

@@ -8,6 +8,11 @@ genModel.getImportedName("org.eclipse.egf.examples.extlibrary.CirculatingItem");
 genModel.getImportedName("org.eclipse.egf.examples.extlibrary.EquippedLibrary");
 %>
 	//INJECTED-CODE-BEGIN : CrossLibraryReservationImpl#getWaitedBorrowers()
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EList<Borrower> getWaitedBorrowers() {
 
