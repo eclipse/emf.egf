@@ -20,7 +20,6 @@
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_5siVYMnxEd62uJjVIIL53A"
         name="jmerger" mode="Out" invocationContracts="#_HzSEYciDEd6oON34eIZwow">
       <type xmi:type="types:TypeClass" xmi:id="_HBvg4DEJEd-NFKo1q2Gmvw" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
-      <type xmi:type="types:TypeGeneratorAdapterFactory" xmi:id="_7EKPoMnxEd62uJjVIIL53A"/>
     </contracts>
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_aZgPYNW6Ed6dzvinGX1cMA"
         name="parameters" invocationContracts="#_OHww8NW6Ed6dzvinGX1cMA">
