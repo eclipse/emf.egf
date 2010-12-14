@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.strategy.modeldriven;
+package org.eclipse.egf.pattern.strategy.domaindriven;
 
 import java.io.File;
 import java.util.List;

@@ -14,12 +14,12 @@
  */
 package org.eclipse.egf.portfolio.eclipse.build;
 
-import org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask;
+import org.eclipse.egf.pattern.ftask.tasks.DomainDrivenStrategyTask;
 
 /**
  * @author Matthieu Helleboid
  *
  */
-public class ModelDrivenGenerationTask extends ModelDrivenStrategyTask {
+public class ModelDrivenGenerationTask extends DomainDrivenStrategyTask {
     // Nothing to do
 }

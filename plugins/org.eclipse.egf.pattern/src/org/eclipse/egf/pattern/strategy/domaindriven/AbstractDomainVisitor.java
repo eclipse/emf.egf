@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.strategy.modeldriven;
+package org.eclipse.egf.pattern.strategy.domaindriven;
 
 import java.util.ArrayList;
 import java.util.Arrays;

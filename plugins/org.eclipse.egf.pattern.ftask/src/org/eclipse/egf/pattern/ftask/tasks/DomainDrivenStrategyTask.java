@@ -19,17 +19,17 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
-import org.eclipse.egf.pattern.strategy.modeldriven.ModelDrivenStrategy;
+import org.eclipse.egf.pattern.strategy.domaindriven.DomainDrivenStrategy;
 
 /**
  * @author Thomas Guiu
  */
-public class ModelDrivenStrategyTask extends AbstractStrategyTask {
+public class DomainDrivenStrategyTask extends AbstractStrategyTask {
 
     private StrategyReporter reporter;
 
-    public ModelDrivenStrategyTask() {
-        super(new ModelDrivenStrategy());
+    public DomainDrivenStrategyTask() {
+        super(new DomainDrivenStrategy());
     }
 
     @Override

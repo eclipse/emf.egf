@@ -23,7 +23,7 @@ import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.TypeDomainGenPackages;
 import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask;
+import org.eclipse.egf.pattern.ftask.tasks.DomainDrivenStrategyTask;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @author Matthieu Helleboid
  * 
  */
-public class ModelDrivenStrategyTaskForGenModel extends ModelDrivenStrategyTask {
+public class ModelDrivenStrategyTaskForGenModel extends DomainDrivenStrategyTask {
 
     private List<DomainGenPackage> _usedGenPackages;
 

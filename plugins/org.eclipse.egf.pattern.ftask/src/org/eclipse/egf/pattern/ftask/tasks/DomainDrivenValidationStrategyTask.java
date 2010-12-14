@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.Diagnostician;
  * @author Matthieu Helleboid
  * 
  */
-public class ModelDrivenValidationStrategyTask extends ModelDrivenStrategyTask {
+public class DomainDrivenValidationStrategyTask extends DomainDrivenStrategyTask {
 
     private static final String DIAGNOSTIC = "diagnostic"; //$NON-NLS-1$
 

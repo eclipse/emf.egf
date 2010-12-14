@@ -249,7 +249,7 @@
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
           <invocationContracts xmi:id="_y3exV9U7Ed-sZ5ty9tQGtA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_zJXimcAXOEd-ra8cys1-yIrg">
             <type xmi:type="pattern:TypePatternDomainVisitor" xmi:id="_OoqVENVDEd-sZ5ty9tQGtA"
-                value="org.eclipse.egf.pattern.strategy.modeldriven.SubClassEmfModelVisitor"/>
+                value="org.eclipse.egf.pattern.strategy.domaindriven.SubClassEmfModelVisitor"/>
           </invocationContracts>
           <invocationContracts xmi:id="_y3exWNU7Ed-sZ5ty9tQGtA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_sd4jQNVBEd-sZ5ty9tQGtA"

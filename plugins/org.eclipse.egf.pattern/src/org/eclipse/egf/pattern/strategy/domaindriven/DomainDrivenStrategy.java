@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.strategy.modeldriven;
+package org.eclipse.egf.pattern.strategy.domaindriven;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ import org.eclipse.egf.pattern.strategy.AbstractStrategy;
  * @author Thomas Guiu
  * 
  */
-public class ModelDrivenStrategy extends AbstractStrategy {
+public class DomainDrivenStrategy extends AbstractStrategy {
 
     @SuppressWarnings("unchecked")
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException {
@@ -42,14 +42,14 @@ public class ModelDrivenStrategy extends AbstractStrategy {
         TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
         if (substitutions != null) {
             for (Substitution sub : substitutions.getSubstitutions()) {
-                //add all replacement patterns if replaced Element is null
+                // add all replacement patterns if replaced Element is null
                 if (sub.getReplacedElement() == null)
                     result.addAll(sub.getReplacement());
             }
         }
         List<Object> model = (List<Object>) context.getValue(PatternContext.DOMAIN_OBJECTS);
 
-        final DomainVisitor visitor = (DomainVisitor) context.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
+        final DomainVisitor visitor = (DomainVisitor) context.getValue(PatternContext.DOMAIN_DRIVEN_STRATEGY_VISITOR);
         visitor.setPatterns(result);
         try {
             visitor.visit(context, model);

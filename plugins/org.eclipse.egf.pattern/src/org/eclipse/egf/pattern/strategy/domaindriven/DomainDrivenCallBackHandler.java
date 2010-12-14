@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.strategy.modeldriven;
+package org.eclipse.egf.pattern.strategy.domaindriven;
 
 import java.util.Map;
 
@@ -27,12 +27,12 @@ import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
  * @author Thomas Guiu
  * 
  */
-public class ModelDrivenCallBackHandler implements CallBackHandler {
+public class DomainDrivenCallBackHandler implements CallBackHandler {
     public void handleCall(PatternContext ctx, Map<String, Object> parameters) throws PatternException {
         if (parameters.size() != 1)
             throw new IllegalStateException(EGFPatternMessages.model_driven_strategy_error1);
 
-        DomainVisitor visitor = (DomainVisitor) ctx.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
+        DomainVisitor visitor = (DomainVisitor) ctx.getValue(PatternContext.DOMAIN_DRIVEN_STRATEGY_VISITOR);
         if (visitor != null)
             visitor.visit(ctx, parameters.values().iterator().next());
     }

@@ -32,7 +32,7 @@ public interface PatternContext {
 
     final String CALL_BACK_HANDLER = "pattern.call.back.handler"; //$NON-NLS-1$
 
-    final String MODEL_DRIVEN_DOMAIN_VISITOR = "pattern.modeldriven.visitor"; //$NON-NLS-1$
+    final String DOMAIN_DRIVEN_STRATEGY_VISITOR = "pattern.domain.driven.visitor"; //$NON-NLS-1$
 
     final String PATTERN_IDS_PARAMETER = "pattern.ids"; //$NON-NLS-1$
 

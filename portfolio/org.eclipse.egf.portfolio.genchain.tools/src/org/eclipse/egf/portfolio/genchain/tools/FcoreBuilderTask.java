@@ -25,7 +25,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask;
+import org.eclipse.egf.pattern.ftask.tasks.DomainDrivenStrategyTask;
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * 
  * @author Thomas Guiu
  */
-public class FcoreBuilderTask extends ModelDrivenStrategyTask {
+public class FcoreBuilderTask extends DomainDrivenStrategyTask {
 
     @Override
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
