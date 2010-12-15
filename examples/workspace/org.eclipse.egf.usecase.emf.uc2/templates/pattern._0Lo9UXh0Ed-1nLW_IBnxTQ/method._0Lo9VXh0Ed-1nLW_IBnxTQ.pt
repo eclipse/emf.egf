@@ -5,6 +5,7 @@
      */
     public <%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%><%if (genClass.hasCollidingGetAccessorOperation(genFeature)) {%>_<%}%>() 
     {
+//INJECTED-CODE-BEGIN : Library.getStock()
         if (stock == null) {
             // create a custom list implementation that synchronizes its book
             //    content with the "books" subset
@@ -35,4 +36,5 @@
             };
         }
         return stock;
+//INJECTED-CODE-END : Library.getStock()
     }

@@ -18,7 +18,7 @@ public class FullNameOperation extends org.eclipse.egf.emf.pattern.model.call.Cl
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t\treturn lastName + \" \" + firstName; ";
+    protected final String TEXT_1 = "//INJECTED-CODE-BEGIN : getFullName()" + NL + "\t\treturn lastName + \" \" + firstName;" + NL + "//INJECTED-CODE-END : getFullName()";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 

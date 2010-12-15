@@ -5,6 +5,7 @@
      */
     public <%=genFeature.getImportedType(genClass)%> <%=genFeature.getGetAccessor()%><%if (genClass.hasCollidingGetAccessorOperation(genFeature)) {%>_<%}%>() 
     {
+//INJECTED-CODE-BEGIN : Library.getBooks()
         if (books == null) {    
             // create a custom list implementation that synchronizes its content
             //    with the "stock" superset
@@ -35,4 +36,5 @@
             };
         }
         return books;
+//INJECTED-CODE-END : Library.getBooks()
     }

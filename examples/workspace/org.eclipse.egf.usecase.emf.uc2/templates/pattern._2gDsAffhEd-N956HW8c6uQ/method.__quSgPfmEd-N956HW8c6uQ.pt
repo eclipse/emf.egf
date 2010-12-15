@@ -1,1 +1,3 @@
-		return lastName + " " + firstName; 
+//INJECTED-CODE-BEGIN : getFullName()
+		return lastName + " " + firstName;
+//INJECTED-CODE-END : getFullName()

@@ -1,3 +1,4 @@
+//INJECTED-CODE-BEGIN : Writer.getName()
         if (getFirstName() == null) {
             if (getLastName() == null) {
                 return ""; <%=genModel.getNonNLS()%>
@@ -10,3 +11,4 @@
             result.append(getFirstName()).append(' ').append(getLastName());
             return result.toString();
         }
+//INJECTED-CODE-END : Writer.getName()

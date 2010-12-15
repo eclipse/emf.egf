@@ -1,3 +1,4 @@
+//INJECTED-CODE-BEGIN : Writer.setName()
     if (newName == null || newName.length() == 0) {
         setFirstName(null);
         setLastName(null);
@@ -14,3 +15,4 @@
             setLastName(null);
         }
     }
+//INJECTED-CODE-END : Writer.setName()
