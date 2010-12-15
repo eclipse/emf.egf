@@ -8,86 +8,80 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class GenBaseGIF extends org.eclipse.egf.emf.pattern.base.GenAbstract {
-	protected static String nl;
+    protected static String nl;
 
-	public static synchronized GenBaseGIF create(String lineSeparator) {
-		nl = lineSeparator;
-		GenBaseGIF result = new GenBaseGIF();
-		nl = null;
-		return result;
-	}
+    public static synchronized GenBaseGIF create(String lineSeparator) {
+        nl = lineSeparator;
+        GenBaseGIF result = new GenBaseGIF();
+        nl = null;
+        return result;
+    }
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "";
-	protected final String TEXT_2 = NL;
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+    protected final String TEXT_1 = "";
+    protected final String TEXT_2 = NL;
 
-	public GenBaseGIF() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public GenBaseGIF() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		// add initialisation of the pattern variables (declaration has been already done).
+        // add initialisation of the pattern variables (declaration has been already done).
 
-	}
+    }
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
 
-		if (preCondition())
-			orchestration(ctx);
+        if (preCondition())
+            orchestration(ctx);
 
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(
-					ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
-		}
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+            ctx.clearBuffer();
+        }
 
-		stringBuffer.append(TEXT_1);
-		stringBuffer.append(TEXT_2);
-		return stringBuffer.toString();
-	}
+        stringBuffer.append(TEXT_1);
+        stringBuffer.append(TEXT_2);
+        return stringBuffer.toString();
+    }
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        int executionIndex = ictx.getExecutionBuffer().length();
 
-		super.orchestration(new SuperOrchestrationContext(ictx));
+        super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = ictx.getBuffer().toString();
-		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer()
-					.append(ictx.getBuffer().substring(
-							ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			ictx.clearBuffer();
-		}
-		return loop;
-	}
+        String loop = ictx.getBuffer().toString();
+        if (ictx.useReporter()) {
+            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+            ictx.setExecutionCurrentIndex(0);
+            ictx.clearBuffer();
+        }
+        return loop;
+    }
 
-	protected java.lang.String targetPathName = null;
+    protected java.lang.String targetPathName = null;
 
-	public void set_targetPathName(java.lang.String object) {
-		this.targetPathName = object;
-	}
+    public void set_targetPathName(java.lang.String object) {
+        this.targetPathName = object;
+    }
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		return parameters;
-	}
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        return parameters;
+    }
 
-	protected void method_putContentTypeInContext(
-			final StringBuffer stringBuffer, final PatternContext ctx)
-			throws Exception {
+    protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		ctx.setValue("contentType", ContentType.GIF);
+        ctx.setValue("contentType", ContentType.GIF);
 
-	}
+    }
 
-	public boolean preCondition() throws Exception {
-		return super.preCondition();
-	}
+    public boolean preCondition() throws Exception {
+        return super.preCondition();
+    }
 }
