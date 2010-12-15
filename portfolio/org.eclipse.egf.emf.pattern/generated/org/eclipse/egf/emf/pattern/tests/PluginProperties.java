@@ -14,160 +14,175 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelProperties {
+public class PluginProperties extends
+		org.eclipse.egf.emf.pattern.base.GenModelProperties {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized PluginProperties create(String lineSeparator) {
+		nl = lineSeparator;
+		PluginProperties result = new PluginProperties();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized PluginProperties create(String lineSeparator) {
-        nl = lineSeparator;
-        PluginProperties result = new PluginProperties();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "";
+	protected final String TEXT_2 = NL + NL + "pluginName = ";
+	protected final String TEXT_3 = " Tests" + NL
+			+ "providerName = www.example.org" + NL;
+	protected final String TEXT_4 = NL;
+	protected final String TEXT_5 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public PluginProperties() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = "";
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = NL + NL + "pluginName = ";
+	}
 
-    protected final String TEXT_3 = " Tests" + NL + "providerName = www.example.org" + NL;
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_4 = NL;
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-    protected final String TEXT_5 = NL;
+		List<Object> parameterList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-    public PluginProperties() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+		for (Object parameterParameter : parameterList) {
 
-        // add initialisation of the pattern variables (declaration has been already done).
+			this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) parameterParameter;
 
-    }
+			if (preCondition())
+				orchestration(ctx);
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(
+					ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+		stringBuffer.append(TEXT_4);
+		stringBuffer.append(TEXT_5);
+		return stringBuffer.toString();
+	}
 
-        List<Object> parameterList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-        for (Object parameterParameter : parameterList) {
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-            this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) parameterParameter;
+		method_preGenerate(ictx.getBuffer(), ictx);
 
-            if (preCondition())
-                orchestration(ctx);
+		method_doGenerate(ictx.getBuffer(), ictx);
+		{
+			ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
+			ictx.getExecutionBuffer().append(ictx.getBuffer());
+			final Map<String, Object> parameters = getParameters();
+			CallbackContext ctx_callback = new CallbackContext(ictx);
+			CallHelper.callBack(ctx_callback, parameters);
+		}
 
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		method_postGenerate(ictx.getBuffer(), ictx);
 
-        stringBuffer.append(TEXT_4);
-        stringBuffer.append(TEXT_5);
-        return stringBuffer.toString();
-    }
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer()
+					.append(ictx.getBuffer().substring(
+							ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("parameter", this.parameter);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(
+					executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("parameter", this.parameter);
+		return parameters;
+	}
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+	protected void method_setReporterVariables(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
-        method_preGenerate(ictx.getBuffer(), ictx);
+		GenModel genModel = parameter;
+		targetPathName = genModel.getTestsProjectDirectory()
+				+ "/plugin.properties";
 
-        method_doGenerate(ictx.getBuffer(), ictx);
-        {
-            ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
-            ictx.getExecutionBuffer().append(ictx.getBuffer());
-            final Map<String, Object> parameters = getParameters();
-            CallbackContext ctx_callback = new CallbackContext(ictx);
-            CallHelper.callBack(ctx_callback, parameters);
-        }
+	}
 
-        method_postGenerate(ictx.getBuffer(), ictx);
+	protected void method_setArgument(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("parameter", this.parameter);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+		GenModel genModel = parameter;
+		argument = parameter;
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("parameter", this.parameter);
-        return parameters;
-    }
+	}
 
-    protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_ensureProjectExists(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
-        GenModel genModel = parameter;
-        targetPathName = genModel.getTestsProjectDirectory() + "/plugin.properties";
+		new CodegenGeneratorAdapter(parameter).ensureProjectExists(
+				genModel.getTestsDirectory(), genModel,
+				GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE,
+				genModel.isUpdateClasspath(), new BasicMonitor());
 
-    }
+	}
 
-    protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_doGenerate(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
-        GenModel genModel = parameter;
-        argument = parameter;
+		/**
+		 * <copyright>
+		 *
+		 * Copyright (c) 2005 IBM Corporation and others.
+		 * All rights reserved.   This program and the accompanying materials
+		 * are made available under the terms of the Eclipse Public License v1.0
+		 * which accompanies this distribution, and is available at
+		 * http://www.eclipse.org/legal/epl-v10.html
+		 * 
+		 * Contributors: 
+		 *   IBM - Initial API and implementation
+		 *
+		 * </copyright>
+		 */
 
-    }
+		GenModel genModel = (GenModel) argument;
+		stringBuffer.append(TEXT_1);
+		{
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
 
-    protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+			final Map<String, Object> callParameters = new HashMap<String, Object>();
+			callParameters.put("argument", parameter);
+			CallHelper
+					.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg",
+							new ExecutionContext((InternalPatternContext) ctx),
+							callParameters);
+		}
 
-        new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(genModel.getModelName());
+		stringBuffer.append(TEXT_3);
+	}
 
-    }
-
-    protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        /**
-         * <copyright>
-         *
-         * Copyright (c) 2005 IBM Corporation and others.
-         * All rights reserved.   This program and the accompanying materials
-         * are made available under the terms of the Eclipse Public License v1.0
-         * which accompanies this distribution, and is available at
-         * http://www.eclipse.org/legal/epl-v10.html
-         * 
-         * Contributors: 
-         *   IBM - Initial API and implementation
-         *
-         * </copyright>
-         */
-
-        GenModel genModel = (GenModel) argument;
-        stringBuffer.append(TEXT_1);
-        {
-            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
-
-            final Map<String, Object> callParameters = new HashMap<String, Object>();
-            callParameters.put("argument", parameter);
-            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-        }
-
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(genModel.getModelName());
-        stringBuffer.append(TEXT_3);
-    }
-
-    public boolean preCondition() throws Exception {
-        GenModel genModel = parameter;
-        genModel = parameter.getGenModel();
-        boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
-        canGenerate = canGenerate && (!genModel.sameModelTestsProject());
-        return canGenerate;
-    }
+	public boolean preCondition() throws Exception {
+		GenModel genModel = parameter;
+		genModel = parameter.getGenModel();
+		boolean canGenerate = new CodegenGeneratorAdapter(parameter)
+				.canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
+		canGenerate = canGenerate && (!genModel.sameModelTestsProject());
+		return canGenerate;
+	}
 }

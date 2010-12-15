@@ -15,223 +15,251 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCaseimplementedGenFeatureoverride {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized TestCaseimplementedGenFeatureoverride create(
+			String lineSeparator) {
+		nl = lineSeparator;
+		TestCaseimplementedGenFeatureoverride result = new TestCaseimplementedGenFeatureoverride();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized TestCaseimplementedGenFeatureoverride create(String lineSeparator) {
-        nl = lineSeparator;
-        TestCaseimplementedGenFeatureoverride result = new TestCaseimplementedGenFeatureoverride();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "";
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
+	protected final String TEXT_5 = NL;
+	protected final String TEXT_6 = NL;
+	protected final String TEXT_7 = NL;
+	protected final String TEXT_8 = NL;
+	protected final String TEXT_9 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public TestCaseimplementedGenFeatureoverride() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = "";
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = NL;
+	}
 
-    protected final String TEXT_3 = NL;
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_4 = NL;
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-    protected final String TEXT_5 = NL;
+		List<Object> genFeatureList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genClassList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genPackageList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genModelList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-    protected final String TEXT_6 = NL;
+		for (Object genFeatureParameter : genFeatureList) {
+			for (Object genClassParameter : genClassList) {
+				for (Object genPackageParameter : genPackageList) {
+					for (Object genModelParameter : genModelList) {
 
-    protected final String TEXT_7 = NL;
+						this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+						this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+						this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-    protected final String TEXT_8 = NL;
+						if (preCondition())
+							orchestration(ctx);
 
-    protected final String TEXT_9 = NL;
+					}
+				}
+			}
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(
+					ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-    public TestCaseimplementedGenFeatureoverride() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+		stringBuffer.append(TEXT_8);
+		stringBuffer.append(TEXT_9);
+		return stringBuffer.toString();
+	}
 
-        // add initialisation of the pattern variables (declaration has been already done).
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-    }
+		method_doGenerate(ictx.getBuffer(), ictx);
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer()
+					.append(ictx.getBuffer().substring(
+							ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("genFeature", this.genFeature);
+			parameterValues.put("genClass", this.genClass);
+			parameterValues.put("genPackage", this.genPackage);
+			parameterValues.put("genModel", this.genModel);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(
+					executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
 
-        List<Object> genFeatureList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> genClassList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> genPackageList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> genModelList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+	public void set_genFeature(
+			org.eclipse.emf.codegen.ecore.genmodel.GenFeature object) {
+		this.genFeature = object;
+	}
 
-        for (Object genFeatureParameter : genFeatureList) {
-            for (Object genClassParameter : genClassList) {
-                for (Object genPackageParameter : genPackageList) {
-                    for (Object genModelParameter : genModelList) {
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass = null;
 
-                        this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                        this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                        this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                        this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+	public void set_genClass(
+			org.eclipse.emf.codegen.ecore.genmodel.GenClass object) {
+		this.genClass = object;
+	}
 
-                        if (preCondition())
-                            orchestration(ctx);
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
 
-                    }
-                }
-            }
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+	public void set_genPackage(
+			org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
+		this.genPackage = object;
+	}
 
-        stringBuffer.append(TEXT_8);
-        stringBuffer.append(TEXT_9);
-        return stringBuffer.toString();
-    }
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	public void set_genModel(
+			org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
+		this.genModel = object;
+	}
 
-        method_doGenerate(ictx.getBuffer(), ictx);
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("genFeature", this.genFeature);
+		parameters.put("genClass", this.genClass);
+		parameters.put("genPackage", this.genPackage);
+		parameters.put("genModel", this.genModel);
+		return parameters;
+	}
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("genFeature", this.genFeature);
-            parameterValues.put("genClass", this.genClass);
-            parameterValues.put("genPackage", this.genPackage);
-            parameterValues.put("genModel", this.genModel);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+	protected void method_doGenerate(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
+		stringBuffer.append(TEXT_1);
+		if (genFeature.isTested()) {
+			if (genFeature.isGet() && !genFeature.isSuppressedGetVisibility()) {
+				stringBuffer.append(TEXT_2);
+				{
+					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
-    public void set_genFeature(org.eclipse.emf.codegen.ecore.genmodel.GenFeature object) {
-        this.genFeature = object;
-    }
+					final Map<String, Object> callParameters = new HashMap<String, Object>();
+					callParameters.put("genFeature", genFeature);
+					callParameters.put("genClass", genClass);
+					callParameters.put("genPackage", genPackage);
+					callParameters.put("genModel", genModel);
+					CallHelper
+							.executeWithParameterInjection(
+									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_093kIGJ-Ed-FqczH3ESmRw",
+									new ExecutionContext(
+											(InternalPatternContext) ctx),
+									callParameters);
+				}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass = null;
+				//TestCase/getGenFeature.override.javajetinc
+			}
+			if (genFeature.isSet() && !genFeature.isSuppressedSetVisibility()) {
+				stringBuffer.append(TEXT_3);
+				{
+					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
-    public void set_genClass(org.eclipse.emf.codegen.ecore.genmodel.GenClass object) {
-        this.genClass = object;
-    }
+					final Map<String, Object> callParameters = new HashMap<String, Object>();
+					callParameters.put("genFeature", genFeature);
+					callParameters.put("genClass", genClass);
+					callParameters.put("genPackage", genPackage);
+					callParameters.put("genModel", genModel);
+					CallHelper
+							.executeWithParameterInjection(
+									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-daAGJ-Ed-FqczH3ESmRw",
+									new ExecutionContext(
+											(InternalPatternContext) ctx),
+									callParameters);
+				}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
+				//TestCase/setGenFeature.override.javajetinc
+			}
+			if (genFeature.isUnset()
+					&& !genFeature.isSuppressedUnsetVisibility()) {
+				stringBuffer.append(TEXT_4);
+				{
+					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
-    public void set_genPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
-        this.genPackage = object;
-    }
+					final Map<String, Object> callParameters = new HashMap<String, Object>();
+					callParameters.put("genFeature", genFeature);
+					callParameters.put("genClass", genClass);
+					callParameters.put("genPackage", genPackage);
+					callParameters.put("genModel", genModel);
+					CallHelper
+							.executeWithParameterInjection(
+									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0_NA4GJ-Ed-FqczH3ESmRw",
+									new ExecutionContext(
+											(InternalPatternContext) ctx),
+									callParameters);
+				}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
+				//TestCase/unsetGenFeature.override.javajetinc
+			}
+			if (genFeature.isIsSet()
+					&& !genFeature.isSuppressedIsSetVisibility()) {
+				stringBuffer.append(TEXT_5);
+				{
+					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
-    public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
-        this.genModel = object;
-    }
+					final Map<String, Object> callParameters = new HashMap<String, Object>();
+					callParameters.put("genFeature", genFeature);
+					callParameters.put("genClass", genClass);
+					callParameters.put("genPackage", genPackage);
+					callParameters.put("genModel", genModel);
+					CallHelper
+							.executeWithParameterInjection(
+									"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1BvXgGJ-Ed-FqczH3ESmRw",
+									new ExecutionContext(
+											(InternalPatternContext) ctx),
+									callParameters);
+				}
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("genFeature", this.genFeature);
-        parameters.put("genClass", this.genClass);
-        parameters.put("genPackage", this.genPackage);
-        parameters.put("genModel", this.genModel);
-        return parameters;
-    }
+				//TestCase/isSetGenFeature.override.javajetinc
+			}
+		}
+		stringBuffer.append(TEXT_6);
+		{
+			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
-    protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+			final Map<String, Object> callParameters = new HashMap<String, Object>();
+			callParameters.put("genFeature", genFeature);
+			callParameters.put("genClass", genClass);
+			callParameters.put("genPackage", genPackage);
+			callParameters.put("genModel", genModel);
+			CallHelper
+					.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1CovYGJ-Ed-FqczH3ESmRw",
+							new ExecutionContext((InternalPatternContext) ctx),
+							callParameters);
+		}
 
-        stringBuffer.append(TEXT_1);
-        if (genFeature.isTested()) {
-            if (genFeature.isGet() && !genFeature.isSuppressedGetVisibility()) {
-                stringBuffer.append(TEXT_2);
-                {
-                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+		stringBuffer.append(TEXT_7);
+	}
 
-                    final Map<String, Object> callParameters = new HashMap<String, Object>();
-                    callParameters.put("genFeature", genFeature);
-                    callParameters.put("genClass", genClass);
-                    callParameters.put("genPackage", genPackage);
-                    callParameters.put("genModel", genModel);
-                    CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_093kIGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                }
-
-                //TestCase/getGenFeature.override.javajetinc
-            }
-            if (genFeature.isSet() && !genFeature.isSuppressedSetVisibility()) {
-                stringBuffer.append(TEXT_3);
-                {
-                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
-
-                    final Map<String, Object> callParameters = new HashMap<String, Object>();
-                    callParameters.put("genFeature", genFeature);
-                    callParameters.put("genClass", genClass);
-                    callParameters.put("genPackage", genPackage);
-                    callParameters.put("genModel", genModel);
-                    CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0-daAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                }
-
-                //TestCase/setGenFeature.override.javajetinc
-            }
-            if (genFeature.isUnset() && !genFeature.isSuppressedUnsetVisibility()) {
-                stringBuffer.append(TEXT_4);
-                {
-                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
-
-                    final Map<String, Object> callParameters = new HashMap<String, Object>();
-                    callParameters.put("genFeature", genFeature);
-                    callParameters.put("genClass", genClass);
-                    callParameters.put("genPackage", genPackage);
-                    callParameters.put("genModel", genModel);
-                    CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0_NA4GJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                }
-
-                //TestCase/unsetGenFeature.override.javajetinc
-            }
-            if (genFeature.isIsSet() && !genFeature.isSuppressedIsSetVisibility()) {
-                stringBuffer.append(TEXT_5);
-                {
-                    //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
-
-                    final Map<String, Object> callParameters = new HashMap<String, Object>();
-                    callParameters.put("genFeature", genFeature);
-                    callParameters.put("genClass", genClass);
-                    callParameters.put("genPackage", genPackage);
-                    callParameters.put("genModel", genModel);
-                    CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1BvXgGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-                }
-
-                //TestCase/isSetGenFeature.override.javajetinc
-            }
-        }
-        stringBuffer.append(TEXT_6);
-        {
-            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
-
-            final Map<String, Object> callParameters = new HashMap<String, Object>();
-            callParameters.put("genFeature", genFeature);
-            callParameters.put("genClass", genClass);
-            callParameters.put("genPackage", genPackage);
-            callParameters.put("genModel", genModel);
-            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1CovYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-        }
-
-        stringBuffer.append(TEXT_7);
-    }
-
-    public boolean preCondition() throws Exception {
-        return true;
-    }
+	public boolean preCondition() throws Exception {
+		return true;
+	}
 }

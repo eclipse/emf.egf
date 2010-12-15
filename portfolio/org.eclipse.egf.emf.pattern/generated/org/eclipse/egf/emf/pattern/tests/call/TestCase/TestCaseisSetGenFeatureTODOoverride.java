@@ -15,136 +15,148 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class TestCaseisSetGenFeatureTODOoverride {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized TestCaseisSetGenFeatureTODOoverride create(
+			String lineSeparator) {
+		nl = lineSeparator;
+		TestCaseisSetGenFeatureTODOoverride result = new TestCaseisSetGenFeatureTODOoverride();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized TestCaseisSetGenFeatureTODOoverride create(String lineSeparator) {
-        nl = lineSeparator;
-        TestCaseisSetGenFeatureTODOoverride result = new TestCaseisSetGenFeatureTODOoverride();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = NL
+			+ "\t\t// TODO: implement this test method"
+			+ NL
+			+ "\t\t// Ensure that you remove @generated or mark it @generated NOT"
+			+ NL + "\t\tfail();" + NL;
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public TestCaseisSetGenFeatureTODOoverride() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = NL + "\t\t// TODO: implement this test method" + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\tfail();" + NL;
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = NL;
+	}
 
-    protected final String TEXT_3 = NL;
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-    public TestCaseisSetGenFeatureTODOoverride() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		List<Object> genFeatureList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genClassList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genPackageList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
+		List<Object> genModelList = null;
+		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
-    }
+		for (Object genFeatureParameter : genFeatureList) {
+			for (Object genClassParameter : genClassList) {
+				for (Object genPackageParameter : genPackageList) {
+					for (Object genModelParameter : genModelList) {
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+						this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
+						this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
+						this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
+						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+						if (preCondition())
+							orchestration(ctx);
 
-        List<Object> genFeatureList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> genClassList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> genPackageList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
-        List<Object> genModelList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+					}
+				}
+			}
+		}
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(
+					ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-        for (Object genFeatureParameter : genFeatureList) {
-            for (Object genClassParameter : genClassList) {
-                for (Object genPackageParameter : genPackageList) {
-                    for (Object genModelParameter : genModelList) {
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
+		return stringBuffer.toString();
+	}
 
-                        this.genFeature = (org.eclipse.emf.codegen.ecore.genmodel.GenFeature) genFeatureParameter;
-                        this.genClass = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) genClassParameter;
-                        this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
-                        this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-                        if (preCondition())
-                            orchestration(ctx);
+		method_doGenerate(ictx.getBuffer(), ictx);
 
-                    }
-                }
-            }
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer()
+					.append(ictx.getBuffer().substring(
+							ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("genFeature", this.genFeature);
+			parameterValues.put("genClass", this.genClass);
+			parameterValues.put("genPackage", this.genPackage);
+			parameterValues.put("genModel", this.genModel);
+			String outputWithCallBack = ictx.getExecutionBuffer().substring(
+					executionIndex);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(TEXT_3);
-        return stringBuffer.toString();
-    }
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	public void set_genFeature(
+			org.eclipse.emf.codegen.ecore.genmodel.GenFeature object) {
+		this.genFeature = object;
+	}
 
-        method_doGenerate(ictx.getBuffer(), ictx);
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass = null;
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("genFeature", this.genFeature);
-            parameterValues.put("genClass", this.genClass);
-            parameterValues.put("genPackage", this.genPackage);
-            parameterValues.put("genModel", this.genModel);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+	public void set_genClass(
+			org.eclipse.emf.codegen.ecore.genmodel.GenClass object) {
+		this.genClass = object;
+	}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
 
-    public void set_genFeature(org.eclipse.emf.codegen.ecore.genmodel.GenFeature object) {
-        this.genFeature = object;
-    }
+	public void set_genPackage(
+			org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
+		this.genPackage = object;
+	}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenClass genClass = null;
+	protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
 
-    public void set_genClass(org.eclipse.emf.codegen.ecore.genmodel.GenClass object) {
-        this.genClass = object;
-    }
+	public void set_genModel(
+			org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
+		this.genModel = object;
+	}
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("genFeature", this.genFeature);
+		parameters.put("genClass", this.genClass);
+		parameters.put("genPackage", this.genPackage);
+		parameters.put("genModel", this.genModel);
+		return parameters;
+	}
 
-    public void set_genPackage(org.eclipse.emf.codegen.ecore.genmodel.GenPackage object) {
-        this.genPackage = object;
-    }
+	protected void method_doGenerate(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
-    protected org.eclipse.emf.codegen.ecore.genmodel.GenModel genModel = null;
+		stringBuffer.append(TEXT_1);
+	}
 
-    public void set_genModel(org.eclipse.emf.codegen.ecore.genmodel.GenModel object) {
-        this.genModel = object;
-    }
-
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("genFeature", this.genFeature);
-        parameters.put("genClass", this.genClass);
-        parameters.put("genPackage", this.genPackage);
-        parameters.put("genModel", this.genModel);
-        return parameters;
-    }
-
-    protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_1);
-    }
-
-    public boolean preCondition() throws Exception {
-        return true;
-    }
+	public boolean preCondition() throws Exception {
+		return true;
+	}
 }
