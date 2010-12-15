@@ -18,6 +18,8 @@ package org.eclipse.egf.emf.docgen.html;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.domain.DomainException;
+import org.eclipse.egf.domain.emf.EMFDomainHelper;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.domain.DomainFactory;
@@ -40,10 +42,15 @@ public class EmfDocProductionContextFromGenModel implements ITaskProduction {
         Resource genModelResource = resourceSet.getResource(genModelURI, true);
         GenModel genModel = (GenModel) genModelResource.getContents().get(0);
 
-        EMFDomain EMFDomain = DomainFactory.eINSTANCE.createEMFDomain();
-        EMFDomain.setUri(genModelURI.trimSegments(1).appendSegment(genModel.getForeignModel().get(0)));
-
-        productionContext.setOutputValue("docEcoreURI", EMFDomain); //$NON-NLS-1$
+        EMFDomain emfDomain = DomainFactory.eINSTANCE.createEMFDomain();
+        emfDomain.setUri(genModelURI.trimSegments(1).appendSegment(genModel.getForeignModel().get(0)));
+        try {
+            new EMFDomainHelper().loadDomain(emfDomain);
+        } catch (DomainException e) {
+            throw new InvocationException(e);
+        }
+        
+        productionContext.setOutputValue("docEcoreURI", emfDomain); //$NON-NLS-1$
         productionContext.setOutputValue("docProjectName", genModel.getModelPluginID() + ".doc"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
