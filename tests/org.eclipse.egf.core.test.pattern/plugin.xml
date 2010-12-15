@@ -94,11 +94,15 @@
       
    </extension>
    
-   <extension
-         point="org.eclipse.egf.core.test">
-      <EGFTestModel
-            modelPath="test/Pattern.test">
-      </EGFTestModel>
-   </extension>
+	<extension point="org.eclipse.egf.core.test">
+		<EGFTestModel modelPath="test/Pattern.test"/>
+	</extension>
    
+   	<extension point="org.eclipse.egf.core.test">
+		<EGFTestModel modelPath="test/Pattern_UC1.test"/>
+	</extension>
+
+   	<extension point="org.eclipse.egf.core.test">
+		<EGFTestModel modelPath="test/Pattern_UC2.test"/>
+	</extension>
 </plugin>
