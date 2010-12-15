@@ -11,7 +11,7 @@
     containmentProxies="true" complianceLevel="5.0" language="en">
   <foreignModel>extlibrary.ecore</foreignModel>
   <genPackages prefix="EXTLibrary" basePackage="org.eclipse.egf.examples" disposableProviderFactory="true"
-      contentTypeIdentifier="extendedLibrary" ecorePackage="extlibrary.ecore#/">
+      extensibleProviderFactory="true" contentTypeIdentifier="extendedLibrary" ecorePackage="extlibrary.ecore#/">
     <genEnums ecoreEnum="extlibrary.ecore#//BookCategory">
       <genEnumLiterals ecoreEnumLiteral="extlibrary.ecore#//BookCategory/Mystery"/>
       <genEnumLiterals ecoreEnumLiteral="extlibrary.ecore#//BookCategory/ScienceFiction"/>
@@ -68,6 +68,7 @@
     <genClasses ecoreClass="extlibrary.ecore#//Person" labelFeature="#//extlibrary/Person/lastName">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extlibrary.ecore#//Person/firstName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute extlibrary.ecore#//Person/lastName"/>
+      <genOperations ecoreOperation="extlibrary.ecore#//Person/getFullName"/>
     </genClasses>
     <genClasses ecoreClass="extlibrary.ecore#//Employee" labelFeature="#//extlibrary/Person/lastName">
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference extlibrary.ecore#//Employee/manager"/>

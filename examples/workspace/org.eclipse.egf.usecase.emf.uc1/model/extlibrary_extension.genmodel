@@ -7,7 +7,7 @@
     usedGenPackages="extlibrary.genmodel#//extlibrary">
   <foreignModel>extlibrary_extension.ecore</foreignModel>
   <genPackages prefix="LibraryExtension" basePackage="org.eclipse.egf.examples" resource="XML"
-      disposableProviderFactory="true" ecorePackage="extlibrary_extension.ecore#/">
+      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="extlibrary_extension.ecore#/">
     <genClasses ecoreClass="extlibrary_extension.ecore#//EquippedLibrary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference extlibrary_extension.ecore#//EquippedLibrary/borrowingSystem"/>
     </genClasses>
