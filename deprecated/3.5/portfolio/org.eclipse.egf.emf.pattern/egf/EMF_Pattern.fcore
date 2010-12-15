@@ -24,7 +24,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_RcQCMPI7Ed-Pp8S8RvVOuQ"
           description="EMF Model Pattern" name="usedGenPackages" invocationContracts="#_96-W8vMqEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_96-W9PMqEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_96-W9PMqEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sluXsVLLEd-ZSLMRjxSbVQ"
           description="EMF Model Pattern" name="mergeRulesURI" invocationContracts="#_96-W9fMqEd-6tr0C8ZV8Ew">
@@ -3381,7 +3381,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_dgkvsPI7Ed-Pp8S8RvVOuQ"
           description="EMF Edit Pattern" name="usedGenPackages" invocationContracts="#_96-XCvMqEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_96-XDPMqEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_96-XDPMqEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9wHxsFLMEd-ZSLMRjxSbVQ"
           description="EMF Edit Pattern" name="mergeRulesURI" invocationContracts="#_96-XDfMqEd-6tr0C8ZV8Ew">
@@ -3921,7 +3921,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_NcZ6I_MqEd-6tr0C8ZV8Ew"
           description="EMF Editor Pattern" name="usedGenPackages" invocationContracts="#_96-XIvMqEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_96-XJPMqEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_96-XJPMqEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FqdyEFLNEd-ZSLMRjxSbVQ"
           description="EMF Editor Pattern" name="mergeRulesURI" invocationContracts="#_96-XJfMqEd-6tr0C8ZV8Ew">
@@ -4341,7 +4341,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_NcjD0vMqEd-6tr0C8ZV8Ew"
           description="EMF Tests Pattern" name="usedGenPackages" invocationContracts="#_96-XOvMqEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_96-XPPMqEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_96-XPPMqEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_LnCeMFLNEd-ZSLMRjxSbVQ"
           description="EMF Tests Pattern" name="mergeRulesURI" invocationContracts="#_96-XPfMqEd-6tr0C8ZV8Ew">
@@ -4948,7 +4948,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_k-TskPI7Ed-Pp8S8RvVOuQ"
           description="EMF Pattern" name="usedGenPackages" invocationContracts="#_96-XUPMqEd-6tr0C8ZV8Ew #_96-XWfMqEd-6tr0C8ZV8Ew #_96-XYPMqEd-6tr0C8ZV8Ew #_96-XZ_MqEd-6tr0C8ZV8Ew">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_96-XT_MqEd-6tr0C8ZV8Ew"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_96-XT_MqEd-6tr0C8ZV8Ew"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_TK4DEFLNEd-ZSLMRjxSbVQ"
           description="EMF Pattern" name="mergeRulesURI" invocationContracts="#_96-XU_MqEd-6tr0C8ZV8Ew #_96-XWvMqEd-6tr0C8ZV8Ew #_96-XYfMqEd-6tr0C8ZV8Ew #_96-XaPMqEd-6tr0C8ZV8Ew">
