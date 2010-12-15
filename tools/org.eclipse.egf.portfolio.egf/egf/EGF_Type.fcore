@@ -16,8 +16,7 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_zVKIgPGaEd-yReKccS25lA"
           name="usedGenPackages" invocationContracts="#_9ts-gPI7Ed-Pp8S8RvVOuQ">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_o-k5gfI6Ed-Pp8S8RvVOuQ"
-            elements="#_HkMDwPLyEd-LKJQsOh55Tw"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_o-k5gfI6Ed-Pp8S8RvVOuQ" elements="platform:/plugin/org.eclipse.egf.model/model/Fcore.genmodel#//fcore"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_2lDuEUiYEd-PHrwGynb-Gg" description="t">
@@ -50,10 +49,6 @@
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_lRD_1_GTEd-yReKccS25lA"/>
           </elements>
         </libraries>
-      </viewpoints>
-      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_HM8ocPLyEd-LKJQsOh55Tw">
-        <domains xmi:type="domain:DomainGenPackage" xmi:id="_HkMDwPLyEd-LKJQsOh55Tw"
-            genPackage="platform:/plugin/org.eclipse.egf.model/model/Fcore.genmodel#//fcore"/>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_rm68gEebEd-o3oTHnj_3Dw">
@@ -101,16 +96,9 @@
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wX1KhfL0Ed-FKtLe6G-YfQ"
           name="usedGenPackages" invocationContracts="#_wX1Kk_L0Ed-FKtLe6G-YfQ #_2XTHsPL2Ed-Tg_CuoVrSwA">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_wX1KhvL0Ed-FKtLe6G-YfQ"
-            elements="#_FjmSwPL3Ed-Tg_CuoVrSwA"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_wX1KhvL0Ed-FKtLe6G-YfQ" elements="platform:/plugin/org.eclipse.egf.model/model/Fcore.genmodel#//fcore"/>
       </contracts>
     </contractContainer>
-    <viewpointContainer xmi:id="_E4YykPL3Ed-Tg_CuoVrSwA">
-      <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_FMpyYPL3Ed-Tg_CuoVrSwA">
-        <domains xmi:type="domain:DomainGenPackage" xmi:id="_FjmSwPL3Ed-Tg_CuoVrSwA"
-            genPackage="platform:/plugin/org.eclipse.egf.model/model/Fcore.genmodel#//fcore"/>
-      </viewpoints>
-    </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_wX1Kh_L0Ed-FKtLe6G-YfQ">
       <invocations xmi:id="_vozPYPL2Ed-Tg_CuoVrSwA" name="EMF Model" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w">
         <invocationContractContainer xmi:id="_znw_UPL2Ed-Tg_CuoVrSwA">
