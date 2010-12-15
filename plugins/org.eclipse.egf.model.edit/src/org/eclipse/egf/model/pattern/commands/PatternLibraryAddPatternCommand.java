@@ -34,7 +34,6 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.edit.l10n.EGFModelEditMessages;
-import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -126,7 +125,7 @@ public class PatternLibraryAddPatternCommand extends AddCommand {
         // Check and update pattern name if not unique
         PatternLibrary library = (PatternLibrary) owner;
         IPlatformFcore fcore = ((IPlatformFcoreProvider) library.eResource()).getIPlatformFcore();
-        List<String> names = ValidationHelper.getPatternNameWithinBundle(fcore, library, null);
+        List<String> names = PatternNameHelper.getPatternNameWithinBundle(fcore, library, null);
         for (Pattern pattern : _patterns) {
             PatternNameHelper.setUniquePatternName(fcore, pattern, names);
             names.add(pattern.getName());

@@ -12,7 +12,15 @@ package org.eclipse.egf.model.pattern;
 
 import java.util.List;
 
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.RuntimePlatformResourceSet;
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * @author Xavier Maysonnave
@@ -37,6 +45,42 @@ public class PatternNameHelper {
             pattern.setName(i == 0 ? DEFAULT_PATTERN_NAME : DEFAULT_PATTERN_NAME + "_" + i); //$NON-NLS-1$
         }
         return;
+    }
+
+    public static List<String> getPatternNameWithinBundle(IPlatformFcore fcore, PatternLibrary library, Pattern pattern) {
+        List<String> names = new UniqueEList<String>();
+        if (fcore == null || library == null) {
+            return names;
+        }
+        ResourceSet resourceSet = null;
+        if (library.eResource() != null) {
+            resourceSet = library.eResource().getResourceSet();
+        }
+        if (resourceSet == null) {
+            if (fcore.isRuntime()) {
+                resourceSet = new RuntimePlatformResourceSet();
+            } else {
+                resourceSet = new TargetPlatformResourceSet();
+            }
+        }
+        IPlatformFcore[] fcores = null;
+        if (fcore.isRuntime()) {
+            fcores = EGFCorePlugin.getRuntimePlatformFcores(fcore.getBundle());
+        } else {
+            fcores = EGFCorePlugin.getTargetPlatformFcores(fcore.getPluginModelBase());
+        }
+        for (IPlatformFcore innerFcore : fcores) {
+            Resource resource = resourceSet.getResource(innerFcore.getURI(), true);
+            for (EObject root : resource.getContents()) {
+                for (EObject innerEObject : EMFHelper.getAllProperContents(PatternPackage.eINSTANCE.getPattern(), root)) {
+                    Pattern innerPattern = (Pattern) innerEObject;
+                    if (pattern != innerPattern && innerPattern.getContainer().getName().equals(library.getName()) && innerPattern.getName() != null && innerPattern.getName().trim().length() != 0) {
+                        names.add(innerPattern.getName());
+                    }
+                }
+            }
+        }
+        return names;
     }
 
 }

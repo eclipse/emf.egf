@@ -17,7 +17,6 @@ import java.util.Map;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
-import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -109,7 +108,7 @@ public class PatternViewpointAddCommand extends AddCommand {
         PatternViewpoint patternViewpoint = (PatternViewpoint) owner;
         IPlatformFcore fcore = ((IPlatformFcoreProvider) patternViewpoint.eResource()).getIPlatformFcore();
         for (Map.Entry<PatternLibrary, List<Pattern>> entry : _patterns.entrySet()) {
-            List<String> names = ValidationHelper.getPatternNameWithinBundle(fcore, entry.getKey(), null);
+            List<String> names = PatternNameHelper.getPatternNameWithinBundle(fcore, entry.getKey(), null);
             for (Pattern pattern : entry.getValue()) {
                 PatternNameHelper.setUniquePatternName(fcore, pattern, names);
                 names.add(pattern.getName());

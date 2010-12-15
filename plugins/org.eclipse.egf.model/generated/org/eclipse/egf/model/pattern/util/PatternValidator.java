@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
-import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
@@ -36,6 +35,7 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -300,7 +300,7 @@ public class PatternValidator extends EObjectValidator {
         if (pattern.getName() == null || pattern.getName().trim().length() == 0 || pattern.eResource() == null || pattern.eResource() instanceof IPlatformFcoreProvider == false) {
             return true;
         }
-        if (ValidationHelper.getPatternNameWithinBundle(((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore(), pattern.getContainer(), pattern).contains(pattern.getName())) {
+        if (PatternNameHelper.getPatternNameWithinBundle(((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore(), pattern.getContainer(), pattern).contains(pattern.getName())) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
                         new Object[] {
