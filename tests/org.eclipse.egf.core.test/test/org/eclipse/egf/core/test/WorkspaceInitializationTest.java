@@ -45,7 +45,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.ui.dialogs.IOverwriteQuery;
-import org.eclipse.ui.wizards.datatransfer.FileSystemStructureProvider;
 import org.eclipse.ui.wizards.datatransfer.IImportStructureProvider;
 import org.eclipse.ui.wizards.datatransfer.ImportOperation;
 import org.osgi.framework.Bundle;
@@ -68,9 +67,7 @@ public class WorkspaceInitializationTest extends TestCase {
     protected void setUp() throws Exception {
 
         // Error
-        final Throwable[] error = new Throwable[] {
-            null
-        };
+        final Throwable[] error = new Throwable[] { null };
 
         class Import extends ImportOperation {
 
@@ -133,8 +130,7 @@ public class WorkspaceInitializationTest extends TestCase {
                         project.open(monitor);
                         // import project from location copying files
                         // use default project location for this workspace
-                        List<?> filesToImport = FileSystemStructureProvider.INSTANCE.getChildren(file);
-                        Import operation = new Import(project.getFullPath(), file, FileSystemStructureProvider.INSTANCE, this, filesToImport);
+                        Import operation = new Import(project.getFullPath(), file, new FilteredFileSystemStructureProvider(new String[] { ".svn" }), this, Collections.singletonList(file));
                         operation.setContext(null);
                         operation.setOverwriteResources(true);
                         operation.setCreateContainerStructure(false);
