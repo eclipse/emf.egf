@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
  * This is the central singleton for the Domain edit plugin.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public final class EGFModelEditPlugin extends EMFPlugin {
@@ -27,7 +26,6 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * Keep track of the singleton.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public static final EGFModelEditPlugin INSTANCE = new EGFModelEditPlugin();
@@ -36,7 +34,6 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * Keep track of the singleton.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     private static Implementation plugin;
@@ -55,14 +52,15 @@ public final class EGFModelEditPlugin extends EMFPlugin {
         // null
         // super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
         // EGFModelsEditPlugin.INSTANCE, });
-        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
+        super(new ResourceLocator[] {
+            EcoreEditPlugin.INSTANCE,
+        });
     }
 
     /**
      * Returns the singleton instance of the Eclipse plugin.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @return the singleton instance.
      * @generated
      */
@@ -75,7 +73,6 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * Returns the singleton instance of the Eclipse plugin.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @return the singleton instance.
      * @generated
      */
@@ -87,7 +84,6 @@ public final class EGFModelEditPlugin extends EMFPlugin {
      * The actual implementation of the Eclipse <b>Plugin</b>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public static class Implementation extends EGFEclipsePlugin {
@@ -96,7 +92,6 @@ public final class EGFModelEditPlugin extends EMFPlugin {
          * Creates an instance.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * 
          * @generated
          */
         public Implementation() {

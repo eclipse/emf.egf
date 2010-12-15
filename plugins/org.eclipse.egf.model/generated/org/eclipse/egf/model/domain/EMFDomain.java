@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.URI;
  * @generated
  */
 public interface EMFDomain extends LoadableDomain {
+
     /**
      * Returns the value of the '<em><b>Uri</b></em>' attribute.
      * <!-- begin-user-doc -->

@@ -12,8 +12,6 @@
  */
 package org.eclipse.egf.model.domain;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Loadable Domain</b></em>'.
@@ -31,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface LoadableDomain extends Domain {
+
     /**
      * Returns the value of the '<em><b>Loaded</b></em>' attribute.
      * <!-- begin-user-doc -->

@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class TypeDomainImpl extends TypeObjectImpl implements TypeDomain {
+
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
@@ -162,14 +163,14 @@ public class TypeDomainImpl extends TypeObjectImpl implements TypeDomain {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case DomainPackage.TYPE_DOMAIN__DOMAIN:
-            if (resolve)
-                return getDomain();
-            return basicGetDomain();
-        case DomainPackage.TYPE_DOMAIN__VALUE:
-            if (resolve)
-                return getValue();
-            return basicGetValue();
+            case DomainPackage.TYPE_DOMAIN__DOMAIN:
+                if (resolve)
+                    return getDomain();
+                return basicGetDomain();
+            case DomainPackage.TYPE_DOMAIN__VALUE:
+                if (resolve)
+                    return getValue();
+                return basicGetValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -182,12 +183,12 @@ public class TypeDomainImpl extends TypeObjectImpl implements TypeDomain {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case DomainPackage.TYPE_DOMAIN__DOMAIN:
-            setDomain((Domain) newValue);
-            return;
-        case DomainPackage.TYPE_DOMAIN__VALUE:
-            setValue((Domain) newValue);
-            return;
+            case DomainPackage.TYPE_DOMAIN__DOMAIN:
+                setDomain((Domain) newValue);
+                return;
+            case DomainPackage.TYPE_DOMAIN__VALUE:
+                setValue((Domain) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -200,12 +201,12 @@ public class TypeDomainImpl extends TypeObjectImpl implements TypeDomain {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case DomainPackage.TYPE_DOMAIN__DOMAIN:
-            setDomain((Domain) null);
-            return;
-        case DomainPackage.TYPE_DOMAIN__VALUE:
-            setValue((Domain) null);
-            return;
+            case DomainPackage.TYPE_DOMAIN__DOMAIN:
+                setDomain((Domain) null);
+                return;
+            case DomainPackage.TYPE_DOMAIN__VALUE:
+                setValue((Domain) null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -218,10 +219,10 @@ public class TypeDomainImpl extends TypeObjectImpl implements TypeDomain {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case DomainPackage.TYPE_DOMAIN__DOMAIN:
-            return domain != null;
-        case DomainPackage.TYPE_DOMAIN__VALUE:
-            return value != null;
+            case DomainPackage.TYPE_DOMAIN__DOMAIN:
+                return domain != null;
+            case DomainPackage.TYPE_DOMAIN__VALUE:
+                return value != null;
         }
         return super.eIsSet(featureID);
     }

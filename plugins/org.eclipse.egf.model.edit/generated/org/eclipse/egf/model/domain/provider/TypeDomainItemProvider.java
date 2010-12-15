@@ -48,7 +48,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeDomainItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeDomainItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
+        IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -148,10 +149,10 @@ public class TypeDomainItemProvider extends TypeObjectItemProvider implements IE
         updateChildren(notification);
 
         switch (notification.getFeatureID(TypeDomain.class)) {
-        case DomainPackage.TYPE_DOMAIN__DOMAIN:
-        case DomainPackage.TYPE_DOMAIN__VALUE:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
+            case DomainPackage.TYPE_DOMAIN__DOMAIN:
+            case DomainPackage.TYPE_DOMAIN__VALUE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
         }
         super.notifyChanged(notification);
     }

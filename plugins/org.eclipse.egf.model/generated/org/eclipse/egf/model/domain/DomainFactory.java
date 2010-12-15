@@ -42,22 +42,13 @@ public interface DomainFactory extends EFactory {
     DomainViewpoint createDomainViewpoint();
 
     /**
-     * Returns a new object of class '<em>Gen Package</em>'.
+     * Returns a new object of class '<em>Type Gen Packages</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Gen Package</em>'.
+     * @return a new object of class '<em>Type Gen Packages</em>'.
      * @generated
      */
-    DomainGenPackage createDomainGenPackage();
-
-    /**
-     * Returns a new object of class '<em>Type Domain Gen Packages</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Type Domain Gen Packages</em>'.
-     * @generated
-     */
-    TypeDomainGenPackages createTypeDomainGenPackages();
+    TypeGenPackages createTypeGenPackages();
 
     /**
      * Returns a new object of class '<em>EMF Domain</em>'.

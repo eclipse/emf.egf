@@ -32,6 +32,7 @@ import org.eclipse.egf.model.types.TypeObject;
  * @generated
  */
 public interface TypeDomain extends TypeObject {
+
     /**
      * Returns the value of the '<em><b>Domain</b></em>' reference.
      * <!-- begin-user-doc -->

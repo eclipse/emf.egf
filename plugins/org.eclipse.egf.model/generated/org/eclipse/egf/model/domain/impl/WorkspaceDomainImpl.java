@@ -103,8 +103,8 @@ public class WorkspaceDomainImpl extends LoadableDomainImpl implements Workspace
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case DomainPackage.WORKSPACE_DOMAIN__PATH:
-            return getPath();
+            case DomainPackage.WORKSPACE_DOMAIN__PATH:
+                return getPath();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -117,9 +117,9 @@ public class WorkspaceDomainImpl extends LoadableDomainImpl implements Workspace
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case DomainPackage.WORKSPACE_DOMAIN__PATH:
-            setPath((String) newValue);
-            return;
+            case DomainPackage.WORKSPACE_DOMAIN__PATH:
+                setPath((String) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -132,9 +132,9 @@ public class WorkspaceDomainImpl extends LoadableDomainImpl implements Workspace
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case DomainPackage.WORKSPACE_DOMAIN__PATH:
-            setPath(PATH_EDEFAULT);
-            return;
+            case DomainPackage.WORKSPACE_DOMAIN__PATH:
+                setPath(PATH_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -147,8 +147,8 @@ public class WorkspaceDomainImpl extends LoadableDomainImpl implements Workspace
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case DomainPackage.WORKSPACE_DOMAIN__PATH:
-            return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
+            case DomainPackage.WORKSPACE_DOMAIN__PATH:
+                return PATH_EDEFAULT == null ? path != null : !PATH_EDEFAULT.equals(path);
         }
         return super.eIsSet(featureID);
     }

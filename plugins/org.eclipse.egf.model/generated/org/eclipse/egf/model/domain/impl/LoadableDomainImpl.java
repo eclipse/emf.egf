@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public abstract class LoadableDomainImpl extends DomainImpl implements LoadableDomain {
+
     /**
      * The default value of the '{@link #isLoaded() <em>Loaded</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -99,10 +100,15 @@ public abstract class LoadableDomainImpl extends DomainImpl implements LoadableD
             eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.LOADABLE_DOMAIN__LOADED, oldLoaded, newLoaded));
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
     @Override
     public EList<Object> getContent() {
         if (!isLoaded())
-            throw new IllegalStateException(EGFModelPlugin.INSTANCE.getString("_DomainLoad_error"));
+            throw new IllegalStateException(EGFModelPlugin.INSTANCE.getString("_DomainLoad_error")); //$NON-NLS-1$
         return super.getContent();
     }
 
@@ -114,8 +120,8 @@ public abstract class LoadableDomainImpl extends DomainImpl implements LoadableD
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case DomainPackage.LOADABLE_DOMAIN__LOADED:
-            return isLoaded();
+            case DomainPackage.LOADABLE_DOMAIN__LOADED:
+                return isLoaded();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -128,9 +134,9 @@ public abstract class LoadableDomainImpl extends DomainImpl implements LoadableD
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case DomainPackage.LOADABLE_DOMAIN__LOADED:
-            setLoaded((Boolean) newValue);
-            return;
+            case DomainPackage.LOADABLE_DOMAIN__LOADED:
+                setLoaded((Boolean) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -143,9 +149,9 @@ public abstract class LoadableDomainImpl extends DomainImpl implements LoadableD
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case DomainPackage.LOADABLE_DOMAIN__LOADED:
-            setLoaded(LOADED_EDEFAULT);
-            return;
+            case DomainPackage.LOADABLE_DOMAIN__LOADED:
+                setLoaded(LOADED_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -158,8 +164,8 @@ public abstract class LoadableDomainImpl extends DomainImpl implements LoadableD
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case DomainPackage.LOADABLE_DOMAIN__LOADED:
-            return ((flags & LOADED_EFLAG) != 0) != LOADED_EDEFAULT;
+            case DomainPackage.LOADABLE_DOMAIN__LOADED:
+                return ((flags & LOADED_EFLAG) != 0) != LOADED_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }

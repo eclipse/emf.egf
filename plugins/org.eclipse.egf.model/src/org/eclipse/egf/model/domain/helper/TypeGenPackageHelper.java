@@ -11,13 +11,10 @@
 package org.eclipse.egf.model.domain.helper;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
-import org.eclipse.egf.model.domain.DomainGenPackage;
-import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -30,9 +27,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @author Xavier Maysonnave
  * 
  */
-public class TypeDomainGenPackageHelper {
+public class TypeGenPackageHelper {
 
-    private TypeDomainGenPackageHelper() {
+    private TypeGenPackageHelper() {
         // Prevent Instantiation
     }
 
@@ -50,16 +47,6 @@ public class TypeDomainGenPackageHelper {
             // Locate GenPackages
             for (Resource resource : resourceSet.getResources()) {
                 result.addAll(EMFHelper.getAllGenPackages(resource));
-            }
-        }
-        return result;
-    }
-
-    public static Collection<DomainGenPackage> getAvailableDomainGenPackage(EObject eObject) {
-        Collection<DomainGenPackage> result = new UniqueEList<DomainGenPackage>();
-        if (eObject != null) {
-            for (Iterator<EObject> iterator = EMFHelper.getAllProperContents(DomainPackage.eINSTANCE.getDomainGenPackage(), EcoreUtil.getRootContainer(eObject, true)).iterator(); iterator.hasNext();) {
-                result.add((DomainGenPackage) iterator.next());
             }
         }
         return result;

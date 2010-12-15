@@ -104,8 +104,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            return getUri();
+            case DomainPackage.EMF_DOMAIN__URI:
+                return getUri();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -118,9 +118,9 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            setUri((URI) newValue);
-            return;
+            case DomainPackage.EMF_DOMAIN__URI:
+                setUri((URI) newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -133,9 +133,9 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            setUri(URI_EDEFAULT);
-            return;
+            case DomainPackage.EMF_DOMAIN__URI:
+                setUri(URI_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -148,8 +148,8 @@ public class EMFDomainImpl extends LoadableDomainImpl implements EMFDomain {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case DomainPackage.EMF_DOMAIN__URI:
-            return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+            case DomainPackage.EMF_DOMAIN__URI:
+                return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
         }
         return super.eIsSet(featureID);
     }

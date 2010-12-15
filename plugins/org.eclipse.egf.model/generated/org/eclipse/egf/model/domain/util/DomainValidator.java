@@ -14,7 +14,6 @@ package org.eclipse.egf.model.domain.util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -27,18 +26,17 @@ import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
-import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
-import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
+import org.eclipse.egf.model.domain.LoadableDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
-import org.eclipse.egf.model.domain.TypeDomainGenPackages;
+import org.eclipse.egf.model.domain.TypeGenPackages;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
-import org.eclipse.egf.model.domain.helper.TypeDomainGenPackageHelper;
 import org.eclipse.egf.model.types.util.TypesValidator;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -180,26 +178,24 @@ public class DomainValidator extends EObjectValidator {
     @Override
     protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
-        case DomainPackage.DOMAIN_VIEWPOINT:
-            return validateDomainViewpoint((DomainViewpoint) value, diagnostics, context);
-        case DomainPackage.DOMAIN:
-            return validateDomain((Domain) value, diagnostics, context);
-        case DomainPackage.DOMAIN_GEN_PACKAGE:
-            return validateDomainGenPackage((DomainGenPackage) value, diagnostics, context);
-        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES:
-            return validateTypeDomainGenPackages((TypeDomainGenPackages) value, diagnostics, context);
-        case DomainPackage.EMF_DOMAIN:
-            return validateEMFDomain((EMFDomain) value, diagnostics, context);
-        case DomainPackage.TYPE_DOMAIN:
-            return validateTypeDomain((TypeDomain) value, diagnostics, context);
-        case DomainPackage.FILESYSTEM_DOMAIN:
-            return validateFilesystemDomain((FilesystemDomain) value, diagnostics, context);
-        case DomainPackage.WORKSPACE_DOMAIN:
-            return validateWorkspaceDomain((WorkspaceDomain) value, diagnostics, context);
-        case DomainPackage.LOADABLE_DOMAIN:
-            return validateLoadableDomain((LoadableDomain) value, diagnostics, context);
-        default:
-            return true;
+            case DomainPackage.DOMAIN_VIEWPOINT:
+                return validateDomainViewpoint((DomainViewpoint) value, diagnostics, context);
+            case DomainPackage.DOMAIN:
+                return validateDomain((Domain) value, diagnostics, context);
+            case DomainPackage.TYPE_GEN_PACKAGES:
+                return validateTypeGenPackages((TypeGenPackages) value, diagnostics, context);
+            case DomainPackage.EMF_DOMAIN:
+                return validateEMFDomain((EMFDomain) value, diagnostics, context);
+            case DomainPackage.TYPE_DOMAIN:
+                return validateTypeDomain((TypeDomain) value, diagnostics, context);
+            case DomainPackage.FILESYSTEM_DOMAIN:
+                return validateFilesystemDomain((FilesystemDomain) value, diagnostics, context);
+            case DomainPackage.WORKSPACE_DOMAIN:
+                return validateWorkspaceDomain((WorkspaceDomain) value, diagnostics, context);
+            case DomainPackage.LOADABLE_DOMAIN:
+                return validateLoadableDomain((LoadableDomain) value, diagnostics, context);
+            default:
+                return true;
         }
     }
 
@@ -226,114 +222,65 @@ public class DomainValidator extends EObjectValidator {
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean validateDomainGenPackage(DomainGenPackage domainGenPackage, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (!validate_NoCircularContainment(domainGenPackage, diagnostics, context))
+    public boolean validateTypeGenPackages(TypeGenPackages typeGenPackages, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typeGenPackages, diagnostics, context))
             return false;
-        boolean result = validate_EveryMultiplicityConforms(domainGenPackage, diagnostics, context);
+        boolean result = validate_EveryMultiplicityConforms(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryDataValueConforms(domainGenPackage, diagnostics, context);
+            result &= validate_EveryDataValueConforms(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryReferenceIsContained(domainGenPackage, diagnostics, context);
+            result &= validate_EveryReferenceIsContained(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryProxyResolves(domainGenPackage, diagnostics, context);
+            result &= validate_EveryProxyResolves(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_UniqueID(domainGenPackage, diagnostics, context);
+            result &= validate_UniqueID(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryKeyUnique(domainGenPackage, diagnostics, context);
+            result &= validate_EveryKeyUnique(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validate_EveryMapEntryUnique(domainGenPackage, diagnostics, context);
+            result &= validate_EveryMapEntryUnique(typeGenPackages, diagnostics, context);
         if (result || diagnostics != null)
-            result &= validateDomainGenPackage_ValidGenPackage(domainGenPackage, diagnostics, context);
+            result &= validateTypeGenPackages_ValidGenPackages(typeGenPackages, diagnostics, context);
         return result;
     }
 
     /**
-     * Validates the ValidPackage constraint of '<em>Gen Package</em>'.
+     * Validates the ValidGenPackages constraint of '<em>Type Gen Packages</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated NOT
      */
-    public boolean validateDomainGenPackage_ValidGenPackage(DomainGenPackage domainGenPackage, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (domainGenPackage.getGenPackage() == null) {
+    public boolean validateTypeGenPackages_ValidGenPackages(TypeGenPackages typeGenPackages, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (typeGenPackages.getElements() == null) {
             return true;
         }
-        URI uri = EcoreUtil.getURI(domainGenPackage.getGenPackage());
-        Resource resource = null;
-        // Try to load this uri
-        if (domainGenPackage.eResource() != null && domainGenPackage.eResource() instanceof IPlatformFcoreProvider) {
-            IPlatformFcore fcore = ((IPlatformFcoreProvider) domainGenPackage.eResource()).getIPlatformFcore();
+        boolean valid = true;
+        // Prepare a ResourceSet
+        ResourceSet resourceSet = null;
+        if (typeGenPackages.eResource() != null && typeGenPackages.eResource() instanceof IPlatformFcoreProvider) {
+            IPlatformFcore fcore = ((IPlatformFcoreProvider) typeGenPackages.eResource()).getIPlatformFcore();
             if (fcore.isRuntime()) {
-                ResourceSet resourceSet = new RuntimePlatformResourceSet();
-                resource = resourceSet.getResource(uri, true);
+                resourceSet = new RuntimePlatformResourceSet();
             } else {
-                ResourceSet resourceSet = new TargetPlatformResourceSet();
-                resource = resourceSet.getResource(uri, true);
+                resourceSet = new TargetPlatformResourceSet();
             }
         } else {
-            ResourceSet resourceSet = new TargetPlatformResourceSet();
-            resource = resourceSet.getResource(uri, true);
+            resourceSet = new TargetPlatformResourceSet();
         }
-        // Check
-        if (resource == null) {
-            if (diagnostics != null) {
-                diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidGenPackage", getObjectLabel(domainGenPackage, context), NLS.bind("Unable to load URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { domainGenPackage }, context));
-            }
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean validateTypeDomainGenPackages(TypeDomainGenPackages typeDomainGenPackages, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (!validate_NoCircularContainment(typeDomainGenPackages, diagnostics, context))
-            return false;
-        boolean result = validate_EveryMultiplicityConforms(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryDataValueConforms(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryReferenceIsContained(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryProxyResolves(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_UniqueID(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryKeyUnique(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validate_EveryMapEntryUnique(typeDomainGenPackages, diagnostics, context);
-        if (result || diagnostics != null)
-            result &= validateTypeDomainGenPackages_ValidDomainGenPackages(typeDomainGenPackages, diagnostics, context);
-        return result;
-    }
-
-    /**
-     * Validates the ValidDomainGenPackages constraint of '
-     * <em>Type Domain Gen Packages</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    public boolean validateTypeDomainGenPackages_ValidDomainGenPackages(TypeDomainGenPackages typeDomainGenPackages, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        if (typeDomainGenPackages.getElements() == null || typeDomainGenPackages.getElements().isEmpty()) {
-            return true;
-        }
-        boolean valid = false;
-        Collection<DomainGenPackage> domainGenPackages = TypeDomainGenPackageHelper.getAvailableDomainGenPackage(typeDomainGenPackages);
-        for (DomainGenPackage domainGenPackage : typeDomainGenPackages.getElements()) {
-            if (domainGenPackages.contains(domainGenPackage) == false) {
-                valid = false;
+        // Check each genPackages
+        for (GenPackage genPackage : typeGenPackages.getElements()) {
+            URI uri = EcoreUtil.getURI(genPackage);
+            // Try to load this uri
+            Resource resource = resourceSet.getResource(uri, true);
+            if (resource == null) {
                 if (diagnostics != null) {
                     diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                            new Object[] { "ValidDomainGenPackages", getObjectLabel(typeDomainGenPackages, context), NLS.bind("Invalid DomainGenPackage ''{0}''", EcoreUtil.getURI(domainGenPackage)) }, //$NON-NLS-1$ //$NON-NLS-2$
-                            new Object[] { typeDomainGenPackages }, context));
+                            new Object[] {
+                                    "ValidGenPackages", getObjectLabel(typeGenPackages, context), NLS.bind("Unable to load URI ''{0}''", uri)}, //$NON-NLS-1$ //$NON-NLS-2$
+                            new Object[] {
+                                typeGenPackages
+                            }, context));
                 }
+                valid = false;
             }
         }
         return valid;
@@ -374,8 +321,11 @@ public class DomainValidator extends EObjectValidator {
         if (valid == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] { "ValidURI", getObjectLabel(domain, context), NLS.bind("Unable to load URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] { domain }, context));
+                        new Object[] {
+                                "ValidURI", getObjectLabel(domain, context), NLS.bind("Unable to load URI ''{0}''", uri)}, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] {
+                            domain
+                        }, context));
             }
             return false;
         }

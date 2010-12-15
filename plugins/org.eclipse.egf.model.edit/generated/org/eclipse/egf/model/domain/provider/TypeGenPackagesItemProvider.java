@@ -15,15 +15,15 @@ package org.eclipse.egf.model.domain.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.domain.DomainGenPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.TypeDomainGenPackages;
-import org.eclipse.egf.model.domain.helper.TypeDomainGenPackageHelper;
+import org.eclipse.egf.model.domain.helper.TypeGenPackageHelper;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.types.provider.TypeItemProvider;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -38,15 +38,15 @@ import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainGenPackages} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeGenPackages} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeDomainGenPackagesItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeGenPackagesItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
+        IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -54,7 +54,7 @@ public class TypeDomainGenPackagesItemProvider extends TypeItemProvider implemen
      * <!-- end-user-doc -->
      * @generated
      */
-    public TypeDomainGenPackagesItemProvider(AdapterFactory adapterFactory) {
+    public TypeGenPackagesItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -81,28 +81,29 @@ public class TypeDomainGenPackagesItemProvider extends TypeItemProvider implemen
      * @generated NOT
      */
     protected void addElementsPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeDomainGenPackages_elements_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_TypeDomainGenPackages_elements_feature", "_UI_TypeDomainGenPackages_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                DomainPackage.Literals.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
-                null) {
+        itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeGenPackages_elements_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_TypeGenPackages_elements_feature", "_UI_TypeGenPackages_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                DomainPackage.Literals.TYPE_GEN_PACKAGES__ELEMENTS, true, false, true, null, null, null) {
 
             @Override
-            public Collection<DomainGenPackage> getChoiceOfValues(Object current) {
-                return TypeDomainGenPackageHelper.getAvailableDomainGenPackage((EObject) current);
+            public Collection<GenPackage> getChoiceOfValues(Object current) {
+                Collection<GenPackage> result = new UniqueEList<GenPackage>();
+                result.addAll(TypeGenPackageHelper.getAvailableGenPackage((EObject) current));
+                return result;
             }
 
         });
     }
 
     /**
-     * This returns TypeDomainGenPackages.gif.
+     * This returns TypeGenPackages.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeDomainGenPackages")); //$NON-NLS-1$
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeGenPackages")); //$NON-NLS-1$
     }
 
     /**
@@ -113,7 +114,7 @@ public class TypeDomainGenPackagesItemProvider extends TypeItemProvider implemen
      */
     @Override
     public String getText(Object object) {
-        return "[" + getString("_UI_TypeDomainGenPackages_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return "[" + getString("_UI_TypeGenPackages_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**
@@ -126,12 +127,6 @@ public class TypeDomainGenPackagesItemProvider extends TypeItemProvider implemen
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(TypeDomainGenPackages.class)) {
-        case DomainPackage.TYPE_DOMAIN_GEN_PACKAGES__ELEMENTS:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-        }
         super.notifyChanged(notification);
     }
 

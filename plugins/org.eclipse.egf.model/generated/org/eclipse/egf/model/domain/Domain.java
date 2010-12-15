@@ -34,46 +34,46 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Domain extends NamedModelElement {
 
-	/**
-	 * Returns the value of the '<em><b>Content</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.Object}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Content</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content</em>' attribute list.
-	 * @see org.eclipse.egf.model.domain.DomainPackage#getDomain_Content()
-	 * @model transient="true" derived="true"
-	 * @generated
-	 */
-	EList<Object> getContent();
+    /**
+     * Returns the value of the '<em><b>Content</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.Object}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Content</em>' attribute list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Content</em>' attribute list.
+     * @see org.eclipse.egf.model.domain.DomainPackage#getDomain_Content()
+     * @model transient="true" derived="true"
+     * @generated
+     */
+    EList<Object> getContent();
 
-	/**
-	 * Returns the value of the '<em><b>Helper Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Helper Implementation</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Helper Implementation</em>' attribute.
-	 * @see #setHelperImplementation(String)
-	 * @see org.eclipse.egf.model.domain.DomainPackage#getDomain_HelperImplementation()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getHelperImplementation();
+    /**
+     * Returns the value of the '<em><b>Helper Implementation</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Helper Implementation</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Helper Implementation</em>' attribute.
+     * @see #setHelperImplementation(String)
+     * @see org.eclipse.egf.model.domain.DomainPackage#getDomain_HelperImplementation()
+     * @model required="true"
+     * @generated
+     */
+    String getHelperImplementation();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.egf.model.domain.Domain#getHelperImplementation <em>Helper Implementation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Helper Implementation</em>' attribute.
-	 * @see #getHelperImplementation()
-	 * @generated
-	 */
-	void setHelperImplementation(String value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.domain.Domain#getHelperImplementation <em>Helper Implementation</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Helper Implementation</em>' attribute.
+     * @see #getHelperImplementation()
+     * @generated
+     */
+    void setHelperImplementation(String value);
 
 } // Domain
