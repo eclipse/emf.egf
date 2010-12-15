@@ -39,6 +39,7 @@ import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
@@ -703,6 +704,9 @@ public class TemplateProcessor implements IFcoreProcessor {
                     // 4 - Move generated java artifacts if any
                     for (Map.Entry<Pattern, FeatureChange> entry : updatedPatterns.entrySet()) {
                         if (entry.getValue().getFeature() == FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME) {
+                            // Locate pattern who collide with previous name to be re-generated
+                            patternsToUpdate.addAll(PatternNameHelper.getPatterns(fcore, entry.getKey().getContainer(), entry.getKey(), entry.getValue().getDataValue()));
+                            // Move old generated pattern
                             JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getKey().getContainer()),
                                     BaseJavaAssemblyHelper.getClassName(entry.getValue().getDataValue()), BaseJavaAssemblyHelper.getPackageName(entry.getKey().getContainer()), BaseJavaAssemblyHelper.getClassName(entry.getKey()), true);
                         } else if (entry.getValue().getFeature() == PatternPackage.Literals.PATTERN__CONTAINER) {
@@ -745,5 +749,4 @@ public class TemplateProcessor implements IFcoreProcessor {
         job.schedule();
 
     }
-
 }
