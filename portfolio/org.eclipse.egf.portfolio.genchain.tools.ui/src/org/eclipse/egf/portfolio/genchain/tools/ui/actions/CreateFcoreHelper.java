@@ -159,7 +159,7 @@ public class CreateFcoreHelper {
     }
 
     protected void createFcore(final GenerationChain generationChain, final String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
-        FactoryComponent fc = (FactoryComponent) generationChain.eResource().getResourceSet().getEObject(getGeneratorURI(), true);
+        FactoryComponent fc = (FactoryComponent) new TargetPlatformResourceSet().getEObject(getGeneratorURI(), true);
         EMFDomain domain = DomainFactory.eINSTANCE.createEMFDomain();
         final URI uri = generationChain.eResource().getURI();
         domain.setUri(uri);
