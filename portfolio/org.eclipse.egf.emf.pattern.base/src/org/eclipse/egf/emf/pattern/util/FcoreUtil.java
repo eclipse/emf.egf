@@ -23,8 +23,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
@@ -66,8 +66,11 @@ public class FcoreUtil {
 
     protected IProgressMonitor _monitor;
 
+    private TransactionalEditingDomain domain;
+
     public CreateCommand(TransactionalEditingDomain domain, IProgressMonitor monitor) {
       super(domain);
+      this.domain = domain;
       _monitor = monitor;
     }
 
@@ -122,6 +125,9 @@ public class FcoreUtil {
           }
         }
       }
+      
+      // Create emf doc html generation
+      org.eclipse.egf.emf.docgen.html.util.FcoreUtil.createEmfDocGenHtmlInvocation(domain, _productionPlan, _genModelEMFDomain);
     }
 
   }
