@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.usecase.pattern.uc1;singleton:=true
+Bundle-Version: 0.4.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ egf.uc1_1.pattern,
+ egf.uc1_2.pattern,
+ egf.uc1_2.pattern.parent,
+ egf.uc1_3.pattern,
+ egf.uc1_3.pattern.friends,
+ egf.uc1_3.pattern.parent,
+ egf.uc1_4.pattern,
+ egf.uc1_5.pattern,
+ egf.uc1_6.pattern,
+ egf.uc1_6.pattern.java,
+ egf.uc1_7.pattern,
+ egf.uc1_7.pattern.forInjection,
+ egf.uc1_8.pattern,
+ org.eclipse.egf.usecase.pattern.uc1,
+ org.eclipse.egf.usecase.pattern.uc1.callback,
+ org.eclipse.egf.usecase.pattern.uc1.helper,
+ org.eclipse.egf.usecase.pattern.uc1.query,
+ org.eclipse.egf.usecase.pattern.uc1.reporter
+Require-Bundle: 
+ org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.pattern;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask;visibility:=reexport,
+ org.eclipse.emf.query
+Bundle-ActivationPolicy: lazy

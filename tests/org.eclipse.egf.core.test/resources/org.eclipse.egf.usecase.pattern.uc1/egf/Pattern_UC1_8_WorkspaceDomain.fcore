@@ -4,7 +4,7 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Z9cYsQK5EeCbJtlATdOycQ"
-    name="Pattern - UC1.8 - WorkspaceDomain">
+    name="Pattern_UC1_8_WorkspaceDomain">
   <viewpointContainer xmi:id="_mwDIgAK5EeCbJtlATdOycQ">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_nJXAYAK5EeCbJtlATdOycQ">
       <domains xmi:type="domain:WorkspaceDomain" xmi:id="_n7eZ0AK5EeCbJtlATdOycQ"
@@ -55,10 +55,6 @@
         <invocationContracts xmi:id="_sCmANgK5EeCbJtlATdOycQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
           <type xmi:type="pattern:TypePatternList" xmi:id="_OpLZsAK6EeCbJtlATdOycQ"
               elements="#_vUMT0AK5EeCbJtlATdOycQ"/>
-        </invocationContracts>
-        <invocationContracts xmi:id="_qD9C4AeTEeCUfIaFyhhLYg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
-          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_smhtUAeTEeCUfIaFyhhLYg"
-              value="org.eclipse.egf.usecase.pattern.uc1.reporter.MyReporter"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

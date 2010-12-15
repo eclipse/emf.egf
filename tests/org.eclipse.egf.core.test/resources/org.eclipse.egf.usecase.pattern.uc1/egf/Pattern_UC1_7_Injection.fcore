@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_zOU6cBVhEd-JoY-b5_Vpcw"
+    description=" " name="Pattern - UC1.7 - Pattern Injection">
+  <viewpointContainer xmi:id="_3WwIYBVhEd-JoY-b5_Vpcw">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_3wwj0BVhEd-JoY-b5_Vpcw">
+      <domains xmi:type="domain:EMFDomain" xmi:id="_6_29EBVhEd-JoY-b5_Vpcw" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_PfGBYBViEd-JoY-b5_Vpcw">
+      <libraries xmi:id="_USCzABViEd-JoY-b5_Vpcw" name="egf.uc1_7.pattern">
+        <elements xmi:type="pattern:Pattern" xmi:id="_YVbI4BViEd-JoY-b5_Vpcw" name="ClassPattern"
+            headerMethod="#_YVbI4RViEd-JoY-b5_Vpcw" footerMethod="#_YVbv8hViEd-JoY-b5_Vpcw"
+            initMethod="#_YVbv8BViEd-JoY-b5_Vpcw">
+          <methods xmi:id="_YVbI4RViEd-JoY-b5_Vpcw" name="header" patternFilePath="templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._YVbI4RViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_YVbv8BViEd-JoY-b5_Vpcw" name="init" patternFilePath="templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._YVbv8BViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_YVbv8RViEd-JoY-b5_Vpcw" name="body" patternFilePath="templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._YVbv8RViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_YVbv8hViEd-JoY-b5_Vpcw" name="footer" patternFilePath="templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._YVbv8hViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_AZL8wBVjEd-JoY-b5_Vpcw" name="setupVariable" patternFilePath="templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._AZL8wBVjEd-JoY-b5_Vpcw.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_6PWhoBVrEd-RrYzGJdxTDA"
+              called="#_YVbv8RViEd-JoY-b5_Vpcw"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_Mal08BVqEd-Ay7SQYKAR7g"
+              called="#_AZL8wBVjEd-JoY-b5_Vpcw"/>
+          <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_eGpgoBViEd-JoY-b5_Vpcw"
+              called="#_RdSMYBViEd-JoY-b5_Vpcw" context="#_cXiTcBViEd-JoY-b5_Vpcw"/>
+          <parameters xmi:id="_Z8X4kBViEd-JoY-b5_Vpcw" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_YVbv9BViEd-JoY-b5_Vpcw"
+              name="JET"/>
+          <variables xmi:id="_cXiTcBViEd-JoY-b5_Vpcw" name="variable" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+        </elements>
+      </libraries>
+      <libraries xmi:id="_P7tE4BViEd-JoY-b5_Vpcw" name="egf.uc1_7.pattern.forInjection">
+        <elements xmi:type="pattern:Pattern" xmi:id="_RdSMYBViEd-JoY-b5_Vpcw" description="display content of element"
+            name="ForInjectionPattern" headerMethod="#_RdSMYRViEd-JoY-b5_Vpcw" footerMethod="#_RdSzcRViEd-JoY-b5_Vpcw"
+            initMethod="#_RdSMYhViEd-JoY-b5_Vpcw">
+          <methods xmi:id="_RdSMYRViEd-JoY-b5_Vpcw" name="header" patternFilePath="templates/pattern._RdSMYBViEd-JoY-b5_Vpcw/method._RdSMYRViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_RdSMYhViEd-JoY-b5_Vpcw" name="init" patternFilePath="templates/pattern._RdSMYBViEd-JoY-b5_Vpcw/method._RdSMYhViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_RdSzcBViEd-JoY-b5_Vpcw" name="body" patternFilePath="templates/pattern._RdSMYBViEd-JoY-b5_Vpcw/method._RdSzcBViEd-JoY-b5_Vpcw.pt"/>
+          <methods xmi:id="_RdSzcRViEd-JoY-b5_Vpcw" name="footer" patternFilePath="templates/pattern._RdSMYBViEd-JoY-b5_Vpcw/method._RdSzcRViEd-JoY-b5_Vpcw.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_rD0LkBVrEd-RrYzGJdxTDA"
+              called="#_RdSzcBViEd-JoY-b5_Vpcw"/>
+          <parameters xmi:id="_34yzkBVjEd-JoY-b5_Vpcw" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement">
+            <query xmi:type="pattern:BasicQuery" xmi:id="_u33MURVoEd-Ay7SQYKAR7g"
+                extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+          </parameters>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_RdSzcxViEd-JoY-b5_Vpcw"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Y4t_ABVpEd-Ay7SQYKAR7g">
+    <invocations xmi:id="_ZMsD4BVpEd-Ay7SQYKAR7g" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      <invocationContractContainer xmi:id="_a914cBVpEd-Ay7SQYKAR7g">
+        <invocationContracts xmi:id="_bOUkcBVpEd-Ay7SQYKAR7g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
+          <type xmi:type="domain:TypeDomain" xmi:id="_dypiYBVpEd-Ay7SQYKAR7g" domain="#_6_29EBVhEd-JoY-b5_Vpcw"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_giDu8BVpEd-Ay7SQYKAR7g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_ooBogCH2Ed-V4KH4GeEy-w"
+              elements="#_USCzABViEd-JoY-b5_Vpcw"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_tmYKoBb6Ed-yIvdzb4Km2Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_viNlMBb6Ed-yIvdzb4Km2Q"
+              value="org.eclipse.egf.usecase.pattern.uc1.reporter.MyReporter"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>
