@@ -49,8 +49,31 @@ public class PatternNameHelper {
 
     public static List<String> getPatternNameWithinBundle(IPlatformFcore fcore, PatternLibrary library, Pattern pattern) {
         List<String> names = new UniqueEList<String>();
-        if (fcore == null || library == null) {
-            return names;
+        for (Pattern innerPattern : getPatterns(fcore, library)) {
+            if (innerPattern.getName() != null && innerPattern.getName().trim().length() != 0 && pattern != innerPattern) {
+                names.add(innerPattern.getName());
+            }
+        }
+        return names;
+    }
+
+    public static List<Pattern> getPatterns(IPlatformFcore fcore, PatternLibrary library, Pattern pattern, String patternName) {
+        List<Pattern> patterns = new UniqueEList<Pattern>();
+        if (patternName == null || patternName.trim().length() == 0) {
+            return patterns;
+        }
+        for (Pattern innerPattern : getPatterns(fcore, library)) {
+            if (pattern != innerPattern && patternName.equals(innerPattern.getName())) {
+                patterns.add(innerPattern);
+            }
+        }
+        return patterns;
+    }
+
+    public static List<Pattern> getPatterns(IPlatformFcore fcore, PatternLibrary library) {
+        List<Pattern> patterns = new UniqueEList<Pattern>();
+        if (fcore == null || library == null || library.getName() == null || library.getName().trim().length() == 0) {
+            return patterns;
         }
         ResourceSet resourceSet = null;
         if (library.eResource() != null) {
@@ -74,13 +97,13 @@ public class PatternNameHelper {
             for (EObject root : resource.getContents()) {
                 for (EObject innerEObject : EMFHelper.getAllProperContents(PatternPackage.eINSTANCE.getPattern(), root)) {
                     Pattern innerPattern = (Pattern) innerEObject;
-                    if (pattern != innerPattern && innerPattern.getContainer().getName().equals(library.getName()) && innerPattern.getName() != null && innerPattern.getName().trim().length() != 0) {
-                        names.add(innerPattern.getName());
+                    if (innerPattern.getContainer().getName().equals(library.getName())) {
+                        patterns.add((Pattern) innerEObject);
                     }
                 }
             }
         }
-        return names;
+        return patterns;
     }
 
 }
