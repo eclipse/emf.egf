@@ -20,8 +20,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
-import org.eclipse.egf.model.domain.DomainGenPackage;
-import org.eclipse.egf.model.domain.TypeDomainGenPackages;
+import org.eclipse.egf.model.domain.TypeGenPackages;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.pattern.ftask.tasks.DomainDrivenStrategyTask;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -34,12 +33,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class ModelDrivenStrategyTaskForGenModel extends DomainDrivenStrategyTask {
 
-    private List<DomainGenPackage> _usedGenPackages;
+    private List<GenPackage> _usedGenPackages;
 
     @Override
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         super.preExecute(context, monitor);
-        TypeDomainGenPackages usedGenPackages = context.getInputValue("usedGenPackages", TypeDomainGenPackages.class); //$NON-NLS-1$
+        TypeGenPackages usedGenPackages = context.getInputValue("usedGenPackages", TypeGenPackages.class); //$NON-NLS-1$
         if (usedGenPackages != null)
             _usedGenPackages = usedGenPackages.getElements();
     }
@@ -61,8 +60,8 @@ public class ModelDrivenStrategyTaskForGenModel extends DomainDrivenStrategyTask
                 // usedGenPackages is exposed as a contract to adress the following bugzilla
                 // https://bugs.eclipse.org/bugs/show_bug.cgi?id=274884
                 if (_usedGenPackages != null) {
-                    for (DomainGenPackage domainGenPackage : _usedGenPackages) {
-                        GenPackage genPackage = (GenPackage) genModel.eResource().getResourceSet().getEObject(EcoreUtil.getURI(domainGenPackage.getGenPackage()), true);
+                    for (GenPackage genPackage : _usedGenPackages) {
+                        genPackage = (GenPackage) genModel.eResource().getResourceSet().getEObject(EcoreUtil.getURI(genPackage), true);
                         if (genModel.getUsedGenPackages().contains(genPackage) == false) {
                             genModel.getUsedGenPackages().add(genPackage);
                         }

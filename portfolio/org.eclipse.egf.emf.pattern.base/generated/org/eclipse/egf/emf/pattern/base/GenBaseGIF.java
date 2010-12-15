@@ -8,83 +8,86 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class GenBaseGIF extends org.eclipse.egf.emf.pattern.base.GenAbstract {
+	protected static String nl;
 
-    protected static String nl;
+	public static synchronized GenBaseGIF create(String lineSeparator) {
+		nl = lineSeparator;
+		GenBaseGIF result = new GenBaseGIF();
+		nl = null;
+		return result;
+	}
 
-    public static synchronized GenBaseGIF create(String lineSeparator) {
-        nl = lineSeparator;
-        GenBaseGIF result = new GenBaseGIF();
-        nl = null;
-        return result;
-    }
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "";
+	protected final String TEXT_2 = NL;
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public GenBaseGIF() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-    protected final String TEXT_1 = "";
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    protected final String TEXT_2 = NL;
+	}
 
-    public GenBaseGIF() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
 
-    }
+		if (preCondition())
+			orchestration(ctx);
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(
+					ctx.getExecutionBuffer().toString(), ctx);
+			ctx.clearBuffer();
+		}
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(TEXT_2);
+		return stringBuffer.toString();
+	}
 
-        if (preCondition())
-            orchestration(ctx);
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		int executionIndex = ictx.getExecutionBuffer().length();
 
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(TEXT_2);
-        return stringBuffer.toString();
-    }
+		String loop = ictx.getBuffer().toString();
+		if (ictx.useReporter()) {
+			ictx.getExecutionBuffer()
+					.append(ictx.getBuffer().substring(
+							ictx.getExecutionCurrentIndex()));
+			ictx.setExecutionCurrentIndex(0);
+			ictx.clearBuffer();
+		}
+		return loop;
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	protected java.lang.String targetPathName = null;
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+	public void set_targetPathName(java.lang.String object) {
+		this.targetPathName = object;
+	}
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		return parameters;
+	}
 
-    protected java.lang.String targetPathName = null;
+	protected void method_putContentTypeInContext(
+			final StringBuffer stringBuffer, final PatternContext ctx)
+			throws Exception {
 
-    public void set_targetPathName(java.lang.String object) {
-        this.targetPathName = object;
-    }
+		ctx.setValue("contentType", ContentType.GIF);
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        return parameters;
-    }
+	}
 
-    protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        ctx.setValue("contentType", ContentType.GIF);
-
-    }
-
-    public boolean preCondition() throws Exception {
-        return super.preCondition();
-    }
+	public boolean preCondition() throws Exception {
+		return super.preCondition();
+	}
 }

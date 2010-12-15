@@ -297,7 +297,7 @@
       implementation="org.eclipse.egf.emf.pattern.base.ModelDrivenStrategyTaskForGenModel">
     <contractContainer xmi:id="_vNsDAFLMEd-ZSLMRjxSbVQ">
       <contracts xmi:id="_JWI2sPI7Ed-Pp8S8RvVOuQ" name="usedGenPackages">
-        <type xmi:type="domain:TypeDomainGenPackages" xmi:id="_KThsAPI7Ed-Pp8S8RvVOuQ"/>
+        <type xmi:type="domain:TypeGenPackages" xmi:id="_KThsAPI7Ed-Pp8S8RvVOuQ"/>
       </contracts>
       <contracts xmi:id="_vtlEAFLMEd-ZSLMRjxSbVQ" description="The URI of the JMerge rules file."
           name="mergeRulesURI">
