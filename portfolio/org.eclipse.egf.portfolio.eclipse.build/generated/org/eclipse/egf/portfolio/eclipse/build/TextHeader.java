@@ -59,9 +59,4 @@ public class TextHeader {
         return true;
     }
 
-    public Map<String, Object> getParameters() {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        return parameters;
-    }
-
 }
