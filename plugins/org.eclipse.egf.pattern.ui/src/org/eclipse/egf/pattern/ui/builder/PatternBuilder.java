@@ -114,6 +114,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
             } else {
                 TranslationHelper.translate(monitor, new HashSet<Pattern>(patterns));
             }
+            project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
         } catch (OperationCanceledException oce) {
             throw oce;
         } catch (Throwable t) {
