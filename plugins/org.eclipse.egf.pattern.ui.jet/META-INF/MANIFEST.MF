@@ -10,8 +10,6 @@ Bundle-Activator: org.eclipse.egf.pattern.ui.jet.Activator
 Require-Bundle: 
  org.eclipse.egf.common.ui,
  org.eclipse.egf.pattern.ui,
- org.eclipse.jet,
- org.eclipse.jet.editor,
  org.eclipse.jface.text,
  org.eclipse.egf.model.jetpattern
 Bundle-ActivationPolicy: lazy

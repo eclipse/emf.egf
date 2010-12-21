@@ -5,8 +5,7 @@
     version="0.4.0.qualifier"
     provider-name="%providerName"
     plugin="org.eclipse.egf.model.editor"
-    image="eclipse_update_120.jpg"
->
+    image="eclipse_update_120.jpg">
 
     <description>
         %description
@@ -20,93 +19,66 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
     </copyright>
 
-    <license 
-        url="%licenseURL"
-    >
+    <license url="%licenseURL">
         %license
     </license>
 
     <url>
         <update 
             label="%EMFTUpdateSiteName" 
-            url="http://download.eclipse.org/modeling/emft/updates/"
-        />
+            url="http://download.eclipse.org/modeling/emft/updates/"/>
         <discovery 
             label="%EMFUpdateSiteName" 
-            url="http://download.eclipse.org/modeling/emf/updates/"
-        />
+            url="http://download.eclipse.org/modeling/emf/updates/"/>
         <discovery 
             label="%EMFTUpdateSiteName" 
-            url="http://download.eclipse.org/modeling/emft/updates/"
-        />
+            url="http://download.eclipse.org/modeling/emft/updates/"/>
     </url>
    
     <requires>
-        <import 
-            feature="org.eclipse.emf.databinding" 
-        />
-        <import 
-            feature="org.eclipse.emf.databinding.edit" 
-        />
-        <import 
-            feature="org.eclipse.jet" 
-        />
-        <import 
-            feature="org.eclipse.egf.model.edit" 
-        />
+        <import feature="org.eclipse.emf.databinding"/>
+        <import feature="org.eclipse.emf.databinding.edit"/>
+        <import feature="org.eclipse.jet"/>
+        <import feature="org.eclipse.egf.model.edit"/>
     </requires>    
 
     <includes
         id="org.eclipse.egf.model.ui.source"
-        version="0.0.0"
-    />
+        version="0.0.0"/>
    
     <plugin
         id="org.eclipse.egf.model.editor"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    /> 
+        unpack="false"/> 
   
     <plugin
         id="org.eclipse.egf.task.ui"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />     
+        unpack="false"/>     
   
     <plugin
         id="org.eclipse.egf.pattern.ui"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />   
+        unpack="false"/>   
   
     <plugin
         id="org.eclipse.egf.pattern.ui.java"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />    
+        unpack="false"/>    
   
     <plugin
         id="org.eclipse.egf.pattern.ui.jet"
         download-size="0"
         install-size="0"
         version="0.0.0"
-        unpack="false"
-    />     
+        unpack="false"/>     
          
-    <plugin
-        id="org.eclipse.jet.editor"
-        download-size="0"
-        install-size="0"
-        version="0.0.0"
-        unpack="false"
-    />         
-
 </feature>
