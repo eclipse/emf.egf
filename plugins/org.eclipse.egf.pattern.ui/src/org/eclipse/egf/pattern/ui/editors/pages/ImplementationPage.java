@@ -38,7 +38,6 @@ import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.contributions.EditHelper;
-import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
@@ -52,8 +51,6 @@ import org.eclipse.egf.pattern.ui.editors.providers.MethodsTableObservableListCo
 import org.eclipse.egf.pattern.ui.editors.providers.OrchestrationTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
-import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
-import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegistry;
 import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
@@ -110,12 +107,9 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.IMessageManager;
@@ -126,7 +120,6 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
-import org.eclipse.ui.ide.IDE;
 
 /**
  * @author Thomas Guiu
@@ -489,9 +482,7 @@ public class ImplementationPage extends PatternEditorPage {
      */
     private void addDragDropForMethodsTable() {
 
-        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new DragSourceListener() {
+        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = false;
@@ -514,9 +505,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new ViewerDropAdapter(methodsTableViewer) {
+        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(methodsTableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -542,15 +531,11 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void initMethodsTableEditor() {
-        methodsTableViewer.setColumnProperties(new String[] {
-            NAME_COLUMN_ID
-        });
+        methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
         nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
-        methodsTableViewer.setCellEditors(new CellEditor[] {
-            nameEditor
-        });
+        methodsTableViewer.setCellEditors(new CellEditor[] { nameEditor });
         methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer) {
 
             @Override
@@ -866,41 +851,6 @@ public class ImplementationPage extends PatternEditorPage {
         }
     }
 
-    @SuppressWarnings("unused")
-    private void openMethodTemplate1(String methodId) {
-        Pattern pattern = getPattern();
-        String editor = TemplateExtensionRegistry.getEditor(pattern);
-        if (editor != null) {
-            IWorkbench workbench = PlatformUI.getWorkbench();
-            IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-            IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-            IEditorReference[] editorReferences = activePage.getEditorReferences();
-            if (editorReferences.length > 1) {
-                for (int i = editorReferences.length - 1; i >= 0; i--) {
-                    IEditorPart editorPart = editorReferences[i].getEditor(true);
-                    if (editorPart instanceof AbstractTemplateEditor) {
-                        Pattern templateEditorPattern = ((AbstractTemplateEditor) editorPart).getPattern();
-                        if ((getPattern()).equals(templateEditorPattern)) {
-                            // Switch to the already opened editor.
-                            activePage.activate(editorPart);
-                            ((AbstractTemplateEditor) editorPart).setActivePage(methodId);
-                            return;
-                        }
-                    }
-                }
-            }
-            // Open a new template editor.
-            try {
-                PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
-                AbstractTemplateEditor editorPart = (AbstractTemplateEditor) IDE.openEditor(getEditorSite().getPage(), input, editor);
-                editorPart.setActivePage(methodId);
-            } catch (PartInitException e) {
-                Activator.getDefault().logError(e);
-            }
-
-        }
-    }
-
     private void createOrchestrationSection(FormToolkit toolkit, Composite composite) {
         Section orchSection = toolkit.createSection(composite, Section.TITLE_BAR);
         orchSection.setText(Messages.ImplementationPage_orchSection_title);
@@ -965,9 +915,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void addDragDropForOrchestrationTable() {
         if (isReadOnly())
             return;
-        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new DragSourceListener() {
+        orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
                 isChangOrchestrationeOrder = true;
@@ -989,9 +937,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         });
 
-        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] {
-            LocalSelectionTransfer.getTransfer()
-        }, new ViewerDropAdapter(orchestrationTableViewer) {
+        orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(orchestrationTableViewer) {
 
             @Override
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
@@ -1398,12 +1344,8 @@ public class ImplementationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         variablesTableViewer = new TableViewer(table);
-        String[] colNames = {
-                Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type
-        };
-        int[] colWidths = {
-                130, 135
-        };
+        String[] colNames = { Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type };
+        int[] colWidths = { 130, 135 };
         variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         ColumnViewerToolTipSupport.enableFor(variablesTableViewer, ToolTip.NO_RECREATE);
         CellLabelProvider cellLabelProvider = new ParametersTableLabelProvider();
@@ -1422,9 +1364,7 @@ public class ImplementationPage extends PatternEditorPage {
     private void initVariablesTableEditor() {
         if (isReadOnly())
             return;
-        variablesTableViewer.setColumnProperties(new String[] {
-                NAME_COLUMN_ID, TYPE_COLUMN_ID
-        });
+        variablesTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID });
         final TextCellEditor textCellEditor = new TextCellEditor(variablesTableViewer.getTable());
         final DialogCellEditor dialogCellEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
 
@@ -1445,9 +1385,7 @@ public class ImplementationPage extends PatternEditorPage {
                 return null;
             }
         };
-        variablesTableViewer.setCellEditors(new CellEditor[] {
-                textCellEditor, dialogCellEditor
-        });
+        variablesTableViewer.setCellEditors(new CellEditor[] { textCellEditor, dialogCellEditor });
         variablesTableViewer.setCellModifier(new VariablesTableCellModifier(getEditingDomain(), variablesTableViewer));
 
         variablesTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {

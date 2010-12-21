@@ -20,7 +20,6 @@ import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.editors.PatternEditor;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
-import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbench;
@@ -75,19 +74,6 @@ public class EditHelper {
         return null;
     }
 
-    public static IEditorPart openTemplateEditor(IWorkbenchPage page, Pattern pattern) {
-        IEditorPart part = getExistingEditor(page, pattern, AbstractTemplateEditor.ID);
-        if (part != null) {
-            return part;
-        }
-        try {
-            return page.openEditor(new PatternEditorInput(pattern.eResource(), pattern.getID()), AbstractTemplateEditor.ID, true, IWorkbenchPage.MATCH_ID);
-        } catch (PartInitException e) {
-            Activator.getDefault().logError(e);
-        }
-        return null;
-    }
-
     private static IEditorPart getExistingEditor(IWorkbenchPage page, Pattern pattern, String editorId) {
         IWorkbench workbench = PlatformUI.getWorkbench();
         if (workbench == null) {
@@ -97,7 +83,7 @@ public class EditHelper {
             for (IWorkbenchPage innerPage : window.getPages()) {
                 for (IEditorReference reference : innerPage.getEditorReferences()) {
                     IEditorPart part = reference.getEditor(false);
-                    if ((part instanceof PatternEditor && PatternEditor.ID.equals(editorId)) || (part instanceof AbstractTemplateEditor && AbstractTemplateEditor.ID.equals(editorId)) || (part instanceof PatternTemplateEditor && PatternTemplateEditor.ID.equals(editorId))) {
+                    if ((part instanceof PatternEditor && PatternEditor.ID.equals(editorId)) || (part instanceof PatternTemplateEditor && PatternTemplateEditor.ID.equals(editorId))) {
                         PatternEditorInput editorInput = (PatternEditorInput) part.getEditorInput();
                         Pattern currentPattern = editorInput.getPattern();
                         if (pattern.equals(currentPattern)) {

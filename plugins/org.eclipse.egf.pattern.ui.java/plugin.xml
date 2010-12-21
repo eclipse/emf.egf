@@ -1,24 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
-         point="org.eclipse.egf.pattern.ui.templateEditor">
-      <editor
-            class="org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor"
-            id="org.eclipse.egf.pattern.ui.JavaTemplateEditor"
-            nature="JavaNature">
-      </editor>
-   </extension>
-   <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor"
-            default="false"
-            icon="icons/full/obj16/sample.gif"
-            id="org.eclipse.egf.pattern.ui.JavaTemplateEditor"
-            name="%editor.name">
-      </editor>
-   </extension>
-
-
 </plugin>

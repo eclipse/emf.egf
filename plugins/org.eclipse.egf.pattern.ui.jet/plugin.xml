@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
-         point="org.eclipse.egf.pattern.ui.templateEditor">
-       <editor
-             class="org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor"
-             id="org.eclipse.egf.pattern.ui.JetTemplateEditor"
-             nature="JetNature">
-      </editor>
-   </extension>
-   <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor"
-            default="false"
-            icon="icons/full/obj16/sample.gif"
-            id="org.eclipse.egf.pattern.ui.JetTemplateEditor"
-            name="%editor.name">
-      </editor>
-   </extension>
 
 
 </plugin>
