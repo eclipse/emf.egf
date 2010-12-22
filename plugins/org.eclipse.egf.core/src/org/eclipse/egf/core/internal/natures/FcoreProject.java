@@ -16,10 +16,14 @@
 
 package org.eclipse.egf.core.internal.natures;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.EclipseBuilderHelper;
+import org.eclipse.egf.core.helper.ProjectHelper;
 import org.eclipse.egf.core.natures.EGFNatures;
 
 public class FcoreProject extends BaseProject {
@@ -33,8 +37,9 @@ public class FcoreProject extends BaseProject {
 
     public void configure() throws CoreException {
         IProjectDescription description = getProject().getDescription();
-        EclipseBuilderHelper.addToBuildSpec(description, EGFNatures.PATTERN_BUILDER_ID, new NullProgressMonitor());
-        getProject().setDescription(description, new NullProgressMonitor());
+        List<String> builders = new ArrayList<String>();
+        builders.add(EGFNatures.PATTERN_BUILDER_ID);
+        ProjectHelper.addBuilders(description, builders, new NullProgressMonitor());
     }
 
     public void deconfigure() throws CoreException {

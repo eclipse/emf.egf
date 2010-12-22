@@ -10,9 +10,7 @@
  */
 package org.eclipse.egf.model.editor.adapter;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.common.helper.EMFHelper;
@@ -32,7 +30,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
 
@@ -84,13 +81,14 @@ public class ModelElementBundleAdapter extends EContentAdapter {
             // Check whether or not we have a new TypeClass in this new element
             Collection<EObject> typeClasses = EMFHelper.getAllProperContents(TypesPackage.eINSTANCE.getTypeClass(), EcoreUtil.getRootContainer(modelElement, true));
             // Project converter
-            IRunnableWithProgress operation = null;
+            ConvertProjectOperation operation = null;
             if (patterns.isEmpty() && tasks.isEmpty()) {
 
-                // Convert                
+                // Convert
                 if (typeClasses.isEmpty() == false) {
 
-                    // Do not convert if we already belong to a bundle java project
+                    // Do not convert if we already belong to a bundle java
+                    // project
                     IJavaProject javaProject = JavaCore.create(project);
                     if (javaProject != null && javaProject.exists()) {
                         try {
@@ -101,64 +99,20 @@ public class ModelElementBundleAdapter extends EContentAdapter {
                         return;
                     }
 
-                    operation = new ConvertProjectOperation(project, true, true) {
-
-                        @Override
-                        public List<String> addDependencies() {
-                            List<String> dependencies = new ArrayList<String>(1);
-                            dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
-                            return dependencies;
-                        }
-
-                        @Override
-                        public List<String> addSourceFolders() {
-                            List<String> sourceFolders = new ArrayList<String>(1);
-                            sourceFolders.add("src"); //$NON-NLS-1$
-                            return sourceFolders;
-                        }
-                    };
-
+                    operation = new ConvertProjectOperation(project, true, true);
+                    operation.setInitialDependencies(new String[] { "org.eclipse.egf.model.ftask" });//$NON-NLS-1$
+                    operation.setInitialSourceFolders(new String[] { "src" });//$NON-NLS-1$
                 }
 
             } else if (patterns.isEmpty() && tasks.isEmpty() == false) {
-
-                operation = new ConvertProjectOperation(project, true, true) {
-
-                    @Override
-                    public List<String> addDependencies() {
-                        List<String> dependencies = new ArrayList<String>(1);
-                        dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
-                        return dependencies;
-                    }
-
-                    @Override
-                    public List<String> addSourceFolders() {
-                        List<String> sourceFolders = new ArrayList<String>(1);
-                        sourceFolders.add("src"); //$NON-NLS-1$
-                        return sourceFolders;
-                    }
-                };
-
+                operation = new ConvertProjectOperation(project, true, true);
+                operation.setInitialDependencies(new String[] { "org.eclipse.egf.model.ftask" });//$NON-NLS-1$
+                operation.setInitialSourceFolders(new String[] { "src" });//$NON-NLS-1$
             } else {
 
-                operation = new ConvertProjectOperation(project, true, true) {
-
-                    @Override
-                    public List<String> addDependencies() {
-                        List<String> dependencies = new ArrayList<String>(2);
-                        dependencies.add("org.eclipse.egf.pattern"); //$NON-NLS-1$
-                        dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$
-                        return dependencies;
-                    }
-
-                    @Override
-                    public List<String> addSourceFolders() {
-                        List<String> sourceFolders = new ArrayList<String>(1);
-                        sourceFolders.add("generated"); //$NON-NLS-1$
-                        return sourceFolders;
-                    }
-
-                };
+                operation = new ConvertProjectOperation(project, true, true);
+                operation.setInitialDependencies(new String[] { "org.eclipse.egf.pattern", "org.eclipse.egf.pattern.ftask" });//$NON-NLS-1$
+                operation.setInitialSourceFolders(new String[] { "generated" });//$NON-NLS-1$
 
             }
             // synchronous operation, runned in thread UI

@@ -221,22 +221,9 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
         final EObject rootObject = createInitialModel();
 
         // Convert and Process current Project
-        WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
-
-            @Override
-            public List<String> addDependencies() {
-                List<String> dependencies = new ArrayList<String>(1);
-                dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$              
-                return dependencies;
-            }
-
-            @Override
-            public List<String> addSourceFolders() {
-                List<String> sourceFolders = new ArrayList<String>(1);
-                sourceFolders.add("src"); //$NON-NLS-1$
-                return sourceFolders;
-            }
-        };
+        ConvertProjectOperation convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false);
+        convertOperation.setInitialDependencies(new String[] { "org.eclipse.egf.model.ftask" });//$NON-NLS-1$
+        convertOperation.setInitialSourceFolders(new String[] { "src" });//$NON-NLS-1$
 
         try {
             getContainer().run(false, false, convertOperation);
@@ -364,9 +351,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
                 String extension = new Path(getFileName()).getFileExtension();
                 if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
                     String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
-                    setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] {
-                        FORMATTED_FILE_EXTENSIONS
-                    }));
+                    setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
                     return false;
                 }
                 return true;
