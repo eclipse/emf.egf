@@ -23,18 +23,18 @@ import org.eclipse.jface.preference.IPreferenceStore;
  */
 public class ModelPreferenceInitializer extends AbstractPreferenceInitializer {
 
-  public ModelPreferenceInitializer() {
-    super();
-  }
+    public ModelPreferenceInitializer() {
+        super();
+    }
 
-  /**
-   * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
-   */
-  @Override
-  public void initializeDefaultPreferences() {
-    final IPreferenceStore prefs = EGFCoreUIPlugin.getDefault().getPreferenceStore();
-    prefs.setDefault(IEGFModelConstants.VALIDATE_TYPES, true);
-    prefs.setDefault(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, MessageDialogWithToggle.PROMPT);
-  }
+    /**
+     * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
+     */
+    @Override
+    public void initializeDefaultPreferences() {
+        final IPreferenceStore prefs = EGFCoreUIPlugin.getDefault().getPreferenceStore();
+        prefs.setDefault(IEGFModelConstants.VALIDATE_TYPES, true);
+        prefs.setDefault(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, MessageDialogWithToggle.NEVER);
+    }
 
 }
