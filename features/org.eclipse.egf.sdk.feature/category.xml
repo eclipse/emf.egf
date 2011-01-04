@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.egf_0.4.0.qualifier.jar" id="org.eclipse.egf" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.egf_0.4.1.qualifier.jar" id="org.eclipse.egf" version="0.4.1.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.doc_0.4.0.qualifier.jar" id="org.eclipse.egf.doc" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.egf.doc_0.4.1.qualifier.jar" id="org.eclipse.egf.doc" version="0.4.1.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio_0.4.0.qualifier.jar" id="org.eclipse.egf.portfolio" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio_0.4.1.qualifier.jar" id="org.eclipse.egf.portfolio" version="0.4.1.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio.emf_0.4.0.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio.emf_0.4.1.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="0.4.1.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio.genchain_0.4.0.qualifier.jar" id="org.eclipse.egf.portfolio.genchain" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio.genchain_0.4.1.qualifier.jar" id="org.eclipse.egf.portfolio.genchain" version="0.4.1.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>   
    <category-def name="org.eclipse.egf.sdk.category" label="EGF SDK"/>
