@@ -1,16 +1,11 @@
 package org.eclipse.egf.emf.pattern.codegen.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil;
-import org.eclipse.egf.emf.pattern.codegen.ui.Activator;
-import org.eclipse.egf.emf.pattern.codegen.ui.Messages;
 import org.eclipse.egf.model.fcore.presentation.FcoreModelWizard;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -56,22 +51,11 @@ public class ReverseCodegenWizard extends FcoreModelWizard {
         final IFile fcore = getFcore();
 
         // Convert and Process current Project
-        WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(getFcore().getProject(), true, true) {
-            @Override
-            public List<String> addDependencies() {
-                List<String> dependencies = new ArrayList<String>(1);
-                dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
-                dependencies.add("org.eclipse.egf.emf.pattern.base"); //$NON-NLS-1$
-                return dependencies;
-            }
-
-            @Override
-            public List<String> addSourceFolders() {
-                List<String> sourceFolders = new ArrayList<String>(1);
-                sourceFolders.add("generated"); //$NON-NLS-1$
-                return sourceFolders;
-            }
-        };
+        ConvertProjectOperation convertOperation = new ConvertProjectOperation(getFcore().getProject(), true, true);
+        convertOperation.setInitialDependencies(new String[] {"org.eclipse.egf.model.ftask", "org.eclipse.egf.emf.pattern.base"});
+        convertOperation.setInitialSourceFolders(new String[] {"generated"});
+        
+        
         try {
             getContainer().run(false, false, convertOperation);
         } catch (Throwable t) {
