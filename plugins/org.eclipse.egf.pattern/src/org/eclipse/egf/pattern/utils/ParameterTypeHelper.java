@@ -15,16 +15,11 @@
 
 package org.eclipse.egf.pattern.utils;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
  * 
@@ -35,12 +30,7 @@ public class ParameterTypeHelper {
 
     public static final ParameterTypeHelper INSTANCE = new ParameterTypeHelper();
 
-    private Map<URI, IProxyEObject> _proxies = new HashMap<URI, IProxyEObject>();
-
-    private Map<IPluginModelBase, IClassLoader> _loaders = new HashMap<IPluginModelBase, IClassLoader>();
-
     private ParameterTypeHelper() {
-        // Prevent instantiation
     }
 
     public String getSourceTypeLiteral(String type) {
@@ -51,17 +41,13 @@ public class ParameterTypeHelper {
         return getTypeLiteral(type, false);
     }
 
-    public void clearProxies() {
-        _proxies.clear();
-        _loaders.clear();
-    }
-
     /**
      * Compute the literal value associated to the given type.<br/>
-     * It can be a java classname or an uri to an EObject. 
+     * It can be a java classname or an uri to an EObject.
      * 
      */
     private String getTypeLiteral(String type, boolean handleInnerClass) {
+        // clearProxies();
         if (type == null || type.trim().length() == 0) {
             throw new IllegalArgumentException();
         }
@@ -72,19 +58,15 @@ public class ParameterTypeHelper {
         }
         // Locate already loaded type
         URI uri = URI.createURI(type.trim());
-        if (_proxies.containsKey(uri)) {
-            return _proxies.get(uri).getInstanceClassName();
-        }
+
         // URI Type
-        IProxyEObject proxy = EGFCorePlugin.getTargetPlatformIProxyEObject(uri, _loaders);
+        IProxyEObject proxy = EGFCorePlugin.getTargetPlatformIProxyEObject(uri);
         if (proxy == null) {
             throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, uri));
         }
         if (proxy.getInstanceClassName() == null) {
             throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, uri));
         }
-        _proxies.put(uri, proxy);
         return proxy.getInstanceClassName();
     }
-
 }
