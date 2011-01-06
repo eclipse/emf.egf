@@ -141,4 +141,5 @@ public class EGFPatternMessages extends NLS {
 
     public static String Template_processor_fcore_execute_exception;
 
+    public static String Super_Pattern_Not_Found;
 }

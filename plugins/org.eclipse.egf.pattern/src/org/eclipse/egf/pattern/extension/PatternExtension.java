@@ -79,6 +79,9 @@ public abstract class PatternExtension {
      *         problem
      */
     public String canTranslate(Pattern pattern) {
+        if (pattern.getSuperPattern() != null && pattern.getSuperPattern().eIsProxy()) {
+            return NLS.bind(EGFPatternMessages.Super_Pattern_Not_Found, pattern.getSuperPattern().toString());
+        }
         IProject project = EMFHelper.getProject(pattern.eResource());
         if (project == null) {
             return NLS.bind(EGFCommonMessages.No_associated_project, EcoreUtil.getURI(pattern).trimFragment());
