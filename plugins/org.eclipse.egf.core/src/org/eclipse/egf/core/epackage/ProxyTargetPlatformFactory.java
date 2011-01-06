@@ -10,17 +10,13 @@
  */
 package org.eclipse.egf.core.epackage;
 
-import java.util.Map;
-
-import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
  * @author Xavier Maysonnave
- *
+ * 
  */
 public class ProxyTargetPlatformFactory {
 
@@ -40,11 +36,7 @@ public class ProxyTargetPlatformFactory {
     }
 
     public IProxyEObject getIProxyEObject(URI uri) {
-        return getIProxyEObject(uri, null);
-    }
-
-    public IProxyEObject getIProxyEObject(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
-        IProxyERoot proxy = getIProxyERoot(uri, loaders);
+        IProxyERoot proxy = getIProxyERoot(uri);
         if (proxy != null) {
             return proxy.getIProxyEObject(uri);
         }
@@ -52,11 +44,7 @@ public class ProxyTargetPlatformFactory {
     }
 
     public IProxyEPackage getIProxyEPackage(URI uri) {
-        return getIProxyEPackage(uri, null);
-    }
-
-    public IProxyEPackage getIProxyEPackage(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
-        IProxyERoot proxy = getIProxyERoot(uri, loaders);
+        IProxyERoot proxy = getIProxyERoot(uri);
         if (proxy != null && proxy.getChildren().length == 1) {
             return proxy.getChildren()[0];
         }
@@ -64,10 +52,6 @@ public class ProxyTargetPlatformFactory {
     }
 
     public IProxyERoot getIProxyERoot(URI uri) {
-        return getIProxyERoot(uri, null);
-    }
-
-    public IProxyERoot getIProxyERoot(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
         // Ignore
         if (uri == null) {
             return null;
@@ -80,7 +64,7 @@ public class ProxyTargetPlatformFactory {
             return null;
         }
         // Inner ePackage processing if applicable
-        URI innerNsURI = packageGenModel.getEPackageNsURI(uri, loaders);
+        URI innerNsURI = packageGenModel.getEPackageNsURI(uri);
         if (innerNsURI != null) {
             packageGenModel = EGFCorePlugin.getTargetPlatformGenModel(innerNsURI);
         }
@@ -89,7 +73,7 @@ public class ProxyTargetPlatformFactory {
             return null;
         }
         // Build an ERootWrapper
-        return packageGenModel.getIProxyERoot(loaders);
+        return packageGenModel.getIProxyERoot();
     }
 
 }

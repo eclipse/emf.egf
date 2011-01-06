@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.core.epackage.IProxyEPackage;
 import org.eclipse.egf.core.epackage.IProxyERoot;
@@ -74,9 +73,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     private static EGFCorePlugin __plugin;
 
     /**
-     * Constant identifying the job family identifier for a background build job.
+     * Constant identifying the job family identifier for a background build
+     * job.
      * All clients
-     * that schedule background jobs for performing builds should include this job
+     * that schedule background jobs for performing builds should include this
+     * job
      * family in their implementation of <code>belongsTo</code>.
      * 
      * @see IJobManager#join(Object, IProgressMonitor)
@@ -107,18 +108,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get a target platform base ERootWrapper object based on a uri
-     * 
-     * @return an empty list if none could be found.
-     */
-    public static IProxyERoot getTargetPlatformIProxyERoot(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
-        if (__proxyTargetPlatformFactory == null) {
-            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
-        }
-        return __proxyTargetPlatformFactory.getIProxyERoot(uri, loaders);
-    }
-
-    /**
      * Get a target platform base EPackageWrapper object based on a uri
      * 
      * @return an empty list if none could be found.
@@ -131,18 +120,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     }
 
     /**
-     * Get a target platform base EPackageWrapper object based on a uri
-     * 
-     * @return an empty list if none could be found.
-     */
-    public static IProxyEPackage getTargetPlatformIProxyEPackage(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
-        if (__proxyTargetPlatformFactory == null) {
-            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
-        }
-        return __proxyTargetPlatformFactory.getIProxyEPackage(uri, loaders);
-    }
-
-    /**
      * Get a target platform base EObjectWrapper object based on a uri
      * 
      * @return an empty list if none could be found.
@@ -152,18 +129,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
             __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
         }
         return __proxyTargetPlatformFactory.getIProxyEObject(uri);
-    }
-
-    /**
-     * Get a target platform base EObjectWrapper object based on a uri
-     * 
-     * @return an empty list if none could be found.
-     */
-    public static IProxyEObject getTargetPlatformIProxyEObject(URI uri, Map<IPluginModelBase, IClassLoader> loaders) {
-        if (__proxyTargetPlatformFactory == null) {
-            __proxyTargetPlatformFactory = new ProxyTargetPlatformFactory();
-        }
-        return __proxyTargetPlatformFactory.getIProxyEObject(uri, loaders);
     }
 
     /**
@@ -362,7 +327,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     /**
      * Get known IPlatformGenModel[] for given project.
      * 
-     * @return an array of IPlatformGenModel 
+     * @return an array of IPlatformGenModel
      */
     public static IPlatformGenModel[] getTargetPlatformGenModels(IProject project) {
         return getTargetPlatformManager().getPlatformExtensionPoints(project, IPlatformGenModel.class);
@@ -407,7 +372,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     /**
      * Get an IPlatformGenModel for a given uri
      * 
-     * @return an IPlatformGenModel 
+     * @return an IPlatformGenModel
      */
     public static IPlatformGenModel getTargetPlatformGenModel(URI uri) {
         return PlatformGenModel.getTargetPlatformGenModels().get(uri);
@@ -416,7 +381,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     /**
      * Get the platform IPlatformGenModel location map
      * 
-     * @return a Map<URI, URI> 
+     * @return a Map<URI, URI>
      */
     public static Map<URI, URI> getTargetPlatformGenModelLocationMap() {
         return PlatformGenModel.getTargetPlatformGenModelLocationMap();
@@ -425,7 +390,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     /**
      * Get an IPlatformGenModel for a given NsURI
      * 
-     * @return an IPlatformGenModel 
+     * @return an IPlatformGenModel
      */
     public static IPlatformGenModel getRuntimePlatformGenModel(URI uri) {
         return PlatformGenModel.getRuntimePlatformGenModels().get(uri);
@@ -434,7 +399,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     /**
      * Get the platform IPlatformGenModel location map
      * 
-     * @return a Map<URI, URI> 
+     * @return a Map<URI, URI>
      */
     public static Map<URI, URI> getRuntimePlatformGenModelLocationMap() {
         return PlatformGenModel.getRuntimePlatformGenModelLocationMap();
