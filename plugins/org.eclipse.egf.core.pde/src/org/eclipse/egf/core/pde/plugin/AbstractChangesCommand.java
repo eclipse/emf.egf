@@ -26,7 +26,8 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.plugin.WorkspacePluginModelBase;
 
 /**
- * Base class to implement a command that performs bundle changes in the plugin.xml file.
+ * Base class to implement a command that performs bundle changes in the
+ * plugin.xml file.
  * 
  * @author Guillaume Brocard
  */
@@ -97,10 +98,11 @@ public abstract class AbstractChangesCommand implements IPluginChangesCommand {
     }
 
     private void modifyExistingPlugin(final IProgressMonitor monitor) {
-        EGFPDEPlugin.getDisplay().syncExec(new Runnable() {
+        EGFPDEPlugin.getDisplay().asyncExec(new Runnable() {
 
             public void run() {
-                // Create an update operation that deals with modifying extensions.
+                // Create an update operation that deals with modifying
+                // extensions.
                 ModelModification updateOperation = new ModelModification(_project.getFile(PDEModelUtility.F_PLUGIN)) {
 
                     @Override
