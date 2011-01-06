@@ -11,5 +11,5 @@ Require-Bundle: org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.usecase.emf.uc2,
  org.eclipse.egf.model.ftask;visibility:=reexport,
  org.eclipse.egf.portfolio.file.resources
-Export-Package: org.eclipse.egf.usecase.emf.library.customized.model.Class.implementedoperation,
+Export-Package: 
  org.eclipse.egf.usecase.emf.uc3
