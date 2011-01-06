@@ -4,7 +4,7 @@
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
   <ftask:Task xmi:id="_lIo_MKtsEd-IItjEL3Zf6g" name="Model Driven Validation Pattern Strategy Task"
-      kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.ModelDrivenValidationStrategyTask"
+      kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.DomainDrivenValidationStrategyTask"
       superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
     <contractContainer xmi:id="_rcBBwKtsEd-IItjEL3Zf6g">
       <contracts xmi:id="_ryXFMKtsEd-IItjEL3Zf6g" name="diagnostic" mode="Out">
