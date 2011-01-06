@@ -12,10 +12,3 @@ Require-Bundle:
  org.eclipse.egf.emf.pattern;visibility:=reexport,
  org.eclipse.egf.pattern.ftask;visibility:=reexport 
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.egf.usecase.emf.library.edit.pluginproperties,
- org.eclipse.egf.usecase.emf.library.editor.pluginproperties,
- org.eclipse.egf.usecase.emf.library.model.Class.getsetgenfeature,
- org.eclipse.egf.usecase.emf.library.model.Class.implementedoperation,
- org.eclipse.egf.usecase.emf.libraryextension.edit.itemprovider,
- org.eclipse.egf.usecase.emf.libraryextension.model.Class.getsetgenfeature,
- org.eclipse.egf.usecase.emf.libraryextension.model.Class.insert
