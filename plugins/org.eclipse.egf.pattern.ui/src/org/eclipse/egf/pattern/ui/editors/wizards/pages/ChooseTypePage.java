@@ -15,11 +15,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.loader.IClassLoader;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.epackage.IProxyEObject;
 import org.eclipse.egf.core.epackage.IProxyERoot;
@@ -43,7 +39,6 @@ import org.eclipse.jface.wizard.IWizardContainer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -62,6 +57,7 @@ import org.eclipse.ui.PlatformUI;
 public class ChooseTypePage extends WizardPage {
 
     private static final URI NSURI_GENMODEL = URI.createURI("http://www.eclipse.org/emf/2002/GenModel"); //$NON-NLS-1$      
+    private static final URI NSURI_ECORE = URI.createURI("http://www.eclipse.org/emf/2002/Ecore"); //$NON-NLS-1$      
 
     private Object[] _selectedJavaType;
 
@@ -76,10 +72,6 @@ public class ChooseTypePage extends WizardPage {
     private String _currentType;
 
     private IJavaProject _javaProject;
-
-    private Map<URI, IProxyERoot> _roots = new HashMap<URI, IProxyERoot>();
-
-    private Map<IPluginModelBase, IClassLoader> _loaders = new HashMap<IPluginModelBase, IClassLoader>();
 
     public ChooseTypePage(String currentType) {
         super(Messages.ChooseTypePage_title);
@@ -142,7 +134,9 @@ public class ChooseTypePage extends WizardPage {
             /*
              * (non-Javadoc)
              * 
-             * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+             * @see
+             * org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse
+             * .swt.widgets.Composite)
              */
             @Override
             protected Control createDialogArea(Composite parent) {
@@ -151,20 +145,13 @@ public class ChooseTypePage extends WizardPage {
                 if (_currentType != null && _currentType.trim().length() != 0 && _currentType.equals("#//") == false) { //$NON-NLS-1$
                     uri = URI.createURI(_currentType.trim());
                 } else {
-                    uri = NSURI_GENMODEL;
+                    uri = NSURI_ECORE;
                 }
                 // Locate already loaded root
-                IProxyERoot root = null;
-                if (_roots.containsKey(uri)) {
-                    root = _roots.get(uri);
-                }
-                // Create a new one
-                if (root == null) {
-                    root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri, _loaders);
-                    if (root != null) {
-                        _roots.put(uri, root);
-                    }
-                }
+                IProxyERoot root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri);
+                // no model to load, so display the default one.
+                if (root == null)
+                    root = EGFCorePlugin.getTargetPlatformIProxyERoot(NSURI_ECORE);
                 _ecoreTypeTreeViewer.setInput(root);
                 _ecoreTypeTreeViewer.expandToLevel(2);
                 if (root != null && uri != null) {
@@ -200,14 +187,7 @@ public class ChooseTypePage extends WizardPage {
                             continue;
                         }
                         URI uri = URI.createURI(textUri.trim());
-                        // Locate already loaded type
-                        if (_roots.containsKey(uri)) {
-                            root = _roots.get(uri);
-                        }
-                        if (root == null) {
-                            root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri, _loaders);
-                            _roots.put(uri, root);
-                        }
+                        root = EGFCorePlugin.getTargetPlatformIProxyERoot(uri);
                         if (root != null) {
                             break;
                         }
@@ -215,10 +195,12 @@ public class ChooseTypePage extends WizardPage {
                         EGFCoreUIPlugin.getDefault().logError(NLS.bind(CoreUIMessages.ModelSelection_errorMessage, textUri));
                     }
                 }
-                if (root != null) {
-                    _ecoreTypeTreeViewer.setInput(root);
-                    _ecoreTypeTreeViewer.expandToLevel(2);
-                }
+                // no model to load, so display the default one.
+                if (root == null)
+                    root = EGFCorePlugin.getTargetPlatformIProxyERoot(NSURI_ECORE);
+
+                _ecoreTypeTreeViewer.setInput(root);
+                _ecoreTypeTreeViewer.expandToLevel(2);
             }
 
         };
