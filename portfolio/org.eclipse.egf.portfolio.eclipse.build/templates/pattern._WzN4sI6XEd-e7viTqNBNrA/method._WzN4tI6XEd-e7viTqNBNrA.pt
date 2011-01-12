@@ -104,7 +104,7 @@
 
 	<macrodef name="anteclipse">
         <attribute name="workspace" default="${workspace}" />
-        <attribute name="buildfile" default="${build.root}/${relengDir}/build.xml" />
+        <attribute name="buildfile" default="${relengDir}/build.xml" />
         <attribute name="target" />
         <element name="globargs" optional="true" />
         <sequential>
