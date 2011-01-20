@@ -9,12 +9,12 @@ import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
-public class buildrmapsvn extends org.eclipse.egf.portfolio.eclipse.build.buckminster.additions.buildrmapsvn {
+public class rmapsvnprovider extends org.eclipse.egf.portfolio.eclipse.build.buckminster.additions.buildrmapsvn {
     protected static String nl;
 
-    public static synchronized buildrmapsvn create(String lineSeparator) {
+    public static synchronized rmapsvnprovider create(String lineSeparator) {
         nl = lineSeparator;
-        buildrmapsvn result = new buildrmapsvn();
+        rmapsvnprovider result = new rmapsvnprovider();
         nl = null;
         return result;
     }
@@ -30,7 +30,7 @@ public class buildrmapsvn extends org.eclipse.egf.portfolio.eclipse.build.buckmi
     protected final String TEXT_8 = NL;
     protected final String TEXT_9 = NL;
 
-    public buildrmapsvn() {
+    public rmapsvnprovider() {
         //Here is the constructor
         StringBuffer stringBuffer = new StringBuffer();
 
