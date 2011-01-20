@@ -1,0 +1,5 @@
+GenClass genClass = parameter;
+genModel = parameter.getGenModel();
+boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
+canGenerate = canGenerate && true;
+return canGenerate;
