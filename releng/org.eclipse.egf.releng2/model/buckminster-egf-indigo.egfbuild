@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.0/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.0/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-indigo">
+  <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA">
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DAyR_EeCpI_U_Er6QNA" pattern="org.eclipse.jet.editor" suffix="" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DBiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix=".feature" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/indigo"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDiR_EeCpI_U_Er6QNA" name="org.eclipse.egf.sdk"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DESR_EeCpI_U_Er6QNA" name="org.eclipse.egf.application"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DECR_EeCpI_U_Er6QNA" name="org.eclipse.egf.examples"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
+  </steps>
+  <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
+  <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_91ptYCR_EeCpI_U_Er6QNA" component="_VP8DDiR_EeCpI_U_Er6QNA"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_AhUCYCSAEeCpI_U_Er6QNA" component="_VP8DESR_EeCpI_U_Er6QNA"/>
+  <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DByR_EeCpI_U_Er6QNA _VP8DAyR_EeCpI_U_Er6QNA _VP8DAiR_EeCpI_U_Er6QNA">
+    <includes>**/*.java</includes>
+    <links>http://download.oracle.com/javase/1.5.0/docs/api/</links>
+    <links>http://www.osgi.org/javadoc/r4v42/</links>
+    <links>http://download.eclipse.org/modeling/emf/emf/javadoc/2.5.0/</links>
+    <links>http://help.eclipse.org/galileo/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/</links>
+  </steps>
+  <scms xsi:type="buildscm:SVN" xmi:id="_VP8DGCR_EeCpI_U_Er6QNA">
+    <locations xmi:id="_VP8DGSR_EeCpI_U_Er6QNA" url="dev.eclipse.org/svnroot/modeling/org.eclipse.emf.egf/trunk" localPath="svn_eclipse" username="" password=""/>
+  </scms>
+  <triggers xsi:type="buildtrigger:SCMTrigger" xmi:id="_VP8DGyR_EeCpI_U_Er6QNA" planning="00 07 * * *"/>
+</buildcore:Job>
