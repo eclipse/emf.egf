@@ -63,7 +63,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
     protected final String TEXT_35 = ".class);" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tpublic String getString(String key, boolean translate)" + NL + "\t{";
     protected final String TEXT_36 = NL + "\t\t";
     protected final String TEXT_37 = "else ";
-    protected final String TEXT_38 = " if (\"_UI_";
+    protected final String TEXT_38 = "if (\"_UI_";
     protected final String TEXT_39 = "_type\".equals(key)) return PROPERTIES.";
     protected final String TEXT_40 = "Type();";
     protected final String TEXT_41 = NL + "\t\t";

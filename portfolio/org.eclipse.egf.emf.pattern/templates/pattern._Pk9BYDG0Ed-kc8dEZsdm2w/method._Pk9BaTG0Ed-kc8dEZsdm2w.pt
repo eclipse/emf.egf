@@ -20,9 +20,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: <%=genModel.getEditorPluginID()%>;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: <%if (genModel.isRuntimeJar()) {%><%=genModel.getEditorPluginID()%>.jar<%}else{%>.<%}%>
+<%if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {%>
 Bundle-Activator: <%=genModel.getQualifiedEditorPluginClassName()%>$Implementation
+<%}%>
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 <%if (genModel.getComplianceLevel() == GenJDKLevel.JDK50_LITERAL) {%>

@@ -20,6 +20,7 @@
 
 pluginName = <%=genModel.getModelName()%> Edit Support
 providerName = www.example.org
+<%if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {%>
 
 <%if (genModel.isCreationCommands()) {%>
 _UI_CreateChild_text = {0}
@@ -62,4 +63,5 @@ _UI_<%=genEnum.getName()%>_<%=genEnumLiteral.getName()%>_literal = <%=genEnumLit
 <%}%>
 <%for (String category : genModel.getPropertyCategories()) {%>
 <%=genModel.getPropertyCategoryKey(category)%> = <%=category%>
+<%}%>
 <%}%>

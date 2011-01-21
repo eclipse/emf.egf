@@ -892,7 +892,7 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
         GenPackage genPackage = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-        canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard());
+        canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard() && genPackage.getGenModel().getRuntimePlatform() != GenRuntimePlatform.GWT);
         return canGenerate;
     }
 }

@@ -919,7 +919,7 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
         GenPackage genPackage = parameter;
         genModel = parameter.getGenModel();
         boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
-        canGenerate = canGenerate && (genPackage.hasConcreteClasses());
+        canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.getGenModel().getRuntimePlatform() != GenRuntimePlatform.GWT);
         return canGenerate;
     }
 }

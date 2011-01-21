@@ -30,57 +30,65 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
     protected final String TEXT_3 = ";" + NL;
     protected final String TEXT_4 = NL + NL + "/**" + NL + " * <!-- begin-user-doc -->" + NL + " * The <b>Switch</b> for the model's inheritance hierarchy." + NL + " * It supports the call {@link #doSwitch(EObject) doSwitch(object)}" + NL + " * to invoke the <code>caseXXX</code> method for each class of the model," + NL + " * starting with the actual class of the object" + NL + " * and proceeding up the inheritance hierarchy" + NL + " * until a non-null result is returned," + NL + " * which is the result of the switch." + NL + " * <!-- end-user-doc -->" + NL + " * @see ";
     protected final String TEXT_5 = NL + " * @generated" + NL + " */" + NL + "public class ";
-    protected final String TEXT_6 = NL + "{";
-    protected final String TEXT_7 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
-    protected final String TEXT_8 = " copyright = ";
-    protected final String TEXT_9 = ";";
-    protected final String TEXT_10 = NL;
-    protected final String TEXT_11 = NL + "\t/**" + NL + "\t * The cached model package" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static ";
-    protected final String TEXT_12 = " modelPackage;" + NL + "" + NL + "\t/**" + NL + "\t * Creates an instance of the switch." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_13 = "()" + NL + "\t{" + NL + "\t\tif (modelPackage == null)" + NL + "\t\t{" + NL + "\t\t\tmodelPackage = ";
-    protected final String TEXT_14 = ".eINSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_15 = " doSwitch(EObject theEObject)" + NL + "\t{" + NL + "\t\treturn doSwitch(theEObject.eClass(), theEObject);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_16 = " doSwitch(EClass theEClass, EObject theEObject)" + NL + "\t{" + NL + "\t\tif (theEClass.eContainer() == modelPackage)" + NL + "\t\t{" + NL + "\t\t\treturn doSwitch(theEClass.getClassifierID(), theEObject);" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{" + NL + "\t\t\t";
-    protected final String TEXT_17 = "<";
-    protected final String TEXT_18 = ">";
-    protected final String TEXT_19 = " eSuperTypes = theEClass.getESuperTypes();" + NL + "\t\t\treturn" + NL + "\t\t\t\teSuperTypes.isEmpty() ?" + NL + "\t\t\t\t\tdefaultCase(theEObject) :" + NL + "\t\t\t\t\tdoSwitch(";
-    protected final String TEXT_20 = "(EClass)";
-    protected final String TEXT_21 = "eSuperTypes.get(0), theEObject);" + NL + "\t\t}" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
-    protected final String TEXT_22 = " doSwitch(int classifierID, EObject theEObject)" + NL + "\t{" + NL + "\t\tswitch (classifierID)" + NL + "\t\t{";
-    protected final String TEXT_23 = NL + "\t\t\tcase ";
-    protected final String TEXT_24 = ".";
-    protected final String TEXT_25 = ":" + NL + "\t\t\t{" + NL + "\t\t\t\t";
-    protected final String TEXT_26 = "@SuppressWarnings(\"unchecked\") ";
-    protected final String TEXT_27 = " ";
-    protected final String TEXT_28 = " = (";
-    protected final String TEXT_29 = ")theEObject;" + NL + "\t\t\t\t";
-    protected final String TEXT_30 = " ";
-    protected final String TEXT_31 = " = case";
-    protected final String TEXT_32 = "(";
-    protected final String TEXT_33 = ");";
-    protected final String TEXT_34 = NL + "\t\t\t\tif (";
-    protected final String TEXT_35 = " == null) ";
-    protected final String TEXT_36 = " = case";
-    protected final String TEXT_37 = "(";
+    protected final String TEXT_6 = " extends Switch";
+    protected final String TEXT_7 = NL + "{";
+    protected final String TEXT_8 = NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static final ";
+    protected final String TEXT_9 = " copyright = ";
+    protected final String TEXT_10 = ";";
+    protected final String TEXT_11 = NL;
+    protected final String TEXT_12 = NL + "\t/**" + NL + "\t * The cached model package" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected static ";
+    protected final String TEXT_13 = " modelPackage;" + NL + "" + NL + "\t/**" + NL + "\t * Creates an instance of the switch." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+    protected final String TEXT_14 = "()" + NL + "\t{" + NL + "\t\tif (modelPackage == null)" + NL + "\t\t{" + NL + "\t\t\tmodelPackage = ";
+    protected final String TEXT_15 = ".eINSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL;
+    protected final String TEXT_16 = NL + "\t/**" + NL + "\t * Checks whether this is a switch for the given package." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @parameter ePackage the package in question." + NL + "\t * @return whether this is a switch for the given package." + NL + "\t * @generated" + NL + "\t */" + NL + "\t@Override" + NL + "\tprotected boolean isSwitchFor(EPackage ePackage)" + NL + "\t{" + NL + "\t\treturn ePackage == modelPackage;" + NL + "\t}";
+    protected final String TEXT_17 = NL + "\t/**" + NL + "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+    protected final String TEXT_18 = " doSwitch(EObject theEObject)" + NL + "\t{" + NL + "\t\treturn doSwitch(theEObject.eClass(), theEObject);" + NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated" + NL + "\t */" + NL + "\tprotected ";
+    protected final String TEXT_19 = " doSwitch(EClass theEClass, EObject theEObject)" + NL + "\t{" + NL + "\t\tif (theEClass.eContainer() == modelPackage)" + NL + "\t\t{" + NL + "\t\t\treturn doSwitch(theEClass.getClassifierID(), theEObject);" + NL + "\t\t}" + NL + "\t\telse" + NL + "\t\t{" + NL + "\t\t\t";
+    protected final String TEXT_20 = "<";
+    protected final String TEXT_21 = ">";
+    protected final String TEXT_22 = " eSuperTypes = theEClass.getESuperTypes();" + NL + "\t\t\treturn" + NL + "\t\t\t\teSuperTypes.isEmpty() ?" + NL + "\t\t\t\t\tdefaultCase(theEObject) :" + NL + "\t\t\t\t\tdoSwitch(";
+    protected final String TEXT_23 = "(EClass)";
+    protected final String TEXT_24 = "eSuperTypes.get(0), theEObject);" + NL + "\t\t}" + NL + "\t}";
+    protected final String TEXT_25 = NL + NL + "\t/**" + NL + "\t * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @return the first non-null result returned by a <code>caseXXX</code> call." + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_26 = NL + "\t@Override";
+    protected final String TEXT_27 = NL + "\tprotected ";
+    protected final String TEXT_28 = " doSwitch(int classifierID, EObject theEObject)" + NL + "\t{" + NL + "\t\tswitch (classifierID)" + NL + "\t\t{";
+    protected final String TEXT_29 = NL + "\t\t\tcase ";
+    protected final String TEXT_30 = ".";
+    protected final String TEXT_31 = ":" + NL + "\t\t\t{" + NL + "\t\t\t\t";
+    protected final String TEXT_32 = "@SuppressWarnings(\"unchecked\") ";
+    protected final String TEXT_33 = " ";
+    protected final String TEXT_34 = " = (";
+    protected final String TEXT_35 = ")theEObject;" + NL + "\t\t\t\t";
+    protected final String TEXT_36 = " ";
+    protected final String TEXT_37 = " = case";
     protected final String TEXT_38 = "(";
-    protected final String TEXT_39 = ")";
-    protected final String TEXT_40 = ");";
-    protected final String TEXT_41 = NL + "\t\t\t\tif (";
-    protected final String TEXT_42 = " == null) ";
-    protected final String TEXT_43 = " = defaultCase(theEObject);" + NL + "\t\t\t\treturn ";
-    protected final String TEXT_44 = ";" + NL + "\t\t\t}";
-    protected final String TEXT_45 = NL + "\t\t\tdefault: return defaultCase(theEObject);" + NL + "\t\t}" + NL + "\t}";
-    protected final String TEXT_46 = NL + NL + "\t/**" + NL + "\t * Returns the result of interpreting the object as an instance of '<em>";
-    protected final String TEXT_47 = "</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This implementation returns null;" + NL + "\t * returning a non-null result will terminate the switch." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param object the target of the switch." + NL + "\t * @return the result of interpreting the object as an instance of '<em>";
-    protected final String TEXT_48 = "</em>'." + NL + "\t * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_49 = " case";
-    protected final String TEXT_50 = "(";
-    protected final String TEXT_51 = " object)" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}";
-    protected final String TEXT_52 = NL + NL + "\t/**" + NL + "\t * Returns the result of interpreting the object as an instance of '<em>EObject</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This implementation returns null;" + NL + "\t * returning a non-null result will terminate the switch, but this is the last case anyway." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param object the target of the switch." + NL + "\t * @return the result of interpreting the object as an instance of '<em>EObject</em>'." + NL + "\t * @see #doSwitch(org.eclipse.emf.ecore.EObject)" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
-    protected final String TEXT_53 = " defaultCase(EObject object)" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "} //";
-    protected final String TEXT_54 = NL;
-    protected final String TEXT_55 = NL;
-    protected final String TEXT_56 = NL;
+    protected final String TEXT_39 = ");";
+    protected final String TEXT_40 = NL + "\t\t\t\tif (";
+    protected final String TEXT_41 = " == null) ";
+    protected final String TEXT_42 = " = case";
+    protected final String TEXT_43 = "(";
+    protected final String TEXT_44 = "(";
+    protected final String TEXT_45 = ")";
+    protected final String TEXT_46 = ");";
+    protected final String TEXT_47 = NL + "\t\t\t\tif (";
+    protected final String TEXT_48 = " == null) ";
+    protected final String TEXT_49 = " = defaultCase(theEObject);" + NL + "\t\t\t\treturn ";
+    protected final String TEXT_50 = ";" + NL + "\t\t\t}";
+    protected final String TEXT_51 = NL + "\t\t\tdefault: return defaultCase(theEObject);" + NL + "\t\t}" + NL + "\t}";
+    protected final String TEXT_52 = NL + NL + "\t/**" + NL + "\t * Returns the result of interpreting the object as an instance of '<em>";
+    protected final String TEXT_53 = "</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This implementation returns null;" + NL + "\t * returning a non-null result will terminate the switch." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param object the target of the switch." + NL + "\t * @return the result of interpreting the object as an instance of '<em>";
+    protected final String TEXT_54 = "</em>'." + NL + "\t * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic ";
+    protected final String TEXT_55 = " case";
+    protected final String TEXT_56 = "(";
+    protected final String TEXT_57 = " object)" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}";
+    protected final String TEXT_58 = NL + NL + "\t/**" + NL + "\t * Returns the result of interpreting the object as an instance of '<em>EObject</em>'." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * This implementation returns null;" + NL + "\t * returning a non-null result will terminate the switch, but this is the last case anyway." + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @param object the target of the switch." + NL + "\t * @return the result of interpreting the object as an instance of '<em>EObject</em>'." + NL + "\t * @see #doSwitch(org.eclipse.emf.ecore.EObject)" + NL + "\t * @generated" + NL + "\t */";
+    protected final String TEXT_59 = NL + "\t@Override";
+    protected final String TEXT_60 = NL + "\tpublic ";
+    protected final String TEXT_61 = " defaultCase(EObject object)" + NL + "\t{" + NL + "\t\treturn null;" + NL + "\t}" + NL + "" + NL + "} //";
+    protected final String TEXT_62 = NL;
+    protected final String TEXT_63 = NL;
+    protected final String TEXT_64 = NL;
 
     public SwitchClass() {
         //Here is the constructor
@@ -113,8 +121,8 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_55);
-        stringBuffer.append(TEXT_56);
+        stringBuffer.append(TEXT_63);
+        stringBuffer.append(TEXT_64);
         return stringBuffer.toString();
     }
 
@@ -197,6 +205,7 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 
         GenPackage genPackage = (GenPackage) argument;
         GenModel genModel = genPackage.getGenModel();
+        boolean supportsComposition = genModel.getRuntimeVersion().getValue() >= GenRuntimeVersion.EMF27_VALUE;
         stringBuffer.append(TEXT_1);
         {
             //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
@@ -209,8 +218,14 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
         stringBuffer.append(TEXT_2);
         stringBuffer.append(genPackage.getUtilitiesPackageName());
         stringBuffer.append(TEXT_3);
-        genModel.addImport("org.eclipse.emf.ecore.EClass");
-        genModel.addImport("org.eclipse.emf.ecore.EObject");
+        if (supportsComposition) {
+            genModel.addImport("org.eclipse.emf.ecore.EObject");
+            genModel.addImport("org.eclipse.emf.ecore.EPackage");
+            genModel.addImport("org.eclipse.emf.ecore.util.Switch");
+        } else {
+            genModel.addImport("org.eclipse.emf.ecore.EClass");
+            genModel.addImport("org.eclipse.emf.ecore.EObject");
+        }
         if (!genPackage.hasJavaLangConflict() && !genPackage.getUtilitiesPackageName().equals(genPackage.getInterfacePackageName()))
             genModel.addImport(genPackage.getInterfacePackageName() + ".*");
 
@@ -242,115 +257,133 @@ public class SwitchClass extends org.eclipse.egf.emf.pattern.base.GenPackageJava
         stringBuffer.append(TEXT_5);
         stringBuffer.append(genPackage.getSwitchClassName());
         stringBuffer.append(templateParameters);
-        stringBuffer.append(TEXT_6);
+        if (supportsComposition) {
+            stringBuffer.append(TEXT_6);
+            stringBuffer.append(templateParameters);
+        }
+        stringBuffer.append(TEXT_7);
         if (genModel.hasCopyrightField()) {
-            stringBuffer.append(TEXT_7);
-            stringBuffer.append(genModel.getImportedName("java.lang.String"));
             stringBuffer.append(TEXT_8);
-            stringBuffer.append(genModel.getCopyrightFieldLiteral());
+            stringBuffer.append(genModel.getImportedName("java.lang.String"));
             stringBuffer.append(TEXT_9);
-            stringBuffer.append(genModel.getNonNLS());
+            stringBuffer.append(genModel.getCopyrightFieldLiteral());
             stringBuffer.append(TEXT_10);
+            stringBuffer.append(genModel.getNonNLS());
+            stringBuffer.append(TEXT_11);
         }
-        stringBuffer.append(TEXT_11);
-        stringBuffer.append(genPackage.getImportedPackageInterfaceName());
         stringBuffer.append(TEXT_12);
-        stringBuffer.append(genPackage.getSwitchClassName());
-        stringBuffer.append(TEXT_13);
         stringBuffer.append(genPackage.getImportedPackageInterfaceName());
+        stringBuffer.append(TEXT_13);
+        stringBuffer.append(genPackage.getSwitchClassName());
         stringBuffer.append(TEXT_14);
-        stringBuffer.append(returnType);
+        stringBuffer.append(genPackage.getImportedPackageInterfaceName());
         stringBuffer.append(TEXT_15);
-        stringBuffer.append(returnType);
-        stringBuffer.append(TEXT_16);
-        stringBuffer.append(genModel.getImportedName("java.util.List"));
-        if (genModel.useGenerics()) {
+        if (supportsComposition) {
+            stringBuffer.append(TEXT_16);
+        } else {
             stringBuffer.append(TEXT_17);
-            stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EClass"));
+            stringBuffer.append(returnType);
             stringBuffer.append(TEXT_18);
+            stringBuffer.append(returnType);
+            stringBuffer.append(TEXT_19);
+            stringBuffer.append(genModel.getImportedName("java.util.List"));
+            if (genModel.useGenerics()) {
+                stringBuffer.append(TEXT_20);
+                stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.EClass"));
+                stringBuffer.append(TEXT_21);
+            }
+            stringBuffer.append(TEXT_22);
+            if (!genModel.useGenerics()) {
+                stringBuffer.append(TEXT_23);
+            }
+            stringBuffer.append(TEXT_24);
         }
-        stringBuffer.append(TEXT_19);
-        if (!genModel.useGenerics()) {
-            stringBuffer.append(TEXT_20);
+        stringBuffer.append(TEXT_25);
+        if (supportsComposition) {
+            stringBuffer.append(TEXT_26);
         }
-        stringBuffer.append(TEXT_21);
+        stringBuffer.append(TEXT_27);
         stringBuffer.append(returnType);
-        stringBuffer.append(TEXT_22);
+        stringBuffer.append(TEXT_28);
         for (GenClass genClass : genPackage.getGenClasses()) {
             if (!genClass.isExternalInterface() && !genClass.isEObject() || genClass.isMapEntry()) {
                 String result = "result".equals(genClass.getSafeUncapName()) ? "theResult" : "result";
-                stringBuffer.append(TEXT_23);
+                stringBuffer.append(TEXT_29);
                 stringBuffer.append(genPackage.getImportedPackageInterfaceName());
-                stringBuffer.append(TEXT_24);
+                stringBuffer.append(TEXT_30);
                 stringBuffer.append(genPackage.getClassifierID(genClass));
-                stringBuffer.append(TEXT_25);
+                stringBuffer.append(TEXT_31);
                 if (genClass.isUncheckedCast() || genClass.isMapEntry() && genModel.getComplianceLevel().getValue() >= GenJDKLevel.JDK50) {
-                    stringBuffer.append(TEXT_26);
+                    stringBuffer.append(TEXT_32);
                 }
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(genClass.getInterfaceWildTypeArguments());
-                stringBuffer.append(TEXT_27);
+                stringBuffer.append(TEXT_33);
                 stringBuffer.append(genClass.getSafeUncapName());
-                stringBuffer.append(TEXT_28);
+                stringBuffer.append(TEXT_34);
                 stringBuffer.append(genClass.getImportedInterfaceName());
                 stringBuffer.append(genClass.getInterfaceWildTypeArguments());
-                stringBuffer.append(TEXT_29);
+                stringBuffer.append(TEXT_35);
                 stringBuffer.append(returnType);
-                stringBuffer.append(TEXT_30);
+                stringBuffer.append(TEXT_36);
                 stringBuffer.append(result);
-                stringBuffer.append(TEXT_31);
+                stringBuffer.append(TEXT_37);
                 stringBuffer.append(genPackage.getClassUniqueName(genClass));
-                stringBuffer.append(TEXT_32);
+                stringBuffer.append(TEXT_38);
                 stringBuffer.append(genClass.getSafeUncapName());
-                stringBuffer.append(TEXT_33);
+                stringBuffer.append(TEXT_39);
                 for (GenClass baseGenClass : genClass.getSwitchGenClasses()) {
-                    stringBuffer.append(TEXT_34);
+                    stringBuffer.append(TEXT_40);
                     stringBuffer.append(result);
-                    stringBuffer.append(TEXT_35);
+                    stringBuffer.append(TEXT_41);
                     stringBuffer.append(result);
-                    stringBuffer.append(TEXT_36);
+                    stringBuffer.append(TEXT_42);
                     stringBuffer.append(genPackage.getClassUniqueName(baseGenClass));
-                    stringBuffer.append(TEXT_37);
+                    stringBuffer.append(TEXT_43);
                     if (genClass.isMapEntry()) {
-                        stringBuffer.append(TEXT_38);
+                        stringBuffer.append(TEXT_44);
                         stringBuffer.append(baseGenClass.getImportedInterfaceName());
                         stringBuffer.append(baseGenClass.getInterfaceTypeArguments());
-                        stringBuffer.append(TEXT_39);
+                        stringBuffer.append(TEXT_45);
                     }
                     stringBuffer.append(genClass.getSafeUncapName());
-                    stringBuffer.append(TEXT_40);
+                    stringBuffer.append(TEXT_46);
                 }
-                stringBuffer.append(TEXT_41);
+                stringBuffer.append(TEXT_47);
                 stringBuffer.append(result);
-                stringBuffer.append(TEXT_42);
+                stringBuffer.append(TEXT_48);
                 stringBuffer.append(result);
-                stringBuffer.append(TEXT_43);
+                stringBuffer.append(TEXT_49);
                 stringBuffer.append(result);
-                stringBuffer.append(TEXT_44);
+                stringBuffer.append(TEXT_50);
             }
         }
-        stringBuffer.append(TEXT_45);
+        stringBuffer.append(TEXT_51);
         for (GenClass genClass : genPackage.getAllSwitchGenClasses()) {
-            stringBuffer.append(TEXT_46);
+            stringBuffer.append(TEXT_52);
             stringBuffer.append(genClass.getFormattedName());
-            stringBuffer.append(TEXT_47);
+            stringBuffer.append(TEXT_53);
             stringBuffer.append(genClass.getFormattedName());
-            stringBuffer.append(TEXT_48);
+            stringBuffer.append(TEXT_54);
             stringBuffer.append(genClass.getTypeParameters());
             stringBuffer.append(returnType);
-            stringBuffer.append(TEXT_49);
+            stringBuffer.append(TEXT_55);
             stringBuffer.append(genPackage.getClassUniqueName(genClass));
-            stringBuffer.append(TEXT_50);
+            stringBuffer.append(TEXT_56);
             stringBuffer.append(genClass.getImportedInterfaceName());
             stringBuffer.append(genClass.getInterfaceTypeArguments());
-            stringBuffer.append(TEXT_51);
+            stringBuffer.append(TEXT_57);
         }
-        stringBuffer.append(TEXT_52);
+        stringBuffer.append(TEXT_58);
+        if (supportsComposition) {
+            stringBuffer.append(TEXT_59);
+        }
+        stringBuffer.append(TEXT_60);
         stringBuffer.append(returnType);
-        stringBuffer.append(TEXT_53);
+        stringBuffer.append(TEXT_61);
         stringBuffer.append(genPackage.getSwitchClassName());
         genModel.emitSortedImports();
-        stringBuffer.append(TEXT_54);
+        stringBuffer.append(TEXT_62);
     }
 
     public boolean preCondition() throws Exception {

@@ -27,29 +27,30 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
     protected final String TEXT_2 = NL + NL + "pluginName = ";
-    protected final String TEXT_3 = " Edit Support" + NL + "providerName = www.example.org" + NL;
-    protected final String TEXT_4 = NL + "_UI_CreateChild_text = {0}" + NL + "_UI_CreateChild_text2 = {1} ";
-    protected final String TEXT_5 = "| ";
-    protected final String TEXT_6 = "{0}" + NL + "_UI_CreateChild_text3 = {1}" + NL + "_UI_CreateChild_tooltip = Create New {0} Under {1} Feature" + NL + "_UI_CreateChild_description = Create a new child of type {0} for the {1} feature of the selected {2}." + NL + "_UI_CreateSibling_description = Create a new sibling of type {0} for the selected {2}, under the {1} feature of their parent." + NL;
-    protected final String TEXT_7 = NL + "_UI_PropertyDescriptor_description = The {0} of the {1}" + NL;
-    protected final String TEXT_8 = NL + "_UI_";
-    protected final String TEXT_9 = "_type = ";
-    protected final String TEXT_10 = NL + "_UI_Unknown_type = Object" + NL + "" + NL + "_UI_Unknown_datatype= Value" + NL;
-    protected final String TEXT_11 = NL + "_UI_";
-    protected final String TEXT_12 = "_";
-    protected final String TEXT_13 = "_feature = ";
-    protected final String TEXT_14 = NL + "_UI_";
-    protected final String TEXT_15 = "_";
-    protected final String TEXT_16 = "_description = ";
-    protected final String TEXT_17 = NL + "_UI_Unknown_feature = Unspecified" + NL;
-    protected final String TEXT_18 = NL + "_UI_";
-    protected final String TEXT_19 = "_";
-    protected final String TEXT_20 = "_literal = ";
-    protected final String TEXT_21 = NL;
-    protected final String TEXT_22 = " = ";
-    protected final String TEXT_23 = NL;
+    protected final String TEXT_3 = " Edit Support" + NL + "providerName = www.example.org";
+    protected final String TEXT_4 = NL;
+    protected final String TEXT_5 = NL + "_UI_CreateChild_text = {0}" + NL + "_UI_CreateChild_text2 = {1} ";
+    protected final String TEXT_6 = "| ";
+    protected final String TEXT_7 = "{0}" + NL + "_UI_CreateChild_text3 = {1}" + NL + "_UI_CreateChild_tooltip = Create New {0} Under {1} Feature" + NL + "_UI_CreateChild_description = Create a new child of type {0} for the {1} feature of the selected {2}." + NL + "_UI_CreateSibling_description = Create a new sibling of type {0} for the selected {2}, under the {1} feature of their parent." + NL;
+    protected final String TEXT_8 = NL + "_UI_PropertyDescriptor_description = The {0} of the {1}" + NL;
+    protected final String TEXT_9 = NL + "_UI_";
+    protected final String TEXT_10 = "_type = ";
+    protected final String TEXT_11 = NL + "_UI_Unknown_type = Object" + NL + "" + NL + "_UI_Unknown_datatype= Value" + NL;
+    protected final String TEXT_12 = NL + "_UI_";
+    protected final String TEXT_13 = "_";
+    protected final String TEXT_14 = "_feature = ";
+    protected final String TEXT_15 = NL + "_UI_";
+    protected final String TEXT_16 = "_";
+    protected final String TEXT_17 = "_description = ";
+    protected final String TEXT_18 = NL + "_UI_Unknown_feature = Unspecified" + NL;
+    protected final String TEXT_19 = NL + "_UI_";
+    protected final String TEXT_20 = "_";
+    protected final String TEXT_21 = "_literal = ";
+    protected final String TEXT_22 = NL;
+    protected final String TEXT_23 = " = ";
     protected final String TEXT_24 = NL;
     protected final String TEXT_25 = NL;
+    protected final String TEXT_26 = NL;
 
     public PluginProperties() {
         //Here is the constructor
@@ -82,8 +83,8 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_24);
         stringBuffer.append(TEXT_25);
+        stringBuffer.append(TEXT_26);
         return stringBuffer.toString();
     }
 
@@ -176,64 +177,67 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
         stringBuffer.append(TEXT_2);
         stringBuffer.append(genModel.getModelName());
         stringBuffer.append(TEXT_3);
-        if (genModel.isCreationCommands()) {
+        if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {
             stringBuffer.append(TEXT_4);
-            if (genModel.isCreationSubmenus()) {
+            if (genModel.isCreationCommands()) {
                 stringBuffer.append(TEXT_5);
-            }
-            stringBuffer.append(TEXT_6);
-        }
-        stringBuffer.append(TEXT_7);
-        for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
-            if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
-                for (GenClass genClass : genPackage.getGenClasses()) {
-                    stringBuffer.append(TEXT_8);
-                    stringBuffer.append(genClass.getName());
-                    stringBuffer.append(TEXT_9);
-                    stringBuffer.append(genClass.getFormattedName());
+                if (genModel.isCreationSubmenus()) {
+                    stringBuffer.append(TEXT_6);
                 }
+                stringBuffer.append(TEXT_7);
             }
-        }
-        stringBuffer.append(TEXT_10);
-        for (GenFeature genFeature : genModel.getFilteredAllGenFeatures()) {
-            String description = genFeature.getPropertyDescription();
-            stringBuffer.append(TEXT_11);
-            stringBuffer.append(genFeature.getGenClass().getName());
-            stringBuffer.append(TEXT_12);
-            stringBuffer.append(genFeature.getName());
-            stringBuffer.append(TEXT_13);
-            stringBuffer.append(genFeature.getFormattedName());
-            if (description != null && description.length() > 0) {
-                stringBuffer.append(TEXT_14);
-                stringBuffer.append(genFeature.getGenClass().getName());
-                stringBuffer.append(TEXT_15);
-                stringBuffer.append(genFeature.getName());
-                stringBuffer.append(TEXT_16);
-                stringBuffer.append(description);
-            }
-        }
-        stringBuffer.append(TEXT_17);
-        for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
-            if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
-                for (GenEnum genEnum : genPackage.getGenEnums()) {
-                    for (GenEnumLiteral genEnumLiteral : genEnum.getGenEnumLiterals()) {
-                        stringBuffer.append(TEXT_18);
-                        stringBuffer.append(genEnum.getName());
-                        stringBuffer.append(TEXT_19);
-                        stringBuffer.append(genEnumLiteral.getName());
-                        stringBuffer.append(TEXT_20);
-                        stringBuffer.append(genEnumLiteral.getLiteral());
+            stringBuffer.append(TEXT_8);
+            for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
+                if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
+                    for (GenClass genClass : genPackage.getGenClasses()) {
+                        stringBuffer.append(TEXT_9);
+                        stringBuffer.append(genClass.getName());
+                        stringBuffer.append(TEXT_10);
+                        stringBuffer.append(genClass.getFormattedName());
                     }
                 }
             }
+            stringBuffer.append(TEXT_11);
+            for (GenFeature genFeature : genModel.getFilteredAllGenFeatures()) {
+                String description = genFeature.getPropertyDescription();
+                stringBuffer.append(TEXT_12);
+                stringBuffer.append(genFeature.getGenClass().getName());
+                stringBuffer.append(TEXT_13);
+                stringBuffer.append(genFeature.getName());
+                stringBuffer.append(TEXT_14);
+                stringBuffer.append(genFeature.getFormattedName());
+                if (description != null && description.length() > 0) {
+                    stringBuffer.append(TEXT_15);
+                    stringBuffer.append(genFeature.getGenClass().getName());
+                    stringBuffer.append(TEXT_16);
+                    stringBuffer.append(genFeature.getName());
+                    stringBuffer.append(TEXT_17);
+                    stringBuffer.append(description);
+                }
+            }
+            stringBuffer.append(TEXT_18);
+            for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {
+                if (genPackage.getGenModel() == genModel || !genPackage.getGenModel().hasEditSupport()) {
+                    for (GenEnum genEnum : genPackage.getGenEnums()) {
+                        for (GenEnumLiteral genEnumLiteral : genEnum.getGenEnumLiterals()) {
+                            stringBuffer.append(TEXT_19);
+                            stringBuffer.append(genEnum.getName());
+                            stringBuffer.append(TEXT_20);
+                            stringBuffer.append(genEnumLiteral.getName());
+                            stringBuffer.append(TEXT_21);
+                            stringBuffer.append(genEnumLiteral.getLiteral());
+                        }
+                    }
+                }
+            }
+            for (String category : genModel.getPropertyCategories()) {
+                stringBuffer.append(TEXT_22);
+                stringBuffer.append(genModel.getPropertyCategoryKey(category));
+                stringBuffer.append(TEXT_23);
+                stringBuffer.append(category);
+            }
         }
-        for (String category : genModel.getPropertyCategories()) {
-            stringBuffer.append(TEXT_21);
-            stringBuffer.append(genModel.getPropertyCategoryKey(category));
-            stringBuffer.append(TEXT_22);
-            stringBuffer.append(category);
-        }
-        stringBuffer.append(TEXT_23);
+        stringBuffer.append(TEXT_24);
     }
 
     public boolean preCondition() throws Exception {

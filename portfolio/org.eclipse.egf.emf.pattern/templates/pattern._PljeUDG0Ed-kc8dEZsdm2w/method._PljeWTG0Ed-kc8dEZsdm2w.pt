@@ -20,6 +20,7 @@
 
 pluginName = <%=genModel.getModelName()%> Editor
 providerName = www.example.org
+<%if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {%>
 
 <%boolean hasMultiPageEditor = false;%>
 <%for (GenPackage genPackage : genModel.getAllGenPackagesWithClassifiers()) {if (genPackage.isMultipleEditorPages()) { hasMultiPageEditor = true; }%>
@@ -113,4 +114,5 @@ _UI_About_text = <%=genModel.getModelName()%> Application about box goes here.
 _UI_<%=genPackage.getModelWizardClassName()%>_ActionSet_label = <%=genPackage.getPrefix()%> Model Action Set
 <%}}%>
 
+<%}%>
 <%}%>

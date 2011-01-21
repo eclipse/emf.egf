@@ -22,10 +22,10 @@
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderXml" args="parameter:argument"%>
 
 <module>
-<%for (String inherits : genModel.getModelModuleInherits()) {%>
+<%for (String inherits : genModel.getEditModuleInherits()) {%>
   <inherits name="<%=inherits%>" />
 <%}%>
-<%for (String source : genModel.getModelModuleSources()) {%>
+<%for (String source : genModel.getEditModuleSources()) {%>
   <source path="<%=source%>"/>
 <%}%>
 </module>

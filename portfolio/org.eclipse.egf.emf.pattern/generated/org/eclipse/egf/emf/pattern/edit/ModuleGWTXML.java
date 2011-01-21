@@ -162,12 +162,12 @@ public class ModuleGWTXML extends org.eclipse.egf.emf.pattern.base.GenModelText 
         }
 
         stringBuffer.append(TEXT_3);
-        for (String inherits : genModel.getModelModuleInherits()) {
+        for (String inherits : genModel.getEditModuleInherits()) {
             stringBuffer.append(TEXT_4);
             stringBuffer.append(inherits);
             stringBuffer.append(TEXT_5);
         }
-        for (String source : genModel.getModelModuleSources()) {
+        for (String source : genModel.getEditModuleSources()) {
             stringBuffer.append(TEXT_6);
             stringBuffer.append(source);
             stringBuffer.append(TEXT_7);

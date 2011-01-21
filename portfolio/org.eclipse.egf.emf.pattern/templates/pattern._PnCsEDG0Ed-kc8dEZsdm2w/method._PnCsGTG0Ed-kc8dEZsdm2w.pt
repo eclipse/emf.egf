@@ -48,6 +48,7 @@ public final class <%=genModel.getEditorPluginClassName()%> extends EMFPlugin
 	 */
 	public static final <%=genModel.getEditorPluginClassName()%> INSTANCE = new <%=genModel.getEditorPluginClassName()%>();
 	
+<%if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {%>
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -56,6 +57,7 @@ public final class <%=genModel.getEditorPluginClassName()%> extends EMFPlugin
 	 */
 	private static Implementation plugin;
 
+<%}%>
 	/**
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
@@ -85,9 +87,14 @@ public final class <%=genModel.getEditorPluginClassName()%> extends EMFPlugin
 <%}%>
 	public ResourceLocator getPluginResourceLocator()
 	{
+<%if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT) {%>
+		return null;
+<%} else {%>
 		return plugin;
+<%}%>
 	}
 	
+<%if (genModel.getRuntimePlatform() != GenRuntimePlatform.GWT) {%>
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
@@ -127,5 +134,6 @@ public final class <%=genModel.getEditorPluginClassName()%> extends EMFPlugin
 		}
 	}
 
+<%}%>
 }
 <%genModel.emitSortedImports();%>
