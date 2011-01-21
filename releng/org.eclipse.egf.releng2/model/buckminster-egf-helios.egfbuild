@@ -19,6 +19,11 @@
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_91ptYCR_EeCpI_U_Er6QNA" component="_VP8DDiR_EeCpI_U_Er6QNA" signing="true"/>
+  <steps xsi:type="buildstep:EgfStep" xmi:id="_lrpyMCVpEeCrBLgWv91aGQ">
+    <properties xmi:id="_lrpyMSVpEeCrBLgWv91aGQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_lrpyMiVpEeCrBLgWv91aGQ" key="outputFolder" value="${publish}/org.eclipse.egf.sdk/examples"/>
+    <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
+  </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_AhUCYCSAEeCpI_U_Er6QNA" component="_VP8DESR_EeCpI_U_Er6QNA" signing="true"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DByR_EeCpI_U_Er6QNA _VP8DAyR_EeCpI_U_Er6QNA _VP8DAiR_EeCpI_U_Er6QNA">
     <includes>**/*.java</includes>
