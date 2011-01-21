@@ -27,6 +27,12 @@
 
 	<searchPath name="egf">
 		<provider componentTypes="buckminster" readerType="local" source="true">
+			<uri format="file:{0}/deprecated/3.6/portfolio/{1}">
+				<bc:propertyRef key="base.path" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="buckminster" readerType="local" source="true">
 			<uri format="file:{0}/releng/{1}">
 				<bc:propertyRef key="base.path" />
 				<bc:propertyRef key="buckminster.component" />
