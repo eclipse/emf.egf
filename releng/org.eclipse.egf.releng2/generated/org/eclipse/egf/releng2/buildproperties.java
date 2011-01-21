@@ -18,7 +18,7 @@ public class buildproperties extends org.eclipse.egf.portfolio.eclipse.build.buc
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "eclipse.staging.area=/shared/download-staging.priv/modeling/egf/" + NL + "eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org" + NL + "target.os=*" + NL + "target.ws=*" + NL + "target.arch=*" + NL;
+    protected final String TEXT_1 = "eclipse.staging.area=/shared/download-staging.priv/modeling/egf/" + NL + "eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org" + NL + "#target.os=*" + NL + "#target.ws=*" + NL + "#target.arch=*" + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
