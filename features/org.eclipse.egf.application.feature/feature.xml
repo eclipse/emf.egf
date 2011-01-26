@@ -30,39 +30,19 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes
-         id="org.eclipse.egf.common"
+         id="org.eclipse.egf"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.egf.core"
+         id="org.eclipse.egf.portfolio"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.egf.producer"
+         id="org.eclipse.egf.portfolio.emf"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.egf.model"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.egf.model.edit"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.egf.model.fprod"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.egf.model.fprod.edit"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.egf.model.ftask"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.egf.model.ftask.edit"
+         id="org.eclipse.egf.portfolio.genchain"
          version="0.0.0"/>
 
 </feature>
