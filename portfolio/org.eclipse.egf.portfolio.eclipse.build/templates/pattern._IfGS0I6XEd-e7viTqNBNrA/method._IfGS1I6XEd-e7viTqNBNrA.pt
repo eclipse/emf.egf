@@ -16,7 +16,6 @@ polarion.site=http://community.polarion.com/projects/subversive/download/eclipse
 #egf installation
 #TODO change url site
 egf.site=https://hudson.eclipse.org/hudson/job/buckminster-egf-helios/lastSuccessfulBuild/artifact/result/publish/org.eclipse.egf.application/site.p2/
-egf.site2=https://hudson.eclipse.org/hudson/job/buckminster-egf-helios/lastSuccessfulBuild/artifact/result/publish/org.eclipse.egf.sdk/site.p2/
 
 #do not generate version range with buckminster in manifest.mf and content.jar
 pde.bundle.range.generation=false

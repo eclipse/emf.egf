@@ -184,20 +184,12 @@
                 <jvmarg value="-Declipse.p2.mirrors=false" />
                 <arg value="-r" />
                 <arg value="${egf.site}" />
-                <arg value="-r" />
-                <arg value="${egf.site2}" />
                 <arg value="-d" />
                 <arg value="${tools}/egf" />
                 <arg value="-p" />
                 <arg value="EGF" />
                 <arg value="-i" />
                 <arg value="org.eclipse.egf.application.product" />
-                <arg value="-i" />
-                <arg value="org.eclipse.egf.feature.group" />
-                <arg value="-i" />
-                <arg value="org.eclipse.egf.portfolio.feature.group" />
-                <arg value="-i" />
-                <arg value="org.eclipse.egf.portfolio.emf.feature.group" />
             </args>
         </eclipse.launch>
     </target>
