@@ -64,7 +64,7 @@ public class ActivityApplication implements IApplication {
         // Build a list of activities if any
         List<Activity> activities = new UniqueEList<Activity>();
         for (int i = 0; i < uris.size(); i++) {
-            URI uri = resourceSet.getURIConverter().normalize(uris.get(i));
+            URI uri = uris.get(i);
             EObject eObject = null;
             // Load it in our Editing Domain
             try {
