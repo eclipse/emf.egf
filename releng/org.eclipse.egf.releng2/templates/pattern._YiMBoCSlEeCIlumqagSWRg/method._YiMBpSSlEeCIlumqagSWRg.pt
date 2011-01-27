@@ -3,3 +3,4 @@ eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org
 #target.os=*
 #target.ws=*
 #target.arch=*
+site.retain.unpacked=true

@@ -8,12 +8,14 @@
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DBiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix=".feature" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
+    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/indigo"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDiR_EeCpI_U_Er6QNA" name="org.eclipse.egf.sdk"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DESR_EeCpI_U_Er6QNA" name="org.eclipse.egf.application"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DECR_EeCpI_U_Er6QNA" name="org.eclipse.egf.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" name="org.eclipse.egf.releng2"/>
   </steps>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
@@ -23,7 +25,7 @@
     <properties xmi:id="_lrpyMiVpEeCrBLgWv91aGQ" key="outputFolder" value="${publish}/org.eclipse.egf.sdk/examples"/>
     <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
   </steps>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_AhUCYCSAEeCpI_U_Er6QNA" component="_VP8DESR_EeCpI_U_Er6QNA" signing="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_AhUCYCSAEeCpI_U_Er6QNA" component="_VP8DESR_EeCpI_U_Er6QNA"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DByR_EeCpI_U_Er6QNA _VP8DAyR_EeCpI_U_Er6QNA _VP8DAiR_EeCpI_U_Er6QNA">
     <includes>**/*.java</includes>
     <links>http://download.oracle.com/javase/1.5.0/docs/api/</links>
