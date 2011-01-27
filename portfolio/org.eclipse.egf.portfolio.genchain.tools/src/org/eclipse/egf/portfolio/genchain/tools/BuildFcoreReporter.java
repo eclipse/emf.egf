@@ -40,7 +40,7 @@ public class BuildFcoreReporter implements PatternExecutionReporter, FcoreBuilde
         try {
             fc.eResource().save(Collections.EMPTY_MAP);
         } catch (IOException e) {
-            e.printStackTrace();
+            Activator.getDefault().logError(e);
         }
     }
 
