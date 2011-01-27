@@ -17,6 +17,7 @@ import org.eclipse.osgi.util.NLS;
 public class Messages extends NLS {
 
     // assembly
+    public static String assembly_error5;
     public static String assembly_error6;
 
     public static String assembly_error8;
