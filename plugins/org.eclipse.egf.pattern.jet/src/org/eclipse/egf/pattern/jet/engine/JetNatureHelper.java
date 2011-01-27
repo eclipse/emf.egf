@@ -35,7 +35,7 @@ public class JetNatureHelper {
      * @return never returns null or empty string.
      */
     public static String getTemplateClassName(Pattern pattern) throws PatternException {
-        if (!"JetNature".equals(pattern.getNature().getName()))
+        if (!"JET".equals(pattern.getNature().getName()))
             throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getNature().getName()));
         try {
             String content = TemplateFileHelper.getContent(pattern.getHeaderMethod());
