@@ -26,6 +26,7 @@ public class Messages extends NLS {
     public static String Load_WorkspaceDomain_error1;
     public static String Load_WorkspaceDomain_error2;
     public static String Load_EMFDomain_error1;
+    public static String Load_EMFDomain_error2;
     public static String Load_Domain_error1;
     public static String Load_Domain_error2;
     public static String Load_FilesystemDomain_error1;

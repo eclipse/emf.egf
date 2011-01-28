@@ -53,7 +53,7 @@ public class EMFDomainHelper implements DomainHelper {
             try {
                 domainResource = set.getResource(uri, true);
             } catch (Exception e) {
-                throw new DomainException(e);
+                throw new DomainException(Messages.bind(Messages.Load_EMFDomain_error2, uri.toString()), e);
             }
 
             if (!myDomain.getContent().isEmpty())
