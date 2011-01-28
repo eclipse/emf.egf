@@ -204,7 +204,7 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
     protected final String TEXT_177 = "[size];";
     protected final String TEXT_178 = NL + "\t\t\t\t }" + NL + "\t\t});";
     protected final String TEXT_179 = NL + "\t}" + NL + "" + NL + "\t/**" + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @generated" + NL + "\t */" + NL + "\tpublic static class WhiteList implements ";
-    protected final String TEXT_180 = NL + "\t{";
+    protected final String TEXT_180 = ", EBasicWhiteList" + NL + "\t{";
     protected final String TEXT_181 = NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tprotected ";
     protected final String TEXT_182 = " ";
     protected final String TEXT_183 = ";" + NL;
@@ -857,6 +857,7 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
         if (isImplementation) {
             genModel.addPseudoImport("org.eclipse.emf.ecore.EPackage.Registry");
             genModel.addPseudoImport("org.eclipse.emf.ecore.EPackage.Descriptor");
+            genModel.addPseudoImport("org.eclipse.emf.ecore.impl.EPackageImpl.EBasicWhiteList");
             genModel.addPseudoImport("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container");
             genModel.addPseudoImport("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container.Dynamic");
             if (genPackage.isLiteralsInterface()) {

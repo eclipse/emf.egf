@@ -413,7 +413,7 @@ public class Plugin extends org.eclipse.egf.emf.pattern.base.GenModelJava {
                         stringBuffer.append(TEXT_75);
                         stringBuffer.append(image);
                         stringBuffer.append(TEXT_76);
-                        stringBuffer.append(genClass.getSafeUncapName());
+                        stringBuffer.append(genClass.getItemIconAccessorName());
                         stringBuffer.append(TEXT_77);
                     }
                 }

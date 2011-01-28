@@ -37,7 +37,7 @@ public interface <%=genModel.getEditPluginClassName()%>Images extends <%=genMode
 	 * @generated
 	 */
 	@Source("<%=image%>")
-	<%=genModel.getImportedName("com.google.gwt.resources.client.ImageResource")%> <%=genClass.getSafeUncapName()%>();
+	<%=genModel.getImportedName("com.google.gwt.resources.client.ImageResource")%> <%=genClass.getItemIconAccessorName()%>();
 
     <%}%>
   <%}%>

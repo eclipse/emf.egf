@@ -220,7 +220,7 @@ public final class <%=genModel.getEditPluginClassName()%> extends EMFPlugin
 <%first = true; for (GenPackage genPackage : genModel.getAllGenAndUsedGenPackagesWithClassifiers()) {%>
   <%for (GenClass genClass : genPackage.getGenClasses()) {%>
     <%if (genClass.isImage()) { String image = genClass.getItemIconFileName(); image = image.substring(image.lastIndexOf("/icons/") + 7, image.length() - 4); %>
-		<%if (first) { first = false; } else {%>else <%}%>if ("<%=image%>".equals(key)) return IMAGES.<%=genClass.getSafeUncapName()%>();
+		<%if (first) { first = false; } else {%>else <%}%>if ("<%=image%>".equals(key)) return IMAGES.<%=genClass.getItemIconAccessorName()%>();
     <%}%>
   <%}%>
 <%}%>

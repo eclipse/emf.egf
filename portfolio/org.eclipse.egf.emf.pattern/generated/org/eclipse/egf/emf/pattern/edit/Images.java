@@ -183,7 +183,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
                     stringBuffer.append(TEXT_8);
                     stringBuffer.append(genModel.getImportedName("com.google.gwt.resources.client.ImageResource"));
                     stringBuffer.append(TEXT_9);
-                    stringBuffer.append(genClass.getSafeUncapName());
+                    stringBuffer.append(genClass.getItemIconAccessorName());
                     stringBuffer.append(TEXT_10);
                 }
             }

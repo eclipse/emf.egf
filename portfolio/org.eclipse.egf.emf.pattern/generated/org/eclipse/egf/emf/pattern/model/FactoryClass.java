@@ -698,7 +698,7 @@ public class FactoryClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
             stringBuffer.append(TEXT_40);
             stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.plugin.EcorePlugin"));
             stringBuffer.append(TEXT_41);
-            stringBuffer.append(genPackage.getFactoryClassName());
+            stringBuffer.append(genPackage.getImportedFactoryClassName());
             stringBuffer.append(TEXT_42);
             stringBuffer.append(genPackage.getFactoryClassName());
             stringBuffer.append(TEXT_43);
