@@ -179,10 +179,10 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_PARAMETER__QUERY:
-                if (query != null)
-                    msgs = ((InternalEObject) query).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PatternPackage.PATTERN_PARAMETER__QUERY, null, msgs);
-                return basicSetQuery((Query) otherEnd, msgs);
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            if (query != null)
+                msgs = ((InternalEObject) query).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PatternPackage.PATTERN_PARAMETER__QUERY, null, msgs);
+            return basicSetQuery((Query) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -195,8 +195,8 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_PARAMETER__QUERY:
-                return basicSetQuery(null, msgs);
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            return basicSetQuery(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -209,10 +209,10 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PATTERN_PARAMETER__TYPE:
-                return getType();
-            case PatternPackage.PATTERN_PARAMETER__QUERY:
-                return getQuery();
+        case PatternPackage.PATTERN_PARAMETER__TYPE:
+            return getType();
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            return getQuery();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -225,12 +225,12 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PATTERN_PARAMETER__TYPE:
-                setType((String) newValue);
-                return;
-            case PatternPackage.PATTERN_PARAMETER__QUERY:
-                setQuery((Query) newValue);
-                return;
+        case PatternPackage.PATTERN_PARAMETER__TYPE:
+            setType((String) newValue);
+            return;
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            setQuery((Query) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -243,12 +243,12 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_PARAMETER__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
-            case PatternPackage.PATTERN_PARAMETER__QUERY:
-                setQuery((Query) null);
-                return;
+        case PatternPackage.PATTERN_PARAMETER__TYPE:
+            setType(TYPE_EDEFAULT);
+            return;
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            setQuery((Query) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -261,10 +261,10 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_PARAMETER__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-            case PatternPackage.PATTERN_PARAMETER__QUERY:
-                return query != null;
+        case PatternPackage.PATTERN_PARAMETER__TYPE:
+            return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            return query != null;
         }
         return super.eIsSet(featureID);
     }

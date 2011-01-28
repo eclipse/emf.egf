@@ -152,12 +152,12 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                if (resolve)
-                    return getTypedValue();
-                return basicGetTypedValue();
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                return getTypedKey();
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            if (resolve)
+                return getTypedValue();
+            return basicGetTypedValue();
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            return getTypedKey();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -170,12 +170,12 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                setTypedValue((PatternParameter) newValue);
-                return;
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                setTypedKey((PatternParameter) newValue);
-                return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            setTypedValue((PatternParameter) newValue);
+            return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            setTypedKey((PatternParameter) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -188,12 +188,12 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                setTypedValue((PatternParameter) null);
-                return;
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                setTypedKey((PatternParameter) null);
-                return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            setTypedValue((PatternParameter) null);
+            return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            setTypedKey((PatternParameter) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -206,10 +206,10 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-                return value != null;
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                return key != null;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+            return value != null;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            return key != null;
         }
         return super.eIsSet(featureID);
     }

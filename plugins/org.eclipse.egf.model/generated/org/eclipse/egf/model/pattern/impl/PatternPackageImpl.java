@@ -320,7 +320,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         // Register package validator
         EValidator.Registry.INSTANCE.put(thePatternPackage, new EValidator.Descriptor() {
-
             public EValidator getEValidator() {
                 return PatternValidator.INSTANCE;
             }
@@ -1099,7 +1098,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         string2StringEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         backCallEClass.getESuperTypes().add(this.getCall());
         injectedContextEClass.getESuperTypes().add(theFcorePackage.getModelElement());
-        substitutionEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+        substitutionEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         typePatternExecutionReporterEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternCallBackHandlerEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternDomainVisitorEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
@@ -1112,8 +1111,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEClass(patternElementEClass, PatternElement.class, "PatternElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         initEClass(patternLibraryEClass, PatternLibrary.class, "PatternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPatternLibrary_PatternViewpoint(), this.getPatternViewpoint(), this.getPatternViewpoint_Libraries(),
-                "patternViewpoint", null, 0, 1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPatternLibrary_PatternViewpoint(), this.getPatternViewpoint(), this.getPatternViewpoint_Libraries(), "patternViewpoint", null, 0, 1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPatternLibrary_Elements(), this.getPattern(), this.getPattern_Container(), "elements", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPatternLibrary_Filters(), this.getString2PatternList(), null, "filters", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -1151,8 +1149,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEReference(getPatternParameter_Query(), this.getQuery(), this.getQuery_Parameter(), "query", null, 0, 1, PatternParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(patternViewpointEClass, PatternViewpoint.class, "PatternViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPatternViewpoint_Libraries(), this.getPatternLibrary(), this.getPatternLibrary_PatternViewpoint(),
-                "libraries", null, 0, -1, PatternViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPatternViewpoint_Libraries(), this.getPatternLibrary(), this.getPatternLibrary_PatternViewpoint(), "libraries", null, 0, -1, PatternViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(patternCallEClass, PatternCall.class, "PatternCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPatternCall_ParameterMatching(), this.getParamerter2ParameterMap(), null, "parameterMatching", null, 0, -1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1288,23 +1285,17 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     protected void createEcoreAnnotations() {
         String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(patternNatureEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternNatureEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternElementEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternElementEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternEClass, source, new String[] {
-                "constraints", "UniqueName HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternEClass, source, new String[] { "constraints", "UniqueName HeaderMethod FooterMethod" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternMethodEClass, source, new String[] {
-                "constraints", "MandatoryName ValidURI ValidPatternFilePath" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternMethodEClass, source, new String[] { "constraints", "MandatoryName ValidURI ValidPatternFilePath" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternParameterEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternParameterEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
-        addAnnotation(patternVariableEClass, source, new String[] {
-                "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation(patternVariableEClass, source, new String[] { "constraints", "MandatoryName" //$NON-NLS-1$ //$NON-NLS-2$
         });
     }
 

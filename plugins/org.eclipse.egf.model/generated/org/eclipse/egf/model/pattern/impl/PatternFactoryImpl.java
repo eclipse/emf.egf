@@ -11,6 +11,7 @@ package org.eclipse.egf.model.pattern.impl;
 
 import java.util.Map;
 
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.CustomQuery;
@@ -88,54 +89,54 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
-            case PatternPackage.PATTERN_LIBRARY:
-                return createPatternLibrary();
-            case PatternPackage.PATTERN:
-                return createPattern();
-            case PatternPackage.PATTERN_METHOD:
-                return createPatternMethod();
-            case PatternPackage.PATTERN_PARAMETER:
-                return createPatternParameter();
-            case PatternPackage.PATTERN_VIEWPOINT:
-                return createPatternViewpoint();
-            case PatternPackage.PATTERN_CALL:
-                return createPatternCall();
-            case PatternPackage.SUPER_CALL:
-                return createSuperCall();
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP:
-                return (EObject) createParamerter2ParameterMap();
-            case PatternPackage.METHOD_CALL:
-                return createMethodCall();
-            case PatternPackage.PATTERN_VARIABLE:
-                return createPatternVariable();
-            case PatternPackage.PATTERN_INJECTED_CALL:
-                return createPatternInjectedCall();
-            case PatternPackage.BASIC_QUERY:
-                return createBasicQuery();
-            case PatternPackage.STRING_QUERY:
-                return createStringQuery();
-            case PatternPackage.CUSTOM_QUERY:
-                return createCustomQuery();
-            case PatternPackage.STRING2_PATTERN_LIST:
-                return (EObject) createString2PatternList();
-            case PatternPackage.STRING2_STRING:
-                return (EObject) createString2String();
-            case PatternPackage.BACK_CALL:
-                return createBackCall();
-            case PatternPackage.SUBSTITUTION:
-                return createSubstitution();
-            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
-                return createTypePatternExecutionReporter();
-            case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
-                return createTypePatternCallBackHandler();
-            case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
-                return createTypePatternDomainVisitor();
-            case PatternPackage.TYPE_PATTERN_LIST:
-                return createTypePatternList();
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
-                return createTypePatternSubstitution();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case PatternPackage.PATTERN_LIBRARY:
+            return createPatternLibrary();
+        case PatternPackage.PATTERN:
+            return createPattern();
+        case PatternPackage.PATTERN_METHOD:
+            return createPatternMethod();
+        case PatternPackage.PATTERN_PARAMETER:
+            return createPatternParameter();
+        case PatternPackage.PATTERN_VIEWPOINT:
+            return createPatternViewpoint();
+        case PatternPackage.PATTERN_CALL:
+            return createPatternCall();
+        case PatternPackage.SUPER_CALL:
+            return createSuperCall();
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP:
+            return (EObject) createParamerter2ParameterMap();
+        case PatternPackage.METHOD_CALL:
+            return createMethodCall();
+        case PatternPackage.PATTERN_VARIABLE:
+            return createPatternVariable();
+        case PatternPackage.PATTERN_INJECTED_CALL:
+            return createPatternInjectedCall();
+        case PatternPackage.BASIC_QUERY:
+            return createBasicQuery();
+        case PatternPackage.STRING_QUERY:
+            return createStringQuery();
+        case PatternPackage.CUSTOM_QUERY:
+            return createCustomQuery();
+        case PatternPackage.STRING2_PATTERN_LIST:
+            return (EObject) createString2PatternList();
+        case PatternPackage.STRING2_STRING:
+            return (EObject) createString2String();
+        case PatternPackage.BACK_CALL:
+            return createBackCall();
+        case PatternPackage.SUBSTITUTION:
+            return createSubstitution();
+        case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
+            return createTypePatternExecutionReporter();
+        case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
+            return createTypePatternCallBackHandler();
+        case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
+            return createTypePatternDomainVisitor();
+        case PatternPackage.TYPE_PATTERN_LIST:
+            return createTypePatternList();
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
+            return createTypePatternSubstitution();
+        default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -147,12 +148,12 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
-            case PatternPackage.PATTERN_CONTEXT:
-                return createPatternContextFromString(eDataType, initialValue);
-            case PatternPackage.PATTERN_EXCEPTION:
-                return createPatternExceptionFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case PatternPackage.PATTERN_CONTEXT:
+            return createPatternContextFromString(eDataType, initialValue);
+        case PatternPackage.PATTERN_EXCEPTION:
+            return createPatternExceptionFromString(eDataType, initialValue);
+        default:
+            throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 
@@ -164,12 +165,12 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
-            case PatternPackage.PATTERN_CONTEXT:
-                return convertPatternContextToString(eDataType, instanceValue);
-            case PatternPackage.PATTERN_EXCEPTION:
-                return convertPatternExceptionToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        case PatternPackage.PATTERN_CONTEXT:
+            return convertPatternContextToString(eDataType, instanceValue);
+        case PatternPackage.PATTERN_EXCEPTION:
+            return convertPatternExceptionToString(eDataType, instanceValue);
+        default:
+            throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
     }
 

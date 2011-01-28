@@ -14,6 +14,7 @@ import java.util.Map;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.fcore.Viewpoint;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
@@ -108,7 +109,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     protected PatternSwitch<Adapter> modelSwitch = new PatternSwitch<Adapter>() {
-
         @Override
         public Adapter casePatternNature(PatternNature object) {
             return createPatternNatureAdapter();

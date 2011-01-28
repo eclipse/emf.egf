@@ -1515,7 +1515,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__ID = FcorePackage.MODEL_ELEMENT__ID;
+    int SUBSTITUTION__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1524,7 +1524,16 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+    int SUBSTITUTION__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUBSTITUTION__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
     /**
      * The feature id for the '<em><b>Replaced Element</b></em>' reference.
@@ -1533,7 +1542,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__REPLACED_ELEMENT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+    int SUBSTITUTION__REPLACED_ELEMENT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Replacement</b></em>' reference list.
@@ -1542,7 +1551,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION__REPLACEMENT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+    int SUBSTITUTION__REPLACEMENT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Substitution</em>' class.
@@ -1551,7 +1560,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SUBSTITUTION_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+    int SUBSTITUTION_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.

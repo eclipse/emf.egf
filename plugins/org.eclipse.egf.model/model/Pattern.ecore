@@ -142,7 +142,7 @@
     <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getPattern" lowerBound="1" eType="#//Pattern"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Substitution" eSuperTypes="Fcore.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Substitution" eSuperTypes="Fcore.ecore#//NamedModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="replacedElement" eType="#//Pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="replacement" upperBound="-1"
         eType="#//Pattern"/>

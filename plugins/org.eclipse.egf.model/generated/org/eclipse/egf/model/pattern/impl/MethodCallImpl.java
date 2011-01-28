@@ -107,10 +107,10 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.METHOD_CALL__CALLED:
-                if (resolve)
-                    return getCalled();
-                return basicGetCalled();
+        case PatternPackage.METHOD_CALL__CALLED:
+            if (resolve)
+                return getCalled();
+            return basicGetCalled();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -123,9 +123,9 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.METHOD_CALL__CALLED:
-                setCalled((PatternMethod) newValue);
-                return;
+        case PatternPackage.METHOD_CALL__CALLED:
+            setCalled((PatternMethod) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -138,9 +138,9 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.METHOD_CALL__CALLED:
-                setCalled((PatternMethod) null);
-                return;
+        case PatternPackage.METHOD_CALL__CALLED:
+            setCalled((PatternMethod) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -153,8 +153,8 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.METHOD_CALL__CALLED:
-                return called != null;
+        case PatternPackage.METHOD_CALL__CALLED:
+            return called != null;
         }
         return super.eIsSet(featureID);
     }

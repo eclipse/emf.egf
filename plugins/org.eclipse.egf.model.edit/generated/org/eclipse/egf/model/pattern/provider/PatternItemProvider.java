@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.commands.PatternAddPatternMethodCommand;
@@ -49,8 +50,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-        IItemFontProvider {
+public class PatternItemProvider extends PatternElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -253,19 +253,19 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(Pattern.class)) {
-            case PatternPackage.PATTERN__NATURE:
-            case PatternPackage.PATTERN__SUPER_PATTERN:
-            case PatternPackage.PATTERN__HEADER_METHOD:
-            case PatternPackage.PATTERN__INIT_METHOD:
-            case PatternPackage.PATTERN__FOOTER_METHOD:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case PatternPackage.PATTERN__METHODS:
-            case PatternPackage.PATTERN__PARAMETERS:
-            case PatternPackage.PATTERN__VARIABLES:
-            case PatternPackage.PATTERN__ORCHESTRATION:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
+        case PatternPackage.PATTERN__NATURE:
+        case PatternPackage.PATTERN__SUPER_PATTERN:
+        case PatternPackage.PATTERN__HEADER_METHOD:
+        case PatternPackage.PATTERN__INIT_METHOD:
+        case PatternPackage.PATTERN__FOOTER_METHOD:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        case PatternPackage.PATTERN__METHODS:
+        case PatternPackage.PATTERN__PARAMETERS:
+        case PatternPackage.PATTERN__VARIABLES:
+        case PatternPackage.PATTERN__ORCHESTRATION:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+            return;
         }
         super.notifyChanged(notification);
     }

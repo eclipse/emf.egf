@@ -96,8 +96,8 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                return ((InternalEList<InternalEObject>) (InternalEList<?>) getLibraries()).basicAdd(otherEnd, msgs);
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            return ((InternalEList<InternalEObject>) (InternalEList<?>) getLibraries()).basicAdd(otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -110,8 +110,8 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                return ((InternalEList<?>) getLibraries()).basicRemove(otherEnd, msgs);
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            return ((InternalEList<?>) getLibraries()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -124,8 +124,8 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                return getLibraries();
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            return getLibraries();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -139,10 +139,10 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                getLibraries().clear();
-                getLibraries().addAll((Collection<? extends PatternLibrary>) newValue);
-                return;
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            getLibraries().clear();
+            getLibraries().addAll((Collection<? extends PatternLibrary>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -155,9 +155,9 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                getLibraries().clear();
-                return;
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            getLibraries().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -170,8 +170,8 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-                return libraries != null && !libraries.isEmpty();
+        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+            return libraries != null && !libraries.isEmpty();
         }
         return super.eIsSet(featureID);
     }

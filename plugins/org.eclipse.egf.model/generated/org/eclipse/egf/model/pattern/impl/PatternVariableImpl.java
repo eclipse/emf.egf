@@ -119,8 +119,8 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VARIABLE__TYPE:
-                return getType();
+        case PatternPackage.PATTERN_VARIABLE__TYPE:
+            return getType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -133,9 +133,9 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VARIABLE__TYPE:
-                setType((String) newValue);
-                return;
+        case PatternPackage.PATTERN_VARIABLE__TYPE:
+            setType((String) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -148,9 +148,9 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VARIABLE__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
+        case PatternPackage.PATTERN_VARIABLE__TYPE:
+            setType(TYPE_EDEFAULT);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -163,8 +163,8 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_VARIABLE__TYPE:
-                return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        case PatternPackage.PATTERN_VARIABLE__TYPE:
+            return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         }
         return super.eIsSet(featureID);
     }

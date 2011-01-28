@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.model.EGFModelPlugin;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
@@ -191,70 +192,70 @@ public class PatternValidator extends EObjectValidator {
     @Override
     protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
         switch (classifierID) {
-            case PatternPackage.PATTERN_NATURE:
-                return validatePatternNature((PatternNature) value, diagnostics, context);
-            case PatternPackage.PATTERN_ELEMENT:
-                return validatePatternElement((PatternElement) value, diagnostics, context);
-            case PatternPackage.PATTERN_LIBRARY:
-                return validatePatternLibrary((PatternLibrary) value, diagnostics, context);
-            case PatternPackage.PATTERN:
-                return validatePattern((Pattern) value, diagnostics, context);
-            case PatternPackage.PATTERN_METHOD:
-                return validatePatternMethod((PatternMethod) value, diagnostics, context);
-            case PatternPackage.PATTERN_PARAMETER:
-                return validatePatternParameter((PatternParameter) value, diagnostics, context);
-            case PatternPackage.PATTERN_VIEWPOINT:
-                return validatePatternViewpoint((PatternViewpoint) value, diagnostics, context);
-            case PatternPackage.PATTERN_CALL:
-                return validatePatternCall((PatternCall) value, diagnostics, context);
-            case PatternPackage.SUPER_CALL:
-                return validateSuperCall((SuperCall) value, diagnostics, context);
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP:
-                return validateParamerter2ParameterMap((Map.Entry<?, ?>) value, diagnostics, context);
-            case PatternPackage.CALL:
-                return validateCall((Call) value, diagnostics, context);
-            case PatternPackage.METHOD_CALL:
-                return validateMethodCall((MethodCall) value, diagnostics, context);
-            case PatternPackage.PATTERN_VARIABLE:
-                return validatePatternVariable((PatternVariable) value, diagnostics, context);
-            case PatternPackage.ABSTRACT_PATTERN_CALL:
-                return validateAbstractPatternCall((AbstractPatternCall) value, diagnostics, context);
-            case PatternPackage.PATTERN_INJECTED_CALL:
-                return validatePatternInjectedCall((PatternInjectedCall) value, diagnostics, context);
-            case PatternPackage.QUERY:
-                return validateQuery((Query) value, diagnostics, context);
-            case PatternPackage.BASIC_QUERY:
-                return validateBasicQuery((BasicQuery) value, diagnostics, context);
-            case PatternPackage.STRING_QUERY:
-                return validateStringQuery((StringQuery) value, diagnostics, context);
-            case PatternPackage.CUSTOM_QUERY:
-                return validateCustomQuery((CustomQuery) value, diagnostics, context);
-            case PatternPackage.STRING2_PATTERN_LIST:
-                return validateString2PatternList((Map.Entry<?, ?>) value, diagnostics, context);
-            case PatternPackage.STRING2_STRING:
-                return validateString2String((Map.Entry<?, ?>) value, diagnostics, context);
-            case PatternPackage.BACK_CALL:
-                return validateBackCall((BackCall) value, diagnostics, context);
-            case PatternPackage.INJECTED_CONTEXT:
-                return validateInjectedContext((InjectedContext) value, diagnostics, context);
-            case PatternPackage.SUBSTITUTION:
-                return validateSubstitution((Substitution) value, diagnostics, context);
-            case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
-                return validateTypePatternExecutionReporter((TypePatternExecutionReporter) value, diagnostics, context);
-            case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
-                return validateTypePatternCallBackHandler((TypePatternCallBackHandler) value, diagnostics, context);
-            case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
-                return validateTypePatternDomainVisitor((TypePatternDomainVisitor) value, diagnostics, context);
-            case PatternPackage.TYPE_PATTERN_LIST:
-                return validateTypePatternList((TypePatternList) value, diagnostics, context);
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
-                return validateTypePatternSubstitution((TypePatternSubstitution) value, diagnostics, context);
-            case PatternPackage.PATTERN_CONTEXT:
-                return validatePatternContext((PatternContext) value, diagnostics, context);
-            case PatternPackage.PATTERN_EXCEPTION:
-                return validatePatternException((PatternException) value, diagnostics, context);
-            default:
-                return true;
+        case PatternPackage.PATTERN_NATURE:
+            return validatePatternNature((PatternNature) value, diagnostics, context);
+        case PatternPackage.PATTERN_ELEMENT:
+            return validatePatternElement((PatternElement) value, diagnostics, context);
+        case PatternPackage.PATTERN_LIBRARY:
+            return validatePatternLibrary((PatternLibrary) value, diagnostics, context);
+        case PatternPackage.PATTERN:
+            return validatePattern((Pattern) value, diagnostics, context);
+        case PatternPackage.PATTERN_METHOD:
+            return validatePatternMethod((PatternMethod) value, diagnostics, context);
+        case PatternPackage.PATTERN_PARAMETER:
+            return validatePatternParameter((PatternParameter) value, diagnostics, context);
+        case PatternPackage.PATTERN_VIEWPOINT:
+            return validatePatternViewpoint((PatternViewpoint) value, diagnostics, context);
+        case PatternPackage.PATTERN_CALL:
+            return validatePatternCall((PatternCall) value, diagnostics, context);
+        case PatternPackage.SUPER_CALL:
+            return validateSuperCall((SuperCall) value, diagnostics, context);
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP:
+            return validateParamerter2ParameterMap((Map.Entry<?, ?>) value, diagnostics, context);
+        case PatternPackage.CALL:
+            return validateCall((Call) value, diagnostics, context);
+        case PatternPackage.METHOD_CALL:
+            return validateMethodCall((MethodCall) value, diagnostics, context);
+        case PatternPackage.PATTERN_VARIABLE:
+            return validatePatternVariable((PatternVariable) value, diagnostics, context);
+        case PatternPackage.ABSTRACT_PATTERN_CALL:
+            return validateAbstractPatternCall((AbstractPatternCall) value, diagnostics, context);
+        case PatternPackage.PATTERN_INJECTED_CALL:
+            return validatePatternInjectedCall((PatternInjectedCall) value, diagnostics, context);
+        case PatternPackage.QUERY:
+            return validateQuery((Query) value, diagnostics, context);
+        case PatternPackage.BASIC_QUERY:
+            return validateBasicQuery((BasicQuery) value, diagnostics, context);
+        case PatternPackage.STRING_QUERY:
+            return validateStringQuery((StringQuery) value, diagnostics, context);
+        case PatternPackage.CUSTOM_QUERY:
+            return validateCustomQuery((CustomQuery) value, diagnostics, context);
+        case PatternPackage.STRING2_PATTERN_LIST:
+            return validateString2PatternList((Map.Entry<?, ?>) value, diagnostics, context);
+        case PatternPackage.STRING2_STRING:
+            return validateString2String((Map.Entry<?, ?>) value, diagnostics, context);
+        case PatternPackage.BACK_CALL:
+            return validateBackCall((BackCall) value, diagnostics, context);
+        case PatternPackage.INJECTED_CONTEXT:
+            return validateInjectedContext((InjectedContext) value, diagnostics, context);
+        case PatternPackage.SUBSTITUTION:
+            return validateSubstitution((Substitution) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
+            return validateTypePatternExecutionReporter((TypePatternExecutionReporter) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
+            return validateTypePatternCallBackHandler((TypePatternCallBackHandler) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
+            return validateTypePatternDomainVisitor((TypePatternDomainVisitor) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_LIST:
+            return validateTypePatternList((TypePatternList) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
+            return validateTypePatternSubstitution((TypePatternSubstitution) value, diagnostics, context);
+        case PatternPackage.PATTERN_CONTEXT:
+            return validatePatternContext((PatternContext) value, diagnostics, context);
+        case PatternPackage.PATTERN_EXCEPTION:
+            return validatePatternException((PatternException) value, diagnostics, context);
+        default:
+            return true;
         }
     }
 
@@ -303,11 +304,8 @@ public class PatternValidator extends EObjectValidator {
         if (PatternNameHelper.getPatternNameWithinBundle(((IPlatformFcoreProvider) pattern.eResource()).getIPlatformFcore(), pattern.getContainer(), pattern).contains(pattern.getName())) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "UniqueName", getObjectLabel(pattern, context), NLS.bind("Pattern name ''{0}'' is not unique", pattern.getName())}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            pattern
-                        }, context));
+                        new Object[] { "UniqueName", getObjectLabel(pattern, context), NLS.bind("Pattern name ''{0}'' is not unique", pattern.getName()) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { pattern }, context));
             }
             return false;
         }
@@ -325,11 +323,8 @@ public class PatternValidator extends EObjectValidator {
         if (pattern.getHeaderMethod() != null && pattern.getMethods().contains(pattern.getHeaderMethod()) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "HeaderMethod", getObjectLabel(pattern, context), "Header Method should be a Pattern Method"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            pattern
-                        }, context));
+                        new Object[] { "HeaderMethod", getObjectLabel(pattern, context), "Header Method should be a Pattern Method" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { pattern }, context));
             }
             return false;
         }
@@ -347,11 +342,8 @@ public class PatternValidator extends EObjectValidator {
         if (pattern.getFooterMethod() != null && pattern.getMethods().contains(pattern.getFooterMethod()) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "FooterMethod", getObjectLabel(pattern, context), "Footer Method should be a Pattern Method"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            pattern
-                        }, context));
+                        new Object[] { "FooterMethod", getObjectLabel(pattern, context), "Footer Method should be a Pattern Method" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { pattern }, context));
             }
             return false;
         }
@@ -399,11 +391,8 @@ public class PatternValidator extends EObjectValidator {
         if (patternMethod.getName() == null || patternMethod.getName().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "MandatoryName", getObjectLabel(patternMethod, context), "The attribute name is mandatory"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            patternMethod
-                        }, context));
+                        new Object[] { "MandatoryName", getObjectLabel(patternMethod, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { patternMethod }, context));
             }
             return false;
         }
@@ -436,11 +425,8 @@ public class PatternValidator extends EObjectValidator {
         if (valid == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "ValidURI", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("Unable to load URI ''{0}''", uri)}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            method.getPattern()
-                        }, context));
+                        new Object[] { "ValidURI", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("Unable to load URI ''{0}''", uri) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { method.getPattern() }, context));
             }
             return false;
         }
@@ -468,11 +454,8 @@ public class PatternValidator extends EObjectValidator {
         } catch (FilenameFormatException ffe) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), ffe.getMessage()}, //$NON-NLS-1$
-                        new Object[] {
-                            method.getPattern()
-                        }, context));
+                        new Object[] { "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), ffe.getMessage() }, //$NON-NLS-1$
+                        new Object[] { method.getPattern() }, context));
             }
             return false;
         }
@@ -480,11 +463,8 @@ public class PatternValidator extends EObjectValidator {
         if (method.getPattern().getID().equals(patternId) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("Pattern ID doesn''t match ''{0}'' found ''{1}''", new Object[] { method.getPattern().getID(), patternId})}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            method.getPattern()
-                        }, context));
+                        new Object[] { "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("Pattern ID doesn''t match ''{0}'' found ''{1}''", new Object[] { method.getPattern().getID(), patternId }) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { method.getPattern() }, context));
             }
             valid = false;
         }
@@ -492,11 +472,8 @@ public class PatternValidator extends EObjectValidator {
         if (method.getID().equals(methodId) == false) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("PatternMethod ID doesn''t match ''{0}'' found ''{1}''", new Object[] { method.getID(), methodId})}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            method.getPattern()
-                        }, context));
+                        new Object[] { "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("PatternMethod ID doesn''t match ''{0}'' found ''{1}''", new Object[] { method.getID(), methodId }) }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { method.getPattern() }, context));
             }
             valid = false;
         }
@@ -509,11 +486,8 @@ public class PatternValidator extends EObjectValidator {
                 if (patternFilePathBundle.equals(methodBundle) == false) {
                     if (diagnostics != null) {
                         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                                new Object[] {
-                                        "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("PatternMethod Bundle ''{0}'' doesn't match PatternFilePath Bundle ''{1}''", new Object[] { methodBundle, patternFilePathBundle})}, //$NON-NLS-1$ //$NON-NLS-2$
-                                new Object[] {
-                                    method.getPattern()
-                                }, context));
+                                new Object[] { "ValidPatternFilePath", method.getName() != null ? method.getName() : getObjectLabel(method, context), NLS.bind("PatternMethod Bundle ''{0}'' doesn't match PatternFilePath Bundle ''{1}''", new Object[] { methodBundle, patternFilePathBundle }) }, //$NON-NLS-1$ //$NON-NLS-2$
+                                new Object[] { method.getPattern() }, context));
                     }
                     valid = false;
                 }
@@ -559,11 +533,8 @@ public class PatternValidator extends EObjectValidator {
         if (patternParameter.getName() == null || patternParameter.getName().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "MandatoryName", getObjectLabel(patternParameter, context), "The attribute name is mandatory"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            patternParameter
-                        }, context));
+                        new Object[] { "MandatoryName", getObjectLabel(patternParameter, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { patternParameter }, context));
             }
             return false;
         }
@@ -633,11 +604,8 @@ public class PatternValidator extends EObjectValidator {
         if (patternElement.getName() == null || patternElement.getName().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "MandatoryName", getObjectLabel(patternElement, context), "The attribute name is mandatory"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            patternElement
-                        }, context));
+                        new Object[] { "MandatoryName", getObjectLabel(patternElement, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { patternElement }, context));
             }
             return false;
         }
@@ -690,11 +658,8 @@ public class PatternValidator extends EObjectValidator {
         if (patternNature.getName() == null || patternNature.getName().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "MandatoryName", getObjectLabel(patternNature, context), "The attribute name is mandatory"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            patternNature
-                        }, context));
+                        new Object[] { "MandatoryName", getObjectLabel(patternNature, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { patternNature }, context));
             }
             return false;
         }
@@ -783,11 +748,8 @@ public class PatternValidator extends EObjectValidator {
         if (patternVariable.getName() == null || patternVariable.getName().trim().length() == 0) {
             if (diagnostics != null) {
                 diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-                        new Object[] {
-                                "MandatoryName", getObjectLabel(patternVariable, context), "The attribute name is mandatory"}, //$NON-NLS-1$ //$NON-NLS-2$
-                        new Object[] {
-                            patternVariable
-                        }, context));
+                        new Object[] { "MandatoryName", getObjectLabel(patternVariable, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+                        new Object[] { patternVariable }, context));
             }
             return false;
         }

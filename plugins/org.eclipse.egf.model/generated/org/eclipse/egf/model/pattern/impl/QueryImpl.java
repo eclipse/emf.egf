@@ -174,10 +174,10 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.QUERY__PARAMETER:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetParameter((PatternParameter) otherEnd, msgs);
+        case PatternPackage.QUERY__PARAMETER:
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            return basicSetParameter((PatternParameter) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -189,10 +189,10 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.QUERY__PARAMETER:
-                return basicSetParameter(null, msgs);
-            case PatternPackage.QUERY__QUERY_CONTEXT:
-                return ((InternalEList<?>) getQueryContext()).basicRemove(otherEnd, msgs);
+        case PatternPackage.QUERY__PARAMETER:
+            return basicSetParameter(null, msgs);
+        case PatternPackage.QUERY__QUERY_CONTEXT:
+            return ((InternalEList<?>) getQueryContext()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -204,8 +204,8 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-            case PatternPackage.QUERY__PARAMETER:
-                return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_PARAMETER__QUERY, PatternParameter.class, msgs);
+        case PatternPackage.QUERY__PARAMETER:
+            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_PARAMETER__QUERY, PatternParameter.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -218,15 +218,15 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @SuppressWarnings("all")
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.QUERY__PARAMETER:
-                return getParameter();
-            case PatternPackage.QUERY__EXTENSION_ID:
-                return getExtensionId();
-            case PatternPackage.QUERY__QUERY_CONTEXT:
-                if (coreType)
-                    return getQueryContext();
-                else
-                    return getQueryContext().map();
+        case PatternPackage.QUERY__PARAMETER:
+            return getParameter();
+        case PatternPackage.QUERY__EXTENSION_ID:
+            return getExtensionId();
+        case PatternPackage.QUERY__QUERY_CONTEXT:
+            if (coreType)
+                return getQueryContext();
+            else
+                return getQueryContext().map();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -238,15 +238,15 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.QUERY__PARAMETER:
-                setParameter((PatternParameter) newValue);
-                return;
-            case PatternPackage.QUERY__EXTENSION_ID:
-                setExtensionId((String) newValue);
-                return;
-            case PatternPackage.QUERY__QUERY_CONTEXT:
-                ((EStructuralFeature.Setting) getQueryContext()).set(newValue);
-                return;
+        case PatternPackage.QUERY__PARAMETER:
+            setParameter((PatternParameter) newValue);
+            return;
+        case PatternPackage.QUERY__EXTENSION_ID:
+            setExtensionId((String) newValue);
+            return;
+        case PatternPackage.QUERY__QUERY_CONTEXT:
+            ((EStructuralFeature.Setting) getQueryContext()).set(newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -258,15 +258,15 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.QUERY__PARAMETER:
-                setParameter((PatternParameter) null);
-                return;
-            case PatternPackage.QUERY__EXTENSION_ID:
-                setExtensionId(EXTENSION_ID_EDEFAULT);
-                return;
-            case PatternPackage.QUERY__QUERY_CONTEXT:
-                getQueryContext().clear();
-                return;
+        case PatternPackage.QUERY__PARAMETER:
+            setParameter((PatternParameter) null);
+            return;
+        case PatternPackage.QUERY__EXTENSION_ID:
+            setExtensionId(EXTENSION_ID_EDEFAULT);
+            return;
+        case PatternPackage.QUERY__QUERY_CONTEXT:
+            getQueryContext().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -278,12 +278,12 @@ public abstract class QueryImpl extends ModelElementImpl implements Query {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.QUERY__PARAMETER:
-                return getParameter() != null;
-            case PatternPackage.QUERY__EXTENSION_ID:
-                return EXTENSION_ID_EDEFAULT == null ? extensionId != null : !EXTENSION_ID_EDEFAULT.equals(extensionId);
-            case PatternPackage.QUERY__QUERY_CONTEXT:
-                return queryContext != null && !queryContext.isEmpty();
+        case PatternPackage.QUERY__PARAMETER:
+            return getParameter() != null;
+        case PatternPackage.QUERY__EXTENSION_ID:
+            return EXTENSION_ID_EDEFAULT == null ? extensionId != null : !EXTENSION_ID_EDEFAULT.equals(extensionId);
+        case PatternPackage.QUERY__QUERY_CONTEXT:
+            return queryContext != null && !queryContext.isEmpty();
         }
         return super.eIsSet(featureID);
     }

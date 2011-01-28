@@ -84,8 +84,8 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-                return ((InternalEList<?>) getParameterMatching()).basicRemove(otherEnd, msgs);
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            return ((InternalEList<?>) getParameterMatching()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -99,11 +99,11 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
     @SuppressWarnings("all")
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-                if (coreType)
-                    return getParameterMatching();
-                else
-                    return getParameterMatching().map();
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            if (coreType)
+                return getParameterMatching();
+            else
+                return getParameterMatching().map();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -116,9 +116,9 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-                ((EStructuralFeature.Setting) getParameterMatching()).set(newValue);
-                return;
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            ((EStructuralFeature.Setting) getParameterMatching()).set(newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -131,9 +131,9 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-                getParameterMatching().clear();
-                return;
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            getParameterMatching().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -146,8 +146,8 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-                return parameterMatching != null && !parameterMatching.isEmpty();
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            return parameterMatching != null && !parameterMatching.isEmpty();
         }
         return super.eIsSet(featureID);
     }

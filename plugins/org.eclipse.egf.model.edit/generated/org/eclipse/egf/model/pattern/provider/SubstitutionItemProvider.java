@@ -12,6 +12,7 @@ package org.eclipse.egf.model.pattern.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.provider.NamedModelElementItemProvider;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
 import org.eclipse.egf.model.pattern.PatternPackage;
@@ -44,8 +45,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SubstitutionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class SubstitutionItemProvider extends NamedModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -176,10 +176,10 @@ public class SubstitutionItemProvider extends ModelElementItemProvider implement
         updateChildren(notification);
 
         switch (notification.getFeatureID(Substitution.class)) {
-            case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
-            case PatternPackage.SUBSTITUTION__REPLACEMENT:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.SUBSTITUTION__REPLACED_ELEMENT:
+        case PatternPackage.SUBSTITUTION__REPLACEMENT:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }

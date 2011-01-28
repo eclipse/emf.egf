@@ -107,8 +107,8 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                return ((InternalEList<?>) getSubstitutions()).basicRemove(otherEnd, msgs);
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            return ((InternalEList<?>) getSubstitutions()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -121,8 +121,8 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                return getSubstitutions();
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            return getSubstitutions();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -136,10 +136,10 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                getSubstitutions().clear();
-                getSubstitutions().addAll((Collection<? extends Substitution>) newValue);
-                return;
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            getSubstitutions().clear();
+            getSubstitutions().addAll((Collection<? extends Substitution>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -152,9 +152,9 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                getSubstitutions().clear();
-                return;
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            getSubstitutions().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -167,8 +167,8 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
-                return substitutions != null && !substitutions.isEmpty();
+        case PatternPackage.TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS:
+            return substitutions != null && !substitutions.isEmpty();
         }
         return super.eIsSet(featureID);
     }

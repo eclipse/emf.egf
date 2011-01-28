@@ -37,8 +37,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
-        IItemColorProvider, IItemFontProvider {
+public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -128,10 +127,10 @@ public class Paramerter2ParameterMapItemProvider extends ModelElementItemProvide
         updateChildren(notification);
 
         switch (notification.getFeatureID(Map.Entry.class)) {
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
+        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
         }
         super.notifyChanged(notification);
     }

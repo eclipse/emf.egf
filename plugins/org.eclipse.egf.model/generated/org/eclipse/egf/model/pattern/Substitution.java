@@ -9,7 +9,7 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Substitution extends ModelElement {
+public interface Substitution extends NamedModelElement {
 
     /**
      * Returns the value of the '<em><b>Replaced Element</b></em>' reference.
