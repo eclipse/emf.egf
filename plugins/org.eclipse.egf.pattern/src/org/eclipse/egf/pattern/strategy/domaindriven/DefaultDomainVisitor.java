@@ -43,8 +43,11 @@ public class DefaultDomainVisitor extends AbstractDomainVisitor {
             return ((EObject) model).eContents().toArray();
         if (model instanceof List<?>)
             return ((List<?>) model).toArray();
-        if (model instanceof File)
-            return ((File) model).listFiles();
+        if (model instanceof File) {
+            final File[] result = ((File) model).listFiles();
+            return result == null ? EMPTY_ARRAY : result;
+        }
+
         if (model instanceof IContainer) {
 
             try {
