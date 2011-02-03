@@ -34,6 +34,7 @@ import java.util.Map;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETCoreElement;
 import org.eclipse.emf.codegen.jet.JETException;
@@ -42,6 +43,7 @@ import org.eclipse.emf.codegen.jet.JETParser;
 import org.eclipse.emf.codegen.jet.JETParser.Directive;
 import org.eclipse.emf.codegen.jet.JETScriptletGenerator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Matthieu Helleboid
@@ -144,7 +146,7 @@ public class JetTagsCompiler extends JETCompiler {
         }
     }
 
-    protected String translateId(String id) {
+    protected String translateId(String id) throws JETException {
         if (id != null && id.contains(LOGICAL_NAME)) {
             URI uri = URI.createURI(id);
             String fragment = uri.fragment().substring(LOGICAL_NAME.length() + 1);
@@ -159,6 +161,7 @@ public class JetTagsCompiler extends JETCompiler {
                     return uri.trimFragment().appendFragment(pattern.getID()).toString();
                 }
             }
+            throw new JETException(NLS.bind(Messages.assembly_error9, id));
         }
         return id;
     }
