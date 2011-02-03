@@ -2106,8 +2106,8 @@ public interface PatternPackage extends EPackage {
      * @return the meta object for class '<em>Paramerter2 Parameter Map</em>'.
      * @see java.util.Map.Entry
      * @model features="value key" 
-     *        valueType="org.eclipse.egf.model.pattern.PatternParameter"
-     *        keyType="org.eclipse.egf.model.pattern.PatternParameter" keyResolveProxies="false"
+     *        valueType="org.eclipse.egf.model.pattern.InjectedContext"
+     *        keyType="org.eclipse.egf.model.pattern.InjectedContext" keyResolveProxies="false"
      * @generated
      */
     EClass getParamerter2ParameterMap();

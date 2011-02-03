@@ -251,7 +251,7 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Map.Entry<PatternParameter, PatternParameter> createParamerter2ParameterMap() {
+    public Map.Entry<InjectedContext, InjectedContext> createParamerter2ParameterMap() {
         Paramerter2ParameterMapImpl paramerter2ParameterMap = new Paramerter2ParameterMapImpl();
         return paramerter2ParameterMap;
     }

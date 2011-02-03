@@ -31,8 +31,8 @@ public interface PatternCall extends AbstractPatternCall {
 
     /**
      * Returns the value of the '<em><b>Parameter Matching</b></em>' map.
-     * The key is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
-     * and the value is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
+     * The key is of type {@link org.eclipse.egf.model.pattern.InjectedContext},
+     * and the value is of type {@link org.eclipse.egf.model.pattern.InjectedContext},
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Parameter Matching</em>' reference list isn't
@@ -41,9 +41,9 @@ public interface PatternCall extends AbstractPatternCall {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Parameter Matching</em>' map.
      * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternCall_ParameterMatching()
-     * @model mapType="org.eclipse.egf.model.pattern.Paramerter2ParameterMap<org.eclipse.egf.model.pattern.PatternParameter, org.eclipse.egf.model.pattern.PatternParameter>"
+     * @model mapType="org.eclipse.egf.model.pattern.Paramerter2ParameterMap<org.eclipse.egf.model.pattern.InjectedContext, org.eclipse.egf.model.pattern.InjectedContext>"
      * @generated
      */
-    EMap<PatternParameter, PatternParameter> getParameterMatching();
+    EMap<InjectedContext, InjectedContext> getParameterMatching();
 
 } // PatternCall

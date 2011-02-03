@@ -19,6 +19,7 @@ import java.util.Map.Entry;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.model.pattern.BackCall;
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -92,7 +93,7 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
                 content.append("parameters.put(\"").append(key.getName()).append("\", this.").append(matcher.getMatching().get(key).getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
         } else {
-            for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
+            for (Entry<InjectedContext, InjectedContext> binding : call.getParameterMatching()) {
                 content.append("parameters.put(\"").append(binding.getKey().getName()).append("\", this.").append(binding.getValue().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
         }

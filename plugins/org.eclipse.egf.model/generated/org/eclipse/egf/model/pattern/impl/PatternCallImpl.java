@@ -9,6 +9,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -43,7 +44,7 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
      * @generated
      * @ordered
      */
-    protected EMap<PatternParameter, PatternParameter> parameterMatching;
+    protected EMap<InjectedContext, InjectedContext> parameterMatching;
 
     /**
      * <!-- begin-user-doc -->
@@ -69,9 +70,9 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
      * <!-- end-user-doc -->
      * @generated
      */
-    public EMap<PatternParameter, PatternParameter> getParameterMatching() {
+    public EMap<InjectedContext, InjectedContext> getParameterMatching() {
         if (parameterMatching == null) {
-            parameterMatching = new EcoreEMap<PatternParameter, PatternParameter>(PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP, Paramerter2ParameterMapImpl.class, this, PatternPackage.PATTERN_CALL__PARAMETER_MATCHING);
+            parameterMatching = new EcoreEMap<InjectedContext, InjectedContext>(PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP, Paramerter2ParameterMapImpl.class, this, PatternPackage.PATTERN_CALL__PARAMETER_MATCHING);
         }
         return parameterMatching;
     }

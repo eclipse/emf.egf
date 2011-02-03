@@ -16,7 +16,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
-import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -36,8 +36,8 @@ public class ParameterMatchingLibraryProvider implements ITableLabelProvider {
     public String getColumnText(Object element, int columnIndex) {
         if (element instanceof Paramerter2ParameterMapImpl) {
             Paramerter2ParameterMapImpl entry = (Paramerter2ParameterMapImpl) element;
-            PatternParameter key = entry.getKey();
-            PatternParameter value = entry.getValue();
+            InjectedContext key = entry.getKey();
+            InjectedContext value = entry.getValue();
             return (value.getName() == null ? "" : value.getName()) + " -> " + (key.getName() == null ? "" : key.getName()); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         }
         return null;

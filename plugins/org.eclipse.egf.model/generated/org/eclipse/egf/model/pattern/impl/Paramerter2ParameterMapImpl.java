@@ -10,6 +10,7 @@
 package org.eclipse.egf.model.pattern.impl;
 
 import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.emf.common.notify.Notification;
@@ -35,7 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class Paramerter2ParameterMapImpl extends ModelElementImpl implements BasicEMap.Entry<PatternParameter, PatternParameter> {
+public class Paramerter2ParameterMapImpl extends ModelElementImpl implements BasicEMap.Entry<InjectedContext, InjectedContext> {
 
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
@@ -54,7 +55,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * @generated
      * @ordered
      */
-    protected PatternParameter value;
+    protected InjectedContext value;
 
     /**
      * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
@@ -64,7 +65,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * @generated
      * @ordered
      */
-    protected PatternParameter key;
+    protected InjectedContext key;
 
     /**
      * <!-- begin-user-doc -->
@@ -90,7 +91,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getTypedKey() {
+    public InjectedContext getTypedKey() {
         return key;
     }
 
@@ -99,8 +100,8 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTypedKey(PatternParameter newKey) {
-        PatternParameter oldKey = key;
+    public void setTypedKey(InjectedContext newKey) {
+        InjectedContext oldKey = key;
         key = newKey;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY, oldKey, key));
@@ -111,10 +112,10 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getTypedValue() {
+    public InjectedContext getTypedValue() {
         if (value != null && value.eIsProxy()) {
             InternalEObject oldValue = (InternalEObject) value;
-            value = (PatternParameter) eResolveProxy(oldValue);
+            value = (InjectedContext) eResolveProxy(oldValue);
             if (value != oldValue) {
                 if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE, oldValue, value));
@@ -128,7 +129,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter basicGetTypedValue() {
+    public InjectedContext basicGetTypedValue() {
         return value;
     }
 
@@ -137,8 +138,8 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTypedValue(PatternParameter newValue) {
-        PatternParameter oldValue = value;
+    public void setTypedValue(InjectedContext newValue) {
+        InjectedContext oldValue = value;
         value = newValue;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE, oldValue, value));
@@ -171,10 +172,10 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
         case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            setTypedValue((PatternParameter) newValue);
+            setTypedValue((InjectedContext) newValue);
             return;
         case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-            setTypedKey((PatternParameter) newValue);
+            setTypedKey((InjectedContext) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -189,10 +190,10 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
     public void eUnset(int featureID) {
         switch (featureID) {
         case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            setTypedValue((PatternParameter) null);
+            setTypedValue((InjectedContext) null);
             return;
         case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-            setTypedKey((PatternParameter) null);
+            setTypedKey((InjectedContext) null);
             return;
         }
         super.eUnset(featureID);
@@ -248,7 +249,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getKey() {
+    public InjectedContext getKey() {
         return getTypedKey();
     }
 
@@ -257,7 +258,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setKey(PatternParameter key) {
+    public void setKey(InjectedContext key) {
         setTypedKey(key);
     }
 
@@ -266,7 +267,7 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getValue() {
+    public InjectedContext getValue() {
         return getTypedValue();
     }
 
@@ -275,8 +276,8 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter setValue(PatternParameter value) {
-        PatternParameter oldValue = getValue();
+    public InjectedContext setValue(InjectedContext value) {
+        InjectedContext oldValue = getValue();
         setTypedValue(value);
         return oldValue;
     }
@@ -287,9 +288,9 @@ public class Paramerter2ParameterMapImpl extends ModelElementImpl implements Bas
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EMap<PatternParameter, PatternParameter> getEMap() {
+    public EMap<InjectedContext, InjectedContext> getEMap() {
         EObject container = eContainer();
-        return container == null ? null : (EMap<PatternParameter, PatternParameter>) container.eGet(eContainmentFeature());
+        return container == null ? null : (EMap<InjectedContext, InjectedContext>) container.eGet(eContainmentFeature());
     }
 
 } // Paramerter2ParameterMapImpl

@@ -155,7 +155,7 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
-        public Adapter caseParamerter2ParameterMap(Map.Entry<PatternParameter, PatternParameter> object) {
+        public Adapter caseParamerter2ParameterMap(Map.Entry<InjectedContext, InjectedContext> object) {
             return createParamerter2ParameterMapAdapter();
         }
 

@@ -227,7 +227,7 @@ public class PatternSwitch<T> {
         }
         case PatternPackage.PARAMERTER2_PARAMETER_MAP: {
             @SuppressWarnings("unchecked")
-            Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
+            Map.Entry<InjectedContext, InjectedContext> paramerter2ParameterMap = (Map.Entry<InjectedContext, InjectedContext>) theEObject;
             T result = caseParamerter2ParameterMap(paramerter2ParameterMap);
             if (result == null)
                 result = caseModelElement((ModelElement) paramerter2ParameterMap);
@@ -597,7 +597,7 @@ public class PatternSwitch<T> {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseParamerter2ParameterMap(Map.Entry<PatternParameter, PatternParameter> object) {
+    public T caseParamerter2ParameterMap(Map.Entry<InjectedContext, InjectedContext> object) {
         return null;
     }
 

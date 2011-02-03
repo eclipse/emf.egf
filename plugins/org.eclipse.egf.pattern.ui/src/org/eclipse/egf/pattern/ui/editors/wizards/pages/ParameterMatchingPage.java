@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -261,10 +262,13 @@ public class ParameterMatchingPage extends WizardPage {
         return button;
     }
 
-    private List<PatternParameter> getCallerTableInput(Pattern pattern) {
+    private List<InjectedContext> getCallerTableInput(Pattern pattern) {
         if (pattern == null)
             return null;
-        return pattern.getAllParameters();
+        List<InjectedContext> result = new ArrayList<InjectedContext>();
+        result.addAll(pattern.getAllParameters());
+        result.addAll(pattern.getAllVariables());
+        return result;
     }
 
     private List<PatternParameter> getCalleeTableInput(Pattern pattern) {
@@ -273,7 +277,7 @@ public class ParameterMatchingPage extends WizardPage {
         }
         EList<PatternParameter> parameters = pattern.getAllParameters();
         List<PatternParameter> availableParameters = new ArrayList<PatternParameter>();
-        EMap<PatternParameter, PatternParameter> parameterMatching = patternCall.getParameterMatching();
+        EMap<InjectedContext, InjectedContext> parameterMatching = patternCall.getParameterMatching();
         for (PatternParameter parameter : parameters) {
             if (isAvailableParameter(parameter, parameterMatching)) {
                 availableParameters.add(parameter);
@@ -286,10 +290,10 @@ public class ParameterMatchingPage extends WizardPage {
     /**
      * Check whether the parameter is available.
      */
-    private boolean isAvailableParameter(PatternParameter parameter, EMap<PatternParameter, PatternParameter> parameterMatching) {
+    private boolean isAvailableParameter(InjectedContext parameter, EMap<InjectedContext, InjectedContext> parameterMatching) {
         for (int i = 0; i < parameterMatching.size(); i++) {
-            Entry<PatternParameter, PatternParameter> currentEntry = parameterMatching.get(i);
-            PatternParameter currentKey = currentEntry.getKey();
+            Entry<InjectedContext, InjectedContext> currentEntry = parameterMatching.get(i);
+            InjectedContext currentKey = currentEntry.getKey();
             if (currentKey.equals(parameter)) {
                 return false;
             }
@@ -330,14 +334,14 @@ public class ParameterMatchingPage extends WizardPage {
      * Create a new parameter matching.
      */
     private void createMatching() {
-        final PatternParameter callerParameter = (PatternParameter) getSelection(_callerTableViewer);
-        final PatternParameter calleeParameter = (PatternParameter) getSelection(_calleeTableViewer);
+        final InjectedContext callerObj = (InjectedContext) getSelection(_callerTableViewer);
+        final InjectedContext calleeObj = (InjectedContext) getSelection(_calleeTableViewer);
         int selectIndex = _calleeTableViewer.getTable().getSelectionIndex();
         RecordingCommand cmd = new RecordingCommand(_editingDomain) {
 
             @Override
             protected void doExecute() {
-                patternCall.getParameterMatching().put(calleeParameter, callerParameter);
+                patternCall.getParameterMatching().put(calleeObj, callerObj);
             }
 
         };
@@ -376,8 +380,8 @@ public class ParameterMatchingPage extends WizardPage {
     /**
      * Get the matchingTableViewer's input.
      */
-    private EMap<PatternParameter, PatternParameter> getMatchingList() {
-        EMap<PatternParameter, PatternParameter> parameterMatching = null;
+    private EMap<InjectedContext, InjectedContext> getMatchingList() {
+        EMap<InjectedContext, InjectedContext> parameterMatching = null;
         parameterMatching = patternCall.getParameterMatching();
         return parameterMatching;
     }
