@@ -262,14 +262,16 @@ public class ParameterMatchingPage extends WizardPage {
     }
 
     private List<PatternParameter> getCallerTableInput(Pattern pattern) {
-        return pattern == null ? null : pattern.getParameters();
+        if (pattern == null)
+            return null;
+        return pattern.getAllParameters();
     }
 
     private List<PatternParameter> getCalleeTableInput(Pattern pattern) {
         if (pattern == null) {
             return null;
         }
-        EList<PatternParameter> parameters = pattern.getParameters();
+        EList<PatternParameter> parameters = pattern.getAllParameters();
         List<PatternParameter> availableParameters = new ArrayList<PatternParameter>();
         EMap<PatternParameter, PatternParameter> parameterMatching = patternCall.getParameterMatching();
         for (PatternParameter parameter : parameters) {
