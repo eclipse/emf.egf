@@ -225,7 +225,7 @@ public class CodegenEGFHelper {
     }
 
     private enum FactoryComponentContractType {
-        genModelURI("genModelURI", true), //$NON-NLS-1$
+        genModelURI("genModel", true), //$NON-NLS-1$
         patternExecutionReporter("pattern.execution.reporter", false), //$NON-NLS-1$
         patternIds("pattern.ids", false), //$NON-NLS-1$
         patternSubstitutions("pattern.substitutions", false), //$NON-NLS-1$
@@ -254,24 +254,24 @@ public class CodegenEGFHelper {
             contract.setDescription(PartType.getFactoryComponentName(partType));
 
             switch (fccType) {
-                case genModelURI:
-                    contract.setType(DomainFactory.eINSTANCE.createTypeDomain());
-                    break;
-                case usedGenPackages:
-                    contract.setType(DomainFactory.eINSTANCE.createTypeGenPackages());
-                    break;
-                case mergeRulesURI:
-                    contract.setType(TypesFactory.eINSTANCE.createTypeURI());
-                    break;
-                case patternSubstitutions:
-                    contract.setType(PatternFactory.eINSTANCE.createTypePatternSubstitution());
-                    break;
-                case patternExecutionReporter:
-                    contract.setType(PatternFactory.eINSTANCE.createTypePatternExecutionReporter());
-                    break;
-                case patternIds:
-                    contract.setType(PatternFactory.eINSTANCE.createTypePatternList());
-                    break;
+            case genModelURI:
+                contract.setType(DomainFactory.eINSTANCE.createTypeDomain());
+                break;
+            case usedGenPackages:
+                contract.setType(DomainFactory.eINSTANCE.createTypeGenPackages());
+                break;
+            case mergeRulesURI:
+                contract.setType(TypesFactory.eINSTANCE.createTypeURI());
+                break;
+            case patternSubstitutions:
+                contract.setType(PatternFactory.eINSTANCE.createTypePatternSubstitution());
+                break;
+            case patternExecutionReporter:
+                contract.setType(PatternFactory.eINSTANCE.createTypePatternExecutionReporter());
+                break;
+            case patternIds:
+                contract.setType(PatternFactory.eINSTANCE.createTypePatternList());
+                break;
             }
 
             createdObjects.put(key, contract);
