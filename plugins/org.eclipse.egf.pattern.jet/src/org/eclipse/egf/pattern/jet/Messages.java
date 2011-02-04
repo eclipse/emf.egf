@@ -21,6 +21,7 @@ public class Messages extends NLS {
     public static String assembly_error6;
 
     public static String assembly_error8;
+    public static String assembly_error9;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.jet.JetPatternMessages";//$NON-NLS-1$
     static {
