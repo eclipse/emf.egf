@@ -19,7 +19,7 @@ package org.eclipse.egf.core.pattern;
  * @author Guiu
  * 
  */
-public class PatternPreferences {
+public class PatternFolders {
 
     public static String getGenerationFolderName() {
         return "generated"; //$NON-NLS-1$

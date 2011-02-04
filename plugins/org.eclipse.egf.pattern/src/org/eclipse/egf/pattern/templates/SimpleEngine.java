@@ -24,7 +24,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.core.pattern.PatternPreferences;
+import org.eclipse.egf.core.pattern.PatternFolders;
 import org.eclipse.egf.pattern.utils.TemplateFileHelper;
 
 /**
@@ -42,7 +42,7 @@ public class SimpleEngine extends TemplateEngine {
 
     @Override
     public String process(Templates template, Map<String, String> context) throws CoreException, IOException {
-        IPath path = new Path(PatternPreferences.getTemplatesFolderName()).append(template.getTemplateName()).addFileExtension(getExtension());
+        IPath path = new Path(PatternFolders.getTemplatesFolderName()).append(template.getTemplateName()).addFileExtension(getExtension());
         String content = TemplateFileHelper.getContent(getPluginId(), getProject(), path);
         if (content == null)
             return null;

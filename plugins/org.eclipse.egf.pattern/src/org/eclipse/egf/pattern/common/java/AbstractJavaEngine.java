@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
-import org.eclipse.egf.core.pattern.PatternPreferences;
+import org.eclipse.egf.core.pattern.PatternFolders;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -142,7 +142,7 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         if (classname == null || "".equals(classname)) //$NON-NLS-1$
             throw new IllegalArgumentException();
 
-        IPath result = new Path(PatternPreferences.getGenerationFolderName());
+        IPath result = new Path(PatternFolders.getGenerationFolderName());
         String[] names = classname.split("\\."); //$NON-NLS-1$
         for (String name : names) {
             result = result.append(name);

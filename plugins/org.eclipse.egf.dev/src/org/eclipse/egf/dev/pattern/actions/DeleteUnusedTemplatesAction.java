@@ -33,7 +33,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
-import org.eclipse.egf.core.pattern.PatternPreferences;
+import org.eclipse.egf.core.pattern.PatternFolders;
 import org.eclipse.egf.dev.Activator;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -70,7 +70,7 @@ public class DeleteUnusedTemplatesAction implements IWorkbenchWindowActionDelega
                 PatternCollector.INSTANCE.collect(res.getContents(), patterns, PatternCollector.EMPTY_ID_SET);
 
                 IProject project = platformFcore.getPlatformBundle().getProject();
-                IFolder folder = project.getFolder(PatternPreferences.getTemplatesFolderName());
+                IFolder folder = project.getFolder(PatternFolders.getTemplatesFolderName());
                 if (folder.exists())
                     folders.add(folder);
             }

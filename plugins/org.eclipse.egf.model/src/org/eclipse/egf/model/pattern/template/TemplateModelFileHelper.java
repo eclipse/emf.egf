@@ -30,7 +30,7 @@ import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.pattern.PatternPreferences;
+import org.eclipse.egf.core.pattern.PatternFolders;
 import org.eclipse.egf.model.l10n.EGFModelMessages;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.emf.common.util.URI;
@@ -77,7 +77,7 @@ public class TemplateModelFileHelper {
         if (method.getPattern().getID() == null) {
             throw new IllegalArgumentException(EGFModelMessages.fileHelper_error8);
         }
-        URI relativeURI = URI.createURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER
+        URI relativeURI = URI.createURI(PatternFolders.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER
                 + PATTERN_UNIT_FILE_EXTENSION);
         return URI.createURI(fcore.getPlatformBundle().getRootedBase().toString() + relativeURI.toString());
     }

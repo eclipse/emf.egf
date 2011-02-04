@@ -29,7 +29,7 @@ import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
-import org.eclipse.egf.core.pattern.PatternPreferences;
+import org.eclipse.egf.core.pattern.PatternFolders;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.processor.IFcoreProcessor;
 import org.eclipse.egf.model.EGFModelPlugin;
@@ -684,7 +684,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                     // 1 - Remove java resource and Pattern
                     for (Map.Entry<Pattern, PatternLibrary> entry : deletedPatterns.entrySet()) {
                         // Clean current or previous if any, package based on based on entry.getValue()
-                        JavaHelper.deleteJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName((entry.getValue())),
+                        JavaHelper.deleteJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternFolders.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName((entry.getValue())),
                                 BaseJavaAssemblyHelper.getClassName(entry.getKey()), true);
                         // Remove templates
                         TemplateModelFileHelper.removeTemplates(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), entry.getKey().getMethods());
@@ -696,7 +696,7 @@ public class TemplateProcessor implements IFcoreProcessor {
                     // 3 - Updated Name PatternLibrary
                     for (Map.Entry<PatternLibrary, FeatureChange> entry : updatedLibraries.entrySet()) {
                         for (Pattern pattern : entry.getKey().getElements()) {
-                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getValue().getDataValue()),
+                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternFolders.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getValue().getDataValue()),
                                     BaseJavaAssemblyHelper.getClassName(pattern), BaseJavaAssemblyHelper.getPackageName(entry.getKey()), BaseJavaAssemblyHelper.getClassName(pattern), true);
                         }
                     }
@@ -707,10 +707,10 @@ public class TemplateProcessor implements IFcoreProcessor {
                             // Locate pattern who collide with previous name to be re-generated
                             patternsToUpdate.addAll(PatternNameHelper.getPatterns(fcore, entry.getKey().getContainer(), entry.getKey(), entry.getValue().getDataValue()));
                             // Move old generated pattern
-                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getKey().getContainer()),
+                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternFolders.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(entry.getKey().getContainer()),
                                     BaseJavaAssemblyHelper.getClassName(entry.getValue().getDataValue()), BaseJavaAssemblyHelper.getPackageName(entry.getKey().getContainer()), BaseJavaAssemblyHelper.getClassName(entry.getKey()), true);
                         } else if (entry.getValue().getFeature() == PatternPackage.Literals.PATTERN__CONTAINER) {
-                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternPreferences.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(((PatternLibrary) entry.getValue().getValue())),
+                            JavaHelper.moveJavaResource(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE), fcore.getPlatformBundle().getProject(), PatternFolders.getGenerationFolderName(), BaseJavaAssemblyHelper.getPackageName(((PatternLibrary) entry.getValue().getValue())),
                                     BaseJavaAssemblyHelper.getClassName(entry.getKey()), BaseJavaAssemblyHelper.getPackageName(entry.getKey().getContainer()), BaseJavaAssemblyHelper.getClassName(entry.getKey()), true);
                         }
                     }
