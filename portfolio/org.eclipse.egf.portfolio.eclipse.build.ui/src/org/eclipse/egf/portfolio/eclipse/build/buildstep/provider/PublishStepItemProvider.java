@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,15 +30,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ResultStepBuildLocationItemProvider
-    extends BuildLocationItemProvider
+public class PublishStepItemProvider
+    extends ResultStepItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -58,7 +60,7 @@ public class ResultStepBuildLocationItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public ResultStepBuildLocationItemProvider(AdapterFactory adapterFactory) {
+    public PublishStepItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -73,26 +75,28 @@ public class ResultStepBuildLocationItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addResultStepPropertyDescriptor(object);
+            addComponentPropertyDescriptor(object);
+            addSigningPropertyDescriptor(object);
+            addGenerateSourcesPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Result Step feature.
+     * This adds a property descriptor for the Component feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addResultStepPropertyDescriptor(Object object) {
+    protected void addComponentPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ResultStepBuildLocation_resultStep_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ResultStepBuildLocation_resultStep_feature", "_UI_ResultStepBuildLocation_type"),
-                 BuildstepPackage.Literals.RESULT_STEP_BUILD_LOCATION__RESULT_STEP,
+                 getString("_UI_PublishStep_component_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PublishStep_component_feature", "_UI_PublishStep_type"),
+                 BuildstepPackage.Literals.PUBLISH_STEP__COMPONENT,
                  true,
                  false,
                  true,
@@ -103,26 +107,75 @@ public class ResultStepBuildLocationItemProvider
     }
 
     /**
-     * This returns ResultStepBuildLocation.gif.
+     * This adds a property descriptor for the Signing feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSigningPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_PublishStep_signing_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PublishStep_signing_feature", "_UI_PublishStep_type"),
+                 BuildstepPackage.Literals.PUBLISH_STEP__SIGNING,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the Generate Sources feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGenerateSourcesPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_PublishStep_generateSources_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PublishStep_generateSources_feature", "_UI_PublishStep_type"),
+                 BuildstepPackage.Literals.PUBLISH_STEP__GENERATE_SOURCES,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This returns PublishStep.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/ResultStepBuildLocation"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/PublishStep"));
     }
 
     /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated NOT
+     * @generated
      */
     @Override
     public String getText(Object object) {
 
-            return getString("_UI_ResultStepBuildLocation_type");
+        PublishStep publishStep = (PublishStep)object;
+        return getString("_UI_PublishStep_type") + " " + publishStep.isSigning();
 
     }
 
@@ -136,6 +189,13 @@ public class ResultStepBuildLocationItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(PublishStep.class)) {
+            case BuildstepPackage.PUBLISH_STEP__SIGNING:
+            case BuildstepPackage.PUBLISH_STEP__GENERATE_SOURCES:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

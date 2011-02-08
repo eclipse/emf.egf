@@ -166,6 +166,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -537,7 +538,7 @@ public class BuildcoreEditor
                     }
                 }
                 catch (CoreException exception) {
-                    BuildCoreEditorPlugin.INSTANCE.log(exception);
+                    BuildCoreEditPlugin.INSTANCE.log(exception);
                 }
             }
         };
@@ -653,7 +654,7 @@ public class BuildcoreEditor
                     showTabs();
                 }
                 catch (PartInitException exception) {
-                    BuildCoreEditorPlugin.INSTANCE.log(exception);
+                    BuildCoreEditPlugin.INSTANCE.log(exception);
                 }
             }
 
@@ -664,7 +665,7 @@ public class BuildcoreEditor
                         markerHelper.createMarkers(diagnostic);
                     }
                     catch (CoreException exception) {
-                        BuildCoreEditorPlugin.INSTANCE.log(exception);
+                        BuildCoreEditPlugin.INSTANCE.log(exception);
                     }
                 }
             }
@@ -1526,7 +1527,7 @@ public class BuildcoreEditor
         catch (Exception exception) {
             // Something went wrong that shouldn't.
             //
-            BuildCoreEditorPlugin.INSTANCE.log(exception);
+            BuildCoreEditPlugin.INSTANCE.log(exception);
         }
         updateProblemIndication = true;
         updateProblemIndication();
@@ -1619,7 +1620,7 @@ public class BuildcoreEditor
             }
         }
         catch (CoreException exception) {
-            BuildCoreEditorPlugin.INSTANCE.log(exception);
+            BuildCoreEditPlugin.INSTANCE.log(exception);
         }
     }
 
@@ -1741,7 +1742,7 @@ public class BuildcoreEditor
      * @generated
      */
     private static String getString(String key) {
-        return BuildCoreEditorPlugin.INSTANCE.getString(key);
+        return BuildCoreEditPlugin.INSTANCE.getString(key);
     }
 
     /**
@@ -1751,7 +1752,7 @@ public class BuildcoreEditor
      * @generated
      */
     private static String getString(String key, Object s1) {
-        return BuildCoreEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+        return BuildCoreEditPlugin.INSTANCE.getString(key, new Object [] { s1 });
     }
 
     /**

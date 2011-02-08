@@ -11,22 +11,19 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildcore.provider;
+package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -34,17 +31,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PropertyItemProvider
-    extends ItemProviderAdapter
+public class AggregateStepItemProvider
+    extends ResultStepItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -64,7 +60,7 @@ public class PropertyItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public PropertyItemProvider(AdapterFactory adapterFactory) {
+    public AggregateStepItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -79,27 +75,28 @@ public class PropertyItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addKeyPropertyDescriptor(object);
-            addValuePropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
+            addPublishStepsPropertyDescriptor(object);
+            addUpdateSiteUrlsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Key feature.
+     * This adds a property descriptor for the Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addKeyPropertyDescriptor(Object object) {
+    protected void addNamePropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Property_key_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Property_key_feature", "_UI_Property_type"),
-                 BuildcorePackage.Literals.PROPERTY__KEY,
+                 getString("_UI_AggregateStep_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AggregateStep_name_feature", "_UI_AggregateStep_type"),
+                 BuildstepPackage.Literals.AGGREGATE_STEP__NAME,
                  true,
                  false,
                  false,
@@ -110,20 +107,44 @@ public class PropertyItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Value feature.
+     * This adds a property descriptor for the Publish Steps feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addValuePropertyDescriptor(Object object) {
+    protected void addPublishStepsPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Property_value_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Property_value_feature", "_UI_Property_type"),
-                 BuildcorePackage.Literals.PROPERTY__VALUE,
+                 getString("_UI_AggregateStep_publishSteps_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AggregateStep_publishSteps_feature", "_UI_AggregateStep_type"),
+                 BuildstepPackage.Literals.AGGREGATE_STEP__PUBLISH_STEPS,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the Update Site Urls feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUpdateSiteUrlsPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AggregateStep_updateSiteUrls_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AggregateStep_updateSiteUrls_feature", "_UI_AggregateStep_type"),
+                 BuildstepPackage.Literals.AGGREGATE_STEP__UPDATE_SITE_URLS,
                  true,
                  false,
                  false,
@@ -134,37 +155,30 @@ public class PropertyItemProvider
     }
 
     /**
-     * This returns Property.gif.
+     * This returns AggregateStep.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Property"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/AggregateStep"));
     }
 
     /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated NOT
+     * @generated
      */
     @Override
     public String getText(Object object) {
 
-        String key = ((Property)object).getKey();
-        String value = ((Property)object).getValue();
-        StringBuilder buffer = new StringBuilder(getString("_UI_Property_type"));
-        if (key != null) {
-            buffer.append(" ");
-            buffer.append(key);
-            if (value != null) {
-                buffer.append(" = ");
-                buffer.append(value);
-            }
-        }
-        return buffer.toString();
+        String label = ((AggregateStep)object).getName();
+        return label == null || label.length() == 0 ?
+            getString("_UI_AggregateStep_type") :
+            getString("_UI_AggregateStep_type") + " " + label;
+
     }
 
     /**
@@ -178,9 +192,9 @@ public class PropertyItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(Property.class)) {
-            case BuildcorePackage.PROPERTY__KEY:
-            case BuildcorePackage.PROPERTY__VALUE:
+        switch (notification.getFeatureID(AggregateStep.class)) {
+            case BuildstepPackage.AGGREGATE_STEP__NAME:
+            case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -197,17 +211,6 @@ public class PropertyItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 

@@ -21,20 +21,6 @@
             genModel="model/BuildCore.genmodel"/>
    </extension>
    
-  <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.eclipse.org/egf/1.0.0/buildcore"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   
-   
-   
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/egf/1.0.0/buildstep"
@@ -42,27 +28,6 @@
             genModel="model/BuildStep.genmodel"/>
    </extension>
    
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.eclipse.org/egf/1.0.0/buildstep"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.BuildstepItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <extender
-            uri="http://www.eclipse.org/egf/1.0.0/buildcore"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.BuildstepItemProviderAdapterFactory$BuildcoreChildCreationExtender"
-      />
-   </extension>   
-  
-  
-  
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/egf/1.0.0/buildscm"
@@ -70,62 +35,18 @@
             genModel="model/BuildSCM.genmodel"/>
    </extension>
    
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.eclipse.org/egf/1.0.0/buildscm"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   
-  <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <extender
-            uri="http://www.eclipse.org/egf/1.0.0/buildcore"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildcoreChildCreationExtender"
-      />
-   </extension>   
-  
-  
-  
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/egf/1.0.0/buildtrigger"
             class="org.eclipse.egf.portfolio.eclipse.build.buildtrigger.BuildtriggerPackage"
             genModel="model/BuildTrigger.genmodel"/>
    </extension>
-   
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <factory
-            uri="http://www.eclipse.org/egf/1.0.0/buildtrigger"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildtrigger.provider.BuildtriggerItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   
-   <extension point="org.eclipse.emf.edit.childCreationExtenders">
-      <extender
-            uri="http://www.eclipse.org/egf/1.0.0/buildcore"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildtrigger.provider.BuildtriggerItemProviderAdapterFactory$BuildcoreChildCreationExtender"
-      />
-   </extension>   
-  
-  
-  
+
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="egfbuild"
             class="org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreResourceFactoryImpl"/>
    </extension>
-   
-   
    
    <extension
          point="org.eclipse.egf.core.fcore">
@@ -148,8 +69,6 @@
             id="egf-generation/BuildTrigger_generation.fcore">
       </fcore>
    </extension>
-   
-   
    
     <extension
         point="org.eclipse.egf.pattern.query">

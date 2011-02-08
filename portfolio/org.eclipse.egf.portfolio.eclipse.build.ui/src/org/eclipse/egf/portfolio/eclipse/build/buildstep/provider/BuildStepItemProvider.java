@@ -11,17 +11,23 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildcore.provider;
+package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
+
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -36,13 +42,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class JobItemProvider
-    extends ItemItemProvider
+public class BuildStepItemProvider
+    extends StepItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -62,7 +68,7 @@ public class JobItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public JobItemProvider(AdapterFactory adapterFactory) {
+    public BuildStepItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -77,80 +83,30 @@ public class JobItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamePropertyDescriptor(object);
-            addDescriptionPropertyDescriptor(object);
-            addEnabledPropertyDescriptor(object);
+            addCleanBeforeBuildPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Name feature.
+     * This adds a property descriptor for the Clean Before Build feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamePropertyDescriptor(Object object) {
+    protected void addCleanBeforeBuildPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Job_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Job_name_feature", "_UI_Job_type"),
-                 BuildcorePackage.Literals.JOB__NAME,
+                 getString("_UI_BuildStep_cleanBeforeBuild_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BuildStep_cleanBeforeBuild_feature", "_UI_BuildStep_type"),
+                 BuildstepPackage.Literals.BUILD_STEP__CLEAN_BEFORE_BUILD,
                  true,
                  false,
                  false,
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-
-    }
-
-    /**
-     * This adds a property descriptor for the Description feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addDescriptionPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Job_description_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Job_description_feature", "_UI_Job_type"),
-                 BuildcorePackage.Literals.JOB__DESCRIPTION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-
-    }
-
-    /**
-     * This adds a property descriptor for the Enabled feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addEnabledPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Job_enabled_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Job_enabled_feature", "_UI_Job_type"),
-                 BuildcorePackage.Literals.JOB__ENABLED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
 
@@ -168,9 +124,8 @@ public class JobItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildcorePackage.Literals.JOB__STEPS);
-            childrenFeatures.add(BuildcorePackage.Literals.JOB__SCMS);
-            childrenFeatures.add(BuildcorePackage.Literals.JOB__TRIGGERS);
+            childrenFeatures.add(BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS);
+            childrenFeatures.add(BuildstepPackage.Literals.BUILD_STEP__COMPONENTS);
         }
         return childrenFeatures;
     }
@@ -189,14 +144,14 @@ public class JobItemProvider
     }
 
     /**
-     * This returns Job.gif.
+     * This returns BuildStep.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Job"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/BuildStep"));
     }
 
     /**
@@ -208,10 +163,11 @@ public class JobItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((Job)object).getName();
+        CLEAN_TYPE labelValue = ((BuildStep)object).getCleanBeforeBuild();
+        String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
-            getString("_UI_Job_type") :
-            getString("_UI_Job_type") + " " + label;
+            getString("_UI_BuildStep_type") :
+            getString("_UI_BuildStep_type") + " " + label;
 
     }
 
@@ -226,15 +182,12 @@ public class JobItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(Job.class)) {
-            case BuildcorePackage.JOB__NAME:
-            case BuildcorePackage.JOB__DESCRIPTION:
-            case BuildcorePackage.JOB__ENABLED:
+        switch (notification.getFeatureID(BuildStep.class)) {
+            case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case BuildcorePackage.JOB__STEPS:
-            case BuildcorePackage.JOB__SCMS:
-            case BuildcorePackage.JOB__TRIGGERS:
+            case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS:
+            case BuildstepPackage.BUILD_STEP__COMPONENTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -251,6 +204,73 @@ public class JobItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createLocalBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createSCMBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createTargetPlatformBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createUpdateSiteBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createResultStepBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__COMPONENTS,
+                 BuildstepFactory.eINSTANCE.createPlugin()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__COMPONENTS,
+                 BuildstepFactory.eINSTANCE.createFeature()));
+
+
+    }
+
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return BuildStepEditPlugin.INSTANCE;
     }
 
 

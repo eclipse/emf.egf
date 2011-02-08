@@ -15,10 +15,12 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 
+import org.eclipse.emf.common.ui.EclipseUIPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the BuildCore edit plugin.
+ * This is the central singleton for the BuildCore editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -30,7 +32,7 @@ public final class BuildCoreEditPlugin extends EMFPlugin {
      * @generated
      */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
-
+    
     /**
      * Keep track of the singleton.
      * <!-- begin-user-doc -->
@@ -38,7 +40,7 @@ public final class BuildCoreEditPlugin extends EMFPlugin {
      * @generated
      */
     public static final BuildCoreEditPlugin INSTANCE = new BuildCoreEditPlugin();
-
+    
     /**
      * Keep track of the singleton.
      * <!-- begin-user-doc -->
@@ -55,8 +57,8 @@ public final class BuildCoreEditPlugin extends EMFPlugin {
      */
     public BuildCoreEditPlugin() {
         super
-          (new ResourceLocator [] {
-           });
+            (new ResourceLocator [] {
+            });
     }
 
     /**
@@ -70,7 +72,7 @@ public final class BuildCoreEditPlugin extends EMFPlugin {
     public ResourceLocator getPluginResourceLocator() {
         return plugin;
     }
-
+    
     /**
      * Returns the singleton instance of the Eclipse plugin.
      * <!-- begin-user-doc -->
@@ -81,14 +83,14 @@ public final class BuildCoreEditPlugin extends EMFPlugin {
     public static Implementation getPlugin() {
         return plugin;
     }
-
+    
     /**
      * The actual implementation of the Eclipse <b>Plugin</b>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static class Implementation extends EclipsePlugin {
+    public static class Implementation extends EclipseUIPlugin {
         /**
          * Creates an instance.
          * <!-- begin-user-doc -->
@@ -97,7 +99,7 @@ public final class BuildCoreEditPlugin extends EMFPlugin {
          */
         public Implementation() {
             super();
-
+    
             // Remember the static instance.
             //
             plugin = this;
