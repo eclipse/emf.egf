@@ -129,32 +129,11 @@ public class ModelGenmodelPattern {
             if (emfModelPath.contains(ecoreFileName)) {
                 genPackage.setBasePackage(parameter.getBasePackage());
             }
-
-            // EMDE Extension Genmodel
-            genPackage.setResource(GenResourceKind.XMI_LITERAL);
-            genPackage.setDisposableProviderFactory(true);
-            genPackage.setGenerateExampleClass(false);
-            genPackage.setMultipleEditorPages(false);
-            genPackage.setExtensibleProviderFactory(true);
-            genPackage.setChildCreationExtenders(true);
-            // EMDE Extension Genmodel
-
         }
 
         String emfPluginName = parameter.getPluginName();
         genModel.setModelPluginID(emfPluginName);
         genModel.setModelDirectory("/" + emfPluginName + "/src");
-
-        // EMDE Extension Genmodel
-        genModel.setNonNLSMarkers(true);
-        genModel.setRootExtendsClass("org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container");
-        genModel.setCodeFormatting(true);
-        genModel.setBooleanFlagsField("flags");
-        genModel.setOptimizedHasChildren(true);
-        genModel.setTableProviders(true);
-        genModel.setColorProviders(true);
-        genModel.setPackedEnums(true);
-        // EMDE Extension Genmodel
 
     }
 
