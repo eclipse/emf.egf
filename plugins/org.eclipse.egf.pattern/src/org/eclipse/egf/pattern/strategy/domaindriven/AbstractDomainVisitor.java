@@ -96,7 +96,7 @@ public abstract class AbstractDomainVisitor implements DomainVisitor {
                     return result;
             }
         }
-        return null;
+        return result;
     }
 
     private List<Pattern> getPatterns(Class<?> clazz) {
