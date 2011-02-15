@@ -4,10 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -27,8 +26,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public class ModeEcorelPattern {
 
     public ModeEcorelPattern() {
-        //Here is the constructor
-        // add initialisation of the pattern variables (declaration has been already done).
+        // Here is the constructor
+        // add initialisation of the pattern variables (declaration has been
+        // already done).
         this.modelActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w";
         this.editActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w";
         this.editorActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PkqGcDG0Ed-kc8dEZsdm2w";
@@ -39,7 +39,8 @@ public class ModeEcorelPattern {
         IQuery.ParameterDescription paramDesc = null;
         Map<String, String> queryCtx = null;
         List<Object> parameterList = null;
-        //this pattern can only be called by another (i.e. it's not an entry point in execution)
+        // this pattern can only be called by another (i.e. it's not an entry
+        // point in execution)
 
         for (Object parameterParameter : parameterList) {
 
@@ -103,19 +104,19 @@ public class ModeEcorelPattern {
         if (parameter.isGenerateModel()) {
             TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
             typeEMFDomain.setDomain(genModelEMFDomain);
-            contracts.put("genModelURI", typeEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true), contracts, parameters);
         }
         if (parameter.isGenerateEdit()) {
             TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
             typeEMFDomain.setDomain(genModelEMFDomain);
-            contracts.put("genModelURI", typeEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true), contracts, parameters);
         }
         if (parameter.isGenerateEditor()) {
             TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
             typeEMFDomain.setDomain(genModelEMFDomain);
-            contracts.put("genModelURI", typeEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts, parameters);
         }
 

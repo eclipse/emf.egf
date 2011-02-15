@@ -27,19 +27,19 @@
         if (parameter.isGenerateModel()) {
             TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
             typeEMFDomain.setDomain(genModelEMFDomain);
-            contracts.put("genModelURI", typeEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.modelActivity, false), true), contracts, parameters);
         }
         if (parameter.isGenerateEdit()) {
             TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
             typeEMFDomain.setDomain(genModelEMFDomain);
-            contracts.put("genModelURI", typeEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editActivity, false), true), contracts, parameters);
         }
         if (parameter.isGenerateEditor()) {
             TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
             typeEMFDomain.setDomain(genModelEMFDomain);
-            contracts.put("genModelURI", typeEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts, parameters);
         }
 

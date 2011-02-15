@@ -21,10 +21,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.InvocationContract;
@@ -115,7 +116,10 @@ public class ActivityInvocationHelper {
             InvocationContract invocationContract = FcoreFactory.eINSTANCE.createInvocationContract();
             invocationContractContainer.getInvocationContracts().add(invocationContract);
             // invocationContract.setInvocationContractContainer(invocationContractContainer);
-            invocationContract.setInvokedContract(activity.getContract(entry.getKey()));
+            final Contract contract = activity.getContract(entry.getKey());
+            if (contract == null)
+                throw new IllegalStateException();
+            invocationContract.setInvokedContract(contract);
             invocationContract.setType(entry.getValue());
         }
 
