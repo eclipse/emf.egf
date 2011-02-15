@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_FHbycC1TEeCytZMojrw6yg"
+    description="This Acceleo3 task generates classes from the Library model" name="Acceleo3.usecase.libraryClassGeneration"
+    kind="Acceleo3" implementation="project = org.eclipse.egf.usecase.acceleo3&#xA;class = org.eclipse.egf.usecase.acceleo3.files.Generate">
+  <contractContainer xmi:id="_LdvNMC1TEeCytZMojrw6yg">
+    <contracts xmi:id="_Ml5IEC1TEeCytZMojrw6yg" description="Model reference" name="modelURI">
+      <type xmi:type="types:TypeURI" xmi:id="_VggSoC1TEeCytZMojrw6yg" value="platform:/resource/org.eclipse.egf.usecase.acceleo3/models/extlibrary.ecore"/>
+    </contracts>
+    <contracts xmi:id="_ZtLHYC1TEeCytZMojrw6yg" description="Location of the generation"
+        name="output">
+      <type xmi:type="types:TypeString" xmi:id="_f2768C1TEeCytZMojrw6yg" value="/org.eclipse.egf.usecase.acceleo3/output"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>
