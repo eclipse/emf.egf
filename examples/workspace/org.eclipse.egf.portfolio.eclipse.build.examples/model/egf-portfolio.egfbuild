@@ -3,11 +3,13 @@
   <steps xsi:type="buildstep:BuildStep" xmi:id="_YKxagZY3Ed-1d-ajyQS7wg">
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_CaCKYLnLEd-kW7hdsg_Neg" pattern="org.eclipselabs.egf.portfolio.task.ruby*" scmLocation="_yRsxsLnGEd-jZJSljMRr8Q" folderName="plugins"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_Ea7EELnLEd-kW7hdsg_Neg" pattern="org.eclipselabs.egf.portfolio.task.ruby*" suffix=".feature" scmLocation="_yRsxsLnGEd-jZJSljMRr8Q" folderName="features"/>
-    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_fqhhUP7JEd-PkNrVSVfxsg" pattern="org.eclipse.egf.*" url="https://hudson.eclipse.org/hudson/job/buckminster-egf-trunk-nightly/lastSuccessfulBuild/artifact/result/publish/site/"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_fqhhUP7JEd-PkNrVSVfxsg" pattern="org.eclipse.egf.*" url="https://hudson.eclipse.org/hudson/job/buckminster-egf-helios/lastSuccessfulBuild/artifact/result/publish/site/"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_PvKRUfPHEd-1PJ4PFWU1aA" url="http://download.eclipse.org/releases/indigo/"/>
     <components xsi:type="buildstep:Feature" xmi:id="_NY650LnLEd-kW7hdsg_Neg" name="org.eclipselabs.egf.portfolio.task.ruby"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_mbkfUDkJEeCbr7W3e6bJPQ" name="org.eclipselabs.egf.portfolio.acceleo2"/>
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_SuJ5ILnLEd-kW7hdsg_Neg" component="_NY650LnLEd-kW7hdsg_Neg"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_rQ7EsDkJEeCbr7W3e6bJPQ" component="_mbkfUDkJEeCbr7W3e6bJPQ"/>
   <scms xsi:type="buildscm:SVN" xmi:id="_YK7LhZY3Ed-1d-ajyQS7wg">
     <locations xmi:id="_yRsxsLnGEd-jZJSljMRr8Q" url="svn.codespot.com/a/eclipselabs.org/egf-portfolio/trunk" localPath="svn_eclipselabs"/>
   </scms>
