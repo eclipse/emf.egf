@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.portfolio.task.acceleo3.ui;singleton:=true
+Bundle-Version: 0.4.1.qualifier
+Bundle-Activator: org.eclipse.egf.portfolio.task.acceleo3.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.egf.core.ui,
+ org.eclipse.egf.task,
+ org.eclipse.egf.task.ui,
+ org.eclipse.acceleo.engine
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
