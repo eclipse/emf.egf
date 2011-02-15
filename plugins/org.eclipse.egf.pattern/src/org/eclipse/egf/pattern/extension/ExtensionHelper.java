@@ -45,6 +45,8 @@ public class ExtensionHelper {
     }
 
     public static PatternExtension getExtension(PatternNature nature) throws MissingExtensionException {
+        if (nature == null)
+            throw new NullPointerException(EGFPatternMessages.extension_error4);
         PatternExtension patternExtension = null;
         try {
             patternExtension = EGFPatternPlugin.getPatternExtension(nature);
@@ -59,6 +61,8 @@ public class ExtensionHelper {
     }
 
     public static String getName(PatternNature nature) {
+        if (nature == null)
+            throw new NullPointerException(EGFPatternMessages.extension_error4);
         return nature.eClass().getName();
     }
 

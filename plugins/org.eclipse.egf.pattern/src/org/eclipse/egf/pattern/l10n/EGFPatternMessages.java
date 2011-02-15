@@ -49,6 +49,7 @@ public class EGFPatternMessages extends NLS {
     public static String extension_error2;
 
     public static String extension_error3;
+    public static String extension_error4;
 
     // classloader
     public static String classloader_error1;
