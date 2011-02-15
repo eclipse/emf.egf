@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:Task xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_VNQ4ADA8EeCaAJvHpRms2w"
+    description="Public to Private transformation with ATL" name="atl.usecase.sample"
+    kind="ATL" implementation="platform:/resource/org.eclipse.egf.usecase.atl/transformation/Public2Private.asm">
+  <contractContainer xmi:id="_fvlAMDA8EeCaAJvHpRms2w">
+    <contracts xmi:id="_gFdwoDA8EeCaAJvHpRms2w" description="Model reference" name="metaModelURI">
+      <type xmi:type="types:TypeURI" xmi:id="_iW0IMDA8EeCaAJvHpRms2w" value="http://www.eclipse.org/uml2/2.1.0/UML"/>
+    </contracts>
+    <contracts xmi:id="_rKyfQDA8EeCaAJvHpRms2w" description="Input Model" name="modelIN">
+      <type xmi:type="types:TypeURI" xmi:id="_5cvh8DA8EeCaAJvHpRms2w" value="platform:/resource/org.eclipse.egf.usecase.atl/model/sample.uml"/>
+    </contracts>
+    <contracts xmi:id="_rc-bcDA8EeCaAJvHpRms2w" description="Output Model" name="modelOUT">
+      <type xmi:type="types:TypeURI" xmi:id="_9tC5gDA8EeCaAJvHpRms2w" value="platform:/resource/org.eclipse.egf.usecase.atl/model/sample-privatized.uml"/>
+    </contracts>
+  </contractContainer>
+</ftask:Task>
