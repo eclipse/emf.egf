@@ -17,6 +17,8 @@
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DECR_EeCpI_U_Er6QNA" name="org.eclipse.egf.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" name="org.eclipse.egf.releng2"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_rivfYTkHEeCbr7W3e6bJPQ" name="org.eclipse.egf.portfolio.acceleo3"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_vivKEDkHEeCbr7W3e6bJPQ" name="org.eclipse.egf.portfolio.atl"/>
   </steps>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
@@ -26,6 +28,8 @@
     <properties xmi:id="_lrpyMiVpEeCrBLgWv91aGQ" key="outputFolder" value="${publish}/org.eclipse.egf.sdk/examples"/>
     <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
   </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_ANqPQDkIEeCbr7W3e6bJPQ" component="_rivfYTkHEeCbr7W3e6bJPQ" signing="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_Ae8zkDkIEeCbr7W3e6bJPQ" component="_vivKEDkHEeCbr7W3e6bJPQ" signing="true"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_AhUCYCSAEeCpI_U_Er6QNA" component="_VP8DESR_EeCpI_U_Er6QNA"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DByR_EeCpI_U_Er6QNA _VP8DAyR_EeCpI_U_Er6QNA _VP8DAiR_EeCpI_U_Er6QNA">
     <includes>**/*.java</includes>
