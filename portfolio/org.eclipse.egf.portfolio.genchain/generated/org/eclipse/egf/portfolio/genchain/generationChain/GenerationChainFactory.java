@@ -59,6 +59,15 @@ public interface GenerationChainFactory extends EFactory {
     DocumentationGeneration createDocumentationGeneration();
 
     /**
+     * Returns a new object of class '<em>Plugin Addition</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Plugin Addition</em>'.
+     * @generated
+     */
+    PluginAddition createPluginAddition();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

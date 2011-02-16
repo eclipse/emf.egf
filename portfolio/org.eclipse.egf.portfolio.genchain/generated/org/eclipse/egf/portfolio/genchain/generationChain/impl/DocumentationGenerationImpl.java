@@ -28,24 +28,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getPluginName
- * <em>Plugin Name</em>}</li>
- * <li>
- * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getOutputDirectoryPath
- * <em>Output Directory Path</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl#getOutputDirectoryPath <em>Output Directory Path</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class DocumentationGenerationImpl extends EcoreElementImpl implements DocumentationGeneration {
     /**
-     * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}'
-     * attribute.
+     * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getPluginName()
      * @generated
      * @ordered
@@ -53,11 +47,9 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     protected static final String PLUGIN_NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getPluginName() <em>Plugin Name</em>}'
-     * attribute.
+     * The cached value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getPluginName()
      * @generated
      * @ordered
@@ -65,11 +57,9 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     protected String pluginName = PLUGIN_NAME_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getOutputDirectoryPath()
-     * <em>Output Directory Path</em>}' attribute.
+     * The default value of the '{@link #getOutputDirectoryPath() <em>Output Directory Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getOutputDirectoryPath()
      * @generated
      * @ordered
@@ -77,11 +67,9 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     protected static final String OUTPUT_DIRECTORY_PATH_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getOutputDirectoryPath()
-     * <em>Output Directory Path</em>}' attribute.
+     * The cached value of the '{@link #getOutputDirectoryPath() <em>Output Directory Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getOutputDirectoryPath()
      * @generated
      * @ordered
@@ -91,7 +79,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected DocumentationGenerationImpl() {
@@ -101,7 +88,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -112,7 +98,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getPluginName() {
@@ -122,7 +107,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setPluginName(String newPluginName) {
@@ -135,7 +119,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String getOutputDirectoryPath() {
@@ -145,7 +128,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setOutputDirectoryPath(String newOutputDirectoryPath) {
@@ -171,7 +153,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -188,7 +169,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -207,7 +187,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -226,7 +205,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -243,7 +221,6 @@ public class DocumentationGenerationImpl extends EcoreElementImpl implements Doc
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

@@ -35,4 +35,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="PluginProvider" abstract="true" interface="true">
     <eOperations name="getPluginNames" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PluginAddition" eSuperTypes="#//GenerationElement #//PluginProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additions" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

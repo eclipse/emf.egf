@@ -147,6 +147,17 @@ public class GenerationChainSwitch<T> {
                 result = defaultCase(theEObject);
             return result;
         }
+        case GenerationChainPackage.PLUGIN_ADDITION: {
+            PluginAddition pluginAddition = (PluginAddition) theEObject;
+            T result = casePluginAddition(pluginAddition);
+            if (result == null)
+                result = caseGenerationElement(pluginAddition);
+            if (result == null)
+                result = casePluginProvider(pluginAddition);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
         default:
             return defaultCase(theEObject);
         }
@@ -239,6 +250,21 @@ public class GenerationChainSwitch<T> {
      * @generated
      */
     public T casePluginProvider(PluginProvider object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Plugin Addition</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Plugin Addition</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePluginAddition(PluginAddition object) {
         return null;
     }
 

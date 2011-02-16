@@ -20,6 +20,7 @@ import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
 
+import org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition;
 import org.eclipse.egf.portfolio.genchain.generationChain.PluginProvider;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -76,6 +77,13 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * @generated
      */
     private EClass pluginProviderEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass pluginAdditionEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -305,6 +313,24 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getPluginAddition() {
+        return pluginAdditionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPluginAddition_Additions() {
+        return (EAttribute) pluginAdditionEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public GenerationChainFactory getGenerationChainFactory() {
         return (GenerationChainFactory) getEFactoryInstance();
     }
@@ -352,6 +378,9 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         createEAttribute(ecoreElementEClass, ECORE_ELEMENT__MODEL_PATH);
 
         pluginProviderEClass = createEClass(PLUGIN_PROVIDER);
+
+        pluginAdditionEClass = createEClass(PLUGIN_ADDITION);
+        createEAttribute(pluginAdditionEClass, PLUGIN_ADDITION__ADDITIONS);
     }
 
     /**
@@ -389,6 +418,8 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         documentationGenerationEClass.getESuperTypes().add(this.getEcoreElement());
         documentationGenerationEClass.getESuperTypes().add(this.getPluginProvider());
         ecoreElementEClass.getESuperTypes().add(this.getGenerationElement());
+        pluginAdditionEClass.getESuperTypes().add(this.getGenerationElement());
+        pluginAdditionEClass.getESuperTypes().add(this.getPluginProvider());
 
         // Initialize classes and features; add operations and parameters
         initEClass(generationElementEClass, GenerationElement.class, "GenerationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -416,6 +447,9 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         initEClass(pluginProviderEClass, PluginProvider.class, "PluginProvider", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         addEOperation(pluginProviderEClass, ecorePackage.getEString(), "getPluginNames", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+        initEClass(pluginAdditionEClass, PluginAddition.class, "PluginAddition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPluginAddition_Additions(), ecorePackage.getEString(), "additions", null, 0, -1, PluginAddition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

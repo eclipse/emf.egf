@@ -71,6 +71,8 @@ public class GenerationChainFactoryImpl extends EFactoryImpl implements Generati
             return createEmfGeneration();
         case GenerationChainPackage.DOCUMENTATION_GENERATION:
             return createDocumentationGeneration();
+        case GenerationChainPackage.PLUGIN_ADDITION:
+            return createPluginAddition();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -104,6 +106,16 @@ public class GenerationChainFactoryImpl extends EFactoryImpl implements Generati
     public DocumentationGeneration createDocumentationGeneration() {
         DocumentationGenerationImpl documentationGeneration = new DocumentationGenerationImpl();
         return documentationGeneration;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PluginAddition createPluginAddition() {
+        PluginAdditionImpl pluginAddition = new PluginAdditionImpl();
+        return pluginAddition;
     }
 
     /**

@@ -15,11 +15,12 @@ package org.eclipse.egf.portfolio.genchain.generationChain.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
-import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
+import org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,19 +32,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DocumentationGenerationItemProvider extends EcoreElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class PluginAdditionItemProvider extends GenerationElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public DocumentationGenerationItemProvider(AdapterFactory adapterFactory) {
+    public PluginAdditionItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -58,55 +59,42 @@ public class DocumentationGenerationItemProvider extends EcoreElementItemProvide
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addPluginNamePropertyDescriptor(object);
-            addOutputDirectoryPathPropertyDescriptor(object);
+            addAdditionsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Plugin Name feature.
+     * This adds a property descriptor for the Additions feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addPluginNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DocumentationGeneration_pluginName_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DocumentationGeneration_pluginName_feature", "_UI_DocumentationGeneration_type"), GenerationChainPackage.Literals.DOCUMENTATION_GENERATION__PLUGIN_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    protected void addAdditionsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PluginAddition_additions_feature"), getString("_UI_PropertyDescriptor_description", "_UI_PluginAddition_additions_feature", "_UI_PluginAddition_type"), GenerationChainPackage.Literals.PLUGIN_ADDITION__ADDITIONS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
-     * This adds a property descriptor for the Output Directory Path feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addOutputDirectoryPathPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DocumentationGeneration_outputDirectoryPath_feature"), getString("_UI_PropertyDescriptor_description", "_UI_DocumentationGeneration_outputDirectoryPath_feature", "_UI_DocumentationGeneration_type"), GenerationChainPackage.Literals.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
-
-    /**
-     * This returns DocumentationGeneration.gif.
+     * This returns PluginAddition.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/DocumentationGeneration"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/PluginAddition"));
     }
 
     /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @generated NOT
+     * @generated
      */
     @Override
     public String getText(Object object) {
-        String label = ((GenerationElement) object).getName();
-        final String type = getString("_UI_DocumentationGeneration_type");
-        return label == null || label.length() == 0 ? type : label + " " + type;
+        String label = ((PluginAddition) object).getName();
+        return label == null || label.length() == 0 ? getString("_UI_PluginAddition_type") : getString("_UI_PluginAddition_type") + " " + label;
     }
 
     /**
@@ -120,9 +108,8 @@ public class DocumentationGenerationItemProvider extends EcoreElementItemProvide
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(DocumentationGeneration.class)) {
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__PLUGIN_NAME:
-        case GenerationChainPackage.DOCUMENTATION_GENERATION__OUTPUT_DIRECTORY_PATH:
+        switch (notification.getFeatureID(PluginAddition.class)) {
+        case GenerationChainPackage.PLUGIN_ADDITION__ADDITIONS:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
         }

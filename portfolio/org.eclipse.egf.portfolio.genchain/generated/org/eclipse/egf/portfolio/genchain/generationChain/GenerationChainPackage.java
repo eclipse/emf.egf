@@ -378,6 +378,52 @@ public interface GenerationChainPackage extends EPackage {
     int PLUGIN_PROVIDER_FEATURE_COUNT = 0;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.PluginAdditionImpl <em>Plugin Addition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.PluginAdditionImpl
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getPluginAddition()
+     * @generated
+     */
+    int PLUGIN_ADDITION = 6;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PLUGIN_ADDITION__NAME = GENERATION_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Container</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PLUGIN_ADDITION__CONTAINER = GENERATION_ELEMENT__CONTAINER;
+
+    /**
+     * The feature id for the '<em><b>Additions</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PLUGIN_ADDITION__ADDITIONS = GENERATION_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Plugin Addition</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PLUGIN_ADDITION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement <em>Generation Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -570,6 +616,27 @@ public interface GenerationChainPackage extends EPackage {
     EClass getPluginProvider();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition <em>Plugin Addition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Plugin Addition</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition
+     * @generated
+     */
+    EClass getPluginAddition();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition#getAdditions <em>Additions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Additions</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.PluginAddition#getAdditions()
+     * @see #getPluginAddition()
+     * @generated
+     */
+    EAttribute getPluginAddition_Additions();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -746,6 +813,24 @@ public interface GenerationChainPackage extends EPackage {
          * @generated
          */
         EClass PLUGIN_PROVIDER = eINSTANCE.getPluginProvider();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.PluginAdditionImpl <em>Plugin Addition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.PluginAdditionImpl
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getPluginAddition()
+         * @generated
+         */
+        EClass PLUGIN_ADDITION = eINSTANCE.getPluginAddition();
+
+        /**
+         * The meta object literal for the '<em><b>Additions</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PLUGIN_ADDITION__ADDITIONS = eINSTANCE.getPluginAddition_Additions();
 
     }
 
