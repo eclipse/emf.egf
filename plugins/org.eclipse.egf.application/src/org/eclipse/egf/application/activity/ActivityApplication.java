@@ -18,6 +18,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.application.internal.activator.EGFApplicationPlugin;
 import org.eclipse.egf.application.internal.activity.ActivityRunner;
 import org.eclipse.egf.application.internal.l10n.ApplicationMessages;
@@ -64,7 +65,7 @@ public class ActivityApplication implements IApplication {
         // Build a list of activities if any
         List<Activity> activities = new UniqueEList<Activity>();
         for (int i = 0; i < uris.size(); i++) {
-            URI uri = resourceSet.getURIConverter().normalize(uris.get(i));
+            URI uri = uris.get(i);
             EObject eObject = null;
             // Load it in our Editing Domain
             try {
@@ -94,8 +95,8 @@ public class ActivityApplication implements IApplication {
     }
 
     public static Object runHelper(final List<Activity> activities) throws Exception {
+        final IWorkspace workspace = ResourcesPlugin.getWorkspace();
         try {
-            final IWorkspace workspace = ResourcesPlugin.getWorkspace();
             IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
 
                 public void run(IProgressMonitor monitor) throws CoreException {
@@ -110,6 +111,12 @@ public class ActivityApplication implements IApplication {
             workspace.run(runnable, new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out));
         } catch (Exception e) {
             throw e;
+        } finally {
+            try {
+                workspace.save(true, new NullProgressMonitor());
+            } catch (Exception e) {
+                EGFApplicationPlugin.getDefault().logError(e);
+            }
         }
         return IApplication.EXIT_OK;
     }
