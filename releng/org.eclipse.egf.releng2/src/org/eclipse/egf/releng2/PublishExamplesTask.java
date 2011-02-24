@@ -91,7 +91,8 @@ public class PublishExamplesTask implements ITaskProduction {
             oneProjectList.add(project);
             zipProjects(oneProjectList, featureFile, project.getName() + " zip", outputFolder + "/" + project.getName() + ".zip");
         }
-        zipProjects(projects, featureFile, "complete examples zip", outputFolder + "/all.zip");
+        if (projects.size() > 1)
+            zipProjects(projects, featureFile, "complete examples zip", outputFolder + "/all.zip");
     }
 
     private void zipProjects(ArrayList<IProject> projects, IFile featureFile, String zipDisplayName, String zipName) {
