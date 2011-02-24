@@ -14,6 +14,9 @@
    </feature>
    <feature url="features/org.eclipse.egf.portfolio.genchain_0.4.1.qualifier.jar" id="org.eclipse.egf.portfolio.genchain" version="0.4.1.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
-   </feature>   
-   <category-def name="org.eclipse.egf.sdk.category" label="EGF SDK"/>
+   </feature>
+   <feature url="features/org.eclipse.egf.sdk_0.4.1.qualifier.jar" id="org.eclipse.egf.sdk" version="0.4.1.qualifier">
+      <category name="org.eclipse.egf.sdk.category"/>
+   </feature>
+   <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF SDK (Incubation)"/>
 </site>
