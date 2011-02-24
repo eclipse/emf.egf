@@ -25,11 +25,25 @@
   <steps xsi:type="buildstep:PublishStep" xmi:id="_91ptYCR_EeCpI_U_Er6QNA" component="_VP8DDiR_EeCpI_U_Er6QNA" signing="true"/>
   <steps xsi:type="buildstep:EgfStep" xmi:id="_lrpyMCVpEeCrBLgWv91aGQ">
     <properties xmi:id="_lrpyMSVpEeCrBLgWv91aGQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_GeIQ8UAdEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.examples-feature"/>
     <properties xmi:id="_lrpyMiVpEeCrBLgWv91aGQ" key="outputFolder" value="${publish}/org.eclipse.egf.sdk/examples"/>
     <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_ANqPQDkIEeCbr7W3e6bJPQ" component="_rivfYTkHEeCbr7W3e6bJPQ" signing="true"/>
+  <steps xsi:type="buildstep:EgfStep" xmi:id="_jR6TcEAfEeCi4-1Y9vbHyQ">
+    <properties xmi:id="_jR6TcUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_jR6TckAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.acceleo3.examples-feature"/>
+    <properties xmi:id="_jR6Tc0AfEeCi4-1Y9vbHyQ" key="outputFolder" value="${publish}/org.eclipse.egf.portfolio.acceleo3/examples"/>
+    <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
+  </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_Ae8zkDkIEeCbr7W3e6bJPQ" component="_vivKEDkHEeCbr7W3e6bJPQ" signing="true"/>
+  <steps xsi:type="buildstep:EgfStep" xmi:id="_jr12YEAfEeCi4-1Y9vbHyQ">
+    <properties xmi:id="_jr12YUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
+    <properties xmi:id="_jr12YkAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.atl.examples-feature"/>
+    <properties xmi:id="_jr12Y0AfEeCi4-1Y9vbHyQ" key="outputFolder" value="${publish}/org.eclipse.egf.portfolio.atl/examples"/>
+    <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
+  </steps>
+  <steps xsi:type="buildstep:AggregateStep" xmi:id="_G99gMEAgEeCi4-1Y9vbHyQ" name="org.eclipse.egf.site" publishSteps="_91ptYCR_EeCpI_U_Er6QNA _ANqPQDkIEeCbr7W3e6bJPQ _Ae8zkDkIEeCbr7W3e6bJPQ"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_AhUCYCSAEeCpI_U_Er6QNA" component="_VP8DESR_EeCpI_U_Er6QNA"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_Hugo4CSAEeCpI_U_Er6QNA" sources="_VP8DByR_EeCpI_U_Er6QNA _VP8DAyR_EeCpI_U_Er6QNA _VP8DAiR_EeCpI_U_Er6QNA">
     <includes>**/*.java</includes>

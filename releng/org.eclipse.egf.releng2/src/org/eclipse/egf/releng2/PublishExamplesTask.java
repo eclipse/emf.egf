@@ -1,4 +1,3 @@
-package org.eclipse.egf.releng2;
 /**
  * <copyright>
  *
@@ -14,6 +13,7 @@ package org.eclipse.egf.releng2;
  * </copyright>
  */
 
+package org.eclipse.egf.releng2;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -59,14 +59,14 @@ public class PublishExamplesTask implements ITaskProduction {
     }
 
     private static final String FEATURE_XML = "feature.xml";//$NON-NLS-1$
-    private static final String ORG_ECLIPSE_EGF_EXAMPLES_FEATURE = "org.eclipse.egf.examples-feature";//$NON-NLS-1$
     private static final String OUTPUT_FOLDER = "outputFolder";//$NON-NLS-1$
+    private static final String FEATURE_NAME = "featureName";//$NON-NLS-1$
 
     public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
     }
 
     public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-        String featureName = ORG_ECLIPSE_EGF_EXAMPLES_FEATURE;
+        String featureName = System.getProperty(FEATURE_NAME);
         String outputFolder = System.getProperty(OUTPUT_FOLDER);
         System.out.println("Will export plugins of feature " + featureName + " to folder " + outputFolder); //$NON-NLS-1$ //$NON-NLS-2$
         publishFeature(featureName, outputFolder);
