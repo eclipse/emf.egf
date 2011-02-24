@@ -10,14 +10,16 @@
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/indigo"/>
-    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDiR_EeCpI_U_Er6QNA" name="org.eclipse.egf.sdk"/>
-    <components xsi:type="buildstep:Feature" xmi:id="_VP8DESR_EeCpI_U_Er6QNA" name="org.eclipse.egf.application"/>
-    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
-    <components xsi:type="buildstep:Feature" xmi:id="_VP8DECR_EeCpI_U_Er6QNA" name="org.eclipse.egf.examples"/>
-    <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" name="org.eclipse.egf.releng2"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DDiR_EeCpI_U_Er6QNA" name="org.eclipse.egf.sdk"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DECR_EeCpI_U_Er6QNA" name="org.eclipse.egf.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_rivfYTkHEeCbr7W3e6bJPQ" name="org.eclipse.egf.portfolio.acceleo3"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_wsm2oEAiEeCi4-1Y9vbHyQ" name="org.eclipse.egf.portfolio.acceleo3.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_vivKEDkHEeCbr7W3e6bJPQ" name="org.eclipse.egf.portfolio.atl"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_wsm2oUAiEeCi4-1Y9vbHyQ" name="org.eclipse.egf.portfolio.atl.examples"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_VP8DESR_EeCpI_U_Er6QNA" name="org.eclipse.egf.application"/>
   </steps>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
