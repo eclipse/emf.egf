@@ -203,4 +203,12 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_Xc39EED5EeCrkYIiCYH_9g" name="eclipse.project.refresh" kind="java"
+      implementation="org.eclipse.egf.portfolio.file.resources.RefreshProjectTask">
+    <contractContainer xmi:id="_pWBv8ED5EeCrkYIiCYH_9g">
+      <contracts xmi:id="_psiLcED5EeCrkYIiCYH_9g" name="projectName" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_q-osgED5EeCrkYIiCYH_9g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
 </xmi:XMI>
