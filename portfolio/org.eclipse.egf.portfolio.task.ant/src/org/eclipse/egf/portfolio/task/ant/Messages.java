@@ -22,12 +22,15 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
-    private static final String BUNDLE_NAME = "org.eclipselabs.egf.portfolio.task.ant.messages"; //$NON-NLS-1$
+    private static final String BUNDLE_NAME = "org.eclipse.egf.portfolio.task.ant.messages"; //$NON-NLS-1$
 
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
     }
 
+    public static String AntScriptEngine_2;
+    public static String AntScriptEngine_3;
+    public static String AntScriptEngine_4;
     public static String Production_TaskAnt_Invoke;
 
 }

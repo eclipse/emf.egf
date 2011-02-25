@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.ftask.task.ITaskNature;
 import org.eclipse.egf.portfolio.task.ant.Activator;
@@ -40,13 +41,13 @@ public class TaskNatureAnt implements ITaskNature {
         if (task == null || task.getImplementationValue() == null) {
             return;
         }
-        String value = task.getImplementationValue().trim();
+        String taskName = task.getName();
         AntScriptEngine engine = new AntScriptEngine();
         try {
-            SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.Production_TaskAnt_Invoke, value), 300);
-            engine.executeAntTask(value, context, subMonitor);
+            SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.Production_TaskAnt_Invoke, taskName), 300);
+            engine.executeAntTask(task, context, subMonitor);
         } catch (Exception e) {
-            throw new InvocationException(new CoreException(Activator.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), e)));
+            throw new InvocationException(new CoreException(Activator.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, taskName, bundle.getSymbolicName()), e)));
         }
     }
 

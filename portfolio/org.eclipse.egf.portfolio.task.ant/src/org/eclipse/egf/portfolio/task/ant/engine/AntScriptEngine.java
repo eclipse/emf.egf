@@ -15,6 +15,7 @@
 package org.eclipse.egf.portfolio.task.ant.engine;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 
@@ -26,7 +27,13 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.platform.uri.TargetPlatformURIConverter;
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.ftask.Task;
+import org.eclipse.egf.model.types.Type;
+import org.eclipse.egf.model.types.TypeString;
+import org.eclipse.egf.portfolio.task.ant.Messages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -38,9 +45,23 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
  */
 public class AntScriptEngine {
 
-    public final static String TASK_PRODUCTION_CONTEXT = "TaskProductionContext";
+    private static final String XML = "xml"; //$NON-NLS-1$
+    private static final String DYNAMIC = "dynamic"; //$NON-NLS-1$
+    public final static String TASK_PRODUCTION_CONTEXT = "TaskProductionContext"; //$NON-NLS-1$
 
-    public void executeAntTask(String value, ITaskProductionContext context, SubMonitor monitor) throws Exception {
+    public void executeAntTask(Task task, ITaskProductionContext context, SubMonitor monitor) throws Exception {
+        String implementation = task.getImplementationValue().trim();
+
+        File antFile = null;
+        if (DYNAMIC.equals(implementation.toLowerCase())) {
+            antFile = handleDynamicAntFile(context, task);
+        } else
+            antFile = getFile(implementation);
+
+        if (!antFile.exists()) {
+            throw new Exception("Can not find the ant file :\'" + implementation + "\'!"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+
         // Create a ant project
         AntProject p = new AntProject();
         // Create a default log listeners
@@ -56,10 +77,6 @@ public class AntScriptEngine {
             // Init the project
             p.init();
             ProjectHelper helper = ProjectHelper.getProjectHelper();
-            File antFile = getFile(value);
-            if (!antFile.exists()) {
-                throw new Exception("Can not find the ant file :\'" + value + "\'!");
-            }
             // Analytical project construction documents
             helper.parse(p, antFile);
             // execute some target.
@@ -71,7 +88,33 @@ public class AntScriptEngine {
         } catch (BuildException be) {
             p.fireBuildFinished(be);
             throw be;
+        } finally {
+            if (DYNAMIC.equals(implementation.toLowerCase())) 
+                antFile.delete();
         }
+    }
+
+    protected File handleDynamicAntFile(ITaskProductionContext context, Task task) throws IOException, InvocationException {
+        Contract contract = task.getContract(XML);
+        if (contract == null)
+            throw new IllegalStateException(Messages.AntScriptEngine_2);
+        
+        Type type = contract.getType();
+        if (type == null || !(type instanceof TypeString)) 
+            throw new IllegalStateException(Messages.AntScriptEngine_3);
+        
+        String xml = (String) context.getInputValue(contract.getName(), contract.getType().getType());
+        
+        if (xml == null)
+            throw new IllegalStateException(Messages.AntScriptEngine_4);
+        
+        File antFile = File.createTempFile("egf", "tempAntFile"); //$NON-NLS-1$ //$NON-NLS-2$
+        
+        FileWriter fileWriter = new FileWriter(antFile);
+        fileWriter.write(xml);
+        fileWriter.close();
+        
+        return antFile;
     }
 
     private void doSubMonitor(SubMonitor subMonitor) {
