@@ -1,0 +1,7 @@
+<%for (Iterator iterator = inputFolderPaths.iterator(); iterator.hasNext();) {
+    String inputFolderPath = (String) iterator.next();
+%>
+		<fileset dir="<%=inputFolderPath%>" defaultexcludes="true">
+			<include name="**/*.java"/>
+		</fileset>
+<%}%>
