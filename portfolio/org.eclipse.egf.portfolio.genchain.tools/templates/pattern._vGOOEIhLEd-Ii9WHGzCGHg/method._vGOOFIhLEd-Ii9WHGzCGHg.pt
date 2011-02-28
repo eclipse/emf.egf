@@ -42,4 +42,15 @@
             contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts, parameters);
         }
-
+        if (parameter.isGenerateTest()) {
+            TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+            typeEMFDomain.setDomain(genModelEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
+            ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.testActivity, false), true), contracts, parameters);
+        }
+        if (parameter.isGenerateJavadoc()) {
+            TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+            typeEMFDomain.setDomain(genModelEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
+            ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.javadocActivity, false), true), contracts, parameters);
+        }

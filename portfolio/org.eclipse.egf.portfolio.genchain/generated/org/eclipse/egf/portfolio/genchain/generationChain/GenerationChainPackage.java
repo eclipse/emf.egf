@@ -268,13 +268,31 @@ public interface GenerationChainPackage extends EPackage {
     int EMF_GENERATION__GENERATE_EDITOR = ECORE_ELEMENT_FEATURE_COUNT + 2;
 
     /**
+     * The feature id for the '<em><b>Generate Test</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_GENERATION__GENERATE_TEST = ECORE_ELEMENT_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Generate Javadoc</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EMF_GENERATION__GENERATE_JAVADOC = ECORE_ELEMENT_FEATURE_COUNT + 4;
+
+    /**
      * The feature id for the '<em><b>Plugin Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__PLUGIN_NAME = ECORE_ELEMENT_FEATURE_COUNT + 3;
+    int EMF_GENERATION__PLUGIN_NAME = ECORE_ELEMENT_FEATURE_COUNT + 5;
 
     /**
      * The feature id for the '<em><b>Base Package</b></em>' attribute.
@@ -283,7 +301,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION__BASE_PACKAGE = ECORE_ELEMENT_FEATURE_COUNT + 4;
+    int EMF_GENERATION__BASE_PACKAGE = ECORE_ELEMENT_FEATURE_COUNT + 6;
 
     /**
      * The number of structural features of the '<em>Emf Generation</em>' class.
@@ -292,7 +310,7 @@ public interface GenerationChainPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int EMF_GENERATION_FEATURE_COUNT = ECORE_ELEMENT_FEATURE_COUNT + 5;
+    int EMF_GENERATION_FEATURE_COUNT = ECORE_ELEMENT_FEATURE_COUNT + 7;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.DocumentationGenerationImpl <em>Documentation Generation</em>}' class.
@@ -531,6 +549,28 @@ public interface GenerationChainPackage extends EPackage {
     EAttribute getEmfGeneration_GenerateEditor();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateTest <em>Generate Test</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Generate Test</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateTest()
+     * @see #getEmfGeneration()
+     * @generated
+     */
+    EAttribute getEmfGeneration_GenerateTest();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateJavadoc <em>Generate Javadoc</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Generate Javadoc</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateJavadoc()
+     * @see #getEmfGeneration()
+     * @generated
+     */
+    EAttribute getEmfGeneration_GenerateJavadoc();
+
+    /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#getPluginName <em>Plugin Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -743,6 +783,22 @@ public interface GenerationChainPackage extends EPackage {
          * @generated
          */
         EAttribute EMF_GENERATION__GENERATE_EDITOR = eINSTANCE.getEmfGeneration_GenerateEditor();
+
+        /**
+         * The meta object literal for the '<em><b>Generate Test</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EMF_GENERATION__GENERATE_TEST = eINSTANCE.getEmfGeneration_GenerateTest();
+
+        /**
+         * The meta object literal for the '<em><b>Generate Javadoc</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EMF_GENERATION__GENERATE_JAVADOC = eINSTANCE.getEmfGeneration_GenerateJavadoc();
 
         /**
          * The meta object literal for the '<em><b>Plugin Name</b></em>' attribute feature.

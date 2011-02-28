@@ -5,7 +5,8 @@
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
   <ftask:Task xmi:id="_SCO6cIhLEd-Ii9WHGzCGHg" name="Fcore builder task" kind="java"
-      implementation="org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderTask" superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg"
+      implementation="org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderTask">
     <contractContainer xmi:id="_SCO6cYhLEd-Ii9WHGzCGHg">
       <contracts xmi:id="_SCO6cohLEd-Ii9WHGzCGHg" name="name">
         <type xmi:type="types:TypeString" xmi:id="_SCO6c4hLEd-Ii9WHGzCGHg"/>
@@ -41,41 +42,45 @@
     <viewpointContainer xmi:id="_bK5IEIhLEd-Ii9WHGzCGHg">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_bnZd4IhLEd-Ii9WHGzCGHg">
         <libraries xmi:id="_cgtEcIhLEd-Ii9WHGzCGHg" name="fcore.builder.patterns">
-          <elements xmi:type="pattern:Pattern" xmi:id="_vGOOEIhLEd-Ii9WHGzCGHg" description=" "
-              name="ModeEcorelPattern" headerMethod="#_vGOOEYhLEd-Ii9WHGzCGHg" footerMethod="#_vGOOFYhLEd-Ii9WHGzCGHg"
-              initMethod="#_vGOOEohLEd-Ii9WHGzCGHg" conditionMethod="#_vGOOE4hLEd-Ii9WHGzCGHg">
+          <elements xmi:id="_vGOOEIhLEd-Ii9WHGzCGHg" description=" " name="ModeEcorelPattern"
+              headerMethod="#_vGOOEYhLEd-Ii9WHGzCGHg" conditionMethod="#_vGOOE4hLEd-Ii9WHGzCGHg"
+              initMethod="#_vGOOEohLEd-Ii9WHGzCGHg" footerMethod="#_vGOOFYhLEd-Ii9WHGzCGHg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_vGOOF4hLEd-Ii9WHGzCGHg"
+                name="Java"/>
             <methods xmi:id="_vGOOEYhLEd-Ii9WHGzCGHg" name="header" patternFilePath="templates/pattern._vGOOEIhLEd-Ii9WHGzCGHg/method._vGOOEYhLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_vGOOEohLEd-Ii9WHGzCGHg" name="init" patternFilePath="templates/pattern._vGOOEIhLEd-Ii9WHGzCGHg/method._vGOOEohLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_vGOOE4hLEd-Ii9WHGzCGHg" name="preCondition" patternFilePath="templates/pattern._vGOOEIhLEd-Ii9WHGzCGHg/method._vGOOE4hLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_vGOOFIhLEd-Ii9WHGzCGHg" name="body" patternFilePath="templates/pattern._vGOOEIhLEd-Ii9WHGzCGHg/method._vGOOFIhLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_vGOOFYhLEd-Ii9WHGzCGHg" name="footer" patternFilePath="templates/pattern._vGOOEIhLEd-Ii9WHGzCGHg/method._vGOOFYhLEd-Ii9WHGzCGHg.pt"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kwpVkIj0Ed-FBLv3naathQ"
-                called="#_vGOOFIhLEd-Ii9WHGzCGHg"/>
             <parameters xmi:id="_xn3rcIhLEd-Ii9WHGzCGHg" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//EmfGeneration"/>
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_vGOOF4hLEd-Ii9WHGzCGHg"
-                name="Java"/>
             <variables xmi:id="_YpZbcKFUEd-3LOifAkOEwA" name="modelActivity" type="java.lang.String"/>
             <variables xmi:id="_fN31EKFUEd-3LOifAkOEwA" name="editActivity" type="java.lang.String"/>
             <variables xmi:id="_gvnUoKFUEd-3LOifAkOEwA" name="editorActivity" type="java.lang.String"/>
+            <variables xmi:id="_wxgGMED9EeCSwvjW2nMIJw" name="testActivity" type="java.lang.String"/>
+            <variables xmi:id="_zwr0IED9EeCSwvjW2nMIJw" name="javadocActivity" type="java.lang.String"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_kwpVkIj0Ed-FBLv3naathQ"
+                called="#_vGOOFIhLEd-Ii9WHGzCGHg"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_6jvaQIhLEd-Ii9WHGzCGHg" name="DocumentationPattern"
-              headerMethod="#_6jvaQYhLEd-Ii9WHGzCGHg" footerMethod="#_6j5LQ4hLEd-Ii9WHGzCGHg"
-              initMethod="#_6j5LQIhLEd-Ii9WHGzCGHg" conditionMethod="#_6j5LQYhLEd-Ii9WHGzCGHg">
+          <elements xmi:id="_6jvaQIhLEd-Ii9WHGzCGHg" name="DocumentationPattern" headerMethod="#_6jvaQYhLEd-Ii9WHGzCGHg"
+              conditionMethod="#_6j5LQYhLEd-Ii9WHGzCGHg" initMethod="#_6j5LQIhLEd-Ii9WHGzCGHg"
+              footerMethod="#_6j5LQ4hLEd-Ii9WHGzCGHg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_6j5LRYhLEd-Ii9WHGzCGHg"
+                name="Java"/>
             <methods xmi:id="_6jvaQYhLEd-Ii9WHGzCGHg" name="header" patternFilePath="templates/pattern._6jvaQIhLEd-Ii9WHGzCGHg/method._6jvaQYhLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_6j5LQIhLEd-Ii9WHGzCGHg" name="init" patternFilePath="templates/pattern._6jvaQIhLEd-Ii9WHGzCGHg/method._6j5LQIhLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_6j5LQYhLEd-Ii9WHGzCGHg" name="preCondition" patternFilePath="templates/pattern._6jvaQIhLEd-Ii9WHGzCGHg/method._6j5LQYhLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_6j5LQohLEd-Ii9WHGzCGHg" name="body" patternFilePath="templates/pattern._6jvaQIhLEd-Ii9WHGzCGHg/method._6j5LQohLEd-Ii9WHGzCGHg.pt"/>
             <methods xmi:id="_6j5LQ4hLEd-Ii9WHGzCGHg" name="footer" patternFilePath="templates/pattern._6jvaQIhLEd-Ii9WHGzCGHg/method._6j5LQ4hLEd-Ii9WHGzCGHg.pt"/>
+            <parameters xmi:id="_8wlsUIhLEd-Ii9WHGzCGHg" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//DocumentationGeneration"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_6j5LRIhLEd-Ii9WHGzCGHg"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_GOhjcZPeEd-VWYO2ku8vVw"
                 called="#_6j5LQohLEd-Ii9WHGzCGHg"/>
-            <parameters xmi:id="_8wlsUIhLEd-Ii9WHGzCGHg" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//DocumentationGeneration"/>
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_6j5LRYhLEd-Ii9WHGzCGHg"
-                name="Java"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_2-eB0Ij9Ed-AZ6r6cIc0dQ" name="ModelGenmodelPattern"
-              headerMethod="#_2-eB0Yj9Ed-AZ6r6cIc0dQ" footerMethod="#_2-eB1Yj9Ed-AZ6r6cIc0dQ"
-              initMethod="#_2-eB0oj9Ed-AZ6r6cIc0dQ" conditionMethod="#_2-eB04j9Ed-AZ6r6cIc0dQ">
+          <elements xmi:id="_2-eB0Ij9Ed-AZ6r6cIc0dQ" name="ModelGenmodelPattern" headerMethod="#_2-eB0Yj9Ed-AZ6r6cIc0dQ"
+              conditionMethod="#_2-eB04j9Ed-AZ6r6cIc0dQ" initMethod="#_2-eB0oj9Ed-AZ6r6cIc0dQ"
+              footerMethod="#_2-eB1Yj9Ed-AZ6r6cIc0dQ">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_2-eB14j9Ed-AZ6r6cIc0dQ"
+                name="Java"/>
             <methods xmi:id="_2-eB0Yj9Ed-AZ6r6cIc0dQ" name="header" patternFilePath="templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._2-eB0Yj9Ed-AZ6r6cIc0dQ.pt"/>
             <methods xmi:id="_2-eB0oj9Ed-AZ6r6cIc0dQ" name="init" patternFilePath="templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._2-eB0oj9Ed-AZ6r6cIc0dQ.pt"/>
             <methods xmi:id="_2-eB04j9Ed-AZ6r6cIc0dQ" name="preCondition" patternFilePath="templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._2-eB04j9Ed-AZ6r6cIc0dQ.pt"/>
@@ -83,6 +88,8 @@
             <methods xmi:id="_2-eB1Yj9Ed-AZ6r6cIc0dQ" name="footer" patternFilePath="templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._2-eB1Yj9Ed-AZ6r6cIc0dQ.pt"/>
             <methods xmi:id="_BLrqUIqLEd-SmaLnSW-4HQ" name="save" patternFilePath="templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._BLrqUIqLEd-SmaLnSW-4HQ.pt"/>
             <methods xmi:id="_o-_gAYqOEd-6N-kuHcME0w" name="updateContent" patternFilePath="templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._o-_gAYqOEd-6N-kuHcME0w.pt"/>
+            <parameters xmi:id="_48nJgIj9Ed-AZ6r6cIc0dQ" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//EmfGeneration"/>
+            <variables xmi:id="_t7F3UIpyEd-OtYtJiqLIbA" name="importer" type="org.eclipse.emf.importer.ecore.EcoreImporter"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_2-eB1oj9Ed-AZ6r6cIc0dQ"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_IXXjIIkFEd-AZ6r6cIc0dQ"
                 called="#_2-eB1Ij9Ed-AZ6r6cIc0dQ"/>
@@ -90,25 +97,21 @@
                 called="#_o-_gAYqOEd-6N-kuHcME0w"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_BfpIIIqLEd-SmaLnSW-4HQ"
                 called="#_BLrqUIqLEd-SmaLnSW-4HQ"/>
-            <parameters xmi:id="_48nJgIj9Ed-AZ6r6cIc0dQ" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//EmfGeneration"/>
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_2-eB14j9Ed-AZ6r6cIc0dQ"
-                name="Java"/>
-            <variables xmi:id="_t7F3UIpyEd-OtYtJiqLIbA" name="importer" type="org.eclipse.emf.importer.ecore.EcoreImporter"/>
           </elements>
-          <elements xmi:type="pattern:Pattern" xmi:id="_PEgOMJP1Ed-VWYO2ku8vVw" name="GenerationChainPattern"
-              headerMethod="#_PEgOMZP1Ed-VWYO2ku8vVw" footerMethod="#_PEgONZP1Ed-VWYO2ku8vVw"
-              initMethod="#_PEgOMpP1Ed-VWYO2ku8vVw" conditionMethod="#_PEgOM5P1Ed-VWYO2ku8vVw">
+          <elements xmi:id="_PEgOMJP1Ed-VWYO2ku8vVw" name="GenerationChainPattern"
+              headerMethod="#_PEgOMZP1Ed-VWYO2ku8vVw" conditionMethod="#_PEgOM5P1Ed-VWYO2ku8vVw"
+              initMethod="#_PEgOMpP1Ed-VWYO2ku8vVw" footerMethod="#_PEgONZP1Ed-VWYO2ku8vVw">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_PEgON5P1Ed-VWYO2ku8vVw"
+                name="Java"/>
             <methods xmi:id="_PEgOMZP1Ed-VWYO2ku8vVw" name="header" patternFilePath="templates/pattern._PEgOMJP1Ed-VWYO2ku8vVw/method._PEgOMZP1Ed-VWYO2ku8vVw.pt"/>
             <methods xmi:id="_PEgOMpP1Ed-VWYO2ku8vVw" name="init" patternFilePath="templates/pattern._PEgOMJP1Ed-VWYO2ku8vVw/method._PEgOMpP1Ed-VWYO2ku8vVw.pt"/>
             <methods xmi:id="_PEgOM5P1Ed-VWYO2ku8vVw" name="preCondition" patternFilePath="templates/pattern._PEgOMJP1Ed-VWYO2ku8vVw/method._PEgOM5P1Ed-VWYO2ku8vVw.pt"/>
             <methods xmi:id="_PEgONJP1Ed-VWYO2ku8vVw" name="body" patternFilePath="templates/pattern._PEgOMJP1Ed-VWYO2ku8vVw/method._PEgONJP1Ed-VWYO2ku8vVw.pt"/>
             <methods xmi:id="_PEgONZP1Ed-VWYO2ku8vVw" name="footer" patternFilePath="templates/pattern._PEgOMJP1Ed-VWYO2ku8vVw/method._PEgONZP1Ed-VWYO2ku8vVw.pt"/>
+            <parameters xmi:id="_RyjI0JP1Ed-VWYO2ku8vVw" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//GenerationChain"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_PEgONpP1Ed-VWYO2ku8vVw"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_Vdr90JP1Ed-VWYO2ku8vVw"
                 called="#_PEgONJP1Ed-VWYO2ku8vVw"/>
-            <parameters xmi:id="_RyjI0JP1Ed-VWYO2ku8vVw" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChain#//GenerationChain"/>
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_PEgON5P1Ed-VWYO2ku8vVw"
-                name="Java"/>
           </elements>
         </libraries>
       </viewpoints>

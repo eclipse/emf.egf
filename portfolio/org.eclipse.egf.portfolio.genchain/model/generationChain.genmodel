@@ -24,6 +24,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateModel"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateEdit"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateEditor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateTest"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/generateJavadoc"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/pluginName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EmfGeneration/basePackage"/>
     </genClasses>
@@ -33,6 +35,12 @@
     </genClasses>
     <genClasses ecoreClass="generationChain.ecore#//EcoreElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//EcoreElement/modelPath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="generationChain.ecore#//PluginProvider">
+      <genOperations ecoreOperation="generationChain.ecore#//PluginProvider/getPluginNames"/>
+    </genClasses>
+    <genClasses ecoreClass="generationChain.ecore#//PluginAddition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute generationChain.ecore#//PluginAddition/additions"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

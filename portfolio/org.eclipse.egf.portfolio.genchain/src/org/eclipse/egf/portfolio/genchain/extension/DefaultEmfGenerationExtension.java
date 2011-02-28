@@ -61,6 +61,12 @@ public class DefaultEmfGenerationExtension extends ExtensionHelper {
 		String model = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel().getName());
 		element.setGenerateModel(Boolean.parseBoolean(model));
 
+		String test = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateTest().getName());
+		element.setGenerateTest(Boolean.parseBoolean(test));
+		
+		String javadoc = properties.get(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateJavadoc().getName());
+		element.setGenerateJavadoc(Boolean.parseBoolean(javadoc));
+
 		return element;
 	}
 
@@ -72,6 +78,8 @@ public class DefaultEmfGenerationExtension extends ExtensionHelper {
 		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEdit(), "true");
 		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateEditor(), "false");
 		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateModel(), "true");
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateTest(), "false");
+		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_GenerateJavadoc(), "false");
 		properties.put(GenerationChainPackage.eINSTANCE.getEmfGeneration_PluginName(), StringUtils.format1(project + '.' + modelName));
 	};
 }

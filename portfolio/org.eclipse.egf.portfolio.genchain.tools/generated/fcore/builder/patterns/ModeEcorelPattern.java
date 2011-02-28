@@ -4,9 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -22,16 +23,19 @@ import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.egf.model.types.*;
+import java.util.ArrayList;
 
 public class ModeEcorelPattern {
 
     public ModeEcorelPattern() {
-        // Here is the constructor
-        // add initialisation of the pattern variables (declaration has been
-        // already done).
+        //Here is the constructor
+        // add initialisation of the pattern variables (declaration has been already done).
         this.modelActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_Pcm9sDG0Ed-kc8dEZsdm2w";
         this.editActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PiIW4DG0Ed-kc8dEZsdm2w";
         this.editorActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PkqGcDG0Ed-kc8dEZsdm2w";
+        this.testActivity = "platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_PoF08DG0Ed-kc8dEZsdm2w";
+        this.javadocActivity = "platform:/plugin/org.eclipse.egf.portfolio.ant.javadoc/egf/javadocTask.fcore#_dj3IUEKMEeCptI_ayXHmng";
     }
 
     public void generate(Object argument) throws Exception {
@@ -39,8 +43,7 @@ public class ModeEcorelPattern {
         IQuery.ParameterDescription paramDesc = null;
         Map<String, String> queryCtx = null;
         List<Object> parameterList = null;
-        // this pattern can only be called by another (i.e. it's not an entry
-        // point in execution)
+        //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
         for (Object parameterParameter : parameterList) {
 
@@ -119,7 +122,18 @@ public class ModeEcorelPattern {
             contracts.put("genModel", typeEMFDomain);
             ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.editorActivity, false), true), contracts, parameters);
         }
-
+        if (parameter.isGenerateTest()) {
+            TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+            typeEMFDomain.setDomain(genModelEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
+            ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.testActivity, false), true), contracts, parameters);
+        }
+        if (parameter.isGenerateJavadoc()) {
+            TypeDomain typeEMFDomain = DomainFactory.eINSTANCE.createTypeDomain();
+            typeEMFDomain.setDomain(genModelEMFDomain);
+            contracts.put("genModel", typeEMFDomain);
+            ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(URI.createURI(this.javadocActivity, false), true), contracts, parameters);
+        }
     }
 
     public boolean preCondition() throws Exception {
@@ -148,6 +162,18 @@ public class ModeEcorelPattern {
 
     public void set_editorActivity(java.lang.String editorActivity) {
         this.editorActivity = editorActivity;
+    }
+
+    protected java.lang.String testActivity;
+
+    public void set_testActivity(java.lang.String testActivity) {
+        this.testActivity = testActivity;
+    }
+
+    protected java.lang.String javadocActivity;
+
+    public void set_javadocActivity(java.lang.String javadocActivity) {
+        this.javadocActivity = javadocActivity;
     }
 
     public Map<String, Object> getParameters() {

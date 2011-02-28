@@ -23,6 +23,8 @@ package org.eclipse.egf.portfolio.genchain.generationChain;
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateModel <em>Generate Model</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateEdit <em>Generate Edit</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateEditor <em>Generate Editor</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateTest <em>Generate Test</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateJavadoc <em>Generate Javadoc</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#getPluginName <em>Plugin Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#getBasePackage <em>Base Package</em>}</li>
  * </ul>
@@ -110,6 +112,60 @@ public interface EmfGeneration extends EcoreElement, PluginProvider {
      * @generated
      */
     void setGenerateEditor(boolean value);
+
+    /**
+     * Returns the value of the '<em><b>Generate Test</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Generate Test</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Generate Test</em>' attribute.
+     * @see #setGenerateTest(boolean)
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage#getEmfGeneration_GenerateTest()
+     * @model default="false"
+     * @generated
+     */
+    boolean isGenerateTest();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateTest <em>Generate Test</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Generate Test</em>' attribute.
+     * @see #isGenerateTest()
+     * @generated
+     */
+    void setGenerateTest(boolean value);
+
+    /**
+     * Returns the value of the '<em><b>Generate Javadoc</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Generate Javadoc</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Generate Javadoc</em>' attribute.
+     * @see #setGenerateJavadoc(boolean)
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage#getEmfGeneration_GenerateJavadoc()
+     * @model default="false"
+     * @generated
+     */
+    boolean isGenerateJavadoc();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration#isGenerateJavadoc <em>Generate Javadoc</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Generate Javadoc</em>' attribute.
+     * @see #isGenerateJavadoc()
+     * @generated
+     */
+    void setGenerateJavadoc(boolean value);
 
     /**
      * Returns the value of the '<em><b>Plugin Name</b></em>' attribute.

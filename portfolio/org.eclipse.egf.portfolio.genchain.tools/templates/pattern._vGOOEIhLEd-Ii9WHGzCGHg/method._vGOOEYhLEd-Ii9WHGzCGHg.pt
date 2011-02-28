@@ -23,6 +23,8 @@ import org.eclipse.egf.portfolio.genchain.tools.FcoreBuilderConstants;
 import org.eclipse.egf.portfolio.genchain.tools.utils.ActivityInvocationHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.egf.model.types.*;
+import java.util.ArrayList;
 
 public class CLASS {
 

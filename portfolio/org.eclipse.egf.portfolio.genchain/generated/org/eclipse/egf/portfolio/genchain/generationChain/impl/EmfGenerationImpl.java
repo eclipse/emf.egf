@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateModel <em>Generate Model</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEdit <em>Generate Edit</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateEditor <em>Generate Editor</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateTest <em>Generate Test</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#isGenerateJavadoc <em>Generate Javadoc</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getPluginName <em>Plugin Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.EmfGenerationImpl#getBasePackage <em>Base Package</em>}</li>
  * </ul>
@@ -97,6 +99,46 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
      * @ordered
      */
     protected boolean generateEditor = GENERATE_EDITOR_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isGenerateTest() <em>Generate Test</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isGenerateTest()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean GENERATE_TEST_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isGenerateTest() <em>Generate Test</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isGenerateTest()
+     * @generated
+     * @ordered
+     */
+    protected boolean generateTest = GENERATE_TEST_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #isGenerateJavadoc() <em>Generate Javadoc</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isGenerateJavadoc()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean GENERATE_JAVADOC_EDEFAULT = false;
+
+    /**
+     * The cached value of the '{@link #isGenerateJavadoc() <em>Generate Javadoc</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isGenerateJavadoc()
+     * @generated
+     * @ordered
+     */
+    protected boolean generateJavadoc = GENERATE_JAVADOC_EDEFAULT;
 
     /**
      * The default value of the '{@link #getPluginName() <em>Plugin Name</em>}' attribute.
@@ -225,6 +267,48 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
      * <!-- end-user-doc -->
      * @generated
      */
+    public boolean isGenerateTest() {
+        return generateTest;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setGenerateTest(boolean newGenerateTest) {
+        boolean oldGenerateTest = generateTest;
+        generateTest = newGenerateTest;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, GenerationChainPackage.EMF_GENERATION__GENERATE_TEST, oldGenerateTest, generateTest));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isGenerateJavadoc() {
+        return generateJavadoc;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setGenerateJavadoc(boolean newGenerateJavadoc) {
+        boolean oldGenerateJavadoc = generateJavadoc;
+        generateJavadoc = newGenerateJavadoc;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, GenerationChainPackage.EMF_GENERATION__GENERATE_JAVADOC, oldGenerateJavadoc, generateJavadoc));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getPluginName() {
         return pluginName;
     }
@@ -293,6 +377,10 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
             return isGenerateEdit();
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             return isGenerateEditor();
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_TEST:
+            return isGenerateTest();
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_JAVADOC:
+            return isGenerateJavadoc();
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             return getPluginName();
         case GenerationChainPackage.EMF_GENERATION__BASE_PACKAGE:
@@ -317,6 +405,12 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
             return;
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             setGenerateEditor((Boolean) newValue);
+            return;
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_TEST:
+            setGenerateTest((Boolean) newValue);
+            return;
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_JAVADOC:
+            setGenerateJavadoc((Boolean) newValue);
             return;
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             setPluginName((String) newValue);
@@ -345,6 +439,12 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             setGenerateEditor(GENERATE_EDITOR_EDEFAULT);
             return;
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_TEST:
+            setGenerateTest(GENERATE_TEST_EDEFAULT);
+            return;
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_JAVADOC:
+            setGenerateJavadoc(GENERATE_JAVADOC_EDEFAULT);
+            return;
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             setPluginName(PLUGIN_NAME_EDEFAULT);
             return;
@@ -369,6 +469,10 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
             return generateEdit != GENERATE_EDIT_EDEFAULT;
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
             return generateEditor != GENERATE_EDITOR_EDEFAULT;
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_TEST:
+            return generateTest != GENERATE_TEST_EDEFAULT;
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_JAVADOC:
+            return generateJavadoc != GENERATE_JAVADOC_EDEFAULT;
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
             return PLUGIN_NAME_EDEFAULT == null ? pluginName != null : !PLUGIN_NAME_EDEFAULT.equals(pluginName);
         case GenerationChainPackage.EMF_GENERATION__BASE_PACKAGE:
@@ -394,6 +498,10 @@ public class EmfGenerationImpl extends EcoreElementImpl implements EmfGeneration
         result.append(generateEdit);
         result.append(", generateEditor: ");
         result.append(generateEditor);
+        result.append(", generateTest: ");
+        result.append(generateTest);
+        result.append(", generateJavadoc: ");
+        result.append(generateJavadoc);
         result.append(", pluginName: ");
         result.append(pluginName);
         result.append(", basePackage: ");

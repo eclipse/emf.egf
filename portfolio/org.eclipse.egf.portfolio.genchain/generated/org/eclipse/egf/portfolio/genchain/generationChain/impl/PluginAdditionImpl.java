@@ -27,21 +27,17 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.portfolio.genchain.generationChain.impl.PluginAdditionImpl#getAdditions
- * <em>Additions</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.PluginAdditionImpl#getAdditions <em>Additions</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PluginAdditionImpl extends GenerationElementImpl implements PluginAddition {
     /**
-     * The cached value of the '{@link #getAdditions() <em>Additions</em>}'
-     * attribute list.
+     * The cached value of the '{@link #getAdditions() <em>Additions</em>}' attribute list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getAdditions()
      * @generated
      * @ordered
@@ -51,7 +47,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PluginAdditionImpl() {
@@ -61,7 +56,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -72,7 +66,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<String> getAdditions() {
@@ -95,7 +88,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -110,7 +102,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -128,7 +119,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -144,7 +134,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -159,7 +148,6 @@ public class PluginAdditionImpl extends GenerationElementImpl implements PluginA
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

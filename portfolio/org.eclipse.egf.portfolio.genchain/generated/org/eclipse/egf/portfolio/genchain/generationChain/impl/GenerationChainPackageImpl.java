@@ -241,7 +241,7 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getEmfGeneration_PluginName() {
+    public EAttribute getEmfGeneration_GenerateTest() {
         return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(3);
     }
 
@@ -250,8 +250,26 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getEmfGeneration_BasePackage() {
+    public EAttribute getEmfGeneration_GenerateJavadoc() {
         return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEmfGeneration_PluginName() {
+        return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEmfGeneration_BasePackage() {
+        return (EAttribute) emfGenerationEClass.getEStructuralFeatures().get(6);
     }
 
     /**
@@ -367,6 +385,8 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_MODEL);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_EDIT);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_EDITOR);
+        createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_TEST);
+        createEAttribute(emfGenerationEClass, EMF_GENERATION__GENERATE_JAVADOC);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__PLUGIN_NAME);
         createEAttribute(emfGenerationEClass, EMF_GENERATION__BASE_PACKAGE);
 
@@ -434,6 +454,8 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         initEAttribute(getEmfGeneration_GenerateModel(), ecorePackage.getEBoolean(), "generateModel", null, 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_GenerateEdit(), ecorePackage.getEBoolean(), "generateEdit", null, 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_GenerateEditor(), ecorePackage.getEBoolean(), "generateEditor", null, 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEmfGeneration_GenerateTest(), ecorePackage.getEBoolean(), "generateTest", "false", 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getEmfGeneration_GenerateJavadoc(), ecorePackage.getEBoolean(), "generateJavadoc", "false", 0, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_PluginName(), ecorePackage.getEString(), "pluginName", null, 1, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEmfGeneration_BasePackage(), ecorePackage.getEString(), "basePackage", null, 1, 1, EmfGeneration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

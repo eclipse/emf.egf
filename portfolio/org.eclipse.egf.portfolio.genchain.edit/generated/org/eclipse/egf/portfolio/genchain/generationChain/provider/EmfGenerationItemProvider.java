@@ -61,6 +61,8 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
             addGenerateModelPropertyDescriptor(object);
             addGenerateEditPropertyDescriptor(object);
             addGenerateEditorPropertyDescriptor(object);
+            addGenerateTestPropertyDescriptor(object);
+            addGenerateJavadocPropertyDescriptor(object);
             addPluginNamePropertyDescriptor(object);
             addBasePackagePropertyDescriptor(object);
         }
@@ -95,6 +97,26 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
      */
     protected void addGenerateEditorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EmfGeneration_generateEditor_feature"), getString("_UI_PropertyDescriptor_description", "_UI_EmfGeneration_generateEditor_feature", "_UI_EmfGeneration_type"), GenerationChainPackage.Literals.EMF_GENERATION__GENERATE_EDITOR, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Generate Test feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGenerateTestPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EmfGeneration_generateTest_feature"), getString("_UI_PropertyDescriptor_description", "_UI_EmfGeneration_generateTest_feature", "_UI_EmfGeneration_type"), GenerationChainPackage.Literals.EMF_GENERATION__GENERATE_TEST, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Generate Javadoc feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGenerateJavadocPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_EmfGeneration_generateJavadoc_feature"), getString("_UI_PropertyDescriptor_description", "_UI_EmfGeneration_generateJavadoc_feature", "_UI_EmfGeneration_type"), GenerationChainPackage.Literals.EMF_GENERATION__GENERATE_JAVADOC, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -157,6 +179,8 @@ public class EmfGenerationItemProvider extends EcoreElementItemProvider implemen
         case GenerationChainPackage.EMF_GENERATION__GENERATE_MODEL:
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDIT:
         case GenerationChainPackage.EMF_GENERATION__GENERATE_EDITOR:
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_TEST:
+        case GenerationChainPackage.EMF_GENERATION__GENERATE_JAVADOC:
         case GenerationChainPackage.EMF_GENERATION__PLUGIN_NAME:
         case GenerationChainPackage.EMF_GENERATION__BASE_PACKAGE:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
