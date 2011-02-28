@@ -7,6 +7,7 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.core.resources.*;
+import org.eclipse.core.runtime.*;
 
 public class ant {
     protected static String nl;
@@ -69,6 +70,8 @@ public class ant {
 
         method_begin(ictx.getBuffer(), ictx);
 
+        method_additionalBeginXml(ictx.getBuffer(), ictx);
+
         method_deleteOutput(ictx.getBuffer(), ictx);
 
         method_beginJavadoc(ictx.getBuffer(), ictx);
@@ -77,7 +80,11 @@ public class ant {
 
         method_javadocInput(ictx.getBuffer(), ictx);
 
+        method_additionalJavadocXml(ictx.getBuffer(), ictx);
+
         method_endJavadoc(ictx.getBuffer(), ictx);
+
+        method_additionalEndXml(ictx.getBuffer(), ictx);
 
         method_end(ictx.getBuffer(), ictx);
 
@@ -96,10 +103,10 @@ public class ant {
         this.outputFolderPath = object;
     }
 
-    protected java.util.List inputFolderPaths = null;
+    protected java.util.List inputFolderPathsList = null;
 
-    public void set_inputFolderPaths(java.util.List object) {
-        this.inputFolderPaths = object;
+    public void set_inputFolderPathsList(java.util.List object) {
+        this.inputFolderPathsList = object;
     }
 
     public Map<String, Object> getParameters() {
@@ -109,20 +116,21 @@ public class ant {
 
     protected void method_computeVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String inputProjectNames = (String) ctx.getValue("inputProjectNames");
+        String inputFolderPaths = (String) ctx.getValue("inputFolderPaths");
         String outputProjectName = (String) ctx.getValue("outputProjectName");
         String outputFolderName = (String) ctx.getValue("outputFolderName");
 
         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
-        IFolder folder = root.getProject(outputProjectName).getFolder(outputFolderName);
-        outputFolderPath = folder.getRawLocation().toOSString();
+        IFolder outFolder = root.getProject(outputProjectName).getFolder(outputFolderName);
+        outputFolderPath = outFolder.getLocation().toOSString();
 
-        inputFolderPaths = new ArrayList<String>();
-        String[] split = inputProjectNames.split(",");
-        for (String inputProjectName : split) {
-            String inputFolderPath = root.getProject(inputProjectName.trim()).getRawLocation().toOSString();
-            inputFolderPaths.add(inputFolderPath);
+        inputFolderPathsList = new ArrayList<String>();
+        String[] split = inputFolderPaths.split(",");
+        for (String inputFolderPath : split) {
+            IFolder inputFolder = root.getFolder(new Path(inputFolderPath.trim()));
+            if (inputFolder.exists() && inputFolder.getLocation() != null)
+                inputFolderPathsList.add(inputFolder.getLocation().toOSString());
         }
 
     }
@@ -130,6 +138,10 @@ public class ant {
     protected void method_begin(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
+    }
+
+    protected void method_additionalBeginXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
     }
 
     protected void method_deleteOutput(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -153,7 +165,7 @@ public class ant {
 
     protected void method_javadocInput(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        for (Iterator iterator = inputFolderPaths.iterator(); iterator.hasNext();) {
+        for (Iterator iterator = inputFolderPathsList.iterator(); iterator.hasNext();) {
             String inputFolderPath = (String) iterator.next();
 
             stringBuffer.append(TEXT_7);
@@ -163,9 +175,17 @@ public class ant {
         stringBuffer.append(TEXT_9);
     }
 
+    protected void method_additionalJavadocXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+    }
+
     protected void method_endJavadoc(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_10);
+    }
+
+    protected void method_additionalEndXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
     }
 
     protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {

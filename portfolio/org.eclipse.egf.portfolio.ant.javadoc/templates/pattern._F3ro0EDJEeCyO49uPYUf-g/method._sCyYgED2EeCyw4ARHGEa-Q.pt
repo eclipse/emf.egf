@@ -1,4 +1,4 @@
-<%for (Iterator iterator = inputFolderPaths.iterator(); iterator.hasNext();) {
+<%for (Iterator iterator = inputFolderPathsList.iterator(); iterator.hasNext();) {
     String inputFolderPath = (String) iterator.next();
 %>
 		<fileset dir="<%=inputFolderPath%>" defaultexcludes="true">
