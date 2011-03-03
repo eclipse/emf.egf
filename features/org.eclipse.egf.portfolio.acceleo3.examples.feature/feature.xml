@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.egf.portfolio.acceleo3.examples"
       label="%featureName"
-      version="0.4.1.qualifier"
+      version="0.5.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
