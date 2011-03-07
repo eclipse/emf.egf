@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <ftask:Task xmi:id="_GXflwUNEEeCCC7hCobhKbA" name="generateOutputFile" kind="java"
+      implementation="org.eclipse.egf.usecase.jet.task.GenerateClassTaskProduction">
+    <contractContainer xmi:id="_IifdsENEEeCCC7hCobhKbA">
+      <contracts xmi:id="_I1GQoENEEeCCC7hCobhKbA" name="value">
+        <type xmi:type="types:TypeString" xmi:id="_BHgHQENOEeCerfTqV6dDvw"/>
+      </contracts>
+      <contracts xmi:id="_6VszUUZuEeCezZc_27qz7w" name="outputFolder">
+        <type xmi:type="types:TypeString" xmi:id="_71dV4EZuEeCezZc_27qz7w"/>
+      </contracts>
+      <contracts xmi:id="__Ts-YEZuEeCezZc_27qz7w" name="fileName">
+        <type xmi:type="types:TypeString" xmi:id="_AaXrgEZvEeCezZc_27qz7w"/>
+      </contracts>
+      <contracts xmi:id="_lkJuoEZ8EeCGdYSfFJe6yw" name="projectName">
+        <type xmi:type="types:TypeString" xmi:id="_q-LuYEZ8EeCGdYSfFJe6yw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_y9VTEUZ4EeCGdYSfFJe6yw" name="generatePackageClassesList" kind="JET"
+      implementation="platform:/resource/org.eclipse.egf.usecase.jet/templates/genList.txtjet">
+    <contractContainer xmi:id="_SLv24EZ5EeCGdYSfFJe6yw">
+      <contracts xmi:id="_Scr14EZ5EeCGdYSfFJe6yw" name="parameter">
+        <type xmi:type="types:TypeURI" xmi:id="_lDjqYEZ5EeCGdYSfFJe6yw"/>
+      </contracts>
+      <contracts xmi:id="_VtFPoEZ5EeCGdYSfFJe6yw" name="result" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_YQj5AEZ5EeCGdYSfFJe6yw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <fcore:FactoryComponent xmi:id="_fetacENHEeCCC7hCobhKbA" name="executeJetGeneration">
+    <contractContainer xmi:id="_h1nAYENHEeCCC7hCobhKbA">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_iUFsIENHEeCCC7hCobhKbA"
+          name="model" invocationContracts="#_eIZ2IEZ5EeCGdYSfFJe6yw">
+        <type xmi:type="types:TypeURI" xmi:id="_jiSkoENHEeCCC7hCobhKbA" value="platform:/resource/org.eclipse.egf.usecase.jet/model/extlibrary.ecore"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_l299AENHEeCCC7hCobhKbA">
+      <invocations xmi:id="_ckjdwEZ5EeCGdYSfFJe6yw" invokedActivity="#_y9VTEUZ4EeCGdYSfFJe6yw">
+        <invocationContractContainer xmi:id="_d12GgEZ5EeCGdYSfFJe6yw">
+          <invocationContracts xmi:id="_eIZ2IEZ5EeCGdYSfFJe6yw" factoryComponentContract="#_iUFsIENHEeCCC7hCobhKbA"
+              invokedContract="#_Scr14EZ5EeCGdYSfFJe6yw"/>
+          <invocationContracts xmi:id="_fG_lUEZ5EeCGdYSfFJe6yw" targetInvocationContract="#_wyjAIENPEeCerfTqV6dDvw"
+              invokedContract="#_VtFPoEZ5EeCGdYSfFJe6yw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_uj-20ENPEeCerfTqV6dDvw" invokedActivity="#_GXflwUNEEeCCC7hCobhKbA">
+        <invocationContractContainer xmi:id="_whaz4ENPEeCerfTqV6dDvw">
+          <invocationContracts xmi:id="_wyjAIENPEeCerfTqV6dDvw" sourceInvocationContract="#_fG_lUEZ5EeCGdYSfFJe6yw"
+              invokedContract="#_I1GQoENEEeCCC7hCobhKbA"/>
+          <invocationContracts xmi:id="_2cN_UEZ5EeCGdYSfFJe6yw" invokedContract="#__Ts-YEZuEeCezZc_27qz7w">
+            <type xmi:type="types:TypeString" xmi:id="_4pdS8EZ5EeCGdYSfFJe6yw" value="classesList.txt"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_2qpc4EZ5EeCGdYSfFJe6yw" invokedContract="#_6VszUUZuEeCezZc_27qz7w">
+            <type xmi:type="types:TypeString" xmi:id="_6xiZwEZ5EeCGdYSfFJe6yw" value="output"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_yoJJYEZ8EeCGdYSfFJe6yw" invokedContract="#_lkJuoEZ8EeCGdYSfFJe6yw">
+            <type xmi:type="types:TypeString" xmi:id="_zv40kEZ8EeCGdYSfFJe6yw" value="org.eclipse.egf.usecase.jet"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>
