@@ -76,7 +76,7 @@ public class TargetPlatformGenModelEditor extends GenModelEditor implements IPlu
                     continue;
                 }
                 // Process only target models
-                if (entry.getModel().getUnderlyingResource() == null) {
+                if (entry.getModel() != null && entry.getModel().getUnderlyingResource() == null) {
                     handleRemove(entry.getModel());
                 }
             }
@@ -115,11 +115,13 @@ public class TargetPlatformGenModelEditor extends GenModelEditor implements IPlu
 
         adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-        // Create the command stack that will notify this editor as commands are executed.
+        // Create the command stack that will notify this editor as commands are
+        // executed.
         //
         BasicCommandStack commandStack = new BasicCommandStack();
 
-        // Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
+        // Add a listener to set the most recent command's affected objects to
+        // be the selection of the viewer with focus.
         //
         commandStack.addCommandStackListener(new CommandStackListener() {
 
