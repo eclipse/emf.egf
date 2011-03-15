@@ -9,10 +9,10 @@
   <foreignModel>BuildTrigger.ecore</foreignModel>
   <genPackages prefix="Buildtrigger" basePackage="org.eclipse.egf.portfolio.eclipse.build"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="BuildTrigger.ecore#/">
-    <genClasses ecoreClass="BuildTrigger.ecore#//CronTrigger">
+    <genClasses image="false" ecoreClass="BuildTrigger.ecore#//CronTrigger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildTrigger.ecore#//CronTrigger/planning"/>
     </genClasses>
-    <genClasses ecoreClass="BuildTrigger.ecore#//SCMTrigger">
+    <genClasses image="false" ecoreClass="BuildTrigger.ecore#//SCMTrigger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildTrigger.ecore#//SCMTrigger/planning"/>
     </genClasses>
   </genPackages>
