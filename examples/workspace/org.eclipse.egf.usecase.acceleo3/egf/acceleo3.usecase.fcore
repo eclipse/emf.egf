@@ -2,7 +2,7 @@
 <ftask:Task xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_FHbycC1TEeCytZMojrw6yg"
-    description="This Acceleo3 task generates classes from the Library model" name="Acceleo3.usecase.libraryClassGeneration"
+    description="This Acceleo3 task generates classes from the Library model" name="acceleo3.usecase"
     kind="Acceleo3" implementation="project = org.eclipse.egf.usecase.acceleo3&#xA;class = org.eclipse.egf.usecase.acceleo3.files.Generate">
   <contractContainer xmi:id="_LdvNMC1TEeCytZMojrw6yg">
     <contracts xmi:id="_Ml5IEC1TEeCytZMojrw6yg" description="Model reference" name="modelURI">

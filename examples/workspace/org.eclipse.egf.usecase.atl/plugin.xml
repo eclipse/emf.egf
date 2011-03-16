@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
-            id="egf/atl.usecase.sample.fcore">
+            id="egf/atl.usecase.fcore">
       </fcore>
    </extension>
 

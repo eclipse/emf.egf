@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
-            id="egf/jet.fcore">
+            id="egf/jet.usecase.fcore">
       </fcore>
    </extension>
 

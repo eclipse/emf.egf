@@ -3,35 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
     xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
-  <ftask:Task xmi:id="_GXflwUNEEeCCC7hCobhKbA" name="generateOutputFile" kind="java"
-      implementation="org.eclipse.egf.usecase.jet.task.GenerateClassTaskProduction">
-    <contractContainer xmi:id="_IifdsENEEeCCC7hCobhKbA">
-      <contracts xmi:id="_I1GQoENEEeCCC7hCobhKbA" name="value">
-        <type xmi:type="types:TypeString" xmi:id="_BHgHQENOEeCerfTqV6dDvw"/>
-      </contracts>
-      <contracts xmi:id="_6VszUUZuEeCezZc_27qz7w" name="outputFolder">
-        <type xmi:type="types:TypeString" xmi:id="_71dV4EZuEeCezZc_27qz7w"/>
-      </contracts>
-      <contracts xmi:id="__Ts-YEZuEeCezZc_27qz7w" name="fileName">
-        <type xmi:type="types:TypeString" xmi:id="_AaXrgEZvEeCezZc_27qz7w"/>
-      </contracts>
-      <contracts xmi:id="_lkJuoEZ8EeCGdYSfFJe6yw" name="projectName">
-        <type xmi:type="types:TypeString" xmi:id="_q-LuYEZ8EeCGdYSfFJe6yw"/>
-      </contracts>
-    </contractContainer>
-  </ftask:Task>
-  <ftask:Task xmi:id="_y9VTEUZ4EeCGdYSfFJe6yw" name="generatePackageClassesList" kind="JET"
-      implementation="platform:/resource/org.eclipse.egf.usecase.jet/templates/genList.txtjet">
-    <contractContainer xmi:id="_SLv24EZ5EeCGdYSfFJe6yw">
-      <contracts xmi:id="_Scr14EZ5EeCGdYSfFJe6yw" name="parameter">
-        <type xmi:type="types:TypeURI" xmi:id="_lDjqYEZ5EeCGdYSfFJe6yw"/>
-      </contracts>
-      <contracts xmi:id="_VtFPoEZ5EeCGdYSfFJe6yw" name="result" mode="Out">
-        <type xmi:type="types:TypeString" xmi:id="_YQj5AEZ5EeCGdYSfFJe6yw"/>
-      </contracts>
-    </contractContainer>
-  </ftask:Task>
-  <fcore:FactoryComponent xmi:id="_fetacENHEeCCC7hCobhKbA" name="executeJetGeneration">
+  <fcore:FactoryComponent xmi:id="_fetacENHEeCCC7hCobhKbA" name="jet.usecase">
     <contractContainer xmi:id="_h1nAYENHEeCCC7hCobhKbA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_iUFsIENHEeCCC7hCobhKbA"
           name="model" invocationContracts="#_eIZ2IEZ5EeCGdYSfFJe6yw">
@@ -64,4 +36,32 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_GXflwUNEEeCCC7hCobhKbA" name="generateOutputFile" kind="java"
+      implementation="org.eclipse.egf.usecase.jet.task.GenerateClassTaskProduction">
+    <contractContainer xmi:id="_IifdsENEEeCCC7hCobhKbA">
+      <contracts xmi:id="_I1GQoENEEeCCC7hCobhKbA" name="value">
+        <type xmi:type="types:TypeString" xmi:id="_BHgHQENOEeCerfTqV6dDvw"/>
+      </contracts>
+      <contracts xmi:id="_6VszUUZuEeCezZc_27qz7w" name="outputFolder">
+        <type xmi:type="types:TypeString" xmi:id="_71dV4EZuEeCezZc_27qz7w"/>
+      </contracts>
+      <contracts xmi:id="__Ts-YEZuEeCezZc_27qz7w" name="fileName">
+        <type xmi:type="types:TypeString" xmi:id="_AaXrgEZvEeCezZc_27qz7w"/>
+      </contracts>
+      <contracts xmi:id="_lkJuoEZ8EeCGdYSfFJe6yw" name="projectName">
+        <type xmi:type="types:TypeString" xmi:id="_q-LuYEZ8EeCGdYSfFJe6yw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_y9VTEUZ4EeCGdYSfFJe6yw" name="generatePackageClassesList" kind="JET"
+      implementation="platform:/resource/org.eclipse.egf.usecase.jet/templates/genList.txtjet">
+    <contractContainer xmi:id="_SLv24EZ5EeCGdYSfFJe6yw">
+      <contracts xmi:id="_Scr14EZ5EeCGdYSfFJe6yw" name="parameter">
+        <type xmi:type="types:TypeURI" xmi:id="_lDjqYEZ5EeCGdYSfFJe6yw"/>
+      </contracts>
+      <contracts xmi:id="_VtFPoEZ5EeCGdYSfFJe6yw" name="result" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_YQj5AEZ5EeCGdYSfFJe6yw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
 </xmi:XMI>

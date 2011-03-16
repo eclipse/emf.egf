@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
-            id="egf/acceleo3.usecase.library.fcore">
+            id="egf/acceleo3.usecase.fcore">
       </fcore>
    </extension>
 
