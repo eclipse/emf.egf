@@ -490,23 +490,18 @@ public final class ProjectBundleSession {
             return;
         }
 
-        // State for thread synchronization
-        final boolean[] framework = new boolean[] { false };
-        // Storage for thread framework exception
-        final Throwable[] throwable = new Throwable[1];
+        final ObjectHolder<Throwable> thrown = new ObjectHolder<Throwable>();
 
+        final ObjectHolder<Boolean> loadCompleted = new ObjectHolder<Boolean>();
         // Listener
         FrameworkListener listener = new FrameworkListener() {
 
             public void frameworkEvent(FrameworkEvent event) {
                 if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED || event.getType() == FrameworkEvent.ERROR) {
                     if (event.getType() == FrameworkEvent.ERROR) {
-                        throwable[0] = event.getThrowable();
+                        thrown.object = event.getThrowable();
                     }
-                    synchronized (framework) {
-                        framework[0] = true;
-                        framework.notifyAll();
-                    }
+                    loadCompleted.object = Boolean.TRUE;
                 } else if (event.getType() == FrameworkEvent.WARNING) {
                     if (event.getThrowable() != null) {
                         EGFCorePlugin.getDefault().logWarning(event.getThrowable());
@@ -519,21 +514,22 @@ public final class ProjectBundleSession {
 
         // Refresh packages
         packageAdmin.refreshPackages(bundles);
-        synchronized (framework) {
-            while (framework[0] == false) {
-                try {
-                    framework.wait();
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
+
+        int timeout = 20;
+        try {
+            while (loadCompleted.object == null && timeout-- > 0)
+                Thread.sleep(100);
+        } catch (InterruptedException e) {
         }
+        if (timeout < 0)
+            EGFCorePlugin.getDefault().logWarning("Some bundles may not be fully loaded.");
+
         context.removeFrameworkListener(listener);
         context.ungetService(packageAdminReference);
 
         // Throw a CoreException
-        if (throwable[0] != null) {
-            throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, EGFCoreMessages.ProjectBundleSession_PackageRefreshFailure, throwable[0]));
+        if (thrown.object != null) {
+            throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, EGFCoreMessages.ProjectBundleSession_PackageRefreshFailure, thrown.object));
         }
 
     }
