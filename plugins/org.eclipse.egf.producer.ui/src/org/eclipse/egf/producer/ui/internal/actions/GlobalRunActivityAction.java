@@ -109,9 +109,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
             return;
         }
 
-        final Activity[] activity = new Activity[] {
-            (Activity) selection[0]
-        };
+        final Activity[] activity = new Activity[] { (Activity) selection[0] };
 
         // 2 - Validation
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
@@ -187,7 +185,8 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                     ResourceSet resourceSet = new RuntimePlatformResourceSet();
                     activity[0] = (Activity) resourceSet.getEObject(EcoreUtil.getURI(activity[0]), true);
 
-                    // 6 - Locate an ActivityManagerProducer and create an ActivityManager
+                    // 6 - Locate an ActivityManagerProducer and create an
+                    // ActivityManager
                     ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity[0]);
                     activityManager = producer.createActivityManager(activity[0]);
                     // Assign a ProjectBundleSession
@@ -249,7 +248,8 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                 } finally {
                     monitor.done();
                     try {
-                        activityManager.dispose();
+                        if (activityManager != null)
+                            activityManager.dispose();
                     } catch (Throwable t) {
                         EGFProducerUIPlugin.getDefault().logError(t);
                     }
@@ -261,7 +261,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
         };
 
-        // Lock all the workspace        
+        // Lock all the workspace
         activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
         activityJob.setProperty(IProgressConstants.ICON_PROPERTY, IProducerUIImages.EGF_RUN_ACTIVITY);
         activityJob.setPriority(Job.LONG);

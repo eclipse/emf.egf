@@ -181,7 +181,8 @@ public class RunActivityAction implements IObjectActionDelegate {
                     ResourceSet resourceSet = new RuntimePlatformResourceSet();
                     Activity activity = (Activity) resourceSet.getEObject(EcoreUtil.getURI(_activity), true);
 
-                    // 6 - Locate an ActivityManagerProducer and create an ActivityManager
+                    // 6 - Locate an ActivityManagerProducer and create an
+                    // ActivityManager
                     ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
                     activityManager = producer.createActivityManager(activity);
                     // Assign a ProjectBundleSession
@@ -243,7 +244,8 @@ public class RunActivityAction implements IObjectActionDelegate {
                 } finally {
                     monitor.done();
                     try {
-                        activityManager.dispose();
+                        if (activityManager != null)
+                            activityManager.dispose();
                     } catch (Throwable t) {
                         EGFProducerUIPlugin.getDefault().logError(t);
                     }
