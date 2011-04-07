@@ -18,10 +18,10 @@ package org.eclipse.egf.domain.emf;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.domain.Activator;
 import org.eclipse.egf.domain.DomainException;
-import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.LoadableDomainHelper;
 import org.eclipse.egf.domain.Messages;
-import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.EMFDomain;
+import org.eclipse.egf.model.domain.LoadableDomain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,13 +31,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * @author Thomas Guiu
  * 
  */
-public class EMFDomainHelper implements DomainHelper {
+public class EMFDomainHelper extends LoadableDomainHelper {
 
-    public boolean loadDomain(Domain domain) throws DomainException {
+    protected boolean doLoadDomain(LoadableDomain domain) throws DomainException {
         if (domain instanceof EMFDomain) {
             EMFDomain myDomain = (EMFDomain) domain;
-            if (myDomain.isLoaded())
-                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
             myDomain.setLoaded(true);
             // ResourceSet set = new RuntimePlatformResourceSet();
             ResourceSet set = new TargetPlatformResourceSet();
@@ -46,9 +44,6 @@ public class EMFDomainHelper implements DomainHelper {
                 Activator.getDefault().logWarning(Messages.bind(Messages.Load_EMFDomain_error1, domain.getName()));
                 return true;
             }
-            // throw new
-            // DomainException(Messages.bind(Messages.Load_EMFDomain_error1,
-            // domain.getName()));
             Resource domainResource = null;
             try {
                 domainResource = set.getResource(uri, true);
@@ -64,7 +59,7 @@ public class EMFDomainHelper implements DomainHelper {
         return false;
     }
 
-    public boolean unLoadDomain(Domain domain) throws DomainException {
+    protected boolean doUnLoadDomain(LoadableDomain domain) throws DomainException {
         if (domain instanceof EMFDomain) {
             EMFDomain myDomain = (EMFDomain) domain;
             if (!myDomain.getContent().isEmpty()) {

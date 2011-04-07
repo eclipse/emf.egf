@@ -24,23 +24,21 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.domain.Activator;
 import org.eclipse.egf.domain.DomainException;
-import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.LoadableDomainHelper;
 import org.eclipse.egf.domain.Messages;
-import org.eclipse.egf.model.domain.Domain;
+import org.eclipse.egf.model.domain.LoadableDomain;
 import org.eclipse.egf.model.domain.WorkspaceDomain;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public class WorkspaceDomainHelper implements DomainHelper {
+public class WorkspaceDomainHelper extends LoadableDomainHelper {
 
-    public boolean loadDomain(Domain domain) throws DomainException {
+    protected boolean doLoadDomain(LoadableDomain domain) throws DomainException {
         if (domain instanceof WorkspaceDomain) {
             WorkspaceDomain myDomain = (WorkspaceDomain) domain;
             final String path = myDomain.getPath();
-            if (myDomain.isLoaded())
-                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
             myDomain.setLoaded(true);
 
             if (path == null || "".equals(path)) { //$NON-NLS-1$
@@ -72,7 +70,7 @@ public class WorkspaceDomainHelper implements DomainHelper {
         return false;
     }
 
-    public boolean unLoadDomain(Domain domain) throws DomainException {
+    protected boolean doUnLoadDomain(LoadableDomain domain) throws DomainException {
         if (domain instanceof WorkspaceDomain) {
             WorkspaceDomain myDomain = (WorkspaceDomain) domain;
             myDomain.getContent().clear();

@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.IDomainHelper;
 import org.eclipse.egf.domain.emf.EMFDomainHelper;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.EMFDomain;
@@ -169,7 +169,7 @@ public class CreateFcoreHelper {
         ((TypeString) (fc.getContract("generation plugin name").getType())).setValue(generationChain.getFactoryComponentName());
         ((TypeString) (fc.getContract("model name").getType())).setValue(generationChain.getName());
         ((TypeString) (fc.getContract("fcore output path").getType())).setValue(fcoreOutputPath);
-        DomainHelper helper = new EMFDomainHelper();
+        IDomainHelper helper = new EMFDomainHelper();
         try {
             try {
                 if (helper.loadDomain(domain))

@@ -20,22 +20,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.egf.domain.DomainException;
-import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.LoadableDomainHelper;
 import org.eclipse.egf.domain.Messages;
-import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.FilesystemDomain;
+import org.eclipse.egf.model.domain.LoadableDomain;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public class FilesystemDomainHelper implements DomainHelper {
+public class FilesystemDomainHelper extends LoadableDomainHelper {
 
-    public boolean loadDomain(Domain domain) throws DomainException {
+    protected boolean doLoadDomain(LoadableDomain domain) throws DomainException {
         if (domain instanceof FilesystemDomain) {
             FilesystemDomain myDomain = (FilesystemDomain) domain;
-            if (myDomain.isLoaded())
-                throw new DomainException(Messages.bind(Messages.Load_Domain_error1, domain.eClass().getName(), domain.getName()));
             myDomain.setLoaded(true);
             File file = new File(myDomain.getPath());
             if (!file.exists())
@@ -50,7 +48,7 @@ public class FilesystemDomainHelper implements DomainHelper {
         return false;
     }
 
-    public boolean unLoadDomain(Domain domain) throws DomainException {
+    protected boolean doUnLoadDomain(LoadableDomain domain) throws DomainException {
         if (domain instanceof FilesystemDomain) {
             FilesystemDomain myDomain = (FilesystemDomain) domain;
             myDomain.getContent().clear();

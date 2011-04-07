@@ -15,7 +15,7 @@
 
 package org.eclipse.egf.model.editor.contributions;
 
-import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.IDomainHelper;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.emf.ecore.EObject;
@@ -41,7 +41,7 @@ public class DomainEditorContributor extends AbstractTypeEditorContributor {
 
     @Override
     protected String getFilteredType(Object object) {
-        return DomainHelper.class.getName();
+        return IDomainHelper.class.getName();
     }
 
 }

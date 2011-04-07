@@ -17,7 +17,7 @@ import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.domain.DomainException;
-import org.eclipse.egf.domain.DomainHelper;
+import org.eclipse.egf.domain.IDomainHelper;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
@@ -129,10 +129,10 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
                 // Invoke
                 try {
                     try {
-                        DomainHelper.INSTANCE.loadDomains(getElement(), getBundle());
+                        IDomainHelper.INSTANCE.loadDomains(getElement(), getBundle());
                         diagnostic.add(orchestrationManager.invoke(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE)));
                     } finally {
-                        DomainHelper.INSTANCE.unLoadDomains(getElement(), getBundle());
+                        IDomainHelper.INSTANCE.unLoadDomains(getElement(), getBundle());
                     }
                 } catch (DomainException de) {
                     throw new InvocationException(de);

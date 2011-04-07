@@ -27,7 +27,7 @@ import org.osgi.framework.Bundle;
  * @author Thomas Guiu
  * 
  */
-public interface DomainHelper {
+public interface IDomainHelper {
 
     boolean loadDomain(Domain domain) throws DomainException;
 
@@ -42,7 +42,7 @@ public interface DomainHelper {
                     continue;
                 // throw new DomainException(Messages.Load_Domain_error2);
 
-                DomainHelper helper = loadHelper(helperImplementation, bundle);
+                IDomainHelper helper = loadHelper(helperImplementation, bundle);
                 helper.loadDomain(domain);
             }
         }
@@ -53,19 +53,19 @@ public interface DomainHelper {
                 if (helperImplementation == null || "".equals(helperImplementation)) //$NON-NLS-1$
                     continue;
                 // throw new DomainException(Messages.Load_Domain_error2);
-                DomainHelper helper = loadHelper(helperImplementation, bundle);
+                IDomainHelper helper = loadHelper(helperImplementation, bundle);
                 helper.unLoadDomain(domain);
             }
         }
 
-        protected DomainHelper loadHelper(String helperImplementation, Bundle bundle) throws DomainException {
+        protected IDomainHelper loadHelper(String helperImplementation, Bundle bundle) throws DomainException {
             try {
                 final Class<?> clazz = Class.forName(helperImplementation);
-                return (DomainHelper) clazz.newInstance();
+                return (IDomainHelper) clazz.newInstance();
             } catch (Exception e1) {
                 try {
                     final Class<?> loadClass = bundle.loadClass(helperImplementation);
-                    return (DomainHelper) loadClass.newInstance();
+                    return (IDomainHelper) loadClass.newInstance();
                 } catch (Exception e) {
                     throw new DomainException(e);
                 }
