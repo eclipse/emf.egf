@@ -20,8 +20,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IProblemRequestor;
@@ -78,7 +78,7 @@ public class CodegenCompilationUnitHelper {
         }
     }
 
-    public CompilationUnit getCompilationUnit(IMethod implementingMethod) throws JavaModelException {
+    public CompilationUnit getCompilationUnit(IProject codegenProject, IMethod implementingMethod) throws JavaModelException {
         ITypeRoot typeRoot = implementingMethod.getTypeRoot();
 
         if (cache.containsKey(typeRoot))
@@ -95,7 +95,7 @@ public class CodegenCompilationUnitHelper {
 
         // TODO show errors
         if (!problems.isEmpty())
-            throw new IllegalStateException("Compilation problems on plugin " + CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE); //$NON-NLS-1$
+            throw new IllegalStateException("Compilation problems on plugin " + codegenProject.getName()); //$NON-NLS-1$
 
         cache.put(typeRoot, compilationUnit);
 

@@ -27,7 +27,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.emf.pattern.base.ContentType;
-import org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil;
 import org.eclipse.egf.emf.pattern.codegen.model.GIFPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.JetPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.PatternInfo;
@@ -69,7 +68,7 @@ import org.eclipse.jdt.internal.corext.refactoring.structure.ASTNodeSearchUtil;
 @SuppressWarnings("restriction")
 public class CodegenASTHelper {
 
-    protected static final String GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME = ".generator.AbstractGeneratorAdapter"; //$NON-NLS-1$
+    protected static final String GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME = "org.eclipse.emf.codegen.ecore.generator.AbstractGeneratorAdapter"; //$NON-NLS-1$
 
     protected static final String JET_EMITTER_DESCRIPTORS = "JET_EMITTER_DESCRIPTORS"; //$NON-NLS-1$
 
@@ -105,8 +104,8 @@ public class CodegenASTHelper {
             final Map<SearchMatch, IMethod> patternMethods = computeCallingMethods(contentMethod);
             for (final SearchMatch patternMethodSearchMatch : patternMethods.keySet()) {
                 IMethod patternMethod = patternMethods.get(patternMethodSearchMatch);
-                MethodInvocation contentMethodInvocation = getMethodInvocation(patternMethod, patternMethodSearchMatch);
-                MethodDeclaration patternMethodDeclaration = getMethodDeclaration(patternMethod);
+                MethodInvocation contentMethodInvocation = getMethodInvocation(codegenProject, patternMethod, patternMethodSearchMatch);
+                MethodDeclaration patternMethodDeclaration = getMethodDeclaration(codegenProject, patternMethod);
 
                 Map<SearchMatch, IMethod> partMethods = computeCallingMethods(patternMethod);
                 if (partMethods.size() != 1)
@@ -114,7 +113,7 @@ public class CodegenASTHelper {
                 Entry<SearchMatch, IMethod> next = partMethods.entrySet().iterator().next();
                 SearchMatch partMethodSearchMatch = next.getKey();
                 IMethod partMethod = next.getValue();
-                MethodInvocation patternMethodInvocation = getMethodInvocation(partMethod, partMethodSearchMatch);
+                MethodInvocation patternMethodInvocation = getMethodInvocation(codegenProject, partMethod, partMethodSearchMatch);
 
                 PatternInfo patternInfo = createPatternInfo(contentMethod);
                 patternInfo.setPartType(computePartType(partMethod));
@@ -329,8 +328,8 @@ public class CodegenASTHelper {
         return buffer.toString();
     }
 
-    protected MethodInvocation getMethodInvocation(final IMethod patternMethod, final SearchMatch searchMatch) throws JavaModelException {
-        MethodDeclaration methodDeclaration = getMethodDeclaration(patternMethod);
+    protected MethodInvocation getMethodInvocation(IProject codegenProject, final IMethod patternMethod, final SearchMatch searchMatch) throws JavaModelException {
+        MethodDeclaration methodDeclaration = getMethodDeclaration(codegenProject, patternMethod);
 
         final List<MethodInvocation> invocations = new ArrayList<MethodInvocation>();
 
@@ -358,8 +357,8 @@ public class CodegenASTHelper {
         return method.getElementName().substring(GENERATE.length());
     }
 
-    protected MethodDeclaration getMethodDeclaration(final IMethod method) throws JavaModelException {
-        CompilationUnit compilationUnit = compilationUnitHelper.getCompilationUnit(method);
+    protected MethodDeclaration getMethodDeclaration(IProject codegenProject, final IMethod method) throws JavaModelException {
+        CompilationUnit compilationUnit = compilationUnitHelper.getCompilationUnit(codegenProject, method);
         return ASTNodeSearchUtil.getMethodDeclarationNode(method, compilationUnit);
     }
 
@@ -388,7 +387,7 @@ public class CodegenASTHelper {
     }
 
     protected Collection<IMethod> computeContentMethods(IJavaProject javaProject) throws JavaModelException {
-        IType type = javaProject.findType(CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE + GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME);
+        IType type = javaProject.findType(GENERATOR_ABSTRACT_GENERATOR_ADAPTER_CLASSNAME);
         Collection<IMethod> generateContentMethods = new ArrayList<IMethod>();
         for (IMethod method : type.getMethods()) {
             if (method.getElementName().startsWith(GENERATE) && method.getElementName().length() > GENERATE.length()) {

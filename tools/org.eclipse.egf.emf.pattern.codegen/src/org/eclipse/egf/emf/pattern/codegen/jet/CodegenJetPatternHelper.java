@@ -32,10 +32,8 @@ import java.util.regex.Matcher;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.emf.pattern.codegen.CodegenFcoreUtil;
 import org.eclipse.egf.emf.pattern.codegen.CodegenPatternHelper;
 import org.eclipse.egf.emf.pattern.codegen.model.JetAbstractPatternInfo;
 import org.eclipse.egf.emf.pattern.codegen.model.JetPatternInfo;
@@ -168,8 +166,7 @@ public class CodegenJetPatternHelper {
     }
 
     protected String getTemplateURI(String templateRelativePath) {
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE);
-        IResource member = project.findMember(new Path("templates").append(templateRelativePath)); //$NON-NLS-1$
+        IResource member = codegenProject.findMember(new Path("templates").append(templateRelativePath)); //$NON-NLS-1$
         return member.getLocationURI().toString();
     }
 

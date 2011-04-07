@@ -49,8 +49,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  */
 public class CodegenFcoreUtil {
 
-    public static final String ORG_ECLIPSE_EMF_CODEGEN_ECORE = "org.eclipse.emf.codegen.ecore"; //$NON-NLS-1$
-
     public static final String N = "\n"; //$NON-NLS-1$
 
     protected IProject codegenProject;
@@ -116,8 +114,16 @@ public class CodegenFcoreUtil {
         }
     }
 
-    public void createFcoreFile(IFile fcore, final IProgressMonitor monitor) throws Exception {
+    public void createFcoreFile(IFile fcore, String emfCodegenEcoreProjectName, final IProgressMonitor monitor) throws Exception {
         final IOException[] ioExceptions = new IOException[1];
+
+        fcoreProject = fcore.getProject();
+        codegenProject = ResourcesPlugin.getWorkspace().getRoot().getProject(emfCodegenEcoreProjectName);
+        if (!codegenProject.exists())
+            throw new IllegalStateException("Cannot find project " + emfCodegenEcoreProjectName + " in workspace"); //$NON-NLS-1$ //$NON-NLS-2$
+
+        if (!codegenProject.isOpen())
+            throw new IllegalStateException("Project " + emfCodegenEcoreProjectName + " is closed"); //$NON-NLS-1$ //$NON-NLS-2$
 
         // Retrieve our editing domain
         TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
@@ -139,14 +145,6 @@ public class CodegenFcoreUtil {
         emfPatternBaseResource = editingDomain.getResourceSet().getResource(emfPatternBaseResourceURI, true);
         URI mdpstResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore", true); //$NON-NLS-1$
         mdpstResource = editingDomain.getResourceSet().getResource(mdpstResourceURI, true);
-
-        fcoreProject = fcore.getProject();
-        codegenProject = ResourcesPlugin.getWorkspace().getRoot().getProject(CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE);
-        if (!codegenProject.exists())
-            throw new IllegalStateException("Cannot find project " + CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE + " in workspace"); //$NON-NLS-1$ //$NON-NLS-2$
-
-        if (!codegenProject.isOpen())
-            throw new IllegalStateException("Project " + CodegenFcoreUtil.ORG_ECLIPSE_EMF_CODEGEN_ECORE + " is closed"); //$NON-NLS-1$ //$NON-NLS-2$
 
         createCodegenVersionHelper();
         createCodegenPatternHelper();

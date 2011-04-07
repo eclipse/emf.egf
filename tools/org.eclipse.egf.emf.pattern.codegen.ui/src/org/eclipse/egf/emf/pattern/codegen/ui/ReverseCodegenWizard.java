@@ -20,28 +20,29 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 public class ReverseCodegenWizard extends FcoreModelWizard {
 
-    public ReverseCodegenWizard() {
-    }
+    private static final String EMF_PATTERN_FCORE = "EMF_Pattern.fcore"; //$NON-NLS-1$
+
+    private static final String ORG_ECLIPSE_EMF_CODEGEN_ECORE = "org.eclipse.emf.codegen.ecore"; //$NON-NLS-1$
 
     @Override
     public void addPage(IWizardPage page) {
-        if (page == newFileCreationPage) {
+        if (page == newFileCreationPage) 
             super.addPage(page);
-            ((FcoreModelWizardNewFileCreationPage)page).setAllowExistingResources(true);
-        }
     }
-
+    
     @Override
     public void addPages() {
         super.addPages();
-        newFileCreationPage.setFileName(getFileName());
+
+        newFileCreationPage.setFileName(EMF_PATTERN_FCORE);
+        newFileCreationPage.setAllowExistingResources(true);
     }
 
     @Override
     public boolean canFinish() {
-        if (getFcore().exists()) {
+        if (getFcore().exists()) 
             newFileCreationPage.setMessage(Messages.ReverseCodegenWizard_1, IMessageProvider.WARNING);
-        }
+
         return super.canFinish();
     }
     
@@ -70,7 +71,7 @@ public class ReverseCodegenWizard extends FcoreModelWizard {
                     try {
                         SubMonitor.convert(monitor, Messages.ReverseCodegenWizard_0, 1000);
                         try {
-                            new CodegenFcoreUtil().createFcoreFile(fcore, monitor);
+                            new CodegenFcoreUtil().createFcoreFile(fcore, ORG_ECLIPSE_EMF_CODEGEN_ECORE, monitor);
                         } catch (Exception ioe) {
                             throwable[0] = ioe;
                         }
@@ -114,10 +115,6 @@ public class ReverseCodegenWizard extends FcoreModelWizard {
         }
 
         return true;
-    }
-
-    private String getFileName() {
-        return "EMF_Pattern.fcore"; //$NON-NLS-1$
     }
 
     private IFile getFcore() {
