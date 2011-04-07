@@ -1,6 +1,4 @@
+#customization
 eclipse.staging.area=/shared/download-staging.priv/modeling/egf/
 eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org
-#target.os=*
-#target.ws=*
-#target.arch=*
-site.retain.unpacked=true
+
