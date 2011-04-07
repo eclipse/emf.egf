@@ -3,7 +3,8 @@
 %>
 
 #eclipse
-eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org
+#eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org
+eclipse.download.prefix=http://download.eclipse.org
 
 #buckminster installation
 buckminster.download.url=${eclipse.download.prefix}/tools/buckminster
@@ -30,7 +31,5 @@ generator.buildTimestamp.format='v'yyyyMMdd-HHmm
 #signing
 signing.type=eclipse.local
 site.pack200=true
-site.retain.unpacked=false
+site.retain.unpacked=true
 
-#local
-eclipse.download.prefix=http://download.eclipse.org

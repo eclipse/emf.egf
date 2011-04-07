@@ -1,0 +1,6 @@
+#allPlatforms
+buckminster.handle.incomplete.platform.features=true
+target.os=*
+target.ws=*
+target.arch=*
+

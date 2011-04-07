@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getBuildLocations <em>Build Locations</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getCleanBeforeBuild <em>Clean Before Build</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#isAllPlatforms <em>All Platforms</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,6 +106,29 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * @ordered
      */
     protected CLEAN_TYPE cleanBeforeBuild = CLEAN_BEFORE_BUILD_EDEFAULT;
+
+
+
+    /**
+     * The default value of the '{@link #isAllPlatforms() <em>All Platforms</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isAllPlatforms()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean ALL_PLATFORMS_EDEFAULT = false;
+
+
+    /**
+     * The cached value of the '{@link #isAllPlatforms() <em>All Platforms</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isAllPlatforms()
+     * @generated
+     * @ordered
+     */
+    protected boolean allPlatforms = ALL_PLATFORMS_EDEFAULT;
 
 
 
@@ -205,6 +229,32 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public boolean isAllPlatforms() {
+
+        return allPlatforms;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setAllPlatforms(boolean newAllPlatforms) {
+
+        boolean oldAllPlatforms = allPlatforms;
+        allPlatforms = newAllPlatforms;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BUILD_STEP__ALL_PLATFORMS, oldAllPlatforms, allPlatforms));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -247,6 +297,8 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 return getComponents();
             case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
                 return getCleanBeforeBuild();
+            case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
+                return isAllPlatforms();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -271,6 +323,9 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
             case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
                 setCleanBeforeBuild((CLEAN_TYPE)newValue);
                 return;
+            case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
+                setAllPlatforms((Boolean)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -293,6 +348,9 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
             case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
                 setCleanBeforeBuild(CLEAN_BEFORE_BUILD_EDEFAULT);
                 return;
+            case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
+                setAllPlatforms(ALL_PLATFORMS_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -313,6 +371,8 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 return components != null && !components.isEmpty();
             case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
                 return cleanBeforeBuild != CLEAN_BEFORE_BUILD_EDEFAULT;
+            case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
+                return allPlatforms != ALL_PLATFORMS_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -330,6 +390,8 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (cleanBeforeBuild: ");
         result.append(cleanBeforeBuild);
+        result.append(", allPlatforms: ");
+        result.append(allPlatforms);
         result.append(')');
         return result.toString();
     }

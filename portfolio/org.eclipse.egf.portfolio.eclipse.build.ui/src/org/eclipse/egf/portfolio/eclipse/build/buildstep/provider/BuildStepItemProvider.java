@@ -84,6 +84,7 @@ public class BuildStepItemProvider
             super.getPropertyDescriptors(object);
 
             addCleanBeforeBuildPropertyDescriptor(object);
+            addAllPlatformsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -107,6 +108,30 @@ public class BuildStepItemProvider
                  false,
                  false,
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the All Platforms feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addAllPlatformsPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_BuildStep_allPlatforms_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BuildStep_allPlatforms_feature", "_UI_BuildStep_type"),
+                 BuildstepPackage.Literals.BUILD_STEP__ALL_PLATFORMS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
                  null,
                  null));
 
@@ -184,6 +209,7 @@ public class BuildStepItemProvider
 
         switch (notification.getFeatureID(BuildStep.class)) {
             case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
+            case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS:

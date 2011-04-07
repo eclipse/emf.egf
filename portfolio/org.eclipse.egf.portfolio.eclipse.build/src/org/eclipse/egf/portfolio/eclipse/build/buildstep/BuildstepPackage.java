@@ -188,13 +188,22 @@ public interface BuildstepPackage extends EPackage {
     int BUILD_STEP__CLEAN_BEFORE_BUILD = BuildcorePackage.STEP_FEATURE_COUNT + 2;
 
     /**
+     * The feature id for the '<em><b>All Platforms</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUILD_STEP__ALL_PLATFORMS = BuildcorePackage.STEP_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Build Step</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BUILD_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 3;
+    int BUILD_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl <em>Publish Step</em>}' class.
@@ -1054,6 +1063,17 @@ public interface BuildstepPackage extends EPackage {
     EAttribute getBuildStep_CleanBeforeBuild();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms <em>All Platforms</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>All Platforms</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms()
+     * @see #getBuildStep()
+     * @generated
+     */
+    EAttribute getBuildStep_AllPlatforms();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep <em>Publish Step</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1603,6 +1623,14 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute BUILD_STEP__CLEAN_BEFORE_BUILD = eINSTANCE.getBuildStep_CleanBeforeBuild();
+
+        /**
+         * The meta object literal for the '<em><b>All Platforms</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BUILD_STEP__ALL_PLATFORMS = eINSTANCE.getBuildStep_AllPlatforms();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl <em>Publish Step</em>}' class.

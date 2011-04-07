@@ -28,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getBuildLocations <em>Build Locations</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getComponents <em>Components</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getCleanBeforeBuild <em>Clean Before Build</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms <em>All Platforms</em>}</li>
  * </ul>
  * </p>
  *
@@ -136,6 +137,49 @@ public interface BuildStep extends Step {
      */
 
     void setCleanBeforeBuild(CLEAN_TYPE value);
+
+
+
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>All Platforms</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>All Platforms</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>All Platforms</em>' attribute.
+     * @see #setAllPlatforms(boolean)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBuildStep_AllPlatforms()
+     * @model default="false"
+     * @generated
+     */
+
+    boolean isAllPlatforms();
+
+
+
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms <em>All Platforms</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>All Platforms</em>' attribute.
+     * @see #isAllPlatforms()
+     * @generated
+     */
+
+    void setAllPlatforms(boolean value);
 
 
 
