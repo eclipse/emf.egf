@@ -11,6 +11,7 @@
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/helios"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_YpC98GG2EeC2MPWqHbfkpg" url="http://download.eclipse.org/eclipse/updates/3.6"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" name="org.eclipse.egf.releng2"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
