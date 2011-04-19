@@ -28,7 +28,6 @@ import org.eclipse.egf.pattern.execution.InternalPatternContext;
 class StrategyReporter implements PatternExecutionReporter {
 
     private final PatternExecutionReporter delegate;
-    private final StringBuilder buffer = new StringBuilder(1000);
 
     public StrategyReporter(PatternExecutionReporter delegate) {
         super();
@@ -45,7 +44,6 @@ class StrategyReporter implements PatternExecutionReporter {
 
     public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
         delegate.loopFinished(output, outputWithCallBack, context, parameterValues);
-        buffer.append(output);
     }
 
 }
