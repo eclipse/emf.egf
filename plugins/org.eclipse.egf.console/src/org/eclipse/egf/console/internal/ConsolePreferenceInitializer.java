@@ -25,38 +25,38 @@ import org.eclipse.swt.widgets.Display;
  */
 public class ConsolePreferenceInitializer extends AbstractPreferenceInitializer {
 
-  public ConsolePreferenceInitializer() {
-    super();
-  }
-
-  /**
-   * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
-   */
-  @Override
-  public void initializeDefaultPreferences() {
-    final IPreferenceStore prefs = EGFConsolePlugin.getDefault().getPreferenceStore();
-    PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_ERROR_COLOR, new RGB(255, 0, 0));
-    PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_WARNING_COLOR, new RGB(0, 0, 255));
-    PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_INFO_COLOR, new RGB(64, 128, 128));
-    prefs.setDefault(IEGFConsoleConstants.CONSOLE_SHOW_ON_MESSAGE, true);
-    prefs.setDefault(IEGFConsoleConstants.CONSOLE_WRAP, false);
-    prefs.setDefault(IEGFConsoleConstants.CONSOLE_WIDTH, 220);
-    prefs.setDefault(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT, true);
-    prefs.setDefault(IEGFConsoleConstants.CONSOLE_LOW_WATER_MARK, 8 * 1024);
-    prefs.setDefault(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK, 64 * 1024);
-    // can be called in non-UI thread, so we must play safe
-    final Display display = EGFConsolePlugin.getWorkbenchDisplay();
-    if (display != null) {
-      if (Thread.currentThread().equals(display.getThread())) {
-        PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_BACKGROUND_COLOR, display.getSystemColor(SWT.COLOR_LIST_BACKGROUND).getRGB());
-      } else {
-        display.asyncExec(new Runnable() {
-          public void run() {
-            PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_BACKGROUND_COLOR, display.getSystemColor(SWT.COLOR_LIST_BACKGROUND).getRGB());
-          }
-        });
-      }
+    public ConsolePreferenceInitializer() {
+        super();
     }
-  }
+
+    /**
+     * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
+     */
+    @Override
+    public void initializeDefaultPreferences() {
+        final IPreferenceStore prefs = EGFConsolePlugin.getDefault().getPreferenceStore();
+        PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_ERROR_COLOR, new RGB(255, 0, 0));
+        PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_WARNING_COLOR, new RGB(0, 0, 255));
+        PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_INFO_COLOR, new RGB(64, 128, 128));
+        prefs.setDefault(IEGFConsoleConstants.CONSOLE_SHOW_ON_MESSAGE, false);
+        prefs.setDefault(IEGFConsoleConstants.CONSOLE_WRAP, false);
+        prefs.setDefault(IEGFConsoleConstants.CONSOLE_WIDTH, 220);
+        prefs.setDefault(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT, true);
+        prefs.setDefault(IEGFConsoleConstants.CONSOLE_LOW_WATER_MARK, 8 * 1024);
+        prefs.setDefault(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK, 64 * 1024);
+        // can be called in non-UI thread, so we must play safe
+        final Display display = EGFConsolePlugin.getWorkbenchDisplay();
+        if (display != null) {
+            if (Thread.currentThread().equals(display.getThread())) {
+                PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_BACKGROUND_COLOR, display.getSystemColor(SWT.COLOR_LIST_BACKGROUND).getRGB());
+            } else {
+                display.asyncExec(new Runnable() {
+                    public void run() {
+                        PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_BACKGROUND_COLOR, display.getSystemColor(SWT.COLOR_LIST_BACKGROUND).getRGB());
+                    }
+                });
+            }
+        }
+    }
 
 }
