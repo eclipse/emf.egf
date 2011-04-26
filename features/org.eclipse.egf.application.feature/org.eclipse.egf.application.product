@@ -44,7 +44,6 @@
       <feature id="org.eclipse.emf.query"/>
       <feature id="org.eclipse.emf.validation"/>
       <feature id="org.eclipse.emf.converter"/>
-      <feature id="org.eclipse.jet"/>
       <feature id="org.eclipse.jdt"/>
       <feature id="org.eclipse.pde"/>
       <feature id="org.eclipse.platform"/>
