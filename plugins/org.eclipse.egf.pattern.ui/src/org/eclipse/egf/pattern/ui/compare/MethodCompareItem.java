@@ -18,27 +18,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.eclipse.compare.IEditableContent;
 import org.eclipse.compare.IStreamContentAccessor;
 import org.eclipse.compare.ITypedElement;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
+import org.eclipse.egf.pattern.ui.editors.providers.PatternElementLabelProvider;
+import org.eclipse.egf.pattern.utils.TemplateFileHelper;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Matthieu Helleboid
  */
-public class MethodCompareItem implements IStreamContentAccessor, ITypedElement {
+public class MethodCompareItem implements IStreamContentAccessor, ITypedElement, IEditableContent {
 	
-	private String name;
 	private PatternMethod patternMethod;
+	private String name;
 
-	public MethodCompareItem(String name, PatternMethod patternMethod) {
-		this.name = name;
+	public MethodCompareItem(PatternMethod patternMethod) {
 		this.patternMethod = patternMethod;
 	}
 
@@ -73,10 +79,39 @@ public class MethodCompareItem implements IStreamContentAccessor, ITypedElement 
 	}
 
 	public String getName() {
+		if (name == null) {
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(new PatternElementLabelProvider().getText(patternMethod.getPattern()));
+			stringBuilder.append(".");
+			stringBuilder.append(patternMethod.getName());
+			name = stringBuilder.toString();
+		}
 		return name;
 	}
 
 	public String getType() {
 		return ITypedElement.TEXT_TYPE;
+	}
+
+	public boolean isEditable() {
+		return getFile().exists();
+	}
+
+	public ITypedElement replace(ITypedElement dest, ITypedElement src) {
+		return dest;
+	}
+
+	public void setContent(byte[] newContent) {
+		try {
+			TemplateFileHelper.setContent(getFile(), new String(newContent));
+		} catch (CoreException e) {
+			Activator.getDefault().log(new Status(IStatus.ERROR, null, e.getMessage(), e));
+		}
+	}
+
+	public IFile getFile() {
+		URI templateURI = TemplateModelFileHelper.getTemplateURI(patternMethod);
+		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(templateURI.toPlatformString(true)));
+		return file;
 	}
 }

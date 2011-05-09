@@ -34,8 +34,15 @@ public class MethodCompareInput extends CompareEditorInput {
 	}
 
 	protected Object prepareInput(IProgressMonitor pm) {
-		MethodCompareItem left = new MethodCompareItem("Super pattern method", superPatternMethod); //$NON-NLS-1$
-		MethodCompareItem right = new MethodCompareItem("Pattern method " + patternMethod.getName(), patternMethod); //$NON-NLS-1$
+		MethodCompareItem left = new MethodCompareItem(superPatternMethod); //$NON-NLS-1$
+		MethodCompareItem right = new MethodCompareItem(patternMethod); //$NON-NLS-1$
+
+		getCompareConfiguration().setLeftEditable(left.isEditable());
+		getCompareConfiguration().setLeftLabel(left.getName());
+
+		getCompareConfiguration().setRightEditable(right.isEditable());
+		getCompareConfiguration().setRightLabel(right.getName());
+
 		return new DiffNode(left, right);
 	}
 }
