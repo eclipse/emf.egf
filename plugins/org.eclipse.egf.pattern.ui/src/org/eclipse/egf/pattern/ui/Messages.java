@@ -73,6 +73,8 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_button_methodsOpenTemplate;
 
+    public static String ImplementationPage_button_methodsCompare;
+
     public static String ImplementationPage_button_remove;
 
     public static String ImplementationPage_button_up;
@@ -268,6 +270,8 @@ public class Messages extends NLS {
     public static String ViewpointContributor_newPattern_label;
 
     public static String ViewpointContributor_generatePatternAction_label;
+
+    public static String ViewpointContributor_comparePatternAction_label;
 
     public static String ChooseKindPage_radio_backCall;
 

@@ -21,6 +21,8 @@ package org.eclipse.egf.pattern.ui;
  */
 public interface ImageShop {
 
+    public static final String IMG_COMPARE = "obj16/compare.gif"; //$NON-NLS-1$
+
     public static final String IMG_PLUGIN_MF_OBJ = "obj16/plugin_mf_obj.gif"; //$NON-NLS-1$
 
     public static final String IMG_LOCALVARIABLE_OBJ = "obj16/localvariable_obj.gif"; //$NON-NLS-1$

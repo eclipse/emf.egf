@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.compare.CompareUI;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
@@ -45,11 +46,12 @@ import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
+import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.compare.PatternCompareInput;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -84,6 +86,8 @@ public class PatternMenuContributor extends EditorMenuContributor {
 
     private final GeneratePatternAction generateAction = new GeneratePatternAction();
 
+    private final ComparePatternAction compareAction = new ComparePatternAction();
+
     @Override
     public void menuAboutToShow(IMenuManager menuManager) {
         IStructuredSelection selection2 = (IStructuredSelection) _selection;
@@ -110,11 +114,14 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     }
                 }
                 // menuManager.insertBefore("edit", createChildAction);
+                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
             } else if (selection2.getFirstElement() instanceof Pattern) {
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editAction);
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editTemplateAction);
+                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
             } else if (selection2.getFirstElement() instanceof PatternViewpoint) {
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, generateAction);
+                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
             }
         }
     }
@@ -251,6 +258,28 @@ public class PatternMenuContributor extends EditorMenuContributor {
             job.setRule(ProjectHelper.getRule(Collections.singletonList(EMFHelper.getProject(resource))));
             job.schedule();
 
+        }
+    }
+
+    private final class ComparePatternAction extends Action {
+
+        public ComparePatternAction() {
+            super(Messages.ViewpointContributor_comparePatternAction_label);
+            setId(getText());
+        }
+
+        @Override
+        public void run() {
+            if (_selection == null) {
+                throw new IllegalStateException();
+            }
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
+            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject)) {
+                throw new IllegalStateException();
+            }
+            
+            Object input = ((IStructuredSelection) sselection).getFirstElement();
+        	CompareUI.openCompareEditor(new PatternCompareInput(input));
         }
     }
 

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.compare.CompareUI;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.common.helper.EMFHelper;
@@ -37,6 +38,7 @@ import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
+import org.eclipse.egf.pattern.ui.compare.MethodCompareInput;
 import org.eclipse.egf.pattern.ui.contributions.EditHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
@@ -141,6 +143,8 @@ public class ImplementationPage extends PatternEditorPage {
     private Button methodsAdd;
 
     private Button methodsEdit;
+
+    private Button methodsCompare;
 
     private Button methodsRemove;
 
@@ -621,6 +625,30 @@ public class ImplementationPage extends PatternEditorPage {
 
             public void widgetSelected(SelectionEvent e) {
                 openPatternTemplate();
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+                // Nothing to do
+            }
+
+        });
+
+        methodsCompare = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsCompare.setLayoutData(gd);
+        methodsCompare.setImage(Activator.getDefault().getImage(ImageShop.IMG_COMPARE));
+        methodsCompare.setToolTipText(Messages.ImplementationPage_button_methodsCompare);
+        methodsCompare.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                ISelection selection = methodsTableViewer.getSelection();
+                if (selection != null && !selection.isEmpty()) {
+                    PatternMethod patternMethod = (PatternMethod) ((IStructuredSelection) selection).getFirstElement();
+                    Pattern superPattern = patternMethod.getPattern().getSuperPattern();
+                    if (superPattern != null) 
+                    	for (PatternMethod  parentPatternMethod : superPattern.getMethods()) 
+							if (parentPatternMethod.getName().equals(patternMethod.getName())) 
+			                    CompareUI.openCompareEditor(new MethodCompareInput(patternMethod, parentPatternMethod));
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
