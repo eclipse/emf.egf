@@ -38,6 +38,7 @@ import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
+import org.eclipse.egf.pattern.ui.compare.CompareHelper;
 import org.eclipse.egf.pattern.ui.compare.MethodCompareInput;
 import org.eclipse.egf.pattern.ui.contributions.EditHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
@@ -643,11 +644,9 @@ public class ImplementationPage extends PatternEditorPage {
                 ISelection selection = methodsTableViewer.getSelection();
                 if (selection != null && !selection.isEmpty()) {
                     PatternMethod patternMethod = (PatternMethod) ((IStructuredSelection) selection).getFirstElement();
-                    Pattern superPattern = patternMethod.getPattern().getSuperPattern();
-                    if (superPattern != null) 
-                    	for (PatternMethod  parentPatternMethod : superPattern.getMethods()) 
-							if (parentPatternMethod.getName().equals(patternMethod.getName())) 
-			                    CompareUI.openCompareEditor(new MethodCompareInput(patternMethod, parentPatternMethod));
+                    PatternMethod superMethod = CompareHelper.getSuperMethod(patternMethod);
+                    if (superMethod != null)
+	                    CompareUI.openCompareEditor(new MethodCompareInput(patternMethod, superMethod));
                 }
             }
 

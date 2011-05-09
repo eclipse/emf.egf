@@ -81,13 +81,10 @@ public class PatternCompareInput extends CompareEditorInput {
 		};
 		
 		public Object casePattern(Pattern pattern) {
-			if (pattern.getSuperPattern() != null) {
-				for (PatternMethod patternMethod : pattern.getMethods()) {
-					for (PatternMethod superPatternMethod : pattern.getSuperPattern().getMethods()) {
-						if (patternMethod.getName().equals(superPatternMethod.getName()))
-							parent.add((IDiffElement) new MethodCompareInput(patternMethod, superPatternMethod).prepareInput(null));
-					}
-				}
+			for (PatternMethod patternMethod : pattern.getMethods()) {
+				PatternMethod superMethod = CompareHelper.getSuperMethod(patternMethod);
+				if (superMethod != null)
+					parent.add((IDiffElement) new MethodCompareInput(patternMethod, superMethod).prepareInput(null));
 			}
 			return null;
 		};

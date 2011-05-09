@@ -15,6 +15,7 @@ package org.eclipse.egf.pattern.ui.compare;
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.structuremergeviewer.DiffNode;
+import org.eclipse.compare.structuremergeviewer.Differencer;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.pattern.PatternMethod;
 
@@ -42,7 +43,17 @@ public class MethodCompareInput extends CompareEditorInput {
 
 		getCompareConfiguration().setRightEditable(right.isEditable());
 		getCompareConfiguration().setRightLabel(right.getName());
+		
+		DiffNode diffNode = new DiffNode(left, right);
 
-		return new DiffNode(left, right);
+		PatternMethod superSuperPattern = CompareHelper.getSuperMethod(superPatternMethod);
+		if (superSuperPattern != null) {
+			MethodCompareItem ancestor = new MethodCompareItem(superSuperPattern);
+			DiffNode diffNodeWithAncestor = new DiffNode(Differencer.CONFLICTING, ancestor, left, right);
+			getCompareConfiguration().setAncestorLabel("With Ancestor");
+			diffNode.add(diffNodeWithAncestor);
+		}
+
+		return diffNode;
 	}
 }
