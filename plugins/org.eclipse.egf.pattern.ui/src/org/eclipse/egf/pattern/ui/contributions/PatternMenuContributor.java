@@ -114,16 +114,24 @@ public class PatternMenuContributor extends EditorMenuContributor {
                     }
                 }
                 // menuManager.insertBefore("edit", createChildAction);
-                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
             } else if (selection2.getFirstElement() instanceof Pattern) {
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editAction);
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editTemplateAction);
-                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
             } else if (selection2.getFirstElement() instanceof PatternViewpoint) {
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, generateAction);
-                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
             }
         }
+        
+        boolean enableCompareAction = true;
+        for (Object object : selection2.toList()) {
+        	boolean enable = object instanceof PatternViewpoint;
+        	enable = enable || object instanceof PatternLibrary;
+        	enable = enable || object instanceof Pattern;
+			enableCompareAction = enableCompareAction & enable;
+		}
+        
+        if (enableCompareAction)
+            menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, compareAction);
     }
 
     private final class CreatePatternAction extends CreateChildAction {
@@ -268,18 +276,10 @@ public class PatternMenuContributor extends EditorMenuContributor {
             setId(getText());
         }
 
-        @Override
+        @SuppressWarnings("unchecked")
+		@Override
         public void run() {
-            if (_selection == null) {
-                throw new IllegalStateException();
-            }
-            IStructuredSelection sselection = (IStructuredSelection) _selection;
-            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject)) {
-                throw new IllegalStateException();
-            }
-            
-            Object input = ((IStructuredSelection) sselection).getFirstElement();
-        	CompareUI.openCompareEditor(new PatternCompareInput(input));
+            CompareUI.openCompareEditor(new PatternCompareInput(((IStructuredSelection) _selection).toList()));
         }
     }
 

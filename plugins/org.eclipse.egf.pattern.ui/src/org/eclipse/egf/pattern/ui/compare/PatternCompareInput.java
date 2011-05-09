@@ -12,6 +12,8 @@
 
 package org.eclipse.egf.pattern.ui.compare;
 
+import java.util.List;
+
 import org.eclipse.compare.CompareConfiguration;
 import org.eclipse.compare.CompareEditorInput;
 import org.eclipse.compare.structuremergeviewer.DiffNode;
@@ -91,17 +93,18 @@ public class PatternCompareInput extends CompareEditorInput {
 		};
 	}
 	
-	private Object input;
+	private List<Object> inputs;
 
-	public PatternCompareInput(Object input) {
+	public PatternCompareInput(List<Object> inputs) {
 		super(new CompareConfiguration());
 
-		this.input = input;
+		this.inputs = inputs;
 	}
 
 	protected Object prepareInput(IProgressMonitor pm) {
 		DiffNode diffNode = new DiffNode(null, Differencer.NO_CHANGE);
-		new InputDiffNodeSwitch(diffNode).doSwitch((EObject) input);
+		for (Object input : inputs) 
+			new InputDiffNodeSwitch(diffNode).doSwitch((EObject) input);
 		return diffNode;
 	}
 }
