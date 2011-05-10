@@ -44,16 +44,11 @@ public class MethodCompareInput extends CompareEditorInput {
 		getCompareConfiguration().setRightEditable(right.isEditable());
 		getCompareConfiguration().setRightLabel(right.getName());
 		
-		DiffNode diffNode = new DiffNode(left, right);
-
 		PatternMethod superSuperPattern = CompareHelper.getSuperMethod(superPatternMethod);
 		if (superSuperPattern != null) {
 			MethodCompareItem ancestor = new MethodCompareItem(superSuperPattern);
-			DiffNode diffNodeWithAncestor = new DiffNode(Differencer.CONFLICTING, ancestor, left, right);
-			getCompareConfiguration().setAncestorLabel("With Ancestor");
-			diffNode.add(diffNodeWithAncestor);
-		}
-
-		return diffNode;
+			return new DiffNode(Differencer.CONFLICTING, ancestor, left, right);
+		} else
+			return new DiffNode(left, right);
 	}
 }
