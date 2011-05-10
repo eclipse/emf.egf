@@ -1,0 +1,46 @@
+Index: templates/edit/ItemProvider.javajet
+===================================================================
+RCS file: /cvsroot/modeling/org.eclipse.emf/org.eclipse.emf/plugins/org.eclipse.emf.codegen.ecore/templates/edit/ItemProvider.javajet,v
+retrieving revision 1.37
+diff -u -r1.37 ItemProvider.javajet
+--- templates/edit/ItemProvider.javajet	26 Apr 2007 20:54:04 -0000	1.37
++++ templates/edit/ItemProvider.javajet	10 May 2011 09:13:19 -0000
+@@ -319,8 +319,8 @@
+ 				 <%=createClass.getGenPackage().getQualifiedFactoryInstanceAccessor()%>.create<%=createClass.getName()%>()));
+       <%}%>
+ <%@ include file="ItemProvider/newChildDescriptorsCrossPackageFeature.insert.javajetinc" fail="silent"%>
+-<%@ end %><%//ItemProvider/newChildDescriptorsCrossPackageFeature.override.javajetinc%>
+     <%}%>
++<%@ end %><%//ItemProvider/newChildDescriptorsCrossPackageFeature.override.javajetinc%>
+   <%}%>
+   <%for (GenFeature createFeature : genClass.getCreateChildFeatures()) { %>
+     <%if (createFeature.isFeatureMapType()) {%>
+Index: templates/model/Class.javajet
+===================================================================
+RCS file: /cvsroot/modeling/org.eclipse.emf/org.eclipse.emf/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet,v
+retrieving revision 1.70
+diff -u -r1.70 Class.javajet
+--- templates/model/Class.javajet	18 Jun 2007 19:35:21 -0000	1.70
++++ templates/model/Class.javajet	10 May 2011 09:13:22 -0000
+@@ -278,9 +278,9 @@
+ 
+       <%}%>
+     <%}%>
+-  <%}%>
+ <%@ include file="Class/declaredFieldGenFeature.insert.javajetinc" fail="silent" %>
+ <%@ end %><%//Class/declaredFieldGenFeature.override.javajetinc%>
++  <%}%>
+ <%}%>
+ <%if (isImplementation && genClass.hasOffsetCorrection() && !genClass.getImplementedGenFeatures().isEmpty()) {%>
+ 	/**
+@@ -312,7 +312,10 @@
+ 	 */
+ 	<%if (genModel.isPublicConstructors()) {%>public<%} else {%>protected<%}%> <%=genClass.getClassName()%>()
+ 	{
++<%@ include file="Class/egfCustom.constructor.override.javajetinc" fail="alternative" %>
++<%@ start %>
+ 		super();
++<%@ end %>
+   <%for (GenFeature genFeature : genClass.getFlagGenFeatures("true")) {%>
+ 		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG;
+   <%}%>
