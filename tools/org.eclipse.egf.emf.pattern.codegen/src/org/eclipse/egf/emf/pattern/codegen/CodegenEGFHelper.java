@@ -413,15 +413,37 @@ public class CodegenEGFHelper {
     }
 
     protected void populateXmiIds(XMIResource xmiResource, EObject eObject, PartType partType) {
-        Key key = new Key(eObject.eClass(), partType, getSymbolicName(eObject));
-        xmiIds.put(key, xmiResource.getID(eObject));
+        String symbolicName = getSymbolicName(eObject);
+		Key key = new Key(eObject.eClass(), partType, symbolicName);
+		
+//TODO remove me : temp fix for bug 338443
+//        if (symbolicName != null && symbolicName.contains("egfCustom"))
+//        	System.out.println("if (symbolicName != null && symbolicName.equals(\"" + symbolicName + "\")) xmiIds.put(key, \"" + xmiResource.getID(eObject) + "\");");
+
+		xmiIds.put(key, xmiResource.getID(eObject));
         for (EObject child : eObject.eContents()) {
             populateXmiIds(xmiResource, child, partType);
         }
     }
 
     public void fixXmiId(EObject eObject, PartType partType) {
-        Key key = new Key(eObject.eClass(), partType, getSymbolicName(eObject));
+        String symbolicName = getSymbolicName(eObject);
+		Key key = new Key(eObject.eClass(), partType, symbolicName);
+
+		//TODO remove me : temp fix for bug 338443
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Class.Class.egfCustom.constructor.override"))xmiIds.put(key, "_JLBM0HroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Class.Class.egfCustom.constructor.override.header")) xmiIds.put(key, "_JLBM0nroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Class.Class.egfCustom.constructor.override.init")) xmiIds.put(key, "_JLBM03roEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Class.Class.egfCustom.constructor.override.preCondition")) xmiIds.put(key, "_JLBM1HroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Class.Class.egfCustom.constructor.override.footer")) xmiIds.put(key, "_JLBM1nroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Class.Class.egfCustom.constructor.override.doGenerate")) xmiIds.put(key, "_JLBM4XroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override")) xmiIds.put(key, "_K9da0HroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override.header")) xmiIds.put(key, "_K9da0nroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override.init")) xmiIds.put(key, "_K9da03roEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override.preCondition")) xmiIds.put(key, "_K9da1HroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override.footer")) xmiIds.put(key, "_K9da1nroEeC0XN9kbwkPYQ");
+		if (symbolicName != null && symbolicName.equals("org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override.doGenerate")) xmiIds.put(key, "_K9da4XroEeC0XN9kbwkPYQ");
+
         if (xmiIds.get(key) == null)
             return;
 
