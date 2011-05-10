@@ -20,7 +20,8 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "<cq:componentQuery xmlns:cq=\"http://www.eclipse.org/buckminster/CQuery-1.0\" resourceMap=\"build.rmap\">" + NL + "    <cq:rootRequest name=\"";
-    protected final String TEXT_2 = "\" componentType=\"buckminster\"/>" + NL + "" + NL + "    <!-- we ignore source plugin and feature by default -->" + NL + "    <cq:advisorNode namePattern=\".*\\.source\" skipComponent=\"true\"/>" + NL + "" + NL + "    <cq:advisorNode namePattern=\".*\" useMaterialization=\"false\" useTargetPlatform=\"false\"/>" + NL + "</cq:componentQuery>" + NL;
+    protected final String TEXT_2 = "\" componentType=\"buckminster\"/>" + NL + "" + NL + "    <!-- we ignore source plugin and feature by default -->" + NL + "    <cq:advisorNode namePattern=\".*\\.source\" skipComponent=\"true\"/>" + NL + "" + NL + "    <!-- we ignore some missing plugins -->" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.swt\\.(?:gtk\\.(?:linux\\.s390x|aix\\.ppc(?:64)?)|motif\\.solaris\\.sparc|photon\\.qnx\\.x86)\\.source$\" skipComponent=\"true\"/>" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.swt\\.(?:gtk\\.aix\\.ppc(?:64)?|motif\\.solaris\\.sparc|photon\\.qnx\\.x86)$\" skipComponent=\"true\"/>" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.equinox\\.launcher\\.gtk\\.aix\\.ppc(?:64)?$\" skipComponent=\"true\"/>" + NL + "" + NL
+            + "    <cq:advisorNode namePattern=\".*\" useMaterialization=\"false\" useTargetPlatform=\"false\"/>" + NL + "</cq:componentQuery>" + NL;
     protected final String TEXT_3 = NL;
     protected final String TEXT_4 = NL;
 
