@@ -29,17 +29,21 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreProvider;
 import org.eclipse.egf.core.ui.contributor.EditorMenuContributor;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternNameHelper;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
+import org.eclipse.egf.model.pattern.Substitution;
+import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.pattern.commands.PatternLibraryRemovePatternCommand;
 import org.eclipse.egf.model.pattern.template.TemplateModelFileHelper;
 import org.eclipse.egf.pattern.EGFPatternPlugin;
@@ -52,6 +56,7 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionExcepti
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.compare.PatternCompareInput;
+import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -60,6 +65,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IMenuManager;
@@ -68,6 +75,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorPart;
 
@@ -87,6 +95,8 @@ public class PatternMenuContributor extends EditorMenuContributor {
     private final GeneratePatternAction generateAction = new GeneratePatternAction();
 
     private final ComparePatternAction compareAction = new ComparePatternAction();
+
+    private final InheritancePatternSubstitutionAction inheritancePatternSubstitutionAction = new InheritancePatternSubstitutionAction();
 
     @Override
     public void menuAboutToShow(IMenuManager menuManager) {
@@ -119,6 +129,8 @@ public class PatternMenuContributor extends EditorMenuContributor {
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editTemplateAction);
             } else if (selection2.getFirstElement() instanceof PatternViewpoint) {
                 menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, generateAction);
+            } else if (selection2.getFirstElement() instanceof TypePatternSubstitution) {
+                menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, inheritancePatternSubstitutionAction);
             }
         }
         
@@ -280,6 +292,56 @@ public class PatternMenuContributor extends EditorMenuContributor {
 		@Override
         public void run() {
             CompareUI.openCompareEditor(new PatternCompareInput(((IStructuredSelection) _selection).toList()));
+        }
+    }
+    
+    private final class InheritancePatternSubstitutionAction extends Action {
+
+        public InheritancePatternSubstitutionAction() {
+            super(Messages.TypePatternSubstitutionContributor_inheritancePatternSubstitutionAction_label);
+            setId(getText());
+        }
+
+		@Override
+        public void run() {
+            if (_selection == null) {
+                throw new IllegalStateException();
+            }
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
+            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof TypePatternSubstitution)) {
+                throw new IllegalStateException();
+            }
+
+            final TypePatternSubstitution typePatternSubstitution = (TypePatternSubstitution) sselection.getFirstElement();
+            
+            PatternSelectionDialog dialog = new PatternSelectionDialog(_parent.getPage().getWorkbenchWindow().getShell(), false);
+            dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
+            if (dialog.open() != Window.OK) {
+                return;
+            }
+            
+            Object result = dialog.getFirstResult();
+            if (result instanceof Pattern) {
+            	if (((Pattern) result).getSuperPattern() == null) {
+                    MessageDialog.openInformation(_parent.getPage().getWorkbenchWindow().getShell(), Messages.TypePatternSubstitutionContributor_inheritancePatternSubstitutionActionError_label, Messages.TypePatternSubstitutionContributor_inheritancePatternSubstitutionActionError_label);
+            		return;
+            	}
+            	
+                final Pattern pattern = (Pattern) result;
+                TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+                RecordingCommand cmd = new RecordingCommand(editingDomain) {
+
+                    @Override
+                    protected void doExecute() {
+                        Substitution substitution = PatternFactory.eINSTANCE.createSubstitution();
+                        substitution.setReplacedElement(pattern.getSuperPattern());
+                        substitution.getReplacement().add(pattern);
+                        typePatternSubstitution.getSubstitutions().add(substitution);
+                    }
+
+                };
+                editingDomain.getCommandStack().execute(cmd);
+            }
         }
     }
 

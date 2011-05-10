@@ -273,6 +273,10 @@ public class Messages extends NLS {
 
     public static String ViewpointContributor_comparePatternAction_label;
 
+    public static String TypePatternSubstitutionContributor_inheritancePatternSubstitutionAction_label;
+
+    public static String TypePatternSubstitutionContributor_inheritancePatternSubstitutionActionError_label;
+
     public static String ChooseKindPage_radio_backCall;
 
     public static String ListBuilderDialog_initialvalue_label;
