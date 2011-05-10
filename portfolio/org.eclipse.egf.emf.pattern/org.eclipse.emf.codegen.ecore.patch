@@ -1,0 +1,18 @@
+Index: templates/model/Class.javajet
+===================================================================
+RCS file: /cvsroot/modeling/org.eclipse.emf/org.eclipse.emf/plugins/org.eclipse.emf.codegen.ecore/templates/model/Class.javajet,v
+retrieving revision 1.92
+diff -u -r1.92 Class.javajet
+--- templates/model/Class.javajet	7 Apr 2011 19:53:34 -0000	1.92
++++ templates/model/Class.javajet	10 May 2011 13:58:42 -0000
+@@ -393,7 +393,10 @@
+ 	 */
+ 	<%if (genModel.isPublicConstructors()) {%>public<%} else {%>protected<%}%> <%=genClass.getClassName()%>()
+ 	{
++<%@ include file="Class/egfCustom.constructor.override.javajetinc" fail="alternative" %>
++<%@ start %>
+ 		super();
++<%@ end %>
+   <%for (GenFeature genFeature : genClass.getFlagGenFeaturesWithDefault()) {%>
+ 		<%=genClass.getFlagsField(genFeature)%> |= <%=genFeature.getUpperName()%>_EFLAG<%if (!genFeature.isBooleanType()) {%>_DEFAULT<%}%>;
+   <%}%>

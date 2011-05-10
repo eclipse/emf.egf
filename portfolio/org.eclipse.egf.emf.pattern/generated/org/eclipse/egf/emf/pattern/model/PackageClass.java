@@ -1260,7 +1260,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
                             stringBuffer.append(TEXT_170);
                             stringBuffer.append(genModel.getImportedName("org.eclipse.emf.common.util.Reflect"));
                             stringBuffer.append(TEXT_171);
-                            stringBuffer.append(genDataType.getImportedWildcardInstanceClassName());
+                            stringBuffer.append(genDataType.getRawImportedInstanceClassName());
                             stringBuffer.append(TEXT_172);
                             if (genDataType.isArrayType()) {
                                 String componentType = genDataType.getRawImportedInstanceClassName();
