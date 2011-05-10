@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.0/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.0/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-helios">
-  <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" allPlatforms="true">
+  <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA">
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/3.6/portfolio"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DAyR_EeCpI_U_Er6QNA" pattern="org.eclipse.jet.editor" suffix="" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
