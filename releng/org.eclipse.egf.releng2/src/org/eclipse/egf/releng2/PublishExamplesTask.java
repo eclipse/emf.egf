@@ -73,16 +73,28 @@ public class PublishExamplesTask implements ITaskProduction {
     }
 
     protected void publishFeature(String featureName, String outputFolder) {
+        trace("Will create " + outputFolder);
         new File(outputFolder).mkdirs();
+        
+        trace("Will get project " + featureName);
         IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
         IProject featureProject = workspaceRoot.getProject(featureName);
+        trace("project " + featureName + " " + (featureProject.exists() ? " exists" : " doesn't exist"));
+
+        trace("Will get file " + FEATURE_XML);
         IFile featureFile = featureProject.getFile(FEATURE_XML);
+        trace("file " + featureFile + " " + (featureFile.exists() ? " exists" : " doesn't exist"));
+
+        trace("Will load featureModel");
         WorkspaceFeatureModel featureModel = new WorkspaceFeatureModel(featureFile);
         featureModel.load();
+        trace("featureModel loaded");
         
         ArrayList<IProject> projects = new ArrayList<IProject>();
         for (IFeaturePlugin featurePlugin : featureModel.getFeature().getPlugins()) {
+        	trace("Will get project " + featurePlugin.getId());
             IProject pluginProject = workspaceRoot.getProject(featurePlugin.getId());
+            trace("project " + featurePlugin.getId() + " " + (pluginProject.exists() ? " exists" : " doesn't exist"));
             projects.add(pluginProject);
         }
         
@@ -98,12 +110,19 @@ public class PublishExamplesTask implements ITaskProduction {
     private void zipProjects(ArrayList<IProject> projects, IFile featureFile, String zipDisplayName, String zipName) {
         ZipFileExporter fileExporter = null;
         try {
+        	trace("Will publish zip " + zipName);
             fileExporter = new ZipFileExporter(zipName, true);
             final ArrayList<IFile> resourceList = new ArrayList<IFile>();
+
+            trace("Will visit project");
             for (IProject project : projects) 
                 project.accept(new ProjectVisitor(resourceList));
+
+            trace("Will write resources");
             for (IFile resource : resourceList)
                 fileExporter.write(resource, resource.getFullPath().toString().substring(1));
+
+            trace("Will finish");
             fileExporter.finished();
             System.out.println(zipDisplayName + " published"); //$NON-NLS-1$
         } catch (Exception e) {
@@ -118,7 +137,11 @@ public class PublishExamplesTask implements ITaskProduction {
         }
     }
 
-    public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    private void trace(String string) {
+    	System.out.println(string);
+	}
+
+	public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
     }
 
 }
