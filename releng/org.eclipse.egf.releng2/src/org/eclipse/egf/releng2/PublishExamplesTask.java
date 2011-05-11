@@ -80,7 +80,14 @@ public class PublishExamplesTask implements ITaskProduction {
         IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
         IProject featureProject = workspaceRoot.getProject(featureName);
         trace("project " + featureName + " " + (featureProject.exists() ? " exists" : " doesn't exist"));
+        if (!featureProject.exists()) {
+        	featureName = featureName.replace('-', '.');
 
+	        trace("Will get project " + featureName);
+	        featureProject = workspaceRoot.getProject(featureName);
+	        trace("project " + featureName + " " + (featureProject.exists() ? " exists" : " doesn't exist"));
+        }
+        
         trace("Will get file " + FEATURE_XML);
         IFile featureFile = featureProject.getFile(FEATURE_XML);
         trace("file " + featureFile + " " + (featureFile.exists() ? " exists" : " doesn't exist"));
