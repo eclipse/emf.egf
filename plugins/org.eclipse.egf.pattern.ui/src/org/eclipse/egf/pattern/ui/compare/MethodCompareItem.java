@@ -57,8 +57,9 @@ public class MethodCompareItem implements IStreamContentAccessor, ITypedElement,
 			String line = null;
 			StringBuilder stringBuilder = new StringBuilder();
 			while ((line = bufferedReader.readLine()) != null) {
-				stringBuilder.append(line.replace("    ", "\t")); //$NON-NLS-1$
-				stringBuilder.append("\n"); //$NON-NLS-1$
+				if (stringBuilder.length() > 0)
+					stringBuilder.append("\n"); //$NON-NLS-1$
+				stringBuilder.append(line); //$NON-NLS-1$
 			}
 			
 			return new ByteArrayInputStream(stringBuilder.toString().getBytes());
