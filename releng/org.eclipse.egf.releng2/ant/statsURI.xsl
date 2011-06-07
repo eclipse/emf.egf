@@ -13,7 +13,8 @@ Matthieu Helleboid
 	version="1.0">
 	<xsl:output encoding="UTF-8" method="xml" indent="yes" />
 	<xsl:strip-space elements="*" />
-
+	<xsl:param name="releaseName" required="yes" as="xs:string"/>
+	
 	<xsl:template match="/">
 		<xsl:processing-instruction name="artifactRepository">version='1.1.0'</xsl:processing-instruction>
 		<xsl:apply-templates />
@@ -60,8 +61,11 @@ Matthieu Helleboid
 	
  	<xsl:template name="artifact_properties">
  		<properties size='{@size+1}'>
+	 	    <xsl:variable name="version">
+				<xsl:value-of select="substring-before(../@version,'.v')"/>
+			</xsl:variable>
 			<xsl:copy-of select="property" />
-			<property name='download.stats' value='{../@id}.feature-{../@version}' />
+			<property name="download.stats" value="{$releaseName}/{../@id}.feature-{$version}" />
 		</properties>
 	</xsl:template>
 
