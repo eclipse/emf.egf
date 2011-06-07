@@ -25,30 +25,36 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 public class MethodCompareInput extends CompareEditorInput {
 	private PatternMethod patternMethod;
 	private PatternMethod superPatternMethod;
+	private static final MethodCompareLabelProvider labelProvider = new MethodCompareLabelProvider();
 
 	public MethodCompareInput(PatternMethod patternMethod,
 			PatternMethod superPatternMethod) {
-		super(new CompareConfiguration());
-		
+		this(new CompareConfiguration(), patternMethod, superPatternMethod);
+	}
+
+	public MethodCompareInput(CompareConfiguration compareConfiguration,
+			PatternMethod patternMethod,
+			PatternMethod superPatternMethod) {
+		super(compareConfiguration);
+
 		this.patternMethod = patternMethod;
 		this.superPatternMethod = superPatternMethod;
+
 	}
 
 	protected Object prepareInput(IProgressMonitor pm) {
 		MethodCompareItem left = new MethodCompareItem(superPatternMethod); //$NON-NLS-1$
 		MethodCompareItem right = new MethodCompareItem(patternMethod); //$NON-NLS-1$
 
-		getCompareConfiguration().setLeftEditable(left.isEditable());
-		getCompareConfiguration().setLeftLabel(left.getName());
-
-		getCompareConfiguration().setRightEditable(right.isEditable());
-		getCompareConfiguration().setRightLabel(right.getName());
-		
 		PatternMethod superSuperPattern = CompareHelper.getSuperMethod(superPatternMethod);
+		DiffNode diffNode;
 		if (superSuperPattern != null) {
 			MethodCompareItem ancestor = new MethodCompareItem(superSuperPattern);
-			return new DiffNode(Differencer.CONFLICTING, ancestor, left, right);
+			diffNode = new DiffNode(Differencer.CONFLICTING, ancestor, left, right);
 		} else
-			return new DiffNode(left, right);
+			diffNode = new DiffNode(left, right);
+		
+		getCompareConfiguration().setDefaultLabelProvider(labelProvider);
+		return diffNode;
 	}
 }

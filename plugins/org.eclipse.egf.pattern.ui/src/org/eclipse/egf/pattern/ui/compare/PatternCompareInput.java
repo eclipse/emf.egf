@@ -56,9 +56,11 @@ public class PatternCompareInput extends CompareEditorInput {
 
 	private static class InputDiffNodeSwitch extends PatternSwitch<Object> {
 		private DiffNode parent;
+		private CompareConfiguration compareConfiguration;
 
-		public InputDiffNodeSwitch(DiffNode parent) {
+		public InputDiffNodeSwitch(CompareConfiguration compareConfiguration, DiffNode parent) {
 			super();
+			this.compareConfiguration = compareConfiguration;
 			this.parent = parent;
 		}
 		
@@ -66,7 +68,7 @@ public class PatternCompareInput extends CompareEditorInput {
 			for (PatternLibrary patternLibrary : patternViewpoint.getLibraries()) {
 				DiffNode newNode = new InputDiffNode(patternLibrary);
 				parent.add(newNode);
-				new InputDiffNodeSwitch(newNode).doSwitch(patternLibrary);
+				new InputDiffNodeSwitch(compareConfiguration, newNode).doSwitch(patternLibrary);
 			}
 			return null;
 		};
@@ -75,7 +77,7 @@ public class PatternCompareInput extends CompareEditorInput {
 			for (Pattern pattern : patternLibrary.getElements()) {
 				DiffNode newNode = new InputDiffNode(pattern);
 				parent.add(newNode);
-				new InputDiffNodeSwitch(newNode).doSwitch(pattern);
+				new InputDiffNodeSwitch(compareConfiguration, newNode).doSwitch(pattern);
 			}
 			return null;
 		};
@@ -84,7 +86,7 @@ public class PatternCompareInput extends CompareEditorInput {
 			for (PatternMethod patternMethod : pattern.getMethods()) {
 				PatternMethod superMethod = CompareHelper.getSuperMethod(patternMethod);
 				if (superMethod != null)
-					parent.add((IDiffElement) new MethodCompareInput(patternMethod, superMethod).prepareInput(null));
+					parent.add((IDiffElement) new MethodCompareInput(compareConfiguration, patternMethod, superMethod).prepareInput(null));
 			}
 			return null;
 		};
@@ -101,7 +103,7 @@ public class PatternCompareInput extends CompareEditorInput {
 	protected Object prepareInput(IProgressMonitor pm) {
 		DiffNode diffNode = new DiffNode(null, Differencer.NO_CHANGE);
 		for (Object input : inputs) 
-			new InputDiffNodeSwitch(diffNode).doSwitch((EObject) input);
+			new InputDiffNodeSwitch(getCompareConfiguration(), diffNode).doSwitch((EObject) input);
 		return diffNode;
 	}
 }
