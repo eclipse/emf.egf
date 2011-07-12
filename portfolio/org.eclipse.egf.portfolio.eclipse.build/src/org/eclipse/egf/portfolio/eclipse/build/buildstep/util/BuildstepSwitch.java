@@ -170,6 +170,13 @@ public class BuildstepSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildstepPackage.INSTALL_STEP: {
+                InstallStep installStep = (InstallStep)theEObject;
+                T result = caseInstallStep(installStep);
+                if (result == null) result = caseStep(installStep);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildstepPackage.BUILD_LOCATION: {
                 BuildLocation buildLocation = (BuildLocation)theEObject;
                 T result = caseBuildLocation(buildLocation);
@@ -180,6 +187,13 @@ public class BuildstepSwitch<T> {
                 SourceBuildLocation sourceBuildLocation = (SourceBuildLocation)theEObject;
                 T result = caseSourceBuildLocation(sourceBuildLocation);
                 if (result == null) result = caseBuildLocation(sourceBuildLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildstepPackage.BINARY_BUILD_LOCATION: {
+                BinaryBuildLocation binaryBuildLocation = (BinaryBuildLocation)theEObject;
+                T result = caseBinaryBuildLocation(binaryBuildLocation);
+                if (result == null) result = caseBuildLocation(binaryBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -202,6 +216,7 @@ public class BuildstepSwitch<T> {
             case BuildstepPackage.TARGET_PLATFORM_BUILD_LOCATION: {
                 TargetPlatformBuildLocation targetPlatformBuildLocation = (TargetPlatformBuildLocation)theEObject;
                 T result = caseTargetPlatformBuildLocation(targetPlatformBuildLocation);
+                if (result == null) result = caseBinaryBuildLocation(targetPlatformBuildLocation);
                 if (result == null) result = caseBuildLocation(targetPlatformBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -209,6 +224,7 @@ public class BuildstepSwitch<T> {
             case BuildstepPackage.UPDATE_SITE_BUILD_LOCATION: {
                 UpdateSiteBuildLocation updateSiteBuildLocation = (UpdateSiteBuildLocation)theEObject;
                 T result = caseUpdateSiteBuildLocation(updateSiteBuildLocation);
+                if (result == null) result = caseBinaryBuildLocation(updateSiteBuildLocation);
                 if (result == null) result = caseBuildLocation(updateSiteBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -216,7 +232,16 @@ public class BuildstepSwitch<T> {
             case BuildstepPackage.RESULT_STEP_BUILD_LOCATION: {
                 ResultStepBuildLocation resultStepBuildLocation = (ResultStepBuildLocation)theEObject;
                 T result = caseResultStepBuildLocation(resultStepBuildLocation);
+                if (result == null) result = caseBinaryBuildLocation(resultStepBuildLocation);
                 if (result == null) result = caseBuildLocation(resultStepBuildLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildstepPackage.INSTALL_STEP_BUILD_LOCATION: {
+                InstallStepBuildLocation installStepBuildLocation = (InstallStepBuildLocation)theEObject;
+                T result = caseInstallStepBuildLocation(installStepBuildLocation);
+                if (result == null) result = caseBinaryBuildLocation(installStepBuildLocation);
+                if (result == null) result = caseBuildLocation(installStepBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -380,6 +405,21 @@ public class BuildstepSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Install Step</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Install Step</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInstallStep(InstallStep object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Build Location</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -406,6 +446,21 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseSourceBuildLocation(SourceBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Binary Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Binary Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseBinaryBuildLocation(BinaryBuildLocation object) {
         return null;
     }
 
@@ -481,6 +536,21 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseResultStepBuildLocation(ResultStepBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Install Step Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Install Step Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInstallStepBuildLocation(InstallStepBuildLocation object) {
         return null;
     }
 

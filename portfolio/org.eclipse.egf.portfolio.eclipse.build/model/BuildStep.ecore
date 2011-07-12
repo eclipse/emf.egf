@@ -60,6 +60,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateSiteUrls" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstallStep" eSuperTypes="BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profile" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultSteps" upperBound="-1"
+        eType="#//ResultStep"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateSiteUrls" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="featureNames" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="productNames" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="CLEAN_TYPE">
     <eLiterals name="RESULT" literal="Result"/>
     <eLiterals name="WORKSPACE" value="1" literal="Workspace"/>
@@ -74,6 +87,10 @@
       eSuperTypes="#//BuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryBuildLocation" abstract="true"
+      eSuperTypes="#//BuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalBuildLocation" eSuperTypes="#//SourceBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -83,15 +100,19 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TargetPlatformBuildLocation" eSuperTypes="#//BuildLocation">
+  <eClassifiers xsi:type="ecore:EClass" name="TargetPlatformBuildLocation" eSuperTypes="#//BinaryBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UpdateSiteBuildLocation" eSuperTypes="#//BuildLocation">
+  <eClassifiers xsi:type="ecore:EClass" name="UpdateSiteBuildLocation" eSuperTypes="#//BinaryBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResultStepBuildLocation" eSuperTypes="#//BuildLocation">
+  <eClassifiers xsi:type="ecore:EClass" name="ResultStepBuildLocation" eSuperTypes="#//BinaryBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultStep" lowerBound="1"
         eType="#//ResultStep"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstallStepBuildLocation" eSuperTypes="#//BinaryBuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="installStep" lowerBound="1"
+        eType="#//InstallStep"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

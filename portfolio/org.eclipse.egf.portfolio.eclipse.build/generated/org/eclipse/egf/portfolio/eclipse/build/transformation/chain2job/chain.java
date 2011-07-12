@@ -67,7 +67,7 @@ public class chain {
     }
 
     protected void method_addNewJobToChain(final StringBuffer out, final PatternContext ctx) throws Exception {
-        chain.getJobs().add(newJob);
+        chain.getJobs().add(0, newJob);
     }
 
     public boolean preCondition() throws Exception {

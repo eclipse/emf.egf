@@ -8,12 +8,12 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
-public class buckminstercspectargetPlatform {
+public class buckminstercspectargetPlatform_installStep {
     protected static String nl;
 
-    public static synchronized buckminstercspectargetPlatform create(String lineSeparator) {
+    public static synchronized buckminstercspectargetPlatform_installStep create(String lineSeparator) {
         nl = lineSeparator;
-        buckminstercspectargetPlatform result = new buckminstercspectargetPlatform();
+        buckminstercspectargetPlatform_installStep result = new buckminstercspectargetPlatform_installStep();
         nl = null;
         return result;
     }
@@ -23,7 +23,7 @@ public class buckminstercspectargetPlatform {
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
-    public buckminstercspectargetPlatform() {
+    public buckminstercspectargetPlatform_installStep() {
         //Here is the constructor
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -97,6 +97,6 @@ public class buckminstercspectargetPlatform {
     }
 
     public boolean preCondition() throws Exception {
-        return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep));
+        return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep)) && !(new GenerationHelper().hasInstallStepBuildLocation(buildStep));
     }
 }

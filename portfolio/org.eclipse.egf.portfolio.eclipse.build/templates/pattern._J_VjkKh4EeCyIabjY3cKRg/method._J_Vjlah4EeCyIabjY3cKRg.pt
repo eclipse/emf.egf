@@ -1,0 +1,14 @@
+	<locator searchPathRef="targetPlatform" <%=new GenerationHelper().getPatternString(installStepBuildLocation)%> failOnError="false" />
+	<searchPath name="targetPlatform">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.platform">
+			<uri format="plugin/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.platform">
+			<uri format="feature/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+

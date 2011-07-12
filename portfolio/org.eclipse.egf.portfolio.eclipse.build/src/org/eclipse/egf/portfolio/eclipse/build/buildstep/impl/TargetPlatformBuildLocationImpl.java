@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TargetPlatformBuildLocationImpl extends BuildLocationImpl implements TargetPlatformBuildLocation {
+public class TargetPlatformBuildLocationImpl extends BinaryBuildLocationImpl implements TargetPlatformBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

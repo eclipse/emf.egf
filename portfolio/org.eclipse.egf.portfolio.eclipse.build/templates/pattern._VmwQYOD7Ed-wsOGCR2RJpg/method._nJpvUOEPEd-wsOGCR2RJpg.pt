@@ -1,1 +1,1 @@
-chain.getJobs().add(newJob);
+chain.getJobs().add(0, newJob);

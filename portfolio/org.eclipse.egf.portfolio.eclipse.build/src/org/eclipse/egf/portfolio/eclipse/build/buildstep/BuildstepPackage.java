@@ -527,6 +527,88 @@ public interface BuildstepPackage extends EPackage {
     int AGGREGATE_STEP_FEATURE_COUNT = RESULT_STEP_FEATURE_COUNT + 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl <em>Install Step</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStep()
+     * @generated
+     */
+    int INSTALL_STEP = 9;
+
+    /**
+     * The feature id for the '<em><b>Job</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__NAME = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Profile</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__PROFILE = BuildcorePackage.STEP_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Result Steps</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__RESULT_STEPS = BuildcorePackage.STEP_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>Update Site Urls</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__UPDATE_SITE_URLS = BuildcorePackage.STEP_FEATURE_COUNT + 3;
+
+    /**
+     * The feature id for the '<em><b>Feature Names</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__FEATURE_NAMES = BuildcorePackage.STEP_FEATURE_COUNT + 4;
+
+    /**
+     * The feature id for the '<em><b>Product Names</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__PRODUCT_NAMES = BuildcorePackage.STEP_FEATURE_COUNT + 5;
+
+    /**
+     * The number of structural features of the '<em>Install Step</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 6;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -534,7 +616,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBuildLocation()
      * @generated
      */
-    int BUILD_LOCATION = 9;
+    int BUILD_LOCATION = 10;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -571,7 +653,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSourceBuildLocation()
      * @generated
      */
-    int SOURCE_BUILD_LOCATION = 10;
+    int SOURCE_BUILD_LOCATION = 11;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -610,6 +692,52 @@ public interface BuildstepPackage extends EPackage {
     int SOURCE_BUILD_LOCATION_FEATURE_COUNT = BUILD_LOCATION_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl <em>Binary Build Location</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBinaryBuildLocation()
+     * @generated
+     */
+    int BINARY_BUILD_LOCATION = 12;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BINARY_BUILD_LOCATION__PATTERN = BUILD_LOCATION__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Build Step</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BINARY_BUILD_LOCATION__BUILD_STEP = BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BINARY_BUILD_LOCATION__SUFFIX = BUILD_LOCATION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Binary Build Location</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BINARY_BUILD_LOCATION_FEATURE_COUNT = BUILD_LOCATION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.LocalBuildLocationImpl <em>Local Build Location</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -617,7 +745,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getLocalBuildLocation()
      * @generated
      */
-    int LOCAL_BUILD_LOCATION = 11;
+    int LOCAL_BUILD_LOCATION = 13;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -672,7 +800,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSCMBuildLocation()
      * @generated
      */
-    int SCM_BUILD_LOCATION = 12;
+    int SCM_BUILD_LOCATION = 14;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -736,7 +864,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getTargetPlatformBuildLocation()
      * @generated
      */
-    int TARGET_PLATFORM_BUILD_LOCATION = 13;
+    int TARGET_PLATFORM_BUILD_LOCATION = 15;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -745,7 +873,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TARGET_PLATFORM_BUILD_LOCATION__PATTERN = BUILD_LOCATION__PATTERN;
+    int TARGET_PLATFORM_BUILD_LOCATION__PATTERN = BINARY_BUILD_LOCATION__PATTERN;
 
     /**
      * The feature id for the '<em><b>Build Step</b></em>' container reference.
@@ -754,7 +882,16 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TARGET_PLATFORM_BUILD_LOCATION__BUILD_STEP = BUILD_LOCATION__BUILD_STEP;
+    int TARGET_PLATFORM_BUILD_LOCATION__BUILD_STEP = BINARY_BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TARGET_PLATFORM_BUILD_LOCATION__SUFFIX = BINARY_BUILD_LOCATION__SUFFIX;
 
     /**
      * The feature id for the '<em><b>Path</b></em>' attribute.
@@ -763,7 +900,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TARGET_PLATFORM_BUILD_LOCATION__PATH = BUILD_LOCATION_FEATURE_COUNT + 0;
+    int TARGET_PLATFORM_BUILD_LOCATION__PATH = BINARY_BUILD_LOCATION_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Target Platform Build Location</em>' class.
@@ -772,7 +909,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int TARGET_PLATFORM_BUILD_LOCATION_FEATURE_COUNT = BUILD_LOCATION_FEATURE_COUNT + 1;
+    int TARGET_PLATFORM_BUILD_LOCATION_FEATURE_COUNT = BINARY_BUILD_LOCATION_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.UpdateSiteBuildLocationImpl <em>Update Site Build Location</em>}' class.
@@ -782,7 +919,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getUpdateSiteBuildLocation()
      * @generated
      */
-    int UPDATE_SITE_BUILD_LOCATION = 14;
+    int UPDATE_SITE_BUILD_LOCATION = 16;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -791,7 +928,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int UPDATE_SITE_BUILD_LOCATION__PATTERN = BUILD_LOCATION__PATTERN;
+    int UPDATE_SITE_BUILD_LOCATION__PATTERN = BINARY_BUILD_LOCATION__PATTERN;
 
     /**
      * The feature id for the '<em><b>Build Step</b></em>' container reference.
@@ -800,7 +937,16 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int UPDATE_SITE_BUILD_LOCATION__BUILD_STEP = BUILD_LOCATION__BUILD_STEP;
+    int UPDATE_SITE_BUILD_LOCATION__BUILD_STEP = BINARY_BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UPDATE_SITE_BUILD_LOCATION__SUFFIX = BINARY_BUILD_LOCATION__SUFFIX;
 
     /**
      * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -809,7 +955,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int UPDATE_SITE_BUILD_LOCATION__URL = BUILD_LOCATION_FEATURE_COUNT + 0;
+    int UPDATE_SITE_BUILD_LOCATION__URL = BINARY_BUILD_LOCATION_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Update Site Build Location</em>' class.
@@ -818,7 +964,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int UPDATE_SITE_BUILD_LOCATION_FEATURE_COUNT = BUILD_LOCATION_FEATURE_COUNT + 1;
+    int UPDATE_SITE_BUILD_LOCATION_FEATURE_COUNT = BINARY_BUILD_LOCATION_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ResultStepBuildLocationImpl <em>Result Step Build Location</em>}' class.
@@ -828,7 +974,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getResultStepBuildLocation()
      * @generated
      */
-    int RESULT_STEP_BUILD_LOCATION = 15;
+    int RESULT_STEP_BUILD_LOCATION = 17;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -837,7 +983,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESULT_STEP_BUILD_LOCATION__PATTERN = BUILD_LOCATION__PATTERN;
+    int RESULT_STEP_BUILD_LOCATION__PATTERN = BINARY_BUILD_LOCATION__PATTERN;
 
     /**
      * The feature id for the '<em><b>Build Step</b></em>' container reference.
@@ -846,7 +992,16 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESULT_STEP_BUILD_LOCATION__BUILD_STEP = BUILD_LOCATION__BUILD_STEP;
+    int RESULT_STEP_BUILD_LOCATION__BUILD_STEP = BINARY_BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_STEP_BUILD_LOCATION__SUFFIX = BINARY_BUILD_LOCATION__SUFFIX;
 
     /**
      * The feature id for the '<em><b>Result Step</b></em>' reference.
@@ -855,7 +1010,7 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESULT_STEP_BUILD_LOCATION__RESULT_STEP = BUILD_LOCATION_FEATURE_COUNT + 0;
+    int RESULT_STEP_BUILD_LOCATION__RESULT_STEP = BINARY_BUILD_LOCATION_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Result Step Build Location</em>' class.
@@ -864,7 +1019,62 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int RESULT_STEP_BUILD_LOCATION_FEATURE_COUNT = BUILD_LOCATION_FEATURE_COUNT + 1;
+    int RESULT_STEP_BUILD_LOCATION_FEATURE_COUNT = BINARY_BUILD_LOCATION_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepBuildLocationImpl <em>Install Step Build Location</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepBuildLocationImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStepBuildLocation()
+     * @generated
+     */
+    int INSTALL_STEP_BUILD_LOCATION = 18;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP_BUILD_LOCATION__PATTERN = BINARY_BUILD_LOCATION__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Build Step</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP_BUILD_LOCATION__BUILD_STEP = BINARY_BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP_BUILD_LOCATION__SUFFIX = BINARY_BUILD_LOCATION__SUFFIX;
+
+    /**
+     * The feature id for the '<em><b>Install Step</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP_BUILD_LOCATION__INSTALL_STEP = BINARY_BUILD_LOCATION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Install Step Build Location</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP_BUILD_LOCATION_FEATURE_COUNT = BINARY_BUILD_LOCATION_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl <em>Component</em>}' class.
@@ -874,7 +1084,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getComponent()
      * @generated
      */
-    int COMPONENT = 16;
+    int COMPONENT = 19;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -911,7 +1121,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getPlugin()
      * @generated
      */
-    int PLUGIN = 17;
+    int PLUGIN = 20;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -948,7 +1158,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getFeature()
      * @generated
      */
-    int FEATURE = 18;
+    int FEATURE = 21;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -985,7 +1195,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getCLEAN_TYPE()
      * @generated
      */
-    int CLEAN_TYPE = 19;
+    int CLEAN_TYPE = 22;
 
 
     /**
@@ -1310,6 +1520,82 @@ public interface BuildstepPackage extends EPackage {
     EAttribute getAggregateStep_UpdateSiteUrls();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep <em>Install Step</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Install Step</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep
+     * @generated
+     */
+    EClass getInstallStep();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getName()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EAttribute getInstallStep_Name();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProfile <em>Profile</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Profile</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProfile()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EAttribute getInstallStep_Profile();
+
+    /**
+     * Returns the meta object for the reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getResultSteps <em>Result Steps</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Result Steps</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getResultSteps()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EReference getInstallStep_ResultSteps();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getUpdateSiteUrls <em>Update Site Urls</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Update Site Urls</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getUpdateSiteUrls()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EAttribute getInstallStep_UpdateSiteUrls();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getFeatureNames <em>Feature Names</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Feature Names</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getFeatureNames()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EAttribute getInstallStep_FeatureNames();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProductNames <em>Product Names</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Product Names</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProductNames()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EAttribute getInstallStep_ProductNames();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation <em>Build Location</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1361,6 +1647,27 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     EAttribute getSourceBuildLocation_Suffix();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation <em>Binary Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Binary Build Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation
+     * @generated
+     */
+    EClass getBinaryBuildLocation();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation#getSuffix <em>Suffix</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Suffix</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation#getSuffix()
+     * @see #getBinaryBuildLocation()
+     * @generated
+     */
+    EAttribute getBinaryBuildLocation_Suffix();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation <em>Local Build Location</em>}'.
@@ -1477,6 +1784,27 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     EReference getResultStepBuildLocation_ResultStep();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation <em>Install Step Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Install Step Build Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation
+     * @generated
+     */
+    EClass getInstallStepBuildLocation();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation#getInstallStep <em>Install Step</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Install Step</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation#getInstallStep()
+     * @see #getInstallStepBuildLocation()
+     * @generated
+     */
+    EReference getInstallStepBuildLocation_InstallStep();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Component <em>Component</em>}'.
@@ -1821,6 +2149,64 @@ public interface BuildstepPackage extends EPackage {
         EAttribute AGGREGATE_STEP__UPDATE_SITE_URLS = eINSTANCE.getAggregateStep_UpdateSiteUrls();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl <em>Install Step</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStep()
+         * @generated
+         */
+        EClass INSTALL_STEP = eINSTANCE.getInstallStep();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INSTALL_STEP__NAME = eINSTANCE.getInstallStep_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Profile</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INSTALL_STEP__PROFILE = eINSTANCE.getInstallStep_Profile();
+
+        /**
+         * The meta object literal for the '<em><b>Result Steps</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INSTALL_STEP__RESULT_STEPS = eINSTANCE.getInstallStep_ResultSteps();
+
+        /**
+         * The meta object literal for the '<em><b>Update Site Urls</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INSTALL_STEP__UPDATE_SITE_URLS = eINSTANCE.getInstallStep_UpdateSiteUrls();
+
+        /**
+         * The meta object literal for the '<em><b>Feature Names</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INSTALL_STEP__FEATURE_NAMES = eINSTANCE.getInstallStep_FeatureNames();
+
+        /**
+         * The meta object literal for the '<em><b>Product Names</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INSTALL_STEP__PRODUCT_NAMES = eINSTANCE.getInstallStep_ProductNames();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1863,6 +2249,24 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute SOURCE_BUILD_LOCATION__SUFFIX = eINSTANCE.getSourceBuildLocation_Suffix();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl <em>Binary Build Location</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBinaryBuildLocation()
+         * @generated
+         */
+        EClass BINARY_BUILD_LOCATION = eINSTANCE.getBinaryBuildLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Suffix</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BINARY_BUILD_LOCATION__SUFFIX = eINSTANCE.getBinaryBuildLocation_Suffix();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.LocalBuildLocationImpl <em>Local Build Location</em>}' class.
@@ -1961,6 +2365,24 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EReference RESULT_STEP_BUILD_LOCATION__RESULT_STEP = eINSTANCE.getResultStepBuildLocation_ResultStep();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepBuildLocationImpl <em>Install Step Build Location</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepBuildLocationImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStepBuildLocation()
+         * @generated
+         */
+        EClass INSTALL_STEP_BUILD_LOCATION = eINSTANCE.getInstallStepBuildLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Install Step</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INSTALL_STEP_BUILD_LOCATION__INSTALL_STEP = eINSTANCE.getInstallStepBuildLocation_InstallStep();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl <em>Component</em>}' class.

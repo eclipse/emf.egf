@@ -51,6 +51,10 @@ public class GenerationHelper {
         return containsClass(eObject, BuildstepPackage.eINSTANCE.getTargetPlatformBuildLocation());
     }
 
+    public boolean hasInstallStepBuildLocation(EObject eObject) {
+        return containsClass(eObject, BuildstepPackage.eINSTANCE.getInstallStepBuildLocation());
+    }
+
     private boolean containsClass(EObject eObject, EClass eClass) {
         TreeIterator<EObject> eAllContents = eObject.eAllContents();
         while (eAllContents.hasNext()) {

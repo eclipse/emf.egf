@@ -89,11 +89,13 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.JAVADOC_STEP: return createJavadocStep();
             case BuildstepPackage.EGF_STEP: return createEgfStep();
             case BuildstepPackage.AGGREGATE_STEP: return createAggregateStep();
+            case BuildstepPackage.INSTALL_STEP: return createInstallStep();
             case BuildstepPackage.LOCAL_BUILD_LOCATION: return createLocalBuildLocation();
             case BuildstepPackage.SCM_BUILD_LOCATION: return createSCMBuildLocation();
             case BuildstepPackage.TARGET_PLATFORM_BUILD_LOCATION: return createTargetPlatformBuildLocation();
             case BuildstepPackage.UPDATE_SITE_BUILD_LOCATION: return createUpdateSiteBuildLocation();
             case BuildstepPackage.RESULT_STEP_BUILD_LOCATION: return createResultStepBuildLocation();
+            case BuildstepPackage.INSTALL_STEP_BUILD_LOCATION: return createInstallStepBuildLocation();
             case BuildstepPackage.PLUGIN: return createPlugin();
             case BuildstepPackage.FEATURE: return createFeature();
             default:
@@ -169,6 +171,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     public ResultStepBuildLocation createResultStepBuildLocation() {
         ResultStepBuildLocationImpl resultStepBuildLocation = new ResultStepBuildLocationImpl();
         return resultStepBuildLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InstallStepBuildLocation createInstallStepBuildLocation() {
+        InstallStepBuildLocationImpl installStepBuildLocation = new InstallStepBuildLocationImpl();
+        return installStepBuildLocation;
     }
 
     /**
@@ -259,6 +271,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     public AggregateStep createAggregateStep() {
         AggregateStepImpl aggregateStep = new AggregateStepImpl();
         return aggregateStep;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InstallStep createInstallStep() {
+        InstallStepImpl installStep = new InstallStepImpl();
+        return installStep;
     }
 
     /**

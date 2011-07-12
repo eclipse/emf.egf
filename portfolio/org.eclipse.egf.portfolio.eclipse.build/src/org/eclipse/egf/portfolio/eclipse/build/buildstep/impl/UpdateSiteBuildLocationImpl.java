@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class UpdateSiteBuildLocationImpl extends BuildLocationImpl implements UpdateSiteBuildLocation {
+public class UpdateSiteBuildLocationImpl extends BinaryBuildLocationImpl implements UpdateSiteBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

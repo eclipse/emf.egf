@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ResultStepBuildLocationImpl extends BuildLocationImpl implements ResultStepBuildLocation {
+public class ResultStepBuildLocationImpl extends BinaryBuildLocationImpl implements ResultStepBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

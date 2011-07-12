@@ -30,7 +30,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep;
  * @model
  * @generated
  */
-public interface TargetPlatformBuildLocation extends BuildLocation {
+public interface TargetPlatformBuildLocation extends BinaryBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

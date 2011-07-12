@@ -75,6 +75,15 @@ public interface BuildstepFactory extends EFactory {
     ResultStepBuildLocation createResultStepBuildLocation();
 
     /**
+     * Returns a new object of class '<em>Install Step Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Install Step Build Location</em>'.
+     * @generated
+     */
+    InstallStepBuildLocation createInstallStepBuildLocation();
+
+    /**
      * Returns a new object of class '<em>Target Platform Build Location</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,6 +145,15 @@ public interface BuildstepFactory extends EFactory {
      * @generated
      */
     AggregateStep createAggregateStep();
+
+    /**
+     * Returns a new object of class '<em>Install Step</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Install Step</em>'.
+     * @generated
+     */
+    InstallStep createInstallStep();
 
     /**
 	 * Returns a new object of class '<em>Javadoc Step</em>'.

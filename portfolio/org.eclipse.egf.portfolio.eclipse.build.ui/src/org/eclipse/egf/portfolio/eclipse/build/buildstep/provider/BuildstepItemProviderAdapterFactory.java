@@ -291,6 +291,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected InstallStepItemProvider installStepItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createInstallStepAdapter() {
+        if (installStepItemProvider == null) {
+            installStepItemProvider = new InstallStepItemProvider(this);
+        }
+
+        return installStepItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -403,6 +426,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         }
 
         return resultStepBuildLocationItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected InstallStepBuildLocationItemProvider installStepBuildLocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createInstallStepBuildLocationAdapter() {
+        if (installStepBuildLocationItemProvider == null) {
+            installStepBuildLocationItemProvider = new InstallStepBuildLocationItemProvider(this);
+        }
+
+        return installStepBuildLocationItemProvider;
     }
 
     /**
@@ -558,11 +604,13 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (javadocStepItemProvider != null) javadocStepItemProvider.dispose();
         if (egfStepItemProvider != null) egfStepItemProvider.dispose();
         if (aggregateStepItemProvider != null) aggregateStepItemProvider.dispose();
+        if (installStepItemProvider != null) installStepItemProvider.dispose();
         if (localBuildLocationItemProvider != null) localBuildLocationItemProvider.dispose();
         if (scmBuildLocationItemProvider != null) scmBuildLocationItemProvider.dispose();
         if (targetPlatformBuildLocationItemProvider != null) targetPlatformBuildLocationItemProvider.dispose();
         if (updateSiteBuildLocationItemProvider != null) updateSiteBuildLocationItemProvider.dispose();
         if (resultStepBuildLocationItemProvider != null) resultStepBuildLocationItemProvider.dispose();
+        if (installStepBuildLocationItemProvider != null) installStepBuildLocationItemProvider.dispose();
         if (pluginItemProvider != null) pluginItemProvider.dispose();
         if (featureItemProvider != null) featureItemProvider.dispose();
     }
@@ -680,6 +728,15 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__STEPS,
                  BuildstepFactory.eINSTANCE.createAggregateStep()));
+
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createInstallStep()));
 
 
 

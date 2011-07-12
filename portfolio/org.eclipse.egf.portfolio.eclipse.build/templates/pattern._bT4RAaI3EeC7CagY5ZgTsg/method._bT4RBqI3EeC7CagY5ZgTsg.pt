@@ -1,0 +1,55 @@
+<%
+ArrayList<PublishStep> publishSteps = new ArrayList<PublishStep>();
+for (ResultStep resultStep : installStep.getResultSteps()) {
+	if (resultStep instanceof PublishStep)
+		publishSteps.add((PublishStep) resultStep);
+	else if (resultStep instanceof AggregateStep) 
+		publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
+}%>
+	<target name="<%=new GenerationHelper().getPositionString(installStep)%>" depends="init,get.director" >
+        <eclipse.launch app="director">
+            <args>
+                <jvmarg value="-Declipse.p2.mirrors=false" />
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
+%>
+
+            	<arg value="-roaming" />
+            	<arg value="-profileProperties" />
+                <arg value="org.eclipse.update.install.features=true " />
+
+                <arg value="-d" />
+                <arg value="${publish}/<%=installStep.getName()%>" />
+                
+                <arg value="-p" />
+                <arg value="<%=installStep.getProfile()%>" />
+
+<%for(String updateSiteUrl : installStep.getUpdateSiteUrls()) {%>
+                <arg value="-r" />
+                <arg value="<%=updateSiteUrl%>" />
+<%}%>
+
+<%for (PublishStep publishStep : publishSteps) {%>
+<%	String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";%>
+                <arg value="-r" />
+                <arg value="<%=location%>" />
+<%}%>
+
+<%for(String featureName : installStep.getFeatureNames()) {%>
+                <arg value="-i" />
+                <arg value="<%=featureName%>.feature.group" />
+<%}%>                
+
+<%for(String productName : installStep.getProductNames()) {%>
+                <arg value="-i" />
+                <arg value="<%=productName%>" />
+<%}%>
+
+<%for (PublishStep publishStep : publishSteps) {%>
+                <arg value="-i" />
+                <arg value="<%=publishStep.getComponent().getName()%>.feature.group" />
+<%}%>
+
+            </args>
+        </eclipse.launch>
+	</target>	

@@ -125,12 +125,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createAggregateStepAdapter();
             }
             @Override
+            public Adapter caseInstallStep(InstallStep object) {
+                return createInstallStepAdapter();
+            }
+            @Override
             public Adapter caseBuildLocation(BuildLocation object) {
                 return createBuildLocationAdapter();
             }
             @Override
             public Adapter caseSourceBuildLocation(SourceBuildLocation object) {
                 return createSourceBuildLocationAdapter();
+            }
+            @Override
+            public Adapter caseBinaryBuildLocation(BinaryBuildLocation object) {
+                return createBinaryBuildLocationAdapter();
             }
             @Override
             public Adapter caseLocalBuildLocation(LocalBuildLocation object) {
@@ -151,6 +159,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseResultStepBuildLocation(ResultStepBuildLocation object) {
                 return createResultStepBuildLocationAdapter();
+            }
+            @Override
+            public Adapter caseInstallStepBuildLocation(InstallStepBuildLocation object) {
+                return createInstallStepBuildLocationAdapter();
             }
             @Override
             public Adapter caseComponent(Component object) {
@@ -319,6 +331,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep <em>Install Step</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep
+     * @generated
+     */
+    public Adapter createInstallStepAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation <em>Build Location</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -343,6 +369,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSourceBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation <em>Binary Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation
+     * @generated
+     */
+    public Adapter createBinaryBuildLocationAdapter() {
         return null;
     }
 
@@ -413,6 +453,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createResultStepBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation <em>Install Step Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation
+     * @generated
+     */
+    public Adapter createInstallStepBuildLocationAdapter() {
         return null;
     }
 

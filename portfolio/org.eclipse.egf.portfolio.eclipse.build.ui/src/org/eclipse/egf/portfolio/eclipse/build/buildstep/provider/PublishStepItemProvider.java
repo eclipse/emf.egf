@@ -173,9 +173,10 @@ public class PublishStepItemProvider
      */
     @Override
     public String getText(Object object) {
-
         PublishStep publishStep = (PublishStep)object;
-        return getString("_UI_PublishStep_type") + " " + publishStep.isSigning();
+        if (publishStep.getComponent() != null)
+        	return getString("_UI_PublishStep_type") + " " + publishStep.getComponent().getName();
+        return super.getText(object);
 
     }
 

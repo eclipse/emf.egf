@@ -38,7 +38,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class ResultStepBuildLocationItemProvider
-    extends BuildLocationItemProvider
+    extends BinaryBuildLocationItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
