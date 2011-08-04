@@ -4,7 +4,6 @@
       label="%featureName"
       version="0.6.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.egf.eclipse.resources.mgt"
       image="eclipse_update_120.jpg">
 
    <description>
