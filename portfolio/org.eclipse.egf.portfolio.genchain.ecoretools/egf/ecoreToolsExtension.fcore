@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <ftask:Task xmi:id="_k2c0kHSyEeC3aZAQAbtFJA" name="ecoreToolsExtension" kind="java"
+      implementation="org.eclipse.egf.portfolio.genchain.ecoretools.task.EcoreToolsTaskProduction">
+    <contractContainer xmi:id="_uT6NgHSyEeC3aZAQAbtFJA">
+      <contracts xmi:id="_u0BQ8HSyEeC3aZAQAbtFJA" name="model" mandatory="true">
+        <type xmi:type="types:TypeURI" xmi:id="_1TYhEHSyEeC3aZAQAbtFJA"/>
+      </contracts>
+      <contracts xmi:id="_3melEHSyEeC3aZAQAbtFJA" name="fileName" mandatory="true">
+        <type xmi:type="types:TypeString" xmi:id="_EMmYEHSzEeC3aZAQAbtFJA"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <fcore:FactoryComponent xmi:id="_wQgLIHS0EeC3aZAQAbtFJA" name="ecoreToolsExtension">
+    <contractContainer xmi:id="_22kgMHS0EeC3aZAQAbtFJA">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_3KhW8HS0EeC3aZAQAbtFJA"
+          name="model" mandatory="true" invocationContracts="#_ydfnIHS0EeC3aZAQAbtFJA">
+        <type xmi:type="types:TypeURI" xmi:id="_6wEhUHS0EeC3aZAQAbtFJA" />
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_3dbE0HS0EeC3aZAQAbtFJA"
+          name="fileName" mandatory="true" invocationContracts="#_ywQLEHS0EeC3aZAQAbtFJA">
+        <type xmi:type="types:TypeString" xmi:id="_7WeaAHS0EeC3aZAQAbtFJA" />
+      </contracts>
+    </contractContainer>
+    <viewpointContainer xmi:id="_Dy-koXyqEeC0R_Dv0EljeA">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_ELRI0HyqEeC0R_Dv0EljeA">
+        <libraries xmi:id="_FUlhUHyqEeC0R_Dv0EljeA" name="org.eclipse.egf.portfolio.genchain.ecoretools.pattern">
+          <elements xmi:id="_Mf1nEHyqEeC0R_Dv0EljeA" name="ecoreTools" headerMethod="#_Mf1nEnyqEeC0R_Dv0EljeA"
+              conditionMethod="#_Mf1nFHyqEeC0R_Dv0EljeA" initMethod="#_Mf1nE3yqEeC0R_Dv0EljeA"
+              footerMethod="#_Mf1nFnyqEeC0R_Dv0EljeA">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_Mf1nEXyqEeC0R_Dv0EljeA"
+                name="Java"/>
+            <methods xmi:id="_Mf1nEnyqEeC0R_Dv0EljeA" name="header" patternFilePath="templates/pattern._Mf1nEHyqEeC0R_Dv0EljeA/method._Mf1nEnyqEeC0R_Dv0EljeA.pt"/>
+            <methods xmi:id="_Mf1nE3yqEeC0R_Dv0EljeA" name="init" patternFilePath="templates/pattern._Mf1nEHyqEeC0R_Dv0EljeA/method._Mf1nE3yqEeC0R_Dv0EljeA.pt"/>
+            <methods xmi:id="_Mf1nFHyqEeC0R_Dv0EljeA" name="preCondition" patternFilePath="templates/pattern._Mf1nEHyqEeC0R_Dv0EljeA/method._Mf1nFHyqEeC0R_Dv0EljeA.pt"/>
+            <methods xmi:id="_Mf1nFXyqEeC0R_Dv0EljeA" name="body" patternFilePath="templates/pattern._Mf1nEHyqEeC0R_Dv0EljeA/method._Mf1nFXyqEeC0R_Dv0EljeA.pt"/>
+            <methods xmi:id="_Mf1nFnyqEeC0R_Dv0EljeA" name="footer" patternFilePath="templates/pattern._Mf1nEHyqEeC0R_Dv0EljeA/method._Mf1nFnyqEeC0R_Dv0EljeA.pt"/>
+            <parameters xmi:id="_MPsUAH0zEeCoLv_NP-iXiQ" name="parameter" type="http://www.eclipse.org/egf/1.0.0/generationChainEcoreToolsExtension#//EcoreToolsGeneration"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Ta4foH1EEeCoLv_NP-iXiQ"
+                called="#_Mf1nFXyqEeC0R_Dv0EljeA"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_wlzFsHS0EeC3aZAQAbtFJA">
+      <invocations xmi:id="_xaDNIHS0EeC3aZAQAbtFJA" invokedActivity="#_k2c0kHSyEeC3aZAQAbtFJA">
+        <invocationContractContainer xmi:id="_yELvQHS0EeC3aZAQAbtFJA">
+          <invocationContracts xmi:id="_ydfnIHS0EeC3aZAQAbtFJA" factoryComponentContract="#_3KhW8HS0EeC3aZAQAbtFJA"
+              invokedContract="#_u0BQ8HSyEeC3aZAQAbtFJA"/>
+          <invocationContracts xmi:id="_ywQLEHS0EeC3aZAQAbtFJA" factoryComponentContract="#_3dbE0HS0EeC3aZAQAbtFJA"
+              invokedContract="#_3melEHSyEeC3aZAQAbtFJA"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>
