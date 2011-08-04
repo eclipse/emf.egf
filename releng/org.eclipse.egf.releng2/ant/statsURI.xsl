@@ -59,6 +59,10 @@ Matthieu Helleboid
 		<xsl:call-template name="artifact_properties"/>
 	</xsl:template>
 	
+	<xsl:template match="artifact[@classifier='org.eclipse.update.feature' and @id='org.eclipse.egf.portfolio.genchain.ecoretools']/properties">
+		<xsl:call-template name="artifact_properties"/>
+	</xsl:template>
+	
  	<xsl:template name="artifact_properties">
  		<properties size='{@size+1}'>
 	 	    <xsl:variable name="version">
