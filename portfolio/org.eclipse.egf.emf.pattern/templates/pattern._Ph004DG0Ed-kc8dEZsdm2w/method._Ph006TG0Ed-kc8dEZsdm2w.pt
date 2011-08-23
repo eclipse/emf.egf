@@ -552,6 +552,8 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 		return true;
   <%}%>
 <%}%>
+<%} else { GenOperation genOperation = ((GenClass)genClassifier).getInvariantOperation(constraint); if (genOperation != null) {%>
+		return <%=genClassifier.getSafeUncapName()%>.<%=constraint%>(<%=diagnostics%>, <%=context%>);
 <%} else if (constraintDelegate != null) {%>
 		// TODO override the constraint, if desired
 		// -> uncomment the scaffolding
@@ -584,8 +586,6 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 			return false;
 		}
 		return <%=delegate%>validate<%=constraintDelegate.getName()%>_<%=constraint%>(<%=cast%><%=genClassifier.getSafeUncapName()%>, <%=diagnostics%>, <%=context%>);
-<%} else { GenOperation genOperation = ((GenClass)genClassifier).getInvariantOperation(constraint); if (genOperation != null) {%>
-		return <%=genClassifier.getSafeUncapName()%>.<%=constraint%>(<%=diagnostics%>, <%=context%>);
 <%} else {%>
   <%if (genClassifier.hasConstraintExpression(constraint)) {%>
 		return
