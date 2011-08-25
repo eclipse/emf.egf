@@ -39,4 +39,6 @@ public class EGFCommonUIMessages {
 
     public static String CopyQualifiedNameAction_ErrorTitle;
 
+    public static String AbstractExampleWizard_Unzipping;
+
 }

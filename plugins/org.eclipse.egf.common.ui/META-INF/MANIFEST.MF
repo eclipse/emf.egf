@@ -20,5 +20,6 @@ Export-Package:
  org.eclipse.egf.common.ui.activator,
  org.eclipse.egf.common.ui.constant,
  org.eclipse.egf.common.ui.fields,
- org.eclipse.egf.common.ui.helper
+ org.eclipse.egf.common.ui.helper,
+ org.eclipse.egf.common.ui.wizard
 Bundle-ActivationPolicy: lazy
