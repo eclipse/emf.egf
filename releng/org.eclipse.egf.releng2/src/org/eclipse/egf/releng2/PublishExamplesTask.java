@@ -104,7 +104,7 @@ public class PublishExamplesTask implements ITaskProduction {
         for (IProject project : projects) {
             ArrayList<IProject> oneProjectList = new ArrayList<IProject>();
             oneProjectList.add(project);
-            String zipName = project.getName() + " zip";
+            String zipName = project.getName() + ".zip";
             String zipPath = outputFolder + "/" + zipName;
 			zipProjects(oneProjectList, featureFile, zipName, zipPath);
 			addZipToImporterProject(importerName, zipPath);
