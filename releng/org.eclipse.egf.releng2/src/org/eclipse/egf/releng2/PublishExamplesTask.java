@@ -117,8 +117,10 @@ public class PublishExamplesTask implements ITaskProduction {
 		IFolder importerZipsFolder = getImporterZipsFolder(importerName);
         trace("Will empty folder " + importerZipsFolder.getRawLocation().toString());
 		try {
-			for (IResource resource : importerZipsFolder.members()) {
-				resource.delete(true, new NullProgressMonitor());
+            final ArrayList<IFile> resourceList = new ArrayList<IFile>();
+			importerZipsFolder.accept(new ProjectVisitor(resourceList));
+			for (IFile iFile : resourceList) {
+				iFile.delete(true, new NullProgressMonitor());
 			}
 		} catch (CoreException e) {
             new RuntimeException("Cannot empty folder " + importerZipsFolder.getRawLocation().toString(), e).printStackTrace(); //$NON-NLS-1$
