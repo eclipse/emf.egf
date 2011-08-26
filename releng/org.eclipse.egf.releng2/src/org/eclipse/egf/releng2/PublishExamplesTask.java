@@ -107,7 +107,7 @@ public class PublishExamplesTask implements ITaskProduction {
             String zipName = project.getName() + ".zip";
             String zipPath = outputFolder + "/" + zipName;
 			zipProjects(oneProjectList, featureFile, zipName, zipPath);
-			addZipToImporterProject(importerName, zipPath);
+			addZipToImporterProject(importerName, zipPath, zipName);
         }
         if (projects.size() > 1)
             zipProjects(projects, featureFile, "complete examples zip", outputFolder + "/all.zip");
@@ -127,14 +127,14 @@ public class PublishExamplesTask implements ITaskProduction {
 		}
 	}
 
-	private void addZipToImporterProject(String importerName, String zipPath) {
+	private void addZipToImporterProject(String importerName, String zipPath, String zipName) {
 		if (importerName == null) 
 			return;
 
 		IFolder folder = getImporterZipsFolder(importerName);
 		
 		File sourceFile = new File(zipPath);
-		File destinationFile = folder.getRawLocation().toFile();
+		File destinationFile = new File(folder.getRawLocation().toFile(), zipName);
 
         trace("Will copy " + sourceFile.getAbsolutePath() + " to " + destinationFile.getAbsolutePath());
 
