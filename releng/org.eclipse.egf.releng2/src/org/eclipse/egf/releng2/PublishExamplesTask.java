@@ -120,6 +120,7 @@ public class PublishExamplesTask implements ITaskProduction {
             final ArrayList<IFile> resourceList = new ArrayList<IFile>();
 			importerZipsFolder.accept(new ProjectVisitor(resourceList));
 			for (IFile iFile : resourceList) {
+		        trace("Will delete file " + iFile.getRawLocation().toString());
 				iFile.delete(true, new NullProgressMonitor());
 			}
 		} catch (CoreException e) {
@@ -210,7 +211,7 @@ public class PublishExamplesTask implements ITaskProduction {
     }
 
     private void trace(String string) {
-    	// System.out.println(string);
+    	System.out.println(string);
 	}
 
     private final class ProjectVisitor implements IResourceVisitor {
