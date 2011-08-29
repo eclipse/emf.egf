@@ -11,11 +11,11 @@
       <wizard
             canFinishEarly="true"
             category="org.eclipse.ui.Examples/org.eclipse.egf.Examples"
-            class="org.eclipse.egf.examples.installer.EGFExamplesInstallerWizard"
+            class="org.eclipse.egf.portfolio.atl.examples.installer.EGFExamplesInstallerWizard"
             hasPages="false"
             icon="icons/Icon.gif"
-            id="org.eclipse.egf.examples.installer.Wizard"
-            name="SDK Examples"
+            id="org.eclipse.egf.portfolio.atl.examples.installer.Wizard"
+            name="ATL Examples"
             project="true">
       </wizard>
    </extension>

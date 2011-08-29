@@ -36,6 +36,7 @@
     <properties xmi:id="_jR6TcUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
     <properties xmi:id="_jR6TckAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.acceleo3.examples-feature"/>
     <properties xmi:id="_jR6Tc0AfEeCi4-1Y9vbHyQ" key="outputFolder" value="${publish}/org.eclipse.egf.portfolio.acceleo3/examples"/>
+    <properties xmi:id="_wqXR0dIYEeCajoLOvUaMlg" key="importerName" value="org.eclipse.egf.portfolio.acceleo3.examples.installer"/>
     <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_ANqPQDkIEeCbr7W3e6bJPQ" component="_rivfYTkHEeCbr7W3e6bJPQ" signing="true"/>
@@ -43,6 +44,7 @@
     <properties xmi:id="_jr12YUAfEeCi4-1Y9vbHyQ" key="egf.target.bundle.priority" value="true"/>
     <properties xmi:id="_jr12YkAfEeCi4-1Y9vbHyQ" key="featureName" value="org.eclipse.egf.portfolio.atl.examples-feature"/>
     <properties xmi:id="_jr12Y0AfEeCi4-1Y9vbHyQ" key="outputFolder" value="${publish}/org.eclipse.egf.portfolio.atl/examples"/>
+    <properties xmi:id="_w5aacNIYEeCajoLOvUaMlg" key="importerName" value="org.eclipse.egf.portfolio.atl.examples.installer"/>
     <activities>platform:/plugin/org.eclipse.egf.releng2/egf/PublishExamples.fcore#_P2rGsKboEd-ZgeUI-BonwQ</activities>
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_Ae8zkDkIEeCbr7W3e6bJPQ" component="_vivKEDkHEeCbr7W3e6bJPQ" signing="true"/>
