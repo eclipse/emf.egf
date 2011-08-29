@@ -25,7 +25,7 @@ public class EGFExamplesInstallerWizard extends AllZipsBundleExampleWizard {
 
 	@Override
 	protected String getBundleId() {
-		return "org.eclipse.egf.examples.installer"; //$NON-NLS-1$
+		return "org.eclipse.egf.portfolio.acceleo3.examples.installer"; //$NON-NLS-1$
 	}
 
 }
