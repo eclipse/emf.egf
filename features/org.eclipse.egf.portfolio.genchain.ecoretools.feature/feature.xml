@@ -31,13 +31,11 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.egf.portfolio.genchain.ecoretools.source"
          version="0.0.0"/>
-         
+
    <requires>
-      <import plugin="org.eclipse.emf.ecoretools.diagram"/>
-      <import plugin="org.eclipse.gmf.runtime.diagram.ui"/>
-      <import plugin="org.eclipse.egf.portfolio.genchain.tools"/>
-      <import plugin="org.eclipse.emf.ecore.edit"/>
-      <import plugin="org.eclipse.egf.portfolio.genchain.edit"/>
+      <import feature="org.eclipse.egf.portfolio.genchain" />
+      <import feature="org.eclipse.emf.ecoretools" />
+      <import feature="org.eclipse.gmf" />
    </requires>
 
    <plugin
