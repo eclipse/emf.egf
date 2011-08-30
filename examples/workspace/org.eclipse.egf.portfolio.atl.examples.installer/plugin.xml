@@ -15,7 +15,7 @@
             hasPages="false"
             icon="icons/Icon.gif"
             id="org.eclipse.egf.portfolio.atl.examples.installer.Wizard"
-            name="ATL Examples"
+            name="EGF Examples for ATL"
             project="true">
       </wizard>
    </extension>

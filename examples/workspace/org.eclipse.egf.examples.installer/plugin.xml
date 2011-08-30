@@ -15,7 +15,7 @@
             hasPages="false"
             icon="icons/Icon.gif"
             id="org.eclipse.egf.examples.installer.Wizard"
-            name="SDK Examples"
+            name="Basic EGF Examples"
             project="true">
       </wizard>
    </extension>

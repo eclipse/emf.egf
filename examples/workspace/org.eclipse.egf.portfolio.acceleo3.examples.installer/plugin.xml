@@ -15,7 +15,7 @@
             hasPages="false"
             icon="icons/Icon.gif"
             id="org.eclipse.egf.portfolio.acceleo3.examples.installer.Wizard"
-            name="Acceleo3 Examples"
+            name="EGF Examples for Acceleo3"
             project="true">
       </wizard>
    </extension>
