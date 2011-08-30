@@ -33,9 +33,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.portfolio.task.acceleo3.Activator;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 
@@ -71,8 +71,7 @@ public class Acceleo3ScriptEngine {
 					"doGenerate", new Class[] { Monitor.class });
 			doGenerate.invoke(instance, new Object[] { null });
 		} catch (Exception e) {
-			EGFCorePlugin.getDefault().logInfo(e.toString());
-			e.printStackTrace();
+			Activator.getDefault().logError(e);
 		}
 	}
 

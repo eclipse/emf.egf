@@ -60,6 +60,7 @@ public class Acceleo3TaskEditorContributor extends
 		return createAcceleo3PropertyEditor(composite, object, descriptor);
 	}
 
+	
 	private CellEditor createAcceleo3PropertyEditor(final Composite composite,
 			Object object, IItemPropertyDescriptor descriptor) {
 		final String value = getValue(object);
@@ -90,9 +91,9 @@ public class Acceleo3TaskEditorContributor extends
 						}
 					}
 				} catch (JavaModelException e) {
-					e.printStackTrace();
+					Activator.getDefault().logError(e);
 				} catch (CoreException e) {
-					e.printStackTrace();
+					Activator.getDefault().logError(e);
 				}
 				return value;
 
@@ -100,11 +101,13 @@ public class Acceleo3TaskEditorContributor extends
 
 			private IType findType(final Class<?> type, IProject[] projects) throws CoreException {
 				for(IProject project : projects) {
-					IJavaProject javaProject = (IJavaProject) project.getNature(JavaCore.NATURE_ID);
-					if(javaProject != null) {
-						IType iType = javaProject.findType(type.getName());
-						if(iType != null) {
-							return iType;
+					if (project.isOpen()) {
+						IJavaProject javaProject = (IJavaProject) project.getNature(JavaCore.NATURE_ID);
+						if(javaProject != null) {
+							IType iType = javaProject.findType(type.getName());
+							if(iType != null) {
+								return iType;
+							}
 						}
 					}
 				}
