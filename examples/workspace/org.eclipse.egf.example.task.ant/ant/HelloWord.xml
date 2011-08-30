@@ -2,7 +2,7 @@
 
 <project name="SayHelloWorld" default="main" basedir=".">
 	<target name="main">
-		<echo>Ant task sayes Hello !</echo>
+		<echo>Ant task says Hello !</echo>
 	</target>
 </project>
 
