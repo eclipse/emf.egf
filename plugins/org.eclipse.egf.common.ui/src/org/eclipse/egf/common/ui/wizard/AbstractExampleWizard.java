@@ -10,6 +10,7 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 233486
+ *   Thales - open project after creation instead of after project import
  *
  * </copyright>
  *
@@ -178,6 +179,8 @@ public abstract class AbstractExampleWizard extends Wizard
 		try {
 			// We make sure that the project is created from this point forward.
 			project.create(monitor);
+			// Thales modification : we open the project as soon as possible
+			project.open(monitor);
 			
 			ZipInputStream zipFileStream = new ZipInputStream(interpreterZipUrl.openStream());
 			ZipEntry zipEntry = zipFileStream.getNextEntry();
@@ -250,7 +253,8 @@ public abstract class AbstractExampleWizard extends Wizard
 				zipEntry = zipFileStream.getNextEntry();
 			}
 			
-			project.open(monitor);
+			// Thales modification : the project is already opened
+			// project.open(monitor);
 			project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			
 			// Close and re-open the project to force eclipse to re-evaluate
