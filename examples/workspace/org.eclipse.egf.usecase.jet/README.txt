@@ -53,4 +53,4 @@ The example is the located in the egf folder.
 	2.2. The result has to be used to fill another contract
 
 --- Platform
-Validated with EGF 0.5.0 M6, and JET SDK-1.1.0
+Validated with EGF 0.6.0, and JET SDK-1.1.0
