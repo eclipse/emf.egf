@@ -40,6 +40,9 @@
       <fcore
             id="egf/Pattern_UC1_8_WorkspaceDomain.fcore">
       </fcore>
+      <fcore
+            id="egf/Pattern_UC1_9.fcore">
+      </fcore>
    </extension>
    <extension
          point="org.eclipse.egf.pattern.query">
