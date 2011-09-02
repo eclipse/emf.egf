@@ -3,7 +3,7 @@
 --------------------------------------------------------------------------------
 
 --- Platform
-Validated with EGF 0.5.0 M6, and Acceleo-SDK-3.0.1
+Validated with EGF 0.6.0, and Acceleo-SDK-3.0.1
 
 --- Example
 The example is the located in the egf folder.

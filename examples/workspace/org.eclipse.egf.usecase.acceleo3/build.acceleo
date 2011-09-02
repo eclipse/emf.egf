@@ -21,7 +21,7 @@
 	<target name="post.gather.bin.parts">
 		<acceleoCompiler 
 			sourceFolders="${target.folder}" 
-			dependencies="${target.folder}/../org.eclipse.egf.model.ftask;${target.folder}/../org.eclipse.egf.core;${target.folder}/../org.eclipse.emf.edit;${target.folder}/../org.eclipse.egf.common;${target.folder}/../org.eclipse.egf.core.platform;${target.folder}/../org.eclipse.egf.model;${target.folder}/../org.eclipse.egf.producer;${target.folder}/../org.eclipse.egf.core.producer;${target.folder}/../org.eclipse.egf.domain;">
+			dependencies="${target.folder}/../org.eclipse.egf.model.ftask;${target.folder}/../org.eclipse.egf.core;${target.folder}/../org.eclipse.egf.common;${target.folder}/../org.eclipse.egf.core.platform;${target.folder}/../org.eclipse.egf.model;${target.folder}/../org.eclipse.egf.producer;${target.folder}/../org.eclipse.egf.core.producer;${target.folder}/../org.eclipse.egf.domain;">
 		</acceleoCompiler>
 	</target>	
 
