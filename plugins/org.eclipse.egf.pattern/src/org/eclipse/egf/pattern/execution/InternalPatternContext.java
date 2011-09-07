@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.execution;
 
 import org.eclipse.egf.model.pattern.BundleAccessor;
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
@@ -24,6 +25,10 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  * 
  */
 public interface InternalPatternContext extends PatternContext, BundleAccessor {
+
+    Node.Container getNode();
+
+    void setNode(Node.Container node);
 
     StringBuffer getBuffer();
 

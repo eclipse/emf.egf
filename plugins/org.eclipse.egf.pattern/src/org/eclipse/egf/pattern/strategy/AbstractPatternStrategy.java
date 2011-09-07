@@ -15,6 +15,7 @@ package org.eclipse.egf.pattern.strategy;
 
 import java.util.Collection;
 
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -36,8 +37,9 @@ public abstract class AbstractPatternStrategy extends AbstractStrategy {
             String canExecute = extension.canExecute(pattern);
             if (canExecute != null)
                 throw new PatternException(canExecute);
-            extension.createEngine(pattern).execute(context);
             final InternalPatternContext context2 = (InternalPatternContext) context;
+            context2.setNode(new Node.Container(context2.getNode(), (String) null));
+            extension.createEngine(pattern).execute(context);
             context2.getExecutionBuffer().setLength(0);
             context2.setExecutionCurrentIndex(0);
         }

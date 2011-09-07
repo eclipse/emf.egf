@@ -21,6 +21,7 @@ import java.io.ByteArrayOutputStream;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -88,10 +89,14 @@ public class JetEngine extends AbstractJavaEngine {
         Pattern pattern = getPattern();
         // add call to orchestration
         if (pattern.getConditionMethod() != null) {
-            builder.append("if (preCondition())"); //$NON-NLS-1$
+            builder.append("if (preCondition()) "); //$NON-NLS-1$
             builder.append(EGFCommonConstants.LINE_SEPARATOR);
         }
+        builder.append('{').append(EGFCommonConstants.LINE_SEPARATOR);
+
+        builder.append("ctx.setNode(new Node.Container(currentNode, getClass()));").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(AssemblyHelper.ORCHESTRATION_METHOD).append("(ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append('}').append(EGFCommonConstants.LINE_SEPARATOR);
 
         // add end of class code
         int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, endIndex);
@@ -106,16 +111,13 @@ public class JetEngine extends AbstractJavaEngine {
         // add pattern reporter stuff
         builder.append("public String ").append(AssemblyHelper.ORCHESTRATION_METHOD).append("(PatternContext ctx) throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$
         builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        builder.append("int executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // add orchestration statements
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("String loop = Node.flattenWithoutCallback(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !getPattern().getAllParameters().isEmpty();
         builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        builder.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         if (hasParameter) {
             builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
@@ -126,10 +128,10 @@ public class JetEngine extends AbstractJavaEngine {
                 // builder.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
                 builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            builder.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    String outputWithCallBack = Node.flatten(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
-        builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("    ;}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
@@ -190,7 +192,7 @@ public class JetEngine extends AbstractJavaEngine {
     }
 
     @Override
-    protected String getPatternClassname() throws PatternException {
+    public String getUnderlyingClassname() throws PatternException {
         return JetNatureHelper.getTemplateClassName(getPattern());
     }
 

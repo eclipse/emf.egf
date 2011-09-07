@@ -61,7 +61,7 @@ public class JavaEngine extends AbstractJavaEngine {
     }
 
     @Override
-    protected String getPatternClassname() throws PatternException {
+    public String getUnderlyingClassname() throws PatternException {
         return JavaNatureHelper.getClassName(getPattern());
     }
 

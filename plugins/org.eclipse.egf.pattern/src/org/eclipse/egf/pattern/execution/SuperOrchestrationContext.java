@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.execution;
 
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.osgi.framework.Bundle;
@@ -26,12 +27,14 @@ import org.osgi.framework.Bundle;
 public class SuperOrchestrationContext implements InternalPatternContext {
 
     private final InternalPatternContext delegate;
+    protected Node.Container node;
 
     public SuperOrchestrationContext(InternalPatternContext delegate) {
         super();
         this.delegate = delegate;
         if (delegate == null)
             throw new IllegalArgumentException();
+        node = new Node.Container(delegate.getNode(), "super");
     }
 
     public int getExecutionCurrentIndex() {
@@ -80,6 +83,14 @@ public class SuperOrchestrationContext implements InternalPatternContext {
 
     public StringBuffer getExecutionBuffer() {
         return delegate.getExecutionBuffer();
+    }
+
+    public Node.Container getNode() {
+        return node;
+    }
+
+    public void setNode(Node.Container node) {
+        this.node = node;
     }
 
 }

@@ -25,11 +25,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.egf.model.pattern.DomainVisitor;
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.engine.PatternEngine;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternExtension;
@@ -122,6 +124,7 @@ public abstract class AbstractDomainVisitor implements DomainVisitor {
     }
 
     protected void executeWithInjection(Collection<Pattern> patterns, PatternContext context, Object model) throws PatternException {
+        Node.Container currentNode = ((InternalPatternContext) context).getNode();
         for (Pattern pattern : patterns) {
             try {
                 Map<PatternParameter, Object> parameters = createParameterMap(pattern, model);
@@ -130,12 +133,18 @@ public abstract class AbstractDomainVisitor implements DomainVisitor {
                 if (canExecute != null)
                     throw new PatternException(canExecute);
                 PatternEngine engine = extension.createEngine(pattern);
-                if (engine.checkCondition(context, parameters))
+                if (engine.checkCondition(context, parameters)) {
+                    if (currentNode != null) {
+                        Node.Container localNode = new Node.Container(currentNode, engine.getUnderlyingClassname());
+                        ((InternalPatternContext) context).setNode(localNode);
+                    }
                     engine.executeWithInjection(context, parameters);
+                }
             } catch (MissingExtensionException e) {
                 throw new PatternException(e);
             }
         }
+        ((InternalPatternContext) context).setNode(currentNode);
     }
 
     private Map<PatternParameter, Object> createParameterMap(Pattern pattern, Object model) {

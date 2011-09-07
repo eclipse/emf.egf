@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.execution;
 
 import java.util.Map;
 
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
@@ -31,7 +32,7 @@ public class CallbackContext extends DefaultInternalPatternContext {
     private final StringBuffer buffer = new StringBuffer(2000);
 
     public CallbackContext(InternalPatternContext parent) {
-        super(parent);
+        super(parent, new Node.CallBackContainer(parent.getNode()));
     }
 
     @Override

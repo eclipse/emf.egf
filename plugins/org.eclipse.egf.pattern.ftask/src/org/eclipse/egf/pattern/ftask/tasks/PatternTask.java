@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
@@ -27,6 +28,8 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.collector.PatternCollector;
+import org.eclipse.egf.pattern.engine.PatternEngine;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternExtension;
@@ -44,6 +47,7 @@ public class PatternTask extends AbstractPatternTask {
         try {
             PatternContext ctx = createPatternContext(context);
             readContext(context, ctx);
+            Node.Container currentNode = ((InternalPatternContext) ctx).getNode();
 
             TypePatternList patternList = context.getInputValue(PatternContext.PATTERN_ID, TypePatternList.class);
             PatternCollector.INSTANCE.collect(patternList.getElements().toArray(new PatternElement[patternList.getElements().size()]), patterns);
@@ -54,12 +58,19 @@ public class PatternTask extends AbstractPatternTask {
                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
                 String reason = extension.canExecute(pattern);
 
-                if (reason == null)
-                    extension.createEngine(pattern).execute(ctx);
-                else
+                if (reason == null) {
+                    final PatternEngine engine = extension.createEngine(pattern);
+                    if (currentNode != null) {
+                        Node.Container localNode = new Node.Container(currentNode, engine.getUnderlyingClassname());
+                        ((InternalPatternContext) ctx).setNode(localNode);
+                    }
+
+                    engine.execute(ctx);
+                } else
                     throw new InvocationException(reason);
             }
             writeContext(context, ctx);
+            ((InternalPatternContext) ctx).setNode(currentNode);
 
         } catch (MissingExtensionException e) {
             throw new InvocationException(e);

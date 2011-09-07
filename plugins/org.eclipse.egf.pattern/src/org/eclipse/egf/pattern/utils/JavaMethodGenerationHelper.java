@@ -54,4 +54,8 @@ public class JavaMethodGenerationHelper {
         return "set_" + name; //$NON-NLS-1$
     }
 
+    public String getBufferName() {
+        return bufferName;
+    }
+
 }

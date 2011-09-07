@@ -68,6 +68,10 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append(N);
             addDirectiveComment(start, stop, buffer);
             buffer.append(N);
+            buffer.append("InternalPatternContext ictx = (InternalPatternContext) ctx;").append(N); //$NON-NLS-1$
+            buffer.append("new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));").append(N); //$NON-NLS-1$
+            buffer.append("idx.value = stringBuffer.length();").append(N).append(N); //$NON-NLS-1$
+
             buffer.append("final Map<String, Object> callParameters"); //$NON-NLS-1$
             buffer.append(" = new HashMap<String, Object>();"); //$NON-NLS-1$
             buffer.append(N);
@@ -88,6 +92,7 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append("\", new ExecutionContext((InternalPatternContext) ctx), callParameters"); //$NON-NLS-1$ 
             buffer.append(");"); //$NON-NLS-1$
             buffer.append(N);
+            buffer.append("idx.value = stringBuffer.length();").append(N); //$NON-NLS-1$
             buffer.append("}"); //$NON-NLS-1$
             buffer.append(N);
 
@@ -101,6 +106,9 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append(N);
             addDirectiveComment(start, stop, buffer);
             buffer.append(N);
+            buffer.append("InternalPatternContext ictx = (InternalPatternContext) ctx;").append(N); //$NON-NLS-1$
+            buffer.append("new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));").append(N); //$NON-NLS-1$
+            buffer.append("idx.value = stringBuffer.length();").append(N).append(N); //$NON-NLS-1$
             buffer.append("ExecutionContext callCtx"); //$NON-NLS-1$
             buffer.append(" = new ExecutionContext((InternalPatternContext) ctx);"); //$NON-NLS-1$
             buffer.append(N);
@@ -114,6 +122,7 @@ public class JetTagsCompiler extends JETCompiler {
             buffer.append("\", callCtx"); //$NON-NLS-1$
             buffer.append(");"); //$NON-NLS-1$
             buffer.append(N);
+            buffer.append("idx.value = stringBuffer.length();").append(N); //$NON-NLS-1$
             buffer.append("}"); //$NON-NLS-1$
             buffer.append(N);
 

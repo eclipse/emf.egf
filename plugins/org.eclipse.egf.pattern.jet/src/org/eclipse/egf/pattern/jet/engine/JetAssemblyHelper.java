@@ -41,6 +41,7 @@ public class JetAssemblyHelper extends BaseJavaAssemblyHelper {
         content.append("InternalPatternContext ctx = (InternalPatternContext)argument;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("Map<String, String> queryCtx = null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("Node.Container currentNode = ctx.getNode();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("%>"); //$NON-NLS-1$
         super.beginOrchestration();
         content.append("<%").append(START_LOOP_MARKER).append("%>"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -49,11 +50,11 @@ public class JetAssemblyHelper extends BaseJavaAssemblyHelper {
     @Override
     protected void endOrchestration() throws PatternException {
         content.append("<%").append(END_LOOP_MARKER).append("%>"); //$NON-NLS-1$ //$NON-NLS-2$
-
         if (pattern.getAllParameters().isEmpty()) {
-            content.append("<%if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-            content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-            content.append("    ctx.clearBuffer();}%>").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("<%ctx.setNode(currentNode);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$  
+            content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("    ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("}%>").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             return;
         }
         // 1 - Add pre block at insertionIndex
@@ -87,9 +88,9 @@ public class JetAssemblyHelper extends BaseJavaAssemblyHelper {
 
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("ctx.setNode(currentNode);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$  
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.clearBuffer();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("}%>"); //$NON-NLS-1$
 
         // 3- Add additional code for parameter names handling

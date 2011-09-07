@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.java.engine;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -50,6 +51,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
         content.append("InternalPatternContext ctx = (InternalPatternContext)argument;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("Map<String, String> queryCtx = null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("Node.Container currentNode = ctx.getNode();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         super.beginOrchestration();
 
         if (!pattern.getAllParameters().isEmpty()) {
@@ -76,8 +78,10 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
                 content.append("if (preCondition())"); //$NON-NLS-1$
             }
             content.append(EGFCommonConstants.LINE_SEPARATOR);
-
+            content.append('{').append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("ctx.setNode(new Node.Container(currentNode, getClass()));").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append('}').append(EGFCommonConstants.LINE_SEPARATOR);
 
             // 2 - Add post block at current index
             for (int i = 0; i < pattern.getAllParameters().size(); i++)
@@ -90,15 +94,15 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
             content.append(EGFCommonConstants.LINE_SEPARATOR).append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // end of method generate (Object argument)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         // add new method body
         content.append("public String ").append(AssemblyHelper.ORCHESTRATION_METHOD).append("(PatternContext ctx) throws Exception {").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$
         content.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("int executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("Node.Container currentNode = ictx.getNode();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
     }
 
     /**
@@ -107,22 +111,21 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
      */
     @Override
     protected void endOrchestration() throws PatternException {
-
-        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("ictx.setNode(currentNode);"); //$NON-NLS-1$  
+        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = Node.flattenWithoutCallback(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        //        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !pattern.getAllParameters().isEmpty();
         content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         if (hasParameter) {
             content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            content.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("    String outputWithCallBack = Node.flatten(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
-        content.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$

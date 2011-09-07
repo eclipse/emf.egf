@@ -75,4 +75,6 @@ public abstract class PatternEngine {
 
     public abstract void translate() throws PatternException;
 
+    public abstract String getUnderlyingClassname() throws PatternException;
+
 }

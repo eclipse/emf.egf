@@ -82,10 +82,13 @@ public class JetAssemblyContentProvider extends AbstractJavaAssemblyContentProvi
             content.append("<%"); //$NON-NLS-1$
             javaMethodHelper.addSignature(method);
             content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("final IndexValue idx = new IndexValue(").append(javaMethodHelper.getBufferName()).append(".length());").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ $NON-NLS-2$
             content.append("%>"); //$NON-NLS-1$
             content.append(getMethodContent(method));
             content.append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("<%}%>").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("<%InternalPatternContext ictx = (InternalPatternContext) ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("new Node.Leaf(ictx.getNode(), getClass(), ").append(javaMethodHelper.getBufferName()).append(".substring(idx.value));").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("}%>").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
         PatternMethod conditionMethod = pattern.getConditionMethod();

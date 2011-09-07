@@ -75,12 +75,10 @@ public abstract class AbstractJavaEngine extends PatternEngine {
 
     private Object doExecute(InternalPatternContext context, String methodName, Map<PatternParameter, Object> parameters) throws PatternException {
         try {
-            Class<?> templateClass = loadTemplateClass(context, getPatternClassname());
+            Class<?> templateClass = loadTemplateClass(context, getUnderlyingClassname());
             Object template = templateClass.newInstance();
             Class<?>[] parameterClasses = new Class<?>[1];
-            Object[] parameterValues = new Object[] {
-                context
-            };
+            Object[] parameterValues = new Object[] { context };
 
             if (AssemblyHelper.GENERATE_METHOD.equals(methodName)) {
                 parameterClasses[0] = Object.class;
@@ -126,8 +124,6 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         }
 
     }
-
-    protected abstract String getPatternClassname() throws PatternException;
 
     private void setupExecutionReporter(InternalPatternContext context) {
         if (context.hasReporter())

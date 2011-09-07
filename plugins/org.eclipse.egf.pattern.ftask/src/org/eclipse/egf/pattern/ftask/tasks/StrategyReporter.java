@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.ftask.tasks;
 
 import java.util.Map;
 
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.pattern.execution.InternalPatternContext;
@@ -35,7 +36,10 @@ class StrategyReporter implements PatternExecutionReporter {
     }
 
     public void executionFinished(PatternContext context) {
-        delegate.executionFinished(((InternalPatternContext) context).getExecutionBuffer().toString(), context);
+
+        final InternalPatternContext ictx = (InternalPatternContext) context;
+        final String flatten = Node.flatten(ictx.getNode());
+        delegate.executionFinished(flatten, context);
     }
 
     public void executionFinished(String output, PatternContext context) {

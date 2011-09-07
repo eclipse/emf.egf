@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.execution;
 
 import org.eclipse.egf.model.pattern.BundleAccessor;
+import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.PatternContext;
 
 /**
@@ -26,6 +27,7 @@ public abstract class DefaultInternalPatternContext extends DefaultPatternContex
 
     protected StringBuffer loopBuffer;
     protected StringBuffer executionBuffer;
+    protected Node.Container node;
 
     private int index;
 
@@ -33,6 +35,7 @@ public abstract class DefaultInternalPatternContext extends DefaultPatternContex
         super(accessor);
         loopBuffer = new StringBuffer(2000);
         executionBuffer = new StringBuffer(2000);
+        node = new Node.Container(null, "Root node");
     }
 
     public int getExecutionCurrentIndex() {
@@ -44,7 +47,12 @@ public abstract class DefaultInternalPatternContext extends DefaultPatternContex
     }
 
     public DefaultInternalPatternContext(InternalPatternContext parent) {
+        this(parent, new Node.Container(parent.getNode(), (String) null));
+    }
+
+    protected DefaultInternalPatternContext(InternalPatternContext parent, Node.Container node) {
         super((PatternContext) parent);
+        this.node = node;
     }
 
     public StringBuffer getBuffer() {
@@ -66,4 +74,13 @@ public abstract class DefaultInternalPatternContext extends DefaultPatternContex
     public void clearBuffer() {
         getBuffer().setLength(0);
     }
+
+    public Node.Container getNode() {
+        return node;
+    }
+
+    public void setNode(Node.Container node) {
+        this.node = node;
+    }
+
 }
