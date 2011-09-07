@@ -7,47 +7,48 @@
     name="patternCall_Condition2">
   <viewpointContainer xmi:id="_LUMXsHeNEd-eFrQyPU1i3Q">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_Le1hcHeNEd-eFrQyPU1i3Q">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_Le1hcXeNEd-eFrQyPU1i3Q" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_Le1hcXeNEd-eFrQyPU1i3Q" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_XCBQwHeNEd-eFrQyPU1i3Q">
       <libraries xmi:id="_XSumQHeNEd-eFrQyPU1i3Q" name="pattern.call.condition2">
-        <elements xmi:type="pattern:Pattern" xmi:id="_ra9_gHeQEd-ent-ImclT8w" name="CCaller2"
-            headerMethod="#_ra9_gXeQEd-ent-ImclT8w" footerMethod="#_ra9_hXeQEd-ent-ImclT8w"
-            initMethod="#_ra9_gneQEd-ent-ImclT8w" conditionMethod="#_ra9_g3eQEd-ent-ImclT8w">
+        <elements xmi:id="_ra9_gHeQEd-ent-ImclT8w" name="CCaller2" headerMethod="#_ra9_gXeQEd-ent-ImclT8w"
+            conditionMethod="#_ra9_g3eQEd-ent-ImclT8w" initMethod="#_ra9_gneQEd-ent-ImclT8w"
+            footerMethod="#_ra9_hXeQEd-ent-ImclT8w">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_ra9_h3eQEd-ent-ImclT8w"
+              name="JET"/>
           <methods xmi:id="_ra9_gXeQEd-ent-ImclT8w" name="header" patternFilePath="templates/pattern._ra9_gHeQEd-ent-ImclT8w/method._ra9_gXeQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_ra9_gneQEd-ent-ImclT8w" name="init" patternFilePath="templates/pattern._ra9_gHeQEd-ent-ImclT8w/method._ra9_gneQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_ra9_g3eQEd-ent-ImclT8w" name="preCondition" patternFilePath="templates/pattern._ra9_gHeQEd-ent-ImclT8w/method._ra9_g3eQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_ra9_hHeQEd-ent-ImclT8w" name="body" patternFilePath="templates/pattern._ra9_gHeQEd-ent-ImclT8w/method._ra9_hHeQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_ra9_hXeQEd-ent-ImclT8w" name="footer" patternFilePath="templates/pattern._ra9_gHeQEd-ent-ImclT8w/method._ra9_hXeQEd-ent-ImclT8w.pt"/>
+          <parameters xmi:id="_RKYyMHeREd-ent-ImclT8w" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EPackage">
+            <query xmi:type="pattern:BasicQuery" xmi:id="_TLXygHeREd-ent-ImclT8w"
+                extensionId="org.eclipse.egf.pattern.basic.query"/>
+          </parameters>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_ra9_hneQEd-ent-ImclT8w"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_t-0cUHeQEd-ent-ImclT8w"
               called="#_ra9_hHeQEd-ent-ImclT8w"/>
           <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_UhFoQHeREd-ent-ImclT8w"
               called="#_r-OdkHeQEd-ent-ImclT8w" context="#_RKYyMHeREd-ent-ImclT8w"/>
-          <parameters xmi:id="_RKYyMHeREd-ent-ImclT8w" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EPackage">
-            <query xmi:type="pattern:BasicQuery" xmi:id="_TLXygHeREd-ent-ImclT8w"
-                extensionId="org.eclipse.egf.pattern.basic.query"/>
-          </parameters>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_ra9_h3eQEd-ent-ImclT8w"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_r-OdkHeQEd-ent-ImclT8w" name="CCallee2"
-            headerMethod="#_r-OdkXeQEd-ent-ImclT8w" footerMethod="#_r-OdlXeQEd-ent-ImclT8w"
-            initMethod="#_r-OdkneQEd-ent-ImclT8w" conditionMethod="#_r-Odk3eQEd-ent-ImclT8w">
+        <elements xmi:id="_r-OdkHeQEd-ent-ImclT8w" name="CCallee2" headerMethod="#_r-OdkXeQEd-ent-ImclT8w"
+            conditionMethod="#_r-Odk3eQEd-ent-ImclT8w" initMethod="#_r-OdkneQEd-ent-ImclT8w"
+            footerMethod="#_r-OdlXeQEd-ent-ImclT8w">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_r-Odl3eQEd-ent-ImclT8w"
+              name="JET"/>
           <methods xmi:id="_r-OdkXeQEd-ent-ImclT8w" name="header" patternFilePath="templates/pattern._r-OdkHeQEd-ent-ImclT8w/method._r-OdkXeQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_r-OdkneQEd-ent-ImclT8w" name="init" patternFilePath="templates/pattern._r-OdkHeQEd-ent-ImclT8w/method._r-OdkneQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_r-Odk3eQEd-ent-ImclT8w" name="preCondition" patternFilePath="templates/pattern._r-OdkHeQEd-ent-ImclT8w/method._r-Odk3eQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_r-OdlHeQEd-ent-ImclT8w" name="body" patternFilePath="templates/pattern._r-OdkHeQEd-ent-ImclT8w/method._r-OdlHeQEd-ent-ImclT8w.pt"/>
           <methods xmi:id="_r-OdlXeQEd-ent-ImclT8w" name="footer" patternFilePath="templates/pattern._r-OdkHeQEd-ent-ImclT8w/method._r-OdlXeQEd-ent-ImclT8w.pt"/>
-          <orchestration xmi:type="pattern:SuperCall" xmi:id="_r-OdlneQEd-ent-ImclT8w"/>
-          <orchestration xmi:type="pattern:MethodCall" xmi:id="_yaWMcHeQEd-ent-ImclT8w"
-              called="#_r-OdlHeQEd-ent-ImclT8w"/>
           <parameters xmi:id="_w89ocHeQEd-ent-ImclT8w" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass">
             <query xmi:type="pattern:BasicQuery" xmi:id="_x15bkHeQEd-ent-ImclT8w"
                 extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
           </parameters>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_r-Odl3eQEd-ent-ImclT8w"
-              name="JET"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_r-OdlneQEd-ent-ImclT8w"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_yaWMcHeQEd-ent-ImclT8w"
+              called="#_r-OdlHeQEd-ent-ImclT8w"/>
         </elements>
       </libraries>
     </viewpoints>

@@ -8,24 +8,24 @@
   <viewpointContainer xmi:id="_bx6kgFa2Ed-upsLSxDR5IA">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_ekxGoFa2Ed-upsLSxDR5IA">
       <libraries xmi:id="_fCKNQFa2Ed-upsLSxDR5IA" name="pattern.call1">
-        <elements xmi:type="pattern:Pattern" xmi:id="_h21UUFa2Ed-upsLSxDR5IA" name="Caller"
-            headerMethod="#_h21UUVa2Ed-upsLSxDR5IA" footerMethod="#_h21UVFa2Ed-upsLSxDR5IA"
-            initMethod="#_h21UUla2Ed-upsLSxDR5IA">
+        <elements xmi:id="_h21UUFa2Ed-upsLSxDR5IA" name="Caller" headerMethod="#_h21UUVa2Ed-upsLSxDR5IA"
+            initMethod="#_h21UUla2Ed-upsLSxDR5IA" footerMethod="#_h21UVFa2Ed-upsLSxDR5IA">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_h21UVla2Ed-upsLSxDR5IA"
+              name="JET"/>
           <methods xmi:id="_h21UUVa2Ed-upsLSxDR5IA" name="header" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UUVa2Ed-upsLSxDR5IA.pt"/>
           <methods xmi:id="_h21UUla2Ed-upsLSxDR5IA" name="init" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UUla2Ed-upsLSxDR5IA.pt"/>
           <methods xmi:id="_h21UU1a2Ed-upsLSxDR5IA" name="body" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UU1a2Ed-upsLSxDR5IA.pt"/>
           <methods xmi:id="_h21UVFa2Ed-upsLSxDR5IA" name="footer" patternFilePath="templates/pattern._h21UUFa2Ed-upsLSxDR5IA/method._h21UVFa2Ed-upsLSxDR5IA.pt"/>
+          <variables xmi:id="_iP-u8FbIEd-MSLcycw9zzA" name="variable" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_L-lbYFbGEd-MSLcycw9zzA"
               called="#_h21UU1a2Ed-upsLSxDR5IA"/>
           <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_jI57AFbIEd-MSLcycw9zzA"
               called="#_F9NFkFa3Ed-upsLSxDR5IA" context="#_iP-u8FbIEd-MSLcycw9zzA"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_h21UVla2Ed-upsLSxDR5IA"
-              name="JET"/>
-          <variables xmi:id="_iP-u8FbIEd-MSLcycw9zzA" name="variable" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_F9NFkFa3Ed-upsLSxDR5IA" description=" "
-            name="Callee" headerMethod="#_F9NFkVa3Ed-upsLSxDR5IA" footerMethod="#_F9NFlFa3Ed-upsLSxDR5IA"
-            initMethod="#_F9NFkla3Ed-upsLSxDR5IA">
+        <elements xmi:id="_F9NFkFa3Ed-upsLSxDR5IA" description=" " name="Callee" headerMethod="#_F9NFkVa3Ed-upsLSxDR5IA"
+            initMethod="#_F9NFkla3Ed-upsLSxDR5IA" footerMethod="#_F9NFlFa3Ed-upsLSxDR5IA">
+          <nature xmi:type="javapattern:JavaNature" xmi:id="_F9NFlla3Ed-upsLSxDR5IA"
+              name="Java"/>
           <methods xmi:id="_F9NFkVa3Ed-upsLSxDR5IA" name="header" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFkVa3Ed-upsLSxDR5IA.pt"/>
           <methods xmi:id="_F9NFkla3Ed-upsLSxDR5IA" name="init" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFkla3Ed-upsLSxDR5IA.pt"/>
           <methods xmi:id="_F9NFk1a3Ed-upsLSxDR5IA" name="body" patternFilePath="templates/pattern._F9NFkFa3Ed-upsLSxDR5IA/method._F9NFk1a3Ed-upsLSxDR5IA.pt"/>
@@ -33,8 +33,6 @@
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_F9NFlVa3Ed-upsLSxDR5IA"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_b-gVQFhGEd-7_ZgNDDfr_g"
               called="#_F9NFk1a3Ed-upsLSxDR5IA"/>
-          <nature xmi:type="javapattern:JavaNature" xmi:id="_F9NFlla3Ed-upsLSxDR5IA"
-              name="Java"/>
         </elements>
       </libraries>
     </viewpoints>

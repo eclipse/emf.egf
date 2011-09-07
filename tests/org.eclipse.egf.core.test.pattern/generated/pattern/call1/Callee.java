@@ -18,32 +18,35 @@ public class Callee {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		IQuery.ParameterDescription paramDesc = null;
 		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
 
 		orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
+					ctx);
 		}
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+		Node.Container currentNode = ictx.getNode();
 		method_body(ictx.getBuffer(), ictx);
-
-		String loop = ictx.getBuffer().toString();
+		ictx.setNode(currentNode);
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			ictx.clearBuffer();
 		}
 		return loop;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx)
+			throws Exception {
+		final IndexValue idx = new IndexValue(out.length());
+
 		out.append("Message from Callee");
 
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
 	}
 
 }

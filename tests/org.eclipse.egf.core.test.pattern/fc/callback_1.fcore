@@ -60,7 +60,8 @@
       <libraries xmi:id="_RJfl0CLYEd-MKb12XlsvJw" name="ddd"/>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_kUGpQCLHEd-n0OdkUfG5hQ">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_mX2psCLHEd-n0OdkUfG5hQ" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_mX2psCLHEd-n0OdkUfG5hQ" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_orF3oCLHEd-n0OdkUfG5hQ">

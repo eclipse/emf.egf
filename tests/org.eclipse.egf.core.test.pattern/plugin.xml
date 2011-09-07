@@ -91,6 +91,9 @@
       <fcore
             id="fc/substitution_chain.fcore">
       </fcore>
+      <fcore
+            id="fc/PatternCall_and_Callback.fcore">
+      </fcore>
       
    </extension>
    

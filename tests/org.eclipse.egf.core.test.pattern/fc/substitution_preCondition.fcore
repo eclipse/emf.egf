@@ -8,37 +8,38 @@
   <viewpointContainer xmi:id="_LicGkHkjEd-R_void7tQ-Q">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_MQ7kQHkjEd-R_void7tQ-Q">
       <libraries xmi:id="_M7ingHkjEd-R_void7tQ-Q" name="substitution.preCondition">
-        <elements xmi:type="pattern:Pattern" xmi:id="_RDTHEHkjEd-R_void7tQ-Q" name="ClassName"
-            headerMethod="#_RDTHEXkjEd-R_void7tQ-Q" footerMethod="#_RDTHFXkjEd-R_void7tQ-Q"
-            initMethod="#_RDTHEnkjEd-R_void7tQ-Q" conditionMethod="#_RDTHE3kjEd-R_void7tQ-Q">
+        <elements xmi:id="_RDTHEHkjEd-R_void7tQ-Q" name="ClassName" headerMethod="#_RDTHEXkjEd-R_void7tQ-Q"
+            conditionMethod="#_RDTHE3kjEd-R_void7tQ-Q" initMethod="#_RDTHEnkjEd-R_void7tQ-Q"
+            footerMethod="#_RDTHFXkjEd-R_void7tQ-Q">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_RDTHF3kjEd-R_void7tQ-Q"
+              name="JET"/>
           <methods xmi:id="_RDTHEXkjEd-R_void7tQ-Q" name="header" patternFilePath="templates/pattern._RDTHEHkjEd-R_void7tQ-Q/method._RDTHEXkjEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_RDTHEnkjEd-R_void7tQ-Q" name="init" patternFilePath="templates/pattern._RDTHEHkjEd-R_void7tQ-Q/method._RDTHEnkjEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_RDTHE3kjEd-R_void7tQ-Q" name="preCondition" patternFilePath="templates/pattern._RDTHEHkjEd-R_void7tQ-Q/method._RDTHE3kjEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_RDTHFHkjEd-R_void7tQ-Q" name="body" patternFilePath="templates/pattern._RDTHEHkjEd-R_void7tQ-Q/method._RDTHFHkjEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_RDTHFXkjEd-R_void7tQ-Q" name="footer" patternFilePath="templates/pattern._RDTHEHkjEd-R_void7tQ-Q/method._RDTHFXkjEd-R_void7tQ-Q.pt"/>
+          <parameters xmi:id="__WPaAHkjEd-R_void7tQ-Q" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_U5WWIHkkEd-R_void7tQ-Q"
               called="#_RDTHFHkjEd-R_void7tQ-Q"/>
-          <parameters xmi:id="__WPaAHkjEd-R_void7tQ-Q" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_RDTHF3kjEd-R_void7tQ-Q"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_pXwUAHkkEd-R_void7tQ-Q" name="ClassNameForCompanyOnly"
-            headerMethod="#_pXwUAXkkEd-R_void7tQ-Q" footerMethod="#_pXwUBXkkEd-R_void7tQ-Q"
-            superPattern="#_RDTHEHkjEd-R_void7tQ-Q" initMethod="#_pXwUAnkkEd-R_void7tQ-Q"
-            conditionMethod="#_pXwUA3kkEd-R_void7tQ-Q">
+        <elements xmi:id="_pXwUAHkkEd-R_void7tQ-Q" name="ClassNameForCompanyOnly"
+            superPattern="#_RDTHEHkjEd-R_void7tQ-Q" headerMethod="#_pXwUAXkkEd-R_void7tQ-Q"
+            conditionMethod="#_pXwUA3kkEd-R_void7tQ-Q" initMethod="#_pXwUAnkkEd-R_void7tQ-Q"
+            footerMethod="#_pXwUBXkkEd-R_void7tQ-Q">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_pXwUB3kkEd-R_void7tQ-Q"
+              name="JET"/>
           <methods xmi:id="_pXwUAXkkEd-R_void7tQ-Q" name="header" patternFilePath="templates/pattern._pXwUAHkkEd-R_void7tQ-Q/method._pXwUAXkkEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_pXwUAnkkEd-R_void7tQ-Q" name="init" patternFilePath="templates/pattern._pXwUAHkkEd-R_void7tQ-Q/method._pXwUAnkkEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_pXwUA3kkEd-R_void7tQ-Q" name="preCondition" patternFilePath="templates/pattern._pXwUAHkkEd-R_void7tQ-Q/method._pXwUA3kkEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_pXwUBXkkEd-R_void7tQ-Q" name="footer" patternFilePath="templates/pattern._pXwUAHkkEd-R_void7tQ-Q/method._pXwUBXkkEd-R_void7tQ-Q.pt"/>
           <methods xmi:id="_MgwdQHlVEd-naNjeq-22JA" name="body" patternFilePath="templates/pattern._pXwUAHkkEd-R_void7tQ-Q/method._MgwdQHlVEd-naNjeq-22JA.pt"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_pXwUBnkkEd-R_void7tQ-Q"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_pXwUB3kkEd-R_void7tQ-Q"
-              name="JET"/>
         </elements>
       </libraries>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_wTLqgHkjEd-R_void7tQ-Q">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_zmenQHkjEd-R_void7tQ-Q" uri="platform:/resource/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_zmenQHkjEd-R_void7tQ-Q" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_r779cHkjEd-R_void7tQ-Q">

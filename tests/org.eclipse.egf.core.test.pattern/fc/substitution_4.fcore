@@ -7,13 +7,15 @@
     name="substitution_4">
   <viewpointContainer xmi:id="_UgW1wGlqEd-AhuXDVJhj5w">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_XMxYsGlqEd-AhuXDVJhj5w">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_XMxYsWlqEd-AhuXDVJhj5w" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_XMxYsWlqEd-AhuXDVJhj5w" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_Xt_2cGlqEd-AhuXDVJhj5w">
       <libraries xmi:id="_Y5sNgGlqEd-AhuXDVJhj5w" name="substitution_4">
-        <elements xmi:type="pattern:Pattern" xmi:id="_hQMlcGlqEd-AhuXDVJhj5w" name="a"
-            headerMethod="#_hQMlcWlqEd-AhuXDVJhj5w" footerMethod="#_hQMldGlqEd-AhuXDVJhj5w"
-            initMethod="#_hQMlcmlqEd-AhuXDVJhj5w">
+        <elements xmi:id="_hQMlcGlqEd-AhuXDVJhj5w" name="a" headerMethod="#_hQMlcWlqEd-AhuXDVJhj5w"
+            initMethod="#_hQMlcmlqEd-AhuXDVJhj5w" footerMethod="#_hQMldGlqEd-AhuXDVJhj5w">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_hQMldmlqEd-AhuXDVJhj5w"
+              name="JET"/>
           <methods xmi:id="_hQMlcWlqEd-AhuXDVJhj5w" name="header" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMlcWlqEd-AhuXDVJhj5w.pt"/>
           <methods xmi:id="_hQMlcmlqEd-AhuXDVJhj5w" name="init" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMlcmlqEd-AhuXDVJhj5w.pt"/>
           <methods xmi:id="_hQMlc2lqEd-AhuXDVJhj5w" name="body" patternFilePath="templates/pattern._hQMlcGlqEd-AhuXDVJhj5w/method._hQMlc2lqEd-AhuXDVJhj5w.pt"/>
@@ -21,12 +23,11 @@
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_hQMldWlqEd-AhuXDVJhj5w"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_vWBQoGlqEd-AhuXDVJhj5w"
               called="#_hQMlc2lqEd-AhuXDVJhj5w"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_hQMldmlqEd-AhuXDVJhj5w"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_ilb6EGlqEd-AhuXDVJhj5w" name="b"
-            headerMethod="#_ilb6EWlqEd-AhuXDVJhj5w" footerMethod="#_ilb6FGlqEd-AhuXDVJhj5w"
-            initMethod="#_ilb6EmlqEd-AhuXDVJhj5w">
+        <elements xmi:id="_ilb6EGlqEd-AhuXDVJhj5w" name="b" headerMethod="#_ilb6EWlqEd-AhuXDVJhj5w"
+            initMethod="#_ilb6EmlqEd-AhuXDVJhj5w" footerMethod="#_ilb6FGlqEd-AhuXDVJhj5w">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_ilb6FmlqEd-AhuXDVJhj5w"
+              name="JET"/>
           <methods xmi:id="_ilb6EWlqEd-AhuXDVJhj5w" name="header" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6EWlqEd-AhuXDVJhj5w.pt"/>
           <methods xmi:id="_ilb6EmlqEd-AhuXDVJhj5w" name="init" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6EmlqEd-AhuXDVJhj5w.pt"/>
           <methods xmi:id="_ilb6E2lqEd-AhuXDVJhj5w" name="body" patternFilePath="templates/pattern._ilb6EGlqEd-AhuXDVJhj5w/method._ilb6E2lqEd-AhuXDVJhj5w.pt"/>
@@ -34,12 +35,11 @@
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_ilb6FWlqEd-AhuXDVJhj5w"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_sxgsgGlqEd-AhuXDVJhj5w"
               called="#_ilb6E2lqEd-AhuXDVJhj5w"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_ilb6FmlqEd-AhuXDVJhj5w"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_i77ugGlqEd-AhuXDVJhj5w" name="c"
-            headerMethod="#_i77ugWlqEd-AhuXDVJhj5w" footerMethod="#_i77uhGlqEd-AhuXDVJhj5w"
-            initMethod="#_i77ugmlqEd-AhuXDVJhj5w">
+        <elements xmi:id="_i77ugGlqEd-AhuXDVJhj5w" name="c" headerMethod="#_i77ugWlqEd-AhuXDVJhj5w"
+            initMethod="#_i77ugmlqEd-AhuXDVJhj5w" footerMethod="#_i77uhGlqEd-AhuXDVJhj5w">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_i77uhmlqEd-AhuXDVJhj5w"
+              name="JET"/>
           <methods xmi:id="_i77ugWlqEd-AhuXDVJhj5w" name="header" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77ugWlqEd-AhuXDVJhj5w.pt"/>
           <methods xmi:id="_i77ugmlqEd-AhuXDVJhj5w" name="init" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77ugmlqEd-AhuXDVJhj5w.pt"/>
           <methods xmi:id="_i77ug2lqEd-AhuXDVJhj5w" name="body" patternFilePath="templates/pattern._i77ugGlqEd-AhuXDVJhj5w/method._i77ug2lqEd-AhuXDVJhj5w.pt"/>
@@ -47,8 +47,6 @@
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_i77uhWlqEd-AhuXDVJhj5w"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_rAjsQGlqEd-AhuXDVJhj5w"
               called="#_i77ug2lqEd-AhuXDVJhj5w"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_i77uhmlqEd-AhuXDVJhj5w"
-              name="JET"/>
         </elements>
       </libraries>
     </viewpoints>

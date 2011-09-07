@@ -18,6 +18,7 @@ public class Callee {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		IQuery.ParameterDescription paramDesc = null;
 		Map<String, String> queryCtx = null;
+		Node.Container currentNode = ctx.getNode();
 		List<Object> parameterList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
 		List<Object> parameter2List = null;
@@ -29,36 +30,40 @@ public class Callee {
 				this.parameter = (java.lang.Object) parameterParameter;
 				this.parameter2 = (java.lang.Object) parameter2Parameter;
 
-				orchestration((PatternContext) argument);
+				{
+					ctx.setNode(new Node.Container(currentNode, getClass()));
+					orchestration((PatternContext) argument);
 
+				}
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
+					ctx);
 		}
 	}
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
+		Node.Container currentNode = ictx.getNode();
 		method_body(ictx.getBuffer(), ictx);
-
-		String loop = ictx.getBuffer().toString();
+		ictx.setNode(currentNode);
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			parameterValues.put("parameter2", this.parameter2);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
 		}
 		return loop;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx)
+			throws Exception {
+		final IndexValue idx = new IndexValue(out.length());
+
 		out.append("Callee : ");
 
 		out.append("parameter=");
@@ -69,6 +74,8 @@ public class Callee {
 		if (parameter2 != null)
 			out.append(parameter2.toString());
 
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
 	}
 
 	protected java.lang.Object parameter;

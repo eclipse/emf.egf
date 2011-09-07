@@ -7,13 +7,16 @@
     name="substitution_chain">
   <viewpointContainer xmi:id="_3lljEJmOEd-BDZHgxyTzjQ">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_352i4JmOEd-BDZHgxyTzjQ">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_4Nrd0JmOEd-BDZHgxyTzjQ" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_4Nrd0JmOEd-BDZHgxyTzjQ" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_7L9z4JmOEd-BDZHgxyTzjQ">
       <libraries xmi:id="_7hHkgJmOEd-BDZHgxyTzjQ" name="substitution_chain">
-        <elements xmi:type="pattern:Pattern" xmi:id="_ACW7EJmPEd-BDZHgxyTzjQ" name="caller"
-            headerMethod="#_ACW7EZmPEd-BDZHgxyTzjQ" footerMethod="#_ACW7FZmPEd-BDZHgxyTzjQ"
-            initMethod="#_ACW7EpmPEd-BDZHgxyTzjQ" conditionMethod="#_ACW7E5mPEd-BDZHgxyTzjQ">
+        <elements xmi:id="_ACW7EJmPEd-BDZHgxyTzjQ" name="caller" headerMethod="#_ACW7EZmPEd-BDZHgxyTzjQ"
+            conditionMethod="#_ACW7E5mPEd-BDZHgxyTzjQ" initMethod="#_ACW7EpmPEd-BDZHgxyTzjQ"
+            footerMethod="#_ACW7FZmPEd-BDZHgxyTzjQ">
+          <nature xmi:type="javapattern:JavaNature" xmi:id="_ACW7F5mPEd-BDZHgxyTzjQ"
+              name="Java"/>
           <methods xmi:id="_ACW7EZmPEd-BDZHgxyTzjQ" name="header" patternFilePath="templates/pattern._ACW7EJmPEd-BDZHgxyTzjQ/method._ACW7EZmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_ACW7EpmPEd-BDZHgxyTzjQ" name="init" patternFilePath="templates/pattern._ACW7EJmPEd-BDZHgxyTzjQ/method._ACW7EpmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_ACW7E5mPEd-BDZHgxyTzjQ" name="preCondition" patternFilePath="templates/pattern._ACW7EJmPEd-BDZHgxyTzjQ/method._ACW7E5mPEd-BDZHgxyTzjQ.pt"/>
@@ -21,12 +24,12 @@
           <methods xmi:id="_ACW7FZmPEd-BDZHgxyTzjQ" name="footer" patternFilePath="templates/pattern._ACW7EJmPEd-BDZHgxyTzjQ/method._ACW7FZmPEd-BDZHgxyTzjQ.pt"/>
           <orchestration xmi:type="pattern:PatternCall" xmi:id="_FCRxsJmPEd-BDZHgxyTzjQ"
               called="#_9yQgsJmOEd-BDZHgxyTzjQ"/>
-          <nature xmi:type="javapattern:JavaNature" xmi:id="_ACW7F5mPEd-BDZHgxyTzjQ"
-              name="Java"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_9yQgsJmOEd-BDZHgxyTzjQ" name="replaced"
-            headerMethod="#_9yQgsZmOEd-BDZHgxyTzjQ" footerMethod="#_9yQgtZmOEd-BDZHgxyTzjQ"
-            initMethod="#_9yQgspmOEd-BDZHgxyTzjQ" conditionMethod="#_9yQgs5mOEd-BDZHgxyTzjQ">
+        <elements xmi:id="_9yQgsJmOEd-BDZHgxyTzjQ" name="replaced" headerMethod="#_9yQgsZmOEd-BDZHgxyTzjQ"
+            conditionMethod="#_9yQgs5mOEd-BDZHgxyTzjQ" initMethod="#_9yQgspmOEd-BDZHgxyTzjQ"
+            footerMethod="#_9yQgtZmOEd-BDZHgxyTzjQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_9yQgt5mOEd-BDZHgxyTzjQ"
+              name="JET"/>
           <methods xmi:id="_9yQgsZmOEd-BDZHgxyTzjQ" name="header" patternFilePath="templates/pattern._9yQgsJmOEd-BDZHgxyTzjQ/method._9yQgsZmOEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_9yQgspmOEd-BDZHgxyTzjQ" name="init" patternFilePath="templates/pattern._9yQgsJmOEd-BDZHgxyTzjQ/method._9yQgspmOEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_9yQgs5mOEd-BDZHgxyTzjQ" name="preCondition" patternFilePath="templates/pattern._9yQgsJmOEd-BDZHgxyTzjQ/method._9yQgs5mOEd-BDZHgxyTzjQ.pt"/>
@@ -34,12 +37,12 @@
           <methods xmi:id="_9yQgtZmOEd-BDZHgxyTzjQ" name="footer" patternFilePath="templates/pattern._9yQgsJmOEd-BDZHgxyTzjQ/method._9yQgtZmOEd-BDZHgxyTzjQ.pt"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_GEvUQJmPEd-BDZHgxyTzjQ"
               called="#_9yQgtJmOEd-BDZHgxyTzjQ"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_9yQgt5mOEd-BDZHgxyTzjQ"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_IWU8YJmPEd-BDZHgxyTzjQ" name="replace1"
-            headerMethod="#_IWU8YZmPEd-BDZHgxyTzjQ" footerMethod="#_IWU8ZZmPEd-BDZHgxyTzjQ"
-            initMethod="#_IWU8YpmPEd-BDZHgxyTzjQ" conditionMethod="#_IWU8Y5mPEd-BDZHgxyTzjQ">
+        <elements xmi:id="_IWU8YJmPEd-BDZHgxyTzjQ" name="replace1" headerMethod="#_IWU8YZmPEd-BDZHgxyTzjQ"
+            conditionMethod="#_IWU8Y5mPEd-BDZHgxyTzjQ" initMethod="#_IWU8YpmPEd-BDZHgxyTzjQ"
+            footerMethod="#_IWU8ZZmPEd-BDZHgxyTzjQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_IWU8Z5mPEd-BDZHgxyTzjQ"
+              name="JET"/>
           <methods xmi:id="_IWU8YZmPEd-BDZHgxyTzjQ" name="header" patternFilePath="templates/pattern._IWU8YJmPEd-BDZHgxyTzjQ/method._IWU8YZmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_IWU8YpmPEd-BDZHgxyTzjQ" name="init" patternFilePath="templates/pattern._IWU8YJmPEd-BDZHgxyTzjQ/method._IWU8YpmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_IWU8Y5mPEd-BDZHgxyTzjQ" name="preCondition" patternFilePath="templates/pattern._IWU8YJmPEd-BDZHgxyTzjQ/method._IWU8Y5mPEd-BDZHgxyTzjQ.pt"/>
@@ -47,12 +50,12 @@
           <methods xmi:id="_IWU8ZZmPEd-BDZHgxyTzjQ" name="footer" patternFilePath="templates/pattern._IWU8YJmPEd-BDZHgxyTzjQ/method._IWU8ZZmPEd-BDZHgxyTzjQ.pt"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_Kp2eMJmPEd-BDZHgxyTzjQ"
               called="#_IWU8ZJmPEd-BDZHgxyTzjQ"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_IWU8Z5mPEd-BDZHgxyTzjQ"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_Lin5QJmPEd-BDZHgxyTzjQ" name="replace2"
-            headerMethod="#_Lin5QZmPEd-BDZHgxyTzjQ" footerMethod="#_Lin5RZmPEd-BDZHgxyTzjQ"
-            initMethod="#_Lin5QpmPEd-BDZHgxyTzjQ" conditionMethod="#_Lin5Q5mPEd-BDZHgxyTzjQ">
+        <elements xmi:id="_Lin5QJmPEd-BDZHgxyTzjQ" name="replace2" headerMethod="#_Lin5QZmPEd-BDZHgxyTzjQ"
+            conditionMethod="#_Lin5Q5mPEd-BDZHgxyTzjQ" initMethod="#_Lin5QpmPEd-BDZHgxyTzjQ"
+            footerMethod="#_Lin5RZmPEd-BDZHgxyTzjQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_Lin5R5mPEd-BDZHgxyTzjQ"
+              name="JET"/>
           <methods xmi:id="_Lin5QZmPEd-BDZHgxyTzjQ" name="header" patternFilePath="templates/pattern._Lin5QJmPEd-BDZHgxyTzjQ/method._Lin5QZmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_Lin5QpmPEd-BDZHgxyTzjQ" name="init" patternFilePath="templates/pattern._Lin5QJmPEd-BDZHgxyTzjQ/method._Lin5QpmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_Lin5Q5mPEd-BDZHgxyTzjQ" name="preCondition" patternFilePath="templates/pattern._Lin5QJmPEd-BDZHgxyTzjQ/method._Lin5Q5mPEd-BDZHgxyTzjQ.pt"/>
@@ -60,12 +63,12 @@
           <methods xmi:id="_Lin5RZmPEd-BDZHgxyTzjQ" name="footer" patternFilePath="templates/pattern._Lin5QJmPEd-BDZHgxyTzjQ/method._Lin5RZmPEd-BDZHgxyTzjQ.pt"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_N8Z0EJmPEd-BDZHgxyTzjQ"
               called="#_Lin5RJmPEd-BDZHgxyTzjQ"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_Lin5R5mPEd-BDZHgxyTzjQ"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_Oo9YEJmPEd-BDZHgxyTzjQ" name="replace3"
-            headerMethod="#_Oo9YEZmPEd-BDZHgxyTzjQ" footerMethod="#_Oo9YFZmPEd-BDZHgxyTzjQ"
-            initMethod="#_Oo9YEpmPEd-BDZHgxyTzjQ" conditionMethod="#_Oo9YE5mPEd-BDZHgxyTzjQ">
+        <elements xmi:id="_Oo9YEJmPEd-BDZHgxyTzjQ" name="replace3" headerMethod="#_Oo9YEZmPEd-BDZHgxyTzjQ"
+            conditionMethod="#_Oo9YE5mPEd-BDZHgxyTzjQ" initMethod="#_Oo9YEpmPEd-BDZHgxyTzjQ"
+            footerMethod="#_Oo9YFZmPEd-BDZHgxyTzjQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_Oo9YF5mPEd-BDZHgxyTzjQ"
+              name="JET"/>
           <methods xmi:id="_Oo9YEZmPEd-BDZHgxyTzjQ" name="header" patternFilePath="templates/pattern._Oo9YEJmPEd-BDZHgxyTzjQ/method._Oo9YEZmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_Oo9YEpmPEd-BDZHgxyTzjQ" name="init" patternFilePath="templates/pattern._Oo9YEJmPEd-BDZHgxyTzjQ/method._Oo9YEpmPEd-BDZHgxyTzjQ.pt"/>
           <methods xmi:id="_Oo9YE5mPEd-BDZHgxyTzjQ" name="preCondition" patternFilePath="templates/pattern._Oo9YEJmPEd-BDZHgxyTzjQ/method._Oo9YE5mPEd-BDZHgxyTzjQ.pt"/>
@@ -73,8 +76,6 @@
           <methods xmi:id="_Oo9YFZmPEd-BDZHgxyTzjQ" name="footer" patternFilePath="templates/pattern._Oo9YEJmPEd-BDZHgxyTzjQ/method._Oo9YFZmPEd-BDZHgxyTzjQ.pt"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_QNGEUJmPEd-BDZHgxyTzjQ"
               called="#_Oo9YFJmPEd-BDZHgxyTzjQ"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_Oo9YF5mPEd-BDZHgxyTzjQ"
-              name="JET"/>
         </elements>
       </libraries>
     </viewpoints>

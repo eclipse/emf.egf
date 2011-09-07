@@ -17,7 +17,8 @@ public class Caller2 {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "Caller on ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -37,21 +38,29 @@ public class Caller2 {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+		paramDesc = new IQuery.ParameterDescription("parameter",
+				"http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx,
+				"org.eclipse.egf.pattern.basic.query").execute(paramDesc,
+				queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
 			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
+					ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -61,25 +70,26 @@ public class Caller2 {
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
 		method_body(ictx.getBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("parameter", this.parameter);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_2.fcore#_VA72IFdJEd-TZKuCZ4UIfg", ctx_local, parameters);
+			CallHelper
+					.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_2.fcore#_VA72IFdJEd-TZKuCZ4UIfg",
+							ctx_local, parameters);
 		}
 
-		String loop = ictx.getBuffer().toString();
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
+			;
 		}
 		return loop;
 	}
@@ -96,10 +106,15 @@ public class Caller2 {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(),
+				stringBuffer.substring(idx.value));
 	}
 }

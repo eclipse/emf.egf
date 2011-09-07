@@ -17,7 +17,8 @@ public class ClassPattern extends substitution.another.base.BasePattern {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "[Class ";
 	protected final String TEXT_2 = "]";
 	protected final String TEXT_3 = "[end Class]";
@@ -38,6 +39,7 @@ public class ClassPattern extends substitution.another.base.BasePattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> parameterList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -46,12 +48,16 @@ public class ClassPattern extends substitution.another.base.BasePattern {
 
 			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
+					ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
@@ -61,7 +67,6 @@ public class ClassPattern extends substitution.another.base.BasePattern {
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
 		method_start(ictx.getBuffer(), ictx);
 		{
@@ -76,26 +81,31 @@ public class ClassPattern extends substitution.another.base.BasePattern {
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("parameter", this.parameter);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw", ctx_local, parameters);
+			CallHelper
+					.executeWithParameterInjection(
+							"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_4ahL8Eh5Ed-A7KV9v5yLhw",
+							ctx_local, parameters);
 		}
 
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, parameter);
-			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_7RsNYEh5Ed-A7KV9v5yLhw", ctx_local);
+			CallHelper
+					.executeWithContextInjection(
+							"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_2.fcore#_7RsNYEh5Ed-A7KV9v5yLhw",
+							ctx_local);
 		}
 
 		method_end(ictx.getBuffer(), ictx);
 
-		String loop = ictx.getBuffer().toString();
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			ictx.clearBuffer();
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
+			;
 		}
 		return loop;
 	}
@@ -112,15 +122,25 @@ public class ClassPattern extends substitution.another.base.BasePattern {
 		return parameters;
 	}
 
-	protected void method_start(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_start(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(),
+				stringBuffer.substring(idx.value));
 	}
 
-	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_end(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_3);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(),
+				stringBuffer.substring(idx.value));
 	}
 }

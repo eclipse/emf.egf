@@ -17,7 +17,8 @@ public class BasePattern {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "//default content";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -36,12 +37,17 @@ public class BasePattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-		orchestration(ctx);
+		{
+			ctx.setNode(new Node.Container(currentNode, getClass()));
+			orchestration(ctx);
+		}
 
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
+					ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -51,7 +57,6 @@ public class BasePattern {
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
 		method_start(ictx.getBuffer(), ictx);
 		{
@@ -64,11 +69,9 @@ public class BasePattern {
 
 		method_end(ictx.getBuffer(), ictx);
 
-		String loop = ictx.getBuffer().toString();
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
-			ictx.clearBuffer();
+			;
 		}
 		return loop;
 	}
@@ -78,12 +81,22 @@ public class BasePattern {
 		return parameters;
 	}
 
-	protected void method_start(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_start(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(),
+				stringBuffer.substring(idx.value));
 	}
 
-	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_end(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(),
+				stringBuffer.substring(idx.value));
 	}
 }

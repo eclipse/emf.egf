@@ -8,24 +8,24 @@
   <viewpointContainer xmi:id="_MBTW8EPoEd-mKPwasigGsA">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_MmThcEPoEd-mKPwasigGsA">
       <libraries xmi:id="_M6r2AEPoEd-mKPwasigGsA" name="callbackAndReporter4">
-        <elements xmi:type="pattern:Pattern" xmi:id="_P10xcEPoEd-mKPwasigGsA" name="ClassPattern"
-            headerMethod="#_P10xcUPoEd-mKPwasigGsA" footerMethod="#_P11YgUPoEd-mKPwasigGsA"
-            initMethod="#_P10xckPoEd-mKPwasigGsA">
+        <elements xmi:id="_P10xcEPoEd-mKPwasigGsA" name="ClassPattern" headerMethod="#_P10xcUPoEd-mKPwasigGsA"
+            initMethod="#_P10xckPoEd-mKPwasigGsA" footerMethod="#_P11YgUPoEd-mKPwasigGsA">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_P11Yg0PoEd-mKPwasigGsA"
+              name="JET"/>
           <methods xmi:id="_P10xcUPoEd-mKPwasigGsA" name="header" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P10xcUPoEd-mKPwasigGsA.pt"/>
           <methods xmi:id="_P10xckPoEd-mKPwasigGsA" name="init" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P10xckPoEd-mKPwasigGsA.pt"/>
           <methods xmi:id="_P11YgEPoEd-mKPwasigGsA" name="body" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P11YgEPoEd-mKPwasigGsA.pt"/>
           <methods xmi:id="_P11YgUPoEd-mKPwasigGsA" name="footer" patternFilePath="templates/pattern._P10xcEPoEd-mKPwasigGsA/method._P11YgUPoEd-mKPwasigGsA.pt"/>
+          <parameters xmi:id="_SbelEEPoEd-mKPwasigGsA" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_P11YgkPoEd-mKPwasigGsA"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_UFeBsEPoEd-mKPwasigGsA"
               called="#_P11YgEPoEd-mKPwasigGsA"/>
-          <parameters xmi:id="_SbelEEPoEd-mKPwasigGsA" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_P11Yg0PoEd-mKPwasigGsA"
-              name="JET"/>
         </elements>
       </libraries>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_fRq0YEPoEd-mKPwasigGsA">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_fomGoEPoEd-mKPwasigGsA" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_fomGoEPoEd-mKPwasigGsA" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_aLdvkEPoEd-mKPwasigGsA">

@@ -8,26 +8,27 @@
   <viewpointContainer xmi:id="_nF5-YCIKEd-l6L0LIketyw">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_nd4ZgCIKEd-l6L0LIketyw">
       <libraries xmi:id="_6caJ8CITEd-XdOucj2euiQ" name="inheritance_3">
-        <elements xmi:type="pattern:Pattern" xmi:id="_72W_cCITEd-XdOucj2euiQ" name="parent"
-            headerMethod="#_72W_cSITEd-XdOucj2euiQ" footerMethod="#_72W_dCITEd-XdOucj2euiQ"
-            initMethod="#_72W_ciITEd-XdOucj2euiQ">
+        <elements xmi:id="_72W_cCITEd-XdOucj2euiQ" name="parent" headerMethod="#_72W_cSITEd-XdOucj2euiQ"
+            initMethod="#_72W_ciITEd-XdOucj2euiQ" footerMethod="#_72W_dCITEd-XdOucj2euiQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_72W_diITEd-XdOucj2euiQ"
+              name="JET"/>
           <methods xmi:id="_72W_cSITEd-XdOucj2euiQ" name="header" patternFilePath="templates/pattern._72W_cCITEd-XdOucj2euiQ/method._72W_cSITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_72W_ciITEd-XdOucj2euiQ" name="init" patternFilePath="templates/pattern._72W_cCITEd-XdOucj2euiQ/method._72W_ciITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_72W_cyITEd-XdOucj2euiQ" name="body" patternFilePath="templates/pattern._72W_cCITEd-XdOucj2euiQ/method._72W_cyITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_72W_dCITEd-XdOucj2euiQ" name="footer" patternFilePath="templates/pattern._72W_cCITEd-XdOucj2euiQ/method._72W_dCITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_G4w88CIUEd-XdOucj2euiQ" name="mywork" patternFilePath="templates/pattern._72W_cCITEd-XdOucj2euiQ/method._G4w88CIUEd-XdOucj2euiQ.pt"/>
-          <orchestration xmi:type="pattern:MethodCall" xmi:id="_HQxNQCIUEd-XdOucj2euiQ"
-              called="#_G4w88CIUEd-XdOucj2euiQ"/>
           <parameters xmi:id="_Kj7fwCIXEd-XdOucj2euiQ" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass">
             <query xmi:type="pattern:BasicQuery" xmi:id="_YzkOQCIXEd-XdOucj2euiQ"
                 extensionId="org.eclipse.egf.pattern.basic.query"/>
           </parameters>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_72W_diITEd-XdOucj2euiQ"
-              name="JET"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_HQxNQCIUEd-XdOucj2euiQ"
+              called="#_G4w88CIUEd-XdOucj2euiQ"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_-HLLgCITEd-XdOucj2euiQ" name="child"
-            headerMethod="#_-HLLgSITEd-XdOucj2euiQ" footerMethod="#_-HLLhCITEd-XdOucj2euiQ"
-            superPattern="#_72W_cCITEd-XdOucj2euiQ" initMethod="#_-HLLgiITEd-XdOucj2euiQ">
+        <elements xmi:id="_-HLLgCITEd-XdOucj2euiQ" name="child" superPattern="#_72W_cCITEd-XdOucj2euiQ"
+            headerMethod="#_-HLLgSITEd-XdOucj2euiQ" initMethod="#_-HLLgiITEd-XdOucj2euiQ"
+            footerMethod="#_-HLLhCITEd-XdOucj2euiQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_-HLLhiITEd-XdOucj2euiQ"
+              name="JET"/>
           <methods xmi:id="_-HLLgSITEd-XdOucj2euiQ" name="header" patternFilePath="templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._-HLLgSITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_-HLLgiITEd-XdOucj2euiQ" name="init" patternFilePath="templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._-HLLgiITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_-HLLgyITEd-XdOucj2euiQ" name="body" patternFilePath="templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._-HLLgyITEd-XdOucj2euiQ.pt"/>
@@ -38,27 +39,25 @@
               called="#_JBYPQCIUEd-XdOucj2euiQ"/>
           <orchestration xmi:type="pattern:PatternCall" xmi:id="_jVCJQCIUEd-XdOucj2euiQ"
               called="#_AHSpICIUEd-XdOucj2euiQ"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_-HLLhiITEd-XdOucj2euiQ"
-              name="JET"/>
         </elements>
-        <elements xmi:type="pattern:Pattern" xmi:id="_AHSpICIUEd-XdOucj2euiQ" name="called"
-            headerMethod="#_AHSpISIUEd-XdOucj2euiQ" footerMethod="#_AHSpJCIUEd-XdOucj2euiQ"
-            initMethod="#_AHSpIiIUEd-XdOucj2euiQ">
+        <elements xmi:id="_AHSpICIUEd-XdOucj2euiQ" name="called" headerMethod="#_AHSpISIUEd-XdOucj2euiQ"
+            initMethod="#_AHSpIiIUEd-XdOucj2euiQ" footerMethod="#_AHSpJCIUEd-XdOucj2euiQ">
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_AHSpJiIUEd-XdOucj2euiQ"
+              name="JET"/>
           <methods xmi:id="_AHSpISIUEd-XdOucj2euiQ" name="header" patternFilePath="templates/pattern._AHSpICIUEd-XdOucj2euiQ/method._AHSpISIUEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_AHSpIiIUEd-XdOucj2euiQ" name="init" patternFilePath="templates/pattern._AHSpICIUEd-XdOucj2euiQ/method._AHSpIiIUEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_AHSpIyIUEd-XdOucj2euiQ" name="body" patternFilePath="templates/pattern._AHSpICIUEd-XdOucj2euiQ/method._AHSpIyIUEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_AHSpJCIUEd-XdOucj2euiQ" name="footer" patternFilePath="templates/pattern._AHSpICIUEd-XdOucj2euiQ/method._AHSpJCIUEd-XdOucj2euiQ.pt"/>
+          <parameters xmi:id="_MGvWUCIXEd-XdOucj2euiQ" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
           <orchestration xmi:type="pattern:SuperCall" xmi:id="_AHSpJSIUEd-XdOucj2euiQ"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_ltVdYCIUEd-XdOucj2euiQ"
               called="#_AHSpIyIUEd-XdOucj2euiQ"/>
-          <parameters xmi:id="_MGvWUCIXEd-XdOucj2euiQ" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_AHSpJiIUEd-XdOucj2euiQ"
-              name="JET"/>
         </elements>
       </libraries>
     </viewpoints>
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_lt5zMCIWEd-XdOucj2euiQ">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_oniSwCIWEd-XdOucj2euiQ" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_oniSwCIWEd-XdOucj2euiQ" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_n7RgICIKEd-l6L0LIketyw">

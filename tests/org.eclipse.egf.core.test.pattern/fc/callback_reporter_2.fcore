@@ -7,7 +7,8 @@
     description="" name="callback_reporter_2">
   <viewpointContainer xmi:id="_BpD38C3HEd-K6fN6ULU38A">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_CFJXAC3HEd-K6fN6ULU38A">
-      <domains xmi:type="domain:EMFDomain" xmi:id="_GbGqoC3HEd-K6fN6ULU38A" uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_GbGqoC3HEd-K6fN6ULU38A" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/plugin/org.eclipse.egf.core.test.pattern/model/mypackage.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_HZTYQC3HEd-K6fN6ULU38A">
       <libraries xmi:id="_IHYmQC3HEd-K6fN6ULU38A" name="callbackAndReporter2">
