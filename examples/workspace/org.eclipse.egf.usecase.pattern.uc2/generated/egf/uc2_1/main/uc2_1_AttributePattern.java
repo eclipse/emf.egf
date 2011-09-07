@@ -39,6 +39,7 @@ public class uc2_1_AttributePattern {
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> anAttributeList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -47,13 +48,16 @@ public class uc2_1_AttributePattern {
 
 			this.anAttribute = (org.eclipse.emf.ecore.EAttribute) anAttributeParameter;
 
-			orchestration(ctx);
+			{
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(
-					ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
+					ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -63,23 +67,17 @@ public class uc2_1_AttributePattern {
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
 		method_body(ictx.getBuffer(), ictx);
 
-		String loop = ictx.getBuffer().toString();
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer()
-					.append(ictx.getBuffer().substring(
-							ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("anAttribute", this.anAttribute);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(
-					executionIndex);
+			String outputWithCallBack = Node.flatten(ictx.getNode());
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
 					parameterValues);
-			ictx.clearBuffer();
+			;
 		}
 		return loop;
 	}
@@ -98,9 +96,13 @@ public class uc2_1_AttributePattern {
 
 	protected void method_body(final StringBuffer stringBuffer,
 			final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(anAttribute.getName());
 		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(),
+				stringBuffer.substring(idx.value));
 	}
 }
