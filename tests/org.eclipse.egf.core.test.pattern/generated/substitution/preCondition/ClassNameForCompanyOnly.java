@@ -7,20 +7,17 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class ClassNameForCompanyOnly extends
-		substitution.preCondition.ClassName {
+public class ClassNameForCompanyOnly extends substitution.preCondition.ClassName {
 	protected static String nl;
 
-	public static synchronized ClassNameForCompanyOnly create(
-			String lineSeparator) {
+	public static synchronized ClassNameForCompanyOnly create(String lineSeparator) {
 		nl = lineSeparator;
 		ClassNameForCompanyOnly result = new ClassNameForCompanyOnly();
 		nl = null;
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "found ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -56,8 +53,7 @@ public class ClassNameForCompanyOnly extends
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -75,8 +71,7 @@ public class ClassNameForCompanyOnly extends
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -88,15 +83,13 @@ public class ClassNameForCompanyOnly extends
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 
 	public boolean preCondition() throws Exception {

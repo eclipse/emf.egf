@@ -24,8 +24,7 @@ public class caller {
 			orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 	}
 
@@ -35,10 +34,7 @@ public class caller {
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_chain.fcore#_9yQgsJmOEd-BDZHgxyTzjQ",
-							ctx_local, parameters);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_chain.fcore#_9yQgsJmOEd-BDZHgxyTzjQ", ctx_local, parameters);
 		}
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
@@ -47,8 +43,7 @@ public class caller {
 		return loop;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx)
-			throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(out.length());
 
 		//default content

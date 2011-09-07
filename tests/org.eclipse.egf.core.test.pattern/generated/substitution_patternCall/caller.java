@@ -17,8 +17,7 @@ public class caller {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "caller eClass : ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -55,8 +54,7 @@ public class caller {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -71,10 +69,7 @@ public class caller {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, eClass);
-			CallHelper
-					.executeWithContextInjection(
-							"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_patternCall.fcore#_ZHxDMJAhEd-qRrvFxb1RDA",
-							ctx_local);
+			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_patternCall.fcore#_ZHxDMJAhEd-qRrvFxb1RDA", ctx_local);
 		}
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
@@ -82,8 +77,7 @@ public class caller {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("eClass", this.eClass);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -101,16 +95,14 @@ public class caller {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(eClass.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 
 	public boolean preCondition() throws Exception {

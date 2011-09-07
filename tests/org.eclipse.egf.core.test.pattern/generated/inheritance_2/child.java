@@ -17,8 +17,7 @@ public class child extends inheritance_2.parent {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "fromChild : ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -54,8 +53,7 @@ public class child extends inheritance_2.parent {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -72,10 +70,7 @@ public class child extends inheritance_2.parent {
 		{
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
 			ctx_local.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-			CallHelper
-					.executeWithContextInjection(
-							"platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_2.fcore#_nfk5LCH-Ed-CStHKuCL0dg",
-							ctx_local);
+			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/inheritance_2.fcore#_nfk5LCH-Ed-CStHKuCL0dg", ctx_local);
 		}
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
@@ -83,8 +78,7 @@ public class child extends inheritance_2.parent {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -108,35 +102,28 @@ public class child extends inheritance_2.parent {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 
-	protected void method_setToInject(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_setToInject(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		toInject = parameter;
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 
-	protected void method_setVariables(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
-		targetFile = "/org.eclipse.egf.core.test.pattern/result/"
-				+ parameter.getName();
+		targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 }

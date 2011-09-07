@@ -2,8 +2,8 @@
 <xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
-    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
   <fcore:FactoryComponent xmi:id="_UwozYFufEeC2ObBox_g0zQ" name="PatternCall and Callback">
     <viewpointContainer xmi:id="_Ra1vsFu0EeC2ObBox_g0zQ">
       <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_YzSQYV6HEeCOmYMivg_FIg">
@@ -27,6 +27,18 @@
                 called="#_Zfpz1V9bEeCOmYMivg_FIg"/>
             <orchestration xmi:type="pattern:PatternCall" xmi:id="_nmqKwF9bEeCOmYMivg_FIg"
                 called="#_sdGdsF6JEeCOmYMivg_FIg"/>
+          </elements>
+          <elements xmi:id="_ZjRQ4NlfEeCsc6vQ20O_Mw" name="myPattern" headerMethod="#_ZjRQ4tlfEeCsc6vQ20O_Mw"
+              conditionMethod="#_ZjRQ5NlfEeCsc6vQ20O_Mw" initMethod="#_ZjRQ49lfEeCsc6vQ20O_Mw"
+              footerMethod="#_ZjRQ5tlfEeCsc6vQ20O_Mw">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_ZjRQ4dlfEeCsc6vQ20O_Mw"
+                name="Java"/>
+            <methods xmi:id="_ZjRQ4tlfEeCsc6vQ20O_Mw" name="header" patternFilePath="templates/pattern._ZjRQ4NlfEeCsc6vQ20O_Mw/method._ZjRQ4tlfEeCsc6vQ20O_Mw.pt"/>
+            <methods xmi:id="_ZjRQ49lfEeCsc6vQ20O_Mw" name="init" patternFilePath="templates/pattern._ZjRQ4NlfEeCsc6vQ20O_Mw/method._ZjRQ49lfEeCsc6vQ20O_Mw.pt"/>
+            <methods xmi:id="_ZjRQ5NlfEeCsc6vQ20O_Mw" name="preCondition" patternFilePath="templates/pattern._ZjRQ4NlfEeCsc6vQ20O_Mw/method._ZjRQ5NlfEeCsc6vQ20O_Mw.pt"/>
+            <methods xmi:id="_ZjRQ5dlfEeCsc6vQ20O_Mw" name="body" patternFilePath="templates/pattern._ZjRQ4NlfEeCsc6vQ20O_Mw/method._ZjRQ5dlfEeCsc6vQ20O_Mw.pt"/>
+            <methods xmi:id="_ZjRQ5tlfEeCsc6vQ20O_Mw" name="footer" patternFilePath="templates/pattern._ZjRQ4NlfEeCsc6vQ20O_Mw/method._ZjRQ5tlfEeCsc6vQ20O_Mw.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_ZjRQ59lfEeCsc6vQ20O_Mw"/>
           </elements>
         </libraries>
         <libraries xmi:id="_gkpecF6IEeCOmYMivg_FIg" name="egf.uc1_9.pattern.strategy">

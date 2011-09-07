@@ -19,12 +19,9 @@ public class CalleeInjected {
 		IQuery.ParameterDescription paramDesc = null;
 		Map<String, String> queryCtx = null;
 		Node.Container currentNode = ctx.getNode();
-		paramDesc = new IQuery.ParameterDescription("parameter",
-				"http://www.eclipse.org/emf/2002/Ecore#//EClass");
+		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx,
-				"org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
-				.execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -37,8 +34,7 @@ public class CalleeInjected {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 	}
 
@@ -52,14 +48,12 @@ public class CalleeInjected {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return loop;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx)
-			throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(out.length());
 
 		out.append("CalleeInjected : ");

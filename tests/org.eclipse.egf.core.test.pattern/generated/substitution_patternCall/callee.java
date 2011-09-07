@@ -17,8 +17,7 @@ public class callee {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "  callee eAttribute : ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -40,12 +39,9 @@ public class callee {
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("eAttribute",
-				"http://www.eclipse.org/emf/2002/Ecore#//EAttribute");
+		paramDesc = new IQuery.ParameterDescription("eAttribute", "http://www.eclipse.org/emf/2002/Ecore#//EAttribute");
 		queryCtx = new HashMap<String, String>();
-		List<Object> eAttributeList = QueryHelper.load(ctx,
-				"org.eclipse.egf.pattern.basic.query").execute(paramDesc,
-				queryCtx, ctx);
+		List<Object> eAttributeList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
 
 		for (Object eAttributeParameter : eAttributeList) {
 
@@ -59,8 +55,7 @@ public class callee {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -78,8 +73,7 @@ public class callee {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("eAttribute", this.eAttribute);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -97,16 +91,14 @@ public class callee {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(eAttribute.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 
 	public boolean preCondition() throws Exception {

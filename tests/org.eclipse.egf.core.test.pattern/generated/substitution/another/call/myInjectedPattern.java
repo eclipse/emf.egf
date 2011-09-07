@@ -7,8 +7,7 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class myInjectedPattern extends
-		substitution.another.call.InjectedPattern {
+public class myInjectedPattern extends substitution.another.call.InjectedPattern {
 	protected static String nl;
 
 	public static synchronized myInjectedPattern create(String lineSeparator) {
@@ -18,8 +17,7 @@ public class myInjectedPattern extends
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "[Improved EReference ";
 	protected final String TEXT_2 = "]";
 	protected final String TEXT_3 = NL;
@@ -41,12 +39,9 @@ public class myInjectedPattern extends
 		IQuery.ParameterDescription paramDesc = null;
 		Node.Container currentNode = ctx.getNode();
 
-		paramDesc = new IQuery.ParameterDescription("parameter",
-				"http://www.eclipse.org/emf/2002/Ecore#//EReference");
+		paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EReference");
 		queryCtx = new HashMap<String, String>();
-		List<Object> parameterList = QueryHelper.load(ctx,
-				"org.eclipse.egf.pattern.query.EObjectInjectedContextQuery")
-				.execute(paramDesc, queryCtx, ctx);
+		List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
 		for (Object parameterParameter : parameterList) {
 
@@ -60,8 +55,7 @@ public class myInjectedPattern extends
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -79,8 +73,7 @@ public class myInjectedPattern extends
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -92,15 +85,13 @@ public class myInjectedPattern extends
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 }

@@ -38,8 +38,7 @@ public class Callee {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 	}
 
@@ -54,14 +53,12 @@ public class Callee {
 			parameterValues.put("parameter", this.parameter);
 			parameterValues.put("parameter2", this.parameter2);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return loop;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx)
-			throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(out.length());
 
 		out.append("Callee : ");
