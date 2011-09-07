@@ -10,16 +10,14 @@ import org.eclipse.egf.pattern.query.*;
 public class uc2_2_ClassPatternSubstitution2 {
 	protected static String nl;
 
-	public static synchronized uc2_2_ClassPatternSubstitution2 create(
-			String lineSeparator) {
+	public static synchronized uc2_2_ClassPatternSubstitution2 create(String lineSeparator) {
 		nl = lineSeparator;
 		uc2_2_ClassPatternSubstitution2 result = new uc2_2_ClassPatternSubstitution2();
 		nl = null;
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "*Sub2 Class ";
 	protected final String TEXT_2 = ": ";
 	protected final String TEXT_3 = NL;
@@ -56,8 +54,7 @@ public class uc2_2_ClassPatternSubstitution2 {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -75,8 +72,7 @@ public class uc2_2_ClassPatternSubstitution2 {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("aClass", this.aClass);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -94,15 +90,13 @@ public class uc2_2_ClassPatternSubstitution2 {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(aClass.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 }

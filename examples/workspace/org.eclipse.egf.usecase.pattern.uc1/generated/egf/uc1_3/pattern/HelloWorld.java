@@ -16,8 +16,7 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = " ";
 	protected final String TEXT_2 = NL;
 	protected final String TEXT_3 = NL;
@@ -53,8 +52,7 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -72,10 +70,7 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("element", this.aClass);
 			ExecutionContext ctx_local = new ExecutionContext(ictx);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw",
-							ctx_local, parameters);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw", ctx_local, parameters);
 		}
 
 		method_finish(ictx.getBuffer(), ictx);
@@ -85,8 +80,7 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("aClass", this.aClass);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}
 		return loop;
@@ -104,14 +98,12 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(aClass.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(),
-				stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
 	}
 }

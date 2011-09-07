@@ -33,8 +33,7 @@ public class JavaPattern {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()),
-					ctx);
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 	}
 
@@ -48,14 +47,12 @@ public class JavaPattern {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("aClass", this.aClass);
 			String outputWithCallBack = Node.flatten(ictx.getNode());
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return loop;
 	}
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx)
-			throws Exception {
+	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
 		final IndexValue idx = new IndexValue(out.length());
 
 		// Message on the default console

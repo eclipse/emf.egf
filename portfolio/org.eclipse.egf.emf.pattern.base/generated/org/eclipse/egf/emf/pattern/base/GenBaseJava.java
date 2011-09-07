@@ -9,116 +9,125 @@ import org.eclipse.egf.pattern.query.*;
 import org.eclipse.emf.codegen.util.*;
 
 public class GenBaseJava extends org.eclipse.egf.emf.pattern.base.GenAbstract {
-    protected static String nl;
+	protected static String nl;
 
-    public static synchronized GenBaseJava create(String lineSeparator) {
-        nl = lineSeparator;
-        GenBaseJava result = new GenBaseJava();
-        nl = null;
-        return result;
-    }
+	public static synchronized GenBaseJava create(String lineSeparator) {
+		nl = lineSeparator;
+		GenBaseJava result = new GenBaseJava();
+		nl = null;
+		return result;
+	}
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "";
-    protected final String TEXT_2 = NL;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "";
+	protected final String TEXT_2 = NL;
 
-    public GenBaseJava() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+	public GenBaseJava() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    }
+	}
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-        if (preCondition())
-            orchestration(ctx);
+		if (preCondition()) {
+			ctx.setNode(new Node.Container(currentNode, getClass()));
+			orchestration(ctx);
+		}
 
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		ctx.setNode(currentNode);
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+		}
 
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(TEXT_2);
-        return stringBuffer.toString();
-    }
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(TEXT_2);
+		return stringBuffer.toString();
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-        method_createImportManager(ictx.getBuffer(), ictx);
+		method_createImportManager(ictx.getBuffer(), ictx);
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		if (ictx.useReporter()) {
+			;
+		}
+		return loop;
+	}
 
-    protected java.lang.String targetPath = null;
+	protected java.lang.String targetPath = null;
 
-    public void set_targetPath(java.lang.String object) {
-        this.targetPath = object;
-    }
+	public void set_targetPath(java.lang.String object) {
+		this.targetPath = object;
+	}
 
-    protected java.lang.String packageName = null;
+	protected java.lang.String packageName = null;
 
-    public void set_packageName(java.lang.String object) {
-        this.packageName = object;
-    }
+	public void set_packageName(java.lang.String object) {
+		this.packageName = object;
+	}
 
-    protected java.lang.String className = null;
+	protected java.lang.String className = null;
 
-    public void set_className(java.lang.String object) {
-        this.className = object;
-    }
+	public void set_className(java.lang.String object) {
+		this.className = object;
+	}
 
-    protected org.eclipse.emf.codegen.util.ImportManager importManager = null;
+	protected org.eclipse.emf.codegen.util.ImportManager importManager = null;
 
-    public void set_importManager(org.eclipse.emf.codegen.util.ImportManager object) {
-        this.importManager = object;
-    }
+	public void set_importManager(org.eclipse.emf.codegen.util.ImportManager object) {
+		this.importManager = object;
+	}
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		return parameters;
+	}
 
-    protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
-        ctx.setValue("targetPath", targetPath);
-        ctx.setValue("packageName", packageName);
-        ctx.setValue("className", className);
+		ctx.setValue("targetPath", targetPath);
+		ctx.setValue("packageName", packageName);
+		ctx.setValue("className", className);
 
-    }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+	}
 
-    protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
-        ctx.setValue("contentType", ContentType.Java);
+		ctx.setValue("contentType", ContentType.Java);
 
-    }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+	}
 
-    protected void method_createImportManager(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_createImportManager(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+		final IndexValue idx = new IndexValue(stringBuffer.length());
 
-        importManager = new ImportManager(packageName);
-        importManager.addMasterImport(packageName, className);
-        genModel.setImportManager(importManager);
+		importManager = new ImportManager(packageName);
+		importManager.addMasterImport(packageName, className);
+		genModel.setImportManager(importManager);
 
-    }
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+	}
 
-    public boolean preCondition() throws Exception {
-        return super.preCondition();
-    }
+	public boolean preCondition() throws Exception {
+		return super.preCondition();
+	}
 }
