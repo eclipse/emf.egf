@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.pattern.execution.InternalPatternContext;
+import org.eclipse.egf.model.pattern.*;
+import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.IQuery;
 
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement;
