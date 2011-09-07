@@ -29,5 +29,7 @@ Export-Package:
  org.eclipse.egf.core.preferences,
  org.eclipse.egf.core.processor,
  org.eclipse.egf.core.session,
+ org.eclipse.egf.core.trace,
+ org.eclipse.egf.core.trace.util,
  org.eclipse.egf.core.workspace
 Bundle-ActivationPolicy: lazy
