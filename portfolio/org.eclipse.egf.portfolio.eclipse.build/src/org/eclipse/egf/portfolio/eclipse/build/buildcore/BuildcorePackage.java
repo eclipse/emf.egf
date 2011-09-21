@@ -277,25 +277,6 @@ public interface BuildcorePackage extends EPackage {
     int SCM_FEATURE_COUNT = 0;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMLocationImpl <em>SCM Location</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMLocationImpl
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getSCMLocation()
-     * @generated
-     */
-    int SCM_LOCATION = 5;
-
-    /**
-     * The number of structural features of the '<em>SCM Location</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_LOCATION_FEATURE_COUNT = 0;
-
-    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -303,7 +284,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getProperty()
      * @generated
      */
-    int PROPERTY = 6;
+    int PROPERTY = 5;
 
     /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -340,7 +321,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
      * @generated
      */
-    int TRIGGER = 7;
+    int TRIGGER = 6;
 
     /**
      * The number of structural features of the '<em>Trigger</em>' class.
@@ -511,16 +492,6 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EClass getSCM();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation <em>SCM Location</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>SCM Location</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation
-     * @generated
-     */
-    EClass getSCMLocation();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property <em>Property</em>}'.
@@ -715,16 +686,6 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass SCM = eINSTANCE.getSCM();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMLocationImpl <em>SCM Location</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMLocationImpl
-         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getSCMLocation()
-         * @generated
-         */
-        EClass SCM_LOCATION = eINSTANCE.getSCMLocation();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.

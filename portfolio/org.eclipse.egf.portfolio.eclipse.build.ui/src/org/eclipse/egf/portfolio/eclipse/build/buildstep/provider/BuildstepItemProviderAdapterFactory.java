@@ -24,6 +24,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreSwitch;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.util.BuildstepAdapterFactory;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -39,6 +40,7 @@ import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
@@ -60,7 +62,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -83,6 +85,14 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
      * @generated
      */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+    /**
+     * This helps manage the child creation extenders.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(BuildStepEditPlugin.INSTANCE, BuildstepPackage.eNS_URI);
 
     /**
      * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -268,6 +278,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EgfActivityItemProvider egfActivityItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createEgfActivityAdapter() {
+        if (egfActivityItemProvider == null) {
+            egfActivityItemProvider = new EgfActivityItemProvider(this);
+        }
+
+        return egfActivityItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -334,29 +367,6 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         }
 
         return localBuildLocationItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected SCMBuildLocationItemProvider scmBuildLocationItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createSCMBuildLocationAdapter() {
-        if (scmBuildLocationItemProvider == null) {
-            scmBuildLocationItemProvider = new SCMBuildLocationItemProvider(this);
-        }
-
-        return scmBuildLocationItemProvider;
     }
 
     /**
@@ -556,6 +566,33 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public List<IChildCreationExtender> getChildCreationExtenders() {
+        return childCreationExtenderManager.getChildCreationExtenders();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+        return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResourceLocator getResourceLocator() {
+        return childCreationExtenderManager;
+    }
+
+    /**
      * This adds a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -603,10 +640,10 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (antStepItemProvider != null) antStepItemProvider.dispose();
         if (javadocStepItemProvider != null) javadocStepItemProvider.dispose();
         if (egfStepItemProvider != null) egfStepItemProvider.dispose();
+        if (egfActivityItemProvider != null) egfActivityItemProvider.dispose();
         if (aggregateStepItemProvider != null) aggregateStepItemProvider.dispose();
         if (installStepItemProvider != null) installStepItemProvider.dispose();
         if (localBuildLocationItemProvider != null) localBuildLocationItemProvider.dispose();
-        if (scmBuildLocationItemProvider != null) scmBuildLocationItemProvider.dispose();
         if (targetPlatformBuildLocationItemProvider != null) targetPlatformBuildLocationItemProvider.dispose();
         if (updateSiteBuildLocationItemProvider != null) updateSiteBuildLocationItemProvider.dispose();
         if (resultStepBuildLocationItemProvider != null) resultStepBuildLocationItemProvider.dispose();

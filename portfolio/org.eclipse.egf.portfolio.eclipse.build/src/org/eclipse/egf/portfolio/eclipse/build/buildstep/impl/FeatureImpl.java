@@ -41,7 +41,9 @@ public class FeatureImpl extends ComponentImpl implements Feature {
      * @generated
      */
     protected FeatureImpl() {
+
         super();
+
     }
 
     /**

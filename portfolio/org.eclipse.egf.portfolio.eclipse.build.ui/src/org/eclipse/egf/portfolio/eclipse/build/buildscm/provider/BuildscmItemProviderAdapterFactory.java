@@ -24,8 +24,12 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreSwitch;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmFactory;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.util.BuildscmAdapterFactory;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.util.BuildstepSwitch;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -39,6 +43,7 @@ import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
@@ -60,7 +65,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -83,6 +88,14 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
      * @generated
      */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+    /**
+     * This helps manage the child creation extenders.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(BuildSCMEditPlugin.INSTANCE, BuildscmPackage.eNS_URI);
 
     /**
      * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -153,6 +166,29 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SVNBuildLocationItemProvider svnBuildLocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSVNBuildLocationAdapter() {
+        if (svnBuildLocationItemProvider == null) {
+            svnBuildLocationItemProvider = new SVNBuildLocationItemProvider(this);
+        }
+
+        return svnBuildLocationItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -211,6 +247,33 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public List<IChildCreationExtender> getChildCreationExtenders() {
+        return childCreationExtenderManager.getChildCreationExtenders();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+        return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResourceLocator getResourceLocator() {
+        return childCreationExtenderManager;
+    }
+
+    /**
      * This adds a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -253,6 +316,7 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
     public void dispose() {
         if (svnItemProvider != null) svnItemProvider.dispose();
         if (svnLocationItemProvider != null) svnLocationItemProvider.dispose();
+        if (svnBuildLocationItemProvider != null) svnBuildLocationItemProvider.dispose();
     }
 
     /**
@@ -308,6 +372,97 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__SCMS,
                  BuildscmFactory.eINSTANCE.createSVN()));
+
+
+
+                return null;
+            }
+ 
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected CommandParameter createChildParameter(Object feature, Object child) {
+                return new CommandParameter(null, feature, child);
+            }
+
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+            ArrayList<Object> result = new ArrayList<Object>();
+           new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+           return result;
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public ResourceLocator getResourceLocator() {
+            return BuildSCMEditPlugin.INSTANCE;
+        }
+    }
+
+    /**
+     * A child creation extender for the {@link BuildstepPackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static class BuildstepChildCreationExtender implements IChildCreationExtender {
+        /**
+         * The switch for creating child descriptors specific to each extended class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected static class CreationSwitch extends BuildstepSwitch<Object> {
+            /**
+             * The child descriptors being populated.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected List<Object> newChildDescriptors;
+
+            /**
+             * The domain in which to create the children.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected EditingDomain editingDomain;
+
+            /**
+             * Creates the a switch for populating child descriptors in the given domain.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+                this.newChildDescriptors = newChildDescriptors;
+                this.editingDomain = editingDomain;
+            }
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
+            public Object caseBuildStep(BuildStep object) {
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildscmFactory.eINSTANCE.createSVNBuildLocation()));
 
 
 

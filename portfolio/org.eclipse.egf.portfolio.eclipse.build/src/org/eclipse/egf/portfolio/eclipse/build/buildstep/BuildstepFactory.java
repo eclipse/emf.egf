@@ -48,15 +48,6 @@ public interface BuildstepFactory extends EFactory {
     CleanStep createCleanStep();
 
     /**
-     * Returns a new object of class '<em>SCM Build Location</em>'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>SCM Build Location</em>'.
-     * @generated
-     */
-	SCMBuildLocation createSCMBuildLocation();
-
-	/**
      * Returns a new object of class '<em>Update Site Build Location</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -136,6 +127,15 @@ public interface BuildstepFactory extends EFactory {
      * @generated
      */
     EgfStep createEgfStep();
+
+    /**
+     * Returns a new object of class '<em>Egf Activity</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Egf Activity</em>'.
+     * @generated
+     */
+    EgfActivity createEgfActivity();
 
     /**
      * Returns a new object of class '<em>Aggregate Step</em>'.

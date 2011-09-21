@@ -50,8 +50,11 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EgfStep" eSuperTypes="BuildCore.ecore#//Step BuildCore.ecore#//Item">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activities" unique="false"
-        lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="egfActivities" lowerBound="1"
+        upperBound="-1" eType="#//EgfActivity" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EgfActivity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AggregateStep" eSuperTypes="#//ResultStep">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -93,12 +96,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalBuildLocation" eSuperTypes="#//SourceBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SCMBuildLocation" eSuperTypes="#//SourceBuildLocation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="scmLocation" lowerBound="1"
-        eType="ecore:EClass BuildCore.ecore#//SCMLocation"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TargetPlatformBuildLocation" eSuperTypes="#//BinaryBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

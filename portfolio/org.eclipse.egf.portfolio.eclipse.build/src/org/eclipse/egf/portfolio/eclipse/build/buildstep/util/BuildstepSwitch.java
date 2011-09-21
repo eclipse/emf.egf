@@ -162,6 +162,12 @@ public class BuildstepSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildstepPackage.EGF_ACTIVITY: {
+                EgfActivity egfActivity = (EgfActivity)theEObject;
+                T result = caseEgfActivity(egfActivity);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildstepPackage.AGGREGATE_STEP: {
                 AggregateStep aggregateStep = (AggregateStep)theEObject;
                 T result = caseAggregateStep(aggregateStep);
@@ -202,14 +208,6 @@ public class BuildstepSwitch<T> {
                 T result = caseLocalBuildLocation(localBuildLocation);
                 if (result == null) result = caseSourceBuildLocation(localBuildLocation);
                 if (result == null) result = caseBuildLocation(localBuildLocation);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case BuildstepPackage.SCM_BUILD_LOCATION: {
-                SCMBuildLocation scmBuildLocation = (SCMBuildLocation)theEObject;
-                T result = caseSCMBuildLocation(scmBuildLocation);
-                if (result == null) result = caseSourceBuildLocation(scmBuildLocation);
-                if (result == null) result = caseBuildLocation(scmBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -390,6 +388,21 @@ public class BuildstepSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Egf Activity</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Egf Activity</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseEgfActivity(EgfActivity object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Aggregate Step</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -476,21 +489,6 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseLocalBuildLocation(LocalBuildLocation object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>SCM Build Location</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>SCM Build Location</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseSCMBuildLocation(SCMBuildLocation object) {
         return null;
     }
 

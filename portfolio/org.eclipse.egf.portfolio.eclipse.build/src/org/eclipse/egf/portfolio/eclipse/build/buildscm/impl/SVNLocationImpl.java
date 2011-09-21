@@ -13,8 +13,6 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildscm.impl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMLocationImpl;
-
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol;
@@ -24,6 +22,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +41,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class SVNLocationImpl extends SCMLocationImpl implements SVNLocation {
+public class SVNLocationImpl extends EObjectImpl implements SVNLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -171,7 +170,9 @@ public class SVNLocationImpl extends SCMLocationImpl implements SVNLocation {
      * @generated
      */
     protected SVNLocationImpl() {
+
         super();
+
     }
 
     /**

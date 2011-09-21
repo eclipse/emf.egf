@@ -97,7 +97,9 @@ public class ChainImpl extends ItemImpl implements Chain {
      * @generated
      */
     protected ChainImpl() {
+
         super();
+
     }
 
     /**

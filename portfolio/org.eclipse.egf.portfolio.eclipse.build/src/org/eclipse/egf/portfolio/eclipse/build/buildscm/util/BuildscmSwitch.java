@@ -16,10 +16,11 @@ package org.eclipse.egf.portfolio.eclipse.build.buildscm.util;
 import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -114,7 +115,14 @@ public class BuildscmSwitch<T> {
             case BuildscmPackage.SVN_LOCATION: {
                 SVNLocation svnLocation = (SVNLocation)theEObject;
                 T result = caseSVNLocation(svnLocation);
-                if (result == null) result = caseSCMLocation(svnLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildscmPackage.SVN_BUILD_LOCATION: {
+                SVNBuildLocation svnBuildLocation = (SVNBuildLocation)theEObject;
+                T result = caseSVNBuildLocation(svnBuildLocation);
+                if (result == null) result = caseSourceBuildLocation(svnBuildLocation);
+                if (result == null) result = caseBuildLocation(svnBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -153,6 +161,21 @@ public class BuildscmSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>SVN Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>SVN Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSVNBuildLocation(SVNBuildLocation object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>SCM</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -168,17 +191,32 @@ public class BuildscmSwitch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>SCM Location</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Build Location</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>SCM Location</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Build Location</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseSCMLocation(SCMLocation object) {
+    public T caseBuildLocation(BuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Source Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Source Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSourceBuildLocation(SourceBuildLocation object) {
         return null;
     }
 

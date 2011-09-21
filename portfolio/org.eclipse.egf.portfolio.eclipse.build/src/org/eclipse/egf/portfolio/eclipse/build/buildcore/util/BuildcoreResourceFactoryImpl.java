@@ -13,11 +13,14 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildcore.util;
 
+import java.util.Map;
+
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.migration.BuildcoreResourceHandler;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,14 +51,17 @@ public class BuildcoreResourceFactoryImpl extends ResourceFactoryImpl {
      * Creates an instance of the resource.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public Resource createResource(URI uri) {
+        XMIResource resource = new BuildcoreResourceImpl(uri);
+        
+        Map defaultLoadOptions = resource.getDefaultLoadOptions();
+        defaultLoadOptions.put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+        defaultLoadOptions.put(XMLResource.OPTION_RESOURCE_HANDLER, new BuildcoreResourceHandler());
 
-        Resource result = new BuildcoreResourceImpl(uri);
-        return result;
-
+        return resource;
     }
 
 } //BuildcoreResourceFactoryImpl

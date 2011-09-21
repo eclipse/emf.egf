@@ -82,7 +82,9 @@ public abstract class BuildLocationImpl extends EObjectImpl implements BuildLoca
      * @generated
      */
     protected BuildLocationImpl() {
+
         super();
+
     }
 
     /**

@@ -55,7 +55,7 @@ public class CleanStepImpl extends StepImpl implements CleanStep {
      * @generated
      * @ordered
      */
-    protected static final CLEAN_TYPE TYPE_EDEFAULT = CLEAN_TYPE.RESULT;
+    protected static final CLEAN_TYPE TYPE_EDEFAULT = CLEAN_TYPE.WORKSPACE;
 
     /**
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -75,7 +75,9 @@ public class CleanStepImpl extends StepImpl implements CleanStep {
      * @generated
      */
     protected CleanStepImpl() {
+
         super();
+
     }
 
     /**

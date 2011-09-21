@@ -11,12 +11,13 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
+package org.eclipse.egf.portfolio.eclipse.build.buildscm.impl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SourceBuildLocationImpl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -27,19 +28,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>SCM Build Location</b></em>'.
+ * An implementation of the model object '<em><b>SVN Build Location</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SCMBuildLocationImpl#getScmLocation <em>Scm Location</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SCMBuildLocationImpl#getFolderName <em>Folder Name</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNBuildLocationImpl#getSvnLocation <em>Svn Location</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNBuildLocationImpl#getFolderName <em>Folder Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCMBuildLocation {
+public class SVNBuildLocationImpl extends SourceBuildLocationImpl implements SVNBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -49,14 +50,14 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
 
 
     /**
-     * The cached value of the '{@link #getScmLocation() <em>Scm Location</em>}' reference.
+     * The cached value of the '{@link #getSvnLocation() <em>Svn Location</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getScmLocation()
+     * @see #getSvnLocation()
      * @generated
      * @ordered
      */
-    protected SCMLocation scmLocation;
+    protected SVNLocation svnLocation;
 
 
 
@@ -88,8 +89,10 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
      * <!-- end-user-doc -->
      * @generated
      */
-    protected SCMBuildLocationImpl() {
+    protected SVNBuildLocationImpl() {
+
         super();
+
     }
 
     /**
@@ -99,7 +102,7 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildstepPackage.Literals.SCM_BUILD_LOCATION;
+        return BuildscmPackage.Literals.SVN_BUILD_LOCATION;
     }
 
 
@@ -112,17 +115,17 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
      * @generated
      */
 
-    public SCMLocation getScmLocation() {
+    public SVNLocation getSvnLocation() {
 
-        if (scmLocation != null && scmLocation.eIsProxy()) {
-            InternalEObject oldScmLocation = (InternalEObject)scmLocation;
-            scmLocation = (SCMLocation)eResolveProxy(oldScmLocation);
-            if (scmLocation != oldScmLocation) {
+        if (svnLocation != null && svnLocation.eIsProxy()) {
+            InternalEObject oldSvnLocation = (InternalEObject)svnLocation;
+            svnLocation = (SVNLocation)eResolveProxy(oldSvnLocation);
+            if (svnLocation != oldSvnLocation) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildstepPackage.SCM_BUILD_LOCATION__SCM_LOCATION, oldScmLocation, scmLocation));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildscmPackage.SVN_BUILD_LOCATION__SVN_LOCATION, oldSvnLocation, svnLocation));
             }
         }
-        return scmLocation;
+        return svnLocation;
     }
 
 
@@ -133,9 +136,9 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
      * @generated
      */
 
-    public SCMLocation basicGetScmLocation() {
+    public SVNLocation basicGetSvnLocation() {
 
-        return scmLocation;
+        return svnLocation;
     }
 
 
@@ -146,12 +149,12 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
      * @generated
      */
 
-    public void setScmLocation(SCMLocation newScmLocation) {
+    public void setSvnLocation(SVNLocation newSvnLocation) {
 
-        SCMLocation oldScmLocation = scmLocation;
-        scmLocation = newScmLocation;
+        SVNLocation oldSvnLocation = svnLocation;
+        svnLocation = newSvnLocation;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.SCM_BUILD_LOCATION__SCM_LOCATION, oldScmLocation, scmLocation));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildscmPackage.SVN_BUILD_LOCATION__SVN_LOCATION, oldSvnLocation, svnLocation));
 
     }
 
@@ -184,7 +187,7 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
         String oldFolderName = folderName;
         folderName = newFolderName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.SCM_BUILD_LOCATION__FOLDER_NAME, oldFolderName, folderName));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildscmPackage.SVN_BUILD_LOCATION__FOLDER_NAME, oldFolderName, folderName));
 
     }
 
@@ -199,10 +202,10 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.SCM_BUILD_LOCATION__SCM_LOCATION:
-                if (resolve) return getScmLocation();
-                return basicGetScmLocation();
-            case BuildstepPackage.SCM_BUILD_LOCATION__FOLDER_NAME:
+            case BuildscmPackage.SVN_BUILD_LOCATION__SVN_LOCATION:
+                if (resolve) return getSvnLocation();
+                return basicGetSvnLocation();
+            case BuildscmPackage.SVN_BUILD_LOCATION__FOLDER_NAME:
                 return getFolderName();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -216,10 +219,10 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.SCM_BUILD_LOCATION__SCM_LOCATION:
-                setScmLocation((SCMLocation)newValue);
+            case BuildscmPackage.SVN_BUILD_LOCATION__SVN_LOCATION:
+                setSvnLocation((SVNLocation)newValue);
                 return;
-            case BuildstepPackage.SCM_BUILD_LOCATION__FOLDER_NAME:
+            case BuildscmPackage.SVN_BUILD_LOCATION__FOLDER_NAME:
                 setFolderName((String)newValue);
                 return;
         }
@@ -235,10 +238,10 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.SCM_BUILD_LOCATION__SCM_LOCATION:
-                setScmLocation((SCMLocation)null);
+            case BuildscmPackage.SVN_BUILD_LOCATION__SVN_LOCATION:
+                setSvnLocation((SVNLocation)null);
                 return;
-            case BuildstepPackage.SCM_BUILD_LOCATION__FOLDER_NAME:
+            case BuildscmPackage.SVN_BUILD_LOCATION__FOLDER_NAME:
                 setFolderName(FOLDER_NAME_EDEFAULT);
                 return;
         }
@@ -255,9 +258,9 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.SCM_BUILD_LOCATION__SCM_LOCATION:
-                return scmLocation != null;
-            case BuildstepPackage.SCM_BUILD_LOCATION__FOLDER_NAME:
+            case BuildscmPackage.SVN_BUILD_LOCATION__SVN_LOCATION:
+                return svnLocation != null;
+            case BuildscmPackage.SVN_BUILD_LOCATION__FOLDER_NAME:
                 return FOLDER_NAME_EDEFAULT == null ? folderName != null : !FOLDER_NAME_EDEFAULT.equals(folderName);
         }
         return super.eIsSet(featureID);
@@ -281,4 +284,4 @@ public class SCMBuildLocationImpl extends SourceBuildLocationImpl implements SCM
     }
 
 
-} //SCMBuildLocationImpl
+} //SVNBuildLocationImpl

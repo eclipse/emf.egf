@@ -53,21 +53,6 @@
       <fcore
             id="egf/Build.fcore">
       </fcore>
-      <fcore
-            id="egf-generation/Build_generation.fcore">
-      </fcore>
-      <fcore
-            id="egf-generation/BuildCore_generation.fcore">
-      </fcore>
-      <fcore
-            id="egf-generation/BuildSCM_generation.fcore">
-      </fcore>
-      <fcore
-            id="egf-generation/BuildStep_generation.fcore">
-      </fcore>
-      <fcore
-            id="egf-generation/BuildTrigger_generation.fcore">
-      </fcore>
    </extension>
    
     <extension

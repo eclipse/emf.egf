@@ -24,6 +24,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Component;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep;
@@ -34,7 +35,6 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep;
@@ -123,6 +123,13 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass egfActivityEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass aggregateStepEClass = null;
 
     /**
@@ -159,13 +166,6 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     private EClass localBuildLocationEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass scmBuildLocationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -517,8 +517,26 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getEgfStep_Activities() {
-        return (EAttribute)egfStepEClass.getEStructuralFeatures().get(0);
+    public EReference getEgfStep_EgfActivities() {
+        return (EReference)egfStepEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEgfActivity() {
+        return egfActivityEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getEgfActivity_Uri() {
+        return (EAttribute)egfActivityEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -699,33 +717,6 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      */
     public EAttribute getLocalBuildLocation_Path() {
         return (EAttribute)localBuildLocationEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getSCMBuildLocation() {
-        return scmBuildLocationEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getSCMBuildLocation_ScmLocation() {
-        return (EReference)scmBuildLocationEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getSCMBuildLocation_FolderName() {
-        return (EAttribute)scmBuildLocationEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -914,7 +905,10 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(javadocStepEClass, JAVADOC_STEP__LINKS);
 
         egfStepEClass = createEClass(EGF_STEP);
-        createEAttribute(egfStepEClass, EGF_STEP__ACTIVITIES);
+        createEReference(egfStepEClass, EGF_STEP__EGF_ACTIVITIES);
+
+        egfActivityEClass = createEClass(EGF_ACTIVITY);
+        createEAttribute(egfActivityEClass, EGF_ACTIVITY__URI);
 
         aggregateStepEClass = createEClass(AGGREGATE_STEP);
         createEAttribute(aggregateStepEClass, AGGREGATE_STEP__NAME);
@@ -941,10 +935,6 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
 
         localBuildLocationEClass = createEClass(LOCAL_BUILD_LOCATION);
         createEAttribute(localBuildLocationEClass, LOCAL_BUILD_LOCATION__PATH);
-
-        scmBuildLocationEClass = createEClass(SCM_BUILD_LOCATION);
-        createEReference(scmBuildLocationEClass, SCM_BUILD_LOCATION__SCM_LOCATION);
-        createEAttribute(scmBuildLocationEClass, SCM_BUILD_LOCATION__FOLDER_NAME);
 
         targetPlatformBuildLocationEClass = createEClass(TARGET_PLATFORM_BUILD_LOCATION);
         createEAttribute(targetPlatformBuildLocationEClass, TARGET_PLATFORM_BUILD_LOCATION__PATH);
@@ -1015,7 +1005,6 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         sourceBuildLocationEClass.getESuperTypes().add(this.getBuildLocation());
         binaryBuildLocationEClass.getESuperTypes().add(this.getBuildLocation());
         localBuildLocationEClass.getESuperTypes().add(this.getSourceBuildLocation());
-        scmBuildLocationEClass.getESuperTypes().add(this.getSourceBuildLocation());
         targetPlatformBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
         updateSiteBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
         resultStepBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
@@ -1056,7 +1045,10 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getJavadocStep_Links(), ecorePackage.getEString(), "links", null, 0, -1, JavadocStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(egfStepEClass, EgfStep.class, "EgfStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getEgfStep_Activities(), ecorePackage.getEString(), "activities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEgfStep_EgfActivities(), this.getEgfActivity(), null, "egfActivities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(egfActivityEClass, EgfActivity.class, "EgfActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getEgfActivity_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, EgfActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(aggregateStepEClass, AggregateStep.class, "AggregateStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAggregateStep_Name(), ecorePackage.getEString(), "name", null, 1, 1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1083,10 +1075,6 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
 
         initEClass(localBuildLocationEClass, LocalBuildLocation.class, "LocalBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getLocalBuildLocation_Path(), ecorePackage.getEString(), "path", null, 1, 1, LocalBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(scmBuildLocationEClass, SCMBuildLocation.class, "SCMBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSCMBuildLocation_ScmLocation(), theBuildcorePackage.getSCMLocation(), null, "scmLocation", null, 1, 1, SCMBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getSCMBuildLocation_FolderName(), ecorePackage.getEString(), "folderName", "", 1, 1, SCMBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(targetPlatformBuildLocationEClass, TargetPlatformBuildLocation.class, "TargetPlatformBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTargetPlatformBuildLocation_Path(), ecorePackage.getEString(), "path", null, 1, 1, TargetPlatformBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

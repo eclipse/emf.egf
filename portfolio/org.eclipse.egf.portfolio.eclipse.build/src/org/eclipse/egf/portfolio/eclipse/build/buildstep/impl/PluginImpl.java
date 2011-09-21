@@ -41,7 +41,9 @@ public class PluginImpl extends ComponentImpl implements Plugin {
      * @generated
      */
     protected PluginImpl() {
+
         super();
+
     }
 
     /**

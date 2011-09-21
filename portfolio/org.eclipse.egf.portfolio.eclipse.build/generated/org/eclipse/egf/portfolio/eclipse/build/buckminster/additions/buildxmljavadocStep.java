@@ -130,16 +130,14 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
                 stringBuffer.append(TEXT_8);
             }
             stringBuffer.append(TEXT_9);
-            if (sourceLocation instanceof SCMBuildLocation) {
-                SCMBuildLocation scmBuildLocation = (SCMBuildLocation) sourceLocation;
-                if (scmBuildLocation.getScmLocation() instanceof SVNLocation) {
-                    SVNLocation svnLocation = (SVNLocation) scmBuildLocation.getScmLocation();
-                    stringBuffer.append(TEXT_10);
-                    stringBuffer.append(svnLocation.getLocalPath());
-                    stringBuffer.append(TEXT_11);
-                    stringBuffer.append(scmBuildLocation.getFolderName());
-                    stringBuffer.append(TEXT_12);
-                }
+            if (sourceLocation instanceof SVNBuildLocation) {
+                SVNBuildLocation svnBuildLocation = (SVNBuildLocation) sourceLocation;
+                SVNLocation svnLocation = (SVNLocation) svnBuildLocation.getSvnLocation();
+                stringBuffer.append(TEXT_10);
+                stringBuffer.append(svnLocation.getLocalPath());
+                stringBuffer.append(TEXT_11);
+                stringBuffer.append(svnBuildLocation.getFolderName());
+                stringBuffer.append(TEXT_12);
             }
             stringBuffer.append(TEXT_13);
             for (String includeString : javadocStep.getIncludes()) {

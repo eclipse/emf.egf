@@ -8,7 +8,8 @@
     language="" usedGenPackages="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.genmodel#//buildcore">
   <foreignModel>BuildTrigger.ecore</foreignModel>
   <genPackages prefix="Buildtrigger" basePackage="org.eclipse.egf.portfolio.eclipse.build"
-      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="BuildTrigger.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="BuildTrigger.ecore#/">
     <genClasses image="false" ecoreClass="BuildTrigger.ecore#//CronTrigger">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildTrigger.ecore#//CronTrigger/planning"/>
     </genClasses>

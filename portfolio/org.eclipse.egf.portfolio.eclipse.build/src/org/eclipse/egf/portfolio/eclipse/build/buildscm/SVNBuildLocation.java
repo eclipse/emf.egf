@@ -11,28 +11,28 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildstep;
+package org.eclipse.egf.portfolio.eclipse.build.buildscm;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>SCM Build Location</b></em>'.
+ * A representation of the model object '<em><b>SVN Build Location</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getScmLocation <em>Scm Location</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getFolderName <em>Folder Name</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getSvnLocation <em>Svn Location</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getFolderName <em>Folder Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getSCMBuildLocation()
+ * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage#getSVNBuildLocation()
  * @model
  * @generated
  */
-public interface SCMBuildLocation extends SourceBuildLocation {
+public interface SVNBuildLocation extends SourceBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -46,37 +46,37 @@ public interface SCMBuildLocation extends SourceBuildLocation {
 
 
     /**
-     * Returns the value of the '<em><b>Scm Location</b></em>' reference.
+     * Returns the value of the '<em><b>Svn Location</b></em>' reference.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Scm Location</em>' reference isn't clear,
+     * If the meaning of the '<em>Svn Location</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Scm Location</em>' reference.
-     * @see #setScmLocation(SCMLocation)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getSCMBuildLocation_ScmLocation()
+     * @return the value of the '<em>Svn Location</em>' reference.
+     * @see #setSvnLocation(SVNLocation)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage#getSVNBuildLocation_SvnLocation()
      * @model required="true"
      * @generated
      */
 
-    SCMLocation getScmLocation();
+    SVNLocation getSvnLocation();
 
 
 
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getScmLocation <em>Scm Location</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getSvnLocation <em>Svn Location</em>}' reference.
 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Scm Location</em>' reference.
-     * @see #getScmLocation()
+     * @param value the new value of the '<em>Svn Location</em>' reference.
+     * @see #getSvnLocation()
      * @generated
      */
 
-    void setScmLocation(SCMLocation value);
+    void setSvnLocation(SVNLocation value);
 
 
 
@@ -96,7 +96,7 @@ public interface SCMBuildLocation extends SourceBuildLocation {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Folder Name</em>' attribute.
      * @see #setFolderName(String)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getSCMBuildLocation_FolderName()
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage#getSVNBuildLocation_FolderName()
      * @model default="" required="true"
      * @generated
      */
@@ -107,7 +107,7 @@ public interface SCMBuildLocation extends SourceBuildLocation {
 
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getFolderName <em>Folder Name</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getFolderName <em>Folder Name</em>}' attribute.
 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -122,4 +122,4 @@ public interface SCMBuildLocation extends SourceBuildLocation {
 
 
 
-} // SCMBuildLocation
+} // SVNBuildLocation

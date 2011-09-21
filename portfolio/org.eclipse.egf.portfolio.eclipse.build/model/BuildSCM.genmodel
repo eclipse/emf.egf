@@ -5,10 +5,11 @@
     modelDirectory="/org.eclipse.egf.portfolio.eclipse.build/src" editDirectory="/org.eclipse.egf.portfolio.eclipse.build.ui/src"
     modelPluginID="org.eclipse.egf.portfolio.eclipse.build" modelName="BuildSCM" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" editPluginID="org.eclipse.egf.portfolio.eclipse.build.ui"
-    usedGenPackages="BuildCore.genmodel#//buildcore">
+    usedGenPackages="BuildCore.genmodel#//buildcore platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel#//buildstep">
   <foreignModel>BuildSCM.ecore</foreignModel>
   <genPackages prefix="Buildscm" basePackage="org.eclipse.egf.portfolio.eclipse.build"
-      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="BuildSCM.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="BuildSCM.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="BuildSCM.ecore#//SVNProtocol">
       <genEnumLiterals ecoreEnumLiteral="BuildSCM.ecore#//SVNProtocol/HTTP"/>
       <genEnumLiterals ecoreEnumLiteral="BuildSCM.ecore#//SVNProtocol/HTTPS"/>
@@ -24,6 +25,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildSCM.ecore#//SVNLocation/localPath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildSCM.ecore#//SVNLocation/username"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildSCM.ecore#//SVNLocation/password"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildSCM.ecore#//SVNBuildLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildSCM.ecore#//SVNBuildLocation/svnLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildSCM.ecore#//SVNBuildLocation/folderName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

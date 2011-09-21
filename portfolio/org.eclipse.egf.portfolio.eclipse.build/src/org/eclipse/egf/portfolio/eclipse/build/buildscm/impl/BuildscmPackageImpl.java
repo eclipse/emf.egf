@@ -17,9 +17,11 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -55,6 +57,13 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
      * @generated
      */
     private EClass svnLocationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass svnBuildLocationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -110,7 +119,7 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         isInited = true;
 
         // Initialize simple dependencies
-        BuildcorePackage.eINSTANCE.eClass();
+        BuildstepPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
         theBuildscmPackage.createPackageContents();
@@ -204,6 +213,33 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getSVNBuildLocation() {
+        return svnBuildLocationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSVNBuildLocation_SvnLocation() {
+        return (EReference)svnBuildLocationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSVNBuildLocation_FolderName() {
+        return (EAttribute)svnBuildLocationEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getSVNProtocol() {
         return svnProtocolEEnum;
     }
@@ -246,6 +282,10 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         createEAttribute(svnLocationEClass, SVN_LOCATION__USERNAME);
         createEAttribute(svnLocationEClass, SVN_LOCATION__PASSWORD);
 
+        svnBuildLocationEClass = createEClass(SVN_BUILD_LOCATION);
+        createEReference(svnBuildLocationEClass, SVN_BUILD_LOCATION__SVN_LOCATION);
+        createEAttribute(svnBuildLocationEClass, SVN_BUILD_LOCATION__FOLDER_NAME);
+
         // Create enums
         svnProtocolEEnum = createEEnum(SVN_PROTOCOL);
     }
@@ -275,6 +315,7 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
 
         // Obtain other dependent packages
         BuildcorePackage theBuildcorePackage = (BuildcorePackage)EPackage.Registry.INSTANCE.getEPackage(BuildcorePackage.eNS_URI);
+        BuildstepPackage theBuildstepPackage = (BuildstepPackage)EPackage.Registry.INSTANCE.getEPackage(BuildstepPackage.eNS_URI);
 
         // Create type parameters
 
@@ -282,7 +323,7 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
 
         // Add supertypes to classes
         svnEClass.getESuperTypes().add(theBuildcorePackage.getSCM());
-        svnLocationEClass.getESuperTypes().add(theBuildcorePackage.getSCMLocation());
+        svnBuildLocationEClass.getESuperTypes().add(theBuildstepPackage.getSourceBuildLocation());
 
         // Initialize classes and features; add operations and parameters
         initEClass(svnEClass, org.eclipse.egf.portfolio.eclipse.build.buildscm.SVN.class, "SVN", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -294,6 +335,10 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         initEAttribute(getSVNLocation_LocalPath(), ecorePackage.getEString(), "localPath", null, 1, 1, SVNLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSVNLocation_Username(), ecorePackage.getEString(), "username", null, 0, 1, SVNLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSVNLocation_Password(), ecorePackage.getEString(), "password", null, 0, 1, SVNLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(svnBuildLocationEClass, SVNBuildLocation.class, "SVNBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getSVNBuildLocation_SvnLocation(), this.getSVNLocation(), null, "svnLocation", null, 1, 1, SVNBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getSVNBuildLocation_FolderName(), ecorePackage.getEString(), "folderName", "", 1, 1, SVNBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(svnProtocolEEnum, SVNProtocol.class, "SVNProtocol");

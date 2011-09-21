@@ -72,7 +72,9 @@ public class LocalBuildLocationImpl extends SourceBuildLocationImpl implements L
      * @generated
      */
     protected LocalBuildLocationImpl() {
+
         super();
+
     }
 
     /**

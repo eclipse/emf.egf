@@ -22,6 +22,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
 
@@ -84,33 +85,8 @@ public class EgfStepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addActivitiesPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Activities feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addActivitiesPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_EgfStep_activities_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_EgfStep_activities_feature", "_UI_EgfStep_type"),
-                 BuildstepPackage.Literals.EGF_STEP__ACTIVITIES,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-
     }
 
     /**
@@ -126,6 +102,7 @@ public class EgfStepItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(BuildcorePackage.Literals.ITEM__PROPERTIES);
+            childrenFeatures.add(BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES);
         }
         return childrenFeatures;
     }
@@ -179,10 +156,8 @@ public class EgfStepItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(EgfStep.class)) {
-            case BuildstepPackage.EGF_STEP__ACTIVITIES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case BuildstepPackage.EGF_STEP__PROPERTIES:
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -207,17 +182,14 @@ public class EgfStepItemProvider
                  BuildcoreFactory.eINSTANCE.createProperty()));
 
 
-    }
 
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return BuildStepEditPlugin.INSTANCE;
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES,
+                 BuildstepFactory.eINSTANCE.createEgfActivity()));
+
+
     }
 
 

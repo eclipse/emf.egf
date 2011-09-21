@@ -20,7 +20,6 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.UpdateSiteBuildLocation;
 import org.eclipse.emf.ecore.EClass;
@@ -88,10 +87,10 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.ANT_STEP: return createAntStep();
             case BuildstepPackage.JAVADOC_STEP: return createJavadocStep();
             case BuildstepPackage.EGF_STEP: return createEgfStep();
+            case BuildstepPackage.EGF_ACTIVITY: return createEgfActivity();
             case BuildstepPackage.AGGREGATE_STEP: return createAggregateStep();
             case BuildstepPackage.INSTALL_STEP: return createInstallStep();
             case BuildstepPackage.LOCAL_BUILD_LOCATION: return createLocalBuildLocation();
-            case BuildstepPackage.SCM_BUILD_LOCATION: return createSCMBuildLocation();
             case BuildstepPackage.TARGET_PLATFORM_BUILD_LOCATION: return createTargetPlatformBuildLocation();
             case BuildstepPackage.UPDATE_SITE_BUILD_LOCATION: return createUpdateSiteBuildLocation();
             case BuildstepPackage.RESULT_STEP_BUILD_LOCATION: return createResultStepBuildLocation();
@@ -144,16 +143,6 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     }
 
     /**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SCMBuildLocation createSCMBuildLocation() {
-        SCMBuildLocationImpl scmBuildLocation = new SCMBuildLocationImpl();
-        return scmBuildLocation;
-    }
-
-	/**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -261,6 +250,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     public EgfStep createEgfStep() {
         EgfStepImpl egfStep = new EgfStepImpl();
         return egfStep;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EgfActivity createEgfActivity() {
+        EgfActivityImpl egfActivity = new EgfActivityImpl();
+        return egfActivity;
     }
 
     /**

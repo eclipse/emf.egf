@@ -11,17 +11,21 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildcore.provider;
+package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 
 
 import java.util.Collection;
 import java.util.List;
+
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,15 +33,17 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SCMLocationItemProvider
+public class EgfActivityItemProvider
     extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
@@ -58,7 +64,7 @@ public class SCMLocationItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public SCMLocationItemProvider(AdapterFactory adapterFactory) {
+    public EgfActivityItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -73,8 +79,44 @@ public class SCMLocationItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addUriPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Uri feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addUriPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_EgfActivity_uri_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_EgfActivity_uri_feature", "_UI_EgfActivity_type"),
+                 BuildstepPackage.Literals.EGF_ACTIVITY__URI,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This returns EgfActivity.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/EgfActivity"));
     }
 
     /**
@@ -86,7 +128,10 @@ public class SCMLocationItemProvider
     @Override
     public String getText(Object object) {
 
-        return getString("_UI_SCMLocation_type");
+        String label = ((EgfActivity)object).getUri();
+        return label == null || label.length() == 0 ?
+            getString("_UI_EgfActivity_type") :
+            getString("_UI_EgfActivity_type") + " " + label;
 
     }
 
@@ -100,6 +145,12 @@ public class SCMLocationItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(EgfActivity.class)) {
+            case BuildstepPackage.EGF_ACTIVITY__URI:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

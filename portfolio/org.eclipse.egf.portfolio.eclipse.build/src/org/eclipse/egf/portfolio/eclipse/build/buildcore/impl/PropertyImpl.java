@@ -97,7 +97,9 @@ public class PropertyImpl extends EObjectImpl implements Property {
      * @generated
      */
     protected PropertyImpl() {
+
         super();
+
     }
 
     /**

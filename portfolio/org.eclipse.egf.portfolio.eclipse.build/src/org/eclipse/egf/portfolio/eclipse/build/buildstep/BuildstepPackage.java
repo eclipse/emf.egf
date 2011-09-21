@@ -454,13 +454,13 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP__PROPERTIES = BuildcorePackage.STEP_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Activities</b></em>' attribute list.
+     * The feature id for the '<em><b>Egf Activities</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EGF_STEP__ACTIVITIES = BuildcorePackage.STEP_FEATURE_COUNT + 1;
+    int EGF_STEP__EGF_ACTIVITIES = BuildcorePackage.STEP_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Egf Step</em>' class.
@@ -472,6 +472,34 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfActivityImpl <em>Egf Activity</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfActivityImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getEgfActivity()
+     * @generated
+     */
+    int EGF_ACTIVITY = 8;
+
+    /**
+     * The feature id for the '<em><b>Uri</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_ACTIVITY__URI = 0;
+
+    /**
+     * The number of structural features of the '<em>Egf Activity</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_ACTIVITY_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl <em>Aggregate Step</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -479,7 +507,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getAggregateStep()
      * @generated
      */
-    int AGGREGATE_STEP = 8;
+    int AGGREGATE_STEP = 9;
 
     /**
      * The feature id for the '<em><b>Job</b></em>' container reference.
@@ -534,7 +562,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStep()
      * @generated
      */
-    int INSTALL_STEP = 9;
+    int INSTALL_STEP = 10;
 
     /**
      * The feature id for the '<em><b>Job</b></em>' container reference.
@@ -616,7 +644,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBuildLocation()
      * @generated
      */
-    int BUILD_LOCATION = 10;
+    int BUILD_LOCATION = 11;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -653,7 +681,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSourceBuildLocation()
      * @generated
      */
-    int SOURCE_BUILD_LOCATION = 11;
+    int SOURCE_BUILD_LOCATION = 12;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -699,7 +727,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBinaryBuildLocation()
      * @generated
      */
-    int BINARY_BUILD_LOCATION = 12;
+    int BINARY_BUILD_LOCATION = 13;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -745,7 +773,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getLocalBuildLocation()
      * @generated
      */
-    int LOCAL_BUILD_LOCATION = 13;
+    int LOCAL_BUILD_LOCATION = 14;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -791,70 +819,6 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int LOCAL_BUILD_LOCATION_FEATURE_COUNT = SOURCE_BUILD_LOCATION_FEATURE_COUNT + 1;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SCMBuildLocationImpl <em>SCM Build Location</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SCMBuildLocationImpl
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSCMBuildLocation()
-     * @generated
-     */
-    int SCM_BUILD_LOCATION = 14;
-
-    /**
-     * The feature id for the '<em><b>Pattern</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_BUILD_LOCATION__PATTERN = SOURCE_BUILD_LOCATION__PATTERN;
-
-    /**
-     * The feature id for the '<em><b>Build Step</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_BUILD_LOCATION__BUILD_STEP = SOURCE_BUILD_LOCATION__BUILD_STEP;
-
-    /**
-     * The feature id for the '<em><b>Suffix</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_BUILD_LOCATION__SUFFIX = SOURCE_BUILD_LOCATION__SUFFIX;
-
-    /**
-     * The feature id for the '<em><b>Scm Location</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_BUILD_LOCATION__SCM_LOCATION = SOURCE_BUILD_LOCATION_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Folder Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_BUILD_LOCATION__FOLDER_NAME = SOURCE_BUILD_LOCATION_FEATURE_COUNT + 1;
-
-    /**
-     * The number of structural features of the '<em>SCM Build Location</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SCM_BUILD_LOCATION_FEATURE_COUNT = SOURCE_BUILD_LOCATION_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.TargetPlatformBuildLocationImpl <em>Target Platform Build Location</em>}' class.
@@ -1466,15 +1430,36 @@ public interface BuildstepPackage extends EPackage {
     EClass getEgfStep();
 
     /**
-     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getActivities <em>Activities</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getEgfActivities <em>Egf Activities</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute list '<em>Activities</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getActivities()
+     * @return the meta object for the containment reference list '<em>Egf Activities</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getEgfActivities()
      * @see #getEgfStep()
      * @generated
      */
-    EAttribute getEgfStep_Activities();
+    EReference getEgfStep_EgfActivities();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity <em>Egf Activity</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Egf Activity</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity
+     * @generated
+     */
+    EClass getEgfActivity();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity#getUri <em>Uri</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Uri</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity#getUri()
+     * @see #getEgfActivity()
+     * @generated
+     */
+    EAttribute getEgfActivity_Uri();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep <em>Aggregate Step</em>}'.
@@ -1689,38 +1674,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     EAttribute getLocalBuildLocation_Path();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation <em>SCM Build Location</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>SCM Build Location</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation
-     * @generated
-     */
-    EClass getSCMBuildLocation();
-
-    /**
-     * Returns the meta object for the reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getScmLocation <em>Scm Location</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Scm Location</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getScmLocation()
-     * @see #getSCMBuildLocation()
-     * @generated
-     */
-    EReference getSCMBuildLocation_ScmLocation();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getFolderName <em>Folder Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Folder Name</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation#getFolderName()
-     * @see #getSCMBuildLocation()
-     * @generated
-     */
-    EAttribute getSCMBuildLocation_FolderName();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation <em>Target Platform Build Location</em>}'.
@@ -2107,12 +2060,30 @@ public interface BuildstepPackage extends EPackage {
         EClass EGF_STEP = eINSTANCE.getEgfStep();
 
         /**
-         * The meta object literal for the '<em><b>Activities</b></em>' attribute list feature.
+         * The meta object literal for the '<em><b>Egf Activities</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute EGF_STEP__ACTIVITIES = eINSTANCE.getEgfStep_Activities();
+        EReference EGF_STEP__EGF_ACTIVITIES = eINSTANCE.getEgfStep_EgfActivities();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfActivityImpl <em>Egf Activity</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfActivityImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getEgfActivity()
+         * @generated
+         */
+        EClass EGF_ACTIVITY = eINSTANCE.getEgfActivity();
+
+        /**
+         * The meta object literal for the '<em><b>Uri</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EGF_ACTIVITY__URI = eINSTANCE.getEgfActivity_Uri();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl <em>Aggregate Step</em>}' class.
@@ -2285,32 +2256,6 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute LOCAL_BUILD_LOCATION__PATH = eINSTANCE.getLocalBuildLocation_Path();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SCMBuildLocationImpl <em>SCM Build Location</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.SCMBuildLocationImpl
-         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSCMBuildLocation()
-         * @generated
-         */
-        EClass SCM_BUILD_LOCATION = eINSTANCE.getSCMBuildLocation();
-
-        /**
-         * The meta object literal for the '<em><b>Scm Location</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference SCM_BUILD_LOCATION__SCM_LOCATION = eINSTANCE.getSCMBuildLocation_ScmLocation();
-
-        /**
-         * The meta object literal for the '<em><b>Folder Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute SCM_BUILD_LOCATION__FOLDER_NAME = eINSTANCE.getSCMBuildLocation_FolderName();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.TargetPlatformBuildLocationImpl <em>Target Platform Build Location</em>}' class.

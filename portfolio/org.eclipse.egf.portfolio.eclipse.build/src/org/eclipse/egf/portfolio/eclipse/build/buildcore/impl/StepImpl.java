@@ -58,7 +58,9 @@ public abstract class StepImpl extends EObjectImpl implements Step {
      * @generated
      */
     protected StepImpl() {
+
         super();
+
     }
 
     /**

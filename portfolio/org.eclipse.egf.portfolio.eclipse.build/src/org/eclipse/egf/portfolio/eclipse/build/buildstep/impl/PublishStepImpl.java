@@ -114,7 +114,9 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
      * @generated
      */
     protected PublishStepImpl() {
+
         super();
+
     }
 
     /**

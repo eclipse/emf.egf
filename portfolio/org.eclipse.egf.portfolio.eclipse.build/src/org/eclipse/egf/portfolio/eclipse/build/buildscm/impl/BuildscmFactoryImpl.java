@@ -77,6 +77,7 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
         switch (eClass.getClassifierID()) {
             case BuildscmPackage.SVN: return createSVN();
             case BuildscmPackage.SVN_LOCATION: return createSVNLocation();
+            case BuildscmPackage.SVN_BUILD_LOCATION: return createSVNBuildLocation();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -130,6 +131,16 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
     public SVNLocation createSVNLocation() {
         SVNLocationImpl svnLocation = new SVNLocationImpl();
         return svnLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SVNBuildLocation createSVNBuildLocation() {
+        SVNBuildLocationImpl svnBuildLocation = new SVNBuildLocationImpl();
+        return svnBuildLocation;
     }
 
     /**

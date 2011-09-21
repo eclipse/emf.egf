@@ -29,7 +29,6 @@
         eOpposite="#//Job/steps"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SCM" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SCMLocation" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -19,7 +19,6 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger;
 
@@ -78,13 +77,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass scmEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass scmLocationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -301,15 +293,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getSCMLocation() {
-        return scmLocationEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getProperty() {
         return propertyEClass;
     }
@@ -389,8 +372,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         scmEClass = createEClass(SCM);
 
-        scmLocationEClass = createEClass(SCM_LOCATION);
-
         propertyEClass = createEClass(PROPERTY);
         createEAttribute(propertyEClass, PROPERTY__KEY);
         createEAttribute(propertyEClass, PROPERTY__VALUE);
@@ -449,8 +430,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEReference(getStep_Job(), this.getJob(), this.getJob_Steps(), "job", null, 1, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(scmEClass, org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM.class, "SCM", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-        initEClass(scmLocationEClass, SCMLocation.class, "SCMLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProperty_Key(), ecorePackage.getEString(), "key", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

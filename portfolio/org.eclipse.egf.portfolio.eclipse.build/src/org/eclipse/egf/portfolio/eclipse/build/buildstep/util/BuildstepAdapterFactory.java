@@ -121,6 +121,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createEgfStepAdapter();
             }
             @Override
+            public Adapter caseEgfActivity(EgfActivity object) {
+                return createEgfActivityAdapter();
+            }
+            @Override
             public Adapter caseAggregateStep(AggregateStep object) {
                 return createAggregateStepAdapter();
             }
@@ -143,10 +147,6 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseLocalBuildLocation(LocalBuildLocation object) {
                 return createLocalBuildLocationAdapter();
-            }
-            @Override
-            public Adapter caseSCMBuildLocation(SCMBuildLocation object) {
-                return createSCMBuildLocationAdapter();
             }
             @Override
             public Adapter caseTargetPlatformBuildLocation(TargetPlatformBuildLocation object) {
@@ -317,6 +317,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity <em>Egf Activity</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity
+     * @generated
+     */
+    public Adapter createEgfActivityAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep <em>Aggregate Step</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -397,20 +411,6 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createLocalBuildLocationAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation <em>SCM Build Location</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation
-     * @generated
-     */
-    public Adapter createSCMBuildLocationAdapter() {
         return null;
     }
 

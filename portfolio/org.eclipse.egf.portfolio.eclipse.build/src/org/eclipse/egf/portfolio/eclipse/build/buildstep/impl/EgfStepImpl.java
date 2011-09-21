@@ -22,8 +22,10 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -31,6 +33,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -43,7 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl#getActivities <em>Activities</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl#getEgfActivities <em>Egf Activities</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,15 +75,14 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
 
 
     /**
-     * The cached value of the '{@link #getActivities() <em>Activities</em>}' attribute list.
+     * The cached value of the '{@link #getEgfActivities() <em>Egf Activities</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getActivities()
+     * @see #getEgfActivities()
      * @generated
      * @ordered
      */
-    protected EList<String> activities;
-
+    protected EList<EgfActivity> egfActivities;
 
 
     /**
@@ -89,7 +91,9 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
      * @generated
      */
     protected EgfStepImpl() {
+
         super();
+
     }
 
     /**
@@ -131,16 +135,13 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
      * @generated
      */
 
-    public EList<String> getActivities() {
+    public EList<EgfActivity> getEgfActivities() {
 
-        if (activities == null) {
-            activities = new EDataTypeEList<String>(String.class, this, BuildstepPackage.EGF_STEP__ACTIVITIES);
+        if (egfActivities == null) {
+            egfActivities = new EObjectContainmentEList<EgfActivity>(EgfActivity.class, this, BuildstepPackage.EGF_STEP__EGF_ACTIVITIES);
         }
-        return activities;
+        return egfActivities;
     }
-
-
-
 
     /**
      * <!-- begin-user-doc -->
@@ -152,6 +153,8 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
         switch (featureID) {
             case BuildstepPackage.EGF_STEP__PROPERTIES:
                 return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
+                return ((InternalEList<?>)getEgfActivities()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -166,8 +169,8 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
         switch (featureID) {
             case BuildstepPackage.EGF_STEP__PROPERTIES:
                 return getProperties();
-            case BuildstepPackage.EGF_STEP__ACTIVITIES:
-                return getActivities();
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
+                return getEgfActivities();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -185,9 +188,9 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
                 getProperties().clear();
                 getProperties().addAll((Collection<? extends Property>)newValue);
                 return;
-            case BuildstepPackage.EGF_STEP__ACTIVITIES:
-                getActivities().clear();
-                getActivities().addAll((Collection<? extends String>)newValue);
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
+                getEgfActivities().clear();
+                getEgfActivities().addAll((Collection<? extends EgfActivity>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -205,8 +208,8 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
             case BuildstepPackage.EGF_STEP__PROPERTIES:
                 getProperties().clear();
                 return;
-            case BuildstepPackage.EGF_STEP__ACTIVITIES:
-                getActivities().clear();
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
+                getEgfActivities().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -224,8 +227,8 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
         switch (featureID) {
             case BuildstepPackage.EGF_STEP__PROPERTIES:
                 return properties != null && !properties.isEmpty();
-            case BuildstepPackage.EGF_STEP__ACTIVITIES:
-                return activities != null && !activities.isEmpty();
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
+                return egfActivities != null && !egfActivities.isEmpty();
         }
         return super.eIsSet(featureID);
     }
@@ -261,22 +264,6 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
             }
         }
         return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (activities: ");
-        result.append(activities);
-        result.append(')');
-        return result.toString();
     }
 
 

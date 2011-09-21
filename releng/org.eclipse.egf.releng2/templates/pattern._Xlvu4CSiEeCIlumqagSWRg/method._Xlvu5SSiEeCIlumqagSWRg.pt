@@ -1,10 +1,10 @@
-<%SVNLocation svnLocation = ((SVNLocation) scmBuildLocation.getScmLocation());%>
-<%String id=new GenerationHelper().getPositionString(scmBuildLocation);%>
-	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(scmBuildLocation)%> failOnError="false" />
+<%SVNLocation svnLocation = svnBuildLocation.getSvnLocation();%>
+<%String id=new GenerationHelper().getPositionString(svnBuildLocation);%>
+	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(svnBuildLocation)%> failOnError="false" />
 	<searchPath name="<%=id%>">
 	    <!-- provider for unix if checkouted with Hudson -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/<%=svnLocation.getLocalPath()%>/<%=scmBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(scmBuildLocation.getSuffix())%>">
+			<uri format="file://{0}/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
 				<bc:propertyRef key="build.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>

@@ -82,7 +82,9 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
      * @generated
      */
     protected ComponentImpl() {
+
         super();
+
     }
 
     /**

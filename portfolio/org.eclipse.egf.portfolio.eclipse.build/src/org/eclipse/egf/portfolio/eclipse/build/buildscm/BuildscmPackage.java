@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildscm;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -121,7 +122,7 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SVN_LOCATION__PROTOCOL = BuildcorePackage.SCM_LOCATION_FEATURE_COUNT + 0;
+    int SVN_LOCATION__PROTOCOL = 0;
 
     /**
      * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -130,7 +131,7 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SVN_LOCATION__URL = BuildcorePackage.SCM_LOCATION_FEATURE_COUNT + 1;
+    int SVN_LOCATION__URL = 1;
 
     /**
      * The feature id for the '<em><b>Local Path</b></em>' attribute.
@@ -139,7 +140,7 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SVN_LOCATION__LOCAL_PATH = BuildcorePackage.SCM_LOCATION_FEATURE_COUNT + 2;
+    int SVN_LOCATION__LOCAL_PATH = 2;
 
     /**
      * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -148,7 +149,7 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SVN_LOCATION__USERNAME = BuildcorePackage.SCM_LOCATION_FEATURE_COUNT + 3;
+    int SVN_LOCATION__USERNAME = 3;
 
     /**
      * The feature id for the '<em><b>Password</b></em>' attribute.
@@ -157,7 +158,7 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SVN_LOCATION__PASSWORD = BuildcorePackage.SCM_LOCATION_FEATURE_COUNT + 4;
+    int SVN_LOCATION__PASSWORD = 4;
 
     /**
      * The number of structural features of the '<em>SVN Location</em>' class.
@@ -166,7 +167,71 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int SVN_LOCATION_FEATURE_COUNT = BuildcorePackage.SCM_LOCATION_FEATURE_COUNT + 5;
+    int SVN_LOCATION_FEATURE_COUNT = 5;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNBuildLocationImpl <em>SVN Build Location</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNBuildLocationImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getSVNBuildLocation()
+     * @generated
+     */
+    int SVN_BUILD_LOCATION = 2;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_BUILD_LOCATION__PATTERN = BuildstepPackage.SOURCE_BUILD_LOCATION__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Build Step</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_BUILD_LOCATION__BUILD_STEP = BuildstepPackage.SOURCE_BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_BUILD_LOCATION__SUFFIX = BuildstepPackage.SOURCE_BUILD_LOCATION__SUFFIX;
+
+    /**
+     * The feature id for the '<em><b>Svn Location</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_BUILD_LOCATION__SVN_LOCATION = BuildstepPackage.SOURCE_BUILD_LOCATION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Folder Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_BUILD_LOCATION__FOLDER_NAME = BuildstepPackage.SOURCE_BUILD_LOCATION_FEATURE_COUNT + 1;
+
+    /**
+     * The number of structural features of the '<em>SVN Build Location</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_BUILD_LOCATION_FEATURE_COUNT = BuildstepPackage.SOURCE_BUILD_LOCATION_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol <em>SVN Protocol</em>}' enum.
@@ -176,7 +241,7 @@ public interface BuildscmPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getSVNProtocol()
      * @generated
      */
-    int SVN_PROTOCOL = 2;
+    int SVN_PROTOCOL = 3;
 
 
     /**
@@ -264,6 +329,38 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      */
     EAttribute getSVNLocation_Password();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation <em>SVN Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>SVN Build Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation
+     * @generated
+     */
+    EClass getSVNBuildLocation();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getSvnLocation <em>Svn Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Svn Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getSvnLocation()
+     * @see #getSVNBuildLocation()
+     * @generated
+     */
+    EReference getSVNBuildLocation_SvnLocation();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getFolderName <em>Folder Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Folder Name</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation#getFolderName()
+     * @see #getSVNBuildLocation()
+     * @generated
+     */
+    EAttribute getSVNBuildLocation_FolderName();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol <em>SVN Protocol</em>}'.
@@ -364,6 +461,32 @@ public interface BuildscmPackage extends EPackage {
          * @generated
          */
         EAttribute SVN_LOCATION__PASSWORD = eINSTANCE.getSVNLocation_Password();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNBuildLocationImpl <em>SVN Build Location</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNBuildLocationImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getSVNBuildLocation()
+         * @generated
+         */
+        EClass SVN_BUILD_LOCATION = eINSTANCE.getSVNBuildLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Svn Location</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SVN_BUILD_LOCATION__SVN_LOCATION = eINSTANCE.getSVNBuildLocation_SvnLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Folder Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SVN_BUILD_LOCATION__FOLDER_NAME = eINSTANCE.getSVNBuildLocation_FolderName();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol <em>SVN Protocol</em>}' enum.

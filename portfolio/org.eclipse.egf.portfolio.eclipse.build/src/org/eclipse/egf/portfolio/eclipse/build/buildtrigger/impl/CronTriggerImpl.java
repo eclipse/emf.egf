@@ -74,7 +74,9 @@ public class CronTriggerImpl extends TriggerImpl implements CronTrigger {
      * @generated
      */
     protected CronTriggerImpl() {
+
         super();
+
     }
 
     /**

@@ -43,7 +43,9 @@ public abstract class SCMImpl extends EObjectImpl implements SCM {
      * @generated
      */
     protected SCMImpl() {
+
         super();
+
     }
 
     /**

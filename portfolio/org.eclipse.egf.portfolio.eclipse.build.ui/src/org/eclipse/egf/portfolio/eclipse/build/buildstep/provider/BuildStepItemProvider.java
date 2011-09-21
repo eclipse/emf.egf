@@ -243,14 +243,6 @@ public class BuildStepItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
-                 BuildstepFactory.eINSTANCE.createSCMBuildLocation()));
-
-
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
                  BuildstepFactory.eINSTANCE.createTargetPlatformBuildLocation()));
 
 
@@ -294,17 +286,6 @@ public class BuildStepItemProvider
                  BuildstepFactory.eINSTANCE.createFeature()));
 
 
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return BuildStepEditPlugin.INSTANCE;
     }
 
 

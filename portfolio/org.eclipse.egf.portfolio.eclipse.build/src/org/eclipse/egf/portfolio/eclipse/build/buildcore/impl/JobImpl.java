@@ -180,7 +180,9 @@ public class JobImpl extends ItemImpl implements Job {
      * @generated
      */
     protected JobImpl() {
+
         super();
+
     }
 
     /**

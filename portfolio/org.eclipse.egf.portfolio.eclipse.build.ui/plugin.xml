@@ -87,8 +87,10 @@
   <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <extender
             uri="http://www.eclipse.org/egf/1.0.0/buildcore"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildcoreChildCreationExtender"
-      />
+            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildcoreChildCreationExtender"/>
+      <extender
+            uri="http://www.eclipse.org/egf/1.0.0/buildstep"
+            class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildstepChildCreationExtender"/>
    </extension>   
    
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">

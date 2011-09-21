@@ -64,7 +64,9 @@ public class InstallStepBuildLocationImpl extends BinaryBuildLocationImpl implem
      * @generated
      */
     protected InstallStepBuildLocationImpl() {
+
         super();
+
     }
 
     /**

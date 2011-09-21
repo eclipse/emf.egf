@@ -64,7 +64,9 @@ public class ResultStepBuildLocationImpl extends BinaryBuildLocationImpl impleme
      * @generated
      */
     protected ResultStepBuildLocationImpl() {
+
         super();
+
     }
 
     /**

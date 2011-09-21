@@ -71,7 +71,9 @@ public class SVNImpl extends SCMImpl implements SVN {
      * @generated
      */
     protected SVNImpl() {
+
         super();
+
     }
 
     /**

@@ -138,7 +138,9 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * @generated
      */
     protected BuildStepImpl() {
+
         super();
+
     }
 
     /**

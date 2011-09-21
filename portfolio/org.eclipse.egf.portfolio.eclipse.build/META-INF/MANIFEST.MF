@@ -18,7 +18,6 @@ Export-Package: org.eclipse.egf.portfolio.eclipse.build,
  org.eclipse.egf.portfolio.eclipse.build.buildscm.impl,
  org.eclipse.egf.portfolio.eclipse.build.buildscm.util,
  org.eclipse.egf.portfolio.eclipse.build.buildstep,
- org.eclipse.egf.portfolio.eclipse.build.buildstep.edit,
  org.eclipse.egf.portfolio.eclipse.build.buildstep.impl,
  org.eclipse.egf.portfolio.eclipse.build.buildstep.util,
  org.eclipse.egf.portfolio.eclipse.build.buildtrigger,
@@ -34,6 +33,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.pattern.ftask;visibility:=reexport,
- org.eclipse.egf.model.ftask;visibility:=reexport,
- org.eclipse.egf.emf.pattern
+ org.eclipse.egf.model.ftask;visibility:=reexport
 Bundle-ActivationPolicy: lazy

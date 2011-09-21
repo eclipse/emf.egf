@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="locations" lowerBound="1"
         upperBound="-1" eType="#//SVNLocation" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SVNLocation" eSuperTypes="BuildCore.ecore#//SCMLocation">
+  <eClassifiers xsi:type="ecore:EClass" name="SVNLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocol" lowerBound="1"
         eType="#//SVNProtocol"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -15,6 +15,12 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SVNBuildLocation" eSuperTypes="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.ecore#//SourceBuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="svnLocation" lowerBound="1"
+        eType="#//SVNLocation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SVNProtocol">
     <eLiterals name="HTTP" literal="http://"/>

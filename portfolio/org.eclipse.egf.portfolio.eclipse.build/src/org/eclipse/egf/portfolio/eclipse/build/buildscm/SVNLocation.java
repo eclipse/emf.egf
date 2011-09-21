@@ -13,7 +13,7 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildscm;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +35,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation;
  * @model
  * @generated
  */
-public interface SVNLocation extends SCMLocation {
+public interface SVNLocation extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

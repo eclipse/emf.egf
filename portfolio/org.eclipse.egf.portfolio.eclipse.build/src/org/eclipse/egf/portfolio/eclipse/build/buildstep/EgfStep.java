@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getActivities <em>Activities</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getEgfActivities <em>Egf Activities</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,22 +48,22 @@ public interface EgfStep extends Step, Item {
 
 
     /**
-     * Returns the value of the '<em><b>Activities</b></em>' attribute list.
-     * The list contents are of type {@link java.lang.String}.
+     * Returns the value of the '<em><b>Egf Activities</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity}.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Activities</em>' attribute list isn't clear,
+     * If the meaning of the '<em>Egf Activities</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Activities</em>' attribute list.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getEgfStep_Activities()
-     * @model unique="false" required="true"
+     * @return the value of the '<em>Egf Activities</em>' containment reference list.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getEgfStep_EgfActivities()
+     * @model containment="true" required="true"
      * @generated
      */
 
-    EList<String> getActivities();
+    EList<EgfActivity> getEgfActivities();
 
 
 

@@ -72,7 +72,9 @@ public class TargetPlatformBuildLocationImpl extends BinaryBuildLocationImpl imp
      * @generated
      */
     protected TargetPlatformBuildLocationImpl() {
+
         super();
+
     }
 
     /**

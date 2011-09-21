@@ -72,7 +72,9 @@ public class UpdateSiteBuildLocationImpl extends BinaryBuildLocationImpl impleme
      * @generated
      */
     protected UpdateSiteBuildLocationImpl() {
+
         super();
+
     }
 
     /**

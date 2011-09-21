@@ -58,6 +58,15 @@ public interface BuildscmFactory extends EFactory {
     SVNLocation createSVNLocation();
 
     /**
+     * Returns a new object of class '<em>SVN Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>SVN Build Location</em>'.
+     * @generated
+     */
+    SVNBuildLocation createSVNBuildLocation();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

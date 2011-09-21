@@ -6,8 +6,8 @@
 <%}%>            
 			</globargs>
 			<activities>
-<%for(String activity: egfStep.getActivities()) {%>
-				<arg value="<%=activity%>"/>
+<%for(EgfActivity egfActivity: egfStep.getEgfActivities()) {%>
+				<arg value="<%=egfActivity.getUri()%>"/>
 <%}%>
 			</activities>
 		</egf>

@@ -71,7 +71,9 @@ public class ItemImpl extends EObjectImpl implements Item {
      * @generated
      */
     protected ItemImpl() {
+
         super();
+
     }
 
     /**

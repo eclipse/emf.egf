@@ -72,7 +72,9 @@ public abstract class BinaryBuildLocationImpl extends BuildLocationImpl implemen
      * @generated
      */
     protected BinaryBuildLocationImpl() {
+
         super();
+
     }
 
     /**

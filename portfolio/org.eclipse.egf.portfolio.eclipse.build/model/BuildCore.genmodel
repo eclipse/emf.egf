@@ -30,7 +30,6 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BuildCore.ecore#//Step/job"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//SCM"/>
-    <genClasses image="false" ecoreClass="BuildCore.ecore#//SCMLocation"/>
     <genClasses ecoreClass="BuildCore.ecore#//Property">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Property/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Property/value"/>

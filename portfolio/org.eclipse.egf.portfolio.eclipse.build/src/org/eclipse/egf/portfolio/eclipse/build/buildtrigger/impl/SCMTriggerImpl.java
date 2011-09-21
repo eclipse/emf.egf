@@ -74,7 +74,9 @@ public class SCMTriggerImpl extends TriggerImpl implements SCMTrigger {
      * @generated
      */
     protected SCMTriggerImpl() {
+
         super();
+
     }
 
     /**

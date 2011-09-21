@@ -8,6 +8,7 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.*;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 
 public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildxmladd {
     protected static String nl;
@@ -113,9 +114,9 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
             stringBuffer.append(TEXT_5);
         }
         stringBuffer.append(TEXT_6);
-        for (String activity : egfStep.getActivities()) {
+        for (EgfActivity egfActivity : egfStep.getEgfActivities()) {
             stringBuffer.append(TEXT_7);
-            stringBuffer.append(activity);
+            stringBuffer.append(egfActivity.getUri());
             stringBuffer.append(TEXT_8);
         }
         stringBuffer.append(TEXT_9);

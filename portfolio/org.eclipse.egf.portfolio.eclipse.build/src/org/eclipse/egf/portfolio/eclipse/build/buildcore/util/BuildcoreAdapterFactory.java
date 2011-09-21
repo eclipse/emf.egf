@@ -106,10 +106,6 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
                 return createSCMAdapter();
             }
             @Override
-            public Adapter caseSCMLocation(SCMLocation object) {
-                return createSCMLocationAdapter();
-            }
-            @Override
             public Adapter caseProperty(Property object) {
                 return createPropertyAdapter();
             }
@@ -204,20 +200,6 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSCMAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation <em>SCM Location</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.SCMLocation
-     * @generated
-     */
-    public Adapter createSCMLocationAdapter() {
         return null;
     }
 

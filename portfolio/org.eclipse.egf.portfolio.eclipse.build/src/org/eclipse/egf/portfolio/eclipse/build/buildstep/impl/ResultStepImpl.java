@@ -44,7 +44,9 @@ public abstract class ResultStepImpl extends StepImpl implements ResultStep {
      * @generated
      */
     protected ResultStepImpl() {
+
         super();
+
     }
 
     /**

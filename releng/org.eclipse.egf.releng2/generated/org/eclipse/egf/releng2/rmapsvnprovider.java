@@ -45,13 +45,13 @@ public class rmapsvnprovider extends org.eclipse.egf.portfolio.eclipse.build.buc
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("scmBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildstep#//SCMBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("svnBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildscm#//SVNBuildLocation");
         queryCtx = new HashMap<String, String>();
-        List<Object> scmBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+        List<Object> svnBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object scmBuildLocationParameter : scmBuildLocationList) {
+        for (Object svnBuildLocationParameter : svnBuildLocationList) {
 
-            this.scmBuildLocation = (org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation) scmBuildLocationParameter;
+            this.svnBuildLocation = (org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation) svnBuildLocationParameter;
 
             if (preCondition())
                 orchestration(ctx);
@@ -78,7 +78,7 @@ public class rmapsvnprovider extends org.eclipse.egf.portfolio.eclipse.build.buc
             ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
             ictx.setExecutionCurrentIndex(0);
             Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("scmBuildLocation", this.scmBuildLocation);
+            parameterValues.put("svnBuildLocation", this.svnBuildLocation);
             String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
             ictx.clearBuffer();
@@ -88,26 +88,26 @@ public class rmapsvnprovider extends org.eclipse.egf.portfolio.eclipse.build.buc
 
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("scmBuildLocation", this.scmBuildLocation);
+        parameters.put("svnBuildLocation", this.svnBuildLocation);
         return parameters;
     }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        SVNLocation svnLocation = ((SVNLocation) scmBuildLocation.getScmLocation());
-        String id = new GenerationHelper().getPositionString(scmBuildLocation);
+        SVNLocation svnLocation = svnBuildLocation.getSvnLocation();
+        String id = new GenerationHelper().getPositionString(svnBuildLocation);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_2);
-        stringBuffer.append(new GenerationHelper().getPatternString(scmBuildLocation));
+        stringBuffer.append(new GenerationHelper().getPatternString(svnBuildLocation));
         stringBuffer.append(TEXT_3);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_4);
         stringBuffer.append(svnLocation.getLocalPath());
         stringBuffer.append(TEXT_5);
-        stringBuffer.append(scmBuildLocation.getFolderName());
+        stringBuffer.append(svnBuildLocation.getFolderName());
         stringBuffer.append(TEXT_6);
-        stringBuffer.append(new GenerationHelper().getStringIfNotNull(scmBuildLocation.getSuffix()));
+        stringBuffer.append(new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix()));
         stringBuffer.append(TEXT_7);
     }
 

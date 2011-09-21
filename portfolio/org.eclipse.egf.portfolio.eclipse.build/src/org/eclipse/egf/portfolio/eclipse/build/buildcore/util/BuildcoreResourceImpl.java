@@ -13,8 +13,11 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildcore.util;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.migration.BuildcoreXMLHelper;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.migration.BuildcoreXMLLoad;
 import org.eclipse.emf.common.util.URI;
-
+import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.XMLLoad;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
@@ -49,6 +52,22 @@ public class BuildcoreResourceImpl extends XMIResourceImpl {
     @Override
     protected boolean useUUIDs() {
         return true;
+    }
+
+    /**
+     * @generated NOT
+     */
+    @Override
+    protected XMLHelper createXMLHelper() {
+    	return new BuildcoreXMLHelper(this);
+    }
+    
+    /**
+     * @generated NOT
+     */
+    @Override
+    protected XMLLoad createXMLLoad() {
+    	return new BuildcoreXMLLoad(createXMLHelper());
     }
 
 } //BuildcoreResourceImpl

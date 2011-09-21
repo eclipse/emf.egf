@@ -72,7 +72,9 @@ public abstract class SourceBuildLocationImpl extends BuildLocationImpl implemen
      * @generated
      */
     protected SourceBuildLocationImpl() {
+
         super();
+
     }
 
     /**

@@ -105,7 +105,9 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
      * @generated
      */
     protected AggregateStepImpl() {
+
         super();
+
     }
 
     /**

@@ -22,12 +22,11 @@
 		<fileset dir="<%=((LocalBuildLocation)sourceLocation).getPath()%>" defaultexcludes="true">
 <%}%>
 
-<%if (sourceLocation instanceof SCMBuildLocation) {
-SCMBuildLocation scmBuildLocation = (SCMBuildLocation) sourceLocation;
-if (scmBuildLocation.getScmLocation() instanceof SVNLocation ) {
-SVNLocation svnLocation = (SVNLocation) scmBuildLocation.getScmLocation();%>
-		<fileset dir="${build.root}/<%=svnLocation.getLocalPath()%>/<%=scmBuildLocation.getFolderName()%>" defaultexcludes="true">
-<%}}%>
+<%if (sourceLocation instanceof SVNBuildLocation) {
+SVNBuildLocation svnBuildLocation = (SVNBuildLocation) sourceLocation;
+SVNLocation svnLocation = (SVNLocation) svnBuildLocation.getSvnLocation();%>
+		<fileset dir="${build.root}/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>" defaultexcludes="true">
+<%}%>
 
 <%for (String includeString : javadocStep.getIncludes()) {%> 
 			<include name="<%=includeString%>"/>

@@ -8,7 +8,8 @@
     usedGenPackages="BuildCore.genmodel#//buildcore">
   <foreignModel>BuildStep.ecore</foreignModel>
   <genPackages prefix="Buildstep" basePackage="org.eclipse.egf.portfolio.eclipse.build"
-      disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="BuildStep.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="BuildStep.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="BuildStep.ecore#//CLEAN_TYPE">
       <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/RESULT"/>
       <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/WORKSPACE"/>
@@ -22,6 +23,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//BuildStep/buildLocations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//BuildStep/components"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildStep/cleanBeforeBuild"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildStep/allPlatforms"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//PublishStep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//PublishStep/component"/>
@@ -44,12 +46,23 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//JavadocStep/links"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//EgfStep">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//EgfStep/activities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//EgfStep/egfActivities"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildStep.ecore#//EgfActivity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//EgfActivity/uri"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//AggregateStep">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//AggregateStep/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//AggregateStep/publishSteps"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//AggregateStep/updateSiteUrls"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildStep.ecore#//InstallStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/profile"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//InstallStep/resultSteps"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/updateSiteUrls"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/featureNames"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/productNames"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//BuildLocation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildLocation/pattern"/>
@@ -58,12 +71,11 @@
     <genClasses ecoreClass="BuildStep.ecore#//SourceBuildLocation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//SourceBuildLocation/suffix"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="BuildStep.ecore#//BinaryBuildLocation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BinaryBuildLocation/suffix"/>
+    </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//LocalBuildLocation" labelFeature="#//buildstep/LocalBuildLocation/path">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//LocalBuildLocation/path"/>
-    </genClasses>
-    <genClasses ecoreClass="BuildStep.ecore#//SCMBuildLocation" labelFeature="#//buildstep/SCMBuildLocation/folderName">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//SCMBuildLocation/scmLocation"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//SCMBuildLocation/folderName"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//TargetPlatformBuildLocation" labelFeature="#//buildstep/TargetPlatformBuildLocation/path">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//TargetPlatformBuildLocation/path"/>
@@ -73,6 +85,9 @@
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//ResultStepBuildLocation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//ResultStepBuildLocation/resultStep"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildStep.ecore#//InstallStepBuildLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//InstallStepBuildLocation/installStep"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//Component">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//Component/name"/>

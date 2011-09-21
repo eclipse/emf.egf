@@ -11,14 +11,16 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
+package org.eclipse.egf.portfolio.eclipse.build.buildscm.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation;
+
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.SourceBuildLocationItemProvider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -34,12 +36,12 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.SCMBuildLocation} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SCMBuildLocationItemProvider
+public class SVNBuildLocationItemProvider
     extends SourceBuildLocationItemProvider
     implements
         IEditingDomainItemProvider,
@@ -60,7 +62,7 @@ public class SCMBuildLocationItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public SCMBuildLocationItemProvider(AdapterFactory adapterFactory) {
+    public SVNBuildLocationItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -75,27 +77,27 @@ public class SCMBuildLocationItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addScmLocationPropertyDescriptor(object);
+            addSvnLocationPropertyDescriptor(object);
             addFolderNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Scm Location feature.
+     * This adds a property descriptor for the Svn Location feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addScmLocationPropertyDescriptor(Object object) {
+    protected void addSvnLocationPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_SCMBuildLocation_scmLocation_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_SCMBuildLocation_scmLocation_feature", "_UI_SCMBuildLocation_type"),
-                 BuildstepPackage.Literals.SCM_BUILD_LOCATION__SCM_LOCATION,
+                 getString("_UI_SVNBuildLocation_svnLocation_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SVNBuildLocation_svnLocation_feature", "_UI_SVNBuildLocation_type"),
+                 BuildscmPackage.Literals.SVN_BUILD_LOCATION__SVN_LOCATION,
                  true,
                  false,
                  true,
@@ -117,9 +119,9 @@ public class SCMBuildLocationItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_SCMBuildLocation_folderName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_SCMBuildLocation_folderName_feature", "_UI_SCMBuildLocation_type"),
-                 BuildstepPackage.Literals.SCM_BUILD_LOCATION__FOLDER_NAME,
+                 getString("_UI_SVNBuildLocation_folderName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_SVNBuildLocation_folderName_feature", "_UI_SVNBuildLocation_type"),
+                 BuildscmPackage.Literals.SVN_BUILD_LOCATION__FOLDER_NAME,
                  true,
                  false,
                  false,
@@ -130,14 +132,14 @@ public class SCMBuildLocationItemProvider
     }
 
     /**
-     * This returns SCMBuildLocation.gif.
+     * This returns SVNBuildLocation.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/SCMBuildLocation"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/SVNBuildLocation"));
     }
 
     /**
@@ -149,10 +151,10 @@ public class SCMBuildLocationItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((SCMBuildLocation)object).getFolderName();
+        String label = ((SVNBuildLocation)object).getFolderName();
         return label == null || label.length() == 0 ?
-            getString("_UI_SCMBuildLocation_type") :
-            getString("_UI_SCMBuildLocation_type") + " " + label;
+            getString("_UI_SVNBuildLocation_type") :
+            getString("_UI_SVNBuildLocation_type") + " " + label;
 
     }
 
@@ -167,8 +169,8 @@ public class SCMBuildLocationItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(SCMBuildLocation.class)) {
-            case BuildstepPackage.SCM_BUILD_LOCATION__FOLDER_NAME:
+        switch (notification.getFeatureID(SVNBuildLocation.class)) {
+            case BuildscmPackage.SVN_BUILD_LOCATION__FOLDER_NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

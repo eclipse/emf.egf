@@ -1207,7 +1207,7 @@
             <methods xmi:id="_EGUrc5MbEd-pjLQZUcJ3fw" name="preCondition" patternFilePath="templates/pattern._EGUrcJMbEd-pjLQZUcJ3fw/method._EGUrc5MbEd-pjLQZUcJ3fw.pt"/>
             <methods xmi:id="_EGUrdJMbEd-pjLQZUcJ3fw" name="body" patternFilePath="templates/pattern._EGUrcJMbEd-pjLQZUcJ3fw/method._EGUrdJMbEd-pjLQZUcJ3fw.pt"/>
             <methods xmi:id="_EGUrdZMbEd-pjLQZUcJ3fw" name="footer" patternFilePath="templates/pattern._EGUrcJMbEd-pjLQZUcJ3fw/method._EGUrdZMbEd-pjLQZUcJ3fw.pt"/>
-            <parameters xmi:id="_JPx4kJMbEd-pjLQZUcJ3fw" name="scmBuildLocation" type="http://www.eclipse.org/egf/1.0.0/buildstep#//SCMBuildLocation">
+            <parameters xmi:id="_JPx4kJMbEd-pjLQZUcJ3fw" name="svnBuildLocation" type="http://www.eclipse.org/egf/1.0.0/buildscm#//SVNBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_Npj8QJMbEd-pjLQZUcJ3fw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
