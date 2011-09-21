@@ -1,0 +1,4 @@
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__STEPS,
+                 BuildstepFactory.eINSTANCE.createJavadocStepFilled()));
