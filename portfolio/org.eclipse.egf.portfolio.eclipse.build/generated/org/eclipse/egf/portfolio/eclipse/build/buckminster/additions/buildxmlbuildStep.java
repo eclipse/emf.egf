@@ -24,9 +24,9 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
     protected final String TEXT_2 = "    <target name=\"";
     protected final String TEXT_3 = "\" depends=\"init,install.buckminster\">" + NL;
     protected final String TEXT_4 = "        <echo message=\"Importing projects into workspace ${workspace} and binaries into target platform\" />" + NL + NL;
-    protected final String TEXT_5 = "\t<antcall target=\"";
+    protected final String TEXT_5 = "\t\t<antcall target=\"";
     protected final String TEXT_6 = "\" />" + NL + NL;
-    protected final String TEXT_7 = "    \t<buckminster command=\"installJRE\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--location\" />" + NL + "                <arg value=\"${env.JAVA_HOME}\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
+    protected final String TEXT_7 = "\t\t<echo message=\"install JRE ${env.JAVA_HOME}\" />" + NL + "    \t<buckminster command=\"installJRE\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--location\" />" + NL + "                <arg value=\"${env.JAVA_HOME}\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
     protected final String TEXT_8 = "        <buckminster command=\"importtargetdefinition\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--active\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
     protected final String TEXT_9 = "/build.target\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + "    \t" + NL;
     protected final String TEXT_10 = "        <buckminster command=\"import\">" + NL + "            <!-- Uncomment to debug <globargs><jvmarg value=\"-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y\"/></globargs> -->" + NL + "            <cmdargs>" + NL + "                <arg value=\"-P\" />" + NL + "                <arg value=\"${relengDir}/build.properties\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";

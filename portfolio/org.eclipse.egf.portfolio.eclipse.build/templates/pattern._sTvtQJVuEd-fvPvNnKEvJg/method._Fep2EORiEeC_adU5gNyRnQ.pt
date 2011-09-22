@@ -1,2 +1,2 @@
-	<antcall target="<%=new GenerationHelper().getCleanTypeString("", "", buildStep.getCleanBeforeBuild())%>" />
+		<antcall target="<%=new GenerationHelper().getCleanTypeString("", "", buildStep.getCleanBeforeBuild())%>" />
 
