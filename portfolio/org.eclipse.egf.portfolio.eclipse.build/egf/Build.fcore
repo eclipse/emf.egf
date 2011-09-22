@@ -827,12 +827,14 @@
             <methods xmi:id="_S5U2AI6XEd-e7viTqNBNrA" name="setFileName" patternFilePath="templates/pattern._Qzz7AI6XEd-e7viTqNBNrA/method._S5U2AI6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_Qzz7BI6XEd-e7viTqNBNrA" name="begin" patternFilePath="templates/pattern._Qzz7AI6XEd-e7viTqNBNrA/method._Qzz7BI6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_Qzz7BY6XEd-e7viTqNBNrA" name="footer" patternFilePath="templates/pattern._Qzz7AI6XEd-e7viTqNBNrA/method._Qzz7BY6XEd-e7viTqNBNrA.pt"/>
+            <methods xmi:id="_FNP78OUxEeCpQPfMrPZU6g" name="callBuildRmapLocationAdd"
+                patternFilePath="templates/pattern._Qzz7AI6XEd-e7viTqNBNrA/method._FNP78OUxEeCpQPfMrPZU6g.pt"/>
             <methods xmi:id="_9M6K0J4WEd-3wvN5SnesGA" name="end" patternFilePath="templates/pattern._Qzz7AI6XEd-e7viTqNBNrA/method._9M6K0J4WEd-3wvN5SnesGA.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_Qzz7Bo6XEd-e7viTqNBNrA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_SPvtgI6XEd-e7viTqNBNrA"
                 called="#_Qzz7BI6XEd-e7viTqNBNrA"/>
-            <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_keVB0KbVEd-qVbFBxWG7lA"
-                called="#_AAXisJMbEd-pjLQZUcJ3fw" context="#_dwL2MKbSEd-qVbFBxWG7lA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_GNxk0OUxEeCpQPfMrPZU6g"
+                called="#_FNP78OUxEeCpQPfMrPZU6g"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_-JQeUJ4WEd-3wvN5SnesGA"
                 called="#_9M6K0J4WEd-3wvN5SnesGA"/>
           </elements>

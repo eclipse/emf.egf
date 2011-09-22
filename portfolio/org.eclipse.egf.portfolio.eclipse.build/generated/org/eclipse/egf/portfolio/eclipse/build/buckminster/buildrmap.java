@@ -7,6 +7,7 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 
 public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStepFilePattern {
     protected static String nl;
@@ -22,9 +23,10 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
     protected final String TEXT_1 = "<rmap xmlns=\"http://www.eclipse.org/buckminster/RMap-1.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:mp=\"http://www.eclipse.org/buckminster/MavenProvider-1.0\"" + NL + "\txmlns:pmp=\"http://www.eclipse.org/buckminster/PDEMapProvider-1.0\" xmlns:bc=\"http://www.eclipse.org/buckminster/Common-1.0\">" + NL + "" + NL + "\t<locator searchPathRef=\"buckminster\" failOnError=\"false\" />" + NL + "\t<searchPath name=\"buckminster\">" + NL + "\t\t<!-- buckminster provider for windows -->" + NL + "\t\t<provider componentTypes=\"buckminster\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file:/{0}/buckminster_";
     protected final String TEXT_2 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"relengDir\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t\t<!-- buckminster provider for unix -->" + NL + "\t\t<provider componentTypes=\"buckminster\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file://{0}/buckminster_";
     protected final String TEXT_3 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"relengDir\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
-    protected final String TEXT_4 = "</rmap>" + NL;
-    protected final String TEXT_5 = NL;
+    protected final String TEXT_4 = NL + "\t";
+    protected final String TEXT_5 = "</rmap>" + NL;
     protected final String TEXT_6 = NL;
+    protected final String TEXT_7 = NL;
 
     public buildrmap() {
         //Here is the constructor
@@ -57,8 +59,8 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_5);
         stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_7);
         return stringBuffer.toString();
     }
 
@@ -69,11 +71,8 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
         super.orchestration(new SuperOrchestrationContext(ictx));
 
         method_begin(ictx.getBuffer(), ictx);
-        {
-            ExecutionContext ctx_local = new ExecutionContext(ictx);
-            ctx_local.setValue(PatternContext.INJECTED_CONTEXT, buildStep);
-            CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AAXisJMbEd-pjLQZUcJ3fw", ctx_local);
-        }
+
+        method_callBuildRmapLocationAdd(ictx.getBuffer(), ictx);
 
         method_end(ictx.getBuffer(), ictx);
 
@@ -119,9 +118,26 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
         stringBuffer.append(TEXT_3);
     }
 
+    protected void method_callBuildRmapLocationAdd(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
+        for (BuildLocation buildLocation : buildStep.getBuildLocations()) {
+            stringBuffer.append(TEXT_4);
+            {
+                //<%@ egf:patternInjectedCall toInject="buildLocation"
+                //		patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.rmap.location.add"
+                //	%>
+
+                ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
+                callCtx.setValue(PatternContext.INJECTED_CONTEXT, buildLocation);
+                CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AAXisJMbEd-pjLQZUcJ3fw", callCtx);
+            }
+
+        }
+    }
+
     protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_5);
     }
 
     public boolean preCondition() throws Exception {
