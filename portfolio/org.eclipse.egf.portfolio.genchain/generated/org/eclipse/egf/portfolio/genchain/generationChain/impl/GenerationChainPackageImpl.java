@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.genchain.generationChain.impl;
 import org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration;
 import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
+import org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChain;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainFactory;
 import org.eclipse.egf.portfolio.genchain.generationChain.GenerationChainPackage;
@@ -84,6 +85,13 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * @generated
      */
     private EClass pluginAdditionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass featureAdditionEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -349,6 +357,24 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getFeatureAddition() {
+        return featureAdditionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFeatureAddition_Additions() {
+        return (EAttribute) featureAdditionEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public GenerationChainFactory getGenerationChainFactory() {
         return (GenerationChainFactory) getEFactoryInstance();
     }
@@ -401,6 +427,9 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
 
         pluginAdditionEClass = createEClass(PLUGIN_ADDITION);
         createEAttribute(pluginAdditionEClass, PLUGIN_ADDITION__ADDITIONS);
+
+        featureAdditionEClass = createEClass(FEATURE_ADDITION);
+        createEAttribute(featureAdditionEClass, FEATURE_ADDITION__ADDITIONS);
     }
 
     /**
@@ -440,6 +469,7 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
         ecoreElementEClass.getESuperTypes().add(this.getGenerationElement());
         pluginAdditionEClass.getESuperTypes().add(this.getGenerationElement());
         pluginAdditionEClass.getESuperTypes().add(this.getPluginProvider());
+        featureAdditionEClass.getESuperTypes().add(this.getGenerationElement());
 
         // Initialize classes and features; add operations and parameters
         initEClass(generationElementEClass, GenerationElement.class, "GenerationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -472,6 +502,9 @@ public class GenerationChainPackageImpl extends EPackageImpl implements Generati
 
         initEClass(pluginAdditionEClass, PluginAddition.class, "PluginAddition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPluginAddition_Additions(), ecorePackage.getEString(), "additions", null, 0, -1, PluginAddition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(featureAdditionEClass, FeatureAddition.class, "FeatureAddition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getFeatureAddition_Additions(), ecorePackage.getEString(), "additions", null, 0, -1, FeatureAddition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);

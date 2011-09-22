@@ -43,4 +43,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="additions" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureAddition" eSuperTypes="#//GenerationElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additions" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

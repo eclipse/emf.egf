@@ -191,6 +191,29 @@ public class GenerationChainItemProviderAdapterFactory extends GenerationChainAd
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FeatureAdditionItemProvider featureAdditionItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createFeatureAdditionAdapter() {
+        if (featureAdditionItemProvider == null) {
+            featureAdditionItemProvider = new FeatureAdditionItemProvider(this);
+        }
+
+        return featureAdditionItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -324,6 +347,8 @@ public class GenerationChainItemProviderAdapterFactory extends GenerationChainAd
             documentationGenerationItemProvider.dispose();
         if (pluginAdditionItemProvider != null)
             pluginAdditionItemProvider.dispose();
+        if (featureAdditionItemProvider != null)
+            featureAdditionItemProvider.dispose();
     }
 
 }

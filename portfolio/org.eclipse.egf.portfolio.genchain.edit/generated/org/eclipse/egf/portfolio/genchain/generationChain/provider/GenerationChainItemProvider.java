@@ -181,6 +181,8 @@ public class GenerationChainItemProvider extends GenerationElementItemProvider i
         newChildDescriptors.add(createChildParameter(GenerationChainPackage.Literals.GENERATION_CHAIN__ELEMENTS, GenerationChainFactory.eINSTANCE.createDocumentationGeneration()));
 
         newChildDescriptors.add(createChildParameter(GenerationChainPackage.Literals.GENERATION_CHAIN__ELEMENTS, GenerationChainFactory.eINSTANCE.createPluginAddition()));
+
+        newChildDescriptors.add(createChildParameter(GenerationChainPackage.Literals.GENERATION_CHAIN__ELEMENTS, GenerationChainFactory.eINSTANCE.createFeatureAddition()));
     }
 
 }
