@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getPositionString(publishStep);%>
+<%String stepName = new GenerationHelper().getIdOrPositionString(publishStep);%>
 	<target name="<%=stepName%>" depends="init,install.buckminster" >
 
 <%String featurename = publishStep.getComponent().getName();%>
@@ -50,7 +50,7 @@
 			</globargs>
 			<cmdargs>
 <%BuildStep buildStep = publishStep.getComponent().getBuildStep();%>
-<%String buildStepName = new GenerationHelper().getPositionString(buildStep);%>			
+<%String buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);%>			
 				<arg value="<%=buildStepName%>:buckminster#convertSiteToRuntime" />
 			</cmdargs>
 		</buckminster>

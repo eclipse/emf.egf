@@ -97,7 +97,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getPositionString(cleanStep));
+        stringBuffer.append(new GenerationHelper().getIdOrPositionString(cleanStep));
         stringBuffer.append(TEXT_2);
         stringBuffer.append(new GenerationHelper().getCleanTypeString("", "", cleanStep.getType()));
         stringBuffer.append(TEXT_3);

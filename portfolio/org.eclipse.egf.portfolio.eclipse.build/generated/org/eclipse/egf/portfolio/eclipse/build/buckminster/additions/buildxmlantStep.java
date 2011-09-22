@@ -103,13 +103,13 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
         if (antStep.isRunInEclipse()) {
             stringBuffer.append(TEXT_1);
-            stringBuffer.append(new GenerationHelper().getPositionString(antStep));
+            stringBuffer.append(new GenerationHelper().getIdOrPositionString(antStep));
             stringBuffer.append(TEXT_2);
             stringBuffer.append(antStep.getTargetName());
             stringBuffer.append(TEXT_3);
         } else {
             stringBuffer.append(TEXT_4);
-            stringBuffer.append(new GenerationHelper().getPositionString(antStep));
+            stringBuffer.append(new GenerationHelper().getIdOrPositionString(antStep));
             stringBuffer.append(TEXT_5);
             stringBuffer.append(antStep.getTargetName());
             stringBuffer.append(TEXT_6);

@@ -249,13 +249,31 @@ public interface BuildcorePackage extends EPackage {
     int STEP__JOB = 0;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__ID = 1;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__DESCRIPTION = 2;
+
+    /**
      * The number of structural features of the '<em>Step</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEP_FEATURE_COUNT = 1;
+    int STEP_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMImpl <em>SCM</em>}' class.
@@ -484,6 +502,28 @@ public interface BuildcorePackage extends EPackage {
     EReference getStep_Job();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getId <em>Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getId()
+     * @see #getStep()
+     * @generated
+     */
+    EAttribute getStep_Id();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getDescription <em>Description</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Description</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getDescription()
+     * @see #getStep()
+     * @generated
+     */
+    EAttribute getStep_Description();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM <em>SCM</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -676,6 +716,22 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EReference STEP__JOB = eINSTANCE.getStep_Job();
+
+        /**
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute STEP__ID = eINSTANCE.getStep_Id();
+
+        /**
+         * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute STEP__DESCRIPTION = eINSTANCE.getStep_Description();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMImpl <em>SCM</em>}' class.

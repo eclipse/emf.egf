@@ -98,7 +98,7 @@ public class GenerationHelper {
                 Step step = (Step) next;
                 if (buffer.length() > 0)
                     buffer.append(separator);
-                buffer.append(getPositionString(step));
+                buffer.append(getIdOrPositionString(step));
             }
         }
         return buffer.toString();
@@ -131,12 +131,14 @@ public class GenerationHelper {
         return -1;
     }
 
-    public String getPositionString(Step step) {
+    public String getIdOrPositionString(Step step) {
+        if (step.getId() != null) 
+            return step.getId().replace(' ', '_');
         return "step" + getPositionInParent(step, BuildcorePackage.eINSTANCE.getStep());
     }
 
-    public String getPositionString(BuildLocation buildLocation) {
-        return getPositionString(buildLocation.getBuildStep()) + "location" + getPositionInParent(buildLocation, BuildstepPackage.eINSTANCE.getBuildLocation());
+    public String getIdOrPositionString(BuildLocation buildLocation) {
+        return getIdOrPositionString(buildLocation.getBuildStep()) + "location" + getPositionInParent(buildLocation, BuildstepPackage.eINSTANCE.getBuildLocation());
     }
 
     public String replaceProperties(EObject eObject, String input) {

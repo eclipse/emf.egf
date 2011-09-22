@@ -140,6 +140,21 @@
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_yhAXQK95Ed--tuq7x0NXVA"
                 called="#_d8VZVK95Ed--tuq7x0NXVA"/>
           </elements>
+          <elements xmi:id="_8JYoMeUDEeCPBthxhfdg8g" name="duplicateStepId" superPattern="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_jKJUYKt7Ed-0oekoriqU8Q"
+              headerMethod="#_8JYoM-UDEeCPBthxhfdg8g" conditionMethod="#_8JYoNeUDEeCPBthxhfdg8g"
+              initMethod="#_8JYoNOUDEeCPBthxhfdg8g" footerMethod="#_8JYoN-UDEeCPBthxhfdg8g">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_8JYoMuUDEeCPBthxhfdg8g"
+                name="Java"/>
+            <methods xmi:id="_8JYoM-UDEeCPBthxhfdg8g" name="header" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoM-UDEeCPBthxhfdg8g.pt"/>
+            <methods xmi:id="_8JYoNOUDEeCPBthxhfdg8g" name="init" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNOUDEeCPBthxhfdg8g.pt"/>
+            <methods xmi:id="_8JYoNeUDEeCPBthxhfdg8g" name="preCondition" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNeUDEeCPBthxhfdg8g.pt"/>
+            <methods xmi:id="_8JYoNuUDEeCPBthxhfdg8g" name="body" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNuUDEeCPBthxhfdg8g.pt"/>
+            <methods xmi:id="_8JYoN-UDEeCPBthxhfdg8g" name="footer" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoN-UDEeCPBthxhfdg8g.pt"/>
+            <parameters xmi:id="_9HhrcOUDEeCPBthxhfdg8g" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_8JYoOOUDEeCPBthxhfdg8g"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_C5qpMOUEEeCPBthxhfdg8g"
+                called="#_8JYoNuUDEeCPBthxhfdg8g"/>
+          </elements>
         </libraries>
         <libraries xmi:id="_n0wcANVBEd-sZ5ty9tQGtA" name="org.eclipse.egf.portfolio.eclipse.build.transformation">
           <elements xmi:id="_WM_acNVJEd-kLLLb0fKJog" name="replaceProperties" headerMethod="#_WM_actVJEd-kLLLb0fKJog"
@@ -267,7 +282,7 @@
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
           <invocationContracts xmi:id="_0VnaYK93Ed--tuq7x0NXVA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_1awdgK93Ed--tuq7x0NXVA"
-                elements="#_d8VZUK95Ed--tuq7x0NXVA"/>
+                elements="#_d8VZUK95Ed--tuq7x0NXVA #_8JYoMeUDEeCPBthxhfdg8g"/>
           </invocationContracts>
           <invocationContracts xmi:id="_9iziMLzqEd-Ni-pzi_M0Ew" factoryComponentContract="#_ahMPALzpEd-Ni-pzi_M0Ew"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>

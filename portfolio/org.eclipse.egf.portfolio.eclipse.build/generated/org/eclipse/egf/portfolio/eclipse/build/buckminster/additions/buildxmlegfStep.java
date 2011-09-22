@@ -104,7 +104,7 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getPositionString(egfStep));
+        stringBuffer.append(new GenerationHelper().getIdOrPositionString(egfStep));
         stringBuffer.append(TEXT_2);
         for (Property property : egfStep.getProperties()) {
             stringBuffer.append(TEXT_3);

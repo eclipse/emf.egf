@@ -95,7 +95,7 @@ public class rmapsvnprovider extends org.eclipse.egf.portfolio.eclipse.build.buc
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         SVNLocation svnLocation = svnBuildLocation.getSvnLocation();
-        String id = new GenerationHelper().getPositionString(svnBuildLocation);
+        String id = new GenerationHelper().getIdOrPositionString(svnBuildLocation);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_2);

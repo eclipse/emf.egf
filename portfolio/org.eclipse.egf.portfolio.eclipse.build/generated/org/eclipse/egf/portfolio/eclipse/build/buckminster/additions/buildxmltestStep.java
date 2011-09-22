@@ -101,7 +101,7 @@ public class buildxmltestStep extends org.eclipse.egf.portfolio.eclipse.build.bu
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String stepName = new GenerationHelper().getPositionString(testStep);
+        String stepName = new GenerationHelper().getIdOrPositionString(testStep);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_2);

@@ -94,7 +94,7 @@ public class buildxmlpublishStepplugin extends org.eclipse.egf.portfolio.eclipse
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String stepName = new GenerationHelper().getPositionString(publishStep);
+        String stepName = new GenerationHelper().getIdOrPositionString(publishStep);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_2);

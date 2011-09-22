@@ -1,1 +1,1 @@
-<%stepName = new GenerationHelper().getPositionString(buildStep);%>
+<%stepName = new GenerationHelper().getIdOrPositionString(buildStep);%>

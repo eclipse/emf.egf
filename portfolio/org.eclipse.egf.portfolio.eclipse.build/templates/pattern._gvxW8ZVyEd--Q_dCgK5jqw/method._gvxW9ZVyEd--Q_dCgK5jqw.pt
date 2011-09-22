@@ -1,9 +1,9 @@
 <%if (antStep.isRunInEclipse()) {%>
-	<target name="<%=new GenerationHelper().getPositionString(antStep)%>" depends="init,install.egf" >
+	<target name="<%=new GenerationHelper().getIdOrPositionString(antStep)%>" depends="init,install.egf" >
 		<anteclipse target="<%=antStep.getTargetName()%>" />
 	</target>	
 <%} else {%>
-	<target name="<%=new GenerationHelper().getPositionString(antStep)%>">
+	<target name="<%=new GenerationHelper().getIdOrPositionString(antStep)%>">
 		<antcall target="<%=antStep.getTargetName()%>"/>
 	</target>
 <%}%>

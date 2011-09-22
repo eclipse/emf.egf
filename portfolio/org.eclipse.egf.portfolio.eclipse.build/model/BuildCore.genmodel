@@ -28,6 +28,8 @@
     </genClasses>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//Step">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BuildCore.ecore#//Step/job"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/description"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//SCM"/>
     <genClasses ecoreClass="BuildCore.ecore#//Property">

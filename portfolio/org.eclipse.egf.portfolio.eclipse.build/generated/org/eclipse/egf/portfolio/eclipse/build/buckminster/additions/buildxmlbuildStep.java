@@ -128,7 +128,7 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
 
     protected void method_computeStepName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stepName = new GenerationHelper().getPositionString(buildStep);
+        stepName = new GenerationHelper().getIdOrPositionString(buildStep);
         stringBuffer.append(TEXT_1);
     }
 

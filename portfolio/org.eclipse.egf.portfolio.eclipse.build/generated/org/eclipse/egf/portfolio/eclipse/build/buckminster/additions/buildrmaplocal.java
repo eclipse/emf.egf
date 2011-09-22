@@ -100,7 +100,7 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String id = new GenerationHelper().getPositionString(localBuildLocation);
+        String id = new GenerationHelper().getIdOrPositionString(localBuildLocation);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_2);

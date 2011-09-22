@@ -122,7 +122,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
                 publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
         }
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getPositionString(installStep));
+        stringBuffer.append(new GenerationHelper().getIdOrPositionString(installStep));
         stringBuffer.append(TEXT_2);
         stringBuffer.append(TEXT_3);
         {

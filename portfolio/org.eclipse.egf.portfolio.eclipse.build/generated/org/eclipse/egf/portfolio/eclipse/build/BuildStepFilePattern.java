@@ -99,12 +99,12 @@ public class BuildStepFilePattern extends org.eclipse.egf.portfolio.eclipse.buil
     protected void method_setFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         filePath = new GenerationHelper().getJobName(ctx, buildStep.getJob());
-        filePath = filePath + "/releng/buckminster_" + new GenerationHelper().getPositionString(buildStep);
+        filePath = filePath + "/releng/buckminster_" + new GenerationHelper().getIdOrPositionString(buildStep);
     }
 
     protected void method_setBuildStepName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        buildStepName = new GenerationHelper().getPositionString(buildStep);
+        buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);
     }
 
     public boolean preCondition() throws Exception {

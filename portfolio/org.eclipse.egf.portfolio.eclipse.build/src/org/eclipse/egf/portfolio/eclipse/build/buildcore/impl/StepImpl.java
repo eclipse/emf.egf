@@ -36,6 +36,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl#getJob <em>Job</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,6 +50,54 @@ public abstract class StepImpl extends EObjectImpl implements Step {
      * @generated
      */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
+
+
+
+
+    /**
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    protected static final String ID_EDEFAULT = null;
+
+
+
+
+    /**
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getId()
+     * @generated
+     * @ordered
+     */
+    protected String id = ID_EDEFAULT;
+
+
+
+
+    /**
+     * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDescription()
+     * @generated
+     * @ordered
+     */
+    protected static final String DESCRIPTION_EDEFAULT = null;
+    /**
+     * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDescription()
+     * @generated
+     * @ordered
+     */
+    protected String description = DESCRIPTION_EDEFAULT;
 
 
 
@@ -152,6 +202,58 @@ public abstract class StepImpl extends EObjectImpl implements Step {
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public String getId() {
+
+        return id;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setId(String newId) {
+
+        String oldId = id;
+        id = newId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildcorePackage.STEP__ID, oldId, id));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public String getDescription() {
+
+        return description;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setDescription(String newDescription) {
+
+        String oldDescription = description;
+        description = newDescription;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildcorePackage.STEP__DESCRIPTION, oldDescription, description));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -202,6 +304,10 @@ public abstract class StepImpl extends EObjectImpl implements Step {
             case BuildcorePackage.STEP__JOB:
                 if (resolve) return getJob();
                 return basicGetJob();
+            case BuildcorePackage.STEP__ID:
+                return getId();
+            case BuildcorePackage.STEP__DESCRIPTION:
+                return getDescription();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -216,6 +322,12 @@ public abstract class StepImpl extends EObjectImpl implements Step {
         switch (featureID) {
             case BuildcorePackage.STEP__JOB:
                 setJob((Job)newValue);
+                return;
+            case BuildcorePackage.STEP__ID:
+                setId((String)newValue);
+                return;
+            case BuildcorePackage.STEP__DESCRIPTION:
+                setDescription((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -233,6 +345,12 @@ public abstract class StepImpl extends EObjectImpl implements Step {
             case BuildcorePackage.STEP__JOB:
                 setJob((Job)null);
                 return;
+            case BuildcorePackage.STEP__ID:
+                setId(ID_EDEFAULT);
+                return;
+            case BuildcorePackage.STEP__DESCRIPTION:
+                setDescription(DESCRIPTION_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -249,8 +367,30 @@ public abstract class StepImpl extends EObjectImpl implements Step {
         switch (featureID) {
             case BuildcorePackage.STEP__JOB:
                 return basicGetJob() != null;
+            case BuildcorePackage.STEP__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+            case BuildcorePackage.STEP__DESCRIPTION:
+                return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (id: ");
+        result.append(id);
+        result.append(", description: ");
+        result.append(description);
+        result.append(')');
+        return result.toString();
     }
 
 

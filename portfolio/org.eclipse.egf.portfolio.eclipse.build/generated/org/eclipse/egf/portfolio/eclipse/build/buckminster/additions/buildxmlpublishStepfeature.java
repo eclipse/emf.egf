@@ -120,7 +120,7 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String stepName = new GenerationHelper().getPositionString(publishStep);
+        String stepName = new GenerationHelper().getIdOrPositionString(publishStep);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_2);
@@ -154,7 +154,7 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
         stringBuffer.append(featurename);
         stringBuffer.append(TEXT_16);
         BuildStep buildStep = publishStep.getComponent().getBuildStep();
-        String buildStepName = new GenerationHelper().getPositionString(buildStep);
+        String buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);
         stringBuffer.append(TEXT_17);
         stringBuffer.append(buildStepName);
         stringBuffer.append(TEXT_18);
