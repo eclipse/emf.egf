@@ -14,5 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.portfolio.eclipse.build;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.egf.model.editor,
+ org.eclipse.egf.core.ui
 Bundle-ActivationPolicy: lazy

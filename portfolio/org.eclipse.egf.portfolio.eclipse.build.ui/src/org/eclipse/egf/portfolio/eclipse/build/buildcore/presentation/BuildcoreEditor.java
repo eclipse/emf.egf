@@ -167,7 +167,10 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
+import org.eclipse.egf.portfolio.eclipse.build.ui.BuildcoreAdapterFactoryContentProvider;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+
 
 
 /**
@@ -1397,7 +1400,7 @@ public class BuildcoreEditor
      * This accesses a cached version of the property sheet.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     public IPropertySheetPage getPropertySheetPage() {
         if (propertySheetPage == null) {
@@ -1415,7 +1418,7 @@ public class BuildcoreEditor
                         getActionBarContributor().shareGlobalActions(this, actionBars);
                     }
                 };
-            propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+            propertySheetPage.setPropertySourceProvider(new BuildcoreAdapterFactoryContentProvider(adapterFactory));
         }
 
         return propertySheetPage;
