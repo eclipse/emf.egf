@@ -22,18 +22,19 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
     protected final String TEXT_2 = "    <target name=\"";
-    protected final String TEXT_3 = "\" depends=\"";
-    protected final String TEXT_4 = "init,install.buckminster\">" + NL;
-    protected final String TEXT_5 = "        <echo message=\"Importing projects into workspace ${workspace} and binaries into target platform\" />" + NL + NL;
-    protected final String TEXT_6 = "    \t<buckminster command=\"installJRE\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--location\" />" + NL + "                <arg value=\"${env.JAVA_HOME}\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
-    protected final String TEXT_7 = "        <buckminster command=\"importtargetdefinition\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--active\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
-    protected final String TEXT_8 = "/build.target\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + "    \t" + NL;
-    protected final String TEXT_9 = "        <buckminster command=\"import\">" + NL + "            <!-- Uncomment to debug <globargs><jvmarg value=\"-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y\"/></globargs> -->" + NL + "            <cmdargs>" + NL + "                <arg value=\"-P\" />" + NL + "                <arg value=\"${relengDir}/build.properties\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
-    protected final String TEXT_10 = "/build.mspec\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
-    protected final String TEXT_11 = "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL + "\t\t</buckminster>" + NL;
-    protected final String TEXT_12 = "    </target>" + NL + NL;
-    protected final String TEXT_13 = NL;
+    protected final String TEXT_3 = "\" depends=\"init,install.buckminster\">" + NL;
+    protected final String TEXT_4 = "        <echo message=\"Importing projects into workspace ${workspace} and binaries into target platform\" />" + NL + NL;
+    protected final String TEXT_5 = "\t<antcall target=\"";
+    protected final String TEXT_6 = "\" />" + NL + NL;
+    protected final String TEXT_7 = "    \t<buckminster command=\"installJRE\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--location\" />" + NL + "                <arg value=\"${env.JAVA_HOME}\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
+    protected final String TEXT_8 = "        <buckminster command=\"importtargetdefinition\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--active\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
+    protected final String TEXT_9 = "/build.target\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + "    \t" + NL;
+    protected final String TEXT_10 = "        <buckminster command=\"import\">" + NL + "            <!-- Uncomment to debug <globargs><jvmarg value=\"-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y\"/></globargs> -->" + NL + "            <cmdargs>" + NL + "                <arg value=\"-P\" />" + NL + "                <arg value=\"${relengDir}/build.properties\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
+    protected final String TEXT_11 = "/build.mspec\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
+    protected final String TEXT_12 = "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL + "\t\t</buckminster>" + NL;
+    protected final String TEXT_13 = "    </target>" + NL + NL;
     protected final String TEXT_14 = NL;
+    protected final String TEXT_15 = NL;
 
     public buildxmlbuildStep() {
         //Here is the constructor
@@ -67,8 +68,8 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_13);
         stringBuffer.append(TEXT_14);
+        stringBuffer.append(TEXT_15);
         return stringBuffer.toString();
     }
 
@@ -81,6 +82,8 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
         method_begin(ictx.getBuffer(), ictx);
 
         method_echo(ictx.getBuffer(), ictx);
+
+        method_clean(ictx.getBuffer(), ictx);
 
         method_installJRE(ictx.getBuffer(), ictx);
 
@@ -134,42 +137,47 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
         stringBuffer.append(TEXT_2);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_3);
-        stringBuffer.append(new GenerationHelper().getCleanTypeString("", ",", buildStep.getCleanBeforeBuild()));
-        stringBuffer.append(TEXT_4);
     }
 
     protected void method_echo(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        stringBuffer.append(TEXT_4);
+    }
+
+    protected void method_clean(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+
         stringBuffer.append(TEXT_5);
+        stringBuffer.append(new GenerationHelper().getCleanTypeString("", "", buildStep.getCleanBeforeBuild()));
+        stringBuffer.append(TEXT_6);
     }
 
     protected void method_installJRE(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_7);
     }
 
     protected void method_importTargetDefinition(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_7);
-        stringBuffer.append(stepName);
         stringBuffer.append(TEXT_8);
+        stringBuffer.append(stepName);
+        stringBuffer.append(TEXT_9);
     }
 
     protected void method_importWorkspace(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_9);
-        stringBuffer.append(stepName);
         stringBuffer.append(TEXT_10);
+        stringBuffer.append(stepName);
+        stringBuffer.append(TEXT_11);
     }
 
     protected void method_build(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_11);
+        stringBuffer.append(TEXT_12);
     }
 
     protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_12);
+        stringBuffer.append(TEXT_13);
     }
 
     public boolean preCondition() throws Exception {

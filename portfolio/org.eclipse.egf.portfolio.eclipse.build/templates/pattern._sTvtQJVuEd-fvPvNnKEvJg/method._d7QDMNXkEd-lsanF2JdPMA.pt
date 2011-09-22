@@ -1,1 +1,1 @@
-    <target name="<%=stepName%>" depends="<%=new GenerationHelper().getCleanTypeString("", ",", buildStep.getCleanBeforeBuild())%>init,install.buckminster">
+    <target name="<%=stepName%>" depends="init,install.buckminster">

@@ -1,1 +1,3 @@
-	<target name="<%=new GenerationHelper().getPositionString(cleanStep)%>" <%=new GenerationHelper().getCleanTypeString("depends=\"", "\"", cleanStep.getType())%>/>
+	<target name="<%=new GenerationHelper().getPositionString(cleanStep)%>" >
+		<antcall target="<%=new GenerationHelper().getCleanTypeString("", "", cleanStep.getType())%>" />
+	</target>

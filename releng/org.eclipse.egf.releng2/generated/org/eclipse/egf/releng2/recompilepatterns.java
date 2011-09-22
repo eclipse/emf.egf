@@ -19,13 +19,10 @@ public class recompilepatterns extends org.eclipse.egf.portfolio.eclipse.build.b
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "    <target name=\"";
-    protected final String TEXT_2 = "\" depends=\"";
-    protected final String TEXT_3 = "init,install.buckminster, install.egf\">" + NL;
-    protected final String TEXT_4 = "        <echo message=\"Recompile all patterns workspace ${workspace}\" />" + NL + "\t\t<egf>" + NL + "            <globargs>" + NL + "\t\t\t\t<jvmarg value=\"-Degf.target.bundle.priority=true\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<activities>" + NL + "\t\t\t\t<arg value=\"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw\"/>" + NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "" + NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL
+    protected final String TEXT_1 = "        <echo message=\"Recompile all patterns workspace ${workspace}\" />" + NL + "\t\t<egf>" + NL + "            <globargs>" + NL + "\t\t\t\t<jvmarg value=\"-Degf.target.bundle.priority=true\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<activities>" + NL + "\t\t\t\t<arg value=\"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw\"/>" + NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "" + NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL
             + "\t\t</buckminster>" + NL + "\t\t";
-    protected final String TEXT_5 = NL;
-    protected final String TEXT_6 = NL;
+    protected final String TEXT_2 = NL;
+    protected final String TEXT_3 = NL;
 
     public recompilepatterns() {
         //Here is the constructor
@@ -59,8 +56,8 @@ public class recompilepatterns extends org.eclipse.egf.portfolio.eclipse.build.b
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_5);
-        stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_2);
+        stringBuffer.append(TEXT_3);
         return stringBuffer.toString();
     }
 
@@ -89,18 +86,9 @@ public class recompilepatterns extends org.eclipse.egf.portfolio.eclipse.build.b
         return parameters;
     }
 
-    protected void method_begin(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(stepName);
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(new GenerationHelper().getCleanTypeString("", ",", buildStep.getCleanBeforeBuild()));
-        stringBuffer.append(TEXT_3);
-    }
-
     protected void method_build(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_1);
     }
 
     public boolean preCondition() throws Exception {

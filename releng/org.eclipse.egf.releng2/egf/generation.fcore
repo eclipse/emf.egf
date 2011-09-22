@@ -73,7 +73,6 @@
             <methods xmi:id="_co63IyovEeCBw7S2pyk8wg" name="init" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63IyovEeCBw7S2pyk8wg.pt"/>
             <methods xmi:id="_co63JCovEeCBw7S2pyk8wg" name="preCondition" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JCovEeCBw7S2pyk8wg.pt"/>
             <methods xmi:id="_co63JSovEeCBw7S2pyk8wg" name="footer" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JSovEeCBw7S2pyk8wg.pt"/>
-            <methods xmi:id="_co63JiovEeCBw7S2pyk8wg" name="begin" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JiovEeCBw7S2pyk8wg.pt"/>
             <methods xmi:id="_co63JyovEeCBw7S2pyk8wg" name="build" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JyovEeCBw7S2pyk8wg.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_co63KCovEeCBw7S2pyk8wg"/>
           </elements>
