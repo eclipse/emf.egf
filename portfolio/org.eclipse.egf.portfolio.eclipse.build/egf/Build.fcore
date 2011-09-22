@@ -1284,6 +1284,24 @@
             </parameters>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_pFGKZ5loEd-GKqXx_evxEw"/>
           </elements>
+          <elements xmi:id="__Sk8AeUqEeCpQPfMrPZU6g" name="build.rmap.resultStep"
+              superPattern="#_AAXisJMbEd-pjLQZUcJ3fw" headerMethod="#__Sk8A-UqEeCpQPfMrPZU6g"
+              conditionMethod="#__Sk8BeUqEeCpQPfMrPZU6g" initMethod="#__Sk8BOUqEeCpQPfMrPZU6g"
+              footerMethod="#__Sk8B-UqEeCpQPfMrPZU6g">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="__Sk8AuUqEeCpQPfMrPZU6g"
+                name="JET"/>
+            <methods xmi:id="__Sk8A-UqEeCpQPfMrPZU6g" name="header" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8A-UqEeCpQPfMrPZU6g.pt"/>
+            <methods xmi:id="__Sk8BOUqEeCpQPfMrPZU6g" name="init" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8BOUqEeCpQPfMrPZU6g.pt"/>
+            <methods xmi:id="__Sk8BeUqEeCpQPfMrPZU6g" name="preCondition" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8BeUqEeCpQPfMrPZU6g.pt"/>
+            <methods xmi:id="__Sk8BuUqEeCpQPfMrPZU6g" name="body" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8BuUqEeCpQPfMrPZU6g.pt"/>
+            <methods xmi:id="__Sk8B-UqEeCpQPfMrPZU6g" name="footer" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8B-UqEeCpQPfMrPZU6g.pt"/>
+            <parameters xmi:id="__Sk8COUqEeCpQPfMrPZU6g" name="resultStepBuildLocation"
+                type="http://www.eclipse.org/egf/1.0.0/buildstep#//ResultStepBuildLocation">
+              <query xmi:type="pattern:BasicQuery" xmi:id="__Sk8CeUqEeCpQPfMrPZU6g"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="__Sk8CuUqEeCpQPfMrPZU6g"/>
+          </elements>
           <elements xmi:id="_J_VjkKh4EeCyIabjY3cKRg" name="build.rmap.installStep"
               superPattern="#_AAXisJMbEd-pjLQZUcJ3fw" headerMethod="#_J_Vjkqh4EeCyIabjY3cKRg"
               conditionMethod="#_J_VjlKh4EeCyIabjY3cKRg" initMethod="#_J_Vjk6h4EeCyIabjY3cKRg"
@@ -1385,7 +1403,7 @@
               <substitutions xmi:id="_xs22QJMZEd-pjLQZUcJ3fw" replacedElement="#_yCPiUJMXEd-pjLQZUcJ3fw"
                   replacement="#_dmdIsJMZEd-pjLQZUcJ3fw #_CrT7cJMaEd-pjLQZUcJ3fw #_yCPiUJMXEd-pjLQZUcJ3fw #_SbudAJWHEd-9uNs2Xd57Cg"/>
               <substitutions xmi:id="_n2COMJMxEd-BJKD_XS9R2A" replacedElement="#_AAXisJMbEd-pjLQZUcJ3fw"
-                  replacement="#_EGUrcJMbEd-pjLQZUcJ3fw #_wiU4gJSoEd-BJKD_XS9R2A #_MXMfEJTUEd-fvPvNnKEvJg #_pFGKYZloEd-GKqXx_evxEw #_J_VjkKh4EeCyIabjY3cKRg #_AAXisJMbEd-pjLQZUcJ3fw"/>
+                  replacement="#_EGUrcJMbEd-pjLQZUcJ3fw #_wiU4gJSoEd-BJKD_XS9R2A #_MXMfEJTUEd-fvPvNnKEvJg #_pFGKYZloEd-GKqXx_evxEw #_J_VjkKh4EeCyIabjY3cKRg #__Sk8AeUqEeCpQPfMrPZU6g #_AAXisJMbEd-pjLQZUcJ3fw"/>
               <substitutions xmi:id="_avGLIJNHEd-BJKD_XS9R2A" replacedElement="#_4NTLAJNGEd-BJKD_XS9R2A"
                   replacement="#_x4T9kZmWEd-Ee7jt2lxlVA #_D3WLsWEpEeC2MPWqHbfkpg #_4NTLAJNGEd-BJKD_XS9R2A"/>
               <substitutions xmi:id="_SGBtUJTYEd-fvPvNnKEvJg" replacedElement="#_C_qLIJTYEd-fvPvNnKEvJg"

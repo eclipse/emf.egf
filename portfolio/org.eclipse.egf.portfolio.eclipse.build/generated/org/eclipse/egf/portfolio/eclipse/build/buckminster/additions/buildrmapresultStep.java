@@ -8,12 +8,12 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
-public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildrmaplocationadd {
+public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buildrmaplocationadd {
     protected static String nl;
 
-    public static synchronized buildrmapinstallStep create(String lineSeparator) {
+    public static synchronized buildrmapresultStep create(String lineSeparator) {
         nl = lineSeparator;
-        buildrmapinstallStep result = new buildrmapinstallStep();
+        buildrmapresultStep result = new buildrmapresultStep();
         nl = null;
         return result;
     }
@@ -27,7 +27,7 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
     protected final String TEXT_6 = NL;
     protected final String TEXT_7 = NL;
 
-    public buildrmapinstallStep() {
+    public buildrmapresultStep() {
         //Here is the constructor
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -42,13 +42,13 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("installStepBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildstep#//InstallStepBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("resultStepBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildstep#//ResultStepBuildLocation");
         queryCtx = new HashMap<String, String>();
-        List<Object> installStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+        List<Object> resultStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object installStepBuildLocationParameter : installStepBuildLocationList) {
+        for (Object resultStepBuildLocationParameter : resultStepBuildLocationList) {
 
-            this.installStepBuildLocation = (org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation) installStepBuildLocationParameter;
+            this.resultStepBuildLocation = (org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation) resultStepBuildLocationParameter;
 
             if (preCondition())
                 orchestration(ctx);
@@ -75,7 +75,7 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
             ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
             ictx.setExecutionCurrentIndex(0);
             Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("installStepBuildLocation", this.installStepBuildLocation);
+            parameterValues.put("resultStepBuildLocation", this.resultStepBuildLocation);
             String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
             ictx.clearBuffer();
@@ -83,26 +83,26 @@ public class buildrmapinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
         return loop;
     }
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation installStepBuildLocation = null;
+    protected org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation resultStepBuildLocation = null;
 
-    public void set_installStepBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation object) {
-        this.installStepBuildLocation = object;
+    public void set_resultStepBuildLocation(org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation object) {
+        this.resultStepBuildLocation = object;
     }
 
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("installStepBuildLocation", this.installStepBuildLocation);
+        parameters.put("resultStepBuildLocation", this.resultStepBuildLocation);
         return parameters;
     }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        String id = new GenerationHelper().getIdOrPositionString(installStepBuildLocation);
+        String id = new GenerationHelper().getIdOrPositionString(resultStepBuildLocation);
         stringBuffer.append(TEXT_2);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_3);
-        stringBuffer.append(new GenerationHelper().getPatternString(installStepBuildLocation));
+        stringBuffer.append(new GenerationHelper().getPatternString(resultStepBuildLocation));
         stringBuffer.append(TEXT_4);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_5);

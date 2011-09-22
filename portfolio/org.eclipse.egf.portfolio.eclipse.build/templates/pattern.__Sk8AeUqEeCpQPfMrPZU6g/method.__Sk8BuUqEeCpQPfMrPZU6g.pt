@@ -1,5 +1,5 @@
-    <%String id = new GenerationHelper().getIdOrPositionString(installStepBuildLocation);%>
-	<locator searchPathRef="targetPlatform<%=id%>" <%=new GenerationHelper().getPatternString(installStepBuildLocation)%> failOnError="false" />
+    <%String id = new GenerationHelper().getIdOrPositionString(resultStepBuildLocation);%>
+	<locator searchPathRef="targetPlatform<%=id%>" <%=new GenerationHelper().getPatternString(resultStepBuildLocation)%> failOnError="false" />
 	<searchPath name="targetPlatform<%=id%>">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.platform">
 			<uri format="plugin/{0}">

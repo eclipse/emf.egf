@@ -19,10 +19,13 @@ public class buildrmaptargetPlatform extends org.eclipse.egf.portfolio.eclipse.b
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "\t<locator searchPathRef=\"targetPlatform\" ";
-    protected final String TEXT_2 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"targetPlatform\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL + "\t\t\t<uri format=\"plugin/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL + "\t\t\t<uri format=\"feature/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
-    protected final String TEXT_3 = NL;
-    protected final String TEXT_4 = NL;
+    protected final String TEXT_1 = "    ";
+    protected final String TEXT_2 = NL + "\t<locator searchPathRef=\"targetPlatform";
+    protected final String TEXT_3 = "\" ";
+    protected final String TEXT_4 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"targetPlatform";
+    protected final String TEXT_5 = "\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL + "\t\t\t<uri format=\"plugin/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"eclipse.platform\">" + NL + "\t\t\t<uri format=\"feature/{0}\">" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
+    protected final String TEXT_6 = NL;
+    protected final String TEXT_7 = NL;
 
     public buildrmaptargetPlatform() {
         //Here is the constructor
@@ -56,8 +59,8 @@ public class buildrmaptargetPlatform extends org.eclipse.egf.portfolio.eclipse.b
             ctx.clearBuffer();
         }
 
-        stringBuffer.append(TEXT_3);
-        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_7);
         return stringBuffer.toString();
     }
 
@@ -95,8 +98,14 @@ public class buildrmaptargetPlatform extends org.eclipse.egf.portfolio.eclipse.b
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getPatternString(targetPlatformBuildLocation));
+        String id = new GenerationHelper().getIdOrPositionString(targetPlatformBuildLocation);
         stringBuffer.append(TEXT_2);
+        stringBuffer.append(id);
+        stringBuffer.append(TEXT_3);
+        stringBuffer.append(new GenerationHelper().getPatternString(targetPlatformBuildLocation));
+        stringBuffer.append(TEXT_4);
+        stringBuffer.append(id);
+        stringBuffer.append(TEXT_5);
     }
 
     public boolean preCondition() throws Exception {
