@@ -11,6 +11,8 @@
             uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-helios.egfbuild"/>
         <domains xmi:type="domain:EMFDomain" xmi:id="_qv79gCU_EeCO18e1qKVBFg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
             uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-indigo.egfbuild"/>
+        <domains xmi:type="domain:EMFDomain" xmi:id="_zQvB4eXGEeCwyLb2KmUUfg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+            uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-juno.egfbuild"/>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_X7zFICSnEeCIlumqagSWRg">
@@ -21,10 +23,17 @@
           </invocationContracts>
         </invocationContractContainer>
       </invocations>
-      <invocations xmi:id="_6CfhkCU_EeCO18e1qKVBFg" invokedActivity="#_yhr1EPPHEd-1PJ4PFWU1aA">
-        <invocationContractContainer xmi:id="_6CfhkSU_EeCO18e1qKVBFg">
-          <invocationContracts xmi:id="_6CfhkiU_EeCO18e1qKVBFg" invokedContract="#_RU6QsCSnEeCIlumqagSWRg">
-            <type xmi:type="domain:TypeDomain" xmi:id="_6CfhkyU_EeCO18e1qKVBFg" domain="#_qv79gCU_EeCO18e1qKVBFg"/>
+      <invocations xmi:id="_1SEngOXGEeCwyLb2KmUUfg" invokedActivity="#_yhr1EPPHEd-1PJ4PFWU1aA">
+        <invocationContractContainer xmi:id="_1SEngeXGEeCwyLb2KmUUfg">
+          <invocationContracts xmi:id="_1SEnguXGEeCwyLb2KmUUfg" invokedContract="#_RU6QsCSnEeCIlumqagSWRg">
+            <type xmi:type="domain:TypeDomain" xmi:id="_1SEng-XGEeCwyLb2KmUUfg" domain="#_qv79gCU_EeCO18e1qKVBFg"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_1Z01UOXGEeCwyLb2KmUUfg" invokedActivity="#_yhr1EPPHEd-1PJ4PFWU1aA">
+        <invocationContractContainer xmi:id="_1Z01UeXGEeCwyLb2KmUUfg">
+          <invocationContracts xmi:id="_1Z01UuXGEeCwyLb2KmUUfg" invokedContract="#_RU6QsCSnEeCIlumqagSWRg">
+            <type xmi:type="domain:TypeDomain" xmi:id="_1Z01U-XGEeCwyLb2KmUUfg" domain="#_zQvB4eXGEeCwyLb2KmUUfg"/>
           </invocationContracts>
         </invocationContractContainer>
       </invocations>

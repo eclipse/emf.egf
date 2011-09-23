@@ -1,4 +1,5 @@
         <echo message="Recompile all patterns workspace ${workspace}" />
+		<antcall target="install.egf" />
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.0/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.0/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-indigo">
-  <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="indigo"/>
+<buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.0/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.0/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-juno">
+  <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="juno"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA">
-    <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/3.7/portfolio"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DBCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="doc"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DBSR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="examples/workspace"/>
@@ -10,7 +9,7 @@
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
     <buildLocations xsi:type="buildstep:SCMBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" scmLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
-    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/indigo"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/juno"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" name="org.eclipse.egf.releng2"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>

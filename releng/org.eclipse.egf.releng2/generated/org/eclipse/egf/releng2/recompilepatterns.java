@@ -19,8 +19,8 @@ public class recompilepatterns extends org.eclipse.egf.portfolio.eclipse.build.b
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "        <echo message=\"Recompile all patterns workspace ${workspace}\" />" + NL + "\t\t<egf>" + NL + "            <globargs>" + NL + "\t\t\t\t<jvmarg value=\"-Degf.target.bundle.priority=true\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<activities>" + NL + "\t\t\t\t<arg value=\"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw\"/>" + NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "" + NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL
-            + "\t\t</buckminster>" + NL + "\t\t";
+    protected final String TEXT_1 = "        <echo message=\"Recompile all patterns workspace ${workspace}\" />" + NL + "\t\t<antcall target=\"install.egf\" />" + NL + "\t\t<egf>" + NL + "            <globargs>" + NL + "\t\t\t\t<jvmarg value=\"-Degf.target.bundle.priority=true\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<activities>" + NL + "\t\t\t\t<arg value=\"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw\"/>" + NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "" + NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL
+            + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL + "\t\t</buckminster>" + NL + "\t\t";
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 
