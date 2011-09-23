@@ -1,0 +1,6 @@
+<%
+GenClass genClass = parameter;
+targetPath = genClass.getGenModel().getModelDirectory();
+packageName = genClass.getGenPackage().getClassPackageName();
+className = genClass.getClassName();
+%>

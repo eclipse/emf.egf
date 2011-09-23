@@ -1,0 +1,4 @@
+<%
+GenClass genClass = parameter;
+argument = ((Object[]) new Object[]{new Object[]{genClass,Boolean.TRUE,Boolean.FALSE}})[0];
+%>
