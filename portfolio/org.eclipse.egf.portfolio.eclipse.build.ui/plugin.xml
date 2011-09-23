@@ -55,7 +55,7 @@
    
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://www.eclipse.org/egf/1.0.0/buildstep"
+            uri="http://www.eclipse.org/egf/1.0.1/buildstep"
             class="org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.BuildstepItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -89,7 +89,7 @@
             uri="http://www.eclipse.org/egf/1.0.0/buildcore"
             class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildcoreChildCreationExtender"/>
       <extender
-            uri="http://www.eclipse.org/egf/1.0.0/buildstep"
+            uri="http://www.eclipse.org/egf/1.0.1/buildstep"
             class="org.eclipse.egf.portfolio.eclipse.build.buildscm.provider.BuildscmItemProviderAdapterFactory$BuildstepChildCreationExtender"/>
    </extension>   
    

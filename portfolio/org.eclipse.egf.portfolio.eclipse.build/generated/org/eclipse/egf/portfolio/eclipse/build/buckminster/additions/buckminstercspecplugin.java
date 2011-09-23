@@ -38,7 +38,7 @@ public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.bu
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("plugin", "http://www.eclipse.org/egf/1.0.0/buildstep#//Plugin");
+        paramDesc = new IQuery.ParameterDescription("plugin", "http://www.eclipse.org/egf/1.0.1/buildstep#//Plugin");
         queryCtx = new HashMap<String, String>();
         List<Object> pluginList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

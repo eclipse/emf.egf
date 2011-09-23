@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildstep"
-    nsURI="http://www.eclipse.org/egf/1.0.0/buildstep" nsPrefix="buildstep">
+    nsURI="http://www.eclipse.org/egf/1.0.1/buildstep" nsPrefix="buildstep">
   <eClassifiers xsi:type="ecore:EClass" name="ResultStep" abstract="true" eSuperTypes="BuildCore.ecore#//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="CleanStep" eSuperTypes="BuildCore.ecore#//Step">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//CLEAN_TYPE"
@@ -13,9 +13,9 @@
         eType="#//BuildLocation" containment="true" eOpposite="#//BuildLocation/buildStep"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
         eType="#//Component" containment="true" eOpposite="#//Component/buildStep"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cleanBeforeBuild" eType="#//CLEAN_TYPE"
-        defaultValueLiteral="Result"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allPlatforms" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="noBuildersInvocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PublishStep" eSuperTypes="#//ResultStep">

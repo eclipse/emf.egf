@@ -140,7 +140,10 @@ public class EgfStepItemProvider
     @Override
     public String getText(Object object) {
 
-        return getString("_UI_EgfStep_type");
+        String label = ((EgfStep)object).getId();
+        return label == null || label.length() == 0 ?
+            getString("_UI_EgfStep_type") :
+            getString("_UI_EgfStep_type") + " " + label;
 
     }
 

@@ -58,7 +58,7 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("javadocStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//JavadocStep");
+        paramDesc = new IQuery.ParameterDescription("javadocStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//JavadocStep");
         queryCtx = new HashMap<String, String>();
         List<Object> javadocStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

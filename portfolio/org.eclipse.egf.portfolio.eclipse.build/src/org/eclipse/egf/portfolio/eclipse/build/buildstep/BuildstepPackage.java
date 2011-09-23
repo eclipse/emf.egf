@@ -58,7 +58,7 @@ public interface BuildstepPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "http://www.eclipse.org/egf/1.0.0/buildstep";
+    String eNS_URI = "http://www.eclipse.org/egf/1.0.1/buildstep";
 
     /**
      * The package namespace name.
@@ -96,6 +96,24 @@ public interface BuildstepPackage extends EPackage {
     int RESULT_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
      * The number of structural features of the '<em>Result Step</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -122,6 +140,24 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int CLEAN_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLEAN_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLEAN_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -161,6 +197,24 @@ public interface BuildstepPackage extends EPackage {
     int BUILD_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUILD_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUILD_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Build Locations</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -179,22 +233,22 @@ public interface BuildstepPackage extends EPackage {
     int BUILD_STEP__COMPONENTS = BuildcorePackage.STEP_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Clean Before Build</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BUILD_STEP__CLEAN_BEFORE_BUILD = BuildcorePackage.STEP_FEATURE_COUNT + 2;
-
-    /**
      * The feature id for the '<em><b>All Platforms</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BUILD_STEP__ALL_PLATFORMS = BuildcorePackage.STEP_FEATURE_COUNT + 3;
+    int BUILD_STEP__ALL_PLATFORMS = BuildcorePackage.STEP_FEATURE_COUNT + 2;
+
+    /**
+     * The feature id for the '<em><b>No Builders Invocation</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUILD_STEP__NO_BUILDERS_INVOCATION = BuildcorePackage.STEP_FEATURE_COUNT + 3;
 
     /**
      * The number of structural features of the '<em>Build Step</em>' class.
@@ -223,6 +277,24 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int PUBLISH_STEP__JOB = RESULT_STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PUBLISH_STEP__ID = RESULT_STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PUBLISH_STEP__DESCRIPTION = RESULT_STEP__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Component</b></em>' reference.
@@ -280,6 +352,24 @@ public interface BuildstepPackage extends EPackage {
     int TEST_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TEST_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TEST_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Launch Configuration Path</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -324,6 +414,24 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int ANT_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANT_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANT_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Target Name</b></em>' attribute.
@@ -379,6 +487,24 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int JAVADOC_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAVADOC_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAVADOC_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Sources</b></em>' reference list.
@@ -443,6 +569,24 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int EGF_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -519,6 +663,24 @@ public interface BuildstepPackage extends EPackage {
     int AGGREGATE_STEP__JOB = RESULT_STEP__JOB;
 
     /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__ID = RESULT_STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__DESCRIPTION = RESULT_STEP__DESCRIPTION;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -572,6 +734,24 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int INSTALL_STEP__JOB = BuildcorePackage.STEP__JOB;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__ID = BuildcorePackage.STEP__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1226,17 +1406,6 @@ public interface BuildstepPackage extends EPackage {
     EReference getBuildStep_Components();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getCleanBeforeBuild <em>Clean Before Build</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Clean Before Build</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getCleanBeforeBuild()
-     * @see #getBuildStep()
-     * @generated
-     */
-    EAttribute getBuildStep_CleanBeforeBuild();
-
-    /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms <em>All Platforms</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1246,6 +1415,17 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     EAttribute getBuildStep_AllPlatforms();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isNoBuildersInvocation <em>No Builders Invocation</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>No Builders Invocation</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isNoBuildersInvocation()
+     * @see #getBuildStep()
+     * @generated
+     */
+    EAttribute getBuildStep_NoBuildersInvocation();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep <em>Publish Step</em>}'.
@@ -1898,20 +2078,20 @@ public interface BuildstepPackage extends EPackage {
         EReference BUILD_STEP__COMPONENTS = eINSTANCE.getBuildStep_Components();
 
         /**
-         * The meta object literal for the '<em><b>Clean Before Build</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute BUILD_STEP__CLEAN_BEFORE_BUILD = eINSTANCE.getBuildStep_CleanBeforeBuild();
-
-        /**
          * The meta object literal for the '<em><b>All Platforms</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         EAttribute BUILD_STEP__ALL_PLATFORMS = eINSTANCE.getBuildStep_AllPlatforms();
+
+        /**
+         * The meta object literal for the '<em><b>No Builders Invocation</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute BUILD_STEP__NO_BUILDERS_INVOCATION = eINSTANCE.getBuildStep_NoBuildersInvocation();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl <em>Publish Step</em>}' class.

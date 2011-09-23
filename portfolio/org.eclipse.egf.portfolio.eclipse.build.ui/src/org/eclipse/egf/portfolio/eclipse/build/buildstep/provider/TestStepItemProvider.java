@@ -153,7 +153,7 @@ public class TestStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((TestStep)object).getLaunchConfigurationPath();
+        String label = ((TestStep)object).getId();
         return label == null || label.length() == 0 ?
             getString("_UI_TestStep_type") :
             getString("_UI_TestStep_type") + " " + label;

@@ -39,7 +39,7 @@ public class buildtargettargetPlatform extends org.eclipse.egf.portfolio.eclipse
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("targetPlatformBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildstep#//TargetPlatformBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("targetPlatformBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//TargetPlatformBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> targetPlatformBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

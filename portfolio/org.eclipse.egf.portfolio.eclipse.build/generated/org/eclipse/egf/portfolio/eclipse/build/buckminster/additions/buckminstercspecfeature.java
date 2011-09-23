@@ -38,7 +38,7 @@ public class buckminstercspecfeature extends org.eclipse.egf.portfolio.eclipse.b
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("feature", "http://www.eclipse.org/egf/1.0.0/buildstep#//Feature");
+        paramDesc = new IQuery.ParameterDescription("feature", "http://www.eclipse.org/egf/1.0.1/buildstep#//Feature");
         queryCtx = new HashMap<String, String>();
         List<Object> featureList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

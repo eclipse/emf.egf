@@ -64,7 +64,7 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("aggregateStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//AggregateStep");
+        paramDesc = new IQuery.ParameterDescription("aggregateStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//AggregateStep");
         queryCtx = new HashMap<String, String>();
         List<Object> aggregateStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

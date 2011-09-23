@@ -51,7 +51,7 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
      */
 	public static BuildstepFactory init() {
         try {
-            BuildstepFactory theBuildstepFactory = (BuildstepFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/buildstep"); 
+            BuildstepFactory theBuildstepFactory = (BuildstepFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.1/buildstep"); 
             if (theBuildstepFactory != null) {
                 return theBuildstepFactory;
             }

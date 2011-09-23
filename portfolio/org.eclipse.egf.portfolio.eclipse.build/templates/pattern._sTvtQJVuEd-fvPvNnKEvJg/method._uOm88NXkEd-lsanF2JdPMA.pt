@@ -1,3 +1,6 @@
+<%if (buildStep.isNoBuildersInvocation()) {%>
+        <echo message="No builders invocation specified" />
+<%} else {%>
         <echo message="Invoking all eclipse builders on workspace ${workspace}" />
         <buckminster command="build" >
             <cmdargs>
@@ -5,3 +8,4 @@
                 <arg value="--thorough" />
             </cmdargs>
 		</buckminster>
+<%}%>

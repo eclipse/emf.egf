@@ -203,7 +203,10 @@ public class JavadocStepItemProvider
     @Override
     public String getText(Object object) {
 
-        return getString("_UI_JavadocStep_type");
+        String label = ((JavadocStep)object).getId();
+        return label == null || label.length() == 0 ?
+            getString("_UI_JavadocStep_type") :
+            getString("_UI_JavadocStep_type") + " " + label;
 
     }
 

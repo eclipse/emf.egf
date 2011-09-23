@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 
-public class duplicateStepId extends org.eclipse.egf.pattern.validation.AbstractValidationPattern {
+public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidationPattern {
 
-    public duplicateStepId() {
+    public stepId() {
         //Here is the constructor
         // add initialisation of the pattern variables (declaration has been already done).
     }
@@ -43,7 +43,8 @@ public class duplicateStepId extends org.eclipse.egf.pattern.validation.Abstract
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         int executionIndex = ictx.getExecutionBuffer().length();
         super.orchestration(new SuperOrchestrationContext(ictx));
-        method_body(ictx.getBuffer(), ictx);
+        method_checkDuplicateId(ictx.getBuffer(), ictx);
+        method_checkNotEmptyStringId(ictx.getBuffer(), ictx);
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {
@@ -58,7 +59,7 @@ public class duplicateStepId extends org.eclipse.egf.pattern.validation.Abstract
         return loop;
     }
 
-    protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+    protected void method_checkDuplicateId(final StringBuffer out, final PatternContext ctx) throws Exception {
         Collection<String> stepIds = new ArrayList<String>();
         for (Step step : job.getSteps()) {
             if (step.getId() != null) {
@@ -67,6 +68,16 @@ public class duplicateStepId extends org.eclipse.egf.pattern.validation.Abstract
                     diagnosticChain.add(diagnostic);
                 }
                 stepIds.add(step.getId());
+            }
+        }
+
+    }
+
+    protected void method_checkNotEmptyStringId(final StringBuffer out, final PatternContext ctx) throws Exception {
+        for (Step step : job.getSteps()) {
+            if ("".equals(step.getId())) {
+                BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "step Id is an empty string " + step.getId(), new Object[] { job });
+                diagnosticChain.add(diagnostic);
             }
         }
 

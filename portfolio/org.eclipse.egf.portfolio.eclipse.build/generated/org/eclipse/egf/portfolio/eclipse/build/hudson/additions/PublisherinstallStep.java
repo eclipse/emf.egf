@@ -37,7 +37,7 @@ public class PublisherinstallStep extends org.eclipse.egf.portfolio.eclipse.buil
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("installStep", "http://www.eclipse.org/egf/1.0.0/buildstep#//InstallStep");
+        paramDesc = new IQuery.ParameterDescription("installStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStep");
         queryCtx = new HashMap<String, String>();
         List<Object> installStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

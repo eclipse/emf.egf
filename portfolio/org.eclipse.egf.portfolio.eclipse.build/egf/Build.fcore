@@ -91,7 +91,7 @@
             <methods xmi:id="_ST8cZKbSEd-qVbFBxWG7lA" name="setFilePath" patternFilePath="templates/pattern._ST8cYKbSEd-qVbFBxWG7lA/method._ST8cZKbSEd-qVbFBxWG7lA.pt"/>
             <methods xmi:id="_ST8cZabSEd-qVbFBxWG7lA" name="footer" patternFilePath="templates/pattern._ST8cYKbSEd-qVbFBxWG7lA/method._ST8cZabSEd-qVbFBxWG7lA.pt"/>
             <methods xmi:id="_QPmCMKbWEd-qVbFBxWG7lA" name="setBuildStepName" patternFilePath="templates/pattern._ST8cYKbSEd-qVbFBxWG7lA/method._QPmCMKbWEd-qVbFBxWG7lA.pt"/>
-            <parameters xmi:id="_dwL2MKbSEd-qVbFBxWG7lA" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep"/>
+            <parameters xmi:id="_dwL2MKbSEd-qVbFBxWG7lA" name="buildStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//BuildStep"/>
             <variables xmi:id="_NhQMoKbWEd-qVbFBxWG7lA" name="buildStepName" type="java.lang.String"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_ST8cZqbSEd-qVbFBxWG7lA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_Qg4mgKbWEd-qVbFBxWG7lA"
@@ -140,7 +140,7 @@
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_yhAXQK95Ed--tuq7x0NXVA"
                 called="#_d8VZVK95Ed--tuq7x0NXVA"/>
           </elements>
-          <elements xmi:id="_8JYoMeUDEeCPBthxhfdg8g" name="duplicateStepId" superPattern="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_jKJUYKt7Ed-0oekoriqU8Q"
+          <elements xmi:id="_8JYoMeUDEeCPBthxhfdg8g" name="stepId" superPattern="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_validation_pattern_strategy_task.fcore#_jKJUYKt7Ed-0oekoriqU8Q"
               headerMethod="#_8JYoM-UDEeCPBthxhfdg8g" conditionMethod="#_8JYoNeUDEeCPBthxhfdg8g"
               initMethod="#_8JYoNOUDEeCPBthxhfdg8g" footerMethod="#_8JYoN-UDEeCPBthxhfdg8g">
             <nature xmi:type="javapattern:JavaNature" xmi:id="_8JYoMuUDEeCPBthxhfdg8g"
@@ -148,12 +148,16 @@
             <methods xmi:id="_8JYoM-UDEeCPBthxhfdg8g" name="header" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoM-UDEeCPBthxhfdg8g.pt"/>
             <methods xmi:id="_8JYoNOUDEeCPBthxhfdg8g" name="init" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNOUDEeCPBthxhfdg8g.pt"/>
             <methods xmi:id="_8JYoNeUDEeCPBthxhfdg8g" name="preCondition" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNeUDEeCPBthxhfdg8g.pt"/>
-            <methods xmi:id="_8JYoNuUDEeCPBthxhfdg8g" name="body" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNuUDEeCPBthxhfdg8g.pt"/>
+            <methods xmi:id="_8JYoNuUDEeCPBthxhfdg8g" name="checkDuplicateId" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNuUDEeCPBthxhfdg8g.pt"/>
             <methods xmi:id="_8JYoN-UDEeCPBthxhfdg8g" name="footer" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoN-UDEeCPBthxhfdg8g.pt"/>
+            <methods xmi:id="_R8_ekOXtEeCXgYqTOUaRCQ" name="checkNotEmptyStringId"
+                patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._R8_ekOXtEeCXgYqTOUaRCQ.pt"/>
             <parameters xmi:id="_9HhrcOUDEeCPBthxhfdg8g" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_8JYoOOUDEeCPBthxhfdg8g"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_C5qpMOUEEeCPBthxhfdg8g"
                 called="#_8JYoNuUDEeCPBthxhfdg8g"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_SbsMwOXtEeCXgYqTOUaRCQ"
+                called="#_R8_ekOXtEeCXgYqTOUaRCQ"/>
           </elements>
         </libraries>
         <libraries xmi:id="_n0wcANVBEd-sZ5ty9tQGtA" name="org.eclipse.egf.portfolio.eclipse.build.transformation">
@@ -211,6 +215,7 @@
             <methods xmi:id="_uPvg4OESEd-wsOGCR2RJpg" name="moveTriggersToNewJob"
                 patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uPvg4OESEd-wsOGCR2RJpg.pt"/>
             <methods xmi:id="_vwiiFeEOEd-wsOGCR2RJpg" name="removeJobFromChain" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFeEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_qHWRIOXqEeCXgYqTOUaRCQ" name="handleCleanStep" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._qHWRIOXqEeCXgYqTOUaRCQ.pt"/>
             <parameters xmi:id="_xHGFUOEOEd-wsOGCR2RJpg" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
             <variables xmi:id="_FAbKwOEQEd-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_Hy7uoOEQEd-wsOGCR2RJpg"
@@ -225,34 +230,8 @@
                 called="#_uPvg4OESEd-wsOGCR2RJpg"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_1UlZcOEOEd-wsOGCR2RJpg"
                 called="#_vwiiFeEOEd-wsOGCR2RJpg"/>
-          </elements>
-          <elements xmi:id="_z0UqIOEaEd-wsOGCR2RJpg" name="buildStep" headerMethod="#_z0UqIuEaEd-wsOGCR2RJpg"
-              conditionMethod="#_z0UqJOEaEd-wsOGCR2RJpg" initMethod="#_z0UqI-EaEd-wsOGCR2RJpg"
-              footerMethod="#_z0UqJuEaEd-wsOGCR2RJpg">
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_z0UqIeEaEd-wsOGCR2RJpg"
-                name="Java"/>
-            <methods xmi:id="_z0UqIuEaEd-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqIuEaEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_z0UqI-EaEd-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqI-EaEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_z0UqJOEaEd-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqJOEaEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_z0UqJeEaEd-wsOGCR2RJpg" name="handleCleanType" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqJeEaEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_z0UqJuEaEd-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._z0UqIOEaEd-wsOGCR2RJpg/method._z0UqJuEaEd-wsOGCR2RJpg.pt"/>
-            <parameters xmi:id="_06pZAOEaEd-wsOGCR2RJpg" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_2heS0OGcEd-wsOGCR2RJpg"
-                called="#_z0UqJeEaEd-wsOGCR2RJpg"/>
-          </elements>
-          <elements xmi:id="_OhoQceGuEd-HBZoa4dfurg" name="cleanStep" headerMethod="#_OhoQc-GuEd-HBZoa4dfurg"
-              conditionMethod="#_OhoQdeGuEd-HBZoa4dfurg" initMethod="#_OhoQdOGuEd-HBZoa4dfurg"
-              footerMethod="#_OhoQd-GuEd-HBZoa4dfurg">
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_OhoQcuGuEd-HBZoa4dfurg"
-                name="Java"/>
-            <methods xmi:id="_OhoQc-GuEd-HBZoa4dfurg" name="header" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQc-GuEd-HBZoa4dfurg.pt"/>
-            <methods xmi:id="_OhoQdOGuEd-HBZoa4dfurg" name="init" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQdOGuEd-HBZoa4dfurg.pt"/>
-            <methods xmi:id="_OhoQdeGuEd-HBZoa4dfurg" name="preCondition" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQdeGuEd-HBZoa4dfurg.pt"/>
-            <methods xmi:id="_OhoQduGuEd-HBZoa4dfurg" name="removeCleanStep" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQduGuEd-HBZoa4dfurg.pt"/>
-            <methods xmi:id="_OhoQd-GuEd-HBZoa4dfurg" name="footer" patternFilePath="templates/pattern._OhoQceGuEd-HBZoa4dfurg/method._OhoQd-GuEd-HBZoa4dfurg.pt"/>
-            <parameters xmi:id="_P2fxoOGuEd-HBZoa4dfurg" name="cleanStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//CleanStep"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_TJ6qMOGuEd-HBZoa4dfurg"
-                called="#_OhoQduGuEd-HBZoa4dfurg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vn5voOXqEeCXgYqTOUaRCQ"
+                called="#_qHWRIOXqEeCXgYqTOUaRCQ"/>
           </elements>
         </libraries>
       </viewpoints>
@@ -489,7 +468,7 @@
             <methods xmi:id="_0ICZFJWnEd-u9bNbiVaYcw" name="preCondition" patternFilePath="templates/pattern._0ICZEZWnEd-u9bNbiVaYcw/method._0ICZFJWnEd-u9bNbiVaYcw.pt"/>
             <methods xmi:id="_0ICZFZWnEd-u9bNbiVaYcw" name="body" patternFilePath="templates/pattern._0ICZEZWnEd-u9bNbiVaYcw/method._0ICZFZWnEd-u9bNbiVaYcw.pt"/>
             <methods xmi:id="_0ICZFpWnEd-u9bNbiVaYcw" name="footer" patternFilePath="templates/pattern._0ICZEZWnEd-u9bNbiVaYcw/method._0ICZFpWnEd-u9bNbiVaYcw.pt"/>
-            <parameters xmi:id="_SDqfUJWoEd-u9bNbiVaYcw" name="publishStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep">
+            <parameters xmi:id="_SDqfUJWoEd-u9bNbiVaYcw" name="publishStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_WVeSwJWoEd-u9bNbiVaYcw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -506,7 +485,7 @@
             <methods xmi:id="_c9IeI7wGEd-8jux89nECug" name="preCondition" patternFilePath="templates/pattern._c9IeILwGEd-8jux89nECug/method._c9IeI7wGEd-8jux89nECug.pt"/>
             <methods xmi:id="_c9IeJLwGEd-8jux89nECug" name="body" patternFilePath="templates/pattern._c9IeILwGEd-8jux89nECug/method._c9IeJLwGEd-8jux89nECug.pt"/>
             <methods xmi:id="_c9IeJbwGEd-8jux89nECug" name="footer" patternFilePath="templates/pattern._c9IeILwGEd-8jux89nECug/method._c9IeJbwGEd-8jux89nECug.pt"/>
-            <parameters xmi:id="_hBmZILwGEd-8jux89nECug" name="aggregateStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//AggregateStep">
+            <parameters xmi:id="_hBmZILwGEd-8jux89nECug" name="aggregateStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//AggregateStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_oRLlQLwGEd-8jux89nECug"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -522,7 +501,7 @@
             <methods xmi:id="_gAN5w5WoEd-u9bNbiVaYcw" name="preCondition" patternFilePath="templates/pattern._gAN5wJWoEd-u9bNbiVaYcw/method._gAN5w5WoEd-u9bNbiVaYcw.pt"/>
             <methods xmi:id="_gAN5xJWoEd-u9bNbiVaYcw" name="body" patternFilePath="templates/pattern._gAN5wJWoEd-u9bNbiVaYcw/method._gAN5xJWoEd-u9bNbiVaYcw.pt"/>
             <methods xmi:id="_gAN5xZWoEd-u9bNbiVaYcw" name="footer" patternFilePath="templates/pattern._gAN5wJWoEd-u9bNbiVaYcw/method._gAN5xZWoEd-u9bNbiVaYcw.pt"/>
-            <parameters xmi:id="_kJs3oJWoEd-u9bNbiVaYcw" name="testStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//TestStep">
+            <parameters xmi:id="_kJs3oJWoEd-u9bNbiVaYcw" name="testStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//TestStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_pDFocJWoEd-u9bNbiVaYcw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -555,7 +534,7 @@
             <methods xmi:id="_GyPi857_Ed-9VeXE6iwCzg" name="preCondition" patternFilePath="templates/pattern._GyPi8J7_Ed-9VeXE6iwCzg/method._GyPi857_Ed-9VeXE6iwCzg.pt"/>
             <methods xmi:id="_GyPi9J7_Ed-9VeXE6iwCzg" name="body" patternFilePath="templates/pattern._GyPi8J7_Ed-9VeXE6iwCzg/method._GyPi9J7_Ed-9VeXE6iwCzg.pt"/>
             <methods xmi:id="_GyPi9Z7_Ed-9VeXE6iwCzg" name="footer" patternFilePath="templates/pattern._GyPi8J7_Ed-9VeXE6iwCzg/method._GyPi9Z7_Ed-9VeXE6iwCzg.pt"/>
-            <parameters xmi:id="_LaeSUJ7_Ed-9VeXE6iwCzg" name="javadocStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//JavadocStep">
+            <parameters xmi:id="_LaeSUJ7_Ed-9VeXE6iwCzg" name="javadocStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//JavadocStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_N02DAJ7_Ed-9VeXE6iwCzg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -572,7 +551,7 @@
             <methods xmi:id="_XWIF5ah1EeCyIabjY3cKRg" name="preCondition" patternFilePath="templates/pattern._XWIF4ah1EeCyIabjY3cKRg/method._XWIF5ah1EeCyIabjY3cKRg.pt"/>
             <methods xmi:id="_XWIF5qh1EeCyIabjY3cKRg" name="body" patternFilePath="templates/pattern._XWIF4ah1EeCyIabjY3cKRg/method._XWIF5qh1EeCyIabjY3cKRg.pt"/>
             <methods xmi:id="_XWIF56h1EeCyIabjY3cKRg" name="footer" patternFilePath="templates/pattern._XWIF4ah1EeCyIabjY3cKRg/method._XWIF56h1EeCyIabjY3cKRg.pt"/>
-            <parameters xmi:id="_XWIF6Kh1EeCyIabjY3cKRg" name="installStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//InstallStep">
+            <parameters xmi:id="_XWIF6Kh1EeCyIabjY3cKRg" name="installStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_XWIF6ah1EeCyIabjY3cKRg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -950,7 +929,7 @@
             <methods xmi:id="_dSeb5KoGEd-k9aH6AnUHCw" name="preCondition" patternFilePath="templates/pattern._dSeb4aoGEd-k9aH6AnUHCw/method._dSeb5KoGEd-k9aH6AnUHCw.pt"/>
             <methods xmi:id="_dSeb5aoGEd-k9aH6AnUHCw" name="body" patternFilePath="templates/pattern._dSeb4aoGEd-k9aH6AnUHCw/method._dSeb5aoGEd-k9aH6AnUHCw.pt"/>
             <methods xmi:id="_dSeb5qoGEd-k9aH6AnUHCw" name="footer" patternFilePath="templates/pattern._dSeb4aoGEd-k9aH6AnUHCw/method._dSeb5qoGEd-k9aH6AnUHCw.pt"/>
-            <parameters xmi:id="_hvsOEKoGEd-k9aH6AnUHCw" name="cleanStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//CleanStep">
+            <parameters xmi:id="_hvsOEKoGEd-k9aH6AnUHCw" name="cleanStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//CleanStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_mPuqwKoGEd-k9aH6AnUHCw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -968,14 +947,13 @@
             <methods xmi:id="_sTvtRZVuEd-fvPvNnKEvJg" name="footer" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._sTvtRZVuEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_d7QDMNXkEd-lsanF2JdPMA" name="begin" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._d7QDMNXkEd-lsanF2JdPMA.pt"/>
             <methods xmi:id="_gveeUNXkEd-lsanF2JdPMA" name="echo" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._gveeUNXkEd-lsanF2JdPMA.pt"/>
-            <methods xmi:id="_Fep2EORiEeC_adU5gNyRnQ" name="clean" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._Fep2EORiEeC_adU5gNyRnQ.pt"/>
             <methods xmi:id="_ks-1sNXkEd-lsanF2JdPMA" name="installJRE" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._ks-1sNXkEd-lsanF2JdPMA.pt"/>
             <methods xmi:id="_nW7TcNXkEd-lsanF2JdPMA" name="importTargetDefinition"
                 patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._nW7TcNXkEd-lsanF2JdPMA.pt"/>
             <methods xmi:id="_p3VasNXkEd-lsanF2JdPMA" name="importWorkspace" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._p3VasNXkEd-lsanF2JdPMA.pt"/>
             <methods xmi:id="_uOm88NXkEd-lsanF2JdPMA" name="build" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._uOm88NXkEd-lsanF2JdPMA.pt"/>
             <methods xmi:id="_w_jakNXkEd-lsanF2JdPMA" name="end" patternFilePath="templates/pattern._sTvtQJVuEd-fvPvNnKEvJg/method._w_jakNXkEd-lsanF2JdPMA.pt"/>
-            <parameters xmi:id="_xF8Q8JVuEd-fvPvNnKEvJg" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep">
+            <parameters xmi:id="_xF8Q8JVuEd-fvPvNnKEvJg" name="buildStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//BuildStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_0eN0UJVuEd-fvPvNnKEvJg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -986,8 +964,6 @@
                 called="#_d7QDMNXkEd-lsanF2JdPMA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_i3wZcNXkEd-lsanF2JdPMA"
                 called="#_gveeUNXkEd-lsanF2JdPMA"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_GjKAAORiEeC_adU5gNyRnQ"
-                called="#_Fep2EORiEeC_adU5gNyRnQ"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_lf6ugNXkEd-lsanF2JdPMA"
                 called="#_ks-1sNXkEd-lsanF2JdPMA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_np_ZYNXkEd-lsanF2JdPMA"
@@ -1009,7 +985,7 @@
             <methods xmi:id="_Q9g785VuEd-fvPvNnKEvJg" name="preCondition" patternFilePath="templates/pattern._Q9g78JVuEd-fvPvNnKEvJg/method._Q9g785VuEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_Q9g79JVuEd-fvPvNnKEvJg" name="body" patternFilePath="templates/pattern._Q9g78JVuEd-fvPvNnKEvJg/method._Q9g79JVuEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_Q9g79ZVuEd-fvPvNnKEvJg" name="footer" patternFilePath="templates/pattern._Q9g78JVuEd-fvPvNnKEvJg/method._Q9g79ZVuEd-fvPvNnKEvJg.pt"/>
-            <parameters xmi:id="_U5KSIJVuEd-fvPvNnKEvJg" name="testStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//TestStep">
+            <parameters xmi:id="_U5KSIJVuEd-fvPvNnKEvJg" name="testStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//TestStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_YG4LUJVuEd-fvPvNnKEvJg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1026,7 +1002,7 @@
             <methods xmi:id="_mDDq9JVxEd-4gcrM0WMTSg" name="preCondition" patternFilePath="templates/pattern._mDDq8ZVxEd-4gcrM0WMTSg/method._mDDq9JVxEd-4gcrM0WMTSg.pt"/>
             <methods xmi:id="_mDDq9ZVxEd-4gcrM0WMTSg" name="body" patternFilePath="templates/pattern._mDDq8ZVxEd-4gcrM0WMTSg/method._mDDq9ZVxEd-4gcrM0WMTSg.pt"/>
             <methods xmi:id="_mDDq9pVxEd-4gcrM0WMTSg" name="footer" patternFilePath="templates/pattern._mDDq8ZVxEd-4gcrM0WMTSg/method._mDDq9pVxEd-4gcrM0WMTSg.pt"/>
-            <parameters xmi:id="_rTRnYJVxEd-4gcrM0WMTSg" name="publishStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep">
+            <parameters xmi:id="_rTRnYJVxEd-4gcrM0WMTSg" name="publishStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_vSWFAJVxEd-4gcrM0WMTSg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1043,7 +1019,7 @@
             <methods xmi:id="_f2VpZKbdEd-ZgeUI-BonwQ" name="preCondition" patternFilePath="templates/pattern._f2VpYabdEd-ZgeUI-BonwQ/method._f2VpZKbdEd-ZgeUI-BonwQ.pt"/>
             <methods xmi:id="_f2VpZabdEd-ZgeUI-BonwQ" name="body" patternFilePath="templates/pattern._f2VpYabdEd-ZgeUI-BonwQ/method._f2VpZabdEd-ZgeUI-BonwQ.pt"/>
             <methods xmi:id="_f2VpZqbdEd-ZgeUI-BonwQ" name="footer" patternFilePath="templates/pattern._f2VpYabdEd-ZgeUI-BonwQ/method._f2VpZqbdEd-ZgeUI-BonwQ.pt"/>
-            <parameters xmi:id="_lqRW4KbdEd-ZgeUI-BonwQ" name="publishStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//PublishStep">
+            <parameters xmi:id="_lqRW4KbdEd-ZgeUI-BonwQ" name="publishStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_omepUKbdEd-ZgeUI-BonwQ"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1059,7 +1035,7 @@
             <methods xmi:id="_gvxW9JVyEd--Q_dCgK5jqw" name="preCondition" patternFilePath="templates/pattern._gvxW8ZVyEd--Q_dCgK5jqw/method._gvxW9JVyEd--Q_dCgK5jqw.pt"/>
             <methods xmi:id="_gvxW9ZVyEd--Q_dCgK5jqw" name="body" patternFilePath="templates/pattern._gvxW8ZVyEd--Q_dCgK5jqw/method._gvxW9ZVyEd--Q_dCgK5jqw.pt"/>
             <methods xmi:id="_gvxW9pVyEd--Q_dCgK5jqw" name="footer" patternFilePath="templates/pattern._gvxW8ZVyEd--Q_dCgK5jqw/method._gvxW9pVyEd--Q_dCgK5jqw.pt"/>
-            <parameters xmi:id="_jo-YsJVyEd--Q_dCgK5jqw" name="antStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//AntStep">
+            <parameters xmi:id="_jo-YsJVyEd--Q_dCgK5jqw" name="antStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//AntStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_mH4EEJVyEd--Q_dCgK5jqw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1076,7 +1052,7 @@
             <methods xmi:id="_fy4H9J7VEd-8De2HBT3r0w" name="preCondition" patternFilePath="templates/pattern._fy4H8Z7VEd-8De2HBT3r0w/method._fy4H9J7VEd-8De2HBT3r0w.pt"/>
             <methods xmi:id="_fy4H9Z7VEd-8De2HBT3r0w" name="body" patternFilePath="templates/pattern._fy4H8Z7VEd-8De2HBT3r0w/method._fy4H9Z7VEd-8De2HBT3r0w.pt"/>
             <methods xmi:id="_fy4H9p7VEd-8De2HBT3r0w" name="footer" patternFilePath="templates/pattern._fy4H8Z7VEd-8De2HBT3r0w/method._fy4H9p7VEd-8De2HBT3r0w.pt"/>
-            <parameters xmi:id="_oH5SIJ7VEd-8De2HBT3r0w" name="javadocStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//JavadocStep">
+            <parameters xmi:id="_oH5SIJ7VEd-8De2HBT3r0w" name="javadocStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//JavadocStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_pm94MJ7VEd-8De2HBT3r0w"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1092,7 +1068,7 @@
             <methods xmi:id="_VOw2hKYIEd-BVLrtOlWqIw" name="preCondition" patternFilePath="templates/pattern._VOw2gaYIEd-BVLrtOlWqIw/method._VOw2hKYIEd-BVLrtOlWqIw.pt"/>
             <methods xmi:id="_VOw2haYIEd-BVLrtOlWqIw" name="body" patternFilePath="templates/pattern._VOw2gaYIEd-BVLrtOlWqIw/method._VOw2haYIEd-BVLrtOlWqIw.pt"/>
             <methods xmi:id="_VOw2hqYIEd-BVLrtOlWqIw" name="footer" patternFilePath="templates/pattern._VOw2gaYIEd-BVLrtOlWqIw/method._VOw2hqYIEd-BVLrtOlWqIw.pt"/>
-            <parameters xmi:id="_ZX2y0KYIEd-BVLrtOlWqIw" name="egfStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//EgfStep">
+            <parameters xmi:id="_ZX2y0KYIEd-BVLrtOlWqIw" name="egfStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//EgfStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_co668KYIEd-BVLrtOlWqIw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1109,7 +1085,7 @@
             <methods xmi:id="_1dui46-AEd-6WbA1gqJ3Sw" name="preCondition" patternFilePath="templates/pattern._1dui4K-AEd-6WbA1gqJ3Sw/method._1dui46-AEd-6WbA1gqJ3Sw.pt"/>
             <methods xmi:id="_1dui5K-AEd-6WbA1gqJ3Sw" name="body" patternFilePath="templates/pattern._1dui4K-AEd-6WbA1gqJ3Sw/method._1dui5K-AEd-6WbA1gqJ3Sw.pt"/>
             <methods xmi:id="_1dui5a-AEd-6WbA1gqJ3Sw" name="footer" patternFilePath="templates/pattern._1dui4K-AEd-6WbA1gqJ3Sw/method._1dui5a-AEd-6WbA1gqJ3Sw.pt"/>
-            <parameters xmi:id="_6jdtoK-AEd-6WbA1gqJ3Sw" name="aggregateStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//AggregateStep">
+            <parameters xmi:id="_6jdtoK-AEd-6WbA1gqJ3Sw" name="aggregateStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//AggregateStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_-T0Z0K-AEd-6WbA1gqJ3Sw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1126,7 +1102,7 @@
             <methods xmi:id="_bT4RBaI3EeC7CagY5ZgTsg" name="preCondition" patternFilePath="templates/pattern._bT4RAaI3EeC7CagY5ZgTsg/method._bT4RBaI3EeC7CagY5ZgTsg.pt"/>
             <methods xmi:id="_bT4RBqI3EeC7CagY5ZgTsg" name="body" patternFilePath="templates/pattern._bT4RAaI3EeC7CagY5ZgTsg/method._bT4RBqI3EeC7CagY5ZgTsg.pt"/>
             <methods xmi:id="_bT4RB6I3EeC7CagY5ZgTsg" name="footer" patternFilePath="templates/pattern._bT4RAaI3EeC7CagY5ZgTsg/method._bT4RB6I3EeC7CagY5ZgTsg.pt"/>
-            <parameters xmi:id="_bT4RCKI3EeC7CagY5ZgTsg" name="installStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//InstallStep">
+            <parameters xmi:id="_bT4RCKI3EeC7CagY5ZgTsg" name="installStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_bT4RCaI3EeC7CagY5ZgTsg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1160,7 +1136,7 @@
             <methods xmi:id="_D3WLtWEpEeC2MPWqHbfkpg" name="preCondition" patternFilePath="templates/pattern._D3WLsWEpEeC2MPWqHbfkpg/method._D3WLtWEpEeC2MPWqHbfkpg.pt"/>
             <methods xmi:id="_D3WLtmEpEeC2MPWqHbfkpg" name="body" patternFilePath="templates/pattern._D3WLsWEpEeC2MPWqHbfkpg/method._D3WLtmEpEeC2MPWqHbfkpg.pt"/>
             <methods xmi:id="_D3WLt2EpEeC2MPWqHbfkpg" name="footer" patternFilePath="templates/pattern._D3WLsWEpEeC2MPWqHbfkpg/method._D3WLt2EpEeC2MPWqHbfkpg.pt"/>
-            <parameters xmi:id="_LDozQGEpEeC2MPWqHbfkpg" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep">
+            <parameters xmi:id="_LDozQGEpEeC2MPWqHbfkpg" name="buildStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//BuildStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_TIaiAGEpEeC2MPWqHbfkpg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1177,7 +1153,7 @@
             <methods xmi:id="_dmdIs5MZEd-pjLQZUcJ3fw" name="preCondition" patternFilePath="templates/pattern._dmdIsJMZEd-pjLQZUcJ3fw/method._dmdIs5MZEd-pjLQZUcJ3fw.pt"/>
             <methods xmi:id="_dmdItJMZEd-pjLQZUcJ3fw" name="body" patternFilePath="templates/pattern._dmdIsJMZEd-pjLQZUcJ3fw/method._dmdItJMZEd-pjLQZUcJ3fw.pt"/>
             <methods xmi:id="_dmdItZMZEd-pjLQZUcJ3fw" name="footer" patternFilePath="templates/pattern._dmdIsJMZEd-pjLQZUcJ3fw/method._dmdItZMZEd-pjLQZUcJ3fw.pt"/>
-            <parameters xmi:id="_f0UHYJMZEd-pjLQZUcJ3fw" name="feature" type="http://www.eclipse.org/egf/1.0.0/buildstep#//Feature">
+            <parameters xmi:id="_f0UHYJMZEd-pjLQZUcJ3fw" name="feature" type="http://www.eclipse.org/egf/1.0.1/buildstep#//Feature">
               <query xmi:type="pattern:BasicQuery" xmi:id="_jXjkoJMZEd-pjLQZUcJ3fw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1194,7 +1170,7 @@
             <methods xmi:id="_CrT7c5MaEd-pjLQZUcJ3fw" name="preCondition" patternFilePath="templates/pattern._CrT7cJMaEd-pjLQZUcJ3fw/method._CrT7c5MaEd-pjLQZUcJ3fw.pt"/>
             <methods xmi:id="_CrT7dJMaEd-pjLQZUcJ3fw" name="body" patternFilePath="templates/pattern._CrT7cJMaEd-pjLQZUcJ3fw/method._CrT7dJMaEd-pjLQZUcJ3fw.pt"/>
             <methods xmi:id="_CrT7dZMaEd-pjLQZUcJ3fw" name="footer" patternFilePath="templates/pattern._CrT7cJMaEd-pjLQZUcJ3fw/method._CrT7dZMaEd-pjLQZUcJ3fw.pt"/>
-            <parameters xmi:id="_G8dAgJMaEd-pjLQZUcJ3fw" name="plugin" type="http://www.eclipse.org/egf/1.0.0/buildstep#//Plugin">
+            <parameters xmi:id="_G8dAgJMaEd-pjLQZUcJ3fw" name="plugin" type="http://www.eclipse.org/egf/1.0.1/buildstep#//Plugin">
               <query xmi:type="pattern:BasicQuery" xmi:id="_Ji5eUJMaEd-pjLQZUcJ3fw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1210,7 +1186,7 @@
             <methods xmi:id="_SbudA5WHEd-9uNs2Xd57Cg" name="preCondition" patternFilePath="templates/pattern._SbudAJWHEd-9uNs2Xd57Cg/method._SbudA5WHEd-9uNs2Xd57Cg.pt"/>
             <methods xmi:id="_SbudBJWHEd-9uNs2Xd57Cg" name="body" patternFilePath="templates/pattern._SbudAJWHEd-9uNs2Xd57Cg/method._SbudBJWHEd-9uNs2Xd57Cg.pt"/>
             <methods xmi:id="_SbudBZWHEd-9uNs2Xd57Cg" name="footer" patternFilePath="templates/pattern._SbudAJWHEd-9uNs2Xd57Cg/method._SbudBZWHEd-9uNs2Xd57Cg.pt"/>
-            <parameters xmi:id="_sK9A0JpUEd-oRf81QMfaFQ" name="buildStep" type="http://www.eclipse.org/egf/1.0.0/buildstep#//BuildStep">
+            <parameters xmi:id="_sK9A0JpUEd-oRf81QMfaFQ" name="buildStep" type="http://www.eclipse.org/egf/1.0.1/buildstep#//BuildStep">
               <query xmi:type="pattern:BasicQuery" xmi:id="_vA5TMJpUEd-oRf81QMfaFQ"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1245,7 +1221,7 @@
             <methods xmi:id="_wiU4hJSoEd-BJKD_XS9R2A" name="body" patternFilePath="templates/pattern._wiU4gJSoEd-BJKD_XS9R2A/method._wiU4hJSoEd-BJKD_XS9R2A.pt"/>
             <methods xmi:id="_wiU4hZSoEd-BJKD_XS9R2A" name="footer" patternFilePath="templates/pattern._wiU4gJSoEd-BJKD_XS9R2A/method._wiU4hZSoEd-BJKD_XS9R2A.pt"/>
             <parameters xmi:id="_JupXAJSpEd-BJKD_XS9R2A" name="targetPlatformBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//TargetPlatformBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//TargetPlatformBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_iUUFMJSpEd-BJKD_XS9R2A"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1263,7 +1239,7 @@
             <methods xmi:id="_MXMfFJTUEd-fvPvNnKEvJg" name="body" patternFilePath="templates/pattern._MXMfEJTUEd-fvPvNnKEvJg/method._MXMfFJTUEd-fvPvNnKEvJg.pt"/>
             <methods xmi:id="_MXMfFZTUEd-fvPvNnKEvJg" name="footer" patternFilePath="templates/pattern._MXMfEJTUEd-fvPvNnKEvJg/method._MXMfFZTUEd-fvPvNnKEvJg.pt"/>
             <parameters xmi:id="_QM7agJTUEd-fvPvNnKEvJg" name="updateSiteBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//UpdateSiteBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//UpdateSiteBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_mJ-rMJTVEd-fvPvNnKEvJg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1280,7 +1256,7 @@
             <methods xmi:id="_pFGKZZloEd-GKqXx_evxEw" name="body" patternFilePath="templates/pattern._pFGKYZloEd-GKqXx_evxEw/method._pFGKZZloEd-GKqXx_evxEw.pt"/>
             <methods xmi:id="_pFGKZploEd-GKqXx_evxEw" name="footer" patternFilePath="templates/pattern._pFGKYZloEd-GKqXx_evxEw/method._pFGKZploEd-GKqXx_evxEw.pt"/>
             <parameters xmi:id="_viwKUJloEd-GKqXx_evxEw" name="localBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//LocalBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//LocalBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_0I5PAJloEd-GKqXx_evxEw"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1298,7 +1274,7 @@
             <methods xmi:id="__Sk8BuUqEeCpQPfMrPZU6g" name="body" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8BuUqEeCpQPfMrPZU6g.pt"/>
             <methods xmi:id="__Sk8B-UqEeCpQPfMrPZU6g" name="footer" patternFilePath="templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8B-UqEeCpQPfMrPZU6g.pt"/>
             <parameters xmi:id="__Sk8COUqEeCpQPfMrPZU6g" name="resultStepBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//ResultStepBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//ResultStepBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="__Sk8CeUqEeCpQPfMrPZU6g"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1316,7 +1292,7 @@
             <methods xmi:id="_J_Vjlah4EeCyIabjY3cKRg" name="body" patternFilePath="templates/pattern._J_VjkKh4EeCyIabjY3cKRg/method._J_Vjlah4EeCyIabjY3cKRg.pt"/>
             <methods xmi:id="_J_Vjlqh4EeCyIabjY3cKRg" name="footer" patternFilePath="templates/pattern._J_VjkKh4EeCyIabjY3cKRg/method._J_Vjlqh4EeCyIabjY3cKRg.pt"/>
             <parameters xmi:id="_J_Vjl6h4EeCyIabjY3cKRg" name="installStepBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//InstallStepBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStepBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_J_VjmKh4EeCyIabjY3cKRg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1334,7 +1310,7 @@
             <methods xmi:id="_zgvmtJ5GEd-3wvN5SnesGA" name="body" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmtJ5GEd-3wvN5SnesGA.pt"/>
             <methods xmi:id="_zgvmtZ5GEd-3wvN5SnesGA" name="footer" patternFilePath="templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmtZ5GEd-3wvN5SnesGA.pt"/>
             <parameters xmi:id="_qhZ3sJ5HEd-3wvN5SnesGA" name="updateSiteBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//UpdateSiteBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//UpdateSiteBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_rY-_8J5HEd-3wvN5SnesGA"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1352,7 +1328,7 @@
             <methods xmi:id="_C6JiBJ45Ed-3wvN5SnesGA" name="body" patternFilePath="templates/pattern._C6JiAJ45Ed-3wvN5SnesGA/method._C6JiBJ45Ed-3wvN5SnesGA.pt"/>
             <methods xmi:id="_C6JiBZ45Ed-3wvN5SnesGA" name="footer" patternFilePath="templates/pattern._C6JiAJ45Ed-3wvN5SnesGA/method._C6JiBZ45Ed-3wvN5SnesGA.pt"/>
             <parameters xmi:id="_UtyiwJ45Ed-3wvN5SnesGA" name="targetPlatformBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//TargetPlatformBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//TargetPlatformBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_ZYG80J45Ed-3wvN5SnesGA"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1370,7 +1346,7 @@
             <methods xmi:id="_QzNV1LaeEd-YN_PdUdJuug" name="body" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV1LaeEd-YN_PdUdJuug.pt"/>
             <methods xmi:id="_QzNV1baeEd-YN_PdUdJuug" name="footer" patternFilePath="templates/pattern._QzNV0LaeEd-YN_PdUdJuug/method._QzNV1baeEd-YN_PdUdJuug.pt"/>
             <parameters xmi:id="_7EETYLaeEd-YN_PdUdJuug" name="resultStepBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//ResultStepBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//ResultStepBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_9ll08LaeEd-YN_PdUdJuug"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>
@@ -1388,7 +1364,7 @@
             <methods xmi:id="_YLrGdah4EeCyIabjY3cKRg" name="body" patternFilePath="templates/pattern._YLrGcKh4EeCyIabjY3cKRg/method._YLrGdah4EeCyIabjY3cKRg.pt"/>
             <methods xmi:id="_YLrGdqh4EeCyIabjY3cKRg" name="footer" patternFilePath="templates/pattern._YLrGcKh4EeCyIabjY3cKRg/method._YLrGdqh4EeCyIabjY3cKRg.pt"/>
             <parameters xmi:id="_YLrGd6h4EeCyIabjY3cKRg" name="installStepBuildLocation"
-                type="http://www.eclipse.org/egf/1.0.0/buildstep#//InstallStepBuildLocation">
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStepBuildLocation">
               <query xmi:type="pattern:BasicQuery" xmi:id="_YLrGeKh4EeCyIabjY3cKRg"
                   extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
             </parameters>

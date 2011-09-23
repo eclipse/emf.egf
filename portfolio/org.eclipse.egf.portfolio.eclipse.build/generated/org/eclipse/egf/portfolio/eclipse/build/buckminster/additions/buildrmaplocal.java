@@ -45,7 +45,7 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("localBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildstep#//LocalBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("localBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//LocalBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> localBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

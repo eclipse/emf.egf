@@ -9,6 +9,7 @@ import org.eclipse.egf.common.helper.*;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 
 public class job {
 
@@ -47,6 +48,7 @@ public class job {
         method_moveStepsToNewJob(ictx.getBuffer(), ictx);
         method_moveTriggersToNewJob(ictx.getBuffer(), ictx);
         method_removeJobFromChain(ictx.getBuffer(), ictx);
+        method_handleCleanStep(ictx.getBuffer(), ictx);
 
         String loop = ictx.getBuffer().toString();
         if (ictx.useReporter()) {
@@ -109,6 +111,18 @@ public class job {
 
         Chain chain = (Chain) job.eContainer();
         chain.getJobs().remove(job);
+    }
+
+    protected void method_handleCleanStep(final StringBuffer out, final PatternContext ctx) throws Exception {
+        boolean firstOne = true;
+        for (Step step : newJob.getSteps()) {
+            if (step instanceof CleanStep) {
+                CleanStep cleanStep = (CleanStep) step;
+                if (!firstOne && CLEAN_TYPE.RESULT == cleanStep.getType())
+                    cleanStep.setType(CLEAN_TYPE.WORKSPACE);
+                firstOne = false;
+            }
+        }
     }
 
     public boolean preCondition() throws Exception {

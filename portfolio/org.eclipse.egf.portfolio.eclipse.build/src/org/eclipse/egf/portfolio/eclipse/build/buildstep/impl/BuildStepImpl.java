@@ -45,8 +45,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getBuildLocations <em>Build Locations</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getComponents <em>Components</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getCleanBeforeBuild <em>Clean Before Build</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#isAllPlatforms <em>All Platforms</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#isNoBuildersInvocation <em>No Builders Invocation</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,28 +88,6 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
 
 
     /**
-     * The default value of the '{@link #getCleanBeforeBuild() <em>Clean Before Build</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCleanBeforeBuild()
-     * @generated
-     * @ordered
-     */
-    protected static final CLEAN_TYPE CLEAN_BEFORE_BUILD_EDEFAULT = CLEAN_TYPE.RESULT;
-
-    /**
-     * The cached value of the '{@link #getCleanBeforeBuild() <em>Clean Before Build</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCleanBeforeBuild()
-     * @generated
-     * @ordered
-     */
-    protected CLEAN_TYPE cleanBeforeBuild = CLEAN_BEFORE_BUILD_EDEFAULT;
-
-
-
-    /**
      * The default value of the '{@link #isAllPlatforms() <em>All Platforms</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -130,6 +108,28 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      */
     protected boolean allPlatforms = ALL_PLATFORMS_EDEFAULT;
 
+
+
+    /**
+     * The default value of the '{@link #isNoBuildersInvocation() <em>No Builders Invocation</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isNoBuildersInvocation()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean NO_BUILDERS_INVOCATION_EDEFAULT = false;
+
+
+    /**
+     * The cached value of the '{@link #isNoBuildersInvocation() <em>No Builders Invocation</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isNoBuildersInvocation()
+     * @generated
+     * @ordered
+     */
+    protected boolean noBuildersInvocation = NO_BUILDERS_INVOCATION_EDEFAULT;
 
 
     /**
@@ -201,37 +201,6 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * @generated
      */
 
-    public CLEAN_TYPE getCleanBeforeBuild() {
-
-        return cleanBeforeBuild;
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public void setCleanBeforeBuild(CLEAN_TYPE newCleanBeforeBuild) {
-
-        CLEAN_TYPE oldCleanBeforeBuild = cleanBeforeBuild;
-        cleanBeforeBuild = newCleanBeforeBuild == null ? CLEAN_BEFORE_BUILD_EDEFAULT : newCleanBeforeBuild;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD, oldCleanBeforeBuild, cleanBeforeBuild));
-
-    }
-
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
     public boolean isAllPlatforms() {
 
         return allPlatforms;
@@ -249,6 +218,32 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
         allPlatforms = newAllPlatforms;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BUILD_STEP__ALL_PLATFORMS, oldAllPlatforms, allPlatforms));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public boolean isNoBuildersInvocation() {
+
+        return noBuildersInvocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setNoBuildersInvocation(boolean newNoBuildersInvocation) {
+
+        boolean oldNoBuildersInvocation = noBuildersInvocation;
+        noBuildersInvocation = newNoBuildersInvocation;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION, oldNoBuildersInvocation, noBuildersInvocation));
 
     }
 
@@ -297,10 +292,10 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 return getBuildLocations();
             case BuildstepPackage.BUILD_STEP__COMPONENTS:
                 return getComponents();
-            case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
-                return getCleanBeforeBuild();
             case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
                 return isAllPlatforms();
+            case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
+                return isNoBuildersInvocation();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -322,11 +317,11 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 getComponents().clear();
                 getComponents().addAll((Collection<? extends Component>)newValue);
                 return;
-            case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
-                setCleanBeforeBuild((CLEAN_TYPE)newValue);
-                return;
             case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
                 setAllPlatforms((Boolean)newValue);
+                return;
+            case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
+                setNoBuildersInvocation((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -347,11 +342,11 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
             case BuildstepPackage.BUILD_STEP__COMPONENTS:
                 getComponents().clear();
                 return;
-            case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
-                setCleanBeforeBuild(CLEAN_BEFORE_BUILD_EDEFAULT);
-                return;
             case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
                 setAllPlatforms(ALL_PLATFORMS_EDEFAULT);
+                return;
+            case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
+                setNoBuildersInvocation(NO_BUILDERS_INVOCATION_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -371,10 +366,10 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 return buildLocations != null && !buildLocations.isEmpty();
             case BuildstepPackage.BUILD_STEP__COMPONENTS:
                 return components != null && !components.isEmpty();
-            case BuildstepPackage.BUILD_STEP__CLEAN_BEFORE_BUILD:
-                return cleanBeforeBuild != CLEAN_BEFORE_BUILD_EDEFAULT;
             case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
                 return allPlatforms != ALL_PLATFORMS_EDEFAULT;
+            case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
+                return noBuildersInvocation != NO_BUILDERS_INVOCATION_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -390,10 +385,10 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (cleanBeforeBuild: ");
-        result.append(cleanBeforeBuild);
-        result.append(", allPlatforms: ");
+        result.append(" (allPlatforms: ");
         result.append(allPlatforms);
+        result.append(", noBuildersInvocation: ");
+        result.append(noBuildersInvocation);
         result.append(')');
         return result.toString();
     }

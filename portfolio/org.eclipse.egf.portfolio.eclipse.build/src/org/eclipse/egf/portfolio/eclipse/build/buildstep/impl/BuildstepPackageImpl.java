@@ -346,7 +346,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBuildStep_CleanBeforeBuild() {
+    public EAttribute getBuildStep_AllPlatforms() {
         return (EAttribute)buildStepEClass.getEStructuralFeatures().get(2);
     }
 
@@ -355,7 +355,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBuildStep_AllPlatforms() {
+    public EAttribute getBuildStep_NoBuildersInvocation() {
         return (EAttribute)buildStepEClass.getEStructuralFeatures().get(3);
     }
 
@@ -881,8 +881,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         buildStepEClass = createEClass(BUILD_STEP);
         createEReference(buildStepEClass, BUILD_STEP__BUILD_LOCATIONS);
         createEReference(buildStepEClass, BUILD_STEP__COMPONENTS);
-        createEAttribute(buildStepEClass, BUILD_STEP__CLEAN_BEFORE_BUILD);
         createEAttribute(buildStepEClass, BUILD_STEP__ALL_PLATFORMS);
+        createEAttribute(buildStepEClass, BUILD_STEP__NO_BUILDERS_INVOCATION);
 
         publishStepEClass = createEClass(PUBLISH_STEP);
         createEReference(publishStepEClass, PUBLISH_STEP__COMPONENT);
@@ -1021,8 +1021,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEClass(buildStepEClass, BuildStep.class, "BuildStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBuildStep_BuildLocations(), this.getBuildLocation(), this.getBuildLocation_BuildStep(), "buildLocations", null, 0, -1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getBuildStep_Components(), this.getComponent(), this.getComponent_BuildStep(), "components", null, 0, -1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getBuildStep_CleanBeforeBuild(), this.getCLEAN_TYPE(), "cleanBeforeBuild", "Result", 0, 1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBuildStep_AllPlatforms(), ecorePackage.getEBoolean(), "allPlatforms", "false", 0, 1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getBuildStep_NoBuildersInvocation(), ecorePackage.getEBoolean(), "noBuildersInvocation", "false", 0, 1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(publishStepEClass, PublishStep.class, "PublishStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getPublishStep_Component(), this.getComponent(), null, "component", null, 1, 1, PublishStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

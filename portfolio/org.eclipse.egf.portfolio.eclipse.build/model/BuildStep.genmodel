@@ -22,8 +22,8 @@
     <genClasses ecoreClass="BuildStep.ecore#//BuildStep">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//BuildStep/buildLocations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//BuildStep/components"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildStep/cleanBeforeBuild"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildStep/allPlatforms"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildStep/noBuildersInvocation"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//PublishStep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//PublishStep/component"/>

@@ -38,7 +38,7 @@ public class buildtargetupdateSite extends org.eclipse.egf.portfolio.eclipse.bui
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
 
-        paramDesc = new IQuery.ParameterDescription("updateSiteBuildLocation", "http://www.eclipse.org/egf/1.0.0/buildstep#//UpdateSiteBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("updateSiteBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//UpdateSiteBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> updateSiteBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

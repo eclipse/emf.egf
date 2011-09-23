@@ -129,8 +129,7 @@ public class CleanStepItemProvider
     @Override
     public String getText(Object object) {
 
-        CLEAN_TYPE labelValue = ((CleanStep)object).getType();
-        String label = labelValue == null ? null : labelValue.toString();
+        String label = ((CleanStep)object).getId();
         return label == null || label.length() == 0 ?
             getString("_UI_CleanStep_type") :
             getString("_UI_CleanStep_type") + " " + label;

@@ -19,13 +19,16 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 import org.eclipse.emf.ecore.xml.type.AnyType;
@@ -77,6 +80,18 @@ public class BuildcoreResourceHandler extends BasicResourceHandler {
 			egfActivity.setUri(uri);
 			egfStep.getEgfActivities().add(egfActivity);
 
+			return true;
+		}
+		if ("cleanBeforeBuild".equals(structuralFeature.getName()) && owner instanceof BuildStep) {
+			BuildStep buildStep = (BuildStep) owner;
+			Job job = buildStep.getJob();
+			
+			CleanStep cleanStep = BuildstepFactory.eINSTANCE.createCleanStep();
+			cleanStep.setType(CLEAN_TYPE.get((String) value));
+			
+			int indexOf = job.getSteps().indexOf(buildStep);
+			job.getSteps().add(indexOf, cleanStep);
+			
 			return true;
 		}
 		return false;

@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
@@ -86,7 +87,10 @@ public class ResultStepItemProvider
     @Override
     public String getText(Object object) {
 
-        return getString("_UI_ResultStep_type");
+        String label = ((ResultStep)object).getId();
+        return label == null || label.length() == 0 ?
+            getString("_UI_ResultStep_type") :
+            getString("_UI_ResultStep_type") + " " + label;
 
     }
 

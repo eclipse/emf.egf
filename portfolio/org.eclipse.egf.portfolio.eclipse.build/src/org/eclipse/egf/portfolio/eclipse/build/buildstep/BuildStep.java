@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getBuildLocations <em>Build Locations</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getComponents <em>Components</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getCleanBeforeBuild <em>Clean Before Build</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms <em>All Platforms</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isNoBuildersInvocation <em>No Builders Invocation</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,49 +102,6 @@ public interface BuildStep extends Step {
 
 
     /**
-     * Returns the value of the '<em><b>Clean Before Build</b></em>' attribute.
-     * The default value is <code>"Result"</code>.
-     * The literals are from the enumeration {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE}.
-
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Clean Before Build</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Clean Before Build</em>' attribute.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE
-     * @see #setCleanBeforeBuild(CLEAN_TYPE)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBuildStep_CleanBeforeBuild()
-     * @model default="Result"
-     * @generated
-     */
-
-    CLEAN_TYPE getCleanBeforeBuild();
-
-
-
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getCleanBeforeBuild <em>Clean Before Build</em>}' attribute.
-
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Clean Before Build</em>' attribute.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE
-     * @see #getCleanBeforeBuild()
-     * @generated
-     */
-
-    void setCleanBeforeBuild(CLEAN_TYPE value);
-
-
-
-
-
-
-
-    /**
      * Returns the value of the '<em><b>All Platforms</b></em>' attribute.
      * The default value is <code>"false"</code>.
 
@@ -180,6 +137,49 @@ public interface BuildStep extends Step {
      */
 
     void setAllPlatforms(boolean value);
+
+
+
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>No Builders Invocation</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>No Builders Invocation</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>No Builders Invocation</em>' attribute.
+     * @see #setNoBuildersInvocation(boolean)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBuildStep_NoBuildersInvocation()
+     * @model default="false"
+     * @generated
+     */
+
+    boolean isNoBuildersInvocation();
+
+
+
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isNoBuildersInvocation <em>No Builders Invocation</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>No Builders Invocation</em>' attribute.
+     * @see #isNoBuildersInvocation()
+     * @generated
+     */
+
+    void setNoBuildersInvocation(boolean value);
 
 
 

@@ -3,6 +3,7 @@
 		<egf>
             <globargs>
 				<jvmarg value="-Degf.target.bundle.priority=true" />
+				<arg value="-runtime" />
 			</globargs>
 			<activities>
 				<arg value="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw"/>
