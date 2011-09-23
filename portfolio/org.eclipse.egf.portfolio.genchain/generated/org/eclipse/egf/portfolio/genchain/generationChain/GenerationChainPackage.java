@@ -442,6 +442,52 @@ public interface GenerationChainPackage extends EPackage {
     int PLUGIN_ADDITION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.FeatureAdditionImpl <em>Feature Addition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.FeatureAdditionImpl
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getFeatureAddition()
+     * @generated
+     */
+    int FEATURE_ADDITION = 7;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FEATURE_ADDITION__NAME = GENERATION_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Container</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FEATURE_ADDITION__CONTAINER = GENERATION_ELEMENT__CONTAINER;
+
+    /**
+     * The feature id for the '<em><b>Additions</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FEATURE_ADDITION__ADDITIONS = GENERATION_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Feature Addition</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FEATURE_ADDITION_FEATURE_COUNT = GENERATION_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.GenerationElement <em>Generation Element</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -677,6 +723,27 @@ public interface GenerationChainPackage extends EPackage {
     EAttribute getPluginAddition_Additions();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition <em>Feature Addition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Feature Addition</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition
+     * @generated
+     */
+    EClass getFeatureAddition();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition#getAdditions <em>Additions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Additions</em>'.
+     * @see org.eclipse.egf.portfolio.genchain.generationChain.FeatureAddition#getAdditions()
+     * @see #getFeatureAddition()
+     * @generated
+     */
+    EAttribute getFeatureAddition_Additions();
+
+    /**
      * Returns the factory that creates the instances of the model.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -887,6 +954,24 @@ public interface GenerationChainPackage extends EPackage {
          * @generated
          */
         EAttribute PLUGIN_ADDITION__ADDITIONS = eINSTANCE.getPluginAddition_Additions();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.genchain.generationChain.impl.FeatureAdditionImpl <em>Feature Addition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.FeatureAdditionImpl
+         * @see org.eclipse.egf.portfolio.genchain.generationChain.impl.GenerationChainPackageImpl#getFeatureAddition()
+         * @generated
+         */
+        EClass FEATURE_ADDITION = eINSTANCE.getFeatureAddition();
+
+        /**
+         * The meta object literal for the '<em><b>Additions</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FEATURE_ADDITION__ADDITIONS = eINSTANCE.getFeatureAddition_Additions();
 
     }
 
