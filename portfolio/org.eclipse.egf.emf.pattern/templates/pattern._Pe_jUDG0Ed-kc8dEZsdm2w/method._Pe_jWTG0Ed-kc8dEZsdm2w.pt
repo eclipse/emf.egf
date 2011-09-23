@@ -3,7 +3,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002-2010 IBM Corporation and others.
+ * Copyright (c) 2002-2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,45 +36,7 @@ package <%=genPackage.getClassPackageName()%>;
 <%if (isImplementation) { genClass.addClassPsuedoImports(); }%>
 
 <%if (isInterface) {%>
-/**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b><%=genClass.getFormattedName()%></b></em>'.
- * <!-- end-user-doc -->
-<%if (genClass.hasDocumentation()) {%>
- *
- * <!-- begin-model-doc -->
- * <%=genClass.getDocumentation(genModel.getIndentation(stringBuffer))%>
- * <!-- end-model-doc -->
-<%}%>
- *
-<%if (!genClass.getGenFeatures().isEmpty()) {%>
- * <p>
- * The following features are supported:
- * <ul>
-<%for (GenFeature genFeature : genClass.getGenFeatures()) {%>
-  <%if (!genFeature.isSuppressedGetVisibility()) {%>
- *   <li>{@link <%=genClass.getQualifiedInterfaceName()%>#<%=genFeature.getGetAccessor()%> <em><%=genFeature.getFormattedName()%></em>}</li>
-  <%}%>
-<%}%>
- * </ul>
- * </p>
-<%}%>
- *
-<%if (!genModel.isSuppressEMFMetaData()) {%>
- * @see <%=genPackage.getQualifiedPackageInterfaceName()%>#get<%=genClass.getClassifierAccessorName()%>()
-<%}%>
-<%if (!genModel.isSuppressEMFModelTags()) { boolean first = true; for (StringTokenizer stringTokenizer = new StringTokenizer(genClass.getModelInfo(), "\n\r"); stringTokenizer.hasMoreTokens(); ) { String modelInfo = stringTokenizer.nextToken(); if (first) { first = false;%>
- * @model <%=modelInfo%>
-<%} else {%>
- *        <%=modelInfo%>
-<%}} if (first) {%>
- * @model
-<%}}%>
-<%if (genClass.needsRootExtendsInterfaceExtendsTag()) {%>
- * @extends <%=genModel.getImportedName(genModel.getRootExtendsInterface())%>
-<%}%>
- * @generated
- */
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.interface.javadoc.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/interface.javadoc.override.javajetinc%>
 <%} else {%>
 /**
  * <!-- begin-user-doc -->
