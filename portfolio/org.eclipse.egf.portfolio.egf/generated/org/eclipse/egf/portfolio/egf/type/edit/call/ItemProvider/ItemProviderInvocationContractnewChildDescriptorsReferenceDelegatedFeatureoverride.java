@@ -7,39 +7,27 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegatedFeatureoverride
-		extends
-		org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride {
+public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegatedFeatureoverride extends org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvidernewChildDescriptorsReferenceDelegatedFeatureoverride {
 	protected static String nl;
 
-	public static synchronized ItemProviderInvocationContractnewChildDescriptorsReferenceDelegatedFeatureoverride create(
-			String lineSeparator) {
+	public static synchronized ItemProviderInvocationContractnewChildDescriptorsReferenceDelegatedFeatureoverride create(String lineSeparator) {
 		nl = lineSeparator;
 		ItemProviderInvocationContractnewChildDescriptorsReferenceDelegatedFeatureoverride result = new ItemProviderInvocationContractnewChildDescriptorsReferenceDelegatedFeatureoverride();
 		nl = null;
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties()
-			.getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = NL
-			+ "        {"
-			+ NL
-			+ "            if (object.getInvokedContract() != null && object.getInvokedContract().getType() != null) {";
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = NL + "        {" + NL + "            if (object.getInvokedContract() != null && object.getInvokedContract().getType() != null) {";
 	protected final String TEXT_2 = NL + "                ";
 	protected final String TEXT_3 = " invokedContractType = object.getInvokedContract().getType();";
 	protected final String TEXT_4 = NL + "                ";
 	protected final String TEXT_5 = " type = ";
 	protected final String TEXT_6 = ".create";
-	protected final String TEXT_7 = "();"
-			+ NL
-			+ "                if (invokedContractType.isCompatible(type)) {"
-			+ NL
-			+ "                    newChildDescriptors.add(createChildParameter(";
+	protected final String TEXT_7 = "();" + NL + "                if (invokedContractType.isCompatible(type)) {" + NL + "                    newChildDescriptors.add(createChildParameter(";
 	protected final String TEXT_8 = ", ";
 	protected final String TEXT_9 = ".createEntry(";
-	protected final String TEXT_10 = ", type)));" + NL + "                }"
-			+ NL + "            }" + NL + "        }";
+	protected final String TEXT_10 = ", type)));" + NL + "                }" + NL + "            }" + NL + "        }";
 	protected final String TEXT_11 = NL;
 	protected final String TEXT_12 = NL;
 	protected final String TEXT_13 = NL;
@@ -59,6 +47,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 		InternalPatternContext ctx = (InternalPatternContext) argument;
 		Map<String, String> queryCtx = null;
 		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
 		List<Object> createClassList = null;
 		//this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -95,8 +84,10 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
 										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-										if (preCondition())
+										if (preCondition()) {
+											ctx.setNode(new Node.Container(currentNode, getClass()));
 											orchestration(ctx);
+										}
 
 									}
 								}
@@ -106,10 +97,9 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 				}
 			}
 		}
+		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(
-					ctx.getExecutionBuffer().toString(), ctx);
-			ctx.clearBuffer();
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
 		}
 
 		stringBuffer.append(TEXT_13);
@@ -119,16 +109,11 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		int executionIndex = ictx.getExecutionBuffer().length();
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = ictx.getBuffer().toString();
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
-			ictx.getExecutionBuffer()
-					.append(ictx.getBuffer().substring(
-							ictx.getExecutionCurrentIndex()));
-			ictx.setExecutionCurrentIndex(0);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("createClass", this.createClass);
 			parameterValues.put("createFeature", this.createFeature);
@@ -138,11 +123,9 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
-			String outputWithCallBack = ictx.getExecutionBuffer().substring(
-					executionIndex);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
-					parameterValues);
-			ictx.clearBuffer();
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			;
 		}
 		return loop;
 	}
@@ -160,33 +143,32 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 		return parameters;
 	}
 
-	protected void method_doGenerate(final StringBuffer stringBuffer,
-			final PatternContext ctx) throws Exception {
+	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(TEXT_2);
-		stringBuffer.append(genModel
-				.getImportedName("org.eclipse.egf.model.types.Type"));
+		stringBuffer.append(genModel.getImportedName("org.eclipse.egf.model.types.Type"));
 		stringBuffer.append(TEXT_3);
 		stringBuffer.append(TEXT_4);
-		stringBuffer.append(genModel.getImportedName(createClass
-				.getImportedInstanceClassName()));
+		stringBuffer.append(genModel.getImportedName(createClass.getImportedInstanceClassName()));
 		stringBuffer.append(TEXT_5);
-		stringBuffer.append(createClass.getGenPackage()
-				.getQualifiedFactoryInstanceAccessor());
+		stringBuffer.append(createClass.getGenPackage().getQualifiedFactoryInstanceAccessor());
 		stringBuffer.append(TEXT_6);
 		stringBuffer.append(createClass.getName());
 		stringBuffer.append(TEXT_7);
 		stringBuffer.append(createFeature.getQualifiedFeatureAccessor());
 		stringBuffer.append(TEXT_8);
-		stringBuffer.append(genModel
-				.getImportedName("org.eclipse.emf.ecore.util.FeatureMapUtil"));
+		stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.FeatureMapUtil"));
 		stringBuffer.append(TEXT_9);
 		stringBuffer.append(delegatedFeature.getQualifiedFeatureAccessor());
 		stringBuffer.append(TEXT_10);
 		stringBuffer.append(TEXT_11);
 		{
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.insert" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
+
+			InternalPatternContext ictx = (InternalPatternContext) ctx;
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("createClass", createClass);
@@ -197,20 +179,17 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 			callParameters.put("genClass", genClass);
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
-			CallHelper
-					.executeWithParameterInjection(
-							"platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04NBAGJ-Ed-FqczH3ESmRw",
-							new ExecutionContext((InternalPatternContext) ctx),
-							callParameters);
+			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_04NBAGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+			stringBuffer.setLength(0);
 		}
 
 		stringBuffer.append(TEXT_12);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {
-		if (createClass.isMapEntry() == false
-				&& FcorePackage.Literals.INVOCATION_CONTRACT == EMFHelper
-						.solveAgainstStaticPackage(genClass.getEcoreClass())) {
+		if (createClass.isMapEntry() == false && FcorePackage.Literals.INVOCATION_CONTRACT == EMFHelper.solveAgainstStaticPackage(genClass.getEcoreClass())) {
 			return true;
 		}
 		return false;
