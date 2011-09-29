@@ -8,7 +8,9 @@ import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.common.helper.*;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.*;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
+import org.eclipse.egf.portfolio.eclipse.build.*;
 
 public class CLASS {
 
