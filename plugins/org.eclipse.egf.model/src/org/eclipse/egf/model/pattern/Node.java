@@ -42,6 +42,14 @@ public abstract class Node {
         return parent;
     }
 
+    public Node getContainer(Class cls) {
+        if (parent == null)
+            return null;
+        if (getClass().equals(cls))
+            return this;
+        return parent.getContainer(cls);
+    }
+
     public Pattern getPattern() {
         return pattern;
     }
@@ -110,16 +118,21 @@ public abstract class Node {
     }
 
     public static class Leaf extends Node {
-        private final String data;
+        private String data;
 
         public Leaf(Node.Container parent, Class patternClass, String data) {
             super(parent, patternClass.getName());
             this.data = data;
-            parent.getChildren().add(this);
+            if (data != null && !"".equals(data))
+                parent.getChildren().add(this);
         }
 
         public String getData() {
             return data;
+        }
+
+        public void setData(String data) {
+            this.data = data;
         }
 
         @Override
@@ -132,6 +145,15 @@ public abstract class Node {
     public static class CallBackContainer extends Container {
 
         public CallBackContainer(Container parent) {
+            super(parent, (String) null);
+
+        }
+
+    }
+
+    public static class SuperOrchestrationContainer extends Container {
+
+        public SuperOrchestrationContainer(Container parent) {
             super(parent, (String) null);
 
         }
