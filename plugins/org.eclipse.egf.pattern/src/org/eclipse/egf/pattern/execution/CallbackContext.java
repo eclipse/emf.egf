@@ -29,15 +29,8 @@ public class CallbackContext extends DefaultInternalPatternContext {
 
     private final CallbackReporter reporter = new CallbackReporter();
 
-    private final StringBuffer buffer = new StringBuffer(2000);
-
     public CallbackContext(InternalPatternContext parent) {
         super(parent, new Node.CallBackContainer(parent.getNode()));
-    }
-
-    @Override
-    public StringBuffer getBuffer() {
-        return buffer;
     }
 
     public PatternExecutionReporter getReporter() {

@@ -34,19 +34,7 @@ public class SuperOrchestrationContext implements InternalPatternContext {
         this.delegate = delegate;
         if (delegate == null)
             throw new IllegalArgumentException();
-        node = new Node.Container(delegate.getNode(), "super");
-    }
-
-    public int getExecutionCurrentIndex() {
-        return delegate.getExecutionCurrentIndex();
-    }
-
-    public void setExecutionCurrentIndex(int index) {
-        delegate.setExecutionCurrentIndex(index);
-    }
-
-    public StringBuffer getBuffer() {
-        return delegate.getBuffer();
+        node = new Node.SuperOrchestrationContainer(delegate.getNode());
     }
 
     public Bundle getBundle(String id) throws PatternException {
@@ -75,14 +63,6 @@ public class SuperOrchestrationContext implements InternalPatternContext {
 
     public boolean useReporter() {
         return false;
-    }
-
-    public void clearBuffer() {
-        delegate.clearBuffer();
-    }
-
-    public StringBuffer getExecutionBuffer() {
-        return delegate.getExecutionBuffer();
     }
 
     public Node.Container getNode() {

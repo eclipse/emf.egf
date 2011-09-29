@@ -25,25 +25,11 @@ import org.eclipse.egf.model.pattern.PatternContext;
  */
 public abstract class DefaultInternalPatternContext extends DefaultPatternContext implements InternalPatternContext {
 
-    protected StringBuffer loopBuffer;
-    protected StringBuffer executionBuffer;
     protected Node.Container node;
-
-    private int index;
 
     public DefaultInternalPatternContext(BundleAccessor accessor) {
         super(accessor);
-        loopBuffer = new StringBuffer(2000);
-        executionBuffer = new StringBuffer(2000);
         node = new Node.Container(null, "Root node");
-    }
-
-    public int getExecutionCurrentIndex() {
-        return index;
-    }
-
-    public void setExecutionCurrentIndex(int index) {
-        this.index = index;
     }
 
     public DefaultInternalPatternContext(InternalPatternContext parent) {
@@ -53,26 +39,6 @@ public abstract class DefaultInternalPatternContext extends DefaultPatternContex
     protected DefaultInternalPatternContext(InternalPatternContext parent, Node.Container node) {
         super((PatternContext) parent);
         this.node = node;
-    }
-
-    public StringBuffer getBuffer() {
-        if (parent != null)
-            return ((InternalPatternContext) parent).getBuffer();
-        if (loopBuffer == null)
-            throw new IllegalStateException();
-        return loopBuffer;
-    }
-
-    public StringBuffer getExecutionBuffer() {
-        if (parent != null)
-            return ((InternalPatternContext) parent).getExecutionBuffer();
-        if (executionBuffer == null)
-            throw new IllegalStateException();
-        return executionBuffer;
-    }
-
-    public void clearBuffer() {
-        getBuffer().setLength(0);
     }
 
     public Node.Container getNode() {

@@ -34,7 +34,7 @@ public class JavaMethodGenerationHelper {
     }
 
     public void addCallStatement(PatternMethod called) {
-        content.append("method_").append(called.getName()).append("(ictx.getBuffer(), ictx);"); //$NON-NLS-1$ //$NON-NLS-2$
+        content.append("method_").append(called.getName()).append("(new StringBuffer(), ictx);"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     public void addSignature(PatternMethod called) {

@@ -50,9 +50,6 @@ public abstract class AbstractJavaAssemblyContentProvider extends AssemblyConten
     @Override
     protected void call(BackCall object) throws PatternException {
         content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        // content.append("index = ictx.getBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("ictx.setExecutionCurrentIndex(ictx.getBuffer().length());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("ictx.getExecutionBuffer().append(ictx.getBuffer());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         content.append("final Map<String, Object> parameters = getParameters();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("CallbackContext ctx_callback = new CallbackContext(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$

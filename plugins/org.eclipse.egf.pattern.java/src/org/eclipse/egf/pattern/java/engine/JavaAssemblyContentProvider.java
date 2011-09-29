@@ -47,10 +47,10 @@ public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProv
             javaMethodHelper.addSignature(method);
             content.append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-            content.append("final IndexValue idx = new IndexValue(").append(javaMethodHelper.getBufferName()).append(".length());").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ $NON-NLS-2$
+            //            content.append("final IndexValue idx = new IndexValue(").append(javaMethodHelper.getBufferName()).append(".length());").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ $NON-NLS-2$
             content.append(getMethodContent(method)).append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("InternalPatternContext ictx = (InternalPatternContext) ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("new Node.Leaf(ictx.getNode(), getClass(), ").append(javaMethodHelper.getBufferName()).append(".substring(idx.value));").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("new Node.Leaf(ictx.getNode(), getClass(), ").append(javaMethodHelper.getBufferName()).append(".toString());").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         }
