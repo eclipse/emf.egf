@@ -145,18 +145,16 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		method_preGenerate(ictx.getBuffer(), ictx);
+		method_preGenerate(new StringBuffer(), ictx);
 
-		method_doGenerate(ictx.getBuffer(), ictx);
+		method_doGenerate(new StringBuffer(), ictx);
 		{
-			ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
-			ictx.getExecutionBuffer().append(ictx.getBuffer());
 			final Map<String, Object> parameters = getParameters();
 			CallbackContext ctx_callback = new CallbackContext(ictx);
 			CallHelper.callBack(ctx_callback, parameters);
 		}
 
-		method_postGenerate(ictx.getBuffer(), ictx);
+		method_postGenerate(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -176,7 +174,6 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 	}
 
 	protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		GenClass genClass = parameter;
 		targetPath = genClass.getGenModel().getTestsDirectory();
@@ -184,30 +181,27 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 		className = genClass.getTestCaseClassName();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		GenClass genClass = parameter;
 		argument = parameter;
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		/**
 		 * <copyright>
@@ -233,13 +227,13 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -406,8 +400,8 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-				idx.value = stringBuffer.length();
+				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
 				callParameters.put("genFeature", genFeature);
@@ -415,7 +409,7 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				callParameters.put("genPackage", genPackage);
 				callParameters.put("genModel", genModel);
 				CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_09kCIWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-				idx.value = stringBuffer.length();
+				stringBuffer.setLength(0);
 			}
 
 			//TestCase/implementedGenFeature.override.javajetinc
@@ -426,8 +420,8 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-				idx.value = stringBuffer.length();
+				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
 				callParameters.put("genOperation", genOperation);
@@ -435,7 +429,7 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				callParameters.put("genPackage", genPackage);
 				callParameters.put("genModel", genModel);
 				CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1Cx5UGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-				idx.value = stringBuffer.length();
+				stringBuffer.setLength(0);
 			}
 
 			//TestCase/implementedGenOperation.override.javajetinc
@@ -446,15 +440,15 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("genClass", genClass);
 			callParameters.put("genPackage", genPackage);
 			callParameters.put("genModel", genModel);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_1DYWQGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		stringBuffer.append(TEXT_72);
@@ -462,7 +456,7 @@ public class TestCase extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_73);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

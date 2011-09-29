@@ -69,7 +69,7 @@ public class child extends inheritance_3.parent {
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		method_hehe(ictx.getBuffer(), ictx);
+		method_hehe(new StringBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("parameter", this.parameter);
@@ -95,20 +95,18 @@ public class child extends inheritance_3.parent {
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_hehe(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_2);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 }

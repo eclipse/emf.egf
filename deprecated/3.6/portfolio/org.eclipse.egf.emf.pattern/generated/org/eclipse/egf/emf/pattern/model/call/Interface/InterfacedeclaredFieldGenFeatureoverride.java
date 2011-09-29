@@ -246,7 +246,7 @@ public class InterfacedeclaredFieldGenFeatureoverride {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-		method_doGenerate(ictx.getBuffer(), ictx);
+		method_doGenerate(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -376,7 +376,6 @@ public class InterfacedeclaredFieldGenFeatureoverride {
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		if (genFeature.hasSettingDelegate()) {
@@ -642,8 +641,8 @@ public class InterfacedeclaredFieldGenFeatureoverride {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.declaredFieldGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("genFeature", genFeature);
@@ -661,12 +660,12 @@ public class InterfacedeclaredFieldGenFeatureoverride {
 			callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 			callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0vHWcGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		stringBuffer.append(TEXT_111);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

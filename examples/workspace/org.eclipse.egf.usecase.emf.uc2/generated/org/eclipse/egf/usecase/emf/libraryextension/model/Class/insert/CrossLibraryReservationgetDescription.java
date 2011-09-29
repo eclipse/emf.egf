@@ -172,7 +172,6 @@ public class CrossLibraryReservationgetDescription extends org.eclipse.egf.emf.p
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		// add java imports
 		genModel.getImportedName("org.eclipse.emf.common.util.EList");
@@ -183,7 +182,7 @@ public class CrossLibraryReservationgetDescription extends org.eclipse.egf.emf.p
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

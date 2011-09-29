@@ -44,12 +44,10 @@ public class caller {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		//default content
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

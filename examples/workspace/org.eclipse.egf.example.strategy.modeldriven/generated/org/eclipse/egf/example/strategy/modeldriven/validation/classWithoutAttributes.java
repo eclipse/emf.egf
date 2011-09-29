@@ -42,7 +42,7 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
 		super.orchestration(new SuperOrchestrationContext(ictx));
-		method_checkAttributes(ictx.getBuffer(), ictx);
+		method_checkAttributes(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -55,15 +55,13 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 	}
 
 	protected void method_checkAttributes(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		if (eClass.getEAllAttributes().isEmpty()) {
 			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.example.strategy.modeldriven", 0, "eClass " + eClass.getName() + " doesn't have any attribute", new Object[] { eClass });
 			diagnosticChain.add(diagnostic);
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

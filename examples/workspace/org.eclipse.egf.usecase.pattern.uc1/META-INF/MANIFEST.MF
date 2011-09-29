@@ -21,8 +21,6 @@ Export-Package:
  egf.uc1_7.pattern,
  egf.uc1_7.pattern.forInjection,
  egf.uc1_8.pattern,
- egf.uc1_9.pattern,
- egf.uc1_9.pattern.strategy,
  org.eclipse.egf.usecase.pattern.uc1,
  org.eclipse.egf.usecase.pattern.uc1.callback,
  org.eclipse.egf.usecase.pattern.uc1.helper,

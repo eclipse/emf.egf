@@ -68,16 +68,14 @@ public class ClassPattern extends callbackAndReporter3.BasePattern {
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		method_start(ictx.getBuffer(), ictx);
+		method_start(new StringBuffer(), ictx);
 		{
-			ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
-			ictx.getExecutionBuffer().append(ictx.getBuffer());
 			final Map<String, Object> parameters = getParameters();
 			CallbackContext ctx_callback = new CallbackContext(ictx);
 			CallHelper.callBack(ctx_callback, parameters);
 		}
 
-		method_end(ictx.getBuffer(), ictx);
+		method_end(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -103,20 +101,18 @@ public class ClassPattern extends callbackAndReporter3.BasePattern {
 	}
 
 	protected void method_start(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 }

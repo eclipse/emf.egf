@@ -48,7 +48,7 @@ public class GenerationChainPattern {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -61,8 +61,6 @@ public class GenerationChainPattern {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
 
 		FactoryComponent parentFC = fcs.get((GenerationElement) (parameter.eContainer()));
@@ -81,7 +79,7 @@ public class GenerationChainPattern {
 		ActivityInvocationHelper.addInvocation((ProductionPlan) parentFC.getOrchestration(), fc);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

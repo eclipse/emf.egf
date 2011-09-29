@@ -47,7 +47,7 @@ public class SampleElementPattern {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -60,8 +60,6 @@ public class SampleElementPattern {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		Map<GenerationElement, FactoryComponent> fcs = (Map<GenerationElement, FactoryComponent>) ctx.getValue(FcoreBuilderConstants.CURRENT_FCORE);
 		FactoryComponent fc = fcs.get((GenerationElement) (parameter.eContainer()));
 		ResourceSet resourceSet = fc.eResource().getResourceSet();
@@ -70,7 +68,7 @@ public class SampleElementPattern {
 		ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(uri, true));
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

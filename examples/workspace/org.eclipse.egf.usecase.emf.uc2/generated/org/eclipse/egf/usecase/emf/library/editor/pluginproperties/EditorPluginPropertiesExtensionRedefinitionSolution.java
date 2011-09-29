@@ -123,7 +123,6 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		/**
 		 * <copyright>
@@ -147,13 +146,13 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_FEoPwCwuEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -240,7 +239,7 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 		}
 		stringBuffer.append(TEXT_39);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

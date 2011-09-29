@@ -40,7 +40,7 @@ public class Callee2 {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -53,12 +53,10 @@ public class Callee2 {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		out.append("callee on " + parameter.getName() + "\n");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	protected org.eclipse.emf.ecore.EClass parameter;

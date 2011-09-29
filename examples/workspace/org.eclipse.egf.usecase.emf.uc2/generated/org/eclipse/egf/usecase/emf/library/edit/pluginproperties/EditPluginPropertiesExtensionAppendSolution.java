@@ -66,7 +66,7 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		method_doGenerateAppendPart(ictx.getBuffer(), ictx);
+		method_doGenerateAppendPart(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -86,11 +86,10 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
 	}
 
 	protected void method_doGenerateAppendPart(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

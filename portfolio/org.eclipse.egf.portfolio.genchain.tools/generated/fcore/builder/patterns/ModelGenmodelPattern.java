@@ -61,9 +61,9 @@ public class ModelGenmodelPattern {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
-		method_create(ictx.getBuffer(), ictx);
-		method_updateContent(ictx.getBuffer(), ictx);
-		method_save(ictx.getBuffer(), ictx);
+		method_create(new StringBuffer(), ictx);
+		method_updateContent(new StringBuffer(), ictx);
+		method_save(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -76,8 +76,6 @@ public class ModelGenmodelPattern {
 	}
 
 	protected void method_create(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		ResourceSet resourceSet = new TargetPlatformResourceSet();
 		Resource resource = null;
 
@@ -113,22 +111,18 @@ public class ModelGenmodelPattern {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	protected void method_save(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		if (importer != null)
 			importer.saveGenModelAndEPackages(new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	protected void method_updateContent(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
-
 		if (importer == null)
 			return;
 		GenModel genModel = importer.getGenModel();
@@ -145,7 +139,7 @@ public class ModelGenmodelPattern {
 		genModel.setModelDirectory("/" + emfPluginName + "/src");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

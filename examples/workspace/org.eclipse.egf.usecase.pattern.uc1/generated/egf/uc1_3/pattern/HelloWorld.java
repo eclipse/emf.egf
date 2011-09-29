@@ -63,9 +63,9 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-		method_SayHello(ictx.getBuffer(), ictx);
+		method_SayHello(new StringBuffer(), ictx);
 
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 		{
 			final Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("element", this.aClass);
@@ -73,7 +73,7 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_7-a0kAzxEd-sdvrVfWaxAw", ctx_local, parameters);
 		}
 
-		method_finish(ictx.getBuffer(), ictx);
+		method_finish(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -99,11 +99,10 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(aClass.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 }

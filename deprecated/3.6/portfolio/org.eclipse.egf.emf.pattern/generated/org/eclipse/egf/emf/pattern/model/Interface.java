@@ -556,18 +556,16 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		method_preGenerate(ictx.getBuffer(), ictx);
+		method_preGenerate(new StringBuffer(), ictx);
 
-		method_doGenerate(ictx.getBuffer(), ictx);
+		method_doGenerate(new StringBuffer(), ictx);
 		{
-			ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
-			ictx.getExecutionBuffer().append(ictx.getBuffer());
 			final Map<String, Object> parameters = getParameters();
 			CallbackContext ctx_callback = new CallbackContext(ictx);
 			CallHelper.callBack(ctx_callback, parameters);
 		}
 
-		method_postGenerate(ictx.getBuffer(), ictx);
+		method_postGenerate(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -587,7 +585,6 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 	}
 
 	protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		GenClass genClass = parameter;
 		targetPath = genClass.getGenModel().getModelDirectory();
@@ -595,30 +592,27 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 		className = genClass.getInterfaceName();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		GenClass genClass = parameter;
 		argument = ((Object[]) new Object[] { new Object[] { genClass, Boolean.TRUE, Boolean.FALSE } })[0];
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		/**
 		 * <copyright>
@@ -653,13 +647,13 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("argument", parameter);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_XHLrsCwtEd-jc5T-XaRJlg", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		if (isInterface) {
@@ -835,8 +829,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.declaredFieldGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 					InternalPatternContext ictx = (InternalPatternContext) ctx;
-					new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-					idx.value = stringBuffer.length();
+					new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+					stringBuffer.setLength(0);
 
 					final Map<String, Object> callParameters = new HashMap<String, Object>();
 					callParameters.put("genFeature", genFeature);
@@ -854,7 +848,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 					callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 					callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 					CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0u0bgWJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-					idx.value = stringBuffer.length();
+					stringBuffer.setLength(0);
 				}
 
 				//Class/declaredFieldGenFeature.override.javajetinc
@@ -911,8 +905,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.egfCustom.constructor.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-				idx.value = stringBuffer.length();
+				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
 				callParameters.put("genClass", genClass);
@@ -929,7 +923,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 				callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 				CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_K9da0HroEeC0XN9kbwkPYQ", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-				idx.value = stringBuffer.length();
+				stringBuffer.setLength(0);
 			}
 
 			for (GenFeature genFeature : genClass.getFlagGenFeaturesWithDefault()) {
@@ -958,8 +952,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.reflectiveDelegation.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("genClass", genClass);
@@ -976,7 +970,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 			callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0vQgYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		//Class/reflectiveDelegation.override.javajetinc
@@ -988,8 +982,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 						//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 						InternalPatternContext ictx = (InternalPatternContext) ctx;
-						new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-						idx.value = stringBuffer.length();
+						new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+						stringBuffer.setLength(0);
 
 						final Map<String, Object> callParameters = new HashMap<String, Object>();
 						callParameters.put("genFeature", genFeature);
@@ -1007,7 +1001,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 						callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 						callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 						CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_0vaRYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-						idx.value = stringBuffer.length();
+						stringBuffer.setLength(0);
 					}
 
 					//Class/genFeature.override.javajetinc
@@ -1020,8 +1014,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genOperation.override" args="genOperation:genOperation,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-				idx.value = stringBuffer.length();
+				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
 				callParameters.put("genOperation", genOperation);
@@ -1039,7 +1033,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 				callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 				CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_01-MYGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-				idx.value = stringBuffer.length();
+				stringBuffer.setLength(0);
 			}
 
 			//Class/implementedGenOperation.override.javajetinc
@@ -1457,8 +1451,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.eUnset.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-				idx.value = stringBuffer.length();
+				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
 				callParameters.put("genClass", genClass);
@@ -1475,7 +1469,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 				callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 				CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_03KfMGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-				idx.value = stringBuffer.length();
+				stringBuffer.setLength(0);
 			}
 
 			//Class/eUnset.override.javajetinc
@@ -1486,8 +1480,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.eIsSet.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-				idx.value = stringBuffer.length();
+				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
 				callParameters.put("genClass", genClass);
@@ -1504,7 +1498,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 				callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 				callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 				CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_03TpIGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-				idx.value = stringBuffer.length();
+				stringBuffer.setLength(0);
 			}
 
 			//Class/eIsSet.override.javajetinc
@@ -2020,8 +2014,8 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
-			idx.value = stringBuffer.length();
+			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
 			callParameters.put("genClass", genClass);
@@ -2038,7 +2032,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 			callParameters.put("negativeOperationOffsetCorrection", negativeOperationOffsetCorrection);
 			callParameters.put("positiveOperationOffsetCorrection", positiveOperationOffsetCorrection);
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_03daIGJ-Ed-FqczH3ESmRw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
-			idx.value = stringBuffer.length();
+			stringBuffer.setLength(0);
 		}
 
 		stringBuffer.append(TEXT_483);
@@ -2047,7 +2041,7 @@ public class Interface extends org.eclipse.egf.emf.pattern.base.GenClassJava {
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_484);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

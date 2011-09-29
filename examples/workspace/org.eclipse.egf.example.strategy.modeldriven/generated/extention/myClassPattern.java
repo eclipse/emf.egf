@@ -66,7 +66,7 @@ public class myClassPattern extends myLib.classPattern {
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		method_body1(ictx.getBuffer(), ictx);
+		method_body1(new StringBuffer(), ictx);
 
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -86,10 +86,9 @@ public class myClassPattern extends myLib.classPattern {
 	}
 
 	protected void method_body1(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(stringBuffer.length());
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
 	}
 }

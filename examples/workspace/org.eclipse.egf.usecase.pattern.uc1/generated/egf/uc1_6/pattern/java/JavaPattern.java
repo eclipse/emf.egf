@@ -40,7 +40,7 @@ public class JavaPattern {
 	public String orchestration(PatternContext ctx) throws Exception {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
-		method_body(ictx.getBuffer(), ictx);
+		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
@@ -53,7 +53,6 @@ public class JavaPattern {
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		final IndexValue idx = new IndexValue(out.length());
 
 		// Message on the default console
 		System.out.println("Java: " + aClass.getName()); //$NON-NLS-1$
@@ -62,7 +61,7 @@ public class JavaPattern {
 		EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.substring(idx.value));
+		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
 	}
 
 	protected org.eclipse.emf.ecore.EClass aClass;

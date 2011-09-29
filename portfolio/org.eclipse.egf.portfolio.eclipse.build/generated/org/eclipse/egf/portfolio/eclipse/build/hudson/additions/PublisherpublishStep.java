@@ -8,94 +8,96 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class PublisherpublishStep extends org.eclipse.egf.portfolio.eclipse.build.hudson.call.Publisheradd {
-    protected static String nl;
+	protected static String nl;
 
-    public static synchronized PublisherpublishStep create(String lineSeparator) {
-        nl = lineSeparator;
-        PublisherpublishStep result = new PublisherpublishStep();
-        nl = null;
-        return result;
-    }
+	public static synchronized PublisherpublishStep create(String lineSeparator) {
+		nl = lineSeparator;
+		PublisherpublishStep result = new PublisherpublishStep();
+		nl = null;
+		return result;
+	}
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "    <hudson.tasks.ArtifactArchiver>" + NL + "      <artifacts>result/publish/**</artifacts>" + NL + "      <latestOnly>false</latestOnly>" + NL + "    </hudson.tasks.ArtifactArchiver>" + NL;
-    protected final String TEXT_2 = NL;
-    protected final String TEXT_3 = NL;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "    <hudson.tasks.ArtifactArchiver>" + NL + "      <artifacts>result/publish/**</artifacts>" + NL + "      <latestOnly>false</latestOnly>" + NL + "    </hudson.tasks.ArtifactArchiver>" + NL;
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
-    public PublisherpublishStep() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+	public PublisherpublishStep() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    }
+	}
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep");
-        queryCtx = new HashMap<String, String>();
-        List<Object> publishStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep");
+		queryCtx = new HashMap<String, String>();
+		List<Object> publishStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object publishStepParameter : publishStepList) {
+		for (Object publishStepParameter : publishStepList) {
 
-            this.publishStep = (org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep) publishStepParameter;
+			this.publishStep = (org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep) publishStepParameter;
 
-            if (preCondition())
-                orchestration(ctx);
+			if (preCondition()) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
-        }
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
-        }
+		}
+		ctx.setNode(currentNode);
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+		}
 
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(TEXT_3);
-        return stringBuffer.toString();
-    }
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
+		return stringBuffer.toString();
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-        String loop = ictx.getBuffer().toString();
-        if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("publishStep", this.publishStep);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
-        }
-        return loop;
-    }
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("publishStep", this.publishStep);
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			;
+		}
+		return loop;
+	}
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep publishStep = null;
+	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep publishStep = null;
 
-    public void set_publishStep(org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep object) {
-        this.publishStep = object;
-    }
+	public void set_publishStep(org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep object) {
+		this.publishStep = object;
+	}
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("publishStep", this.publishStep);
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("publishStep", this.publishStep);
+		return parameters;
+	}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_1);
-    }
+		stringBuffer.append(TEXT_1);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+	}
 
-    public boolean preCondition() throws Exception {
-        return super.preCondition();
-    }
+	public boolean preCondition() throws Exception {
+		return super.preCondition();
+	}
 }
