@@ -26,6 +26,16 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  */
 public interface InternalPatternContext extends PatternContext, BundleAccessor {
 
+    StringBuffer getBuffer();
+
+    StringBuffer getExecutionBuffer();
+
+    int getExecutionCurrentIndex();
+
+    void setExecutionCurrentIndex(int index);
+
+    void clearBuffer();
+
     Node.Container getNode();
 
     void setNode(Node.Container node);

@@ -49,4 +49,22 @@ public abstract class DefaultInternalPatternContext extends DefaultPatternContex
         this.node = node;
     }
 
+    public StringBuffer getBuffer() {
+        return null;
+    }
+
+    public StringBuffer getExecutionBuffer() {
+        return null;
+    }
+
+    public int getExecutionCurrentIndex() {
+        return 0;
+    }
+
+    public void setExecutionCurrentIndex(int index) {
+    }
+
+    public void clearBuffer() {
+    }
+
 }
