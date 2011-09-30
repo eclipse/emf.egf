@@ -13,7 +13,7 @@
             public void emitSortedImports() {
                 InternalPatternContext ictx = (InternalPatternContext) ctx;
                 final Container node = ictx.getNode();
-                Node.Leaf importNode = getImportNode((Node.Container) node.getContainer(Node.Container.class));
+                Node.DataLeaf importNode = getImportNode((Node.Container) node.getContainer(Node.Container.class));
                 if (importNode == null) {
                     final int indexOf = buf.indexOf(TAG);
                     final int indexOf2 = buf.indexOf("//IMPORT_LOCATION", indexOf + 1);
@@ -25,14 +25,14 @@
                 }
             }
 
-            protected Node.Leaf getImportNode(final Container container) {
+            protected Node.DataLeaf getImportNode(final Container container) {
                 for (Node node : container.getChildren())
                     if (node instanceof Container) {
-                        Node.Leaf result = getImportNode((Container) node);
+                        Node.DataLeaf result = getImportNode((Container) node);
                         if (result != null)
                             return result;
-                    } else if (node instanceof Node.Leaf) {
-                        Node.Leaf result = (Node.Leaf) node;
+                    } else if (node instanceof Node.DataLeaf) {
+                        Node.DataLeaf result = (Node.DataLeaf) node;
                         if (result.getData().contains(TAG))
                             return result;
                     }
@@ -40,6 +40,6 @@
             }
 
         };
-importManager.addMasterImport(packageName, className);
-genModel.setImportManager(importManager);
+        importManager.addMasterImport(packageName, className);
+        genModel.setImportManager(importManager);
 %>
