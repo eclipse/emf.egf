@@ -50,7 +50,7 @@ public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProv
             //            content.append("final IndexValue idx = new IndexValue(").append(javaMethodHelper.getBufferName()).append(".length());").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ $NON-NLS-2$
             content.append(getMethodContent(method)).append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("InternalPatternContext ictx = (InternalPatternContext) ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("new Node.Leaf(ictx.getNode(), getClass(), ").append(javaMethodHelper.getBufferName()).append(".toString());").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("new Node.DataLeaf(ictx.getNode(), getClass(),\"").append(method).append("\", ").append(javaMethodHelper.getBufferName()).append(".toString());").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
         }
@@ -71,5 +71,4 @@ public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProv
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
     }
-
 }

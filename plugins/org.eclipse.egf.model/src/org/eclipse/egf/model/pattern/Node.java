@@ -82,7 +82,8 @@ public abstract class Node {
         }
         if (node instanceof Leaf) {
             Leaf leaf = (Leaf) node;
-            builder.append(leaf.getData()).append("\n");
+            leaf.toString(builder);
+            builder.append("\n");
         }
 
     }
@@ -99,7 +100,7 @@ public abstract class Node {
         }
         if (node instanceof Leaf) {
             Leaf leaf = (Leaf) node;
-            builder.append(leaf.getData());
+            leaf.toString(builder);
             return;
         }
         throw new IllegalStateException();
@@ -117,14 +118,41 @@ public abstract class Node {
         return builder.toString();
     }
 
+    // TODO make abstract the toString method too
     public static class Leaf extends Node {
+
+        // TODO to be removed
+        public Leaf(Node.Container parent, String patternClass, String value) {
+            super(parent, patternClass);
+        }
+
+        protected Leaf(Node.Container parent, String patternClass) {
+            super(parent, patternClass);
+        }
+
+        public void toString(StringBuilder builder) {
+        };
+    }
+
+    public static class DataLeaf extends Leaf {
+        private final String method;
         private String data;
 
-        public Leaf(Node.Container parent, Class patternClass, String data) {
+        public DataLeaf(Node.Container parent, Class patternClass, String method, String data) {
             super(parent, patternClass.getName());
+            this.method = method;
             this.data = data;
             if (data != null && !"".equals(data))
                 parent.getChildren().add(this);
+        }
+
+        public String getMethod() {
+            return method;
+        }
+
+        @Override
+        public String toString() {
+            return "Leaf [method=" + method + ", data=" + data + " ]";
         }
 
         public String getData() {
@@ -136,8 +164,8 @@ public abstract class Node {
         }
 
         @Override
-        public String toString() {
-            return "Leaf [data=" + data + "]";
+        public void toString(StringBuilder builder) {
+            builder.append(data);
         }
 
     }
