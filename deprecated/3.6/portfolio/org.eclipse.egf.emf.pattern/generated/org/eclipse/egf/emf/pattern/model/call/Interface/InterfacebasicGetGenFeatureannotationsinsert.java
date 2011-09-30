@@ -267,7 +267,7 @@ public class InterfacebasicGetGenFeatureannotationsinsert {
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@fe9319 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._0w5fIGJ-Ed-FqczH3ESmRw/method._0w5fMmJ-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

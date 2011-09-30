@@ -80,7 +80,7 @@ public class GenBaseGIF extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 		ctx.setValue("contentType", ContentType.GIF);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1be7915 (description: null) (name: putContentTypeInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern.__Ay50CrUEd-81OQ8yF10Og/method._yHvX8Ct9Ed-D6YqMf1n1Bg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

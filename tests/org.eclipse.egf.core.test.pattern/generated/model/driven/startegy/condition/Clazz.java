@@ -96,7 +96,7 @@ public class Clazz {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@193821b (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._EYbxUHhPEd-36-tf633IWg/method._EYbxVHhPEd-36-tf633IWg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

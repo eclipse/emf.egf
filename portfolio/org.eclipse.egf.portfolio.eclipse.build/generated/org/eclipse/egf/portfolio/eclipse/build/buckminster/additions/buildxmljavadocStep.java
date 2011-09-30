@@ -154,7 +154,7 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
 		}
 		stringBuffer.append(TEXT_19);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15bd19e (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._fy4H8Z7VEd-8De2HBT3r0w/method._fy4H9Z7VEd-8De2HBT3r0w.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

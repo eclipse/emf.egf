@@ -124,7 +124,7 @@ public class TestCaseinsert {
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1577fd6 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._1DYWQGJ-Ed-FqczH3ESmRw/method._1DYWSmJ-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

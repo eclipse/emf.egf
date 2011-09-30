@@ -72,7 +72,7 @@ public class buildpropertiesadd {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@a79f01 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._4NTLAJNGEd-BJKD_XS9R2A/method._4NTLBJNGEd-BJKD_XS9R2A.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

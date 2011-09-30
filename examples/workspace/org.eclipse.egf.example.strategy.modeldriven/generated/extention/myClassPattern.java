@@ -89,6 +89,6 @@ public class myClassPattern extends myLib.classPattern {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@756d22 (description: null) (name: body1) (patternFilePath: platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/templates/pattern._QXb_oEO6Ed-eQLst0bhiHw/method._QXb_o0O6Ed-eQLst0bhiHw.pt)", stringBuffer.toString());
 	}
 }

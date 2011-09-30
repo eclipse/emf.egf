@@ -94,7 +94,7 @@ public class PublisheraggregateStep extends org.eclipse.egf.portfolio.eclipse.bu
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1a99b9a (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._c9IeILwGEd-8jux89nECug/method._c9IeJLwGEd-8jux89nECug.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

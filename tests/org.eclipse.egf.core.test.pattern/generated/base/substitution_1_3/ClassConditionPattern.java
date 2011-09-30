@@ -90,7 +90,7 @@ public class ClassConditionPattern extends base.ClassPattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1fce3d5 (description: null) (name: start) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nVvR8HSPEd-vn419Bi375g/method._nVvR9HSPEd-vn419Bi375g.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

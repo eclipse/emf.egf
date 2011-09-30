@@ -182,7 +182,7 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
 		}
 		stringBuffer.append(TEXT_26);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@8135a0 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._1dui4K-AEd-6WbA1gqJ3Sw/method._1dui5K-AEd-6WbA1gqJ3Sw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

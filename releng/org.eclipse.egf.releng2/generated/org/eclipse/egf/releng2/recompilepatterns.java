@@ -90,7 +90,7 @@ public class recompilepatterns extends org.eclipse.egf.portfolio.eclipse.build.b
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@e74afa (description: null) (name: build) (patternFilePath: platform:/plugin/org.eclipse.egf.releng2/templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JyovEeCBw7S2pyk8wg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

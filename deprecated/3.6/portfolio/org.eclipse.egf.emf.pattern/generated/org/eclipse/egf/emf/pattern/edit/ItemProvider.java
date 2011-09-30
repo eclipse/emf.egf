@@ -215,7 +215,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		className = genClass.getProviderClassName();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@b92d23 (description: null) (name: setReporterVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PjK4sDG0Ed-kc8dEZsdm2w/method._PjK4tzG0Ed-kc8dEZsdm2w.pt)", stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -224,7 +224,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		argument = parameter;
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1428b92 (description: null) (name: setArgument) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PjK4sDG0Ed-kc8dEZsdm2w/method._SuuxqGKPEd-2a5uccsiuZA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -232,7 +232,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d93053 (description: null) (name: ensureProjectExists) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PjK4sDG0Ed-kc8dEZsdm2w/method._0-TgqWKMEd-_wNQtGaQ-lw.pt)", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -260,7 +260,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -331,7 +331,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.addPropertyDescriptor.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -410,7 +410,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.getText.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -485,7 +485,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 							//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceDelegatedFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 							InternalPatternContext ictx = (InternalPatternContext) ctx;
-							new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+							new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 							stringBuffer.setLength(0);
 
 							final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -509,7 +509,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 							//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeDelegatedFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 							InternalPatternContext ictx = (InternalPatternContext) ctx;
-							new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+							new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 							stringBuffer.setLength(0);
 
 							final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -534,7 +534,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 						//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.override" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 						InternalPatternContext ictx = (InternalPatternContext) ctx;
-						new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+						new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 						stringBuffer.setLength(0);
 
 						final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -558,7 +558,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 						//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsAttributeFeature.override" args="createDataType:createDataType,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 						InternalPatternContext ictx = (InternalPatternContext) ctx;
-						new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+						new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 						stringBuffer.setLength(0);
 
 						final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -631,7 +631,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.insert" args="genClass:genClass,genPackage:genPackage,genModel:genModel,_List:_List"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -647,7 +647,7 @@ public class ItemProvider extends org.eclipse.egf.emf.pattern.base.GenClassJava 
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_107);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1f3cd62 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PjK4sDG0Ed-kc8dEZsdm2w/method._PjK4uTG0Ed-kc8dEZsdm2w.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

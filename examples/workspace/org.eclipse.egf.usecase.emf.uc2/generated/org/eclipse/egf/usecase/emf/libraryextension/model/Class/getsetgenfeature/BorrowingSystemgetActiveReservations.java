@@ -182,7 +182,7 @@ public class BorrowingSystemgetActiveReservations extends org.eclipse.egf.emf.pa
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@8902b5 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._Us9r0AVREeCBZ9B8yM_rcg/method._Us9r1QVREeCBZ9B8yM_rcg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

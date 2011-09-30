@@ -87,6 +87,6 @@ public class mySecondCallPattern extends substitution.another.call.CalledPattern
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@12241e (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._9yvBMElSEd-TSsH7K-_bxQ/method._9yvBM0lSEd-TSsH7K-_bxQ.pt)", stringBuffer.toString());
 	}
 }

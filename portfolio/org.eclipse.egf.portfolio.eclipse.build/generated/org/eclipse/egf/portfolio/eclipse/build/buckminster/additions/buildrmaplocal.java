@@ -117,7 +117,7 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(localBuildLocation.getSuffix()));
 		stringBuffer.append(TEXT_8);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@e5fdad (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pFGKYZloEd-GKqXx_evxEw/method._pFGKZZloEd-GKqXx_evxEw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

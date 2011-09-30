@@ -109,7 +109,7 @@ public class HeaderXml extends org.eclipse.egf.emf.pattern.base.HeaderAbstract {
 		stringBuffer.append("$");
 		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@71601f (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern.__h1VkCwtEd-jc5T-XaRJlg/method.__h1VkywtEd-jc5T-XaRJlg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

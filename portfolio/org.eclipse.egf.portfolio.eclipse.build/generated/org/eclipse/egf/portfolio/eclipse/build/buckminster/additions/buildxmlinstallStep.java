@@ -131,7 +131,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -176,7 +176,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 		}
 		stringBuffer.append(TEXT_21);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@26a6d0 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._bT4RAaI3EeC7CagY5ZgTsg/method._bT4RBqI3EeC7CagY5ZgTsg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

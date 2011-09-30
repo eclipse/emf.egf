@@ -92,7 +92,7 @@ public class JobFilePattern extends org.eclipse.egf.portfolio.eclipse.build.File
 
 		filePath = new GenerationHelper().getJobName(ctx, job);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@b3024b (description: null) (name: setFilePath) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._8Rg8cabQEd-qVbFBxWG7lA/method._8Rg8dabQEd-qVbFBxWG7lA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -72,7 +72,7 @@ public class Builderadd {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1635a08 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._AQWCMJAXEd-LOqbFhvvp0A/method._AQWCNJAXEd-LOqbFhvvp0A.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

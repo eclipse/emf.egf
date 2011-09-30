@@ -107,7 +107,7 @@ public class buildrmaptargetPlatform extends org.eclipse.egf.portfolio.eclipse.b
 		stringBuffer.append(id);
 		stringBuffer.append(TEXT_5);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@2cf1a9 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._wiU4gJSoEd-BJKD_XS9R2A/method._wiU4hJSoEd-BJKD_XS9R2A.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

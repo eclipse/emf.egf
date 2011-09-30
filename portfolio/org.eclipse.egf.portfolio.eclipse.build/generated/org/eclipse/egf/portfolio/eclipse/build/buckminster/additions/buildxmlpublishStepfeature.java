@@ -175,7 +175,7 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
 		stringBuffer.append(stepName);
 		stringBuffer.append(TEXT_26);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1dc85a3 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._mDDq8ZVxEd-4gcrM0WMTSg/method._mDDq9ZVxEd-4gcrM0WMTSg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

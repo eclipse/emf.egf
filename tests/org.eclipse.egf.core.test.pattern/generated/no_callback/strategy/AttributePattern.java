@@ -96,6 +96,6 @@ public class AttributePattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ce3aac (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._oboggCLhEd-F8rS2HRRtPA/method._oboggyLhEd-F8rS2HRRtPA.pt)", stringBuffer.toString());
 	}
 }

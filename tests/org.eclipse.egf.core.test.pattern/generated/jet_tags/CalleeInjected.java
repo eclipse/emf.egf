@@ -61,7 +61,7 @@ public class CalleeInjected {
 			out.append(parameter.getName());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@18d7519 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._-d1XsFa7Ed-_dcUlU_GyPA/method._-d1Xs1a7Ed-_dcUlU_GyPA.pt)", out.toString());
 	}
 
 	protected org.eclipse.emf.ecore.EClass parameter;

@@ -94,7 +94,7 @@ public class CCallee2 {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@92acdc (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._r-OdkHeQEd-ent-ImclT8w/method._r-OdlHeQEd-ent-ImclT8w.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

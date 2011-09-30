@@ -92,7 +92,7 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 
 		fileName = "build.cquery";
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9733fa (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._3SW6AI6WEd-e7viTqNBNrA/method._6hB1cI6WEd-e7viTqNBNrA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -103,7 +103,7 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -115,7 +115,7 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 		stringBuffer.append(buildStepName);
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@d56991 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._3SW6AI6WEd-e7viTqNBNrA/method._3SW6BI6WEd-e7viTqNBNrA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -105,7 +105,7 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@16eb52e (description: null) (name: ensureProjectExists) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PkNagDG0Ed-kc8dEZsdm2w/method._0-mbmGKMEd-_wNQtGaQ-lw.pt)", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -117,7 +117,7 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1390ad3 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PkNagDG0Ed-kc8dEZsdm2w/method._PkNaiTG0Ed-kc8dEZsdm2w.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -101,14 +101,14 @@ public class BuildStepFilePattern extends org.eclipse.egf.portfolio.eclipse.buil
 		filePath = new GenerationHelper().getJobName(ctx, buildStep.getJob());
 		filePath = filePath + "/releng/buckminster_" + new GenerationHelper().getIdOrPositionString(buildStep);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1f15b67 (description: null) (name: setFilePath) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._ST8cYKbSEd-qVbFBxWG7lA/method._ST8cZKbSEd-qVbFBxWG7lA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_setBuildStepName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@34160 (description: null) (name: setBuildStepName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._ST8cYKbSEd-qVbFBxWG7lA/method._QPmCMKbWEd-qVbFBxWG7lA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

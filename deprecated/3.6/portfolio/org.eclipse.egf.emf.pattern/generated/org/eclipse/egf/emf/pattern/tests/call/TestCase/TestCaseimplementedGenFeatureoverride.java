@@ -151,7 +151,7 @@ public class TestCaseimplementedGenFeatureoverride {
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.getGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 					InternalPatternContext ictx = (InternalPatternContext) ctx;
-					new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+					new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 					stringBuffer.setLength(0);
 
 					final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -171,7 +171,7 @@ public class TestCaseimplementedGenFeatureoverride {
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 					InternalPatternContext ictx = (InternalPatternContext) ctx;
-					new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+					new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 					stringBuffer.setLength(0);
 
 					final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -191,7 +191,7 @@ public class TestCaseimplementedGenFeatureoverride {
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.unsetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 					InternalPatternContext ictx = (InternalPatternContext) ctx;
-					new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+					new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 					stringBuffer.setLength(0);
 
 					final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -211,7 +211,7 @@ public class TestCaseimplementedGenFeatureoverride {
 					//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.isSetGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 					InternalPatternContext ictx = (InternalPatternContext) ctx;
-					new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+					new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 					stringBuffer.setLength(0);
 
 					final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -231,7 +231,7 @@ public class TestCaseimplementedGenFeatureoverride {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.implementedGenFeature.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -245,7 +245,7 @@ public class TestCaseimplementedGenFeatureoverride {
 
 		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d7fb83 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._09kCIWJ-Ed-FqczH3ESmRw/method._09kCLGJ-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

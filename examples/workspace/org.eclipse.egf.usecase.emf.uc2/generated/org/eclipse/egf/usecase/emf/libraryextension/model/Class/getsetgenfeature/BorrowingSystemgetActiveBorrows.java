@@ -182,7 +182,7 @@ public class BorrowingSystemgetActiveBorrows extends org.eclipse.egf.emf.pattern
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@93e212 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._WTwf8AVQEeCBZ9B8yM_rcg/method._WTwf9QVQEeCBZ9B8yM_rcg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

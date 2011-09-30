@@ -102,7 +102,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 		stringBuffer.append(new GenerationHelper().getCleanTypeString("", "", cleanStep.getType()));
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@128fd34 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._dSeb4aoGEd-k9aH6AnUHCw/method._dSeb5aoGEd-k9aH6AnUHCw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

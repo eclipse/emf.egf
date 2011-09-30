@@ -70,7 +70,7 @@ public class Callee {
 			out.append(parameter2.toString());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@b14117 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._0FqG8FaPEd-xDMudhFTQKg/method._0FqG81aPEd-xDMudhFTQKg.pt)", out.toString());
 	}
 
 	protected java.lang.Object parameter;

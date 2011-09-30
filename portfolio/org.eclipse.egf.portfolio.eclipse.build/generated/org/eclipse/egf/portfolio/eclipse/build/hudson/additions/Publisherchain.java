@@ -102,7 +102,7 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 		stringBuffer.append(new GenerationHelper().getJobName(ctx, nextJob));
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c26dad (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._5S89cZmGEd-ktrUiHDdOqg/method._5S89dZmGEd-ktrUiHDdOqg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -61,7 +61,7 @@ public class atLeastAStep extends org.eclipse.egf.pattern.validation.AbstractVal
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@74dec3 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._d8VZUK95Ed--tuq7x0NXVA/method._d8VZVK95Ed--tuq7x0NXVA.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -74,7 +74,7 @@ public class replace1 {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@51d871 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._IWU8YJmPEd-BDZHgxyTzjQ/method._IWU8ZJmPEd-BDZHgxyTzjQ.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

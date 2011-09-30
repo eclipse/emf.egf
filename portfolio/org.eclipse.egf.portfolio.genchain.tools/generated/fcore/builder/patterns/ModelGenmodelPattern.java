@@ -111,7 +111,7 @@ public class ModelGenmodelPattern {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@7fbaa4 (description: null) (name: create) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._2-eB1Ij9Ed-AZ6r6cIc0dQ.pt)", out.toString());
 	}
 
 	protected void method_save(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -119,7 +119,7 @@ public class ModelGenmodelPattern {
 			importer.saveGenModelAndEPackages(new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11c2d78 (description: null) (name: save) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._BLrqUIqLEd-SmaLnSW-4HQ.pt)", out.toString());
 	}
 
 	protected void method_updateContent(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -139,7 +139,7 @@ public class ModelGenmodelPattern {
 		genModel.setModelDirectory("/" + emfPluginName + "/src");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ed3764 (description: null) (name: updateContent) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/templates/pattern._2-eB0Ij9Ed-AZ6r6cIc0dQ/method._o-_gAYqOEd-6N-kuHcME0w.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

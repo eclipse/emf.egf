@@ -98,7 +98,7 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
 		stringBuffer.append(property.getValue());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c010 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._x4T9kZmWEd-Ee7jt2lxlVA/method._x4T9lZmWEd-Ee7jt2lxlVA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -71,7 +71,7 @@ public class replaceProperties {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1e85fc7 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._WM_acNVJEd-kLLLb0fKJog/method._WM_addVJEd-kLLLb0fKJog.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

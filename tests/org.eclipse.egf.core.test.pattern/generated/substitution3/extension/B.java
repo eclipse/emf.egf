@@ -96,6 +96,6 @@ public class B {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1364b8f (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._qDDUgGihEd-c8qu-Vw7xKQ/method._qDDUg2ihEd-c8qu-Vw7xKQ.pt)", stringBuffer.toString());
 	}
 }

@@ -67,7 +67,7 @@ public class job {
 		newJob = (Job) ctx.getValue("newJob");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@30fe04 (description: null) (name: getNewJob) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._EmnjoOEQEd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_movePropertiesToNewJob(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -77,7 +77,7 @@ public class job {
 		newJob.getProperties().addAll(job.getProperties());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1400a40 (description: null) (name: movePropertiesToNewJob) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uTvFgOEREd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_moveScmToNewJob(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -97,7 +97,7 @@ public class job {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@160f16a (description: null) (name: moveScmToNewJob) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._xDgecOEREd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_moveStepsToNewJob(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -107,7 +107,7 @@ public class job {
 		newJob.getSteps().addAll(job.getSteps());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1899818 (description: null) (name: moveStepsToNewJob) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._y4r3YOEREd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_moveTriggersToNewJob(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -117,7 +117,7 @@ public class job {
 		newJob.getTriggers().addAll(job.getTriggers());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@6061e2 (description: null) (name: moveTriggersToNewJob) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uPvg4OESEd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_removeJobFromChain(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -128,7 +128,7 @@ public class job {
 		chain.getJobs().remove(job);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ba4c02 (description: null) (name: removeJobFromChain) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFeEOEd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_handleCleanStep(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -143,7 +143,7 @@ public class job {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d43d1e (description: null) (name: handleCleanStep) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._qHWRIOXqEeCXgYqTOUaRCQ.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

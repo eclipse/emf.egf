@@ -52,7 +52,7 @@ public class TextHeader {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1021b8a (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._xJwAgJ5OEd-3wvN5SnesGA/method._xJwAhJ5OEd-3wvN5SnesGA.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

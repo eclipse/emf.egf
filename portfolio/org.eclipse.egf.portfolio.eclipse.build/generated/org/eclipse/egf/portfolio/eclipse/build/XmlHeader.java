@@ -79,7 +79,7 @@ public class XmlHeader {
 		stringBuffer.append(ctx.getValue("copyright"));
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1a287d9 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._LhlsYJ5OEd-3wvN5SnesGA/method._LhlsZJ5OEd-3wvN5SnesGA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -74,7 +74,7 @@ public class buildtargetadd {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@cc5148 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._geJq4J4XEd-3wvN5SnesGA/method._geJq5J4XEd-3wvN5SnesGA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

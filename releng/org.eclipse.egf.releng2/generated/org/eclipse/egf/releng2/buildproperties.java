@@ -74,7 +74,7 @@ public class buildproperties extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@be2be6 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.releng2/templates/pattern._YiMBoCSlEeCIlumqagSWRg/method._YiMBpSSlEeCIlumqagSWRg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

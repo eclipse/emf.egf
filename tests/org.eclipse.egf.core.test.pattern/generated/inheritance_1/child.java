@@ -94,6 +94,6 @@ public class child extends inheritance_1.parent {
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@22cac (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._ZLg58BshEd-L7sk1dmRWLg/method._ZLg58xshEd-L7sk1dmRWLg.pt)", stringBuffer.toString());
 	}
 }

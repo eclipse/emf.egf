@@ -71,7 +71,7 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1319b74 (description: null) (name: checkDuplicateId) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNuUDEeCPBthxhfdg8g.pt)", out.toString());
 	}
 
 	protected void method_checkNotEmptyStringId(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -83,7 +83,7 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d4aa61 (description: null) (name: checkNotEmptyStringId) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._R8_ekOXtEeCXgYqTOUaRCQ.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

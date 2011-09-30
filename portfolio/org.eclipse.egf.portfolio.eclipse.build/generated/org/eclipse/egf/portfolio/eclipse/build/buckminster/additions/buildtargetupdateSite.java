@@ -95,7 +95,7 @@ public class buildtargetupdateSite extends org.eclipse.egf.portfolio.eclipse.bui
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c9e2df (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._zgvmsJ5GEd-3wvN5SnesGA/method._zgvmtJ5GEd-3wvN5SnesGA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

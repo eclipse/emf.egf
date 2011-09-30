@@ -98,7 +98,7 @@ public class buildtarget extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 
 		fileName = "build.target";
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1302067 (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._9fO-sJNGEd-BJKD_XS9R2A/method._CgZagJ4TEd-3wvN5SnesGA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_begin(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -109,7 +109,7 @@ public class buildtarget extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -119,14 +119,14 @@ public class buildtarget extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9f4cda (description: null) (name: begin) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._9fO-sJNGEd-BJKD_XS9R2A/method._9fO-tJNGEd-BJKD_XS9R2A.pt)", stringBuffer.toString());
 	}
 
 	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11d356c (description: null) (name: end) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._9fO-sJNGEd-BJKD_XS9R2A/method._cM9_AJ4WEd-3wvN5SnesGA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -91,20 +91,20 @@ public class FilePattern {
 	protected void method_setFileName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@77b7a0 (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._LIF5sKbSEd-qVbFBxWG7lA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_setFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1b897c6 (description: null) (name: setFilePath) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._pMVydKa8Ed-uuvkstnP_MQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_alterFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1f47e63 (description: null) (name: alterFilePath) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._w_qpobAkEd-kZYPuJ1ZE3A.pt)", stringBuffer.toString());
 	}
 
 	protected void method_setContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -112,7 +112,7 @@ public class FilePattern {
 		ctx.setValue("filePath", filePath);
 		ctx.setValue("fileName", fileName);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@95c1ab (description: null) (name: setContext) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._yffY0Ka8Ed-uuvkstnP_MQ.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

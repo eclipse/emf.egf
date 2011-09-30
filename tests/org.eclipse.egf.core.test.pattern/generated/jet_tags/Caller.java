@@ -99,7 +99,7 @@ public class Caller {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#LogicalName=jet_tags.Callee" args="variable:parameter, variable2:parameter2" %>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -117,16 +117,17 @@ public class Caller {
 			//<%@ egf:patternInjectedCall patternId="platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#LogicalName=jet_tags.CalleeInjected" toInject="toInject" %>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, toInject);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/jet_tags.fcore#_-d1XsFa7Ed-_dcUlU_GyPA", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@4b9e67 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._wF8wIFaPEd-xDMudhFTQKg/method._wF8wI1aPEd-xDMudhFTQKg.pt)", stringBuffer.toString());
 	}
 }

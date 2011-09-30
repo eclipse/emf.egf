@@ -97,7 +97,7 @@ public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.bu
 		stringBuffer.append(plugin.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@18ec2d7 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._CrT7cJMaEd-pjLQZUcJ3fw/method._CrT7dJMaEd-pjLQZUcJ3fw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

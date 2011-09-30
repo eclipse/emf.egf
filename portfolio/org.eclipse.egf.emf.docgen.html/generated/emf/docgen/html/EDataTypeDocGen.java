@@ -73,6 +73,6 @@ public class EDataTypeDocGen extends emf.docgen.html.EClassifierDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@136922b (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._JJGK8Ae0Ed-6kIajn4nnRQ/method._JJGK8we0Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 }

@@ -97,7 +97,7 @@ public class Triggerscm extends org.eclipse.egf.portfolio.eclipse.build.hudson.c
 		stringBuffer.append(scmTrigger.getPlanning());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ac4a5f (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._NZITMJ8GEd-nb4TPjagXkA/method._NZITNJ8GEd-nb4TPjagXkA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

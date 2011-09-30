@@ -107,20 +107,20 @@ public class child extends inheritance_2.parent {
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11cdf8a (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5HiH-Ed-CStHKuCL0dg.pt)", stringBuffer.toString());
 	}
 
 	protected void method_setToInject(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		toInject = parameter;
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@552da4 (description: null) (name: setToInject) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._nfk5ICH-Ed-CStHKuCL0dg.pt)", stringBuffer.toString());
 	}
 
 	protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@277469 (description: null) (name: setVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._an3ccCIiEd-puPzASIa3Rw.pt)", stringBuffer.toString());
 	}
 }

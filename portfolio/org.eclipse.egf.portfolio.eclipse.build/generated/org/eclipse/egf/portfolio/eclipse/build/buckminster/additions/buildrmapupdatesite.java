@@ -109,7 +109,7 @@ public class buildrmapupdatesite extends org.eclipse.egf.portfolio.eclipse.build
 		stringBuffer.append(updateSiteBuildLocation.getUrl());
 		stringBuffer.append(TEXT_5);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@168d9db (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._MXMfEJTUEd-fvPvNnKEvJg/method._MXMfFJTUEd-fvPvNnKEvJg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -96,18 +96,18 @@ public class AttributePattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d727eb (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._tCjnICLHEd-n0OdkUfG5hQ/method._tCjnIyLHEd-n0OdkUfG5hQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@469846 (description: null) (name: after) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._tCjnICLHEd-n0OdkUfG5hQ/method._C7AhICLIEd-n0OdkUfG5hQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@b7522c (description: null) (name: before) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._tCjnICLHEd-n0OdkUfG5hQ/method._DkaDcCLIEd-n0OdkUfG5hQ.pt)", stringBuffer.toString());
 	}
 }

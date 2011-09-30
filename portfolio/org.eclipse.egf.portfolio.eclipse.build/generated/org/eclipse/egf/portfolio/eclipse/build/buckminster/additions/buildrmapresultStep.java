@@ -107,7 +107,7 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 		stringBuffer.append(id);
 		stringBuffer.append(TEXT_5);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d74dae (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern.__Sk8AeUqEeCpQPfMrPZU6g/method.__Sk8BuUqEeCpQPfMrPZU6g.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

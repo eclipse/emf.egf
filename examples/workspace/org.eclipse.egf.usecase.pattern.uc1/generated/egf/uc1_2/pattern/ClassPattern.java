@@ -95,6 +95,6 @@ public class ClassPattern extends egf.uc1_2.pattern.parent.ParentPattern {
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1520a09 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._NIgPYBVgEd-JoY-b5_Vpcw/method._NIg2chVgEd-JoY-b5_Vpcw.pt)", stringBuffer.toString());
 	}
 }

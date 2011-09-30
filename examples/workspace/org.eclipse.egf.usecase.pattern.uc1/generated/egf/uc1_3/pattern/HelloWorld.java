@@ -103,6 +103,6 @@ public class HelloWorld extends egf.uc1_3.pattern.parent.Hello {
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(aClass.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@18f1004 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._AVTZcAzrEd-pgpX7a7GeEA/method._AVTZcwzrEd-pgpX7a7GeEA.pt)", stringBuffer.toString());
 	}
 }

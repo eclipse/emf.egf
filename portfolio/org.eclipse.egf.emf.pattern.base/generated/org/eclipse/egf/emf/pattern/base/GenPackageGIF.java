@@ -93,7 +93,7 @@ public class GenPackageGIF extends org.eclipse.egf.emf.pattern.base.GenBaseGIF {
 		genModel = parameter.getGenModel();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@dc3ab1 (description: null) (name: setGenModel) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._HODPICrVEd-81OQ8yF10Og/method._sjcMcCt-Ed-D6YqMf1n1Bg.pt)", stringBuffer.toString());
 	}
 
 	protected void method_preGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -101,7 +101,7 @@ public class GenPackageGIF extends org.eclipse.egf.emf.pattern.base.GenBaseGIF {
 		parameter.prepareCache();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9160dc (description: null) (name: preGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._HODPICrVEd-81OQ8yF10Og/method._yLcWwCt-Ed-D6YqMf1n1Bg.pt)", stringBuffer.toString());
 	}
 
 	protected void method_postGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -109,7 +109,7 @@ public class GenPackageGIF extends org.eclipse.egf.emf.pattern.base.GenBaseGIF {
 		parameter.clearCache();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@6e2ca2 (description: null) (name: postGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._HODPICrVEd-81OQ8yF10Og/method._0yyMcCt-Ed-D6YqMf1n1Bg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -72,7 +72,7 @@ public class buckminstercspecdepsadd {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@8ed731 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._yCPiUJMXEd-pjLQZUcJ3fw/method._yCPiVJMXEd-pjLQZUcJ3fw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

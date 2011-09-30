@@ -96,7 +96,7 @@ public class Callee5 {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ba658a (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._7zfBAHiLEd-ESZ0E4UoGEA/method._7zfBBHiLEd-ESZ0E4UoGEA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

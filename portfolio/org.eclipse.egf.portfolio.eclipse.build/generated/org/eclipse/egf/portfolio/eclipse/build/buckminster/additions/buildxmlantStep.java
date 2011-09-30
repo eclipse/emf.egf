@@ -119,7 +119,7 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 		stringBuffer.append(antStep.getXml() == null ? "" : antStep.getXml());
 		stringBuffer.append(TEXT_9);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1f0be90 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._gvxW8ZVyEd--Q_dCgK5jqw/method._gvxW9ZVyEd--Q_dCgK5jqw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

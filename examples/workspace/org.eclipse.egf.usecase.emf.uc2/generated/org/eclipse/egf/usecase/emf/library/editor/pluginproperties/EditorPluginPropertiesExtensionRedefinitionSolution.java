@@ -146,7 +146,7 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderProperties" args="parameter:argument"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -239,7 +239,7 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 		}
 		stringBuffer.append(TEXT_39);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@10ef336 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._2c5EUPmDEd-zmoGbvPxJpg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

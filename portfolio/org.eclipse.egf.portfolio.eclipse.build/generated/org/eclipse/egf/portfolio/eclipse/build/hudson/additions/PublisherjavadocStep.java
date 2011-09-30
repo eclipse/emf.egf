@@ -94,7 +94,7 @@ public class PublisherjavadocStep extends org.eclipse.egf.portfolio.eclipse.buil
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15a37ef (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._GyPi8J7_Ed-9VeXE6iwCzg/method._GyPi9J7_Ed-9VeXE6iwCzg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -111,7 +111,7 @@ public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
 		}
 		stringBuffer.append(TEXT_5);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@8ed4f4 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._J76ZUI_7Ed-Mh9dXw3mL3g/method._J76ZVI_7Ed-Mh9dXw3mL3g.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

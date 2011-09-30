@@ -94,7 +94,7 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1623ae8 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._D3WLsWEpEeC2MPWqHbfkpg/method._D3WLtmEpEeC2MPWqHbfkpg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

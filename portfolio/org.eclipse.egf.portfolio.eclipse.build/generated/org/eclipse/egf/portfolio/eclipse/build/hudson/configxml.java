@@ -116,7 +116,7 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 		fileName = "config.xml";
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9a57a0 (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._UeiToI3DEd-Tlrutn5SzgA/method._mjsJoI5cEd-Tlrutn5SzgA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_begin(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -127,7 +127,7 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -137,7 +137,7 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ef0a4f (description: null) (name: begin) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._UeiToI3DEd-Tlrutn5SzgA/method._UeiTpI3DEd-Tlrutn5SzgA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -152,13 +152,14 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_6L_TEJAWEd-LOqbFhvvp0A", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_5);
@@ -169,13 +170,14 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_AQWCMJAXEd-LOqbFhvvp0A", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_7);
@@ -186,13 +188,14 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_EBBegJAXEd-LOqbFhvvp0A", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_9);
@@ -203,13 +206,14 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_H6o0YJAXEd-LOqbFhvvp0A", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_11);
@@ -220,13 +224,14 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_LaUnUJAXEd-LOqbFhvvp0A", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_13);
@@ -237,13 +242,14 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N0HwQJAXEd-LOqbFhvvp0A", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_15);
@@ -254,25 +260,26 @@ public class configxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePa
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			ExecutionContext callCtx = new ExecutionContext((InternalPatternContext) ctx);
 			callCtx.setValue(PatternContext.INJECTED_CONTEXT, job);
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ZjWVULv6Ed-8jux89nECug", callCtx);
 			stringBuffer.setLength(0);
+
 		}
 
 		stringBuffer.append(TEXT_17);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@bd33f8 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._UeiToI3DEd-Tlrutn5SzgA/method._XWnsIJAVEd-LOqbFhvvp0A.pt)", stringBuffer.toString());
 	}
 
 	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_18);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@19ee23c (description: null) (name: end) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._UeiToI3DEd-Tlrutn5SzgA/method._i8Zm0I_xEd-W0o0l1gLQnQ.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

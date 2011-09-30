@@ -94,7 +94,7 @@ public class GenBaseText extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 		ctx.setValue("encoding", encoding);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@50211a (description: null) (name: putReporterVariablesInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._0h3ZcCg6Ed-ROrlGa8LEeQ/method._0h3Zcyg6Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -102,7 +102,7 @@ public class GenBaseText extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 		ctx.setValue("contentType", ContentType.Text);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c22e67 (description: null) (name: putContentTypeInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._0h3ZcCg6Ed-ROrlGa8LEeQ/method._hYwPACq1Ed-Id7h7r1RDwA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

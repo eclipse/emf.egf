@@ -100,6 +100,6 @@ public class AttributePattern {
 		MyHelper.incCounter(ctx);
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d07531 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._QdrPsBe2Ed-DaY2uHNBaQg/method._QdrPsxe2Ed-DaY2uHNBaQg.pt)", stringBuffer.toString());
 	}
 }

@@ -96,6 +96,6 @@ public class uc2_1_AttributePatternSubstitution1 {
 		stringBuffer.append(anAttribute.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@27d3e9 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc2/templates/pattern._BhzYkFnpEd-nCN8bxVd2Rg/method._BhzYk1npEd-nCN8bxVd2Rg.pt)", stringBuffer.toString());
 	}
 }

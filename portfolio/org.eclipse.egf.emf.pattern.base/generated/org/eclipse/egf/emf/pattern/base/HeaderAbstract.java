@@ -93,7 +93,7 @@ public class HeaderAbstract {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ab6082 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._EhBMYCwuEd-jc5T-XaRJlg/method._EhBMYywuEd-jc5T-XaRJlg.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

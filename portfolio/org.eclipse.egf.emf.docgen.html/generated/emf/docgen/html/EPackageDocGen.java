@@ -106,7 +106,7 @@ public class EPackageDocGen extends emf.docgen.html.ENamedElementDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@18d6cf4 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ChgNwAa1Ed-6kIajn4nnRQ/method._ChgNwwa1Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_writeEClasses(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -128,7 +128,7 @@ public class EPackageDocGen extends emf.docgen.html.ENamedElementDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_8);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ff207b (description: null) (name: writeEClasses) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ChgNwAa1Ed-6kIajn4nnRQ/method._rImoUAbuEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_writeEDataType(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -150,7 +150,7 @@ public class EPackageDocGen extends emf.docgen.html.ENamedElementDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_15);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ad96d5 (description: null) (name: writeEDataType) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ChgNwAa1Ed-6kIajn4nnRQ/method._3yCh0AheEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_writeEEnum(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -171,7 +171,7 @@ public class EPackageDocGen extends emf.docgen.html.ENamedElementDocGen {
 			stringBuffer.append(TEXT_21);
 		} // end if 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1899788 (description: null) (name: writeEEnum) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ChgNwAa1Ed-6kIajn4nnRQ/method._5-QhwAheEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_writeESubpackages(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -191,7 +191,7 @@ public class EPackageDocGen extends emf.docgen.html.ENamedElementDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_28);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@3b7c27 (description: null) (name: writeESubpackages) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ChgNwAa1Ed-6kIajn4nnRQ/method._XJctwAhYEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_writeEPackageReference(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -206,6 +206,6 @@ public class EPackageDocGen extends emf.docgen.html.ENamedElementDocGen {
 			stringBuffer.append(TEXT_32);
 		}
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@153ebbd (description: null) (name: writeEPackageReference) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ChgNwAa1Ed-6kIajn4nnRQ/method._9IqvoAhbEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 }

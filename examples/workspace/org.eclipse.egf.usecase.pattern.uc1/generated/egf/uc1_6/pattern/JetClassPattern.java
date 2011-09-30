@@ -101,6 +101,6 @@ public class JetClassPattern {
 		stringBuffer.append(aClass.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c5a8d8 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._riKAEBrfEd-cXtp4jDfJVg/method._riKAExrfEd-cXtp4jDfJVg.pt)", stringBuffer.toString());
 	}
 }

@@ -72,7 +72,7 @@ public class buildrmaplocationadd {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@140e2 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._AAXisJMbEd-pjLQZUcJ3fw/method._AAXitJMbEd-pjLQZUcJ3fw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

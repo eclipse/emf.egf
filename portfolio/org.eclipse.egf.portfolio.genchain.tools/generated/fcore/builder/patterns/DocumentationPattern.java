@@ -67,7 +67,7 @@ public class DocumentationPattern {
 		DocumentationHelper.addDocumentationInvocation(fc, parameter.getModelPath(), parameter.getOutputDirectoryPath(), parameter.getPluginName());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1acab60 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/templates/pattern._6jvaQIhLEd-Ii9WHGzCGHg/method._6j5LQohLEd-Ii9WHGzCGHg.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

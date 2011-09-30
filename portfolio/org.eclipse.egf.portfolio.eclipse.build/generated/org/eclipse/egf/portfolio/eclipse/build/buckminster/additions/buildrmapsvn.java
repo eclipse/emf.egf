@@ -143,7 +143,7 @@ public class buildrmapsvn extends org.eclipse.egf.portfolio.eclipse.build.buckmi
 		stringBuffer.append(new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix()));
 		stringBuffer.append(TEXT_15);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1e77753 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._EGUrcJMbEd-pjLQZUcJ3fw/method._EGUrdJMbEd-pjLQZUcJ3fw.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -90,14 +90,14 @@ public class buckminsterant extends org.eclipse.egf.portfolio.eclipse.build.Buil
 
 		fileName = "buckminster.ant";
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@c81878 (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._reLAwaCeEd-EVKBm7hW9sA/method._1BHWoKCeEd-EVKBm7hW9sA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@be8853 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._reLAwaCeEd-EVKBm7hW9sA/method._reLAxaCeEd-EVKBm7hW9sA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

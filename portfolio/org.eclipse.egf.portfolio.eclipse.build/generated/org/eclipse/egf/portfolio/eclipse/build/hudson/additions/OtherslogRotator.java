@@ -74,7 +74,7 @@ public class OtherslogRotator extends org.eclipse.egf.portfolio.eclipse.build.hu
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@16a925c (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern.__KOOsMS7Ed-vaoSzswKR5Q/method.__KOOtMS7Ed-vaoSzswKR5Q.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

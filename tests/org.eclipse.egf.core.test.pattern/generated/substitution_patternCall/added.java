@@ -96,7 +96,7 @@ public class added {
 		stringBuffer.append(eClass.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@2520fa (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._acQJ4JAhEd-qRrvFxb1RDA/method._acQJ5JAhEd-qRrvFxb1RDA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

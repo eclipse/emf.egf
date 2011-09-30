@@ -90,7 +90,7 @@ public class buildmspec extends org.eclipse.egf.portfolio.eclipse.build.BuildSte
 
 		fileName = "build.mspec";
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@e854ec (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern.__ajJII6WEd-e7viTqNBNrA/method._B8EqsI6XEd-e7viTqNBNrA.pt)", stringBuffer.toString());
 	}
 
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -101,7 +101,7 @@ public class buildmspec extends org.eclipse.egf.portfolio.eclipse.build.BuildSte
 			//%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -111,7 +111,7 @@ public class buildmspec extends org.eclipse.egf.portfolio.eclipse.build.BuildSte
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11f578c (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern.__ajJII6WEd-e7viTqNBNrA/method.__ajJJI6WEd-e7viTqNBNrA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

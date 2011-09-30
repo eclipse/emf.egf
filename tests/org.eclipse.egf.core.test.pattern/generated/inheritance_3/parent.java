@@ -96,7 +96,7 @@ public class parent {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@10379db (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._72W_cCITEd-XdOucj2euiQ/method._72W_cyITEd-XdOucj2euiQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_mywork(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -105,6 +105,6 @@ public class parent {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@a8bf33 (description: null) (name: mywork) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._72W_cCITEd-XdOucj2euiQ/method._G4w88CIUEd-XdOucj2euiQ.pt)", stringBuffer.toString());
 	}
 }

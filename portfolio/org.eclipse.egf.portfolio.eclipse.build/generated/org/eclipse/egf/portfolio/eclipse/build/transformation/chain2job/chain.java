@@ -61,21 +61,21 @@ public class chain {
 		newJob.setName("all");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ba709 (description: null) (name: createNewJob) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZeD7Ed-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_putNewJobInContext(final StringBuffer out, final PatternContext ctx) throws Exception {
 		ctx.setValue("newJob", newJob);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@c2ef53 (description: null) (name: putNewJobInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._bX9uIOEIEd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	protected void method_addNewJobToChain(final StringBuffer out, final PatternContext ctx) throws Exception {
 		chain.getJobs().add(0, newJob);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ee470d (description: null) (name: addNewJobToChain) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._nJpvUOEPEd-wsOGCR2RJpg.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

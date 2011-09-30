@@ -82,7 +82,7 @@ public class EEnumDocGen extends emf.docgen.html.EDataTypeDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@34f715 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._Y2B94Ae0Ed-6kIajn4nnRQ/method._Y2B94we0Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_writeEEnumLiteral(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -102,6 +102,6 @@ public class EEnumDocGen extends emf.docgen.html.EDataTypeDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_8);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@79b7fc (description: null) (name: writeEEnumLiteral) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._Y2B94Ae0Ed-6kIajn4nnRQ/method._mELvUAe2Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
 	}
 }

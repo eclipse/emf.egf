@@ -96,7 +96,7 @@ public class ContainerPattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1397986 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._2Gd44AK5EeCbJtlATdOycQ/method._2Gd45QK5EeCbJtlATdOycQ.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

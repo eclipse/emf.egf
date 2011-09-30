@@ -108,7 +108,7 @@ public class BorrowgetImage extends org.eclipse.egf.emf.pattern.edit.call.ItemPr
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@6aec3b (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._N3asEAOrEeCGNMhVtAFERQ/method._N3asFQOrEeCGNMhVtAFERQ.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -68,7 +68,7 @@ public class SampleElementPattern {
 		ActivityInvocationHelper.addInvocation(pp, (Activity) resourceSet.getEObject(uri, true));
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1b4aa7 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.extension/templates/pattern._fMAHcKYjEd-c68Bv_MO43Q/method._fMAHdKYjEd-c68Bv_MO43Q.pt)", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

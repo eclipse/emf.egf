@@ -98,7 +98,7 @@ public class child extends inheritance_3.parent {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@725d9b (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._-HLLgyITEd-XdOucj2euiQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_hehe(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -107,6 +107,6 @@ public class child extends inheritance_3.parent {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@106f9df (description: null) (name: hehe) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._JBYPQCIUEd-XdOucj2euiQ.pt)", stringBuffer.toString());
 	}
 }

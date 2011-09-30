@@ -161,7 +161,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.edit.call.ItemProvider.ItemProvider.newChildDescriptorsReferenceFeature.insert" args="createClass:createClass,createFeature:createFeature,delegatedFeature:delegatedFeature,createClassifier:createClassifier,childCreationData:childCreationData,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -179,7 +179,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 
 		stringBuffer.append(TEXT_10);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@dbe649 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.egf/templates/pattern._lRD_0PGTEd-yReKccS25lA/method._lRD_1fGTEd-yReKccS25lA.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -97,7 +97,7 @@ public class Triggercron extends org.eclipse.egf.portfolio.eclipse.build.hudson.
 		stringBuffer.append(cronTrigger.getPlanning());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@187831 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._WOWc4Z8FEd-qe8Qq1eNVqQ/method._WOWc5Z8FEd-qe8Qq1eNVqQ.pt)", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

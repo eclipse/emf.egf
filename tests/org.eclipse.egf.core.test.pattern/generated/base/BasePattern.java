@@ -75,13 +75,13 @@ public class BasePattern {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d7db45 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._IF6vwCIYEd-XdOucj2euiQ/method._IF6vwyIYEd-XdOucj2euiQ.pt)", stringBuffer.toString());
 	}
 
 	protected void method_pipo(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1114484 (description: null) (name: pipo) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._IF6vwCIYEd-XdOucj2euiQ/method._J3HnoCIYEd-XdOucj2euiQ.pt)", stringBuffer.toString());
 	}
 }
