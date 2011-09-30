@@ -122,8 +122,8 @@ public abstract class Node {
     public static class Leaf extends Node {
 
         // TODO to be removed
-        public Leaf(Node.Container parent, String patternClass, String value) {
-            super(parent, patternClass);
+        public Leaf(Node.Container parent, Class cls, String value) {
+            super(parent, null);
         }
 
         protected Leaf(Node.Container parent, String patternClass) {
