@@ -1,1 +1,0 @@
-cleanStep.getJob().getSteps().remove(cleanStep);

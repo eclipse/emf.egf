@@ -1,9 +1,0 @@
-if (buildStep.getCleanBeforeBuild() == CLEAN_TYPE.RESULT) {
-	buildStep.setCleanBeforeBuild(CLEAN_TYPE.WORKSPACE);
-	Step firstStep = buildStep.getJob().getSteps().get(0);
-	if (!firstStep.eClass().equals(BuildstepPackage.eINSTANCE.getCleanStep())) {
-		CleanStep cleanStep = BuildstepFactory.eINSTANCE.createCleanStep();
-		cleanStep.setType(CLEAN_TYPE.RESULT);
-		buildStep.getJob().getSteps().add(0, cleanStep);
-	}
-}
