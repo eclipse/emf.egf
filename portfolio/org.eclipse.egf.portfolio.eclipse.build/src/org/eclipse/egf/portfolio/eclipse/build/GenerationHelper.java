@@ -36,16 +36,6 @@ import org.eclipse.emf.ecore.EObject;
  * 
  */
 public class GenerationHelper {
-
-    public String getCleanTypeString(String prefix, String suffix, CLEAN_TYPE cleanType) {
-        if (cleanType == null || cleanType == CLEAN_TYPE.NOTHING)
-            return "";
-        if (cleanType == CLEAN_TYPE.RESULT)
-            return prefix + "clean.result" + suffix;
-        if (cleanType == CLEAN_TYPE.WORKSPACE)
-            return prefix + "clean.workspace" + suffix;
-        return "unknown " + cleanType;
-    }
     
     public boolean hasTargetPlatformBuildLocation(EObject eObject) {
         return containsClass(eObject, BuildstepPackage.eINSTANCE.getTargetPlatformBuildLocation());

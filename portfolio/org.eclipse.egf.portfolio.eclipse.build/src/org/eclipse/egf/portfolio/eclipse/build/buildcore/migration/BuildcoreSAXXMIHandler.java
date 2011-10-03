@@ -17,11 +17,14 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.migration;
 
 import java.util.Map;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMap.Entry;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.SAXXMIHandler;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 
 /**
  * @author Matthieu Helleboid
@@ -48,7 +51,18 @@ public class BuildcoreSAXXMIHandler extends SAXXMIHandler {
 	@Override
 	protected void processObject(EObject object) {
 		super.processObject(object);
-		if (migrateCleanStep && BuildstepPackage.eINSTANCE.getBuildStep().equals(object.eClass())) {
+		
+		if (migrateCleanStep && object instanceof BuildStep) {
+			AnyType anyType = eObjectToExtensionMap.get(object);
+			if (anyType != null) {
+				FeatureMap anyAttribute = anyType.getAnyAttribute();
+				for (Entry entry : anyAttribute) {
+					if ("cleanBeforeBuild".equals(entry.getEStructuralFeature().getName())) {
+						//already a cleanBeforeBuild value
+						return;
+					}
+				}
+			}
 			//was default value
 			setAttribValue(object, "cleanBeforeBuild", "Result");
 		}

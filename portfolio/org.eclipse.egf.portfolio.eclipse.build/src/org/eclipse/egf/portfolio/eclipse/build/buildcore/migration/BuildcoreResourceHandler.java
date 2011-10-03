@@ -82,18 +82,26 @@ public class BuildcoreResourceHandler extends BasicResourceHandler {
 
 			return true;
 		}
+		
 		if ("cleanBeforeBuild".equals(structuralFeature.getName()) && owner instanceof BuildStep) {
+			CLEAN_TYPE cleanType = CLEAN_TYPE.get((String) value);
+			if (cleanType == CLEAN_TYPE.NOTHING) {
+				//No need for a clean step
+				return true;
+			}
+
 			BuildStep buildStep = (BuildStep) owner;
 			Job job = buildStep.getJob();
 			
 			CleanStep cleanStep = BuildstepFactory.eINSTANCE.createCleanStep();
-			cleanStep.setType(CLEAN_TYPE.get((String) value));
+			cleanStep.setType(cleanType);
 			
 			int indexOf = job.getSteps().indexOf(buildStep);
 			job.getSteps().add(indexOf, cleanStep);
 			
 			return true;
 		}
+		
 		return false;
 	}
 }
