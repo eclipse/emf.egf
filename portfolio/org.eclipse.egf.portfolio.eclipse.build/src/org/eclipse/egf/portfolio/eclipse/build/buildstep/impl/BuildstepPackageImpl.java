@@ -1016,7 +1016,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEClass(resultStepEClass, ResultStep.class, "ResultStep", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(cleanStepEClass, CleanStep.class, "CleanStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getCleanStep_Type(), this.getCLEAN_TYPE(), "type", null, 1, 1, CleanStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getCleanStep_Type(), this.getCLEAN_TYPE(), "type", "Workspace", 1, 1, CleanStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(buildStepEClass, BuildStep.class, "BuildStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getBuildStep_BuildLocations(), this.getBuildLocation(), this.getBuildLocation_BuildStep(), "buildLocations", null, 0, -1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
