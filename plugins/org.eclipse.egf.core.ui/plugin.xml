@@ -65,13 +65,6 @@
             id="org.eclipse.egf.preferences.production">
             <keywordReference id="org.eclipse.egf.general"/>
         </page>    
-        <page
-            name="%egf.preferences.trace"
-            class="org.eclipse.egf.core.ui.internal.preferences.TracePreferencePage"
-            category="org.eclipse.egf.preferences"      
-            id="org.eclipse.egf.preferences.trace">
-            <keywordReference id="org.eclipse.egf.general"/>
-        </page>    
     </extension>
   
     <!-- ================================================================================= -->

@@ -20,35 +20,29 @@
     <extension-point 
         id="fcore" 
         name="%EGFFcoreExtensionPoint" 
-        schema="schema/fcore.exsd"
-    />
+        schema="schema/fcore.exsd"/>
   
     <extension-point 
         id="fcoreProcessor" 
         name="%EGFFcoreProcessorExtensionPoint" 
-        schema="schema/fcoreProcessor.exsd"
-    />  
+        schema="schema/fcoreProcessor.exsd"/>  
     
     <!-- ================================================================================= -->
     <!-- EGF Platform Manager                                                              -->
     <!-- ================================================================================= -->  
 
     <extension
-        point="org.eclipse.egf.core.platform.manager"
-    >
+        point="org.eclipse.egf.core.platform.manager">
         <manager
             extension="org.eclipse.egf.core.fcore"    
-            class="org.eclipse.egf.core.internal.fcore.PlatformFcoreFactory"
-        />       
+            class="org.eclipse.egf.core.internal.fcore.PlatformFcoreFactory"/>       
     </extension>  
   
     <extension
-        point="org.eclipse.egf.core.platform.manager"
-    >
+        point="org.eclipse.egf.core.platform.manager">
         <manager
             extension="org.eclipse.emf.ecore.generated_package"    
-            class="org.eclipse.egf.core.internal.genmodel.PlatformGenModelFactory"
-        />       
+            class="org.eclipse.egf.core.internal.genmodel.PlatformGenModelFactory"/>       
     </extension>  
     
     <!-- ================================================================================= -->
@@ -58,12 +52,9 @@
     <extension
         point="org.eclipse.core.resources.natures"  
         id="EGFNature"
-        name="%EGFNature"
-    >
+        name="%EGFNature">
         <runtime>
-            <run
-                class="org.eclipse.egf.core.internal.natures.FcoreProject"
-            />
+            <run class="org.eclipse.egf.core.internal.natures.FcoreProject"/>
         </runtime>
     </extension> 
   
@@ -72,12 +63,19 @@
     <!-- ================================================================================= -->  
   
     <extension
-        point="org.eclipse.emf.transaction.editingDomains"
-    >
+        point="org.eclipse.emf.transaction.editingDomains">
         <editingDomain
             factory="org.eclipse.egf.core.domain.TargetPlatformEditingDomainFactory"
-            id="org.eclipse.egf.core.editing.domain"
-        />
+            id="org.eclipse.egf.core.editing.domain"/>
     </extension>     
+
+    <extension 
+        point="org.eclipse.emf.ecore.generated_package">
+        <package
+            uri="http://www.eclipse.org/egf/1.0.0/trace"
+            class="org.eclipse.egf.core.trace.TracePackage"
+            genModel="model/trace.genmodel"/>
+    </extension>  
+  
 
 </plugin>

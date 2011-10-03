@@ -28,5 +28,6 @@ Export-Package:
  org.eclipse.egf.pattern.strategy,
  org.eclipse.egf.pattern.strategy.domaindriven,
  org.eclipse.egf.pattern.templates,
+ org.eclipse.egf.pattern.trace,
  org.eclipse.egf.pattern.utils
 Bundle-Vendor: %providerName

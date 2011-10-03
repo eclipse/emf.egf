@@ -291,6 +291,23 @@ public class Messages extends NLS {
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
 
+    public static String TracePreferencePage_Title;
+    public static String TracePreferencePage_Description;
+    public static String TracePreferencePage_Load_Error_Title;
+    public static String TracePreferencePage_Load_Error_Message;
+    public static String TracePreferencePage_Save_Error_Title;
+    public static String TracePreferencePage_Save_Error_Message;
+    public static String TracePreferencePage_Label_1;
+    public static String TracePreferencePage_Label_2;
+    public static String TracePreferencePage_Label_3;
+    public static String TracePreferencePage_Label_4;
+    public static String TracePreferencePage_Label_5;
+    public static String TracePreferencePage_Label_6;
+    public static String TracePreferencePage_Label_7;
+    public static String TracePreferencePage_Label_8;
+    public static String TracePreferencePage_Label_9;
+    public static String TracePreferencePage_Label_10;
+
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
     }

@@ -5,23 +5,28 @@
     <extension-point 
         id="templateEditor" 
         name="templateEditor" 
-        schema="schema/templateEditor.exsd"
-    />
+        schema="schema/templateEditor.exsd"/>
+        
+    <extension point="org.eclipse.ui.preferencePages">
+        <page
+            name="%egf.preferences.trace"
+            class="org.eclipse.egf.pattern.ui.trace.TracePreferencePage"
+            category="org.eclipse.egf.preferences"      
+            id="org.eclipse.egf.preferences.trace">
+            <keywordReference id="org.eclipse.egf.general"/>
+        </page>    
+    </extension>
 
     <extension 
-        point="org.eclipse.egf.core.ui.editor.menu.contributor"
-    >
+        point="org.eclipse.egf.core.ui.editor.menu.contributor">
         <contribution
-            class="org.eclipse.egf.pattern.ui.contributions.PatternMenuContributor"
-        />
+            class="org.eclipse.egf.pattern.ui.contributions.PatternMenuContributor"/>
     </extension>
 
    	<extension
-        point="org.eclipse.egf.core.ui.editor.listener.contributor"
-    >
+        point="org.eclipse.egf.core.ui.editor.listener.contributor">
         <contribution
-            class="org.eclipse.egf.pattern.ui.contributions.PatternListenerContributor"
-        />
+            class="org.eclipse.egf.pattern.ui.contributions.PatternListenerContributor"/>
     </extension>
 
   	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
@@ -62,12 +67,10 @@
 	</extension>
 
     <extension 
-        point="org.eclipse.ui.elementFactories"
-    >
+        point="org.eclipse.ui.elementFactories">
         <factory 
             id="org.eclipse.egf.pattern.ui.pattern.factory.id" 
-            class="org.eclipse.egf.pattern.ui.editors.PatternElementFactory" 
-        /> 
+            class="org.eclipse.egf.pattern.ui.editors.PatternElementFactory"/> 
     </extension>
    
     <extension
@@ -239,8 +242,4 @@
              context="org.eclipse.egf.pattern.ui.patternVariableContext">
        </binding>
     </extension>
-  	
-  
-  	
-   
 </plugin>
