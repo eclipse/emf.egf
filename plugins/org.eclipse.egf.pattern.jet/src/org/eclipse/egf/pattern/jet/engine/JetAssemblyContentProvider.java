@@ -87,7 +87,7 @@ public class JetAssemblyContentProvider extends AbstractJavaAssemblyContentProvi
             content.append(getMethodContent(method));
             content.append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("<%InternalPatternContext ictx = (InternalPatternContext) ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("new Node.DataLeaf(ictx.getNode(), getClass(), \"").append(method).append("\", ").append(javaMethodHelper.getBufferName()).append(".toString());").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("new Node.DataLeaf(ictx.getNode(), getClass(), \"").append(method.getName()).append("\", ").append(javaMethodHelper.getBufferName()).append(".toString());").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("}%>").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
