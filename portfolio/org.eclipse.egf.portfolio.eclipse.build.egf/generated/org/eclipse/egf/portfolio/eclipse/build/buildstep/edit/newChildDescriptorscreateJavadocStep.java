@@ -39,6 +39,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
         InternalPatternContext ctx = (InternalPatternContext) argument;
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
+        Node.Container currentNode = ctx.getNode();
 
         List<Object> createClassList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -75,8 +76,10 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
                                         this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
                                         this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-                                        if (preCondition())
+                                        if (preCondition()) {
+                                            ctx.setNode(new Node.Container(currentNode, getClass()));
                                             orchestration(ctx);
+                                        }
 
                                     }
                                 }
@@ -86,9 +89,9 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
                 }
             }
         }
+        ctx.setNode(currentNode);
         if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
+            ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
         }
 
         stringBuffer.append(TEXT_2);
@@ -98,14 +101,11 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
 
         super.orchestration(new SuperOrchestrationContext(ictx));
 
-        String loop = ictx.getBuffer().toString();
+        String loop = Node.flattenWithoutCallback(ictx.getNode());
         if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
             Map<String, Object> parameterValues = new HashMap<String, Object>();
             parameterValues.put("createClass", this.createClass);
             parameterValues.put("createFeature", this.createFeature);
@@ -115,9 +115,9 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
             parameterValues.put("genClass", this.genClass);
             parameterValues.put("genPackage", this.genPackage);
             parameterValues.put("genModel", this.genModel);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+            String outputWithCallBack = Node.flatten(ictx.getNode());
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
+            ;
         }
         return loop;
     }
@@ -138,6 +138,8 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@bb4949 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build.egf/templates/pattern._Gg3E0K9iEd-9ZMYZexsxtg/method._Gg3E1K9iEd-9ZMYZexsxtg.pt)", stringBuffer.toString());
     }
 
     public boolean preCondition() throws Exception {
