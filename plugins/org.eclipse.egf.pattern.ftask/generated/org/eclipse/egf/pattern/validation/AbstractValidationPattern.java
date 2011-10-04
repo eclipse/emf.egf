@@ -44,7 +44,7 @@ public class AbstractValidationPattern {
 		diagnosticChain = (DiagnosticChain) ctx.getValue("diagnostic");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@6a3d17 (description: null) (name: getDiagnosticChainFromContext) (patternFilePath: platform:/plugin/org.eclipse.egf.pattern.ftask/templates/pattern._jKJUYKt7Ed-0oekoriqU8Q/method._jKJUZKt7Ed-0oekoriqU8Q.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "getDiagnosticChainFromContext", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {
