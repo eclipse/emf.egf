@@ -110,13 +110,13 @@ public class ClassPattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1de0a7c (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._YVbv8RViEd-JoY-b5_Vpcw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_setupVariable(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		variable = parameter;
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@68d27e (description: null) (name: setupVariable) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._YVbI4BViEd-JoY-b5_Vpcw/method._AZL8wBVjEd-JoY-b5_Vpcw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setupVariable", stringBuffer.toString());
 	}
 }

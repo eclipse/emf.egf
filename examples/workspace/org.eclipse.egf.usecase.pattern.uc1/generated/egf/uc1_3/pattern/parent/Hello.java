@@ -75,20 +75,20 @@ public class Hello {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@729084 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._7nKkcAzsEd-pgpX7a7GeEA/method._7nKkcwzsEd-pgpX7a7GeEA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_SayHello(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15c595b (description: null) (name: SayHello) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._7nKkcAzsEd-pgpX7a7GeEA/method._Z8MpMAztEd-pgpX7a7GeEA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "SayHello", stringBuffer.toString());
 	}
 
 	protected void method_finish(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1eea39c (description: null) (name: finish) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._7nKkcAzsEd-pgpX7a7GeEA/method._pn8JUAztEd-pgpX7a7GeEA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "finish", stringBuffer.toString());
 	}
 }

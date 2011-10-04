@@ -95,6 +95,6 @@ public class attributePattern {
 		stringBuffer.append(anAttribute.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@3e73f3 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._e1Lf4BsbEd-Cmei4SZ1Naw/method._e1Lf4xsbEd-Cmei4SZ1Naw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }

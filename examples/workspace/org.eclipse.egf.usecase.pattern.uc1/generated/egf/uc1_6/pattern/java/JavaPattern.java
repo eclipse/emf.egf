@@ -61,7 +61,7 @@ public class JavaPattern {
 		EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@8e50fa (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._iXOsIBrgEd-cXtp4jDfJVg/method._iXOsIxrgEd-cXtp4jDfJVg.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
 	protected org.eclipse.emf.ecore.EClass aClass;

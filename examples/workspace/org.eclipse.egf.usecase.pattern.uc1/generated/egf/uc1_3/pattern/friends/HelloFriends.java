@@ -93,6 +93,6 @@ public class HelloFriends {
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(element.getName());
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@5ef26b (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/templates/pattern._7-a0kAzxEd-sdvrVfWaxAw/method._7-a0kwzxEd-sdvrVfWaxAw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }
