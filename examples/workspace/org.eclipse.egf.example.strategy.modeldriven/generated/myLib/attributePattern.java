@@ -98,6 +98,6 @@ public class attributePattern {
 		stringBuffer.append("attribute " + parameter.getName());
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@cc31b (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/templates/pattern._X0ajUPuUEd6-V5xjQsdIkw/method._X0ajU_uUEd6-V5xjQsdIkw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }

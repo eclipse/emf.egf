@@ -61,7 +61,7 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@8bdeeb (description: null) (name: checkAttributes) (patternFilePath: platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/templates/pattern._yWdvwKuKEd-xlMT8MPVQ3Q/method._yWdvxKuKEd-xlMT8MPVQ3Q.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "checkAttributes", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

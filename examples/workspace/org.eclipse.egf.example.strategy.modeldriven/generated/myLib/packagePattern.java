@@ -98,6 +98,6 @@ public class packagePattern {
 		stringBuffer.append("package " + parameter.getName());
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@168afc8 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/templates/pattern._eKJWUPuUEd6-V5xjQsdIkw/method._eKJWU_uUEd6-V5xjQsdIkw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }
