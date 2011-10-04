@@ -9,91 +9,91 @@ import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
 
 public class recompilepatterns extends org.eclipse.egf.portfolio.eclipse.build.buckminster.additions.buildxmlbuildStep {
-    protected static String nl;
+	protected static String nl;
 
-    public static synchronized recompilepatterns create(String lineSeparator) {
-        nl = lineSeparator;
-        recompilepatterns result = new recompilepatterns();
-        nl = null;
-        return result;
-    }
+	public static synchronized recompilepatterns create(String lineSeparator) {
+		nl = lineSeparator;
+		recompilepatterns result = new recompilepatterns();
+		nl = null;
+		return result;
+	}
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "        <echo message=\"Recompile all patterns workspace ${workspace}\" />" + NL + "\t\t<antcall target=\"install.egf\" />" + NL + "\t\t<egf>" + NL + "            <globargs>" + NL + "\t\t\t\t<jvmarg value=\"-Degf.target.bundle.priority=true\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<activities>" + NL + "\t\t\t\t<arg value=\"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw\"/>" + NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "" + NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL
-            + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL + "\t\t</buckminster>" + NL + "\t\t";
-    protected final String TEXT_2 = NL;
-    protected final String TEXT_3 = NL;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "        <echo message=\"Recompile all patterns workspace ${workspace}\" />" + NL + "\t\t<antcall target=\"install.egf\" />" + NL + "\t\t<egf>" + NL + "            <globargs>" + NL + "\t\t\t\t<jvmarg value=\"-Degf.target.bundle.priority=true\" />" + NL + "\t\t\t</globargs>" + NL + "\t\t\t<activities>" + NL + "\t\t\t\t<arg value=\"platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw\"/>" + NL + "\t\t\t</activities>" + NL + "\t\t</egf>" + NL + "" + NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL
+			+ "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL + "\t\t</buckminster>" + NL + "\t\t";
+	protected final String TEXT_2 = NL;
+	protected final String TEXT_3 = NL;
 
-    public recompilepatterns() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+	public recompilepatterns() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    }
+	}
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
-        Node.Container currentNode = ctx.getNode();
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("buildStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//BuildStep");
-        queryCtx = new HashMap<String, String>();
-        List<Object> buildStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		paramDesc = new IQuery.ParameterDescription("buildStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//BuildStep");
+		queryCtx = new HashMap<String, String>();
+		List<Object> buildStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object buildStepParameter : buildStepList) {
+		for (Object buildStepParameter : buildStepList) {
 
-            this.buildStep = (org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep) buildStepParameter;
+			this.buildStep = (org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep) buildStepParameter;
 
-            if (preCondition()) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration(ctx);
-            }
+			if (preCondition()) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
-        }
-        ctx.setNode(currentNode);
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
-        }
+		}
+		ctx.setNode(currentNode);
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+		}
 
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(TEXT_3);
-        return stringBuffer.toString();
-    }
+		stringBuffer.append(TEXT_2);
+		stringBuffer.append(TEXT_3);
+		return stringBuffer.toString();
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-        String loop = Node.flattenWithoutCallback(ictx.getNode());
-        if (ictx.useReporter()) {
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("buildStep", this.buildStep);
-            String outputWithCallBack = Node.flatten(ictx.getNode());
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ;
-        }
-        return loop;
-    }
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("buildStep", this.buildStep);
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			;
+		}
+		return loop;
+	}
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("buildStep", this.buildStep);
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("buildStep", this.buildStep);
+		return parameters;
+	}
 
-    protected void method_build(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_build(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_1);
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c4344c (description: null) (name: build) (patternFilePath: platform:/plugin/org.eclipse.egf.releng2/templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JyovEeCBw7S2pyk8wg.pt)", stringBuffer.toString());
-    }
+		stringBuffer.append(TEXT_1);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "build", stringBuffer.toString());
+	}
 
-    public boolean preCondition() throws Exception {
-        return super.preCondition();
-    }
+	public boolean preCondition() throws Exception {
+		return super.preCondition();
+	}
 }
