@@ -135,7 +135,7 @@ public class ModeEcorelPattern {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1b0dea6 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/templates/pattern._vGOOEIhLEd-Ii9WHGzCGHg/method._vGOOFIhLEd-Ii9WHGzCGHg.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -79,7 +79,7 @@ public class GenerationChainPattern {
 		ActivityInvocationHelper.addInvocation((ProductionPlan) parentFC.getOrchestration(), fc);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@105fbff (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.tools/templates/pattern._PEgOMJP1Ed-VWYO2ku8vVw/method._PEgONJP1Ed-VWYO2ku8vVw.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {
