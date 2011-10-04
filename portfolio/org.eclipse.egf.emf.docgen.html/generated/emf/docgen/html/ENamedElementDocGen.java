@@ -73,6 +73,6 @@ public class ENamedElementDocGen extends emf.docgen.html.EModelElementDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@efeb87 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._8Jp64Aa0Ed-6kIajn4nnRQ/method._8Jp64wa0Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }

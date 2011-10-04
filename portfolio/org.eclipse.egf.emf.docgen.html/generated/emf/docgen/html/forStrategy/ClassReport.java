@@ -116,7 +116,7 @@ public class ClassReport extends emf.docgen.html.EClassDocGen {
 		stringBuffer.append(element.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@eefca4 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ouOkgAbWEd-6kIajn4nnRQ/method._ouOkgwbWEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_setVariable(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -128,6 +128,6 @@ public class ClassReport extends emf.docgen.html.EClassDocGen {
 		_element = element;
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11e7dd8 (description: null) (name: setVariable) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._ouOkgAbWEd-6kIajn4nnRQ/method._FWeXUAbXEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setVariable", stringBuffer.toString());
 	}
 }

@@ -104,7 +104,7 @@ public class EnumerationReport extends emf.docgen.html.EEnumDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@3efdc4 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._xhMiAAeyEd-6kIajn4nnRQ/method._xhMiAweyEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_setVariable(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -116,6 +116,6 @@ public class EnumerationReport extends emf.docgen.html.EEnumDocGen {
 		_element = element;
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@eeef95 (description: null) (name: setVariable) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._xhMiAAeyEd-6kIajn4nnRQ/method._lJca0Ae1Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setVariable", stringBuffer.toString());
 	}
 }

@@ -90,7 +90,7 @@ public class ObjectDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9e98ac (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._kXoFkAazEd-6kIajn4nnRQ/method._kXoFkwazEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_fileHeader(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -101,7 +101,7 @@ public class ObjectDocGen {
 		stringBuffer.append(_Title);
 		stringBuffer.append(TEXT_4);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1b3c442 (description: null) (name: fileHeader) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._kXoFkAazEd-6kIajn4nnRQ/method._UL7-cAbREd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "fileHeader", stringBuffer.toString());
 	}
 
 	protected void method_fileFooter(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -110,7 +110,7 @@ public class ObjectDocGen {
 		stringBuffer.append(_copyright);
 		stringBuffer.append(TEXT_6);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@119dc64 (description: null) (name: fileFooter) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._kXoFkAazEd-6kIajn4nnRQ/method._U9Z3oAbREd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "fileFooter", stringBuffer.toString());
 	}
 
 	protected void method_setSpecificVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -118,6 +118,6 @@ public class ObjectDocGen {
 		_copyright = "";
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@d44892 (description: null) (name: setSpecificVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._kXoFkAazEd-6kIajn4nnRQ/method._gvTcsAezEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setSpecificVariables", stringBuffer.toString());
 	}
 }

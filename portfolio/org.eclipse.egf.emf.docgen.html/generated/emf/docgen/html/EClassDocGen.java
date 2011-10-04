@@ -128,7 +128,7 @@ public class EClassDocGen extends emf.docgen.html.EClassifierDocGen {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1653029 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._K0k3MAa1Ed-6kIajn4nnRQ/method._K0k3Mwa1Ed-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_writeEAttributes(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -162,7 +162,7 @@ public class EClassDocGen extends emf.docgen.html.EClassifierDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_15);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@16a40b2 (description: null) (name: writeEAttributes) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._K0k3MAa1Ed-6kIajn4nnRQ/method._hbnLIAbZEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "writeEAttributes", stringBuffer.toString());
 	}
 
 	protected void method_writeEOperations(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -206,7 +206,7 @@ public class EClassDocGen extends emf.docgen.html.EClassifierDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_34);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@bd66d7 (description: null) (name: writeEOperations) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._K0k3MAa1Ed-6kIajn4nnRQ/method._c5ZJ4AbpEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "writeEOperations", stringBuffer.toString());
 	}
 
 	protected void method_writeEReferences(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -240,7 +240,7 @@ public class EClassDocGen extends emf.docgen.html.EClassifierDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_48);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@aae1f3 (description: null) (name: writeEReferences) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._K0k3MAa1Ed-6kIajn4nnRQ/method._lTjW8AbiEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "writeEReferences", stringBuffer.toString());
 	}
 
 	protected void method_writeSuperTypes(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -259,6 +259,6 @@ public class EClassDocGen extends emf.docgen.html.EClassifierDocGen {
 		} // end if 
 		stringBuffer.append(TEXT_54);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@d82739 (description: null) (name: writeSuperTypes) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.docgen.html/templates/pattern._K0k3MAa1Ed-6kIajn4nnRQ/method._zu6s8AblEd-6kIajn4nnRQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "writeSuperTypes", stringBuffer.toString());
 	}
 }
