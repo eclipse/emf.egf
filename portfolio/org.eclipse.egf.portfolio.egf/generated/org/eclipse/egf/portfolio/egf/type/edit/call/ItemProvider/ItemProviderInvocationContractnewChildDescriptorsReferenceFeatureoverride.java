@@ -179,7 +179,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceFeatureov
 
 		stringBuffer.append(TEXT_10);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@dbe649 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.egf/templates/pattern._lRD_0PGTEd-yReKccS25lA/method._lRD_1fGTEd-yReKccS25lA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {
