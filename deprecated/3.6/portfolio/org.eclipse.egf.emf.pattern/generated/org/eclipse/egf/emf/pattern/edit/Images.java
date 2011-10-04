@@ -120,7 +120,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		className = genModel.getEditPluginClassName() + "Images";
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@118b660 (description: null) (name: setReporterVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._QRpIIH7rEd-W9_ZFSEQEPg/method._QRpIKH7rEd-W9_ZFSEQEPg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -129,7 +129,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		argument = parameter;
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@16d9094 (description: null) (name: setArgument) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._QRpIIH7rEd-W9_ZFSEQEPg/method._QRpIKX7rEd-W9_ZFSEQEPg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setArgument", stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -137,7 +137,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@2f1eb9 (description: null) (name: ensureProjectExists) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._QRpIIH7rEd-W9_ZFSEQEPg/method._QRpIKn7rEd-W9_ZFSEQEPg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "ensureProjectExists", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -201,7 +201,7 @@ public class Images extends org.eclipse.egf.emf.pattern.base.GenModelJava {
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_12);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@18a2ccf (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._QRpIIH7rEd-W9_ZFSEQEPg/method._QRpILH7rEd-W9_ZFSEQEPg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

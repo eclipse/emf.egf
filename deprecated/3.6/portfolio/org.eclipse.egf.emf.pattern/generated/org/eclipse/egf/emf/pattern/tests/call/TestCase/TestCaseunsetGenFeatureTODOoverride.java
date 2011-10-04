@@ -139,7 +139,7 @@ public class TestCaseunsetGenFeatureTODOoverride {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1c8006a (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._1BlmgGJ-Ed-FqczH3ESmRw/method._1Blmi2J-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

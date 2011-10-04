@@ -465,7 +465,7 @@ public class InterfacebasicGetGenFeatureoverride {
 		}
 		stringBuffer.append(TEXT_38);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ad520d (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._0wwVMGJ-Ed-FqczH3ESmRw/method._0wwVQmJ-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

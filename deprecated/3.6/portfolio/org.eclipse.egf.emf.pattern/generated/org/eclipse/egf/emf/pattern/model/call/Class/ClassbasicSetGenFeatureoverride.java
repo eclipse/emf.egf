@@ -749,7 +749,7 @@ public class ClassbasicSetGenFeatureoverride {
 		}
 		stringBuffer.append(TEXT_87);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@4dc1e4 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._0mUm0GJ-Ed-FqczH3ESmRw/method._0mUm4mJ-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -343,7 +343,7 @@ public class ClasssetGenFeaturejavadocoverride {
 		stringBuffer.append(genFeature.getGetAccessor());
 		stringBuffer.append(TEXT_16);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15a293 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._0nXIoGJ-Ed-FqczH3ESmRw/method._0nXIsmJ-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

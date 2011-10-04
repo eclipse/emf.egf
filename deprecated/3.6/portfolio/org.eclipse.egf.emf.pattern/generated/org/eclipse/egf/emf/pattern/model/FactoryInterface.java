@@ -547,7 +547,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		className = genPackage.getFactoryInterfaceName();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d040e8 (description: null) (name: setReporterVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PgVnIDG0Ed-kc8dEZsdm2w/method._PgVnJzG0Ed-kc8dEZsdm2w.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -556,7 +556,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		argument = ((Object[]) new Object[] { new Object[] { genPackage, Boolean.TRUE, Boolean.FALSE } })[0];
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15555d0 (description: null) (name: setArgument) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PgVnIDG0Ed-kc8dEZsdm2w/method._StsPyGKPEd-2a5uccsiuZA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setArgument", stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -564,7 +564,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@17506de (description: null) (name: ensureProjectExists) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PgVnIDG0Ed-kc8dEZsdm2w/method._08N1-WKMEd-_wNQtGaQ-lw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "ensureProjectExists", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -1636,7 +1636,7 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_439);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15f43d (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._PgVnIDG0Ed-kc8dEZsdm2w/method._PgVnKTG0Ed-kc8dEZsdm2w.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

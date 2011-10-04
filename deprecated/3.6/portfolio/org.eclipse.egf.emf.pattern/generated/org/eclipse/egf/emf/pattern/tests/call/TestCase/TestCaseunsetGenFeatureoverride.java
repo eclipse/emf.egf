@@ -200,7 +200,7 @@ public class TestCaseunsetGenFeatureoverride {
 		//TestCase/unsetGenFeature.todo.override.javajetinc
 		stringBuffer.append(TEXT_11);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1e8671c (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern/templates/pattern._0_NA4GJ-Ed-FqczH3ESmRw/method._0_NA62J-Ed-FqczH3ESmRw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {
