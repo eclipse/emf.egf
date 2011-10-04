@@ -178,7 +178,7 @@ public class FullNameOperation extends org.eclipse.egf.emf.pattern.model.call.Cl
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@134b5ea (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._2gDsAffhEd-N956HW8c6uQ/method.__quSgPfmEd-N956HW8c6uQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -182,7 +182,7 @@ public class CrossLibraryReservationgetDescription extends org.eclipse.egf.emf.p
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1f72855 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._2P7vUAOoEeCGNMhVtAFERQ/method._2P7vVQOoEeCGNMhVtAFERQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

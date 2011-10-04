@@ -180,7 +180,7 @@ public class BorrowgetDescription extends org.eclipse.egf.emf.pattern.model.call
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@3d63ae (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._D3RXcAOYEeCGNMhVtAFERQ/method._D3RXdQOYEeCGNMhVtAFERQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

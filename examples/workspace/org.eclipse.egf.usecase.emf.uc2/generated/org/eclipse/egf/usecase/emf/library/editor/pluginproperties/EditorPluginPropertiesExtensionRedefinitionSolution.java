@@ -239,7 +239,7 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 		}
 		stringBuffer.append(TEXT_39);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@10ef336 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._B80LoPmBEd-zmoGbvPxJpg/method._2c5EUPmDEd-zmoGbvPxJpg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

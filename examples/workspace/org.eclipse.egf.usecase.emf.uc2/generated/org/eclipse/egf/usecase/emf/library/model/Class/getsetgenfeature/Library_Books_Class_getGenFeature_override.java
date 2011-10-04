@@ -199,7 +199,7 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 		stringBuffer.append(genModel.getImportedName("org.eclipse.emf.ecore.util.EObjectEList"));
 		stringBuffer.append(TEXT_5);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@73ac97 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._A3OhUHOiEd-d5cqrgbkp6A/method._A3OhVHOiEd-d5cqrgbkp6A.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

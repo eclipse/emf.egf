@@ -89,7 +89,7 @@ public class EditPluginPropertiesExtensionAppendSolution extends org.eclipse.egf
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@16a0366 (description: null) (name: doGenerateAppendPart) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._azXdYPmgEd-ZwLLHlMEVVQ/method._azXdZfmgEd-ZwLLHlMEVVQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerateAppendPart", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

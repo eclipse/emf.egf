@@ -188,7 +188,7 @@ public class Writer_Name_Class_getGenFeature_TODO_override extends org.eclipse.e
 		stringBuffer.append(genModel.getNonNLS());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@94638f (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.usecase.emf.uc2/templates/pattern._2TwikHOhEd-d5cqrgbkp6A/method._2TwilHOhEd-d5cqrgbkp6A.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {
