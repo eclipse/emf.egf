@@ -106,13 +106,13 @@ public class AttributePattern extends callbackAndReporter3.BasePattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@b60fbb (description: null) (name: start) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._LNqJ8C3jEd-pGc-JckQO-A/method._LNqJ8y3jEd-pGc-JckQO-A.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "start", stringBuffer.toString());
 	}
 
 	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@4324d9 (description: null) (name: end) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._LNqJ8C3jEd-pGc-JckQO-A/method._Ym8fQC3jEd-pGc-JckQO-A.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
 	}
 }

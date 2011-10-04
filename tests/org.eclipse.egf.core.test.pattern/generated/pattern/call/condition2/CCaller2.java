@@ -99,7 +99,7 @@ public class CCaller2 {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@e0a1b9 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._ra9_gHeQEd-ent-ImclT8w/method._ra9_hHeQEd-ent-ImclT8w.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

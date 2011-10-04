@@ -97,6 +97,6 @@ public class InjectedPattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@dd08eb (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._7RsNYEh5Ed-A7KV9v5yLhw/method._7RsNY0h5Ed-A7KV9v5yLhw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 }

@@ -97,7 +97,7 @@ public class InjectedCallee5 {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@125659a (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._GDn-oHiNEd-ESZ0E4UoGEA/method._GDn-pHiNEd-ESZ0E4UoGEA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

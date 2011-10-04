@@ -99,6 +99,6 @@ public class all {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1367092 (description: null) (name: separator) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._D8RV8F3FEd-W5eBkkAoHaA/method._TB3cEF3FEd-W5eBkkAoHaA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "separator", stringBuffer.toString());
 	}
 }

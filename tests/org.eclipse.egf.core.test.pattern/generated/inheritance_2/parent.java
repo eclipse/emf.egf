@@ -84,20 +84,20 @@ public class parent {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9453f9 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._nfk5FiH-Ed-CStHKuCL0dg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		targetFile = null;
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@ba689b (description: null) (name: setVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._25qJACIgEd-puPzASIa3Rw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setVariables", stringBuffer.toString());
 	}
 
 	protected void method_putVariablesInContesxt(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		ctx.setValue("targetFile", targetFile);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@29a4cb (description: null) (name: putVariablesInContesxt) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._Ky8yMCIiEd-puPzASIa3Rw.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putVariablesInContesxt", stringBuffer.toString());
 	}
 }

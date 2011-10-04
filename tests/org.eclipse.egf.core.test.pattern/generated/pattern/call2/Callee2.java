@@ -56,7 +56,7 @@ public class Callee2 {
 		out.append("callee on " + parameter.getName() + "\n");
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1a9447c (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._VA72IFdJEd-TZKuCZ4UIfg/method._VA72I1dJEd-TZKuCZ4UIfg.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
 	protected org.eclipse.emf.ecore.EClass parameter;

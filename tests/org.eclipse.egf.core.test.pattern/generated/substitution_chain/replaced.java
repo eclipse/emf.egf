@@ -72,7 +72,7 @@ public class replaced {
 	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@2c7179 (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._9yQgsJmOEd-BDZHgxyTzjQ/method._9yQgtJmOEd-BDZHgxyTzjQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

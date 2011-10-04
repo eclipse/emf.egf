@@ -89,13 +89,13 @@ public class all2 {
 
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1d635a (description: null) (name: c) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._DAhtI13KEd-mZb1ihLU3ug.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "c", stringBuffer.toString());
 	}
 
 	protected void method_d(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@15134f5 (description: null) (name: d) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._DAhtIF3KEd-mZb1ihLU3ug/method._GjUecF3KEd-mZb1ihLU3ug.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "d", stringBuffer.toString());
 	}
 }

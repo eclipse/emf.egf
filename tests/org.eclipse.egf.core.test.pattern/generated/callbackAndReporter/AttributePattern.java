@@ -104,13 +104,13 @@ public class AttributePattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1a9fe14 (description: null) (name: start) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._6xCtsC26Ed-CRPSkD_BdCg/method._6xCtsy26Ed-CRPSkD_BdCg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "start", stringBuffer.toString());
 	}
 
 	protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@cbb3fa (description: null) (name: end) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._6xCtsC26Ed-CRPSkD_BdCg/method._-PHXEC26Ed-CRPSkD_BdCg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
 	}
 }

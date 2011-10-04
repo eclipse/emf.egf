@@ -90,6 +90,6 @@ public class ClassPatternExtended extends base.ClassPattern {
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9456cd (description: null) (name: start) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._WyA4cEfCEd-PqL2cWqhi6Q/method._WyA4c0fCEd-PqL2cWqhi6Q.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "start", stringBuffer.toString());
 	}
 }

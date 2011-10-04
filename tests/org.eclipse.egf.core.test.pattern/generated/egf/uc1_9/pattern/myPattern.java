@@ -42,7 +42,7 @@ public class myPattern {
 		//default content
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11ba9df (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.core.test.pattern/templates/pattern._ZjRQ4NlfEeCsc6vQ20O_Mw/method._ZjRQ5dlfEeCsc6vQ20O_Mw.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
 	public boolean preCondition() throws Exception {
