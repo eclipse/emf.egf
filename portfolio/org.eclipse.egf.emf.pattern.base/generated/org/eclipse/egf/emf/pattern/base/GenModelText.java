@@ -93,7 +93,7 @@ public class GenModelText extends org.eclipse.egf.emf.pattern.base.GenBaseText {
 		genModel = parameter.getGenModel();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@c03c11 (description: null) (name: setGenModel) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._ZTUvECg7Ed-ROrlGa8LEeQ/method._ZTUvEyg7Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setGenModel", stringBuffer.toString());
 	}
 
 	protected void method_preGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -101,7 +101,7 @@ public class GenModelText extends org.eclipse.egf.emf.pattern.base.GenBaseText {
 		parameter.getStaticGenPackages();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@f0ac6e (description: null) (name: preGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._ZTUvECg7Ed-ROrlGa8LEeQ/method._mwzm4ChGEd-zj5CV40Ozyg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "preGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

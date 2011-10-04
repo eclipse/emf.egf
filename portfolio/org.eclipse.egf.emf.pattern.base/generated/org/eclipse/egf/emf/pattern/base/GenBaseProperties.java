@@ -80,7 +80,7 @@ public class GenBaseProperties extends org.eclipse.egf.emf.pattern.base.GenAbstr
 		ctx.setValue("targetPathName", targetPathName);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@58f4d4 (description: null) (name: putReporterVariablesInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._kHUdICg7Ed-ROrlGa8LEeQ/method._kHUdIyg7Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putReporterVariablesInContext", stringBuffer.toString());
 	}
 
 	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -88,7 +88,7 @@ public class GenBaseProperties extends org.eclipse.egf.emf.pattern.base.GenAbstr
 		ctx.setValue("contentType", ContentType.Properties);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@6c6ce1 (description: null) (name: putContentTypeInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._kHUdICg7Ed-ROrlGa8LEeQ/method._h1DwgCq1Ed-Id7h7r1RDwA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putContentTypeInContext", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

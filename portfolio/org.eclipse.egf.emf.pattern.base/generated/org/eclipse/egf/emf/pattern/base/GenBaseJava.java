@@ -105,7 +105,7 @@ public class GenBaseJava extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 		ctx.setValue("className", className);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@7a1259 (description: null) (name: putReporterVariablesInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._mSY4cCg5Ed-ROrlGa8LEeQ/method._8lmb0Cg5Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putReporterVariablesInContext", stringBuffer.toString());
 	}
 
 	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -113,7 +113,7 @@ public class GenBaseJava extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 		ctx.setValue("contentType", ContentType.Java);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@4aaf0d (description: null) (name: putContentTypeInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._mSY4cCg5Ed-ROrlGa8LEeQ/method._ODnUYCq3Ed-Id7h7r1RDwA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putContentTypeInContext", stringBuffer.toString());
 	}
 
 	protected void method_createImportManager(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -163,7 +163,7 @@ public class GenBaseJava extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 		genModel.setImportManager(importManager);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@12a9118 (description: null) (name: createImportManager) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._mSY4cCg5Ed-ROrlGa8LEeQ/method._84CkwCg7Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "createImportManager", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

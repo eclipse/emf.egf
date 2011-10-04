@@ -93,7 +93,7 @@ public class GenPackageJava extends org.eclipse.egf.emf.pattern.base.GenBaseJava
 		genModel = parameter.getGenModel();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@157f509 (description: null) (name: setGenModel) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._VlOiICg6Ed-ROrlGa8LEeQ/method._VlOiIyg6Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setGenModel", stringBuffer.toString());
 	}
 
 	protected void method_preGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -101,7 +101,7 @@ public class GenPackageJava extends org.eclipse.egf.emf.pattern.base.GenBaseJava
 		parameter.prepareCache();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ce3388 (description: null) (name: preGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._VlOiICg6Ed-ROrlGa8LEeQ/method._QRYMcChGEd-zj5CV40Ozyg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "preGenerate", stringBuffer.toString());
 	}
 
 	protected void method_postGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -109,7 +109,7 @@ public class GenPackageJava extends org.eclipse.egf.emf.pattern.base.GenBaseJava
 		parameter.clearCache();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@9950b4 (description: null) (name: postGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._VlOiICg6Ed-ROrlGa8LEeQ/method._MeyroChGEd-zj5CV40Ozyg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "postGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

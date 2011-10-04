@@ -98,7 +98,7 @@ public class GenAbstract {
 	protected void method_setGenModel(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@cb8484 (description: null) (name: setGenModel) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._MNwccCg6Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setGenModel", stringBuffer.toString());
 	}
 
 	protected void method_putGenModelInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -106,25 +106,25 @@ public class GenAbstract {
 		ctx.setValue("genModel", genModel);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1692199 (description: null) (name: putGenModelInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._o2QEsCqcEd-UleeK_bBdeg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putGenModelInContext", stringBuffer.toString());
 	}
 
 	protected void method_setChildVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11d0422 (description: null) (name: setChildVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._EjOFwChSEd-TQrf-Ye9EBQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setChildVariables", stringBuffer.toString());
 	}
 
 	protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1fa54c0 (description: null) (name: setReporterVariables) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._TT9fkyg5Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
 	}
 
 	protected void method_putReporterVariablesInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@184b4e8 (description: null) (name: putReporterVariablesInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._ajYToCg5Ed-ROrlGa8LEeQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putReporterVariablesInContext", stringBuffer.toString());
 	}
 
 	protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -132,37 +132,37 @@ public class GenAbstract {
 		ctx.setValue("contentType", ContentType.Undefined);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@180fe96 (description: null) (name: putContentTypeInContext) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._ROCT4Cq1Ed-Id7h7r1RDwA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "putContentTypeInContext", stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1ca402a (description: null) (name: setArgument) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._NOSdQGKOEd-SV9Sq5xD-BA.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setArgument", stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@13a96ba (description: null) (name: ensureProjectExists) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._BItdcGKMEd-vV655ccA3JQ.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "ensureProjectExists", stringBuffer.toString());
 	}
 
 	protected void method_preGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@17dc141 (description: null) (name: preGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._Chxo4ChGEd-zj5CV40Ozyg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "preGenerate", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@11ac882 (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._C8cLoChGEd-zj5CV40Ozyg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	protected void method_postGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@161ef2b (description: null) (name: postGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._TT9fkCg5Ed-ROrlGa8LEeQ/method._DrPLUChGEd-zj5CV40Ozyg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "postGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {

@@ -105,7 +105,7 @@ public class HeaderProperties extends org.eclipse.egf.emf.pattern.base.HeaderAbs
 		stringBuffer.append("$");
 		stringBuffer.append(TEXT_5);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@4a6a1c (description: null) (name: doGenerate) (patternFilePath: platform:/plugin/org.eclipse.egf.emf.pattern.base/templates/pattern._FEoPwCwuEd-jc5T-XaRJlg/method._FEoPwywuEd-jc5T-XaRJlg.pt)", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
 	public boolean preCondition() throws Exception {
