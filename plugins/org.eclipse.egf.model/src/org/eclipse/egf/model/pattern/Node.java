@@ -16,7 +16,15 @@
 package org.eclipse.egf.model.pattern;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.RegistryFactory;
 
 /**
  * 
@@ -32,6 +40,7 @@ public abstract class Node {
     private final Node parent;
     private Pattern pattern;
     private final String patternClass;
+    private final Set<String> appliedOutputProcessors = new HashSet<String>();
 
     protected Node(Node parent, String patternClass) {
         this.parent = parent;
@@ -56,6 +65,10 @@ public abstract class Node {
 
     public String getPatternClass() {
         return patternClass;
+    }
+
+    public Set<String> getAppliedOutputProcessors() {
+        return appliedOutputProcessors;
     }
 
     @Override
@@ -107,7 +120,15 @@ public abstract class Node {
     }
 
     public static String flatten(Node.Container node) {
+
         StringBuilder builder = new StringBuilder();
+        try {
+            for (PatternOutputProcessor traceProcessor : getTraceProcessors()) {
+                traceProcessor.execute(node);
+            }
+        } catch (CoreException e) {
+            throw new PatternRuntimeException(e);
+        }
         doFlatten(builder, node, true);
         return builder.toString();
     }
@@ -118,7 +139,20 @@ public abstract class Node {
         return builder.toString();
     }
 
-    // TODO make abstract the toString method too
+    private static List<PatternOutputProcessor> getTraceProcessors() throws CoreException {
+        List<PatternOutputProcessor> result = new ArrayList<PatternOutputProcessor>();
+        IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(PatternOutputProcessor.EXTENSION_ID);
+        if (point != null) {
+            for (IExtension extension : point.getExtensions()) {
+                for (IConfigurationElement element : extension.getConfigurationElements()) {
+                    result.add((PatternOutputProcessor) element.createExecutableExtension("class"));
+                }
+            }
+        }
+        return result;
+    }
+
+    // TODO make the class abstract, the toString method too
     public static class Leaf extends Node {
 
         // TODO to be removed
@@ -131,10 +165,10 @@ public abstract class Node {
         }
 
         public void toString(StringBuilder builder) {
-        };
+        }
     }
 
-    public static class DataLeaf extends Leaf {
+    public static final class DataLeaf extends Leaf {
         private final String method;
         private String data;
 
