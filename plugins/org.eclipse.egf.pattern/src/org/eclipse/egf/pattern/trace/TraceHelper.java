@@ -31,6 +31,7 @@ import org.eclipse.egf.model.pattern.Node.DataLeaf;
  * 
  */
 public class TraceHelper {
+    public static final String DEFAULT_TRACE_PROCESSOR_ID = "default.trace.processor";
     public static final TracePreferencesManager PREFERENCES = new TracePreferencesManager();
 
     private final List<Pattern> patterns;
@@ -91,6 +92,7 @@ public class TraceHelper {
     }
 
     private void process(Node node) {
+        node.getAppliedOutputProcessors().add(DEFAULT_TRACE_PROCESSOR_ID);
         final String patternClass = node.getPatternClass();
         if (patternClass != null) {
             // for (Pattern pattern : patterns)
@@ -101,7 +103,7 @@ public class TraceHelper {
     }
 
     public void apply(Node.Container node) {
-        if (!enable)
+        if (!enable || node.getAppliedOutputProcessors().contains(DEFAULT_TRACE_PROCESSOR_ID))
             return;
         process(node);
         for (Node child : new ArrayList<Node>(node.getChildren())) {
