@@ -152,20 +152,13 @@ public abstract class Node {
         return result;
     }
 
-    // TODO make the class abstract, the toString method too
-    public static class Leaf extends Node {
-
-        // TODO to be removed
-        public Leaf(Node.Container parent, Class cls, String value) {
-            super(parent, null);
-        }
+    public static abstract class Leaf extends Node {
 
         protected Leaf(Node.Container parent, String patternClass) {
             super(parent, patternClass);
         }
 
-        public void toString(StringBuilder builder) {
-        }
+        public abstract void toString(StringBuilder builder);
     }
 
     public static final class DataLeaf extends Leaf {
