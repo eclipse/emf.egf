@@ -10,7 +10,7 @@
       <%}%>
     </locations>
     <useUpdate>true</useUpdate>
-    <doRevert>false</doRevert>
+    <doRevert>true</doRevert>
     <excludedRegions></excludedRegions>
     <includedRegions></includedRegions>
     <excludedUsers></excludedUsers>
