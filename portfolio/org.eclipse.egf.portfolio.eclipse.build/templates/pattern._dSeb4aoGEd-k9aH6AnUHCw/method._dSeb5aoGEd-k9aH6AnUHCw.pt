@@ -9,6 +9,6 @@
 		<antcall target="clean.tools" />
 <%}%>
 <%if (cleanStep.getType() == CLEAN_TYPE.ALL) {%>
-		<antcall target="clean.build.root" />
+		<antcall target="clean.all" />
 <%}%>
 	</target>

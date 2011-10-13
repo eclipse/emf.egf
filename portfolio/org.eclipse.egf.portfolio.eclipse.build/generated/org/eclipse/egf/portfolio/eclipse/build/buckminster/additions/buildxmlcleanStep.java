@@ -25,7 +25,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
     protected final String TEXT_3 = NL + "\t\t<antcall target=\"clean.workspace\" />";
     protected final String TEXT_4 = NL + "\t\t<antcall target=\"clean.result\" />";
     protected final String TEXT_5 = NL + "\t\t<antcall target=\"clean.tools\" />";
-    protected final String TEXT_6 = NL + "\t\t<antcall target=\"clean.build.root\" />";
+    protected final String TEXT_6 = NL + "\t\t<antcall target=\"clean.all\" />";
     protected final String TEXT_7 = NL + "\t</target>" + NL;
     protected final String TEXT_8 = NL;
     protected final String TEXT_9 = NL;

@@ -47,6 +47,9 @@
 
             <!-- Launch the eclipse application -->
             <java fork="true" jar="${@{app}.launcher}" dir="${@{app}.deploy.dir}" failonerror="true">
+<%@ egf:patternCall
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
+%>
                 <args />
             </java>
         </sequential>
@@ -61,9 +64,6 @@
             <eclipse.launch app="buckminster">
                 <args>
                     <jvmarg value="-Dbugfix.288796=true"/>
-<%@ egf:patternCall
-	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
-%>
                     <arg value="-data" />
                     <arg value="@{workspace}" />
                     <arg value="--loglevel" />
@@ -87,9 +87,8 @@
         <sequential>
             <eclipse.launch app="egf">
                 <args>
-<%@ egf:patternCall
-	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
-%>
+                    <arg value="-application" />
+                    <arg value="org.eclipse.egf.application.activity" />
                     <arg value="-consoleLog" />
                     <arg value="-data" />
                     <arg value="@{workspace}" />
@@ -110,9 +109,6 @@
         <sequential>
             <eclipse.launch app="egf">
                 <args>
-<%@ egf:patternCall
-	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
-%>
 					<arg value="-application" />
 					<arg value="org.eclipse.ant.core.antRunner" />
 					<arg value="-consoleLog" />
@@ -179,17 +175,28 @@
 	<target name="install.egf" unless="egf.exists" depends="get.director">
         <echo message="Configuring EGF with needed features" />
         <echo message="EGF site: ${egf.site}" />
+        <echo message="EGF eclipse site: ${egf.eclipse.site}" />
         <eclipse.launch app="director">
             <args>
                 <jvmarg value="-Declipse.p2.mirrors=false" />
                 <arg value="-r" />
                 <arg value="${egf.site}" />
+                <arg value="-r" />
+                <arg value="${egf.eclipse.site}" />
                 <arg value="-d" />
                 <arg value="${tools}/egf" />
                 <arg value="-p" />
                 <arg value="EGF" />
                 <arg value="-i" />
-                <arg value="org.eclipse.egf.application.product" />
+                <arg value="org.eclipse.platform.ide" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.feature.group" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.portfolio.feature.group" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.portfolio.emf.feature.group" />
+                <arg value="-i" />
+                <arg value="org.eclipse.egf.portfolio.genchain.feature.group" />
             </args>
         </eclipse.launch>
     </target>
@@ -206,8 +213,10 @@
         <delete dir="${tools}" failonerror="true" quiet="true" />
     </target>
 
-    <target name="clean.build.root">
-        <delete dir="${build.root}" failonerror="true" quiet="true" />
+    <target name="clean.all">
+		<antcall target="clean.workspace" />
+		<antcall target="clean.result" />
+		<antcall target="clean.tools" />
     </target>
         
     <target name="init.workspace" unless="workspace.exists">
