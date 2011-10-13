@@ -5,7 +5,7 @@
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
     xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
-  <fcore:FactoryComponent xmi:id="_N4pRwI6UEd-e7viTqNBNrA" name="Build">
+  <fcore:FactoryComponent xmi:id="_N4pRwI6UEd-e7viTqNBNrA" name="Build Generation">
     <contractContainer xmi:id="_ad5FkI6VEd-e7viTqNBNrA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ad5FkY6VEd-e7viTqNBNrA"
           name="buildModelPath" mandatory="true" invocationContracts="#_y3exVNU7Ed-sZ5ty9tQGtA #_eHcvEq93Ed--tuq7x0NXVA #_kXzxso_tEd-ggNhbFv1Fiw #_jHMeYo_tEd-ggNhbFv1Fiw">
@@ -176,64 +176,6 @@
                 called="#_WM_addVJEd-kLLLb0fKJog"/>
           </elements>
         </libraries>
-        <libraries xmi:id="_SrPhgOD7Ed-wsOGCR2RJpg" name="org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job">
-          <elements xmi:id="_VmwQYOD7Ed-wsOGCR2RJpg" name="chain" headerMethod="#_VmwQYuD7Ed-wsOGCR2RJpg"
-              conditionMethod="#_VmwQZOD7Ed-wsOGCR2RJpg" initMethod="#_VmwQY-D7Ed-wsOGCR2RJpg"
-              footerMethod="#_VmwQZuD7Ed-wsOGCR2RJpg">
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_VmwQYeD7Ed-wsOGCR2RJpg"
-                name="Java"/>
-            <methods xmi:id="_VmwQYuD7Ed-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQYuD7Ed-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_VmwQY-D7Ed-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQY-D7Ed-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_VmwQZOD7Ed-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZOD7Ed-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_VmwQZeD7Ed-wsOGCR2RJpg" name="createNewJob" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZeD7Ed-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_VmwQZuD7Ed-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZuD7Ed-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_bX9uIOEIEd-wsOGCR2RJpg" name="putNewJobInContext" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._bX9uIOEIEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_nJpvUOEPEd-wsOGCR2RJpg" name="addNewJobToChain" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._nJpvUOEPEd-wsOGCR2RJpg.pt"/>
-            <parameters xmi:id="_W2ARwOD7Ed-wsOGCR2RJpg" name="chain" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Chain"/>
-            <variables xmi:id="_ZChzsOD7Ed-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_gbw1oOD8Ed-wsOGCR2RJpg"
-                called="#_VmwQZeD7Ed-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_cUlAAOELEd-wsOGCR2RJpg"
-                called="#_bX9uIOEIEd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_nbyoMOEPEd-wsOGCR2RJpg"
-                called="#_nJpvUOEPEd-wsOGCR2RJpg"/>
-          </elements>
-          <elements xmi:id="_vwiiEOEOEd-wsOGCR2RJpg" name="job" headerMethod="#_vwiiEuEOEd-wsOGCR2RJpg"
-              conditionMethod="#_vwiiFOEOEd-wsOGCR2RJpg" initMethod="#_vwiiE-EOEd-wsOGCR2RJpg"
-              footerMethod="#_vwiiFuEOEd-wsOGCR2RJpg">
-            <nature xmi:type="javapattern:JavaNature" xmi:id="_vwiiEeEOEd-wsOGCR2RJpg"
-                name="Java"/>
-            <methods xmi:id="_vwiiEuEOEd-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiEuEOEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_vwiiE-EOEd-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiE-EOEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_vwiiFOEOEd-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFOEOEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_EmnjoOEQEd-wsOGCR2RJpg" name="getNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._EmnjoOEQEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_vwiiFuEOEd-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFuEOEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_uTvFgOEREd-wsOGCR2RJpg" name="movePropertiesToNewJob"
-                patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uTvFgOEREd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_xDgecOEREd-wsOGCR2RJpg" name="moveScmToNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._xDgecOEREd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_y4r3YOEREd-wsOGCR2RJpg" name="moveStepsToNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._y4r3YOEREd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_uPvg4OESEd-wsOGCR2RJpg" name="moveTriggersToNewJob"
-                patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uPvg4OESEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_vwiiFeEOEd-wsOGCR2RJpg" name="removeJobFromChain" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFeEOEd-wsOGCR2RJpg.pt"/>
-            <methods xmi:id="_qHWRIOXqEeCXgYqTOUaRCQ" name="handleCleanStep" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._qHWRIOXqEeCXgYqTOUaRCQ.pt"/>
-            <parameters xmi:id="_xHGFUOEOEd-wsOGCR2RJpg" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
-            <variables xmi:id="_FAbKwOEQEd-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Hy7uoOEQEd-wsOGCR2RJpg"
-                called="#_EmnjoOEQEd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vgQjAOEREd-wsOGCR2RJpg"
-                called="#_uTvFgOEREd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_xWMJ4OEREd-wsOGCR2RJpg"
-                called="#_xDgecOEREd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_zQc3IOEREd-wsOGCR2RJpg"
-                called="#_y4r3YOEREd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_u7qywOESEd-wsOGCR2RJpg"
-                called="#_uPvg4OESEd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_1UlZcOEOEd-wsOGCR2RJpg"
-                called="#_vwiiFeEOEd-wsOGCR2RJpg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vn5voOXqEeCXgYqTOUaRCQ"
-                called="#_qHWRIOXqEeCXgYqTOUaRCQ"/>
-          </elements>
-        </libraries>
       </viewpoints>
     </viewpointContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_UQVXII6VEd-e7viTqNBNrA">
@@ -297,7 +239,137 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
-  <fcore:FactoryComponent xmi:id="_cUxUQY28Ed-Tlrutn5SzgA" name="Build Hudson">
+  <fcore:FactoryComponent xmi:id="_kcbTofVqEeC5po6KbYL7IQ" name="Build Generation (Chain as a Job)">
+    <contractContainer xmi:id="_1NT24PVqEeC5po6KbYL7IQ">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT24fVqEeC5po6KbYL7IQ"
+          name="buildModelPath" mandatory="true" invocationContracts="#_ze5NQvVqEeC5po6KbYL7IQ">
+        <type xmi:type="domain:TypeDomain" xmi:id="_1NT24vVqEeC5po6KbYL7IQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT24_VqEeC5po6KbYL7IQ"
+          name="generationPath" mandatory="true" invocationContracts="#_ze5NQ_VqEeC5po6KbYL7IQ">
+        <type xmi:type="types:TypeString" xmi:id="_1NT25PVqEeC5po6KbYL7IQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT25_VqEeC5po6KbYL7IQ"
+          name="Model validation pattern substitutions" invocationContracts="#_ze5NRfVqEeC5po6KbYL7IQ">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1NT26PVqEeC5po6KbYL7IQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT26fVqEeC5po6KbYL7IQ"
+          name="Model transformation pattern substitutions" invocationContracts="#_9h6aQ_V-EeC5po6KbYL7IQ">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1NT26vVqEeC5po6KbYL7IQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT26_VqEeC5po6KbYL7IQ"
+          name="Hudson pattern substitutions" invocationContracts="#_ze5NR_VqEeC5po6KbYL7IQ">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1NT27PVqEeC5po6KbYL7IQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT27fVqEeC5po6KbYL7IQ"
+          name="Buckminster pattern substitutions" invocationContracts="#_ze5NSPVqEeC5po6KbYL7IQ">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_1NT27vVqEeC5po6KbYL7IQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1NT27_VqEeC5po6KbYL7IQ"
+          name="copyright" invocationContracts="#_ze5NSfVqEeC5po6KbYL7IQ">
+        <type xmi:type="types:TypeString" xmi:id="_1NT28PVqEeC5po6KbYL7IQ"/>
+      </contracts>
+    </contractContainer>
+    <viewpointContainer xmi:id="_14h-IPVqEeC5po6KbYL7IQ">
+      <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_2XhnQPVqEeC5po6KbYL7IQ">
+        <libraries xmi:id="_SrPhgOD7Ed-wsOGCR2RJpg" name="org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job">
+          <elements xmi:id="_VmwQYOD7Ed-wsOGCR2RJpg" name="chain" headerMethod="#_VmwQYuD7Ed-wsOGCR2RJpg"
+              conditionMethod="#_VmwQZOD7Ed-wsOGCR2RJpg" initMethod="#_VmwQY-D7Ed-wsOGCR2RJpg"
+              footerMethod="#_VmwQZuD7Ed-wsOGCR2RJpg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_VmwQYeD7Ed-wsOGCR2RJpg"
+                name="Java"/>
+            <methods xmi:id="_VmwQYuD7Ed-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQYuD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQY-D7Ed-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQY-D7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQZOD7Ed-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZOD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQZeD7Ed-wsOGCR2RJpg" name="createNewJob" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZeD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_VmwQZuD7Ed-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._VmwQZuD7Ed-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_bX9uIOEIEd-wsOGCR2RJpg" name="putNewJobInContext" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._bX9uIOEIEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_nJpvUOEPEd-wsOGCR2RJpg" name="addNewJobToChain" patternFilePath="templates/pattern._VmwQYOD7Ed-wsOGCR2RJpg/method._nJpvUOEPEd-wsOGCR2RJpg.pt"/>
+            <parameters xmi:id="_W2ARwOD7Ed-wsOGCR2RJpg" name="chain" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Chain"/>
+            <variables xmi:id="_ZChzsOD7Ed-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_gbw1oOD8Ed-wsOGCR2RJpg"
+                called="#_VmwQZeD7Ed-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_cUlAAOELEd-wsOGCR2RJpg"
+                called="#_bX9uIOEIEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_nbyoMOEPEd-wsOGCR2RJpg"
+                called="#_nJpvUOEPEd-wsOGCR2RJpg"/>
+          </elements>
+          <elements xmi:id="_vwiiEOEOEd-wsOGCR2RJpg" name="job" headerMethod="#_vwiiEuEOEd-wsOGCR2RJpg"
+              conditionMethod="#_vwiiFOEOEd-wsOGCR2RJpg" initMethod="#_vwiiE-EOEd-wsOGCR2RJpg"
+              footerMethod="#_vwiiFuEOEd-wsOGCR2RJpg">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_vwiiEeEOEd-wsOGCR2RJpg"
+                name="Java"/>
+            <methods xmi:id="_vwiiEuEOEd-wsOGCR2RJpg" name="header" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiEuEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiE-EOEd-wsOGCR2RJpg" name="init" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiE-EOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiFOEOEd-wsOGCR2RJpg" name="preCondition" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFOEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_EmnjoOEQEd-wsOGCR2RJpg" name="getNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._EmnjoOEQEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiFuEOEd-wsOGCR2RJpg" name="footer" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFuEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_uTvFgOEREd-wsOGCR2RJpg" name="movePropertiesToNewJob"
+                patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uTvFgOEREd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_xDgecOEREd-wsOGCR2RJpg" name="moveScmToNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._xDgecOEREd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_y4r3YOEREd-wsOGCR2RJpg" name="moveStepsToNewJob" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._y4r3YOEREd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_uPvg4OESEd-wsOGCR2RJpg" name="moveTriggersToNewJob"
+                patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._uPvg4OESEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_vwiiFeEOEd-wsOGCR2RJpg" name="removeJobFromChain" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._vwiiFeEOEd-wsOGCR2RJpg.pt"/>
+            <methods xmi:id="_qHWRIOXqEeCXgYqTOUaRCQ" name="handleCleanStep" patternFilePath="templates/pattern._vwiiEOEOEd-wsOGCR2RJpg/method._qHWRIOXqEeCXgYqTOUaRCQ.pt"/>
+            <parameters xmi:id="_xHGFUOEOEd-wsOGCR2RJpg" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <variables xmi:id="_FAbKwOEQEd-wsOGCR2RJpg" name="newJob" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Hy7uoOEQEd-wsOGCR2RJpg"
+                called="#_EmnjoOEQEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vgQjAOEREd-wsOGCR2RJpg"
+                called="#_uTvFgOEREd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_xWMJ4OEREd-wsOGCR2RJpg"
+                called="#_xDgecOEREd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_zQc3IOEREd-wsOGCR2RJpg"
+                called="#_y4r3YOEREd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_u7qywOESEd-wsOGCR2RJpg"
+                called="#_uPvg4OESEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_1UlZcOEOEd-wsOGCR2RJpg"
+                called="#_vwiiFeEOEd-wsOGCR2RJpg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_vn5voOXqEeCXgYqTOUaRCQ"
+                called="#_qHWRIOXqEeCXgYqTOUaRCQ"/>
+          </elements>
+        </libraries>
+      </viewpoints>
+    </viewpointContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_x0p5APVqEeC5po6KbYL7IQ">
+      <invocations xmi:id="_9h6aQPV-EeC5po6KbYL7IQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_N9g3oElcEd-TSsH7K-_bxQ">
+        <invocationContractContainer xmi:id="_9h6aQfV-EeC5po6KbYL7IQ">
+          <invocationContracts xmi:id="_9h6aQvV-EeC5po6KbYL7IQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_UVURwEldEd-TSsH7K-_bxQ">
+            <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_BYOkgPV_EeC5po6KbYL7IQ">
+              <substitutions xmi:id="_B_tbQPV_EeC5po6KbYL7IQ" replacement="#_VmwQYOD7Ed-wsOGCR2RJpg #_vwiiEOEOEd-wsOGCR2RJpg"/>
+            </type>
+          </invocationContracts>
+          <invocationContracts xmi:id="_9h6aQ_V-EeC5po6KbYL7IQ" factoryComponentContract="#_1NT26fVqEeC5po6KbYL7IQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_ahgHMEldEd-TSsH7K-_bxQ"/>
+          <invocationContracts xmi:id="_9h6aRPV-EeC5po6KbYL7IQ" targetInvocationContract="#_ze5NRvVqEeC5po6KbYL7IQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Substitution_composition.fcore#_gBdIwEldEd-TSsH7K-_bxQ"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_ze5NQPVqEeC5po6KbYL7IQ" invokedActivity="#_N4pRwI6UEd-e7viTqNBNrA">
+        <invocationContractContainer xmi:id="_ze5NQfVqEeC5po6KbYL7IQ">
+          <invocationContracts xmi:id="_ze5NQvVqEeC5po6KbYL7IQ" factoryComponentContract="#_1NT24fVqEeC5po6KbYL7IQ"
+              invokedContract="#_ad5FkY6VEd-e7viTqNBNrA"/>
+          <invocationContracts xmi:id="_ze5NQ_VqEeC5po6KbYL7IQ" factoryComponentContract="#_1NT24_VqEeC5po6KbYL7IQ"
+              invokedContract="#_npIcUJlgEd-cRYVfj6AwNg"/>
+          <invocationContracts xmi:id="_ze5NRPVqEeC5po6KbYL7IQ" invokedContract="#_lC1sgJmBEd-FyeHxc8pAZg">
+            <type xmi:type="types:TypeBoolean" xmi:id="_PAgvMPVrEeC5po6KbYL7IQ" value="false"/>
+          </invocationContracts>
+          <invocationContracts xmi:id="_ze5NRfVqEeC5po6KbYL7IQ" factoryComponentContract="#_1NT25_VqEeC5po6KbYL7IQ"
+              invokedContract="#_ahMPALzpEd-Ni-pzi_M0Ew"/>
+          <invocationContracts xmi:id="_ze5NRvVqEeC5po6KbYL7IQ" sourceInvocationContract="#_9h6aRPV-EeC5po6KbYL7IQ"
+              invokedContract="#_v8D6UNVBEd-sZ5ty9tQGtA"/>
+          <invocationContracts xmi:id="_ze5NR_VqEeC5po6KbYL7IQ" factoryComponentContract="#_1NT26_VqEeC5po6KbYL7IQ"
+              invokedContract="#_mKZJoI_tEd-ggNhbFv1Fiw"/>
+          <invocationContracts xmi:id="_ze5NSPVqEeC5po6KbYL7IQ" factoryComponentContract="#_1NT27fVqEeC5po6KbYL7IQ"
+              invokedContract="#_mb-o4I_tEd-ggNhbFv1Fiw"/>
+          <invocationContracts xmi:id="_ze5NSfVqEeC5po6KbYL7IQ" factoryComponentContract="#_1NT27_VqEeC5po6KbYL7IQ"
+              invokedContract="#_0Pe30J5NEd-3wvN5SnesGA"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_cUxUQY28Ed-Tlrutn5SzgA" name="Build Hudson Generation">
     <contractContainer xmi:id="_e0zoEI28Ed-Tlrutn5SzgA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_fLTcgI28Ed-Tlrutn5SzgA"
           name="buildModelPath" mandatory="true" invocationContracts="#_sMlhgo28Ed-Tlrutn5SzgA">
@@ -665,7 +737,7 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
-  <fcore:FactoryComponent xmi:id="_dai5YI6UEd-e7viTqNBNrA" name="Build Buckminster">
+  <fcore:FactoryComponent xmi:id="_dai5YI6UEd-e7viTqNBNrA" name="Build Buckminster Generation">
     <contractContainer xmi:id="_QISjsI6VEd-e7viTqNBNrA">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_QISjsY6VEd-e7viTqNBNrA"
           name="buildModelPath" mandatory="true" invocationContracts="#_QISjuI6VEd-e7viTqNBNrA">

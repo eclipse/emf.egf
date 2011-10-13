@@ -1,2 +1,2 @@
 newJob = BuildcoreFactory.eINSTANCE.createJob();
-newJob.setName("all");
+newJob.setName(chain.getName());
