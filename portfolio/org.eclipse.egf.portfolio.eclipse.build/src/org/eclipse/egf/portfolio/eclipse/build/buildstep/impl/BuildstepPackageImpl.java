@@ -1101,6 +1101,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         addEEnumLiteral(cleaN_TYPEEEnum, org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE.RESULT);
         addEEnumLiteral(cleaN_TYPEEEnum, org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE.WORKSPACE);
         addEEnumLiteral(cleaN_TYPEEEnum, org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE.NOTHING);
+        addEEnumLiteral(cleaN_TYPEEEnum, org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE.TOOLS);
+        addEEnumLiteral(cleaN_TYPEEEnum, org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE.ALL);
 
         // Create resource
         createResource(eNS_URI);

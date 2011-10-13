@@ -57,7 +57,23 @@ public enum CLEAN_TYPE implements Enumerator {
      * @generated
      * @ordered
      */
-    NOTHING(2, "NOTHING", "Nothing");
+    NOTHING(2, "NOTHING", "Nothing"), /**
+     * The '<em><b>TOOLS</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #TOOLS_VALUE
+     * @generated
+     * @ordered
+     */
+    TOOLS(3, "TOOLS", "Tools"), /**
+     * The '<em><b>ALL</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #ALL_VALUE
+     * @generated
+     * @ordered
+     */
+    ALL(4, "ALL", "All");
 
     /**
      * <!-- begin-user-doc -->
@@ -112,6 +128,36 @@ public enum CLEAN_TYPE implements Enumerator {
     public static final int NOTHING_VALUE = 2;
 
     /**
+     * The '<em><b>TOOLS</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>TOOLS</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #TOOLS
+     * @model literal="Tools"
+     * @generated
+     * @ordered
+     */
+    public static final int TOOLS_VALUE = 3;
+
+    /**
+     * The '<em><b>ALL</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>ALL</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #ALL
+     * @model literal="All"
+     * @generated
+     * @ordered
+     */
+    public static final int ALL_VALUE = 4;
+
+    /**
      * An array of all the '<em><b>CLEAN TYPE</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -122,6 +168,8 @@ public enum CLEAN_TYPE implements Enumerator {
             RESULT,
             WORKSPACE,
             NOTHING,
+            TOOLS,
+            ALL,
         };
 
     /**
@@ -175,6 +223,8 @@ public enum CLEAN_TYPE implements Enumerator {
             case RESULT_VALUE: return RESULT;
             case WORKSPACE_VALUE: return WORKSPACE;
             case NOTHING_VALUE: return NOTHING;
+            case TOOLS_VALUE: return TOOLS;
+            case ALL_VALUE: return ALL;
         }
         return null;
     }

@@ -24,9 +24,11 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
     protected final String TEXT_2 = "\" >";
     protected final String TEXT_3 = NL + "\t\t<antcall target=\"clean.workspace\" />";
     protected final String TEXT_4 = NL + "\t\t<antcall target=\"clean.result\" />";
-    protected final String TEXT_5 = NL + "\t</target>" + NL;
-    protected final String TEXT_6 = NL;
-    protected final String TEXT_7 = NL;
+    protected final String TEXT_5 = NL + "\t\t<antcall target=\"clean.tools\" />";
+    protected final String TEXT_6 = NL + "\t\t<antcall target=\"clean.build.root\" />";
+    protected final String TEXT_7 = NL + "\t</target>" + NL;
+    protected final String TEXT_8 = NL;
+    protected final String TEXT_9 = NL;
 
     public buildxmlcleanStep() {
         //Here is the constructor
@@ -63,8 +65,8 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
             ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
         }
 
-        stringBuffer.append(TEXT_6);
-        stringBuffer.append(TEXT_7);
+        stringBuffer.append(TEXT_8);
+        stringBuffer.append(TEXT_9);
         return stringBuffer.toString();
     }
 
@@ -107,9 +109,15 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
         if (cleanStep.getType() == CLEAN_TYPE.RESULT) {
             stringBuffer.append(TEXT_4);
         }
-        stringBuffer.append(TEXT_5);
+        if (cleanStep.getType() == CLEAN_TYPE.TOOLS) {
+            stringBuffer.append(TEXT_5);
+        }
+        if (cleanStep.getType() == CLEAN_TYPE.ALL) {
+            stringBuffer.append(TEXT_6);
+        }
+        stringBuffer.append(TEXT_7);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@14656aa (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._dSeb4aoGEd-k9aH6AnUHCw/method._dSeb5aoGEd-k9aH6AnUHCw.pt)", stringBuffer.toString());
+        new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
     }
 
     public boolean preCondition() throws Exception {

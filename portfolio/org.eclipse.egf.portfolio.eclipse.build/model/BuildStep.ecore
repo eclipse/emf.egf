@@ -80,6 +80,8 @@
     <eLiterals name="RESULT" literal="Result"/>
     <eLiterals name="WORKSPACE" value="1" literal="Workspace"/>
     <eLiterals name="NOTHING" value="2" literal="Nothing"/>
+    <eLiterals name="TOOLS" value="3" literal="Tools"/>
+    <eLiterals name="ALL" value="4" literal="All"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BuildLocation" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

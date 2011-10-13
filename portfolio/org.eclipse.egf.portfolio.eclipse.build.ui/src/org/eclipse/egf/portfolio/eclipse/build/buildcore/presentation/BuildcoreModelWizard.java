@@ -83,6 +83,8 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
 
 
 import org.eclipse.core.runtime.Path;
@@ -307,7 +309,7 @@ public class BuildcoreModelWizard extends Wizard implements INewWizard {
             try {
                 page.openEditor
                     (new FileEditorInput(modelFile),
-                     workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+                     workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
             }
             catch (PartInitException exception) {
                 MessageDialog.openError(workbenchWindow.getShell(), BuildCoreEditPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());

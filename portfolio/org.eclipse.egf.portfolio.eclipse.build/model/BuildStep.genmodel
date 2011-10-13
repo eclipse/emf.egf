@@ -14,6 +14,8 @@
       <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/RESULT"/>
       <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/WORKSPACE"/>
       <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/NOTHING"/>
+      <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/TOOLS"/>
+      <genEnumLiterals ecoreEnumLiteral="BuildStep.ecore#//CLEAN_TYPE/ALL"/>
     </genEnums>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//ResultStep"/>
     <genClasses ecoreClass="BuildStep.ecore#//CleanStep">

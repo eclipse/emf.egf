@@ -205,7 +205,11 @@
     <target name="clean.tools">
         <delete dir="${tools}" failonerror="true" quiet="true" />
     </target>
-    
+
+    <target name="clean.build.root">
+        <delete dir="${build.root}" failonerror="true" quiet="true" />
+    </target>
+        
     <target name="init.workspace" unless="workspace.exists">
         <mkdir dir="${workspace}" />
     </target>
