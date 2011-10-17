@@ -273,6 +273,14 @@ public class BuildStepItemProvider
 
         newChildDescriptors.add
             (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildstepFactory.eINSTANCE.createRunningPlatformBuildLocation()));
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
                 (BuildstepPackage.Literals.BUILD_STEP__COMPONENTS,
                  BuildstepFactory.eINSTANCE.createPlugin()));
 

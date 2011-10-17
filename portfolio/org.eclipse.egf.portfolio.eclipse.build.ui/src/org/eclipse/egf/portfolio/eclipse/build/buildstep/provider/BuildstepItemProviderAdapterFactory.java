@@ -462,6 +462,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected RunningPlatformBuildLocationItemProvider runningPlatformBuildLocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createRunningPlatformBuildLocationAdapter() {
+        if (runningPlatformBuildLocationItemProvider == null) {
+            runningPlatformBuildLocationItemProvider = new RunningPlatformBuildLocationItemProvider(this);
+        }
+
+        return runningPlatformBuildLocationItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -648,6 +671,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (updateSiteBuildLocationItemProvider != null) updateSiteBuildLocationItemProvider.dispose();
         if (resultStepBuildLocationItemProvider != null) resultStepBuildLocationItemProvider.dispose();
         if (installStepBuildLocationItemProvider != null) installStepBuildLocationItemProvider.dispose();
+        if (runningPlatformBuildLocationItemProvider != null) runningPlatformBuildLocationItemProvider.dispose();
         if (pluginItemProvider != null) pluginItemProvider.dispose();
         if (featureItemProvider != null) featureItemProvider.dispose();
     }
