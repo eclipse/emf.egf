@@ -8,114 +8,114 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class FilePattern {
-	protected static String nl;
+    protected static String nl;
 
-	public static synchronized FilePattern create(String lineSeparator) {
-		nl = lineSeparator;
-		FilePattern result = new FilePattern();
-		nl = null;
-		return result;
-	}
+    public static synchronized FilePattern create(String lineSeparator) {
+        nl = lineSeparator;
+        FilePattern result = new FilePattern();
+        nl = null;
+        return result;
+    }
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-	protected final String TEXT_1 = "//default content";
-	protected final String TEXT_2 = NL;
-	protected final String TEXT_3 = NL;
+    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+    protected final String TEXT_1 = "//default content";
+    protected final String TEXT_2 = NL;
+    protected final String TEXT_3 = NL;
 
-	public FilePattern() {
-		//Here is the constructor
-		StringBuffer stringBuffer = new StringBuffer();
+    public FilePattern() {
+        //Here is the constructor
+        StringBuffer stringBuffer = new StringBuffer();
 
-		// add initialisation of the pattern variables (declaration has been already done).
+        // add initialisation of the pattern variables (declaration has been already done).
 
-	}
+    }
 
-	public String generate(Object argument) throws Exception {
-		final StringBuffer stringBuffer = new StringBuffer();
+    public String generate(Object argument) throws Exception {
+        final StringBuffer stringBuffer = new StringBuffer();
 
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		Map<String, String> queryCtx = null;
-		IQuery.ParameterDescription paramDesc = null;
-		Node.Container currentNode = ctx.getNode();
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        Map<String, String> queryCtx = null;
+        IQuery.ParameterDescription paramDesc = null;
+        Node.Container currentNode = ctx.getNode();
 
-		if (preCondition()) {
-			ctx.setNode(new Node.Container(currentNode, getClass()));
-			orchestration(ctx);
-		}
+        if (preCondition()) {
+            ctx.setNode(new Node.Container(currentNode, getClass()));
+            orchestration(ctx);
+        }
 
-		ctx.setNode(currentNode);
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
-		}
+        ctx.setNode(currentNode);
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+        }
 
-		stringBuffer.append(TEXT_2);
-		stringBuffer.append(TEXT_3);
-		return stringBuffer.toString();
-	}
+        stringBuffer.append(TEXT_2);
+        stringBuffer.append(TEXT_3);
+        return stringBuffer.toString();
+    }
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-		method_setFileName(new StringBuffer(), ictx);
+        method_setFileName(new StringBuffer(), ictx);
 
-		method_setFilePath(new StringBuffer(), ictx);
+        method_setFilePath(new StringBuffer(), ictx);
 
-		method_alterFilePath(new StringBuffer(), ictx);
+        method_alterFilePath(new StringBuffer(), ictx);
 
-		method_setContext(new StringBuffer(), ictx);
+        method_setContext(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
-		if (ictx.useReporter()) {
-			;
-		}
-		return loop;
-	}
+        String loop = Node.flattenWithoutCallback(ictx.getNode());
+        if (ictx.useReporter()) {
+            ;
+        }
+        return loop;
+    }
 
-	protected java.lang.String filePath = null;
+    protected java.lang.String filePath = null;
 
-	public void set_filePath(java.lang.String object) {
-		this.filePath = object;
-	}
+    public void set_filePath(java.lang.String object) {
+        this.filePath = object;
+    }
 
-	protected java.lang.String fileName = null;
+    protected java.lang.String fileName = null;
 
-	public void set_fileName(java.lang.String object) {
-		this.fileName = object;
-	}
+    public void set_fileName(java.lang.String object) {
+        this.fileName = object;
+    }
 
-	public Map<String, Object> getParameters() {
-		final Map<String, Object> parameters = new HashMap<String, Object>();
-		return parameters;
-	}
+    public Map<String, Object> getParameters() {
+        final Map<String, Object> parameters = new HashMap<String, Object>();
+        return parameters;
+    }
 
-	protected void method_setFileName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    protected void method_setFileName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@77b7a0 (description: null) (name: setFileName) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._LIF5sKbSEd-qVbFBxWG7lA.pt)", stringBuffer.toString());
-	}
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "setFileName", stringBuffer.toString());
+    }
 
-	protected void method_setFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    protected void method_setFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		stringBuffer.append(TEXT_1);
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1b897c6 (description: null) (name: setFilePath) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._pMVydKa8Ed-uuvkstnP_MQ.pt)", stringBuffer.toString());
-	}
+        stringBuffer.append(TEXT_1);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "setFilePath", stringBuffer.toString());
+    }
 
-	protected void method_alterFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    protected void method_alterFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@1f47e63 (description: null) (name: alterFilePath) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._w_qpobAkEd-kZYPuJ1ZE3A.pt)", stringBuffer.toString());
-	}
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "alterFilePath", stringBuffer.toString());
+    }
 
-	protected void method_setContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+    protected void method_setContext(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-		ctx.setValue("filePath", filePath);
-		ctx.setValue("fileName", fileName);
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@95c1ab (description: null) (name: setContext) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/templates/pattern._pMVycKa8Ed-uuvkstnP_MQ/method._yffY0Ka8Ed-uuvkstnP_MQ.pt)", stringBuffer.toString());
-	}
+        ctx.setValue("filePath", filePath);
+        ctx.setValue("fileName", fileName);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "setContext", stringBuffer.toString());
+    }
 
-	public boolean preCondition() throws Exception {
-		return true;
-	}
+    public boolean preCondition() throws Exception {
+        return true;
+    }
 }

@@ -1,0 +1,17 @@
+    <target name="clean.result">
+        <delete dir="${result}" failonerror="true" quiet="true" />
+    </target>
+
+    <target name="clean.workspace">
+        <delete dir="${workspace}" failonerror="true" quiet="true" />
+    </target>
+
+    <target name="clean.tools">
+        <delete dir="${tools}" failonerror="true" quiet="true" />
+    </target>
+
+    <target name="clean.all">
+		<antcall target="clean.workspace" />
+		<antcall target="clean.result" />
+		<antcall target="clean.tools" />
+    </target>

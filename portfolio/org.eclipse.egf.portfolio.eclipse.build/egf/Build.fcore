@@ -774,11 +774,44 @@
             <methods xmi:id="_ZcV3EI6XEd-e7viTqNBNrA" name="setFileName" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._ZcV3EI6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_FaDqMLAlEd-kZYPuJ1ZE3A" name="alterFilePath" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._FaDqMLAlEd-kZYPuJ1ZE3A.pt"/>
             <methods xmi:id="_WzN4tI6XEd-e7viTqNBNrA" name="begin" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4tI6XEd-e7viTqNBNrA.pt"/>
+            <methods xmi:id="_jxPv8ficEeCgNoSwhPUBGQ" name="properties" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._jxPv8ficEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_WzN4tY6XEd-e7viTqNBNrA" name="footer" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4tY6XEd-e7viTqNBNrA.pt"/>
+            <methods xmi:id="_uVnGkPicEeCgNoSwhPUBGQ" name="eclipse_launch" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._uVnGkPicEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_EwcU4PidEeCgNoSwhPUBGQ" name="get_director" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._EwcU4PidEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_IIgc4PidEeCgNoSwhPUBGQ" name="install_buckminster" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._IIgc4PidEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_K3vqUPidEeCgNoSwhPUBGQ" name="install_egf" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._K3vqUPidEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_1GVzgPicEeCgNoSwhPUBGQ" name="buckminster" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._1GVzgPicEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_4WzesPicEeCgNoSwhPUBGQ" name="egf" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._4WzesPicEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_7LkFUPicEeCgNoSwhPUBGQ" name="anteclipse" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._7LkFUPicEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_OFO6APidEeCgNoSwhPUBGQ" name="cleans" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._OFO6APidEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_dQMoUPidEeCgNoSwhPUBGQ" name="inits" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._dQMoUPidEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_Fu8SkfifEeC_BOWvmKKktg" name="all" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._Fu8SkfifEeC_BOWvmKKktg.pt"/>
             <methods xmi:id="_IgNrEJ4XEd-3wvN5SnesGA" name="end" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._IgNrEJ4XEd-3wvN5SnesGA.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_WzN4to6XEd-e7viTqNBNrA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_aBJNQI6XEd-e7viTqNBNrA"
                 called="#_WzN4tI6XEd-e7viTqNBNrA"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_k5g_kPicEeCgNoSwhPUBGQ"
+                called="#_jxPv8ficEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_u_718PicEeCgNoSwhPUBGQ"
+                called="#_uVnGkPicEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_FHF6UPidEeCgNoSwhPUBGQ"
+                called="#_EwcU4PidEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_Ic7NsPidEeCgNoSwhPUBGQ"
+                called="#_IIgc4PidEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_PnIxoPidEeCgNoSwhPUBGQ"
+                called="#_K3vqUPidEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_1dl14PicEeCgNoSwhPUBGQ"
+                called="#_1GVzgPicEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_--5NAPicEeCgNoSwhPUBGQ"
+                called="#_4WzesPicEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="__OGGoPicEeCgNoSwhPUBGQ"
+                called="#_7LkFUPicEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_O6bcoPidEeCgNoSwhPUBGQ"
+                called="#_OFO6APidEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_d0tDkPidEeCgNoSwhPUBGQ"
+                called="#_dQMoUPidEeCgNoSwhPUBGQ"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_G8IecPifEeC_BOWvmKKktg"
+                called="#_Fu8SkfifEeC_BOWvmKKktg"/>
             <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_kDS9kKbTEd-qVbFBxWG7lA"
                 called="#_C_qLIJTYEd-fvPvNnKEvJg" context="#_-5dPEKbQEd-qVbFBxWG7lA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_KFF-MJ4XEd-3wvN5SnesGA"
