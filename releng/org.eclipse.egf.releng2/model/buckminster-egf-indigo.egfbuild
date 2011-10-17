@@ -31,7 +31,7 @@
     <egfActivities xmi:id="_TTUg8PjIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw"/>
   </steps>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
-    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="reuse previous one"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="http://download.eclipse.org/releases/indigo"/>
   </steps>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
