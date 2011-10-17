@@ -49,18 +49,6 @@
     <viewpointContainer xmi:id="_zsWRYPPHEd-1PJ4PFWU1aA">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_VYB6ICSiEeCIlumqagSWRg">
         <libraries xmi:id="_VwxKQCSiEeCIlumqagSWRg" name="org.eclipse.egf.releng2">
-          <elements xmi:id="_Xlvu4CSiEeCIlumqagSWRg" name="rmap.svn.provider" superPattern="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_EGUrcJMbEd-pjLQZUcJ3fw"
-              headerMethod="#_Xlvu4iSiEeCIlumqagSWRg" conditionMethod="#_Xlvu5CSiEeCIlumqagSWRg"
-              initMethod="#_Xlvu4ySiEeCIlumqagSWRg" footerMethod="#_Xlvu5iSiEeCIlumqagSWRg">
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_Xlvu4SSiEeCIlumqagSWRg"
-                name="JET"/>
-            <methods xmi:id="_Xlvu4iSiEeCIlumqagSWRg" name="header" patternFilePath="templates/pattern._Xlvu4CSiEeCIlumqagSWRg/method._Xlvu4iSiEeCIlumqagSWRg.pt"/>
-            <methods xmi:id="_Xlvu4ySiEeCIlumqagSWRg" name="init" patternFilePath="templates/pattern._Xlvu4CSiEeCIlumqagSWRg/method._Xlvu4ySiEeCIlumqagSWRg.pt"/>
-            <methods xmi:id="_Xlvu5CSiEeCIlumqagSWRg" name="preCondition" patternFilePath="templates/pattern._Xlvu4CSiEeCIlumqagSWRg/method._Xlvu5CSiEeCIlumqagSWRg.pt"/>
-            <methods xmi:id="_Xlvu5SSiEeCIlumqagSWRg" name="body" patternFilePath="templates/pattern._Xlvu4CSiEeCIlumqagSWRg/method._Xlvu5SSiEeCIlumqagSWRg.pt"/>
-            <methods xmi:id="_Xlvu5iSiEeCIlumqagSWRg" name="footer" patternFilePath="templates/pattern._Xlvu4CSiEeCIlumqagSWRg/method._Xlvu5iSiEeCIlumqagSWRg.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_Xlvu5ySiEeCIlumqagSWRg"/>
-          </elements>
           <elements xmi:id="_YiMBoCSlEeCIlumqagSWRg" name="build.properties" superPattern="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_4NTLAJNGEd-BJKD_XS9R2A"
               headerMethod="#_YiMBoiSlEeCIlumqagSWRg" conditionMethod="#_YiMBpCSlEeCIlumqagSWRg"
               initMethod="#_YiMBoySlEeCIlumqagSWRg" footerMethod="#_YiMBpiSlEeCIlumqagSWRg">
@@ -72,18 +60,6 @@
             <methods xmi:id="_YiMBpSSlEeCIlumqagSWRg" name="body" patternFilePath="templates/pattern._YiMBoCSlEeCIlumqagSWRg/method._YiMBpSSlEeCIlumqagSWRg.pt"/>
             <methods xmi:id="_YiMBpiSlEeCIlumqagSWRg" name="footer" patternFilePath="templates/pattern._YiMBoCSlEeCIlumqagSWRg/method._YiMBpiSlEeCIlumqagSWRg.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_YiMBpySlEeCIlumqagSWRg"/>
-          </elements>
-          <elements xmi:id="_co63ICovEeCBw7S2pyk8wg" name="recompile patterns" superPattern="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_sTvtQJVuEd-fvPvNnKEvJg"
-              headerMethod="#_co63IiovEeCBw7S2pyk8wg" conditionMethod="#_co63JCovEeCBw7S2pyk8wg"
-              initMethod="#_co63IyovEeCBw7S2pyk8wg" footerMethod="#_co63JSovEeCBw7S2pyk8wg">
-            <nature xmi:type="jetpattern:JetNature" xmi:id="_co63ISovEeCBw7S2pyk8wg"
-                name="JET"/>
-            <methods xmi:id="_co63IiovEeCBw7S2pyk8wg" name="header" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63IiovEeCBw7S2pyk8wg.pt"/>
-            <methods xmi:id="_co63IyovEeCBw7S2pyk8wg" name="init" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63IyovEeCBw7S2pyk8wg.pt"/>
-            <methods xmi:id="_co63JCovEeCBw7S2pyk8wg" name="preCondition" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JCovEeCBw7S2pyk8wg.pt"/>
-            <methods xmi:id="_co63JSovEeCBw7S2pyk8wg" name="footer" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JSovEeCBw7S2pyk8wg.pt"/>
-            <methods xmi:id="_co63JyovEeCBw7S2pyk8wg" name="build" patternFilePath="templates/pattern._co63ICovEeCBw7S2pyk8wg/method._co63JyovEeCBw7S2pyk8wg.pt"/>
-            <orchestration xmi:type="pattern:SuperCall" xmi:id="_co63KCovEeCBw7S2pyk8wg"/>
           </elements>
         </libraries>
       </viewpoints>
@@ -98,12 +74,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_R_0BICSiEeCIlumqagSWRg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_mb-o4I_tEd-ggNhbFv1Fiw">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_UHQ10CSiEeCIlumqagSWRg">
-              <substitutions xmi:id="_UeqpMCSiEeCIlumqagSWRg" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_EGUrcJMbEd-pjLQZUcJ3fw"
-                  replacement="#_Xlvu4CSiEeCIlumqagSWRg"/>
               <substitutions xmi:id="_k2nAoCSlEeCIlumqagSWRg" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_4NTLAJNGEd-BJKD_XS9R2A"
                   replacement="#_YiMBoCSlEeCIlumqagSWRg"/>
-              <substitutions xmi:id="_eYO4oCovEeCBw7S2pyk8wg" replacedElement="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_sTvtQJVuEd-fvPvNnKEvJg"
-                  replacement="#_co63ICovEeCBw7S2pyk8wg"/>
             </type>
           </invocationContracts>
         </invocationContractContainer>
