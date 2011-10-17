@@ -25,7 +25,6 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -37,8 +36,16 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class GenerationHelper {
     
+    public boolean hasBinaryBuildLocation(EObject eObject) {
+        return containsClass(eObject, BuildstepPackage.eINSTANCE.getBinaryBuildLocation());
+    }
+    
     public boolean hasTargetPlatformBuildLocation(EObject eObject) {
         return containsClass(eObject, BuildstepPackage.eINSTANCE.getTargetPlatformBuildLocation());
+    }
+
+    public boolean hasRunningPlatformBuildLocation(EObject eObject) {
+        return containsClass(eObject, BuildstepPackage.eINSTANCE.getRunningPlatformBuildLocation());
     }
 
     public boolean hasInstallStepBuildLocation(EObject eObject) {
@@ -48,7 +55,8 @@ public class GenerationHelper {
     private boolean containsClass(EObject eObject, EClass eClass) {
         TreeIterator<EObject> eAllContents = eObject.eAllContents();
         while (eAllContents.hasNext()) {
-            if (eClass.equals(eAllContents.next().eClass()))
+            EClass currentEClass = eAllContents.next().eClass();
+            if (eClass.equals(currentEClass) || currentEClass.getESuperTypes().contains(eClass))
                 return true;
         }
         return false;

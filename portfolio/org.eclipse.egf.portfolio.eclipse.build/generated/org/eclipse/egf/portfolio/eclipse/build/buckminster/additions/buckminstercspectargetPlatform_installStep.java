@@ -99,6 +99,6 @@ public class buckminstercspectargetPlatform_installStep {
     }
 
     public boolean preCondition() throws Exception {
-        return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep)) && !(new GenerationHelper().hasInstallStepBuildLocation(buildStep));
+        return !(new GenerationHelper().hasTargetPlatformBuildLocation(buildStep)) && !(new GenerationHelper().hasRunningPlatformBuildLocation(buildStep)) && !(new GenerationHelper().hasInstallStepBuildLocation(buildStep));
     }
 }
