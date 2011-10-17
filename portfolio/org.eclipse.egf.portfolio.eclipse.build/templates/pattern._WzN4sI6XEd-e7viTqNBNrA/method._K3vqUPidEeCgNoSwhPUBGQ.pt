@@ -1,4 +1,9 @@
-	<target name="install.egf" unless="egf.exists" depends="get.director">
+    <target name="install.egf">
+        <available file="${tools}/egf/eclipse.ini" property="egf.exists" />
+        <antcall target="do.install.egf" />
+	</target>
+
+	<target name="do.install.egf" unless="egf.exists" depends="install.director">
         <echo message="Configuring EGF with needed features" />
         <echo message="EGF site: ${egf.site}" />
         <echo message="EGF eclipse site: ${egf.eclipse.site}" />

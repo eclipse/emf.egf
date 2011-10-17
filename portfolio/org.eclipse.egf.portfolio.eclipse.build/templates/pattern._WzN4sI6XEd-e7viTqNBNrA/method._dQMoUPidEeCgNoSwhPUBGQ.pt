@@ -1,15 +1,4 @@
-	<target name="init" depends="init.checks,init.workspace,init.build.properties" />	
-	
-    <target name="init.checks">
-        <available file="${tools}/director/director" property="director.exists" />
-        <available file="${tools}/buckminster/buckminster" property="buckminster.exists" />
-        <available file="${tools}/egf/eclipse.ini" property="egf.exists" />
-        <available file="${workspace}" type="dir" property="workspace.exists" />
-    </target>
-	
-    <target name="init.workspace" unless="workspace.exists">
-        <mkdir dir="${workspace}" />
-    </target>
+	<target name="init" depends="init.build.properties" />	
 
     <target name="init.build.properties">
         <!-- Echo relevant properties to a temporary file so that Buckminster can read them -->

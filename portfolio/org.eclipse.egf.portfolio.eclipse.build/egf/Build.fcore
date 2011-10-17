@@ -777,7 +777,7 @@
             <methods xmi:id="_jxPv8ficEeCgNoSwhPUBGQ" name="properties" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._jxPv8ficEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_WzN4tY6XEd-e7viTqNBNrA" name="footer" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._WzN4tY6XEd-e7viTqNBNrA.pt"/>
             <methods xmi:id="_uVnGkPicEeCgNoSwhPUBGQ" name="eclipse_launch" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._uVnGkPicEeCgNoSwhPUBGQ.pt"/>
-            <methods xmi:id="_EwcU4PidEeCgNoSwhPUBGQ" name="get_director" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._EwcU4PidEeCgNoSwhPUBGQ.pt"/>
+            <methods xmi:id="_EwcU4PidEeCgNoSwhPUBGQ" name="install_director" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._EwcU4PidEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_IIgc4PidEeCgNoSwhPUBGQ" name="install_buckminster" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._IIgc4PidEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_K3vqUPidEeCgNoSwhPUBGQ" name="install_egf" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._K3vqUPidEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_1GVzgPicEeCgNoSwhPUBGQ" name="buckminster" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._1GVzgPicEeCgNoSwhPUBGQ.pt"/>

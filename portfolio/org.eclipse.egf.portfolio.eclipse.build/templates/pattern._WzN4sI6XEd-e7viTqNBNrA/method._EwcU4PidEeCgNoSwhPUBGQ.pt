@@ -1,4 +1,9 @@
-    <target name="get.director" unless="director.exists">
+    <target name="install.director">
+        <available file="${tools}/director/director" property="director.exists" />
+        <antcall target="do.install.director" />
+    </target>
+    
+    <target name="do.install.director" unless="director.exists">
         <echo message="Fetching headless director application" />
         <tempfile destdir="${java.io.tmpdir}" prefix="director-" suffix=".zip" property="director.zip" deleteonexit="true" />
         <get src="${director.url}" dest="${director.zip}" />

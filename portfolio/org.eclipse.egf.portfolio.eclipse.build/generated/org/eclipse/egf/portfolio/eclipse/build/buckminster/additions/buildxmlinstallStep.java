@@ -21,7 +21,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "\t<target name=\"";
-    protected final String TEXT_2 = "\" depends=\"init,get.director\" >" + NL + "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL + "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />";
+    protected final String TEXT_2 = "\" depends=\"init,install.director\" >" + NL + "        <eclipse.launch app=\"director\">" + NL + "            <args>" + NL + "                <jvmarg value=\"-Declipse.p2.mirrors=false\" />";
     protected final String TEXT_3 = NL;
     protected final String TEXT_4 = NL + NL + "            \t<arg value=\"-roaming\" />" + NL + "            \t<arg value=\"-profileProperties\" />" + NL + "                <arg value=\"org.eclipse.update.install.features=true \" />" + NL + "" + NL + "                <arg value=\"-d\" />" + NL + "                <arg value=\"${publish}/";
     protected final String TEXT_5 = "\" />" + NL + "                " + NL + "                <arg value=\"-p\" />" + NL + "                <arg value=\"";

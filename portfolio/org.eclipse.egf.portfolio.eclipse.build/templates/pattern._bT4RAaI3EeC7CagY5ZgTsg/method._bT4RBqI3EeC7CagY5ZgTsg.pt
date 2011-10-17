@@ -6,7 +6,7 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 	else if (resultStep instanceof AggregateStep) 
 		publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
 }%>
-	<target name="<%=new GenerationHelper().getIdOrPositionString(installStep)%>" depends="init,get.director" >
+	<target name="<%=new GenerationHelper().getIdOrPositionString(installStep)%>" depends="init,install.director" >
         <eclipse.launch app="director">
             <args>
                 <jvmarg value="-Declipse.p2.mirrors=false" />
