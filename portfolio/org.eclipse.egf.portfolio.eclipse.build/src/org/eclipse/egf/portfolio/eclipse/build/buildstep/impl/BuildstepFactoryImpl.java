@@ -95,6 +95,7 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.UPDATE_SITE_BUILD_LOCATION: return createUpdateSiteBuildLocation();
             case BuildstepPackage.RESULT_STEP_BUILD_LOCATION: return createResultStepBuildLocation();
             case BuildstepPackage.INSTALL_STEP_BUILD_LOCATION: return createInstallStepBuildLocation();
+            case BuildstepPackage.RUNNING_PLATFORM_BUILD_LOCATION: return createRunningPlatformBuildLocation();
             case BuildstepPackage.PLUGIN: return createPlugin();
             case BuildstepPackage.FEATURE: return createFeature();
             default:
@@ -170,6 +171,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     public InstallStepBuildLocation createInstallStepBuildLocation() {
         InstallStepBuildLocationImpl installStepBuildLocation = new InstallStepBuildLocationImpl();
         return installStepBuildLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RunningPlatformBuildLocation createRunningPlatformBuildLocation() {
+        RunningPlatformBuildLocationImpl runningPlatformBuildLocation = new RunningPlatformBuildLocationImpl();
+        return runningPlatformBuildLocation;
     }
 
     /**

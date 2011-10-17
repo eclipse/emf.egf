@@ -75,6 +75,15 @@ public interface BuildstepFactory extends EFactory {
     InstallStepBuildLocation createInstallStepBuildLocation();
 
     /**
+     * Returns a new object of class '<em>Running Platform Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Running Platform Build Location</em>'.
+     * @generated
+     */
+    RunningPlatformBuildLocation createRunningPlatformBuildLocation();
+
+    /**
      * Returns a new object of class '<em>Target Platform Build Location</em>'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

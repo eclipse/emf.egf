@@ -35,6 +35,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStepBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.TargetPlatformBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep;
@@ -194,6 +195,13 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     private EClass installStepBuildLocationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass runningPlatformBuildLocationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -796,6 +804,15 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getRunningPlatformBuildLocation() {
+        return runningPlatformBuildLocationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getComponent() {
         return componentEClass;
     }
@@ -948,6 +965,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         installStepBuildLocationEClass = createEClass(INSTALL_STEP_BUILD_LOCATION);
         createEReference(installStepBuildLocationEClass, INSTALL_STEP_BUILD_LOCATION__INSTALL_STEP);
 
+        runningPlatformBuildLocationEClass = createEClass(RUNNING_PLATFORM_BUILD_LOCATION);
+
         componentEClass = createEClass(COMPONENT);
         createEAttribute(componentEClass, COMPONENT__NAME);
         createEReference(componentEClass, COMPONENT__BUILD_STEP);
@@ -1009,6 +1028,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         updateSiteBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
         resultStepBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
         installStepBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
+        runningPlatformBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
         pluginEClass.getESuperTypes().add(this.getComponent());
         featureEClass.getESuperTypes().add(this.getComponent());
 
@@ -1087,6 +1107,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
 
         initEClass(installStepBuildLocationEClass, InstallStepBuildLocation.class, "InstallStepBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getInstallStepBuildLocation_InstallStep(), this.getInstallStep(), null, "installStep", null, 1, 1, InstallStepBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(runningPlatformBuildLocationEClass, RunningPlatformBuildLocation.class, "RunningPlatformBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(componentEClass, Component.class, "Component", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getComponent_Name(), ecorePackage.getEString(), "name", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

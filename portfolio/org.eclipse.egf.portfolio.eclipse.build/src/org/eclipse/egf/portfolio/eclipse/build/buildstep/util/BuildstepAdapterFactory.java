@@ -165,6 +165,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createInstallStepBuildLocationAdapter();
             }
             @Override
+            public Adapter caseRunningPlatformBuildLocation(RunningPlatformBuildLocation object) {
+                return createRunningPlatformBuildLocationAdapter();
+            }
+            @Override
             public Adapter caseComponent(Component object) {
                 return createComponentAdapter();
             }
@@ -467,6 +471,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createInstallStepBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation <em>Running Platform Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation
+     * @generated
+     */
+    public Adapter createRunningPlatformBuildLocationAdapter() {
         return null;
     }
 

@@ -113,6 +113,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="installStep" lowerBound="1"
         eType="#//InstallStep"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RunningPlatformBuildLocation" eSuperTypes="#//BinaryBuildLocation"/>
   <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="buildStep" lowerBound="1"

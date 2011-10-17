@@ -1,0 +1,15 @@
+    <%String id = new GenerationHelper().getIdOrPositionString(runningPlatformBuildLocation);%>
+	<locator searchPathRef="targetPlatform<%=id%>" <%=new GenerationHelper().getPatternString(runningPlatformBuildLocation)%> failOnError="false" />
+	<searchPath name="targetPlatform<%=id%>">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.platform">
+			<uri format="plugin/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.platform">
+			<uri format="feature/{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+

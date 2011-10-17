@@ -1221,6 +1221,52 @@ public interface BuildstepPackage extends EPackage {
     int INSTALL_STEP_BUILD_LOCATION_FEATURE_COUNT = BINARY_BUILD_LOCATION_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.RunningPlatformBuildLocationImpl <em>Running Platform Build Location</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.RunningPlatformBuildLocationImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getRunningPlatformBuildLocation()
+     * @generated
+     */
+    int RUNNING_PLATFORM_BUILD_LOCATION = 19;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUNNING_PLATFORM_BUILD_LOCATION__PATTERN = BINARY_BUILD_LOCATION__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Build Step</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUNNING_PLATFORM_BUILD_LOCATION__BUILD_STEP = BINARY_BUILD_LOCATION__BUILD_STEP;
+
+    /**
+     * The feature id for the '<em><b>Suffix</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUNNING_PLATFORM_BUILD_LOCATION__SUFFIX = BINARY_BUILD_LOCATION__SUFFIX;
+
+    /**
+     * The number of structural features of the '<em>Running Platform Build Location</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUNNING_PLATFORM_BUILD_LOCATION_FEATURE_COUNT = BINARY_BUILD_LOCATION_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl <em>Component</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1228,7 +1274,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getComponent()
      * @generated
      */
-    int COMPONENT = 19;
+    int COMPONENT = 20;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1265,7 +1311,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getPlugin()
      * @generated
      */
-    int PLUGIN = 20;
+    int PLUGIN = 21;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1302,7 +1348,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getFeature()
      * @generated
      */
-    int FEATURE = 21;
+    int FEATURE = 22;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1339,7 +1385,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getCLEAN_TYPE()
      * @generated
      */
-    int CLEAN_TYPE = 22;
+    int CLEAN_TYPE = 23;
 
 
     /**
@@ -1940,6 +1986,16 @@ public interface BuildstepPackage extends EPackage {
     EReference getInstallStepBuildLocation_InstallStep();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation <em>Running Platform Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Running Platform Build Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.RunningPlatformBuildLocation
+     * @generated
+     */
+    EClass getRunningPlatformBuildLocation();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Component <em>Component</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2508,6 +2564,16 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EReference INSTALL_STEP_BUILD_LOCATION__INSTALL_STEP = eINSTANCE.getInstallStepBuildLocation_InstallStep();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.RunningPlatformBuildLocationImpl <em>Running Platform Build Location</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.RunningPlatformBuildLocationImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getRunningPlatformBuildLocation()
+         * @generated
+         */
+        EClass RUNNING_PLATFORM_BUILD_LOCATION = eINSTANCE.getRunningPlatformBuildLocation();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl <em>Component</em>}' class.

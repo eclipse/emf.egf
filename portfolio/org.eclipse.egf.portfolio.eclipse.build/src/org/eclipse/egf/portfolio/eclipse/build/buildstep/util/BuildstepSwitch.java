@@ -243,6 +243,14 @@ public class BuildstepSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildstepPackage.RUNNING_PLATFORM_BUILD_LOCATION: {
+                RunningPlatformBuildLocation runningPlatformBuildLocation = (RunningPlatformBuildLocation)theEObject;
+                T result = caseRunningPlatformBuildLocation(runningPlatformBuildLocation);
+                if (result == null) result = caseBinaryBuildLocation(runningPlatformBuildLocation);
+                if (result == null) result = caseBuildLocation(runningPlatformBuildLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildstepPackage.COMPONENT: {
                 Component component = (Component)theEObject;
                 T result = caseComponent(component);
@@ -549,6 +557,21 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseInstallStepBuildLocation(InstallStepBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Running Platform Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Running Platform Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseRunningPlatformBuildLocation(RunningPlatformBuildLocation object) {
         return null;
     }
 

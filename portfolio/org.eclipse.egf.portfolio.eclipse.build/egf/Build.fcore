@@ -1403,6 +1403,24 @@
             </parameters>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_J_Vjmah4EeCyIabjY3cKRg"/>
           </elements>
+          <elements xmi:id="_a8tUAPijEeCbg_fyoO-ozQ" name="build.rmap.runningPlatform"
+              superPattern="#_AAXisJMbEd-pjLQZUcJ3fw" headerMethod="#_a8tUAvijEeCbg_fyoO-ozQ"
+              conditionMethod="#_a8tUBPijEeCbg_fyoO-ozQ" initMethod="#_a8tUA_ijEeCbg_fyoO-ozQ"
+              footerMethod="#_a8tUBvijEeCbg_fyoO-ozQ">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_a8tUAfijEeCbg_fyoO-ozQ"
+                name="JET"/>
+            <methods xmi:id="_a8tUAvijEeCbg_fyoO-ozQ" name="header" patternFilePath="templates/pattern._a8tUAPijEeCbg_fyoO-ozQ/method._a8tUAvijEeCbg_fyoO-ozQ.pt"/>
+            <methods xmi:id="_a8tUA_ijEeCbg_fyoO-ozQ" name="init" patternFilePath="templates/pattern._a8tUAPijEeCbg_fyoO-ozQ/method._a8tUA_ijEeCbg_fyoO-ozQ.pt"/>
+            <methods xmi:id="_a8tUBPijEeCbg_fyoO-ozQ" name="preCondition" patternFilePath="templates/pattern._a8tUAPijEeCbg_fyoO-ozQ/method._a8tUBPijEeCbg_fyoO-ozQ.pt"/>
+            <methods xmi:id="_a8tUBfijEeCbg_fyoO-ozQ" name="body" patternFilePath="templates/pattern._a8tUAPijEeCbg_fyoO-ozQ/method._a8tUBfijEeCbg_fyoO-ozQ.pt"/>
+            <methods xmi:id="_a8tUBvijEeCbg_fyoO-ozQ" name="footer" patternFilePath="templates/pattern._a8tUAPijEeCbg_fyoO-ozQ/method._a8tUBvijEeCbg_fyoO-ozQ.pt"/>
+            <parameters xmi:id="_a8tUB_ijEeCbg_fyoO-ozQ" name="runningPlatformBuildLocation"
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//RunningPlatformBuildLocation">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_a8tUCPijEeCbg_fyoO-ozQ"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_a8tUCfijEeCbg_fyoO-ozQ"/>
+          </elements>
           <elements xmi:id="_zgvmsJ5GEd-3wvN5SnesGA" name="build.target.updateSite"
               superPattern="#_geJq4J4XEd-3wvN5SnesGA" headerMethod="#_zgvmsZ5GEd-3wvN5SnesGA"
               conditionMethod="#_zgvms55GEd-3wvN5SnesGA" initMethod="#_zgvmsp5GEd-3wvN5SnesGA"
@@ -1475,6 +1493,24 @@
             </parameters>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_YLrGeah4EeCyIabjY3cKRg"/>
           </elements>
+          <elements xmi:id="_d2vKQfilEeCb194d2cwXCw" name="build.target.runningPlatform"
+              superPattern="#_geJq4J4XEd-3wvN5SnesGA" headerMethod="#_d2vKQ_ilEeCb194d2cwXCw"
+              conditionMethod="#_d2vKRfilEeCb194d2cwXCw" initMethod="#_d2vKRPilEeCb194d2cwXCw"
+              footerMethod="#_d2vKR_ilEeCb194d2cwXCw">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_d2vKQvilEeCb194d2cwXCw"
+                name="JET"/>
+            <methods xmi:id="_d2vKQ_ilEeCb194d2cwXCw" name="header" patternFilePath="templates/pattern._d2vKQfilEeCb194d2cwXCw/method._d2vKQ_ilEeCb194d2cwXCw.pt"/>
+            <methods xmi:id="_d2vKRPilEeCb194d2cwXCw" name="init" patternFilePath="templates/pattern._d2vKQfilEeCb194d2cwXCw/method._d2vKRPilEeCb194d2cwXCw.pt"/>
+            <methods xmi:id="_d2vKRfilEeCb194d2cwXCw" name="preCondition" patternFilePath="templates/pattern._d2vKQfilEeCb194d2cwXCw/method._d2vKRfilEeCb194d2cwXCw.pt"/>
+            <methods xmi:id="_d2vKRvilEeCb194d2cwXCw" name="body" patternFilePath="templates/pattern._d2vKQfilEeCb194d2cwXCw/method._d2vKRvilEeCb194d2cwXCw.pt"/>
+            <methods xmi:id="_d2vKR_ilEeCb194d2cwXCw" name="footer" patternFilePath="templates/pattern._d2vKQfilEeCb194d2cwXCw/method._d2vKR_ilEeCb194d2cwXCw.pt"/>
+            <parameters xmi:id="_d2vKSPilEeCb194d2cwXCw" name="runningPlatformBuildLocation"
+                type="http://www.eclipse.org/egf/1.0.1/buildstep#//RunningPlatformBuildLocation">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_d2vKSfilEeCb194d2cwXCw"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_d2vKSvilEeCb194d2cwXCw"/>
+          </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>
@@ -1486,13 +1522,13 @@
               <substitutions xmi:id="_xs22QJMZEd-pjLQZUcJ3fw" replacedElement="#_yCPiUJMXEd-pjLQZUcJ3fw"
                   replacement="#_dmdIsJMZEd-pjLQZUcJ3fw #_CrT7cJMaEd-pjLQZUcJ3fw #_yCPiUJMXEd-pjLQZUcJ3fw #_SbudAJWHEd-9uNs2Xd57Cg"/>
               <substitutions xmi:id="_n2COMJMxEd-BJKD_XS9R2A" replacedElement="#_AAXisJMbEd-pjLQZUcJ3fw"
-                  replacement="#_EGUrcJMbEd-pjLQZUcJ3fw #_wiU4gJSoEd-BJKD_XS9R2A #_MXMfEJTUEd-fvPvNnKEvJg #_pFGKYZloEd-GKqXx_evxEw #_J_VjkKh4EeCyIabjY3cKRg #__Sk8AeUqEeCpQPfMrPZU6g #_AAXisJMbEd-pjLQZUcJ3fw"/>
+                  replacement="#_EGUrcJMbEd-pjLQZUcJ3fw #_wiU4gJSoEd-BJKD_XS9R2A #_MXMfEJTUEd-fvPvNnKEvJg #_pFGKYZloEd-GKqXx_evxEw #_J_VjkKh4EeCyIabjY3cKRg #__Sk8AeUqEeCpQPfMrPZU6g #_a8tUAPijEeCbg_fyoO-ozQ #_AAXisJMbEd-pjLQZUcJ3fw"/>
               <substitutions xmi:id="_avGLIJNHEd-BJKD_XS9R2A" replacedElement="#_4NTLAJNGEd-BJKD_XS9R2A"
                   replacement="#_x4T9kZmWEd-Ee7jt2lxlVA #_D3WLsWEpEeC2MPWqHbfkpg #_4NTLAJNGEd-BJKD_XS9R2A"/>
               <substitutions xmi:id="_SGBtUJTYEd-fvPvNnKEvJg" replacedElement="#_C_qLIJTYEd-fvPvNnKEvJg"
                   replacement="#_dSeb4aoGEd-k9aH6AnUHCw #_sTvtQJVuEd-fvPvNnKEvJg #_mDDq8ZVxEd-4gcrM0WMTSg #_Q9g78JVuEd-fvPvNnKEvJg #_gvxW8ZVyEd--Q_dCgK5jqw #_fy4H8Z7VEd-8De2HBT3r0w #_VOw2gaYIEd-BVLrtOlWqIw #_1dui4K-AEd-6WbA1gqJ3Sw #_bT4RAaI3EeC7CagY5ZgTsg #_C_qLIJTYEd-fvPvNnKEvJg"/>
               <substitutions xmi:id="_4KK70J45Ed-3wvN5SnesGA" replacedElement="#_geJq4J4XEd-3wvN5SnesGA"
-                  replacement="#_zgvmsJ5GEd-3wvN5SnesGA #_C6JiAJ45Ed-3wvN5SnesGA #_QzNV0LaeEd-YN_PdUdJuug #_YLrGcKh4EeCyIabjY3cKRg #_geJq4J4XEd-3wvN5SnesGA"/>
+                  replacement="#_zgvmsJ5GEd-3wvN5SnesGA #_C6JiAJ45Ed-3wvN5SnesGA #_QzNV0LaeEd-YN_PdUdJuug #_YLrGcKh4EeCyIabjY3cKRg #_d2vKQfilEeCb194d2cwXCw #_geJq4J4XEd-3wvN5SnesGA"/>
             </type>
           </invocationContracts>
           <invocationContracts xmi:id="_fpjcY4_5Ed-Mh9dXw3mL3g" factoryComponentContract="#_QISjs46VEd-e7viTqNBNrA"

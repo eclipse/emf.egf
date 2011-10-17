@@ -1,3 +1,4 @@
+		<echo message="import target platform" />
         <buckminster command="importtargetdefinition">
             <cmdargs>
                 <arg value="--active" />

@@ -1,3 +1,4 @@
+		<echo message="provision : import projects in workspace" />
         <buckminster command="import">
             <!-- Uncomment to debug <globargs><jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/></globargs> -->
             <cmdargs>
