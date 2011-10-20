@@ -72,7 +72,7 @@ public class chain {
     }
 
     protected void method_addNewJobToChain(final StringBuffer out, final PatternContext ctx) throws Exception {
-        chain.getJobs().add(0, newJob);
+        chain.getJobs().add(newJob);
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "addNewJobToChain", out.toString());

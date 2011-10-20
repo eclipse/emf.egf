@@ -4,14 +4,14 @@
 	<searchPath name="<%=id%>">
 	    <!-- provider for windows if checkouted with Hudson -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
-			<uri format="file:/{0}/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
+			<uri format="file:/{0}/svn/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
 				<bc:propertyRef key="build.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 	    <!-- provider for unix if checkouted with Hudson -->
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
+			<uri format="file://{0}/svn/<%=svnLocation.getLocalPath()%>/<%=svnBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(svnBuildLocation.getSuffix())%>">
 				<bc:propertyRef key="build.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>

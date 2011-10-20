@@ -23,10 +23,10 @@ public class buildrmapsvn extends org.eclipse.egf.portfolio.eclipse.build.buckmi
     protected final String TEXT_1 = "\t<locator searchPathRef=\"";
     protected final String TEXT_2 = "\" ";
     protected final String TEXT_3 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"";
-    protected final String TEXT_4 = "\">" + NL + "\t    <!-- provider for windows if checkouted with Hudson -->" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file:/{0}/";
+    protected final String TEXT_4 = "\">" + NL + "\t    <!-- provider for windows if checkouted with Hudson -->" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file:/{0}/svn/";
     protected final String TEXT_5 = "/";
     protected final String TEXT_6 = "/{1}";
-    protected final String TEXT_7 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t    <!-- provider for unix if checkouted with Hudson -->" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file://{0}/";
+    protected final String TEXT_7 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t    <!-- provider for unix if checkouted with Hudson -->" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"local\" source=\"true\">" + NL + "\t\t\t<uri format=\"file://{0}/svn/";
     protected final String TEXT_8 = "/";
     protected final String TEXT_9 = "/{1}";
     protected final String TEXT_10 = "\">" + NL + "\t\t\t\t<bc:propertyRef key=\"build.root\" />" + NL + "\t\t\t\t<bc:propertyRef key=\"buckminster.component\" />" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t    <!-- standalone provider -->" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"svn\" source=\"true\">" + NL + "\t\t\t<uri format=\"";

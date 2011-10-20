@@ -22,7 +22,7 @@ public class Otherssvn extends org.eclipse.egf.portfolio.eclipse.build.hudson.ca
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "  <scm class=\"hudson.scm.SubversionSCM\">" + NL + "    <locations>";
     protected final String TEXT_2 = NL + "      <hudson.scm.SubversionSCM_-ModuleLocation>" + NL + "        <remote>";
-    protected final String TEXT_3 = "</remote>" + NL + "        <local>";
+    protected final String TEXT_3 = "</remote>" + NL + "        <local>svn/";
     protected final String TEXT_4 = "</local>" + NL + "      </hudson.scm.SubversionSCM_-ModuleLocation>";
     protected final String TEXT_5 = NL + "    </locations>" + NL + "    <useUpdate>true</useUpdate>" + NL + "    <doRevert>true</doRevert>" + NL + "    <excludedRegions></excludedRegions>" + NL + "    <includedRegions></includedRegions>" + NL + "    <excludedUsers></excludedUsers>" + NL + "    <excludedRevprop></excludedRevprop>" + NL + "    <excludedCommitMessages></excludedCommitMessages>" + NL + "  </scm>" + NL;
     protected final String TEXT_6 = NL;

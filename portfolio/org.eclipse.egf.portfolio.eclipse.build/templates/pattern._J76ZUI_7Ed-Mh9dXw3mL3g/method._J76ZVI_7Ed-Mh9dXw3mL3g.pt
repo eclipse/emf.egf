@@ -5,7 +5,7 @@
       <%SVNLocation svnLocation = iterator.next();%>
       <hudson.scm.SubversionSCM_-ModuleLocation>
         <remote><%=svnLocation.getProtocol().getLiteral()%><%=svnLocation.getUrl()%></remote>
-        <local><%=new GenerationHelper().getStringIfNotNull(svnLocation.getLocalPath())%></local>
+        <local>svn/<%=new GenerationHelper().getStringIfNotNull(svnLocation.getLocalPath())%></local>
       </hudson.scm.SubversionSCM_-ModuleLocation>
       <%}%>
     </locations>

@@ -30,7 +30,7 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
     protected final String TEXT_7 = NL + "\t\t<fileset dir=\"";
     protected final String TEXT_8 = "\" defaultexcludes=\"true\">";
     protected final String TEXT_9 = NL;
-    protected final String TEXT_10 = NL + "\t\t<fileset dir=\"${build.root}/";
+    protected final String TEXT_10 = NL + "\t\t<fileset dir=\"${build.root}/svn/";
     protected final String TEXT_11 = "/";
     protected final String TEXT_12 = "\" defaultexcludes=\"true\">";
     protected final String TEXT_13 = NL;
