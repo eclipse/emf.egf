@@ -14,6 +14,7 @@ package org.eclipse.egf.pattern.common.java;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Date;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
@@ -27,6 +28,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
@@ -50,6 +52,8 @@ import org.eclipse.text.edits.TextEdit;
  * @author Thomas Guiu
  */
 public abstract class AbstractJavaEngine extends PatternEngine {
+
+    private static final String NL = System.getProperties().getProperty("line.separator");
 
     public AbstractJavaEngine(Pattern pattern) throws PatternException {
         super(pattern);
@@ -77,16 +81,16 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         try {
             Class<?> templateClass = loadTemplateClass(context, getUnderlyingClassname());
             Object template = templateClass.newInstance();
-            Class<?>[] parameterClasses = new Class<?>[1];
+            Class<?>[] parameterClasses = new Class<?>[] { PatternContext.class };
             Object[] parameterValues = new Object[] { context };
 
             if (AssemblyHelper.GENERATE_METHOD.equals(methodName)) {
                 parameterClasses[0] = Object.class;
             } else if (AssemblyHelper.ORCHESTRATION_METHOD.equals(methodName)) {
-                parameterClasses[0] = PatternContext.class;
+                // parameterClasses[0] = PatternContext.class;
             } else if (PatternFactory.PRECONDITION_METHOD_NAME.equals(methodName)) {
-                parameterClasses = new Class<?>[0];
-                parameterValues = new Object[0];
+                // parameterClasses = new Class<?>[0];
+                // parameterValues = new Object[0];
             } else
                 throw new IllegalStateException();
 
@@ -109,9 +113,17 @@ public abstract class AbstractJavaEngine extends PatternEngine {
             try {
                 method = templateClass.getMethod(methodName, parameterClasses);
             } catch (NoSuchMethodException e) {
-                if (PatternFactory.PRECONDITION_METHOD_NAME.equals(methodName))
-                    return Boolean.TRUE;
-                throw e;
+                if (PatternFactory.PRECONDITION_METHOD_NAME.equals(methodName)) {
+                    // try deprecated precondition method signature
+                    parameterClasses = new Class<?>[0];
+                    parameterValues = new Object[0];
+                    try {
+                        method = templateClass.getMethod(methodName, parameterClasses);
+                    } catch (NoSuchMethodException ee) {
+
+                        return Boolean.TRUE;
+                    }
+                }
             }
             // the pattern is executed but we don't care about the result
             return method.invoke(template, parameterValues);
@@ -159,6 +171,8 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         if (project == null) {
             throw new PatternException(NLS.bind(EGFCommonMessages.No_associated_project, EcoreUtil.getURI(pattern)));
         }
+        String header = "//Generated on " + (new Date()) + " with EGF " + EGFPatternPlugin.getDefault().getBundle().getVersion() + NL;
+        content = header + content;
         // format code
         IJavaProject javaProject = JavaCore.create(project);
         if (javaProject != null) {

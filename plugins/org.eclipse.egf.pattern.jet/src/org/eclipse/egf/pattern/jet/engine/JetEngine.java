@@ -21,7 +21,6 @@ import java.io.ByteArrayOutputStream;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -89,7 +88,7 @@ public class JetEngine extends AbstractJavaEngine {
         Pattern pattern = getPattern();
         // add call to orchestration
         if (pattern.getConditionMethod() != null) {
-            builder.append("if (preCondition()) "); //$NON-NLS-1$
+            builder.append("if (preCondition(ctx)) "); //$NON-NLS-1$
             builder.append(EGFCommonConstants.LINE_SEPARATOR);
         }
         builder.append('{').append(EGFCommonConstants.LINE_SEPARATOR);

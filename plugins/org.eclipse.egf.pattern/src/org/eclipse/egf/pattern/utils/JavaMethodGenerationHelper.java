@@ -42,7 +42,7 @@ public class JavaMethodGenerationHelper {
     }
 
     public void addConditionSignature(PatternMethod called) {
-        content.append("public boolean ").append(PatternFactory.PRECONDITION_METHOD_NAME).append("() throws Exception "); //$NON-NLS-1$ //$NON-NLS-2$
+        content.append("public boolean ").append(PatternFactory.PRECONDITION_METHOD_NAME).append("(PatternContext ctx) throws Exception "); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     public void setContent(StringBuilder content) {

@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.java.engine;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
-import org.eclipse.egf.model.pattern.Node;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -75,7 +74,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
             }
             if (pattern.getConditionMethod() != null) {
                 content.append(EGFCommonConstants.LINE_SEPARATOR);
-                content.append("if (preCondition())"); //$NON-NLS-1$
+                content.append("if (preCondition(ctx))"); //$NON-NLS-1$
             }
             content.append(EGFCommonConstants.LINE_SEPARATOR);
             content.append('{').append(EGFCommonConstants.LINE_SEPARATOR);
@@ -89,7 +88,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
         } else {
             if (pattern.getConditionMethod() != null) {
                 content.append(EGFCommonConstants.LINE_SEPARATOR);
-                content.append("if (preCondition())"); //$NON-NLS-1$
+                content.append("if (preCondition(ctx))"); //$NON-NLS-1$
             }
             content.append(EGFCommonConstants.LINE_SEPARATOR).append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }

@@ -22,7 +22,6 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.common.java.AbstractJavaAssemblyContentProvider;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 
 /**
@@ -57,18 +56,20 @@ public class JavaAssemblyContentProvider extends AbstractJavaAssemblyContentProv
 
         PatternMethod conditionMethod = pattern.getConditionMethod();
         if (conditionMethod != null) {
-            javaMethodHelper.addConditionSignature(conditionMethod);
-            content.append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             String methodContent = getMethodContent(conditionMethod);
             if (methodContent == null || "".equals(methodContent.trim())) { //$NON-NLS-1$
                 if (pattern.getSuperPattern() == null || pattern.getSuperPattern().getConditionMethod() == null)
                     methodContent = "return true;"; //$NON-NLS-1$
                 else
-                    methodContent = "return super." + PatternFactory.PRECONDITION_METHOD_NAME + "();"; //$NON-NLS-1$  //$NON-NLS-2$
+                    methodContent = null;
             }
-            content.append(methodContent).append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            if (methodContent != null) {
+                javaMethodHelper.addConditionSignature(conditionMethod);
+                content.append(EGFCommonConstants.LINE_SEPARATOR);
+                content.append("{").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+                content.append(methodContent).append(EGFCommonConstants.LINE_SEPARATOR);
+                content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            }
         }
     }
 }

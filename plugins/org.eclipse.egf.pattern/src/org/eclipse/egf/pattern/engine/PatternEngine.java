@@ -34,9 +34,9 @@ import org.eclipse.osgi.util.NLS;
  */
 public abstract class PatternEngine {
 
-    private final Pattern _pattern;
+    private final Pattern pattern;
 
-    private final String _bundleId;
+    private final String bundleId;
 
     public PatternEngine(Pattern pattern) throws PatternException {
         if (pattern == null) {
@@ -55,16 +55,16 @@ public abstract class PatternEngine {
         if (fcore.getPlatformBundle().getBundleId() == null) {
             throw new PatternException(EGFPatternMessages.classloader_error4);
         }
-        _pattern = pattern;
-        _bundleId = fcore.getPlatformBundle().getBundleId();
+        this.pattern = pattern;
+        this.bundleId = fcore.getPlatformBundle().getBundleId();
     }
 
     protected Pattern getPattern() {
-        return _pattern;
+        return pattern;
     }
 
     protected String getBundleId() {
-        return _bundleId;
+        return bundleId;
     }
 
     public abstract boolean checkCondition(PatternContext context, Map<PatternParameter, Object> parameters) throws PatternException;
