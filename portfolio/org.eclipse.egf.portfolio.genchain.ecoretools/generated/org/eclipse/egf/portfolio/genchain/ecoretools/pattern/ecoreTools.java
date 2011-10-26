@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 15:25:33 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.genchain.ecoretools.pattern;
 
 import java.util.*;
@@ -39,7 +40,7 @@ public class ecoreTools {
 
 			this.parameter = (org.eclipse.egf.portfolio.genchain.ecoretools.ecoreToolsExtension.EcoreToolsGeneration) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration((PatternContext) argument);
 
@@ -87,10 +88,10 @@ public class ecoreTools {
 		ActivityInvocationHelper.addInvocation(pp, activity, contract2type);
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "org.eclipse.egf.model.pattern.impl.PatternMethodImpl@13419fd (description: null) (name: body) (patternFilePath: platform:/plugin/org.eclipse.egf.portfolio.genchain.ecoretools/templates/pattern._Mf1nEHyqEeC0R_Dv0EljeA/method._Mf1nFXyqEeC0R_Dv0EljeA.pt)", out.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 

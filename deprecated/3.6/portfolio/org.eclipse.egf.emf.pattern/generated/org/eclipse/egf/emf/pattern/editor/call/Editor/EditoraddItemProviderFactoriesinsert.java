@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:06 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.editor.call.Editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -127,7 +128,7 @@ public class EditoraddItemProviderFactoriesinsert {
 																						this._ArrayListOfString = (java.lang.String) _ArrayListOfStringParameter;
 																						this._ListOfString = (java.lang.String) _ListOfStringParameter;
 
-																						if (preCondition()) {
+																						if (preCondition(ctx)) {
 																							ctx.setNode(new Node.Container(currentNode, getClass()));
 																							orchestration(ctx);
 																						}
@@ -348,7 +349,7 @@ public class EditoraddItemProviderFactoriesinsert {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }

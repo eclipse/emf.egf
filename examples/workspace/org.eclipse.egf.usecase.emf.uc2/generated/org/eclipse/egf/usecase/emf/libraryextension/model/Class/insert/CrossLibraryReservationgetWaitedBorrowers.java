@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:40 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.libraryextension.model.Class.insert;
 
 import org.eclipse.egf.common.helper.*;
@@ -95,7 +96,7 @@ public class CrossLibraryReservationgetWaitedBorrowers extends org.eclipse.egf.e
 															this.negativeOperationOffsetCorrection = (java.lang.String) negativeOperationOffsetCorrectionParameter;
 															this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
-															if (preCondition()) {
+															if (preCondition(ctx)) {
 																ctx.setNode(new Node.Container(currentNode, getClass()));
 																orchestration(ctx);
 															}
@@ -184,7 +185,7 @@ public class CrossLibraryReservationgetWaitedBorrowers extends org.eclipse.egf.e
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return "CrossLibraryReservation".equals(genClass.getName());
 	}
 }

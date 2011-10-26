@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:04 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -72,7 +73,7 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
 
 			this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -230,7 +231,7 @@ public class ModelTestSuite extends org.eclipse.egf.emf.pattern.base.GenModelJav
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		GenModel genModel = parameter;
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");

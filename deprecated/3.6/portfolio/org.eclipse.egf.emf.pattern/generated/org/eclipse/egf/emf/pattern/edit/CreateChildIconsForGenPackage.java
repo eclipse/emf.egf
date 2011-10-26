@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:17 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -51,7 +52,7 @@ public class CreateChildIconsForGenPackage extends org.eclipse.egf.emf.pattern.b
 
 			this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -131,7 +132,7 @@ public class CreateChildIconsForGenPackage extends org.eclipse.egf.emf.pattern.b
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		GenPackage genPackage = parameter;
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");

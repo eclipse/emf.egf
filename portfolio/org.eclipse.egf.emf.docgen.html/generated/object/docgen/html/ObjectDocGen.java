@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:00 CEST 2011 with EGF 0.6.1.qualifier
 package object.docgen.html;
 
 import java.util.*;

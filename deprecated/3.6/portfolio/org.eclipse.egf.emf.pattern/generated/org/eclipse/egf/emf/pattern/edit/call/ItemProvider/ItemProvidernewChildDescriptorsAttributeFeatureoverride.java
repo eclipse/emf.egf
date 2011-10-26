@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:03 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -92,7 +93,7 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
 										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
 										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-										if (preCondition()) {
+										if (preCondition(ctx)) {
 											ctx.setNode(new Node.Container(currentNode, getClass()));
 											orchestration(ctx);
 										}
@@ -254,7 +255,7 @@ public class ItemProvidernewChildDescriptorsAttributeFeatureoverride {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }

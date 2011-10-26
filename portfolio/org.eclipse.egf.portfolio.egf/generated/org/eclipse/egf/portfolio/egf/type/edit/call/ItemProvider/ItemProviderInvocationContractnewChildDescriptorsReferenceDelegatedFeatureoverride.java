@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:31 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.egf.type.edit.call.ItemProvider;
 
 import org.eclipse.egf.common.helper.*;
@@ -84,7 +85,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
 										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-										if (preCondition()) {
+										if (preCondition(ctx)) {
 											ctx.setNode(new Node.Container(currentNode, getClass()));
 											orchestration(ctx);
 										}
@@ -188,7 +189,7 @@ public class ItemProviderInvocationContractnewChildDescriptorsReferenceDelegated
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		if (createClass.isMapEntry() == false && FcorePackage.Literals.INVOCATION_CONTRACT == EMFHelper.solveAgainstStaticPackage(genClass.getEcoreClass())) {
 			return true;
 		}

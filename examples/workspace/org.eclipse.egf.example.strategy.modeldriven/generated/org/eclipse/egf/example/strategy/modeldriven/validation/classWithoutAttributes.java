@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:21 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.example.strategy.modeldriven.validation;
 
 import java.util.*;
@@ -27,7 +28,7 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 
 			this.eClass = (org.eclipse.emf.ecore.EClass) eClassParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration((PatternContext) argument);
 
@@ -62,10 +63,6 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "checkAttributes", out.toString());
-	}
-
-	public boolean preCondition() throws Exception {
-		return super.preCondition();
 	}
 
 	protected org.eclipse.emf.ecore.EClass eClass;

@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:37 CEST 2011 with EGF 0.6.1.qualifier
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -47,7 +48,7 @@ public class ModelGenmodelPattern {
 
 			this.parameter = (org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration((PatternContext) argument);
 
@@ -142,7 +143,7 @@ public class ModelGenmodelPattern {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "updateContent", out.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 

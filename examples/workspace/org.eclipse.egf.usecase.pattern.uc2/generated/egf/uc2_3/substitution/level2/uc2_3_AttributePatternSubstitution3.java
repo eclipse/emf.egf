@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:41 CEST 2011 with EGF 0.6.1.qualifier
 package egf.uc2_3.substitution.level2;
 
 import org.eclipse.egf.common.helper.*;

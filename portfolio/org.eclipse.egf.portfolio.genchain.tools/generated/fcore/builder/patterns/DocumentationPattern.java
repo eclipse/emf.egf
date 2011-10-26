@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:34 CEST 2011 with EGF 0.6.1.qualifier
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public class DocumentationPattern {
 
 			this.parameter = (org.eclipse.egf.portfolio.genchain.generationChain.DocumentationGeneration) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration((PatternContext) argument);
 
@@ -70,7 +71,7 @@ public class DocumentationPattern {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 

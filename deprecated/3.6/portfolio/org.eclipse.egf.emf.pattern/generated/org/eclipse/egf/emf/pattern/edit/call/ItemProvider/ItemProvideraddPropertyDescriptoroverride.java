@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:06 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -97,7 +98,7 @@ public class ItemProvideraddPropertyDescriptoroverride {
 							this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 							this._List = (java.lang.String) _ListParameter;
 
-							if (preCondition()) {
+							if (preCondition(ctx)) {
 								ctx.setNode(new Node.Container(currentNode, getClass()));
 								orchestration(ctx);
 							}
@@ -255,7 +256,7 @@ public class ItemProvideraddPropertyDescriptoroverride {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }

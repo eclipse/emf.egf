@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:31 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -57,7 +58,7 @@ public class publishStepgetText extends org.eclipse.egf.emf.pattern.edit.call.It
 						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 						this._List = (java.lang.String) _ListParameter;
 
-						if (preCondition()) {
+						if (preCondition(ctx)) {
 							ctx.setNode(new Node.Container(currentNode, getClass()));
 							orchestration(ctx);
 						}
@@ -111,7 +112,7 @@ public class publishStepgetText extends org.eclipse.egf.emf.pattern.edit.call.It
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return "PublishStep".equals(genClass.getEcoreClass().getName());
 	}
 }

@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:01 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -51,7 +52,7 @@ public class HeaderJava extends org.eclipse.egf.emf.pattern.base.HeaderAbstract 
 
 			this.argument = (java.lang.Object) argumentParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -108,9 +109,5 @@ public class HeaderJava extends org.eclipse.egf.emf.pattern.base.HeaderAbstract 
 		stringBuffer.append(TEXT_6);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
-	}
-
-	public boolean preCondition() throws Exception {
-		return super.preCondition();
 	}
 }

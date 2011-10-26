@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:21 CEST 2011 with EGF 0.6.1.qualifier
 package myLib;
 
 import java.util.*;
@@ -44,7 +45,7 @@ public class classPattern {
 
 			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			{
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -99,5 +100,10 @@ public class classPattern {
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+	}
+
+	public boolean preCondition(PatternContext ctx) throws Exception {
+		//test
+		return true;
 	}
 }

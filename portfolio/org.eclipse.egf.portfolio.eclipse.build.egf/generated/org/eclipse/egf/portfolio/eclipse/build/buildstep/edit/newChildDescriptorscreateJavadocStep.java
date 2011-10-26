@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:31 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -76,7 +77,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 										this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
 										this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-										if (preCondition()) {
+										if (preCondition(ctx)) {
 											ctx.setNode(new Node.Container(currentNode, getClass()));
 											orchestration(ctx);
 										}
@@ -142,7 +143,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		//workaroud : usage of reflection instead of this.createClass (to keep compatibility with emf 2.3)
 		try {
 			GenClass createClass = (GenClass) getParameters().get("createClass");

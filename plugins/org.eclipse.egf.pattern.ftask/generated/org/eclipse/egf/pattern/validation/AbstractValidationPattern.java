@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:00 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.pattern.validation;
 
 import java.util.*;
@@ -21,7 +22,7 @@ public class AbstractValidationPattern {
 		Map<String, String> queryCtx = null;
 		Node.Container currentNode = ctx.getNode();
 
-		if (preCondition())
+		if (preCondition(ctx))
 			orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
@@ -47,7 +48,7 @@ public class AbstractValidationPattern {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "getDiagnosticChainFromContext", out.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 

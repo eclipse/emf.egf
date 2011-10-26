@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 15:29:42 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -8,99 +9,95 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
 public class buckminstercspecplugin extends org.eclipse.egf.portfolio.eclipse.build.buckminster.call.buckminstercspecdepsadd {
-    protected static String nl;
+	protected static String nl;
 
-    public static synchronized buckminstercspecplugin create(String lineSeparator) {
-        nl = lineSeparator;
-        buckminstercspecplugin result = new buckminstercspecplugin();
-        nl = null;
-        return result;
-    }
+	public static synchronized buckminstercspecplugin create(String lineSeparator) {
+		nl = lineSeparator;
+		buckminstercspecplugin result = new buckminstercspecplugin();
+		nl = null;
+		return result;
+	}
 
-    public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "        <cs:dependency name=\"";
-    protected final String TEXT_2 = "\" componentType=\"osgi.bundle\"/>" + NL;
-    protected final String TEXT_3 = NL;
-    protected final String TEXT_4 = NL;
+	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	protected final String TEXT_1 = "        <cs:dependency name=\"";
+	protected final String TEXT_2 = "\" componentType=\"osgi.bundle\"/>" + NL;
+	protected final String TEXT_3 = NL;
+	protected final String TEXT_4 = NL;
 
-    public buckminstercspecplugin() {
-        //Here is the constructor
-        StringBuffer stringBuffer = new StringBuffer();
+	public buckminstercspecplugin() {
+		//Here is the constructor
+		StringBuffer stringBuffer = new StringBuffer();
 
-        // add initialisation of the pattern variables (declaration has been already done).
+		// add initialisation of the pattern variables (declaration has been already done).
 
-    }
+	}
 
-    public String generate(Object argument) throws Exception {
-        final StringBuffer stringBuffer = new StringBuffer();
+	public String generate(Object argument) throws Exception {
+		final StringBuffer stringBuffer = new StringBuffer();
 
-        InternalPatternContext ctx = (InternalPatternContext) argument;
-        Map<String, String> queryCtx = null;
-        IQuery.ParameterDescription paramDesc = null;
-        Node.Container currentNode = ctx.getNode();
+		InternalPatternContext ctx = (InternalPatternContext) argument;
+		Map<String, String> queryCtx = null;
+		IQuery.ParameterDescription paramDesc = null;
+		Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("plugin", "http://www.eclipse.org/egf/1.0.1/buildstep#//Plugin");
-        queryCtx = new HashMap<String, String>();
-        List<Object> pluginList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
+		paramDesc = new IQuery.ParameterDescription("plugin", "http://www.eclipse.org/egf/1.0.1/buildstep#//Plugin");
+		queryCtx = new HashMap<String, String>();
+		List<Object> pluginList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object pluginParameter : pluginList) {
+		for (Object pluginParameter : pluginList) {
 
-            this.plugin = (org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin) pluginParameter;
+			this.plugin = (org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin) pluginParameter;
 
-            if (preCondition()) {
-                ctx.setNode(new Node.Container(currentNode, getClass()));
-                orchestration(ctx);
-            }
+			if (preCondition(ctx)) {
+				ctx.setNode(new Node.Container(currentNode, getClass()));
+				orchestration(ctx);
+			}
 
-        }
-        ctx.setNode(currentNode);
-        if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
-        }
+		}
+		ctx.setNode(currentNode);
+		if (ctx.useReporter()) {
+			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+		}
 
-        stringBuffer.append(TEXT_3);
-        stringBuffer.append(TEXT_4);
-        return stringBuffer.toString();
-    }
+		stringBuffer.append(TEXT_3);
+		stringBuffer.append(TEXT_4);
+		return stringBuffer.toString();
+	}
 
-    public String orchestration(PatternContext ctx) throws Exception {
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
+	public String orchestration(PatternContext ctx) throws Exception {
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
 
-        super.orchestration(new SuperOrchestrationContext(ictx));
+		super.orchestration(new SuperOrchestrationContext(ictx));
 
-        String loop = Node.flattenWithoutCallback(ictx.getNode());
-        if (ictx.useReporter()) {
-            Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("plugin", this.plugin);
-            String outputWithCallBack = Node.flatten(ictx.getNode());
-            ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ;
-        }
-        return loop;
-    }
+		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		if (ictx.useReporter()) {
+			Map<String, Object> parameterValues = new HashMap<String, Object>();
+			parameterValues.put("plugin", this.plugin);
+			String outputWithCallBack = Node.flatten(ictx.getNode());
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			;
+		}
+		return loop;
+	}
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin plugin = null;
+	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin plugin = null;
 
-    public void set_plugin(org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin object) {
-        this.plugin = object;
-    }
+	public void set_plugin(org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin object) {
+		this.plugin = object;
+	}
 
-    public Map<String, Object> getParameters() {
-        final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("plugin", this.plugin);
-        return parameters;
-    }
+	public Map<String, Object> getParameters() {
+		final Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("plugin", this.plugin);
+		return parameters;
+	}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_1);
-        stringBuffer.append(plugin.getName());
-        stringBuffer.append(TEXT_2);
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
-    }
-
-    public boolean preCondition() throws Exception {
-        return super.preCondition();
-    }
+		stringBuffer.append(TEXT_1);
+		stringBuffer.append(plugin.getName());
+		stringBuffer.append(TEXT_2);
+		InternalPatternContext ictx = (InternalPatternContext) ctx;
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+	}
 }

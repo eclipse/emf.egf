@@ -1,3 +1,4 @@
+//Generated on Wed Oct 26 16:20:04 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -100,7 +101,7 @@ public class InterfaceegfCustomconstructoroverride {
 															this.negativeOperationOffsetCorrection = (java.lang.String) negativeOperationOffsetCorrectionParameter;
 															this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
-															if (preCondition()) {
+															if (preCondition(ctx)) {
 																ctx.setNode(new Node.Container(currentNode, getClass()));
 																orchestration(ctx);
 															}
@@ -259,7 +260,7 @@ public class InterfaceegfCustomconstructoroverride {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }
