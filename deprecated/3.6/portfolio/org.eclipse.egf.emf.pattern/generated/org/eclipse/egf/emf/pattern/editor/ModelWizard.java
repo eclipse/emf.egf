@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:03 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:56 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -906,5 +906,9 @@ public class ModelWizard extends org.eclipse.egf.emf.pattern.base.GenPackageJava
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 		canGenerate = canGenerate && (genPackage.hasConcreteClasses() && genPackage.isGenerateModelWizard());
 		return canGenerate;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

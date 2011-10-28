@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:00 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:47 CEST 2011 with EGF 0.6.1.qualifier
 package emf.docgen.html;
 
 import java.util.*;
@@ -75,5 +75,9 @@ public class EDataTypeDocGen extends emf.docgen.html.EClassifierDocGen {
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

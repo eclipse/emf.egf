@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:40 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:53 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.library.model.Class.getsetgenfeature;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -208,5 +208,9 @@ public class Library_Stock_Class_getGenFeature_override extends org.eclipse.egf.
 			return true;
 		}
 		return false;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:14 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:53 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -261,5 +261,9 @@ public class XMLProcessorClass extends org.eclipse.egf.emf.pattern.base.GenPacka
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 		canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML);
 		return canGenerate;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

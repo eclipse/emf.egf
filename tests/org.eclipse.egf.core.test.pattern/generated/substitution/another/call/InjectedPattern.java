@@ -1,3 +1,4 @@
+//Generated on Fri Oct 28 15:21:44 CEST 2011 with EGF 0.6.1.qualifier
 package substitution.another.call;
 
 import org.eclipse.egf.common.helper.*;
@@ -98,5 +99,9 @@ public class InjectedPattern {
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

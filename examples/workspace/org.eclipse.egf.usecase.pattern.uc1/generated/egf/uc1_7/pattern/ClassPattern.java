@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:40 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:55 CEST 2011 with EGF 0.6.1.qualifier
 package egf.uc1_7.pattern;
 
 import java.util.*;
@@ -119,5 +119,9 @@ public class ClassPattern {
 		variable = parameter;
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "setupVariable", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

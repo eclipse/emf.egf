@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:11 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:54 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -242,6 +242,10 @@ public class ItemProvidernewChildDescriptorsReferenceFeatureoverride {
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
+
+	public boolean preCondition() {
 		return true;
 	}
 }

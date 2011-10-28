@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:21 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:23 CEST 2011 with EGF 0.6.1.qualifier
 package extention;
 
 import org.eclipse.egf.common.helper.*;
@@ -91,5 +91,9 @@ public class myClassPattern extends myLib.classPattern {
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body1", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

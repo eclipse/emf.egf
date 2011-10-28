@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:31 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:38 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -151,5 +151,9 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

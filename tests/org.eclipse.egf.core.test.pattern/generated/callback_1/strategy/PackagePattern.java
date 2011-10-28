@@ -1,3 +1,4 @@
+//Generated on Fri Oct 28 15:21:43 CEST 2011 with EGF 0.6.1.qualifier
 package callback_1.strategy;
 
 import org.eclipse.egf.common.helper.*;
@@ -120,5 +121,9 @@ public class PackagePattern {
 		stringBuffer.append(TEXT_4);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "after", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

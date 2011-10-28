@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:13 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:12 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -144,6 +144,10 @@ public class TestCaseimplementedGenOperationTODOoverride {
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
+
+	public boolean preCondition() {
 		return true;
 	}
 }

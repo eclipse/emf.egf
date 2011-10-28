@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:05 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:06 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -2693,5 +2693,9 @@ public class PackageInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 		canGenerate = canGenerate && (genPackage.hasClassifiers() && !genModel.isSuppressEMFMetaData() && !genModel.isSuppressInterfaces());
 		return canGenerate;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

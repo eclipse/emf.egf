@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:40 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:56 CEST 2011 with EGF 0.6.1.qualifier
 package egf.uc1_4.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -141,5 +141,9 @@ public class ClassPattern {
 		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "after", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

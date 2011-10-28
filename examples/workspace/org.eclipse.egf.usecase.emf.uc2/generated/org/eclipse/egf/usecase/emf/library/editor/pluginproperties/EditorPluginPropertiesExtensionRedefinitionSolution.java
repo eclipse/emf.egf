@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:40 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:54 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.library.editor.pluginproperties;
 
 import org.eclipse.egf.common.helper.*;
@@ -241,5 +241,9 @@ public class EditorPluginPropertiesExtensionRedefinitionSolution extends org.ecl
 		stringBuffer.append(TEXT_39);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

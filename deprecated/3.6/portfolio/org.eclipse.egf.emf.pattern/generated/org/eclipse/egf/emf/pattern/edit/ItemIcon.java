@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:02 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:57 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -126,5 +126,9 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
 		return canGenerate;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

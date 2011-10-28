@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:40 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:54 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.libraryextension.model.Class.insert;
 
 import org.eclipse.egf.common.helper.*;
@@ -188,5 +188,9 @@ public class CrossLibraryReservationgetDescription extends org.eclipse.egf.emf.p
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
 		return "CrossLibraryReservation".equals(genClass.getName());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

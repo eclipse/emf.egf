@@ -1,3 +1,4 @@
+//Generated on Fri Oct 28 15:21:39 CEST 2011 with EGF 0.6.1.qualifier
 package callbackAndReporter2;
 
 import org.eclipse.egf.common.helper.*;
@@ -88,5 +89,9 @@ public class BasePattern {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

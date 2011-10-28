@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:00 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:46 CEST 2011 with EGF 0.6.1.qualifier
 package emf.docgen.html;
 
 import org.eclipse.egf.emf.docgen.html.util.*;
@@ -105,5 +105,9 @@ public class EModelElementDocGen extends emf.docgen.html.EObjectDocGen {
 		} // end if 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "writeEAnnotations", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

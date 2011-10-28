@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:07 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:21:55 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -231,5 +231,9 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 		canGenerate = canGenerate && (genModel.isBundleManifest());
 		return canGenerate;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

@@ -1,3 +1,4 @@
+//Generated on Fri Oct 28 15:21:42 CEST 2011 with EGF 0.6.1.qualifier
 package jet_tags;
 
 import java.util.*;
@@ -92,4 +93,7 @@ public class Callee {
 		return parameters;
 	}
 
+	public boolean preCondition() {
+		return true;
+	}
 }

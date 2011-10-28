@@ -1,3 +1,4 @@
+//Generated on Fri Oct 28 15:21:43 CEST 2011 with EGF 0.6.1.qualifier
 package pattern.call2;
 
 import java.util.*;
@@ -71,4 +72,7 @@ public class Callee2 {
 		return parameters;
 	}
 
+	public boolean preCondition() {
+		return true;
+	}
 }

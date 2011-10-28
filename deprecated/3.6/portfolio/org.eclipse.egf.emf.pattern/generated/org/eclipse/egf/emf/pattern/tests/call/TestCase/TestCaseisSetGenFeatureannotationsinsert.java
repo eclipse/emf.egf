@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:02 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:09 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -142,6 +142,10 @@ public class TestCaseisSetGenFeatureannotationsinsert {
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
+
+	public boolean preCondition() {
 		return true;
 	}
 }

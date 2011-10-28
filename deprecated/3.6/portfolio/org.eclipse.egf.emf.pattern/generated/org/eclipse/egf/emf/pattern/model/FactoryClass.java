@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 16:20:16 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:08 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -1646,5 +1646,9 @@ public class FactoryClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 		canGenerate = canGenerate && (genPackage.hasClassifiers());
 		return canGenerate;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

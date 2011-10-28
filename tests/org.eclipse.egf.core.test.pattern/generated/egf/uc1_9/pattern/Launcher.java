@@ -1,3 +1,4 @@
+//Generated on Fri Oct 28 15:21:44 CEST 2011 with EGF 0.6.1.qualifier
 package egf.uc1_9.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -46,7 +47,7 @@ public class Launcher {
 
 			this.parameter = (org.eclipse.emf.ecore.EClass) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -105,7 +106,11 @@ public class Launcher {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
+		return true;
+	}
+
+	public boolean preCondition() {
 		return true;
 	}
 }

@@ -1,10 +1,12 @@
-//Generated on Wed Oct 26 16:20:37 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 15:22:47 CEST 2011 with EGF 0.6.1.qualifier
 package fcore.builder.patterns;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.pattern.execution.CallHelper;
@@ -28,6 +30,11 @@ import org.eclipse.emf.common.util.BasicMonitor;
 
 import org.eclipse.core.resources.*;
 import org.eclipse.egf.core.domain.*;
+import org.eclipse.egf.common.helper.ObjectHolder;
+import org.eclipse.search.core.text.TextSearchEngine;
+import org.eclipse.search.core.text.TextSearchRequestor;
+import org.eclipse.search.core.text.TextSearchScope;
+import org.eclipse.search.ui.text.FileTextSearchScope;
 
 public class ModelGenmodelPattern {
 
@@ -77,38 +84,50 @@ public class ModelGenmodelPattern {
 	}
 
 	protected void method_create(final StringBuffer out, final PatternContext ctx) throws Exception {
-		ResourceSet resourceSet = new TargetPlatformResourceSet();
-		Resource resource = null;
-
 		IPath ecorePath = new Path(parameter.getModelPath());
 		URI ecoreURI = URI.createPlatformPluginURI(ecorePath.toString(), false);
 
-		IPath genmodelPath = ecorePath.removeFileExtension().addFileExtension("genmodel");
-		URI genmodelURI = URI.createPlatformPluginURI(genmodelPath.toString(), false);
+		String fileName = ecorePath.removeFileExtension().addFileExtension("genmodel").lastSegment();
 
-		try {
-			//see if a genmodel exists
-			resource = resourceSet.getResource(genmodelURI, true);
-		} catch (Exception e) {
+		// look up in the workspace
+		TextSearchScope fScope = FileTextSearchScope.newWorkspaceScope(new String[] { fileName }, false);
+		final ObjectHolder<IFile> genModelFile = new ObjectHolder<IFile>();
+		TextSearchRequestor collector = new TextSearchRequestor() {
+			@Override
+			public boolean acceptFile(IFile file) throws CoreException {
+				genModelFile.object = file;
+				return super.acceptFile(file);
+			}
+		};
+
+		Pattern searchPattern = Pattern.compile("");
+		TextSearchEngine.create().search(fScope, collector, searchPattern, null);
+
+		if (genModelFile.object == null) {
+			ResourceSet resourceSet = new TargetPlatformResourceSet();
+			Resource resource = null;
+			IPath genmodelPath = ecorePath.removeFileExtension().addFileExtension("genmodel");
 			genmodelPath = new Path(parameter.getPluginName()).append(genmodelPath.removeFirstSegments(1));
-			genmodelURI = URI.createPlatformResourceURI(genmodelPath.toString(), false);
+			URI genmodelURI = URI.createPlatformPluginURI(genmodelPath.toString(), false);
 
 			try {
-				//see if a created genmodel exists
+				// see if a created genmodel exists
 				resource = resourceSet.getResource(genmodelURI, true);
 			} catch (Exception e1) {
-				//create it
+				// create it
 				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(parameter.getPluginName());
 				if (!project.exists())
 					project.create(null);
 				if (!project.isOpen())
 					project.open(null);
 
-				resource = resourceSet.createResource(genmodelURI);
 				importer = EcoreImporterHelper.createEcoreImporter(genmodelPath.removeLastSegments(1), ecoreURI, parameter);
 			}
-		} finally {
+			genmodelURI = URI.createPlatformResourceURI(genmodelPath.toString(), false);
 			((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, genmodelURI);
+		} else {
+			URI uri = URI.createPlatformResourceURI(genModelFile.object.getFullPath().toString(), false);
+			((HashMap<EmfGeneration, URI>) ctx.getValue(FcoreBuilderConstants.GENMODEL_URIS)).put(parameter, uri);
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
@@ -165,4 +184,7 @@ public class ModelGenmodelPattern {
 		return parameters;
 	}
 
+	public boolean preCondition() {
+		return true;
+	}
 }
