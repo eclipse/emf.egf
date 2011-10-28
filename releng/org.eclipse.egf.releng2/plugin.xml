@@ -4,9 +4,9 @@
 
    <extension
          point="org.eclipse.egf.core.fcore">
-      <fcore
+      <!--fcore
             id="egf/generation.fcore">
-      </fcore>
+      </fcore-->
       <fcore
             id="egf/PublishExamples.fcore">
       </fcore>

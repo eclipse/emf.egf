@@ -48,12 +48,12 @@
             class="org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreResourceFactoryImpl"/>
    </extension>
    
-   <extension
+   <!--extension
          point="org.eclipse.egf.core.fcore">
       <fcore
             id="egf/Build.fcore">
       </fcore>
-   </extension>
+   </extension-->
    
     <extension
         point="org.eclipse.egf.pattern.query">
