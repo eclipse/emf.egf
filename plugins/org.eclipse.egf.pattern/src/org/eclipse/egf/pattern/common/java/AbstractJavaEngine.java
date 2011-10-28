@@ -178,7 +178,7 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         final int index = content.lastIndexOf("}");
         if (index != -1) {
             String tmp = content.substring(0, index);
-            tmp += "public boolean preCondition { return true;}";
+            tmp += "public boolean preCondition() { return true;}";
             tmp += content.substring(index);
             content = tmp;
         }
