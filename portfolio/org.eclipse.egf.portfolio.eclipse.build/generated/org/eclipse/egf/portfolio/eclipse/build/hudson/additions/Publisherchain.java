@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 15:29:34 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 16:03:00 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -108,5 +108,9 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
 		return new GenerationHelper().getNextChainJob(job) != null;
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

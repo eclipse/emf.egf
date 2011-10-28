@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 15:29:48 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 16:01:52 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -76,5 +76,9 @@ public class OtherslogRotator extends org.eclipse.egf.portfolio.eclipse.build.hu
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

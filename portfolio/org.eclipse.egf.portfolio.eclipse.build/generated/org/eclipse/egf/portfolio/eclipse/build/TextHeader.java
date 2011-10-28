@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 15:28:46 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 16:02:23 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.util.*;
@@ -60,4 +60,7 @@ public class TextHeader {
 		return true;
 	}
 
+	public boolean preCondition() {
+		return true;
+	}
 }

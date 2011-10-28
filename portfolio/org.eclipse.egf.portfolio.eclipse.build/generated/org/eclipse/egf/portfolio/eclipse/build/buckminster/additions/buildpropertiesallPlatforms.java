@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 15:29:18 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 16:02:55 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -100,5 +100,9 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
 		return buildStep.isAllPlatforms();
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 15:28:57 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 16:02:06 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -131,5 +131,9 @@ public class buckminstercspec extends org.eclipse.egf.portfolio.eclipse.build.Bu
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }

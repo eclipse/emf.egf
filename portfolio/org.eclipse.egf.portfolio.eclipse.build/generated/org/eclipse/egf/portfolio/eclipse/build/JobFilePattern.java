@@ -1,4 +1,4 @@
-//Generated on Wed Oct 26 15:28:56 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Fri Oct 28 16:02:31 CEST 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import org.eclipse.egf.common.helper.*;
@@ -98,5 +98,9 @@ public class JobFilePattern extends org.eclipse.egf.portfolio.eclipse.build.File
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
 		return job.isEnabled();
+	}
+
+	public boolean preCondition() {
+		return true;
 	}
 }
