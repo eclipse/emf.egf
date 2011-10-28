@@ -5,11 +5,11 @@
 	<projects>
 	</projects>
 	<buildSpec>
-		<!-- buildCommand>
+		<buildCommand>
 			<name>org.eclipse.egf.pattern.ui.PatternBuilder</name>
 			<arguments>
 			</arguments>
-		</buildCommand-->
+		</buildCommand>
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments>
