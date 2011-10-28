@@ -173,6 +173,16 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         }
         String header = "//Generated on " + (new Date()) + " with EGF " + EGFPatternPlugin.getDefault().getBundle().getVersion() + NL;
         content = header + content;
+
+        // quick hack for building in hudson ...
+        final int index = content.lastIndexOf("}");
+        if (index != -1) {
+            String tmp = content.substring(0, index);
+            tmp += "public boolean preCondition { return true;}";
+            tmp += content.substring(index);
+            content = tmp;
+        }
+
         // format code
         IJavaProject javaProject = JavaCore.create(project);
         if (javaProject != null) {
