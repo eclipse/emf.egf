@@ -21,10 +21,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
 import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -41,6 +45,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.importer.ecore.EcoreImporter;
+import org.eclipse.search.core.text.TextSearchEngine;
+import org.eclipse.search.core.text.TextSearchRequestor;
+import org.eclipse.search.core.text.TextSearchScope;
+import org.eclipse.search.ui.text.FileTextSearchScope;
 
 /**
  * 
@@ -144,7 +152,29 @@ public class EcoreImporterHelper {
     }
 
     protected void handleMissingGenmodel(ResourceSet resourceSet, GenModel genModel, IPath ecorePath) {
-        throw new RuntimeException("can't find genmodel for " + ecorePath);
+        String fileName = ecorePath.removeFileExtension().addFileExtension("genmodel").lastSegment();
+
+        // look up in the workspace
+
+        TextSearchScope fScope = FileTextSearchScope.newWorkspaceScope(new String[] { fileName }, false);
+        final ObjectHolder<IFile> genModelFile = new ObjectHolder<IFile>();
+        TextSearchRequestor collector = new TextSearchRequestor() {
+            @Override
+            public boolean acceptFile(IFile file) throws CoreException {
+                genModelFile.object = file;
+                return super.acceptFile(file);
+            }
+        };
+
+        Pattern searchPattern = Pattern.compile("");
+        TextSearchEngine.create().search(fScope, collector, searchPattern, null);
+        URI uri = URI.createPlatformResourceURI(genModelFile.object.getFullPath().toString(), false);
+        Resource resource = resourceSet.getResource(uri, true);
+        if (resource != null && !resource.getContents().isEmpty()) {
+            for (EObject obj : resource.getContents())
+                genModel.getUsedGenPackages().addAll(((GenModel) obj).getGenPackages());
+        } else
+            throw new RuntimeException("can't find genmodel for " + ecorePath);
     }
 
     private static Resource getGenModelResource(IPath ecorePath, GenModel genModel, EmfGeneration model) {
