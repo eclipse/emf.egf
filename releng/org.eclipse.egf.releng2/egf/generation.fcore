@@ -70,7 +70,7 @@
           <invocationContracts xmi:id="_HOjFsvPIEd-1PJ4PFWU1aA" factoryComponentContract="#_RU6QsCSnEeCIlumqagSWRg"
               invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ad5FkY6VEd-e7viTqNBNrA"/>
           <invocationContracts xmi:id="_HOjFs_PIEd-1PJ4PFWU1aA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg">
-            <type xmi:type="types:TypeString" xmi:id="_KX3nEPPIEd-1PJ4PFWU1aA" value="platform:/resource/org.eclipse.egf.releng2/generated"/>
+            <type xmi:type="types:TypeString" xmi:id="_KX3nEPPIEd-1PJ4PFWU1aA" value="platform:/resource/org.eclipse.egf.releng2/jobs"/>
           </invocationContracts>
           <invocationContracts xmi:id="_R_0BICSiEeCIlumqagSWRg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_mb-o4I_tEd-ggNhbFv1Fiw">
             <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_UHQ10CSiEeCIlumqagSWRg">

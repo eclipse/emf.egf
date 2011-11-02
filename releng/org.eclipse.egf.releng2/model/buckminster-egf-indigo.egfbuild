@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.0/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.1/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-indigo">
   <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="indigo"/>
+  <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="http://download.eclipse.org/releases/${releaseName}"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_N69VIvjIEeCQBPQJHiANYA" type="Result"/>
+  <steps xsi:type="buildstep:BuildStep" xmi:id="_2fryoQF8EeGO5KzPHjNKFQ">
+    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
+    <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2frypgF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix=".feature" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_2fryqgF8EeGO5KzPHjNKFQ" url="${updateSiteURL}"/>
+    <components xsi:type="buildstep:Feature" xmi:id="_2fryrgF8EeGO5KzPHjNKFQ" name="org.eclipse.egf"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_QDSgsAVXEeGaseR7kNQ8hw" name="org.eclipse.emf.importer"/>
+    <components xsi:type="buildstep:Plugin" xmi:id="_RUfp4AVXEeGaseR7kNQ8hw" name="org.eclipse.emf.codegen.ecore.ui"/>
+  </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_-TnB8AF8EeGO5KzPHjNKFQ" component="_2fryrgF8EeGO5KzPHjNKFQ"/>
+  <steps xsi:type="buildstep:InstallStep" xmi:id="_BfnD4AF9EeGO5KzPHjNKFQ" name="egf" profile="EGF" resultSteps="_-TnB8AF8EeGO5KzPHjNKFQ">
+    <updateSiteUrls>${updateSiteURL}</updateSiteUrls>
+    <productNames>org.eclipse.platform.ide</productNames>
+  </steps>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_bfnpIAF9EeGO5KzPHjNKFQ" targetName="move_egf_to_tools" xml="&lt;target name=&quot;move_egf_to_tools&quot;>&#xD;&#xA;&#x9;&lt;delete dir=&quot;${tools}/egf&quot;/>&#xD;&#xA;&#x9;&lt;move file=&quot;${publish}/egf&quot; tofile=&quot;${tools}/egf&quot; />&#xD;&#xA;&lt;/target>"/>
+  <steps xsi:type="buildstep:CleanStep" xmi:id="_Y0Q2IAF9EeGO5KzPHjNKFQ" type="Result"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_VP8DASR_EeCpI_U_Er6QNA" noBuildersInvocation="true">
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_ZSar0CVBEeCrBLgWv91aGQ" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="deprecated/3.7/portfolio"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DAiR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
@@ -11,7 +27,7 @@
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DByR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="portfolio"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_VP8DCCR_EeCpI_U_Er6QNA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="tests"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_xL-dkCoFEeCVoKna6d64FA" pattern="org.eclipse.egf*" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="releng"/>
-    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="http://download.eclipse.org/releases/indigo"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_VP8DDCR_EeCpI_U_Er6QNA" url="${updateSiteURL}"/>
     <components xsi:type="buildstep:Plugin" xmi:id="_9QitkCoDEeCVoKna6d64FA" name="org.eclipse.egf.releng2"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DDyR_EeCpI_U_Er6QNA" name="org.eclipse.egf.test"/>
     <components xsi:type="buildstep:Feature" xmi:id="_VP8DFCR_EeCpI_U_Er6QNA" name="org.eclipse.egf.portfolio.task.ant.test"/>
@@ -31,7 +47,7 @@
     <egfActivities xmi:id="_TTUg8PjIEeCQBPQJHiANYA" uri="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_gKQyUdBbEd-GApoE4u-xfw"/>
   </steps>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
-    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="http://download.eclipse.org/releases/indigo"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="${updateSiteURL}"/>
   </steps>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFSR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.core.test/EGF_Core_Tests.launch"/>
   <steps xsi:type="buildstep:TestStep" xmi:id="_VP8DFiR_EeCpI_U_Er6QNA" launchConfigurationPath="org.eclipse.egf.portfolio.task.ant.test/Ant_Tests.launch"/>
