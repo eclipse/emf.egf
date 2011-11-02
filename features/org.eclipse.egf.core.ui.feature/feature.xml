@@ -37,6 +37,8 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.emf.ecore.editor"/>
       <import feature="org.eclipse.egf.common.ui"/>
       <import feature="org.eclipse.egf.core"/>
+      <import feature="org.eclipse.emf.codegen.ecore.ui"/>
+      <import feature="org.eclipse.emf.converter"/>
    </requires>
 
    <plugin
@@ -60,7 +62,7 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          fragment="true"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.egf.emf.codegen.ecore.ui"
          download-size="0"
@@ -68,13 +70,13 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          fragment="true"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.egf.emf.importer"
          download-size="0"
          install-size="0"
          version="0.0.0"
          fragment="true"
-         unpack="false"/>                           
+         unpack="false"/>
 
 </feature>

@@ -10,5 +10,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Fragment-Host: org.eclipse.emf.codegen.ecore.ui;bundle-version="[2.2.0,3.0.0)"
 Require-Bundle: 
  org.eclipse.egf.core,
- org.eclipse.egf.core.ui,
- org.eclipse.emf.codegen.ecore.ui
+ org.eclipse.egf.core.ui
