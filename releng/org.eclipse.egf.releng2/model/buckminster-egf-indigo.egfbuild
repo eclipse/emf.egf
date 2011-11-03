@@ -2,6 +2,8 @@
 <buildcore:Job xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:buildcore="http://www.eclipse.org/egf/1.0.0/buildcore" xmlns:buildscm="http://www.eclipse.org/egf/1.0.0/buildscm" xmlns:buildstep="http://www.eclipse.org/egf/1.0.1/buildstep" xmlns:buildtrigger="http://www.eclipse.org/egf/1.0.0/buildtrigger" xmi:id="_YKxagJY3Ed-1d-ajyQS7wg" name="buckminster-egf-indigo">
   <properties xmi:id="_Ba608JDeEeCFnfwF9_Ni3Q" key="releaseName" value="indigo"/>
   <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="http://download.eclipse.org/releases/${releaseName}"/>
+  <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
+  <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_N69VIvjIEeCQBPQJHiANYA" type="Result"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_2fryoQF8EeGO5KzPHjNKFQ">
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
