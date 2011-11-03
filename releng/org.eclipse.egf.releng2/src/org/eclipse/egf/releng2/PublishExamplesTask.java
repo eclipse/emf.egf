@@ -154,7 +154,6 @@ public class PublishExamplesTask implements ITaskProduction {
 			outputStream.close();
 			
 			folder.refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
-            trace("Cannot copy " + sourceFile.getAbsolutePath() + " to " + destinationFile.getAbsolutePath());
 		} catch (Exception e) {
             new RuntimeException("Cannot copy " + sourceFile.getAbsolutePath() + " to " + destinationFile.getAbsolutePath(), e).printStackTrace(); //$NON-NLS-1$
 		} finally {
