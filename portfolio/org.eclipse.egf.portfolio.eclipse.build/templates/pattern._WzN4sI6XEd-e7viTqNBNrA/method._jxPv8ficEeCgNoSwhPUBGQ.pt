@@ -4,17 +4,23 @@
 
 	<property name="relengDir" value="${basedir}"/>
 
-    <!-- if we are not running in Hudson, we some up with a reasonable default -->
+    <!-- if we are not running in Hudson -->
     <condition property="build.root" value="${env.WORKSPACE}" else="${relengDir}/../workspace">
         <isset property="env.WORKSPACE" />
     </condition>
 
-    <!--Default properties intended to be overridden by entries in the above property file. -->
     <property name="tools" location="${build.root}/tools" />
     <property name="result" location="${build.root}/result" />
-	
-    <property name="workspace" location="${result}/workspace" />
     <property name="publish" location="${result}/publish" />
+    <property name="workspace" location="${result}/workspace" />
+
     <property name="buckminster.output.root" location="${result}/output" />
     <property name="buckminster.temp.root" location="${result}/temp" />
     <property name="eclipse.staging.area" location="${result}/signing" />
+
+	<echo message="Build Releng directory (relengDir) : ${relengDir}" />
+	<echo message="Build Root directory (build.root) : ${build.root}" />
+	<echo message="Build Tools directory (tools) : ${tools}" />
+	<echo message="Build Results directory (result) : ${result}" />
+	<echo message="Build Publish directory (publish) : ${publish}" />
+	<echo message="Build Eclipse workspace directory (workspace) : ${workspace}" />
