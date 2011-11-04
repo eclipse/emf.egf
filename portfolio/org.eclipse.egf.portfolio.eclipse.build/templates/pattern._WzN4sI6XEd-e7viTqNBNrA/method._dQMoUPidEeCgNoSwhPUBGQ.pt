@@ -1,4 +1,11 @@
-	<target name="init" depends="init.build.properties" />	
+	<target name="init" depends="init.build.properties" >
+		<echo message="Build Releng directory (relengDir) : ${relengDir}" />
+		<echo message="Build Root directory (build.root) : ${build.root}" />
+		<echo message="Build Tools directory (tools) : ${tools}" />
+		<echo message="Build Results directory (result) : ${result}" />
+		<echo message="Build Publish directory (publish) : ${publish}" />
+		<echo message="Build Eclipse workspace directory (workspace) : ${workspace}" />	
+	</target>
 
     <target name="init.build.properties">
         <!-- Echo relevant properties to a temporary file so that Buckminster can read them -->

@@ -17,10 +17,3 @@
     <property name="buckminster.output.root" location="${result}/output" />
     <property name="buckminster.temp.root" location="${result}/temp" />
     <property name="eclipse.staging.area" location="${result}/signing" />
-
-	<echo message="Build Releng directory (relengDir) : ${relengDir}" />
-	<echo message="Build Root directory (build.root) : ${build.root}" />
-	<echo message="Build Tools directory (tools) : ${tools}" />
-	<echo message="Build Results directory (result) : ${result}" />
-	<echo message="Build Publish directory (publish) : ${publish}" />
-	<echo message="Build Eclipse workspace directory (workspace) : ${workspace}" />
