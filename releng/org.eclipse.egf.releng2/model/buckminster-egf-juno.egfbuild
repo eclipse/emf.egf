@@ -4,7 +4,7 @@
   <properties xmi:id="_4KzZsQU3EeGaseR7kNQ8hw" key="updateSiteURL" value="http://download.eclipse.org/releases/${releaseName}"/>
   <properties xmi:id="_tGJ_cAYGEeGKhYHYG0ajnw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_tgE7UAYGEeGKhYHYG0ajnw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/egf/"/>
-  <steps xsi:type="buildstep:CleanStep" xmi:id="_N69VIvjIEeCQBPQJHiANYA" type="Result"/>
+  <steps xsi:type="buildstep:CleanStep" xmi:id="_N69VIvjIEeCQBPQJHiANYA" type="All"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_2fryoQF8EeGO5KzPHjNKFQ">
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2fryowF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix="" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="plugins"/>
     <buildLocations xsi:type="buildscm:SVNBuildLocation" xmi:id="_2frypgF8EeGO5KzPHjNKFQ" pattern="org.eclipse.egf*" suffix=".feature" svnLocation="_VP8DGSR_EeCpI_U_Er6QNA" folderName="features"/>
@@ -43,10 +43,7 @@
     <components xsi:type="buildstep:Feature" xmi:id="_wsm2oUAiEeCi4-1Y9vbHyQ" name="org.eclipse.egf.portfolio.atl.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_6VPlEL53EeCiHNhYwuZwog" name="org.eclipse.egf.portfolio.genchain.ecoretools"/>
   </steps>
-  <steps xsi:type="buildstep:BuildStep" xmi:id="_O3cykPjIEeCQBPQJHiANYA" noBuildersInvocation="true">
-    <buildLocations xsi:type="buildstep:RunningPlatformBuildLocation" xmi:id="_RROtYPjIEeCQBPQJHiANYA"/>
-  </steps>
-  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;&#x9;&lt;eclipse.incrementalBuild kind=&quot;full&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;&#x9;&lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="${updateSiteURL}"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_uJITgfjNEeCNdaaBFq5DUw" url="http://download.eclipse.org/releases/indigo"/>
