@@ -41,7 +41,7 @@
     <components xsi:type="buildstep:Feature" xmi:id="_wsm2oUAiEeCi4-1Y9vbHyQ" name="org.eclipse.egf.portfolio.atl.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_6VPlEL53EeCiHNhYwuZwog" name="org.eclipse.egf.portfolio.genchain.ecoretools"/>
   </steps>
-  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;&#x9;&lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;&#x9;&lt;eclipse.incrementalBuild kind=&quot;full&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="${updateSiteURL}"/>
   </steps>
