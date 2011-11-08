@@ -127,7 +127,11 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
                     workspace.run(new IWorkspaceRunnable() {
 
                         public void run(IProgressMonitor progress) throws CoreException {
-                            // Preserve deprecated API for backward compatibility
+                        	if (__plugin == null) {
+                        		return;
+                        	}
+                        	
+                        	// Preserve deprecated API for backward compatibility
                             ISavedState savedState = workspace.addSaveParticipant(__plugin, __plugin);
                             if (savedState != null) {
                                 // the event type coming from the saved state is always POST_BUILD
