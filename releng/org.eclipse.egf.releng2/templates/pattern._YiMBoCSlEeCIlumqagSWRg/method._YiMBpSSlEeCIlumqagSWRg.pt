@@ -2,3 +2,4 @@
 eclipse.staging.area=/shared/download-staging.priv/modeling/egf/
 eclipse.download.prefix=file:/home/data/httpd/download.eclipse.org
 
+egf.site=https://hudson.eclipse.org/hudson/job/buckminster-egf-helios/88/artifact/result/publish/org.eclipse.egf.sdk/site.p2/
