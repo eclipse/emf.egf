@@ -72,12 +72,12 @@ public class ActivityApplication implements IApplication {
                 eObject = resourceSet.getEObject(uri, true);
             } catch (Throwable t) {
                 EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_EObject_Loading_Error, i, uri), t)));
-                continue;
+                return IApplicationConfigurationConstants.EXIT_ERROR;
             }
             // Check if we face an Activity
             if (eObject == null || eObject instanceof Activity == false) {
                 EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_Activity_Argument, i, uri), null)));
-                continue;
+                return IApplicationConfigurationConstants.EXIT_ERROR;
             }
             // to be runned activities
             activities.add((Activity) eObject);
@@ -110,12 +110,14 @@ public class ActivityApplication implements IApplication {
             };
             workspace.run(runnable, new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out));
         } catch (Exception e) {
-            throw e;
+            EGFApplicationPlugin.getDefault().logError(e);
+            return IApplicationConfigurationConstants.EXIT_ERROR;
         } finally {
             try {
                 workspace.save(true, new NullProgressMonitor());
             } catch (Exception e) {
                 EGFApplicationPlugin.getDefault().logError(e);
+                return IApplicationConfigurationConstants.EXIT_ERROR;
             }
         }
         return IApplication.EXIT_OK;
