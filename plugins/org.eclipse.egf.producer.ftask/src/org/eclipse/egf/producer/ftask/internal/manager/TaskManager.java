@@ -19,6 +19,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.ftask.Task;
+import org.eclipse.egf.model.ftask.task.ValidationInvocationException;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.ftask.EGFProducerFtaskPlugin;
@@ -102,6 +103,9 @@ public class TaskManager extends ActivityManager<Task> {
             try {
                 EGFProducerFtaskPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
             } catch (Throwable t) {
+                if (t instanceof ValidationInvocationException) {
+                	diagnostic.add(((ValidationInvocationException) t).getDiagnostic());
+                } else
                 if (t instanceof InvocationException) {
                     InvocationException ie = (InvocationException) t;
                     if (ie.getDiagnostic() != null) {
@@ -109,8 +113,7 @@ public class TaskManager extends ActivityManager<Task> {
                     }
                     ie.setDiagnostic(diagnostic);
                     throw ie;
-                }
-                throw new InvocationException(t);
+                } else throw new InvocationException(t);
             }
             // Check Output
             checkOutputElement(diagnostic);

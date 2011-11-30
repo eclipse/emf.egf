@@ -17,11 +17,14 @@ package org.eclipse.egf.pattern.ftask.tasks;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.model.ftask.task.ValidationInvocationException;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.DiagnosticException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
@@ -56,11 +59,11 @@ public class DomainDrivenValidationStrategyTask extends DomainDrivenStrategyTask
         super.writeContext(context, ctx);
 
         Diagnostic diagnostic = (Diagnostic) context.getOutputValue(DIAGNOSTIC, Object.class);
-        if (diagnostic.getSeverity() >= Diagnostic.WARNING)
-            System.out.println(diagnostic);
-
-        if (diagnostic.getSeverity() == Diagnostic.ERROR)
-            throw new RuntimeException(diagnostic.getMessage());
+        if (diagnostic.getSeverity() >= Diagnostic.WARNING || diagnostic.getSeverity() == Diagnostic.ERROR) {
+        	ValidationInvocationException validationInvocationException = new ValidationInvocationException("Validation Error detected in " + context.getName());
+        	validationInvocationException.setDiagnostic(diagnostic);
+			throw validationInvocationException;
+        }
     }
 
 }
