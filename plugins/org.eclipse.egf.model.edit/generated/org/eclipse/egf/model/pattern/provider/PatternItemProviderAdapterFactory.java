@@ -26,6 +26,7 @@ import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
 import org.eclipse.egf.model.pattern.TypePatternDomainVisitor;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
 import org.eclipse.egf.model.pattern.TypePatternList;
+import org.eclipse.egf.model.pattern.TypePatternOutputProcessor;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.pattern.util.PatternAdapterFactory;
 import org.eclipse.egf.model.types.Type;
@@ -624,6 +625,29 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternOutputProcessor} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypePatternOutputProcessorItemProvider typePatternOutputProcessorItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternOutputProcessor}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createTypePatternOutputProcessorAdapter() {
+        if (typePatternOutputProcessorItemProvider == null) {
+            typePatternOutputProcessorItemProvider = new TypePatternOutputProcessorItemProvider(this);
+        }
+
+        return typePatternOutputProcessorItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.Substitution} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -818,6 +842,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             typePatternListItemProvider.dispose();
         if (typePatternSubstitutionItemProvider != null)
             typePatternSubstitutionItemProvider.dispose();
+        if (typePatternOutputProcessorItemProvider != null)
+            typePatternOutputProcessorItemProvider.dispose();
     }
 
     /**
@@ -880,6 +906,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
 
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, PatternFactory.eINSTANCE.createTypePatternSubstitution()));
 
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, PatternFactory.eINSTANCE.createTypePatternOutputProcessor()));
+
                 return null;
             }
 
@@ -911,6 +939,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, PatternFactory.eINSTANCE.createTypePatternList()));
 
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, PatternFactory.eINSTANCE.createTypePatternSubstitution()));
+
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, PatternFactory.eINSTANCE.createTypePatternOutputProcessor()));
 
                 return null;
             }
@@ -956,6 +986,12 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
                 }
                 {
                     TypePatternDomainVisitor type = PatternFactory.eINSTANCE.createTypePatternDomainVisitor();
+                    if (invokedContractType.isCompatible(type)) {
+                        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
+                    }
+                }
+                {
+                    TypePatternOutputProcessor type = PatternFactory.eINSTANCE.createTypePatternOutputProcessor();
                     if (invokedContractType.isCompatible(type)) {
                         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
                     }

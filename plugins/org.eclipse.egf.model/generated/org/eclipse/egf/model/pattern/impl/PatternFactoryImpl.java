@@ -135,6 +135,8 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return createTypePatternList();
         case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
             return createTypePatternSubstitution();
+        case PatternPackage.TYPE_PATTERN_OUTPUT_PROCESSOR:
+            return createTypePatternOutputProcessor();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -394,6 +396,16 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     public TypePatternSubstitution createTypePatternSubstitution() {
         TypePatternSubstitutionImpl typePatternSubstitution = new TypePatternSubstitutionImpl();
         return typePatternSubstitution;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypePatternOutputProcessor createTypePatternOutputProcessor() {
+        TypePatternOutputProcessorImpl typePatternOutputProcessor = new TypePatternOutputProcessorImpl();
+        return typePatternOutputProcessor;
     }
 
     /**

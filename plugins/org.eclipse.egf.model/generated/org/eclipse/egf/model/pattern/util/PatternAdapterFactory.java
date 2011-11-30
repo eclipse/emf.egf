@@ -45,6 +45,7 @@ import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.model.types.TypeElement;
+import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -255,6 +256,11 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter caseTypePatternOutputProcessor(TypePatternOutputProcessor object) {
+            return createTypePatternOutputProcessorAdapter();
+        }
+
+        @Override
         public Adapter caseModelElement(ModelElement object) {
             return createModelElementAdapter();
         }
@@ -282,6 +288,11 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         @Override
         public Adapter caseTypeAbstractClass(TypeAbstractClass object) {
             return createTypeAbstractClassAdapter();
+        }
+
+        @Override
+        public Adapter caseTypeList(TypeList object) {
+            return createTypeListAdapter();
         }
 
         @Override
@@ -746,6 +757,20 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.TypePatternOutputProcessor <em>Type Pattern Output Processor</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.TypePatternOutputProcessor
+     * @generated
+     */
+    public Adapter createTypePatternOutputProcessorAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.Substitution <em>Substitution</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -852,6 +877,20 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createTypeAbstractClassAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeList <em>Type List</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.types.TypeList
+     * @generated
+     */
+    public Adapter createTypeListAdapter() {
         return null;
     }
 

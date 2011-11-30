@@ -41,6 +41,7 @@ import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
 import org.eclipse.egf.model.pattern.TypePatternDomainVisitor;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
 import org.eclipse.egf.model.pattern.TypePatternList;
+import org.eclipse.egf.model.pattern.TypePatternOutputProcessor;
 import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.pattern.util.PatternValidator;
 import org.eclipse.egf.model.types.TypesPackage;
@@ -240,6 +241,13 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     private EClass typePatternSubstitutionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass typePatternOutputProcessorEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -866,6 +874,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getTypePatternOutputProcessor() {
+        return typePatternOutputProcessorEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getSubstitution() {
         return substitutionEClass;
     }
@@ -1035,6 +1052,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         typePatternSubstitutionEClass = createEClass(TYPE_PATTERN_SUBSTITUTION);
         createEReference(typePatternSubstitutionEClass, TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS);
 
+        typePatternOutputProcessorEClass = createEClass(TYPE_PATTERN_OUTPUT_PROCESSOR);
+
         // Create data types
         patternContextEDataType = createEDataType(PATTERN_CONTEXT);
         patternExceptionEDataType = createEDataType(PATTERN_EXCEPTION);
@@ -1104,6 +1123,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         typePatternDomainVisitorEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternListEClass.getESuperTypes().add(theTypesPackage.getType());
         typePatternSubstitutionEClass.getESuperTypes().add(theTypesPackage.getType());
+        typePatternOutputProcessorEClass.getESuperTypes().add(theTypesPackage.getTypeList());
 
         // Initialize classes and features; add operations and parameters
         initEClass(patternNatureEClass, PatternNature.class, "PatternNature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1257,6 +1277,17 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEReference(getTypePatternSubstitution_Substitutions(), this.getSubstitution(), null, "substitutions", null, 0, -1, TypePatternSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         op = addEOperation(typePatternSubstitutionEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaObject());
+        t1.getEBounds().add(g1);
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType(t1);
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(typePatternOutputProcessorEClass, TypePatternOutputProcessor.class, "TypePatternOutputProcessor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        op = addEOperation(typePatternOutputProcessorEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
         g1 = createEGenericType(theEcorePackage.getEJavaObject());
         t1.getEBounds().add(g1);

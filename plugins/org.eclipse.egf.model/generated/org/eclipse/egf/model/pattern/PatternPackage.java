@@ -1770,6 +1770,61 @@ public interface PatternPackage extends EPackage {
     int TYPE_PATTERN_SUBSTITUTION_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternOutputProcessorImpl <em>Type Pattern Output Processor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.TypePatternOutputProcessorImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternOutputProcessor()
+     * @generated
+     */
+    int TYPE_PATTERN_OUTPUT_PROCESSOR = 29;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_OUTPUT_PROCESSOR__ID = TypesPackage.TYPE_LIST__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_OUTPUT_PROCESSOR__DESCRIPTION = TypesPackage.TYPE_LIST__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Instance</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_OUTPUT_PROCESSOR__INSTANCE = TypesPackage.TYPE_LIST__INSTANCE;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_OUTPUT_PROCESSOR__VALUE = TypesPackage.TYPE_LIST__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Output Processor</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_OUTPUT_PROCESSOR_FEATURE_COUNT = TypesPackage.TYPE_LIST_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1777,7 +1832,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 29;
+    int PATTERN_CONTEXT = 30;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -1787,7 +1842,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 30;
+    int PATTERN_EXCEPTION = 31;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -2460,6 +2515,16 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EReference getTypePatternSubstitution_Substitutions();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternOutputProcessor <em>Type Pattern Output Processor</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Type Pattern Output Processor</em>'.
+     * @see org.eclipse.egf.model.pattern.TypePatternOutputProcessor
+     * @generated
+     */
+    EClass getTypePatternOutputProcessor();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Substitution <em>Substitution</em>}'.
@@ -3171,6 +3236,16 @@ public interface PatternPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EReference TYPE_PATTERN_SUBSTITUTION__SUBSTITUTIONS = eINSTANCE.getTypePatternSubstitution_Substitutions();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternOutputProcessorImpl <em>Type Pattern Output Processor</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.TypePatternOutputProcessorImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternOutputProcessor()
+         * @generated
+         */
+        EClass TYPE_PATTERN_OUTPUT_PROCESSOR = eINSTANCE.getTypePatternOutputProcessor();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.SubstitutionImpl <em>Substitution</em>}' class.

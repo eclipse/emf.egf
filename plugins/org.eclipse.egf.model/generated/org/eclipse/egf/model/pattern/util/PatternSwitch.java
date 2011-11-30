@@ -42,6 +42,7 @@ import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.model.types.TypeElement;
+import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -442,6 +443,21 @@ public class PatternSwitch<T> {
                 result = caseType(typePatternSubstitution);
             if (result == null)
                 result = caseTypeElement(typePatternSubstitution);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.TYPE_PATTERN_OUTPUT_PROCESSOR: {
+            TypePatternOutputProcessor typePatternOutputProcessor = (TypePatternOutputProcessor) theEObject;
+            T result = caseTypePatternOutputProcessor(typePatternOutputProcessor);
+            if (result == null)
+                result = caseTypeList(typePatternOutputProcessor);
+            if (result == null)
+                result = caseTypeAbstractClass(typePatternOutputProcessor);
+            if (result == null)
+                result = caseType(typePatternOutputProcessor);
+            if (result == null)
+                result = caseTypeElement(typePatternOutputProcessor);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -872,6 +888,21 @@ public class PatternSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Type Pattern Output Processor</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Type Pattern Output Processor</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTypePatternOutputProcessor(TypePatternOutputProcessor object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Substitution</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -973,6 +1004,21 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T caseTypeAbstractClass(TypeAbstractClass object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Type List</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Type List</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTypeList(TypeList object) {
         return null;
     }
 

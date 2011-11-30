@@ -250,6 +250,8 @@ public class PatternValidator extends EObjectValidator {
             return validateTypePatternList((TypePatternList) value, diagnostics, context);
         case PatternPackage.TYPE_PATTERN_SUBSTITUTION:
             return validateTypePatternSubstitution((TypePatternSubstitution) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_OUTPUT_PROCESSOR:
+            return validateTypePatternOutputProcessor((TypePatternOutputProcessor) value, diagnostics, context);
         case PatternPackage.PATTERN_CONTEXT:
             return validatePatternContext((PatternContext) value, diagnostics, context);
         case PatternPackage.PATTERN_EXCEPTION:
@@ -952,6 +954,36 @@ public class PatternValidator extends EObjectValidator {
      */
     public boolean validateTypePatternSubstitution(TypePatternSubstitution typePatternSubstitution, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(typePatternSubstitution, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateTypePatternOutputProcessor(TypePatternOutputProcessor typePatternOutputProcessor, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(typePatternOutputProcessor, diagnostics, context))
+            return false;
+        boolean result = validate_EveryMultiplicityConforms(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryDataValueConforms(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryReferenceIsContained(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryProxyResolves(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_UniqueID(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryKeyUnique(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryMapEntryUnique(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_LoadableType(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidValue(typePatternOutputProcessor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidInstance(typePatternOutputProcessor, diagnostics, context);
+        return result;
     }
 
     /**

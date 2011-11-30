@@ -201,6 +201,15 @@ public interface PatternFactory extends EFactory {
     TypePatternSubstitution createTypePatternSubstitution();
 
     /**
+     * Returns a new object of class '<em>Type Pattern Output Processor</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Pattern Output Processor</em>'.
+     * @generated
+     */
+    TypePatternOutputProcessor createTypePatternOutputProcessor();
+
+    /**
      * Returns a new object of class '<em>Substitution</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
