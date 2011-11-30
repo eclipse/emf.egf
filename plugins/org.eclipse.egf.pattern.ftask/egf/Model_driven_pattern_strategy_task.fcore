@@ -24,5 +24,8 @@
     <contracts xmi:id="_NFhJ4UMgEd-Ixul1H5ANhg" name="pattern.substitutions">
       <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_xGePoUMgEd-ZrqjxvMjKvA"/>
     </contracts>
+    <contracts xmi:id="_UKrkABp4EeGi0qShOhQVxg" name="pattern.output.processor">
+      <type xmi:type="pattern:TypePatternOutputProcessor" xmi:id="_Y2fy4Bp4EeGi0qShOhQVxg"/>
+    </contracts>
   </contractContainer>
 </ftask:Task>
