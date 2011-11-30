@@ -93,7 +93,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
             content.append(EGFCommonConstants.LINE_SEPARATOR).append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // end of method generate (Object argument)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
@@ -111,7 +111,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
     @Override
     protected void endOrchestration() throws PatternException {
         content.append("ictx.setNode(currentNode);"); //$NON-NLS-1$  
-        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = Node.flattenWithoutCallback(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         //        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !pattern.getAllParameters().isEmpty();
         content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
@@ -120,7 +120,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            content.append("    String outputWithCallBack = Node.flatten(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("    String outputWithCallBack = OutputManager.getOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 

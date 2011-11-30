@@ -53,7 +53,7 @@ public class JetAssemblyHelper extends BaseJavaAssemblyHelper {
         if (pattern.getAllParameters().isEmpty()) {
             content.append("<%ctx.setNode(currentNode);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$  
             content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-            content.append("    ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("    ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("}%>").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             return;
         }
@@ -90,7 +90,7 @@ public class JetAssemblyHelper extends BaseJavaAssemblyHelper {
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("ctx.setNode(currentNode);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$  
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("}%>"); //$NON-NLS-1$
 
         // 3- Add additional code for parameter names handling

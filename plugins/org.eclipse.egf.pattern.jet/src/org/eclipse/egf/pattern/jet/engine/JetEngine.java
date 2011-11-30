@@ -114,7 +114,7 @@ public class JetEngine extends AbstractJavaEngine {
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("String loop = Node.flattenWithoutCallback(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !getPattern().getAllParameters().isEmpty();
         builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
@@ -127,7 +127,7 @@ public class JetEngine extends AbstractJavaEngine {
                 // builder.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
                 builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            builder.append("    String outputWithCallBack = Node.flatten(ictx.getNode());").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    String outputWithCallBack = OutputManager.getOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
         builder.append("    ;}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$

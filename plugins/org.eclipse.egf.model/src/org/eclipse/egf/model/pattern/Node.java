@@ -20,12 +20,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.RegistryFactory;
-
 /**
  * 
  * orchestration d'un pattern:
@@ -74,82 +68,6 @@ public abstract class Node {
     @Override
     public String toString() {
         return "Node [patternClass=" + patternClass + "]";
-    }
-
-    public static String getHierarchy(Node node) {
-        StringBuilder builder = new StringBuilder();
-        getHierarchy(builder, node, 0);
-        return builder.toString();
-    }
-
-    public static void getHierarchy(StringBuilder builder, Node node, int nb) {
-        for (int n = 0; n < nb; n++)
-            builder.append('\t');
-        builder.append("[").append(node.getPatternClass()).append("] > \n");
-        nb++;
-        if (node instanceof Container) {
-            Container container = (Container) node;
-            for (Node node1 : container.getChildren())
-                getHierarchy(builder, node1, nb);
-            return;
-        }
-        if (node instanceof Leaf) {
-            Leaf leaf = (Leaf) node;
-            leaf.toString(builder);
-            builder.append("\n");
-        }
-
-    }
-
-    private static void doFlatten(StringBuilder builder, Node node, boolean deep) {
-        if (!deep && node instanceof CallBackContainer) {
-            return;
-        }
-        if (node instanceof Container) {
-            Container container = (Container) node;
-            for (Node node1 : container.getChildren())
-                doFlatten(builder, node1, deep);
-            return;
-        }
-        if (node instanceof Leaf) {
-            Leaf leaf = (Leaf) node;
-            leaf.toString(builder);
-            return;
-        }
-        throw new IllegalStateException();
-    }
-
-    public static String flatten(Node.Container node) {
-
-        StringBuilder builder = new StringBuilder();
-        try {
-            for (PatternOutputProcessor traceProcessor : getTraceProcessors()) {
-                traceProcessor.execute(node);
-            }
-        } catch (CoreException e) {
-            throw new PatternRuntimeException(e);
-        }
-        doFlatten(builder, node, true);
-        return builder.toString();
-    }
-
-    public static String flattenWithoutCallback(Node.Container node) {
-        StringBuilder builder = new StringBuilder();
-        doFlatten(builder, node, false);
-        return builder.toString();
-    }
-
-    private static List<PatternOutputProcessor> getTraceProcessors() throws CoreException {
-        List<PatternOutputProcessor> result = new ArrayList<PatternOutputProcessor>();
-        IExtensionPoint point = RegistryFactory.getRegistry().getExtensionPoint(PatternOutputProcessor.EXTENSION_ID);
-        if (point != null) {
-            for (IExtension extension : point.getExtensions()) {
-                for (IConfigurationElement element : extension.getConfigurationElements()) {
-                    result.add((PatternOutputProcessor) element.createExecutableExtension("class"));
-                }
-            }
-        }
-        return result;
     }
 
     public static abstract class Leaf extends Node {
@@ -233,5 +151,15 @@ public abstract class Node {
         }
 
     }
+
+    // public static String flatten(Container node) {
+    //
+    // return null;
+    // }
+    //
+    // public static String flattenWithoutCallback(Container node) {
+    //
+    // return null;
+    // }
 
 }

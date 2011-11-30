@@ -26,6 +26,8 @@ public interface PatternContext {
     /**
      * Public Keys to manage the patter execution reporter.
      */
+    final String PATTERN_OUTPUT_PROCESSOR = "pattern.output.processor"; //$NON-NLS-1$
+
     final String PATTERN_REPORTER = "pattern.execution.reporter"; //$NON-NLS-1$
 
     final String PATTERN_ID = "pattern.id"; //$NON-NLS-1$
