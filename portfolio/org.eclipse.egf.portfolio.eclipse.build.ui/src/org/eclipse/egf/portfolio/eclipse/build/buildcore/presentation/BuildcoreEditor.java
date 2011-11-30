@@ -172,6 +172,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemP
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
 import org.eclipse.egf.portfolio.eclipse.build.ui.BuildcoreAdapterFactoryContentProvider;
+import org.eclipse.egf.portfolio.eclipse.build.ui.EgfActivityDoubleClickListener;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 
@@ -1018,7 +1019,7 @@ public class BuildcoreEditor
      * This is the method used by the framework to install your own controls.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void createPages() {
@@ -1054,6 +1055,7 @@ public class BuildcoreEditor
                 selectionViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
                 selectionViewer.setInput(editingDomain.getResourceSet());
                 selectionViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+                selectionViewer.addDoubleClickListener(new EgfActivityDoubleClickListener());
                 viewerPane.setTitle(editingDomain.getResourceSet());
 
                 new AdapterFactoryTreeEditor(selectionViewer.getTree(), adapterFactory);

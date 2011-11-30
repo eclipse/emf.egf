@@ -17,14 +17,14 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.core.domain.TargetPlatformResourceSet;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -123,16 +123,20 @@ public class EgfActivityItemProvider
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-
-        String label = ((EgfActivity)object).getUri();
-        return label == null || label.length() == 0 ?
-            getString("_UI_EgfActivity_type") :
-            getString("_UI_EgfActivity_type") + " " + label;
-
+		String uriString = ((EgfActivity) object).getUri();
+		try {
+			URI uri = URI.createURI(uriString);
+			Activity activity = (Activity) new TargetPlatformResourceSet().getResource(uri.trimFragment(), true).getEObject(uri.fragment());
+			return uri.trimFragment() + " : " + activity.getName();
+		} catch (Exception e) {
+			return uriString == null || uriString.length() == 0 ? 
+					getString("_UI_EgfActivity_type")
+					: getString("_UI_EgfActivity_type") + " " + uriString;
+		}
     }
 
     /**
