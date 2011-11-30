@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:48 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:44:35 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.model.pattern.Node;
@@ -48,7 +48,7 @@ public class GenBaseJava extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_1);
@@ -63,7 +63,7 @@ public class GenBaseJava extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 
 		method_createImportManager(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			;
 		}

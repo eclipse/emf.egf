@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 16:03:02 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:58:23 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -56,7 +56,7 @@ public class buildproperties extends org.eclipse.egf.portfolio.eclipse.build.Job
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -76,11 +76,11 @@ public class buildproperties extends org.eclipse.egf.portfolio.eclipse.build.Job
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_4NTLAJNGEd-BJKD_XS9R2A", ctx_local);
 		}
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("job", this.job);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

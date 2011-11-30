@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:41 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
 package inheritance_3;
 
 import org.eclipse.egf.common.helper.*;
@@ -57,7 +57,7 @@ public class parent {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
@@ -70,11 +70,11 @@ public class parent {
 
 		method_mywork(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

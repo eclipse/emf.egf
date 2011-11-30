@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:22:56 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:45:09 CET 2011 with EGF 0.6.1.qualifier
 package egf.uc2_2.substitution.merge;
 
 import org.eclipse.egf.common.helper.*;
@@ -54,7 +54,7 @@ public class uc2_2_AttributePatternSubstitution2 {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -67,11 +67,11 @@ public class uc2_2_AttributePatternSubstitution2 {
 
 		method_body(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("anAttribute", this.anAttribute);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

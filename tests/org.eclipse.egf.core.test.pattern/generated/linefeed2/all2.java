@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:39 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
 package linefeed2;
 
 import org.eclipse.egf.common.helper.*;
@@ -47,7 +47,7 @@ public class all2 {
 
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -74,7 +74,7 @@ public class all2 {
 
 		method_c(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			;
 		}

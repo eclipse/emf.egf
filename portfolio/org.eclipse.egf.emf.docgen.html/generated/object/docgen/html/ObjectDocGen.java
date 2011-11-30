@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:46 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:44:33 CET 2011 with EGF 0.6.1.qualifier
 package object.docgen.html;
 
 import java.util.*;
@@ -50,7 +50,7 @@ public class ObjectDocGen {
 
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_7);
@@ -63,7 +63,7 @@ public class ObjectDocGen {
 
 		method_body(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			;
 		}

@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:38 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
 package pattern.call.condition1;
 
 import org.eclipse.egf.common.helper.*;
@@ -56,7 +56,7 @@ public class CCaller1 {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -74,11 +74,11 @@ public class CCaller1 {
 			CallHelper.executeWithContextInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/patternCall_Condition1.fcore#_1vJscHeNEd-eFrQyPU1i3Q", ctx_local);
 		}
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

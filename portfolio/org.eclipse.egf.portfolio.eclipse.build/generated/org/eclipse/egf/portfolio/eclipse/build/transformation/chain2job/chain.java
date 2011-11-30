@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 16:02:02 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:58:21 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job;
 
 import java.util.*;
@@ -36,7 +36,7 @@ public class chain {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 	}
 
@@ -47,11 +47,11 @@ public class chain {
 		method_putNewJobInContext(new StringBuffer(), ictx);
 		method_addNewJobToChain(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("chain", this.chain);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return loop;

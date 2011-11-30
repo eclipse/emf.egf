@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 16:01:55 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:57:51 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.validation;
 
 import java.util.*;
@@ -38,7 +38,7 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 	}
 
@@ -49,11 +49,11 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
 		method_checkDuplicateId(new StringBuffer(), ictx);
 		method_checkNotEmptyStringId(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("job", this.job);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return loop;

@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 16:02:23 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:58:03 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.util.*;
@@ -27,7 +27,7 @@ public class TextHeader {
 			orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 	}
 
@@ -36,7 +36,7 @@ public class TextHeader {
 		Node.Container currentNode = ictx.getNode();
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 		}
 		return loop;

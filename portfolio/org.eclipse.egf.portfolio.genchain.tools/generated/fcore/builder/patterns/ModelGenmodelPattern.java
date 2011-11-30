@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:22:47 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:45:06 CET 2011 with EGF 0.6.1.qualifier
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -62,7 +62,7 @@ public class ModelGenmodelPattern {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 	}
 
@@ -73,11 +73,11 @@ public class ModelGenmodelPattern {
 		method_updateContent(new StringBuffer(), ictx);
 		method_save(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return loop;

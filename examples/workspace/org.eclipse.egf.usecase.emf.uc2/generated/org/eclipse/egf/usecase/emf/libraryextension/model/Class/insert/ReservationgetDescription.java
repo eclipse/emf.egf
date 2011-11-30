@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:22:53 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:45:08 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.libraryextension.model.Class.insert;
 
 import org.eclipse.egf.common.helper.*;
@@ -116,7 +116,7 @@ public class ReservationgetDescription extends org.eclipse.egf.emf.pattern.model
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -129,7 +129,7 @@ public class ReservationgetDescription extends org.eclipse.egf.emf.pattern.model
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genClass", this.genClass);
@@ -145,7 +145,7 @@ public class ReservationgetDescription extends org.eclipse.egf.emf.pattern.model
 			parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

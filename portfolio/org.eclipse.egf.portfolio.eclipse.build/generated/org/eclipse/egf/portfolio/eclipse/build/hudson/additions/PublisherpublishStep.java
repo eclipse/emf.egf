@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 16:02:13 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:58:25 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -55,7 +55,7 @@ public class PublisherpublishStep extends org.eclipse.egf.portfolio.eclipse.buil
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -68,11 +68,11 @@ public class PublisherpublishStep extends org.eclipse.egf.portfolio.eclipse.buil
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("publishStep", this.publishStep);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

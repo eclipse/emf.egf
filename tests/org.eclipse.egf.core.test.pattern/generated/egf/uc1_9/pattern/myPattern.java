@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:44 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
 package egf.uc1_9.pattern;
 
 import java.util.*;
@@ -25,7 +25,7 @@ public class myPattern {
 			orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 	}
 
@@ -33,7 +33,7 @@ public class myPattern {
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		Node.Container currentNode = ictx.getNode();
 		ictx.setNode(currentNode);
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 		}
 		return loop;

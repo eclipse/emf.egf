@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:22:04 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:44:48 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -69,7 +69,7 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_10);
@@ -93,11 +93,11 @@ public class BuildProperties extends org.eclipse.egf.emf.pattern.base.GenModelTe
 
 		method_postGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

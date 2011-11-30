@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:56 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Nov 07 17:44:41 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -95,7 +95,7 @@ public class ItemProvidernewChildDescriptorsReferenceDelegatedFeatureinsert {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_1);
@@ -108,7 +108,7 @@ public class ItemProvidernewChildDescriptorsReferenceDelegatedFeatureinsert {
 
 		method_doGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("createClass", this.createClass);
@@ -119,7 +119,7 @@ public class ItemProvidernewChildDescriptorsReferenceDelegatedFeatureinsert {
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

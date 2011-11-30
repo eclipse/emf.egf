@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 16:02:52 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:57:56 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -64,7 +64,7 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_10);
@@ -77,11 +77,11 @@ public class buildxmlantStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("antStep", this.antStep);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.getOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 			;
 		}

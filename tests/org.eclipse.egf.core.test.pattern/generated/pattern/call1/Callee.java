@@ -1,4 +1,4 @@
-//Generated on Fri Oct 28 15:21:43 CEST 2011 with EGF 0.6.1.qualifier
+//Generated on Wed Nov 30 10:56:59 CET 2011 with EGF 0.6.1.qualifier
 package pattern.call1;
 
 import java.util.*;
@@ -24,7 +24,7 @@ public class Callee {
 		orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
 		}
 	}
 
@@ -33,7 +33,7 @@ public class Callee {
 		Node.Container currentNode = ictx.getNode();
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
+		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
 		}
 		return loop;
