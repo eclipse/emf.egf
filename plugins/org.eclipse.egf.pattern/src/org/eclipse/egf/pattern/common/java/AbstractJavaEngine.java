@@ -175,13 +175,13 @@ public abstract class AbstractJavaEngine extends PatternEngine {
         content = header + content;
 
         // quick hack for building in hudson ...
-        final int index = content.lastIndexOf("}");
-        if (index != -1) {
-            String tmp = content.substring(0, index);
-            tmp += "public boolean preCondition() { return true;}";
-            tmp += content.substring(index);
-            content = tmp;
-        }
+        // final int index = content.lastIndexOf("}");
+        // if (index != -1) {
+        // String tmp = content.substring(0, index);
+        // tmp += "public boolean preCondition() { return true;}";
+        // tmp += content.substring(index);
+        // content = tmp;
+        // }
 
         // format code
         IJavaProject javaProject = JavaCore.create(project);
