@@ -1,3 +1,4 @@
+//Generated on Wed Nov 30 16:47:21 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.library.customized.model.Class.implementedoperation;
 
 import org.eclipse.egf.common.helper.*;
@@ -36,6 +37,7 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
         InternalPatternContext ctx = (InternalPatternContext) argument;
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
+        Node.Container currentNode = ctx.getNode();
 
         List<Object> genOperationList = null;
         //this pattern can only be called by another (i.e. it's not an entry point in execution)
@@ -96,8 +98,10 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
                                                                 this.negativeOperationOffsetCorrection = (java.lang.String) negativeOperationOffsetCorrectionParameter;
                                                                 this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
-                                                                if (preCondition())
+                                                                if (preCondition(ctx)) {
+                                                                    ctx.setNode(new Node.Container(currentNode, getClass()));
                                                                     orchestration(ctx);
+                                                                }
 
                                                             }
                                                         }
@@ -113,9 +117,9 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
                 }
             }
         }
+        ctx.setNode(currentNode);
         if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
+            ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
         }
 
         stringBuffer.append(TEXT_2);
@@ -125,14 +129,11 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
 
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
 
         super.orchestration(new SuperOrchestrationContext(ictx));
 
-        String loop = ictx.getBuffer().toString();
+        String loop = OutputManager.getOutputWithoutCallback(ictx);
         if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
             Map<String, Object> parameterValues = new HashMap<String, Object>();
             parameterValues.put("genOperation", this.genOperation);
             parameterValues.put("genClass", this.genClass);
@@ -148,9 +149,9 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
             parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
             parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
             parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
-            String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+            String outputWithCallBack = OutputManager.getOutput(ictx);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-            ictx.clearBuffer();
+            ;
         }
         return loop;
     }
@@ -177,9 +178,11 @@ public class FullNameOperationUC3 extends org.eclipse.egf.emf.pattern.model.call
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
     }
 
-    public boolean preCondition() throws Exception {
+    public boolean preCondition(PatternContext ctx) throws Exception {
         return "getFullName".equals(genOperation.getName());
     }
 }

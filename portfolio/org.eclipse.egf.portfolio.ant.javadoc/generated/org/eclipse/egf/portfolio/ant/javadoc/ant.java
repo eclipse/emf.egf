@@ -1,3 +1,4 @@
+//Generated on Wed Nov 30 16:47:17 CET 2011 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.ant.javadoc;
 
 import org.eclipse.egf.common.helper.*;
@@ -48,13 +49,16 @@ public class ant {
         InternalPatternContext ctx = (InternalPatternContext) argument;
         Map<String, String> queryCtx = null;
         IQuery.ParameterDescription paramDesc = null;
+        Node.Container currentNode = ctx.getNode();
 
-        if (preCondition())
+        if (preCondition(ctx)) {
+            ctx.setNode(new Node.Container(currentNode, getClass()));
             orchestration(ctx);
+        }
 
+        ctx.setNode(currentNode);
         if (ctx.useReporter()) {
-            ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-            ctx.clearBuffer();
+            ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
         }
 
         stringBuffer.append(TEXT_12);
@@ -64,35 +68,32 @@ public class ant {
 
     public String orchestration(PatternContext ctx) throws Exception {
         InternalPatternContext ictx = (InternalPatternContext) ctx;
-        int executionIndex = ictx.getExecutionBuffer().length();
 
-        method_computeVariables(ictx.getBuffer(), ictx);
+        method_computeVariables(new StringBuffer(), ictx);
 
-        method_begin(ictx.getBuffer(), ictx);
+        method_begin(new StringBuffer(), ictx);
 
-        method_additionalBeginXml(ictx.getBuffer(), ictx);
+        method_additionalBeginXml(new StringBuffer(), ictx);
 
-        method_deleteOutput(ictx.getBuffer(), ictx);
+        method_deleteOutput(new StringBuffer(), ictx);
 
-        method_beginJavadoc(ictx.getBuffer(), ictx);
+        method_beginJavadoc(new StringBuffer(), ictx);
 
-        method_javadocLinks(ictx.getBuffer(), ictx);
+        method_javadocLinks(new StringBuffer(), ictx);
 
-        method_javadocInput(ictx.getBuffer(), ictx);
+        method_javadocInput(new StringBuffer(), ictx);
 
-        method_additionalJavadocXml(ictx.getBuffer(), ictx);
+        method_additionalJavadocXml(new StringBuffer(), ictx);
 
-        method_endJavadoc(ictx.getBuffer(), ictx);
+        method_endJavadoc(new StringBuffer(), ictx);
 
-        method_additionalEndXml(ictx.getBuffer(), ictx);
+        method_additionalEndXml(new StringBuffer(), ictx);
 
-        method_end(ictx.getBuffer(), ictx);
+        method_end(new StringBuffer(), ictx);
 
-        String loop = ictx.getBuffer().toString();
+        String loop = OutputManager.getOutputWithoutCallback(ictx);
         if (ictx.useReporter()) {
-            ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
-            ictx.setExecutionCurrentIndex(0);
-            ictx.clearBuffer();
+            ;
         }
         return loop;
     }
@@ -133,15 +134,21 @@ public class ant {
                 inputFolderPathsList.add(inputFolder.getLocation().toOSString());
         }
 
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "computeVariables", stringBuffer.toString());
     }
 
     protected void method_begin(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "begin", stringBuffer.toString());
     }
 
     protected void method_additionalBeginXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "additionalBeginXml", stringBuffer.toString());
     }
 
     protected void method_deleteOutput(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -149,6 +156,8 @@ public class ant {
         stringBuffer.append(TEXT_2);
         stringBuffer.append(outputFolderPath);
         stringBuffer.append(TEXT_3);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "deleteOutput", stringBuffer.toString());
     }
 
     protected void method_beginJavadoc(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -156,11 +165,15 @@ public class ant {
         stringBuffer.append(TEXT_4);
         stringBuffer.append(outputFolderPath);
         stringBuffer.append(TEXT_5);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "beginJavadoc", stringBuffer.toString());
     }
 
     protected void method_javadocLinks(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_6);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "javadocLinks", stringBuffer.toString());
     }
 
     protected void method_javadocInput(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -173,27 +186,37 @@ public class ant {
             stringBuffer.append(TEXT_8);
         }
         stringBuffer.append(TEXT_9);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "javadocInput", stringBuffer.toString());
     }
 
     protected void method_additionalJavadocXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "additionalJavadocXml", stringBuffer.toString());
     }
 
     protected void method_endJavadoc(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_10);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "endJavadoc", stringBuffer.toString());
     }
 
     protected void method_additionalEndXml(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "additionalEndXml", stringBuffer.toString());
     }
 
     protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_11);
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
     }
 
-    public boolean preCondition() throws Exception {
+    public boolean preCondition(PatternContext ctx) throws Exception {
         return true;
     }
 }
