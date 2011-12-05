@@ -88,6 +88,7 @@ public class InstallStepItemProvider
             addUpdateSiteUrlsPropertyDescriptor(object);
             addFeatureNamesPropertyDescriptor(object);
             addProductNamesPropertyDescriptor(object);
+            addInstallResultStepsSourceFeaturesPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -237,6 +238,30 @@ public class InstallStepItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Install Result Steps Source Features feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInstallResultStepsSourceFeaturesPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_InstallStep_installResultStepsSourceFeatures_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_InstallStep_installResultStepsSourceFeatures_feature", "_UI_InstallStep_type"),
+                 BuildstepPackage.Literals.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
      * This returns InstallStep.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -280,6 +305,7 @@ public class InstallStepItemProvider
             case BuildstepPackage.INSTALL_STEP__UPDATE_SITE_URLS:
             case BuildstepPackage.INSTALL_STEP__FEATURE_NAMES:
             case BuildstepPackage.INSTALL_STEP__PRODUCT_NAMES:
+            case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

@@ -651,6 +651,15 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getInstallStep_InstallResultStepsSourceFeatures() {
+        return (EAttribute)installStepEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getBuildLocation() {
         return buildLocationEClass;
     }
@@ -939,6 +948,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(installStepEClass, INSTALL_STEP__UPDATE_SITE_URLS);
         createEAttribute(installStepEClass, INSTALL_STEP__FEATURE_NAMES);
         createEAttribute(installStepEClass, INSTALL_STEP__PRODUCT_NAMES);
+        createEAttribute(installStepEClass, INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES);
 
         buildLocationEClass = createEClass(BUILD_LOCATION);
         createEAttribute(buildLocationEClass, BUILD_LOCATION__PATTERN);
@@ -1082,6 +1092,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getInstallStep_UpdateSiteUrls(), ecorePackage.getEString(), "updateSiteUrls", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_FeatureNames(), ecorePackage.getEString(), "featureNames", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_ProductNames(), ecorePackage.getEString(), "productNames", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInstallStep_InstallResultStepsSourceFeatures(), ecorePackage.getEBoolean(), "installResultStepsSourceFeatures", "false", 0, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(buildLocationEClass, BuildLocation.class, "BuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getBuildLocation_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, BuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

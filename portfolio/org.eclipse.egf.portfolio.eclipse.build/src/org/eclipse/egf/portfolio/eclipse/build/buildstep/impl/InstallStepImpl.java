@@ -50,6 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getUpdateSiteUrls <em>Update Site Urls</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getFeatureNames <em>Feature Names</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getProductNames <em>Product Names</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#isInstallResultStepsSourceFeatures <em>Install Result Steps Source Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -152,6 +153,28 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
      * @ordered
      */
     protected EList<String> productNames;
+
+
+    /**
+     * The default value of the '{@link #isInstallResultStepsSourceFeatures() <em>Install Result Steps Source Features</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isInstallResultStepsSourceFeatures()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT = false;
+
+
+    /**
+     * The cached value of the '{@link #isInstallResultStepsSourceFeatures() <em>Install Result Steps Source Features</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isInstallResultStepsSourceFeatures()
+     * @generated
+     * @ordered
+     */
+    protected boolean installResultStepsSourceFeatures = INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT;
 
 
     /**
@@ -297,6 +320,32 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public boolean isInstallResultStepsSourceFeatures() {
+
+        return installResultStepsSourceFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setInstallResultStepsSourceFeatures(boolean newInstallResultStepsSourceFeatures) {
+
+        boolean oldInstallResultStepsSourceFeatures = installResultStepsSourceFeatures;
+        installResultStepsSourceFeatures = newInstallResultStepsSourceFeatures;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES, oldInstallResultStepsSourceFeatures, installResultStepsSourceFeatures));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -312,6 +361,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
                 return getFeatureNames();
             case BuildstepPackage.INSTALL_STEP__PRODUCT_NAMES:
                 return getProductNames();
+            case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
+                return isInstallResultStepsSourceFeatures();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -347,6 +398,9 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
                 getProductNames().clear();
                 getProductNames().addAll((Collection<? extends String>)newValue);
                 return;
+            case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
+                setInstallResultStepsSourceFeatures((Boolean)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -378,6 +432,9 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
             case BuildstepPackage.INSTALL_STEP__PRODUCT_NAMES:
                 getProductNames().clear();
                 return;
+            case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
+                setInstallResultStepsSourceFeatures(INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -404,6 +461,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
                 return featureNames != null && !featureNames.isEmpty();
             case BuildstepPackage.INSTALL_STEP__PRODUCT_NAMES:
                 return productNames != null && !productNames.isEmpty();
+            case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
+                return installResultStepsSourceFeatures != INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -429,6 +488,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
         result.append(featureNames);
         result.append(", productNames: ");
         result.append(productNames);
+        result.append(", installResultStepsSourceFeatures: ");
+        result.append(installResultStepsSourceFeatures);
         result.append(')');
         return result.toString();
     }

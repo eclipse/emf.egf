@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getUpdateSiteUrls <em>Update Site Urls</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getFeatureNames <em>Feature Names</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProductNames <em>Product Names</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#isInstallResultStepsSourceFeatures <em>Install Result Steps Source Features</em>}</li>
  * </ul>
  * </p>
  *
@@ -206,6 +207,43 @@ public interface InstallStep extends Step {
      */
 
     EList<String> getProductNames();
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>Install Result Steps Source Features</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Install Result Steps Source Features</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Install Result Steps Source Features</em>' attribute.
+     * @see #setInstallResultStepsSourceFeatures(boolean)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getInstallStep_InstallResultStepsSourceFeatures()
+     * @model default="false"
+     * @generated
+     */
+
+    boolean isInstallResultStepsSourceFeatures();
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#isInstallResultStepsSourceFeatures <em>Install Result Steps Source Features</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Install Result Steps Source Features</em>' attribute.
+     * @see #isInstallResultStepsSourceFeatures()
+     * @generated
+     */
+
+    void setInstallResultStepsSourceFeatures(boolean value);
 
 
 

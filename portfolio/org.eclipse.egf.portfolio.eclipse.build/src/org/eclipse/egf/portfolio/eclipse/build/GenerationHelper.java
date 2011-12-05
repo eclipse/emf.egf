@@ -156,4 +156,21 @@ public class GenerationHelper {
         }
         return input;
     }
+   
+    // Copied from org.eclipse.buckminster.pde.tasks.SourceFeatureCreator
+    private static final String FEATURE_SUFFIX = ".feature"; //$NON-NLS-1$
+    private static final String SOURCE_SUFFIX = ".source"; //$NON-NLS-1$
+    public String createSourceFeatureId(String originalId) {
+        StringBuilder sourceIdBld = new StringBuilder();
+        if (originalId.endsWith(FEATURE_SUFFIX)) {
+            sourceIdBld.append(originalId, 0, originalId.length() - FEATURE_SUFFIX.length());
+            sourceIdBld.append(SOURCE_SUFFIX);
+            sourceIdBld.append(FEATURE_SUFFIX);
+        } else {
+            sourceIdBld.append(originalId);
+            sourceIdBld.append(SOURCE_SUFFIX);
+        }
+        return sourceIdBld.toString();
+    }
+
 }

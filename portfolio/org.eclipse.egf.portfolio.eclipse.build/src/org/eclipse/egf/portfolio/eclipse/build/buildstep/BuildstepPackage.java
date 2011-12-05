@@ -808,13 +808,22 @@ public interface BuildstepPackage extends EPackage {
     int INSTALL_STEP__PRODUCT_NAMES = BuildcorePackage.STEP_FEATURE_COUNT + 5;
 
     /**
+     * The feature id for the '<em><b>Install Result Steps Source Features</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES = BuildcorePackage.STEP_FEATURE_COUNT + 6;
+
+    /**
      * The number of structural features of the '<em>Install Step</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INSTALL_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 6;
+    int INSTALL_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 7;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.
@@ -1807,6 +1816,17 @@ public interface BuildstepPackage extends EPackage {
     EAttribute getInstallStep_ProductNames();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#isInstallResultStepsSourceFeatures <em>Install Result Steps Source Features</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Install Result Steps Source Features</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#isInstallResultStepsSourceFeatures()
+     * @see #getInstallStep()
+     * @generated
+     */
+    EAttribute getInstallStep_InstallResultStepsSourceFeatures();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation <em>Build Location</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2412,6 +2432,14 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute INSTALL_STEP__PRODUCT_NAMES = eINSTANCE.getInstallStep_ProductNames();
+
+        /**
+         * The meta object literal for the '<em><b>Install Result Steps Source Features</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES = eINSTANCE.getInstallStep_InstallResultStepsSourceFeatures();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationImpl <em>Build Location</em>}' class.
