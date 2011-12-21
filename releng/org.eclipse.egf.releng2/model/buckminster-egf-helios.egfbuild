@@ -41,10 +41,7 @@
     <components xsi:type="buildstep:Feature" xmi:id="_wsm2oUAiEeCi4-1Y9vbHyQ" name="org.eclipse.egf.portfolio.atl.examples"/>
     <components xsi:type="buildstep:Feature" xmi:id="_6VPlEL53EeCiHNhYwuZwog" name="org.eclipse.egf.portfolio.genchain.ecoretools"/>
   </steps>
-  <steps xsi:type="buildstep:BuildStep" xmi:id="_-vwfIBwaEeGaye7FU7dZVA">
-    <buildLocations xsi:type="buildstep:TargetPlatformBuildLocation" xmi:id="_UzFF8R9IEeGsc6Ewjr-VCg" path="${workspace_loc}/../publish/egf"/>
-  </steps>
-  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.jdt.core.javabuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.pde.ManifestBuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.pde.SchemaBuilder&quot; />&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_HPz3oAYBEeGKhYHYG0ajnw" targetName="recompile_egf_patterns" xml="&lt;target name=&quot;recompile_egf_patterns&quot;>&#xD;&#xA;            &lt;eclipse.incrementalBuild kind=&quot;incremental&quot; builder=&quot;org.eclipse.egf.pattern.ui.PatternBuilder&quot; />&#xD;&#xA;&lt;/target>" runInEclipse="true"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_PvB60PjIEeCQBPQJHiANYA">
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_ZlzLoPjIEeCQBPQJHiANYA" url="${updateSiteURL}"/>
   </steps>
