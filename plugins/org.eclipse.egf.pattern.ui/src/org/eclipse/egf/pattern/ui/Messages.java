@@ -298,13 +298,17 @@ public class Messages extends NLS {
     public static String TracePreferencePage_Save_Error_Title;
     public static String TracePreferencePage_Save_Error_Message;
     public static String TracePreferencePage_Label_1;
+    public static String TracePreferencePage_Label_1_tooltip;
     public static String TracePreferencePage_Label_2;
+    public static String TracePreferencePage_Label_2_tooltip;
     public static String TracePreferencePage_Label_3;
     public static String TracePreferencePage_Label_4;
+    public static String TracePreferencePage_Label_4_tooltip;
     public static String TracePreferencePage_Label_5;
     public static String TracePreferencePage_Label_6;
     public static String TracePreferencePage_Label_7;
     public static String TracePreferencePage_Label_8;
+    public static String TracePreferencePage_Label_8_tooltip;
     public static String TracePreferencePage_Label_9;
     public static String TracePreferencePage_Label_10;
 

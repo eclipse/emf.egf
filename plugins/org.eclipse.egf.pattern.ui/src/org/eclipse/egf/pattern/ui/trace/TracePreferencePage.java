@@ -122,6 +122,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         TableViewerColumn commentColumn = new TableViewerColumn(filterViewer, SWT.NONE);
         layout.addColumnData(new ColumnWeightData(3, 100, true));
         commentColumn.getColumn().setText(Messages.TracePreferencePage_Label_1);
+        commentColumn.getColumn().setToolTipText(Messages.TracePreferencePage_Label_1_tooltip);
         commentColumn.getColumn().setResizable(true);
         commentColumn.getColumn().setData(0);
         commentColumn.setEditingSupport(new StringEditingSupport(filterViewer, Filter.class, "comment"));
@@ -129,6 +130,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         TableViewerColumn patternColumn = new TableViewerColumn(filterViewer, SWT.NONE);
         layout.addColumnData(new ColumnWeightData(3, 100, true));
         patternColumn.getColumn().setText(Messages.TracePreferencePage_Label_2);
+        patternColumn.getColumn().setToolTipText(Messages.TracePreferencePage_Label_2_tooltip);
         patternColumn.getColumn().setResizable(true);
         patternColumn.getColumn().setData(0);
         patternColumn.setEditingSupport(new StringEditingSupport(filterViewer, Filter.class, "pattern"));
@@ -202,6 +204,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         TableViewerColumn nameColumn = new TableViewerColumn(categoryViewer, SWT.NONE);
         layout.addColumnData(new ColumnWeightData(3, 100, true));
         nameColumn.getColumn().setText(Messages.TracePreferencePage_Label_4);
+        nameColumn.getColumn().setToolTipText(Messages.TracePreferencePage_Label_4_tooltip);
         nameColumn.getColumn().setResizable(true);
         nameColumn.getColumn().setData(0);
         nameColumn.setEditingSupport(new StringEditingSupport(categoryViewer, Category.class, "name"));
@@ -354,6 +357,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
 
         alwaysBtn = new Button(grp, SWT.RADIO);
         alwaysBtn.setText(Messages.TracePreferencePage_Label_8);
+        alwaysBtn.setToolTipText(Messages.TracePreferencePage_Label_8_tooltip);
         alwaysBtn.setData(TraceState.ALWAYS);
         alwaysBtn.addSelectionListener(listener);
         alwaysBtn.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
