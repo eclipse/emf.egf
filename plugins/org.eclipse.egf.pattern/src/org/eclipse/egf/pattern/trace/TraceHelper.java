@@ -17,7 +17,7 @@ package org.eclipse.egf.pattern.trace;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
@@ -50,7 +50,7 @@ public class TraceHelper {
         super();
         enable = true;
         // this.configuration = configuration;
-        patterns = new HashMap<Pattern, String>();
+        patterns = new LinkedHashMap<Pattern, String>();
         for (Category cat : configuration.getCategories()) {
             if (cat.isActive()) {
                 for (Filter filter : cat.getFilters()) {

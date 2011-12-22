@@ -19,6 +19,7 @@ import org.eclipse.egf.pattern.trace.TraceState;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
@@ -58,8 +59,12 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
     private CheckboxTableViewer categoryViewer;
     private Button addFilterButton;
     private Button delFilterButton;
+    private Button upFilterButton;
+    private Button downFilterButton;
     private Button addCategoryButton;
     private Button delCategoryButton;
+    private Button upCategoryButton;
+    private Button downCategoryButton;
     private boolean enableSubControl = false;
     private Configuration configuration;
     private Button noneBtn;
@@ -174,6 +179,36 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 setButtonStates();
             }
         });
+        upFilterButton = buttons[2];
+        upFilterButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                Category category = (Category) filterViewer.getInput();
+                if (category != null) {
+                    IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
+                    Filter filter = (Filter) ss.getFirstElement();
+                    final EList<Filter> filters = category.getFilters();
+                    final int index = filters.indexOf(filter);
+                    filters.move(index - 1, filter);
+                    filterViewer.refresh();
+                    setButtonStates();
+                }
+            }
+        });
+        downFilterButton = buttons[3];
+        downFilterButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                Category category = (Category) filterViewer.getInput();
+                if (category != null) {
+                    IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
+                    Filter filter = (Filter) ss.getFirstElement();
+                    final EList<Filter> filters = category.getFilters();
+                    final int index = filters.indexOf(filter);
+                    filters.move(index + 1, filter);
+                    filterViewer.refresh();
+                    setButtonStates();
+                }
+            }
+        });
 
     }
 
@@ -268,6 +303,30 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 setButtonStates();
             }
         });
+        upCategoryButton = buttons[2];
+        upCategoryButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                IStructuredSelection ss = (IStructuredSelection) categoryViewer.getSelection();
+                Category cat = (Category) ss.getFirstElement();
+                final EList<Category> categories = configuration.getCategories();
+                final int index = categories.indexOf(cat);
+                categories.move(index - 1, cat);
+                categoryViewer.refresh();
+                setButtonStates();
+            }
+        });
+        downCategoryButton = buttons[3];
+        downCategoryButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                IStructuredSelection ss = (IStructuredSelection) categoryViewer.getSelection();
+                Category cat = (Category) ss.getFirstElement();
+                final EList<Category> categories = configuration.getCategories();
+                final int index = categories.indexOf(cat);
+                categories.move(index + 1, cat);
+                categoryViewer.refresh();
+                setButtonStates();
+            }
+        });
 
     }
 
@@ -279,7 +338,11 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         addBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
         Button delBtn = new Button(buttonBar, SWT.PUSH);
         delBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
-        return new Button[] { addBtn, delBtn };
+        Button upBtn = new Button(buttonBar, SWT.PUSH);
+        upBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
+        Button downBtn = new Button(buttonBar, SWT.PUSH);
+        downBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
+        return new Button[] { addBtn, delBtn, upBtn, downBtn };
     }
 
     protected Composite createComposite(Composite parent, int columns) {
@@ -292,11 +355,33 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
     }
 
     private void setButtonStates() {
+        IStructuredSelection selection = (IStructuredSelection) categoryViewer.getSelection();
+        int size = selection.size();
         addCategoryButton.setEnabled(enableSubControl);
-        delCategoryButton.setEnabled(enableSubControl && !categoryViewer.getSelection().isEmpty());
+        delCategoryButton.setEnabled(enableSubControl && !selection.isEmpty());
+        upCategoryButton.setEnabled(false);
+        downCategoryButton.setEnabled(false);
+        if (size == 1) {
+            final EList<Category> categories = configuration.getCategories();
+            final int nbCategories = categories.size() - 1;
+            final int index = categories.indexOf(selection.getFirstElement());
+            upCategoryButton.setEnabled(index > 0);
+            downCategoryButton.setEnabled(index < nbCategories);
+        }
 
-        addFilterButton.setEnabled(enableSubControl && !categoryViewer.getSelection().isEmpty());
+        addFilterButton.setEnabled(enableSubControl && !selection.isEmpty());
         delFilterButton.setEnabled(enableSubControl && !filterViewer.getSelection().isEmpty());
+        upFilterButton.setEnabled(false);
+        downFilterButton.setEnabled(false);
+        if (size == 1) {
+            Category category = (Category) filterViewer.getInput();
+            if (category != null && !filterViewer.getSelection().isEmpty()) {
+                final int nbFilters = category.getFilters().size() - 1;
+                final int index = category.getFilters().indexOf(((IStructuredSelection) filterViewer.getSelection()).getFirstElement());
+                upFilterButton.setEnabled(index > 0);
+                downFilterButton.setEnabled(index < nbFilters);
+            }
+        }
 
         categoryViewer.getTable().setEnabled(enableSubControl);
         filterViewer.getTable().setEnabled(enableSubControl);
