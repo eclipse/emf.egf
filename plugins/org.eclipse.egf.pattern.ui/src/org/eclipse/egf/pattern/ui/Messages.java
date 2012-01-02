@@ -311,6 +311,11 @@ public class Messages extends NLS {
     public static String TracePreferencePage_Label_8_tooltip;
     public static String TracePreferencePage_Label_9;
     public static String TracePreferencePage_Label_10;
+    public static String TracePreferencePage_Label_11_tooltip;
+    public static String TracePreferencePage_Label_12_tooltip;
+    public static String TracePreferencePage_Label_13_tooltip;
+    public static String TracePreferencePage_Label_14_tooltip;
+    public static String TracePreferencePage_Label_15_tooltip;
 
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);

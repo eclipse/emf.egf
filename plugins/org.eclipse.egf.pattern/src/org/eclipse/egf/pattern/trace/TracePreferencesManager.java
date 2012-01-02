@@ -22,7 +22,9 @@ import java.util.HashMap;
 
 import org.eclipse.core.runtime.preferences.ConfigurationScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.egf.core.trace.Category;
 import org.eclipse.egf.core.trace.Configuration;
+import org.eclipse.egf.core.trace.Filter;
 import org.eclipse.egf.core.trace.TraceFactory;
 import org.eclipse.egf.pattern.EGFPatternPlugin;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -44,6 +46,41 @@ public class TracePreferencesManager implements ITracePreferences {
         node.put(FILTER__KEY, configurationStr);
         node.put(ENABLE_TRACE__KEY, state.getLabel());
         node.flush();
+    }
+
+    public Configuration getDefaultConfiguration() {
+        Configuration configuration = TraceFactory.eINSTANCE.createConfiguration();
+        final Category emfCategory = TraceFactory.eINSTANCE.createCategory();
+        emfCategory.setName("Emf generation");
+        configuration.getCategories().add(emfCategory);
+
+        Filter filter = TraceFactory.eINSTANCE.createFilter();
+        filter.setComment("<!--{}-->");
+        filter.setPattern(".*XML");
+        emfCategory.getFilters().add(filter);
+
+        filter = TraceFactory.eINSTANCE.createFilter();
+        filter.setComment("<!--{}-->");
+        filter.setPattern(".*Xml");
+        emfCategory.getFilters().add(filter);
+
+        filter = TraceFactory.eINSTANCE.createFilter();
+        filter.setComment("# ");
+        filter.setPattern(".*Properties");
+        emfCategory.getFilters().add(filter);
+
+        filter = TraceFactory.eINSTANCE.createFilter();
+        filter.setComment(": ");
+        filter.setPattern(".*MF");
+        emfCategory.getFilters().add(filter);
+
+        filter = TraceFactory.eINSTANCE.createFilter();
+        filter.setComment("//");
+        filter.setPattern("org\\.eclipse\\.egf\\.emf\\.pattern.*");
+        emfCategory.getFilters().add(filter);
+
+        emfCategory.getFilters().add(filter);
+        return configuration;
     }
 
     public Configuration loadConfiguration() throws IOException {

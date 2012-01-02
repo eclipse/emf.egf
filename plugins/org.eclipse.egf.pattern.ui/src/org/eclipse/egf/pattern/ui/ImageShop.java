@@ -71,4 +71,6 @@ public interface ImageShop {
 
     public static final String IMG_VARIABLE_OBJ = "obj16/variable_obj.gif"; //$NON-NLS-1$
 
+    public static final String IMG_COPY_OBJ = "obj16/copy.gif"; //$NON-NLS-1$
+
 }

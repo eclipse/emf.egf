@@ -62,6 +62,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
     private Button upFilterButton;
     private Button downFilterButton;
     private Button addCategoryButton;
+    private Button duplicateCategoryButton;
     private Button delCategoryButton;
     private Button upCategoryButton;
     private Button downCategoryButton;
@@ -79,6 +80,10 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
 
     @Override
     protected void performDefaults() {
+        configuration = TraceHelper.PREFERENCES.getDefaultConfiguration();
+        categoryViewer.setInput(configuration);
+        filterViewer.setInput(null);
+
         super.performDefaults();
     }
 
@@ -153,63 +158,6 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
             }
 
         });
-
-        Button[] buttons = createButtonBar(parent);
-        addFilterButton = buttons[0];
-        addFilterButton.addSelectionListener(new MySelectionListener() {
-            public void widgetSelected(SelectionEvent e) {
-                final Category input = (Category) filterViewer.getInput();
-                // if (input == null)
-                final Filter filter = TraceFactory.eINSTANCE.createFilter();
-                filter.setComment("");
-                input.getFilters().add(filter);
-                filterViewer.refresh();
-                setButtonStates();
-            }
-        });
-        delFilterButton = buttons[1];
-        delFilterButton.addSelectionListener(new MySelectionListener() {
-            public void widgetSelected(SelectionEvent e) {
-                IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
-                for (Object obj : ss.toArray()) {
-                    Filter filter = (Filter) obj;
-                    EcoreUtil.delete(filter);
-                }
-                filterViewer.refresh();
-                setButtonStates();
-            }
-        });
-        upFilterButton = buttons[2];
-        upFilterButton.addSelectionListener(new MySelectionListener() {
-            public void widgetSelected(SelectionEvent e) {
-                Category category = (Category) filterViewer.getInput();
-                if (category != null) {
-                    IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
-                    Filter filter = (Filter) ss.getFirstElement();
-                    final EList<Filter> filters = category.getFilters();
-                    final int index = filters.indexOf(filter);
-                    filters.move(index - 1, filter);
-                    filterViewer.refresh();
-                    setButtonStates();
-                }
-            }
-        });
-        downFilterButton = buttons[3];
-        downFilterButton.addSelectionListener(new MySelectionListener() {
-            public void widgetSelected(SelectionEvent e) {
-                Category category = (Category) filterViewer.getInput();
-                if (category != null) {
-                    IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
-                    Filter filter = (Filter) ss.getFirstElement();
-                    final EList<Filter> filters = category.getFilters();
-                    final int index = filters.indexOf(filter);
-                    filters.move(index + 1, filter);
-                    filterViewer.refresh();
-                    setButtonStates();
-                }
-            }
-        });
-
     }
 
     protected void createCategoryControl(Composite parent) {
@@ -278,9 +226,15 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 element.setActive(event.getChecked());
             }
         });
+    }
 
-        final Button[] buttons = createButtonBar(parent);
-        addCategoryButton = buttons[0];
+    protected void createCategoryButtonBar(Composite parent) {
+        Composite buttonBar = new Composite(parent, SWT.None);
+        buttonBar.setLayoutData(new GridData());
+        buttonBar.setLayout(new FillLayout(SWT.VERTICAL));
+        addCategoryButton = new Button(buttonBar, SWT.PUSH);
+        addCategoryButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
+        addCategoryButton.setToolTipText(Messages.TracePreferencePage_Label_11_tooltip);
         addCategoryButton.addSelectionListener(new MySelectionListener() {
             public void widgetSelected(SelectionEvent e) {
                 final Category cat = TraceFactory.eINSTANCE.createCategory();
@@ -290,7 +244,29 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 categoryViewer.setSelection(new StructuredSelection(cat), true);
             }
         });
-        delCategoryButton = buttons[1];
+        duplicateCategoryButton = new Button(buttonBar, SWT.PUSH);
+        duplicateCategoryButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_COPY_OBJ));
+        duplicateCategoryButton.setToolTipText(Messages.TracePreferencePage_Label_12_tooltip);
+        duplicateCategoryButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                Category source = (Category) ((IStructuredSelection) categoryViewer.getSelection()).getFirstElement();
+                final Category catCopy = TraceFactory.eINSTANCE.createCategory();
+                catCopy.setName("Copy of " + source.getName());
+                catCopy.setActive(source.isActive());
+                for (Filter sourcefilter : source.getFilters()) {
+                    final Filter filter = TraceFactory.eINSTANCE.createFilter();
+                    filter.setComment(sourcefilter.getComment());
+                    filter.setPattern(sourcefilter.getPattern());
+                    catCopy.getFilters().add(filter);
+                }
+                configuration.getCategories().add(catCopy);
+                categoryViewer.refresh();
+                categoryViewer.setSelection(new StructuredSelection(catCopy), true);
+            }
+        });
+        delCategoryButton = new Button(buttonBar, SWT.PUSH);
+        delCategoryButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
+        delCategoryButton.setToolTipText(Messages.TracePreferencePage_Label_13_tooltip);
         delCategoryButton.addSelectionListener(new MySelectionListener() {
             public void widgetSelected(SelectionEvent e) {
                 IStructuredSelection ss = (IStructuredSelection) categoryViewer.getSelection();
@@ -303,7 +279,8 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 setButtonStates();
             }
         });
-        upCategoryButton = buttons[2];
+        upCategoryButton = new Button(buttonBar, SWT.PUSH);
+        upCategoryButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
         upCategoryButton.addSelectionListener(new MySelectionListener() {
             public void widgetSelected(SelectionEvent e) {
                 IStructuredSelection ss = (IStructuredSelection) categoryViewer.getSelection();
@@ -315,7 +292,8 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 setButtonStates();
             }
         });
-        downCategoryButton = buttons[3];
+        downCategoryButton = new Button(buttonBar, SWT.PUSH);
+        downCategoryButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
         downCategoryButton.addSelectionListener(new MySelectionListener() {
             public void widgetSelected(SelectionEvent e) {
                 IStructuredSelection ss = (IStructuredSelection) categoryViewer.getSelection();
@@ -327,22 +305,72 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
                 setButtonStates();
             }
         });
-
     }
 
-    protected Button[] createButtonBar(Composite parent) {
+    protected void createFilterButtonBar(Composite parent) {
         Composite buttonBar = new Composite(parent, SWT.None);
         buttonBar.setLayoutData(new GridData());
         buttonBar.setLayout(new FillLayout(SWT.VERTICAL));
-        Button addBtn = new Button(buttonBar, SWT.PUSH);
-        addBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
-        Button delBtn = new Button(buttonBar, SWT.PUSH);
-        delBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
-        Button upBtn = new Button(buttonBar, SWT.PUSH);
-        upBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
-        Button downBtn = new Button(buttonBar, SWT.PUSH);
-        downBtn.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
-        return new Button[] { addBtn, delBtn, upBtn, downBtn };
+        addFilterButton = new Button(buttonBar, SWT.PUSH);
+        addFilterButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_ADD_OBJ));
+        addFilterButton.setToolTipText(Messages.TracePreferencePage_Label_14_tooltip);
+        addFilterButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                final Category input = (Category) filterViewer.getInput();
+                final Filter filter = TraceFactory.eINSTANCE.createFilter();
+                filter.setComment("");
+                input.getFilters().add(filter);
+                filterViewer.refresh();
+                setButtonStates();
+            }
+        });
+        delFilterButton = new Button(buttonBar, SWT.PUSH);
+        delFilterButton.setToolTipText(Messages.TracePreferencePage_Label_15_tooltip);
+        delFilterButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DELETE_OBJ));
+        delFilterButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
+                for (Object obj : ss.toArray()) {
+                    Filter filter = (Filter) obj;
+                    EcoreUtil.delete(filter);
+                }
+                filterViewer.refresh();
+                setButtonStates();
+            }
+        });
+        upFilterButton = new Button(buttonBar, SWT.PUSH);
+        upFilterButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_UPWARD_OBJ));
+        upFilterButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                Category category = (Category) filterViewer.getInput();
+                if (category != null) {
+                    IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
+                    Filter filter = (Filter) ss.getFirstElement();
+                    final EList<Filter> filters = category.getFilters();
+                    final int index = filters.indexOf(filter);
+                    filters.move(index - 1, filter);
+                    filterViewer.refresh();
+                    setButtonStates();
+                }
+            }
+        });
+        downFilterButton = new Button(buttonBar, SWT.PUSH);
+        downFilterButton.setImage(Activator.getDefault().getImage(ImageShop.IMG_DOWNWARD_OBJ));
+        downFilterButton.addSelectionListener(new MySelectionListener() {
+            public void widgetSelected(SelectionEvent e) {
+                Category category = (Category) filterViewer.getInput();
+                if (category != null) {
+                    IStructuredSelection ss = (IStructuredSelection) filterViewer.getSelection();
+                    Filter filter = (Filter) ss.getFirstElement();
+                    final EList<Filter> filters = category.getFilters();
+                    final int index = filters.indexOf(filter);
+                    filters.move(index + 1, filter);
+                    filterViewer.refresh();
+                    setButtonStates();
+                }
+            }
+        });
+
     }
 
     protected Composite createComposite(Composite parent, int columns) {
@@ -359,14 +387,15 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         int size = selection.size();
         addCategoryButton.setEnabled(enableSubControl);
         delCategoryButton.setEnabled(enableSubControl && !selection.isEmpty());
+        duplicateCategoryButton.setEnabled(enableSubControl && size == 1);
         upCategoryButton.setEnabled(false);
         downCategoryButton.setEnabled(false);
         if (size == 1) {
             final EList<Category> categories = configuration.getCategories();
             final int nbCategories = categories.size() - 1;
             final int index = categories.indexOf(selection.getFirstElement());
-            upCategoryButton.setEnabled(index > 0);
-            downCategoryButton.setEnabled(index < nbCategories);
+            upCategoryButton.setEnabled(enableSubControl && index > 0);
+            downCategoryButton.setEnabled(enableSubControl && index < nbCategories);
         }
 
         addFilterButton.setEnabled(enableSubControl && !selection.isEmpty());
@@ -378,8 +407,8 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
             if (category != null && !filterViewer.getSelection().isEmpty()) {
                 final int nbFilters = category.getFilters().size() - 1;
                 final int index = category.getFilters().indexOf(((IStructuredSelection) filterViewer.getSelection()).getFirstElement());
-                upFilterButton.setEnabled(index > 0);
-                downFilterButton.setEnabled(index < nbFilters);
+                upFilterButton.setEnabled(enableSubControl && index > 0);
+                downFilterButton.setEnabled(enableSubControl && index < nbFilters);
             }
         }
 
@@ -397,8 +426,12 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
 
         createRadioButtons(grp);
 
-        createCategoryControl(createComposite(parent, 2));
-        createFilterControl(createComposite(parent, 2));
+        Composite categoryComposite = createComposite(parent, 2);
+        createCategoryControl(categoryComposite);
+        createCategoryButtonBar(categoryComposite);
+        Composite filterComposite = createComposite(parent, 2);
+        createFilterControl(filterComposite);
+        createFilterButtonBar(filterComposite);
 
         init();
 
