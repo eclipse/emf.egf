@@ -942,6 +942,22 @@
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_ckqtUJ4WEd-3wvN5SnesGA"
                 called="#_cM9_AJ4WEd-3wvN5SnesGA"/>
           </elements>
+          <elements xmi:id="_Nbl1gDa2EeG1EfUzKxS3rg" name="eclipse.variables" superPattern="#_8Rg8cabQEd-qVbFBxWG7lA"
+              headerMethod="#_Nbl1gja2EeG1EfUzKxS3rg" conditionMethod="#_Nbl1hDa2EeG1EfUzKxS3rg"
+              initMethod="#_Nbl1gza2EeG1EfUzKxS3rg" footerMethod="#_Nbl1hja2EeG1EfUzKxS3rg">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_Nbl1gTa2EeG1EfUzKxS3rg"
+                name="JET"/>
+            <methods xmi:id="_Nbl1gja2EeG1EfUzKxS3rg" name="header" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._Nbl1gja2EeG1EfUzKxS3rg.pt"/>
+            <methods xmi:id="_Nbl1gza2EeG1EfUzKxS3rg" name="init" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._Nbl1gza2EeG1EfUzKxS3rg.pt"/>
+            <methods xmi:id="_Nbl1hDa2EeG1EfUzKxS3rg" name="preCondition" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._Nbl1hDa2EeG1EfUzKxS3rg.pt"/>
+            <methods xmi:id="_Nbl1hTa2EeG1EfUzKxS3rg" name="setFileName" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._Nbl1hTa2EeG1EfUzKxS3rg.pt"/>
+            <methods xmi:id="_Nbl1hja2EeG1EfUzKxS3rg" name="footer" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._Nbl1hja2EeG1EfUzKxS3rg.pt"/>
+            <methods xmi:id="_BQbqwDa3EeG1EfUzKxS3rg" name="alterFilePath" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._BQbqwDa3EeG1EfUzKxS3rg.pt"/>
+            <methods xmi:id="_kRKNIDa4EeG1EfUzKxS3rg" name="content" patternFilePath="templates/pattern._Nbl1gDa2EeG1EfUzKxS3rg/method._kRKNIDa4EeG1EfUzKxS3rg.pt"/>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_Nbl1hza2EeG1EfUzKxS3rg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_lGf5sDa4EeG1EfUzKxS3rg"
+                called="#_kRKNIDa4EeG1EfUzKxS3rg"/>
+          </elements>
         </libraries>
         <libraries xmi:id="_uxT9EZMXEd-pjLQZUcJ3fw" name="org.eclipse.egf.portfolio.eclipse.build.buckminster.call">
           <elements xmi:id="_VCSRcJ5MEd-3wvN5SnesGA" name="build.xml.Xmx" headerMethod="#_VCSRcZ5MEd-3wvN5SnesGA"

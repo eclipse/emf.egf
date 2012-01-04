@@ -1,5 +1,4 @@
 	<macrodef name="egf">
-        <attribute name="workspace" default="${workspace}" />
         <element name="activities" />
         <element name="globargs" optional="true" />
         <element name="cmdargs" optional="true" />
@@ -9,8 +8,6 @@
                     <arg value="-application" />
                     <arg value="org.eclipse.egf.application.activity" />
                     <arg value="-consoleLog" />
-                    <arg value="-data" />
-                    <arg value="@{workspace}" />
                     <globargs />
                     <arg value="-activities" />
                     <activities />

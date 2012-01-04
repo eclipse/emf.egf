@@ -1,10 +1,12 @@
 	<target name="init" depends="init.build.properties" >
+		<echo message="Available variables are : "/>
 		<echo message="Build Releng directory (relengDir) : ${relengDir}" />
 		<echo message="Build Root directory (build.root) : ${build.root}" />
 		<echo message="Build Tools directory (tools) : ${tools}" />
 		<echo message="Build Results directory (result) : ${result}" />
 		<echo message="Build Publish directory (publish) : ${publish}" />
 		<echo message="Build Eclipse workspace directory (workspace) : ${workspace}" />	
+		<echo message="Build Timestamp (timestamp) : ${timestamp}" />	
 	</target>
 
     <target name="init.build.properties">

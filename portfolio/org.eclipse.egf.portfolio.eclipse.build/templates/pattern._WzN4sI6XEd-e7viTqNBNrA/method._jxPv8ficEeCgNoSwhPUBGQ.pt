@@ -9,6 +9,10 @@
         <isset property="env.WORKSPACE" />
     </condition>
 
+	<tstamp>
+		<format property="timestamp" pattern="yyyyMMdd-HHmm"/>
+	</tstamp>
+	
     <property name="tools" location="${build.root}/tools" />
     <property name="result" location="${build.root}/result" />
     <property name="publish" location="${result}/publish" />

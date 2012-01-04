@@ -1,0 +1,1 @@
+<%filePath = filePath + "/releng/templates/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings";%>
