@@ -19,8 +19,6 @@ public interface ITracePreferences {
     final String ENABLE_TRACE__CONFIGURATION_VALUE = "filter";
     final String ENABLE_TRACE__NEVER_VALUE = "never";
 
-    final String DEFAULT_TRACE_LITERAL__KEY = "org.eclipse.egf.core.trace.default.literal";
-
     final String FILTER__KEY = "org.eclipse.egf.core.trace.filters";
 
 }
