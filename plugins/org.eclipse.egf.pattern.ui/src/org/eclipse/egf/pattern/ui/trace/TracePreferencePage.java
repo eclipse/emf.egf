@@ -83,6 +83,11 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         configuration = TraceHelper.PREFERENCES.getDefaultConfiguration();
         categoryViewer.setInput(configuration);
         filterViewer.setInput(null);
+        alwaysBtn.setSelection(false);
+        belowBtn.setSelection(false);
+        noneBtn.setSelection(true);
+        enableSubControl = false;
+        setButtonStates();
 
         super.performDefaults();
     }
@@ -119,7 +124,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         layoutData.horizontalSpan = 2;
         label.setLayoutData(layoutData);
 
-        filterViewer = new TableViewer(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+        filterViewer = new TableViewer(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.SINGLE | SWT.FULL_SELECTION);
         final Table table = filterViewer.getTable();
         TableLayout layout = new TableLayout();
         table.setLayout(layout);
@@ -167,7 +172,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
         layoutData.horizontalSpan = 2;
         label.setLayoutData(layoutData);
 
-        categoryViewer = CheckboxTableViewer.newCheckList(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.SINGLE);
+        categoryViewer = CheckboxTableViewer.newCheckList(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER | SWT.SINGLE | SWT.FULL_SELECTION);
 
         final Table table = categoryViewer.getTable();
         TableLayout layout = new TableLayout();
@@ -318,7 +323,8 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
             public void widgetSelected(SelectionEvent e) {
                 final Category input = (Category) filterViewer.getInput();
                 final Filter filter = TraceFactory.eINSTANCE.createFilter();
-                filter.setComment("");
+                filter.setComment("//");
+                filter.setPattern(".*");
                 input.getFilters().add(filter);
                 filterViewer.refresh();
                 setButtonStates();
@@ -419,7 +425,7 @@ public class TracePreferencePage extends PreferencePage implements IWorkbenchPre
     @Override
     protected Control createContents(Composite parent) {
 
-        Group grp = new Group(parent, SWT.BORDER);
+        Group grp = new Group(parent, SWT.NONE);
         grp.setText(Messages.TracePreferencePage_Label_7);
         grp.setLayout(new GridLayout());
         grp.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));

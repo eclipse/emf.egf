@@ -39,7 +39,13 @@ public class TracePreferencesManager implements ITracePreferences {
 
     public void save(TraceState state, Configuration configuration) throws BackingStoreException, IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        configuration.eResource().save(out, new HashMap());
+        Resource eResource = configuration.eResource();
+        if (eResource == null) {
+            Resource res = new XMLResourceImpl();
+            res.getContents().add(configuration);
+            eResource = res;
+        }
+        eResource.save(out, new HashMap());
         final String configurationStr = new String(out.toByteArray());
 
         final IEclipsePreferences node = new ConfigurationScope().getNode(EGFPatternPlugin.getDefault().getPluginID());
@@ -52,6 +58,7 @@ public class TracePreferencesManager implements ITracePreferences {
         Configuration configuration = TraceFactory.eINSTANCE.createConfiguration();
         final Category emfCategory = TraceFactory.eINSTANCE.createCategory();
         emfCategory.setName("Emf generation");
+        emfCategory.setActive(true);
         configuration.getCategories().add(emfCategory);
 
         Filter filter = TraceFactory.eINSTANCE.createFilter();
@@ -80,6 +87,9 @@ public class TracePreferencesManager implements ITracePreferences {
         emfCategory.getFilters().add(filter);
 
         emfCategory.getFilters().add(filter);
+
+        Resource res = new XMLResourceImpl();
+        res.getContents().add(configuration);
         return configuration;
     }
 
@@ -89,7 +99,7 @@ public class TracePreferencesManager implements ITracePreferences {
 
         Resource res = new XMLResourceImpl();
         if (configurationStr == null || "".equals(configurationStr)) {
-            Configuration configuration = TraceFactory.eINSTANCE.createConfiguration();
+            Configuration configuration = getDefaultConfiguration();
             res.getContents().add(configuration);
             return configuration;
         } else {
