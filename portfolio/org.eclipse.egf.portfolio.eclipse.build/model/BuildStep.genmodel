@@ -49,6 +49,7 @@
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//EgfStep">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//EgfStep/egfActivities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//EgfStep/properties"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//EgfActivity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//EgfActivity/uri"/>
@@ -65,6 +66,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/updateSiteUrls"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/featureNames"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/productNames"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/installResultStepsSourceFeatures"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//BuildLocation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//BuildLocation/pattern"/>

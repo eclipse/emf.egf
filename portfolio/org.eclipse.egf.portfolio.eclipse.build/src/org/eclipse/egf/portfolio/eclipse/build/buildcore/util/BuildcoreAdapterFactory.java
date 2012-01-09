@@ -90,6 +90,10 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
                 return createItemAdapter();
             }
             @Override
+            public Adapter caseProperty(Property object) {
+                return createPropertyAdapter();
+            }
+            @Override
             public Adapter caseChain(Chain object) {
                 return createChainAdapter();
             }
@@ -104,10 +108,6 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSCM(SCM object) {
                 return createSCMAdapter();
-            }
-            @Override
-            public Adapter caseProperty(Property object) {
-                return createPropertyAdapter();
             }
             @Override
             public Adapter caseTrigger(Trigger object) {

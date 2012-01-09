@@ -45,8 +45,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl#getEgfActivities <em>Egf Activities</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,19 +62,6 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
 
 
     /**
-     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProperties()
-     * @generated
-     * @ordered
-     */
-    protected EList<Property> properties;
-
-
-
-
-    /**
      * The cached value of the '{@link #getEgfActivities() <em>Egf Activities</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -83,6 +70,17 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
      * @ordered
      */
     protected EList<EgfActivity> egfActivities;
+
+
+    /**
+     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getProperties()
+     * @generated
+     * @ordered
+     */
+    protected EList<Property> properties;
 
 
     /**
@@ -151,10 +149,10 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BuildstepPackage.EGF_STEP__PROPERTIES:
-                return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
             case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 return ((InternalEList<?>)getEgfActivities()).basicRemove(otherEnd, msgs);
+            case BuildstepPackage.EGF_STEP__PROPERTIES:
+                return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -167,10 +165,10 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.EGF_STEP__PROPERTIES:
-                return getProperties();
             case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 return getEgfActivities();
+            case BuildstepPackage.EGF_STEP__PROPERTIES:
+                return getProperties();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -184,13 +182,13 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.EGF_STEP__PROPERTIES:
-                getProperties().clear();
-                getProperties().addAll((Collection<? extends Property>)newValue);
-                return;
             case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 getEgfActivities().clear();
                 getEgfActivities().addAll((Collection<? extends EgfActivity>)newValue);
+                return;
+            case BuildstepPackage.EGF_STEP__PROPERTIES:
+                getProperties().clear();
+                getProperties().addAll((Collection<? extends Property>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -205,11 +203,11 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.EGF_STEP__PROPERTIES:
-                getProperties().clear();
-                return;
             case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 getEgfActivities().clear();
+                return;
+            case BuildstepPackage.EGF_STEP__PROPERTIES:
+                getProperties().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -225,45 +223,12 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.EGF_STEP__PROPERTIES:
-                return properties != null && !properties.isEmpty();
             case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 return egfActivities != null && !egfActivities.isEmpty();
+            case BuildstepPackage.EGF_STEP__PROPERTIES:
+                return properties != null && !properties.isEmpty();
         }
         return super.eIsSet(featureID);
-    }
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == Item.class) {
-            switch (derivedFeatureID) {
-                case BuildstepPackage.EGF_STEP__PROPERTIES: return BuildcorePackage.ITEM__PROPERTIES;
-                default: return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == Item.class) {
-            switch (baseFeatureID) {
-                case BuildcorePackage.ITEM__PROPERTIES: return BuildstepPackage.EGF_STEP__PROPERTIES;
-                default: return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
     }
 
 

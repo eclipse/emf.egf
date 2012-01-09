@@ -87,15 +87,6 @@ public interface BuildstepPackage extends EPackage {
     int RESULT_STEP = 0;
 
     /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int RESULT_STEP__JOB = BuildcorePackage.STEP__JOB;
-
-    /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -131,15 +122,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     int CLEAN_STEP = 1;
-
-    /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CLEAN_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -186,15 +168,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     int BUILD_STEP = 2;
-
-    /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int BUILD_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -270,15 +243,6 @@ public interface BuildstepPackage extends EPackage {
     int PUBLISH_STEP = 3;
 
     /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PUBLISH_STEP__JOB = RESULT_STEP__JOB;
-
-    /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -343,15 +307,6 @@ public interface BuildstepPackage extends EPackage {
     int TEST_STEP = 4;
 
     /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int TEST_STEP__JOB = BuildcorePackage.STEP__JOB;
-
-    /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -405,15 +360,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     int ANT_STEP = 5;
-
-    /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ANT_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -478,15 +424,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     int JAVADOC_STEP = 6;
-
-    /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JAVADOC_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -562,15 +499,6 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP = 7;
 
     /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EGF_STEP__JOB = BuildcorePackage.STEP__JOB;
-
-    /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -589,22 +517,22 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EGF_STEP__PROPERTIES = BuildcorePackage.STEP_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Egf Activities</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EGF_STEP__EGF_ACTIVITIES = BuildcorePackage.STEP_FEATURE_COUNT + 1;
+    int EGF_STEP__EGF_ACTIVITIES = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_STEP__PROPERTIES = BuildcorePackage.STEP_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Egf Step</em>' class.
@@ -652,15 +580,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     int AGGREGATE_STEP = 9;
-
-    /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int AGGREGATE_STEP__JOB = RESULT_STEP__JOB;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -725,15 +644,6 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     int INSTALL_STEP = 10;
-
-    /**
-     * The feature id for the '<em><b>Job</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int INSTALL_STEP__JOB = BuildcorePackage.STEP__JOB;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1676,6 +1586,17 @@ public interface BuildstepPackage extends EPackage {
     EReference getEgfStep_EgfActivities();
 
     /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Properties</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getProperties()
+     * @see #getEgfStep()
+     * @generated
+     */
+    EReference getEgfStep_Properties();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity <em>Egf Activity</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2322,6 +2243,14 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EReference EGF_STEP__EGF_ACTIVITIES = eINSTANCE.getEgfStep_EgfActivities();
+
+        /**
+         * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EGF_STEP__PROPERTIES = eINSTANCE.getEgfStep_Properties();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfActivityImpl <em>Egf Activity</em>}' class.

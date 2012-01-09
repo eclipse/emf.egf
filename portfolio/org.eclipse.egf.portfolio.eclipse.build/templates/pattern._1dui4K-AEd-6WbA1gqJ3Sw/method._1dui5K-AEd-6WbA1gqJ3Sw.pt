@@ -5,8 +5,8 @@
 
 	<target name="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_dropins">
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-if (publishStep.getJob().isEnabled()) {
-String location = "${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/dropins";
+if (new GenerationHelper().isEnabled(publishStep)) {
+String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/dropins";
 String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
 String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();%>
 		<pathconvert property="<%=propertyName%>">
@@ -31,12 +31,12 @@ String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getN
 	<target name="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_sitep2">
 		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
 		<p2.mirror>
-			<repository location="file:/${publish}/<%=aggregateStep.getName()%>/site.p2" name="<%=aggregateStep.getJob().getName()%>/<%=aggregateStep.getName()%>" />
+			<repository location="file:/${publish}/<%=aggregateStep.getName()%>/site.p2" name="<%=new GenerationHelper().getJob(aggregateStep).getName()%>/<%=aggregateStep.getName()%>" />
 			<source>
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-if (publishStep.getJob().isEnabled()) {
+if (new GenerationHelper().isEnabled(publishStep)) {
 if (publishStep.getComponent() instanceof Feature) {
-String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";%>
+String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";%>
 				<repository location="<%=location%>" />
 <%}}}%>
 <%for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {%>

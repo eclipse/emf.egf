@@ -23,8 +23,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getSteps <em>Steps</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getScms <em>Scms</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getTriggers <em>Triggers</em>}</li>
@@ -50,87 +48,8 @@ public interface Job extends Item {
 
 
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Name()
-     * @model required="true"
-     * @generated
-     */
-
-    String getName();
-
-
-
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getName <em>Name</em>}' attribute.
-
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
-
-    void setName(String value);
-
-
-
-
-
-
-
-    /**
-     * Returns the value of the '<em><b>Description</b></em>' attribute.
-
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Description</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Description</em>' attribute.
-     * @see #setDescription(String)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Description()
-     * @model
-     * @generated
-     */
-
-    String getDescription();
-
-
-
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getDescription <em>Description</em>}' attribute.
-
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Description</em>' attribute.
-     * @see #getDescription()
-     * @generated
-     */
-
-    void setDescription(String value);
-
-
-
-
-
-
-
-    /**
      * Returns the value of the '<em><b>Steps</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step}.
-     * It is bidirectional and its opposite is '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getJob <em>Job</em>}'.
 
      * <!-- begin-user-doc -->
      * <p>
@@ -140,8 +59,7 @@ public interface Job extends Item {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Steps</em>' containment reference list.
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Steps()
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getJob
-     * @model opposite="job" containment="true"
+     * @model containment="true"
      * @generated
      */
 

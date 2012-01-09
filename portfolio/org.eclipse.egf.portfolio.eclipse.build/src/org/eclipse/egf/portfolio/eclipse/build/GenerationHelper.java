@@ -173,4 +173,26 @@ public class GenerationHelper {
         return sourceIdBld.toString();
     }
 
+    public Job getJob(EObject eObject) {
+        EObject container = eObject.eContainer();
+        if (container instanceof Job) {
+            return (Job) container;
+        } else if (container != null) {
+            return getJob(container);
+        } else {
+            return null;
+        }
+    }
+    
+    public String getPublishPath(PatternContext context, EObject targetEObject, EObject sourceEObject) {
+        if (getJob(sourceEObject) == getJob(targetEObject)) 
+            return "${publish}/";
+        //if the source and the target object are not part of the same job
+        //then we try to provide a valid relative path (but won't work on a hudson slave)
+        return "${build.root}/../../" + getJobName(context, getJob(targetEObject)) + "/workspace/result/publish/";
+    }
+    
+    public boolean isEnabled(Step step) {
+        return getJob(step).isEnabled();
+    }
 }

@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.egf.portfolio.eclipse.build.GenerationHelper;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
@@ -91,7 +92,7 @@ public class BuildcoreResourceHandler extends BasicResourceHandler {
 			}
 
 			BuildStep buildStep = (BuildStep) owner;
-			Job job = buildStep.getJob();
+			Job job = new GenerationHelper().getJob(buildStep);
 			
 			CleanStep cleanStep = BuildstepFactory.eINSTANCE.createCleanStep();
 			cleanStep.setType(cleanType);

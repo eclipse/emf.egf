@@ -107,6 +107,12 @@ public class BuildcoreSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildcorePackage.PROPERTY: {
+                Property property = (Property)theEObject;
+                T result = caseProperty(property);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildcorePackage.CHAIN: {
                 Chain chain = (Chain)theEObject;
                 T result = caseChain(chain);
@@ -130,12 +136,6 @@ public class BuildcoreSwitch<T> {
             case BuildcorePackage.SCM: {
                 SCM scm = (SCM)theEObject;
                 T result = caseSCM(scm);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case BuildcorePackage.PROPERTY: {
-                Property property = (Property)theEObject;
-                T result = caseProperty(property);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }

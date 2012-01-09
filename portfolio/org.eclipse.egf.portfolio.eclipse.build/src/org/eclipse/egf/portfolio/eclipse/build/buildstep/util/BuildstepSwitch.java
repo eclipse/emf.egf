@@ -158,7 +158,6 @@ public class BuildstepSwitch<T> {
                 EgfStep egfStep = (EgfStep)theEObject;
                 T result = caseEgfStep(egfStep);
                 if (result == null) result = caseStep(egfStep);
-                if (result == null) result = caseItem(egfStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -632,21 +631,6 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseStep(Step object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Item</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseItem(Item object) {
         return null;
     }
 

@@ -13,6 +13,7 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getEgfActivities <em>Egf Activities</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface EgfStep extends Step, Item {
+public interface EgfStep extends Step {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -64,6 +66,29 @@ public interface EgfStep extends Step, Item {
      */
 
     EList<EgfActivity> getEgfActivities();
+
+
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property}.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Properties</em>' containment reference list.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getEgfStep_Properties()
+     * @model containment="true"
+     * @generated
+     */
+
+    EList<Property> getProperties();
 
 
 

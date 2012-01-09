@@ -75,9 +75,9 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case BuildcorePackage.ITEM: return createItem();
+            case BuildcorePackage.PROPERTY: return createProperty();
             case BuildcorePackage.CHAIN: return createChain();
             case BuildcorePackage.JOB: return createJob();
-            case BuildcorePackage.PROPERTY: return createProperty();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }

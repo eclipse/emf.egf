@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl#getJob <em>Job</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl#getDescription <em>Description</em>}</li>
  * </ul>
@@ -133,76 +132,6 @@ public abstract class StepImpl extends EObjectImpl implements Step {
      * @generated
      */
 
-    public Job getJob() {
-
-        if (eContainerFeatureID() != BuildcorePackage.STEP__JOB) return null;
-        return (Job)eContainer();
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public Job basicGetJob() {
-
-        if (eContainerFeatureID() != BuildcorePackage.STEP__JOB) return null;
-        return (Job)eInternalContainer();
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public NotificationChain basicSetJob(Job newJob, NotificationChain msgs) {
-
-        msgs = eBasicSetContainer((InternalEObject)newJob, BuildcorePackage.STEP__JOB, msgs);
-
-        return msgs;
-    }
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
-    public void setJob(Job newJob) {
-
-        if (newJob != eInternalContainer() || (eContainerFeatureID() != BuildcorePackage.STEP__JOB && newJob != null)) {
-            if (EcoreUtil.isAncestor(this, newJob))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newJob != null)
-                msgs = ((InternalEObject)newJob).eInverseAdd(this, BuildcorePackage.JOB__STEPS, Job.class, msgs);
-            msgs = basicSetJob(newJob, msgs);
-            if (msgs != null) msgs.dispatch();
-        }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildcorePackage.STEP__JOB, newJob, newJob));
-
-    }
-
-
-
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-
     public String getId() {
 
         return id;
@@ -255,55 +184,8 @@ public abstract class StepImpl extends EObjectImpl implements Step {
      * @generated
      */
     @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case BuildcorePackage.STEP__JOB:
-                if (eInternalContainer() != null)
-                    msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetJob((Job)otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case BuildcorePackage.STEP__JOB:
-                return basicSetJob(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case BuildcorePackage.STEP__JOB:
-                return eInternalContainer().eInverseRemove(this, BuildcorePackage.JOB__STEPS, Job.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildcorePackage.STEP__JOB:
-                if (resolve) return getJob();
-                return basicGetJob();
             case BuildcorePackage.STEP__ID:
                 return getId();
             case BuildcorePackage.STEP__DESCRIPTION:
@@ -320,9 +202,6 @@ public abstract class StepImpl extends EObjectImpl implements Step {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildcorePackage.STEP__JOB:
-                setJob((Job)newValue);
-                return;
             case BuildcorePackage.STEP__ID:
                 setId((String)newValue);
                 return;
@@ -342,9 +221,6 @@ public abstract class StepImpl extends EObjectImpl implements Step {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildcorePackage.STEP__JOB:
-                setJob((Job)null);
-                return;
             case BuildcorePackage.STEP__ID:
                 setId(ID_EDEFAULT);
                 return;
@@ -365,8 +241,6 @@ public abstract class StepImpl extends EObjectImpl implements Step {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildcorePackage.STEP__JOB:
-                return basicGetJob() != null;
             case BuildcorePackage.STEP__ID:
                 return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
             case BuildcorePackage.STEP__DESCRIPTION:

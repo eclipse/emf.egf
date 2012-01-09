@@ -1,4 +1,4 @@
 <%
-String location = "${workspace_loc}/../../../../" + new GenerationHelper().getJobName(ctx, installStepBuildLocation.getInstallStep().getJob()) + "/workspace/result/publish/" + installStepBuildLocation.getInstallStep().getName();
+String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(), installStepBuildLocation) + installStepBuildLocation.getInstallStep().getName();
 %>
 		<location path="<%=location%>" type="Profile"/>

@@ -30,7 +30,7 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 <%}%>
 
 <%for (PublishStep publishStep : publishSteps) {%>
-<%	String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";%>
+<%	String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";%>
                 <arg value="-r" />
                 <arg value="<%=location%>" />
 <%}%>

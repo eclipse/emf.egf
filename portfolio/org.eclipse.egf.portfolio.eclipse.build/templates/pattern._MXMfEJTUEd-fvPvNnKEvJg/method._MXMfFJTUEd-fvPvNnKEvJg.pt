@@ -1,4 +1,4 @@
-<%String id=EcoreUtil.generateUUID();%>
+<%String id=new GenerationHelper().getIdOrPositionString(updateSiteBuildLocation);%>
 	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(updateSiteBuildLocation)%> failOnError="false" />
 	<searchPath name="<%=id%>">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">

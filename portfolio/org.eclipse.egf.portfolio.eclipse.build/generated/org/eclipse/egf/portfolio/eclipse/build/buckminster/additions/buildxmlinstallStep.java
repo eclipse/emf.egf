@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 16:53:09 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Mon Jan 09 15:19:28 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -154,7 +154,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
         }
         stringBuffer.append(TEXT_9);
         for (PublishStep publishStep : publishSteps) {
-            String location = "file:/${build.root}/../../" + new GenerationHelper().getJobName(ctx, publishStep.getJob()) + "/workspace/result/publish/" + publishStep.getComponent().getName() + "/site.p2";
+            String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";
             stringBuffer.append(TEXT_10);
             stringBuffer.append(location);
             stringBuffer.append(TEXT_11);

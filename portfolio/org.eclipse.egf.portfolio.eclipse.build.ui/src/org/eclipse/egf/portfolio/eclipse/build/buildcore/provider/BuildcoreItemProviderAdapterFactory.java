@@ -325,9 +325,9 @@ public class BuildcoreItemProviderAdapterFactory extends BuildcoreAdapterFactory
      */
     public void dispose() {
         if (itemItemProvider != null) itemItemProvider.dispose();
+        if (propertyItemProvider != null) propertyItemProvider.dispose();
         if (chainItemProvider != null) chainItemProvider.dispose();
         if (jobItemProvider != null) jobItemProvider.dispose();
-        if (propertyItemProvider != null) propertyItemProvider.dispose();
     }
 
 }

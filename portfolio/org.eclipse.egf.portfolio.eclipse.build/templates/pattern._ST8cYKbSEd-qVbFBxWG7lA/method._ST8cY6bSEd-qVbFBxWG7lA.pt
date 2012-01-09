@@ -1,1 +1,1 @@
-return buildStep.getJob().isEnabled();
+return new GenerationHelper().isEnabled(buildStep);
