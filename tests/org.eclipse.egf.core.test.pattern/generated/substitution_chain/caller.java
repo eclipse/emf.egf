@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:56:58 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:57 CET 2012 with EGF 0.6.1.qualifier
 package substitution_chain;
 
 import java.util.*;
@@ -25,7 +25,7 @@ public class caller {
 			orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -38,10 +38,7 @@ public class caller {
 			CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.core.test.pattern/fc/substitution_chain.fcore#_9yQgsJmOEd-BDZHgxyTzjQ", ctx_local, parameters);
 		}
 		ictx.setNode(currentNode);
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
-		if (ictx.useReporter()) {
-		}
-		return loop;
+		return null;
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -55,7 +52,4 @@ public class caller {
 		return true;
 	}
 
-	public boolean preCondition() {
-		return true;
-	}
 }

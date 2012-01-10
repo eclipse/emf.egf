@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:45:04 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:51:11 CET 2012 with EGF 0.6.1.qualifier
 package fcore.builder.patterns;
 
 import java.util.HashMap;
@@ -58,7 +58,7 @@ public class ModeEcorelPattern {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -67,14 +67,14 @@ public class ModeEcorelPattern {
 		Node.Container currentNode = ictx.getNode();
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
-		return loop;
+		return null;
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -185,7 +185,4 @@ public class ModeEcorelPattern {
 		return parameters;
 	}
 
-	public boolean preCondition() {
-		return true;
-	}
 }

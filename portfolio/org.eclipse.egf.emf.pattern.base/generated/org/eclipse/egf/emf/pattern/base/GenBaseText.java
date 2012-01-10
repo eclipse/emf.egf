@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:44:35 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:30 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -45,7 +45,7 @@ public class GenBaseText extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_1);
@@ -58,11 +58,7 @@ public class GenBaseText extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
-		if (ictx.useReporter()) {
-			;
-		}
-		return loop;
+		return null;
 	}
 
 	protected java.lang.String targetPathName = null;
@@ -104,9 +100,5 @@ public class GenBaseText extends org.eclipse.egf.emf.pattern.base.GenAbstract {
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "putContentTypeInContext", stringBuffer.toString());
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

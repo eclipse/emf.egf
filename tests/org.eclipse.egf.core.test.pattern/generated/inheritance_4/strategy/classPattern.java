@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:56 CET 2012 with EGF 0.6.1.qualifier
 package inheritance_4.strategy;
 
 import org.eclipse.egf.common.helper.*;
@@ -56,7 +56,7 @@ public class classPattern extends base.BasePattern {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
@@ -71,15 +71,14 @@ public class classPattern extends base.BasePattern {
 
 		method_work(new StringBuffer(), ictx);
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.ecore.EClass parameter = null;
@@ -108,9 +107,5 @@ public class classPattern extends base.BasePattern {
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "work", stringBuffer.toString());
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

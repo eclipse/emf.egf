@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:55 CET 2012 with EGF 0.6.1.qualifier
 package linefeed2;
 
 import org.eclipse.egf.common.helper.*;
@@ -47,7 +47,7 @@ public class all2 {
 
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -74,11 +74,7 @@ public class all2 {
 
 		method_c(new StringBuffer(), ictx);
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
-		if (ictx.useReporter()) {
-			;
-		}
-		return loop;
+		return null;
 	}
 
 	public Map<String, Object> getParameters() {
@@ -98,9 +94,5 @@ public class all2 {
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "d", stringBuffer.toString());
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

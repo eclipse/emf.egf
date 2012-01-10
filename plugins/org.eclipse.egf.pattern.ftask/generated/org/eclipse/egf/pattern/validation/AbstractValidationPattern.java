@@ -1,4 +1,4 @@
-//Generated on Tue Nov 29 11:50:36 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:23 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.pattern.validation;
 
 import java.util.*;
@@ -26,7 +26,7 @@ public class AbstractValidationPattern {
 			orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -35,10 +35,7 @@ public class AbstractValidationPattern {
 		Node.Container currentNode = ictx.getNode();
 		method_getDiagnosticChainFromContext(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
-		if (ictx.useReporter()) {
-		}
-		return loop;
+		return null;
 	}
 
 	protected void method_getDiagnosticChainFromContext(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -63,7 +60,4 @@ public class AbstractValidationPattern {
 		return parameters;
 	}
 
-	public boolean preCondition() {
-		return true;
-	}
 }

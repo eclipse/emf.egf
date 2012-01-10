@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:44:38 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:39 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Interface;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -216,7 +216,7 @@ public class InterfacegenOperationoverride {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_92);
@@ -229,8 +229,8 @@ public class InterfacegenOperationoverride {
 
 		method_doGenerate(new StringBuffer(), ictx);
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genOperation", this.genOperation);
 			parameterValues.put("genClass", this.genClass);
@@ -246,11 +246,10 @@ public class InterfacegenOperationoverride {
 			parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.codegen.ecore.genmodel.GenOperation genOperation = null;
@@ -664,10 +663,6 @@ public class InterfacegenOperationoverride {
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
-		return true;
-	}
-
-	public boolean preCondition() {
 		return true;
 	}
 }

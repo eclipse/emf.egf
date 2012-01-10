@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:57:00 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:56 CET 2012 with EGF 0.6.1.qualifier
 package jet_tags;
 
 import java.util.*;
@@ -35,7 +35,7 @@ public class CalleeInjected {
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -44,14 +44,14 @@ public class CalleeInjected {
 		Node.Container currentNode = ictx.getNode();
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
-		return loop;
+		return null;
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -77,7 +77,4 @@ public class CalleeInjected {
 		return parameters;
 	}
 
-	public boolean preCondition() {
-		return true;
-	}
 }

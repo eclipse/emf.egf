@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:56:59 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:56 CET 2012 with EGF 0.6.1.qualifier
 package pattern.call1;
 
 import java.util.*;
@@ -24,7 +24,7 @@ public class Callee {
 		orchestration((PatternContext) argument);
 
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -33,10 +33,7 @@ public class Callee {
 		Node.Container currentNode = ictx.getNode();
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
-		if (ictx.useReporter()) {
-		}
-		return loop;
+		return null;
 	}
 
 	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -46,7 +43,4 @@ public class Callee {
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
 	}
 
-	public boolean preCondition() {
-		return true;
-	}
 }

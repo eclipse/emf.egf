@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:45:08 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:51:21 CET 2012 with EGF 0.6.1.qualifier
 package egf.uc1_4.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -57,7 +57,7 @@ public class AttributePattern {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
@@ -70,15 +70,14 @@ public class AttributePattern {
 
 		method_body(new StringBuffer(), ictx);
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.ecore.EAttribute parameter = null;
@@ -102,9 +101,5 @@ public class AttributePattern {
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:45:08 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:51:20 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.library.model.Class.getsetgenfeature;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -131,7 +131,7 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_6);
@@ -144,8 +144,8 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genFeature", this.genFeature);
 			parameterValues.put("genClass", this.genClass);
@@ -161,11 +161,10 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 			parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	public Map<String, Object> getParameters() {
@@ -208,9 +207,5 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 			return true;
 		}
 		return false;
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

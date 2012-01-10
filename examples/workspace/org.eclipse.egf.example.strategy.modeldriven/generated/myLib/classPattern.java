@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:44:53 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:43:25 CET 2012 with EGF 0.6.1.qualifier
 package myLib;
 
 import java.util.*;
@@ -53,7 +53,7 @@ public class classPattern {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -71,15 +71,14 @@ public class classPattern {
 			CallHelper.callBack(ctx_callback, parameters);
 		}
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.ecore.EClass parameter = null;
@@ -100,9 +99,5 @@ public class classPattern {
 		stringBuffer.append(TEXT_1);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

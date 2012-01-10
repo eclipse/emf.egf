@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:56:58 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:49:56 CET 2012 with EGF 0.6.1.qualifier
 package substitution_chain;
 
 import org.eclipse.egf.common.helper.*;
@@ -45,7 +45,7 @@ public class replaced {
 
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_1);
@@ -58,11 +58,7 @@ public class replaced {
 
 		method_body(new StringBuffer(), ictx);
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
-		if (ictx.useReporter()) {
-			;
-		}
-		return loop;
+		return null;
 	}
 
 	public Map<String, Object> getParameters() {
@@ -77,10 +73,6 @@ public class replaced {
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
-		return true;
-	}
-
-	public boolean preCondition() {
 		return true;
 	}
 }

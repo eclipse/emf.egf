@@ -1,4 +1,4 @@
-//Generated on Mon Nov 07 17:44:53 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:43:25 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.example.strategy.modeldriven.validation;
 
 import java.util.*;
@@ -35,7 +35,7 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 			}
 		}
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 	}
 
@@ -45,14 +45,14 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 		super.orchestration(new SuperOrchestrationContext(ictx));
 		method_checkAttributes(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("eClass", this.eClass);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
-		return loop;
+		return null;
 	}
 
 	protected void method_checkAttributes(final StringBuffer out, final PatternContext ctx) throws Exception {
@@ -77,7 +77,4 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 		return parameters;
 	}
 
-	public boolean preCondition() {
-		return true;
-	}
 }
