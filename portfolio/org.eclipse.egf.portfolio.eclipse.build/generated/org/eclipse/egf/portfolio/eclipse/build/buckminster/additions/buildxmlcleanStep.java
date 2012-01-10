@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:57:48 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 17:23:24 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -63,7 +63,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_8);
@@ -76,15 +76,14 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("cleanStep", this.cleanStep);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep cleanStep = null;
@@ -119,9 +118,5 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
 		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
 		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

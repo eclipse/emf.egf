@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:58:02 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 17:22:57 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -55,7 +55,7 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_2);
@@ -68,15 +68,14 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("buildStep", this.buildStep);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep buildStep = null;
@@ -100,9 +99,5 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
 		return buildStep.isAllPlatforms();
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }

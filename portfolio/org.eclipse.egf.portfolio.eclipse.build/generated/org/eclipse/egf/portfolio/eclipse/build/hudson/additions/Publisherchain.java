@@ -1,4 +1,4 @@
-//Generated on Wed Nov 30 10:57:59 CET 2011 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 17:23:28 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -59,7 +59,7 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
@@ -72,15 +72,14 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
-		String loop = OutputManager.getOutputWithoutCallback(ictx);
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("job", this.job);
-			String outputWithCallBack = OutputManager.getOutput(ictx);
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.egf.portfolio.eclipse.build.buildcore.Job job = null;
@@ -108,9 +107,5 @@ public class Publisherchain extends org.eclipse.egf.portfolio.eclipse.build.huds
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
 		return new GenerationHelper().getNextChainJob(job) != null;
-	}
-
-	public boolean preCondition() {
-		return true;
 	}
 }
