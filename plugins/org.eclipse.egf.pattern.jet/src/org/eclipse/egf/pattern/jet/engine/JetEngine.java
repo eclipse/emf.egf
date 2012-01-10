@@ -117,7 +117,7 @@ public class JetEngine extends AbstractJavaEngine {
         boolean hasParameter = !getPattern().getAllParameters().isEmpty();
         if (hasParameter) {
             builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-            builder.append("    String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
             builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
@@ -127,7 +127,7 @@ public class JetEngine extends AbstractJavaEngine {
                 // builder.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
                 builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            builder.append("    String outputWithCallBack = OutputManager.getOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    String outputWithCallBack = OutputManager.computeLoopOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             builder.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }

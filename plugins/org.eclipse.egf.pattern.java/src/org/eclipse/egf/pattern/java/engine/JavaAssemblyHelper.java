@@ -93,7 +93,7 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
             content.append(EGFCommonConstants.LINE_SEPARATOR).append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("    ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("    ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // end of method generate (Object argument)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
@@ -114,12 +114,12 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
         boolean hasParameter = !pattern.getAllParameters().isEmpty();
         if (hasParameter) {
             content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-            content.append("String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
-            content.append("    String outputWithCallBack = OutputManager.getOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("    String outputWithCallBack = OutputManager.computeLoopOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }

@@ -38,7 +38,7 @@ class StrategyReporter implements PatternExecutionReporter {
     public void executionFinished(PatternContext context) {
 
         final InternalPatternContext ictx = (InternalPatternContext) context;
-        final String flatten = OutputManager.getOutput(ictx);
+        final String flatten = OutputManager.computeExecutionOutput(ictx);
         delegate.executionFinished(flatten, context);
     }
 

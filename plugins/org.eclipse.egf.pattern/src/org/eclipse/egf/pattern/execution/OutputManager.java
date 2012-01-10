@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.execution;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +31,26 @@ import org.eclipse.egf.model.pattern.Node.Leaf;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternOutputProcessor;
 import org.eclipse.egf.model.pattern.PatternRuntimeException;
+import org.eclipse.egf.pattern.EGFPatternPlugin;
 
 /**
  * @author Thomas Guiu
  * 
  */
 public class OutputManager {
+    private static final Method LOOP_METHOD;
+    private static final Method EXECUTION_METHOD;
+
+    static {
+        try {
+            LOOP_METHOD = PatternOutputProcessor.class.getMethod("applyOnLoopResult", Node.Container.class);
+            EXECUTION_METHOD = PatternOutputProcessor.class.getMethod("applyOnExecutionResult", Node.Container.class);
+        } catch (NoSuchMethodException e) {
+            EGFPatternPlugin.getDefault().logError("Cannot find required methods on PatternOutputProcessor class", e);
+            throw new IllegalStateException();
+        }
+    }
+
     public static String getHierarchy(Node node) {
         StringBuilder builder = new StringBuilder();
         getHierarchy(builder, node, 0);
@@ -79,34 +94,42 @@ public class OutputManager {
         throw new IllegalStateException();
     }
 
-    public static String getOutputWithoutCallback(PatternContext ctx) {
+    public static String computeExecutionOutput(PatternContext ctx) {
         StringBuilder builder = new StringBuilder();
-        applyProcessors(ctx);
-        doFlatten(builder, ((InternalPatternContext) ctx).getNode(), false);
-        return builder.toString();
-    }
-
-    public static String getOutput(PatternContext ctx) {
-        StringBuilder builder = new StringBuilder();
-        applyProcessors(ctx);
+        applyProcessors(ctx, EXECUTION_METHOD);
         doFlatten(builder, ((InternalPatternContext) ctx).getNode(), true);
         return builder.toString();
     }
 
-    protected static void applyProcessors(PatternContext ctx) {
+    public static String computeLoopOutput(PatternContext ctx) {
+        StringBuilder builder = new StringBuilder();
+        applyProcessors(ctx, LOOP_METHOD);
+        doFlatten(builder, ((InternalPatternContext) ctx).getNode(), true);
+        return builder.toString();
+    }
+
+    public static String computeLoopOutputWithoutCallback(PatternContext ctx) {
+        StringBuilder builder = new StringBuilder();
+        applyProcessors(ctx, LOOP_METHOD);
+        doFlatten(builder, ((InternalPatternContext) ctx).getNode(), false);
+        return builder.toString();
+    }
+
+    protected static void applyProcessors(PatternContext ctx, Method method) {
         try {
             final Container node = ((InternalPatternContext) ctx).getNode();
             // apply the default processor defined in extension points
             for (PatternOutputProcessor defaultProcessor : getDefaultProcessors()) {
-                defaultProcessor.execute(node);
+                if (!node.getAppliedOutputProcessors().contains(defaultProcessor.getProcessorId()))
+                    method.invoke(defaultProcessor, node);
             }
 
             // apply processor from activity contract
             PatternOutputProcessor processor = (PatternOutputProcessor) ctx.getValue(PatternContext.PATTERN_OUTPUT_PROCESSOR);
-            if (processor != null)
-                processor.execute(node);
+            if (processor != null && !node.getAppliedOutputProcessors().contains(processor.getProcessorId()))
+                method.invoke(processor, node);
 
-        } catch (CoreException e) {
+        } catch (Exception e) {
             throw new PatternRuntimeException(e);
         }
     }
