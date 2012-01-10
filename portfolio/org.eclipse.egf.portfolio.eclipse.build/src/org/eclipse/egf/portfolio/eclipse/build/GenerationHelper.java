@@ -14,10 +14,11 @@
  */
 package org.eclipse.egf.portfolio.eclipse.build;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
@@ -87,21 +88,6 @@ public class GenerationHelper {
             return job.getName();
     }
 
-    public String generateJobStepsString(org.eclipse.egf.portfolio.eclipse.build.buildcore.Job job, char separator) {
-        StringBuffer buffer = new StringBuffer("init");
-        Iterator<EObject> iterator = job.eContents().iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            if (next instanceof Step) {
-                Step step = (Step) next;
-                if (buffer.length() > 0)
-                    buffer.append(separator);
-                buffer.append(getIdOrPositionString(step));
-            }
-        }
-        return buffer.toString();
-    }
-
     public String getStringIfNotNull(String input) {
         if (input == null)
             return ""; //$NON-NLS-1$
@@ -118,27 +104,49 @@ public class GenerationHelper {
         return "pattern=\"^" + patternString + "\""; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
-    private int getPositionInParent(EObject eObject, EClass eClass) {
-        int result = 0;
-        for (EObject object : eObject.eContainer().eContents()) {
-            if (object.eClass().equals(eClass) || object.eClass().getEAllSuperTypes().contains(eClass))
-                result++;
-            if (object == eObject)
-                return result;
+    public String getIdOrPositionString(EObject eObject) {
+        StringBuilder result = new StringBuilder();
+        
+        while (eObject != null) {
+            EObject eContainer = eObject.eContainer();
+            
+            String idOrPosition = null;
+            if (eObject instanceof Step) {
+				idOrPosition = ((Step) eObject).getId();
+			}
+            if (eObject instanceof Item) {
+            	idOrPosition = ((Item) eObject).getName();
+            }
+            
+            if (idOrPosition == null || idOrPosition.trim().length() == 0) {
+            	if (eContainer instanceof AbstractStepContainer) {
+					AbstractStepContainer abstractStepContainer = (AbstractStepContainer) eContainer;
+					idOrPosition = Integer.toString(abstractStepContainer.getSteps().indexOf(eObject) + 1);
+				} else if (eContainer != null) { 
+					idOrPosition = Integer.toString(eContainer.eContents().indexOf(eObject) + 1);
+				}
+            }
+            
+            if (idOrPosition != null) {
+            	if (result.length() > 0)
+            		result.insert(0, '_');
+            	result.insert(0, idOrPosition.replace(' ', '_').replace('\\', '_').replace('/', '_'));
+            }
+ 
+        	if (result.length() > 0)
+        		result.insert(0, '_');
+            result.insert(0, eObject.eClass().getName());
+            
+            eObject = eContainer;
+            
+            if (eObject instanceof Job || eObject instanceof Chain) {
+            	eObject = null; //stop here
+            }
         }
-        return -1;
+        
+        return result.toString();
     }
-
-    public String getIdOrPositionString(Step step) {
-        if (step.getId() != null) 
-            return step.getId().replace(' ', '_');
-        return "step" + getPositionInParent(step, BuildcorePackage.eINSTANCE.getStep());
-    }
-
-    public String getIdOrPositionString(BuildLocation buildLocation) {
-        return getIdOrPositionString(buildLocation.getBuildStep()) + "location" + getPositionInParent(buildLocation, BuildstepPackage.eINSTANCE.getBuildLocation());
-    }
-
+    
     public String replaceProperties(EObject eObject, String input) {
         if (input == null)
             return null;
@@ -194,5 +202,19 @@ public class GenerationHelper {
     
     public boolean isEnabled(Step step) {
         return getJob(step).isEnabled();
+    }
+    
+    public List<Step> getAllSteps(Job job) {
+        List<Step> result = new ArrayList<Step>();
+        
+        TreeIterator<EObject> iterator = job.eAllContents();
+        while (iterator.hasNext()) {
+            EObject eObject = iterator.next();
+            if (eObject instanceof Step) {
+                result.add((Step) eObject);
+            }
+        }
+        
+        return result ;
     }
 }

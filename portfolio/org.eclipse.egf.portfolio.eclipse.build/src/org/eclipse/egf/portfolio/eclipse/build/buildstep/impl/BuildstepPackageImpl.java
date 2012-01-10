@@ -526,7 +526,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     public EReference getEgfStep_EgfActivities() {
-        return (EReference)egfStepEClass.getEStructuralFeatures().get(0);
+        return (EReference)egfStepEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -535,7 +535,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     public EReference getEgfStep_Properties() {
-        return (EReference)egfStepEClass.getEStructuralFeatures().get(1);
+        return (EReference)egfStepEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -940,8 +940,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(javadocStepEClass, JAVADOC_STEP__LINKS);
 
         egfStepEClass = createEClass(EGF_STEP);
-        createEReference(egfStepEClass, EGF_STEP__EGF_ACTIVITIES);
         createEReference(egfStepEClass, EGF_STEP__PROPERTIES);
+        createEReference(egfStepEClass, EGF_STEP__EGF_ACTIVITIES);
 
         egfActivityEClass = createEClass(EGF_ACTIVITY);
         createEAttribute(egfActivityEClass, EGF_ACTIVITY__URI);
@@ -1084,8 +1084,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getJavadocStep_Links(), ecorePackage.getEString(), "links", null, 0, -1, JavadocStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(egfStepEClass, EgfStep.class, "EgfStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getEgfStep_EgfActivities(), this.getEgfActivity(), null, "egfActivities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEgfStep_Properties(), theBuildcorePackage.getProperty(), null, "properties", null, 0, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEgfStep_EgfActivities(), this.getEgfActivity(), null, "egfActivities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(egfActivityEClass, EgfActivity.class, "EgfActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEgfActivity_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, EgfActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

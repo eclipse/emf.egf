@@ -517,22 +517,22 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Egf Activities</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int EGF_STEP__EGF_ACTIVITIES = BuildcorePackage.STEP_FEATURE_COUNT + 0;
-
-    /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EGF_STEP__PROPERTIES = BuildcorePackage.STEP_FEATURE_COUNT + 1;
+    int EGF_STEP__PROPERTIES = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Egf Activities</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_STEP__EGF_ACTIVITIES = BuildcorePackage.STEP_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Egf Step</em>' class.

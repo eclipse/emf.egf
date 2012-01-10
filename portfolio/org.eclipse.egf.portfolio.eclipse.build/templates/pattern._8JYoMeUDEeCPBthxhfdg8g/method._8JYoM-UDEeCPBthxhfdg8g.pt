@@ -10,6 +10,7 @@ import org.eclipse.egf.common.helper.*;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
+import org.eclipse.egf.portfolio.eclipse.build.GenerationHelper;
 
 public class CLASS {
 

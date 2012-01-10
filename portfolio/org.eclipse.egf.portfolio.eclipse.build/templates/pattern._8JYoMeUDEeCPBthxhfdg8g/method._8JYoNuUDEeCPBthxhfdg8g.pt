@@ -1,5 +1,5 @@
 Collection<String> stepIds = new ArrayList<String>();
-for (Step step : job.getSteps()) {
+for (Step step : new GenerationHelper().getAllSteps(job)) {
 	if (step.getId() != null) {
 		if (stepIds.contains(step.getId())) {
 			BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "duplicate step Id " + step.getId(), new Object[] { job });

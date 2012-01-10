@@ -137,7 +137,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getJob()
      * @generated
      */
-    int JOB = 3;
+    int JOB = 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
@@ -157,7 +157,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getSCM()
      * @generated
      */
-    int SCM = 5;
+    int SCM = 7;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.
@@ -242,6 +242,61 @@ public interface BuildcorePackage extends EPackage {
     int CHAIN_FEATURE_COUNT = ITEM_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.AbstractStepContainerImpl <em>Abstract Step Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.AbstractStepContainerImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getAbstractStepContainer()
+     * @generated
+     */
+    int ABSTRACT_STEP_CONTAINER = 3;
+
+    /**
+     * The feature id for the '<em><b>Steps</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_STEP_CONTAINER__STEPS = 0;
+
+    /**
+     * The number of structural features of the '<em>Abstract Step Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_STEP_CONTAINER_FEATURE_COUNT = 1;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__ID = 0;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__DESCRIPTION = 1;
+
+    /**
+     * The number of structural features of the '<em>Step</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP_FEATURE_COUNT = 2;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -314,13 +369,23 @@ public interface BuildcorePackage extends EPackage {
     int JOB_FEATURE_COUNT = ITEM_FEATURE_COUNT + 4;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepContainerImpl <em>Step Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepContainerImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStepContainer()
+     * @generated
+     */
+    int STEP_CONTAINER = 6;
+
+    /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEP__ID = 0;
+    int STEP_CONTAINER__ID = STEP__ID;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -329,16 +394,25 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP__DESCRIPTION = 1;
+    int STEP_CONTAINER__DESCRIPTION = STEP__DESCRIPTION;
 
     /**
-     * The number of structural features of the '<em>Step</em>' class.
+     * The feature id for the '<em><b>Steps</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEP_FEATURE_COUNT = 2;
+    int STEP_CONTAINER__STEPS = STEP_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Step Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP_CONTAINER_FEATURE_COUNT = STEP_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>SCM</em>' class.
@@ -357,7 +431,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
      * @generated
      */
-    int TRIGGER = 6;
+    int TRIGGER = 8;
 
     /**
      * The number of structural features of the '<em>Trigger</em>' class.
@@ -434,6 +508,27 @@ public interface BuildcorePackage extends EPackage {
     EReference getChain_Jobs();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer <em>Abstract Step Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Abstract Step Container</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer
+     * @generated
+     */
+    EClass getAbstractStepContainer();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer#getSteps <em>Steps</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Steps</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer#getSteps()
+     * @see #getAbstractStepContainer()
+     * @generated
+     */
+    EReference getAbstractStepContainer_Steps();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job <em>Job</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -442,17 +537,6 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EClass getJob();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getSteps <em>Steps</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Steps</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getSteps()
-     * @see #getJob()
-     * @generated
-     */
-    EReference getJob_Steps();
 
     /**
      * Returns the meta object for the containment reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getScms <em>Scms</em>}'.
@@ -518,6 +602,16 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EAttribute getStep_Description();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer <em>Step Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Step Container</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer
+     * @generated
+     */
+    EClass getStepContainer();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM <em>SCM</em>}'.
@@ -646,6 +740,24 @@ public interface BuildcorePackage extends EPackage {
         EReference CHAIN__JOBS = eINSTANCE.getChain_Jobs();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.AbstractStepContainerImpl <em>Abstract Step Container</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.AbstractStepContainerImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getAbstractStepContainer()
+         * @generated
+         */
+        EClass ABSTRACT_STEP_CONTAINER = eINSTANCE.getAbstractStepContainer();
+
+        /**
+         * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ABSTRACT_STEP_CONTAINER__STEPS = eINSTANCE.getAbstractStepContainer_Steps();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl <em>Job</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -654,14 +766,6 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass JOB = eINSTANCE.getJob();
-
-        /**
-         * The meta object literal for the '<em><b>Steps</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference JOB__STEPS = eINSTANCE.getJob_Steps();
 
         /**
          * The meta object literal for the '<em><b>Scms</b></em>' containment reference feature.
@@ -712,6 +816,16 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EAttribute STEP__DESCRIPTION = eINSTANCE.getStep_Description();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepContainerImpl <em>Step Container</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepContainerImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStepContainer()
+         * @generated
+         */
+        EClass STEP_CONTAINER = eINSTANCE.getStepContainer();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMImpl <em>SCM</em>}' class.

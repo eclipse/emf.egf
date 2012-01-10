@@ -48,8 +48,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//JavadocStep/links"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//EgfStep">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//EgfStep/egfActivities"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//EgfStep/properties"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildStep.ecore#//EgfStep/egfActivities"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//EgfActivity">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//EgfActivity/uri"/>

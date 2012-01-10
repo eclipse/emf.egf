@@ -101,8 +101,8 @@ public class EgfStepItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES);
             childrenFeatures.add(BuildstepPackage.Literals.EGF_STEP__PROPERTIES);
+            childrenFeatures.add(BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES);
         }
         return childrenFeatures;
     }
@@ -159,8 +159,8 @@ public class EgfStepItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(EgfStep.class)) {
-            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
             case BuildstepPackage.EGF_STEP__PROPERTIES:
+            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -181,16 +181,16 @@ public class EgfStepItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES,
-                 BuildstepFactory.eINSTANCE.createEgfActivity()));
+                (BuildstepPackage.Literals.EGF_STEP__PROPERTIES,
+                 BuildcoreFactory.eINSTANCE.createProperty()));
 
 
 
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildstepPackage.Literals.EGF_STEP__PROPERTIES,
-                 BuildcoreFactory.eINSTANCE.createProperty()));
+                (BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES,
+                 BuildstepFactory.eINSTANCE.createEgfActivity()));
 
 
     }

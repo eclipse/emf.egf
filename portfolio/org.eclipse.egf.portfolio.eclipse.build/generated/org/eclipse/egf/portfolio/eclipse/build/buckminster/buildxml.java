@@ -1,4 +1,4 @@
-//Generated on Mon Jan 09 16:54:35 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 13:27:14 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -47,11 +47,9 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
     protected final String TEXT_13 = "\t<target name=\"init\" depends=\"init.build.properties\" >" + NL + "\t\t<echo message=\"Available variables are : \"/>" + NL + "\t\t<echo message=\"Build Releng directory (relengDir) : ${relengDir}\" />" + NL + "\t\t<echo message=\"Build Root directory (build.root) : ${build.root}\" />" + NL + "\t\t<echo message=\"Build Tools directory (tools) : ${tools}\" />" + NL + "\t\t<echo message=\"Build Results directory (result) : ${result}\" />" + NL + "\t\t<echo message=\"Build Publish directory (publish) : ${publish}\" />" + NL + "\t\t<echo message=\"Build Eclipse workspace directory (workspace) : ${workspace}\" />\t" + NL + "\t\t<echo message=\"Build Timestamp (timestamp) : ${timestamp}\" />\t" + NL + "\t</target>" + NL + "" + NL
             + "    <target name=\"init.build.properties\">" + NL + "        <!-- Echo relevant properties to a temporary file so that Buckminster can read them -->" + NL + "        <tempfile destdir=\"${java.io.tmpdir}\" prefix=\"build-\" suffix=\".properties\" deleteonexit=\"true\" property=\"properties.tmp\" />" + NL + "        <echoproperties destfile=\"${properties.tmp}\">" + NL + "            <!-- We don't want these. basedir in particular will cause problems if passed explicitly -->" + NL + "            <propertyset negate=\"true\">" + NL + "                <propertyref name=\"basedir\" />" + NL + "                <propertyref name=\"eclipse.home\" />" + NL + "                <propertyref name=\"properties.tmp\" />" + NL + "                <propertyref name=\"line.separator\" />"
             + NL + "                <propertyref name=\"path.separator\" />" + NL + "                <propertyref prefix=\"ant.\" />" + NL + "                <propertyref prefix=\"file.\" />" + NL + "                <propertyref prefix=\"java.\" />" + NL + "                <propertyref prefix=\"sun.\" />" + NL + "                <propertyref prefix=\"user.\" />" + NL + "            </propertyset>" + NL + "        </echoproperties>" + NL + "    </target>" + NL + "\t" + NL;
-    protected final String TEXT_14 = "\t<target name=\"all\" depends=\"";
-    protected final String TEXT_15 = "\" />" + NL;
-    protected final String TEXT_16 = "</project>";
-    protected final String TEXT_17 = NL;
-    protected final String TEXT_18 = NL;
+    protected final String TEXT_14 = "</project>";
+    protected final String TEXT_15 = NL;
+    protected final String TEXT_16 = NL;
 
     public buildxml() {
         //Here is the constructor
@@ -87,8 +85,8 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
             ctx.getReporter().executionFinished(OutputManager.getOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_17);
-        stringBuffer.append(TEXT_18);
+        stringBuffer.append(TEXT_15);
+        stringBuffer.append(TEXT_16);
         return stringBuffer.toString();
     }
 
@@ -118,8 +116,6 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
         method_cleans(new StringBuffer(), ictx);
 
         method_inits(new StringBuffer(), ictx);
-
-        method_all(new StringBuffer(), ictx);
         {
             ExecutionContext ctx_local = new ExecutionContext(ictx);
             ctx_local.setValue(PatternContext.INJECTED_CONTEXT, job);
@@ -266,18 +262,9 @@ public class buildxml extends org.eclipse.egf.portfolio.eclipse.build.JobFilePat
         new Node.DataLeaf(ictx.getNode(), getClass(), "inits", stringBuffer.toString());
     }
 
-    protected void method_all(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        stringBuffer.append(TEXT_14);
-        stringBuffer.append(new GenerationHelper().generateJobStepsString(job, ','));
-        stringBuffer.append(TEXT_15);
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "all", stringBuffer.toString());
-    }
-
     protected void method_end(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(TEXT_16);
+        stringBuffer.append(TEXT_14);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "end", stringBuffer.toString());
     }

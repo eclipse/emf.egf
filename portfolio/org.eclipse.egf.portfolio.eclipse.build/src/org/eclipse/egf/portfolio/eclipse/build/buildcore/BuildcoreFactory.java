@@ -67,6 +67,15 @@ public interface BuildcoreFactory extends EFactory {
     Job createJob();
 
     /**
+     * Returns a new object of class '<em>Step Container</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Step Container</em>'.
+     * @generated
+     */
+    StepContainer createStepContainer();
+
+    /**
      * Returns a new object of class '<em>Property</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

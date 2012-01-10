@@ -98,12 +98,20 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
                 return createChainAdapter();
             }
             @Override
-            public Adapter caseJob(Job object) {
-                return createJobAdapter();
+            public Adapter caseAbstractStepContainer(AbstractStepContainer object) {
+                return createAbstractStepContainerAdapter();
             }
             @Override
             public Adapter caseStep(Step object) {
                 return createStepAdapter();
+            }
+            @Override
+            public Adapter caseJob(Job object) {
+                return createJobAdapter();
+            }
+            @Override
+            public Adapter caseStepContainer(StepContainer object) {
+                return createStepContainerAdapter();
             }
             @Override
             public Adapter caseSCM(SCM object) {
@@ -162,6 +170,20 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer <em>Abstract Step Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer
+     * @generated
+     */
+    public Adapter createAbstractStepContainerAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job <em>Job</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -186,6 +208,20 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createStepAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer <em>Step Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer
+     * @generated
+     */
+    public Adapter createStepContainerAdapter() {
         return null;
     }
 

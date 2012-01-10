@@ -1,5 +1,5 @@
         boolean firstOne = true;
-        for (Step step : newJob.getSteps()) {
+        for (Step step : new GenerationHelper().getAllSteps(newJob)) {
             if (step instanceof CleanStep) {
                 CleanStep cleanStep = (CleanStep) step;
                 if (!firstOne && CLEAN_TYPE.RESULT == cleanStep.getType())

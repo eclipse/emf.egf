@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 
@@ -718,16 +719,16 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
             }
             /**
              * <!-- begin-user-doc -->
-             * <!-- end-user-doc -->
+			 * <!-- end-user-doc -->
              * @generated
              */
-            @Override
-            public Object caseJob(Job object) {
+			@Override
+			public Object caseAbstractStepContainer(AbstractStepContainer object) {
 
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createCleanStep()));
 
 
@@ -736,7 +737,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createBuildStep()));
 
 
@@ -745,7 +746,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createPublishStep()));
 
 
@@ -754,7 +755,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createTestStep()));
 
 
@@ -763,14 +764,14 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createAntStep()));
 
 
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createJavadocStepFilled()));
 
 
@@ -778,7 +779,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createEgfStep()));
 
 
@@ -787,7 +788,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createAggregateStep()));
 
 
@@ -796,15 +797,14 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.JOB__STEPS,
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
                  BuildstepFactory.eINSTANCE.createInstallStep()));
 
 
 
                 return null;
             }
- 
-            /**
+												/**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->
              * @generated

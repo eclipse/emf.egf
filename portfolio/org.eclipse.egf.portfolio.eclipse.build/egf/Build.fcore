@@ -150,14 +150,10 @@
             <methods xmi:id="_8JYoNeUDEeCPBthxhfdg8g" name="preCondition" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNeUDEeCPBthxhfdg8g.pt"/>
             <methods xmi:id="_8JYoNuUDEeCPBthxhfdg8g" name="checkDuplicateId" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoNuUDEeCPBthxhfdg8g.pt"/>
             <methods xmi:id="_8JYoN-UDEeCPBthxhfdg8g" name="footer" patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._8JYoN-UDEeCPBthxhfdg8g.pt"/>
-            <methods xmi:id="_R8_ekOXtEeCXgYqTOUaRCQ" name="checkNotEmptyStringId"
-                patternFilePath="templates/pattern._8JYoMeUDEeCPBthxhfdg8g/method._R8_ekOXtEeCXgYqTOUaRCQ.pt"/>
             <parameters xmi:id="_9HhrcOUDEeCPBthxhfdg8g" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_8JYoOOUDEeCPBthxhfdg8g"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_C5qpMOUEEeCPBthxhfdg8g"
                 called="#_8JYoNuUDEeCPBthxhfdg8g"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_SbsMwOXtEeCXgYqTOUaRCQ"
-                called="#_R8_ekOXtEeCXgYqTOUaRCQ"/>
           </elements>
         </libraries>
         <libraries xmi:id="_n0wcANVBEd-sZ5ty9tQGtA" name="org.eclipse.egf.portfolio.eclipse.build.transformation">
@@ -785,7 +781,6 @@
             <methods xmi:id="_7LkFUPicEeCgNoSwhPUBGQ" name="anteclipse" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._7LkFUPicEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_OFO6APidEeCgNoSwhPUBGQ" name="cleans" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._OFO6APidEeCgNoSwhPUBGQ.pt"/>
             <methods xmi:id="_dQMoUPidEeCgNoSwhPUBGQ" name="inits" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._dQMoUPidEeCgNoSwhPUBGQ.pt"/>
-            <methods xmi:id="_Fu8SkfifEeC_BOWvmKKktg" name="all" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._Fu8SkfifEeC_BOWvmKKktg.pt"/>
             <methods xmi:id="_IgNrEJ4XEd-3wvN5SnesGA" name="end" patternFilePath="templates/pattern._WzN4sI6XEd-e7viTqNBNrA/method._IgNrEJ4XEd-3wvN5SnesGA.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_WzN4to6XEd-e7viTqNBNrA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_aBJNQI6XEd-e7viTqNBNrA"
@@ -810,8 +805,6 @@
                 called="#_OFO6APidEeCgNoSwhPUBGQ"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_d0tDkPidEeCgNoSwhPUBGQ"
                 called="#_dQMoUPidEeCgNoSwhPUBGQ"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_G8IecPifEeC_BOWvmKKktg"
-                called="#_Fu8SkfifEeC_BOWvmKKktg"/>
             <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_kDS9kKbTEd-qVbFBxWG7lA"
                 called="#_C_qLIJTYEd-fvPvNnKEvJg" context="#_-5dPEKbQEd-qVbFBxWG7lA"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_KFF-MJ4XEd-3wvN5SnesGA"
@@ -1040,6 +1033,39 @@
           </elements>
         </libraries>
         <libraries xmi:id="_agHp4JMZEd-pjLQZUcJ3fw" name="org.eclipse.egf.portfolio.eclipse.build.buckminster.additions">
+          <elements xmi:id="_cl798TuGEeGR3t2caYer_w" name="build.xml.job_steps" superPattern="#_C_qLIJTYEd-fvPvNnKEvJg"
+              headerMethod="#_cl798zuGEeGR3t2caYer_w" conditionMethod="#_cl799TuGEeGR3t2caYer_w"
+              initMethod="#_cl799DuGEeGR3t2caYer_w" footerMethod="#_cl799zuGEeGR3t2caYer_w">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_cl798juGEeGR3t2caYer_w"
+                name="JET"/>
+            <methods xmi:id="_cl798zuGEeGR3t2caYer_w" name="header" patternFilePath="templates/pattern._cl798TuGEeGR3t2caYer_w/method._cl798zuGEeGR3t2caYer_w.pt"/>
+            <methods xmi:id="_cl799DuGEeGR3t2caYer_w" name="init" patternFilePath="templates/pattern._cl798TuGEeGR3t2caYer_w/method._cl799DuGEeGR3t2caYer_w.pt"/>
+            <methods xmi:id="_cl799TuGEeGR3t2caYer_w" name="preCondition" patternFilePath="templates/pattern._cl798TuGEeGR3t2caYer_w/method._cl799TuGEeGR3t2caYer_w.pt"/>
+            <methods xmi:id="_cl799juGEeGR3t2caYer_w" name="body" patternFilePath="templates/pattern._cl798TuGEeGR3t2caYer_w/method._cl799juGEeGR3t2caYer_w.pt"/>
+            <methods xmi:id="_cl799zuGEeGR3t2caYer_w" name="footer" patternFilePath="templates/pattern._cl798TuGEeGR3t2caYer_w/method._cl799zuGEeGR3t2caYer_w.pt"/>
+            <parameters xmi:id="_Uk-34DuJEeGSmpHYBb6SQQ" name="job" type="http://www.eclipse.org/egf/1.0.0/buildcore#//Job">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_ZWAW4DuJEeGSmpHYBb6SQQ"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_cl79-DuGEeGR3t2caYer_w"/>
+          </elements>
+          <elements xmi:id="_NSuLMTuJEeGSmpHYBb6SQQ" name="build.xml.stepContainer_steps"
+              superPattern="#_C_qLIJTYEd-fvPvNnKEvJg" headerMethod="#_NSuLMzuJEeGSmpHYBb6SQQ"
+              conditionMethod="#_NSuLNTuJEeGSmpHYBb6SQQ" initMethod="#_NSuLNDuJEeGSmpHYBb6SQQ"
+              footerMethod="#_NSuLNzuJEeGSmpHYBb6SQQ">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_NSuLMjuJEeGSmpHYBb6SQQ"
+                name="JET"/>
+            <methods xmi:id="_NSuLMzuJEeGSmpHYBb6SQQ" name="header" patternFilePath="templates/pattern._NSuLMTuJEeGSmpHYBb6SQQ/method._NSuLMzuJEeGSmpHYBb6SQQ.pt"/>
+            <methods xmi:id="_NSuLNDuJEeGSmpHYBb6SQQ" name="init" patternFilePath="templates/pattern._NSuLMTuJEeGSmpHYBb6SQQ/method._NSuLNDuJEeGSmpHYBb6SQQ.pt"/>
+            <methods xmi:id="_NSuLNTuJEeGSmpHYBb6SQQ" name="preCondition" patternFilePath="templates/pattern._NSuLMTuJEeGSmpHYBb6SQQ/method._NSuLNTuJEeGSmpHYBb6SQQ.pt"/>
+            <methods xmi:id="_NSuLNjuJEeGSmpHYBb6SQQ" name="body" patternFilePath="templates/pattern._NSuLMTuJEeGSmpHYBb6SQQ/method._NSuLNjuJEeGSmpHYBb6SQQ.pt"/>
+            <methods xmi:id="_NSuLNzuJEeGSmpHYBb6SQQ" name="footer" patternFilePath="templates/pattern._NSuLMTuJEeGSmpHYBb6SQQ/method._NSuLNzuJEeGSmpHYBb6SQQ.pt"/>
+            <parameters xmi:id="_aNvQIDuJEeGSmpHYBb6SQQ" name="stepContainer" type="http://www.eclipse.org/egf/1.0.0/buildcore#//StepContainer">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_awA2wDuJEeGSmpHYBb6SQQ"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_NSuLODuJEeGSmpHYBb6SQQ"/>
+          </elements>
           <elements xmi:id="_dSeb4aoGEd-k9aH6AnUHCw" name="build.xml.cleanStep" superPattern="#_C_qLIJTYEd-fvPvNnKEvJg"
               headerMethod="#_dSeb4qoGEd-k9aH6AnUHCw" conditionMethod="#_dSeb5KoGEd-k9aH6AnUHCw"
               initMethod="#_dSeb46oGEd-k9aH6AnUHCw" footerMethod="#_dSeb5qoGEd-k9aH6AnUHCw">
@@ -1542,7 +1568,7 @@
               <substitutions xmi:id="_avGLIJNHEd-BJKD_XS9R2A" replacedElement="#_4NTLAJNGEd-BJKD_XS9R2A"
                   replacement="#_x4T9kZmWEd-Ee7jt2lxlVA #_D3WLsWEpEeC2MPWqHbfkpg #_4NTLAJNGEd-BJKD_XS9R2A"/>
               <substitutions xmi:id="_SGBtUJTYEd-fvPvNnKEvJg" replacedElement="#_C_qLIJTYEd-fvPvNnKEvJg"
-                  replacement="#_dSeb4aoGEd-k9aH6AnUHCw #_sTvtQJVuEd-fvPvNnKEvJg #_mDDq8ZVxEd-4gcrM0WMTSg #_Q9g78JVuEd-fvPvNnKEvJg #_gvxW8ZVyEd--Q_dCgK5jqw #_fy4H8Z7VEd-8De2HBT3r0w #_VOw2gaYIEd-BVLrtOlWqIw #_1dui4K-AEd-6WbA1gqJ3Sw #_bT4RAaI3EeC7CagY5ZgTsg #_C_qLIJTYEd-fvPvNnKEvJg"/>
+                  replacement="#_cl798TuGEeGR3t2caYer_w #_NSuLMTuJEeGSmpHYBb6SQQ #_dSeb4aoGEd-k9aH6AnUHCw #_sTvtQJVuEd-fvPvNnKEvJg #_mDDq8ZVxEd-4gcrM0WMTSg #_Q9g78JVuEd-fvPvNnKEvJg #_gvxW8ZVyEd--Q_dCgK5jqw #_fy4H8Z7VEd-8De2HBT3r0w #_VOw2gaYIEd-BVLrtOlWqIw #_1dui4K-AEd-6WbA1gqJ3Sw #_bT4RAaI3EeC7CagY5ZgTsg #_C_qLIJTYEd-fvPvNnKEvJg"/>
               <substitutions xmi:id="_4KK70J45Ed-3wvN5SnesGA" replacedElement="#_geJq4J4XEd-3wvN5SnesGA"
                   replacement="#_zgvmsJ5GEd-3wvN5SnesGA #_C6JiAJ45Ed-3wvN5SnesGA #_QzNV0LaeEd-YN_PdUdJuug #_YLrGcKh4EeCyIabjY3cKRg #_d2vKQfilEeCb194d2cwXCw #_geJq4J4XEd-3wvN5SnesGA"/>
             </type>

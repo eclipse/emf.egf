@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.impl;
 
 import java.util.Collection;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
@@ -394,6 +395,38 @@ public class JobImpl extends ItemImpl implements Job {
         return super.eIsSet(featureID);
     }
 
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == AbstractStepContainer.class) {
+            switch (derivedFeatureID) {
+                case BuildcorePackage.JOB__STEPS: return BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == AbstractStepContainer.class) {
+            switch (baseFeatureID) {
+                case BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS: return BuildcorePackage.JOB__STEPS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
     /**
      * <!-- begin-user-doc -->

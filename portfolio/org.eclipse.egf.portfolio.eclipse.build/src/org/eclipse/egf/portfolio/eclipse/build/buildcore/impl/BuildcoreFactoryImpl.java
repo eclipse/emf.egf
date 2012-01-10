@@ -78,6 +78,7 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
             case BuildcorePackage.PROPERTY: return createProperty();
             case BuildcorePackage.CHAIN: return createChain();
             case BuildcorePackage.JOB: return createJob();
+            case BuildcorePackage.STEP_CONTAINER: return createStepContainer();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -111,6 +112,16 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
     public Job createJob() {
         JobImpl job = new JobImpl();
         return job;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public StepContainer createStepContainer() {
+        StepContainerImpl stepContainer = new StepContainerImpl();
+        return stepContainer;
     }
 
     /**

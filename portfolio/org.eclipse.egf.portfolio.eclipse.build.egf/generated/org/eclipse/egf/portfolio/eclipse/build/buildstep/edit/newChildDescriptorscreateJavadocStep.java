@@ -1,4 +1,4 @@
-//Generated on Mon Jan 09 15:41:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Jan 10 14:12:49 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -22,7 +22,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "        newChildDescriptors.add" + NL + "            (createChildParameter" + NL + "                (BuildcorePackage.Literals.JOB__STEPS," + NL + "                 BuildstepFactory.eINSTANCE.createJavadocStepFilled()));" + NL;
+    protected final String TEXT_1 = "        newChildDescriptors.add" + NL + "            (createChildParameter" + NL + "                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS," + NL + "                 BuildstepFactory.eINSTANCE.createJavadocStepFilled()));" + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 

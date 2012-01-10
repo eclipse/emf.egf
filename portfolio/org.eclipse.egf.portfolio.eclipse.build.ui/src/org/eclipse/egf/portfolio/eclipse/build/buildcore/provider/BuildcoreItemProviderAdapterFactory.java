@@ -176,6 +176,29 @@ public class BuildcoreItemProviderAdapterFactory extends BuildcoreAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected StepContainerItemProvider stepContainerItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createStepContainerAdapter() {
+        if (stepContainerItemProvider == null) {
+            stepContainerItemProvider = new StepContainerItemProvider(this);
+        }
+
+        return stepContainerItemProvider;
+    }
+
+				/**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -328,6 +351,7 @@ public class BuildcoreItemProviderAdapterFactory extends BuildcoreAdapterFactory
         if (propertyItemProvider != null) propertyItemProvider.dispose();
         if (chainItemProvider != null) chainItemProvider.dispose();
         if (jobItemProvider != null) jobItemProvider.dispose();
+        if (stepContainerItemProvider != null) stepContainerItemProvider.dispose();
     }
 
 }

@@ -17,6 +17,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 
@@ -118,7 +119,7 @@ public class JobItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildcorePackage.Literals.JOB__STEPS);
+            childrenFeatures.add(BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS);
             childrenFeatures.add(BuildcorePackage.Literals.JOB__SCMS);
             childrenFeatures.add(BuildcorePackage.Literals.JOB__TRIGGERS);
         }
@@ -199,6 +200,14 @@ public class JobItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                 BuildcoreFactory.eINSTANCE.createStepContainer()));
+
+
     }
 
 

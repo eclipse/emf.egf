@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getEgfActivities <em>Egf Activities</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep#getEgfActivities <em>Egf Activities</em>}</li>
  * </ul>
  * </p>
  *

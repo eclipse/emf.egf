@@ -1,7 +1,0 @@
-for (Step step : job.getSteps()) {
-	if ("".equals(step.getId())) {
-		BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "step Id is an empty string " + step.getId(), new Object[] { job });
-	    diagnosticChain.add(diagnostic);
-	}
-}
-	

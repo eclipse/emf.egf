@@ -120,16 +120,31 @@ public class BuildcoreSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case BuildcorePackage.JOB: {
-                Job job = (Job)theEObject;
-                T result = caseJob(job);
-                if (result == null) result = caseItem(job);
+            case BuildcorePackage.ABSTRACT_STEP_CONTAINER: {
+                AbstractStepContainer abstractStepContainer = (AbstractStepContainer)theEObject;
+                T result = caseAbstractStepContainer(abstractStepContainer);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case BuildcorePackage.STEP: {
                 Step step = (Step)theEObject;
                 T result = caseStep(step);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildcorePackage.JOB: {
+                Job job = (Job)theEObject;
+                T result = caseJob(job);
+                if (result == null) result = caseItem(job);
+                if (result == null) result = caseAbstractStepContainer(job);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildcorePackage.STEP_CONTAINER: {
+                StepContainer stepContainer = (StepContainer)theEObject;
+                T result = caseStepContainer(stepContainer);
+                if (result == null) result = caseStep(stepContainer);
+                if (result == null) result = caseAbstractStepContainer(stepContainer);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -180,6 +195,21 @@ public class BuildcoreSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Abstract Step Container</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Abstract Step Container</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseAbstractStepContainer(AbstractStepContainer object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Job</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -206,6 +236,21 @@ public class BuildcoreSwitch<T> {
      * @generated
      */
     public T caseStep(Step object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Step Container</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Step Container</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseStepContainer(StepContainer object) {
         return null;
     }
 

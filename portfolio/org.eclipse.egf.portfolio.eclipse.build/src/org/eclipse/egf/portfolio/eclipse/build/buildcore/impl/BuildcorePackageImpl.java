@@ -13,6 +13,7 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildcore.impl;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
@@ -20,6 +21,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -62,6 +64,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass abstractStepContainerEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass jobEClass = null;
 
     /**
@@ -70,6 +79,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass stepEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass stepContainerEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -212,6 +228,24 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAbstractStepContainer() {
+        return abstractStepContainerEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAbstractStepContainer_Steps() {
+        return (EReference)abstractStepContainerEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getJob() {
         return jobEClass;
     }
@@ -221,7 +255,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJob_Steps() {
+    public EReference getJob_Scms() {
         return (EReference)jobEClass.getEStructuralFeatures().get(0);
     }
 
@@ -230,7 +264,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJob_Scms() {
+    public EReference getJob_Triggers() {
         return (EReference)jobEClass.getEStructuralFeatures().get(1);
     }
 
@@ -239,17 +273,8 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJob_Triggers() {
-        return (EReference)jobEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getJob_Enabled() {
-        return (EAttribute)jobEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)jobEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -277,6 +302,15 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      */
     public EAttribute getStep_Description() {
         return (EAttribute)stepEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getStepContainer() {
+        return stepContainerEClass;
     }
 
     /**
@@ -364,15 +398,19 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         chainEClass = createEClass(CHAIN);
         createEReference(chainEClass, CHAIN__JOBS);
 
-        jobEClass = createEClass(JOB);
-        createEReference(jobEClass, JOB__STEPS);
-        createEReference(jobEClass, JOB__SCMS);
-        createEReference(jobEClass, JOB__TRIGGERS);
-        createEAttribute(jobEClass, JOB__ENABLED);
+        abstractStepContainerEClass = createEClass(ABSTRACT_STEP_CONTAINER);
+        createEReference(abstractStepContainerEClass, ABSTRACT_STEP_CONTAINER__STEPS);
 
         stepEClass = createEClass(STEP);
         createEAttribute(stepEClass, STEP__ID);
         createEAttribute(stepEClass, STEP__DESCRIPTION);
+
+        jobEClass = createEClass(JOB);
+        createEReference(jobEClass, JOB__SCMS);
+        createEReference(jobEClass, JOB__TRIGGERS);
+        createEAttribute(jobEClass, JOB__ENABLED);
+
+        stepContainerEClass = createEClass(STEP_CONTAINER);
 
         scmEClass = createEClass(SCM);
 
@@ -409,6 +447,9 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         // Add supertypes to classes
         chainEClass.getESuperTypes().add(this.getItem());
         jobEClass.getESuperTypes().add(this.getItem());
+        jobEClass.getESuperTypes().add(this.getAbstractStepContainer());
+        stepContainerEClass.getESuperTypes().add(this.getStep());
+        stepContainerEClass.getESuperTypes().add(this.getAbstractStepContainer());
 
         // Initialize classes and features; add operations and parameters
         initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -423,15 +464,19 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEClass(chainEClass, Chain.class, "Chain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getChain_Jobs(), this.getJob(), null, "jobs", null, 1, -1, Chain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(jobEClass, Job.class, "Job", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getJob_Steps(), this.getStep(), null, "steps", null, 0, -1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJob_Scms(), this.getSCM(), null, "scms", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJob_Triggers(), this.getTrigger(), null, "triggers", null, 0, -1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJob_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(abstractStepContainerEClass, AbstractStepContainer.class, "AbstractStepContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAbstractStepContainer_Steps(), this.getStep(), null, "steps", null, 0, -1, AbstractStepContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(stepEClass, Step.class, "Step", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getStep_Id(), ecorePackage.getEString(), "id", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getStep_Description(), ecorePackage.getEString(), "description", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(jobEClass, Job.class, "Job", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getJob_Scms(), this.getSCM(), null, "scms", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getJob_Triggers(), this.getTrigger(), null, "triggers", null, 0, -1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getJob_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(stepContainerEClass, StepContainer.class, "StepContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(scmEClass, org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM.class, "SCM", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
