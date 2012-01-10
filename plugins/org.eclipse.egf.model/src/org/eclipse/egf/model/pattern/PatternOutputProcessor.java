@@ -22,7 +22,9 @@ package org.eclipse.egf.model.pattern;
 public interface PatternOutputProcessor {
     String EXTENSION_ID = "org.eclipse.egf.model.trace.output.processor";
 
-    void execute(Node.Container root);
+    void applyOnLoopResult(Node.Container node);
+
+    void applyOnExecutionResult(Node.Container node);
 
     String getProcessorId();
 }
