@@ -111,21 +111,20 @@ public class JavaAssemblyHelper extends BaseJavaAssemblyHelper {
     @Override
     protected void endOrchestration() throws PatternException {
         content.append("ictx.setNode(currentNode);"); //$NON-NLS-1$  
-        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        //        content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !pattern.getAllParameters().isEmpty();
-        content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         if (hasParameter) {
+            content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
             }
             content.append("    String outputWithCallBack = OutputManager.getOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             content.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
 
-        content.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        content.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        content.append("return null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 

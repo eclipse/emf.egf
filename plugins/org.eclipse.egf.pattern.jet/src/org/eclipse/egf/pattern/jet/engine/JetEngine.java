@@ -114,11 +114,11 @@ public class JetEngine extends AbstractJavaEngine {
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         boolean hasParameter = !getPattern().getAllParameters().isEmpty();
-        builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-
         if (hasParameter) {
+            builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    String loop = OutputManager.getOutputWithoutCallback(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+
             builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 String name = parameter.getName();
@@ -129,9 +129,9 @@ public class JetEngine extends AbstractJavaEngine {
             }
             builder.append("    String outputWithCallBack = OutputManager.getOutput(ictx);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
             builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+            builder.append("    }").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         }
-        builder.append("    ;}").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
-        builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
+        builder.append("return null;").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR); //$NON-NLS-1$
 
