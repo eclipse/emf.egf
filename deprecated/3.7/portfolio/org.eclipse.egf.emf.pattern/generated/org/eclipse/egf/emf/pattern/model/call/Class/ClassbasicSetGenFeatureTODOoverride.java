@@ -1,3 +1,4 @@
+//Generated on Wed Jan 11 15:09:53 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -106,7 +107,7 @@ public class ClassbasicSetGenFeatureTODOoverride {
 																this.negativeOperationOffsetCorrection = (java.lang.String) negativeOperationOffsetCorrectionParameter;
 																this.positiveOperationOffsetCorrection = (java.lang.String) positiveOperationOffsetCorrectionParameter;
 
-																if (preCondition()) {
+																if (preCondition(ctx)) {
 																	ctx.setNode(new Node.Container(currentNode, getClass()));
 																	orchestration(ctx);
 																}
@@ -127,7 +128,7 @@ public class ClassbasicSetGenFeatureTODOoverride {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_4);
@@ -140,8 +141,8 @@ public class ClassbasicSetGenFeatureTODOoverride {
 
 		method_doGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genFeature", this.genFeature);
 			parameterValues.put("genClass", this.genClass);
@@ -157,11 +158,10 @@ public class ClassbasicSetGenFeatureTODOoverride {
 			parameterValues.put("positiveOffsetCorrection", this.positiveOffsetCorrection);
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
@@ -275,10 +275,10 @@ public class ClassbasicSetGenFeatureTODOoverride {
 		stringBuffer.append(genFeature.getFeatureKind());
 		stringBuffer.append(TEXT_3);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }

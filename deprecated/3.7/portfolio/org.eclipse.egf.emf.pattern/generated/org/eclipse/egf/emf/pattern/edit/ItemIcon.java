@@ -1,3 +1,4 @@
+//Generated on Wed Jan 11 15:09:09 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -51,7 +52,7 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 
 			this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenClass) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -59,7 +60,7 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_1);
@@ -83,15 +84,14 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 
 		method_postGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	public Map<String, Object> getParameters() {
@@ -105,7 +105,7 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "ensureProjectExists", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -117,10 +117,10 @@ public class ItemIcon extends org.eclipse.egf.emf.pattern.base.GenClassGIF {
 		}
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		GenClass genClass = parameter;
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");

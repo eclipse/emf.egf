@@ -1,3 +1,4 @@
+//Generated on Wed Jan 11 15:09:39 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.tests.call.TestCase;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -76,7 +77,7 @@ public class TestCasesetGenFeatureoverride {
 						this.genPackage = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) genPackageParameter;
 						this.genModel = (org.eclipse.emf.codegen.ecore.genmodel.GenModel) genModelParameter;
 
-						if (preCondition()) {
+						if (preCondition(ctx)) {
 							ctx.setNode(new Node.Container(currentNode, getClass()));
 							orchestration(ctx);
 						}
@@ -87,7 +88,7 @@ public class TestCasesetGenFeatureoverride {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_14);
@@ -100,18 +101,17 @@ public class TestCasesetGenFeatureoverride {
 
 		method_doGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genFeature", this.genFeature);
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.codegen.ecore.genmodel.GenFeature genFeature = null;
@@ -170,7 +170,7 @@ public class TestCasesetGenFeatureoverride {
 				//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.annotations.insert" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 				InternalPatternContext ictx = (InternalPatternContext) ctx;
-				new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+				new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 				stringBuffer.setLength(0);
 
 				final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -191,7 +191,7 @@ public class TestCasesetGenFeatureoverride {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.tests.call.TestCase.TestCase.setGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -206,10 +206,10 @@ public class TestCasesetGenFeatureoverride {
 		//TestCase/setGenFeature.todo.override.javajetinc
 		stringBuffer.append(TEXT_13);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }

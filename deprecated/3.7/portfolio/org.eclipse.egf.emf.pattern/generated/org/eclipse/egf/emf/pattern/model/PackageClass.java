@@ -1,3 +1,4 @@
+//Generated on Wed Jan 11 15:09:16 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -737,7 +738,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 
 			this.parameter = (org.eclipse.emf.codegen.ecore.genmodel.GenPackage) parameterParameter;
 
-			if (preCondition()) {
+			if (preCondition(ctx)) {
 				ctx.setNode(new Node.Container(currentNode, getClass()));
 				orchestration(ctx);
 			}
@@ -745,7 +746,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_686);
@@ -769,15 +770,14 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 
 		method_postGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	public Map<String, Object> getParameters() {
@@ -794,7 +794,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 		className = genPackage.getPackageClassName();
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setReporterVariables", stringBuffer.toString());
 	}
 
 	protected void method_setArgument(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -803,7 +803,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 		argument = ((Object[]) new Object[] { new Object[] { genPackage, genPackage.getGenModel().isSuppressEMFMetaData() || genPackage.getGenModel().isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE, Boolean.TRUE } })[0];
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "setArgument", stringBuffer.toString());
 	}
 
 	protected void method_ensureProjectExists(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -811,7 +811,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 		new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "ensureProjectExists", stringBuffer.toString());
 	}
 
 	protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
@@ -843,7 +843,7 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#LogicalName=org.eclipse.egf.emf.pattern.base.HeaderJava" args="parameter:argument"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -2684,10 +2684,10 @@ public class PackageClass extends org.eclipse.egf.emf.pattern.base.GenPackageJav
 		genModel.emitSortedImports();
 		stringBuffer.append(TEXT_685);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		GenPackage genPackage = parameter;
 		genModel = parameter.getGenModel();
 		boolean canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");

@@ -1,3 +1,4 @@
+//Generated on Wed Jan 11 15:09:38 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.editor.call.Editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -134,7 +135,7 @@ public class EditoraddItemProviderFactoriesoverride {
 																						this._ArrayListOfString = (java.lang.String) _ArrayListOfStringParameter;
 																						this._ListOfString = (java.lang.String) _ListOfStringParameter;
 
-																						if (preCondition()) {
+																						if (preCondition(ctx)) {
 																							ctx.setNode(new Node.Container(currentNode, getClass()));
 																							orchestration(ctx);
 																						}
@@ -161,7 +162,7 @@ public class EditoraddItemProviderFactoriesoverride {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(Node.flatten(ctx.getNode()), ctx);
+			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_8);
@@ -174,8 +175,8 @@ public class EditoraddItemProviderFactoriesoverride {
 
 		method_doGenerate(new StringBuffer(), ictx);
 
-		String loop = Node.flattenWithoutCallback(ictx.getNode());
 		if (ictx.useReporter()) {
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
@@ -197,11 +198,10 @@ public class EditoraddItemProviderFactoriesoverride {
 			parameterValues.put("_AdapterFactoryLabelProvider", this._AdapterFactoryLabelProvider);
 			parameterValues.put("_ArrayListOfString", this._ArrayListOfString);
 			parameterValues.put("_ListOfString", this._ListOfString);
-			String outputWithCallBack = Node.flatten(ictx.getNode());
+			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
-			;
 		}
-		return loop;
+		return null;
 	}
 
 	protected org.eclipse.emf.codegen.ecore.genmodel.GenPackage genPackage = null;
@@ -371,7 +371,7 @@ public class EditoraddItemProviderFactoriesoverride {
 			//<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.editor.call.Editor.Editor.addItemProviderFactories.insert" args="genPackage:genPackage,genModel:genModel,importedOperationClassName:importedOperationClassName,operationMethodName:operationMethodName,_ArrayListOfObject:_ArrayListOfObject,_ArrayListOfSelectionChangedListener:_ArrayListOfSelectionChangedListener,_CollectionOfSelectionChangedListener:_CollectionOfSelectionChangedListener,_ArrayListOfResource:_ArrayListOfResource,_CollectionOfResource:_CollectionOfResource,_MapOfResourceToDiagnostic:_MapOfResourceToDiagnostic,_HashMapOfResourceToBoolean:_HashMapOfResourceToBoolean,_MapOfObjectToObject:_MapOfObjectToObject,_HashMapOfObjectToObject:_HashMapOfObjectToObject,_LinkedHashMapOfResourceToDiagnostic:_LinkedHashMapOfResourceToDiagnostic,_CollectionOfAnything:_CollectionOfAnything,_ListOfAnything:_ListOfAnything,useExtendedLabelProvider:useExtendedLabelProvider,_AdapterFactoryLabelProvider:_AdapterFactoryLabelProvider,_ArrayListOfString:_ArrayListOfString,_ListOfString:_ListOfString"%>
 
 			InternalPatternContext ictx = (InternalPatternContext) ctx;
-			new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+			new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
 			stringBuffer.setLength(0);
 
 			final Map<String, Object> callParameters = new HashMap<String, Object>();
@@ -401,10 +401,10 @@ public class EditoraddItemProviderFactoriesoverride {
 
 		stringBuffer.append(TEXT_7);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.Leaf(ictx.getNode(), getClass(), stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
 	}
 
-	public boolean preCondition() throws Exception {
+	public boolean preCondition(PatternContext ctx) throws Exception {
 		return true;
 	}
 }
