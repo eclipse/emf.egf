@@ -16,10 +16,12 @@
 package org.eclipse.egf.pattern.utils;
 
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.epackage.IProxyEObject;
-import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * 
@@ -48,7 +50,7 @@ public class ParameterTypeHelper {
      */
     private String getTypeLiteral(String type, boolean handleInnerClass) {
         // clearProxies();
-        if (type == null || type.trim().length() == 0) {
+        if (type == null || "".equals(type)) {
             throw new IllegalArgumentException();
         }
         // Java Type
@@ -56,17 +58,21 @@ public class ParameterTypeHelper {
         if (index == -1) {
             return handleInnerClass ? type.replace('$', '.') : type;
         }
-        // Locate already loaded type
+
         URI uri = URI.createURI(type.trim());
 
-        // URI Type
-        IProxyEObject proxy = EGFCorePlugin.getTargetPlatformIProxyEObject(uri);
-        if (proxy == null) {
-            throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, uri));
+        IPlatformGenModel genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
+        if (genModel != null) {
+            return genModel.getBasePackage() + '.' + getClassName(type, index);
         }
-        if (proxy.getInstanceClassName() == null) {
-            throw new IllegalStateException(NLS.bind(EGFPatternMessages.assembly_error7, uri));
-        }
-        return proxy.getInstanceClassName();
+        throw new IllegalStateException();
     }
+
+    private String getClassName(String type, int index) {
+        String className = type.substring(index + 1);
+        if (className.startsWith("//")) //$NON-NLS-1$
+            return className.substring(2);
+        return className;
+    }
+
 }
