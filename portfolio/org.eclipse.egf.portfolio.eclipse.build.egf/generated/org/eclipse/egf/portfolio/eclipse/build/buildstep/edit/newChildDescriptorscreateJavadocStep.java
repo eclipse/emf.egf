@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 17:23:44 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:15 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.edit;
 
 import org.eclipse.egf.common.helper.*;
@@ -106,7 +106,6 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("createClass", this.createClass);
 			parameterValues.put("createFeature", this.createFeature);
@@ -117,6 +116,7 @@ public class newChildDescriptorscreateJavadocStep extends org.eclipse.egf.emf.pa
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

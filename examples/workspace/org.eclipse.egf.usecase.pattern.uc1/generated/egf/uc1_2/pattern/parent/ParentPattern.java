@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:23 CET 2012 with EGF 0.6.1.qualifier
 package egf.uc1_2.pattern.parent;
 
 import java.util.*;

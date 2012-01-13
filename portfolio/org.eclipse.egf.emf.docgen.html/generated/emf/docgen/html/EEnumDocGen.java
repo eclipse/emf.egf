@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:28 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
 package emf.docgen.html;
 
 import org.eclipse.egf.emf.docgen.html.util.*;

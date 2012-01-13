@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:55 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:56 CET 2012 with EGF 0.6.1.qualifier
 package linefeed2;
 
 import org.eclipse.egf.common.helper.*;

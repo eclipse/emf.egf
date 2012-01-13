@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:20 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:20 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.libraryextension.edit.itemprovider;
 
 import org.eclipse.egf.common.helper.*;
@@ -83,13 +83,13 @@ public class BorrowgetText extends org.eclipse.egf.emf.pattern.edit.call.ItemPro
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
 			parameterValues.put("genModel", this.genModel);
 			parameterValues.put("_List", this._List);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

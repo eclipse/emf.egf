@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:43:25 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:50 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.example.strategy.modeldriven.validation;
 
 import java.util.*;
@@ -46,10 +46,10 @@ public class classWithoutAttributes extends org.eclipse.egf.pattern.validation.A
 		method_checkAttributes(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("eClass", this.eClass);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

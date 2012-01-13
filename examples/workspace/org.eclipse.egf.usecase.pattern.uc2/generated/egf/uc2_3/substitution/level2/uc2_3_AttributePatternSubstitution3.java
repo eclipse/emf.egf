@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:24 CET 2012 with EGF 0.6.1.qualifier
 package egf.uc2_3.substitution.level2;
 
 import org.eclipse.egf.common.helper.*;
@@ -68,10 +68,10 @@ public class uc2_3_AttributePatternSubstitution3 {
 		method_body(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("anAttribute", this.anAttribute);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:20 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:20 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.library.model.Class.implementedoperation;
 
 import org.eclipse.egf.common.helper.*;
@@ -133,7 +133,6 @@ public class FullNameOperation extends org.eclipse.egf.emf.pattern.model.call.Cl
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genOperation", this.genOperation);
 			parameterValues.put("genClass", this.genClass);
@@ -150,6 +149,7 @@ public class FullNameOperation extends org.eclipse.egf.emf.pattern.model.call.Cl
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

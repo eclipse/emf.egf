@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:22 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:24 CET 2012 with EGF 0.6.1.qualifier
 package egf.uc2_2.substitution.merge;
 
 import org.eclipse.egf.common.helper.*;
@@ -69,10 +69,10 @@ public class uc2_2_ClassPatternSubstitution2 {
 		method_body(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("aClass", this.aClass);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

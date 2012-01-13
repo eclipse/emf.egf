@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:20 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:21 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.emf.library.model.Class.getsetgenfeature;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -145,7 +145,6 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genFeature", this.genFeature);
 			parameterValues.put("genClass", this.genClass);
@@ -162,6 +161,7 @@ public class Library_Books_Class_getGenFeature_override extends org.eclipse.egf.
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:21 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:22 CET 2012 with EGF 0.6.1.qualifier
 package egf.uc1_4.pattern;
 
 import org.eclipse.egf.common.helper.*;
@@ -71,10 +71,10 @@ public class AttributePattern {
 		method_body(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

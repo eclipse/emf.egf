@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:51:19 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:19 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.genchain.ecoretools.pattern;
 
 import java.util.*;
@@ -57,10 +57,10 @@ public class ecoreTools {
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

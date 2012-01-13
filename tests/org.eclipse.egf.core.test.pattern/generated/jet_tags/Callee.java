@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:56 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:58 CET 2012 with EGF 0.6.1.qualifier
 package jet_tags;
 
 import java.util.*;
@@ -49,11 +49,11 @@ public class Callee {
 		method_body(new StringBuffer(), ictx);
 		ictx.setNode(currentNode);
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			parameterValues.put("parameter2", this.parameter2);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

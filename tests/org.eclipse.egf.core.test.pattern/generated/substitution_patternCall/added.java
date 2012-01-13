@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:55 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:59 CET 2012 with EGF 0.6.1.qualifier
 package substitution_patternCall;
 
 import org.eclipse.egf.common.helper.*;
@@ -69,10 +69,10 @@ public class added {
 		method_body(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("eClass", this.eClass);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

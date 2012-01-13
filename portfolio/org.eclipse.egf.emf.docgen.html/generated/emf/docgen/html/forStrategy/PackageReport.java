@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:28 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:25 CET 2012 with EGF 0.6.1.qualifier
 package emf.docgen.html.forStrategy;
 
 import java.util.*;
@@ -94,10 +94,10 @@ public class PackageReport extends emf.docgen.html.EPackageDocGen {
 		}
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("element", this.element);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;
