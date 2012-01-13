@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 17:22:40 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:09 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -70,10 +70,10 @@ public class Triggercron extends org.eclipse.egf.portfolio.eclipse.build.hudson.
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("cronTrigger", this.cronTrigger);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

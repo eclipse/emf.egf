@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 17:22:57 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:05 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -69,10 +69,10 @@ public class buildpropertiesallPlatforms extends org.eclipse.egf.portfolio.eclip
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("buildStep", this.buildStep);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

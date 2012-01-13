@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 17:23:01 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:22:08 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -78,10 +78,10 @@ public class buildxmltestStep extends org.eclipse.egf.portfolio.eclipse.build.bu
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("testStep", this.testStep);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;
