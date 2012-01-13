@@ -47,4 +47,10 @@ public class TracePatternOutputProcessor implements PatternOutputProcessor {
         return TraceHelper.DEFAULT_TRACE_PROCESSOR_ID;
     }
 
+    public void applyOnLoopResult(StringBuilder builder) {
+    }
+
+    public void applyOnExecutionResult(StringBuilder builder) {
+    }
+
 }

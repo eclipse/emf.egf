@@ -24,7 +24,11 @@ public interface PatternOutputProcessor {
 
     void applyOnLoopResult(Node.Container node);
 
+    void applyOnLoopResult(StringBuilder builder);
+
     void applyOnExecutionResult(Node.Container node);
+
+    void applyOnExecutionResult(StringBuilder builder);
 
     String getProcessorId();
 }

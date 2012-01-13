@@ -38,13 +38,17 @@ import org.eclipse.egf.pattern.EGFPatternPlugin;
  * 
  */
 public class OutputManager {
-    private static final Method LOOP_METHOD;
-    private static final Method EXECUTION_METHOD;
+    private static final Method LOOP_METHOD_ON_NODE;
+    private static final Method EXECUTION_METHOD_ON_NODE;
+    private static final Method LOOP_METHOD_ON_BUFFER;
+    private static final Method EXECUTION_METHOD_ON_BUFFER;
 
     static {
         try {
-            LOOP_METHOD = PatternOutputProcessor.class.getMethod("applyOnLoopResult", Node.Container.class);
-            EXECUTION_METHOD = PatternOutputProcessor.class.getMethod("applyOnExecutionResult", Node.Container.class);
+            LOOP_METHOD_ON_NODE = PatternOutputProcessor.class.getMethod("applyOnLoopResult", Node.Container.class);
+            EXECUTION_METHOD_ON_NODE = PatternOutputProcessor.class.getMethod("applyOnExecutionResult", Node.Container.class);
+            LOOP_METHOD_ON_BUFFER = PatternOutputProcessor.class.getMethod("applyOnLoopResult", StringBuilder.class);
+            EXECUTION_METHOD_ON_BUFFER = PatternOutputProcessor.class.getMethod("applyOnExecutionResult", StringBuilder.class);
         } catch (NoSuchMethodException e) {
             EGFPatternPlugin.getDefault().logError("Cannot find required methods on PatternOutputProcessor class", e);
             throw new IllegalStateException();
@@ -96,38 +100,44 @@ public class OutputManager {
 
     public static String computeExecutionOutput(PatternContext ctx) {
         StringBuilder builder = new StringBuilder();
-        applyProcessors(ctx, EXECUTION_METHOD);
-        doFlatten(builder, ((InternalPatternContext) ctx).getNode(), true);
+        final Container node = ((InternalPatternContext) ctx).getNode();
+        applyProcessors(ctx, EXECUTION_METHOD_ON_NODE, node, node);
+        doFlatten(builder, node, true);
+        applyProcessors(ctx, EXECUTION_METHOD_ON_BUFFER, node, builder);
         return builder.toString();
     }
 
     public static String computeLoopOutput(PatternContext ctx) {
         StringBuilder builder = new StringBuilder();
-        applyProcessors(ctx, LOOP_METHOD);
-        doFlatten(builder, ((InternalPatternContext) ctx).getNode(), true);
+        final Container node = ((InternalPatternContext) ctx).getNode();
+        applyProcessors(ctx, LOOP_METHOD_ON_NODE, node, node);
+        doFlatten(builder, node, true);
+        applyProcessors(ctx, LOOP_METHOD_ON_BUFFER, node, builder);
         return builder.toString();
     }
 
     public static String computeLoopOutputWithoutCallback(PatternContext ctx) {
+        // There is no need to apply processor since they were already applied
+        // when computing LoopOutput in computeLoopOutput method
         StringBuilder builder = new StringBuilder();
-        applyProcessors(ctx, LOOP_METHOD);
         doFlatten(builder, ((InternalPatternContext) ctx).getNode(), false);
         return builder.toString();
     }
 
-    protected static void applyProcessors(PatternContext ctx, Method method) {
+    protected static void applyProcessors(PatternContext ctx, Method method, Container node, Object parameter) {
         try {
-            final Container node = ((InternalPatternContext) ctx).getNode();
+
             // apply the default processor defined in extension points
             for (PatternOutputProcessor defaultProcessor : getDefaultProcessors()) {
-                if (!node.getAppliedOutputProcessors().contains(defaultProcessor.getProcessorId()))
-                    method.invoke(defaultProcessor, node);
+                final String processorId = defaultProcessor.getProcessorId() + ':' + parameter.getClass().getName();
+                if (!node.getAppliedOutputProcessors().contains(processorId))
+                    method.invoke(defaultProcessor, parameter);
             }
 
             // apply processor from activity contract
             PatternOutputProcessor processor = (PatternOutputProcessor) ctx.getValue(PatternContext.PATTERN_OUTPUT_PROCESSOR);
-            if (processor != null && !node.getAppliedOutputProcessors().contains(processor.getProcessorId()))
-                method.invoke(processor, node);
+            if (processor != null && !node.getAppliedOutputProcessors().contains(processor.getProcessorId() + ':' + parameter.getClass().getName()))
+                method.invoke(processor, parameter);
 
         } catch (Exception e) {
             throw new PatternRuntimeException(e);
