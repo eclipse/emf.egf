@@ -15,6 +15,16 @@
 
 package org.eclipse.egf.emf.pattern.base;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -29,63 +39,86 @@ import org.eclipse.emf.common.util.URI;
  */
 public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
-  protected Generator _generator;
+    protected Generator _generator;
 
-  protected GenModel _genModel;
+    protected GenModel _genModel;
 
-  protected URI _mergeRulesURI;
+    protected URI _mergeRulesURI;
 
-  public CodegenGeneratorAdapter(GenBase generatingObject) {
-    super(null);
-    this.generatingObject = generatingObject;
-    _genModel = generatingObject.getGenModel();
-  }
-
-  public void setMergeRulesURI(URI mergeRulesURI) {
-    _mergeRulesURI = mergeRulesURI;
-  }
-
-  @Override
-  public Generator getGenerator() {
-    if (_generator == null) {
-      _generator = GenModelUtil.createGenerator(_genModel, _mergeRulesURI);
+    public CodegenGeneratorAdapter(GenBase generatingObject) {
+        super(null);
+        this.generatingObject = generatingObject;
+        _genModel = generatingObject.getGenModel();
     }
-    return _generator;
-  }
 
-  public boolean canGenerate(Object projectType) {
-    return super.canGenerate(generatingObject, projectType);
-  }
+    public void setMergeRulesURI(URI mergeRulesURI) {
+        _mergeRulesURI = mergeRulesURI;
+    }
 
-  @Override
-  public URI toURI(String pathName) {
-    return super.toURI(pathName);
-  }
+    @Override
+    public Generator getGenerator() {
+        if (_generator == null) {
+            _generator = GenModelUtil.createGenerator(_genModel, _mergeRulesURI);
+        }
+        return _generator;
+    }
 
-  @Override
-  public boolean exists(URI workspacePath) {
-    return super.exists(workspacePath);
-  }
+    public boolean canGenerate(Object projectType) {
+        return super.canGenerate(generatingObject, projectType);
+    }
 
-  @Override
-  public void ensureProjectExists(String workspacePath, Object object, Object projectType, boolean force, Monitor monitor) {
-    super.ensureProjectExists(workspacePath, object, projectType, force, monitor);
-  }
+    @Override
+    public URI toURI(String pathName) {
+        return super.toURI(pathName);
+    }
 
-  public void generateJava(String targetPath, String packageName, String className, String output) {
-    generateJava(targetPath, packageName, className, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
-  }
+    protected OutputStream createOutputStream(final URI workspacePath) throws Exception {
+        return new ByteArrayOutputStream(5000) {
 
-  public void generateText(String targetPathName, boolean overwrite, String encoding, String output) {
-    generateText(targetPathName, new StringJETEmitter(output), (Object[]) null, overwrite, encoding, new BasicMonitor());
-  }
+            @Override
+            public void close() throws IOException {
+                final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(workspacePath.toFileString()));
+                try {
+                    // use buf directly to avoid duplication of the array.
+                    if (file.exists())
+                        file.setContents(new ByteArrayInputStream(buf, 0, count), IResource.KEEP_HISTORY | IResource.FORCE, null);
+                    else
+                        file.create(new ByteArrayInputStream(buf, 0, count), true, null);
+                } catch (CoreException e) {
+                    throw new IOException(e);
+                }
+            }
 
-  public void generateProperties(String targetPathName, String output) {
-    generateProperties(targetPathName, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
-  }
+        };
+        // return
+        // getURIConverter().createOutputStream(toPlatformResourceURI(workspacePath),
+        // null);
+    }
 
-  public void generateGIF(String inputPathName, String targetPathName, String parentKey, String childKey, boolean overwrite) {
-    generateGIF(targetPathName, createGIFEmitter(inputPathName), parentKey, childKey, overwrite, new BasicMonitor());
-  }
+    @Override
+    public boolean exists(URI workspacePath) {
+        return ResourcesPlugin.getWorkspace().getRoot().exists(new Path(workspacePath.toFileString()));
+    }
+
+    @Override
+    public void ensureProjectExists(String workspacePath, Object object, Object projectType, boolean force, Monitor monitor) {
+        super.ensureProjectExists(workspacePath, object, projectType, force, monitor);
+    }
+
+    public void generateJava(String targetPath, String packageName, String className, String output) {
+        generateJava(targetPath, packageName, className, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
+    }
+
+    public void generateText(String targetPathName, boolean overwrite, String encoding, String output) {
+        generateText(targetPathName, new StringJETEmitter(output), (Object[]) null, overwrite, encoding, new BasicMonitor());
+    }
+
+    public void generateProperties(String targetPathName, String output) {
+        generateProperties(targetPathName, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
+    }
+
+    public void generateGIF(String inputPathName, String targetPathName, String parentKey, String childKey, boolean overwrite) {
+        generateGIF(targetPathName, createGIFEmitter(inputPathName), parentKey, childKey, overwrite, new BasicMonitor());
+    }
 
 }
