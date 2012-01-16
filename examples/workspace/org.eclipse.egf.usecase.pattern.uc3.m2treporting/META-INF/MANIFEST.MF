@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Outputprocessor
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.usecase.pattern.uc3.m2treporting;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 0.6.1.qualifier
 Bundle-Activator: org.eclipse.egf.usecase.pattern.uc3.postprocessing.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.pattern;visibility:=reexport,
@@ -17,3 +17,5 @@ Export-Package: org.eclipse.egf.usecase.pattern.uc3.m2treporting.postprocessing,
  org.eclipse.egf.usecase.pattern.uc3.m2treporting.reportonconsole,
  org.eclipse.egf.usecase.pattern.uc3.m2treporting.reportwithadditionalparameters,
  org.eclipse.egf.usecase.pattern.uc3.postprocessing
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
