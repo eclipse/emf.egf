@@ -29,6 +29,9 @@ import org.eclipse.egf.pattern.EGFPatternPlugin;
 public class TracePatternOutputProcessor implements PatternOutputProcessor {
 
     public void applyOnExecutionResult(Node.Container root) {
+    }
+
+    public void applyOnLoopResult(Container root) {
         try {
             TraceHelper createInstance = TraceHelper.createInstance();
             createInstance.apply(root);
@@ -36,10 +39,6 @@ public class TracePatternOutputProcessor implements PatternOutputProcessor {
             EGFPatternPlugin.getDefault().logError(e);
             // TODO mettre une clausse throws
         }
-
-    }
-
-    public void applyOnLoopResult(Container root) {
     }
 
     public String getProcessorId() {
