@@ -288,13 +288,22 @@ public interface BuildstepPackage extends EPackage {
     int PUBLISH_STEP__GENERATE_SOURCES = RESULT_STEP_FEATURE_COUNT + 2;
 
     /**
+     * The feature id for the '<em><b>Generate Dropins</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PUBLISH_STEP__GENERATE_DROPINS = RESULT_STEP_FEATURE_COUNT + 3;
+
+    /**
      * The number of structural features of the '<em>Publish Step</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PUBLISH_STEP_FEATURE_COUNT = RESULT_STEP_FEATURE_COUNT + 3;
+    int PUBLISH_STEP_FEATURE_COUNT = RESULT_STEP_FEATURE_COUNT + 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.TestStepImpl <em>Test Step</em>}' class.
@@ -1436,6 +1445,17 @@ public interface BuildstepPackage extends EPackage {
     EAttribute getPublishStep_GenerateSources();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#isGenerateDropins <em>Generate Dropins</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Generate Dropins</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#isGenerateDropins()
+     * @see #getPublishStep()
+     * @generated
+     */
+    EAttribute getPublishStep_GenerateDropins();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.TestStep <em>Test Step</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2123,6 +2143,14 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute PUBLISH_STEP__GENERATE_SOURCES = eINSTANCE.getPublishStep_GenerateSources();
+
+        /**
+         * The meta object literal for the '<em><b>Generate Dropins</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PUBLISH_STEP__GENERATE_DROPINS = eINSTANCE.getPublishStep_GenerateDropins();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.TestStepImpl <em>Test Step</em>}' class.

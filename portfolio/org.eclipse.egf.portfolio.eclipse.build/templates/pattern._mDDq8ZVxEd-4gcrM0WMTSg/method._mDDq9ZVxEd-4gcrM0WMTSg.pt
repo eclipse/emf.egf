@@ -28,6 +28,7 @@
 			</filtermapper>
 		</copy>
 
+<%if (publishStep.isGenerateDropins()) {%>
 		<echo message="Publish dropins"/>
 		<condition property="site.src" value="site.signed" else="site">
 			<istrue value="${site.signing}" />
@@ -70,5 +71,6 @@
 		</loadfile>
 
 		<touch file="<%=publishdirectory%>/dropins/<%=featurename%>/<%=featurename%>_version_${featureversion<%=stepName%>}" />
+<%}%>		
 	</target>
 

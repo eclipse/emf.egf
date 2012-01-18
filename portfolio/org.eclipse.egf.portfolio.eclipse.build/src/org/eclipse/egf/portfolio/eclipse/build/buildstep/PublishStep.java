@@ -26,6 +26,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#getComponent <em>Component</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#isSigning <em>Signing</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#isGenerateSources <em>Generate Sources</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#isGenerateDropins <em>Generate Dropins</em>}</li>
  * </ul>
  * </p>
  *
@@ -158,6 +159,43 @@ public interface PublishStep extends ResultStep {
      */
 
     void setGenerateSources(boolean value);
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>Generate Dropins</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Generate Dropins</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Generate Dropins</em>' attribute.
+     * @see #setGenerateDropins(boolean)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getPublishStep_GenerateDropins()
+     * @model default="false"
+     * @generated
+     */
+
+    boolean isGenerateDropins();
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep#isGenerateDropins <em>Generate Dropins</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Generate Dropins</em>' attribute.
+     * @see #isGenerateDropins()
+     * @generated
+     */
+
+    void setGenerateDropins(boolean value);
 
 
 

@@ -408,6 +408,15 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getPublishStep_GenerateDropins() {
+        return (EAttribute)publishStepEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getTestStep() {
         return testStepEClass;
     }
@@ -923,6 +932,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEReference(publishStepEClass, PUBLISH_STEP__COMPONENT);
         createEAttribute(publishStepEClass, PUBLISH_STEP__SIGNING);
         createEAttribute(publishStepEClass, PUBLISH_STEP__GENERATE_SOURCES);
+        createEAttribute(publishStepEClass, PUBLISH_STEP__GENERATE_DROPINS);
 
         testStepEClass = createEClass(TEST_STEP);
         createEAttribute(testStepEClass, TEST_STEP__LAUNCH_CONFIGURATION_PATH);
@@ -1067,6 +1077,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEReference(getPublishStep_Component(), this.getComponent(), null, "component", null, 1, 1, PublishStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPublishStep_Signing(), ecorePackage.getEBoolean(), "signing", "false", 0, 1, PublishStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPublishStep_GenerateSources(), ecorePackage.getEBoolean(), "generateSources", "true", 0, 1, PublishStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPublishStep_GenerateDropins(), ecorePackage.getEBoolean(), "generateDropins", "false", 0, 1, PublishStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(testStepEClass, TestStep.class, "TestStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getTestStep_LaunchConfigurationPath(), ecorePackage.getEString(), "launchConfigurationPath", null, 1, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

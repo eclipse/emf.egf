@@ -1,9 +1,1 @@
-<%
-String name = null;
-if (resultStepBuildLocation.getResultStep() instanceof  PublishStep)
-	name = ((PublishStep) resultStepBuildLocation.getResultStep()).getComponent().getName();
-else if (resultStepBuildLocation.getResultStep() instanceof  AggregateStep)
-	name = ((AggregateStep) resultStepBuildLocation.getResultStep()).getName();
-String location = new GenerationHelper().getPublishPath(ctx, resultStepBuildLocation.getResultStep(), resultStepBuildLocation) + name + "/dropins/" + name + "/eclipse";
-%> 
-		<location path="<%=location%>" type="Directory"/>
+		<location path="${workspace_loc}/../tp" type="Directory"/>

@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:22:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.util.*;
@@ -12,49 +12,49 @@ import java.io.*;
 
 public class TextHeader {
 
-	public TextHeader() {
-		//Here is the constructor
-		// add initialisation of the pattern variables (declaration has been already done).
-	}
+    public TextHeader() {
+        //Here is the constructor
+        // add initialisation of the pattern variables (declaration has been already done).
+    }
 
-	public void generate(Object argument) throws Exception {
-		InternalPatternContext ctx = (InternalPatternContext) argument;
-		IQuery.ParameterDescription paramDesc = null;
-		Map<String, String> queryCtx = null;
-		Node.Container currentNode = ctx.getNode();
+    public void generate(Object argument) throws Exception {
+        InternalPatternContext ctx = (InternalPatternContext) argument;
+        IQuery.ParameterDescription paramDesc = null;
+        Map<String, String> queryCtx = null;
+        Node.Container currentNode = ctx.getNode();
 
-		if (preCondition(ctx))
-			orchestration((PatternContext) argument);
+        if (preCondition(ctx))
+            orchestration((PatternContext) argument);
 
-		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
-		}
-	}
+        if (ctx.useReporter()) {
+            ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+        }
+    }
 
-	public String orchestration(PatternContext ctx) throws Exception {
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		Node.Container currentNode = ictx.getNode();
-		method_body(new StringBuffer(), ictx);
-		ictx.setNode(currentNode);
-		return null;
-	}
+    public String orchestration(PatternContext ctx) throws Exception {
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        Node.Container currentNode = ictx.getNode();
+        method_body(new StringBuffer(), ictx);
+        ictx.setNode(currentNode);
+        return null;
+    }
 
-	protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
-		String copyright = (String) ctx.getValue("copyright");
-		BufferedReader reader = new BufferedReader(new StringReader(copyright));
-		String line = "";
-		while ((line = reader.readLine()) != null) {
-			out.append("#");
-			out.append(line);
-			out.append("\n");
-		}
+    protected void method_body(final StringBuffer out, final PatternContext ctx) throws Exception {
+        String copyright = (String) ctx.getValue("copyright");
+        BufferedReader reader = new BufferedReader(new StringReader(copyright));
+        String line = "";
+        while ((line = reader.readLine()) != null) {
+            out.append("#");
+            out.append(line);
+            out.append("\n");
+        }
 
-		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
-	}
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "body", out.toString());
+    }
 
-	public boolean preCondition(PatternContext ctx) throws Exception {
-		return true;
-	}
+    public boolean preCondition(PatternContext ctx) throws Exception {
+        return true;
+    }
 
 }

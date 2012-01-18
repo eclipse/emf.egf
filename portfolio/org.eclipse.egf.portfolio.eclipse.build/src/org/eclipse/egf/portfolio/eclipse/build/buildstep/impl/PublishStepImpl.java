@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl#getComponent <em>Component</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl#isSigning <em>Signing</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl#isGenerateSources <em>Generate Sources</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PublishStepImpl#isGenerateDropins <em>Generate Dropins</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,6 +106,29 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
      * @ordered
      */
     protected boolean generateSources = GENERATE_SOURCES_EDEFAULT;
+
+
+
+    /**
+     * The default value of the '{@link #isGenerateDropins() <em>Generate Dropins</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isGenerateDropins()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean GENERATE_DROPINS_EDEFAULT = false;
+
+
+    /**
+     * The cached value of the '{@link #isGenerateDropins() <em>Generate Dropins</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isGenerateDropins()
+     * @generated
+     * @ordered
+     */
+    protected boolean generateDropins = GENERATE_DROPINS_EDEFAULT;
 
 
 
@@ -256,6 +280,32 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public boolean isGenerateDropins() {
+
+        return generateDropins;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setGenerateDropins(boolean newGenerateDropins) {
+
+        boolean oldGenerateDropins = generateDropins;
+        generateDropins = newGenerateDropins;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.PUBLISH_STEP__GENERATE_DROPINS, oldGenerateDropins, generateDropins));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -266,6 +316,8 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
                 return isSigning();
             case BuildstepPackage.PUBLISH_STEP__GENERATE_SOURCES:
                 return isGenerateSources();
+            case BuildstepPackage.PUBLISH_STEP__GENERATE_DROPINS:
+                return isGenerateDropins();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -286,6 +338,9 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
                 return;
             case BuildstepPackage.PUBLISH_STEP__GENERATE_SOURCES:
                 setGenerateSources((Boolean)newValue);
+                return;
+            case BuildstepPackage.PUBLISH_STEP__GENERATE_DROPINS:
+                setGenerateDropins((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -309,6 +364,9 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
             case BuildstepPackage.PUBLISH_STEP__GENERATE_SOURCES:
                 setGenerateSources(GENERATE_SOURCES_EDEFAULT);
                 return;
+            case BuildstepPackage.PUBLISH_STEP__GENERATE_DROPINS:
+                setGenerateDropins(GENERATE_DROPINS_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -329,6 +387,8 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
                 return signing != SIGNING_EDEFAULT;
             case BuildstepPackage.PUBLISH_STEP__GENERATE_SOURCES:
                 return generateSources != GENERATE_SOURCES_EDEFAULT;
+            case BuildstepPackage.PUBLISH_STEP__GENERATE_DROPINS:
+                return generateDropins != GENERATE_DROPINS_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -348,6 +408,8 @@ public class PublishStepImpl extends ResultStepImpl implements PublishStep {
         result.append(signing);
         result.append(", generateSources: ");
         result.append(generateSources);
+        result.append(", generateDropins: ");
+        result.append(generateDropins);
         result.append(')');
         return result.toString();
     }

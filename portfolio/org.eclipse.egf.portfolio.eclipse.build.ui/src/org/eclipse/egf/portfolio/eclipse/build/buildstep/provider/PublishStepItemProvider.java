@@ -78,6 +78,7 @@ public class PublishStepItemProvider
             addComponentPropertyDescriptor(object);
             addSigningPropertyDescriptor(object);
             addGenerateSourcesPropertyDescriptor(object);
+            addGenerateDropinsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -155,6 +156,30 @@ public class PublishStepItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Generate Dropins feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addGenerateDropinsPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_PublishStep_generateDropins_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PublishStep_generateDropins_feature", "_UI_PublishStep_type"),
+                 BuildstepPackage.Literals.PUBLISH_STEP__GENERATE_DROPINS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
      * This returns PublishStep.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -194,6 +219,7 @@ public class PublishStepItemProvider
         switch (notification.getFeatureID(PublishStep.class)) {
             case BuildstepPackage.PUBLISH_STEP__SIGNING:
             case BuildstepPackage.PUBLISH_STEP__GENERATE_SOURCES:
+            case BuildstepPackage.PUBLISH_STEP__GENERATE_DROPINS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

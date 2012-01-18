@@ -5,7 +5,7 @@
 
 	<target name="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_dropins">
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-if (new GenerationHelper().isEnabled(publishStep)) {
+if (new GenerationHelper().isEnabled(publishStep) && publishStep.isGenerateDropins()) {
 String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/dropins";
 String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
 String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();%>
