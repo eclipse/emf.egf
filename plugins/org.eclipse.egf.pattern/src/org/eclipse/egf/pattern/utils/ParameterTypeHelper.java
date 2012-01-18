@@ -18,10 +18,6 @@ package org.eclipse.egf.pattern.utils;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.genmodel.IPlatformGenModel;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * 
@@ -61,7 +57,15 @@ public class ParameterTypeHelper {
 
         URI uri = URI.createURI(type.trim());
 
-        IPlatformGenModel genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
+        IPlatformGenModel genModel = null;
+        for (IPlatformGenModel model : EGFCorePlugin.getWorkspaceTargetPlatformGenModels()) {
+            if (model.getURI().equals(uri.trimFragment())) {
+                genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
+                break;
+            }
+        }
+        if (genModel == null)
+            genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
         if (genModel != null) {
             return genModel.getBasePackage() + '.' + getClassName(type, index);
         }
