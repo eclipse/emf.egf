@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_6lHKQSopEeG7qpXDyiIq8A"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_6lHKQSopEeG7qpXDyiIq8A"
     name="Pattern_UC3_5_patternOutputProcessor">
   <viewpointContainer xmi:id="_2YVyYCoqEeG7qpXDyiIq8A">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_2-2_0CoqEeG7qpXDyiIq8A">
@@ -44,6 +44,14 @@
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_6i010CoqEeG7qpXDyiIq8A">
+    <invocations xmi:id="_6xfvwD0JEeGcadSq-7E28Q" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_d5v1IAqCEd-JA8Js2pdQ0g">
+      <invocationContractContainer xmi:id="_6xfvwT0JEeGcadSq-7E28Q">
+        <invocationContracts xmi:id="_6xfvwj0JEeGcadSq-7E28Q" invokedContract="platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_1_fQoAqDEd-JA8Js2pdQ0g">
+          <type xmi:type="types:TypeString" xmi:id="_6xfvwz0JEeGcadSq-7E28Q" value="test"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_6xfvxD0JEeGcadSq-7E28Q" invokedContract="platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_1YyAgAqEEd-JA8Js2pdQ0g"/>
+      </invocationContractContainer>
+    </invocations>
     <invocations xmi:id="__IrmoCoqEeG7qpXDyiIq8A" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
       <invocationContractContainer xmi:id="__IrmoSoqEeG7qpXDyiIq8A">
         <invocationContracts xmi:id="__IrmoioqEeG7qpXDyiIq8A" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
@@ -56,6 +64,10 @@
         <invocationContracts xmi:id="__IrmqCoqEeG7qpXDyiIq8A" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_UKrkABp4EeGi0qShOhQVxg">
           <type xmi:type="pattern:TypePatternOutputProcessor" xmi:id="_6HD08CosEeG7qpXDyiIq8A"
               value="org.eclipse.egf.usecase.pattern.uc3.postprocessing.MyPatternProcessor"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_wk-RYT0JEeGcadSq-7E28Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_0bsEQD0JEeGcadSq-7E28Q"
+              value="org.eclipse.egf.usecase.pattern.uc3.m2treporting.reporter.OutputInOneFileReporter"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

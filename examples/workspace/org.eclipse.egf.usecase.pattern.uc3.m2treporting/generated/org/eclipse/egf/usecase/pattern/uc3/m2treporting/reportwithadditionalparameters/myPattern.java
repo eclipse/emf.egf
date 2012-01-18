@@ -1,4 +1,4 @@
-//Generated on Mon Jan 16 09:48:41 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Wed Jan 18 10:14:25 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.usecase.pattern.uc3.m2treporting.reportwithadditionalparameters;
 
 import org.eclipse.egf.common.helper.*;
@@ -18,7 +18,8 @@ public class myPattern {
 		return result;
 	}
 
-	public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+	public final String NL = nl == null ? (System.getProperties()
+			.getProperty("line.separator")) : nl;
 	protected final String TEXT_1 = "- Hello ";
 	protected final String TEXT_2 = "!" + NL;
 	protected final String TEXT_3 = NL;
@@ -55,7 +56,8 @@ public class myPattern {
 		}
 		ctx.setNode(currentNode);
 		if (ctx.useReporter()) {
-			ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
+			ctx.getReporter().executionFinished(
+					OutputManager.computeExecutionOutput(ctx), ctx);
 		}
 
 		stringBuffer.append(TEXT_3);
@@ -73,7 +75,8 @@ public class myPattern {
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
 			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
-			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx,
+					parameterValues);
 		}
 		return null;
 	}
@@ -90,13 +93,15 @@ public class myPattern {
 		return parameters;
 	}
 
-	protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
+	protected void method_body(final StringBuffer stringBuffer,
+			final PatternContext ctx) throws Exception {
 
 		stringBuffer.append(TEXT_1);
 		stringBuffer.append(parameter.getName());
 		stringBuffer.append(TEXT_2);
 		InternalPatternContext ictx = (InternalPatternContext) ctx;
-		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
+		new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer
+				.toString());
 	}
 
 	public boolean preCondition(PatternContext ctx) throws Exception {
