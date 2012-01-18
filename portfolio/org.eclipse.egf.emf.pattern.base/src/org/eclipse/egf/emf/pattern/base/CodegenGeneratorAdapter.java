@@ -80,7 +80,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
                 final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(workspacePath.toFileString()));
                 try {
                     // use buf directly to avoid duplication of the array.
-                    if (!file.exists())
+                    if (file.exists())
                         file.setContents(new ByteArrayInputStream(buf, 0, count), IResource.KEEP_HISTORY | IResource.FORCE, null);
                     else
                         file.create(new ByteArrayInputStream(buf, 0, count), true, null);
