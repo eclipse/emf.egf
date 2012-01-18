@@ -48,7 +48,7 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 <%for (PublishStep publishStep : publishSteps) {%>
                 <arg value="-i" />
                 <arg value="<%=publishStep.getComponent().getName()%>.feature.group" />
-<%if (installStep.isInstallResultStepsSourceFeatures()) {%>
+<%if (installStep.isInstallResultStepsSourceFeatures() && publishStep.isGenerateSources()) {%>
                 <arg value="-i" />
                 <arg value="<%=new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getName())%>.feature.group" />
 <%}%>
