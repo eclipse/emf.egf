@@ -47,6 +47,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#isAllPlatforms <em>All Platforms</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#isNoBuildersInvocation <em>No Builders Invocation</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildStepImpl#getSkipComponentsRegex <em>Skip Components Regex</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,6 +131,28 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * @ordered
      */
     protected boolean noBuildersInvocation = NO_BUILDERS_INVOCATION_EDEFAULT;
+
+
+    /**
+     * The default value of the '{@link #getSkipComponentsRegex() <em>Skip Components Regex</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSkipComponentsRegex()
+     * @generated
+     * @ordered
+     */
+    protected static final String SKIP_COMPONENTS_REGEX_EDEFAULT = ".*\\.source";
+
+
+    /**
+     * The cached value of the '{@link #getSkipComponentsRegex() <em>Skip Components Regex</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSkipComponentsRegex()
+     * @generated
+     * @ordered
+     */
+    protected String skipComponentsRegex = SKIP_COMPONENTS_REGEX_EDEFAULT;
 
 
     /**
@@ -252,6 +275,32 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public String getSkipComponentsRegex() {
+
+        return skipComponentsRegex;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setSkipComponentsRegex(String newSkipComponentsRegex) {
+
+        String oldSkipComponentsRegex = skipComponentsRegex;
+        skipComponentsRegex = newSkipComponentsRegex;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX, oldSkipComponentsRegex, skipComponentsRegex));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @SuppressWarnings("unchecked")
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -296,6 +345,8 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 return isAllPlatforms();
             case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
                 return isNoBuildersInvocation();
+            case BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX:
+                return getSkipComponentsRegex();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -323,6 +374,9 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
             case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
                 setNoBuildersInvocation((Boolean)newValue);
                 return;
+            case BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX:
+                setSkipComponentsRegex((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -348,6 +402,9 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
             case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
                 setNoBuildersInvocation(NO_BUILDERS_INVOCATION_EDEFAULT);
                 return;
+            case BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX:
+                setSkipComponentsRegex(SKIP_COMPONENTS_REGEX_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -370,6 +427,8 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
                 return allPlatforms != ALL_PLATFORMS_EDEFAULT;
             case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
                 return noBuildersInvocation != NO_BUILDERS_INVOCATION_EDEFAULT;
+            case BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX:
+                return SKIP_COMPONENTS_REGEX_EDEFAULT == null ? skipComponentsRegex != null : !SKIP_COMPONENTS_REGEX_EDEFAULT.equals(skipComponentsRegex);
         }
         return super.eIsSet(featureID);
     }
@@ -389,6 +448,8 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
         result.append(allPlatforms);
         result.append(", noBuildersInvocation: ");
         result.append(noBuildersInvocation);
+        result.append(", skipComponentsRegex: ");
+        result.append(skipComponentsRegex);
         result.append(')');
         return result.toString();
     }

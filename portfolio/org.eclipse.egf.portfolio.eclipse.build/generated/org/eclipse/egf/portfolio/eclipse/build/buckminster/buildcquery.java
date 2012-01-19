@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 19 17:25:12 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,10 +21,12 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "<cq:componentQuery xmlns:cq=\"http://www.eclipse.org/buckminster/CQuery-1.0\" resourceMap=\"build.rmap\">" + NL + "    <cq:rootRequest name=\"";
-    protected final String TEXT_2 = "\" componentType=\"buckminster\"/>" + NL + "" + NL + "    <!-- we ignore source plugin and feature by default -->" + NL + "    <cq:advisorNode namePattern=\".*\\.source\" skipComponent=\"true\"/>" + NL + "" + NL + "    <!-- we ignore some missing plugins -->" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.swt\\.(?:gtk\\.(?:linux\\.s390x|aix\\.ppc(?:64)?)|motif\\.solaris\\.sparc|photon\\.qnx\\.x86)\\.source$\" skipComponent=\"true\"/>" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.swt\\.(?:gtk\\.aix\\.ppc(?:64)?|motif\\.solaris\\.sparc|photon\\.qnx\\.x86)$\" skipComponent=\"true\"/>" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.equinox\\.launcher\\.gtk\\.aix\\.ppc(?:64)?$\" skipComponent=\"true\"/>" + NL + "" + NL
-            + "    <cq:advisorNode namePattern=\".*\" useMaterialization=\"false\" useTargetPlatform=\"false\"/>" + NL + "</cq:componentQuery>" + NL;
-    protected final String TEXT_3 = NL;
-    protected final String TEXT_4 = NL;
+    protected final String TEXT_2 = "\" componentType=\"buckminster\"/>" + NL;
+    protected final String TEXT_3 = NL + "    <!-- we ignore source plugin and feature by default -->" + NL + "    <cq:advisorNode namePattern=\"";
+    protected final String TEXT_4 = "\" skipComponent=\"true\"/>";
+    protected final String TEXT_5 = NL + NL + "    <!-- we ignore some missing plugins -->" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.swt\\.(?:gtk\\.(?:linux\\.s390x|aix\\.ppc(?:64)?)|motif\\.solaris\\.sparc|photon\\.qnx\\.x86)\\.source$\" skipComponent=\"true\"/>" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.swt\\.(?:gtk\\.aix\\.ppc(?:64)?|motif\\.solaris\\.sparc|photon\\.qnx\\.x86)$\" skipComponent=\"true\"/>" + NL + "\t<cq:advisorNode namePattern=\"^org\\.eclipse\\.equinox\\.launcher\\.gtk\\.aix\\.ppc(?:64)?$\" skipComponent=\"true\"/>" + NL + "" + NL + "    <cq:advisorNode namePattern=\".*\" useMaterialization=\"false\" useTargetPlatform=\"false\"/>" + NL + "</cq:componentQuery>" + NL;
+    protected final String TEXT_6 = NL;
+    protected final String TEXT_7 = NL;
 
     public buildcquery() {
         //Here is the constructor
@@ -60,8 +62,8 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_3);
-        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_7);
         return stringBuffer.toString();
     }
 
@@ -114,6 +116,12 @@ public class buildcquery extends org.eclipse.egf.portfolio.eclipse.build.BuildSt
         stringBuffer.append(TEXT_1);
         stringBuffer.append(buildStepName);
         stringBuffer.append(TEXT_2);
+        if (buildStep.getSkipComponentsRegex() != null && buildStep.getSkipComponentsRegex().length() > 0) {
+            stringBuffer.append(TEXT_3);
+            stringBuffer.append(buildStep.getSkipComponentsRegex());
+            stringBuffer.append(TEXT_4);
+        }
+        stringBuffer.append(TEXT_5);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
     }

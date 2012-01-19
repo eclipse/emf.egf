@@ -4,8 +4,10 @@
 <cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="build.rmap">
     <cq:rootRequest name="<%=buildStepName%>" componentType="buckminster"/>
 
+<%if (buildStep.getSkipComponentsRegex() != null && buildStep.getSkipComponentsRegex().length() > 0) {%>
     <!-- we ignore source plugin and feature by default -->
-    <cq:advisorNode namePattern=".*\.source" skipComponent="true"/>
+    <cq:advisorNode namePattern="<%=buildStep.getSkipComponentsRegex()%>" skipComponent="true"/>
+<%}%>
 
     <!-- we ignore some missing plugins -->
 	<cq:advisorNode namePattern="^org\.eclipse\.swt\.(?:gtk\.(?:linux\.s390x|aix\.ppc(?:64)?)|motif\.solaris\.sparc|photon\.qnx\.x86)\.source$" skipComponent="true"/>

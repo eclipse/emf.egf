@@ -17,6 +17,8 @@
         defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="noBuildersInvocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="skipComponentsRegex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=".*\.source"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PublishStep" eSuperTypes="#//ResultStep">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"

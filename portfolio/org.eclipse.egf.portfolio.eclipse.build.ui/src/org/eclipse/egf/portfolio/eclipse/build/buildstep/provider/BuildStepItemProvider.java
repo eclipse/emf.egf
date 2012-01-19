@@ -85,6 +85,7 @@ public class BuildStepItemProvider
 
             addAllPlatformsPropertyDescriptor(object);
             addNoBuildersInvocationPropertyDescriptor(object);
+            addSkipComponentsRegexPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -132,6 +133,30 @@ public class BuildStepItemProvider
                  false,
                  false,
                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the Skip Components Regex feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addSkipComponentsRegexPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_BuildStep_skipComponentsRegex_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BuildStep_skipComponentsRegex_feature", "_UI_BuildStep_type"),
+                 BuildstepPackage.Literals.BUILD_STEP__SKIP_COMPONENTS_REGEX,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
 
@@ -209,6 +234,7 @@ public class BuildStepItemProvider
         switch (notification.getFeatureID(BuildStep.class)) {
             case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
             case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
+            case BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS:

@@ -29,6 +29,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getComponents <em>Components</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isAllPlatforms <em>All Platforms</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#isNoBuildersInvocation <em>No Builders Invocation</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getSkipComponentsRegex <em>Skip Components Regex</em>}</li>
  * </ul>
  * </p>
  *
@@ -180,6 +181,49 @@ public interface BuildStep extends Step {
      */
 
     void setNoBuildersInvocation(boolean value);
+
+
+
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>Skip Components Regex</b></em>' attribute.
+     * The default value is <code>".*\\.source"</code>.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Skip Components Regex</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Skip Components Regex</em>' attribute.
+     * @see #setSkipComponentsRegex(String)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBuildStep_SkipComponentsRegex()
+     * @model default=".*\\.source"
+     * @generated
+     */
+
+    String getSkipComponentsRegex();
+
+
+
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep#getSkipComponentsRegex <em>Skip Components Regex</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Skip Components Regex</em>' attribute.
+     * @see #getSkipComponentsRegex()
+     * @generated
+     */
+
+    void setSkipComponentsRegex(String value);
 
 
 
