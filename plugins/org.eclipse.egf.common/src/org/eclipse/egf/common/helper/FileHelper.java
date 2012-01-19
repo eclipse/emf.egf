@@ -9,11 +9,14 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -629,5 +632,33 @@ public class FileHelper {
         }
         return null;
     }
+
+	public static boolean hasContent(File file, String content) {
+		BufferedReader fileReader = null;
+		BufferedReader contentReader = null;
+		try {
+			 fileReader = new BufferedReader(new FileReader(file));
+			 contentReader = new BufferedReader(new StringReader(content));
+			 while (true) {
+				 String fileLine = fileReader.readLine();
+				 String contentLine = contentReader.readLine();
+	
+				 if (fileLine == null && contentLine == null)
+	                return true;
+	
+				 if (fileLine == null || contentLine == null || !fileLine.equals(contentLine)) 
+					 return false;
+			 }
+		} catch (Exception e) {
+			return false;
+		} finally {
+			if (fileReader != null) {
+				try {
+					fileReader.close();
+				} catch (IOException e) {
+				}
+			}
+		}
+	}
 
 }

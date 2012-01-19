@@ -16,6 +16,7 @@ package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
@@ -28,6 +29,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.common.helper.FileHelper;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
@@ -65,19 +67,28 @@ public class FileReporter implements PatternExecutionReporter {
 
     protected void handleFile(String outputWithCallBack, IPath filePath) throws IOException {
         File fileFile = filePath.toFile();
+
+        if (FileHelper.hasContent(fileFile, outputWithCallBack)) 
+        	return;
+
         if (!fileFile.getParentFile().exists())
             fileFile.getParentFile().mkdirs();
-
+        
         FileWriter fileWriter = new FileWriter(fileFile);
         fileWriter.write(outputWithCallBack);
         fileWriter.close();
     }
 
-    protected void handleWorkspaceFile(String outputWithCallBack, IPath filePath) throws CoreException {
+	protected void handleWorkspaceFile(String outputWithCallBack, IPath filePath) throws CoreException {
         String projectName = filePath.segment(1);
         IPath projectRelativePath = filePath.removeFirstSegments(2).setDevice(null);
         
         IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+        
+        IFile file = project.getFile(projectRelativePath);
+        if (FileHelper.hasContent(file.getRawLocation().toFile(), outputWithCallBack))
+        	return;
+
         NullProgressMonitor monitor = new NullProgressMonitor();
         
         if (!project.exists()) 
@@ -91,8 +102,7 @@ public class FileReporter implements PatternExecutionReporter {
             if (!folder.exists())
                 folder.create(true, true, monitor);
         }
-        
-        IFile file = project.getFile(projectRelativePath);
+                
         ByteArrayInputStream inputStream = new ByteArrayInputStream(outputWithCallBack.getBytes());
         
         if (!file.exists())
@@ -100,5 +110,4 @@ public class FileReporter implements PatternExecutionReporter {
         else
             file.setContents(inputStream, true, true, monitor);
     }
-
 }
