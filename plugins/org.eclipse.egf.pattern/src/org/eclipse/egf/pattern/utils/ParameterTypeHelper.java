@@ -59,36 +59,37 @@ public class ParameterTypeHelper {
 
         IPlatformGenModel genModel = null;
         for (IPlatformGenModel model : EGFCorePlugin.getWorkspaceTargetPlatformGenModels()) {
-            System.out.println("Ws model: " + model.getURI());
             if (model.getURI().equals(uri.trimFragment())) {
                 genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
+                System.out.println("found Ws model: " + model.getURI());
                 break;
             }
         }
 
-        if (genModel == null)
+        if (genModel == null) {
             genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-        System.out.println("Target model: " + ((genModel == null) ? "null" : genModel.getURI()));
+            System.out.println("found Target model: " + ((genModel == null) ? "null" : genModel.getURI()));
+        }
 
         if (genModel == null) {
             for (IPlatformGenModel model : EGFCorePlugin.getNonWorkspaceTargetPlatformGenModels()) {
-                System.out.println("Non Ws model: " + model.getURI());
                 if (model.getURI().equals(uri.trimFragment())) {
                     genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
+                    System.out.println("found Non Ws model: " + model.getURI());
                     break;
                 }
             }
         }
 
-        if (genModel == null)
+        if (genModel == null) {
             genModel = EGFCorePlugin.getRuntimePlatformGenModel(uri.trimFragment());
-        System.out.println("Runtime model: " + ((genModel == null) ? "null" : genModel.getURI()));
-
+            System.out.println("found Runtime model: " + ((genModel == null) ? "null" : genModel.getURI()));
+        }
         if (genModel != null) {
             return genModel.getBasePackage() + '.' + getClassName(type, index);
         }
 
-        throw new IllegalStateException();
+        throw new IllegalStateException("Cannot find model: " + uri);
     }
 
     private String getClassName(String type, int index) {
