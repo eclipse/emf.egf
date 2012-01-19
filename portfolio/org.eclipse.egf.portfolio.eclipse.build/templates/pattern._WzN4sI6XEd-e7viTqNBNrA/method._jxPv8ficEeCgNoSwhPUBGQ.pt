@@ -4,14 +4,18 @@
 
 	<property name="relengDir" value="${basedir}"/>
 
+	<tstamp>
+		<format property="myTimestamp" pattern="yyyyMMdd-HHmm"/>
+	</tstamp>
+
     <!-- if we are not running in Hudson -->
     <condition property="build.root" value="${env.WORKSPACE}" else="${relengDir}/../workspace">
         <isset property="env.WORKSPACE" />
     </condition>
+    <condition property="timestamp" value="${env.BUILD_ID}" else="${myTimestamp}">
+        <isset property="env.BUILD_ID" />
+    </condition>
 
-	<tstamp>
-		<format property="timestamp" pattern="yyyyMMdd-HHmm"/>
-	</tstamp>
 	
     <property name="tools" location="${build.root}/tools" />
     <property name="result" location="${build.root}/result" />
