@@ -655,12 +655,9 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	@Override
   <%}%>
   <%if (genModel.useGenerics()) {%>
-    <%LOOP: for (GenOperation genOperation : (genModel.isMinimalReflectiveMethods() ? genClass.getImplementedGenOperations() : genClass.getAllGenOperations())) {%>
-      <%for (GenParameter genParameter : genOperation.getGenParameters()) {%>
-        <%if (genParameter.isUncheckedCast()) {%>
-	@SuppressWarnings("unchecked")
-        <%break LOOP;}%>
-      <%}%>
+    <%boolean isUnchecked = false; boolean isRaw = false; LOOP: for (GenOperation genOperation : (genModel.isMinimalReflectiveMethods() ? genClass.getImplementedGenOperations() : genClass.getAllGenOperations())) { for (GenParameter genParameter : genOperation.getGenParameters()) { if (genParameter.isUncheckedCast()) { if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType()) { isUnchecked = true; } if (genParameter.usesOperationTypeParameters() && !genParameter.getEcoreParameter().getEGenericType().getETypeArguments().isEmpty()) { isRaw = true; break LOOP; }}}}%>
+    <%if (isUnchecked) {%>
+	@SuppressWarnings(<%if (!isRaw) {%>"unchecked"<%} else {%>{"rawtypes", "unchecked" }<%}%>)
     <%}%>
   <%}%>
 	public Object eInvoke(int operationID, <%=genModel.getImportedName("org.eclipse.emf.common.util.EList")%><%=singleWildcard%> arguments) throws <%=genModel.getImportedName(isGWT ? "org.eclipse.emf.common.util.InvocationTargetException" : "java.lang.reflect.InvocationTargetException")%>
@@ -670,10 +667,10 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 <%for (GenOperation genOperation : (genModel.isMinimalReflectiveMethods() ? genClass.getImplementedGenOperations() : genClass.getAllGenOperations())) { List<GenParameter> genParameters = genOperation.getGenParameters(); int size = genParameters.size();%>
 			case <%=genClass.getQualifiedOperationID(genOperation)%>:
   <%if (genOperation.isVoid()) {%>
-				<%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>);
+				<%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.usesOperationTypeParameters() && !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.usesOperationTypeParameters() ? genParameter.getRawImportedType() : genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>);
 				return null;
   <%} else {%>
-				return <%if (!isJDK50 && genOperation.isPrimitiveType()) {%>new <%=genOperation.getObjectType(genClass)%>(<%}%><%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>)<%}%>;
+				return <%if (!isJDK50 && genOperation.isPrimitiveType()) {%>new <%=genOperation.getObjectType(genClass)%>(<%}%><%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.usesOperationTypeParameters() && !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.usesOperationTypeParameters() ? genParameter.getRawImportedType() : genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>)<%}%>;
   <%}%>
 <%}%>
 		}
