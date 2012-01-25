@@ -61,23 +61,18 @@ public class ParameterTypeHelper {
         for (IPlatformGenModel model : EGFCorePlugin.getWorkspaceTargetPlatformGenModels()) {
             if (model.getURI().equals(uri.trimFragment())) {
                 genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-                // System.out.println("found Ws model: " + model.getURI());
                 break;
             }
         }
 
         if (genModel == null) {
             genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-            // System.out.println("found Target model: " + ((genModel == null) ?
-            // "null" : genModel.getURI()));
         }
 
         if (genModel == null) {
             for (IPlatformGenModel model : EGFCorePlugin.getNonWorkspaceTargetPlatformGenModels()) {
                 if (model.getURI().equals(uri.trimFragment())) {
                     genModel = EGFCorePlugin.getTargetPlatformGenModel(uri.trimFragment());
-                    // System.out.println("found Non Ws model: " +
-                    // model.getURI());
                     break;
                 }
             }
@@ -85,8 +80,6 @@ public class ParameterTypeHelper {
 
         if (genModel == null) {
             genModel = EGFCorePlugin.getRuntimePlatformGenModel(uri.trimFragment());
-            // System.out.println("found Runtime model: " + ((genModel == null)
-            // ? "null" : genModel.getURI()));
         }
         if (genModel != null) {
             return genModel.getBasePackage() + '.' + getClassName(type, index);
