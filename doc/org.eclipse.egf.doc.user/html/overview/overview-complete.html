@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="egf,overview, factory component, factory,orchestration, viewpoint, generation pattern"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>EGF Overview</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;EGF (Eclipse Generation Factories) Overview
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+
+<a name="introduction"><h2>Introduction</h2></a>
+
+<p class="Para">In order to improve software development industrialization, a major step consists in mass-producing software. This mass-production must be customizable, and must be able to support complex, large-scale and heterogeneous generations. Given the today’s available Eclipse tools, the issue here is not to provide either a new transformation engine (model-to-model, model-to-text, text-to-model, text-to-text) or DSL editor but to realize their integration for flexible software mass-production. This is the <a href="http://www.eclipse.org/proposals/egf/">purpose of EGF</a>.</p>
+
+<p class="Para">EGF federates generation around the pivotal element of factory component. A factory component is a unit of generation with a clear objective of generation. It has a contract to declare the factory component parameters. Contrary to a classic generation which aggregates all the generation parameters, generation data are organized by viewpoints, such as generation pattern, license description or deployment declaration. Altogether, viewpoints explicitly configure all the generation parameters. The generation orchestration is defined by a production plan. A generation step of the production plan can either be a Java task or, by assembly, an invocation to another factory component. Regarding the lifecycle, a factory component can be edited and executed.</p>
+
+<p class="Para">A factory component encapsulates generation know-how. A portfolio is a consistent set of factory components with a common generation objective, valuable for a development team or a user community. The purpose is to create off-the-shelf factory components. For instance, a technical infrastructure factory provides all the needed mechanisms for an application development (e.g., transaction management, persistence policy).</p>
+
+
+<a name="example"><h2>Example of customization with generation patterns</h2></a>
+
+<p class="Para">The following figure exemplifies a generation by factory component assembly: some factory components have an assembly role while others generate. This generation reuses a viewpoint provided by EGF, a M2T (model-to-text) generation pattern viewpoint for the definition of generation patterns. Those generation patterns, Jet-based today, supports pattern inheritance. This means a M2T generation can overload another one. In this example, by default, the EMF model/edit/editor generation is applied. It can be specialized by inherited patterns. The same principle can be applied to other generations other than EMF, for instance to web services or documentation.</p>
+
+<p align="center">
+  <img src="./images/exampleFCAssembly.jpg" alt="Example of factory component assembly with EGF"/>
+</p>
+<p align="center">
+ <i>Figure 1. Example of factory component assembly with EGF</i>
+</p>
+
+<p class="Para">Next figure presents the EGF perspective. With the view on the left-hand side, the factory component developer develops his own factory components, while with the view on the right-hand side he visualizes the deployed and reusable factory components. This figure shows the viewpoint/orchestration structure of a factory component and the generation delegation between factory components with parameter passing.</p>
+
+<p align="center">
+  <img src="./images/egfPerspective.jpg" alt="The EGF perspective"/>
+</p>
+<p align="center">
+ <i>Figure 2. The EGF perspective</i>
+</p>
+
+
+<a name="twoLevels"><h2>Two levels of factory component development</h2></a>
+
+<p class="Para">As presented in the previous example, the most natural way to put factory components into practice is to develop and assemble factory components. The objective is to create valuable factory components, either for one’s team or larger development teams, and to reuse them in different generation chains. The issue is to figure out generation practices, how to implement and compose them with factory components, and the generation variability.</p>
+
+<p class="Para">Factory components can be used to address simple generations. But flexibility and customization need more sophisticated mechanisms. For meeting this need, EGF offers the ability to extend the default factory component structure and generation behavior. i) One can add its own viewpoints in order to add new generation data structures, and to augment the capability to parameterize generations. This implies associated factory components are able to use those new viewpoints. ii) One can add its own orchestration types. This means orchestration is not restricted to a unique orchestration notation and engine.</p>
+
+<p class="Para">Industrialization of large-scale development cannot be sum up to a succession of generators. It involves an architecture description of core components, technological generation components with their extensions, and the definition of their generation lifecycles. EGF brings one stone to this tooling aspect.</p>
+
+
+<a name="relationship"><h2>EGF relationships</h2></a>
+
+<p class="Para">Related EGF topics:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Definition of generation architecture</li>
+    <li CLASS="Item">Generation composition (generation redefinition and extensibility, merge, include/override)</li>
+    <li CLASS="Item">Generation orchestration</li>
+    <li CLASS="Item">Definition of technical and business generation portfolios</li>
+    <li CLASS="Item">Product lines</li>
+</ul>
+
+
+</body>
+</html>

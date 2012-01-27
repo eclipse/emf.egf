@@ -12,7 +12,7 @@
  -->
 
 <toc label="Concepts"
-	link_to="../org.eclipse.egf.doc.user/toc.xml#concepts">
+	link_to="../org.eclipse.egf.doc.user/toc.xml#concepts-DEACTIVATED">
 	<topic label="EGF Engine">
   <topic href="html/concepts/activity/activity.html" label="Activity">
   </topic>
