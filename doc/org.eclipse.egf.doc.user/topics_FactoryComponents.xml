@@ -21,4 +21,14 @@
 	<topic label="Users">
 		<anchor id="users"/>
 	</topic>
+ <topic href="http://wiki.eclipse.org/EGF/Portfolio/EMF" label="Enhancement of the EMF Generation">
+    <topic href="http://blanglois.blogspot.com/2010/12/enhancement-of-emf-generation-part-one.html" label="Enhancement of the EMF Generation - Rationale - Part 1">
+    </topic>
+    <topic href="http://blanglois.blogspot.com/2010/12/enhancement-of-emf-generation-part-two.html" label="Enhancement of the EMF Generation - Rationale - Part 2">
+    </topic>
+    <topic href="http://wiki.eclipse.org/images/b/b7/EGF_Tutorial_-_EMF_Generation_Patterns_v0.1.0.pdf" label="Enhancement of the EMF Generation - Tutorial">
+    </topic>
+ </topic>
+ <topic href="http://wiki.eclipse.org/EGF/Portfolio/Build" label="Build EGF Portfolio">
+ </topic>
 </toc>

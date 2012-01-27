@@ -16,11 +16,27 @@
       <anchor id="egfOverviews"/>
    </topic>
    <topic label="Getting Started">
+      <topic href="http://eclipse.org/egf/" label="EGF Project Page">
+      </topic>
+      <topic href="http://wiki.eclipse.org/EGF" label="EGF Wiki">
+      </topic>
+      <topic href="http://wiki.eclipse.org/images/6/66/EGF_Introduction.pdf" label="Introduction to EGF">
+      </topic>
       <anchor id="gettingstarted"/>
    </topic>
    <topic label="Tutorials">
       <anchor id="egfEngineTutorials"/>
-      <topic href="http://wiki.eclipse.org/EGF_Tutorial_and_Use_Cases" label="Tutorial on the EGF Wiki">
+      <topic label="On-line Tutorials">
+         <topic href="http://wiki.eclipse.org/EGF_Tutorial_and_Use_Cases" label="All the tutorials">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/5/50/EGF_Tutorial_Generation_Chain_v0.1.0.pdf" label="Generation Chain">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/5/5c/EGF_Tutorial_M2TReporting.pdf" label="Model-to-text: post-processing and reporting">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/b/bd/EGF_Tutorial_Pattern_Trace.pdf" label="Pattern Trace">
+         </topic>
+         <topic href="http://wiki.eclipse.org/images/4/43/EGF-Tutorial_reuse_and_customization_v0.1.0.pdf" label="Pattern reuse and customization">
+         </topic>
       </topic>
    </topic>
    <topic label="Concepts">
@@ -35,7 +51,7 @@
    <topic label="Reference">
       <anchor id="reference"/>
    </topic>
-   <topic label="Factory Component Portfolio">
+   <topic label="Portfolio">
       <anchor id="factoryComponents"/>
    </topic>
    <topic label="What's new" href="http://wiki.eclipse.org/EGF_Roadmap"/>
