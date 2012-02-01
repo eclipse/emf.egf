@@ -19,6 +19,9 @@
       <fcore
             id="egf/BuildTrigger_generation.fcore">
       </fcore>
+      <fcore
+            id="egf/BuildFile_generation.fcore">
+      </fcore>
    </extension>
 
 </plugin>

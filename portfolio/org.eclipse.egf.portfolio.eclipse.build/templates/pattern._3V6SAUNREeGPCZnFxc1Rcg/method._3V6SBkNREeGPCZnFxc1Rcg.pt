@@ -1,0 +1,9 @@
+<%String stepName = new GenerationHelper().getIdOrPositionString(zipStep);%>
+	<target name="<%=stepName%>" depends="init">
+		<zip destfile="<%=zipStep.getDestinationFilePath()%>" basedir="<%=zipStep.getBaseDir()%>" <%=new GenerationHelper().getAdditionalParametersString(zipStep)%> >
+<%@ egf:patternCall 
+	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.util.build.xml.filesetProvider" 
+	args="zipStep:filesetProvider"%>
+		</zip>
+	</target>
+

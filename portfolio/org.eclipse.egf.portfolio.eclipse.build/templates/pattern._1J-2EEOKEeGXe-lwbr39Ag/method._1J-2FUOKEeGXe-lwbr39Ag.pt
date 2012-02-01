@@ -1,0 +1,6 @@
+<%String stepName = new GenerationHelper().getIdOrPositionString(renameStep);%>
+	<target name="<%=stepName%>" depends="init">
+		<move file="<%=renameStep.getSourcePath()%>" tofile="<%=renameStep.getDestinationPath()%>" <%=new GenerationHelper().getAdditionalParametersString(renameStep)%> >
+		</move>
+	</target>
+

@@ -24,6 +24,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.emf.common.util.EList;
@@ -216,5 +217,18 @@ public class GenerationHelper {
         }
         
         return result ;
+    }
+    
+    public String getAdditionalParametersString(FileStep fileStep) {
+        StringBuilder builder = new StringBuilder();
+        for (Property property : fileStep.getAdditionalParameters()) {
+            if (builder.length() > 0)
+                builder.append(' ');
+            builder.append(property.getKey());
+            builder.append("=\"");
+            builder.append(property.getValue());
+            builder.append("\"");
+        }
+        return builder.toString();
     }
 }

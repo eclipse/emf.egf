@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildfile"
+    nsURI="http://www.eclipse.org/egf/1.0.0/buildfile" nsPrefix="buildfile">
+  <eClassifiers xsi:type="ecore:EClass" name="FileStep" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.ecore#//Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="additionalParameters" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.ecore#//Property"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilesetProvider" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filePaths" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dirPaths" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultSteps" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.ecore#//ResultStep"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="installSteps" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.ecore#//InstallStep"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ZipStep" eSuperTypes="#//FileStep #//FilesetProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseDir" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationFilePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnzipStep" eSuperTypes="#//FileStep">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceFilePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationFolderPath"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveStep" eSuperTypes="#//FileStep #//FilesetProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationFolderPath"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameStep" eSuperTypes="#//FileStep">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourcePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationPath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DeleteStep" eSuperTypes="#//FileStep #//FilesetProvider"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CopyStep" eSuperTypes="#//FileStep #//FilesetProvider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationFolderPath"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DownloadStep" eSuperTypes="#//FileStep">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceFilePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="destinationFilePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateFolderStep" eSuperTypes="#//FileStep">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderPath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

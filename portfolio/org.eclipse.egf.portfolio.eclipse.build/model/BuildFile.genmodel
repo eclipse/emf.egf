@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.&#xD;&#xA;   All rights reserved. This program and the accompanying materials&#xD;&#xA;   are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;   which accompanies this distribution, and is available at&#xD;&#xA;   http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;  &#xD;&#xA;   Contributors:&#xD;&#xA;       Thales Corporate Services S.A.S - initial API and implementation"
+    modelDirectory="/org.eclipse.egf.portfolio.eclipse.build/src" editDirectory="/org.eclipse.egf.portfolio.eclipse.build.ui/src"
+    modelPluginID="org.eclipse.egf.portfolio.eclipse.build" modelName="BuildFile"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" editPluginID="org.eclipse.egf.portfolio.eclipse.build.ui"
+    usedGenPackages="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.genmodel#//buildcore platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel#//buildstep">
+  <foreignModel>BuildFile.ecore</foreignModel>
+  <genPackages prefix="Buildfile" basePackage="org.eclipse.egf.portfolio.eclipse.build"
+      disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="BuildFile.ecore#/">
+    <genClasses image="false" ecoreClass="BuildFile.ecore#//FileStep">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildFile.ecore#//FileStep/additionalParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//FilesetProvider">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//FilesetProvider/filePaths"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//FilesetProvider/dirPaths"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildFile.ecore#//FilesetProvider/resultSteps"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildFile.ecore#//FilesetProvider/installSteps"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//ZipStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//ZipStep/baseDir"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//ZipStep/destinationFilePath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//UnzipStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//UnzipStep/sourceFilePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//UnzipStep/destinationFolderPath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//MoveStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//MoveStep/destinationFolderPath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//RenameStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//RenameStep/sourcePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//RenameStep/destinationPath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//DeleteStep"/>
+    <genClasses ecoreClass="BuildFile.ecore#//CopyStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//CopyStep/destinationFolderPath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//DownloadStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//DownloadStep/sourceFilePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//DownloadStep/destinationFilePath"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildFile.ecore#//CreateFolderStep">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildFile.ecore#//CreateFolderStep/folderPath"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
