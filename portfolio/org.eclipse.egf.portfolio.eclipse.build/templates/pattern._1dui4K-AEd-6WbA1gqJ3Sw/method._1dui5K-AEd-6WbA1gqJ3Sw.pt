@@ -5,7 +5,7 @@
 
 	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_dropins">
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-if (new GenerationHelper().isEnabled(publishStep) && publishStep.isGenerateDropins()) {
+if (publishStep.isGenerateDropins()) {
 String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/dropins";
 String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getId();
 String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getId();%>
@@ -34,11 +34,10 @@ String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getI
 			<repository location="file:/${publish}/<%=aggregateStep.getId()%>/site.p2" name="<%=new GenerationHelper().getJob(aggregateStep).getName()%>/<%=aggregateStep.getId()%>" />
 			<source>
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-if (new GenerationHelper().isEnabled(publishStep)) {
 if (publishStep.getComponent() instanceof Feature) {
 String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";%>
 				<repository location="<%=location%>" />
-<%}}}%>
+<%}}%>
 <%for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {%>
 				<repository location="<%=updateSiteUrl%>" />
 <%}%>

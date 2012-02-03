@@ -107,6 +107,13 @@ public class BuildcoreSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildcorePackage.ITEM_PROPERTIES: {
+                ItemProperties itemProperties = (ItemProperties)theEObject;
+                T result = caseItemProperties(itemProperties);
+                if (result == null) result = caseItem(itemProperties);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildcorePackage.KEY_VALUE: {
                 KeyValue keyValue = (KeyValue)theEObject;
                 T result = caseKeyValue(keyValue);
@@ -123,6 +130,7 @@ public class BuildcoreSwitch<T> {
             case BuildcorePackage.CHAIN: {
                 Chain chain = (Chain)theEObject;
                 T result = caseChain(chain);
+                if (result == null) result = caseItemProperties(chain);
                 if (result == null) result = caseItem(chain);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -130,28 +138,34 @@ public class BuildcoreSwitch<T> {
             case BuildcorePackage.ABSTRACT_STEP_CONTAINER: {
                 AbstractStepContainer abstractStepContainer = (AbstractStepContainer)theEObject;
                 T result = caseAbstractStepContainer(abstractStepContainer);
+                if (result == null) result = caseItemProperties(abstractStepContainer);
+                if (result == null) result = caseItem(abstractStepContainer);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case BuildcorePackage.STEP: {
                 Step step = (Step)theEObject;
                 T result = caseStep(step);
+                if (result == null) result = caseItem(step);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case BuildcorePackage.JOB: {
                 Job job = (Job)theEObject;
                 T result = caseJob(job);
-                if (result == null) result = caseItem(job);
                 if (result == null) result = caseAbstractStepContainer(job);
+                if (result == null) result = caseItemProperties(job);
+                if (result == null) result = caseItem(job);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case BuildcorePackage.STEP_CONTAINER: {
                 StepContainer stepContainer = (StepContainer)theEObject;
                 T result = caseStepContainer(stepContainer);
-                if (result == null) result = caseStep(stepContainer);
                 if (result == null) result = caseAbstractStepContainer(stepContainer);
+                if (result == null) result = caseStep(stepContainer);
+                if (result == null) result = caseItemProperties(stepContainer);
+                if (result == null) result = caseItem(stepContainer);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -183,6 +197,21 @@ public class BuildcoreSwitch<T> {
      * @generated
      */
     public T caseItem(Item object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Item Properties</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Item Properties</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseItemProperties(ItemProperties object) {
         return null;
     }
 

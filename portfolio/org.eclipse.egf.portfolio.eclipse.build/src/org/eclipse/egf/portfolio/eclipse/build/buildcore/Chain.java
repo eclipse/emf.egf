@@ -31,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Chain extends Item {
+public interface Chain extends ItemProperties {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

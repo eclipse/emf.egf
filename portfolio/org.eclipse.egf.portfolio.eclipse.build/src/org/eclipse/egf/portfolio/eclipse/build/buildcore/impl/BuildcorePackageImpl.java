@@ -18,6 +18,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
@@ -52,6 +53,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass itemEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass itemPropertiesEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -209,8 +217,26 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getItem_Properties() {
-        return (EReference)itemEClass.getEStructuralFeatures().get(2);
+    public EAttribute getItem_Enabled() {
+        return (EAttribute)itemEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getItemProperties() {
+        return itemPropertiesEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getItemProperties_Properties() {
+        return (EReference)itemPropertiesEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -308,35 +334,8 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJob_Enabled() {
-        return (EAttribute)jobEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getStep() {
         return stepEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getStep_Name() {
-        return (EAttribute)stepEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getStep_Description() {
-        return (EAttribute)stepEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -406,7 +405,10 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         itemEClass = createEClass(ITEM);
         createEAttribute(itemEClass, ITEM__NAME);
         createEAttribute(itemEClass, ITEM__DESCRIPTION);
-        createEReference(itemEClass, ITEM__PROPERTIES);
+        createEAttribute(itemEClass, ITEM__ENABLED);
+
+        itemPropertiesEClass = createEClass(ITEM_PROPERTIES);
+        createEReference(itemPropertiesEClass, ITEM_PROPERTIES__PROPERTIES);
 
         keyValueEClass = createEClass(KEY_VALUE);
         createEAttribute(keyValueEClass, KEY_VALUE__KEY);
@@ -421,13 +423,10 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         createEReference(abstractStepContainerEClass, ABSTRACT_STEP_CONTAINER__STEPS);
 
         stepEClass = createEClass(STEP);
-        createEAttribute(stepEClass, STEP__NAME);
-        createEAttribute(stepEClass, STEP__DESCRIPTION);
 
         jobEClass = createEClass(JOB);
         createEReference(jobEClass, JOB__SCMS);
         createEReference(jobEClass, JOB__TRIGGERS);
-        createEAttribute(jobEClass, JOB__ENABLED);
 
         stepContainerEClass = createEClass(STEP_CONTAINER);
 
@@ -464,18 +463,23 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        itemPropertiesEClass.getESuperTypes().add(this.getItem());
         propertyEClass.getESuperTypes().add(this.getKeyValue());
-        chainEClass.getESuperTypes().add(this.getItem());
-        jobEClass.getESuperTypes().add(this.getItem());
+        chainEClass.getESuperTypes().add(this.getItemProperties());
+        abstractStepContainerEClass.getESuperTypes().add(this.getItemProperties());
+        stepEClass.getESuperTypes().add(this.getItem());
         jobEClass.getESuperTypes().add(this.getAbstractStepContainer());
-        stepContainerEClass.getESuperTypes().add(this.getStep());
         stepContainerEClass.getESuperTypes().add(this.getAbstractStepContainer());
+        stepContainerEClass.getESuperTypes().add(this.getStep());
 
         // Initialize classes and features; add operations and parameters
         initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getItem_Name(), ecorePackage.getEString(), "name", null, 1, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getItem_Name(), ecorePackage.getEString(), "name", null, 0, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getItem_Description(), ecorePackage.getEString(), "description", null, 0, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getItem_Properties(), this.getProperty(), null, "properties", null, 0, -1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getItem_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(itemPropertiesEClass, ItemProperties.class, "ItemProperties", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getItemProperties_Properties(), this.getProperty(), null, "properties", null, 0, -1, ItemProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(keyValueEClass, KeyValue.class, "KeyValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getKeyValue_Key(), ecorePackage.getEString(), "key", null, 1, 1, KeyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -490,13 +494,10 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEReference(getAbstractStepContainer_Steps(), this.getStep(), null, "steps", null, 0, -1, AbstractStepContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(stepEClass, Step.class, "Step", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getStep_Name(), ecorePackage.getEString(), "name", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getStep_Description(), ecorePackage.getEString(), "description", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jobEClass, Job.class, "Job", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getJob_Scms(), this.getSCM(), null, "scms", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getJob_Triggers(), this.getTrigger(), null, "triggers", null, 0, -1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getJob_Enabled(), ecorePackage.getEBoolean(), "enabled", "true", 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(stepContainerEClass, StepContainer.class, "StepContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

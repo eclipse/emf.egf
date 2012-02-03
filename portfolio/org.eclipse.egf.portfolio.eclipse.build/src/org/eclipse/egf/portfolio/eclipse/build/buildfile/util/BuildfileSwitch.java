@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildfile.util;
 
 import java.util.List;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 
@@ -115,6 +116,7 @@ public class BuildfileSwitch<T> {
                 FileStep fileStep = (FileStep)theEObject;
                 T result = caseFileStep(fileStep);
                 if (result == null) result = caseStep(fileStep);
+                if (result == null) result = caseItem(fileStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -130,6 +132,7 @@ public class BuildfileSwitch<T> {
                 if (result == null) result = caseFileStep(zipStep);
                 if (result == null) result = caseFilesetProvider(zipStep);
                 if (result == null) result = caseStep(zipStep);
+                if (result == null) result = caseItem(zipStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -138,6 +141,7 @@ public class BuildfileSwitch<T> {
                 T result = caseUnzipStep(unzipStep);
                 if (result == null) result = caseFileStep(unzipStep);
                 if (result == null) result = caseStep(unzipStep);
+                if (result == null) result = caseItem(unzipStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -147,6 +151,7 @@ public class BuildfileSwitch<T> {
                 if (result == null) result = caseFileStep(moveStep);
                 if (result == null) result = caseFilesetProvider(moveStep);
                 if (result == null) result = caseStep(moveStep);
+                if (result == null) result = caseItem(moveStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -155,6 +160,7 @@ public class BuildfileSwitch<T> {
                 T result = caseRenameStep(renameStep);
                 if (result == null) result = caseFileStep(renameStep);
                 if (result == null) result = caseStep(renameStep);
+                if (result == null) result = caseItem(renameStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -164,6 +170,7 @@ public class BuildfileSwitch<T> {
                 if (result == null) result = caseFileStep(deleteStep);
                 if (result == null) result = caseFilesetProvider(deleteStep);
                 if (result == null) result = caseStep(deleteStep);
+                if (result == null) result = caseItem(deleteStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -173,6 +180,7 @@ public class BuildfileSwitch<T> {
                 if (result == null) result = caseFileStep(copyStep);
                 if (result == null) result = caseFilesetProvider(copyStep);
                 if (result == null) result = caseStep(copyStep);
+                if (result == null) result = caseItem(copyStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -181,6 +189,7 @@ public class BuildfileSwitch<T> {
                 T result = caseDownloadStep(downloadStep);
                 if (result == null) result = caseFileStep(downloadStep);
                 if (result == null) result = caseStep(downloadStep);
+                if (result == null) result = caseItem(downloadStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -189,6 +198,7 @@ public class BuildfileSwitch<T> {
                 T result = caseCreateFolderStep(createFolderStep);
                 if (result == null) result = caseFileStep(createFolderStep);
                 if (result == null) result = caseStep(createFolderStep);
+                if (result == null) result = caseItem(createFolderStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -373,6 +383,21 @@ public class BuildfileSwitch<T> {
      * @generated
      */
     public T caseKeyValue(KeyValue object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Item</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseItem(Item object) {
         return null;
     }
 

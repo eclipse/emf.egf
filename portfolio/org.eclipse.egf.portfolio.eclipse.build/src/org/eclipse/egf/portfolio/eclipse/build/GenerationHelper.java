@@ -21,6 +21,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
@@ -74,9 +75,7 @@ public class GenerationHelper {
         for (int i = eContents.indexOf(job) + 1; i < eContents.size(); i++) {
             EObject next = eContents.get(i);
             if (next instanceof Job) {
-                Job nextJob = (Job) next;
-                if (nextJob.isEnabled())
-                    return nextJob;
+                return (Job) next;
             }
         }
         return null;
@@ -153,9 +152,9 @@ public class GenerationHelper {
             return null;
         
         while (eObject != null) {
-            if (eObject instanceof Item) {
-                Item item = (Item) eObject;
-                for (Property property : item.getProperties()) {
+            if (eObject instanceof ItemProperties) {
+                ItemProperties itemProperties = (ItemProperties) eObject;
+                for (Property property : itemProperties.getProperties()) {
                     String propertyExpression = "${" + property.getKey() + "}";
                     if (input.contains(propertyExpression))
                         input = input.replace(propertyExpression, property.getValue());
@@ -199,10 +198,6 @@ public class GenerationHelper {
         //if the source and the target object are not part of the same job
         //then we try to provide a valid relative path (but won't work on a hudson slave)
         return "${build.root}/../../" + getJobName(context, getJob(targetEObject)) + "/workspace/result/publish/";
-    }
-    
-    public boolean isEnabled(Step step) {
-        return getJob(step).isEnabled();
     }
     
     public List<Step> getAllSteps(Job job) {

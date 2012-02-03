@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:51:59 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -129,7 +129,7 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
         stringBuffer.append(TEXT_5);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-            if (new GenerationHelper().isEnabled(publishStep) && publishStep.isGenerateDropins()) {
+            if (publishStep.isGenerateDropins()) {
                 String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/dropins";
                 String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getId();
                 String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getId();
@@ -166,13 +166,11 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         stringBuffer.append(aggregateStep.getId());
         stringBuffer.append(TEXT_21);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
-            if (new GenerationHelper().isEnabled(publishStep)) {
-                if (publishStep.getComponent() instanceof Feature) {
-                    String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";
-                    stringBuffer.append(TEXT_22);
-                    stringBuffer.append(location);
-                    stringBuffer.append(TEXT_23);
-                }
+            if (publishStep.getComponent() instanceof Feature) {
+                String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";
+                stringBuffer.append(TEXT_22);
+                stringBuffer.append(location);
+                stringBuffer.append(TEXT_23);
             }
         }
         for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {

@@ -14,7 +14,10 @@
     <genClasses image="false" ecoreClass="BuildCore.ecore#//Item">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Item/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Item/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Item/properties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Item/enabled"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="BuildCore.ecore#//ItemProperties">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//ItemProperties/properties"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//KeyValue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//KeyValue/key"/>
@@ -27,14 +30,10 @@
     <genClasses image="false" ecoreClass="BuildCore.ecore#//AbstractStepContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//AbstractStepContainer/steps"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="BuildCore.ecore#//Step">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/description"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="BuildCore.ecore#//Step"/>
     <genClasses ecoreClass="BuildCore.ecore#//Job">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Job/scms"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Job/triggers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Job/enabled"/>
     </genClasses>
     <genClasses ecoreClass="BuildCore.ecore#//StepContainer"/>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//SCM"/>

@@ -102,13 +102,13 @@ public interface BuildcorePackage extends EPackage {
     int ITEM__DESCRIPTION = 1;
 
     /**
-     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ITEM__PROPERTIES = 2;
+    int ITEM__ENABLED = 2;
 
     /**
      * The number of structural features of the '<em>Item</em>' class.
@@ -120,6 +120,61 @@ public interface BuildcorePackage extends EPackage {
     int ITEM_FEATURE_COUNT = 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl <em>Item Properties</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getItemProperties()
+     * @generated
+     */
+    int ITEM_PROPERTIES = 1;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_PROPERTIES__NAME = ITEM__NAME;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_PROPERTIES__DESCRIPTION = ITEM__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_PROPERTIES__ENABLED = ITEM__ENABLED;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_PROPERTIES__PROPERTIES = ITEM_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Item Properties</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_PROPERTIES_FEATURE_COUNT = ITEM_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl <em>Key Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -127,7 +182,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getKeyValue()
      * @generated
      */
-    int KEY_VALUE = 1;
+    int KEY_VALUE = 2;
 
     /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -164,7 +219,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getChain()
      * @generated
      */
-    int CHAIN = 3;
+    int CHAIN = 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl <em>Job</em>}' class.
@@ -174,7 +229,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getJob()
      * @generated
      */
-    int JOB = 6;
+    int JOB = 7;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
@@ -184,7 +239,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStep()
      * @generated
      */
-    int STEP = 5;
+    int STEP = 6;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMImpl <em>SCM</em>}' class.
@@ -194,7 +249,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getSCM()
      * @generated
      */
-    int SCM = 8;
+    int SCM = 9;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.
@@ -204,7 +259,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getProperty()
      * @generated
      */
-    int PROPERTY = 2;
+    int PROPERTY = 3;
 
     /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -240,7 +295,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CHAIN__NAME = ITEM__NAME;
+    int CHAIN__NAME = ITEM_PROPERTIES__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -249,7 +304,16 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CHAIN__DESCRIPTION = ITEM__DESCRIPTION;
+    int CHAIN__DESCRIPTION = ITEM_PROPERTIES__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CHAIN__ENABLED = ITEM_PROPERTIES__ENABLED;
 
     /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -258,7 +322,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CHAIN__PROPERTIES = ITEM__PROPERTIES;
+    int CHAIN__PROPERTIES = ITEM_PROPERTIES__PROPERTIES;
 
     /**
      * The feature id for the '<em><b>Jobs</b></em>' containment reference list.
@@ -267,7 +331,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CHAIN__JOBS = ITEM_FEATURE_COUNT + 0;
+    int CHAIN__JOBS = ITEM_PROPERTIES_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Chain</em>' class.
@@ -276,7 +340,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CHAIN_FEATURE_COUNT = ITEM_FEATURE_COUNT + 1;
+    int CHAIN_FEATURE_COUNT = ITEM_PROPERTIES_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.AbstractStepContainerImpl <em>Abstract Step Container</em>}' class.
@@ -286,25 +350,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getAbstractStepContainer()
      * @generated
      */
-    int ABSTRACT_STEP_CONTAINER = 4;
-
-    /**
-     * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACT_STEP_CONTAINER__STEPS = 0;
-
-    /**
-     * The number of structural features of the '<em>Abstract Step Container</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int ABSTRACT_STEP_CONTAINER_FEATURE_COUNT = 1;
+    int ABSTRACT_STEP_CONTAINER = 5;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -313,7 +359,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP__NAME = 0;
+    int ABSTRACT_STEP_CONTAINER__NAME = ITEM_PROPERTIES__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -322,70 +368,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP__DESCRIPTION = 1;
-
-    /**
-     * The number of structural features of the '<em>Step</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int STEP_FEATURE_COUNT = 2;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__NAME = ITEM__NAME;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__DESCRIPTION = ITEM__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__PROPERTIES = ITEM__PROPERTIES;
-
-    /**
-     * The feature id for the '<em><b>Steps</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__STEPS = ITEM_FEATURE_COUNT + 0;
-
-    /**
-     * The feature id for the '<em><b>Scms</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__SCMS = ITEM_FEATURE_COUNT + 1;
-
-    /**
-     * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JOB__TRIGGERS = ITEM_FEATURE_COUNT + 2;
+    int ABSTRACT_STEP_CONTAINER__DESCRIPTION = ITEM_PROPERTIES__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Enabled</b></em>' attribute.
@@ -394,7 +377,133 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JOB__ENABLED = ITEM_FEATURE_COUNT + 3;
+    int ABSTRACT_STEP_CONTAINER__ENABLED = ITEM_PROPERTIES__ENABLED;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_STEP_CONTAINER__PROPERTIES = ITEM_PROPERTIES__PROPERTIES;
+
+    /**
+     * The feature id for the '<em><b>Steps</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_STEP_CONTAINER__STEPS = ITEM_PROPERTIES_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Abstract Step Container</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_STEP_CONTAINER_FEATURE_COUNT = ITEM_PROPERTIES_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__NAME = ITEM__NAME;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__DESCRIPTION = ITEM__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP__ENABLED = ITEM__ENABLED;
+
+    /**
+     * The number of structural features of the '<em>Step</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP_FEATURE_COUNT = ITEM_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__NAME = ABSTRACT_STEP_CONTAINER__NAME;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__DESCRIPTION = ABSTRACT_STEP_CONTAINER__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__ENABLED = ABSTRACT_STEP_CONTAINER__ENABLED;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__PROPERTIES = ABSTRACT_STEP_CONTAINER__PROPERTIES;
+
+    /**
+     * The feature id for the '<em><b>Steps</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__STEPS = ABSTRACT_STEP_CONTAINER__STEPS;
+
+    /**
+     * The feature id for the '<em><b>Scms</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__SCMS = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__TRIGGERS = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Job</em>' class.
@@ -403,7 +512,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JOB_FEATURE_COUNT = ITEM_FEATURE_COUNT + 4;
+    int JOB_FEATURE_COUNT = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepContainerImpl <em>Step Container</em>}' class.
@@ -413,7 +522,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStepContainer()
      * @generated
      */
-    int STEP_CONTAINER = 7;
+    int STEP_CONTAINER = 8;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -422,7 +531,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP_CONTAINER__NAME = STEP__NAME;
+    int STEP_CONTAINER__NAME = ABSTRACT_STEP_CONTAINER__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -431,7 +540,25 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP_CONTAINER__DESCRIPTION = STEP__DESCRIPTION;
+    int STEP_CONTAINER__DESCRIPTION = ABSTRACT_STEP_CONTAINER__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP_CONTAINER__ENABLED = ABSTRACT_STEP_CONTAINER__ENABLED;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP_CONTAINER__PROPERTIES = ABSTRACT_STEP_CONTAINER__PROPERTIES;
 
     /**
      * The feature id for the '<em><b>Steps</b></em>' containment reference list.
@@ -440,7 +567,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP_CONTAINER__STEPS = STEP_FEATURE_COUNT + 0;
+    int STEP_CONTAINER__STEPS = ABSTRACT_STEP_CONTAINER__STEPS;
 
     /**
      * The number of structural features of the '<em>Step Container</em>' class.
@@ -449,7 +576,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int STEP_CONTAINER_FEATURE_COUNT = STEP_FEATURE_COUNT + 1;
+    int STEP_CONTAINER_FEATURE_COUNT = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>SCM</em>' class.
@@ -468,7 +595,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
      * @generated
      */
-    int TRIGGER = 9;
+    int TRIGGER = 10;
 
     /**
      * The number of structural features of the '<em>Trigger</em>' class.
@@ -513,15 +640,36 @@ public interface BuildcorePackage extends EPackage {
     EAttribute getItem_Description();
 
     /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#getProperties <em>Properties</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#isEnabled <em>Enabled</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Properties</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#getProperties()
+     * @return the meta object for the attribute '<em>Enabled</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#isEnabled()
      * @see #getItem()
      * @generated
      */
-    EReference getItem_Properties();
+    EAttribute getItem_Enabled();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties <em>Item Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Item Properties</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties
+     * @generated
+     */
+    EClass getItemProperties();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Properties</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getProperties()
+     * @see #getItemProperties()
+     * @generated
+     */
+    EReference getItemProperties_Properties();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue <em>Key Value</em>}'.
@@ -630,17 +778,6 @@ public interface BuildcorePackage extends EPackage {
     EReference getJob_Triggers();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#isEnabled <em>Enabled</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Enabled</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#isEnabled()
-     * @see #getJob()
-     * @generated
-     */
-    EAttribute getJob_Enabled();
-
-    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step <em>Step</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -649,28 +786,6 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EClass getStep();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getName <em>Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getName()
-     * @see #getStep()
-     * @generated
-     */
-    EAttribute getStep_Name();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getDescription <em>Description</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Description</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getDescription()
-     * @see #getStep()
-     * @generated
-     */
-    EAttribute getStep_Description();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer <em>Step Container</em>}'.
@@ -761,12 +876,30 @@ public interface BuildcorePackage extends EPackage {
         EAttribute ITEM__DESCRIPTION = eINSTANCE.getItem_Description();
 
         /**
+         * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ITEM__ENABLED = eINSTANCE.getItem_Enabled();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl <em>Item Properties</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getItemProperties()
+         * @generated
+         */
+        EClass ITEM_PROPERTIES = eINSTANCE.getItemProperties();
+
+        /**
          * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference ITEM__PROPERTIES = eINSTANCE.getItem_Properties();
+        EReference ITEM_PROPERTIES__PROPERTIES = eINSTANCE.getItemProperties_Properties();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl <em>Key Value</em>}' class.
@@ -857,14 +990,6 @@ public interface BuildcorePackage extends EPackage {
         EReference JOB__TRIGGERS = eINSTANCE.getJob_Triggers();
 
         /**
-         * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JOB__ENABLED = eINSTANCE.getJob_Enabled();
-
-        /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -873,22 +998,6 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass STEP = eINSTANCE.getStep();
-
-        /**
-         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute STEP__NAME = eINSTANCE.getStep_Name();
-
-        /**
-         * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute STEP__DESCRIPTION = eINSTANCE.getStep_Description();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepContainerImpl <em>Step Container</em>}' class.

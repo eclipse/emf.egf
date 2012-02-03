@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class StepItemProvider
-    extends ItemProviderAdapter
+    extends ItemItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -78,58 +78,8 @@ public class StepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamePropertyDescriptor(object);
-            addDescriptionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addNamePropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Step_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Step_name_feature", "_UI_Step_type"),
-                 BuildcorePackage.Literals.STEP__NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-
-    }
-
-    /**
-     * This adds a property descriptor for the Description feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addDescriptionPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Step_description_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Step_description_feature", "_UI_Step_type"),
-                 BuildcorePackage.Literals.STEP__DESCRIPTION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-
     }
 
     /**
@@ -158,13 +108,6 @@ public class StepItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(Step.class)) {
-            case BuildcorePackage.STEP__NAME:
-            case BuildcorePackage.STEP__DESCRIPTION:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-        }
         super.notifyChanged(notification);
     }
 
@@ -178,17 +121,6 @@ public class StepItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 

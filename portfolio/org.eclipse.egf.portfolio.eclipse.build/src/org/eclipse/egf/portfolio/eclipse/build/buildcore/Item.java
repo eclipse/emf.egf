@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#isEnabled <em>Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,7 +60,7 @@ public interface Item extends EObject {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItem_Name()
-     * @model required="true"
+     * @model
      * @generated
      */
 
@@ -129,22 +129,40 @@ public interface Item extends EObject {
 
 
     /**
-     * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property}.
+     * Returns the value of the '<em><b>Enabled</b></em>' attribute.
+     * The default value is <code>"true"</code>.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Properties</em>' containment reference list.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItem_Properties()
-     * @model containment="true"
+     * @return the value of the '<em>Enabled</em>' attribute.
+     * @see #setEnabled(boolean)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItem_Enabled()
+     * @model default="true"
      * @generated
      */
 
-    EList<Property> getProperties();
+    boolean isEnabled();
+
+
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item#isEnabled <em>Enabled</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Enabled</em>' attribute.
+     * @see #isEnabled()
+     * @generated
+     */
+
+    void setEnabled(boolean value);
 
 
 

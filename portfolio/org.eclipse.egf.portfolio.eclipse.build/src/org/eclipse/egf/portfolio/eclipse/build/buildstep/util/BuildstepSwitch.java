@@ -109,6 +109,7 @@ public class BuildstepSwitch<T> {
                 ResultStep resultStep = (ResultStep)theEObject;
                 T result = caseResultStep(resultStep);
                 if (result == null) result = caseStep(resultStep);
+                if (result == null) result = caseItem(resultStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -116,6 +117,7 @@ public class BuildstepSwitch<T> {
                 CleanStep cleanStep = (CleanStep)theEObject;
                 T result = caseCleanStep(cleanStep);
                 if (result == null) result = caseStep(cleanStep);
+                if (result == null) result = caseItem(cleanStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -123,6 +125,7 @@ public class BuildstepSwitch<T> {
                 BuildStep buildStep = (BuildStep)theEObject;
                 T result = caseBuildStep(buildStep);
                 if (result == null) result = caseStep(buildStep);
+                if (result == null) result = caseItem(buildStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -131,6 +134,7 @@ public class BuildstepSwitch<T> {
                 T result = casePublishStep(publishStep);
                 if (result == null) result = caseResultStep(publishStep);
                 if (result == null) result = caseStep(publishStep);
+                if (result == null) result = caseItem(publishStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -138,6 +142,7 @@ public class BuildstepSwitch<T> {
                 TestStep testStep = (TestStep)theEObject;
                 T result = caseTestStep(testStep);
                 if (result == null) result = caseStep(testStep);
+                if (result == null) result = caseItem(testStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -145,6 +150,7 @@ public class BuildstepSwitch<T> {
                 AntStep antStep = (AntStep)theEObject;
                 T result = caseAntStep(antStep);
                 if (result == null) result = caseStep(antStep);
+                if (result == null) result = caseItem(antStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -152,6 +158,7 @@ public class BuildstepSwitch<T> {
                 JavadocStep javadocStep = (JavadocStep)theEObject;
                 T result = caseJavadocStep(javadocStep);
                 if (result == null) result = caseStep(javadocStep);
+                if (result == null) result = caseItem(javadocStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -166,6 +173,7 @@ public class BuildstepSwitch<T> {
                 EgfStep egfStep = (EgfStep)theEObject;
                 T result = caseEgfStep(egfStep);
                 if (result == null) result = caseStep(egfStep);
+                if (result == null) result = caseItem(egfStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -180,6 +188,7 @@ public class BuildstepSwitch<T> {
                 T result = caseAggregateStep(aggregateStep);
                 if (result == null) result = caseResultStep(aggregateStep);
                 if (result == null) result = caseStep(aggregateStep);
+                if (result == null) result = caseItem(aggregateStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -187,6 +196,7 @@ public class BuildstepSwitch<T> {
                 InstallStep installStep = (InstallStep)theEObject;
                 T result = caseInstallStep(installStep);
                 if (result == null) result = caseStep(installStep);
+                if (result == null) result = caseItem(installStep);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -639,6 +649,21 @@ public class BuildstepSwitch<T> {
      * @generated
      */
     public T caseFeature(Feature object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Item</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Item</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseItem(Item object) {
         return null;
     }
 

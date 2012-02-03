@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class JobItemProvider
-    extends ItemItemProvider
+    extends AbstractStepContainerItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -78,33 +78,8 @@ public class JobItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addEnabledPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Enabled feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addEnabledPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Job_enabled_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Job_enabled_feature", "_UI_Job_type"),
-                 BuildcorePackage.Literals.JOB__ENABLED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-
     }
 
     /**
@@ -119,7 +94,6 @@ public class JobItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS);
             childrenFeatures.add(BuildcorePackage.Literals.JOB__SCMS);
             childrenFeatures.add(BuildcorePackage.Literals.JOB__TRIGGERS);
         }
@@ -178,10 +152,6 @@ public class JobItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(Job.class)) {
-            case BuildcorePackage.JOB__ENABLED:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case BuildcorePackage.JOB__STEPS:
             case BuildcorePackage.JOB__SCMS:
             case BuildcorePackage.JOB__TRIGGERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -200,14 +170,6 @@ public class JobItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildcoreFactory.eINSTANCE.createStepContainer()));
-
-
     }
 
 

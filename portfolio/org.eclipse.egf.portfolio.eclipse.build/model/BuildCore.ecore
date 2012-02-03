@@ -4,8 +4,12 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildcore"
     nsURI="http://www.eclipse.org/egf/1.0.1/buildcore" nsPrefix="buildcore">
   <eClassifiers xsi:type="ecore:EClass" name="Item">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ItemProperties" abstract="true" eSuperTypes="#//Item">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//Property" containment="true" resolveProxies="false"/>
   </eClassifiers>
@@ -14,27 +18,23 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//KeyValue"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Chain" eSuperTypes="#//Item">
+  <eClassifiers xsi:type="ecore:EClass" name="Chain" eSuperTypes="#//ItemProperties">
     <eStructuralFeatures xsi:type="ecore:EReference" name="jobs" lowerBound="1" upperBound="-1"
         eType="#//Job" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractStepContainer" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractStepContainer" abstract="true"
+      eSuperTypes="#//ItemProperties">
     <eStructuralFeatures xsi:type="ecore:EReference" name="steps" upperBound="-1"
         eType="#//Step" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Step" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Job" eSuperTypes="#//Item #//AbstractStepContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="Step" abstract="true" eSuperTypes="#//Item"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Job" eSuperTypes="#//AbstractStepContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="scms" eType="#//SCM" containment="true"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
         eType="#//Trigger" containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
-        defaultValueLiteral="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StepContainer" eSuperTypes="#//Step #//AbstractStepContainer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StepContainer" eSuperTypes="#//AbstractStepContainer #//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="SCM" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Trigger" abstract="true"/>
 </ecore:EPackage>

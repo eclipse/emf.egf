@@ -38,7 +38,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class StepContainerItemProvider
-	extends StepItemProvider
+	extends AbstractStepContainerItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -78,36 +78,6 @@ public class StepContainerItemProvider
     }
 
 	/**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS);
-        }
-        return childrenFeatures;
-    }
-
-	/**
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
-
-        return super.getChildFeature(object, child);
-    }
-
-	/**
      * This returns StepContainer.gif.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,12 +114,6 @@ public class StepContainerItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(StepContainer.class)) {
-            case BuildcorePackage.STEP_CONTAINER__STEPS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
-        }
         super.notifyChanged(notification);
     }
 
@@ -163,14 +127,6 @@ public class StepContainerItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
-                 BuildcoreFactory.eINSTANCE.createStepContainer()));
-
-
     }
 
 }

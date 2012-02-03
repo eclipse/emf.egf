@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface StepContainer extends Step, AbstractStepContainer {
+public interface StepContainer extends AbstractStepContainer, Step {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

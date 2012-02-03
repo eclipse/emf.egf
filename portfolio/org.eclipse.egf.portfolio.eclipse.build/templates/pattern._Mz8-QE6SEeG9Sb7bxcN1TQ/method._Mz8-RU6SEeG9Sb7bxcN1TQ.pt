@@ -1,0 +1,4 @@
+	if (chain.getName() == null || chain.getName().trim().length() == 0) {
+		BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "Chains must have a name ", new Object[] { chain });
+	    diagnosticChain.add(diagnostic);
+	}

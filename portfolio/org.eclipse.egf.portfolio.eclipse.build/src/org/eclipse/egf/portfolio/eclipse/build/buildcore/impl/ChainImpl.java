@@ -46,7 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ChainImpl extends ItemImpl implements Chain {
+public class ChainImpl extends ItemPropertiesImpl implements Chain {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

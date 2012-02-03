@@ -141,6 +141,15 @@ public interface BuildfilePackage extends EPackage {
     int FILE_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -240,6 +249,15 @@ public interface BuildfilePackage extends EPackage {
      * @ordered
      */
     int ZIP_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ZIP_STEP__ENABLED = FILE_STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
@@ -342,6 +360,15 @@ public interface BuildfilePackage extends EPackage {
     int UNZIP_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int UNZIP_STEP__ENABLED = FILE_STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -404,6 +431,15 @@ public interface BuildfilePackage extends EPackage {
      * @ordered
      */
     int MOVE_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MOVE_STEP__ENABLED = FILE_STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
@@ -497,6 +533,15 @@ public interface BuildfilePackage extends EPackage {
     int RENAME_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RENAME_STEP__ENABLED = FILE_STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -559,6 +604,15 @@ public interface BuildfilePackage extends EPackage {
      * @ordered
      */
     int DELETE_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DELETE_STEP__ENABLED = FILE_STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
@@ -641,6 +695,15 @@ public interface BuildfilePackage extends EPackage {
      * @ordered
      */
     int COPY_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COPY_STEP__ENABLED = FILE_STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
@@ -734,6 +797,15 @@ public interface BuildfilePackage extends EPackage {
     int DOWNLOAD_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DOWNLOAD_STEP__ENABLED = FILE_STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -796,6 +868,15 @@ public interface BuildfilePackage extends EPackage {
      * @ordered
      */
     int CREATE_FOLDER_STEP__DESCRIPTION = FILE_STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CREATE_FOLDER_STEP__ENABLED = FILE_STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Additional Parameters</b></em>' containment reference list.

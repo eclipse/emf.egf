@@ -1,0 +1,3 @@
+if (!item.isEnabled()) {
+    org.eclipse.emf.ecore.util.EcoreUtil.delete(item);
+}

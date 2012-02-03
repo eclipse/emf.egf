@@ -105,6 +105,15 @@ public interface BuildstepPackage extends EPackage {
     int RESULT_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
+
+    /**
      * The number of structural features of the '<em>Result Step</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -140,6 +149,15 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int CLEAN_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CLEAN_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -186,6 +204,15 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int BUILD_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BUILD_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Build Locations</b></em>' containment reference list.
@@ -270,6 +297,15 @@ public interface BuildstepPackage extends EPackage {
     int PUBLISH_STEP__DESCRIPTION = RESULT_STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PUBLISH_STEP__ENABLED = RESULT_STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Component</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -343,6 +379,15 @@ public interface BuildstepPackage extends EPackage {
     int TEST_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TEST_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Launch Configuration Path</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -396,6 +441,15 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int ANT_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANT_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Target Name</b></em>' attribute.
@@ -460,6 +514,15 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int JAVADOC_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JAVADOC_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Sources</b></em>' reference list.
@@ -572,6 +635,15 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -655,6 +727,15 @@ public interface BuildstepPackage extends EPackage {
     int AGGREGATE_STEP__DESCRIPTION = RESULT_STEP__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AGGREGATE_STEP__ENABLED = RESULT_STEP__ENABLED;
+
+    /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -717,6 +798,15 @@ public interface BuildstepPackage extends EPackage {
      * @ordered
      */
     int INSTALL_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INSTALL_STEP__ENABLED = BuildcorePackage.STEP__ENABLED;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.

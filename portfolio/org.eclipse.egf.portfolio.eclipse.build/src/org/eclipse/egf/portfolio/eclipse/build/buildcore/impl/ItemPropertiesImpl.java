@@ -15,9 +15,9 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.impl;
 
 import java.util.Collection;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -26,25 +26,23 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Step Container</b></em>'.
+ * An implementation of the model object '<em><b>Item Properties</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.AbstractStepContainerImpl#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl implements AbstractStepContainer {
+public abstract class ItemPropertiesImpl extends ItemImpl implements ItemProperties {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -54,14 +52,14 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
 
 
     /**
-     * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
+     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSteps()
+     * @see #getProperties()
      * @generated
      * @ordered
      */
-    protected EList<Step> steps;
+    protected EList<Property> properties;
 
 
 
@@ -70,7 +68,7 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
      * <!-- end-user-doc -->
      * @generated
      */
-    protected AbstractStepContainerImpl() {
+    protected ItemPropertiesImpl() {
 
         super();
 
@@ -83,7 +81,7 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER;
+        return BuildcorePackage.Literals.ITEM_PROPERTIES;
     }
 
 
@@ -96,12 +94,12 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
      * @generated
      */
 
-    public EList<Step> getSteps() {
+    public EList<Property> getProperties() {
 
-        if (steps == null) {
-            steps = new EObjectContainmentEList<Step>(Step.class, this, BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS);
+        if (properties == null) {
+            properties = new EObjectContainmentEList<Property>(Property.class, this, BuildcorePackage.ITEM_PROPERTIES__PROPERTIES);
         }
-        return steps;
+        return properties;
     }
 
 
@@ -115,8 +113,8 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS:
-                return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
+                return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -129,8 +127,8 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS:
-                return getSteps();
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
+                return getProperties();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -144,9 +142,9 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS:
-                getSteps().clear();
-                getSteps().addAll((Collection<? extends Step>)newValue);
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
+                getProperties().clear();
+                getProperties().addAll((Collection<? extends Property>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -161,8 +159,8 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS:
-                getSteps().clear();
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
+                getProperties().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -178,12 +176,12 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS:
-                return steps != null && !steps.isEmpty();
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
+                return properties != null && !properties.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
 
 
-} //AbstractStepContainerImpl
+} //ItemPropertiesImpl

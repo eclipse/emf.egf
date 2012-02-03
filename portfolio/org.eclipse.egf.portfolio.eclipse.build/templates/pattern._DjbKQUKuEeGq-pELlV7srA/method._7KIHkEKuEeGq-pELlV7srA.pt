@@ -1,12 +1,10 @@
 <project name="<%=chain.getName()%>">
 
 <%for(Job job : chain.getJobs()) {%>
-<%if (job.isEnabled()) {%>
 <%String path = new GenerationHelper().getJobName(ctx, job) + "/releng";%>
 	<echo message="Running Job <%=job.getName()%> in <%=path%>"/>
 	<ant dir="<%=path%>"/>
 
-<%}%>
 <%}%>
 
 </project>

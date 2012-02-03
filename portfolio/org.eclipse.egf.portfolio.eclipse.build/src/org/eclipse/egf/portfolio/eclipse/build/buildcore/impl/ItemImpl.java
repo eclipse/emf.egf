@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemImpl#isEnabled <em>Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,14 +102,25 @@ public class ItemImpl extends EObjectImpl implements Item {
 
 
     /**
-     * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+     * The default value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getProperties()
+     * @see #isEnabled()
      * @generated
      * @ordered
      */
-    protected EList<Property> properties;
+    protected static final boolean ENABLED_EDEFAULT = true;
+
+
+    /**
+     * The cached value of the '{@link #isEnabled() <em>Enabled</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isEnabled()
+     * @generated
+     * @ordered
+     */
+    protected boolean enabled = ENABLED_EDEFAULT;
 
 
 
@@ -196,29 +207,24 @@ public class ItemImpl extends EObjectImpl implements Item {
      * @generated
      */
 
-    public EList<Property> getProperties() {
+    public boolean isEnabled() {
 
-        if (properties == null) {
-            properties = new EObjectContainmentEList<Property>(Property.class, this, BuildcorePackage.ITEM__PROPERTIES);
-        }
-        return properties;
+        return enabled;
     }
-
-
-
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case BuildcorePackage.ITEM__PROPERTIES:
-                return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+
+    public void setEnabled(boolean newEnabled) {
+
+        boolean oldEnabled = enabled;
+        enabled = newEnabled;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildcorePackage.ITEM__ENABLED, oldEnabled, enabled));
+
     }
 
     /**
@@ -233,8 +239,8 @@ public class ItemImpl extends EObjectImpl implements Item {
                 return getName();
             case BuildcorePackage.ITEM__DESCRIPTION:
                 return getDescription();
-            case BuildcorePackage.ITEM__PROPERTIES:
-                return getProperties();
+            case BuildcorePackage.ITEM__ENABLED:
+                return isEnabled();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -254,9 +260,8 @@ public class ItemImpl extends EObjectImpl implements Item {
             case BuildcorePackage.ITEM__DESCRIPTION:
                 setDescription((String)newValue);
                 return;
-            case BuildcorePackage.ITEM__PROPERTIES:
-                getProperties().clear();
-                getProperties().addAll((Collection<? extends Property>)newValue);
+            case BuildcorePackage.ITEM__ENABLED:
+                setEnabled((Boolean)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -277,8 +282,8 @@ public class ItemImpl extends EObjectImpl implements Item {
             case BuildcorePackage.ITEM__DESCRIPTION:
                 setDescription(DESCRIPTION_EDEFAULT);
                 return;
-            case BuildcorePackage.ITEM__PROPERTIES:
-                getProperties().clear();
+            case BuildcorePackage.ITEM__ENABLED:
+                setEnabled(ENABLED_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -298,8 +303,8 @@ public class ItemImpl extends EObjectImpl implements Item {
                 return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
             case BuildcorePackage.ITEM__DESCRIPTION:
                 return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-            case BuildcorePackage.ITEM__PROPERTIES:
-                return properties != null && !properties.isEmpty();
+            case BuildcorePackage.ITEM__ENABLED:
+                return enabled != ENABLED_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -318,6 +323,8 @@ public class ItemImpl extends EObjectImpl implements Item {
         result.append(name);
         result.append(", description: ");
         result.append(description);
+        result.append(", enabled: ");
+        result.append(enabled);
         result.append(')');
         return result.toString();
     }

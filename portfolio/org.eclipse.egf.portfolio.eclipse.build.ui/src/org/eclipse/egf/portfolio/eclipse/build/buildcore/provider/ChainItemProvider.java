@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ChainItemProvider
-    extends ItemItemProvider
+    extends ItemPropertiesItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,

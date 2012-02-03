@@ -1,0 +1,4 @@
+	if (job.getName() == null || job.getName().trim().length() == 0) {
+		BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "Jobs must have a name ", new Object[] { job });
+	    diagnosticChain.add(diagnostic);
+	}

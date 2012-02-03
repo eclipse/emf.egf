@@ -186,6 +186,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createFeatureAdapter();
             }
             @Override
+            public Adapter caseItem(Item object) {
+                return createItemAdapter();
+            }
+            @Override
             public Adapter caseStep(Step object) {
                 return createStepAdapter();
             }
@@ -546,6 +550,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createFeatureAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item <em>Item</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Item
+     * @generated
+     */
+    public Adapter createItemAdapter() {
         return null;
     }
 

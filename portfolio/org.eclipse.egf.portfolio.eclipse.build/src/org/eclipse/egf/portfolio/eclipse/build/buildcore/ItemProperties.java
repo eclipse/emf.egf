@@ -15,25 +15,23 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Abstract Step Container</b></em>'.
+ * A representation of the model object '<em><b>Item Properties</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getAbstractStepContainer()
+ * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItemProperties()
  * @model abstract="true"
  * @generated
  */
-public interface AbstractStepContainer extends ItemProperties {
+public interface ItemProperties extends Item {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -47,25 +45,25 @@ public interface AbstractStepContainer extends ItemProperties {
 
 
     /**
-     * Returns the value of the '<em><b>Steps</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step}.
+     * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property}.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Steps</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Steps</em>' containment reference list.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getAbstractStepContainer_Steps()
+     * @return the value of the '<em>Properties</em>' containment reference list.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItemProperties_Properties()
      * @model containment="true"
      * @generated
      */
 
-    EList<Step> getSteps();
+    EList<Property> getProperties();
 
 
 
 
 
-} // AbstractStepContainer
+} // ItemProperties

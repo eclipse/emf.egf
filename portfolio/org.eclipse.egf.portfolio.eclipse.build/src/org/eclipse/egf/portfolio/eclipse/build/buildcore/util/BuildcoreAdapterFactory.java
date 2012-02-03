@@ -90,6 +90,10 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
                 return createItemAdapter();
             }
             @Override
+            public Adapter caseItemProperties(ItemProperties object) {
+                return createItemPropertiesAdapter();
+            }
+            @Override
             public Adapter caseKeyValue(KeyValue object) {
                 return createKeyValueAdapter();
             }
@@ -156,6 +160,20 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createItemAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties <em>Item Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties
+     * @generated
+     */
+    public Adapter createItemPropertiesAdapter() {
         return null;
     }
 

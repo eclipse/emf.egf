@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:51:38 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -119,16 +119,14 @@ public class chain_buildxml extends org.eclipse.egf.portfolio.eclipse.build.File
         stringBuffer.append(chain.getName());
         stringBuffer.append(TEXT_2);
         for (Job job : chain.getJobs()) {
-            if (job.isEnabled()) {
-                String path = new GenerationHelper().getJobName(ctx, job) + "/releng";
-                stringBuffer.append(TEXT_3);
-                stringBuffer.append(job.getName());
-                stringBuffer.append(TEXT_4);
-                stringBuffer.append(path);
-                stringBuffer.append(TEXT_5);
-                stringBuffer.append(path);
-                stringBuffer.append(TEXT_6);
-            }
+            String path = new GenerationHelper().getJobName(ctx, job) + "/releng";
+            stringBuffer.append(TEXT_3);
+            stringBuffer.append(job.getName());
+            stringBuffer.append(TEXT_4);
+            stringBuffer.append(path);
+            stringBuffer.append(TEXT_5);
+            stringBuffer.append(path);
+            stringBuffer.append(TEXT_6);
         }
         stringBuffer.append(TEXT_7);
         InternalPatternContext ictx = (InternalPatternContext) ctx;

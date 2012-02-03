@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getScms <em>Scms</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getTriggers <em>Triggers</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#isEnabled <em>Enabled</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Job extends Item, AbstractStepContainer {
+public interface Job extends AbstractStepContainer {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -102,46 +101,6 @@ public interface Job extends Item, AbstractStepContainer {
      */
 
     EList<Trigger> getTriggers();
-
-
-
-
-
-
-
-    /**
-     * Returns the value of the '<em><b>Enabled</b></em>' attribute.
-     * The default value is <code>"true"</code>.
-
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Enabled</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Enabled</em>' attribute.
-     * @see #setEnabled(boolean)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Enabled()
-     * @model default="true"
-     * @generated
-     */
-
-    boolean isEnabled();
-
-
-
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#isEnabled <em>Enabled</em>}' attribute.
-
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Enabled</em>' attribute.
-     * @see #isEnabled()
-     * @generated
-     */
-
-    void setEnabled(boolean value);
 
 
 
