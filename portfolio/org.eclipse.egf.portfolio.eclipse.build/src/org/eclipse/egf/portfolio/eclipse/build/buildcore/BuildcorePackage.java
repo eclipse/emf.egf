@@ -120,6 +120,43 @@ public interface BuildcorePackage extends EPackage {
     int ITEM_FEATURE_COUNT = 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl <em>Key Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getKeyValue()
+     * @generated
+     */
+    int KEY_VALUE = 1;
+
+    /**
+     * The feature id for the '<em><b>Key</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int KEY_VALUE__KEY = 0;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int KEY_VALUE__VALUE = 1;
+
+    /**
+     * The number of structural features of the '<em>Key Value</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int KEY_VALUE_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ChainImpl <em>Chain</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -127,7 +164,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getChain()
      * @generated
      */
-    int CHAIN = 2;
+    int CHAIN = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl <em>Job</em>}' class.
@@ -137,7 +174,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getJob()
      * @generated
      */
-    int JOB = 5;
+    int JOB = 6;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
@@ -147,7 +184,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStep()
      * @generated
      */
-    int STEP = 4;
+    int STEP = 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMImpl <em>SCM</em>}' class.
@@ -157,7 +194,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getSCM()
      * @generated
      */
-    int SCM = 7;
+    int SCM = 8;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.
@@ -167,7 +204,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getProperty()
      * @generated
      */
-    int PROPERTY = 1;
+    int PROPERTY = 2;
 
     /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -176,7 +213,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY__KEY = 0;
+    int PROPERTY__KEY = KEY_VALUE__KEY;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -185,7 +222,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY__VALUE = 1;
+    int PROPERTY__VALUE = KEY_VALUE__VALUE;
 
     /**
      * The number of structural features of the '<em>Property</em>' class.
@@ -194,7 +231,7 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY_FEATURE_COUNT = 2;
+    int PROPERTY_FEATURE_COUNT = KEY_VALUE_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -249,7 +286,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getAbstractStepContainer()
      * @generated
      */
-    int ABSTRACT_STEP_CONTAINER = 3;
+    int ABSTRACT_STEP_CONTAINER = 4;
 
     /**
      * The feature id for the '<em><b>Steps</b></em>' containment reference list.
@@ -376,7 +413,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStepContainer()
      * @generated
      */
-    int STEP_CONTAINER = 6;
+    int STEP_CONTAINER = 7;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -431,7 +468,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
      * @generated
      */
-    int TRIGGER = 8;
+    int TRIGGER = 9;
 
     /**
      * The number of structural features of the '<em>Trigger</em>' class.
@@ -485,6 +522,38 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EReference getItem_Properties();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue <em>Key Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Key Value</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue
+     * @generated
+     */
+    EClass getKeyValue();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue#getKey <em>Key</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Key</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue#getKey()
+     * @see #getKeyValue()
+     * @generated
+     */
+    EAttribute getKeyValue_Key();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue#getValue()
+     * @see #getKeyValue()
+     * @generated
+     */
+    EAttribute getKeyValue_Value();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain <em>Chain</em>}'.
@@ -634,28 +703,6 @@ public interface BuildcorePackage extends EPackage {
     EClass getProperty();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property#getKey <em>Key</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Key</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Property#getKey()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Key();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property#getValue <em>Value</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Value</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Property#getValue()
-     * @see #getProperty()
-     * @generated
-     */
-    EAttribute getProperty_Value();
-
-    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger <em>Trigger</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -720,6 +767,32 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EReference ITEM__PROPERTIES = eINSTANCE.getItem_Properties();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl <em>Key Value</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getKeyValue()
+         * @generated
+         */
+        EClass KEY_VALUE = eINSTANCE.getKeyValue();
+
+        /**
+         * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute KEY_VALUE__KEY = eINSTANCE.getKeyValue_Key();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute KEY_VALUE__VALUE = eINSTANCE.getKeyValue_Value();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ChainImpl <em>Chain</em>}' class.
@@ -846,22 +919,6 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass PROPERTY = eINSTANCE.getProperty();
-
-        /**
-         * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__KEY = eINSTANCE.getProperty_Key();
-
-        /**
-         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute PROPERTY__VALUE = eINSTANCE.getProperty_Value();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl <em>Trigger</em>}' class.

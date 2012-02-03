@@ -13,6 +13,7 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildfile.util;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.*;
@@ -88,6 +89,10 @@ public class BuildfileAdapterFactory extends AdapterFactoryImpl {
     protected BuildfileSwitch<Adapter> modelSwitch =
         new BuildfileSwitch<Adapter>() {
             @Override
+            public Adapter caseAntParameter(AntParameter object) {
+                return createAntParameterAdapter();
+            }
+            @Override
             public Adapter caseFileStep(FileStep object) {
                 return createFileStepAdapter();
             }
@@ -128,6 +133,10 @@ public class BuildfileAdapterFactory extends AdapterFactoryImpl {
                 return createCreateFolderStepAdapter();
             }
             @Override
+            public Adapter caseKeyValue(KeyValue object) {
+                return createKeyValueAdapter();
+            }
+            @Override
             public Adapter caseStep(Step object) {
                 return createStepAdapter();
             }
@@ -150,6 +159,20 @@ public class BuildfileAdapterFactory extends AdapterFactoryImpl {
         return modelSwitch.doSwitch((EObject)target);
     }
 
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter <em>Ant Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter
+     * @generated
+     */
+    public Adapter createAntParameterAdapter() {
+        return null;
+    }
 
     /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep <em>File Step</em>}'.
@@ -288,6 +311,20 @@ public class BuildfileAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createCreateFolderStepAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue <em>Key Value</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue
+     * @generated
+     */
+    public Adapter createKeyValueAdapter() {
         return null;
     }
 

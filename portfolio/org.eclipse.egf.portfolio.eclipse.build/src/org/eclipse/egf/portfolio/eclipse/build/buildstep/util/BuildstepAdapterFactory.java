@@ -13,6 +13,7 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.util;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 
@@ -117,6 +118,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createJavadocStepAdapter();
             }
             @Override
+            public Adapter caseEGFSystemProperty(EGFSystemProperty object) {
+                return createEGFSystemPropertyAdapter();
+            }
+            @Override
             public Adapter caseEgfStep(EgfStep object) {
                 return createEgfStepAdapter();
             }
@@ -183,6 +188,10 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseStep(Step object) {
                 return createStepAdapter();
+            }
+            @Override
+            public Adapter caseKeyValue(KeyValue object) {
+                return createKeyValueAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -299,6 +308,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createJavadocStepAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty <em>EGF System Property</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty
+     * @generated
+     */
+    public Adapter createEGFSystemPropertyAdapter() {
         return null;
     }
 
@@ -537,6 +560,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createStepAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue <em>Key Value</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue
+     * @generated
+     */
+    public Adapter createKeyValueAdapter() {
         return null;
     }
 

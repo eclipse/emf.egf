@@ -40,6 +40,15 @@ public interface BuildfileFactory extends EFactory {
     BuildfileFactory eINSTANCE = org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfileFactoryImpl.init();
 
     /**
+     * Returns a new object of class '<em>Ant Parameter</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Ant Parameter</em>'.
+     * @generated
+     */
+    AntParameter createAntParameter();
+
+    /**
      * Returns a new object of class '<em>Zip Step</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

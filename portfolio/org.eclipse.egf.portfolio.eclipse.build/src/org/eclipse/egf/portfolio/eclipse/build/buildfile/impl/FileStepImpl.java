@@ -19,6 +19,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfilePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
 
@@ -62,7 +63,7 @@ public abstract class FileStepImpl extends StepImpl implements FileStep {
      * @generated
      * @ordered
      */
-    protected EList<Property> additionalParameters;
+    protected EList<AntParameter> additionalParameters;
 
 
 
@@ -97,10 +98,10 @@ public abstract class FileStepImpl extends StepImpl implements FileStep {
      * @generated
      */
 
-    public EList<Property> getAdditionalParameters() {
+    public EList<AntParameter> getAdditionalParameters() {
 
         if (additionalParameters == null) {
-            additionalParameters = new EObjectContainmentEList<Property>(Property.class, this, BuildfilePackage.FILE_STEP__ADDITIONAL_PARAMETERS);
+            additionalParameters = new EObjectContainmentEList<AntParameter>(AntParameter.class, this, BuildfilePackage.FILE_STEP__ADDITIONAL_PARAMETERS);
         }
         return additionalParameters;
     }
@@ -147,7 +148,7 @@ public abstract class FileStepImpl extends StepImpl implements FileStep {
         switch (featureID) {
             case BuildfilePackage.FILE_STEP__ADDITIONAL_PARAMETERS:
                 getAdditionalParameters().clear();
-                getAdditionalParameters().addAll((Collection<? extends Property>)newValue);
+                getAdditionalParameters().addAll((Collection<? extends AntParameter>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

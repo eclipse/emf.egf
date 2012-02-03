@@ -3,10 +3,10 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildfile"
     nsURI="http://www.eclipse.org/egf/1.0.0/buildfile" nsPrefix="buildfile">
+  <eClassifiers xsi:type="ecore:EClass" name="AntParameter" eSuperTypes="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.ecore#//KeyValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="FileStep" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.ecore#//Step">
     <eStructuralFeatures xsi:type="ecore:EReference" name="additionalParameters" upperBound="-1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildCore.ecore#//Property"
-        containment="true"/>
+        eType="#//AntParameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilesetProvider" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filePaths" upperBound="-1"

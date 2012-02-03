@@ -21,6 +21,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfileFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfilePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
 
@@ -163,7 +164,7 @@ public class FileStepItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (BuildfilePackage.Literals.FILE_STEP__ADDITIONAL_PARAMETERS,
-                 BuildcoreFactory.eINSTANCE.createProperty()));
+                 BuildfileFactory.eINSTANCE.createAntParameter()));
 
 
     }

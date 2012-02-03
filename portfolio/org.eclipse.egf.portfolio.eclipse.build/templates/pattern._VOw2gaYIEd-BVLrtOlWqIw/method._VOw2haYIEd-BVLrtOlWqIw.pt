@@ -1,7 +1,7 @@
 	<target name="<%=new GenerationHelper().getIdOrPositionString(egfStep)%>" depends="init,install.egf">
 		<egf>
             <globargs>
-<%for(Property property : egfStep.getProperties()) {%>
+<%for(EGFSystemProperty property : egfStep.getProperties()) {%>
 				<jvmarg value="-D<%=property.getKey()%>=<%=property.getValue()%>" />
 <%}%>            
 			</globargs>

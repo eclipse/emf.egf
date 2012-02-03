@@ -11,28 +11,25 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildcore.impl;
+package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Property</b></em>'.
+ * An implementation of the model object '<em><b>EGF System Property</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class PropertyImpl extends KeyValueImpl implements Property {
+public class EGFSystemPropertyImpl extends KeyValueImpl implements EGFSystemProperty {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -40,13 +37,12 @@ public class PropertyImpl extends KeyValueImpl implements Property {
      */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
 
-
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected PropertyImpl() {
+    protected EGFSystemPropertyImpl() {
 
         super();
 
@@ -59,8 +55,10 @@ public class PropertyImpl extends KeyValueImpl implements Property {
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildcorePackage.Literals.PROPERTY;
+        return BuildstepPackage.Literals.EGF_SYSTEM_PROPERTY;
     }
 
 
-} //PropertyImpl
+
+
+} //EGFSystemPropertyImpl

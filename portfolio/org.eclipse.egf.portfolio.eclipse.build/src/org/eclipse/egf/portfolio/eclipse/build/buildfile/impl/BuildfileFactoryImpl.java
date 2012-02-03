@@ -74,6 +74,7 @@ public class BuildfileFactoryImpl extends EFactoryImpl implements BuildfileFacto
     @Override
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
+            case BuildfilePackage.ANT_PARAMETER: return createAntParameter();
             case BuildfilePackage.ZIP_STEP: return createZipStep();
             case BuildfilePackage.UNZIP_STEP: return createUnzipStep();
             case BuildfilePackage.MOVE_STEP: return createMoveStep();
@@ -85,6 +86,16 @@ public class BuildfileFactoryImpl extends EFactoryImpl implements BuildfileFacto
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AntParameter createAntParameter() {
+        AntParameterImpl antParameter = new AntParameterImpl();
+        return antParameter;
     }
 
     /**

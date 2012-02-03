@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 15:22:53 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 16:45:23 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
+import org.eclipse.egf.portfolio.eclipse.build.*;
 
 public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.JobFilePattern {
     protected static String nl;
@@ -24,9 +25,13 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
             + NL
             + "eclipse.preferences.version=1"
             + NL
-            + "org.eclipse.core.variables.valueVariables=<?xml version\\=\"1.0\" encoding\\=\"UTF-8\" standalone\\=\"no\"?><valueVariables><valueVariable description\\=\"\" name\\=\"relengDir\" readOnly\\=\"false\" value\\=\"${system_property\\:relengDir}\"/><valueVariable description\\=\"\" name\\=\"build.root\" readOnly\\=\"false\" value\\=\"${system_property\\:build.root}\"/><valueVariable description\\=\"\" name\\=\"tools\" readOnly\\=\"false\" value\\=\"${system_property\\:tools}\"/><valueVariable description\\=\"\" name\\=\"result\" readOnly\\=\"false\" value\\=\"${system_property\\:result}\"/><valueVariable description\\=\"\" name\\=\"publish\" readOnly\\=\"false\" value\\=\"${system_property\\:publish}\"/><valueVariable description\\=\"\" name\\=\"workspace\" readOnly\\=\"false\" value\\=\"${system_property\\:workspace}\"/><valueVariable description\\=\"\" name\\=\"timestamp\" readOnly\\=\"false\" value\\=\"${system_property\\:timestamp}\"/></valueVariables>";
-    protected final String TEXT_3 = NL;
-    protected final String TEXT_4 = NL;
+            + "org.eclipse.core.variables.valueVariables=<?xml version\\=\"1.0\" encoding\\=\"UTF-8\" standalone\\=\"no\"?><valueVariables><valueVariable description\\=\"\" name\\=\"relengDir\" readOnly\\=\"false\" value\\=\"${system_property\\:relengDir}\"/><valueVariable description\\=\"\" name\\=\"build.root\" readOnly\\=\"false\" value\\=\"${system_property\\:build.root}\"/><valueVariable description\\=\"\" name\\=\"tools\" readOnly\\=\"false\" value\\=\"${system_property\\:tools}\"/><valueVariable description\\=\"\" name\\=\"result\" readOnly\\=\"false\" value\\=\"${system_property\\:result}\"/><valueVariable description\\=\"\" name\\=\"publish\" readOnly\\=\"false\" value\\=\"${system_property\\:publish}\"/><valueVariable description\\=\"\" name\\=\"workspace\" readOnly\\=\"false\" value\\=\"${system_property\\:workspace}\"/><valueVariable description\\=\"\" name\\=\"timestamp\" readOnly\\=\"false\" value\\=\"${system_property\\:timestamp}\"/>";
+    protected final String TEXT_3 = "<valueVariable description\\=\"\" name\\=\"";
+    protected final String TEXT_4 = "\" readOnly\\=\"false\" value\\=\"${system_property\\:";
+    protected final String TEXT_5 = "}\"/>";
+    protected final String TEXT_6 = "</valueVariables>" + NL;
+    protected final String TEXT_7 = NL;
+    protected final String TEXT_8 = NL;
 
     public eclipsevariables() {
         //Here is the constructor
@@ -62,8 +67,8 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_3);
-        stringBuffer.append(TEXT_4);
+        stringBuffer.append(TEXT_7);
+        stringBuffer.append(TEXT_8);
         return stringBuffer.toString();
     }
 
@@ -108,6 +113,14 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
     protected void method_content(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_2);
+        for (String key : new GenerationHelper().getAllPropertiesKeys(job)) {
+            stringBuffer.append(TEXT_3);
+            stringBuffer.append(key);
+            stringBuffer.append(TEXT_4);
+            stringBuffer.append(key);
+            stringBuffer.append(TEXT_5);
+        }
+        stringBuffer.append(TEXT_6);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "content", stringBuffer.toString());
     }

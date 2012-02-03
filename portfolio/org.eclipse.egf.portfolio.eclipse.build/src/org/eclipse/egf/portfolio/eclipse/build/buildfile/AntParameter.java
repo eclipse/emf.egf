@@ -11,21 +11,21 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildcore;
+package org.eclipse.egf.portfolio.eclipse.build.buildfile;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Property</b></em>'.
+ * A representation of the model object '<em><b>Ant Parameter</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getProperty()
+ * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfilePackage#getAntParameter()
  * @model
  * @generated
  */
-public interface Property extends KeyValue {
+public interface AntParameter extends KeyValue {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -36,5 +36,4 @@ public interface Property extends KeyValue {
 
 
 
-
-} // Property
+} // AntParameter

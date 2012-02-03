@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 17:08:32 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -106,7 +106,7 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
         stringBuffer.append(TEXT_1);
         stringBuffer.append(new GenerationHelper().getIdOrPositionString(egfStep));
         stringBuffer.append(TEXT_2);
-        for (Property property : egfStep.getProperties()) {
+        for (EGFSystemProperty property : egfStep.getProperties()) {
             stringBuffer.append(TEXT_3);
             stringBuffer.append(property.getKey());
             stringBuffer.append(TEXT_4);

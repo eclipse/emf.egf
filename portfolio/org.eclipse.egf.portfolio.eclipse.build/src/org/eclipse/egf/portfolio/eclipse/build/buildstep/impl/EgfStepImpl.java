@@ -22,6 +22,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
 
@@ -69,7 +70,7 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
      * @generated
      * @ordered
      */
-    protected EList<Property> properties;
+    protected EList<EGFSystemProperty> properties;
 
 
     /**
@@ -114,10 +115,10 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
      * @generated
      */
 
-    public EList<Property> getProperties() {
+    public EList<EGFSystemProperty> getProperties() {
 
         if (properties == null) {
-            properties = new EObjectContainmentEList<Property>(Property.class, this, BuildstepPackage.EGF_STEP__PROPERTIES);
+            properties = new EObjectContainmentEList<EGFSystemProperty>(EGFSystemProperty.class, this, BuildstepPackage.EGF_STEP__PROPERTIES);
         }
         return properties;
     }
@@ -184,7 +185,7 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
         switch (featureID) {
             case BuildstepPackage.EGF_STEP__PROPERTIES:
                 getProperties().clear();
-                getProperties().addAll((Collection<? extends Property>)newValue);
+                getProperties().addAll((Collection<? extends EGFSystemProperty>)newValue);
                 return;
             case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
                 getEgfActivities().clear();

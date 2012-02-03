@@ -86,6 +86,7 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.TEST_STEP: return createTestStep();
             case BuildstepPackage.ANT_STEP: return createAntStep();
             case BuildstepPackage.JAVADOC_STEP: return createJavadocStep();
+            case BuildstepPackage.EGF_SYSTEM_PROPERTY: return createEGFSystemProperty();
             case BuildstepPackage.EGF_STEP: return createEgfStep();
             case BuildstepPackage.EGF_ACTIVITY: return createEgfActivity();
             case BuildstepPackage.AGGREGATE_STEP: return createAggregateStep();
@@ -254,6 +255,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     }
 	
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EGFSystemProperty createEGFSystemProperty() {
+        EGFSystemPropertyImpl egfSystemProperty = new EGFSystemPropertyImpl();
+        return egfSystemProperty;
+    }
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

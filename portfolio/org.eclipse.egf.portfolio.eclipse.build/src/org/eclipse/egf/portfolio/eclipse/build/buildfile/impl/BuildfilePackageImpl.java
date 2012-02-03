@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildfile.impl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfileFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.BuildfilePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.CopyStep;
@@ -50,6 +51,13 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
      * @generated
      */
     public static final String copyright = "   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.\r\n   All rights reserved. This program and the accompanying materials\r\n   are made available under the terms of the Eclipse Public License v1.0\r\n   which accompanies this distribution, and is available at\r\n   http://www.eclipse.org/legal/epl-v10.html\r\n  \r\n   Contributors:\r\n       Thales Corporate Services S.A.S - initial API and implementation";
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass antParameterEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -183,6 +191,15 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
         // Update the registry and return the package
         EPackage.Registry.INSTANCE.put(BuildfilePackage.eNS_URI, theBuildfilePackage);
         return theBuildfilePackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAntParameter() {
+        return antParameterEClass;
     }
 
     /**
@@ -447,6 +464,8 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
         isCreated = true;
 
         // Create classes and their features
+        antParameterEClass = createEClass(ANT_PARAMETER);
+
         fileStepEClass = createEClass(FILE_STEP);
         createEReference(fileStepEClass, FILE_STEP__ADDITIONAL_PARAMETERS);
 
@@ -516,6 +535,7 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        antParameterEClass.getESuperTypes().add(theBuildcorePackage.getKeyValue());
         fileStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         zipStepEClass.getESuperTypes().add(this.getFileStep());
         zipStepEClass.getESuperTypes().add(this.getFilesetProvider());
@@ -531,8 +551,10 @@ public class BuildfilePackageImpl extends EPackageImpl implements BuildfilePacka
         createFolderStepEClass.getESuperTypes().add(this.getFileStep());
 
         // Initialize classes and features; add operations and parameters
+        initEClass(antParameterEClass, AntParameter.class, "AntParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
         initEClass(fileStepEClass, FileStep.class, "FileStep", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getFileStep_AdditionalParameters(), theBuildcorePackage.getProperty(), null, "additionalParameters", null, 0, -1, FileStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getFileStep_AdditionalParameters(), this.getAntParameter(), null, "additionalParameters", null, 0, -1, FileStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(filesetProviderEClass, FilesetProvider.class, "FilesetProvider", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFilesetProvider_FilePaths(), ecorePackage.getEString(), "filePaths", null, 0, -1, FilesetProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

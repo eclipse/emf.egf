@@ -53,9 +53,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="links" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EGFSystemProperty" eSuperTypes="BuildCore.ecore#//KeyValue"/>
   <eClassifiers xsi:type="ecore:EClass" name="EgfStep" eSuperTypes="BuildCore.ecore#//Step">
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-        eType="ecore:EClass BuildCore.ecore#//Property" containment="true" resolveProxies="false"/>
+        eType="#//EGFSystemProperty" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="egfActivities" lowerBound="1"
         upperBound="-1" eType="#//EgfActivity" containment="true"/>
   </eClassifiers>

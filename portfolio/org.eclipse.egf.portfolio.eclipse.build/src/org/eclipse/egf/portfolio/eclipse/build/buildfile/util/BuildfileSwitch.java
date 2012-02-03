@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildfile.util;
 
 import java.util.List;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.*;
@@ -103,6 +104,13 @@ public class BuildfileSwitch<T> {
      */
     protected T doSwitch(int classifierID, EObject theEObject) {
         switch (classifierID) {
+            case BuildfilePackage.ANT_PARAMETER: {
+                AntParameter antParameter = (AntParameter)theEObject;
+                T result = caseAntParameter(antParameter);
+                if (result == null) result = caseKeyValue(antParameter);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildfilePackage.FILE_STEP: {
                 FileStep fileStep = (FileStep)theEObject;
                 T result = caseFileStep(fileStep);
@@ -186,6 +194,21 @@ public class BuildfileSwitch<T> {
             }
             default: return defaultCase(theEObject);
         }
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Ant Parameter</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Ant Parameter</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseAntParameter(AntParameter object) {
+        return null;
     }
 
     /**
@@ -335,6 +358,21 @@ public class BuildfileSwitch<T> {
      * @generated
      */
     public T caseCreateFolderStep(CreateFolderStep object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Key Value</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Key Value</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseKeyValue(KeyValue object) {
         return null;
     }
 

@@ -507,6 +507,43 @@ public interface BuildstepPackage extends EPackage {
     int JAVADOC_STEP_FEATURE_COUNT = BuildcorePackage.STEP_FEATURE_COUNT + 4;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EGFSystemPropertyImpl <em>EGF System Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EGFSystemPropertyImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getEGFSystemProperty()
+     * @generated
+     */
+    int EGF_SYSTEM_PROPERTY = 7;
+
+    /**
+     * The feature id for the '<em><b>Key</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_SYSTEM_PROPERTY__KEY = BuildcorePackage.KEY_VALUE__KEY;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_SYSTEM_PROPERTY__VALUE = BuildcorePackage.KEY_VALUE__VALUE;
+
+    /**
+     * The number of structural features of the '<em>EGF System Property</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EGF_SYSTEM_PROPERTY_FEATURE_COUNT = BuildcorePackage.KEY_VALUE_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl <em>Egf Step</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -514,7 +551,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getEgfStep()
      * @generated
      */
-    int EGF_STEP = 7;
+    int EGF_STEP = 8;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -569,7 +606,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getEgfActivity()
      * @generated
      */
-    int EGF_ACTIVITY = 8;
+    int EGF_ACTIVITY = 9;
 
     /**
      * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -597,7 +634,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getAggregateStep()
      * @generated
      */
-    int AGGREGATE_STEP = 9;
+    int AGGREGATE_STEP = 10;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -661,7 +698,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStep()
      * @generated
      */
-    int INSTALL_STEP = 10;
+    int INSTALL_STEP = 11;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -761,7 +798,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBuildLocation()
      * @generated
      */
-    int BUILD_LOCATION = 11;
+    int BUILD_LOCATION = 12;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -798,7 +835,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getSourceBuildLocation()
      * @generated
      */
-    int SOURCE_BUILD_LOCATION = 12;
+    int SOURCE_BUILD_LOCATION = 13;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -844,7 +881,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getBinaryBuildLocation()
      * @generated
      */
-    int BINARY_BUILD_LOCATION = 13;
+    int BINARY_BUILD_LOCATION = 14;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -890,7 +927,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getLocalBuildLocation()
      * @generated
      */
-    int LOCAL_BUILD_LOCATION = 14;
+    int LOCAL_BUILD_LOCATION = 15;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -945,7 +982,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getTargetPlatformBuildLocation()
      * @generated
      */
-    int TARGET_PLATFORM_BUILD_LOCATION = 15;
+    int TARGET_PLATFORM_BUILD_LOCATION = 16;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -1000,7 +1037,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getUpdateSiteBuildLocation()
      * @generated
      */
-    int UPDATE_SITE_BUILD_LOCATION = 16;
+    int UPDATE_SITE_BUILD_LOCATION = 17;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -1055,7 +1092,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getResultStepBuildLocation()
      * @generated
      */
-    int RESULT_STEP_BUILD_LOCATION = 17;
+    int RESULT_STEP_BUILD_LOCATION = 18;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -1110,7 +1147,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getInstallStepBuildLocation()
      * @generated
      */
-    int INSTALL_STEP_BUILD_LOCATION = 18;
+    int INSTALL_STEP_BUILD_LOCATION = 19;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -1165,7 +1202,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getRunningPlatformBuildLocation()
      * @generated
      */
-    int RUNNING_PLATFORM_BUILD_LOCATION = 19;
+    int RUNNING_PLATFORM_BUILD_LOCATION = 20;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -1211,7 +1248,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getComponent()
      * @generated
      */
-    int COMPONENT = 20;
+    int COMPONENT = 21;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1248,7 +1285,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getPlugin()
      * @generated
      */
-    int PLUGIN = 21;
+    int PLUGIN = 22;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1285,7 +1322,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getFeature()
      * @generated
      */
-    int FEATURE = 22;
+    int FEATURE = 23;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1322,7 +1359,7 @@ public interface BuildstepPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getCLEAN_TYPE()
      * @generated
      */
-    int CLEAN_TYPE = 23;
+    int CLEAN_TYPE = 24;
 
 
     /**
@@ -1603,6 +1640,16 @@ public interface BuildstepPackage extends EPackage {
      * @generated
      */
     EAttribute getJavadocStep_Links();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty <em>EGF System Property</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>EGF System Property</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty
+     * @generated
+     */
+    EClass getEGFSystemProperty();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep <em>Egf Step</em>}'.
@@ -2281,6 +2328,16 @@ public interface BuildstepPackage extends EPackage {
          * @generated
          */
         EAttribute JAVADOC_STEP__LINKS = eINSTANCE.getJavadocStep_Links();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EGFSystemPropertyImpl <em>EGF System Property</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EGFSystemPropertyImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildstepPackageImpl#getEGFSystemProperty()
+         * @generated
+         */
+        EClass EGF_SYSTEM_PROPERTY = eINSTANCE.getEGFSystemProperty();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.EgfStepImpl <em>Egf Step</em>}' class.

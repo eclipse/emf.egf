@@ -74,7 +74,7 @@ public interface EgfStep extends Step {
 
     /**
      * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property}.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty}.
 
      * <!-- begin-user-doc -->
      * <p>
@@ -88,7 +88,7 @@ public interface EgfStep extends Step {
      * @generated
      */
 
-    EList<Property> getProperties();
+    EList<EGFSystemProperty> getProperties();
 
 
 

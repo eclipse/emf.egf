@@ -76,6 +76,43 @@ public interface BuildfilePackage extends EPackage {
     BuildfilePackage eINSTANCE = org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl.init();
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.AntParameterImpl <em>Ant Parameter</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.AntParameterImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getAntParameter()
+     * @generated
+     */
+    int ANT_PARAMETER = 0;
+
+    /**
+     * The feature id for the '<em><b>Key</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANT_PARAMETER__KEY = BuildcorePackage.KEY_VALUE__KEY;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANT_PARAMETER__VALUE = BuildcorePackage.KEY_VALUE__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Ant Parameter</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ANT_PARAMETER_FEATURE_COUNT = BuildcorePackage.KEY_VALUE_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.FileStepImpl <em>File Step</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -83,7 +120,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getFileStep()
      * @generated
      */
-    int FILE_STEP = 0;
+    int FILE_STEP = 1;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -129,7 +166,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getFilesetProvider()
      * @generated
      */
-    int FILESET_PROVIDER = 1;
+    int FILESET_PROVIDER = 2;
 
     /**
      * The feature id for the '<em><b>File Paths</b></em>' attribute list.
@@ -184,7 +221,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getZipStep()
      * @generated
      */
-    int ZIP_STEP = 2;
+    int ZIP_STEP = 3;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -284,7 +321,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getUnzipStep()
      * @generated
      */
-    int UNZIP_STEP = 3;
+    int UNZIP_STEP = 4;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -348,7 +385,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getMoveStep()
      * @generated
      */
-    int MOVE_STEP = 4;
+    int MOVE_STEP = 5;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -439,7 +476,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getRenameStep()
      * @generated
      */
-    int RENAME_STEP = 5;
+    int RENAME_STEP = 6;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -503,7 +540,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getDeleteStep()
      * @generated
      */
-    int DELETE_STEP = 6;
+    int DELETE_STEP = 7;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -585,7 +622,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getCopyStep()
      * @generated
      */
-    int COPY_STEP = 7;
+    int COPY_STEP = 8;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -676,7 +713,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getDownloadStep()
      * @generated
      */
-    int DOWNLOAD_STEP = 8;
+    int DOWNLOAD_STEP = 9;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -740,7 +777,7 @@ public interface BuildfilePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getCreateFolderStep()
      * @generated
      */
-    int CREATE_FOLDER_STEP = 9;
+    int CREATE_FOLDER_STEP = 10;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -787,6 +824,16 @@ public interface BuildfilePackage extends EPackage {
      */
     int CREATE_FOLDER_STEP_FEATURE_COUNT = FILE_STEP_FEATURE_COUNT + 1;
 
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter <em>Ant Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Ant Parameter</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter
+     * @generated
+     */
+    EClass getAntParameter();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep <em>File Step</em>}'.
@@ -1086,6 +1133,16 @@ public interface BuildfilePackage extends EPackage {
      * @generated
      */
     interface Literals {
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.AntParameterImpl <em>Ant Parameter</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.AntParameterImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.BuildfilePackageImpl#getAntParameter()
+         * @generated
+         */
+        EClass ANT_PARAMETER = eINSTANCE.getAntParameter();
+
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildfile.impl.FileStepImpl <em>File Step</em>}' class.
          * <!-- begin-user-doc -->

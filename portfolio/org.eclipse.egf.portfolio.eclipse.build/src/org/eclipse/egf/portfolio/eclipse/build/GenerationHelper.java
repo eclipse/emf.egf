@@ -24,6 +24,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
+import org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
@@ -31,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Matthieu Helleboid
@@ -221,14 +223,29 @@ public class GenerationHelper {
     
     public String getAdditionalParametersString(FileStep fileStep) {
         StringBuilder builder = new StringBuilder();
-        for (Property property : fileStep.getAdditionalParameters()) {
+        for (AntParameter antParameter : fileStep.getAdditionalParameters()) {
             if (builder.length() > 0)
                 builder.append(' ');
-            builder.append(property.getKey());
+            builder.append(antParameter.getKey());
             builder.append("=\"");
-            builder.append(property.getValue());
+            builder.append(antParameter.getValue());
             builder.append("\"");
         }
         return builder.toString();
+    }
+    
+    public List<String> getAllPropertiesKeys(Job job) {
+        ArrayList<String> keys = new ArrayList<String>();
+        EObject root = job.eContainer() != null?job.eContainer():job;
+        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(root, false);
+        while (treeIterator.hasNext()) {
+            Object next = treeIterator.next();
+            if (next instanceof Property) {
+                Property property = (Property) next;
+                if (!keys.contains(property.getKey()))
+                    keys.add(property.getKey());
+            }
+        }
+        return keys;
     }
 }

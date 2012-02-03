@@ -10,6 +10,7 @@
   <genPackages prefix="Buildfile" basePackage="org.eclipse.egf.portfolio.eclipse.build"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="BuildFile.ecore#/">
+    <genClasses ecoreClass="BuildFile.ecore#//AntParameter"/>
     <genClasses image="false" ecoreClass="BuildFile.ecore#//FileStep">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildFile.ecore#//FileStep/additionalParameters"/>
     </genClasses>

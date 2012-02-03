@@ -117,6 +117,29 @@ public class BuildfileItemProviderAdapterFactory extends BuildfileAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AntParameterItemProvider antParameterItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAntParameterAdapter() {
+        if (antParameterItemProvider == null) {
+            antParameterItemProvider = new AntParameterItemProvider(this);
+        }
+
+        return antParameterItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildfile.ZipStep} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -426,6 +449,7 @@ public class BuildfileItemProviderAdapterFactory extends BuildfileAdapterFactory
      * @generated
      */
     public void dispose() {
+        if (antParameterItemProvider != null) antParameterItemProvider.dispose();
         if (zipStepItemProvider != null) zipStepItemProvider.dispose();
         if (unzipStepItemProvider != null) unzipStepItemProvider.dispose();
         if (moveStepItemProvider != null) moveStepItemProvider.dispose();

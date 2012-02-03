@@ -129,6 +129,15 @@ public interface BuildstepFactory extends EFactory {
 	JavadocStep createJavadocStep();
 
 	/**
+     * Returns a new object of class '<em>EGF System Property</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>EGF System Property</em>'.
+     * @generated
+     */
+    EGFSystemProperty createEGFSystemProperty();
+
+    /**
      * Returns a new object of class '<em>Egf Step</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

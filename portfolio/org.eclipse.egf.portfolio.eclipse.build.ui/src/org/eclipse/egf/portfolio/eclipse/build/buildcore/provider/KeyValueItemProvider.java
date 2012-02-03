@@ -11,29 +11,22 @@
  * $Id$
  */
 
-package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
+package org.eclipse.egf.portfolio.eclipse.build.buildcore.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
-
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -41,16 +34,17 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EgfStepItemProvider
-    extends StepItemProvider
+public class KeyValueItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -70,7 +64,7 @@ public class EgfStepItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public EgfStepItemProvider(AdapterFactory adapterFactory) {
+    public KeyValueItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -85,50 +79,58 @@ public class EgfStepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addKeyPropertyDescriptor(object);
+            addValuePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * This adds a property descriptor for the Key feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildstepPackage.Literals.EGF_STEP__PROPERTIES);
-            childrenFeatures.add(BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES);
-        }
-        return childrenFeatures;
+    protected void addKeyPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_KeyValue_key_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_KeyValue_key_feature", "_UI_KeyValue_type"),
+                 BuildcorePackage.Literals.KEY_VALUE__KEY,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
     }
 
     /**
+     * This adds a property descriptor for the Value feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
+    protected void addValuePropertyDescriptor(Object object) {
 
-        return super.getChildFeature(object, child);
-    }
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_KeyValue_value_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_KeyValue_value_feature", "_UI_KeyValue_type"),
+                 BuildcorePackage.Literals.KEY_VALUE__VALUE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
 
-    /**
-     * This returns EgfStep.gif.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/EgfStep"));
     }
 
     /**
@@ -140,10 +142,10 @@ public class EgfStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((EgfStep)object).getId();
+        String label = ((KeyValue)object).getKey();
         return label == null || label.length() == 0 ?
-            getString("_UI_EgfStep_type") :
-            getString("_UI_EgfStep_type") + " " + label;
+            getString("_UI_KeyValue_type") :
+            getString("_UI_KeyValue_type") + " " + label;
 
     }
 
@@ -158,10 +160,10 @@ public class EgfStepItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(EgfStep.class)) {
-            case BuildstepPackage.EGF_STEP__PROPERTIES:
-            case BuildstepPackage.EGF_STEP__EGF_ACTIVITIES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+        switch (notification.getFeatureID(KeyValue.class)) {
+            case BuildcorePackage.KEY_VALUE__KEY:
+            case BuildcorePackage.KEY_VALUE__VALUE:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
         super.notifyChanged(notification);
@@ -177,22 +179,17 @@ public class EgfStepItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
+    }
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.EGF_STEP__PROPERTIES,
-                 BuildstepFactory.eINSTANCE.createEGFSystemProperty()));
-
-
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.EGF_STEP__EGF_ACTIVITIES,
-                 BuildstepFactory.eINSTANCE.createEgfActivity()));
-
-
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 

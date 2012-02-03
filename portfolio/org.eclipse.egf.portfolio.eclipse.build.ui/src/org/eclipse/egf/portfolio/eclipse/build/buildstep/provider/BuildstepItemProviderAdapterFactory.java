@@ -256,6 +256,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EGFSystemPropertyItemProvider egfSystemPropertyItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createEGFSystemPropertyAdapter() {
+        if (egfSystemPropertyItemProvider == null) {
+            egfSystemPropertyItemProvider = new EGFSystemPropertyItemProvider(this);
+        }
+
+        return egfSystemPropertyItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -663,6 +686,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (testStepItemProvider != null) testStepItemProvider.dispose();
         if (antStepItemProvider != null) antStepItemProvider.dispose();
         if (javadocStepItemProvider != null) javadocStepItemProvider.dispose();
+        if (egfSystemPropertyItemProvider != null) egfSystemPropertyItemProvider.dispose();
         if (egfStepItemProvider != null) egfStepItemProvider.dispose();
         if (egfActivityItemProvider != null) egfActivityItemProvider.dispose();
         if (aggregateStepItemProvider != null) aggregateStepItemProvider.dispose();

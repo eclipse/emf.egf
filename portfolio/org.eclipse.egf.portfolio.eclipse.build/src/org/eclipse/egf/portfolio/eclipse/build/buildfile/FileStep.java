@@ -49,7 +49,7 @@ public interface FileStep extends Step {
 
     /**
      * Returns the value of the '<em><b>Additional Parameters</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property}.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter}.
 
      * <!-- begin-user-doc -->
      * <p>
@@ -63,7 +63,7 @@ public interface FileStep extends Step {
      * @generated
      */
 
-    EList<Property> getAdditionalParameters();
+    EList<AntParameter> getAdditionalParameters();
 
 
 

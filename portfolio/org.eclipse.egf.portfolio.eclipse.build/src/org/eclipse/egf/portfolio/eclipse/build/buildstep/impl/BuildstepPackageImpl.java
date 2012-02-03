@@ -24,6 +24,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.CleanStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Component;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.EGFSystemProperty;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfActivity;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.EgfStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Feature;
@@ -111,6 +112,13 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     private EClass javadocStepEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass egfSystemPropertyEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -527,6 +535,15 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      */
     public EAttribute getJavadocStep_Links() {
         return (EAttribute)javadocStepEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getEGFSystemProperty() {
+        return egfSystemPropertyEClass;
     }
 
     /**
@@ -959,6 +976,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(javadocStepEClass, JAVADOC_STEP__EXCLUDES);
         createEAttribute(javadocStepEClass, JAVADOC_STEP__LINKS);
 
+        egfSystemPropertyEClass = createEClass(EGF_SYSTEM_PROPERTY);
+
         egfStepEClass = createEClass(EGF_STEP);
         createEReference(egfStepEClass, EGF_STEP__PROPERTIES);
         createEReference(egfStepEClass, EGF_STEP__EGF_ACTIVITIES);
@@ -1057,6 +1076,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         testStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         antStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         javadocStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
+        egfSystemPropertyEClass.getESuperTypes().add(theBuildcorePackage.getKeyValue());
         egfStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         aggregateStepEClass.getESuperTypes().add(this.getResultStep());
         installStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
@@ -1105,8 +1125,10 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getJavadocStep_Excludes(), ecorePackage.getEString(), "excludes", null, 0, -1, JavadocStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getJavadocStep_Links(), ecorePackage.getEString(), "links", null, 0, -1, JavadocStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(egfSystemPropertyEClass, EGFSystemProperty.class, "EGFSystemProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
         initEClass(egfStepEClass, EgfStep.class, "EgfStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getEgfStep_Properties(), theBuildcorePackage.getProperty(), null, "properties", null, 0, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEgfStep_Properties(), this.getEGFSystemProperty(), null, "properties", null, 0, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEgfStep_EgfActivities(), this.getEgfActivity(), null, "egfActivities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(egfActivityEClass, EgfActivity.class, "EgfActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
