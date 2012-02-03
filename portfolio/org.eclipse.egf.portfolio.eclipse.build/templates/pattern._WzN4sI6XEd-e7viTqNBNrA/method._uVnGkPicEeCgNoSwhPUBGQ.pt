@@ -22,7 +22,7 @@
             </pathconvert>
 
 			<!-- Copy Eclipse Variables preferences -->
-			<copy file="${relengDir}/templates/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.variables.prefs"
+			<copy file="${relengDir}/templates/org.eclipse.core.variables.prefs"
 				toFile="@{workspace}/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.core.variables.prefs"/>
 
             <!-- Launch the eclipse application -->

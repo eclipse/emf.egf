@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 15:22:53 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -100,7 +100,7 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
 
     protected void method_alterFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        filePath = filePath + "/releng/templates/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings";
+        filePath = filePath + "/releng/templates/";
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "alterFilePath", stringBuffer.toString());
     }
