@@ -78,27 +78,27 @@ public class StepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addIdPropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
             addDescriptionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Id feature.
+     * This adds a property descriptor for the Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addIdPropertyDescriptor(Object object) {
+    protected void addNamePropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Step_id_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Step_id_feature", "_UI_Step_type"),
-                 BuildcorePackage.Literals.STEP__ID,
+                 getString("_UI_Step_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Step_name_feature", "_UI_Step_type"),
+                 BuildcorePackage.Literals.STEP__NAME,
                  true,
                  false,
                  false,
@@ -141,7 +141,7 @@ public class StepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((Step)object).getId();
+        String label = ((Step)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_Step_type") :
             getString("_UI_Step_type") + " " + label;
@@ -160,7 +160,7 @@ public class StepItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(Step.class)) {
-            case BuildcorePackage.STEP__ID:
+            case BuildcorePackage.STEP__NAME:
             case BuildcorePackage.STEP__DESCRIPTION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

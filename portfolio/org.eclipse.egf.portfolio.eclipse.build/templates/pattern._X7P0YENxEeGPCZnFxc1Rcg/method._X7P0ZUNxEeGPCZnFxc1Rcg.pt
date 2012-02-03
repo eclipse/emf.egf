@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(copyStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(copyStep);%>
 	<target name="<%=stepName%>" depends="init">
 		<copy todir="<%=copyStep.getDestinationFolderPath()%>" <%=new GenerationHelper().getAdditionalParametersString(copyStep)%> >
 <%@ egf:patternCall 

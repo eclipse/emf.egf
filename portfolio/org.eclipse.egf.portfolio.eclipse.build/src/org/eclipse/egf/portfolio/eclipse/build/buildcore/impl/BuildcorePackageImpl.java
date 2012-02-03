@@ -326,7 +326,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getStep_Id() {
+    public EAttribute getStep_Name() {
         return (EAttribute)stepEClass.getEStructuralFeatures().get(0);
     }
 
@@ -421,7 +421,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         createEReference(abstractStepContainerEClass, ABSTRACT_STEP_CONTAINER__STEPS);
 
         stepEClass = createEClass(STEP);
-        createEAttribute(stepEClass, STEP__ID);
+        createEAttribute(stepEClass, STEP__NAME);
         createEAttribute(stepEClass, STEP__DESCRIPTION);
 
         jobEClass = createEClass(JOB);
@@ -490,7 +490,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEReference(getAbstractStepContainer_Steps(), this.getStep(), null, "steps", null, 0, -1, AbstractStepContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(stepEClass, Step.class, "Step", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getStep_Id(), ecorePackage.getEString(), "id", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getStep_Name(), ecorePackage.getEString(), "name", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getStep_Description(), ecorePackage.getEString(), "description", null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(jobEClass, Job.class, "Job", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

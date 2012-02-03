@@ -127,7 +127,7 @@ public class StepContainerItemProvider
 	@Override
 	public String getText(Object object) {
 
-        String label = ((StepContainer)object).getId();
+        String label = ((StepContainer)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_StepContainer_type") :
             getString("_UI_StepContainer_type") + " " + label;

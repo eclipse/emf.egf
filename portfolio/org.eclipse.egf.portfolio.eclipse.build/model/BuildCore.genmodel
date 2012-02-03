@@ -28,7 +28,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//AbstractStepContainer/steps"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//Step">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Step/description"/>
     </genClasses>
     <genClasses ecoreClass="BuildCore.ecore#//Job">

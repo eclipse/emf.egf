@@ -87,7 +87,7 @@ public class ResultStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((ResultStep)object).getId();
+        String label = ((ResultStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_ResultStep_type") :
             getString("_UI_ResultStep_type") + " " + label;

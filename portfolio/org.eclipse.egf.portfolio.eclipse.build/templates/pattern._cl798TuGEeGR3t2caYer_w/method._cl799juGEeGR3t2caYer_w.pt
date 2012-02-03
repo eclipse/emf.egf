@@ -2,7 +2,7 @@
 	for(Step step : job.getSteps()) {
 		if (steps.length() > 0)
 			steps.append(',');
-		steps.append(new GenerationHelper().getIdOrPositionString(step));
+		steps.append(new GenerationHelper().getNameOrGeneratedIdString(step));
 	}
 %>
 	<target name="all" depends="<%=steps.toString()%>" />

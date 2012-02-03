@@ -1,4 +1,4 @@
-//Generated on Wed Feb 01 11:46:21 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.util;
 
 import org.eclipse.egf.common.helper.*;
@@ -111,7 +111,7 @@ public class buildxmlfilesetProvider {
             stringBuffer.append(TEXT_4);
         }
         for (InstallStep installStep : filesetProvider.getInstallSteps()) {
-            String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep) + installStep.getName();
+            String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep) + installStep.getId();
             stringBuffer.append(TEXT_5);
             stringBuffer.append(location);
             stringBuffer.append(TEXT_6);
@@ -123,7 +123,7 @@ public class buildxmlfilesetProvider {
             else if (resultStep instanceof AggregateStep)
                 publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
             for (PublishStep publishStep : publishSteps) {
-                String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName();
+                String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId();
                 stringBuffer.append(TEXT_7);
                 stringBuffer.append(location);
                 stringBuffer.append(TEXT_8);

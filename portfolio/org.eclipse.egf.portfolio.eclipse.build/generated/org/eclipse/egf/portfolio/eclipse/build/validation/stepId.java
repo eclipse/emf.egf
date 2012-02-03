@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:31 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.validation;
 
 import java.util.*;
@@ -62,7 +62,7 @@ public class stepId extends org.eclipse.egf.pattern.validation.AbstractValidatio
     protected void method_checkDuplicateId(final StringBuffer out, final PatternContext ctx) throws Exception {
         Collection<String> stepIds = new ArrayList<String>();
         for (Step step : new GenerationHelper().getAllSteps(job)) {
-            String id = new GenerationHelper().getIdOrPositionString(step);
+            String id = new GenerationHelper().getNameOrGeneratedIdString(step);
             if (stepIds.contains(id)) {
                 BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.portfolio.build", 0, "duplicate step Id " + id, new Object[] { job });
                 diagnosticChain.add(diagnostic);

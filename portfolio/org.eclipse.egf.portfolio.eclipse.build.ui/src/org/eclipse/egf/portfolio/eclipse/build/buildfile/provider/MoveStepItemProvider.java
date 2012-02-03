@@ -224,7 +224,7 @@ public class MoveStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((MoveStep)object).getId();
+        String label = ((MoveStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_MoveStep_type") :
             getString("_UI_MoveStep_type") + " " + label;

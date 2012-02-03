@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -63,7 +63,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("installStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStep");
+        paramDesc = new IQuery.ParameterDescription("installStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStep");
         queryCtx = new HashMap<String, String>();
         List<Object> installStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -124,7 +124,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
                 publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
         }
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(installStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(installStep));
         stringBuffer.append(TEXT_2);
         stringBuffer.append(TEXT_3);
         {
@@ -142,7 +142,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
         }
 
         stringBuffer.append(TEXT_4);
-        stringBuffer.append(installStep.getName());
+        stringBuffer.append(installStep.getId());
         stringBuffer.append(TEXT_5);
         stringBuffer.append(installStep.getProfile());
         stringBuffer.append(TEXT_6);
@@ -153,7 +153,7 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
         }
         stringBuffer.append(TEXT_9);
         for (PublishStep publishStep : publishSteps) {
-            String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";
+            String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";
             stringBuffer.append(TEXT_10);
             stringBuffer.append(location);
             stringBuffer.append(TEXT_11);
@@ -173,11 +173,11 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
         stringBuffer.append(TEXT_18);
         for (PublishStep publishStep : publishSteps) {
             stringBuffer.append(TEXT_19);
-            stringBuffer.append(publishStep.getComponent().getName());
+            stringBuffer.append(publishStep.getComponent().getId());
             stringBuffer.append(TEXT_20);
             if (installStep.isInstallResultStepsSourceFeatures() && publishStep.isGenerateSources()) {
                 stringBuffer.append(TEXT_21);
-                stringBuffer.append(new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getName()));
+                stringBuffer.append(new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getId()));
                 stringBuffer.append(TEXT_22);
             }
         }

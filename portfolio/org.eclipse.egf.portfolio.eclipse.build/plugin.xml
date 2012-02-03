@@ -16,14 +16,14 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/egf/1.0.0/buildcore"
+            uri="http://www.eclipse.org/egf/1.0.1/buildcore"
             class="org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage"
             genModel="model/BuildCore.genmodel"/>
    </extension>
    
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/egf/1.0.1/buildstep"
+            uri="http://www.eclipse.org/egf/1.0.2/buildstep"
             class="org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage"
             genModel="model/BuildStep.genmodel"/>
    </extension>

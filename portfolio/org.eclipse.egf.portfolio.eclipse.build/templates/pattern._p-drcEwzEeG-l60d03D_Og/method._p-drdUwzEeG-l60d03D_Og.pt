@@ -5,7 +5,7 @@
 			<fileset dir="<%=dirPath%>"/>
 <%}%>
 <%for (InstallStep installStep:filesetProvider.getInstallSteps()) {
-String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep) + installStep.getName();%>
+String location = new GenerationHelper().getPublishPath(ctx, installStep, installStep) + installStep.getId();%>
 			<fileset dir="<%=location%>"/>
 <%}%>
 <%for (ResultStep resultStep:filesetProvider.getResultSteps()) {
@@ -15,6 +15,6 @@ String location = new GenerationHelper().getPublishPath(ctx, installStep, instal
 	else if (resultStep instanceof AggregateStep) 
 		publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
 	for (PublishStep publishStep:publishSteps) {
-		String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName();%>
+		String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId();%>
 			<fileset dir="<%=location%>"/>
 <%}}%>

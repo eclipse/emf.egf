@@ -95,7 +95,7 @@ public class PluginItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((Plugin)object).getName();
+        String label = ((Plugin)object).getId();
         return label == null || label.length() == 0 ?
             getString("_UI_Plugin_type") :
             getString("_UI_Plugin_type") + " " + label;

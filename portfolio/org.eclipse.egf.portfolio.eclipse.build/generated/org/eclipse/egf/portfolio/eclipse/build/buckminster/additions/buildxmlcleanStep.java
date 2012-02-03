@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:03 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -47,7 +47,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("cleanStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//CleanStep");
+        paramDesc = new IQuery.ParameterDescription("cleanStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//CleanStep");
         queryCtx = new HashMap<String, String>();
         List<Object> cleanStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -101,7 +101,7 @@ public class buildxmlcleanStep extends org.eclipse.egf.portfolio.eclipse.build.b
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(cleanStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(cleanStep));
         stringBuffer.append(TEXT_2);
         if (cleanStep.getType() == CLEAN_TYPE.WORKSPACE) {
             stringBuffer.append(TEXT_3);

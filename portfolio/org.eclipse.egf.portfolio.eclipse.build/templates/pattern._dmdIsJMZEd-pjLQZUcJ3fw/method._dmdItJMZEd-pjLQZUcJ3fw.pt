@@ -1,1 +1,1 @@
-        <cs:dependency name="<%=feature.getName()%>" componentType="eclipse.feature"/>
+        <cs:dependency name="<%=feature.getId()%>" componentType="eclipse.feature"/>

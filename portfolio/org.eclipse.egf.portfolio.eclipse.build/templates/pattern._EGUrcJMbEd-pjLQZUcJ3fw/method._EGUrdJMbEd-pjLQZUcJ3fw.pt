@@ -1,5 +1,5 @@
 <%SVNLocation svnLocation = ((SVNLocation) svnBuildLocation.getSvnLocation());%>
-<%String id=new GenerationHelper().getIdOrPositionString(svnBuildLocation);%>
+<%String id=new GenerationHelper().getNameOrGeneratedIdString(svnBuildLocation);%>
 	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(svnBuildLocation)%> failOnError="false" />
 	<searchPath name="<%=id%>">
 	    <!-- provider for windows if checkouted with Hudson -->

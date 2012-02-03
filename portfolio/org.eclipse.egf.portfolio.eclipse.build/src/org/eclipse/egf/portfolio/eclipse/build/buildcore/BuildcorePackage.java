@@ -55,7 +55,7 @@ public interface BuildcorePackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "http://www.eclipse.org/egf/1.0.0/buildcore";
+    String eNS_URI = "http://www.eclipse.org/egf/1.0.1/buildcore";
 
     /**
      * The package namespace name.
@@ -307,13 +307,13 @@ public interface BuildcorePackage extends EPackage {
     int ABSTRACT_STEP_CONTAINER_FEATURE_COUNT = 1;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEP__ID = 0;
+    int STEP__NAME = 0;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -416,13 +416,13 @@ public interface BuildcorePackage extends EPackage {
     int STEP_CONTAINER = 7;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STEP_CONTAINER__ID = STEP__ID;
+    int STEP_CONTAINER__NAME = STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -651,15 +651,15 @@ public interface BuildcorePackage extends EPackage {
     EClass getStep();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getId <em>Id</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getName <em>Name</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Id</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getId()
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getName()
      * @see #getStep()
      * @generated
      */
-    EAttribute getStep_Id();
+    EAttribute getStep_Name();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step#getDescription <em>Description</em>}'.
@@ -875,12 +875,12 @@ public interface BuildcorePackage extends EPackage {
         EClass STEP = eINSTANCE.getStep();
 
         /**
-         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute STEP__ID = eINSTANCE.getStep_Id();
+        EAttribute STEP__NAME = eINSTANCE.getStep_Name();
 
         /**
          * The meta object literal for the '<em><b>Description</b></em>' attribute feature.

@@ -1,4 +1,4 @@
-//Generated on Wed Feb 01 11:17:16 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -98,7 +98,7 @@ public class buildxmldeleteStep extends org.eclipse.egf.portfolio.eclipse.build.
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String stepName = new GenerationHelper().getIdOrPositionString(deleteStep);
+        String stepName = new GenerationHelper().getNameOrGeneratedIdString(deleteStep);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_2);

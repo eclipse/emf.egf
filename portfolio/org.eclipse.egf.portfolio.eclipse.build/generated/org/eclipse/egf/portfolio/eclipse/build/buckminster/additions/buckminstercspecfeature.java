@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:03 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -40,7 +40,7 @@ public class buckminstercspecfeature extends org.eclipse.egf.portfolio.eclipse.b
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("feature", "http://www.eclipse.org/egf/1.0.1/buildstep#//Feature");
+        paramDesc = new IQuery.ParameterDescription("feature", "http://www.eclipse.org/egf/1.0.2/buildstep#//Feature");
         queryCtx = new HashMap<String, String>();
         List<Object> featureList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -94,7 +94,7 @@ public class buckminstercspecfeature extends org.eclipse.egf.portfolio.eclipse.b
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(feature.getName());
+        stringBuffer.append(feature.getId());
         stringBuffer.append(TEXT_2);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());

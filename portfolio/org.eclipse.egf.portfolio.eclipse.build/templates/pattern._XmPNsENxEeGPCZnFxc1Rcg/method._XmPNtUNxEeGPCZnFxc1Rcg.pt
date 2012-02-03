@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(deleteStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(deleteStep);%>
 	<target name="<%=stepName%>" depends="init">
 		<delete <%=new GenerationHelper().getAdditionalParametersString(deleteStep)%> >
 <%@ egf:patternCall 

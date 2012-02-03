@@ -123,7 +123,7 @@ public class FileStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((FileStep)object).getId();
+        String label = ((FileStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_FileStep_type") :
             getString("_UI_FileStep_type") + " " + label;

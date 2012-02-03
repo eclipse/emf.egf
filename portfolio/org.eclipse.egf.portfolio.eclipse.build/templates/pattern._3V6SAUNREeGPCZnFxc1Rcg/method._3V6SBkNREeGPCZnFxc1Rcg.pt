@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(zipStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(zipStep);%>
 	<target name="<%=stepName%>" depends="init">
 		<zip destfile="<%=zipStep.getDestinationFilePath()%>" basedir="<%=zipStep.getBaseDir()%>" <%=new GenerationHelper().getAdditionalParametersString(zipStep)%> >
 <%@ egf:patternCall 

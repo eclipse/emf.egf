@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:31 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -44,7 +44,7 @@ public class buildrmaprunningPlatform extends org.eclipse.egf.portfolio.eclipse.
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("runningPlatformBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//RunningPlatformBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("runningPlatformBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//RunningPlatformBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> runningPlatformBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -98,7 +98,7 @@ public class buildrmaprunningPlatform extends org.eclipse.egf.portfolio.eclipse.
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        String id = new GenerationHelper().getIdOrPositionString(runningPlatformBuildLocation);
+        String id = new GenerationHelper().getNameOrGeneratedIdString(runningPlatformBuildLocation);
         stringBuffer.append(TEXT_2);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_3);

@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 17:08:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -50,7 +50,7 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("egfStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//EgfStep");
+        paramDesc = new IQuery.ParameterDescription("egfStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//EgfStep");
         queryCtx = new HashMap<String, String>();
         List<Object> egfStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -104,7 +104,7 @@ public class buildxmlegfStep extends org.eclipse.egf.portfolio.eclipse.build.buc
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(egfStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(egfStep));
         stringBuffer.append(TEXT_2);
         for (EGFSystemProperty property : egfStep.getProperties()) {
             stringBuffer.append(TEXT_3);

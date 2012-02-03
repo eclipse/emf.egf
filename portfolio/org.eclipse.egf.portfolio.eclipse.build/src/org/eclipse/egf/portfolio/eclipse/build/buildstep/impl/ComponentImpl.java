@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.ComponentImpl#getBuildStep <em>Build Step</em>}</li>
  * </ul>
  * </p>
@@ -52,28 +52,25 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
 
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getId()
      * @generated
      * @ordered
      */
-    protected static final String NAME_EDEFAULT = null;
+    protected static final String ID_EDEFAULT = null;
+
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getId()
      * @generated
      * @ordered
      */
-    protected String name = NAME_EDEFAULT;
-
-
-
-
+    protected String id = ID_EDEFAULT;
 
 
     /**
@@ -107,12 +104,10 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
      * @generated
      */
 
-    public String getName() {
+    public String getId() {
 
-        return name;
+        return id;
     }
-
-
 
     /**
      * <!-- begin-user-doc -->
@@ -120,19 +115,14 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
      * @generated
      */
 
-    public void setName(String newName) {
+    public void setId(String newId) {
 
-        String oldName = name;
-        name = newName;
+        String oldId = id;
+        id = newId;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.COMPONENT__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.COMPONENT__ID, oldId, id));
 
     }
-
-
-
-
-
 
     /**
      * <!-- begin-user-doc -->
@@ -242,8 +232,8 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.COMPONENT__NAME:
-                return getName();
+            case BuildstepPackage.COMPONENT__ID:
+                return getId();
             case BuildstepPackage.COMPONENT__BUILD_STEP:
                 return getBuildStep();
         }
@@ -258,8 +248,8 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.COMPONENT__NAME:
-                setName((String)newValue);
+            case BuildstepPackage.COMPONENT__ID:
+                setId((String)newValue);
                 return;
             case BuildstepPackage.COMPONENT__BUILD_STEP:
                 setBuildStep((BuildStep)newValue);
@@ -277,8 +267,8 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.COMPONENT__NAME:
-                setName(NAME_EDEFAULT);
+            case BuildstepPackage.COMPONENT__ID:
+                setId(ID_EDEFAULT);
                 return;
             case BuildstepPackage.COMPONENT__BUILD_STEP:
                 setBuildStep((BuildStep)null);
@@ -297,8 +287,8 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.COMPONENT__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case BuildstepPackage.COMPONENT__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
             case BuildstepPackage.COMPONENT__BUILD_STEP:
                 return getBuildStep() != null;
         }
@@ -316,8 +306,8 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
+        result.append(" (id: ");
+        result.append(id);
         result.append(')');
         return result.toString();
     }

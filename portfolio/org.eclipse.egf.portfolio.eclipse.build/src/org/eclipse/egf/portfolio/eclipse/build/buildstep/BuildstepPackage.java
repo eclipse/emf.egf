@@ -58,7 +58,7 @@ public interface BuildstepPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "http://www.eclipse.org/egf/1.0.1/buildstep";
+    String eNS_URI = "http://www.eclipse.org/egf/1.0.2/buildstep";
 
     /**
      * The package namespace name.
@@ -87,13 +87,13 @@ public interface BuildstepPackage extends EPackage {
     int RESULT_STEP = 0;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESULT_STEP__ID = BuildcorePackage.STEP__ID;
+    int RESULT_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -124,13 +124,13 @@ public interface BuildstepPackage extends EPackage {
     int CLEAN_STEP = 1;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CLEAN_STEP__ID = BuildcorePackage.STEP__ID;
+    int CLEAN_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -170,13 +170,13 @@ public interface BuildstepPackage extends EPackage {
     int BUILD_STEP = 2;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BUILD_STEP__ID = BuildcorePackage.STEP__ID;
+    int BUILD_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -252,13 +252,13 @@ public interface BuildstepPackage extends EPackage {
     int PUBLISH_STEP = 3;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PUBLISH_STEP__ID = RESULT_STEP__ID;
+    int PUBLISH_STEP__NAME = RESULT_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -325,13 +325,13 @@ public interface BuildstepPackage extends EPackage {
     int TEST_STEP = 4;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TEST_STEP__ID = BuildcorePackage.STEP__ID;
+    int TEST_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -380,13 +380,13 @@ public interface BuildstepPackage extends EPackage {
     int ANT_STEP = 5;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ANT_STEP__ID = BuildcorePackage.STEP__ID;
+    int ANT_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -444,13 +444,13 @@ public interface BuildstepPackage extends EPackage {
     int JAVADOC_STEP = 6;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JAVADOC_STEP__ID = BuildcorePackage.STEP__ID;
+    int JAVADOC_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -554,13 +554,13 @@ public interface BuildstepPackage extends EPackage {
     int EGF_STEP = 8;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int EGF_STEP__ID = BuildcorePackage.STEP__ID;
+    int EGF_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -637,13 +637,13 @@ public interface BuildstepPackage extends EPackage {
     int AGGREGATE_STEP = 10;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AGGREGATE_STEP__ID = RESULT_STEP__ID;
+    int AGGREGATE_STEP__NAME = RESULT_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -655,13 +655,13 @@ public interface BuildstepPackage extends EPackage {
     int AGGREGATE_STEP__DESCRIPTION = RESULT_STEP__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int AGGREGATE_STEP__NAME = RESULT_STEP_FEATURE_COUNT + 0;
+    int AGGREGATE_STEP__ID = RESULT_STEP_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Publish Steps</b></em>' reference list.
@@ -701,13 +701,13 @@ public interface BuildstepPackage extends EPackage {
     int INSTALL_STEP = 11;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INSTALL_STEP__ID = BuildcorePackage.STEP__ID;
+    int INSTALL_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -719,13 +719,13 @@ public interface BuildstepPackage extends EPackage {
     int INSTALL_STEP__DESCRIPTION = BuildcorePackage.STEP__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INSTALL_STEP__NAME = BuildcorePackage.STEP_FEATURE_COUNT + 0;
+    int INSTALL_STEP__ID = BuildcorePackage.STEP_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Profile</b></em>' attribute.
@@ -1251,13 +1251,13 @@ public interface BuildstepPackage extends EPackage {
     int COMPONENT = 21;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COMPONENT__NAME = 0;
+    int COMPONENT__ID = 0;
 
     /**
      * The feature id for the '<em><b>Build Step</b></em>' container reference.
@@ -1288,13 +1288,13 @@ public interface BuildstepPackage extends EPackage {
     int PLUGIN = 22;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PLUGIN__NAME = COMPONENT__NAME;
+    int PLUGIN__ID = COMPONENT__ID;
 
     /**
      * The feature id for the '<em><b>Build Step</b></em>' container reference.
@@ -1325,13 +1325,13 @@ public interface BuildstepPackage extends EPackage {
     int FEATURE = 23;
 
     /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * The feature id for the '<em><b>Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FEATURE__NAME = COMPONENT__NAME;
+    int FEATURE__ID = COMPONENT__ID;
 
     /**
      * The feature id for the '<em><b>Build Step</b></em>' container reference.
@@ -1715,15 +1715,15 @@ public interface BuildstepPackage extends EPackage {
     EClass getAggregateStep();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getName <em>Name</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getId <em>Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getName()
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getId()
      * @see #getAggregateStep()
      * @generated
      */
-    EAttribute getAggregateStep_Name();
+    EAttribute getAggregateStep_Id();
 
     /**
      * Returns the meta object for the reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep#getPublishSteps <em>Publish Steps</em>}'.
@@ -1758,15 +1758,15 @@ public interface BuildstepPackage extends EPackage {
     EClass getInstallStep();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getName <em>Name</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getId <em>Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getName()
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getId()
      * @see #getInstallStep()
      * @generated
      */
-    EAttribute getInstallStep_Name();
+    EAttribute getInstallStep_Id();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProfile <em>Profile</em>}'.
@@ -2034,15 +2034,15 @@ public interface BuildstepPackage extends EPackage {
     EClass getComponent();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Component#getName <em>Name</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Component#getId <em>Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.Component#getName()
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.Component#getId()
      * @see #getComponent()
      * @generated
      */
-    EAttribute getComponent_Name();
+    EAttribute getComponent_Id();
 
     /**
      * Returns the meta object for the container reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.Component#getBuildStep <em>Build Step</em>}'.
@@ -2394,12 +2394,12 @@ public interface BuildstepPackage extends EPackage {
         EClass AGGREGATE_STEP = eINSTANCE.getAggregateStep();
 
         /**
-         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute AGGREGATE_STEP__NAME = eINSTANCE.getAggregateStep_Name();
+        EAttribute AGGREGATE_STEP__ID = eINSTANCE.getAggregateStep_Id();
 
         /**
          * The meta object literal for the '<em><b>Publish Steps</b></em>' reference list feature.
@@ -2428,12 +2428,12 @@ public interface BuildstepPackage extends EPackage {
         EClass INSTALL_STEP = eINSTANCE.getInstallStep();
 
         /**
-         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute INSTALL_STEP__NAME = eINSTANCE.getInstallStep_Name();
+        EAttribute INSTALL_STEP__ID = eINSTANCE.getInstallStep_Id();
 
         /**
          * The meta object literal for the '<em><b>Profile</b></em>' attribute feature.
@@ -2656,12 +2656,12 @@ public interface BuildstepPackage extends EPackage {
         EClass COMPONENT = eINSTANCE.getComponent();
 
         /**
-         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute COMPONENT__NAME = eINSTANCE.getComponent_Name();
+        EAttribute COMPONENT__ID = eINSTANCE.getComponent_Id();
 
         /**
          * The meta object literal for the '<em><b>Build Step</b></em>' container reference feature.

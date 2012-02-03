@@ -45,7 +45,7 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
      */
     public static BuildcoreFactory init() {
         try {
-            BuildcoreFactory theBuildcoreFactory = (BuildcoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/buildcore"); 
+            BuildcoreFactory theBuildcoreFactory = (BuildcoreFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.1/buildcore"); 
             if (theBuildcoreFactory != null) {
                 return theBuildcoreFactory;
             }

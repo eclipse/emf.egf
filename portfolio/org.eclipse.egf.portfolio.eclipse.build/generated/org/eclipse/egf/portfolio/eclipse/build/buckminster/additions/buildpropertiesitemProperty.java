@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -40,7 +40,7 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("property", "http://www.eclipse.org/egf/1.0.0/buildcore#//Property");
+        paramDesc = new IQuery.ParameterDescription("property", "http://www.eclipse.org/egf/1.0.1/buildcore#//Property");
         queryCtx = new HashMap<String, String>();
         List<Object> propertyList = QueryHelper.load(ctx, "org.eclipse.egf.portfolio.eclipse.build.ItemPropertiesQuery").execute(paramDesc, queryCtx, ctx);
 

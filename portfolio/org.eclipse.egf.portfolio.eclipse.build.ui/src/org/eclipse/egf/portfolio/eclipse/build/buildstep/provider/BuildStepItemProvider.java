@@ -213,7 +213,7 @@ public class BuildStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((BuildStep)object).getId();
+        String label = ((BuildStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_BuildStep_type") :
             getString("_UI_BuildStep_type") + " " + label;

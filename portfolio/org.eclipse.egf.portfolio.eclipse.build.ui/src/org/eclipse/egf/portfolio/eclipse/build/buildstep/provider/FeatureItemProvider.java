@@ -95,7 +95,7 @@ public class FeatureItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((Feature)object).getName();
+        String label = ((Feature)object).getId();
         return label == null || label.length() == 0 ?
             getString("_UI_Feature_type") :
             getString("_UI_Feature_type") + " " + label;

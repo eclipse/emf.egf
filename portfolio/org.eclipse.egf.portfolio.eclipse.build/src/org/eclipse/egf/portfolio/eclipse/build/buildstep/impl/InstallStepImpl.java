@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getProfile <em>Profile</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getResultSteps <em>Result Steps</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getUpdateSiteUrls <em>Update Site Urls</em>}</li>
@@ -66,25 +66,25 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
 
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getId()
      * @generated
      * @ordered
      */
-    protected static final String NAME_EDEFAULT = null;
+    protected static final String ID_EDEFAULT = null;
 
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getId()
      * @generated
      * @ordered
      */
-    protected String name = NAME_EDEFAULT;
+    protected String id = ID_EDEFAULT;
 
 
     /**
@@ -208,9 +208,9 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
      * @generated
      */
 
-    public String getName() {
+    public String getId() {
 
-        return name;
+        return id;
     }
 
     /**
@@ -219,12 +219,12 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
      * @generated
      */
 
-    public void setName(String newName) {
+    public void setId(String newId) {
 
-        String oldName = name;
-        name = newName;
+        String oldId = id;
+        id = newId;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.INSTALL_STEP__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.INSTALL_STEP__ID, oldId, id));
 
     }
 
@@ -349,8 +349,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.INSTALL_STEP__NAME:
-                return getName();
+            case BuildstepPackage.INSTALL_STEP__ID:
+                return getId();
             case BuildstepPackage.INSTALL_STEP__PROFILE:
                 return getProfile();
             case BuildstepPackage.INSTALL_STEP__RESULT_STEPS:
@@ -376,8 +376,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.INSTALL_STEP__NAME:
-                setName((String)newValue);
+            case BuildstepPackage.INSTALL_STEP__ID:
+                setId((String)newValue);
                 return;
             case BuildstepPackage.INSTALL_STEP__PROFILE:
                 setProfile((String)newValue);
@@ -414,8 +414,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.INSTALL_STEP__NAME:
-                setName(NAME_EDEFAULT);
+            case BuildstepPackage.INSTALL_STEP__ID:
+                setId(ID_EDEFAULT);
                 return;
             case BuildstepPackage.INSTALL_STEP__PROFILE:
                 setProfile(PROFILE_EDEFAULT);
@@ -449,8 +449,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.INSTALL_STEP__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case BuildstepPackage.INSTALL_STEP__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
             case BuildstepPackage.INSTALL_STEP__PROFILE:
                 return PROFILE_EDEFAULT == null ? profile != null : !PROFILE_EDEFAULT.equals(profile);
             case BuildstepPackage.INSTALL_STEP__RESULT_STEPS:
@@ -478,8 +478,8 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
+        result.append(" (id: ");
+        result.append(id);
         result.append(", profile: ");
         result.append(profile);
         result.append(", updateSiteUrls: ");

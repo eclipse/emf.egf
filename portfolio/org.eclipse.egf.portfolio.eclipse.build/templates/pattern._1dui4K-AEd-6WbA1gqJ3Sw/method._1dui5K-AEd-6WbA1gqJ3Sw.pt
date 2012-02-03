@@ -1,20 +1,20 @@
-	<target name="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>" depends="init,install.egf" >
-		<anteclipse target="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_dropins" />
-		<anteclipse target="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_sitep2" />
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>" depends="init,install.egf" >
+		<anteclipse target="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_dropins" />
+		<anteclipse target="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_sitep2" />
 	</target>	
 
-	<target name="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_dropins">
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_dropins">
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
 if (new GenerationHelper().isEnabled(publishStep) && publishStep.isGenerateDropins()) {
-String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/dropins";
-String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
-String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();%>
+String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/dropins";
+String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getId();
+String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getId();%>
 		<pathconvert property="<%=propertyName%>">
 			<first count="1">
 				<dirset dir="<%=location%>" includes="**/eclipse/" />
 			</first>
 		</pathconvert>
-		<copy todir="${publish}/<%=aggregateStep.getName()%>/dropins/<%=aggregateStep.getName()%>/eclipse/" >
+		<copy todir="${publish}/<%=aggregateStep.getId()%>/dropins/<%=aggregateStep.getId()%>/eclipse/" >
 			<fileset dir="${<%=propertyName%>}"/>
 		</copy>
 		<pathconvert property="<%=propertyName2%>">
@@ -22,21 +22,21 @@ String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getN
 				<fileset dir="<%=location%>" includes="**/*_version_*" />
 			</first>
 		</pathconvert>
-		<copy todir="${publish}/<%=aggregateStep.getName()%>/dropins/<%=aggregateStep.getName()%>/" >
+		<copy todir="${publish}/<%=aggregateStep.getId()%>/dropins/<%=aggregateStep.getId()%>/" >
 			<fileset file="${<%=propertyName2%>}"/>
 		</copy>
 <%}}%>
 	</target>	
 
-	<target name="<%=new GenerationHelper().getIdOrPositionString(aggregateStep)%>_sitep2">
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(aggregateStep)%>_sitep2">
 		<!-- see http://wiki.eclipse.org/Equinox/p2/Ant_Tasks -->
 		<p2.mirror>
-			<repository location="file:/${publish}/<%=aggregateStep.getName()%>/site.p2" name="<%=new GenerationHelper().getJob(aggregateStep).getName()%>/<%=aggregateStep.getName()%>" />
+			<repository location="file:/${publish}/<%=aggregateStep.getId()%>/site.p2" name="<%=new GenerationHelper().getJob(aggregateStep).getName()%>/<%=aggregateStep.getId()%>" />
 			<source>
 <%for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
 if (new GenerationHelper().isEnabled(publishStep)) {
 if (publishStep.getComponent() instanceof Feature) {
-String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";%>
+String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";%>
 				<repository location="<%=location%>" />
 <%}}}%>
 <%for (String updateSiteUrl : aggregateStep.getUpdateSiteUrls()) {%>

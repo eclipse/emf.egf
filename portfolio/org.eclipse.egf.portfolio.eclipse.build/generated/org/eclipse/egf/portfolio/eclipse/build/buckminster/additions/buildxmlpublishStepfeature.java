@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -69,7 +69,7 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep");
+        paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//PublishStep");
         queryCtx = new HashMap<String, String>();
         List<Object> publishStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -122,11 +122,11 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String stepName = new GenerationHelper().getIdOrPositionString(publishStep);
+        String stepName = new GenerationHelper().getNameOrGeneratedIdString(publishStep);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_2);
-        String featurename = publishStep.getComponent().getName();
+        String featurename = publishStep.getComponent().getId();
         String publishdirectory = "${publish}/" + featurename;
         stringBuffer.append(TEXT_3);
         stringBuffer.append(publishStep.isSigning());
@@ -158,7 +158,7 @@ public class buildxmlpublishStepfeature extends org.eclipse.egf.portfolio.eclips
             stringBuffer.append(featurename);
             stringBuffer.append(TEXT_17);
             BuildStep buildStep = publishStep.getComponent().getBuildStep();
-            String buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);
+            String buildStepName = new GenerationHelper().getNameOrGeneratedIdString(buildStep);
             stringBuffer.append(TEXT_18);
             stringBuffer.append(buildStepName);
             stringBuffer.append(TEXT_19);

@@ -149,7 +149,7 @@ public class UnzipStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((UnzipStep)object).getId();
+        String label = ((UnzipStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_UnzipStep_type") :
             getString("_UI_UnzipStep_type") + " " + label;

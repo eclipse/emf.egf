@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:03 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -60,7 +60,7 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("javadocStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//JavadocStep");
+        paramDesc = new IQuery.ParameterDescription("javadocStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//JavadocStep");
         queryCtx = new HashMap<String, String>();
         List<Object> javadocStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -114,7 +114,7 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(javadocStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(javadocStep));
         stringBuffer.append(TEXT_2);
         for (String linkString : javadocStep.getLinks()) {
             stringBuffer.append(TEXT_3);

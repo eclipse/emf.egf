@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getPublishSteps <em>Publish Steps</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AggregateStepImpl#getUpdateSiteUrls <em>Update Site Urls</em>}</li>
  * </ul>
@@ -55,25 +55,25 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
 
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The default value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getId()
      * @generated
      * @ordered
      */
-    protected static final String NAME_EDEFAULT = null;
+    protected static final String ID_EDEFAULT = null;
 
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getId()
      * @generated
      * @ordered
      */
-    protected String name = NAME_EDEFAULT;
+    protected String id = ID_EDEFAULT;
 
 
     /**
@@ -130,9 +130,9 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
      * @generated
      */
 
-    public String getName() {
+    public String getId() {
 
-        return name;
+        return id;
     }
 
     /**
@@ -141,12 +141,12 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
      * @generated
      */
 
-    public void setName(String newName) {
+    public void setId(String newId) {
 
-        String oldName = name;
-        name = newName;
+        String oldId = id;
+        id = newId;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.AGGREGATE_STEP__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.AGGREGATE_STEP__ID, oldId, id));
 
     }
 
@@ -189,8 +189,8 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.AGGREGATE_STEP__NAME:
-                return getName();
+            case BuildstepPackage.AGGREGATE_STEP__ID:
+                return getId();
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 return getPublishSteps();
             case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
@@ -208,8 +208,8 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.AGGREGATE_STEP__NAME:
-                setName((String)newValue);
+            case BuildstepPackage.AGGREGATE_STEP__ID:
+                setId((String)newValue);
                 return;
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 getPublishSteps().clear();
@@ -232,8 +232,8 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.AGGREGATE_STEP__NAME:
-                setName(NAME_EDEFAULT);
+            case BuildstepPackage.AGGREGATE_STEP__ID:
+                setId(ID_EDEFAULT);
                 return;
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 getPublishSteps().clear();
@@ -255,8 +255,8 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.AGGREGATE_STEP__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case BuildstepPackage.AGGREGATE_STEP__ID:
+                return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
             case BuildstepPackage.AGGREGATE_STEP__PUBLISH_STEPS:
                 return publishSteps != null && !publishSteps.isEmpty();
             case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
@@ -275,8 +275,8 @@ public class AggregateStepImpl extends ResultStepImpl implements AggregateStep {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
+        result.append(" (id: ");
+        result.append(id);
         result.append(", updateSiteUrls: ");
         result.append(updateSiteUrls);
         result.append(')');

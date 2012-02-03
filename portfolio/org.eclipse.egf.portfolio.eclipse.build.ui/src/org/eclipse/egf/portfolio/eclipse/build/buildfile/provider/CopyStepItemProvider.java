@@ -224,7 +224,7 @@ public class CopyStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((CopyStep)object).getId();
+        String label = ((CopyStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_CopyStep_type") :
             getString("_UI_CopyStep_type") + " " + label;

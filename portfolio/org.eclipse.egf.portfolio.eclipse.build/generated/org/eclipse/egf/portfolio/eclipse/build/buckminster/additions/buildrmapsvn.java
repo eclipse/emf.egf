@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:31 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -109,7 +109,7 @@ public class buildrmapsvn extends org.eclipse.egf.portfolio.eclipse.build.buckmi
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         SVNLocation svnLocation = ((SVNLocation) svnBuildLocation.getSvnLocation());
-        String id = new GenerationHelper().getIdOrPositionString(svnBuildLocation);
+        String id = new GenerationHelper().getNameOrGeneratedIdString(svnBuildLocation);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_2);

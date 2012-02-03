@@ -149,7 +149,7 @@ public class DownloadStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((DownloadStep)object).getId();
+        String label = ((DownloadStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_DownloadStep_type") :
             getString("_UI_DownloadStep_type") + " " + label;

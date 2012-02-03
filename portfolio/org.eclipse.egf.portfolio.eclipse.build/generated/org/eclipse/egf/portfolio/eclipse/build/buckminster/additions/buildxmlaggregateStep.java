@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -66,7 +66,7 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("aggregateStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//AggregateStep");
+        paramDesc = new IQuery.ParameterDescription("aggregateStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//AggregateStep");
         queryCtx = new HashMap<String, String>();
         List<Object> aggregateStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -120,27 +120,27 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(aggregateStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
         stringBuffer.append(TEXT_2);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(aggregateStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
         stringBuffer.append(TEXT_3);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(aggregateStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
         stringBuffer.append(TEXT_4);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(aggregateStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
         stringBuffer.append(TEXT_5);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
             if (new GenerationHelper().isEnabled(publishStep) && publishStep.isGenerateDropins()) {
-                String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/dropins";
-                String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getName();
-                String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getName();
+                String location = new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/dropins";
+                String propertyName = "aggregateDropinsFrom_" + publishStep.getComponent().getId();
+                String propertyName2 = "aggregateVersionFrom_" + publishStep.getComponent().getId();
                 stringBuffer.append(TEXT_6);
                 stringBuffer.append(propertyName);
                 stringBuffer.append(TEXT_7);
                 stringBuffer.append(location);
                 stringBuffer.append(TEXT_8);
-                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(aggregateStep.getId());
                 stringBuffer.append(TEXT_9);
-                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(aggregateStep.getId());
                 stringBuffer.append(TEXT_10);
                 stringBuffer.append(propertyName);
                 stringBuffer.append(TEXT_11);
@@ -148,27 +148,27 @@ public class buildxmlaggregateStep extends org.eclipse.egf.portfolio.eclipse.bui
                 stringBuffer.append(TEXT_12);
                 stringBuffer.append(location);
                 stringBuffer.append(TEXT_13);
-                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(aggregateStep.getId());
                 stringBuffer.append(TEXT_14);
-                stringBuffer.append(aggregateStep.getName());
+                stringBuffer.append(aggregateStep.getId());
                 stringBuffer.append(TEXT_15);
                 stringBuffer.append(propertyName2);
                 stringBuffer.append(TEXT_16);
             }
         }
         stringBuffer.append(TEXT_17);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(aggregateStep));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(aggregateStep));
         stringBuffer.append(TEXT_18);
-        stringBuffer.append(aggregateStep.getName());
+        stringBuffer.append(aggregateStep.getId());
         stringBuffer.append(TEXT_19);
         stringBuffer.append(new GenerationHelper().getJob(aggregateStep).getName());
         stringBuffer.append(TEXT_20);
-        stringBuffer.append(aggregateStep.getName());
+        stringBuffer.append(aggregateStep.getId());
         stringBuffer.append(TEXT_21);
         for (PublishStep publishStep : aggregateStep.getPublishSteps()) {
             if (new GenerationHelper().isEnabled(publishStep)) {
                 if (publishStep.getComponent() instanceof Feature) {
-                    String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";
+                    String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";
                     stringBuffer.append(TEXT_22);
                     stringBuffer.append(location);
                     stringBuffer.append(TEXT_23);

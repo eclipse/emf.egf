@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(testStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(testStep);%>
 	<target name="<%=stepName%>" depends="init,install.buckminster">
 	  <echo message="Running Junit tests <%=testStep.isCodeCoverage()?"and Emma code coverage":""%>" />
       <buckminster command="<%=testStep.isCodeCoverage()?"emma":"junit"%>">

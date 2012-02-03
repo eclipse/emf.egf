@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="buildstep"
-    nsURI="http://www.eclipse.org/egf/1.0.1/buildstep" nsPrefix="buildstep">
+    nsURI="http://www.eclipse.org/egf/1.0.2/buildstep" nsPrefix="buildstep">
   <eClassifiers xsi:type="ecore:EClass" name="ResultStep" abstract="true" eSuperTypes="BuildCore.ecore#//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="CleanStep" eSuperTypes="BuildCore.ecore#//Step">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//CLEAN_TYPE"
@@ -64,14 +64,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AggregateStep" eSuperTypes="#//ResultStep">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="publishSteps" upperBound="-1"
         eType="#//PublishStep"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="updateSiteUrls" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstallStep" eSuperTypes="BuildCore.ecore#//Step">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="profile" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultSteps" upperBound="-1"
@@ -124,7 +124,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RunningPlatformBuildLocation" eSuperTypes="#//BinaryBuildLocation"/>
   <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="buildStep" lowerBound="1"
         eType="#//BuildStep" eOpposite="#//BuildStep/components"/>
   </eClassifiers>

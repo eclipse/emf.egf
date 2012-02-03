@@ -107,39 +107,37 @@ public class GenerationHelper {
         return "pattern=\"^" + patternString + "\""; //$NON-NLS-1$ //$NON-NLS-2$
     }
 
-    public String getIdOrPositionString(EObject eObject) {
+    public String getNameOrGeneratedIdString(EObject eObject) {
         StringBuilder result = new StringBuilder();
         
         while (eObject != null) {
             EObject eContainer = eObject.eContainer();
             
-            String idOrPosition = null;
+            String nameOrGeneratedId = null;
             if (eObject instanceof Step) {
-				idOrPosition = ((Step) eObject).getId();
+				nameOrGeneratedId = ((Step) eObject).getName();
 			}
             if (eObject instanceof Item) {
-            	idOrPosition = ((Item) eObject).getName();
+            	nameOrGeneratedId = ((Item) eObject).getName();
             }
             
-            if (idOrPosition == null || idOrPosition.trim().length() == 0) {
+            if (nameOrGeneratedId == null || nameOrGeneratedId.trim().length() == 0) {
             	if (eContainer instanceof AbstractStepContainer) {
 					AbstractStepContainer abstractStepContainer = (AbstractStepContainer) eContainer;
-					idOrPosition = Integer.toString(abstractStepContainer.getSteps().indexOf(eObject) + 1);
+					nameOrGeneratedId = Integer.toString(abstractStepContainer.getSteps().indexOf(eObject) + 1);
 				} else if (eContainer != null) { 
-					idOrPosition = Integer.toString(eContainer.eContents().indexOf(eObject) + 1);
+					nameOrGeneratedId = Integer.toString(eContainer.eContents().indexOf(eObject) + 1);
 				}
+
+            	nameOrGeneratedId = eObject.eClass().getName() + "_" + nameOrGeneratedId;
             }
             
-            if (idOrPosition != null) {
+            if (nameOrGeneratedId != null) {
             	if (result.length() > 0)
             		result.insert(0, '_');
-            	result.insert(0, idOrPosition.replace(' ', '_').replace('\\', '_').replace('/', '_'));
+            	result.insert(0, nameOrGeneratedId.replace(' ', '_').replace('\\', '_').replace('/', '_'));
             }
- 
-        	if (result.length() > 0)
-        		result.insert(0, '_');
-            result.insert(0, eObject.eClass().getName());
-            
+
             eObject = eContainer;
             
             if (eObject instanceof Job || eObject instanceof Chain) {

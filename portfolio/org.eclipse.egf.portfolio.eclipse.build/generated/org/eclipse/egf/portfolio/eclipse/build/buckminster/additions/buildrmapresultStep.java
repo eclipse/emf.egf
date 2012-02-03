@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:03 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -45,7 +45,7 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("resultStepBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//ResultStepBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("resultStepBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//ResultStepBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> resultStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -100,11 +100,11 @@ public class buildrmapresultStep extends org.eclipse.egf.portfolio.eclipse.build
 
         String name = null;
         if (resultStepBuildLocation.getResultStep() instanceof PublishStep)
-            name = ((PublishStep) resultStepBuildLocation.getResultStep()).getComponent().getName();
+            name = ((PublishStep) resultStepBuildLocation.getResultStep()).getComponent().getId();
         else if (resultStepBuildLocation.getResultStep() instanceof AggregateStep)
-            name = ((AggregateStep) resultStepBuildLocation.getResultStep()).getName();
+            name = ((AggregateStep) resultStepBuildLocation.getResultStep()).getId();
         String location = new GenerationHelper().getPublishPath(ctx, resultStepBuildLocation.getResultStep(), resultStepBuildLocation) + name + "/site.p2/";
-        String id = new GenerationHelper().getIdOrPositionString(resultStepBuildLocation);
+        String id = new GenerationHelper().getNameOrGeneratedIdString(resultStepBuildLocation);
 
         stringBuffer.append(TEXT_1);
         stringBuffer.append(id);

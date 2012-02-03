@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:31 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -47,7 +47,7 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("localBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//LocalBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("localBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//LocalBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> localBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -100,7 +100,7 @@ public class buildrmaplocal extends org.eclipse.egf.portfolio.eclipse.build.buck
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String id = new GenerationHelper().getIdOrPositionString(localBuildLocation);
+        String id = new GenerationHelper().getNameOrGeneratedIdString(localBuildLocation);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(id);
         stringBuffer.append(TEXT_2);

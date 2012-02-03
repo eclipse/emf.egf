@@ -17,7 +17,11 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.migration;
 
 import java.util.Map;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.Component;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMap.Entry;
@@ -33,6 +37,7 @@ import org.eclipse.emf.ecore.xml.type.AnyType;
 public class BuildcoreSAXXMIHandler extends SAXXMIHandler {
 
 	private boolean migrateCleanStep = false;
+    private boolean migrateNameId = false;
 	
 	public BuildcoreSAXXMIHandler(XMLResource resource, XMLHelper helper,
 			Map<?, ?> options) {
@@ -41,10 +46,18 @@ public class BuildcoreSAXXMIHandler extends SAXXMIHandler {
 
 	@Override
 	protected void handleXMLNSAttribute(String attrib, String value) {
-		if ("http://www.eclipse.org/egf/1.0.0/buildstep".equals(value)) {
-			value = "http://www.eclipse.org/egf/1.0.1/buildstep";
-			migrateCleanStep = true;
-		}
+        if ("http://www.eclipse.org/egf/1.0.0/buildstep".equals(value)) {
+            value = "http://www.eclipse.org/egf/1.0.1/buildstep";
+            migrateCleanStep = true;
+        }
+        if ("http://www.eclipse.org/egf/1.0.0/buildcore".equals(value)) {
+            value = "http://www.eclipse.org/egf/1.0.1/buildcore";
+            migrateNameId  = true;
+        }
+        if ("http://www.eclipse.org/egf/1.0.1/buildstep".equals(value)) {
+            value = "http://www.eclipse.org/egf/1.0.2/buildstep";
+            migrateNameId = true;
+        }
 		super.handleXMLNSAttribute(attrib, value);
 	}
 	
@@ -74,6 +87,17 @@ public class BuildcoreSAXXMIHandler extends SAXXMIHandler {
 		if ("scmLocation".equals(name)) {
 			name = "svnLocation";
 		}
+		
+		if (migrateNameId) {
+		    if ("name".equals(name)) {
+		        if (object instanceof Step || object instanceof AggregateStep || object instanceof InstallStep || object instanceof Component)
+		            name = "id";
+		    } else if ("id".equals(name)) {
+                if (object instanceof Step)
+                    name = "name";
+            }
+		}
+		
 		super.setAttribValue(object, name, value);
 	}
 

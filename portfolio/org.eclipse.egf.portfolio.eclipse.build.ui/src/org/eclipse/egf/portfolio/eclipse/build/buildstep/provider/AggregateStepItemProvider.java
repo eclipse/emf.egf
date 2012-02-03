@@ -75,7 +75,7 @@ public class AggregateStepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamePropertyDescriptor(object);
+            addIdPropertyDescriptor(object);
             addPublishStepsPropertyDescriptor(object);
             addUpdateSiteUrlsPropertyDescriptor(object);
         }
@@ -83,20 +83,20 @@ public class AggregateStepItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Name feature.
+     * This adds a property descriptor for the Id feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamePropertyDescriptor(Object object) {
+    protected void addIdPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_AggregateStep_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_AggregateStep_name_feature", "_UI_AggregateStep_type"),
-                 BuildstepPackage.Literals.AGGREGATE_STEP__NAME,
+                 getString("_UI_AggregateStep_id_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AggregateStep_id_feature", "_UI_AggregateStep_type"),
+                 BuildstepPackage.Literals.AGGREGATE_STEP__ID,
                  true,
                  false,
                  false,
@@ -193,7 +193,7 @@ public class AggregateStepItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(AggregateStep.class)) {
-            case BuildstepPackage.AGGREGATE_STEP__NAME:
+            case BuildstepPackage.AGGREGATE_STEP__ID:
             case BuildstepPackage.AGGREGATE_STEP__UPDATE_SITE_URLS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

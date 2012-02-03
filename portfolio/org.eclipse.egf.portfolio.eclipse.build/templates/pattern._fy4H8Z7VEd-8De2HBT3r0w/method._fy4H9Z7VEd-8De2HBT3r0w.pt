@@ -1,4 +1,4 @@
-	<target name="<%=new GenerationHelper().getIdOrPositionString(javadocStep)%>">
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(javadocStep)%>">
 		<delete dir="${build.root}/../javadoc" />
 		<javadoc
 			destdir="${build.root}/../javadoc"

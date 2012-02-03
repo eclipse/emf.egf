@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -42,7 +42,7 @@ public class buildxmljob_steps extends org.eclipse.egf.portfolio.eclipse.build.b
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.0/buildcore#//Job");
+        paramDesc = new IQuery.ParameterDescription("job", "http://www.eclipse.org/egf/1.0.1/buildcore#//Job");
         queryCtx = new HashMap<String, String>();
         List<Object> jobList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -99,7 +99,7 @@ public class buildxmljob_steps extends org.eclipse.egf.portfolio.eclipse.build.b
         for (Step step : job.getSteps()) {
             if (steps.length() > 0)
                 steps.append(',');
-            steps.append(new GenerationHelper().getIdOrPositionString(step));
+            steps.append(new GenerationHelper().getNameOrGeneratedIdString(step));
         }
 
         stringBuffer.append(TEXT_1);

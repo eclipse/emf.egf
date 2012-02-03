@@ -149,7 +149,7 @@ public class RenameStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((RenameStep)object).getId();
+        String label = ((RenameStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_RenameStep_type") :
             getString("_UI_RenameStep_type") + " " + label;

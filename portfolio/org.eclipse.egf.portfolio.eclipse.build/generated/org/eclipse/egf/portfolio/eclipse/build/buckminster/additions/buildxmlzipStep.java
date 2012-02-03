@@ -1,4 +1,4 @@
-//Generated on Wed Feb 01 11:35:15 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:05 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -99,7 +99,7 @@ public class buildxmlzipStep extends org.eclipse.egf.portfolio.eclipse.build.buc
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String stepName = new GenerationHelper().getIdOrPositionString(zipStep);
+        String stepName = new GenerationHelper().getNameOrGeneratedIdString(zipStep);
         stringBuffer.append(TEXT_1);
         stringBuffer.append(stepName);
         stringBuffer.append(TEXT_2);

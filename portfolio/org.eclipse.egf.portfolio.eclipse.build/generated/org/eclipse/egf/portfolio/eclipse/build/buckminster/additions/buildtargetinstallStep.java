@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:05 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -41,7 +41,7 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("installStepBuildLocation", "http://www.eclipse.org/egf/1.0.1/buildstep#//InstallStepBuildLocation");
+        paramDesc = new IQuery.ParameterDescription("installStepBuildLocation", "http://www.eclipse.org/egf/1.0.2/buildstep#//InstallStepBuildLocation");
         queryCtx = new HashMap<String, String>();
         List<Object> installStepBuildLocationList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -94,7 +94,7 @@ public class buildtargetinstallStep extends org.eclipse.egf.portfolio.eclipse.bu
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(), installStepBuildLocation) + installStepBuildLocation.getInstallStep().getName();
+        String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(), installStepBuildLocation) + installStepBuildLocation.getInstallStep().getId();
 
         stringBuffer.append(TEXT_1);
         stringBuffer.append(location);

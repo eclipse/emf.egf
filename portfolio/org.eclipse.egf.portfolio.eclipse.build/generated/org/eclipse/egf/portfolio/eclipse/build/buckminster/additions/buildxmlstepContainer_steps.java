@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:32 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -43,7 +43,7 @@ public class buildxmlstepContainer_steps extends org.eclipse.egf.portfolio.eclip
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("stepContainer", "http://www.eclipse.org/egf/1.0.0/buildcore#//StepContainer");
+        paramDesc = new IQuery.ParameterDescription("stepContainer", "http://www.eclipse.org/egf/1.0.1/buildcore#//StepContainer");
         queryCtx = new HashMap<String, String>();
         List<Object> stepContainerList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
@@ -100,11 +100,11 @@ public class buildxmlstepContainer_steps extends org.eclipse.egf.portfolio.eclip
         for (Step step : stepContainer.getSteps()) {
             if (steps.length() > 0)
                 steps.append(',');
-            steps.append(new GenerationHelper().getIdOrPositionString(step));
+            steps.append(new GenerationHelper().getNameOrGeneratedIdString(step));
         }
 
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(new GenerationHelper().getIdOrPositionString(stepContainer));
+        stringBuffer.append(new GenerationHelper().getNameOrGeneratedIdString(stepContainer));
         stringBuffer.append(TEXT_2);
         stringBuffer.append(steps.toString());
         stringBuffer.append(TEXT_3);

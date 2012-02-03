@@ -82,7 +82,7 @@ public class InstallStepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamePropertyDescriptor(object);
+            addIdPropertyDescriptor(object);
             addProfilePropertyDescriptor(object);
             addResultStepsPropertyDescriptor(object);
             addUpdateSiteUrlsPropertyDescriptor(object);
@@ -94,20 +94,20 @@ public class InstallStepItemProvider
     }
 
     /**
-     * This adds a property descriptor for the Name feature.
+     * This adds a property descriptor for the Id feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamePropertyDescriptor(Object object) {
+    protected void addIdPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_InstallStep_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_InstallStep_name_feature", "_UI_InstallStep_type"),
-                 BuildstepPackage.Literals.INSTALL_STEP__NAME,
+                 getString("_UI_InstallStep_id_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_InstallStep_id_feature", "_UI_InstallStep_type"),
+                 BuildstepPackage.Literals.INSTALL_STEP__ID,
                  true,
                  false,
                  false,
@@ -300,7 +300,7 @@ public class InstallStepItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(InstallStep.class)) {
-            case BuildstepPackage.INSTALL_STEP__NAME:
+            case BuildstepPackage.INSTALL_STEP__ID:
             case BuildstepPackage.INSTALL_STEP__PROFILE:
             case BuildstepPackage.INSTALL_STEP__UPDATE_SITE_URLS:
             case BuildstepPackage.INSTALL_STEP__FEATURE_NAMES:

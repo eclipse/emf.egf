@@ -1,7 +1,7 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(publishStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(publishStep);%>
 	<target name="<%=stepName%>" depends="init,install.buckminster" >
 
-<%String featurename = publishStep.getComponent().getName();%>
+<%String featurename = publishStep.getComponent().getId();%>
 <%String publishdirectory = "${publish}/" + featurename;%>
 		
 		<echo message="Generate Site"/>
@@ -51,7 +51,7 @@
 			</globargs>
 			<cmdargs>
 <%BuildStep buildStep = publishStep.getComponent().getBuildStep();%>
-<%String buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);%>			
+<%String buildStepName = new GenerationHelper().getNameOrGeneratedIdString(buildStep);%>			
 				<arg value="<%=buildStepName%>:buckminster#convertSiteToRuntime" />
 			</cmdargs>
 		</buckminster>

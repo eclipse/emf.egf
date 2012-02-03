@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(unzipStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(unzipStep);%>
 	<target name="<%=stepName%>" depends="init">
 		<unzip src="<%=unzipStep.getSourceFilePath()%>" dest="<%=unzipStep.getDestinationFolderPath()%>" <%=new GenerationHelper().getAdditionalParametersString(unzipStep)%> >
 		</unzip>

@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import org.eclipse.egf.common.helper.*;
@@ -99,14 +99,14 @@ public class BuildStepFilePattern extends org.eclipse.egf.portfolio.eclipse.buil
     protected void method_setFilePath(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         filePath = new GenerationHelper().getJobName(ctx, new GenerationHelper().getJob(buildStep));
-        filePath = filePath + "/releng/buckminster_" + new GenerationHelper().getIdOrPositionString(buildStep);
+        filePath = filePath + "/releng/buckminster_" + new GenerationHelper().getNameOrGeneratedIdString(buildStep);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "setFilePath", stringBuffer.toString());
     }
 
     protected void method_setBuildStepName(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        buildStepName = new GenerationHelper().getIdOrPositionString(buildStep);
+        buildStepName = new GenerationHelper().getNameOrGeneratedIdString(buildStep);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "setBuildStepName", stringBuffer.toString());
     }

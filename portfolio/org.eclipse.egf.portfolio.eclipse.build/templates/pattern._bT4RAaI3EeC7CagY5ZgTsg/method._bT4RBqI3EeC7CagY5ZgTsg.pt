@@ -6,7 +6,7 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 	else if (resultStep instanceof AggregateStep) 
 		publishSteps.addAll(((AggregateStep) resultStep).getPublishSteps());
 }%>
-	<target name="<%=new GenerationHelper().getIdOrPositionString(installStep)%>" depends="init,install.director" >
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(installStep)%>" depends="init,install.director" >
         <eclipse.launch app="director">
             <args>
                 <jvmarg value="-Declipse.p2.mirrors=false" />
@@ -19,7 +19,7 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
                 <arg value="org.eclipse.update.install.features=true " />
 
                 <arg value="-d" />
-                <arg value="${publish}/<%=installStep.getName()%>" />
+                <arg value="${publish}/<%=installStep.getId()%>" />
                 
                 <arg value="-p" />
                 <arg value="<%=installStep.getProfile()%>" />
@@ -30,7 +30,7 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 <%}%>
 
 <%for (PublishStep publishStep : publishSteps) {%>
-<%	String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getName() + "/site.p2";%>
+<%	String location = "file:/" + new GenerationHelper().getPublishPath(ctx, publishStep, publishStep) + publishStep.getComponent().getId() + "/site.p2";%>
                 <arg value="-r" />
                 <arg value="<%=location%>" />
 <%}%>
@@ -47,10 +47,10 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 
 <%for (PublishStep publishStep : publishSteps) {%>
                 <arg value="-i" />
-                <arg value="<%=publishStep.getComponent().getName()%>.feature.group" />
+                <arg value="<%=publishStep.getComponent().getId()%>.feature.group" />
 <%if (installStep.isInstallResultStepsSourceFeatures() && publishStep.isGenerateSources()) {%>
                 <arg value="-i" />
-                <arg value="<%=new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getName())%>.feature.group" />
+                <arg value="<%=new GenerationHelper().createSourceFeatureId(publishStep.getComponent().getId())%>.feature.group" />
 <%}%>
 <%}%>
 

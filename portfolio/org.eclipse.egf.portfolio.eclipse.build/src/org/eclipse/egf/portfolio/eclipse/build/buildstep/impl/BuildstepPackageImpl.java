@@ -605,7 +605,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getAggregateStep_Name() {
+    public EAttribute getAggregateStep_Id() {
         return (EAttribute)aggregateStepEClass.getEStructuralFeatures().get(0);
     }
 
@@ -641,7 +641,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getInstallStep_Name() {
+    public EAttribute getInstallStep_Id() {
         return (EAttribute)installStepEClass.getEStructuralFeatures().get(0);
     }
 
@@ -875,7 +875,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getComponent_Name() {
+    public EAttribute getComponent_Id() {
         return (EAttribute)componentEClass.getEStructuralFeatures().get(0);
     }
 
@@ -986,12 +986,12 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(egfActivityEClass, EGF_ACTIVITY__URI);
 
         aggregateStepEClass = createEClass(AGGREGATE_STEP);
-        createEAttribute(aggregateStepEClass, AGGREGATE_STEP__NAME);
+        createEAttribute(aggregateStepEClass, AGGREGATE_STEP__ID);
         createEReference(aggregateStepEClass, AGGREGATE_STEP__PUBLISH_STEPS);
         createEAttribute(aggregateStepEClass, AGGREGATE_STEP__UPDATE_SITE_URLS);
 
         installStepEClass = createEClass(INSTALL_STEP);
-        createEAttribute(installStepEClass, INSTALL_STEP__NAME);
+        createEAttribute(installStepEClass, INSTALL_STEP__ID);
         createEAttribute(installStepEClass, INSTALL_STEP__PROFILE);
         createEReference(installStepEClass, INSTALL_STEP__RESULT_STEPS);
         createEAttribute(installStepEClass, INSTALL_STEP__UPDATE_SITE_URLS);
@@ -1027,7 +1027,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         runningPlatformBuildLocationEClass = createEClass(RUNNING_PLATFORM_BUILD_LOCATION);
 
         componentEClass = createEClass(COMPONENT);
-        createEAttribute(componentEClass, COMPONENT__NAME);
+        createEAttribute(componentEClass, COMPONENT__ID);
         createEReference(componentEClass, COMPONENT__BUILD_STEP);
 
         pluginEClass = createEClass(PLUGIN);
@@ -1135,12 +1135,12 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getEgfActivity_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, EgfActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(aggregateStepEClass, AggregateStep.class, "AggregateStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getAggregateStep_Name(), ecorePackage.getEString(), "name", null, 1, 1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getAggregateStep_Id(), ecorePackage.getEString(), "id", null, 1, 1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getAggregateStep_PublishSteps(), this.getPublishStep(), null, "publishSteps", null, 0, -1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getAggregateStep_UpdateSiteUrls(), ecorePackage.getEString(), "updateSiteUrls", null, 0, -1, AggregateStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(installStepEClass, InstallStep.class, "InstallStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getInstallStep_Name(), ecorePackage.getEString(), "name", null, 1, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInstallStep_Id(), ecorePackage.getEString(), "id", null, 1, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_Profile(), ecorePackage.getEString(), "profile", null, 1, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getInstallStep_ResultSteps(), this.getResultStep(), null, "resultSteps", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_UpdateSiteUrls(), ecorePackage.getEString(), "updateSiteUrls", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1176,7 +1176,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEClass(runningPlatformBuildLocationEClass, RunningPlatformBuildLocation.class, "RunningPlatformBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(componentEClass, Component.class, "Component", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getComponent_Name(), ecorePackage.getEString(), "name", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getComponent_Id(), ecorePackage.getEString(), "id", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getComponent_BuildStep(), this.getBuildStep(), this.getBuildStep_Components(), "buildStep", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(pluginEClass, Plugin.class, "Plugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

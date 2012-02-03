@@ -1,4 +1,4 @@
-//Generated on Wed Jan 18 13:40:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -39,7 +39,7 @@ public class PublisherpublishStep extends org.eclipse.egf.portfolio.eclipse.buil
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.1/buildstep#//PublishStep");
+        paramDesc = new IQuery.ParameterDescription("publishStep", "http://www.eclipse.org/egf/1.0.2/buildstep#//PublishStep");
         queryCtx = new HashMap<String, String>();
         List<Object> publishStepList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 

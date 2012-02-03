@@ -200,7 +200,7 @@ public class PublishStepItemProvider
     public String getText(Object object) {
         PublishStep publishStep = (PublishStep)object;
         if (publishStep.getComponent() != null)
-        	return getString("_UI_PublishStep_type") + " " + publishStep.getComponent().getName();
+        	return getString("_UI_PublishStep_type") + " " + publishStep.getComponent().getId();
         return super.getText(object);
 
     }

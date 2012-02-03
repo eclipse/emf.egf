@@ -1,4 +1,4 @@
-	<target name="<%=new GenerationHelper().getIdOrPositionString(egfStep)%>" depends="init,install.egf">
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(egfStep)%>" depends="init,install.egf">
 		<egf>
             <globargs>
 <%for(EGFSystemProperty property : egfStep.getProperties()) {%>

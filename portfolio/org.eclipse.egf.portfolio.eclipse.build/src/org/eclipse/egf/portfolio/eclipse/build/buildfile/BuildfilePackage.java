@@ -123,13 +123,13 @@ public interface BuildfilePackage extends EPackage {
     int FILE_STEP = 1;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILE_STEP__ID = BuildcorePackage.STEP__ID;
+    int FILE_STEP__NAME = BuildcorePackage.STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -224,13 +224,13 @@ public interface BuildfilePackage extends EPackage {
     int ZIP_STEP = 3;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ZIP_STEP__ID = FILE_STEP__ID;
+    int ZIP_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -324,13 +324,13 @@ public interface BuildfilePackage extends EPackage {
     int UNZIP_STEP = 4;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int UNZIP_STEP__ID = FILE_STEP__ID;
+    int UNZIP_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -388,13 +388,13 @@ public interface BuildfilePackage extends EPackage {
     int MOVE_STEP = 5;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MOVE_STEP__ID = FILE_STEP__ID;
+    int MOVE_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -479,13 +479,13 @@ public interface BuildfilePackage extends EPackage {
     int RENAME_STEP = 6;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RENAME_STEP__ID = FILE_STEP__ID;
+    int RENAME_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -543,13 +543,13 @@ public interface BuildfilePackage extends EPackage {
     int DELETE_STEP = 7;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DELETE_STEP__ID = FILE_STEP__ID;
+    int DELETE_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -625,13 +625,13 @@ public interface BuildfilePackage extends EPackage {
     int COPY_STEP = 8;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COPY_STEP__ID = FILE_STEP__ID;
+    int COPY_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -716,13 +716,13 @@ public interface BuildfilePackage extends EPackage {
     int DOWNLOAD_STEP = 9;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DOWNLOAD_STEP__ID = FILE_STEP__ID;
+    int DOWNLOAD_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -780,13 +780,13 @@ public interface BuildfilePackage extends EPackage {
     int CREATE_FOLDER_STEP = 10;
 
     /**
-     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CREATE_FOLDER_STEP__ID = FILE_STEP__ID;
+    int CREATE_FOLDER_STEP__NAME = FILE_STEP__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.

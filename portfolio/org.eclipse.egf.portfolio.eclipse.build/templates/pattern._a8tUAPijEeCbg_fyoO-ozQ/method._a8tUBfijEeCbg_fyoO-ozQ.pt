@@ -1,4 +1,4 @@
-    <%String id = new GenerationHelper().getIdOrPositionString(runningPlatformBuildLocation);%>
+    <%String id = new GenerationHelper().getNameOrGeneratedIdString(runningPlatformBuildLocation);%>
 	<locator searchPathRef="targetPlatform<%=id%>" <%=new GenerationHelper().getPatternString(runningPlatformBuildLocation)%> failOnError="false" />
 	<searchPath name="targetPlatform<%=id%>">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="eclipse.platform">

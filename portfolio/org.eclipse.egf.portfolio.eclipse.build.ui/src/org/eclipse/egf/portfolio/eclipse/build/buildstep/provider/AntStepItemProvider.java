@@ -178,7 +178,7 @@ public class AntStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((AntStep)object).getId();
+        String label = ((AntStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_AntStep_type") :
             getString("_UI_AntStep_type") + " " + label;

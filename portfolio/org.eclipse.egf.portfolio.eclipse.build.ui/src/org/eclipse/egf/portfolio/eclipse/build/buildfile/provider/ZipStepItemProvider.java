@@ -249,7 +249,7 @@ public class ZipStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((ZipStep)object).getId();
+        String label = ((ZipStep)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_ZipStep_type") :
             getString("_UI_ZipStep_type") + " " + label;

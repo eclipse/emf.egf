@@ -79,26 +79,26 @@ public class ComponentItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNamePropertyDescriptor(object);
+            addIdPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Name feature.
+     * This adds a property descriptor for the Id feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addNamePropertyDescriptor(Object object) {
+    protected void addIdPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Component_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Component_name_feature", "_UI_Component_type"),
-                 BuildstepPackage.Literals.COMPONENT__NAME,
+                 getString("_UI_Component_id_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Component_id_feature", "_UI_Component_type"),
+                 BuildstepPackage.Literals.COMPONENT__ID,
                  true,
                  false,
                  false,
@@ -117,7 +117,7 @@ public class ComponentItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((Component)object).getName();
+        String label = ((Component)object).getId();
         return label == null || label.length() == 0 ?
             getString("_UI_Component_type") :
             getString("_UI_Component_type") + " " + label;
@@ -136,7 +136,7 @@ public class ComponentItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(Component.class)) {
-            case BuildstepPackage.COMPONENT__NAME:
+            case BuildstepPackage.COMPONENT__ID:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

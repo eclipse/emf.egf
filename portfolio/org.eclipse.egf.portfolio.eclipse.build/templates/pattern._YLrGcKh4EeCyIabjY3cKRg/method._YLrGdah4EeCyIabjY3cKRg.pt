@@ -1,4 +1,4 @@
 <%
-String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(), installStepBuildLocation) + installStepBuildLocation.getInstallStep().getName();
+String location = new GenerationHelper().getPublishPath(ctx, installStepBuildLocation.getInstallStep(), installStepBuildLocation) + installStepBuildLocation.getInstallStep().getId();
 %>
 		<location path="<%=location%>" type="Profile"/>

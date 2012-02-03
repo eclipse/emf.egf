@@ -1,4 +1,4 @@
-<%String stepName = new GenerationHelper().getIdOrPositionString(downloadStep);%>
+<%String stepName = new GenerationHelper().getNameOrGeneratedIdString(downloadStep);%>
 	<target name="<%=stepName%>" depends="init">
 		<get src="<%=downloadStep.getSourceFilePath()%>" dest="<%=downloadStep.getDestinationFilePath()%>" <%=new GenerationHelper().getAdditionalParametersString(downloadStep)%> >
 		</get>

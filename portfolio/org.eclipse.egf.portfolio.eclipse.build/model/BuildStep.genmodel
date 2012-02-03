@@ -58,12 +58,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//EgfActivity/uri"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//AggregateStep">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//AggregateStep/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//AggregateStep/id"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//AggregateStep/publishSteps"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//AggregateStep/updateSiteUrls"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//InstallStep">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/profile"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildStep.ecore#//InstallStep/resultSteps"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/updateSiteUrls"/>
@@ -98,7 +98,7 @@
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//RunningPlatformBuildLocation"/>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//Component">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//Component/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//Component/id"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference BuildStep.ecore#//Component/buildStep"/>
     </genClasses>
     <genClasses ecoreClass="BuildStep.ecore#//Plugin"/>

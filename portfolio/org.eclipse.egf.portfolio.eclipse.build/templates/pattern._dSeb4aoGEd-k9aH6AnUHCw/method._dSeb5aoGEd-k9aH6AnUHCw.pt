@@ -1,4 +1,4 @@
-	<target name="<%=new GenerationHelper().getIdOrPositionString(cleanStep)%>" >
+	<target name="<%=new GenerationHelper().getNameOrGeneratedIdString(cleanStep)%>" >
 <%if (cleanStep.getType() == CLEAN_TYPE.WORKSPACE) {%>
 		<antcall target="clean.workspace" />
 <%}%>
