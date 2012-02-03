@@ -99,7 +99,7 @@ public abstract class AbstractStepContainerImpl extends ItemPropertiesImpl imple
     public EList<Step> getSteps() {
 
         if (steps == null) {
-            steps = new EObjectContainmentEList<Step>(Step.class, this, BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS);
+            steps = new EObjectContainmentEList.Resolving<Step>(Step.class, this, BuildcorePackage.ABSTRACT_STEP_CONTAINER__STEPS);
         }
         return steps;
     }

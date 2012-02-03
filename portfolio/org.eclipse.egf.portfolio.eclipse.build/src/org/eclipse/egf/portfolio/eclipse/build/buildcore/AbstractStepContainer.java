@@ -58,7 +58,7 @@ public interface AbstractStepContainer extends ItemProperties {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Steps</em>' containment reference list.
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getAbstractStepContainer_Steps()
-     * @model containment="true"
+     * @model containment="true" resolveProxies="true"
      * @generated
      */
 
