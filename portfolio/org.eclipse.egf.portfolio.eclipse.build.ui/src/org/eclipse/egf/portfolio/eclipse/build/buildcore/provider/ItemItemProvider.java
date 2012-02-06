@@ -221,5 +221,33 @@ public class ItemItemProvider
         return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
+    /**
+     * @generated
+     */
+    @Override
+    protected Object overlayImage(Object object, Object image) {
+        
+        if (object instanceof Item && !((Item) object).isEnabled()) {
+          List<Object> images = new java.util.ArrayList<Object>(2);
+          images.add(image);
+          images.add(org.eclipse.egf.portfolio.eclipse.build.buildcore.presentation.BuildCoreEditorPlugin.INSTANCE.getImage("disabled"));
+          image = new org.eclipse.emf.edit.provider.ComposedImage(images) {
+
+                @Override
+                public List<Point> getDrawPoints(Size size) {
+                    List<Point> results = new java.util.ArrayList<Point>();
+                    results.add(new Point());
+                    Point overlay = new Point();
+                    overlay.x = 0;
+                    overlay.y = 9;
+                    results.add(overlay);
+                    return results;
+                }
+            };
+        }
+
+        return super.overlayImage(object, image);
+    }
+
 
 }

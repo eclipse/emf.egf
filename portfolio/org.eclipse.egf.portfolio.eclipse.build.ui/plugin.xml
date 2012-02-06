@@ -129,6 +129,22 @@
             uri="http://www.eclipse.org/egf/1.0.1/buildcore"
             class="org.eclipse.egf.portfolio.eclipse.build.buildfile.provider.BuildfileItemProviderAdapterFactory$BuildcoreChildCreationExtender"
       />
+   </extension>
+         <extension point="org.eclipse.ui.popupMenus">
+         <objectContribution
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.item.enablementActions"
+               objectClass="org.eclipse.egf.portfolio.eclipse.build.buildcore.Item">
+         <action
+               class="org.eclipse.egf.portfolio.eclipse.build.ui.item.EnableAction"
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.item.enable"
+               label="Enable">
+         </action>
+         <action
+               class="org.eclipse.egf.portfolio.eclipse.build.ui.item.DisableAction"
+               id="org.eclipse.egf.portfolio.eclipse.build.ui.item.diable"
+               label="Disable">
+         </action>
+      </objectContribution>
    </extension>   
   
 </plugin>
