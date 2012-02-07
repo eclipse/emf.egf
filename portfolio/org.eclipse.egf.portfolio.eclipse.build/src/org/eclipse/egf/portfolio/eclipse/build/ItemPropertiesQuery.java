@@ -34,18 +34,9 @@ public class ItemPropertiesQuery implements IQuery {
 	public List<Object> execute(ParameterDescription parameter,
 			Map<String, String> queryCtx, PatternContext context) {
 		Job job = (Job) context.getValue(PatternContext.INJECTED_CONTEXT);
-		Chain chain = (Chain) job.eContainer();
 
-		LinkedHashMap<String,Property> map = new LinkedHashMap<String, Property>();
-		if (chain != null) {
-			for (Property property : chain.getProperties()) 
-				map.put(property.getKey(), property);
-		}
-		for (Property property : job.getProperties()) 
-			map.put(property.getKey(), property);
-		
 		List<Object> result = new ArrayList<Object>();
-		result.addAll(map.values());
+		result.addAll(new GenerationHelper().getAllKeys2Properties(job).values());
 		
 		return result;
 	}

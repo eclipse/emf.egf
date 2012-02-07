@@ -37,7 +37,7 @@
 	                <jvmarg value="-Dpublish=${publish}"/>
 	                <jvmarg value="-Dworkspace=${workspace}"/>
 	                <jvmarg value="-Dtimestamp=${timestamp}"/>
-<%for (String key : new GenerationHelper().getAllPropertiesKeys(job)) {%>
+<%for (String key : new GenerationHelper().getAllKeys2Properties(job).keySet()) {%>
 	                <jvmarg value="-D<%=key%>=${<%=key%>}"/>
 <%}%>
                     <arg value="-data" />

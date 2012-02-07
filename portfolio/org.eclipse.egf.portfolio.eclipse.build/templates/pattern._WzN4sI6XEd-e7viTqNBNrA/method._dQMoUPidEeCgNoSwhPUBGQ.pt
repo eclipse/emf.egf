@@ -7,6 +7,9 @@
 		<echo message="Build Publish directory (publish) : ${publish}" />
 		<echo message="Build Eclipse workspace directory (workspace) : ${workspace}" />	
 		<echo message="Build Timestamp (timestamp) : ${timestamp}" />	
+<%for (String key : new GenerationHelper().getAllKeys2Properties(job).keySet()) {%>
+		<echo message="<%=key%> (<%=key%>) : ${<%=key%>}" />	
+<%}%>
 	</target>
 
     <target name="init.build.properties">

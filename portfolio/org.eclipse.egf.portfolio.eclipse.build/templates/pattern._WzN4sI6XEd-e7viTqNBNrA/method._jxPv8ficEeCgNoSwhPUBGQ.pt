@@ -25,3 +25,9 @@
     <property name="buckminster.output.root" location="${result}/output" />
     <property name="buckminster.temp.root" location="${result}/temp" />
     <property name="eclipse.staging.area" location="${result}/signing" />
+
+<%for (String key : new GenerationHelper().getAllKeys2Properties(job).keySet()) {%>
+    <condition property="<%=key%>" value="${<%=key%>}" else="undefined">
+        <isset property="<%=key%>" />
+    </condition>
+<%}%>

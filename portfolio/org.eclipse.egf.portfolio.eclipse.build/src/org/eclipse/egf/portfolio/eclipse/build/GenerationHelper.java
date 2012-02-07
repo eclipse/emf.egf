@@ -15,7 +15,9 @@
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
@@ -227,18 +229,23 @@ public class GenerationHelper {
         return builder.toString();
     }
     
-    public List<String> getAllPropertiesKeys(Job job) {
-        ArrayList<String> keys = new ArrayList<String>();
-        EObject root = job.eContainer() != null?job.eContainer():job;
-        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(root, false);
+    public Map<String, Property> getAllKeys2Properties(Job job) {
+        Map<String, Property> properties = new HashMap<String, Property>();
+        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(job, false);
         while (treeIterator.hasNext()) {
             Object next = treeIterator.next();
             if (next instanceof Property) {
                 Property property = (Property) next;
-                if (!keys.contains(property.getKey()))
-                    keys.add(property.getKey());
+                if (!properties.containsKey(property.getKey()))
+                    properties.put(property.getKey(), property);
             }
         }
-        return keys;
+        if (job.eContainer() instanceof Chain) {
+            for (Property property : ((Chain) job.eContainer()).getProperties()) {
+                if (!properties.containsKey(property.getKey()))
+                    properties.put(property.getKey(), property);
+            }
+        }
+        return properties;
     }
 }
