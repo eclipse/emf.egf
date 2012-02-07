@@ -22,18 +22,27 @@ egf.release=helios
 egf.site=${eclipse.download.prefix}/egf/updates/${egf.release}/official/
 egf.eclipse.site=${eclipse.download.prefix}/releases/${egf.release}
 
-#do not generate version range with buckminster in manifest.mf and content.jar
-pde.bundle.range.generation=false
-
-#build
+#buckminster build
 buckminster.loglevel=INFO
+buckminster.output.root=${result}/output
+buckminster.temp.root=${result}/temp
 
-#qualifier
+#buckminster qualifier
 qualifier.replacement.*=generator:buildTimestamp
 generator.buildTimestamp.format='v'yyyyMMdd-HHmm
 
-#signing
+#buckminster signing
 signing.type=eclipse.local
+eclipse.staging.area=${result}/signing
 site.pack200=true
 site.retain.unpacked=true
+
+#buckminster : do not generate version range in manifest.mf and content.jar
+pde.bundle.range.generation=false
+
+#egf portfolio build
+tools=${build.root}/tools
+result=${build.root}/result
+publish=${result}/publish
+workspace=${result}/workspace
 

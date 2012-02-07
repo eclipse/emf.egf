@@ -1,14 +1,14 @@
 	<target name="init" depends="init.build.properties" >
 		<echo message="Available variables are : "/>
-		<echo message="Build Releng directory (relengDir) : ${relengDir}" />
-		<echo message="Build Root directory (build.root) : ${build.root}" />
-		<echo message="Build Tools directory (tools) : ${tools}" />
-		<echo message="Build Results directory (result) : ${result}" />
-		<echo message="Build Publish directory (publish) : ${publish}" />
-		<echo message="Build Eclipse workspace directory (workspace) : ${workspace}" />	
-		<echo message="Build Timestamp (timestamp) : ${timestamp}" />	
+		<echo message="Build built-in Releng directory (relengDir) : ${relengDir}" />
+		<echo message="Build built-in Root directory (build.root) : ${build.root}" />
+		<echo message="Build built-in Tools directory (tools) : ${tools}" />
+		<echo message="Build built-in Results directory (result) : ${result}" />
+		<echo message="Build built-in Publish directory (publish) : ${publish}" />
+		<echo message="Build built-in Eclipse workspace directory (workspace) : ${workspace}" />	
+		<echo message="Build built-in Timestamp (timestamp) : ${timestamp}" />	
 <%for (String key : new GenerationHelper().getAllKeys2Properties(job).keySet()) {%>
-		<echo message="<%=key%> (<%=key%>) : ${<%=key%>}" />	
+		<echo message="Build provided <%=key%> (<%=key%>) : ${<%=key%>}" />	
 <%}%>
 	</target>
 
