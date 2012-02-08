@@ -36,6 +36,7 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.l10n.EGFPatternMessages;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.osgi.util.NLS;
@@ -61,11 +62,21 @@ public abstract class AbstractDomainVisitor implements DomainVisitor {
         }
     }
 
-    private void registerPattern(Pattern p, PatternParameter patternParameter) {
+    private void registerPattern(Pattern p, PatternParameter patternParameter) throws PatternException {
         String type = patternParameter.getType();
         List<Pattern> patterns = type2patterns.get(type);
-        if (patterns == null)
+        if (patterns == null) {
+            try {
+                // try to compute the associated classname, it will throw an
+                // exception if the model is not available.
+                String sourceTypeLiteral = ParameterTypeHelper.INSTANCE.getSourceTypeLiteral(type);
+            } catch (Exception e) {
+
+                throw new PatternException(NLS.bind(EGFPatternMessages.strategy_error5, p.getName()), e);
+            }
+
             type2patterns.put(type, patterns = new ArrayList<Pattern>());
+        }
         patterns.add(p);
     }
 

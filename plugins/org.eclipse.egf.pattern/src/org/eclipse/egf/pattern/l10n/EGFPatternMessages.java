@@ -117,8 +117,8 @@ public class EGFPatternMessages extends NLS {
     public static String strategy_error2;
 
     public static String strategy_error1;
-
     public static String strategy_error4;
+    public static String strategy_error5;
 
     public static String collect_error1;
 
