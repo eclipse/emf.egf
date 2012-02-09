@@ -1,4 +1,4 @@
-//Generated on Tue Feb 07 12:07:29 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Feb 09 11:36:29 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -40,13 +40,13 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("property", "http://www.eclipse.org/egf/1.0.1/buildcore#//Property");
+        paramDesc = new IQuery.ParameterDescription("propertyWrapper", "org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper");
         queryCtx = new HashMap<String, String>();
-        List<Object> propertyList = QueryHelper.load(ctx, "org.eclipse.egf.portfolio.eclipse.build.ItemPropertiesQuery").execute(paramDesc, queryCtx, ctx);
+        List<Object> propertyWrapperList = QueryHelper.load(ctx, "org.eclipse.egf.portfolio.eclipse.build.ItemPropertiesQuery").execute(paramDesc, queryCtx, ctx);
 
-        for (Object propertyParameter : propertyList) {
+        for (Object propertyWrapperParameter : propertyWrapperList) {
 
-            this.property = (org.eclipse.egf.portfolio.eclipse.build.buildcore.Property) propertyParameter;
+            this.propertyWrapper = (org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper) propertyWrapperParameter;
 
             if (preCondition(ctx)) {
                 ctx.setNode(new Node.Container(currentNode, getClass()));
@@ -71,7 +71,7 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
 
         if (ictx.useReporter()) {
             Map<String, Object> parameterValues = new HashMap<String, Object>();
-            parameterValues.put("property", this.property);
+            parameterValues.put("propertyWrapper", this.propertyWrapper);
             String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
             String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
             ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
@@ -79,23 +79,23 @@ public class buildpropertiesitemProperty extends org.eclipse.egf.portfolio.eclip
         return null;
     }
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildcore.Property property = null;
+    protected org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper propertyWrapper = null;
 
-    public void set_property(org.eclipse.egf.portfolio.eclipse.build.buildcore.Property object) {
-        this.property = object;
+    public void set_propertyWrapper(org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper object) {
+        this.propertyWrapper = object;
     }
 
     public Map<String, Object> getParameters() {
         final Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("property", this.property);
+        parameters.put("propertyWrapper", this.propertyWrapper);
         return parameters;
     }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        stringBuffer.append(property.getKey());
+        stringBuffer.append(propertyWrapper.getKey());
         stringBuffer.append(TEXT_1);
-        stringBuffer.append(property.getValue());
+        stringBuffer.append(propertyWrapper.getValue());
         stringBuffer.append(TEXT_2);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());

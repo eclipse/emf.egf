@@ -15,17 +15,13 @@
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
@@ -35,7 +31,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Matthieu Helleboid
@@ -149,24 +144,6 @@ public class GenerationHelper {
         return result.toString();
     }
     
-    public String replaceProperties(EObject eObject, String input) {
-        if (input == null)
-            return null;
-        
-        while (eObject != null) {
-            if (eObject instanceof ItemProperties) {
-                ItemProperties itemProperties = (ItemProperties) eObject;
-                for (Property property : itemProperties.getProperties()) {
-                    String propertyExpression = "${" + property.getKey() + "}";
-                    if (input.contains(propertyExpression))
-                        input = input.replace(propertyExpression, property.getValue());
-                }
-            }
-            eObject = eObject.eContainer();
-        }
-        return input;
-    }
-   
     // Copied from org.eclipse.buckminster.pde.tasks.SourceFeatureCreator
     private static final String FEATURE_SUFFIX = ".feature"; //$NON-NLS-1$
     private static final String SOURCE_SUFFIX = ".source"; //$NON-NLS-1$
@@ -227,25 +204,5 @@ public class GenerationHelper {
             builder.append("\"");
         }
         return builder.toString();
-    }
-    
-    public Map<String, Property> getAllKeys2Properties(Job job) {
-        Map<String, Property> properties = new HashMap<String, Property>();
-        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(job, false);
-        while (treeIterator.hasNext()) {
-            Object next = treeIterator.next();
-            if (next instanceof Property) {
-                Property property = (Property) next;
-                if (!properties.containsKey(property.getKey()))
-                    properties.put(property.getKey(), property);
-            }
-        }
-        if (job.eContainer() instanceof Chain) {
-            for (Property property : ((Chain) job.eContainer()).getProperties()) {
-                if (!properties.containsKey(property.getKey()))
-                    properties.put(property.getKey(), property);
-            }
-        }
-        return properties;
     }
 }

@@ -14,16 +14,12 @@
  */
 package org.eclipse.egf.portfolio.eclipse.build;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.pattern.query.IQuery;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 
 /**
  * @author Matthieu Helleboid
@@ -31,16 +27,10 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
  */
 public class ItemPropertiesQuery implements IQuery {
 
-	public List<Object> execute(ParameterDescription parameter,
+	public List execute(ParameterDescription parameter,
 			Map<String, String> queryCtx, PatternContext context) {
 		Job job = (Job) context.getValue(PatternContext.INJECTED_CONTEXT);
-
-		List<Object> result = new ArrayList<Object>();
-		result.addAll(new GenerationHelper().getAllKeys2Properties(job).values());
-		
-		return result;
+		return new PropertiesHelper().getAllProperties(job);
 	}
-	
-	
 
 }

@@ -40,9 +40,3 @@ site.retain.unpacked=true
 #buckminster : do not generate version range in manifest.mf and content.jar
 pde.bundle.range.generation=false
 
-#egf portfolio build
-tools=${build.root}/tools
-result=${build.root}/result
-publish=${result}/publish
-workspace=${result}/workspace
-

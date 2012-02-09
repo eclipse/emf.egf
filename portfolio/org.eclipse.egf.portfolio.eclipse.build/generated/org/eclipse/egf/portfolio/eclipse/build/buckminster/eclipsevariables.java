@@ -1,4 +1,4 @@
-//Generated on Tue Feb 07 11:58:54 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Feb 09 10:58:26 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,11 +21,7 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
-    protected final String TEXT_2 = "#Wed Jan 04 10:05:55 CET 2012"
-            + NL
-            + "eclipse.preferences.version=1"
-            + NL
-            + "org.eclipse.core.variables.valueVariables=<?xml version\\=\"1.0\" encoding\\=\"UTF-8\" standalone\\=\"no\"?><valueVariables><valueVariable description\\=\"\" name\\=\"relengDir\" readOnly\\=\"false\" value\\=\"${system_property\\:relengDir}\"/><valueVariable description\\=\"\" name\\=\"build.root\" readOnly\\=\"false\" value\\=\"${system_property\\:build.root}\"/><valueVariable description\\=\"\" name\\=\"tools\" readOnly\\=\"false\" value\\=\"${system_property\\:tools}\"/><valueVariable description\\=\"\" name\\=\"result\" readOnly\\=\"false\" value\\=\"${system_property\\:result}\"/><valueVariable description\\=\"\" name\\=\"publish\" readOnly\\=\"false\" value\\=\"${system_property\\:publish}\"/><valueVariable description\\=\"\" name\\=\"workspace\" readOnly\\=\"false\" value\\=\"${system_property\\:workspace}\"/><valueVariable description\\=\"\" name\\=\"timestamp\" readOnly\\=\"false\" value\\=\"${system_property\\:timestamp}\"/>";
+    protected final String TEXT_2 = "#Wed Jan 04 10:05:55 CET 2012" + NL + "eclipse.preferences.version=1" + NL + "org.eclipse.core.variables.valueVariables=<?xml version\\=\"1.0\" encoding\\=\"UTF-8\" standalone\\=\"no\"?><valueVariables>";
     protected final String TEXT_3 = "<valueVariable description\\=\"\" name\\=\"";
     protected final String TEXT_4 = "\" readOnly\\=\"false\" value\\=\"${system_property\\:";
     protected final String TEXT_5 = "}\"/>";
@@ -113,11 +109,11 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
     protected void method_content(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_2);
-        for (String key : new GenerationHelper().getAllKeys2Properties(job).keySet()) {
+        for (PropertyWrapper propertyWrapper : new PropertiesHelper().getAllProperties(job)) {
             stringBuffer.append(TEXT_3);
-            stringBuffer.append(key);
+            stringBuffer.append(propertyWrapper.getKey());
             stringBuffer.append(TEXT_4);
-            stringBuffer.append(key);
+            stringBuffer.append(propertyWrapper.getKey());
             stringBuffer.append(TEXT_5);
         }
         stringBuffer.append(TEXT_6);

@@ -5,12 +5,11 @@
 		<format property="myTimestamp" pattern="yyyyMMdd-HHmm"/>
 	</tstamp>
 
-    <condition property="build.root" value="${env.WORKSPACE}" else="${relengDir}/../workspace">
-        <isset property="env.WORKSPACE" />
+<%for(PropertyWrapper propertyWrapper : new PropertiesHelper().getAllProperties(job)) {%>
+    <condition property="<%=propertyWrapper.getKey()%>" value="${<%=propertyWrapper.getEnvKey()%>}">
+        <isset property="<%=propertyWrapper.getEnvKey()%>" />
     </condition>
-    <condition property="timestamp" value="${env.BUILD_ID}" else="${myTimestamp}">
-        <isset property="env.BUILD_ID" />
-    </condition>
+<%}%>
 
     <property file="build.properties" />
 

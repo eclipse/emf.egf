@@ -1443,7 +1443,7 @@
             <methods xmi:id="_x4T9lJmWEd-Ee7jt2lxlVA" name="preCondition" patternFilePath="templates/pattern._x4T9kZmWEd-Ee7jt2lxlVA/method._x4T9lJmWEd-Ee7jt2lxlVA.pt"/>
             <methods xmi:id="_x4T9lZmWEd-Ee7jt2lxlVA" name="body" patternFilePath="templates/pattern._x4T9kZmWEd-Ee7jt2lxlVA/method._x4T9lZmWEd-Ee7jt2lxlVA.pt"/>
             <methods xmi:id="_x4T9lpmWEd-Ee7jt2lxlVA" name="footer" patternFilePath="templates/pattern._x4T9kZmWEd-Ee7jt2lxlVA/method._x4T9lpmWEd-Ee7jt2lxlVA.pt"/>
-            <parameters xmi:id="_2QJggJmWEd-Ee7jt2lxlVA" name="property" type="http://www.eclipse.org/egf/1.0.1/buildcore#//Property">
+            <parameters xmi:id="_2QJggJmWEd-Ee7jt2lxlVA" name="propertyWrapper" type="org.eclipse.egf.portfolio.eclipse.build.PropertyWrapper">
               <query xmi:type="pattern:BasicQuery" xmi:id="_MErj0JmXEd-Ee7jt2lxlVA"
                   extensionId="org.eclipse.egf.portfolio.eclipse.build.ItemPropertiesQuery"/>
             </parameters>
