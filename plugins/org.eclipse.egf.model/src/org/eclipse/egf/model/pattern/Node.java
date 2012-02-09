@@ -70,6 +70,8 @@ public abstract class Node {
         return "Node [patternClass=" + patternClass + "]";
     }
 
+    public abstract void accept(NodeVisitor visitor);
+    
     public static abstract class Leaf extends Node {
 
         protected Leaf(Node.Container parent, String patternClass) {
@@ -77,6 +79,10 @@ public abstract class Node {
         }
 
         public abstract void toString(StringBuilder builder);
+        
+        public void accept(NodeVisitor visitor) {
+        	visitor.visit(this);
+        }
     }
 
     public static final class DataLeaf extends Leaf {
@@ -149,17 +155,20 @@ public abstract class Node {
         public List<Node> getChildren() {
             return children;
         }
-
+        
+        public void accept(NodeVisitor visitor) {
+        	if (!visitor.visit(this))
+        		return;
+        	
+        	for (Node child : children) {
+				child.accept(visitor);
+			}
+        }
     }
-
-    // public static String flatten(Container node) {
-    //
-    // return null;
-    // }
-    //
-    // public static String flattenWithoutCallback(Container node) {
-    //
-    // return null;
-    // }
-
+    
+    public static class NodeVisitor {
+    	public boolean visit(Node node) {
+    		return true;
+    	}
+    }
 }
