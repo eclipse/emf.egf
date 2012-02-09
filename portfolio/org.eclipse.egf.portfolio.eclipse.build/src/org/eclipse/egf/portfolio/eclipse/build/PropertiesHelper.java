@@ -16,9 +16,7 @@
 package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
@@ -35,13 +33,12 @@ public class PropertiesHelper {
     public List<PropertyWrapper> getAllProperties(Job job) {
         List<PropertyWrapper> list = new ArrayList<PropertyWrapper>();
         
-        addPropertyWrapperToList(list, new PropertyWrapper("relengDir", "${baseDir}"));
         addPropertyWrapperToList(list, new PropertyWrapper("build.root", "${relengDir}/../workspace", PropertyWrapper.BUILTIN, "WORKSPACE"));
-        addPropertyWrapperToList(list, new PropertyWrapper("timestamp", "${myTimestamp}", PropertyWrapper.BUILTIN, "BUILD_ID"));
         addPropertyWrapperToList(list, new PropertyWrapper("tools", "${build.root}/tools"));
         addPropertyWrapperToList(list, new PropertyWrapper("result", "${build.root}/result"));
         addPropertyWrapperToList(list, new PropertyWrapper("publish", "${result}/publish"));
         addPropertyWrapperToList(list, new PropertyWrapper("workspace", "${result}/workspace", PropertyWrapper.BUILTIN, "ECLIPSE_WORKSPACE"));
+        addPropertyWrapperToList(list, new PropertyWrapper("timestamp", "${myTimestamp}", PropertyWrapper.BUILTIN, "BUILD_ID"));
 
         if (job.eContainer() instanceof Chain) {
             for (Property property : ((Chain) job.eContainer()).getProperties()) {

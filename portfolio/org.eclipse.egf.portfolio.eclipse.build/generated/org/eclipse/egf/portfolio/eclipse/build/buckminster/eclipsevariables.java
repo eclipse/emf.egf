@@ -1,4 +1,4 @@
-//Generated on Thu Feb 09 10:58:26 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Feb 09 18:02:54 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -21,7 +21,7 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
     protected final String TEXT_1 = "";
-    protected final String TEXT_2 = "#Wed Jan 04 10:05:55 CET 2012" + NL + "eclipse.preferences.version=1" + NL + "org.eclipse.core.variables.valueVariables=<?xml version\\=\"1.0\" encoding\\=\"UTF-8\" standalone\\=\"no\"?><valueVariables>";
+    protected final String TEXT_2 = "#Wed Jan 04 10:05:55 CET 2012" + NL + "eclipse.preferences.version=1" + NL + "org.eclipse.core.variables.valueVariables=<?xml version\\=\"1.0\" encoding\\=\"UTF-8\" standalone\\=\"no\"?><valueVariables><valueVariable description\\=\"\" name\\=\"relengDir\" readOnly\\=\"false\" value\\=\"${system_property\\:relengDir}\"/>";
     protected final String TEXT_3 = "<valueVariable description\\=\"\" name\\=\"";
     protected final String TEXT_4 = "\" readOnly\\=\"false\" value\\=\"${system_property\\:";
     protected final String TEXT_5 = "}\"/>";

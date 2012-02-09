@@ -16,7 +16,6 @@ package org.eclipse.egf.portfolio.eclipse.build;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
