@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:05 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Wed Feb 08 12:01:38 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job;
 
 import java.util.*;
@@ -148,7 +148,9 @@ public class job {
     }
 
     public boolean preCondition(PatternContext ctx) throws Exception {
-        return true;
+        //job may be deleted from model since because it's disabled in model
+        return job.eResource() != null;
+
     }
 
     protected org.eclipse.egf.portfolio.eclipse.build.buildcore.Job job;
