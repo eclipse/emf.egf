@@ -2,8 +2,6 @@
         <buckminster command="import">
             <!-- Uncomment to debug <globargs><jvmarg value="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y"/></globargs> -->
             <cmdargs>
-                <arg value="-P" />
-                <arg value="${relengDir}/build.properties" />
                 <arg value="${relengDir}/buckminster_<%=stepName%>/build.mspec" />
             </cmdargs>
         </buckminster>

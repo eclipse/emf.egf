@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:05 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon Feb 13 17:30:21 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -29,7 +29,7 @@ public class buildxmlbuildStep extends org.eclipse.egf.portfolio.eclipse.build.b
     protected final String TEXT_6 = NL + "\t\t<echo message=\"import target platform\" />" + NL + "        <buckminster command=\"importtargetdefinition\">" + NL + "            <cmdargs>" + NL + "                <arg value=\"--active\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
     protected final String TEXT_7 = "/build.target\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>";
     protected final String TEXT_8 = NL;
-    protected final String TEXT_9 = "\t\t<echo message=\"provision : import projects in workspace\" />" + NL + "        <buckminster command=\"import\">" + NL + "            <!-- Uncomment to debug <globargs><jvmarg value=\"-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y\"/></globargs> -->" + NL + "            <cmdargs>" + NL + "                <arg value=\"-P\" />" + NL + "                <arg value=\"${relengDir}/build.properties\" />" + NL + "                <arg value=\"${relengDir}/buckminster_";
+    protected final String TEXT_9 = "\t\t<echo message=\"provision : import projects in workspace\" />" + NL + "        <buckminster command=\"import\">" + NL + "            <!-- Uncomment to debug <globargs><jvmarg value=\"-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=y\"/></globargs> -->" + NL + "            <cmdargs>" + NL + "                <arg value=\"${relengDir}/buckminster_";
     protected final String TEXT_10 = "/build.mspec\" />" + NL + "            </cmdargs>" + NL + "        </buckminster>" + NL + NL;
     protected final String TEXT_11 = NL + "        <echo message=\"No builders invocation specified\" />";
     protected final String TEXT_12 = NL + "        <echo message=\"Invoking all eclipse builders on workspace ${workspace}\" />" + NL + "        <buckminster command=\"build\" >" + NL + "            <cmdargs>" + NL + "                <arg value=\"--clean\" />" + NL + "                <arg value=\"--thorough\" />" + NL + "            </cmdargs>" + NL + "\t\t</buckminster>";
