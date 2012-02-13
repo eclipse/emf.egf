@@ -745,7 +745,7 @@
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
           <invocationContracts xmi:id="_sMlhg428Ed-Tlrutn5SzgA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_9-kw4I3GEd-Tlrutn5SzgA"
-                description="" value="org.eclipse.egf.portfolio.eclipse.build.FileReporter"/>
+                description="" value="org.eclipse.egf.portfolio.eclipse.build.ReplacePropertiesFileReporter"/>
           </invocationContracts>
           <invocationContracts xmi:id="_sMlhho28Ed-Tlrutn5SzgA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
             <type xmi:type="pattern:TypePatternList" xmi:id="_3-qZsI3CEd-Tlrutn5SzgA"
