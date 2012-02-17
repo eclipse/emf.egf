@@ -19,9 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -30,19 +34,20 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class PropertiesHelper {
 
-    public List<PropertyWrapper> getAllProperties(Job job) {
+    public List<PropertyWrapper> getRuntimeProperties(Job job) {
         List<PropertyWrapper> list = new ArrayList<PropertyWrapper>();
         
-        addPropertyWrapperToList(list, new PropertyWrapper("build.root", "${relengDir}/../workspace", PropertyWrapper.BUILTIN, "WORKSPACE"));
+        addPropertyWrapperToList(list, new PropertyWrapper("build.root", "${relengDir}/../workspace", PropertyWrapper.RUNTIME_BUILTIN, "WORKSPACE"));
         addPropertyWrapperToList(list, new PropertyWrapper("tools", "${build.root}/tools"));
         addPropertyWrapperToList(list, new PropertyWrapper("result", "${build.root}/result"));
         addPropertyWrapperToList(list, new PropertyWrapper("publish", "${result}/publish"));
-        addPropertyWrapperToList(list, new PropertyWrapper("workspace", "${result}/workspace", PropertyWrapper.BUILTIN, "ECLIPSE_WORKSPACE"));
-        addPropertyWrapperToList(list, new PropertyWrapper("timestamp", "${myTimestamp}", PropertyWrapper.BUILTIN, "BUILD_ID"));
+        addPropertyWrapperToList(list, new PropertyWrapper("workspace", "${result}/workspace", PropertyWrapper.RUNTIME_BUILTIN, "ECLIPSE_WORKSPACE"));
+        addPropertyWrapperToList(list, new PropertyWrapper("timestamp", "${myTimestamp}", PropertyWrapper.RUNTIME_BUILTIN, "BUILD_ID"));
 
         if (job.eContainer() instanceof Chain) {
             for (Property property : ((Chain) job.eContainer()).getProperties()) {
-                addPropertyWrapperToList(list, new PropertyWrapper(property));
+                if (PropertyType.RUNTIME.equals(property.getType()))
+                    addPropertyWrapperToList(list, new PropertyWrapper(property));
             }
         }
         
@@ -50,7 +55,9 @@ public class PropertiesHelper {
         while (treeIterator.hasNext()) {
             Object next = treeIterator.next();
             if (next instanceof Property) {
-                addPropertyWrapperToList(list, new PropertyWrapper((Property) next));
+                Property property = (Property) next;
+                if (PropertyType.RUNTIME.equals(property.getType()))
+                    addPropertyWrapperToList(list, new PropertyWrapper((Property) next));
             }
         }
         
@@ -66,41 +73,42 @@ public class PropertiesHelper {
         list.add(propertyWrapper);
     }
 
-//    List<EAttribute> eAllAttributes = eObject.eClass().getEAllAttributes();
-//    for (EAttribute eAttribute : eAllAttributes) {
-//        if ("EString".equals(eAttribute.getEType().getName())) {
-//            if (eAttribute.getUpperBound() == 1) {
-//                String string = (String) eObject.eGet(eAttribute);
-//                eObject.eSet(eAttribute, new GenerationHelper().replaceProperties(eObject, string));
-//            } else {
-//                List<String> stringList = (List<String>) eObject.eGet(eAttribute);
-//                for (int i = 0; i < stringList.size(); i++) {
-//                    String string = stringList.get(i);
-//                    stringList.set(i, new GenerationHelper().replaceProperties(eObject, string));
-//                }
-//            }
-//        }
-//    }
+    public void replaceInlinedProperties(EObject eObject) {
+        List<EAttribute> eAllAttributes = eObject.eClass().getEAllAttributes();
+        for (EAttribute eAttribute : eAllAttributes) {
+            if ("EString".equals(eAttribute.getEType().getName())) {
+                if (eAttribute.getUpperBound() == 1) {
+                    String string = (String) eObject.eGet(eAttribute);
+                    eObject.eSet(eAttribute, replaceInlinedProperties(eObject, string));
+                } else {
+                    List<String> stringList = (List<String>) eObject.eGet(eAttribute);
+                    for (int i = 0; i < stringList.size(); i++) {
+                        String string = stringList.get(i);
+                        stringList.set(i, replaceInlinedProperties(eObject, string));
+                    }
+                }
+            }
+        }
+    }    
     
-//    public String replaceProperties(EObject eObject, String input) {
-//        if (input == null)
-//            return null;
-//        
-//        while (eObject != null) {
-//            if (eObject instanceof ItemProperties) {
-//                ItemProperties itemProperties = (ItemProperties) eObject;
-//                for (Property property : itemProperties.getProperties()) {
-//                    String propertyExpression = "${" + property.getKey() + "}";
-//                    if (input.contains(propertyExpression))
-//                        input = input.replace(propertyExpression, property.getValue());
-//                }
-//            }
-//            eObject = eObject.eContainer();
-//        }
-//        return input;
-//    }
-   
-
-
+    private String replaceInlinedProperties(EObject eObject, String input) {
+        if (input == null)
+            return null;
+        
+        while (eObject != null) {
+            if (eObject instanceof ItemProperties) {
+                ItemProperties itemProperties = (ItemProperties) eObject;
+                for (Property property : itemProperties.getProperties()) {
+                    if (PropertyType.INLINED.equals(property.getType())) {
+                        String propertyExpression = "${" + property.getKey() + "}";
+                        if (input.contains(propertyExpression))
+                            input = input.replace(propertyExpression, property.getValue());
+                    }
+                }
+            }
+            eObject = eObject.eContainer();
+        }
+        return input;
+    }
     
 }

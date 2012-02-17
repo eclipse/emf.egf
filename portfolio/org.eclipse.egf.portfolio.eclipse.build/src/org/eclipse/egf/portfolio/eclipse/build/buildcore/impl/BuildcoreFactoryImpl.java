@@ -16,6 +16,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore.impl;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -89,6 +90,36 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
+    public Object createFromString(EDataType eDataType, String initialValue) {
+        switch (eDataType.getClassifierID()) {
+            case BuildcorePackage.PROPERTY_TYPE:
+                return createPropertyTypeFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String convertToString(EDataType eDataType, Object instanceValue) {
+        switch (eDataType.getClassifierID()) {
+            case BuildcorePackage.PROPERTY_TYPE:
+                return convertPropertyTypeToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public Item createItem() {
         ItemImpl item = new ItemImpl();
         return item;
@@ -122,6 +153,26 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
     public StepContainer createStepContainer() {
         StepContainerImpl stepContainer = new StepContainerImpl();
         return stepContainer;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertyType createPropertyTypeFromString(EDataType eDataType, String initialValue) {
+        PropertyType result = PropertyType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertPropertyTypeToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
     }
 
     /**

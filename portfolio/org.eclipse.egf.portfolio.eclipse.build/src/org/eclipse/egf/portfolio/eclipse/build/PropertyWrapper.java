@@ -21,8 +21,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
  * @author Matthieu Helleboid 
  *
  */public class PropertyWrapper {
-    public static final String BUILTIN = "Builtin";
-    public static final String PROVIDED = "Provided";
+    public static final String RUNTIME_BUILTIN = "Builtin";
+    public static final String RUNTIME_PROVIDED = "Provided";
     
     private String key;
     private String value;
@@ -37,11 +37,11 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
     }
     
     public PropertyWrapper(String key, String value) {
-        this(key, value, BUILTIN, key);
+        this(key, value, RUNTIME_BUILTIN, key);
     }
 
     public PropertyWrapper(Property property) {
-        this(property.getKey(), property.getValue(), PROVIDED, property.getKey());
+        this(property.getKey(), property.getValue(), RUNTIME_PROVIDED, property.getKey());
     }
 
     public String getKey() {

@@ -22,12 +22,14 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -123,6 +125,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass triggerEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum propertyTypeEEnum = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -370,8 +379,26 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getProperty_Type() {
+        return (EAttribute)propertyEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getTrigger() {
         return triggerEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getPropertyType() {
+        return propertyTypeEEnum;
     }
 
     /**
@@ -415,6 +442,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         createEAttribute(keyValueEClass, KEY_VALUE__VALUE);
 
         propertyEClass = createEClass(PROPERTY);
+        createEAttribute(propertyEClass, PROPERTY__TYPE);
 
         chainEClass = createEClass(CHAIN);
         createEReference(chainEClass, CHAIN__JOBS);
@@ -433,6 +461,9 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         scmEClass = createEClass(SCM);
 
         triggerEClass = createEClass(TRIGGER);
+
+        // Create enums
+        propertyTypeEEnum = createEEnum(PROPERTY_TYPE);
     }
 
     /**
@@ -486,6 +517,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEAttribute(getKeyValue_Value(), ecorePackage.getEString(), "value", null, 1, 1, KeyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getProperty_Type(), this.getPropertyType(), "type", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(chainEClass, Chain.class, "Chain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getChain_Jobs(), this.getJob(), null, "jobs", null, 1, -1, Chain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -504,6 +536,11 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEClass(scmEClass, org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM.class, "SCM", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(triggerEClass, Trigger.class, "Trigger", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        // Initialize enums and add enum literals
+        initEEnum(propertyTypeEEnum, PropertyType.class, "PropertyType");
+        addEEnumLiteral(propertyTypeEEnum, PropertyType.RUNTIME);
+        addEEnumLiteral(propertyTypeEEnum, PropertyType.INLINED);
 
         // Create resource
         createResource(eNS_URI);

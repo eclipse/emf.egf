@@ -31,7 +31,7 @@
 	patternId="platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#LogicalName=org.eclipse.egf.portfolio.eclipse.build.buckminster.call.build.xml.Xmx"
 %>
 	                <jvmarg value="-DrelengDir=relengDir"/>
-<%for(PropertyWrapper propertyWrapper : new PropertiesHelper().getAllProperties(job)) {%>
+<%for(PropertyWrapper propertyWrapper : new PropertiesHelper().getRuntimeProperties(job)) {%>
 	                <jvmarg value="-D<%=propertyWrapper.getKey()%>=${<%=propertyWrapper.getKey()%>}"/>
 <%}%>
                     <arg value="-data" />

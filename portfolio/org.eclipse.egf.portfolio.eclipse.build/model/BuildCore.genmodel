@@ -11,6 +11,10 @@
   <genPackages prefix="Buildcore" basePackage="org.eclipse.egf.portfolio.eclipse.build"
       resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
       contentTypeIdentifier="" fileExtensions="egfbuild" ecorePackage="BuildCore.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BuildCore.ecore#//PropertyType">
+      <genEnumLiterals ecoreEnumLiteral="BuildCore.ecore#//PropertyType/RUNTIME"/>
+      <genEnumLiterals ecoreEnumLiteral="BuildCore.ecore#//PropertyType/INLINED"/>
+    </genEnums>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//Item">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Item/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Item/description"/>
@@ -23,7 +27,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//KeyValue/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//KeyValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="BuildCore.ecore#//Property"/>
+    <genClasses ecoreClass="BuildCore.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildCore.ecore#//Property/type"/>
+    </genClasses>
     <genClasses ecoreClass="BuildCore.ecore#//Chain">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Chain/jobs"/>
     </genClasses>

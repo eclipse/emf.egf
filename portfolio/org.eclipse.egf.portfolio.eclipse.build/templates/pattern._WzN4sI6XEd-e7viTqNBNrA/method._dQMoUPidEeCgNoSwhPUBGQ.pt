@@ -1,7 +1,7 @@
 	<target name="init" depends="init.build.properties" >
 		<echo message="Available variables are : "/>
 		<echo message="Builtin $${relengDir} : ${relengDir}" />
-<%for(PropertyWrapper propertyWrapper : new PropertiesHelper().getAllProperties(job)) {%>
+<%for(PropertyWrapper propertyWrapper : new PropertiesHelper().getRuntimeProperties(job)) {%>
 		<echo message="<%=propertyWrapper.getType()%> $${<%=propertyWrapper.getKey()%>} : ${<%=propertyWrapper.getKey()%>}" />
 <%}%>
 	</target>

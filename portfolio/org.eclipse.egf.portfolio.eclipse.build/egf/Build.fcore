@@ -201,6 +201,20 @@
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_dG-LsE6QEeG9Sb7bxcN1TQ"
                 called="#_UkP8tU6QEeG9Sb7bxcN1TQ"/>
           </elements>
+          <elements xmi:id="_21gkwFl4EeG6cpN078ds7g" name="replaceInlinedProperties"
+              headerMethod="#_21gkwll4EeG6cpN078ds7g" conditionMethod="#_21gkxFl4EeG6cpN078ds7g"
+              initMethod="#_21gkw1l4EeG6cpN078ds7g" footerMethod="#_21gkxll4EeG6cpN078ds7g">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_21gkwVl4EeG6cpN078ds7g"
+                name="Java"/>
+            <methods xmi:id="_21gkwll4EeG6cpN078ds7g" name="header" patternFilePath="templates/pattern._21gkwFl4EeG6cpN078ds7g/method._21gkwll4EeG6cpN078ds7g.pt"/>
+            <methods xmi:id="_21gkw1l4EeG6cpN078ds7g" name="init" patternFilePath="templates/pattern._21gkwFl4EeG6cpN078ds7g/method._21gkw1l4EeG6cpN078ds7g.pt"/>
+            <methods xmi:id="_21gkxFl4EeG6cpN078ds7g" name="preCondition" patternFilePath="templates/pattern._21gkwFl4EeG6cpN078ds7g/method._21gkxFl4EeG6cpN078ds7g.pt"/>
+            <methods xmi:id="_21gkxVl4EeG6cpN078ds7g" name="body" patternFilePath="templates/pattern._21gkwFl4EeG6cpN078ds7g/method._21gkxVl4EeG6cpN078ds7g.pt"/>
+            <methods xmi:id="_21gkxll4EeG6cpN078ds7g" name="footer" patternFilePath="templates/pattern._21gkwFl4EeG6cpN078ds7g/method._21gkxll4EeG6cpN078ds7g.pt"/>
+            <parameters xmi:id="_UaGrEFl5EeG6cpN078ds7g" name="eObject" type="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_1e0CIFl5EeG6cpN078ds7g"
+                called="#_21gkxVl4EeG6cpN078ds7g"/>
+          </elements>
         </libraries>
       </viewpoints>
     </viewpointContainer>

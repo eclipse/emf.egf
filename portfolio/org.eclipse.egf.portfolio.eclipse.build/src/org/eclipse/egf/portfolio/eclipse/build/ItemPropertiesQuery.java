@@ -30,7 +30,7 @@ public class ItemPropertiesQuery implements IQuery {
 	public List execute(ParameterDescription parameter,
 			Map<String, String> queryCtx, PatternContext context) {
 		Job job = (Job) context.getValue(PatternContext.INJECTED_CONTEXT);
-		return new PropertiesHelper().getAllProperties(job);
+		return new PropertiesHelper().getRuntimeProperties(job);
 	}
 
 }

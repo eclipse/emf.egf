@@ -1,4 +1,4 @@
-//Generated on Thu Feb 09 18:02:54 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Fri Feb 17 16:05:18 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -109,7 +109,7 @@ public class eclipsevariables extends org.eclipse.egf.portfolio.eclipse.build.Jo
     protected void method_content(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_2);
-        for (PropertyWrapper propertyWrapper : new PropertiesHelper().getAllProperties(job)) {
+        for (PropertyWrapper propertyWrapper : new PropertiesHelper().getRuntimeProperties(job)) {
             stringBuffer.append(TEXT_3);
             stringBuffer.append(propertyWrapper.getKey());
             stringBuffer.append(TEXT_4);

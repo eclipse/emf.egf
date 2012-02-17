@@ -17,7 +17,13 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//KeyValue"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//KeyValue">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//PropertyType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PropertyType">
+    <eLiterals name="RUNTIME" literal="RUNTIME"/>
+    <eLiterals name="INLINED" value="1" literal="INLINED"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chain" eSuperTypes="#//ItemProperties">
     <eStructuralFeatures xsi:type="ecore:EReference" name="jobs" lowerBound="1" upperBound="-1"
         eType="#//Job" containment="true"/>

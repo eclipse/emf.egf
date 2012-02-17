@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildcore;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -280,13 +281,22 @@ public interface BuildcorePackage extends EPackage {
     int PROPERTY__VALUE = KEY_VALUE__VALUE;
 
     /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__TYPE = KEY_VALUE_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Property</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTY_FEATURE_COUNT = KEY_VALUE_FEATURE_COUNT + 0;
+    int PROPERTY_FEATURE_COUNT = KEY_VALUE_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -608,6 +618,17 @@ public interface BuildcorePackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType <em>Property Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getPropertyType()
+     * @generated
+     */
+    int PROPERTY_TYPE = 11;
+
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Item <em>Item</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -818,6 +839,17 @@ public interface BuildcorePackage extends EPackage {
     EClass getProperty();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Property#getType()
+     * @see #getProperty()
+     * @generated
+     */
+    EAttribute getProperty_Type();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger <em>Trigger</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -826,6 +858,16 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EClass getTrigger();
+
+    /**
+     * Returns the meta object for enum '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType <em>Property Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Property Type</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType
+     * @generated
+     */
+    EEnum getPropertyType();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -1030,6 +1072,14 @@ public interface BuildcorePackage extends EPackage {
         EClass PROPERTY = eINSTANCE.getProperty();
 
         /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY__TYPE = eINSTANCE.getProperty_Type();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl <em>Trigger</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1038,6 +1088,16 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass TRIGGER = eINSTANCE.getTrigger();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType <em>Property Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getPropertyType()
+         * @generated
+         */
+        EEnum PROPERTY_TYPE = eINSTANCE.getPropertyType();
 
     }
 

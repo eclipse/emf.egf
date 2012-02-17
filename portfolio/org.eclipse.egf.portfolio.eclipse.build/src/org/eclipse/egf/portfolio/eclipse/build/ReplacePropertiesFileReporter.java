@@ -32,7 +32,7 @@ public class ReplacePropertiesFileReporter extends FileReporter {
 	public void loopFinished(String output, String outputWithCallBack,
 			PatternContext context, Map<String, Object> parameterValues) {
 	    Job job = (Job) parameterValues.get("job");
-	    List<PropertyWrapper> allProperties = new PropertiesHelper().getAllProperties(job);
+	    List<PropertyWrapper> allProperties = new PropertiesHelper().getRuntimeProperties(job);
 	    for (PropertyWrapper propertyWrapper : allProperties) {
             String toReplace = "${" + propertyWrapper.getKey() + "}";
             String replacement = propertyWrapper.getValue();
