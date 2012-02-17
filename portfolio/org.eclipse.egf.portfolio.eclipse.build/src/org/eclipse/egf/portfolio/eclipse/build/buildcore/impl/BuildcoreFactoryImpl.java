@@ -80,6 +80,7 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
             case BuildcorePackage.CHAIN: return createChain();
             case BuildcorePackage.JOB: return createJob();
             case BuildcorePackage.STEP_CONTAINER: return createStepContainer();
+            case BuildcorePackage.REUSE_STEP: return createReuseStep();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -153,6 +154,16 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
     public StepContainer createStepContainer() {
         StepContainerImpl stepContainer = new StepContainerImpl();
         return stepContainer;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ReuseStep createReuseStep() {
+        ReuseStepImpl reuseStep = new ReuseStepImpl();
+        return reuseStep;
     }
 
     /**

@@ -43,4 +43,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="StepContainer" eSuperTypes="#//AbstractStepContainer #//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="SCM" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Trigger" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ReuseStep" eSuperTypes="#//Step">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reusedStep" lowerBound="1"
+        eType="#//Step"/>
+  </eClassifiers>
 </ecore:EPackage>

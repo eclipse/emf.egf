@@ -76,6 +76,15 @@ public interface BuildcoreFactory extends EFactory {
     StepContainer createStepContainer();
 
     /**
+     * Returns a new object of class '<em>Reuse Step</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Reuse Step</em>'.
+     * @generated
+     */
+    ReuseStep createReuseStep();
+
+    /**
      * Returns a new object of class '<em>Property</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

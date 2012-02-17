@@ -181,6 +181,14 @@ public class BuildcoreSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildcorePackage.REUSE_STEP: {
+                ReuseStep reuseStep = (ReuseStep)theEObject;
+                T result = caseReuseStep(reuseStep);
+                if (result == null) result = caseStep(reuseStep);
+                if (result == null) result = caseItem(reuseStep);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -347,6 +355,21 @@ public class BuildcoreSwitch<T> {
      * @generated
      */
     public T caseTrigger(Trigger object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Reuse Step</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Reuse Step</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseReuseStep(ReuseStep object) {
         return null;
     }
 

@@ -23,6 +23,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger;
@@ -125,6 +126,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass triggerEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass reuseStepEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -397,6 +405,24 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getReuseStep() {
+        return reuseStepEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getReuseStep_ReusedStep() {
+        return (EReference)reuseStepEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getPropertyType() {
         return propertyTypeEEnum;
     }
@@ -462,6 +488,9 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         triggerEClass = createEClass(TRIGGER);
 
+        reuseStepEClass = createEClass(REUSE_STEP);
+        createEReference(reuseStepEClass, REUSE_STEP__REUSED_STEP);
+
         // Create enums
         propertyTypeEEnum = createEEnum(PROPERTY_TYPE);
     }
@@ -502,6 +531,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         jobEClass.getESuperTypes().add(this.getAbstractStepContainer());
         stepContainerEClass.getESuperTypes().add(this.getAbstractStepContainer());
         stepContainerEClass.getESuperTypes().add(this.getStep());
+        reuseStepEClass.getESuperTypes().add(this.getStep());
 
         // Initialize classes and features; add operations and parameters
         initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -536,6 +566,9 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
         initEClass(scmEClass, org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM.class, "SCM", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(triggerEClass, Trigger.class, "Trigger", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(reuseStepEClass, ReuseStep.class, "ReuseStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getReuseStep_ReusedStep(), this.getStep(), null, "reusedStep", null, 1, 1, ReuseStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(propertyTypeEEnum, PropertyType.class, "PropertyType");

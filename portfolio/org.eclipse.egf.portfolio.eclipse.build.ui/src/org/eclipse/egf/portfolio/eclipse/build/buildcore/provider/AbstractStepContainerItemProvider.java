@@ -164,6 +164,14 @@ public class AbstractStepContainerItemProvider
                  BuildcoreFactory.eINSTANCE.createStepContainer()));
 
 
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.ABSTRACT_STEP_CONTAINER__STEPS,
+                 BuildcoreFactory.eINSTANCE.createReuseStep()));
+
+
     }
 
 }

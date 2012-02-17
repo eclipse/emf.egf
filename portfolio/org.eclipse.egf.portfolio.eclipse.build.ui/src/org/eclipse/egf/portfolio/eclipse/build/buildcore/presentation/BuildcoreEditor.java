@@ -56,6 +56,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -180,6 +181,7 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildcoreItemProviderAdapterFactory;

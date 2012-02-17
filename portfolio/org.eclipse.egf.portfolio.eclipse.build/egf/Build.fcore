@@ -187,6 +187,20 @@
           </elements>
         </libraries>
         <libraries xmi:id="_n0wcANVBEd-sZ5ty9tQGtA" name="org.eclipse.egf.portfolio.eclipse.build.transformation">
+          <elements xmi:id="_pP44EVmCEeGSutrz76T5wQ" name="reusedStep" headerMethod="#_pP44E1mCEeGSutrz76T5wQ"
+              conditionMethod="#_pP44FVmCEeGSutrz76T5wQ" initMethod="#_pP44FFmCEeGSutrz76T5wQ"
+              footerMethod="#_pP44F1mCEeGSutrz76T5wQ">
+            <nature xmi:type="javapattern:JavaNature" xmi:id="_pP44ElmCEeGSutrz76T5wQ"
+                name="Java"/>
+            <methods xmi:id="_pP44E1mCEeGSutrz76T5wQ" name="header" patternFilePath="templates/pattern._pP44EVmCEeGSutrz76T5wQ/method._pP44E1mCEeGSutrz76T5wQ.pt"/>
+            <methods xmi:id="_pP44FFmCEeGSutrz76T5wQ" name="init" patternFilePath="templates/pattern._pP44EVmCEeGSutrz76T5wQ/method._pP44FFmCEeGSutrz76T5wQ.pt"/>
+            <methods xmi:id="_pP44FVmCEeGSutrz76T5wQ" name="preCondition" patternFilePath="templates/pattern._pP44EVmCEeGSutrz76T5wQ/method._pP44FVmCEeGSutrz76T5wQ.pt"/>
+            <methods xmi:id="_pP44FlmCEeGSutrz76T5wQ" name="body" patternFilePath="templates/pattern._pP44EVmCEeGSutrz76T5wQ/method._pP44FlmCEeGSutrz76T5wQ.pt"/>
+            <methods xmi:id="_pP44F1mCEeGSutrz76T5wQ" name="footer" patternFilePath="templates/pattern._pP44EVmCEeGSutrz76T5wQ/method._pP44F1mCEeGSutrz76T5wQ.pt"/>
+            <parameters xmi:id="_sk-kkFmCEeGSutrz76T5wQ" name="stepContainer" type="http://www.eclipse.org/egf/1.0.1/buildcore#//AbstractStepContainer"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_xfjBIFmCEeGSutrz76T5wQ"
+                called="#_pP44FlmCEeGSutrz76T5wQ"/>
+          </elements>
           <elements xmi:id="_UkP8sE6QEeG9Sb7bxcN1TQ" name="removeDisabledItem" headerMethod="#_UkP8sk6QEeG9Sb7bxcN1TQ"
               conditionMethod="#_UkP8tE6QEeG9Sb7bxcN1TQ" initMethod="#_UkP8s06QEeG9Sb7bxcN1TQ"
               footerMethod="#_UkP8tk6QEeG9Sb7bxcN1TQ">

@@ -44,5 +44,8 @@
     <genClasses ecoreClass="BuildCore.ecore#//StepContainer"/>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//SCM"/>
     <genClasses ecoreClass="BuildCore.ecore#//Trigger"/>
+    <genClasses ecoreClass="BuildCore.ecore#//ReuseStep">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildCore.ecore#//ReuseStep/reusedStep"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

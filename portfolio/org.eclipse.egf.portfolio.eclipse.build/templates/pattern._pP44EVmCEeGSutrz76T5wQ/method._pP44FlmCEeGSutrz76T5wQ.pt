@@ -1,0 +1,9 @@
+        ArrayList<Step> steps = new ArrayList<Step>(stepContainer.getSteps());
+        for(Step step : steps) {
+            if (step instanceof ReuseStep) {
+                ReuseStep reuseStep = (ReuseStep) step;
+                Step reusedStep = reuseStep.getReusedStep();
+                int indexOfReuseStep = stepContainer.getSteps().indexOf(reuseStep);
+                stepContainer.getSteps().set(indexOfReuseStep, EcoreUtil.copy(reusedStep));
+            }
+        }

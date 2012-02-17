@@ -618,6 +618,61 @@ public interface BuildcorePackage extends EPackage {
 
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ReuseStepImpl <em>Reuse Step</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ReuseStepImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getReuseStep()
+     * @generated
+     */
+    int REUSE_STEP = 11;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REUSE_STEP__NAME = STEP__NAME;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REUSE_STEP__DESCRIPTION = STEP__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Enabled</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REUSE_STEP__ENABLED = STEP__ENABLED;
+
+    /**
+     * The feature id for the '<em><b>Reused Step</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REUSE_STEP__REUSED_STEP = STEP_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Reuse Step</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REUSE_STEP_FEATURE_COUNT = STEP_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType <em>Property Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -625,7 +680,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getPropertyType()
      * @generated
      */
-    int PROPERTY_TYPE = 11;
+    int PROPERTY_TYPE = 12;
 
 
     /**
@@ -860,6 +915,27 @@ public interface BuildcorePackage extends EPackage {
     EClass getTrigger();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep <em>Reuse Step</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Reuse Step</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep
+     * @generated
+     */
+    EClass getReuseStep();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep#getReusedStep <em>Reused Step</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Reused Step</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep#getReusedStep()
+     * @see #getReuseStep()
+     * @generated
+     */
+    EReference getReuseStep_ReusedStep();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType <em>Property Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1088,6 +1164,24 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass TRIGGER = eINSTANCE.getTrigger();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ReuseStepImpl <em>Reuse Step</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ReuseStepImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getReuseStep()
+         * @generated
+         */
+        EClass REUSE_STEP = eINSTANCE.getReuseStep();
+
+        /**
+         * The meta object literal for the '<em><b>Reused Step</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference REUSE_STEP__REUSED_STEP = eINSTANCE.getReuseStep_ReusedStep();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType <em>Property Type</em>}' enum.
