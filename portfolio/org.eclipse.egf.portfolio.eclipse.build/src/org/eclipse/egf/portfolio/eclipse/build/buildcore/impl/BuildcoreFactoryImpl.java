@@ -77,6 +77,7 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
         switch (eClass.getClassifierID()) {
             case BuildcorePackage.ITEM: return createItem();
             case BuildcorePackage.PROPERTY: return createProperty();
+            case BuildcorePackage.PROPERTY_PACKAGE: return createPropertyPackage();
             case BuildcorePackage.CHAIN: return createChain();
             case BuildcorePackage.JOB: return createJob();
             case BuildcorePackage.STEP_CONTAINER: return createStepContainer();
@@ -194,6 +195,16 @@ public class BuildcoreFactoryImpl extends EFactoryImpl implements BuildcoreFacto
     public Property createProperty() {
         PropertyImpl property = new PropertyImpl();
         return property;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertyPackage createPropertyPackage() {
+        PropertyPackageImpl propertyPackage = new PropertyPackageImpl();
+        return propertyPackage;
     }
 
     /**

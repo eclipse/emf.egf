@@ -1,4 +1,4 @@
-//Generated on Wed Feb 08 12:01:38 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Feb 23 10:04:34 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job;
 
 import java.util.*;
@@ -76,6 +76,7 @@ public class job {
             return;
 
         newJob.getProperties().addAll(job.getProperties());
+        newJob.getPropertyPackages().addAll(job.getPropertyPackages());
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "movePropertiesToNewJob", out.toString());

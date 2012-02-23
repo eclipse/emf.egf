@@ -102,6 +102,10 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
                 return createPropertyAdapter();
             }
             @Override
+            public Adapter casePropertyPackage(PropertyPackage object) {
+                return createPropertyPackageAdapter();
+            }
+            @Override
             public Adapter caseChain(Chain object) {
                 return createChainAdapter();
             }
@@ -290,6 +294,20 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPropertyAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage <em>Property Package</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage
+     * @generated
+     */
+    public Adapter createPropertyPackageAdapter() {
         return null;
     }
 

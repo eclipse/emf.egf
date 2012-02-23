@@ -19,6 +19,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ItemPropertiesImpl#getPropertyPackages <em>Property Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +62,18 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
      * @ordered
      */
     protected EList<Property> properties;
+
+
+
+    /**
+     * The cached value of the '{@link #getPropertyPackages() <em>Property Packages</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPropertyPackages()
+     * @generated
+     * @ordered
+     */
+    protected EList<PropertyPackage> propertyPackages;
 
 
 
@@ -110,11 +124,27 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public EList<PropertyPackage> getPropertyPackages() {
+
+        if (propertyPackages == null) {
+            propertyPackages = new EObjectContainmentEList<PropertyPackage>(PropertyPackage.class, this, BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES);
+        }
+        return propertyPackages;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
                 return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES:
+                return ((InternalEList<?>)getPropertyPackages()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -129,6 +159,8 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
         switch (featureID) {
             case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
                 return getProperties();
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES:
+                return getPropertyPackages();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -146,6 +178,10 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
                 getProperties().clear();
                 getProperties().addAll((Collection<? extends Property>)newValue);
                 return;
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES:
+                getPropertyPackages().clear();
+                getPropertyPackages().addAll((Collection<? extends PropertyPackage>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -161,6 +197,9 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
         switch (featureID) {
             case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
                 getProperties().clear();
+                return;
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES:
+                getPropertyPackages().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -178,6 +217,8 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
         switch (featureID) {
             case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
                 return properties != null && !properties.isEmpty();
+            case BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES:
+                return propertyPackages != null && !propertyPackages.isEmpty();
         }
         return super.eIsSet(featureID);
     }

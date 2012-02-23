@@ -167,13 +167,22 @@ public interface BuildcorePackage extends EPackage {
     int ITEM_PROPERTIES__PROPERTIES = ITEM_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Property Packages</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ITEM_PROPERTIES__PROPERTY_PACKAGES = ITEM_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Item Properties</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ITEM_PROPERTIES_FEATURE_COUNT = ITEM_FEATURE_COUNT + 1;
+    int ITEM_PROPERTIES_FEATURE_COUNT = ITEM_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl <em>Key Value</em>}' class.
@@ -220,7 +229,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getChain()
      * @generated
      */
-    int CHAIN = 4;
+    int CHAIN = 5;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl <em>Job</em>}' class.
@@ -230,7 +239,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getJob()
      * @generated
      */
-    int JOB = 7;
+    int JOB = 8;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
@@ -240,7 +249,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStep()
      * @generated
      */
-    int STEP = 6;
+    int STEP = 7;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.SCMImpl <em>SCM</em>}' class.
@@ -250,7 +259,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getSCM()
      * @generated
      */
-    int SCM = 9;
+    int SCM = 10;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.
@@ -299,6 +308,52 @@ public interface BuildcorePackage extends EPackage {
     int PROPERTY_FEATURE_COUNT = KEY_VALUE_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyPackageImpl <em>Property Package</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyPackageImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getPropertyPackage()
+     * @generated
+     */
+    int PROPERTY_PACKAGE = 4;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_PACKAGE__NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_PACKAGE__DESCRIPTION = 1;
+
+    /**
+     * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_PACKAGE__PROPERTIES = 2;
+
+    /**
+     * The number of structural features of the '<em>Property Package</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY_PACKAGE_FEATURE_COUNT = 3;
+
+    /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -335,6 +390,15 @@ public interface BuildcorePackage extends EPackage {
     int CHAIN__PROPERTIES = ITEM_PROPERTIES__PROPERTIES;
 
     /**
+     * The feature id for the '<em><b>Property Packages</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CHAIN__PROPERTY_PACKAGES = ITEM_PROPERTIES__PROPERTY_PACKAGES;
+
+    /**
      * The feature id for the '<em><b>Jobs</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -360,7 +424,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getAbstractStepContainer()
      * @generated
      */
-    int ABSTRACT_STEP_CONTAINER = 5;
+    int ABSTRACT_STEP_CONTAINER = 6;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -397,6 +461,15 @@ public interface BuildcorePackage extends EPackage {
      * @ordered
      */
     int ABSTRACT_STEP_CONTAINER__PROPERTIES = ITEM_PROPERTIES__PROPERTIES;
+
+    /**
+     * The feature id for the '<em><b>Property Packages</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_STEP_CONTAINER__PROPERTY_PACKAGES = ITEM_PROPERTIES__PROPERTY_PACKAGES;
 
     /**
      * The feature id for the '<em><b>Steps</b></em>' containment reference list.
@@ -489,6 +562,15 @@ public interface BuildcorePackage extends EPackage {
     int JOB__PROPERTIES = ABSTRACT_STEP_CONTAINER__PROPERTIES;
 
     /**
+     * The feature id for the '<em><b>Property Packages</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int JOB__PROPERTY_PACKAGES = ABSTRACT_STEP_CONTAINER__PROPERTY_PACKAGES;
+
+    /**
      * The feature id for the '<em><b>Steps</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -532,7 +614,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getStepContainer()
      * @generated
      */
-    int STEP_CONTAINER = 8;
+    int STEP_CONTAINER = 9;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -571,6 +653,15 @@ public interface BuildcorePackage extends EPackage {
     int STEP_CONTAINER__PROPERTIES = ABSTRACT_STEP_CONTAINER__PROPERTIES;
 
     /**
+     * The feature id for the '<em><b>Property Packages</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STEP_CONTAINER__PROPERTY_PACKAGES = ABSTRACT_STEP_CONTAINER__PROPERTY_PACKAGES;
+
+    /**
      * The feature id for the '<em><b>Steps</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -605,7 +696,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
      * @generated
      */
-    int TRIGGER = 10;
+    int TRIGGER = 11;
 
     /**
      * The number of structural features of the '<em>Trigger</em>' class.
@@ -625,7 +716,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getReuseStep()
      * @generated
      */
-    int REUSE_STEP = 11;
+    int REUSE_STEP = 12;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -680,7 +771,7 @@ public interface BuildcorePackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getPropertyType()
      * @generated
      */
-    int PROPERTY_TYPE = 12;
+    int PROPERTY_TYPE = 13;
 
 
     /**
@@ -746,6 +837,17 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EReference getItemProperties_Properties();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getPropertyPackages <em>Property Packages</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Property Packages</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getPropertyPackages()
+     * @see #getItemProperties()
+     * @generated
+     */
+    EReference getItemProperties_PropertyPackages();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue <em>Key Value</em>}'.
@@ -905,6 +1007,49 @@ public interface BuildcorePackage extends EPackage {
     EAttribute getProperty_Type();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage <em>Property Package</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Property Package</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage
+     * @generated
+     */
+    EClass getPropertyPackage();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage#getName()
+     * @see #getPropertyPackage()
+     * @generated
+     */
+    EAttribute getPropertyPackage_Name();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage#getDescription <em>Description</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Description</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage#getDescription()
+     * @see #getPropertyPackage()
+     * @generated
+     */
+    EAttribute getPropertyPackage_Description();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage#getProperties <em>Properties</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Properties</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage#getProperties()
+     * @see #getPropertyPackage()
+     * @generated
+     */
+    EReference getPropertyPackage_Properties();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger <em>Trigger</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1018,6 +1163,14 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EReference ITEM_PROPERTIES__PROPERTIES = eINSTANCE.getItemProperties_Properties();
+
+        /**
+         * The meta object literal for the '<em><b>Property Packages</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ITEM_PROPERTIES__PROPERTY_PACKAGES = eINSTANCE.getItemProperties_PropertyPackages();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.KeyValueImpl <em>Key Value</em>}' class.
@@ -1154,6 +1307,40 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EAttribute PROPERTY__TYPE = eINSTANCE.getProperty_Type();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyPackageImpl <em>Property Package</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyPackageImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getPropertyPackage()
+         * @generated
+         */
+        EClass PROPERTY_PACKAGE = eINSTANCE.getPropertyPackage();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY_PACKAGE__NAME = eINSTANCE.getPropertyPackage_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY_PACKAGE__DESCRIPTION = eINSTANCE.getPropertyPackage_Description();
+
+        /**
+         * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROPERTY_PACKAGE__PROPERTIES = eINSTANCE.getPropertyPackage_Properties();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl <em>Trigger</em>}' class.

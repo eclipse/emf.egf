@@ -19,29 +19,35 @@ import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ItemPropertiesItemProvider
-    extends ItemItemProvider
+public class PropertyPackageItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -61,7 +67,7 @@ public class ItemPropertiesItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public ItemPropertiesItemProvider(AdapterFactory adapterFactory) {
+    public PropertyPackageItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -76,8 +82,58 @@ public class ItemPropertiesItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addNamePropertyDescriptor(object);
+            addDescriptionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamePropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_PropertyPackage_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyPackage_name_feature", "_UI_PropertyPackage_type"),
+                 BuildcorePackage.Literals.PROPERTY_PACKAGE__NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the Description feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addDescriptionPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_PropertyPackage_description_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PropertyPackage_description_feature", "_UI_PropertyPackage_type"),
+                 BuildcorePackage.Literals.PROPERTY_PACKAGE__DESCRIPTION,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
     }
 
     /**
@@ -92,8 +148,7 @@ public class ItemPropertiesItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(BuildcorePackage.Literals.ITEM_PROPERTIES__PROPERTIES);
-            childrenFeatures.add(BuildcorePackage.Literals.ITEM_PROPERTIES__PROPERTY_PACKAGES);
+            childrenFeatures.add(BuildcorePackage.Literals.PROPERTY_PACKAGE__PROPERTIES);
         }
         return childrenFeatures;
     }
@@ -112,6 +167,17 @@ public class ItemPropertiesItemProvider
     }
 
     /**
+     * This returns PropertyPackage.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/PropertyPackage"));
+    }
+
+    /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -120,10 +186,10 @@ public class ItemPropertiesItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((ItemProperties)object).getName();
+        String label = ((PropertyPackage)object).getName();
         return label == null || label.length() == 0 ?
-            getString("_UI_ItemProperties_type") :
-            getString("_UI_ItemProperties_type") + " " + label;
+            getString("_UI_PropertyPackage_type") :
+            getString("_UI_PropertyPackage_type") + " " + label;
 
     }
 
@@ -138,9 +204,12 @@ public class ItemPropertiesItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(ItemProperties.class)) {
-            case BuildcorePackage.ITEM_PROPERTIES__PROPERTIES:
-            case BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES:
+        switch (notification.getFeatureID(PropertyPackage.class)) {
+            case BuildcorePackage.PROPERTY_PACKAGE__NAME:
+            case BuildcorePackage.PROPERTY_PACKAGE__DESCRIPTION:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case BuildcorePackage.PROPERTY_PACKAGE__PROPERTIES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -161,18 +230,21 @@ public class ItemPropertiesItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildcorePackage.Literals.ITEM_PROPERTIES__PROPERTIES,
+                (BuildcorePackage.Literals.PROPERTY_PACKAGE__PROPERTIES,
                  BuildcoreFactory.eINSTANCE.createProperty()));
 
 
+    }
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildcorePackage.Literals.ITEM_PROPERTIES__PROPERTY_PACKAGES,
-                 BuildcoreFactory.eINSTANCE.createPropertyPackage()));
-
-
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 

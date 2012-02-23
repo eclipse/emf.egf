@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties#getPropertyPackages <em>Property Packages</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,6 +62,29 @@ public interface ItemProperties extends Item {
      */
 
     EList<Property> getProperties();
+
+
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>Property Packages</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage}.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Property Packages</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Property Packages</em>' containment reference list.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItemProperties_PropertyPackages()
+     * @model containment="true"
+     * @generated
+     */
+
+    EList<PropertyPackage> getPropertyPackages();
 
 
 

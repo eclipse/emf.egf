@@ -245,6 +245,29 @@ public class BuildcoreItemProviderAdapterFactory extends BuildcoreAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PropertyPackageItemProvider propertyPackageItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPropertyPackageAdapter() {
+        if (propertyPackageItemProvider == null) {
+            propertyPackageItemProvider = new PropertyPackageItemProvider(this);
+        }
+
+        return propertyPackageItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -372,6 +395,7 @@ public class BuildcoreItemProviderAdapterFactory extends BuildcoreAdapterFactory
     public void dispose() {
         if (itemItemProvider != null) itemItemProvider.dispose();
         if (propertyItemProvider != null) propertyItemProvider.dispose();
+        if (propertyPackageItemProvider != null) propertyPackageItemProvider.dispose();
         if (chainItemProvider != null) chainItemProvider.dispose();
         if (jobItemProvider != null) jobItemProvider.dispose();
         if (stepContainerItemProvider != null) stepContainerItemProvider.dispose();

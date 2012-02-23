@@ -22,6 +22,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.KeyValue;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
@@ -119,6 +120,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass propertyEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass propertyPackageEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -261,6 +269,15 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getItemProperties_PropertyPackages() {
+        return (EReference)itemPropertiesEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getKeyValue() {
         return keyValueEClass;
     }
@@ -396,6 +413,42 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getPropertyPackage() {
+        return propertyPackageEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyPackage_Name() {
+        return (EAttribute)propertyPackageEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPropertyPackage_Description() {
+        return (EAttribute)propertyPackageEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPropertyPackage_Properties() {
+        return (EReference)propertyPackageEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getTrigger() {
         return triggerEClass;
     }
@@ -462,6 +515,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         itemPropertiesEClass = createEClass(ITEM_PROPERTIES);
         createEReference(itemPropertiesEClass, ITEM_PROPERTIES__PROPERTIES);
+        createEReference(itemPropertiesEClass, ITEM_PROPERTIES__PROPERTY_PACKAGES);
 
         keyValueEClass = createEClass(KEY_VALUE);
         createEAttribute(keyValueEClass, KEY_VALUE__KEY);
@@ -469,6 +523,11 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         propertyEClass = createEClass(PROPERTY);
         createEAttribute(propertyEClass, PROPERTY__TYPE);
+
+        propertyPackageEClass = createEClass(PROPERTY_PACKAGE);
+        createEAttribute(propertyPackageEClass, PROPERTY_PACKAGE__NAME);
+        createEAttribute(propertyPackageEClass, PROPERTY_PACKAGE__DESCRIPTION);
+        createEReference(propertyPackageEClass, PROPERTY_PACKAGE__PROPERTIES);
 
         chainEClass = createEClass(CHAIN);
         createEReference(chainEClass, CHAIN__JOBS);
@@ -541,6 +600,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         initEClass(itemPropertiesEClass, ItemProperties.class, "ItemProperties", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getItemProperties_Properties(), this.getProperty(), null, "properties", null, 0, -1, ItemProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getItemProperties_PropertyPackages(), this.getPropertyPackage(), null, "propertyPackages", null, 0, -1, ItemProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(keyValueEClass, KeyValue.class, "KeyValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getKeyValue_Key(), ecorePackage.getEString(), "key", null, 1, 1, KeyValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -548,6 +608,11 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getProperty_Type(), this.getPropertyType(), "type", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(propertyPackageEClass, PropertyPackage.class, "PropertyPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPropertyPackage_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getPropertyPackage_Description(), ecorePackage.getEString(), "description", null, 0, 1, PropertyPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPropertyPackage_Properties(), this.getProperty(), null, "properties", null, 0, -1, PropertyPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(chainEClass, Chain.class, "Chain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getChain_Jobs(), this.getJob(), null, "jobs", null, 1, -1, Chain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

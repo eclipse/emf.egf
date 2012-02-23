@@ -127,6 +127,12 @@ public class BuildcoreSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildcorePackage.PROPERTY_PACKAGE: {
+                PropertyPackage propertyPackage = (PropertyPackage)theEObject;
+                T result = casePropertyPackage(propertyPackage);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildcorePackage.CHAIN: {
                 Chain chain = (Chain)theEObject;
                 T result = caseChain(chain);
@@ -340,6 +346,21 @@ public class BuildcoreSwitch<T> {
      * @generated
      */
     public T caseProperty(Property object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Property Package</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Property Package</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePropertyPackage(PropertyPackage object) {
         return null;
     }
 

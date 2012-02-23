@@ -94,6 +94,15 @@ public interface BuildcoreFactory extends EFactory {
     Property createProperty();
 
     /**
+     * Returns a new object of class '<em>Property Package</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Property Package</em>'.
+     * @generated
+     */
+    PropertyPackage createPropertyPackage();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

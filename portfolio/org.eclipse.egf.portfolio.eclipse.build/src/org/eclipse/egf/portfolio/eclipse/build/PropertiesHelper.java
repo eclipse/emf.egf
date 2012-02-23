@@ -22,6 +22,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Property;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
@@ -45,7 +46,7 @@ public class PropertiesHelper {
         addPropertyWrapperToList(list, new PropertyWrapper("timestamp", "${myTimestamp}", PropertyWrapper.RUNTIME_BUILTIN, "BUILD_ID"));
 
         if (job.eContainer() instanceof Chain) {
-            for (Property property : ((Chain) job.eContainer()).getProperties()) {
+            for (Property property : (getAllProperties((Chain) job.eContainer()))) {
                 if (PropertyType.RUNTIME.equals(property.getType()))
                     addPropertyWrapperToList(list, new PropertyWrapper(property));
             }
@@ -98,7 +99,7 @@ public class PropertiesHelper {
         while (eObject != null) {
             if (eObject instanceof ItemProperties) {
                 ItemProperties itemProperties = (ItemProperties) eObject;
-                for (Property property : itemProperties.getProperties()) {
+                for (Property property : getAllProperties(itemProperties)) {
                     if (PropertyType.INLINED.equals(property.getType())) {
                         String propertyExpression = "${" + property.getKey() + "}";
                         if (input.contains(propertyExpression))
@@ -109,6 +110,17 @@ public class PropertiesHelper {
             eObject = eObject.eContainer();
         }
         return input;
+    }
+    
+    public List<Property> getAllProperties(ItemProperties itemProperties) {
+        ArrayList<Property> result = new ArrayList<Property>();
+        
+        result.addAll(itemProperties.getProperties());
+        for (PropertyPackage propertyPackage : itemProperties.getPropertyPackages()) {
+            result.addAll(propertyPackage.getProperties());
+        }
+        
+        return result;
     }
     
 }
