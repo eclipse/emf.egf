@@ -1,4 +1,4 @@
-//Generated on Wed Feb 22 11:46:59 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Feb 23 09:03:18 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.transformation;
 
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class reusedStep {
                 Step stepCopy = EcoreUtil.copy(reusedStep);
                 if (reuseStep.getName() != null && reuseStep.getName().trim().length() > 0)
                     stepCopy.setName(reuseStep.getName());
-                stepCopy.setEnabled(reuseStep.isEnabled());
+                stepCopy.setEnabled(reuseStep.isEnabled() && reusedStep.isEnabled());
 
                 int indexOfReuseStep = stepContainer.getSteps().indexOf(reuseStep);
                 stepContainer.getSteps().set(indexOfReuseStep, stepCopy);

@@ -7,7 +7,7 @@
                 Step stepCopy = EcoreUtil.copy(reusedStep);
                 if (reuseStep.getName() != null && reuseStep.getName().trim().length() > 0)
                 	stepCopy.setName(reuseStep.getName());
-                stepCopy.setEnabled(reuseStep.isEnabled());
+                stepCopy.setEnabled(reuseStep.isEnabled() && reusedStep.isEnabled());
                 
                 int indexOfReuseStep = stepContainer.getSteps().indexOf(reuseStep);
                 stepContainer.getSteps().set(indexOfReuseStep, stepCopy);
