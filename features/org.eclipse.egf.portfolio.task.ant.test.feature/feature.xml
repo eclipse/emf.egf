@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.egf.portfolio.task.ant.test"
       label="%featureName"
-      version="0.6.1.qualifier"
+      version="1.0.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.egf.portfolio.task.ant.test"
       image="eclipse_update_120.jpg">

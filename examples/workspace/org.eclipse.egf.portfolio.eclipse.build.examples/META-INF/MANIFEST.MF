@@ -3,6 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.egf.portfolio.eclipse.build.examples;singleton:=true
-Bundle-Version: 0.6.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Require-Bundle: org.eclipse.egf.portfolio.eclipse.build

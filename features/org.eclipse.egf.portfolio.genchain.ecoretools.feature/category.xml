@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.egf.portfolio.genchain.ecoretools_0.6.1.qualifier.jar" id="org.eclipse.egf.portfolio.genchain.ecoretools" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio.genchain.ecoretools_1.0.0.qualifier.jar" id="org.eclipse.egf.portfolio.genchain.ecoretools" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.additional.portfolio.category"/>
    </feature>
    <category-def name="org.eclipse.egf.additional.portfolio.category" label="EMFT EGF Additional Portfolio (Incubation)"/>

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.egf_0.6.1.qualifier.jar" id="org.eclipse.egf" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf_1.0.0.qualifier.jar" id="org.eclipse.egf" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.doc_0.6.1.qualifier.jar" id="org.eclipse.egf.doc" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf.doc_1.0.0.qualifier.jar" id="org.eclipse.egf.doc" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio_0.6.1.qualifier.jar" id="org.eclipse.egf.portfolio" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio_1.0.0.qualifier.jar" id="org.eclipse.egf.portfolio" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio.emf_0.6.1.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio.emf_1.0.0.qualifier.jar" id="org.eclipse.egf.portfolio.emf" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.portfolio.genchain_0.6.1.qualifier.jar" id="org.eclipse.egf.portfolio.genchain" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf.portfolio.genchain_1.0.0.qualifier.jar" id="org.eclipse.egf.portfolio.genchain" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <feature url="features/org.eclipse.egf.sdk_0.6.1.qualifier.jar" id="org.eclipse.egf.sdk" version="0.6.1.qualifier">
+   <feature url="features/org.eclipse.egf.sdk_1.0.0.qualifier.jar" id="org.eclipse.egf.sdk" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
    <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF SDK (Incubation)"/>
