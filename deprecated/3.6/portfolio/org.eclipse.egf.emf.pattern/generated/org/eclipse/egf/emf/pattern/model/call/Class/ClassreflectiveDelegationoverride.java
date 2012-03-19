@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:36 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:38 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -140,7 +140,6 @@ public class ClassreflectiveDelegationoverride {
 		method_doGenerate(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genClass", this.genClass);
 			parameterValues.put("genPackage", this.genPackage);
@@ -156,6 +155,7 @@ public class ClassreflectiveDelegationoverride {
 			parameterValues.put("negativeOperationOffsetCorrection", this.negativeOperationOffsetCorrection);
 			parameterValues.put("positiveOperationOffsetCorrection", this.positiveOperationOffsetCorrection);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

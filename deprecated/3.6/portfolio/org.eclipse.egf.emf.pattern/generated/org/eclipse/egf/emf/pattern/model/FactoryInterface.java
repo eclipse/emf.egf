@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:43 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:32 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -524,10 +524,10 @@ public class FactoryInterface extends org.eclipse.egf.emf.pattern.base.GenPackag
 		method_postGenerate(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("parameter", this.parameter);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

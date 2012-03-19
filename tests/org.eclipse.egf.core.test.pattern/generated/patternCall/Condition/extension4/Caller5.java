@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:58 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Wed Jan 18 17:28:10 CET 2012 with EGF 0.6.1.qualifier
 package patternCall.Condition.extension4;
 
 import org.eclipse.egf.common.helper.*;

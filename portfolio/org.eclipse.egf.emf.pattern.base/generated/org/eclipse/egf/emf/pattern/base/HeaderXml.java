@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:30 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:26 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.base;
 
 import org.eclipse.egf.common.helper.*;
@@ -75,10 +75,10 @@ public class HeaderXml extends org.eclipse.egf.emf.pattern.base.HeaderAbstract {
 		super.orchestration(new SuperOrchestrationContext(ictx));
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("argument", this.argument);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:56 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Wed Jan 18 17:28:06 CET 2012 with EGF 0.6.1.qualifier
 package substitution_chain;
 
 import java.util.*;

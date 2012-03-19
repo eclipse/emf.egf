@@ -1,4 +1,4 @@
-//Generated on Tue Jan 10 14:49:36 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Jan 12 17:21:38 CET 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit.call.ItemProvider;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -124,7 +124,6 @@ public class ItemProvideraddPropertyDescriptoroverride {
 		method_doGenerate(new StringBuffer(), ictx);
 
 		if (ictx.useReporter()) {
-			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			Map<String, Object> parameterValues = new HashMap<String, Object>();
 			parameterValues.put("genFeature", this.genFeature);
 			parameterValues.put("genClass", this.genClass);
@@ -132,6 +131,7 @@ public class ItemProvideraddPropertyDescriptoroverride {
 			parameterValues.put("genModel", this.genModel);
 			parameterValues.put("_List", this._List);
 			String outputWithCallBack = OutputManager.computeLoopOutput(ictx);
+			String loop = OutputManager.computeLoopOutputWithoutCallback(ictx);
 			ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
 		}
 		return null;

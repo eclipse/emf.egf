@@ -1,4 +1,4 @@
-//Generated on Thu Jan 12 17:21:58 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Wed Jan 18 17:28:09 CET 2012 with EGF 0.6.1.qualifier
 package callbackAndReporter2;
 
 import org.eclipse.egf.common.helper.*;
