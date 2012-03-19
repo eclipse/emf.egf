@@ -111,7 +111,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternInjectedCall" eSuperTypes="#//AbstractPatternCall">
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-        eType="#//InjectedContext" resolveProxies="false"/>
+        eType="#//InjectedContext"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"

@@ -24,16 +24,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypePatternOutputProcessorImpl extends TypeListImpl implements TypePatternOutputProcessor {
     /**
-     * A set of bit flags representing the values of boolean attributes and
-     * whether unsettable features have been set.
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
@@ -42,7 +40,6 @@ public class TypePatternOutputProcessorImpl extends TypeListImpl implements Type
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypePatternOutputProcessorImpl() {
@@ -52,7 +49,6 @@ public class TypePatternOutputProcessorImpl extends TypeListImpl implements Type
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -63,11 +59,10 @@ public class TypePatternOutputProcessorImpl extends TypeListImpl implements Type
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public <T extends Object> Class<T> getType() {
-        return (Class<T>) org.eclipse.egf.model.pattern.PatternOutputProcessor.class;
+        return (Class<T>) org.eclipse.egf.model.pattern.DomainVisitor.class;
     }
 
 } // TypePatternOutputProcessorImpl

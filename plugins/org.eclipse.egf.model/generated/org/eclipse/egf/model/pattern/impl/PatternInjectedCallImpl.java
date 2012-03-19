@@ -14,6 +14,7 @@ import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -66,6 +67,23 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
      * @generated
      */
     public InjectedContext getContext() {
+        if (context != null && context.eIsProxy()) {
+            InternalEObject oldContext = (InternalEObject) context;
+            context = (InjectedContext) eResolveProxy(oldContext);
+            if (context != oldContext) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_INJECTED_CALL__CONTEXT, oldContext, context));
+            }
+        }
+        return context;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InjectedContext basicGetContext() {
         return context;
     }
 
@@ -90,7 +108,9 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
         case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            return getContext();
+            if (resolve)
+                return getContext();
+            return basicGetContext();
         }
         return super.eGet(featureID, resolve, coreType);
     }
