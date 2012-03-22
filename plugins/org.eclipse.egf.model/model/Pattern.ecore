@@ -219,7 +219,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypePatternOutputProcessor" eSuperTypes="Types.ecore#//TypeList">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return (Class&lt;T>) org.eclipse.egf.model.pattern.DomainVisitor.class;"/>
+        <details key="body" value="return (Class&lt;T>) org.eclipse.egf.model.pattern.PatternOutputProcessor.class;"/>
       </eAnnotations>
       <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
         <eTypeArguments eTypeParameter="#//TypePatternOutputProcessor/getType/T"/>

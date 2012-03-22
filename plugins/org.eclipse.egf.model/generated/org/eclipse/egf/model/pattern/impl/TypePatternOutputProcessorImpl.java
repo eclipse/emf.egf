@@ -62,7 +62,7 @@ public class TypePatternOutputProcessorImpl extends TypeListImpl implements Type
      * @generated
      */
     public <T extends Object> Class<T> getType() {
-        return (Class<T>) org.eclipse.egf.model.pattern.DomainVisitor.class;
+        return (Class<T>) org.eclipse.egf.model.pattern.PatternOutputProcessor.class;
     }
 
 } // TypePatternOutputProcessorImpl

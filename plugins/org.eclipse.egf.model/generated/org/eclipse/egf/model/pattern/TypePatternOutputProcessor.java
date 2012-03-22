@@ -30,7 +30,7 @@ public interface TypePatternOutputProcessor extends TypeList {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
-     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Class<T>) org.eclipse.egf.model.pattern.DomainVisitor.class;'"
+     *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return (Class<T>) org.eclipse.egf.model.pattern.PatternOutputProcessor.class;'"
      * @generated
      */
     <T extends Object> Class<T> getType();
