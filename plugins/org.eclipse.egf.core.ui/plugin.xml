@@ -116,54 +116,5 @@
           
     </extension>  
   
-      <!-- ================================================================================= -->
-    <!-- Popup Menu                                                                        -->
-    <!-- ================================================================================= -->
-  
-    <extension
-        point="org.eclipse.ui.popupMenus">
-  
-        <objectContribution
-            adaptable="true"
-            id="org.eclipse.egf.common.ui.ecore.contribution"
-            objectClass="org.eclipse.emf.ecore.EObject">
-
-            <menu
-                id="org.eclipse.egf.common.ui.ecore.contribution.copy"
-                label="%copyQualifiedName.label"
-                path="additions">
-                <separator name="fdqn.group"/>
-            </menu>
-      
-            <action
-                class="org.eclipse.egf.common.ui.actions.CopyEObjectQualifiedNameAction"
-                enablesFor="1"
-                icon="$nl$/icons/full/elcl16/cpyqual_menu.gif"
-                id="org.eclipse.egf.common.ui.ecore.contribution.copy.eobject.fdqn"
-                label="%copyEObjectQualifiedName.name"
-                menubarPath="org.eclipse.egf.common.ui.ecore.contribution.copy/fdqn.group"
-                tooltip="%copyEObjectQualifiedName.Tooltip"/>
-      
-            <action
-                class="org.eclipse.egf.common.ui.actions.CopyEObjectMetaClassQualifiedNameAction"
-                enablesFor="1"
-                icon="$nl$/icons/full/elcl16/Ecore.gif"
-                id="org.eclipse.egf.common.ui.ecore.contribution.copy.eobject.meta.class.fdqn"
-                label="%copyEObjectMetaClassQualifiedName.name"
-                menubarPath="org.eclipse.egf.common.ui.ecore.contribution.copy/fdqn.group"
-                tooltip="%copyEObjectMetaClassQualifiedName.Tooltip"/>
-      
-            <action
-                class="org.eclipse.egf.common.ui.actions.CopyEObjectStaticMetaClassQualifiedNameAction"
-                enablesFor="1"
-                icon="$nl$/icons/full/elcl16/Ecore.gif"
-                id="org.eclipse.egf.common.ui.ecore.contribution.copy.eobject.static.meta.class.fdqn"
-                label="%copyEObjectStaticMetaClassQualifiedName.name"
-                menubarPath="org.eclipse.egf.common.ui.ecore.contribution.copy/fdqn.group"
-                tooltip="%copyEObjectStaticMetaClassQualifiedName.Tooltip"/>
-                       
-        </objectContribution>
-    
-    </extension>
-  
+ 
 </plugin>
