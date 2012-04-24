@@ -255,10 +255,9 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
 
         @Override
         public String getText(Object element) {
-            if (element instanceof Activity == false) {
-                return super.getText(element);
-            }
-            return ((Activity) element).getName();
+            if (element instanceof Activity)
+                return ((Activity) element).getName() == null ? "" : ((Activity) element).getName();
+            return super.getText(element);
         }
 
         public String decorateText(String text, Object element) {
@@ -362,9 +361,7 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
     public ActivitySelectionDialog(Shell shell, IPlatformFcore fcore, boolean multipleSelection) {
         this(shell, multipleSelection);
         if (fcore != null) {
-            _targetFcores = new IPlatformFcore[] {
-                fcore
-            };
+            _targetFcores = new IPlatformFcore[] { fcore };
             setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
         }
     }
@@ -446,8 +443,8 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
     }
 
     /**
-     * Returns the list of selections made by the user, or <code>null</code>
-     * if the selection was canceled. A computeResult is done when this dialog
+     * Returns the list of selections made by the user, or <code>null</code> if
+     * the selection was canceled. A computeResult is done when this dialog
      * is used in a wizard page
      * 
      * @return the array of selected elements, or <code>null</code> if Cancel
@@ -527,7 +524,8 @@ public class ActivitySelectionDialog extends AbstractFilteredItemsSelectionDialo
                 // Load Fcore
                 Resource resource = null;
                 try {
-                    // Retrieve the in-memory resource if any or load it from disk
+                    // Retrieve the in-memory resource if any or load it from
+                    // disk
                     resource = _resourceSet.getResource(fcore.getURI(), true);
                 } catch (OperationCanceledException e) {
                     return;
