@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 10 17:34:51 CEST 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -24,8 +24,8 @@ public class buildrmapupdatesite extends org.eclipse.egf.portfolio.eclipse.build
     protected final String TEXT_1 = "\t<locator searchPathRef=\"";
     protected final String TEXT_2 = "\" ";
     protected final String TEXT_3 = " failOnError=\"false\" />" + NL + "\t<searchPath name=\"";
-    protected final String TEXT_4 = "\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"p2\" source=\"false\" mutable=\"false\">" + NL + "\t\t\t<uri format=\"";
-    protected final String TEXT_5 = "\">" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
+    protected final String TEXT_4 = "\">" + NL + "\t\t<provider componentTypes=\"eclipse.feature,osgi.bundle\" readerType=\"p2\" source=\"false\" mutable=\"false\">" + NL + "\t\t\t<uri format=\"{0}\">" + NL + "\t\t\t\t<bc:replace>" + NL + "\t\t\t\t\t<bc:constant value=\"";
+    protected final String TEXT_5 = "\" />" + NL + "\t\t\t\t\t<bc:match pattern=\"\\\\\" replacement=\"/\" /> " + NL + "\t\t\t\t</bc:replace>" + NL + "\t\t\t</uri>" + NL + "\t\t</provider>" + NL + "\t</searchPath>" + NL + NL;
     protected final String TEXT_6 = NL;
     protected final String TEXT_7 = NL;
 
