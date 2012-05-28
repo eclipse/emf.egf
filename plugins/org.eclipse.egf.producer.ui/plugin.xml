@@ -30,6 +30,16 @@
     >
     
       <action
+        class="org.eclipse.egf.producer.ui.internal.actions.CopyHeadlessShortcutToClipboardAction"
+        icon="$nl$/icons/full/elcl16/runactivity.gif"
+        id="org.eclipse.egf.producer.ui.activity.contribution.action.create.activity.runner"
+        label="%CopyHeadlessShortcutToClipboardAction_label"
+        enablesFor="1"
+        menubarPath="additions"
+        tooltip="%CopyHeadlessShortcutToClipboardAction_tooltip"
+      />
+      
+      <action
         class="org.eclipse.egf.producer.ui.internal.actions.RunActivityAction"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
         id="org.eclipse.egf.model.producer.ui.activity.contribution.action.run.activity"
