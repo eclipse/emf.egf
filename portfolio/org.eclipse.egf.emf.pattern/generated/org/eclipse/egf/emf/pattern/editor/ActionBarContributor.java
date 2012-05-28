@@ -1,4 +1,4 @@
-//Generated on Mon Jan 23 11:17:12 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon May 28 11:58:13 CEST 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -274,6 +274,7 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
     protected final String TEXT_244 = NL + "\tprotected boolean removeAllReferencesOnDelete()" + NL + "\t{" + NL + "\t\treturn true;" + NL + "\t}" + NL + "" + NL + "}";
     protected final String TEXT_245 = NL;
     protected final String TEXT_246 = NL;
+    protected final String TEXT_247 = NL;
 
     public ActionBarContributor() {
         //Here is the constructor
@@ -309,8 +310,8 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_245);
         stringBuffer.append(TEXT_246);
+        stringBuffer.append(TEXT_247);
         return stringBuffer.toString();
     }
 
@@ -377,8 +378,6 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         /**
-         * <copyright>
-         *
          * Copyright (c) 2002-2007 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
@@ -387,8 +386,6 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
          *
          * Contributors:
          *   IBM - Initial API and implementation
-         *
-         * </copyright>
          */
 
         GenPackage genPackage = (GenPackage) argument;
@@ -922,6 +919,7 @@ public class ActionBarContributor extends org.eclipse.egf.emf.pattern.base.GenPa
         }
         stringBuffer.append(TEXT_244);
         genModel.emitSortedImports();
+        stringBuffer.append(TEXT_245);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
     }

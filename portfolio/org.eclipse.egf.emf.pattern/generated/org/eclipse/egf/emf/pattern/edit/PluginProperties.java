@@ -1,4 +1,4 @@
-//Generated on Mon Jan 23 11:17:09 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon May 28 11:58:11 CEST 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -153,8 +153,6 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         /**
-         * <copyright>
-         *
          * Copyright (c) 2002-2007 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
@@ -163,8 +161,6 @@ public class PluginProperties extends org.eclipse.egf.emf.pattern.base.GenModelP
          * 
          * Contributors: 
          *   IBM - Initial API and implementation
-         *
-         * </copyright>
          */
 
         GenModel genModel = (GenModel) argument; /* Trick to import java.util.* without warnings */

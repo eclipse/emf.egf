@@ -1,4 +1,4 @@
-//Generated on Mon Jan 23 11:17:14 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon May 28 11:58:14 CEST 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.tests;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -33,18 +33,19 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
     protected final String TEXT_5 = NL + "Bundle-Vendor: %providerName" + NL + "Bundle-Localization: plugin";
     protected final String TEXT_6 = NL + "Bundle-RequiredExecutionEnvironment: J2SE-1.5";
     protected final String TEXT_7 = NL + "Bundle-RequiredExecutionEnvironment: JavaSE-1.6";
-    protected final String TEXT_8 = NL + "Export-Package: ";
-    protected final String TEXT_9 = ",";
-    protected final String TEXT_10 = NL + " ";
-    protected final String TEXT_11 = NL + "Require-Bundle: ";
-    protected final String TEXT_12 = ";visibility:=reexport";
-    protected final String TEXT_13 = ",";
-    protected final String TEXT_14 = NL + " ";
-    protected final String TEXT_15 = ";visibility:=reexport";
-    protected final String TEXT_16 = NL + "Eclipse-LazyStart: true";
-    protected final String TEXT_17 = NL + "Bundle-ActivationPolicy: lazy" + NL;
-    protected final String TEXT_18 = NL;
+    protected final String TEXT_8 = NL + "Bundle-RequiredExecutionEnvironment: JavaSE-1.7";
+    protected final String TEXT_9 = NL + "Export-Package: ";
+    protected final String TEXT_10 = ",";
+    protected final String TEXT_11 = NL + " ";
+    protected final String TEXT_12 = NL + "Require-Bundle: ";
+    protected final String TEXT_13 = ";visibility:=reexport";
+    protected final String TEXT_14 = ",";
+    protected final String TEXT_15 = NL + " ";
+    protected final String TEXT_16 = ";visibility:=reexport";
+    protected final String TEXT_17 = NL + "Eclipse-LazyStart: true";
+    protected final String TEXT_18 = NL + "Bundle-ActivationPolicy: lazy" + NL;
     protected final String TEXT_19 = NL;
+    protected final String TEXT_20 = NL;
 
     public ManifestMF() {
         //Here is the constructor
@@ -80,8 +81,8 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_18);
         stringBuffer.append(TEXT_19);
+        stringBuffer.append(TEXT_20);
         return stringBuffer.toString();
     }
 
@@ -148,8 +149,6 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         /**
-         * <copyright>
-         *
          * Copyright (c) 2005 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
@@ -158,8 +157,6 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
          * 
          * Contributors: 
          *   IBM - Initial API and implementation
-         *
-         * </copyright>
          */
 
         GenModel genModel = (GenModel) argument;
@@ -177,41 +174,43 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
             stringBuffer.append(TEXT_6);
         } else if (genModel.getComplianceLevel() == GenJDKLevel.JDK60_LITERAL) {
             stringBuffer.append(TEXT_7);
+        } else if (genModel.getComplianceLevel() == GenJDKLevel.JDK70_LITERAL) {
+            stringBuffer.append(TEXT_8);
         }
         Iterator<String> packagesIterator = genModel.getTestsQualifiedPackageNames().iterator();
         if (packagesIterator.hasNext()) {
             String pack = packagesIterator.next();
-            stringBuffer.append(TEXT_8);
+            stringBuffer.append(TEXT_9);
             stringBuffer.append(pack);
             while (packagesIterator.hasNext()) {
                 pack = packagesIterator.next();
-                stringBuffer.append(TEXT_9);
                 stringBuffer.append(TEXT_10);
+                stringBuffer.append(TEXT_11);
                 stringBuffer.append(pack);
             }
         }
         Iterator<String> requiredPluginIterator = genModel.getTestsRequiredPlugins().iterator();
         if (requiredPluginIterator.hasNext()) {
             String pluginID = requiredPluginIterator.next();
-            stringBuffer.append(TEXT_11);
+            stringBuffer.append(TEXT_12);
             stringBuffer.append(pluginID);
             if (!pluginID.startsWith("org.eclipse.core.runtime")) {
-                stringBuffer.append(TEXT_12);
+                stringBuffer.append(TEXT_13);
             }
             while (requiredPluginIterator.hasNext()) {
                 pluginID = requiredPluginIterator.next();
-                stringBuffer.append(TEXT_13);
                 stringBuffer.append(TEXT_14);
+                stringBuffer.append(TEXT_15);
                 stringBuffer.append(pluginID);
                 if (!pluginID.startsWith("org.eclipse.core.runtime")) {
-                    stringBuffer.append(TEXT_15);
+                    stringBuffer.append(TEXT_16);
                 }
             }
         }
         if (genModel.getRuntimeVersion() == GenRuntimeVersion.EMF22 || genModel.getRuntimeVersion() == GenRuntimeVersion.EMF23) {
-            stringBuffer.append(TEXT_16);
+            stringBuffer.append(TEXT_17);
         }
-        stringBuffer.append(TEXT_17);
+        stringBuffer.append(TEXT_18);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
     }

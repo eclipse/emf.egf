@@ -1,4 +1,4 @@
-//Generated on Mon Jan 23 11:17:17 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon May 28 11:57:58 CEST 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -328,8 +328,6 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         /**
-         * <copyright>
-         *
          * Copyright (c) 2002-2006 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
@@ -338,8 +336,6 @@ public class ResourceClass extends org.eclipse.egf.emf.pattern.base.GenPackageJa
          *
          * Contributors:
          *   IBM - Initial API and implementation
-         *
-         * </copyright>
          */
 
         GenPackage genPackage = (GenPackage) argument;

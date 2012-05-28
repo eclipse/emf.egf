@@ -1,4 +1,4 @@
-//Generated on Mon Jan 23 11:17:23 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon May 28 11:58:12 CEST 2012 with EGF 0.6.1.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -263,8 +263,6 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         /**
-         * <copyright>
-         *
          * Copyright (c) 2002-2010 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
@@ -273,8 +271,6 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
          *
          * Contributors:
          *   IBM - Initial API and implementation
-         *
-         * </copyright>
          */
 
         GenPackage genPackage = (GenPackage) argument;
