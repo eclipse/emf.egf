@@ -18,5 +18,5 @@
    <feature url="features/org.eclipse.egf.sdk_1.0.0.qualifier.jar" id="org.eclipse.egf.sdk" version="1.0.0.qualifier">
       <category name="org.eclipse.egf.sdk.category"/>
    </feature>
-   <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF SDK (Incubation)"/>
+   <category-def name="org.eclipse.egf.sdk.category" label="EMFT EGF SDK"/>
 </site>

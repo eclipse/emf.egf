@@ -13,7 +13,7 @@
           <type xmi:type="types:TypeString" xmi:id="_vZT1YCLCEd-QbLE3s54hPw" value="Eclipse Modeling Project"/>
         </invocationContracts>
         <invocationContracts xmi:id="_nPBUhCLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_GeBPgCK1Ed-QbLE3s54hPw">
-          <type xmi:type="types:TypeString" xmi:id="_xjcKoCLCEd-QbLE3s54hPw" value="EGF Test (Incubation)"/>
+          <type xmi:type="types:TypeString" xmi:id="_xjcKoCLCEd-QbLE3s54hPw" value="EGF Test"/>
         </invocationContracts>
         <invocationContracts xmi:id="_nPBUhSLCEd-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.util/egf/projectPolicies.fcore#_Ulh7wCLAEd-QbLE3s54hPw">
           <type xmi:type="types:TypeString" xmi:id="_0AWR8CLCEd-QbLE3s54hPw" value="Copyright (c) 2009-2010 Thales Corporate Services S.A.S."/>
