@@ -12,3 +12,12 @@ if (job.getScms() != null && job.getScms().eClass().equals(BuildscmPackage.eINST
 	}
 	newScm.getLocations().addAll(scm.getLocations());
 }
+
+if (job.getScms() != null && job.getScms().eClass().equals(BuildscmPackage.eINSTANCE.getGIT())) {
+	if (newJob.getScms() == null) 
+		newJob.setScms(BuildscmFactory.eINSTANCE.createGIT());
+	
+	GIT newScm = (GIT) newJob.getScms();
+	GIT scm = (GIT) job.getScms();
+	newScm.getLocations().addAll(scm.getLocations());
+}

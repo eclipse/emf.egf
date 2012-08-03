@@ -1,4 +1,4 @@
-//Generated on Thu Feb 23 10:04:34 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Aug 02 17:37:55 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job;
 
 import java.util.*;
@@ -95,6 +95,15 @@ public class job {
             for (SVNLocation svnLocation : scm.getLocations()) {
                 svnLocation.setLocalPath(job.getName() + "_" + svnLocation.getLocalPath());
             }
+            newScm.getLocations().addAll(scm.getLocations());
+        }
+
+        if (job.getScms() != null && job.getScms().eClass().equals(BuildscmPackage.eINSTANCE.getGIT())) {
+            if (newJob.getScms() == null)
+                newJob.setScms(BuildscmFactory.eINSTANCE.createGIT());
+
+            GIT newScm = (GIT) newJob.getScms();
+            GIT scm = (GIT) job.getScms();
             newScm.getLocations().addAll(scm.getLocations());
         }
 

@@ -67,6 +67,33 @@ public interface BuildscmFactory extends EFactory {
     SVNBuildLocation createSVNBuildLocation();
 
     /**
+     * Returns a new object of class '<em>GIT</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>GIT</em>'.
+     * @generated
+     */
+    GIT createGIT();
+
+    /**
+     * Returns a new object of class '<em>GIT Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>GIT Location</em>'.
+     * @generated
+     */
+    GITLocation createGITLocation();
+
+    /**
+     * Returns a new object of class '<em>GIT Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>GIT Build Location</em>'.
+     * @generated
+     */
+    GITBuildLocation createGITBuildLocation();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

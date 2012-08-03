@@ -731,6 +731,22 @@
             </parameters>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_3-rOULwFEd-8jux89nECug"/>
           </elements>
+          <elements xmi:id="_1u3RkdylEeGl1eVaf8TLpw" name="Others.git" superPattern="#_ZjWVULv6Ed-8jux89nECug"
+              headerMethod="#_1u3Rk9ylEeGl1eVaf8TLpw" conditionMethod="#_1u3RldylEeGl1eVaf8TLpw"
+              initMethod="#_1u3RlNylEeGl1eVaf8TLpw" footerMethod="#_1u3Rl9ylEeGl1eVaf8TLpw">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_1u3RktylEeGl1eVaf8TLpw"
+                name="JET"/>
+            <methods xmi:id="_1u3Rk9ylEeGl1eVaf8TLpw" name="header" patternFilePath="templates/pattern._1u3RkdylEeGl1eVaf8TLpw/method._1u3Rk9ylEeGl1eVaf8TLpw.pt"/>
+            <methods xmi:id="_1u3RlNylEeGl1eVaf8TLpw" name="init" patternFilePath="templates/pattern._1u3RkdylEeGl1eVaf8TLpw/method._1u3RlNylEeGl1eVaf8TLpw.pt"/>
+            <methods xmi:id="_1u3RldylEeGl1eVaf8TLpw" name="preCondition" patternFilePath="templates/pattern._1u3RkdylEeGl1eVaf8TLpw/method._1u3RldylEeGl1eVaf8TLpw.pt"/>
+            <methods xmi:id="_1u3RltylEeGl1eVaf8TLpw" name="body" patternFilePath="templates/pattern._1u3RkdylEeGl1eVaf8TLpw/method._1u3RltylEeGl1eVaf8TLpw.pt"/>
+            <methods xmi:id="_1u3Rl9ylEeGl1eVaf8TLpw" name="footer" patternFilePath="templates/pattern._1u3RkdylEeGl1eVaf8TLpw/method._1u3Rl9ylEeGl1eVaf8TLpw.pt"/>
+            <parameters xmi:id="_1u3RmNylEeGl1eVaf8TLpw" name="git" type="http://www.eclipse.org/egf/1.0.0/buildscm#//GIT">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_1u3RmdylEeGl1eVaf8TLpw"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_1u3RmtylEeGl1eVaf8TLpw"/>
+          </elements>
           <elements xmi:id="__KOOsMS7Ed-vaoSzswKR5Q" name="Others.logRotator" superPattern="#_ZjWVULv6Ed-8jux89nECug"
               headerMethod="#__KOOscS7Ed-vaoSzswKR5Q" conditionMethod="#__KOOs8S7Ed-vaoSzswKR5Q"
               initMethod="#__KOOssS7Ed-vaoSzswKR5Q" footerMethod="#__KOOtcS7Ed-vaoSzswKR5Q">
@@ -758,7 +774,7 @@
               <substitutions xmi:id="_bmZDIJ8GEd-nb4TPjagXkA" replacedElement="#_N0HwQJAXEd-LOqbFhvvp0A"
                   replacement="#_WOWc4Z8FEd-qe8Qq1eNVqQ #_NZITMJ8GEd-nb4TPjagXkA #_N0HwQJAXEd-LOqbFhvvp0A"/>
               <substitutions xmi:id="_VbSV8JAXEd-LOqbFhvvp0A" replacedElement="#_ZjWVULv6Ed-8jux89nECug"
-                  replacement="#_J76ZUI_7Ed-Mh9dXw3mL3g #__KOOsMS7Ed-vaoSzswKR5Q #_ZjWVULv6Ed-8jux89nECug"/>
+                  replacement="#_J76ZUI_7Ed-Mh9dXw3mL3g #_1u3RkdylEeGl1eVaf8TLpw #__KOOsMS7Ed-vaoSzswKR5Q #_ZjWVULv6Ed-8jux89nECug"/>
             </type>
           </invocationContracts>
           <invocationContracts xmi:id="_V7I2U4_5Ed-Mh9dXw3mL3g" factoryComponentContract="#_AjBAYI3DEd-Tlrutn5SzgA"
@@ -1561,6 +1577,22 @@
             </parameters>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_EGUrdpMbEd-pjLQZUcJ3fw"/>
           </elements>
+          <elements xmi:id="_m4OMcdywEeGwTI_7XTsgSQ" name="build.rmap.git" superPattern="#_AAXisJMbEd-pjLQZUcJ3fw"
+              headerMethod="#_m4OMc9ywEeGwTI_7XTsgSQ" conditionMethod="#_m4OMddywEeGwTI_7XTsgSQ"
+              initMethod="#_m4OMdNywEeGwTI_7XTsgSQ" footerMethod="#_m4OMd9ywEeGwTI_7XTsgSQ">
+            <nature xmi:type="jetpattern:JetNature" xmi:id="_m4OMctywEeGwTI_7XTsgSQ"
+                name="JET"/>
+            <methods xmi:id="_m4OMc9ywEeGwTI_7XTsgSQ" name="header" patternFilePath="templates/pattern._m4OMcdywEeGwTI_7XTsgSQ/method._m4OMc9ywEeGwTI_7XTsgSQ.pt"/>
+            <methods xmi:id="_m4OMdNywEeGwTI_7XTsgSQ" name="init" patternFilePath="templates/pattern._m4OMcdywEeGwTI_7XTsgSQ/method._m4OMdNywEeGwTI_7XTsgSQ.pt"/>
+            <methods xmi:id="_m4OMddywEeGwTI_7XTsgSQ" name="preCondition" patternFilePath="templates/pattern._m4OMcdywEeGwTI_7XTsgSQ/method._m4OMddywEeGwTI_7XTsgSQ.pt"/>
+            <methods xmi:id="_m4OMdtywEeGwTI_7XTsgSQ" name="body" patternFilePath="templates/pattern._m4OMcdywEeGwTI_7XTsgSQ/method._m4OMdtywEeGwTI_7XTsgSQ.pt"/>
+            <methods xmi:id="_m4OMd9ywEeGwTI_7XTsgSQ" name="footer" patternFilePath="templates/pattern._m4OMcdywEeGwTI_7XTsgSQ/method._m4OMd9ywEeGwTI_7XTsgSQ.pt"/>
+            <parameters xmi:id="_m4OMeNywEeGwTI_7XTsgSQ" name="gitBuildLocation" type="http://www.eclipse.org/egf/1.0.0/buildscm#//GITBuildLocation">
+              <query xmi:type="pattern:BasicQuery" xmi:id="_m4OMedywEeGwTI_7XTsgSQ"
+                  extensionId="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"/>
+            </parameters>
+            <orchestration xmi:type="pattern:SuperCall" xmi:id="_m4OMetywEeGwTI_7XTsgSQ"/>
+          </elements>
           <elements xmi:id="_wiU4gJSoEd-BJKD_XS9R2A" name="build.rmap.targetPlatform"
               superPattern="#_AAXisJMbEd-pjLQZUcJ3fw" headerMethod="#_wiU4gZSoEd-BJKD_XS9R2A"
               conditionMethod="#_wiU4g5SoEd-BJKD_XS9R2A" initMethod="#_wiU4gpSoEd-BJKD_XS9R2A"
@@ -1785,7 +1817,7 @@
               <substitutions xmi:id="_xs22QJMZEd-pjLQZUcJ3fw" replacedElement="#_yCPiUJMXEd-pjLQZUcJ3fw"
                   replacement="#_dmdIsJMZEd-pjLQZUcJ3fw #_CrT7cJMaEd-pjLQZUcJ3fw #_yCPiUJMXEd-pjLQZUcJ3fw #_SbudAJWHEd-9uNs2Xd57Cg"/>
               <substitutions xmi:id="_n2COMJMxEd-BJKD_XS9R2A" replacedElement="#_AAXisJMbEd-pjLQZUcJ3fw"
-                  replacement="#_EGUrcJMbEd-pjLQZUcJ3fw #_wiU4gJSoEd-BJKD_XS9R2A #_MXMfEJTUEd-fvPvNnKEvJg #_pFGKYZloEd-GKqXx_evxEw #_J_VjkKh4EeCyIabjY3cKRg #__Sk8AeUqEeCpQPfMrPZU6g #_a8tUAPijEeCbg_fyoO-ozQ #_AAXisJMbEd-pjLQZUcJ3fw"/>
+                  replacement="#_EGUrcJMbEd-pjLQZUcJ3fw #_m4OMcdywEeGwTI_7XTsgSQ #_wiU4gJSoEd-BJKD_XS9R2A #_MXMfEJTUEd-fvPvNnKEvJg #_pFGKYZloEd-GKqXx_evxEw #_J_VjkKh4EeCyIabjY3cKRg #__Sk8AeUqEeCpQPfMrPZU6g #_a8tUAPijEeCbg_fyoO-ozQ #_AAXisJMbEd-pjLQZUcJ3fw"/>
               <substitutions xmi:id="_avGLIJNHEd-BJKD_XS9R2A" replacedElement="#_4NTLAJNGEd-BJKD_XS9R2A"
                   replacement="#_x4T9kZmWEd-Ee7jt2lxlVA #_D3WLsWEpEeC2MPWqHbfkpg #_4NTLAJNGEd-BJKD_XS9R2A"/>
               <substitutions xmi:id="_SGBtUJTYEd-fvPvNnKEvJg" replacedElement="#_C_qLIJTYEd-fvPvNnKEvJg"

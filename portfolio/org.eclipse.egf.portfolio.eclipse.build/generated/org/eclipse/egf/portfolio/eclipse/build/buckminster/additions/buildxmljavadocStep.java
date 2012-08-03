@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:03 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Thu Aug 02 17:34:51 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -34,15 +34,17 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
     protected final String TEXT_10 = NL + "\t\t<fileset dir=\"${build.root}/svn/";
     protected final String TEXT_11 = "/";
     protected final String TEXT_12 = "\" defaultexcludes=\"true\">";
-    protected final String TEXT_13 = NL;
-    protected final String TEXT_14 = " " + NL + "\t\t\t<include name=\"";
-    protected final String TEXT_15 = "\"/>";
-    protected final String TEXT_16 = " " + NL + "\t\t\t<exclude name=\"";
+    protected final String TEXT_13 = NL + "\t\t<fileset dir=\"${build.root}/git/";
+    protected final String TEXT_14 = "\" defaultexcludes=\"true\">";
+    protected final String TEXT_15 = NL;
+    protected final String TEXT_16 = " " + NL + "\t\t\t<include name=\"";
     protected final String TEXT_17 = "\"/>";
-    protected final String TEXT_18 = NL + "\t\t</fileset>";
-    protected final String TEXT_19 = NL + NL + "<!-- TODO better handling of copyright (escape chars) -->" + NL + "<!-- <bottom>copyright</bottom> -->" + NL + "\t</javadoc>" + NL + "</target>" + NL + NL;
-    protected final String TEXT_20 = NL;
-    protected final String TEXT_21 = NL;
+    protected final String TEXT_18 = " " + NL + "\t\t\t<exclude name=\"";
+    protected final String TEXT_19 = "\"/>";
+    protected final String TEXT_20 = NL + "\t\t</fileset>";
+    protected final String TEXT_21 = NL + NL + "<!-- TODO better handling of copyright (escape chars) -->" + NL + "<!-- <bottom>copyright</bottom> -->" + NL + "\t</javadoc>" + NL + "</target>" + NL + NL;
+    protected final String TEXT_22 = NL;
+    protected final String TEXT_23 = NL;
 
     public buildxmljavadocStep() {
         //Here is the constructor
@@ -79,8 +81,8 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_20);
-        stringBuffer.append(TEXT_21);
+        stringBuffer.append(TEXT_22);
+        stringBuffer.append(TEXT_23);
         return stringBuffer.toString();
     }
 
@@ -139,20 +141,27 @@ public class buildxmljavadocStep extends org.eclipse.egf.portfolio.eclipse.build
                 stringBuffer.append(svnBuildLocation.getFolderName());
                 stringBuffer.append(TEXT_12);
             }
-            stringBuffer.append(TEXT_13);
-            for (String includeString : javadocStep.getIncludes()) {
+            if (sourceLocation instanceof GITBuildLocation) {
+                GITBuildLocation gitBuildLocation = (GITBuildLocation) sourceLocation;
+                GITLocation gitLocation = (GITLocation) gitBuildLocation.getGitLocation();
+                stringBuffer.append(TEXT_13);
+                stringBuffer.append(gitBuildLocation.getFolderName());
                 stringBuffer.append(TEXT_14);
-                stringBuffer.append(includeString);
-                stringBuffer.append(TEXT_15);
             }
-            for (String excludeString : javadocStep.getExcludes()) {
+            stringBuffer.append(TEXT_15);
+            for (String includeString : javadocStep.getIncludes()) {
                 stringBuffer.append(TEXT_16);
-                stringBuffer.append(excludeString);
+                stringBuffer.append(includeString);
                 stringBuffer.append(TEXT_17);
             }
-            stringBuffer.append(TEXT_18);
+            for (String excludeString : javadocStep.getExcludes()) {
+                stringBuffer.append(TEXT_18);
+                stringBuffer.append(excludeString);
+                stringBuffer.append(TEXT_19);
+            }
+            stringBuffer.append(TEXT_20);
         }
-        stringBuffer.append(TEXT_19);
+        stringBuffer.append(TEXT_21);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
     }

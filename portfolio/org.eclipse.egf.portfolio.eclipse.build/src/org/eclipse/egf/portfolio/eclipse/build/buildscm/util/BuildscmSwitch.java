@@ -126,6 +126,27 @@ public class BuildscmSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildscmPackage.GIT: {
+                GIT git = (GIT)theEObject;
+                T result = caseGIT(git);
+                if (result == null) result = caseSCM(git);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildscmPackage.GIT_LOCATION: {
+                GITLocation gitLocation = (GITLocation)theEObject;
+                T result = caseGITLocation(gitLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildscmPackage.GIT_BUILD_LOCATION: {
+                GITBuildLocation gitBuildLocation = (GITBuildLocation)theEObject;
+                T result = caseGITBuildLocation(gitBuildLocation);
+                if (result == null) result = caseSourceBuildLocation(gitBuildLocation);
+                if (result == null) result = caseBuildLocation(gitBuildLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -172,6 +193,51 @@ public class BuildscmSwitch<T> {
      * @generated
      */
     public T caseSVNBuildLocation(SVNBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>GIT</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>GIT</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGIT(GIT object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>GIT Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>GIT Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGITLocation(GITLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>GIT Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>GIT Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGITBuildLocation(GITBuildLocation object) {
         return null;
     }
 

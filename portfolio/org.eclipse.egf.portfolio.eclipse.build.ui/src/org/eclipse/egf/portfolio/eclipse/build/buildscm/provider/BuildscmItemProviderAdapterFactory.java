@@ -189,6 +189,75 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected GITItemProvider gitItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createGITAdapter() {
+        if (gitItemProvider == null) {
+            gitItemProvider = new GITItemProvider(this);
+        }
+
+        return gitItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected GITLocationItemProvider gitLocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createGITLocationAdapter() {
+        if (gitLocationItemProvider == null) {
+            gitLocationItemProvider = new GITLocationItemProvider(this);
+        }
+
+        return gitLocationItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected GITBuildLocationItemProvider gitBuildLocationItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createGITBuildLocationAdapter() {
+        if (gitBuildLocationItemProvider == null) {
+            gitBuildLocationItemProvider = new GITBuildLocationItemProvider(this);
+        }
+
+        return gitBuildLocationItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -317,6 +386,9 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
         if (svnItemProvider != null) svnItemProvider.dispose();
         if (svnLocationItemProvider != null) svnLocationItemProvider.dispose();
         if (svnBuildLocationItemProvider != null) svnBuildLocationItemProvider.dispose();
+        if (gitItemProvider != null) gitItemProvider.dispose();
+        if (gitLocationItemProvider != null) gitLocationItemProvider.dispose();
+        if (gitBuildLocationItemProvider != null) gitBuildLocationItemProvider.dispose();
     }
 
     /**
@@ -372,6 +444,15 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__SCMS,
                  BuildscmFactory.eINSTANCE.createSVN()));
+
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildcorePackage.Literals.JOB__SCMS,
+                 BuildscmFactory.eINSTANCE.createGIT()));
 
 
 
@@ -463,6 +544,15 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
             (createChildParameter
                 (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
                  BuildscmFactory.eINSTANCE.createSVNBuildLocation()));
+
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                 BuildscmFactory.eINSTANCE.createGITBuildLocation()));
 
 
 

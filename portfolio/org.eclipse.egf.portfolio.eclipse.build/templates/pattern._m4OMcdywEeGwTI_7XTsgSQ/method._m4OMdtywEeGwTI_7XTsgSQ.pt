@@ -1,0 +1,29 @@
+<%GITLocation gitLocation = ((GITLocation) gitBuildLocation.getGitLocation());%>
+<%String id=new GenerationHelper().getNameOrGeneratedIdString(gitBuildLocation);%>
+	<locator searchPathRef="<%=id%>" <%=new GenerationHelper().getPatternString(gitBuildLocation)%> failOnError="false" />
+	<searchPath name="<%=id%>">
+	    <!-- provider for windows if checkouted with Hudson -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
+			<uri format="file:/{0}/git/<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
+				<bc:propertyRef key="build.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	    <!-- provider for unix if checkouted with Hudson -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="local" source="true">
+			<uri format="file://{0}/git/<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
+				<bc:propertyRef key="build.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	    <!-- standalone provider -->
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="git" source="true">
+			<property key="git.remote.uri" value="<%=gitLocation.getProtocol().getLiteral()%><%if (gitLocation.getUsername() != null) { %><%=gitLocation.getUsername()%>:<%=gitLocation.getPassword()%>@<%}%><%=gitLocation.getUrl()%>"/>
+      		<property key="git.auto.fetch" value="true"/>
+  			<uri format="{0}/git,<%=gitBuildLocation.getFolderName()%>/{1}<%=new GenerationHelper().getStringIfNotNull(gitBuildLocation.getSuffix())%>">
+				<bc:propertyRef key="build.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+

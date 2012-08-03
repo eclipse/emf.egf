@@ -78,6 +78,9 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
             case BuildscmPackage.SVN: return createSVN();
             case BuildscmPackage.SVN_LOCATION: return createSVNLocation();
             case BuildscmPackage.SVN_BUILD_LOCATION: return createSVNBuildLocation();
+            case BuildscmPackage.GIT: return createGIT();
+            case BuildscmPackage.GIT_LOCATION: return createGITLocation();
+            case BuildscmPackage.GIT_BUILD_LOCATION: return createGITBuildLocation();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -93,6 +96,8 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
         switch (eDataType.getClassifierID()) {
             case BuildscmPackage.SVN_PROTOCOL:
                 return createSVNProtocolFromString(eDataType, initialValue);
+            case BuildscmPackage.GIT_PROTOCOL:
+                return createGITProtocolFromString(eDataType, initialValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -108,6 +113,8 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
         switch (eDataType.getClassifierID()) {
             case BuildscmPackage.SVN_PROTOCOL:
                 return convertSVNProtocolToString(eDataType, instanceValue);
+            case BuildscmPackage.GIT_PROTOCOL:
+                return convertGITProtocolToString(eDataType, instanceValue);
             default:
                 throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
         }
@@ -148,6 +155,36 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public GIT createGIT() {
+        GITImpl git = new GITImpl();
+        return git;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GITLocation createGITLocation() {
+        GITLocationImpl gitLocation = new GITLocationImpl();
+        return gitLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GITBuildLocation createGITBuildLocation() {
+        GITBuildLocationImpl gitBuildLocation = new GITBuildLocationImpl();
+        return gitBuildLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public SVNProtocol createSVNProtocolFromString(EDataType eDataType, String initialValue) {
         SVNProtocol result = SVNProtocol.get(initialValue);
         if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -160,6 +197,26 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
      * @generated
      */
     public String convertSVNProtocolToString(EDataType eDataType, Object instanceValue) {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GITProtocol createGITProtocolFromString(EDataType eDataType, String initialValue) {
+        GITProtocol result = GITProtocol.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertGITProtocolToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }
 

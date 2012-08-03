@@ -102,6 +102,18 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
                 return createSVNBuildLocationAdapter();
             }
             @Override
+            public Adapter caseGIT(GIT object) {
+                return createGITAdapter();
+            }
+            @Override
+            public Adapter caseGITLocation(GITLocation object) {
+                return createGITLocationAdapter();
+            }
+            @Override
+            public Adapter caseGITBuildLocation(GITBuildLocation object) {
+                return createGITBuildLocationAdapter();
+            }
+            @Override
             public Adapter caseSCM(SCM object) {
                 return createSCMAdapter();
             }
@@ -172,6 +184,48 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSVNBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT <em>GIT</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT
+     * @generated
+     */
+    public Adapter createGITAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation <em>GIT Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation
+     * @generated
+     */
+    public Adapter createGITLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation <em>GIT Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation
+     * @generated
+     */
+    public Adapter createGITBuildLocationAdapter() {
         return null;
     }
 
