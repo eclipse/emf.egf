@@ -1,0 +1,12 @@
+        EMFDomain domainOut = (EMFDomain) ctx.getValue("domainOut");
+        GenModel newGenModel = (GenModel) domainOut.getContent().get(0);
+
+        String newModelDirectory = newGenModel.getModelDirectory();
+
+        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+
+        Path path = new Path(newModelDirectory + "/" + genPackage.getClassPackageName().replace('.', '/'));
+
+        IFolder folder = root.getFolder(path);
+        if (folder.exists())
+        	folder.delete(true, new NullProgressMonitor());

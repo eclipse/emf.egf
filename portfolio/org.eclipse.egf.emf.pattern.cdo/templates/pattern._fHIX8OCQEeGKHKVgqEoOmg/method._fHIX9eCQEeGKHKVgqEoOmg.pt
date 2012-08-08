@@ -1,0 +1,3 @@
+        String cdoSuffix = (String) ctx.getValue("cdoSuffix");
+        newGenModel.setModelPluginID(newGenModel.getModelPluginID() + "." + cdoSuffix);
+        newGenModel.setModelDirectory(newGenModel.getModelDirectory().replace(genModel.getModelPluginID(), newGenModel.getModelPluginID()));

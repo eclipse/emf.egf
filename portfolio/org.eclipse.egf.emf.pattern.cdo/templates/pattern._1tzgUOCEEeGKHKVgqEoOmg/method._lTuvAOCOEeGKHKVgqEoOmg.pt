@@ -1,0 +1,4 @@
+        EMFDomain emfDomain = DomainFactory.eINSTANCE.createEMFDomain();
+        emfDomain.setUri(newGenModelResourceURI);
+        new EMFDomainHelper().loadDomain(emfDomain);
+        ctx.setValue("domainOut", emfDomain);

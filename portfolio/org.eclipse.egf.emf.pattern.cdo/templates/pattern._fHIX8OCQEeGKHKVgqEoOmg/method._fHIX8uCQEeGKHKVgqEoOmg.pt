@@ -1,0 +1,26 @@
+package PACKAGE;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.egf.model.pattern.Node;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
+import org.eclipse.egf.pattern.execution.OutputManager;
+import org.eclipse.egf.pattern.execution.SuperOrchestrationContext;
+import org.eclipse.egf.pattern.query.IQuery;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.common.util.AbstractTreeIterator;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+
+public class CLASS {
+
+	public CLASS() {
+		//Here is the constructor
+	}
+
+

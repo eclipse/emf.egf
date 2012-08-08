@@ -1,0 +1,2 @@
+Resource newGenModelResource = genModel.eResource().getResourceSet().getResource(newGenModelResourceURI, false);
+newGenModelResource.save(Collections.EMPTY_MAP);

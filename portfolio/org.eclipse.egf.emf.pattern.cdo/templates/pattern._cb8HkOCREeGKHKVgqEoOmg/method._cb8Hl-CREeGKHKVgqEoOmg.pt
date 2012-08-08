@@ -1,0 +1,3 @@
+URI genModelResourceURI = genModel.eResource().getURI();
+String cdoSuffix = (String) ctx.getValue("cdoSuffix");
+newGenModelResourceURI = genModelResourceURI.trimFileExtension().appendFileExtension(cdoSuffix).appendFileExtension(genModelResourceURI.fileExtension());

@@ -1,0 +1,21 @@
+        List list = (List) ctx.getValue("domain");
+        GenModel genModel = (GenModel) list.get(0);
+
+        EMFDomain domainOut = (EMFDomain) ctx.getValue("domainOut");
+        GenModel newGenModel = (GenModel) domainOut.getContent().get(0);
+
+        String modelDirectory = genModel.getModelDirectory();
+        String newModelDirectory = newGenModel.getModelDirectory();
+
+        IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+
+        Path srcPath = new Path(modelDirectory + "/" + qualifiedName.replace('.', '/') + ".java");
+        Path destPath = new Path(newModelDirectory + "/" + qualifiedName.replace('.', '/') + ".java");
+
+
+        IFile srcFile = root.getFile(srcPath);
+        if (srcFile.exists()) {
+	        URI containerURI = URI.createURI(destPath.removeLastSegments(1).toPortableString());        
+			new CodegenGeneratorAdapter(newGenModel).ensureContainerExists(containerURI, new BasicMonitor());
+	        srcFile.copy(destPath, true, new NullProgressMonitor());
+        }

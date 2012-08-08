@@ -107,6 +107,11 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
         super.ensureProjectExists(workspacePath, object, projectType, force, monitor);
     }
 
+    @Override
+    public void ensureContainerExists(URI workspacePath, Monitor monitor) {
+    	super.ensureContainerExists(workspacePath, monitor);
+    }
+    
     public void generateJava(String targetPath, String packageName, String className, String output) {
         generateJava(targetPath, packageName, className, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
     }

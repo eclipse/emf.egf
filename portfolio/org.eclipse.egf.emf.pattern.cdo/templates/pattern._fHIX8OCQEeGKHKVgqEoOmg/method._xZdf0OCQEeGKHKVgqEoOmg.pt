@@ -1,0 +1,4 @@
+        URI genModelResourceURI = genModel.eResource().getURI();
+        String genModelResourceURIString = genModelResourceURI.toString();
+        genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(), newGenModel.getModelPluginID());
+        newGenModelResourceURI = URI.createURI(genModelResourceURIString);

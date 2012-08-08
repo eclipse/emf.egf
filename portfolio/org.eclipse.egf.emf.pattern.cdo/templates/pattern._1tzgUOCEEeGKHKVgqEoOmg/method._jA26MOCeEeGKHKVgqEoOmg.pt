@@ -1,0 +1,5 @@
+        CodegenGeneratorAdapter codegenGeneratorAdapter = new CodegenGeneratorAdapter(newGenModel);
+        BasicMonitor monitor = new BasicMonitor();
+        String workspacePath = newGenModelResourceURI.trimSegments(1).toPlatformString(false);
+        codegenGeneratorAdapter.ensureProjectExists(workspacePath, newGenModel, CodegenGeneratorAdapter.MODEL_PROJECT_TYPE, false, monitor);
+        codegenGeneratorAdapter.ensureContainerExists(URI.createURI(workspacePath), monitor);

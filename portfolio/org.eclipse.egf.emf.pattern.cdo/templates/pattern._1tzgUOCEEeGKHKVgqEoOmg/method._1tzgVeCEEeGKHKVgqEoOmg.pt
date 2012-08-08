@@ -1,0 +1,3 @@
+        String featureDelegationString = (String) ctx.getValue("featureDelegation");
+        GenDelegationKind genDelegationKind = GenDelegationKind.get(featureDelegationString); 
+        CDOMigratorUtil.adjustGenModel(newGenModel, genDelegationKind);
