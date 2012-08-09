@@ -31,6 +31,10 @@
           description="EMF Model Pattern" name="mergeRulesURI" invocationContracts="#_merDvuCEEeGKHKVgqEoOmg">
         <type xmi:type="types:TypeURI" xmi:id="_merDtOCEEeGKHKVgqEoOmg"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_udA7seIjEeGQnKHZbgDt1Q"
+          name="prepare.patterns.substitutions" invocationContracts="#_3nOogOIjEeGQnKHZbgDt1Q">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_3Fje0OIjEeGQnKHZbgDt1Q"/>
+      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_X3rQIOFrEeGFJ5Qac-Dqzg"
           name="cdoSuffix" invocationContracts="#_ZCVFYOFrEeGFJ5Qac-Dqzg">
         <type xmi:type="types:TypeString" xmi:id="_X3rQIeFrEeGFJ5Qac-Dqzg"/>
@@ -51,6 +55,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_merDv-CEEeGKHKVgqEoOmg" targetInvocationContract="#_mp9awuCREeGKHKVgqEoOmg"
               invokedContract="#_4oMDQOCDEeGKHKVgqEoOmg"/>
+          <invocationContracts xmi:id="_3nOogOIjEeGQnKHZbgDt1Q" factoryComponentContract="#_udA7seIjEeGQnKHZbgDt1Q"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
           <invocationContracts xmi:id="_ZCVFYOFrEeGFJ5Qac-Dqzg" factoryComponentContract="#_X3rQIOFrEeGFJ5Qac-Dqzg"
               invokedContract="#_yX1xkOFqEeGFJ5Qac-Dqzg"/>
           <invocationContracts xmi:id="_ZCe2YOFrEeGFJ5Qac-Dqzg" factoryComponentContract="#_X3rQIuFrEeGFJ5Qac-Dqzg"
@@ -105,6 +111,10 @@
           description="EMF Model Pattern" name="mergeRulesURI" invocationContracts="#_OXLaKuCWEeGKHKVgqEoOmg">
         <type xmi:type="types:TypeURI" xmi:id="_OXLaG-CWEeGKHKVgqEoOmg"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="__3xiYOIjEeGQnKHZbgDt1Q"
+          name="prepare.patterns.substitutions" invocationContracts="#_BS0kEOIkEeGQnKHZbgDt1Q">
+        <type xmi:type="pattern:TypePatternSubstitution" xmi:id="__3xiYeIjEeGQnKHZbgDt1Q"/>
+      </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_GSosEOFrEeGFJ5Qac-Dqzg"
           name="cdoSuffix" invocationContracts="#__LHPwOFqEeGFJ5Qac-Dqzg">
         <type xmi:type="types:TypeString" xmi:id="_LSkJwOFrEeGFJ5Qac-Dqzg"/>
@@ -125,6 +135,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_OXLaIuCWEeGKHKVgqEoOmg" targetInvocationContract="#_OXLaJeCWEeGKHKVgqEoOmg"
               invokedContract="#_4oMDQOCDEeGKHKVgqEoOmg"/>
+          <invocationContracts xmi:id="_BS0kEOIkEeGQnKHZbgDt1Q" factoryComponentContract="#__3xiYOIjEeGQnKHZbgDt1Q"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/egf/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
           <invocationContracts xmi:id="__LHPwOFqEeGFJ5Qac-Dqzg" factoryComponentContract="#_GSosEOFrEeGFJ5Qac-Dqzg"
               invokedContract="#_yX1xkOFqEeGFJ5Qac-Dqzg"/>
           <invocationContracts xmi:id="_E4x9MOFrEeGFJ5Qac-Dqzg" factoryComponentContract="#_GosboOFrEeGFJ5Qac-Dqzg"
