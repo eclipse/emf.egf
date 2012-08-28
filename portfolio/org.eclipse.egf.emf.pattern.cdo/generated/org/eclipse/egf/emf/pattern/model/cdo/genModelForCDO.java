@@ -1,4 +1,4 @@
-//Generated on Tue Aug 28 14:26:08 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 28 15:01:11 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.*;
@@ -58,8 +58,8 @@ public class genModelForCDO {
         method_customizeGenModel(new StringBuffer(), ictx);
         method_genModelResourceURI(new StringBuffer(), ictx);
         method_createGenModelResource(new StringBuffer(), ictx);
-        method_ensureContainerExists(new StringBuffer(), ictx);
         method_checkGenModel(new StringBuffer(), ictx);
+        method_ensureContainerExists(new StringBuffer(), ictx);
         method_saveGenModelResource(new StringBuffer(), ictx);
         method_setGenModelInContext(new StringBuffer(), ictx);
         ictx.setNode(currentNode);
@@ -110,17 +110,6 @@ public class genModelForCDO {
         new Node.DataLeaf(ictx.getNode(), getClass(), "createGenModelResource", out.toString());
     }
 
-    protected void method_ensureContainerExists(final StringBuffer out, final PatternContext ctx) throws Exception {
-        CodegenGeneratorAdapter codegenGeneratorAdapter = new CodegenGeneratorAdapter(newGenModel);
-        BasicMonitor monitor = new BasicMonitor();
-        String workspacePath = newGenModelResourceURI.trimSegments(1).toPlatformString(false);
-        codegenGeneratorAdapter.ensureProjectExists(workspacePath, newGenModel, CodegenGeneratorAdapter.MODEL_PROJECT_TYPE, false, monitor);
-        codegenGeneratorAdapter.ensureContainerExists(URI.createURI(workspacePath), monitor);
-
-        InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "ensureContainerExists", out.toString());
-    }
-
     protected void method_checkGenModel(final StringBuffer out, final PatternContext ctx) throws Exception {
         for (GenPackage genPackage : newGenModel.getUsedGenPackages()) {
             boolean useCDO = false;
@@ -133,6 +122,17 @@ public class genModelForCDO {
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "checkGenModel", out.toString());
+    }
+
+    protected void method_ensureContainerExists(final StringBuffer out, final PatternContext ctx) throws Exception {
+        CodegenGeneratorAdapter codegenGeneratorAdapter = new CodegenGeneratorAdapter(newGenModel);
+        BasicMonitor monitor = new BasicMonitor();
+        String workspacePath = newGenModelResourceURI.trimSegments(1).toPlatformString(false);
+        codegenGeneratorAdapter.ensureProjectExists(workspacePath, newGenModel, CodegenGeneratorAdapter.MODEL_PROJECT_TYPE, false, monitor);
+        codegenGeneratorAdapter.ensureContainerExists(URI.createURI(workspacePath), monitor);
+
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "ensureContainerExists", out.toString());
     }
 
     protected void method_saveGenModelResource(final StringBuffer out, final PatternContext ctx) throws Exception {

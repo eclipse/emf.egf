@@ -12,7 +12,7 @@
 	        	GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
 	        	usedGenPackages.add(newGenPackage);
         	} catch (Exception exception) {
-        		throw new IllegalStateException("Unable to find genModel " + newURI.trimFragment().toString(), exception);
+	        	usedGenPackages.add(genPackage);
         	}
         }
         

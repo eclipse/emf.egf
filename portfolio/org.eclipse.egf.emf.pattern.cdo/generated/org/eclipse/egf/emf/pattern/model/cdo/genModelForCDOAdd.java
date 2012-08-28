@@ -1,4 +1,4 @@
-//Generated on Tue Aug 28 14:26:08 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 28 15:00:48 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.ArrayList;
@@ -81,7 +81,7 @@ public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.gen
                 GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
                 usedGenPackages.add(newGenPackage);
             } catch (Exception exception) {
-                throw new IllegalStateException("Unable to find genModel " + newURI.trimFragment().toString(), exception);
+                usedGenPackages.add(genPackage);
             }
         }
 
