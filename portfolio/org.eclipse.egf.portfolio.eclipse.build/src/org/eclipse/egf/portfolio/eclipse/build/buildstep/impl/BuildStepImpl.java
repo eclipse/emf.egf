@@ -17,7 +17,9 @@ import java.util.Collection;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE;
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -70,7 +73,7 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * @generated
      * @ordered
      */
-    protected EList<BuildLocation> buildLocations;
+    protected EList<AbstractBuildLocation> buildLocations;
 
 
 
@@ -186,10 +189,10 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
      * @generated
      */
 
-    public EList<BuildLocation> getBuildLocations() {
+    public EList<AbstractBuildLocation> getBuildLocations() {
 
         if (buildLocations == null) {
-            buildLocations = new EObjectContainmentWithInverseEList<BuildLocation>(BuildLocation.class, this, BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS, BuildstepPackage.BUILD_LOCATION__BUILD_STEP);
+            buildLocations = new EObjectContainmentEList.Resolving<AbstractBuildLocation>(AbstractBuildLocation.class, this, BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS);
         }
         return buildLocations;
     }
@@ -208,7 +211,7 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
     public EList<Component> getComponents() {
 
         if (components == null) {
-            components = new EObjectContainmentWithInverseEList<Component>(Component.class, this, BuildstepPackage.BUILD_STEP__COMPONENTS, BuildstepPackage.COMPONENT__BUILD_STEP);
+            components = new EObjectContainmentWithInverseEList.Resolving<Component>(Component.class, this, BuildstepPackage.BUILD_STEP__COMPONENTS, BuildstepPackage.COMPONENT__BUILD_STEP);
         }
         return components;
     }
@@ -305,8 +308,6 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getBuildLocations()).basicAdd(otherEnd, msgs);
             case BuildstepPackage.BUILD_STEP__COMPONENTS:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getComponents()).basicAdd(otherEnd, msgs);
         }
@@ -362,7 +363,7 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
         switch (featureID) {
             case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS:
                 getBuildLocations().clear();
-                getBuildLocations().addAll((Collection<? extends BuildLocation>)newValue);
+                getBuildLocations().addAll((Collection<? extends AbstractBuildLocation>)newValue);
                 return;
             case BuildstepPackage.BUILD_STEP__COMPONENTS:
                 getComponents().clear();
@@ -433,6 +434,38 @@ public class BuildStepImpl extends StepImpl implements BuildStep {
         return super.eIsSet(featureID);
     }
 
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+        if (baseClass == AbstractBuildLocationContainer.class) {
+            switch (derivedFeatureID) {
+                case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS: return BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+        if (baseClass == AbstractBuildLocationContainer.class) {
+            switch (baseFeatureID) {
+                case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS: return BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
     /**
      * <!-- begin-user-doc -->

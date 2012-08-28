@@ -17,8 +17,8 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -34,13 +34,13 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BinaryBuildLocationItemProvider
-    extends PatternBuildLocationItemProvider
+public class PatternBuildLocationItemProvider
+    extends AbstractBuildLocationItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -60,7 +60,7 @@ public class BinaryBuildLocationItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public BinaryBuildLocationItemProvider(AdapterFactory adapterFactory) {
+    public PatternBuildLocationItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -75,26 +75,26 @@ public class BinaryBuildLocationItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addSuffixPropertyDescriptor(object);
+            addPatternPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Suffix feature.
+     * This adds a property descriptor for the Pattern feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addSuffixPropertyDescriptor(Object object) {
+    protected void addPatternPropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_BinaryBuildLocation_suffix_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BinaryBuildLocation_suffix_feature", "_UI_BinaryBuildLocation_type"),
-                 BuildstepPackage.Literals.BINARY_BUILD_LOCATION__SUFFIX,
+                 getString("_UI_PatternBuildLocation_pattern_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_PatternBuildLocation_pattern_feature", "_UI_PatternBuildLocation_type"),
+                 BuildstepPackage.Literals.PATTERN_BUILD_LOCATION__PATTERN,
                  true,
                  false,
                  false,
@@ -113,10 +113,10 @@ public class BinaryBuildLocationItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((BinaryBuildLocation)object).getPattern();
+        String label = ((PatternBuildLocation)object).getPattern();
         return label == null || label.length() == 0 ?
-            getString("_UI_BinaryBuildLocation_type") :
-            getString("_UI_BinaryBuildLocation_type") + " " + label;
+            getString("_UI_PatternBuildLocation_type") :
+            getString("_UI_PatternBuildLocation_type") + " " + label;
 
     }
 
@@ -131,8 +131,8 @@ public class BinaryBuildLocationItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(BinaryBuildLocation.class)) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
+        switch (notification.getFeatureID(PatternBuildLocation.class)) {
+            case BuildstepPackage.PATTERN_BUILD_LOCATION__PATTERN:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

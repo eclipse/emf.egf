@@ -14,6 +14,7 @@
  */
 package org.eclipse.egf.portfolio.eclipse.build;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.AntParameter;
 import org.eclipse.egf.portfolio.eclipse.build.buildfile.FileStep;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
@@ -93,7 +94,7 @@ public class GenerationHelper {
         return input;
     }
 
-    public String getPatternString(BuildLocation buildLocation) {
+    public String getPatternString(PatternBuildLocation buildLocation) {
         String patternString = buildLocation.getPattern();
         if (patternString == null)
             return ""; //$NON-NLS-1$

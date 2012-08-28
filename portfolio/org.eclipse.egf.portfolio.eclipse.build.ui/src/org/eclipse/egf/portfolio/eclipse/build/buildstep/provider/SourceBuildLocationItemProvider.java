@@ -40,7 +40,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class SourceBuildLocationItemProvider
-    extends BuildLocationItemProvider
+    extends PatternBuildLocationItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,

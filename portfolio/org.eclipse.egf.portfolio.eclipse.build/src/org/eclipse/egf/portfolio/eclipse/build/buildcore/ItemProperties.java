@@ -80,7 +80,7 @@ public interface ItemProperties extends Item {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Property Packages</em>' containment reference list.
      * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getItemProperties_PropertyPackages()
-     * @model containment="true"
+     * @model containment="true" resolveProxies="true"
      * @generated
      */
 

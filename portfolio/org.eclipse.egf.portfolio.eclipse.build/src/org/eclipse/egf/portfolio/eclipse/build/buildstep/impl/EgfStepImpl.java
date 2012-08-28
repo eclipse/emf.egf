@@ -137,7 +137,7 @@ public class EgfStepImpl extends StepImpl implements EgfStep {
     public EList<EgfActivity> getEgfActivities() {
 
         if (egfActivities == null) {
-            egfActivities = new EObjectContainmentEList<EgfActivity>(EgfActivity.class, this, BuildstepPackage.EGF_STEP__EGF_ACTIVITIES);
+            egfActivities = new EObjectContainmentEList.Resolving<EgfActivity>(EgfActivity.class, this, BuildstepPackage.EGF_STEP__EGF_ACTIVITIES);
         }
         return egfActivities;
     }

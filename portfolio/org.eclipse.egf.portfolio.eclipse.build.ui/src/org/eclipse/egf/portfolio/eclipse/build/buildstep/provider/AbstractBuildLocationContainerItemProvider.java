@@ -17,38 +17,34 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.StepItemProvider;
-
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BuildStepItemProvider
-    extends StepItemProvider
+public class AbstractBuildLocationContainerItemProvider
+    extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -68,7 +64,7 @@ public class BuildStepItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public BuildStepItemProvider(AdapterFactory adapterFactory) {
+    public AbstractBuildLocationContainerItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -83,83 +79,8 @@ public class BuildStepItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addAllPlatformsPropertyDescriptor(object);
-            addNoBuildersInvocationPropertyDescriptor(object);
-            addSkipComponentsRegexPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the All Platforms feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addAllPlatformsPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BuildStep_allPlatforms_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BuildStep_allPlatforms_feature", "_UI_BuildStep_type"),
-                 BuildstepPackage.Literals.BUILD_STEP__ALL_PLATFORMS,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-
-    }
-
-    /**
-     * This adds a property descriptor for the No Builders Invocation feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addNoBuildersInvocationPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BuildStep_noBuildersInvocation_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BuildStep_noBuildersInvocation_feature", "_UI_BuildStep_type"),
-                 BuildstepPackage.Literals.BUILD_STEP__NO_BUILDERS_INVOCATION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-
-    }
-
-    /**
-     * This adds a property descriptor for the Skip Components Regex feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addSkipComponentsRegexPropertyDescriptor(Object object) {
-
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_BuildStep_skipComponentsRegex_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BuildStep_skipComponentsRegex_feature", "_UI_BuildStep_type"),
-                 BuildstepPackage.Literals.BUILD_STEP__SKIP_COMPONENTS_REGEX,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-
     }
 
     /**
@@ -175,7 +96,6 @@ public class BuildStepItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS);
-            childrenFeatures.add(BuildstepPackage.Literals.BUILD_STEP__COMPONENTS);
         }
         return childrenFeatures;
     }
@@ -194,17 +114,6 @@ public class BuildStepItemProvider
     }
 
     /**
-     * This returns BuildStep.gif.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/BuildStep"));
-    }
-
-    /**
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -213,10 +122,7 @@ public class BuildStepItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((BuildStep)object).getName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_BuildStep_type") :
-            getString("_UI_BuildStep_type") + " " + label;
+        return getString("_UI_AbstractBuildLocationContainer_type");
 
     }
 
@@ -231,14 +137,8 @@ public class BuildStepItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(BuildStep.class)) {
-            case BuildstepPackage.BUILD_STEP__ALL_PLATFORMS:
-            case BuildstepPackage.BUILD_STEP__NO_BUILDERS_INVOCATION:
-            case BuildstepPackage.BUILD_STEP__SKIP_COMPONENTS_REGEX:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case BuildstepPackage.BUILD_STEP__BUILD_LOCATIONS:
-            case BuildstepPackage.BUILD_STEP__COMPONENTS:
+        switch (notification.getFeatureID(AbstractBuildLocationContainer.class)) {
+            case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -311,22 +211,17 @@ public class BuildStepItemProvider
                  BuildstepFactory.eINSTANCE.createRunningPlatformBuildLocation()));
 
 
+    }
 
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.BUILD_STEP__COMPONENTS,
-                 BuildstepFactory.eINSTANCE.createPlugin()));
-
-
-
-
-        newChildDescriptors.add
-            (createChildParameter
-                (BuildstepPackage.Literals.BUILD_STEP__COMPONENTS,
-                 BuildstepFactory.eINSTANCE.createFeature()));
-
-
+    /**
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public ResourceLocator getResourceLocator() {
+        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 

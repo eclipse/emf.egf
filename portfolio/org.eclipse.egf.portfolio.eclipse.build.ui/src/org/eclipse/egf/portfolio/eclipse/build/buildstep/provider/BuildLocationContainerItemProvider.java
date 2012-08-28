@@ -17,16 +17,16 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -34,17 +34,16 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class BuildLocationItemProvider
-    extends ItemProviderAdapter
+public class BuildLocationContainerItemProvider
+    extends AbstractBuildLocationContainerItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -64,7 +63,7 @@ public class BuildLocationItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public BuildLocationItemProvider(AdapterFactory adapterFactory) {
+    public BuildLocationContainerItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -79,26 +78,26 @@ public class BuildLocationItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addPatternPropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Pattern feature.
+     * This adds a property descriptor for the Name feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addPatternPropertyDescriptor(Object object) {
+    protected void addNamePropertyDescriptor(Object object) {
 
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_BuildLocation_pattern_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_BuildLocation_pattern_feature", "_UI_BuildLocation_type"),
-                 BuildstepPackage.Literals.BUILD_LOCATION__PATTERN,
+                 getString("_UI_BuildLocationContainer_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_BuildLocationContainer_name_feature", "_UI_BuildLocationContainer_type"),
+                 BuildstepPackage.Literals.BUILD_LOCATION_CONTAINER__NAME,
                  true,
                  false,
                  false,
@@ -106,6 +105,17 @@ public class BuildLocationItemProvider
                  null,
                  null));
 
+    }
+
+    /**
+     * This returns BuildLocationContainer.gif.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/BuildLocationContainer"));
     }
 
     /**
@@ -117,10 +127,10 @@ public class BuildLocationItemProvider
     @Override
     public String getText(Object object) {
 
-        String label = ((BuildLocation)object).getPattern();
+        String label = ((BuildLocationContainer)object).getName();
         return label == null || label.length() == 0 ?
-            getString("_UI_BuildLocation_type") :
-            getString("_UI_BuildLocation_type") + " " + label;
+            getString("_UI_BuildLocationContainer_type") :
+            getString("_UI_BuildLocationContainer_type") + " " + label;
 
     }
 
@@ -135,8 +145,8 @@ public class BuildLocationItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(BuildLocation.class)) {
-            case BuildstepPackage.BUILD_LOCATION__PATTERN:
+        switch (notification.getFeatureID(BuildLocationContainer.class)) {
+            case BuildstepPackage.BUILD_LOCATION_CONTAINER__NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -153,17 +163,6 @@ public class BuildLocationItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return ((IChildCreationExtender)adapterFactory).getResourceLocator();
     }
 
 

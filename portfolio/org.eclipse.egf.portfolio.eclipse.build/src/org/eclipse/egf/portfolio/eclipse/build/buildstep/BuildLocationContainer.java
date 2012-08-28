@@ -13,24 +13,25 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Binary Build Location</b></em>'.
+ * A representation of the model object '<em><b>Build Location Container</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBinaryBuildLocation()
- * @model abstract="true"
+ * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBuildLocationContainer()
+ * @model
  * @generated
  */
-public interface BinaryBuildLocation extends PatternBuildLocation {
+public interface BuildLocationContainer extends AbstractBuildLocationContainer, AbstractBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -44,40 +45,42 @@ public interface BinaryBuildLocation extends PatternBuildLocation {
 
 
     /**
-     * Returns the value of the '<em><b>Suffix</b></em>' attribute.
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Suffix</em>' attribute isn't clear,
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Suffix</em>' attribute.
-     * @see #setSuffix(String)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBinaryBuildLocation_Suffix()
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBuildLocationContainer_Name()
      * @model
      * @generated
      */
 
-    String getSuffix();
+    String getName();
+
+
 
 
 
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation#getSuffix <em>Suffix</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer#getName <em>Name</em>}' attribute.
 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Suffix</em>' attribute.
-     * @see #getSuffix()
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
      * @generated
      */
 
-    void setSuffix(String value);
+    void setName(String value);
 
 
 
 
 
-} // BinaryBuildLocation
+} // BuildLocationContainer

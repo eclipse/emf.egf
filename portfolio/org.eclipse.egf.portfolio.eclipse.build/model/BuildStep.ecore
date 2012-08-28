@@ -8,9 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//CLEAN_TYPE"
         defaultValueLiteral="Workspace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BuildStep" eSuperTypes="BuildCore.ecore#//Step">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="buildLocations" upperBound="-1"
-        eType="#//BuildLocation" containment="true" eOpposite="#//BuildLocation/buildStep"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BuildStep" eSuperTypes="BuildCore.ecore#//Step #//AbstractBuildLocationContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
         eType="#//Component" containment="true" eOpposite="#//Component/buildStep"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="allPlatforms" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
@@ -92,17 +90,24 @@
     <eLiterals name="TOOLS" value="3" literal="Tools"/>
     <eLiterals name="ALL" value="4" literal="All"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BuildLocation" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractBuildLocation" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternBuildLocation" abstract="true"
+      eSuperTypes="#//AbstractBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="buildStep" lowerBound="1"
-        eType="#//BuildStep" eOpposite="#//BuildStep/buildLocations"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractBuildLocationContainer" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="buildLocations" upperBound="-1"
+        eType="#//AbstractBuildLocation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuildLocationContainer" eSuperTypes="#//AbstractBuildLocationContainer #//AbstractBuildLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SourceBuildLocation" abstract="true"
-      eSuperTypes="#//BuildLocation">
+      eSuperTypes="#//PatternBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryBuildLocation" abstract="true"
-      eSuperTypes="#//BuildLocation">
+      eSuperTypes="#//PatternBuildLocation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalBuildLocation" eSuperTypes="#//SourceBuildLocation">

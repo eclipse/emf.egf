@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Aug 28 12:19:49 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster;
 
 import org.eclipse.egf.common.helper.*;
@@ -129,7 +129,7 @@ public class buildrmap extends org.eclipse.egf.portfolio.eclipse.build.BuildStep
 
     protected void method_callBuildRmapLocationAdd(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
-        for (BuildLocation buildLocation : buildStep.getBuildLocations()) {
+        for (AbstractBuildLocation buildLocation : buildStep.getBuildLocations()) {
             stringBuffer.append(TEXT_4);
             {
                 //<%@ egf:patternInjectedCall toInject="buildLocation"

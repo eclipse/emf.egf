@@ -144,6 +144,18 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
      * @generated
      */
 
+    public BuildStep basicGetBuildStep() {
+
+        if (eContainerFeatureID() != BuildstepPackage.COMPONENT__BUILD_STEP) return null;
+        return (BuildStep)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
     public NotificationChain basicSetBuildStep(BuildStep newBuildStep, NotificationChain msgs) {
 
         msgs = eBasicSetContainer((InternalEObject)newBuildStep, BuildstepPackage.COMPONENT__BUILD_STEP, msgs);
@@ -235,7 +247,8 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
             case BuildstepPackage.COMPONENT__ID:
                 return getId();
             case BuildstepPackage.COMPONENT__BUILD_STEP:
-                return getBuildStep();
+                if (resolve) return getBuildStep();
+                return basicGetBuildStep();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -290,7 +303,7 @@ public abstract class ComponentImpl extends EObjectImpl implements Component {
             case BuildstepPackage.COMPONENT__ID:
                 return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
             case BuildstepPackage.COMPONENT__BUILD_STEP:
-                return getBuildStep() != null;
+                return basicGetBuildStep() != null;
         }
         return super.eIsSet(featureID);
     }

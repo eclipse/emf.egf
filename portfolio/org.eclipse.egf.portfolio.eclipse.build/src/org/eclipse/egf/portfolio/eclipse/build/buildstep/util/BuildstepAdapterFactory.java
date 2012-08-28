@@ -138,8 +138,20 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
                 return createInstallStepAdapter();
             }
             @Override
-            public Adapter caseBuildLocation(BuildLocation object) {
-                return createBuildLocationAdapter();
+            public Adapter caseAbstractBuildLocation(AbstractBuildLocation object) {
+                return createAbstractBuildLocationAdapter();
+            }
+            @Override
+            public Adapter casePatternBuildLocation(PatternBuildLocation object) {
+                return createPatternBuildLocationAdapter();
+            }
+            @Override
+            public Adapter caseAbstractBuildLocationContainer(AbstractBuildLocationContainer object) {
+                return createAbstractBuildLocationContainerAdapter();
+            }
+            @Override
+            public Adapter caseBuildLocationContainer(BuildLocationContainer object) {
+                return createBuildLocationContainerAdapter();
             }
             @Override
             public Adapter caseSourceBuildLocation(SourceBuildLocation object) {
@@ -386,16 +398,58 @@ public class BuildstepAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation <em>Build Location</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation <em>Abstract Build Location</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation
      * @generated
      */
-    public Adapter createBuildLocationAdapter() {
+    public Adapter createAbstractBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation <em>Pattern Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation
+     * @generated
+     */
+    public Adapter createPatternBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer <em>Abstract Build Location Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer
+     * @generated
+     */
+    public Adapter createAbstractBuildLocationContainerAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer <em>Build Location Container</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer
+     * @generated
+     */
+    public Adapter createBuildLocationContainerAdapter() {
         return null;
     }
 

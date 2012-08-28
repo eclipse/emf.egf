@@ -174,6 +174,15 @@ public interface BuildstepFactory extends EFactory {
     InstallStep createInstallStep();
 
     /**
+     * Returns a new object of class '<em>Build Location Container</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Build Location Container</em>'.
+     * @generated
+     */
+    BuildLocationContainer createBuildLocationContainer();
+
+    /**
 	 * Returns a new object of class '<em>Javadoc Step</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

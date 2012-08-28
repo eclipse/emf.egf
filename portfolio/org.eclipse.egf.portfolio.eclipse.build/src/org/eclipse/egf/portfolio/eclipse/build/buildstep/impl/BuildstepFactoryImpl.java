@@ -91,6 +91,7 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
             case BuildstepPackage.EGF_ACTIVITY: return createEgfActivity();
             case BuildstepPackage.AGGREGATE_STEP: return createAggregateStep();
             case BuildstepPackage.INSTALL_STEP: return createInstallStep();
+            case BuildstepPackage.BUILD_LOCATION_CONTAINER: return createBuildLocationContainer();
             case BuildstepPackage.LOCAL_BUILD_LOCATION: return createLocalBuildLocation();
             case BuildstepPackage.TARGET_PLATFORM_BUILD_LOCATION: return createTargetPlatformBuildLocation();
             case BuildstepPackage.UPDATE_SITE_BUILD_LOCATION: return createUpdateSiteBuildLocation();
@@ -302,6 +303,16 @@ public class BuildstepFactoryImpl extends EFactoryImpl implements BuildstepFacto
     public InstallStep createInstallStep() {
         InstallStepImpl installStep = new InstallStepImpl();
         return installStep;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public BuildLocationContainer createBuildLocationContainer() {
+        BuildLocationContainerImpl buildLocationContainer = new BuildLocationContainerImpl();
+        return buildLocationContainer;
     }
 
     /**

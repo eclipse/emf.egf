@@ -189,15 +189,6 @@ public interface BuildscmPackage extends EPackage {
     int SVN_BUILD_LOCATION__PATTERN = BuildstepPackage.SOURCE_BUILD_LOCATION__PATTERN;
 
     /**
-     * The feature id for the '<em><b>Build Step</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int SVN_BUILD_LOCATION__BUILD_STEP = BuildstepPackage.SOURCE_BUILD_LOCATION__BUILD_STEP;
-
-    /**
      * The feature id for the '<em><b>Suffix</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -334,15 +325,6 @@ public interface BuildscmPackage extends EPackage {
      * @ordered
      */
     int GIT_BUILD_LOCATION__PATTERN = BuildstepPackage.SOURCE_BUILD_LOCATION__PATTERN;
-
-    /**
-     * The feature id for the '<em><b>Build Step</b></em>' container reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int GIT_BUILD_LOCATION__BUILD_STEP = BuildstepPackage.SOURCE_BUILD_LOCATION__BUILD_STEP;
 
     /**
      * The feature id for the '<em><b>Suffix</b></em>' attribute.

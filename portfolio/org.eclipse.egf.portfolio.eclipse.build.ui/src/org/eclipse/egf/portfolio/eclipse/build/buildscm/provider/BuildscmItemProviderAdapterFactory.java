@@ -27,6 +27,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.util.BuildscmAdapterFactory;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.util.BuildstepSwitch;
@@ -537,12 +539,12 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
              * @generated
              */
             @Override
-            public Object caseBuildStep(BuildStep object) {
+            public Object caseAbstractBuildLocationContainer(AbstractBuildLocationContainer object) {
 
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                (BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS,
                  BuildscmFactory.eINSTANCE.createSVNBuildLocation()));
 
 
@@ -551,14 +553,13 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
 
         newChildDescriptors.add
             (createChildParameter
-                (BuildstepPackage.Literals.BUILD_STEP__BUILD_LOCATIONS,
+                (BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS,
                  BuildscmFactory.eINSTANCE.createGITBuildLocation()));
 
 
 
                 return null;
             }
- 
             /**
              * <!-- begin-user-doc -->
              * <!-- end-user-doc -->

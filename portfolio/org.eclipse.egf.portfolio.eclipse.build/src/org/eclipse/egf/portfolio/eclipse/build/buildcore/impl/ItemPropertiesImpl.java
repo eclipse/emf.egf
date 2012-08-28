@@ -128,7 +128,7 @@ public abstract class ItemPropertiesImpl extends ItemImpl implements ItemPropert
     public EList<PropertyPackage> getPropertyPackages() {
 
         if (propertyPackages == null) {
-            propertyPackages = new EObjectContainmentEList<PropertyPackage>(PropertyPackage.class, this, BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES);
+            propertyPackages = new EObjectContainmentEList.Resolving<PropertyPackage>(PropertyPackage.class, this, BuildcorePackage.ITEM_PROPERTIES__PROPERTY_PACKAGES);
         }
         return propertyPackages;
     }

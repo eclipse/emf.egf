@@ -371,6 +371,29 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BuildLocationContainerItemProvider buildLocationContainerItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBuildLocationContainerAdapter() {
+        if (buildLocationContainerItemProvider == null) {
+            buildLocationContainerItemProvider = new BuildLocationContainerItemProvider(this);
+        }
+
+        return buildLocationContainerItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -691,6 +714,7 @@ public class BuildstepItemProviderAdapterFactory extends BuildstepAdapterFactory
         if (egfActivityItemProvider != null) egfActivityItemProvider.dispose();
         if (aggregateStepItemProvider != null) aggregateStepItemProvider.dispose();
         if (installStepItemProvider != null) installStepItemProvider.dispose();
+        if (buildLocationContainerItemProvider != null) buildLocationContainerItemProvider.dispose();
         if (localBuildLocationItemProvider != null) localBuildLocationItemProvider.dispose();
         if (targetPlatformBuildLocationItemProvider != null) targetPlatformBuildLocationItemProvider.dispose();
         if (updateSiteBuildLocationItemProvider != null) updateSiteBuildLocationItemProvider.dispose();

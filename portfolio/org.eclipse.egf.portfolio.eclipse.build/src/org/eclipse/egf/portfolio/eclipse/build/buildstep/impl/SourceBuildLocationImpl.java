@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public abstract class SourceBuildLocationImpl extends BuildLocationImpl implements SourceBuildLocation {
+public abstract class SourceBuildLocationImpl extends PatternBuildLocationImpl implements SourceBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

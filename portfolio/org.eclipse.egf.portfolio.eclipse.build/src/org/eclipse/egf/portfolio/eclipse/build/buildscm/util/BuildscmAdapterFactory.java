@@ -17,7 +17,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -118,8 +119,12 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
                 return createSCMAdapter();
             }
             @Override
-            public Adapter caseBuildLocation(BuildLocation object) {
-                return createBuildLocationAdapter();
+            public Adapter caseAbstractBuildLocation(AbstractBuildLocation object) {
+                return createAbstractBuildLocationAdapter();
+            }
+            @Override
+            public Adapter casePatternBuildLocation(PatternBuildLocation object) {
+                return createPatternBuildLocationAdapter();
             }
             @Override
             public Adapter caseSourceBuildLocation(SourceBuildLocation object) {
@@ -244,16 +249,30 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation <em>Build Location</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation <em>Abstract Build Location</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation
      * @generated
      */
-    public Adapter createBuildLocationAdapter() {
+    public Adapter createAbstractBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation <em>Pattern Build Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation
+     * @generated
+     */
+    public Adapter createPatternBuildLocationAdapter() {
         return null;
     }
 

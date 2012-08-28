@@ -13,24 +13,26 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Binary Build Location</b></em>'.
+ * A representation of the model object '<em><b>Abstract Build Location Container</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer#getBuildLocations <em>Build Locations</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBinaryBuildLocation()
+ * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getAbstractBuildLocationContainer()
  * @model abstract="true"
  * @generated
  */
-public interface BinaryBuildLocation extends PatternBuildLocation {
+public interface AbstractBuildLocationContainer extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -44,40 +46,25 @@ public interface BinaryBuildLocation extends PatternBuildLocation {
 
 
     /**
-     * Returns the value of the '<em><b>Suffix</b></em>' attribute.
+     * Returns the value of the '<em><b>Build Locations</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation}.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Suffix</em>' attribute isn't clear,
+     * If the meaning of the '<em>Build Locations</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Suffix</em>' attribute.
-     * @see #setSuffix(String)
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getBinaryBuildLocation_Suffix()
-     * @model
+     * @return the value of the '<em>Build Locations</em>' containment reference list.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getAbstractBuildLocationContainer_BuildLocations()
+     * @model containment="true" resolveProxies="true"
      * @generated
      */
 
-    String getSuffix();
-
-
-
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation#getSuffix <em>Suffix</em>}' attribute.
-
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Suffix</em>' attribute.
-     * @see #getSuffix()
-     * @generated
-     */
-
-    void setSuffix(String value);
+    EList<AbstractBuildLocation> getBuildLocations();
 
 
 
 
 
-} // BinaryBuildLocation
+} // AbstractBuildLocationContainer

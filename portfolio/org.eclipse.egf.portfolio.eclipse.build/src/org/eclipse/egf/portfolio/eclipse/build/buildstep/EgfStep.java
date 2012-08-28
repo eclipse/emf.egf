@@ -61,7 +61,7 @@ public interface EgfStep extends Step {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Egf Activities</em>' containment reference list.
      * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getEgfStep_EgfActivities()
-     * @model containment="true" required="true"
+     * @model containment="true" resolveProxies="true" required="true"
      * @generated
      */
 

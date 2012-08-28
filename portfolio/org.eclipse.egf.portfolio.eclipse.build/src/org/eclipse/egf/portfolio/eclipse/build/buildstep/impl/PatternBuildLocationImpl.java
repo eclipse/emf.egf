@@ -13,8 +13,8 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -24,18 +24,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binary Build Location</b></em>'.
+ * An implementation of the model object '<em><b>Pattern Build Location</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.PatternBuildLocationImpl#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl implements BinaryBuildLocation {
+public abstract class PatternBuildLocationImpl extends AbstractBuildLocationImpl implements PatternBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -45,24 +45,24 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
 
 
     /**
-     * The default value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
+     * The default value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSuffix()
+     * @see #getPattern()
      * @generated
      * @ordered
      */
-    protected static final String SUFFIX_EDEFAULT = null;
+    protected static final String PATTERN_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
+     * The cached value of the '{@link #getPattern() <em>Pattern</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSuffix()
+     * @see #getPattern()
      * @generated
      * @ordered
      */
-    protected String suffix = SUFFIX_EDEFAULT;
+    protected String pattern = PATTERN_EDEFAULT;
 
 
 
@@ -71,7 +71,7 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    protected BinaryBuildLocationImpl() {
+    protected PatternBuildLocationImpl() {
 
         super();
 
@@ -84,7 +84,7 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildstepPackage.Literals.BINARY_BUILD_LOCATION;
+        return BuildstepPackage.Literals.PATTERN_BUILD_LOCATION;
     }
 
 
@@ -97,9 +97,9 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * @generated
      */
 
-    public String getSuffix() {
+    public String getPattern() {
 
-        return suffix;
+        return pattern;
     }
 
 
@@ -110,12 +110,12 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * @generated
      */
 
-    public void setSuffix(String newSuffix) {
+    public void setPattern(String newPattern) {
 
-        String oldSuffix = suffix;
-        suffix = newSuffix;
+        String oldPattern = pattern;
+        pattern = newPattern;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX, oldSuffix, suffix));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.PATTERN_BUILD_LOCATION__PATTERN, oldPattern, pattern));
 
     }
 
@@ -130,8 +130,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                return getSuffix();
+            case BuildstepPackage.PATTERN_BUILD_LOCATION__PATTERN:
+                return getPattern();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -144,8 +144,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                setSuffix((String)newValue);
+            case BuildstepPackage.PATTERN_BUILD_LOCATION__PATTERN:
+                setPattern((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -160,8 +160,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                setSuffix(SUFFIX_EDEFAULT);
+            case BuildstepPackage.PATTERN_BUILD_LOCATION__PATTERN:
+                setPattern(PATTERN_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -177,8 +177,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                return SUFFIX_EDEFAULT == null ? suffix != null : !SUFFIX_EDEFAULT.equals(suffix);
+            case BuildstepPackage.PATTERN_BUILD_LOCATION__PATTERN:
+                return PATTERN_EDEFAULT == null ? pattern != null : !PATTERN_EDEFAULT.equals(pattern);
         }
         return super.eIsSet(featureID);
     }
@@ -194,11 +194,11 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (suffix: ");
-        result.append(suffix);
+        result.append(" (pattern: ");
+        result.append(pattern);
         result.append(')');
         return result.toString();
     }
 
 
-} //BinaryBuildLocationImpl
+} //PatternBuildLocationImpl

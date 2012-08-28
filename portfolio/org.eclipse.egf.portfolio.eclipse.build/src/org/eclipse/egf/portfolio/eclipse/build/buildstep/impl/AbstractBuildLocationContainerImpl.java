@@ -13,29 +13,37 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation;
+import java.util.Collection;
+
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binary Build Location</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Build Location Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.AbstractBuildLocationContainerImpl#getBuildLocations <em>Build Locations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl implements BinaryBuildLocation {
+public abstract class AbstractBuildLocationContainerImpl extends EObjectImpl implements AbstractBuildLocationContainer {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -45,24 +53,14 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
 
 
     /**
-     * The default value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
+     * The cached value of the '{@link #getBuildLocations() <em>Build Locations</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSuffix()
+     * @see #getBuildLocations()
      * @generated
      * @ordered
      */
-    protected static final String SUFFIX_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSuffix()
-     * @generated
-     * @ordered
-     */
-    protected String suffix = SUFFIX_EDEFAULT;
+    protected EList<AbstractBuildLocation> buildLocations;
 
 
 
@@ -71,7 +69,7 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    protected BinaryBuildLocationImpl() {
+    protected AbstractBuildLocationContainerImpl() {
 
         super();
 
@@ -84,7 +82,7 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildstepPackage.Literals.BINARY_BUILD_LOCATION;
+        return BuildstepPackage.Literals.ABSTRACT_BUILD_LOCATION_CONTAINER;
     }
 
 
@@ -97,10 +95,14 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * @generated
      */
 
-    public String getSuffix() {
+    public EList<AbstractBuildLocation> getBuildLocations() {
 
-        return suffix;
+        if (buildLocations == null) {
+            buildLocations = new EObjectContainmentEList.Resolving<AbstractBuildLocation>(AbstractBuildLocation.class, this, BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS);
+        }
+        return buildLocations;
     }
+
 
 
 
@@ -109,18 +111,14 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-
-    public void setSuffix(String newSuffix) {
-
-        String oldSuffix = suffix;
-        suffix = newSuffix;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX, oldSuffix, suffix));
-
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS:
+                return ((InternalEList<?>)getBuildLocations()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-
-
-
 
     /**
      * <!-- begin-user-doc -->
@@ -130,8 +128,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                return getSuffix();
+            case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS:
+                return getBuildLocations();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -141,11 +139,13 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                setSuffix((String)newValue);
+            case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS:
+                getBuildLocations().clear();
+                getBuildLocations().addAll((Collection<? extends AbstractBuildLocation>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -160,8 +160,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                setSuffix(SUFFIX_EDEFAULT);
+            case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS:
+                getBuildLocations().clear();
                 return;
         }
         super.eUnset(featureID);
@@ -177,28 +177,12 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                return SUFFIX_EDEFAULT == null ? suffix != null : !SUFFIX_EDEFAULT.equals(suffix);
+            case BuildstepPackage.ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS:
+                return buildLocations != null && !buildLocations.isEmpty();
         }
         return super.eIsSet(featureID);
     }
 
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (suffix: ");
-        result.append(suffix);
-        result.append(')');
-        return result.toString();
-    }
-
-
-} //BinaryBuildLocationImpl
+} //AbstractBuildLocationContainerImpl

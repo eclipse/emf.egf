@@ -30,7 +30,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep;
  * @model abstract="true"
  * @generated
  */
-public interface SourceBuildLocation extends BuildLocation {
+public interface SourceBuildLocation extends PatternBuildLocation {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

@@ -15,10 +15,12 @@ package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.AggregateStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.AntStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
@@ -32,6 +34,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStepBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.JavadocStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.LocalBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.Plugin;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.PublishStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.ResultStep;
@@ -153,7 +156,28 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass buildLocationEClass = null;
+    private EClass abstractBuildLocationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass patternBuildLocationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass abstractBuildLocationContainerEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass buildLocationContainerEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -344,7 +368,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBuildStep_BuildLocations() {
+    public EReference getBuildStep_Components() {
         return (EReference)buildStepEClass.getEStructuralFeatures().get(0);
     }
 
@@ -353,17 +377,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBuildStep_Components() {
-        return (EReference)buildStepEClass.getEStructuralFeatures().get(1);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EAttribute getBuildStep_AllPlatforms() {
-        return (EAttribute)buildStepEClass.getEStructuralFeatures().get(2);
+        return (EAttribute)buildStepEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -372,7 +387,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     public EAttribute getBuildStep_NoBuildersInvocation() {
-        return (EAttribute)buildStepEClass.getEStructuralFeatures().get(3);
+        return (EAttribute)buildStepEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -381,7 +396,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * @generated
      */
     public EAttribute getBuildStep_SkipComponentsRegex() {
-        return (EAttribute)buildStepEClass.getEStructuralFeatures().get(4);
+        return (EAttribute)buildStepEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -704,8 +719,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getBuildLocation() {
-        return buildLocationEClass;
+    public EClass getAbstractBuildLocation() {
+        return abstractBuildLocationEClass;
     }
 
     /**
@@ -713,8 +728,8 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getBuildLocation_Pattern() {
-        return (EAttribute)buildLocationEClass.getEStructuralFeatures().get(0);
+    public EClass getPatternBuildLocation() {
+        return patternBuildLocationEClass;
     }
 
     /**
@@ -722,8 +737,44 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getBuildLocation_BuildStep() {
-        return (EReference)buildLocationEClass.getEStructuralFeatures().get(1);
+    public EAttribute getPatternBuildLocation_Pattern() {
+        return (EAttribute)patternBuildLocationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAbstractBuildLocationContainer() {
+        return abstractBuildLocationContainerEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAbstractBuildLocationContainer_BuildLocations() {
+        return (EReference)abstractBuildLocationContainerEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getBuildLocationContainer() {
+        return buildLocationContainerEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getBuildLocationContainer_Name() {
+        return (EAttribute)buildLocationContainerEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -949,7 +1000,6 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(cleanStepEClass, CLEAN_STEP__TYPE);
 
         buildStepEClass = createEClass(BUILD_STEP);
-        createEReference(buildStepEClass, BUILD_STEP__BUILD_LOCATIONS);
         createEReference(buildStepEClass, BUILD_STEP__COMPONENTS);
         createEAttribute(buildStepEClass, BUILD_STEP__ALL_PLATFORMS);
         createEAttribute(buildStepEClass, BUILD_STEP__NO_BUILDERS_INVOCATION);
@@ -999,9 +1049,16 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(installStepEClass, INSTALL_STEP__PRODUCT_NAMES);
         createEAttribute(installStepEClass, INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES);
 
-        buildLocationEClass = createEClass(BUILD_LOCATION);
-        createEAttribute(buildLocationEClass, BUILD_LOCATION__PATTERN);
-        createEReference(buildLocationEClass, BUILD_LOCATION__BUILD_STEP);
+        abstractBuildLocationEClass = createEClass(ABSTRACT_BUILD_LOCATION);
+
+        patternBuildLocationEClass = createEClass(PATTERN_BUILD_LOCATION);
+        createEAttribute(patternBuildLocationEClass, PATTERN_BUILD_LOCATION__PATTERN);
+
+        abstractBuildLocationContainerEClass = createEClass(ABSTRACT_BUILD_LOCATION_CONTAINER);
+        createEReference(abstractBuildLocationContainerEClass, ABSTRACT_BUILD_LOCATION_CONTAINER__BUILD_LOCATIONS);
+
+        buildLocationContainerEClass = createEClass(BUILD_LOCATION_CONTAINER);
+        createEAttribute(buildLocationContainerEClass, BUILD_LOCATION_CONTAINER__NAME);
 
         sourceBuildLocationEClass = createEClass(SOURCE_BUILD_LOCATION);
         createEAttribute(sourceBuildLocationEClass, SOURCE_BUILD_LOCATION__SUFFIX);
@@ -1072,6 +1129,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         resultStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         cleanStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         buildStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
+        buildStepEClass.getESuperTypes().add(this.getAbstractBuildLocationContainer());
         publishStepEClass.getESuperTypes().add(this.getResultStep());
         testStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         antStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
@@ -1080,8 +1138,11 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         egfStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
         aggregateStepEClass.getESuperTypes().add(this.getResultStep());
         installStepEClass.getESuperTypes().add(theBuildcorePackage.getStep());
-        sourceBuildLocationEClass.getESuperTypes().add(this.getBuildLocation());
-        binaryBuildLocationEClass.getESuperTypes().add(this.getBuildLocation());
+        patternBuildLocationEClass.getESuperTypes().add(this.getAbstractBuildLocation());
+        buildLocationContainerEClass.getESuperTypes().add(this.getAbstractBuildLocationContainer());
+        buildLocationContainerEClass.getESuperTypes().add(this.getAbstractBuildLocation());
+        sourceBuildLocationEClass.getESuperTypes().add(this.getPatternBuildLocation());
+        binaryBuildLocationEClass.getESuperTypes().add(this.getPatternBuildLocation());
         localBuildLocationEClass.getESuperTypes().add(this.getSourceBuildLocation());
         targetPlatformBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
         updateSiteBuildLocationEClass.getESuperTypes().add(this.getBinaryBuildLocation());
@@ -1098,8 +1159,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getCleanStep_Type(), this.getCLEAN_TYPE(), "type", "Workspace", 1, 1, CleanStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(buildStepEClass, BuildStep.class, "BuildStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBuildStep_BuildLocations(), this.getBuildLocation(), this.getBuildLocation_BuildStep(), "buildLocations", null, 0, -1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBuildStep_Components(), this.getComponent(), this.getComponent_BuildStep(), "components", null, 0, -1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBuildStep_Components(), this.getComponent(), this.getComponent_BuildStep(), "components", null, 0, -1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBuildStep_AllPlatforms(), ecorePackage.getEBoolean(), "allPlatforms", "false", 0, 1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBuildStep_NoBuildersInvocation(), ecorePackage.getEBoolean(), "noBuildersInvocation", "false", 0, 1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getBuildStep_SkipComponentsRegex(), ecorePackage.getEString(), "skipComponentsRegex", ".*\\.source", 0, 1, BuildStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1129,7 +1189,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
 
         initEClass(egfStepEClass, EgfStep.class, "EgfStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getEgfStep_Properties(), this.getEGFSystemProperty(), null, "properties", null, 0, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getEgfStep_EgfActivities(), this.getEgfActivity(), null, "egfActivities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEgfStep_EgfActivities(), this.getEgfActivity(), null, "egfActivities", null, 1, -1, EgfStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(egfActivityEClass, EgfActivity.class, "EgfActivity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEgfActivity_Uri(), ecorePackage.getEString(), "uri", null, 1, 1, EgfActivity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1148,9 +1208,16 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getInstallStep_ProductNames(), ecorePackage.getEString(), "productNames", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_InstallResultStepsSourceFeatures(), ecorePackage.getEBoolean(), "installResultStepsSourceFeatures", "false", 0, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(buildLocationEClass, BuildLocation.class, "BuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getBuildLocation_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, BuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getBuildLocation_BuildStep(), this.getBuildStep(), this.getBuildStep_BuildLocations(), "buildStep", null, 1, 1, BuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(abstractBuildLocationEClass, AbstractBuildLocation.class, "AbstractBuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+        initEClass(patternBuildLocationEClass, PatternBuildLocation.class, "PatternBuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getPatternBuildLocation_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, PatternBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(abstractBuildLocationContainerEClass, AbstractBuildLocationContainer.class, "AbstractBuildLocationContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getAbstractBuildLocationContainer_BuildLocations(), this.getAbstractBuildLocation(), null, "buildLocations", null, 0, -1, AbstractBuildLocationContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(buildLocationContainerEClass, BuildLocationContainer.class, "BuildLocationContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getBuildLocationContainer_Name(), ecorePackage.getEString(), "name", null, 0, 1, BuildLocationContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(sourceBuildLocationEClass, SourceBuildLocation.class, "SourceBuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getSourceBuildLocation_Suffix(), ecorePackage.getEString(), "suffix", null, 0, 1, SourceBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1177,7 +1244,7 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
 
         initEClass(componentEClass, Component.class, "Component", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getComponent_Id(), ecorePackage.getEString(), "id", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getComponent_BuildStep(), this.getBuildStep(), this.getBuildStep_Components(), "buildStep", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getComponent_BuildStep(), this.getBuildStep(), this.getBuildStep_Components(), "buildStep", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(pluginEClass, Plugin.class, "Plugin", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -19,7 +19,8 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.PatternBuildLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.SourceBuildLocation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -122,7 +123,8 @@ public class BuildscmSwitch<T> {
                 SVNBuildLocation svnBuildLocation = (SVNBuildLocation)theEObject;
                 T result = caseSVNBuildLocation(svnBuildLocation);
                 if (result == null) result = caseSourceBuildLocation(svnBuildLocation);
-                if (result == null) result = caseBuildLocation(svnBuildLocation);
+                if (result == null) result = casePatternBuildLocation(svnBuildLocation);
+                if (result == null) result = caseAbstractBuildLocation(svnBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -143,7 +145,8 @@ public class BuildscmSwitch<T> {
                 GITBuildLocation gitBuildLocation = (GITBuildLocation)theEObject;
                 T result = caseGITBuildLocation(gitBuildLocation);
                 if (result == null) result = caseSourceBuildLocation(gitBuildLocation);
-                if (result == null) result = caseBuildLocation(gitBuildLocation);
+                if (result == null) result = casePatternBuildLocation(gitBuildLocation);
+                if (result == null) result = caseAbstractBuildLocation(gitBuildLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -257,17 +260,32 @@ public class BuildscmSwitch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Build Location</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Abstract Build Location</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Build Location</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Abstract Build Location</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseBuildLocation(BuildLocation object) {
+    public T caseAbstractBuildLocation(AbstractBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Pattern Build Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Pattern Build Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePatternBuildLocation(PatternBuildLocation object) {
         return null;
     }
 

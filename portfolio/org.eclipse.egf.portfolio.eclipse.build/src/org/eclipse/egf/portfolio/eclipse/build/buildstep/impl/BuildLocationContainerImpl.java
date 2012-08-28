@@ -13,29 +13,37 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildstep.impl;
 
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BinaryBuildLocation;
+import java.util.Collection;
+
+import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Binary Build Location</b></em>'.
+ * An implementation of the model object '<em><b>Build Location Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BinaryBuildLocationImpl#getSuffix <em>Suffix</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.BuildLocationContainerImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl implements BinaryBuildLocation {
+public class BuildLocationContainerImpl extends AbstractBuildLocationContainerImpl implements BuildLocationContainer {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -45,25 +53,25 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
 
 
     /**
-     * The default value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSuffix()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected static final String SUFFIX_EDEFAULT = null;
+    protected static final String NAME_EDEFAULT = null;
+
 
     /**
-     * The cached value of the '{@link #getSuffix() <em>Suffix</em>}' attribute.
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSuffix()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected String suffix = SUFFIX_EDEFAULT;
-
+    protected String name = NAME_EDEFAULT;
 
 
     /**
@@ -71,7 +79,7 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * <!-- end-user-doc -->
      * @generated
      */
-    protected BinaryBuildLocationImpl() {
+    protected BuildLocationContainerImpl() {
 
         super();
 
@@ -84,7 +92,7 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      */
     @Override
     protected EClass eStaticClass() {
-        return BuildstepPackage.Literals.BINARY_BUILD_LOCATION;
+        return BuildstepPackage.Literals.BUILD_LOCATION_CONTAINER;
     }
 
 
@@ -97,12 +105,10 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * @generated
      */
 
-    public String getSuffix() {
+    public String getName() {
 
-        return suffix;
+        return name;
     }
-
-
 
     /**
      * <!-- begin-user-doc -->
@@ -110,17 +116,14 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * @generated
      */
 
-    public void setSuffix(String newSuffix) {
+    public void setName(String newName) {
 
-        String oldSuffix = suffix;
-        suffix = newSuffix;
+        String oldName = name;
+        name = newName;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX, oldSuffix, suffix));
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.BUILD_LOCATION_CONTAINER__NAME, oldName, name));
 
     }
-
-
-
 
     /**
      * <!-- begin-user-doc -->
@@ -130,8 +133,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                return getSuffix();
+            case BuildstepPackage.BUILD_LOCATION_CONTAINER__NAME:
+                return getName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -141,11 +144,12 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                setSuffix((String)newValue);
+            case BuildstepPackage.BUILD_LOCATION_CONTAINER__NAME:
+                setName((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -160,8 +164,8 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                setSuffix(SUFFIX_EDEFAULT);
+            case BuildstepPackage.BUILD_LOCATION_CONTAINER__NAME:
+                setName(NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -177,12 +181,11 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case BuildstepPackage.BINARY_BUILD_LOCATION__SUFFIX:
-                return SUFFIX_EDEFAULT == null ? suffix != null : !SUFFIX_EDEFAULT.equals(suffix);
+            case BuildstepPackage.BUILD_LOCATION_CONTAINER__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
         }
         return super.eIsSet(featureID);
     }
-
 
     /**
      * <!-- begin-user-doc -->
@@ -194,11 +197,12 @@ public abstract class BinaryBuildLocationImpl extends PatternBuildLocationImpl i
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (suffix: ");
-        result.append(suffix);
+        result.append(" (name: ");
+        result.append(name);
         result.append(')');
         return result.toString();
     }
 
 
-} //BinaryBuildLocationImpl
+
+} //BuildLocationContainerImpl
