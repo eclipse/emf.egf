@@ -1,4 +1,4 @@
-//Generated on Wed Aug 08 17:16:18 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 28 14:26:08 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.*;
@@ -18,6 +18,7 @@ import org.eclipse.egf.emf.pattern.base.CodegenGeneratorAdapter;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.codegen.ecore.genmodel.GenDelegationKind;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 
 public class genModelForCDO {
 
@@ -58,6 +59,7 @@ public class genModelForCDO {
         method_genModelResourceURI(new StringBuffer(), ictx);
         method_createGenModelResource(new StringBuffer(), ictx);
         method_ensureContainerExists(new StringBuffer(), ictx);
+        method_checkGenModel(new StringBuffer(), ictx);
         method_saveGenModelResource(new StringBuffer(), ictx);
         method_setGenModelInContext(new StringBuffer(), ictx);
         ictx.setNode(currentNode);
@@ -117,6 +119,20 @@ public class genModelForCDO {
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "ensureContainerExists", out.toString());
+    }
+
+    protected void method_checkGenModel(final StringBuffer out, final PatternContext ctx) throws Exception {
+        for (GenPackage genPackage : newGenModel.getUsedGenPackages()) {
+            boolean useCDO = false;
+            for (String pluginVariable : genPackage.getGenModel().getModelPluginVariables()) {
+                useCDO = useCDO || pluginVariable.startsWith("CDO");
+            }
+            if (!useCDO)
+                throw new IllegalStateException("genModel " + EcoreUtil.getURI(genPackage.getGenModel()).trimFragment() + " is not generated for cdo");
+        }
+
+        InternalPatternContext ictx = (InternalPatternContext) ctx;
+        new Node.DataLeaf(ictx.getNode(), getClass(), "checkGenModel", out.toString());
     }
 
     protected void method_saveGenModelResource(final StringBuffer out, final PatternContext ctx) throws Exception {

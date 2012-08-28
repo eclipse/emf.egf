@@ -1,0 +1,9 @@
+for(GenPackage genPackage : newGenModel.getUsedGenPackages()) {
+	boolean useCDO = false;
+	for(String pluginVariable : genPackage.getGenModel().getModelPluginVariables()) {
+		useCDO = useCDO || pluginVariable.startsWith("CDO");
+	}
+	if (!useCDO)
+		throw new IllegalStateException("genModel " + EcoreUtil.getURI(genPackage.getGenModel()).trimFragment() + " is not generated for cdo");
+}
+

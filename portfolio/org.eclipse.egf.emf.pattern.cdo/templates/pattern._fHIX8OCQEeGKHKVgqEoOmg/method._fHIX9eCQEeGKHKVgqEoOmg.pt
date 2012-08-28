@@ -1,3 +1,20 @@
         String cdoSuffix = (String) ctx.getValue("cdoSuffix");
         newGenModel.setModelPluginID(newGenModel.getModelPluginID() + "." + cdoSuffix);
         newGenModel.setModelDirectory(newGenModel.getModelDirectory().replace(genModel.getModelPluginID(), newGenModel.getModelPluginID()));
+        
+        //replace usedGenPackages by cdo usedGenPackages
+		List<GenPackage> usedGenPackages = new ArrayList<GenPackage>();
+        for (GenPackage genPackage : genModel.getUsedGenPackages()) {
+        	URI uri = EcoreUtil.getURI(genPackage);
+        	URI newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID()  + "." + cdoSuffix));
+        	try {
+	        	Resource resource = genPackage.eResource().getResourceSet().getResource(newURI.trimFragment(), true);
+	        	GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
+	        	usedGenPackages.add(newGenPackage);
+        	} catch (Exception exception) {
+        		throw new IllegalStateException("Unable to find genModel " + newURI.trimFragment().toString(), exception);
+        	}
+        }
+        
+        newGenModel.getUsedGenPackages().clear();
+        newGenModel.getUsedGenPackages().addAll(usedGenPackages);

@@ -1,4 +1,4 @@
-//Generated on Wed Aug 08 16:50:56 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 28 14:26:08 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -41,15 +41,17 @@ public class ManifestMFForCDO extends org.eclipse.egf.emf.pattern.model.Manifest
     protected final String TEXT_13 = NL + "Import-Package: ";
     protected final String TEXT_14 = ",";
     protected final String TEXT_15 = NL + " ";
-    protected final String TEXT_16 = NL + "Require-Bundle: ";
-    protected final String TEXT_17 = ";visibility:=reexport";
-    protected final String TEXT_18 = ",";
-    protected final String TEXT_19 = NL + " ";
-    protected final String TEXT_20 = ";visibility:=reexport";
-    protected final String TEXT_21 = NL + "Eclipse-LazyStart: true";
-    protected final String TEXT_22 = NL + "Bundle-ActivationPolicy: lazy" + NL;
-    protected final String TEXT_23 = NL;
-    protected final String TEXT_24 = NL;
+    protected final String TEXT_16 = ",";
+    protected final String TEXT_17 = NL + " ";
+    protected final String TEXT_18 = NL + "Require-Bundle: ";
+    protected final String TEXT_19 = ";visibility:=reexport";
+    protected final String TEXT_20 = ",";
+    protected final String TEXT_21 = NL + " ";
+    protected final String TEXT_22 = ";visibility:=reexport";
+    protected final String TEXT_23 = NL + "Eclipse-LazyStart: true";
+    protected final String TEXT_24 = NL + "Bundle-ActivationPolicy: lazy" + NL;
+    protected final String TEXT_25 = NL;
+    protected final String TEXT_26 = NL;
 
     public ManifestMFForCDO() {
         //Here is the constructor
@@ -85,8 +87,8 @@ public class ManifestMFForCDO extends org.eclipse.egf.emf.pattern.model.Manifest
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_23);
-        stringBuffer.append(TEXT_24);
+        stringBuffer.append(TEXT_25);
+        stringBuffer.append(TEXT_26);
         return stringBuffer.toString();
     }
 
@@ -174,6 +176,8 @@ public class ManifestMFForCDO extends org.eclipse.egf.emf.pattern.model.Manifest
             }
         };
 
+        Iterator<GenPackage> usedGenPackagesIterator = genModel.getUsedGenPackages().iterator();
+
         if (genPackagesIterator2.hasNext()) {
             GenPackage genPackage = genPackagesIterator2.next();
             stringBuffer.append(TEXT_13);
@@ -184,29 +188,35 @@ public class ManifestMFForCDO extends org.eclipse.egf.emf.pattern.model.Manifest
                 stringBuffer.append(TEXT_15);
                 stringBuffer.append(genPackage.getInterfacePackageName());
             }
+            while (usedGenPackagesIterator.hasNext()) {
+                genPackage = usedGenPackagesIterator.next();
+                stringBuffer.append(TEXT_16);
+                stringBuffer.append(TEXT_17);
+                stringBuffer.append(genPackage.getInterfacePackageName());
+            }
         }
         Iterator<String> requiredPluginIterator = genModel.getModelRequiredPlugins().iterator();
         if (requiredPluginIterator.hasNext()) {
             String pluginID = requiredPluginIterator.next();
-            stringBuffer.append(TEXT_16);
+            stringBuffer.append(TEXT_18);
             stringBuffer.append(pluginID);
             if (!pluginID.startsWith("org.eclipse.core.runtime")) {
-                stringBuffer.append(TEXT_17);
+                stringBuffer.append(TEXT_19);
             }
             while (requiredPluginIterator.hasNext()) {
                 pluginID = requiredPluginIterator.next();
-                stringBuffer.append(TEXT_18);
-                stringBuffer.append(TEXT_19);
+                stringBuffer.append(TEXT_20);
+                stringBuffer.append(TEXT_21);
                 stringBuffer.append(pluginID);
                 if (!pluginID.startsWith("org.eclipse.core.runtime")) {
-                    stringBuffer.append(TEXT_20);
+                    stringBuffer.append(TEXT_22);
                 }
             }
         }
         if (genModel.getRuntimeVersion() == GenRuntimeVersion.EMF22 || genModel.getRuntimeVersion() == GenRuntimeVersion.EMF23) {
-            stringBuffer.append(TEXT_21);
+            stringBuffer.append(TEXT_23);
         }
-        stringBuffer.append(TEXT_22);
+        stringBuffer.append(TEXT_24);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
     }

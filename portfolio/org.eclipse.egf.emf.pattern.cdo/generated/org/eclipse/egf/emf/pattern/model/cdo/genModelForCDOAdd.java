@@ -1,6 +1,7 @@
-//Generated on Wed Aug 08 17:14:11 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 28 14:26:08 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,6 +18,8 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.genModelForCDO {
 
@@ -67,6 +70,23 @@ public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.gen
         String cdoSuffix = (String) ctx.getValue("cdoSuffix");
         newGenModel.setModelPluginID(newGenModel.getModelPluginID() + "." + cdoSuffix);
         newGenModel.setModelDirectory(newGenModel.getModelDirectory().replace(genModel.getModelPluginID(), newGenModel.getModelPluginID()));
+
+        //replace usedGenPackages by cdo usedGenPackages
+        List<GenPackage> usedGenPackages = new ArrayList<GenPackage>();
+        for (GenPackage genPackage : genModel.getUsedGenPackages()) {
+            URI uri = EcoreUtil.getURI(genPackage);
+            URI newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix));
+            try {
+                Resource resource = genPackage.eResource().getResourceSet().getResource(newURI.trimFragment(), true);
+                GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
+                usedGenPackages.add(newGenPackage);
+            } catch (Exception exception) {
+                throw new IllegalStateException("Unable to find genModel " + newURI.trimFragment().toString(), exception);
+            }
+        }
+
+        newGenModel.getUsedGenPackages().clear();
+        newGenModel.getUsedGenPackages().addAll(usedGenPackages);
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "customizeGenModel", out.toString());

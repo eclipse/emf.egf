@@ -183,6 +183,7 @@
                 patternFilePath="templates/pattern._1tzgUOCEEeGKHKVgqEoOmg/method._FBJtkOCQEeGKHKVgqEoOmg.pt"/>
             <methods xmi:id="_jA26MOCeEeGKHKVgqEoOmg" name="ensureContainerExists"
                 patternFilePath="templates/pattern._1tzgUOCEEeGKHKVgqEoOmg/method._jA26MOCeEeGKHKVgqEoOmg.pt"/>
+            <methods xmi:id="_uaCsIfEJEeGaze2KbnV1Ig" name="checkGenModel" patternFilePath="templates/pattern._1tzgUOCEEeGKHKVgqEoOmg/method._uaCsIfEJEeGaze2KbnV1Ig.pt"/>
             <methods xmi:id="_3eaigOCpEeGFJ5Qac-Dqzg" name="saveGenModelResource"
                 patternFilePath="templates/pattern._1tzgUOCEEeGKHKVgqEoOmg/method._3eaigOCpEeGFJ5Qac-Dqzg.pt"/>
             <methods xmi:id="_lTuvAOCOEeGKHKVgqEoOmg" name="setGenModelInContext"
@@ -203,6 +204,8 @@
                 called="#_FBJtkOCQEeGKHKVgqEoOmg"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_j0uAEOCeEeGKHKVgqEoOmg"
                 called="#_jA26MOCeEeGKHKVgqEoOmg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_u6OoEPEJEeGaze2KbnV1Ig"
+                called="#_uaCsIfEJEeGaze2KbnV1Ig"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_5Eo5cOCpEeGFJ5Qac-Dqzg"
                 called="#_3eaigOCpEeGFJ5Qac-Dqzg"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_mZxKAOCOEeGKHKVgqEoOmg"

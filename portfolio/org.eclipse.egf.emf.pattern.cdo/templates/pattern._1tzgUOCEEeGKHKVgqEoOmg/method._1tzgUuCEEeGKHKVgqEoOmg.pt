@@ -17,6 +17,7 @@ import org.eclipse.egf.emf.pattern.base.CodegenGeneratorAdapter;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.codegen.ecore.genmodel.GenDelegationKind;
+import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 
 public class CLASS {
 

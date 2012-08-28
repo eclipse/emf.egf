@@ -60,8 +60,11 @@ Export-Package: <%=genPackage.getClassPackageName()%><%while(genPackagesIterator
         }
       };
       
+      Iterator<GenPackage> usedGenPackagesIterator = genModel.getUsedGenPackages().iterator();
+      
   if (genPackagesIterator2.hasNext()) { GenPackage genPackage = genPackagesIterator2.next();%>
 Import-Package: <%=genPackage.getInterfacePackageName()%><%while(genPackagesIterator2.hasNext()) { genPackage = genPackagesIterator2.next();%>,
+ <%=genPackage.getInterfacePackageName()%><%}%><%while(usedGenPackagesIterator.hasNext()) { genPackage = usedGenPackagesIterator.next();%>,
  <%=genPackage.getInterfacePackageName()%><%}%>
 <%}%>
 <%Iterator<String> requiredPluginIterator = genModel.getModelRequiredPlugins().iterator(); if (requiredPluginIterator.hasNext()) { String pluginID = requiredPluginIterator.next();%>
