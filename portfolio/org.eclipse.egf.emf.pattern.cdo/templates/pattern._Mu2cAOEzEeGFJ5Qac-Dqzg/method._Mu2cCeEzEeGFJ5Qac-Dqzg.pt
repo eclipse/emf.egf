@@ -1,4 +1,3 @@
-
 <%
 /**
  * <copyright>
@@ -67,7 +66,11 @@ Import-Package: <%=genPackage.getInterfacePackageName()%><%while(genPackagesIter
  <%=genPackage.getInterfacePackageName()%><%}%><%while(usedGenPackagesIterator.hasNext()) { genPackage = usedGenPackagesIterator.next();%>,
  <%=genPackage.getInterfacePackageName()%><%}%>
 <%}%>
-<%Iterator<String> requiredPluginIterator = genModel.getModelRequiredPlugins().iterator(); if (requiredPluginIterator.hasNext()) { String pluginID = requiredPluginIterator.next();%>
+<%//we want to depend on cdo generated plugins before eventual others modelPluginVariables, because they may depend on the non cdo code
+List<String> modelRequiredPlugins = genModel.getModelRequiredPlugins();
+modelRequiredPlugins.removeAll(((GenModelImpl) genModel).getEffectiveModelPluginIDs());
+modelRequiredPlugins.addAll(((GenModelImpl) genModel).getEffectiveModelPluginIDs());%>
+<%Iterator<String> requiredPluginIterator = modelRequiredPlugins.iterator(); if (requiredPluginIterator.hasNext()) { String pluginID = requiredPluginIterator.next();%>
 Require-Bundle: <%=pluginID%><%if (!pluginID.startsWith("org.eclipse.core.runtime")){%>;visibility:=reexport<%} while(requiredPluginIterator.hasNext()) { pluginID = requiredPluginIterator.next();%>,
  <%=pluginID%><%if (!pluginID.startsWith("org.eclipse.core.runtime")){%>;visibility:=reexport<%}}%>
 <%}%>

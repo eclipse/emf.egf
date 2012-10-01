@@ -1,4 +1,4 @@
-//Generated on Tue Aug 28 14:26:08 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Mon Oct 01 16:55:58 CEST 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -195,7 +195,11 @@ public class ManifestMFForCDO extends org.eclipse.egf.emf.pattern.model.Manifest
                 stringBuffer.append(genPackage.getInterfacePackageName());
             }
         }
-        Iterator<String> requiredPluginIterator = genModel.getModelRequiredPlugins().iterator();
+        //we want to depend on cdo generated plugins before eventual others modelPluginVariables, because they may depend on the non cdo code
+        List<String> modelRequiredPlugins = genModel.getModelRequiredPlugins();
+        modelRequiredPlugins.removeAll(((GenModelImpl) genModel).getEffectiveModelPluginIDs());
+        modelRequiredPlugins.addAll(((GenModelImpl) genModel).getEffectiveModelPluginIDs());
+        Iterator<String> requiredPluginIterator = modelRequiredPlugins.iterator();
         if (requiredPluginIterator.hasNext()) {
             String pluginID = requiredPluginIterator.next();
             stringBuffer.append(TEXT_18);
