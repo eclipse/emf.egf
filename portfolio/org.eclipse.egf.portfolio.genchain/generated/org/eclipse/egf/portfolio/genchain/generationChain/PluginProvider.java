@@ -30,9 +30,9 @@ public interface PluginProvider extends EObject {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @model kind="operation"
+     * @model domainsMany="true"
      * @generated
      */
-    EList<String> getPluginNames();
+    EList<String> getPluginNames(EList<EObject> domains);
 
 } // PluginProvider
