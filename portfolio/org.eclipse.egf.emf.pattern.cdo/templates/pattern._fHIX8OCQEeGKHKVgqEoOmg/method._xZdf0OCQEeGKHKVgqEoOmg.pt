@@ -1,4 +1,10 @@
-        URI genModelResourceURI = genModel.eResource().getURI();
-        String genModelResourceURIString = genModelResourceURI.toString();
-        genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(), newGenModel.getModelPluginID());
-        newGenModelResourceURI = URI.createURI(genModelResourceURIString);
+        String genModelResourceURIString = genModel.eResource().getURI().toString();
+
+		if (genModelResourceURIString.contains(genModel.getModelPluginID())) {
+			genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(), newGenModel.getModelPluginID());
+			newGenModelResourceURI = URI.createURI(genModelResourceURIString);
+		} else {
+			newGenModelResourceURI = URI.createPlatformResourceURI(newGenModel.getModelPluginID() + "/model/" + genModel.eResource().getURI().lastSegment(), true);
+		}
+
+        

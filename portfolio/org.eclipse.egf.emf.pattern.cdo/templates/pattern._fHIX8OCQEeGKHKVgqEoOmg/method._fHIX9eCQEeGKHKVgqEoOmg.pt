@@ -6,11 +6,21 @@
 		List<GenPackage> usedGenPackages = new ArrayList<GenPackage>();
         for (GenPackage genPackage : genModel.getUsedGenPackages()) {
         	URI uri = EcoreUtil.getURI(genPackage);
-        	URI newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID()  + "." + cdoSuffix));
+        	
+        	URI newURI = null;
+        	if (uri.toString().contains(genPackage.getGenModel().getModelPluginID())) {
+        		newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID()  + "." + cdoSuffix));
+        	} else {
+                newURI = URI.createPlatformResourceURI(genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix + "/model/" + uri.lastSegment() + "#" + uri.fragment(), false);
+        	}
+        	
         	try {
 	        	Resource resource = genPackage.eResource().getResourceSet().getResource(newURI.trimFragment(), true);
 	        	GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
-	        	usedGenPackages.add(newGenPackage);
+	        	if (newGenPackage != null)
+					usedGenPackages.add(newGenPackage);
+				else
+					usedGenPackages.add(genPackage);
         	} catch (Exception exception) {
 	        	usedGenPackages.add(genPackage);
         	}

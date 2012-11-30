@@ -1,4 +1,4 @@
-//Generated on Tue Aug 28 15:00:48 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Fri Nov 30 15:01:57 CET 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.ArrayList;
@@ -75,11 +75,21 @@ public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.gen
         List<GenPackage> usedGenPackages = new ArrayList<GenPackage>();
         for (GenPackage genPackage : genModel.getUsedGenPackages()) {
             URI uri = EcoreUtil.getURI(genPackage);
-            URI newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix));
+
+            URI newURI = null;
+            if (uri.toString().contains(genPackage.getGenModel().getModelPluginID())) {
+                newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix));
+            } else {
+                newURI = URI.createPlatformResourceURI(genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix + "/model/" + uri.lastSegment() + "#" + uri.fragment(), false);
+            }
+
             try {
                 Resource resource = genPackage.eResource().getResourceSet().getResource(newURI.trimFragment(), true);
                 GenPackage newGenPackage = (GenPackage) resource.getEObject(newURI.fragment());
-                usedGenPackages.add(newGenPackage);
+                if (newGenPackage != null)
+                    usedGenPackages.add(newGenPackage);
+                else
+                    usedGenPackages.add(genPackage);
             } catch (Exception exception) {
                 usedGenPackages.add(genPackage);
             }
@@ -93,10 +103,14 @@ public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.gen
     }
 
     protected void method_genModelResourceURI(final StringBuffer out, final PatternContext ctx) throws Exception {
-        URI genModelResourceURI = genModel.eResource().getURI();
-        String genModelResourceURIString = genModelResourceURI.toString();
-        genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(), newGenModel.getModelPluginID());
-        newGenModelResourceURI = URI.createURI(genModelResourceURIString);
+        String genModelResourceURIString = genModel.eResource().getURI().toString();
+
+        if (genModelResourceURIString.contains(genModel.getModelPluginID())) {
+            genModelResourceURIString = genModelResourceURIString.replace(genModel.getModelPluginID(), newGenModel.getModelPluginID());
+            newGenModelResourceURI = URI.createURI(genModelResourceURIString);
+        } else {
+            newGenModelResourceURI = URI.createPlatformResourceURI(newGenModel.getModelPluginID() + "/model/" + genModel.eResource().getURI().lastSegment(), true);
+        }
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "genModelResourceURI", out.toString());
