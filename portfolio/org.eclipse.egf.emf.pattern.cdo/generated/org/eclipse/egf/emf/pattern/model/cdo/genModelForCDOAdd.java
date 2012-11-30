@@ -1,4 +1,4 @@
-//Generated on Fri Nov 30 15:01:57 CET 2012 with EGF 1.0.0.qualifier
+//Generated on Fri Nov 30 18:17:37 CET 2012 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.cdo;
 
 import java.util.ArrayList;
@@ -80,7 +80,7 @@ public class genModelForCDOAdd extends org.eclipse.egf.emf.pattern.model.cdo.gen
             if (uri.toString().contains(genPackage.getGenModel().getModelPluginID())) {
                 newURI = URI.createURI(uri.toString().replace(genPackage.getGenModel().getModelPluginID(), genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix));
             } else {
-                newURI = URI.createPlatformResourceURI(genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix + "/model/" + uri.lastSegment() + "#" + uri.fragment(), false);
+                newURI = URI.createPlatformResourceURI(genPackage.getGenModel().getModelPluginID() + "." + cdoSuffix + "/model/" + uri.lastSegment(), true).appendFragment(uri.fragment());
             }
 
             try {
