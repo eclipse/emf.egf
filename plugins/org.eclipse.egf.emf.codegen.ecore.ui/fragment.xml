@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <fragment>
 
-    <extension 
+    <!--extension 
         point="org.eclipse.ui.editors"
     >
         <editor
@@ -50,6 +50,6 @@
             commandId="org.eclipse.egf.emf.codegen.ecore.ui.Generate"
             class="org.eclipse.emf.codegen.ecore.genmodel.handler.TargetPlatformGenerateHandler"
         />
-    </extension>
+    </extension-->
        
 </fragment>
