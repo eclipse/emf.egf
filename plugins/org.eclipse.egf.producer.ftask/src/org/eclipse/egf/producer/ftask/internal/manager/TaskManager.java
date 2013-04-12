@@ -102,18 +102,18 @@ public class TaskManager extends ActivityManager<Task> {
             // Invoke
             try {
                 EGFProducerFtaskPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+            } catch (ValidationInvocationException ve) {
+            	diagnostic.add(ve.getDiagnostic());
+            } catch (InvocationException ie) {
+                if (ie.getDiagnostic() != null) {
+                    diagnostic.add(ie.getDiagnostic());
+                }
+                ie.setDiagnostic(diagnostic);
+                throw ie;
+            } catch (OperationCanceledException oe) {
+            	throw oe;
             } catch (Throwable t) {
-                if (t instanceof ValidationInvocationException) {
-                	diagnostic.add(((ValidationInvocationException) t).getDiagnostic());
-                } else
-                if (t instanceof InvocationException) {
-                    InvocationException ie = (InvocationException) t;
-                    if (ie.getDiagnostic() != null) {
-                        diagnostic.add(ie.getDiagnostic());
-                    }
-                    ie.setDiagnostic(diagnostic);
-                    throw ie;
-                } else throw new InvocationException(t);
+                throw new InvocationException(t);
             }
             // Check Output
             checkOutputElement(diagnostic);
