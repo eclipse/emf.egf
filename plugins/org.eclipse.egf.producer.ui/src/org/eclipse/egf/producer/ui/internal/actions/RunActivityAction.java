@@ -239,6 +239,8 @@ public class RunActivityAction implements IObjectActionDelegate {
                         throw (CoreException) ie.getCause();
                     }
                     ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
+                } catch (OperationCanceledException ex) {
+                    return Status.CANCEL_STATUS;
                 } catch (Throwable t) {
                     throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
                 } finally {
