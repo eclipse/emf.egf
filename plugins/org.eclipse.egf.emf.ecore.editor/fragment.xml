@@ -2,7 +2,7 @@
 <?eclipse version="3.0"?>
 <fragment>
 
-    <!--extension 
+    <extension 
         point="org.eclipse.ui.newWizards"
     >
         <category
@@ -41,6 +41,6 @@
                 contentTypeId="org.eclipse.emf.emof"
             />
         </editor>
-    </extension-->
+    </extension>
     
 </fragment>
