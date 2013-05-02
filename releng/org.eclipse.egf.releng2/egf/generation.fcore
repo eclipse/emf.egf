@@ -6,7 +6,7 @@
     name="generation launcher">
   <contractContainer xmi:id="_PJvZkAYHEeGKhYHYG0ajnw">
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Pbep0AYHEeGKhYHYG0ajnw"
-        invocationContracts="#_HOjFs_PIEd-1PJ4PFWU1aA #_UptpRAYHEeGKhYHYG0ajnw #_UwtpJAYHEeGKhYHYG0ajnw">
+        invocationContracts="#_HOjFs_PIEd-1PJ4PFWU1aA #_UptpRAYHEeGKhYHYG0ajnw #_UwtpJAYHEeGKhYHYG0ajnw #_yX1GJLNCEeKeMI4pjPFoVA">
       <type xmi:type="types:TypeString" xmi:id="_KX3nEPPIEd-1PJ4PFWU1aA" value="platform:/resource/org.eclipse.egf.releng2/jobs"/>
     </contracts>
   </contractContainer>
@@ -18,6 +18,8 @@
           uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-indigo.egfbuild"/>
       <domains xmi:type="domain:EMFDomain" xmi:id="_zQvB4eXGEeCwyLb2KmUUfg" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
           uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-juno.egfbuild"/>
+      <domains xmi:type="domain:EMFDomain" xmi:id="_vzKxAbNCEeKeMI4pjPFoVA" helperImplementation="org.eclipse.egf.domain.emf.EMFDomainHelper"
+          uri="platform:/resource/org.eclipse.egf.releng2/model/buckminster-egf-kepler.egfbuild"/>
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_X7zFICSnEeCIlumqagSWRg">
@@ -45,6 +47,15 @@
           <type xmi:type="domain:TypeDomain" xmi:id="_UwtpIwYHEeGKhYHYG0ajnw" domain="#_zQvB4eXGEeCwyLb2KmUUfg"/>
         </invocationContracts>
         <invocationContracts xmi:id="_UwtpJAYHEeGKhYHYG0ajnw" factoryComponentContract="#_Pbep0AYHEeGKhYHYG0ajnw"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg"/>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_yX1GILNCEeKeMI4pjPFoVA" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_N4pRwI6UEd-e7viTqNBNrA">
+      <invocationContractContainer xmi:id="_yX1GIbNCEeKeMI4pjPFoVA">
+        <invocationContracts xmi:id="_yX1GIrNCEeKeMI4pjPFoVA" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_ad5FkY6VEd-e7viTqNBNrA">
+          <type xmi:type="domain:TypeDomain" xmi:id="_yX1GI7NCEeKeMI4pjPFoVA" domain="#_vzKxAbNCEeKeMI4pjPFoVA"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_yX1GJLNCEeKeMI4pjPFoVA" factoryComponentContract="#_Pbep0AYHEeGKhYHYG0ajnw"
             invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/egf/Build.fcore#_npIcUJlgEd-cRYVfj6AwNg"/>
       </invocationContractContainer>
     </invocations>
