@@ -119,7 +119,6 @@ public class CodegenJetCompiler extends JETCompiler {
             checkSection(parentSection.getSections());
             parentSection = parentSection.getParent();
         } else if (DIRECTIVE_JET.equals(directive)) {
-            javaBuffer.append("package default;\n"); //$NON-NLS-1$
             String[] imports = attributes.get("imports").split(" "); //$NON-NLS-1$ //$NON-NLS-2$
             for (String myImport : imports) {
                 javaBuffer.append("import "); //$NON-NLS-1$

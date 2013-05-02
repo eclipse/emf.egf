@@ -133,6 +133,8 @@ public class CodegenJetVariablesResolver {
             String typeString = resolveBinding.getBinaryName();
             if ("Z".equals(typeString)) //$NON-NLS-1$
                 return "java.lang.Boolean"; //$NON-NLS-1$
+            if ("I".equals(typeString)) //$NON-NLS-1$
+                return "java.lang.Integer"; //$NON-NLS-1$
             return typeString;
         }
 
