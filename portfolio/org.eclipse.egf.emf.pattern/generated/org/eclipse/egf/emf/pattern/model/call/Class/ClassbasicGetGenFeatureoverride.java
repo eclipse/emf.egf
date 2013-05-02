@@ -1,4 +1,4 @@
-//Generated on Mon May 28 11:58:02 CEST 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 02 17:40:53 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -62,10 +62,11 @@ public class ClassbasicGetGenFeatureoverride {
     protected final String TEXT_34 = ")get";
     protected final String TEXT_35 = "().get(";
     protected final String TEXT_36 = ", false);";
-    protected final String TEXT_37 = NL;
-    protected final String TEXT_38 = NL + "\t}" + NL + NL;
-    protected final String TEXT_39 = NL;
+    protected final String TEXT_37 = NL + "\t\t";
+    protected final String TEXT_38 = NL;
+    protected final String TEXT_39 = NL + "\t}" + NL + NL;
     protected final String TEXT_40 = NL;
+    protected final String TEXT_41 = NL;
 
     public ClassbasicGetGenFeatureoverride() {
         //Here is the constructor
@@ -166,8 +167,8 @@ public class ClassbasicGetGenFeatureoverride {
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_39);
         stringBuffer.append(TEXT_40);
+        stringBuffer.append(TEXT_41);
         return stringBuffer.toString();
     }
 
@@ -433,8 +434,11 @@ public class ClassbasicGetGenFeatureoverride {
                 stringBuffer.append(genFeature.getQualifiedFeatureAccessor());
                 stringBuffer.append(TEXT_36);
             }
-        } else {
+        } else if (genFeature.hasGetterBody()) {
             stringBuffer.append(TEXT_37);
+            stringBuffer.append(genFeature.getGetterBody(genModel.getIndentation(stringBuffer)));
+        } else {
+            stringBuffer.append(TEXT_38);
             {
                 //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Class.Class.basicGetGenFeature.TODO.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%>
 
@@ -463,7 +467,7 @@ public class ClassbasicGetGenFeatureoverride {
 
             //Class/basicGetGenFeature.todo.override.javajetinc
         }
-        stringBuffer.append(TEXT_38);
+        stringBuffer.append(TEXT_39);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
     }

@@ -30,7 +30,7 @@
 	protected <%=genFeature.getImportedInternalType(genClass)%> <%=genFeature.getSafeName()%>;
 
       <%}%>
-      <%if (genModel.isArrayAccessors() && genFeature.isListType() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) { String rawListItemType = genFeature.getRawListItemType(); int index = rawListItemType.indexOf('['); String head = rawListItemType; String tail = ""; if (index != -1) { head = rawListItemType.substring(0, index); tail = rawListItemType.substring(index); } %>
+      <%if (genModel.isArrayAccessors() && genFeature.isListType() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) { String rawListItemType = genFeature.getRawListItemType(genClass); int index = rawListItemType.indexOf('['); String head = rawListItemType; String tail = ""; if (index != -1) { head = rawListItemType.substring(0, index); tail = rawListItemType.substring(index); } %>
 	/**
 	 * The empty value for the '{@link #<%=genFeature.getGetArrayAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' array accessor.
 	 * <!-- begin-user-doc -->
@@ -39,8 +39,8 @@
 	 * @generated
 	 * @ordered
 	 */
-        <%if (genFeature.getQualifiedListItemType(genClass).contains("<")) {%>
-	@SuppressWarnings("unchecked")
+        <%if (genFeature.getQualifiedListItemType(genClass).contains("<") || genFeature.getArrayItemType(genClass).contains("<")) {%>
+	@SuppressWarnings("rawtypes")
         <%}%>
 	protected static final <%=rawListItemType%>[] <%=genFeature.getUpperName()%>_EEMPTY_ARRAY = new <%=head%> [0]<%=tail%>;
 

@@ -1,26 +1,29 @@
 
 
-  <%if (genModel.isArrayAccessors() && genFeature.isListType() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) {%>
+  <%if (genModel.isArrayAccessors() && genFeature.isListType() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) { String arrayElementType = genFeature.getArrayItemType(genClass);%>
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
     <%if (!isImplementation) {%>
-	<%=genFeature.getListItemType(genClass)%>[] <%=genFeature.getGetArrayAccessor()%>();
+	<%=arrayElementType%>[] <%=genFeature.getGetArrayAccessor()%>();
 
     <%} else {%>
-	public <%=genFeature.getListItemType(genClass)%>[] <%=genFeature.getGetArrayAccessor()%>()
+    <%if (genModel.useGenerics() && CodeGenUtil.isUncheckedCast(arrayElementType)) {%>
+	@SuppressWarnings("unchecked")
+    <%}%>
+	public <%=arrayElementType%>[] <%=genFeature.getGetArrayAccessor()%>()
 	{
       <%if (genFeature.isVolatile()) {%>
 		<%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%><%=genFeature.getListTemplateArguments(genClass)%> list = (<%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%><%=genFeature.getListTemplateArguments(genClass)%>)<%=genFeature.getGetAccessor()%>();
-		if (list.isEmpty()) return <%if (genModel.useGenerics() && !genFeature.getListItemType(genClass).contains("<") && !genFeature.getListItemType(null).equals(genFeature.getListItemType(genClass))) {%>(<%=genFeature.getListItemType(genClass)%>[])<%}%><%=genFeature.getUpperName()%>_EEMPTY_ARRAY;
+		if (list.isEmpty()) return <%=genFeature.getUpperName()%>_EEMPTY_ARRAY;
       <%} else {%>
-		if (<%=genFeature.getSafeName()%> == null || <%=genFeature.getSafeName()%>.isEmpty()) return <%if (genModel.useGenerics() && !genFeature.getListItemType(genClass).contains("<") && !genFeature.getListItemType(null).equals(genFeature.getListItemType(genClass))) {%>(<%=genFeature.getListItemType(genClass)%>[])<%}%><%=genFeature.getUpperName()%>_EEMPTY_ARRAY;
+		if (<%=genFeature.getSafeName()%> == null || <%=genFeature.getSafeName()%>.isEmpty()) return <%=genFeature.getUpperName()%>_EEMPTY_ARRAY;
 		<%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%><%=genFeature.getListTemplateArguments(genClass)%> list = (<%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%><%=genFeature.getListTemplateArguments(genClass)%>)<%=genFeature.getSafeName()%>;
       <%}%>
 		list.shrink();
-		return (<%=genFeature.getListItemType(genClass)%>[])list.data();
+		return (<%=arrayElementType%>[])list.data();
 	}
 
     <%}%>

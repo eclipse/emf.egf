@@ -1,4 +1,4 @@
-//Generated on Mon May 28 11:58:00 CEST 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 02 17:40:51 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -51,7 +51,7 @@ public class ClassdeclaredFieldGenFeatureoverride {
     protected final String TEXT_23 = "() <em>";
     protected final String TEXT_24 = "</em>}' array accessor." + NL + "\t * <!-- begin-user-doc -->" + NL + "\t * <!-- end-user-doc -->" + NL + "\t * @see #";
     protected final String TEXT_25 = "()" + NL + "\t * @generated" + NL + "\t * @ordered" + NL + "\t */";
-    protected final String TEXT_26 = NL + "\t@SuppressWarnings(\"unchecked\")";
+    protected final String TEXT_26 = NL + "\t@SuppressWarnings(\"rawtypes\")";
     protected final String TEXT_27 = NL + "\tprotected static final ";
     protected final String TEXT_28 = "[] ";
     protected final String TEXT_29 = "_EEMPTY_ARRAY = new ";
@@ -423,7 +423,7 @@ public class ClassdeclaredFieldGenFeatureoverride {
                 stringBuffer.append(TEXT_21);
             }
             if (genModel.isArrayAccessors() && genFeature.isListType() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) {
-                String rawListItemType = genFeature.getRawListItemType();
+                String rawListItemType = genFeature.getRawListItemType(genClass);
                 int index = rawListItemType.indexOf('[');
                 String head = rawListItemType;
                 String tail = "";
@@ -438,7 +438,7 @@ public class ClassdeclaredFieldGenFeatureoverride {
                 stringBuffer.append(TEXT_24);
                 stringBuffer.append(genFeature.getGetArrayAccessor());
                 stringBuffer.append(TEXT_25);
-                if (genFeature.getQualifiedListItemType(genClass).contains("<")) {
+                if (genFeature.getQualifiedListItemType(genClass).contains("<") || genFeature.getArrayItemType(genClass).contains("<")) {
                     stringBuffer.append(TEXT_26);
                 }
                 stringBuffer.append(TEXT_27);

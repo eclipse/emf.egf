@@ -132,6 +132,24 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 
 <%}%>
 <%if (isImplementation && !genModel.isReflectiveDelegation()) {%>
+  <%for (GenFeature genFeature : genClass.getReifiedGenFeatures()) {%>
+      <%if (genModel.isArrayAccessors() && genFeature.isListType() && !genFeature.isFeatureMapType() && !genFeature.isMapType()) { String rawListItemType = genFeature.getRawListItemType(genClass); int index = rawListItemType.indexOf('['); String head = rawListItemType; String tail = ""; if (index != -1) { head = rawListItemType.substring(0, index); tail = rawListItemType.substring(index); } %>
+	/**
+	 * The empty value for the '{@link #<%=genFeature.getGetArrayAccessor()%>() <em><%=genFeature.getFormattedName()%></em>}' array accessor.
+	 * This is specialized for the more specific element type known in this context.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #<%=genFeature.getGetArrayAccessor()%>()
+	 * @generated
+	 * @ordered
+	 */
+        <%if (genFeature.getQualifiedListItemType(genClass).contains("<") || genFeature.getArrayItemType(genClass).contains("<")) {%>
+	@SuppressWarnings("rawtypes")
+        <%}%>
+	protected static final <%=rawListItemType%>[] <%=genFeature.getUpperName()%>_EEMPTY_ARRAY = new <%=head%> [0]<%=tail%>;
+
+      <%}%>
+  <%}%>
   <%for (GenFeature genFeature : genClass.getDeclaredFieldGenFeatures()) {%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.declaredFieldGenFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/declaredFieldGenFeature.override.javajetinc%>
   <%}%>
@@ -196,6 +214,11 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 
 <%}%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.reflectiveDelegation.override" args="genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/reflectiveDelegation.override.javajetinc%>
+<%if (isImplementation) {%>
+<%new Runnable() { public void run() { GenClass classExtendsGenClass = genClass.getClassExtendsGenClass(); List<GenFeature> classExtendsAllGenFeatures = classExtendsGenClass == null? Collections.<GenFeature>emptyList() : classExtendsGenClass.getAllGenFeatures();%>
+  <%for (GenFeature genFeature : genClass.getReifiedGenFeatures()) {%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genFeatureReified.override" args="genFeature:genFeature,classExtendsGenClass:classExtendsGenClass,classExtendsAllGenFeatures:classExtendsAllGenFeatures,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/genFeatureReified.override.javajetinc%>
+<%}}}.run();}%>
 <%new Runnable() { public void run() {%>
 <%for (GenFeature genFeature : (isImplementation ? genClass.getImplementedGenFeatures() : genClass.getDeclaredGenFeatures())) {%>
 <%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.Interface.Interface.genFeature.override" args="genFeature:genFeature,genClass:genClass,genPackage:genPackage,genModel:genModel,isJDK50:isJDK50,isInterface:isInterface,isImplementation:isImplementation,isGWT:isGWT,publicStaticFinalFlag:publicStaticFinalFlag,singleWildcard:singleWildcard,negativeOffsetCorrection:negativeOffsetCorrection,positiveOffsetCorrection:positiveOffsetCorrection,negativeOperationOffsetCorrection:negativeOperationOffsetCorrection,positiveOperationOffsetCorrection:positiveOperationOffsetCorrection"%><%//Class/genFeature.override.javajetinc%>
@@ -660,13 +683,24 @@ public interface <%=genClass.getInterfaceName()%><%=genClass.getTypeParameters()
 	{
 		switch (operationID<%=negativeOperationOffsetCorrection%>)
 		{
-<%for (GenOperation genOperation : (genModel.isMinimalReflectiveMethods() ? genClass.getImplementedGenOperations() : genClass.getAllGenOperations())) { List<GenParameter> genParameters = genOperation.getGenParameters(); int size = genParameters.size();%>
+<%for (GenOperation genOperation : (genModel.isMinimalReflectiveMethods() ? genClass.getImplementedGenOperations() : genClass.getAllGenOperations())) { List<GenParameter> genParameters = genOperation.getGenParameters(); int size = genParameters.size();  boolean hasCheckedException = genOperation.hasCheckedException(); String indent = hasCheckedException ? "\t" : "";%>
 			case <%=genClass.getQualifiedOperationID(genOperation)%>:
+  <%if (hasCheckedException) {%>
+				try
+				{
+  <%/*}*/}%>
   <%if (genOperation.isVoid()) {%>
-				<%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.usesOperationTypeParameters() && !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.usesOperationTypeParameters() ? genParameter.getRawImportedType() : genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>);
-				return null;
+				<%=indent%><%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.usesOperationTypeParameters() && !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.usesOperationTypeParameters() ? genParameter.getRawImportedType() : genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>);
+				<%=indent%>return null;
   <%} else {%>
-				return <%if (!isJDK50 && genOperation.isPrimitiveType()) {%>new <%=genOperation.getObjectType(genClass)%>(<%}%><%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.usesOperationTypeParameters() && !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.usesOperationTypeParameters() ? genParameter.getRawImportedType() : genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>)<%}%>;
+				<%=indent%>return <%if (!isJDK50 && genOperation.isPrimitiveType()) {%>new <%=genOperation.getObjectType(genClass)%>(<%}%><%=genOperation.getName()%>(<%for (int i = 0; i < size; i++) { GenParameter genParameter = genParameters.get(i);%><%if (!isJDK50 && genParameter.isPrimitiveType()) {%>(<%}%><%if (genParameter.getTypeGenDataType() == null || !genParameter.getTypeGenDataType().isObjectType() || !genParameter.usesOperationTypeParameters() && !genParameter.getRawType().equals(genParameter.getType(genClass))) {%>(<%=genParameter.usesOperationTypeParameters() ? genParameter.getRawImportedType() : genParameter.getObjectType(genClass)%>)<%}%>arguments.get(<%=i%>)<%if (!isJDK50 && genParameter.isPrimitiveType()) {%>).<%=genParameter.getPrimitiveValueFunction()%>()<%}%><%if (i < (size - 1)) {%>, <%}%><%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>)<%}%>;
+  <%}%>
+  <%if (hasCheckedException) {/*{*/%>
+				}
+				catch (<%=genModel.getImportedName("java.lang.Throwable")%> throwable)
+				{
+					throw new <%=genModel.getImportedName(isGWT ? "org.eclipse.emf.common.util.InvocationTargetException" : "java.lang.reflect.InvocationTargetException")%>(throwable);
+				}
   <%}%>
 <%}%>
 		}

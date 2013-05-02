@@ -25,7 +25,11 @@
     <%if (genModel.isDynamicDelegation()) {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eDynamicGet(<%=genClass.getQualifiedFeatureID(genFeature)%>, <%=genFeature.getQualifiedFeatureAccessor()%>, true, <%=!genFeature.isEffectiveSuppressEMFTypes()%>)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
     <%} else if (genModel.isReflectiveDelegation()) {%>
+      <%if (genFeature.hasGetterBody()) {%>
+		<%=genFeature.getGetterBody(genModel.getIndentation(stringBuffer))%>
+      <%} else {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)eGet(<%=genFeature.getQualifiedFeatureAccessor()%>, true)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
+      <%}%>
     <%} else if (genFeature.hasSettingDelegate()) {%>
 		return <%if (!isJDK50 && genFeature.isPrimitiveType()) {%>(<%}%>(<%=genFeature.getObjectType(genClass)%>)<%=genFeature.getUpperName()%>__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false)<%if (!isJDK50 && genFeature.isPrimitiveType()) {%>).<%=genFeature.getPrimitiveValueFunction()%>()<%}%>;
     <%} else if (!genFeature.isVolatile()) {%>
@@ -44,7 +48,7 @@
 		return <%=genFeature.getSafeName()%><%=genFeature.isMapType() && genFeature.isEffectiveSuppressEMFTypes() ? ".map()" : ""%>;
       <%} else if (genFeature.isContainer()) {%>
 		if (eContainerFeatureID() != <%=genClass.getQualifiedFeatureID(genFeature)%><%=positiveOffsetCorrection%>) return null;
-		return (<%=genFeature.getImportedType(genClass)%>)eContainer();
+		return (<%=genFeature.getImportedType(genClass)%>)<%if (genFeature.isResolveProxies()) {%>eContainer<%} else {%>eInternalContainer<%}%>();
       <%} else {%>
         <%if (genFeature.isResolveProxies()) {%>
           <%if (genModel.isVirtualDelegation()) {%>

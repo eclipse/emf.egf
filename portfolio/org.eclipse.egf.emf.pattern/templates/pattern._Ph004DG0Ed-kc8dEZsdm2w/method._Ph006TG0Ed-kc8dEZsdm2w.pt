@@ -1,7 +1,7 @@
 
 <%
 /**
- * Copyright (c) 2002-2011 IBM Corporation and others.
+ * Copyright (c) 2002-2013 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -656,5 +656,6 @@ public class <%=genPackage.getValidatorClassName()%> extends <%=genModel.getImpo
 	}
 
 <%}%>
+<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ValidatorClass.ValidatorClass.insert" args="genPackage:genPackage,genModel:genModel,singleWildcard:singleWildcard,_Map:_Map,objectArgument:objectArgument,count:count"%>
 } //<%=genPackage.getValidatorClassName()%>
 <%genModel.emitSortedImports();%>

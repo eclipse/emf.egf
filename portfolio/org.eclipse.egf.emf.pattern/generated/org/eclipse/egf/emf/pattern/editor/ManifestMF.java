@@ -1,4 +1,4 @@
-//Generated on Mon May 28 11:58:13 CEST 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 02 17:41:08 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.editor;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -126,7 +126,7 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
 
         GenModel genModel = parameter;
         targetPathName = genModel.getEditorProjectDirectory() + "/META-INF/MANIFEST.MF";
-        overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml"));
+        overwrite = genModel.isUpdateClasspath();
         encoding = "UTF-8";
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;

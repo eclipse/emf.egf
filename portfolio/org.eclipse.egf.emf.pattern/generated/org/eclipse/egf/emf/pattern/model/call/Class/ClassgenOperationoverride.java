@@ -1,4 +1,4 @@
-//Generated on Mon May 28 11:58:05 CEST 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 02 17:40:57 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model.call.Class;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -484,7 +484,7 @@ public class ClassgenOperationoverride {
             stringBuffer.append(TEXT_32);
             stringBuffer.append(genOperation.getName());
             stringBuffer.append(TEXT_33);
-            stringBuffer.append(genOperation.getParameters(genClass));
+            stringBuffer.append(genOperation.getParameters(isImplementation, genClass));
             stringBuffer.append(TEXT_34);
             stringBuffer.append(genOperation.getThrows(genClass));
             stringBuffer.append(TEXT_35);

@@ -1,4 +1,4 @@
-//Generated on Mon May 28 11:58:00 CEST 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 02 17:40:50 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.model;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -627,10 +627,11 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
     protected final String TEXT_599 = ".INSTANCE;";
     protected final String TEXT_600 = NL + "\t\t// TODO" + NL + "\t\t// Specialize this to return a resource locator for messages specific to this validator." + NL + "\t\t// Ensure that you remove @generated or mark it @generated NOT" + NL + "\t\treturn super.getResourceLocator();";
     protected final String TEXT_601 = NL + "\t}" + NL;
-    protected final String TEXT_602 = NL + "} //";
-    protected final String TEXT_603 = NL;
+    protected final String TEXT_602 = NL;
+    protected final String TEXT_603 = NL + "} //";
     protected final String TEXT_604 = NL;
     protected final String TEXT_605 = NL;
+    protected final String TEXT_606 = NL;
 
     public ValidatorClass() {
         //Here is the constructor
@@ -666,8 +667,8 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_604);
         stringBuffer.append(TEXT_605);
+        stringBuffer.append(TEXT_606);
         return stringBuffer.toString();
     }
 
@@ -734,7 +735,7 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         /**
-         * Copyright (c) 2002-2011 IBM Corporation and others.
+         * Copyright (c) 2002-2013 IBM Corporation and others.
          * All rights reserved.   This program and the accompanying materials
          * are made available under the terms of the Eclipse Public License v1.0
          * which accompanies this distribution, and is available at
@@ -2092,9 +2093,28 @@ public class ValidatorClass extends org.eclipse.egf.emf.pattern.base.GenPackageJ
             stringBuffer.append(TEXT_601);
         }
         stringBuffer.append(TEXT_602);
+        {
+            //<%@ egf:patternCall patternId="platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#LogicalName=org.eclipse.egf.emf.pattern.model.call.ValidatorClass.ValidatorClass.insert" args="genPackage:genPackage,genModel:genModel,singleWildcard:singleWildcard,_Map:_Map,objectArgument:objectArgument,count:count"%>
+
+            InternalPatternContext ictx = (InternalPatternContext) ctx;
+            new Node.DataLeaf(ictx.getNode(), getClass(), null, stringBuffer.toString());
+            stringBuffer.setLength(0);
+
+            final Map<String, Object> callParameters = new HashMap<String, Object>();
+            callParameters.put("genPackage", genPackage);
+            callParameters.put("genModel", genModel);
+            callParameters.put("singleWildcard", singleWildcard);
+            callParameters.put("_Map", _Map);
+            callParameters.put("objectArgument", objectArgument);
+            callParameters.put("count", count);
+            CallHelper.executeWithParameterInjection("platform:/plugin/org.eclipse.egf.emf.pattern/egf/EMF_Pattern.fcore#_omcocbM-EeKd56X4hcZPSw", new ExecutionContext((InternalPatternContext) ctx), callParameters);
+            stringBuffer.setLength(0);
+        }
+
+        stringBuffer.append(TEXT_603);
         stringBuffer.append(genPackage.getValidatorClassName());
         genModel.emitSortedImports();
-        stringBuffer.append(TEXT_603);
+        stringBuffer.append(TEXT_604);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "doGenerate", stringBuffer.toString());
     }

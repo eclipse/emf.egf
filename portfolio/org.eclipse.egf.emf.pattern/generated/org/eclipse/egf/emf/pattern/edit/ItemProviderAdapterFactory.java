@@ -1,4 +1,4 @@
-//Generated on Mon May 28 11:58:12 CEST 2012 with EGF 0.6.1.qualifier
+//Generated on Thu May 02 17:41:07 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.emf.pattern.edit;
 
 import org.eclipse.egf.emf.pattern.base.*;
@@ -152,8 +152,8 @@ public class ItemProviderAdapterFactory extends org.eclipse.egf.emf.pattern.base
     protected final String TEXT_122 = " getNewChildDescriptors(Object object, ";
     protected final String TEXT_123 = " editingDomain)" + NL + "\t\t{" + NL + "\t\t\t";
     protected final String TEXT_124 = " result = new ";
-    protected final String TEXT_125 = "();" + NL + "\t\t   new CreationSwitch(result, editingDomain).doSwitch((";
-    protected final String TEXT_126 = ")object);" + NL + "\t\t   return result;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
+    protected final String TEXT_125 = "();" + NL + "\t\t\tnew CreationSwitch(result, editingDomain).doSwitch((";
+    protected final String TEXT_126 = ")object);" + NL + "\t\t\treturn result;" + NL + "\t\t}" + NL + "" + NL + "\t\t/**" + NL + "\t\t * <!-- begin-user-doc -->" + NL + "\t\t * <!-- end-user-doc -->" + NL + "\t\t * @generated" + NL + "\t\t */" + NL + "\t\tpublic ";
     protected final String TEXT_127 = " getResourceLocator()" + NL + "\t\t{" + NL + "\t\t\treturn ";
     protected final String TEXT_128 = ".INSTANCE;" + NL + "\t\t}" + NL + "\t}" + NL;
     protected final String TEXT_129 = NL + "}";
