@@ -25,15 +25,13 @@ public class PlatformXMLURIHandler extends URIHandlerImpl {
 
     @Override
     public URI resolve(URI uri) {
-        // Always normalize uri to a non encoded platform:/plugin when applicable
-        if (uri.isPlatformPlugin() || uri.isPlatformResource()) {
-            // Platform
-            if (uri.isPlatformPlugin()) {
-                String pathName = URI.decode(uri.toString().substring(URIHelper.PLATFORM_PLUGIN_URI.toString().length(), uri.toString().length()));
-                URI decodedURI = URI.createPlatformPluginURI(pathName, false);
-                return decodedURI;
-            }
-            // Resource
+
+        // Platform
+        if (uri.isPlatformPlugin())
+            return uri;
+
+        // Resource
+        if (uri.isPlatformResource()) {
             String pathName = URI.decode(uri.toString().substring(URIHelper.PLATFORM_RESOURCE_URI.toString().length(), uri.toString().length()));
             URI decodedURI = URI.createPlatformPluginURI(pathName, false);
             return decodedURI;
@@ -44,7 +42,8 @@ public class PlatformXMLURIHandler extends URIHandlerImpl {
 
     @Override
     public URI deresolve(URI uri) {
-        // The resolver always transform a platform:/resource to a platform:/plugin scheme
+        // The resolver always transform a platform:/resource to a
+        // platform:/plugin scheme
         // so we don't need to process platform:/resource when deresolved
         if (uri.isPlatformPlugin()) {
             // Platform

@@ -30,52 +30,45 @@ import org.eclipse.egf.portfolio.genchain.generationChain.EcoreElement;
 import org.eclipse.emf.common.util.URI;
 
 public class EcoreToolsExtension extends ExtensionHelper {
-	private static final URI PATTERN = URI
-			.createPlatformPluginURI(
-					"org.eclipse.egf.portfolio.genchain.ecoretools/egf/ecoreToolsExtension.fcore#_Mf1nEHyqEeC0R_Dv0EljeA",
-					false);
+    private static final URI PATTERN = URI.createURI("platform:/plugin/org.eclipse.egf.portfolio.genchain.ecoretools/egf/ecoreToolsExtension.fcore#_Mf1nEHyqEeC0R_Dv0EljeA", false);
 
-	@Override
-	public EcoreElement createEcoreElement(Map<String, String> properties) {
-		String fileName;
-		final EcoreToolsGeneration ecoreToolsGeneration = EcoreToolsExtensionFactory.eINSTANCE
-				.createEcoreToolsGeneration();
-		String modelPath = properties.get(MODEL_PATH);
-		if (properties.get("fileName") != null
-				&& properties.get("fileName").length() > 0) {
-			fileName = properties.get("fileName");
-		} else {
-			fileName = modelPath.concat("diag");
-		}
-		ecoreToolsGeneration.setModelPath(modelPath);
-		ecoreToolsGeneration.setFileName(fileName);
-		return ecoreToolsGeneration;
-	}
+    @Override
+    public EcoreElement createEcoreElement(Map<String, String> properties) {
+        String fileName;
+        final EcoreToolsGeneration ecoreToolsGeneration = EcoreToolsExtensionFactory.eINSTANCE.createEcoreToolsGeneration();
+        String modelPath = properties.get(MODEL_PATH);
+        if (properties.get("fileName") != null && properties.get("fileName").length() > 0) {
+            fileName = properties.get("fileName");
+        } else {
+            fileName = modelPath.concat("diag");
+        }
+        ecoreToolsGeneration.setModelPath(modelPath);
+        ecoreToolsGeneration.setFileName(fileName);
+        return ecoreToolsGeneration;
+    }
 
-	@Override
-	public String getLabel() {
+    @Override
+    public String getLabel() {
 
-		return "EcoreTools extension";
-	}
+        return "EcoreTools extension";
+    }
 
-	@Override
-	public List<Substitution> getSubstitutions() {
-		TargetPlatformResourceSet set = new TargetPlatformResourceSet();
-		List<Substitution> substitutions = new ArrayList<Substitution>();
-		final Substitution substitution = PatternFactory.eINSTANCE
-				.createSubstitution();
-		final Pattern pattern = (Pattern) set.getEObject(PATTERN, true);
-		substitution.getReplacement().add(pattern);
-		substitutions.add(substitution);
-		return substitutions;
-	}
+    @Override
+    public List<Substitution> getSubstitutions() {
+        TargetPlatformResourceSet set = new TargetPlatformResourceSet();
+        List<Substitution> substitutions = new ArrayList<Substitution>();
+        final Substitution substitution = PatternFactory.eINSTANCE.createSubstitution();
+        final Pattern pattern = (Pattern) set.getEObject(PATTERN, true);
+        substitution.getReplacement().add(pattern);
+        substitutions.add(substitution);
+        return substitutions;
+    }
 
-	@Override
-	protected void computeDefaultProperties(Map<String, String> context) {
-		final String modelPath = context.get(CONTEXT_MODEL_NAME);
-		final String projectName = context.get(CONTEXT_PROJECT_NAME);
-		properties.put(EcoreToolsExtensionPackage.eINSTANCE
-				.getEcoreToolsGeneration_FileName(), projectName + "/model/" + modelPath.concat(".ecorediag"));
-	}
+    @Override
+    protected void computeDefaultProperties(Map<String, String> context) {
+        final String modelPath = context.get(CONTEXT_MODEL_NAME);
+        final String projectName = context.get(CONTEXT_PROJECT_NAME);
+        properties.put(EcoreToolsExtensionPackage.eINSTANCE.getEcoreToolsGeneration_FileName(), projectName + "/model/" + modelPath.concat(".ecorediag"));
+    }
 
 }

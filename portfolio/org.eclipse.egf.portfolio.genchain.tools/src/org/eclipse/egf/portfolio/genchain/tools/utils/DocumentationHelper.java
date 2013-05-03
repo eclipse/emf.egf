@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.EMFDomain;
 import org.eclipse.egf.model.domain.TypeDomain;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -71,6 +71,6 @@ public class DocumentationHelper {
         return (Activity) resourceSet.getEObject(uri, true);
     }
 
-    static final URI DOCUMENTATION_ACTIVITY_MODEL_URI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore#_BxjIkAG0Ed-7fNNmMjB2jQ", false);
+    static final URI DOCUMENTATION_ACTIVITY_MODEL_URI = URI.createURI("platform:/plugin/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore#_BxjIkAG0Ed-7fNNmMjB2jQ", false);
 
 }
