@@ -69,6 +69,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/featureNames"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/productNames"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/installResultStepsSourceFeatures"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/p2_os"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/p2_ws"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildStep.ecore#//InstallStep/p2_arch"/>
     </genClasses>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//AbstractBuildLocation"/>
     <genClasses image="false" ecoreClass="BuildStep.ecore#//PatternBuildLocation">

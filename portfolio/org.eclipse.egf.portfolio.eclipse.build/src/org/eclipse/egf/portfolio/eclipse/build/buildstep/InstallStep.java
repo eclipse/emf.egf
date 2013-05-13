@@ -32,6 +32,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getFeatureNames <em>Feature Names</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getProductNames <em>Product Names</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#isInstallResultStepsSourceFeatures <em>Install Result Steps Source Features</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getP2_os <em>P2 os</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getP2_ws <em>P2 ws</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getP2_arch <em>P2 arch</em>}</li>
  * </ul>
  * </p>
  *
@@ -244,6 +247,114 @@ public interface InstallStep extends Step {
      */
 
     void setInstallResultStepsSourceFeatures(boolean value);
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>P2 os</b></em>' attribute.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>P2 os</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>P2 os</em>' attribute.
+     * @see #setP2_os(String)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getInstallStep_P2_os()
+     * @model
+     * @generated
+     */
+
+    String getP2_os();
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getP2_os <em>P2 os</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>P2 os</em>' attribute.
+     * @see #getP2_os()
+     * @generated
+     */
+
+    void setP2_os(String value);
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>P2 ws</b></em>' attribute.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>P2 ws</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>P2 ws</em>' attribute.
+     * @see #setP2_ws(String)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getInstallStep_P2_ws()
+     * @model
+     * @generated
+     */
+
+    String getP2_ws();
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getP2_ws <em>P2 ws</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>P2 ws</em>' attribute.
+     * @see #getP2_ws()
+     * @generated
+     */
+
+    void setP2_ws(String value);
+
+
+
+
+    /**
+     * Returns the value of the '<em><b>P2 arch</b></em>' attribute.
+
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>P2 arch</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>P2 arch</em>' attribute.
+     * @see #setP2_arch(String)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage#getInstallStep_P2_arch()
+     * @model
+     * @generated
+     */
+
+    String getP2_arch();
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.InstallStep#getP2_arch <em>P2 arch</em>}' attribute.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>P2 arch</em>' attribute.
+     * @see #getP2_arch()
+     * @generated
+     */
+
+    void setP2_arch(String value);
 
 
 

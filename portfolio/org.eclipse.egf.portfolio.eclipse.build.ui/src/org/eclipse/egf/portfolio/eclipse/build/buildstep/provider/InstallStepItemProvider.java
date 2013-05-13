@@ -89,6 +89,9 @@ public class InstallStepItemProvider
             addFeatureNamesPropertyDescriptor(object);
             addProductNamesPropertyDescriptor(object);
             addInstallResultStepsSourceFeaturesPropertyDescriptor(object);
+            addP2_osPropertyDescriptor(object);
+            addP2_wsPropertyDescriptor(object);
+            addP2_archPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -262,6 +265,78 @@ public class InstallStepItemProvider
     }
 
     /**
+     * This adds a property descriptor for the P2 os feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addP2_osPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_InstallStep_p2_os_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_InstallStep_p2_os_feature", "_UI_InstallStep_type"),
+                 BuildstepPackage.Literals.INSTALL_STEP__P2_OS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the P2 ws feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addP2_wsPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_InstallStep_p2_ws_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_InstallStep_p2_ws_feature", "_UI_InstallStep_type"),
+                 BuildstepPackage.Literals.INSTALL_STEP__P2_WS,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
+     * This adds a property descriptor for the P2 arch feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addP2_archPropertyDescriptor(Object object) {
+
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_InstallStep_p2_arch_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_InstallStep_p2_arch_feature", "_UI_InstallStep_type"),
+                 BuildstepPackage.Literals.INSTALL_STEP__P2_ARCH,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+
+    }
+
+    /**
      * This returns InstallStep.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -306,6 +381,9 @@ public class InstallStepItemProvider
             case BuildstepPackage.INSTALL_STEP__FEATURE_NAMES:
             case BuildstepPackage.INSTALL_STEP__PRODUCT_NAMES:
             case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
+            case BuildstepPackage.INSTALL_STEP__P2_OS:
+            case BuildstepPackage.INSTALL_STEP__P2_WS:
+            case BuildstepPackage.INSTALL_STEP__P2_ARCH:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

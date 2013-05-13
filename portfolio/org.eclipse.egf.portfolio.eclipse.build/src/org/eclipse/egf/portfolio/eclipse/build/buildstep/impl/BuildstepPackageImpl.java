@@ -719,6 +719,33 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getInstallStep_P2_os() {
+        return (EAttribute)installStepEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getInstallStep_P2_ws() {
+        return (EAttribute)installStepEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getInstallStep_P2_arch() {
+        return (EAttribute)installStepEClass.getEStructuralFeatures().get(9);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getAbstractBuildLocation() {
         return abstractBuildLocationEClass;
     }
@@ -1048,6 +1075,9 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         createEAttribute(installStepEClass, INSTALL_STEP__FEATURE_NAMES);
         createEAttribute(installStepEClass, INSTALL_STEP__PRODUCT_NAMES);
         createEAttribute(installStepEClass, INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES);
+        createEAttribute(installStepEClass, INSTALL_STEP__P2_OS);
+        createEAttribute(installStepEClass, INSTALL_STEP__P2_WS);
+        createEAttribute(installStepEClass, INSTALL_STEP__P2_ARCH);
 
         abstractBuildLocationEClass = createEClass(ABSTRACT_BUILD_LOCATION);
 
@@ -1207,6 +1237,9 @@ public class BuildstepPackageImpl extends EPackageImpl implements BuildstepPacka
         initEAttribute(getInstallStep_FeatureNames(), ecorePackage.getEString(), "featureNames", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_ProductNames(), ecorePackage.getEString(), "productNames", null, 0, -1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getInstallStep_InstallResultStepsSourceFeatures(), ecorePackage.getEBoolean(), "installResultStepsSourceFeatures", "false", 0, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInstallStep_P2_os(), ecorePackage.getEString(), "p2_os", null, 0, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInstallStep_P2_ws(), ecorePackage.getEString(), "p2_ws", null, 0, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getInstallStep_P2_arch(), ecorePackage.getEString(), "p2_arch", null, 0, 1, InstallStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(abstractBuildLocationEClass, AbstractBuildLocation.class, "AbstractBuildLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Mon May 13 17:07:54 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -43,9 +43,16 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
     protected final String TEXT_20 = ".feature.group\" />";
     protected final String TEXT_21 = NL + "                <arg value=\"-i\" />" + NL + "                <arg value=\"";
     protected final String TEXT_22 = ".feature.group\" />";
-    protected final String TEXT_23 = NL + NL + "            </args>" + NL + "        </eclipse.launch>" + NL + "\t</target>\t" + NL;
-    protected final String TEXT_24 = NL;
-    protected final String TEXT_25 = NL;
+    protected final String TEXT_23 = NL;
+    protected final String TEXT_24 = NL + "                <arg value=\"-p2.os\" />" + NL + "                <arg value=\"";
+    protected final String TEXT_25 = "\" />";
+    protected final String TEXT_26 = NL + "                <arg value=\"-p2.ws\" />" + NL + "                <arg value=\"";
+    protected final String TEXT_27 = "\" />";
+    protected final String TEXT_28 = NL + "                <arg value=\"-p2.arch\" />" + NL + "                <arg value=\"";
+    protected final String TEXT_29 = "\" />";
+    protected final String TEXT_30 = NL + "            </args>" + NL + "        </eclipse.launch>" + NL + "\t</target>\t" + NL;
+    protected final String TEXT_31 = NL;
+    protected final String TEXT_32 = NL;
 
     public buildxmlinstallStep() {
         //Here is the constructor
@@ -82,8 +89,8 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_24);
-        stringBuffer.append(TEXT_25);
+        stringBuffer.append(TEXT_31);
+        stringBuffer.append(TEXT_32);
         return stringBuffer.toString();
     }
 
@@ -182,6 +189,22 @@ public class buildxmlinstallStep extends org.eclipse.egf.portfolio.eclipse.build
             }
         }
         stringBuffer.append(TEXT_23);
+        if (installStep.getP2_os() != null && installStep.getP2_os().trim().length() > 0) {
+            stringBuffer.append(TEXT_24);
+            stringBuffer.append(installStep.getP2_os());
+            stringBuffer.append(TEXT_25);
+        }
+        if (installStep.getP2_ws() != null && installStep.getP2_ws().trim().length() > 0) {
+            stringBuffer.append(TEXT_26);
+            stringBuffer.append(installStep.getP2_ws());
+            stringBuffer.append(TEXT_27);
+        }
+        if (installStep.getP2_arch() != null && installStep.getP2_arch().trim().length() > 0) {
+            stringBuffer.append(TEXT_28);
+            stringBuffer.append(installStep.getP2_arch());
+            stringBuffer.append(TEXT_29);
+        }
+        stringBuffer.append(TEXT_30);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
     }

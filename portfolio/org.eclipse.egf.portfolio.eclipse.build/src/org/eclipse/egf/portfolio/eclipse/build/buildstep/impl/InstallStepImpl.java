@@ -51,6 +51,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getFeatureNames <em>Feature Names</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getProductNames <em>Product Names</em>}</li>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#isInstallResultStepsSourceFeatures <em>Install Result Steps Source Features</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getP2_os <em>P2 os</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getP2_ws <em>P2 ws</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildstep.impl.InstallStepImpl#getP2_arch <em>P2 arch</em>}</li>
  * </ul>
  * </p>
  *
@@ -175,6 +178,72 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
      * @ordered
      */
     protected boolean installResultStepsSourceFeatures = INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT;
+
+
+    /**
+     * The default value of the '{@link #getP2_os() <em>P2 os</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getP2_os()
+     * @generated
+     * @ordered
+     */
+    protected static final String P2_OS_EDEFAULT = null;
+
+
+    /**
+     * The cached value of the '{@link #getP2_os() <em>P2 os</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getP2_os()
+     * @generated
+     * @ordered
+     */
+    protected String p2_os = P2_OS_EDEFAULT;
+
+
+    /**
+     * The default value of the '{@link #getP2_ws() <em>P2 ws</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getP2_ws()
+     * @generated
+     * @ordered
+     */
+    protected static final String P2_WS_EDEFAULT = null;
+
+
+    /**
+     * The cached value of the '{@link #getP2_ws() <em>P2 ws</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getP2_ws()
+     * @generated
+     * @ordered
+     */
+    protected String p2_ws = P2_WS_EDEFAULT;
+
+
+    /**
+     * The default value of the '{@link #getP2_arch() <em>P2 arch</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getP2_arch()
+     * @generated
+     * @ordered
+     */
+    protected static final String P2_ARCH_EDEFAULT = null;
+
+
+    /**
+     * The cached value of the '{@link #getP2_arch() <em>P2 arch</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getP2_arch()
+     * @generated
+     * @ordered
+     */
+    protected String p2_arch = P2_ARCH_EDEFAULT;
 
 
     /**
@@ -346,6 +415,84 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
      * <!-- end-user-doc -->
      * @generated
      */
+
+    public String getP2_os() {
+
+        return p2_os;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setP2_os(String newP2_os) {
+
+        String oldP2_os = p2_os;
+        p2_os = newP2_os;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.INSTALL_STEP__P2_OS, oldP2_os, p2_os));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public String getP2_ws() {
+
+        return p2_ws;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setP2_ws(String newP2_ws) {
+
+        String oldP2_ws = p2_ws;
+        p2_ws = newP2_ws;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.INSTALL_STEP__P2_WS, oldP2_ws, p2_ws));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public String getP2_arch() {
+
+        return p2_arch;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setP2_arch(String newP2_arch) {
+
+        String oldP2_arch = p2_arch;
+        p2_arch = newP2_arch;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildstepPackage.INSTALL_STEP__P2_ARCH, oldP2_arch, p2_arch));
+
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
@@ -363,6 +510,12 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
                 return getProductNames();
             case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
                 return isInstallResultStepsSourceFeatures();
+            case BuildstepPackage.INSTALL_STEP__P2_OS:
+                return getP2_os();
+            case BuildstepPackage.INSTALL_STEP__P2_WS:
+                return getP2_ws();
+            case BuildstepPackage.INSTALL_STEP__P2_ARCH:
+                return getP2_arch();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -401,6 +554,15 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
             case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
                 setInstallResultStepsSourceFeatures((Boolean)newValue);
                 return;
+            case BuildstepPackage.INSTALL_STEP__P2_OS:
+                setP2_os((String)newValue);
+                return;
+            case BuildstepPackage.INSTALL_STEP__P2_WS:
+                setP2_ws((String)newValue);
+                return;
+            case BuildstepPackage.INSTALL_STEP__P2_ARCH:
+                setP2_arch((String)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -435,6 +597,15 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
             case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
                 setInstallResultStepsSourceFeatures(INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT);
                 return;
+            case BuildstepPackage.INSTALL_STEP__P2_OS:
+                setP2_os(P2_OS_EDEFAULT);
+                return;
+            case BuildstepPackage.INSTALL_STEP__P2_WS:
+                setP2_ws(P2_WS_EDEFAULT);
+                return;
+            case BuildstepPackage.INSTALL_STEP__P2_ARCH:
+                setP2_arch(P2_ARCH_EDEFAULT);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -463,6 +634,12 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
                 return productNames != null && !productNames.isEmpty();
             case BuildstepPackage.INSTALL_STEP__INSTALL_RESULT_STEPS_SOURCE_FEATURES:
                 return installResultStepsSourceFeatures != INSTALL_RESULT_STEPS_SOURCE_FEATURES_EDEFAULT;
+            case BuildstepPackage.INSTALL_STEP__P2_OS:
+                return P2_OS_EDEFAULT == null ? p2_os != null : !P2_OS_EDEFAULT.equals(p2_os);
+            case BuildstepPackage.INSTALL_STEP__P2_WS:
+                return P2_WS_EDEFAULT == null ? p2_ws != null : !P2_WS_EDEFAULT.equals(p2_ws);
+            case BuildstepPackage.INSTALL_STEP__P2_ARCH:
+                return P2_ARCH_EDEFAULT == null ? p2_arch != null : !P2_ARCH_EDEFAULT.equals(p2_arch);
         }
         return super.eIsSet(featureID);
     }
@@ -490,6 +667,12 @@ public class InstallStepImpl extends StepImpl implements InstallStep {
         result.append(productNames);
         result.append(", installResultStepsSourceFeatures: ");
         result.append(installResultStepsSourceFeatures);
+        result.append(", p2_os: ");
+        result.append(p2_os);
+        result.append(", p2_ws: ");
+        result.append(p2_ws);
+        result.append(", p2_arch: ");
+        result.append(p2_arch);
         result.append(')');
         return result.toString();
     }

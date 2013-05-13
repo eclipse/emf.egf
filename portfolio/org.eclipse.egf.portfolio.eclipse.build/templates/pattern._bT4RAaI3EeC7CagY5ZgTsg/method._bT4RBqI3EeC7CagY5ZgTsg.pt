@@ -54,6 +54,18 @@ for (ResultStep resultStep : installStep.getResultSteps()) {
 <%}%>
 <%}%>
 
+<%if (installStep.getP2_os() != null && installStep.getP2_os().trim().length() > 0) {%>
+                <arg value="-p2.os" />
+                <arg value="<%=installStep.getP2_os()%>" />
+<%}%>
+<%if (installStep.getP2_ws() != null && installStep.getP2_ws().trim().length() > 0) {%>
+                <arg value="-p2.ws" />
+                <arg value="<%=installStep.getP2_ws()%>" />
+<%}%>
+<%if (installStep.getP2_arch() != null && installStep.getP2_arch().trim().length() > 0) {%>
+                <arg value="-p2.arch" />
+                <arg value="<%=installStep.getP2_arch()%>" />
+<%}%>
             </args>
         </eclipse.launch>
 	</target>	
