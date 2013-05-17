@@ -1,2 +1,4 @@
-if (importer != null)		
-	importer.saveGenModelAndEPackages(new BasicMonitor());
+        if (importer != null) {
+            importer.prepareGenModelAndEPackages(new BasicMonitor());
+            importer.saveGenModelAndEPackages(new BasicMonitor());
+        }

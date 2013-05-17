@@ -73,9 +73,6 @@ public class EcoreImporterHelper {
 
     protected static EcoreImporter doCreateEcoreImporter(EcoreImporterHelper helper, IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
         helper.importer = new EcoreImporter() {
-            public ResourceSet createResourceSet() {
-                return new TargetPlatformResourceSet();
-            }
 
             protected List<Resource> computeResourcesToBeSaved() {
                 List<Resource> resources = new UniqueEList.FastCompare<Resource>();
@@ -93,6 +90,10 @@ public class EcoreImporterHelper {
                 return resources;
             }
 
+            public void addToResource(EPackage ePackage, ResourceSet resourceSet) {
+                // disable behavior
+            }
+
         };
         helper.importer.setGenModelContainerPath(containterPath);
         String name = ecoreURI.lastSegment().replace(ECORE_EXT, GENMODEL_EXT);
@@ -102,11 +103,11 @@ public class EcoreImporterHelper {
         // helper.importer.computeEPackages(MONITOR);
         // helper.importer.adjustEPackages(MONITOR);
         helper.importer.computeDefaultGenModelFileName();
-        helper.importer.prepareGenModelAndEPackages(MONITOR);
         EList<GenPackage> genPackages = helper.importer.getGenModel().getGenPackages();
         helper.addEPackages(containterPath, ecoreURI, helper.importer, model);
 
-        helper.importer.saveGenModelAndEPackages(MONITOR);
+        // helper.importer.prepareGenModelAndEPackages(MONITOR);
+        // helper.importer.saveGenModelAndEPackages(MONITOR);
         return helper.importer;
     }
 
@@ -118,7 +119,8 @@ public class EcoreImporterHelper {
     }
 
     protected void addEPackages(IPath containterPath, URI ecoreURI, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
-        ResourceSet resourceSet = ecoreImporter.getGenModel().eResource().getResourceSet();
+
+        ResourceSet resourceSet = ecoreImporter.getGenModelResourceSet();
         List<EPackage> ePackages = getOwnEPackages(resourceSet, ecoreURI);
 
         GenModel genModel = ecoreImporter.getGenModel();
