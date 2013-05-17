@@ -77,7 +77,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
             @Override
             public void close() throws IOException {
-                final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(workspacePath.toFileString()));
+                final IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(workspacePath.toString()));
                 try {
                     // use buf directly to avoid duplication of the array.
                     if (file.exists())
@@ -99,7 +99,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
     @Override
     public boolean exists(URI workspacePath) {
-        return ResourcesPlugin.getWorkspace().getRoot().exists(new Path(workspacePath.toFileString()));
+        return ResourcesPlugin.getWorkspace().getRoot().exists(new Path(workspacePath.toString()));
     }
 
     @Override
@@ -109,9 +109,9 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
     @Override
     public void ensureContainerExists(URI workspacePath, Monitor monitor) {
-    	super.ensureContainerExists(workspacePath, monitor);
+        super.ensureContainerExists(workspacePath, monitor);
     }
-    
+
     public void generateJava(String targetPath, String packageName, String className, String output) {
         generateJava(targetPath, packageName, className, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
     }
