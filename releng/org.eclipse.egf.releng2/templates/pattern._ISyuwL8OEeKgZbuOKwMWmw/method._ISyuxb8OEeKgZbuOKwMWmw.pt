@@ -1,0 +1,29 @@
+    <target name="install.director">
+        <available file="${tools}/director/director" property="director.exists" />
+        <antcall target="do.install.director" />
+    </target>
+    
+    <target name="do.install.director" unless="director.exists">
+        <echo message="Fetching headless director application" />
+        <tempfile destdir="${java.io.tmpdir}" prefix="director-" suffix=".zip" property="director.zip" deleteonexit="true" />
+        <get src="${director.url}" dest="${director.zip}" />
+        <mkdir dir="${tools}" />
+        <unzip src="${director.zip}" dest="${tools}" />
+        <delete file="${director.zip}" />
+
+        <echo message="install eclipse proxy"/>
+        <mkdir dir="${tools}/director/configuration/.settings/"/>
+<echo file="${tools}/director/configuration/.settings/org.eclipse.core.net.prefs">#Fri May 17 19:15:07 CEST 2013
+systemProxiesEnabled=false
+org.eclipse.core.net.hasMigrated=true
+proxyData/HTTPS/port=9898
+proxyData/HTTP/host=proxy.eclipse.org
+nonProxiedHosts=172.30.206.*|localhost|127.0.0.1
+proxyData/HTTP/hasAuth=false
+proxyData/HTTP/port=9898
+eclipse.preferences.version=1
+proxyData/HTTPS/hasAuth=false
+proxyData/HTTPS/host=proxy.eclipse.org
+
+</echo>
+    </target>
