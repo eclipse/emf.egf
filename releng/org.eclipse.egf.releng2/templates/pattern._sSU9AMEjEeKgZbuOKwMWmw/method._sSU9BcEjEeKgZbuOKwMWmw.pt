@@ -9,5 +9,5 @@
                     <jvmarg value="-Dhttps.nonProxyHosts=*.eclipse.org"/>
                     <jvmarg value="-Dftp.proxyHost=proxy.eclipse.org"/>
                     <jvmarg value="-Dftp.proxyPort=9898"/>
-                    <jvmarg value="-Dftp.nonProxyHosts=*.eclipse.org""/>
+                    <jvmarg value="-Dftp.nonProxyHosts=*.eclipse.org"/>
 
