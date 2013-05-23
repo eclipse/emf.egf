@@ -6,10 +6,10 @@
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
- * 
+ *
  * </copyright>
  */
 
@@ -18,9 +18,11 @@ package org.eclipse.egf.portfolio.genchain.tools.utils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
@@ -34,7 +36,9 @@ import org.eclipse.egf.portfolio.genchain.generationChain.EmfGeneration;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.BasicMonitor;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -62,6 +66,7 @@ public class EcoreImporterHelper {
     protected static final String ECORE_EXT = ".ecore";
 
     private EcoreImporter importer;
+    final Set<String> mainPackages = new HashSet<String>();
 
     public static EcoreImporter createDefaultEcoreImporter() throws Exception {
         return new EcoreImporter();
@@ -71,8 +76,19 @@ public class EcoreImporterHelper {
         return doCreateEcoreImporter(new EcoreImporterHelper(), containterPath, ecoreURI, model);
     }
 
-    protected static EcoreImporter doCreateEcoreImporter(EcoreImporterHelper helper, IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
+    protected static EcoreImporter doCreateEcoreImporter(final EcoreImporterHelper helper, IPath containterPath, URI ecoreURI, EmfGeneration model) throws Exception {
         helper.importer = new EcoreImporter() {
+
+            @Override
+            public Diagnostic computeEPackages(Monitor monitor) throws Exception {
+                // for (EPackage ePackage : getEPackages()) {
+                // getEPackageImportInfo(ePackage).setConvert(true);
+                // }
+                // final EPackage ePackage = getEPackages().get(0);
+                final Diagnostic computeEPackages = super.computeEPackages(monitor);
+                // getEPackageImportInfo(ePackage).setConvert(true);
+                return computeEPackages;
+            }
 
             protected List<Resource> computeResourcesToBeSaved() {
                 List<Resource> resources = new UniqueEList.FastCompare<Resource>();
@@ -94,6 +110,10 @@ public class EcoreImporterHelper {
                 // disable behavior
             }
 
+            protected boolean canConvert(EPackage ePackage) {
+                return helper.mainPackages.contains(ePackage.getNsURI());
+            }
+
         };
         helper.importer.setGenModelContainerPath(containterPath);
         String name = ecoreURI.lastSegment().replace(ECORE_EXT, GENMODEL_EXT);
@@ -103,10 +123,12 @@ public class EcoreImporterHelper {
         // helper.importer.computeEPackages(MONITOR);
         // helper.importer.adjustEPackages(MONITOR);
         helper.importer.computeDefaultGenModelFileName();
+        List<EPackage> ePackages = getOwnEPackages(helper.importer.getGenModelResourceSet(), ecoreURI);
+        helper.addEPackages(ePackages, helper.importer, model);
+        helper.importer.prepareGenModelAndEPackages(MONITOR);
+        helper.fixGenPackages(ePackages, helper.importer, model);
         EList<GenPackage> genPackages = helper.importer.getGenModel().getGenPackages();
-        helper.addEPackages(containterPath, ecoreURI, helper.importer, model);
 
-        // helper.importer.prepareGenModelAndEPackages(MONITOR);
         // helper.importer.saveGenModelAndEPackages(MONITOR);
         return helper.importer;
     }
@@ -118,7 +140,61 @@ public class EcoreImporterHelper {
         return uri2package;
     }
 
-    protected void addEPackages(IPath containterPath, URI ecoreURI, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
+    protected void addEPackages(List<EPackage> ePackages, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
+        for (EPackage pack : ePackages)
+            mainPackages.add(pack.getNsURI());
+        ecoreImporter.getEPackages().addAll(ePackages);
+        ecoreImporter.computeEPackages(MONITOR);
+        ecoreImporter.adjustEPackages(MONITOR);
+
+    }
+
+    // protected void addEPackages(IPath containtersPath, URI ecorerURI,
+    // EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
+    // ResourceSet resourceSet = ecoreImporter.getGenModelResourceSet();
+    // List<EPackage> ePackages = getOwnEPackages(resourceSet, ecoreURI);
+    //
+    // ecoreImporter.getEPackages().addAll(ePackages);
+    // ecoreImporter.computeEPackages(MONITOR);
+    // ecoreImporter.adjustEPackages(MONITOR);
+    //
+    // }
+    protected void fixGenPackages(List<EPackage> ePackages, EcoreImporter ecoreImporter, EmfGeneration model) {
+        ResourceSet resourceSet = ecoreImporter.getGenModelResourceSet();
+        List<EPackage> allEPackages = ecoreImporter.getEPackages();
+        Map<String, EPackage> requiredEPackages = asMap(allEPackages);
+
+        GenModel genModel = ecoreImporter.getGenModel();
+        // genModel.setModelName(value);
+        for (EPackage ePackage : ePackages)
+            requiredEPackages.remove(ePackage.getNsURI());
+
+        for (EPackage ePackage : requiredEPackages.values()) {
+            List<GenPackage> genModels = getPluginGenModel(ePackage);
+            if (genModels.isEmpty()) {
+                IPath ecorePath = new Path(ePackage.eResource().getURI().toString());
+                Resource resource = getGenModelResource(ecorePath, genModel, model);
+
+                if (resource != null && !resource.getContents().isEmpty()) {
+                    for (EObject obj : resource.getContents()) {
+                        for (GenPackage genPackage : ((GenModel) obj).getGenPackages()) {
+                            final GenPackage refGenPackage = genModel.findGenPackage(genPackage.getEcorePackage());
+                            if (refGenPackage != null)
+                                genModel.getGenPackages().remove(refGenPackage);
+                            genModel.getUsedGenPackages().add(genPackage);
+                        }
+                    }
+                } else {
+                    handleMissingGenmodel(resourceSet, genModel, ecorePath);
+                }
+
+            } else
+                genModel.getUsedGenPackages().addAll(genModels);
+        }
+
+    }
+
+    protected void addEPackages1(IPath containterPath, URI ecoreURI, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
 
         ResourceSet resourceSet = ecoreImporter.getGenModelResourceSet();
         List<EPackage> ePackages = getOwnEPackages(resourceSet, ecoreURI);
@@ -132,6 +208,7 @@ public class EcoreImporterHelper {
         List<EPackage> allEPackages = ecoreImporter.getEPackages();
         Map<String, EPackage> requiredEPackages = asMap(allEPackages);
 
+        // genModel.setModelName(value);
         for (EPackage ePackage : ePackages)
             requiredEPackages.remove(ePackage.getNsURI());
 
@@ -151,6 +228,7 @@ public class EcoreImporterHelper {
             } else
                 genModel.getUsedGenPackages().addAll(genModels);
         }
+
     }
 
     protected void handleMissingGenmodel(ResourceSet resourceSet, GenModel genModel, IPath ecorePath) {
@@ -173,8 +251,17 @@ public class EcoreImporterHelper {
         URI uri = URI.createPlatformResourceURI(genModelFile.object.getFullPath().toString(), false);
         Resource resource = resourceSet.getResource(uri, true);
         if (resource != null && !resource.getContents().isEmpty()) {
-            for (EObject obj : resource.getContents())
-                genModel.getUsedGenPackages().addAll(((GenModel) obj).getGenPackages());
+            for (EObject obj : resource.getContents()) {
+                // genModel.getUsedGenPackages().addAll(((GenModel)
+                // obj).getGenPackages());
+                for (GenPackage genPackage : ((GenModel) obj).getGenPackages()) {
+                    final GenPackage refGenPackage = genModel.findGenPackage(genPackage.getEcorePackage());
+                    if (refGenPackage != null)
+                        genModel.getGenPackages().remove(refGenPackage);
+                    genModel.getUsedGenPackages().add(genPackage);
+                }
+
+            }
         } else
             throw new RuntimeException("can't find genmodel for " + ecorePath);
     }

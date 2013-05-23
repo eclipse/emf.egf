@@ -135,7 +135,6 @@ public class ModelGenmodelPattern {
 
     protected void method_save(final StringBuffer out, final PatternContext ctx) throws Exception {
         if (importer != null) {
-            importer.prepareGenModelAndEPackages(new BasicMonitor());
             importer.saveGenModelAndEPackages(new BasicMonitor());
         }
 
