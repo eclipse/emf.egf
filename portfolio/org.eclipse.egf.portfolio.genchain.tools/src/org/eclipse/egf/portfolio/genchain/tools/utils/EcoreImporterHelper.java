@@ -192,6 +192,10 @@ public class EcoreImporterHelper {
                 genModel.getUsedGenPackages().addAll(genModels);
         }
 
+        for (GenPackage genPackage : new ArrayList<GenPackage>(genModel.getGenPackages())) {
+            if (!mainPackages.contains(genPackage.getNSURI()))
+                genModel.getGenPackages().remove(genPackage);
+        }
     }
 
     protected void addEPackages1(IPath containterPath, URI ecoreURI, EcoreImporter ecoreImporter, EmfGeneration model) throws Exception {
