@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.egf.core.ui;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.egf.portfolio.genchain.tools;visibility:=reexport,
- org.eclipse.egf.pattern.ui;visibility:=reexport
+ org.eclipse.egf.pattern.ui;visibility:=reexport,
+ org.eclipse.pde.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
