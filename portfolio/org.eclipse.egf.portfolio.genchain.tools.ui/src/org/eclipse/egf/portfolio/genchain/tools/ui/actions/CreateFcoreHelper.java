@@ -76,8 +76,9 @@ public class CreateFcoreHelper {
             @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
                 try {
-                    runFcore(generationChain, fcoreOutputPath, monitor);
-                    generateFeaturePlugin(generationChain, monitor);
+                	TargetPlatformResourceSet set = new TargetPlatformResourceSet();
+                    runFcore(set, generationChain, fcoreOutputPath, monitor);
+                    generateFeaturePlugin(set, generationChain, monitor);
                     if (afterJob != null) {
                         afterJob.schedule(1000);
                         // afterJob.join();
@@ -198,9 +199,9 @@ public class CreateFcoreHelper {
 
     }
 
-    private void runFcore(GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
+    private void runFcore(ResourceSet resourceSet, GenerationChain generationChain, String fcoreOutputPath, IProgressMonitor monitor) throws CoreException {
         URI uri = URI.createPlatformPluginURI(fcoreOutputPath, true);
-        EObject eObject = new TargetPlatformResourceSet().getResource(uri, true).getContents().get(0);
+        EObject eObject = resourceSet.getResource(uri, true).getContents().get(0);
         try {
             RunActivityHelper.run((Activity) eObject, monitor);
         } catch (InvocationException e) {
@@ -208,11 +209,11 @@ public class CreateFcoreHelper {
         }
     }
 
-	private void generateFeaturePlugin(final GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
+	private void generateFeaturePlugin(ResourceSet resourceSet, final GenerationChain generationChain, IProgressMonitor monitor) throws CoreException {
 		final Set<String> pluginList = new HashSet<String>();
 		String fcPath = computeFcoreOutputPath(generationChain);
 		// final Map<String, GenModel> genModels = collectGenModels(generationChain.eResource().getResourceSet(), fcPath);
-		final EList<EObject> collectDomains = collectDomains(generationChain.eResource().getResourceSet(), fcPath);
+		final EList<EObject> collectDomains = collectDomains(resourceSet, fcPath);
 		String pluginName = generationChain.getFactoryComponentName();
 		// We don't include anymore the fcore file
 		// pluginList.add(pluginName);
