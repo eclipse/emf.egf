@@ -21,6 +21,9 @@ import java.util.Map;
 
 import org.eclipse.egf.portfolio.eclipse.build.GenerationHelper;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.BuilddeployFactory;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.HudsonDeployment;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.Trigger;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.CLEAN_TYPE;
@@ -60,14 +63,13 @@ public class BuildcoreResourceHandler extends BasicResourceHandler {
 	}
 
 	private void handleUnknownFeatures(EObject owner, FeatureMap featureMap) {
-		for (Iterator iter = featureMap.iterator(); iter.hasNext();) {
-			FeatureMap.Entry entry = (FeatureMap.Entry) iter.next();
-			EStructuralFeature structuralFeature = entry
-					.getEStructuralFeature();
-			if (handleUnknownFeature(owner, structuralFeature, entry.getValue())) {
-				iter.remove();
-			}
-		}
+	    FeatureMap.Entry[] entries = featureMap.toArray(new FeatureMap.Entry[0]);
+	    for (FeatureMap.Entry entry : entries) {
+            EStructuralFeature structuralFeature = entry.getEStructuralFeature();
+            if (handleUnknownFeature(owner, structuralFeature, entry.getValue())) {
+                featureMap.remove(entry);
+            }
+        }
 	}
 
 	private boolean handleUnknownFeature(EObject owner,
@@ -84,6 +86,19 @@ public class BuildcoreResourceHandler extends BasicResourceHandler {
 			return true;
 		}
 		
+        if ("triggers".equals(structuralFeature.getName()) && owner instanceof Job && value instanceof Trigger) {
+            Job job = (Job) owner;
+            HudsonDeployment hudsonDeployment = (HudsonDeployment) job.getDeployment();
+            
+            if (hudsonDeployment == null) {
+                hudsonDeployment = BuilddeployFactory.eINSTANCE.createHudsonDeployment();
+                job.setDeployment(hudsonDeployment);
+            }
+            
+            hudsonDeployment.getTriggers().add((Trigger) value);
+            return true;
+        }
+
 		if ("cleanBeforeBuild".equals(structuralFeature.getName()) && owner instanceof BuildStep) {
 			CLEAN_TYPE cleanType = CLEAN_TYPE.get((String) value);
 			if (cleanType == CLEAN_TYPE.NOTHING) {

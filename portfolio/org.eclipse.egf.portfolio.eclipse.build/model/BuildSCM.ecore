@@ -22,6 +22,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SVNGenerationLocation" eSuperTypes="BuildDeploy.ecore#//GenerationLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="svnLocation" lowerBound="1"
+        eType="#//SVNLocation"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="SVNProtocol">
     <eLiterals name="HTTP" literal="http://"/>
     <eLiterals name="HTTPS" value="1" literal="https://"/>
@@ -44,6 +48,10 @@
         eType="#//GITLocation"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="folderName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GITGenerationLocation" eSuperTypes="BuildDeploy.ecore#//GenerationLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gitLocation" lowerBound="1"
+        eType="#//GITLocation"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="GITProtocol">
     <eLiterals name="HTTP" literal="http://"/>

@@ -17,7 +17,7 @@
             id="egf/Build_generation.fcore">
       </fcore>
       <fcore
-            id="egf/BuildTrigger_generation.fcore">
+            id="egf/BuildDeploy_generation.fcore">
       </fcore>
       <fcore
             id="egf/BuildFile_generation.fcore">

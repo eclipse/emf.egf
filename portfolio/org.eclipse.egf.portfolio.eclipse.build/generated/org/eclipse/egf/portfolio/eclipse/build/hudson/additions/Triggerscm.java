@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Aug 06 15:15:15 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -40,13 +40,13 @@ public class Triggerscm extends org.eclipse.egf.portfolio.eclipse.build.hudson.c
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("scmTrigger", "http://www.eclipse.org/egf/1.0.0/buildtrigger#//SCMTrigger");
+        paramDesc = new IQuery.ParameterDescription("scmTrigger", "http://www.eclipse.org/egf/1.0.0/builddeploy#//SCMTrigger");
         queryCtx = new HashMap<String, String>();
         List<Object> scmTriggerList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object scmTriggerParameter : scmTriggerList) {
 
-            this.scmTrigger = (org.eclipse.egf.portfolio.eclipse.build.buildtrigger.SCMTrigger) scmTriggerParameter;
+            this.scmTrigger = (org.eclipse.egf.portfolio.eclipse.build.builddeploy.SCMTrigger) scmTriggerParameter;
 
             if (preCondition(ctx)) {
                 ctx.setNode(new Node.Container(currentNode, getClass()));
@@ -79,9 +79,9 @@ public class Triggerscm extends org.eclipse.egf.portfolio.eclipse.build.hudson.c
         return null;
     }
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildtrigger.SCMTrigger scmTrigger = null;
+    protected org.eclipse.egf.portfolio.eclipse.build.builddeploy.SCMTrigger scmTrigger = null;
 
-    public void set_scmTrigger(org.eclipse.egf.portfolio.eclipse.build.buildtrigger.SCMTrigger object) {
+    public void set_scmTrigger(org.eclipse.egf.portfolio.eclipse.build.builddeploy.SCMTrigger object) {
         this.scmTrigger = object;
     }
 

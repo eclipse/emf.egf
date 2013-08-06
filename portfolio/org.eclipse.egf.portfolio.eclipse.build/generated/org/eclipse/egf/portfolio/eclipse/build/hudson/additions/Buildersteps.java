@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Aug 06 16:53:57 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -9,6 +9,8 @@ import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.*;
 import org.eclipse.egf.portfolio.eclipse.build.*;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.*;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 
 public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson.call.Builderadd {
     protected static String nl;
@@ -21,9 +23,13 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "    <hudson.tasks.Ant>" + NL + "      <targets>all</targets>" + NL + "      <buildFile>../releng/build.xml</buildFile>" + NL + "    </hudson.tasks.Ant>" + NL;
-    protected final String TEXT_2 = NL;
-    protected final String TEXT_3 = NL;
+    protected final String TEXT_1 = "    <hudson.tasks.Ant>" + NL + "      <targets>all</targets>";
+    protected final String TEXT_2 = NL + "      <antName>";
+    protected final String TEXT_3 = "</antName>";
+    protected final String TEXT_4 = NL + "      <buildFile>";
+    protected final String TEXT_5 = "/releng/build.xml</buildFile>" + NL + "    </hudson.tasks.Ant>" + NL;
+    protected final String TEXT_6 = NL;
+    protected final String TEXT_7 = NL;
 
     public Buildersteps() {
         //Here is the constructor
@@ -60,8 +66,8 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
             ctx.getReporter().executionFinished(OutputManager.computeExecutionOutput(ctx), ctx);
         }
 
-        stringBuffer.append(TEXT_2);
-        stringBuffer.append(TEXT_3);
+        stringBuffer.append(TEXT_6);
+        stringBuffer.append(TEXT_7);
         return stringBuffer.toString();
     }
 
@@ -95,6 +101,30 @@ public class Buildersteps extends org.eclipse.egf.portfolio.eclipse.build.hudson
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
 
         stringBuffer.append(TEXT_1);
+
+        String buildFile = "..";
+        if (job.getDeployment() instanceof HudsonDeployment) {
+            HudsonDeployment deployment = (HudsonDeployment) job.getDeployment();
+            if (deployment.getAntName() != null) {
+
+                stringBuffer.append(TEXT_2);
+                stringBuffer.append(deployment.getAntName());
+                stringBuffer.append(TEXT_3);
+
+            }
+            if (deployment.getGenerationLocation() instanceof SVNGenerationLocation) {
+                SVNGenerationLocation svnGenerationLocation = (SVNGenerationLocation) deployment.getGenerationLocation();
+                buildFile = "svn/" + svnGenerationLocation.getSvnLocation().getLocalPath() + "/" + svnGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
+            }
+            if (deployment.getGenerationLocation() instanceof GITGenerationLocation) {
+                GITGenerationLocation gitGenerationLocation = (GITGenerationLocation) deployment.getGenerationLocation();
+                buildFile = "git/" + gitGenerationLocation.getFolderName() + "/" + new GenerationHelper().getJobName(ctx, job);
+            }
+        }
+
+        stringBuffer.append(TEXT_4);
+        stringBuffer.append(buildFile);
+        stringBuffer.append(TEXT_5);
         InternalPatternContext ictx = (InternalPatternContext) ctx;
         new Node.DataLeaf(ictx.getNode(), getClass(), "body", stringBuffer.toString());
     }

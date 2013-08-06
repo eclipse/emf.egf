@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:04 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Aug 06 15:15:15 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -40,13 +40,13 @@ public class Triggercron extends org.eclipse.egf.portfolio.eclipse.build.hudson.
         IQuery.ParameterDescription paramDesc = null;
         Node.Container currentNode = ctx.getNode();
 
-        paramDesc = new IQuery.ParameterDescription("cronTrigger", "http://www.eclipse.org/egf/1.0.0/buildtrigger#//CronTrigger");
+        paramDesc = new IQuery.ParameterDescription("cronTrigger", "http://www.eclipse.org/egf/1.0.0/builddeploy#//CronTrigger");
         queryCtx = new HashMap<String, String>();
         List<Object> cronTriggerList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
         for (Object cronTriggerParameter : cronTriggerList) {
 
-            this.cronTrigger = (org.eclipse.egf.portfolio.eclipse.build.buildtrigger.CronTrigger) cronTriggerParameter;
+            this.cronTrigger = (org.eclipse.egf.portfolio.eclipse.build.builddeploy.CronTrigger) cronTriggerParameter;
 
             if (preCondition(ctx)) {
                 ctx.setNode(new Node.Container(currentNode, getClass()));
@@ -79,9 +79,9 @@ public class Triggercron extends org.eclipse.egf.portfolio.eclipse.build.hudson.
         return null;
     }
 
-    protected org.eclipse.egf.portfolio.eclipse.build.buildtrigger.CronTrigger cronTrigger = null;
+    protected org.eclipse.egf.portfolio.eclipse.build.builddeploy.CronTrigger cronTrigger = null;
 
-    public void set_cronTrigger(org.eclipse.egf.portfolio.eclipse.build.buildtrigger.CronTrigger object) {
+    public void set_cronTrigger(org.eclipse.egf.portfolio.eclipse.build.builddeploy.CronTrigger object) {
         this.cronTrigger = object;
     }
 

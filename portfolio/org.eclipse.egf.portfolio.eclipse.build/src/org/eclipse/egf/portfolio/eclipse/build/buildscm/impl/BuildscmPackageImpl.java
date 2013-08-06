@@ -14,23 +14,23 @@
 package org.eclipse.egf.portfolio.eclipse.build.buildscm.impl;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.BuilddeployPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.GITBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.GITLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.GITProtocol;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNBuildLocation;
+import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol;
-
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -73,6 +73,13 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass svnGenerationLocationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass gitEClass = null;
 
     /**
@@ -88,6 +95,13 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
      * @generated
      */
     private EClass gitBuildLocationEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass gitGenerationLocationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -150,6 +164,7 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         isInited = true;
 
         // Initialize simple dependencies
+        BuilddeployPackage.eINSTANCE.eClass();
         BuildstepPackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
@@ -271,6 +286,24 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getSVNGenerationLocation() {
+        return svnGenerationLocationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSVNGenerationLocation_SvnLocation() {
+        return (EReference)svnGenerationLocationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getGIT() {
         return gitEClass;
     }
@@ -361,6 +394,24 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getGITGenerationLocation() {
+        return gitGenerationLocationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getGITGenerationLocation_GitLocation() {
+        return (EReference)gitGenerationLocationEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getSVNProtocol() {
         return svnProtocolEEnum;
     }
@@ -416,6 +467,9 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         createEReference(svnBuildLocationEClass, SVN_BUILD_LOCATION__SVN_LOCATION);
         createEAttribute(svnBuildLocationEClass, SVN_BUILD_LOCATION__FOLDER_NAME);
 
+        svnGenerationLocationEClass = createEClass(SVN_GENERATION_LOCATION);
+        createEReference(svnGenerationLocationEClass, SVN_GENERATION_LOCATION__SVN_LOCATION);
+
         gitEClass = createEClass(GIT);
         createEReference(gitEClass, GIT__LOCATIONS);
 
@@ -428,6 +482,9 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         gitBuildLocationEClass = createEClass(GIT_BUILD_LOCATION);
         createEReference(gitBuildLocationEClass, GIT_BUILD_LOCATION__GIT_LOCATION);
         createEAttribute(gitBuildLocationEClass, GIT_BUILD_LOCATION__FOLDER_NAME);
+
+        gitGenerationLocationEClass = createEClass(GIT_GENERATION_LOCATION);
+        createEReference(gitGenerationLocationEClass, GIT_GENERATION_LOCATION__GIT_LOCATION);
 
         // Create enums
         svnProtocolEEnum = createEEnum(SVN_PROTOCOL);
@@ -460,6 +517,7 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         // Obtain other dependent packages
         BuildcorePackage theBuildcorePackage = (BuildcorePackage)EPackage.Registry.INSTANCE.getEPackage(BuildcorePackage.eNS_URI);
         BuildstepPackage theBuildstepPackage = (BuildstepPackage)EPackage.Registry.INSTANCE.getEPackage(BuildstepPackage.eNS_URI);
+        BuilddeployPackage theBuilddeployPackage = (BuilddeployPackage)EPackage.Registry.INSTANCE.getEPackage(BuilddeployPackage.eNS_URI);
 
         // Create type parameters
 
@@ -468,8 +526,10 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         // Add supertypes to classes
         svnEClass.getESuperTypes().add(theBuildcorePackage.getSCM());
         svnBuildLocationEClass.getESuperTypes().add(theBuildstepPackage.getSourceBuildLocation());
+        svnGenerationLocationEClass.getESuperTypes().add(theBuilddeployPackage.getGenerationLocation());
         gitEClass.getESuperTypes().add(theBuildcorePackage.getSCM());
         gitBuildLocationEClass.getESuperTypes().add(theBuildstepPackage.getSourceBuildLocation());
+        gitGenerationLocationEClass.getESuperTypes().add(theBuilddeployPackage.getGenerationLocation());
 
         // Initialize classes and features; add operations and parameters
         initEClass(svnEClass, org.eclipse.egf.portfolio.eclipse.build.buildscm.SVN.class, "SVN", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -486,6 +546,9 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         initEReference(getSVNBuildLocation_SvnLocation(), this.getSVNLocation(), null, "svnLocation", null, 1, 1, SVNBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getSVNBuildLocation_FolderName(), ecorePackage.getEString(), "folderName", "", 1, 1, SVNBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+        initEClass(svnGenerationLocationEClass, SVNGenerationLocation.class, "SVNGenerationLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getSVNGenerationLocation_SvnLocation(), this.getSVNLocation(), null, "svnLocation", null, 1, 1, SVNGenerationLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
         initEClass(gitEClass, org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT.class, "GIT", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGIT_Locations(), this.getGITLocation(), null, "locations", null, 1, -1, org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -498,6 +561,9 @@ public class BuildscmPackageImpl extends EPackageImpl implements BuildscmPackage
         initEClass(gitBuildLocationEClass, GITBuildLocation.class, "GITBuildLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getGITBuildLocation_GitLocation(), this.getGITLocation(), null, "gitLocation", null, 1, 1, GITBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getGITBuildLocation_FolderName(), ecorePackage.getEString(), "folderName", "", 1, 1, GITBuildLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(gitGenerationLocationEClass, GITGenerationLocation.class, "GITGenerationLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getGITGenerationLocation_GitLocation(), this.getGITLocation(), null, "gitLocation", null, 1, 1, GITGenerationLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(svnProtocolEEnum, SVNProtocol.class, "SVNProtocol");

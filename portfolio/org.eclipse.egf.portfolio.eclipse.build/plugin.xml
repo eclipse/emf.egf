@@ -37,9 +37,9 @@
    
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipse.org/egf/1.0.0/buildtrigger"
-            class="org.eclipse.egf.portfolio.eclipse.build.buildtrigger.BuildtriggerPackage"
-            genModel="model/BuildTrigger.genmodel"/>
+            uri="http://www.eclipse.org/egf/1.0.0/builddeploy"
+            class="org.eclipse.egf.portfolio.eclipse.build.builddeploy.BuilddeployPackage"
+            genModel="model/BuildDeploy.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

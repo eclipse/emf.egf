@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildscm.provider;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.provider.BuildCoreEditPlugin;
 
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.provider.BuildDeployEditPlugin;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.provider.BuildStepEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 
@@ -60,6 +61,7 @@ public final class BuildSCMEditPlugin extends EMFPlugin {
         super
           (new ResourceLocator [] {
              BuildCoreEditPlugin.INSTANCE,
+             BuildDeployEditPlugin.INSTANCE,
              BuildStepEditPlugin.INSTANCE,
            });
     }

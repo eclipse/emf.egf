@@ -17,6 +17,7 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcoreFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Deployment;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Item;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.ItemProperties;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
@@ -27,14 +28,11 @@ import org.eclipse.egf.portfolio.eclipse.build.buildcore.PropertyType;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.StepContainer;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -119,6 +117,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass deploymentEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass propertyEClass = null;
 
     /**
@@ -127,13 +132,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * @generated
      */
     private EClass propertyPackageEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass triggerEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -359,7 +357,7 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getJob_Triggers() {
+    public EReference getJob_Deployment() {
         return (EReference)jobEClass.getEStructuralFeatures().get(1);
     }
 
@@ -388,6 +386,15 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      */
     public EClass getSCM() {
         return scmEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getDeployment() {
+        return deploymentEClass;
     }
 
     /**
@@ -442,15 +449,6 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
      */
     public EReference getPropertyPackage_Properties() {
         return (EReference)propertyPackageEClass.getEStructuralFeatures().get(2);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getTrigger() {
-        return triggerEClass;
     }
 
     /**
@@ -539,13 +537,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         jobEClass = createEClass(JOB);
         createEReference(jobEClass, JOB__SCMS);
-        createEReference(jobEClass, JOB__TRIGGERS);
+        createEReference(jobEClass, JOB__DEPLOYMENT);
 
         stepContainerEClass = createEClass(STEP_CONTAINER);
 
         scmEClass = createEClass(SCM);
 
-        triggerEClass = createEClass(TRIGGER);
+        deploymentEClass = createEClass(DEPLOYMENT);
 
         reuseStepEClass = createEClass(REUSE_STEP);
         createEReference(reuseStepEClass, REUSE_STEP__REUSED_STEP);
@@ -624,13 +622,13 @@ public class BuildcorePackageImpl extends EPackageImpl implements BuildcorePacka
 
         initEClass(jobEClass, Job.class, "Job", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getJob_Scms(), this.getSCM(), null, "scms", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getJob_Triggers(), this.getTrigger(), null, "triggers", null, 0, -1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getJob_Deployment(), this.getDeployment(), null, "deployment", null, 0, 1, Job.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(stepContainerEClass, StepContainer.class, "StepContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(scmEClass, org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM.class, "SCM", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-        initEClass(triggerEClass, Trigger.class, "Trigger", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(deploymentEClass, Deployment.class, "Deployment", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(reuseStepEClass, ReuseStep.class, "ReuseStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getReuseStep_ReusedStep(), this.getStep(), null, "reusedStep", null, 1, 1, ReuseStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

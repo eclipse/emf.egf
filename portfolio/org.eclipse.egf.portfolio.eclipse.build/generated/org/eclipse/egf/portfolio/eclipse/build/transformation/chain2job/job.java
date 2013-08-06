@@ -1,4 +1,4 @@
-//Generated on Thu Aug 02 17:37:55 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 06 15:15:15 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.transformation.chain2job;
 
 import java.util.*;
@@ -50,7 +50,7 @@ public class job {
         method_movePropertiesToNewJob(new StringBuffer(), ictx);
         method_moveScmToNewJob(new StringBuffer(), ictx);
         method_moveStepsToNewJob(new StringBuffer(), ictx);
-        method_moveTriggersToNewJob(new StringBuffer(), ictx);
+        method_moveDeploymentToNewJob(new StringBuffer(), ictx);
         method_removeJobFromChain(new StringBuffer(), ictx);
         method_handleCleanStep(new StringBuffer(), ictx);
         ictx.setNode(currentNode);
@@ -121,14 +121,18 @@ public class job {
         new Node.DataLeaf(ictx.getNode(), getClass(), "moveStepsToNewJob", out.toString());
     }
 
-    protected void method_moveTriggersToNewJob(final StringBuffer out, final PatternContext ctx) throws Exception {
+    protected void method_moveDeploymentToNewJob(final StringBuffer out, final PatternContext ctx) throws Exception {
         if (job.equals(newJob))
             return;
 
-        newJob.getTriggers().addAll(job.getTriggers());
+        if (job.getDeployment() != null) {
+            if (newJob.getDeployment() != null)
+                throw new IllegalStateException("Cannot merge several deployments into one.");
+            newJob.setDeployment(job.getDeployment());
+        }
 
         InternalPatternContext ictx = (InternalPatternContext) ctx;
-        new Node.DataLeaf(ictx.getNode(), getClass(), "moveTriggersToNewJob", out.toString());
+        new Node.DataLeaf(ictx.getNode(), getClass(), "moveDeploymentToNewJob", out.toString());
     }
 
     protected void method_removeJobFromChain(final StringBuffer out, final PatternContext ctx) throws Exception {

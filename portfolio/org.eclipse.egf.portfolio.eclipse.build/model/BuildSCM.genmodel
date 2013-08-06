@@ -5,7 +5,7 @@
     modelDirectory="/org.eclipse.egf.portfolio.eclipse.build/src" editDirectory="/org.eclipse.egf.portfolio.eclipse.build.ui/src"
     modelPluginID="org.eclipse.egf.portfolio.eclipse.build" modelName="BuildSCM" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" editPluginID="org.eclipse.egf.portfolio.eclipse.build.ui"
-    usedGenPackages="BuildCore.genmodel#//buildcore platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel#//buildstep">
+    usedGenPackages="BuildCore.genmodel#//buildcore platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildDeploy.genmodel#//builddeploy platform:/plugin/org.eclipse.egf.portfolio.eclipse.build/model/BuildStep.genmodel#//buildstep">
   <foreignModel>BuildSCM.ecore</foreignModel>
   <genPackages prefix="Buildscm" basePackage="org.eclipse.egf.portfolio.eclipse.build"
       disposableProviderFactory="true" extensibleProviderFactory="true" childCreationExtenders="true"
@@ -36,6 +36,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildSCM.ecore#//SVNBuildLocation/svnLocation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildSCM.ecore#//SVNBuildLocation/folderName"/>
     </genClasses>
+    <genClasses ecoreClass="BuildSCM.ecore#//SVNGenerationLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildSCM.ecore#//SVNGenerationLocation/svnLocation"/>
+    </genClasses>
     <genClasses ecoreClass="BuildSCM.ecore#//GIT">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildSCM.ecore#//GIT/locations"/>
     </genClasses>
@@ -48,6 +51,9 @@
     <genClasses ecoreClass="BuildSCM.ecore#//GITBuildLocation">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildSCM.ecore#//GITBuildLocation/gitLocation"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BuildSCM.ecore#//GITBuildLocation/folderName"/>
+    </genClasses>
+    <genClasses ecoreClass="BuildSCM.ecore#//GitGenerationLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildSCM.ecore#//GitGenerationLocation/gitLocation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

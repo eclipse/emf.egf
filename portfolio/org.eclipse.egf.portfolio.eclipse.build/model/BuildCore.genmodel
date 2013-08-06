@@ -45,11 +45,11 @@
     <genClasses image="false" ecoreClass="BuildCore.ecore#//Step"/>
     <genClasses ecoreClass="BuildCore.ecore#//Job">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Job/scms"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Job/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BuildCore.ecore#//Job/deployment"/>
     </genClasses>
     <genClasses ecoreClass="BuildCore.ecore#//StepContainer"/>
     <genClasses image="false" ecoreClass="BuildCore.ecore#//SCM"/>
-    <genClasses ecoreClass="BuildCore.ecore#//Trigger"/>
+    <genClasses image="false" ecoreClass="BuildCore.ecore#//Deployment"/>
     <genClasses ecoreClass="BuildCore.ecore#//ReuseStep">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BuildCore.ecore#//ReuseStep/reusedStep"/>
     </genClasses>

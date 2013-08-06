@@ -95,7 +95,7 @@ public class JobItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(BuildcorePackage.Literals.JOB__SCMS);
-            childrenFeatures.add(BuildcorePackage.Literals.JOB__TRIGGERS);
+            childrenFeatures.add(BuildcorePackage.Literals.JOB__DEPLOYMENT);
         }
         return childrenFeatures;
     }
@@ -153,7 +153,7 @@ public class JobItemProvider
 
         switch (notification.getFeatureID(Job.class)) {
             case BuildcorePackage.JOB__SCMS:
-            case BuildcorePackage.JOB__TRIGGERS:
+            case BuildcorePackage.JOB__DEPLOYMENT:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }

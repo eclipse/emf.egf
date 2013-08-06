@@ -181,9 +181,9 @@ public class BuildcoreSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case BuildcorePackage.TRIGGER: {
-                Trigger trigger = (Trigger)theEObject;
-                T result = caseTrigger(trigger);
+            case BuildcorePackage.DEPLOYMENT: {
+                Deployment deployment = (Deployment)theEObject;
+                T result = caseDeployment(deployment);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -335,6 +335,21 @@ public class BuildcoreSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Deployment</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Deployment</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseDeployment(Deployment object) {
+        return null;
+    }
+
+				/**
      * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -361,21 +376,6 @@ public class BuildcoreSwitch<T> {
      * @generated
      */
     public T casePropertyPackage(PropertyPackage object) {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Trigger</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Trigger</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseTrigger(Trigger object) {
         return null;
     }
 

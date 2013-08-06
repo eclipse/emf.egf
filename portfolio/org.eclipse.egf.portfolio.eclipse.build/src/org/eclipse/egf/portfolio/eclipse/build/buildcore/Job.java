@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getScms <em>Scms</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getTriggers <em>Triggers</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getDeployment <em>Deployment</em>}</li>
  * </ul>
  * </p>
  *
@@ -85,22 +85,37 @@ public interface Job extends AbstractStepContainer {
 
 
     /**
-     * Returns the value of the '<em><b>Triggers</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger}.
+     * Returns the value of the '<em><b>Deployment</b></em>' containment reference.
 
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Triggers</em>' containment reference list isn't clear,
+     * If the meaning of the '<em>Deployment</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Triggers</em>' containment reference list.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Triggers()
+     * @return the value of the '<em>Deployment</em>' containment reference.
+     * @see #setDeployment(Deployment)
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage#getJob_Deployment()
      * @model containment="true"
      * @generated
      */
 
-    EList<Trigger> getTriggers();
+    Deployment getDeployment();
+
+
+
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getDeployment <em>Deployment</em>}' containment reference.
+
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Deployment</em>' containment reference.
+     * @see #getDeployment()
+     * @generated
+     */
+
+    void setDeployment(Deployment value);
 
 
 

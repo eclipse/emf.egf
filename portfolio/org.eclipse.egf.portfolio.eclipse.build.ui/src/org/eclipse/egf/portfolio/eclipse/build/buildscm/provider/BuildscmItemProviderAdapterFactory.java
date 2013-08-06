@@ -19,31 +19,23 @@ import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
-
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreSwitch;
-
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.BuilddeployPackage;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.HudsonDeployment;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.util.BuilddeploySwitch;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmFactory;
-
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.util.BuildscmAdapterFactory;
-
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocationContainer;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildLocationContainer;
-import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildStep;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.util.BuildstepSwitch;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -191,6 +183,29 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected SVNGenerationLocationItemProvider svnGenerationLocationItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createSVNGenerationLocationAdapter() {
+        if (svnGenerationLocationItemProvider == null) {
+            svnGenerationLocationItemProvider = new SVNGenerationLocationItemProvider(this);
+        }
+
+        return svnGenerationLocationItemProvider;
+    }
+
+				/**
      * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -260,6 +275,29 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected GITGenerationLocationItemProvider gitGenerationLocationItemProvider;
+
+				/**
+     * This creates an adapter for a {@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createGITGenerationLocationAdapter() {
+        if (gitGenerationLocationItemProvider == null) {
+            gitGenerationLocationItemProvider = new GITGenerationLocationItemProvider(this);
+        }
+
+        return gitGenerationLocationItemProvider;
+    }
+
+                /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -388,9 +426,11 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
         if (svnItemProvider != null) svnItemProvider.dispose();
         if (svnLocationItemProvider != null) svnLocationItemProvider.dispose();
         if (svnBuildLocationItemProvider != null) svnBuildLocationItemProvider.dispose();
+        if (svnGenerationLocationItemProvider != null) svnGenerationLocationItemProvider.dispose();
         if (gitItemProvider != null) gitItemProvider.dispose();
         if (gitLocationItemProvider != null) gitLocationItemProvider.dispose();
         if (gitBuildLocationItemProvider != null) gitBuildLocationItemProvider.dispose();
+        if (gitGenerationLocationItemProvider != null) gitGenerationLocationItemProvider.dispose();
     }
 
     /**
@@ -455,6 +495,106 @@ public class BuildscmItemProviderAdapterFactory extends BuildscmAdapterFactory i
             (createChildParameter
                 (BuildcorePackage.Literals.JOB__SCMS,
                  BuildscmFactory.eINSTANCE.createGIT()));
+
+
+
+                return null;
+            }
+ 
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected CommandParameter createChildParameter(Object feature, Object child) {
+                return new CommandParameter(null, feature, child);
+            }
+
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+            ArrayList<Object> result = new ArrayList<Object>();
+           new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+           return result;
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public ResourceLocator getResourceLocator() {
+            return BuildSCMEditPlugin.INSTANCE;
+        }
+    }
+
+    /**
+     * A child creation extender for the {@link BuilddeployPackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static class BuilddeployChildCreationExtender implements IChildCreationExtender {
+        /**
+         * The switch for creating child descriptors specific to each extended class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected static class CreationSwitch extends BuilddeploySwitch<Object> {
+            /**
+             * The child descriptors being populated.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected List<Object> newChildDescriptors;
+
+            /**
+             * The domain in which to create the children.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected EditingDomain editingDomain;
+
+            /**
+             * Creates the a switch for populating child descriptors in the given domain.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+                this.newChildDescriptors = newChildDescriptors;
+                this.editingDomain = editingDomain;
+            }
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
+            public Object caseHudsonDeployment(HudsonDeployment object) {
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuilddeployPackage.Literals.HUDSON_DEPLOYMENT__GENERATION_LOCATION,
+                 BuildscmFactory.eINSTANCE.createSVNGenerationLocation()));
+
+
+
+
+
+        newChildDescriptors.add
+            (createChildParameter
+                (BuilddeployPackage.Literals.HUDSON_DEPLOYMENT__GENERATION_LOCATION,
+                 BuildscmFactory.eINSTANCE.createGITGenerationLocation()));
 
 
 

@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildscm;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
 
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.BuilddeployPackage;
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.BuildstepPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -225,6 +226,43 @@ public interface BuildscmPackage extends EPackage {
     int SVN_BUILD_LOCATION_FEATURE_COUNT = BuildstepPackage.SOURCE_BUILD_LOCATION_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNGenerationLocationImpl <em>SVN Generation Location</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNGenerationLocationImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getSVNGenerationLocation()
+     * @generated
+     */
+    int SVN_GENERATION_LOCATION = 3;
+
+    /**
+     * The feature id for the '<em><b>Folder Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_GENERATION_LOCATION__FOLDER_NAME = BuilddeployPackage.GENERATION_LOCATION__FOLDER_NAME;
+
+    /**
+     * The feature id for the '<em><b>Svn Location</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_GENERATION_LOCATION__SVN_LOCATION = BuilddeployPackage.GENERATION_LOCATION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>SVN Generation Location</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SVN_GENERATION_LOCATION_FEATURE_COUNT = BuilddeployPackage.GENERATION_LOCATION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.GITImpl <em>GIT</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -232,7 +270,7 @@ public interface BuildscmPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getGIT()
      * @generated
      */
-    int GIT = 3;
+    int GIT = 4;
 
     /**
      * The feature id for the '<em><b>Locations</b></em>' containment reference list.
@@ -260,7 +298,7 @@ public interface BuildscmPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getGITLocation()
      * @generated
      */
-    int GIT_LOCATION = 4;
+    int GIT_LOCATION = 5;
 
     /**
      * The feature id for the '<em><b>Protocol</b></em>' attribute.
@@ -315,7 +353,7 @@ public interface BuildscmPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getGITBuildLocation()
      * @generated
      */
-    int GIT_BUILD_LOCATION = 5;
+    int GIT_BUILD_LOCATION = 6;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' attribute.
@@ -363,6 +401,43 @@ public interface BuildscmPackage extends EPackage {
     int GIT_BUILD_LOCATION_FEATURE_COUNT = BuildstepPackage.SOURCE_BUILD_LOCATION_FEATURE_COUNT + 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.GITGenerationLocationImpl <em>GIT Generation Location</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.GITGenerationLocationImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getGITGenerationLocation()
+     * @generated
+     */
+    int GIT_GENERATION_LOCATION = 7;
+
+    /**
+     * The feature id for the '<em><b>Folder Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GIT_GENERATION_LOCATION__FOLDER_NAME = BuilddeployPackage.GENERATION_LOCATION__FOLDER_NAME;
+
+    /**
+     * The feature id for the '<em><b>Git Location</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GIT_GENERATION_LOCATION__GIT_LOCATION = BuilddeployPackage.GENERATION_LOCATION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>GIT Generation Location</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int GIT_GENERATION_LOCATION_FEATURE_COUNT = BuilddeployPackage.GENERATION_LOCATION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol <em>SVN Protocol</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -370,7 +445,7 @@ public interface BuildscmPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getSVNProtocol()
      * @generated
      */
-    int SVN_PROTOCOL = 6;
+    int SVN_PROTOCOL = 8;
 
 
     /**
@@ -381,7 +456,7 @@ public interface BuildscmPackage extends EPackage {
      * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getGITProtocol()
      * @generated
      */
-    int GIT_PROTOCOL = 7;
+    int GIT_PROTOCOL = 9;
 
 
     /**
@@ -503,6 +578,27 @@ public interface BuildscmPackage extends EPackage {
     EAttribute getSVNBuildLocation_FolderName();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation <em>SVN Generation Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>SVN Generation Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation
+     * @generated
+     */
+    EClass getSVNGenerationLocation();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation#getSvnLocation <em>Svn Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Svn Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation#getSvnLocation()
+     * @see #getSVNGenerationLocation()
+     * @generated
+     */
+    EReference getSVNGenerationLocation_SvnLocation();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT <em>GIT</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -608,6 +704,27 @@ public interface BuildscmPackage extends EPackage {
      * @generated
      */
     EAttribute getGITBuildLocation_FolderName();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation <em>GIT Generation Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>GIT Generation Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation
+     * @generated
+     */
+    EClass getGITGenerationLocation();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation#getGitLocation <em>Git Location</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Git Location</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation#getGitLocation()
+     * @see #getGITGenerationLocation()
+     * @generated
+     */
+    EReference getGITGenerationLocation_GitLocation();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol <em>SVN Protocol</em>}'.
@@ -746,6 +863,24 @@ public interface BuildscmPackage extends EPackage {
         EAttribute SVN_BUILD_LOCATION__FOLDER_NAME = eINSTANCE.getSVNBuildLocation_FolderName();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNGenerationLocationImpl <em>SVN Generation Location</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.SVNGenerationLocationImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getSVNGenerationLocation()
+         * @generated
+         */
+        EClass SVN_GENERATION_LOCATION = eINSTANCE.getSVNGenerationLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Svn Location</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SVN_GENERATION_LOCATION__SVN_LOCATION = eINSTANCE.getSVNGenerationLocation_SvnLocation();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.GITImpl <em>GIT</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -830,6 +965,24 @@ public interface BuildscmPackage extends EPackage {
          * @generated
          */
         EAttribute GIT_BUILD_LOCATION__FOLDER_NAME = eINSTANCE.getGITBuildLocation_FolderName();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.GITGenerationLocationImpl <em>GIT Generation Location</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.GITGenerationLocationImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.impl.BuildscmPackageImpl#getGITGenerationLocation()
+         * @generated
+         */
+        EClass GIT_GENERATION_LOCATION = eINSTANCE.getGITGenerationLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Git Location</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference GIT_GENERATION_LOCATION__GIT_LOCATION = eINSTANCE.getGITGenerationLocation_GitLocation();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNProtocol <em>SVN Protocol</em>}' enum.

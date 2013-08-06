@@ -78,9 +78,11 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
             case BuildscmPackage.SVN: return createSVN();
             case BuildscmPackage.SVN_LOCATION: return createSVNLocation();
             case BuildscmPackage.SVN_BUILD_LOCATION: return createSVNBuildLocation();
+            case BuildscmPackage.SVN_GENERATION_LOCATION: return createSVNGenerationLocation();
             case BuildscmPackage.GIT: return createGIT();
             case BuildscmPackage.GIT_LOCATION: return createGITLocation();
             case BuildscmPackage.GIT_BUILD_LOCATION: return createGITBuildLocation();
+            case BuildscmPackage.GIT_GENERATION_LOCATION: return createGITGenerationLocation();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -155,6 +157,16 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public SVNGenerationLocation createSVNGenerationLocation() {
+        SVNGenerationLocationImpl svnGenerationLocation = new SVNGenerationLocationImpl();
+        return svnGenerationLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public GIT createGIT() {
         GITImpl git = new GITImpl();
         return git;
@@ -178,6 +190,16 @@ public class BuildscmFactoryImpl extends EFactoryImpl implements BuildscmFactory
     public GITBuildLocation createGITBuildLocation() {
         GITBuildLocationImpl gitBuildLocation = new GITBuildLocationImpl();
         return gitBuildLocation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public GITGenerationLocation createGITGenerationLocation() {
+        GITGenerationLocationImpl gitGenerationLocation = new GITGenerationLocationImpl();
+        return gitGenerationLocation;
     }
 
     /**

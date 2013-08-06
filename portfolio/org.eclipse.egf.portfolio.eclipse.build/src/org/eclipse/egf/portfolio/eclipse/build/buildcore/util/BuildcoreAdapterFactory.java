@@ -130,8 +130,8 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
                 return createSCMAdapter();
             }
             @Override
-            public Adapter caseTrigger(Trigger object) {
-                return createTriggerAdapter();
+            public Adapter caseDeployment(Deployment object) {
+                return createDeploymentAdapter();
             }
             @Override
             public Adapter caseReuseStep(ReuseStep object) {
@@ -284,6 +284,20 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Deployment <em>Deployment</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Deployment
+     * @generated
+     */
+	public Adapter createDeploymentAdapter() {
+        return null;
+    }
+
+				/**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property <em>Property</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -308,20 +322,6 @@ public class BuildcoreAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPropertyPackageAdapter() {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger <em>Trigger</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger
-     * @generated
-     */
-    public Adapter createTriggerAdapter() {
         return null;
     }
 

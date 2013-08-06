@@ -67,6 +67,15 @@ public interface BuildscmFactory extends EFactory {
     SVNBuildLocation createSVNBuildLocation();
 
     /**
+     * Returns a new object of class '<em>SVN Generation Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>SVN Generation Location</em>'.
+     * @generated
+     */
+    SVNGenerationLocation createSVNGenerationLocation();
+
+    /**
      * Returns a new object of class '<em>GIT</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -92,6 +101,15 @@ public interface BuildscmFactory extends EFactory {
      * @generated
      */
     GITBuildLocation createGITBuildLocation();
+
+    /**
+     * Returns a new object of class '<em>GIT Generation Location</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>GIT Generation Location</em>'.
+     * @generated
+     */
+    GITGenerationLocation createGITGenerationLocation();
 
     /**
      * Returns the package supported by this factory.

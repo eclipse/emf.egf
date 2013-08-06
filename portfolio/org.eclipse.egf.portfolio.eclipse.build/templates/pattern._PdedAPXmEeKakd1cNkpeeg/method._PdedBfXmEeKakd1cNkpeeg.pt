@@ -1,0 +1,40 @@
+<%
+if (job.getDeployment() instanceof HudsonDeployment) {
+HudsonDeployment deployment = (HudsonDeployment) job.getDeployment();
+if (deployment.getUsers().size() > 0) {
+%>
+    <hudson.security.AuthorizationMatrixProperty>
+<%
+	for (User user : deployment.getUsers()) {
+		if (user.getPermission() == PermissionType.READ)  {
+			%>
+      <permission>hudson.model.Item.Read:<%=user.getLogin()%></permission>
+			<%
+		}
+		if (user.getPermission() == PermissionType.EXECUTE)  {
+			%>
+      <permission>hudson.model.Run.Update:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Run.Delete:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Build:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Workspace:<%=user.getLogin()%></permission>
+			<%
+		}
+		if (user.getPermission() == PermissionType.WRITE)  {
+			%>
+      <permission>hudson.model.Item.Cancel:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Read:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Delete:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Workspace:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Build:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Item.Configure:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Run.Update:<%=user.getLogin()%></permission>
+      <permission>hudson.model.Run.Delete:<%=user.getLogin()%></permission>
+			<%
+		}
+	}
+%>
+    </hudson.security.AuthorizationMatrixProperty>
+<%
+}
+}
+%>

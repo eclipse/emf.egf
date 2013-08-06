@@ -589,13 +589,13 @@ public interface BuildcorePackage extends EPackage {
     int JOB__SCMS = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
+     * The feature id for the '<em><b>Deployment</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JOB__TRIGGERS = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 1;
+    int JOB__DEPLOYMENT = ABSTRACT_STEP_CONTAINER_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Job</em>' class.
@@ -689,24 +689,23 @@ public interface BuildcorePackage extends EPackage {
     int SCM_FEATURE_COUNT = 0;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl <em>Trigger</em>}' class.
+     * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.DeploymentImpl <em>Deployment</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.DeploymentImpl
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getDeployment()
      * @generated
      */
-    int TRIGGER = 11;
+    int DEPLOYMENT = 11;
 
     /**
-     * The number of structural features of the '<em>Trigger</em>' class.
+     * The number of structural features of the '<em>Deployment</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int TRIGGER_FEATURE_COUNT = 0;
-
+    int DEPLOYMENT_FEATURE_COUNT = 0;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ReuseStepImpl <em>Reuse Step</em>}' class.
@@ -945,15 +944,15 @@ public interface BuildcorePackage extends EPackage {
     EReference getJob_Scms();
 
     /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getTriggers <em>Triggers</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getDeployment <em>Deployment</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Triggers</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getTriggers()
+     * @return the meta object for the containment reference '<em>Deployment</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Job#getDeployment()
      * @see #getJob()
      * @generated
      */
-    EReference getJob_Triggers();
+    EReference getJob_Deployment();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Step <em>Step</em>}'.
@@ -984,6 +983,16 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EClass getSCM();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Deployment <em>Deployment</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Deployment</em>'.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Deployment
+     * @generated
+     */
+    EClass getDeployment();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Property <em>Property</em>}'.
@@ -1048,16 +1057,6 @@ public interface BuildcorePackage extends EPackage {
      * @generated
      */
     EReference getPropertyPackage_Properties();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger <em>Trigger</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Trigger</em>'.
-     * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger
-     * @generated
-     */
-    EClass getTrigger();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.ReuseStep <em>Reuse Step</em>}'.
@@ -1253,12 +1252,12 @@ public interface BuildcorePackage extends EPackage {
         EReference JOB__SCMS = eINSTANCE.getJob_Scms();
 
         /**
-         * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
+         * The meta object literal for the '<em><b>Deployment</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference JOB__TRIGGERS = eINSTANCE.getJob_Triggers();
+        EReference JOB__DEPLOYMENT = eINSTANCE.getJob_Deployment();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.StepImpl <em>Step</em>}' class.
@@ -1289,6 +1288,16 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EClass SCM = eINSTANCE.getSCM();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.DeploymentImpl <em>Deployment</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.DeploymentImpl
+         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getDeployment()
+         * @generated
+         */
+        EClass DEPLOYMENT = eINSTANCE.getDeployment();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.PropertyImpl <em>Property</em>}' class.
@@ -1341,16 +1350,6 @@ public interface BuildcorePackage extends EPackage {
          * @generated
          */
         EReference PROPERTY_PACKAGE__PROPERTIES = eINSTANCE.getPropertyPackage_Properties();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl <em>Trigger</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.TriggerImpl
-         * @see org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.BuildcorePackageImpl#getTrigger()
-         * @generated
-         */
-        EClass TRIGGER = eINSTANCE.getTrigger();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.ReuseStepImpl <em>Reuse Step</em>}' class.

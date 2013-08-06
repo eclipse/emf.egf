@@ -45,12 +45,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="Job" eSuperTypes="#//AbstractStepContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="scms" eType="#//SCM" containment="true"
         resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="triggers" upperBound="-1"
-        eType="#//Trigger" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deployment" eType="#//Deployment"
+        containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StepContainer" eSuperTypes="#//AbstractStepContainer #//Step"/>
   <eClassifiers xsi:type="ecore:EClass" name="SCM" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Trigger" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Deployment" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="ReuseStep" eSuperTypes="#//Step">
     <eStructuralFeatures xsi:type="ecore:EReference" name="reusedStep" lowerBound="1"
         eType="#//Step"/>

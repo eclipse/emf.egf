@@ -13,30 +13,15 @@
 
 package org.eclipse.egf.portfolio.eclipse.build.buildcore.impl;
 
-import java.util.Collection;
-
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.AbstractStepContainer;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.BuildcorePackage;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Chain;
+import org.eclipse.egf.portfolio.eclipse.build.buildcore.Deployment;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.Job;
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Step;
-import org.eclipse.egf.portfolio.eclipse.build.buildcore.Trigger;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#getScms <em>Scms</em>}</li>
- *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#getTriggers <em>Triggers</em>}</li>
+ *   <li>{@link org.eclipse.egf.portfolio.eclipse.build.buildcore.impl.JobImpl#getDeployment <em>Deployment</em>}</li>
  * </ul>
  * </p>
  *
@@ -75,16 +60,14 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
 
 
     /**
-     * The cached value of the '{@link #getTriggers() <em>Triggers</em>}' containment reference list.
+     * The cached value of the '{@link #getDeployment() <em>Deployment</em>}' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTriggers()
+     * @see #getDeployment()
      * @generated
      * @ordered
      */
-    protected EList<Trigger> triggers;
-
-
+    protected Deployment deployment;
 
 
     /**
@@ -178,18 +161,50 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
      * @generated
      */
 
-    public EList<Trigger> getTriggers() {
+    public Deployment getDeployment() {
 
-        if (triggers == null) {
-            triggers = new EObjectContainmentEList<Trigger>(Trigger.class, this, BuildcorePackage.JOB__TRIGGERS);
-        }
-        return triggers;
+        return deployment;
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
 
+    public NotificationChain basicSetDeployment(Deployment newDeployment, NotificationChain msgs) {
 
+        Deployment oldDeployment = deployment;
+        deployment = newDeployment;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildcorePackage.JOB__DEPLOYMENT, oldDeployment, newDeployment);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
 
+        return msgs;
+    }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+
+    public void setDeployment(Deployment newDeployment) {
+
+        if (newDeployment != deployment) {
+            NotificationChain msgs = null;
+            if (deployment != null)
+                msgs = ((InternalEObject)deployment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildcorePackage.JOB__DEPLOYMENT, null, msgs);
+            if (newDeployment != null)
+                msgs = ((InternalEObject)newDeployment).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildcorePackage.JOB__DEPLOYMENT, null, msgs);
+            msgs = basicSetDeployment(newDeployment, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BuildcorePackage.JOB__DEPLOYMENT, newDeployment, newDeployment));
+
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -201,8 +216,8 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
         switch (featureID) {
             case BuildcorePackage.JOB__SCMS:
                 return basicSetScms(null, msgs);
-            case BuildcorePackage.JOB__TRIGGERS:
-                return ((InternalEList<?>)getTriggers()).basicRemove(otherEnd, msgs);
+            case BuildcorePackage.JOB__DEPLOYMENT:
+                return basicSetDeployment(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -217,8 +232,8 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
         switch (featureID) {
             case BuildcorePackage.JOB__SCMS:
                 return getScms();
-            case BuildcorePackage.JOB__TRIGGERS:
-                return getTriggers();
+            case BuildcorePackage.JOB__DEPLOYMENT:
+                return getDeployment();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -235,9 +250,8 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
             case BuildcorePackage.JOB__SCMS:
                 setScms((SCM)newValue);
                 return;
-            case BuildcorePackage.JOB__TRIGGERS:
-                getTriggers().clear();
-                getTriggers().addAll((Collection<? extends Trigger>)newValue);
+            case BuildcorePackage.JOB__DEPLOYMENT:
+                setDeployment((Deployment)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -255,8 +269,8 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
             case BuildcorePackage.JOB__SCMS:
                 setScms((SCM)null);
                 return;
-            case BuildcorePackage.JOB__TRIGGERS:
-                getTriggers().clear();
+            case BuildcorePackage.JOB__DEPLOYMENT:
+                setDeployment((Deployment)null);
                 return;
         }
         super.eUnset(featureID);
@@ -274,8 +288,8 @@ public class JobImpl extends AbstractStepContainerImpl implements Job {
         switch (featureID) {
             case BuildcorePackage.JOB__SCMS:
                 return scms != null;
-            case BuildcorePackage.JOB__TRIGGERS:
-                return triggers != null && !triggers.isEmpty();
+            case BuildcorePackage.JOB__DEPLOYMENT:
+                return deployment != null;
         }
         return super.eIsSet(featureID);
     }

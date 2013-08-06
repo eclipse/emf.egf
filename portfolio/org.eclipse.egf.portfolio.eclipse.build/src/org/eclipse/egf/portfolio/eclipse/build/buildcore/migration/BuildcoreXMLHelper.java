@@ -16,6 +16,7 @@
 package org.eclipse.egf.portfolio.eclipse.build.buildcore.migration;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.util.BuildcoreResourceImpl;
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.BuilddeployFactory;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.BuildscmFactory;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -33,11 +34,19 @@ public class BuildcoreXMLHelper extends XMIHelperImpl {
 	
 	@Override
 	public EObject createObject(EFactory eFactory, String classXMIName) {
-		//replace SCMBuildLocation by SVNBuildLocation
-		if ("SCMBuildLocation".equals(classXMIName)) {
-			return BuildscmFactory.eINSTANCE.createSVNBuildLocation();
-		}
-		return createObject(eFactory, getType(eFactory, classXMIName));
+        //replace SCMBuildLocation by SVNBuildLocation
+        if ("SCMBuildLocation".equals(classXMIName)) {
+            return BuildscmFactory.eINSTANCE.createSVNBuildLocation();
+        }
+        //move SCMTrigger
+        if ("SCMTrigger".equals(classXMIName)) {
+            return BuilddeployFactory.eINSTANCE.createSCMTrigger();
+        }
+        //move CronTrigger
+        if ("CronTrigger".equals(classXMIName)) {
+            return BuilddeployFactory.eINSTANCE.createCronTrigger();
+        }
+        return createObject(eFactory, getType(eFactory, classXMIName));
 	}
 	
 }

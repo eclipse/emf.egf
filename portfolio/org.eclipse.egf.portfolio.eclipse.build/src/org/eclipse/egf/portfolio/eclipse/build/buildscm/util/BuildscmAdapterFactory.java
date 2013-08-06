@@ -15,6 +15,7 @@ package org.eclipse.egf.portfolio.eclipse.build.buildscm.util;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM;
 
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.GenerationLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
@@ -103,6 +104,10 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
                 return createSVNBuildLocationAdapter();
             }
             @Override
+            public Adapter caseSVNGenerationLocation(SVNGenerationLocation object) {
+                return createSVNGenerationLocationAdapter();
+            }
+            @Override
             public Adapter caseGIT(GIT object) {
                 return createGITAdapter();
             }
@@ -113,6 +118,10 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseGITBuildLocation(GITBuildLocation object) {
                 return createGITBuildLocationAdapter();
+            }
+            @Override
+            public Adapter caseGITGenerationLocation(GITGenerationLocation object) {
+                return createGITGenerationLocationAdapter();
             }
             @Override
             public Adapter caseSCM(SCM object) {
@@ -129,6 +138,10 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
             @Override
             public Adapter caseSourceBuildLocation(SourceBuildLocation object) {
                 return createSourceBuildLocationAdapter();
+            }
+            @Override
+            public Adapter caseGenerationLocation(GenerationLocation object) {
+                return createGenerationLocationAdapter();
             }
             @Override
             public Adapter defaultCase(EObject object) {
@@ -193,6 +206,20 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation <em>SVN Generation Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.SVNGenerationLocation
+     * @generated
+     */
+    public Adapter createSVNGenerationLocationAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GIT <em>GIT</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -231,6 +258,20 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createGITBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation <em>GIT Generation Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.buildscm.GITGenerationLocation
+     * @generated
+     */
+    public Adapter createGITGenerationLocationAdapter() {
         return null;
     }
 
@@ -287,6 +328,20 @@ public class BuildscmAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createSourceBuildLocationAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.portfolio.eclipse.build.builddeploy.GenerationLocation <em>Generation Location</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.portfolio.eclipse.build.builddeploy.GenerationLocation
+     * @generated
+     */
+    public Adapter createGenerationLocationAdapter() {
         return null;
     }
 

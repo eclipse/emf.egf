@@ -1,4 +1,4 @@
-//Generated on Fri Feb 03 18:20:05 CET 2012 with EGF 0.6.1.qualifier
+//Generated on Tue Aug 06 15:15:16 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.hudson.additions;
 
 import org.eclipse.egf.common.helper.*;
@@ -19,7 +19,7 @@ public class OtherslogRotator extends org.eclipse.egf.portfolio.eclipse.build.hu
     }
 
     public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-    protected final String TEXT_1 = "  <logRotator>" + NL + "    <daysToKeep>-1</daysToKeep>" + NL + "    <numToKeep>10</numToKeep>" + NL + "    <artifactDaysToKeep>-1</artifactDaysToKeep>" + NL + "    <artifactNumToKeep>-1</artifactNumToKeep>" + NL + "  </logRotator>" + NL;
+    protected final String TEXT_1 = "  <logRotator>" + NL + "    <daysToKeep>-1</daysToKeep>" + NL + "    <numToKeep>10</numToKeep>" + NL + "    <artifactDaysToKeep>-1</artifactDaysToKeep>" + NL + "    <artifactNumToKeep>-1</artifactNumToKeep>" + NL + "  </logRotator>" + NL + NL;
     protected final String TEXT_2 = NL;
     protected final String TEXT_3 = NL;
 

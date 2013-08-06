@@ -1,4 +1,4 @@
-//Generated on Fri Aug 03 11:28:51 CEST 2012 with EGF 1.0.0.qualifier
+//Generated on Tue Aug 06 15:15:14 CEST 2013 with EGF 1.0.0.qualifier
 package org.eclipse.egf.portfolio.eclipse.build.buckminster.additions;
 
 import org.eclipse.egf.common.helper.*;

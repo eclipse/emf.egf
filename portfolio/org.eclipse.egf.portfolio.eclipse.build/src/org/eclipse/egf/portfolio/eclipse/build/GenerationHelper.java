@@ -39,6 +39,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class GenerationHelper {
     
+    public boolean needPublish(EObject eObject) {
+        boolean result = false;
+        result = result || containsClass(eObject, BuildstepPackage.eINSTANCE.getPublishStep());
+        result = result || containsClass(eObject, BuildstepPackage.eINSTANCE.getAggregateStep());
+        result = result || containsClass(eObject, BuildstepPackage.eINSTANCE.getInstallStep());
+        return result;
+    }
+
+    public boolean needJavadocPublish(EObject eObject) {
+        boolean result = false;
+        result = result || containsClass(eObject, BuildstepPackage.eINSTANCE.getJavadocStep());
+        return result;
+    }
+
     public boolean hasBinaryBuildLocation(EObject eObject) {
         return containsClass(eObject, BuildstepPackage.eINSTANCE.getBinaryBuildLocation());
     }

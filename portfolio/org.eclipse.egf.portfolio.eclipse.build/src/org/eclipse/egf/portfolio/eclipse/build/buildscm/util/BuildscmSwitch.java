@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildcore.SCM;
 
+import org.eclipse.egf.portfolio.eclipse.build.builddeploy.GenerationLocation;
 import org.eclipse.egf.portfolio.eclipse.build.buildscm.*;
 
 import org.eclipse.egf.portfolio.eclipse.build.buildstep.AbstractBuildLocation;
@@ -128,6 +129,13 @@ public class BuildscmSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case BuildscmPackage.SVN_GENERATION_LOCATION: {
+                SVNGenerationLocation svnGenerationLocation = (SVNGenerationLocation)theEObject;
+                T result = caseSVNGenerationLocation(svnGenerationLocation);
+                if (result == null) result = caseGenerationLocation(svnGenerationLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case BuildscmPackage.GIT: {
                 GIT git = (GIT)theEObject;
                 T result = caseGIT(git);
@@ -147,6 +155,13 @@ public class BuildscmSwitch<T> {
                 if (result == null) result = caseSourceBuildLocation(gitBuildLocation);
                 if (result == null) result = casePatternBuildLocation(gitBuildLocation);
                 if (result == null) result = caseAbstractBuildLocation(gitBuildLocation);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case BuildscmPackage.GIT_GENERATION_LOCATION: {
+                GITGenerationLocation gitGenerationLocation = (GITGenerationLocation)theEObject;
+                T result = caseGITGenerationLocation(gitGenerationLocation);
+                if (result == null) result = caseGenerationLocation(gitGenerationLocation);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -200,6 +215,21 @@ public class BuildscmSwitch<T> {
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>SVN Generation Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>SVN Generation Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSVNGenerationLocation(SVNGenerationLocation object) {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>GIT</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -241,6 +271,21 @@ public class BuildscmSwitch<T> {
      * @generated
      */
     public T caseGITBuildLocation(GITBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>GIT Generation Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>GIT Generation Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGITGenerationLocation(GITGenerationLocation object) {
         return null;
     }
 
@@ -301,6 +346,21 @@ public class BuildscmSwitch<T> {
      * @generated
      */
     public T caseSourceBuildLocation(SourceBuildLocation object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Generation Location</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Generation Location</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseGenerationLocation(GenerationLocation object) {
         return null;
     }
 
