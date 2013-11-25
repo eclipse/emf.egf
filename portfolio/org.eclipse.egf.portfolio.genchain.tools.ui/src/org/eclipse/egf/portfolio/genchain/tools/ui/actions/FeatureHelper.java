@@ -77,7 +77,7 @@ public class FeatureHelper {
 		featureData.id = id + ".feature";
 		featureData.name = name + " Feature";
 		featureData.version = VERSION;
-		featureData.provider = "THALESGROUP";
+//		featureData.provider = "THALESGROUP";
 		return featureData;
 	}
 
