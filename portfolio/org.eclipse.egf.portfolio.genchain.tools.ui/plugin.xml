@@ -31,6 +31,24 @@
 	<extension point="org.eclipse.ui.popupMenus">
   
 	    <objectContribution
+			id="org.eclipse.egf.portfolio.genchain.tools.contribution1"
+			objectClass="org.eclipse.core.resources.IFile"
+			nameFilter="*.generationChain">
+	        
+			<action
+         class="org.eclipse.egf.portfolio.genchain.tools.ui.actions.BuildApplicationAction"
+         enablesFor="1"
+         icon="icons/full/obj16/GenerationChainModelFile.gif"
+         id="org.eclipse.egf.portfolio.genchain.tools.ui.actions.build.application.action"
+         label="%BuildApplicationAction_label"
+         menubarPath="additions"
+         tooltip="%BuildApplicationAction_tooltip"/>
+	    </objectContribution>
+	</extension>	
+
+	<extension point="org.eclipse.ui.popupMenus">
+  
+	    <objectContribution
 			id="org.eclipse.egf.portfolio.genchain.tools.contribution"
 			objectClass="org.eclipse.core.resources.IFile"
 			nameFilter="*.generationChain">
